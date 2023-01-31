@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ursa", "src\Ursa\Ursa.csproj", "{14E5B6D1-E3ED-41D7-9664-37ABE3B22558}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ursa.Demo", "demo\Ursa.Demo\Ursa.Demo.csproj", "{407A91FD-A88B-459B-8DCE-8C6AA98279FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ursa.Themes.Semi", "src\Ursa.Themes.Semi\Ursa.Themes.Semi.csproj", "{53B5F277-3AEB-4661-ACAE-15CFFF2ED800}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{14E5B6D1-E3ED-41D7-9664-37ABE3B22558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14E5B6D1-E3ED-41D7-9664-37ABE3B22558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14E5B6D1-E3ED-41D7-9664-37ABE3B22558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14E5B6D1-E3ED-41D7-9664-37ABE3B22558}.Release|Any CPU.Build.0 = Release|Any CPU
+		{407A91FD-A88B-459B-8DCE-8C6AA98279FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{407A91FD-A88B-459B-8DCE-8C6AA98279FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{407A91FD-A88B-459B-8DCE-8C6AA98279FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{407A91FD-A88B-459B-8DCE-8C6AA98279FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53B5F277-3AEB-4661-ACAE-15CFFF2ED800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53B5F277-3AEB-4661-ACAE-15CFFF2ED800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53B5F277-3AEB-4661-ACAE-15CFFF2ED800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53B5F277-3AEB-4661-ACAE-15CFFF2ED800}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
