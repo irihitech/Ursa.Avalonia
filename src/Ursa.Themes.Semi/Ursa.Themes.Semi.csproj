@@ -15,4 +15,8 @@
       <ProjectReference Include="..\Ursa\Ursa.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Controls" />
+    </ItemGroup>
+
 </Project>
