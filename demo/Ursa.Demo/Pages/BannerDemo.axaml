@@ -1,0 +1,35 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.BannerDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel Spacing="20">
+        <!--    -->
+        <u:Banner
+            Margin="8"
+            Classes="Bordered"
+            Content="Content"
+            Header="Header" />
+        <u:Banner
+            Margin="8"
+            Classes="Bordered"
+            Content="C" />
+        <u:Banner
+            Margin="8"
+            HorizontalContentAlignment="Left"
+            Classes="Bordered"
+            Content="Content"
+            Header="Header" />
+        <u:Banner
+            Margin="8"
+            HorizontalContentAlignment="Left"
+            Classes="Bordered"
+            Content="C" />
+        <u:Banner Margin="8" Content="Content" />
+    </StackPanel>
+</UserControl>

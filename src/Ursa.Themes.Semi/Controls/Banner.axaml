@@ -4,12 +4,79 @@
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:Banner}" TargetType="u:Banner">
+        <Setter Property="u:Banner.HorizontalContentAlignment" Value="Center" />
         <Setter Property="u:Banner.Template">
             <ControlTemplate TargetType="u:Banner">
-                <Border>
-                    <!--    -->
+                <Border
+                    Name="PART_Container"
+                    Padding="12"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Grid
+                            Grid.Column="0"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            ColumnDefinitions="Auto, *"
+                            RowDefinitions="Auto, *">
+                            <!--  Icon Area  -->
+                            <Panel
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="0"
+                                VerticalAlignment="Top"
+                                IsVisible="{TemplateBinding ShowIcon}">
+                                <ContentPresenter Content="{TemplateBinding Icon}" />
+                                <PathIcon
+                                    Name="PART_BuildInIcon"
+                                    Width="16"
+                                    Height="16"
+                                    IsVisible="{TemplateBinding Icon,
+                                                                Converter={x:Static ObjectConverters.IsNull}}" />
+                            </Panel>
+                            <ContentPresenter
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                IsVisible="{TemplateBinding Header,
+                                                            Converter={x:Static ObjectConverters.IsNotNull}}"
+                                TextElement.FontWeight="600" />
+                            <ContentPresenter
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        </Grid>
+                        <Button
+                            Name="{x:Static u:Banner.PART_CloseButton}"
+                            Grid.Column="1"
+                            IsVisible="{TemplateBinding CanClose}"
+                            Theme="{DynamicResource BorderlessButton}">
+                            <PathIcon
+                                Width="12"
+                                Height="12"
+                                Data="{DynamicResource BannerCloseIconGeometry}"
+                                Foreground="Black" />
+                        </Button>
+                    </Grid>
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^[Type=Information]">
+            <Style Selector="^ /template/ Border#PART_Container">
+                <Setter Property="Background" Value="{DynamicResource BannerInformationBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource BannerInformationBorderBrush}" />
+            </Style>
+            <Style Selector="^ /template/ PathIcon#PART_BuildInIcon">
+                <Setter Property="PathIcon.Data" Value="{DynamicResource BannerInformationIconGeometry}" />
+                <Setter Property="PathIcon.Foreground" Value="{DynamicResource BannerInformationBorderBrush}" />
+            </Style>
+        </Style>
+        <Style Selector="^.Bordered">
+            <Style Selector="^ /template/ Border#PART_Container">
+                <Setter Property="Border.CornerRadius" Value="{DynamicResource BannerCornerRadius}" />
+                <Setter Property="Border.BorderThickness" Value="{DynamicResource BannerBorderThickness}" />
+            </Style>
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

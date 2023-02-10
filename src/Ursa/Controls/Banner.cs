@@ -1,18 +1,23 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
+using Avalonia.Controls.Notifications;
+using Avalonia.Controls.Primitives;
+using Avalonia.Controls.Templates;
+using Avalonia.Interactivity;
+using Avalonia.Metadata;
 
 namespace Ursa.Controls;
 
-public enum BannerType
+[PseudoClasses(PC_Icon)]
+[TemplatePart(PART_CloseButton, typeof(Button))]
+public class Banner: HeaderedContentControl
 {
-    None,
-    Info,
-    Warning,
-    Danger,
-    Success,
-}
-public class Banner: ContentControl
-{
+    public const string PC_Icon = ":icon";
+    public const string PART_CloseButton = "PART_CloseButton";
+
+    private Button? _closeButton;
+    
     public static readonly StyledProperty<bool> CanCloseProperty = AvaloniaProperty.Register<Banner, bool>(
         nameof(CanClose));
 
@@ -23,7 +28,7 @@ public class Banner: ContentControl
     }
 
     public static readonly StyledProperty<bool> ShowIconProperty = AvaloniaProperty.Register<Banner, bool>(
-        nameof(ShowIcon));
+        nameof(ShowIcon), true);
 
     public bool ShowIcon
     {
@@ -31,14 +36,41 @@ public class Banner: ContentControl
         set => SetValue(ShowIconProperty, value);
     }
 
-    public static readonly StyledProperty<object?> HeaderProperty = AvaloniaProperty.Register<Banner, object?>(
-        nameof(Header));
+    public static readonly StyledProperty<object?> IconProperty = AvaloniaProperty.Register<Banner, object?>(
+        nameof(Icon));
 
-    public object? Header
+    public object? Icon
     {
-        get => GetValue(HeaderProperty);
-        set => SetValue(HeaderProperty, value);
+        get => GetValue(IconProperty);
+        set => SetValue(IconProperty, value);
     }
-    
-    
+
+    public static readonly StyledProperty<NotificationType> TypeProperty = AvaloniaProperty.Register<Banner, NotificationType>(
+        nameof(Type));
+
+    public NotificationType Type
+    {
+        get => GetValue(TypeProperty);
+        set => SetValue(TypeProperty, value);
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        if (_closeButton != null)
+        {
+            _closeButton.Click -= OnCloseClick;
+        }
+        _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
+        if (_closeButton != null)
+        {
+            _closeButton.Click += OnCloseClick;
+        }
+        
+    }
+
+    private void OnCloseClick(object sender, RoutedEventArgs args)
+    {
+        IsVisible = false;
+    }
 }

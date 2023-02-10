@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:Ursa.Demo.Pages"
     xmlns:vm="using:Ursa.Demo.ViewModels"
     Title="Ursa.Demo"
     d:DesignHeight="450"
@@ -15,12 +16,10 @@
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <StackPanel HorizontalAlignment="Left" Spacing="20">
-        <TextBlock
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Text="{Binding Greeting}" />
-        <Button Content="Hello World" />
-    </StackPanel>
+    <TabControl TabStripPlacement="Left">
+        <TabItem Header="Banner">
+            <pages:BannerDemo />
+        </TabItem>
+    </TabControl>
 
 </Window>
