@@ -9,7 +9,6 @@
 
     <ItemGroup>
       <PackageReference Include="Avalonia" Version="11.0.0-preview5" />
-      <PackageReference Include="Semi.Avalonia" Version="0.1.0-preview5" />
       <PackageReference Include="XamlNameReferenceGenerator" Version="1.5.1" />
     </ItemGroup>
 

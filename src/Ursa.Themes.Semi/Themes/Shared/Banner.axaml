@@ -8,4 +8,5 @@
 
     <CornerRadius x:Key="BannerCornerRadius">3</CornerRadius>
     <Thickness x:Key="BannerBorderThickness">1</Thickness>
+    <Thickness x:Key="BannerIconMargin">0 0 12 0</Thickness>
 </ResourceDictionary>

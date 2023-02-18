@@ -4,32 +4,49 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:Ursa.Demo.Pages"
     xmlns:u="https://irihi.tech/ursa"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
     mc:Ignorable="d">
+    <Design.DataContext>
+        <pages:BannerDemoViewModel />
+    </Design.DataContext>
     <StackPanel Spacing="20">
-        <!--    -->
-        <u:Banner
-            Margin="8"
-            Classes="Bordered"
-            Content="Content"
-            Header="Header" />
-        <u:Banner
-            Margin="8"
-            Classes="Bordered"
-            Content="C" />
-        <u:Banner
-            Margin="8"
-            HorizontalContentAlignment="Left"
-            Classes="Bordered"
-            Content="Content"
-            Header="Header" />
-        <u:Banner
-            Margin="8"
-            HorizontalContentAlignment="Left"
-            Classes="Bordered"
-            Content="C" />
-        <u:Banner Margin="8" Content="Content" />
+        <Grid ColumnDefinitions="*, 300">
+            <Grid Grid.Column="0">
+                <Border Margin="20">
+                    <u:Banner
+                        Classes.Bordered="{Binding Bordered}"
+                        Content="This is the Demo of Ursa Banner. "
+                        Header="Welcome to Ursa"
+                        Type="{Binding SelectedType}" />
+                </Border>
+            </Grid>
+            <Border Grid.Column="1" VerticalAlignment="Top">
+                <Grid ColumnDefinitions="*, Auto" RowDefinitions="*, *">
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Content="Type" />
+                    <ComboBox
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        MinWidth="200"
+                        Items="{Binding Types}"
+                        SelectedItem="{Binding SelectedType}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Content="Bordered" />
+                    <ToggleSwitch
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        IsChecked="{Binding Bordered}" />
+                </Grid>
+            </Border>
+        </Grid>
+
     </StackPanel>
 </UserControl>
