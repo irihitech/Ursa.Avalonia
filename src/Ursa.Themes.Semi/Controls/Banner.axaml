@@ -1,0 +1,123 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:Banner}" TargetType="u:Banner">
+        <Setter Property="u:Banner.BorderThickness" Value="{DynamicResource BannerBorderThickness}" />
+        <Setter Property="u:Banner.BorderBrush" Value="Transparent" />
+        <Setter Property="u:Banner.HorizontalContentAlignment" Value="Center" />
+        <Setter Property="u:Banner.Template">
+            <ControlTemplate TargetType="u:Banner">
+                <Border
+                    Name="PART_Container"
+                    Padding="12"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Grid
+                            Grid.Column="0"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            ColumnDefinitions="Auto, *"
+                            RowDefinitions="Auto, *">
+                            <!--  Icon Area  -->
+                            <Panel
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="0"
+                                Margin="{DynamicResource BannerIconMargin}"
+                                VerticalAlignment="Top"
+                                IsVisible="{TemplateBinding ShowIcon}">
+                                <ContentPresenter Content="{TemplateBinding Icon}" />
+                                <PathIcon
+                                    Name="PART_BuildInIcon"
+                                    Width="16"
+                                    Height="16"
+                                    IsVisible="{TemplateBinding Icon,
+                                                                Converter={x:Static ObjectConverters.IsNull}}" />
+                            </Panel>
+                            <ContentPresenter
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                IsVisible="{TemplateBinding Header,
+                                                            Converter={x:Static ObjectConverters.IsNotNull}}"
+                                TextElement.FontWeight="600" />
+                            <ContentPresenter
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        </Grid>
+                        <Button
+                            Name="{x:Static u:Banner.PART_CloseButton}"
+                            Grid.Column="1"
+                            Padding="4"
+                            Cursor="Hand"
+                            IsVisible="{TemplateBinding CanClose}"
+                            Theme="{DynamicResource BorderlessButton}">
+                            <PathIcon
+                                Width="12"
+                                Height="12"
+                                Data="{DynamicResource BannerCloseIconGeometry}"
+                                Foreground="{DynamicResource BannerCloseButtonForeground}" />
+                        </Button>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^[Type=Information]">
+            <Style Selector="^.Bordered /template/ Border#PART_Container">
+                <Setter Property="Border.CornerRadius" Value="{DynamicResource BannerCornerRadius}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource BannerInformationBorderBrush}" />
+            </Style>
+            <Style Selector="^ /template/ Border#PART_Container">
+                <Setter Property="Background" Value="{DynamicResource BannerInformationBackground}" />
+            </Style>
+            <Style Selector="^ /template/ PathIcon#PART_BuildInIcon">
+                <Setter Property="PathIcon.Data" Value="{DynamicResource BannerInformationIconGeometry}" />
+                <Setter Property="PathIcon.Foreground" Value="{DynamicResource BannerInformationBorderBrush}" />
+            </Style>
+        </Style>
+        <Style Selector="^[Type=Warning]">
+            <Style Selector="^.Bordered /template/ Border#PART_Container">
+                <Setter Property="Border.CornerRadius" Value="{DynamicResource BannerCornerRadius}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource BannerWarningBorderBrush}" />
+            </Style>
+            <Style Selector="^ /template/ Border#PART_Container">
+                <Setter Property="Background" Value="{DynamicResource BannerWarningBackground}" />
+            </Style>
+            <Style Selector="^ /template/ PathIcon#PART_BuildInIcon">
+                <Setter Property="PathIcon.Data" Value="{DynamicResource BannerWarningIconGeometry}" />
+                <Setter Property="PathIcon.Foreground" Value="{DynamicResource BannerWarningBorderBrush}" />
+            </Style>
+        </Style>
+        <Style Selector="^[Type=Error]">
+            <Style Selector="^.Bordered /template/ Border#PART_Container">
+                <Setter Property="Border.CornerRadius" Value="{DynamicResource BannerCornerRadius}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource BannerErrorBorderBrush}" />
+            </Style>
+            <Style Selector="^ /template/ Border#PART_Container">
+                <Setter Property="Background" Value="{DynamicResource BannerErrorBackground}" />
+            </Style>
+            <Style Selector="^ /template/ PathIcon#PART_BuildInIcon">
+                <Setter Property="PathIcon.Data" Value="{DynamicResource BannerErrorIconGeometry}" />
+                <Setter Property="PathIcon.Foreground" Value="{DynamicResource BannerErrorBorderBrush}" />
+            </Style>
+        </Style>
+        <Style Selector="^[Type=Success]">
+            <Style Selector="^.Bordered /template/ Border#PART_Container">
+                <Setter Property="Border.CornerRadius" Value="{DynamicResource BannerCornerRadius}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource BannerSuccessBorderBrush}" />
+            </Style>
+            <Style Selector="^ /template/ Border#PART_Container">
+                <Setter Property="Background" Value="{DynamicResource BannerSuccessBackground}" />
+            </Style>
+            <Style Selector="^ /template/ PathIcon#PART_BuildInIcon">
+                <Setter Property="PathIcon.Data" Value="{DynamicResource BannerSuccessIconGeometry}" />
+                <Setter Property="PathIcon.Foreground" Value="{DynamicResource BannerSuccessBorderBrush}" />
+            </Style>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

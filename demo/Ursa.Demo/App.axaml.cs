@@ -21,7 +21,6 @@ public partial class App : Application
         {
             // Line below is needed to remove Avalonia data validation.
             // Without this line you will get duplicate validations from both Avalonia and CT
-            ExpressionObserver.DataValidators.RemoveAll(x => x is DataAnnotationsValidationPlugin);
             desktop.MainWindow = new MainWindow
             {
                 DataContext = new MainWindowViewModel(),
