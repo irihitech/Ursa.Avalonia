@@ -16,120 +16,78 @@
             <Style Selector="u|Badge">
                 <Setter Property="Margin" Value="14" />
             </Style>
+            <Style Selector="Border">
+                <Setter Property="Background" Value="Orange" />
+            </Style>
         </StackPanel.Styles>
         <TextBlock Text="Hello" />
         <u:Badge
             HorizontalAlignment="Center"
             BadgeContent="500"
             OverflowCount="100">
-            <Border
-                Width="100"
-                Height="50"
-                Background="LightYellow" />
+            <Border Width="100" Height="50" />
         </u:Badge>
         <StackPanel Orientation="Horizontal">
             <u:Badge BadgeContent="5" CornerPosition="TopLeft">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
             <u:Badge BadgeContent="5" CornerPosition="TopRight">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
             <u:Badge BadgeContent="5" CornerPosition="BottomLeft">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
             <u:Badge BadgeContent="5" CornerPosition="BottomRight">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
         </StackPanel>
         <u:Badge BadgeContent="SUCCEED!">
-            <Border
-                Width="100"
-                Height="50"
-                Background="LightYellow" />
+            <Border Width="100" Height="50" />
         </u:Badge>
         <u:Badge HorizontalAlignment="Stretch" BadgeContent="VIP">
-            <Border Height="50" Background="LightYellow" />
+            <Border Height="50" />
         </u:Badge>
         <StackPanel Orientation="Horizontal">
             <u:Badge
                 BadgeContent="VIP"
                 CornerPosition="TopLeft"
                 Dot="True">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
             <u:Badge
                 BadgeContent="VIP"
                 CornerPosition="TopRight"
                 Dot="True">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
             <u:Badge
                 BadgeContent="VIP"
                 CornerPosition="BottomLeft"
                 Dot="True">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
             <u:Badge
                 BadgeContent="VIP"
                 CornerPosition="BottomRight"
                 Dot="True">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <u:Badge BadgeContent="URSA" Classes="Primary">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
             <u:Badge BadgeContent="URSA" Classes="Secondary">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
             <u:Badge BadgeContent="URSA" Classes="Tertiary">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
             <u:Badge BadgeContent="URSA" Classes="Warning">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
             <u:Badge BadgeContent="URSA" Classes="Danger">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
@@ -137,46 +95,31 @@
                 BadgeContent="URSA"
                 Classes="Primary"
                 Dot="True">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
             <u:Badge
                 BadgeContent="URSA"
                 Classes="Secondary"
                 Dot="True">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
             <u:Badge
                 BadgeContent="URSA"
                 Classes="Tertiary"
                 Dot="True">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
             <u:Badge
                 BadgeContent="URSA"
                 Classes="Warning"
                 Dot="True">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
             <u:Badge
                 BadgeContent="URSA"
                 Classes="Danger"
                 Dot="True">
-                <Border
-                    Width="100"
-                    Height="50"
-                    Background="LightYellow" />
+                <Border Width="100" Height="50" />
             </u:Badge>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
