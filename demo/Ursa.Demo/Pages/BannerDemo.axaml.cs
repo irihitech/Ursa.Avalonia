@@ -14,6 +14,11 @@ public partial class BannerDemo : UserControl
         InitializeComponent();
         this.DataContext = new BannerDemoViewModel();
     }
+    
+    private void InitializeComponent()
+    {
+        AvaloniaXamlLoader.Load(this);
+    }
 }
 
 public class BannerDemoViewModel: ViewModelBase

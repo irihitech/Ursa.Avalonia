@@ -8,10 +8,10 @@
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceInclude x:Key="Dark" Source="./Themes/Dark/_index.axaml" />
-                <ResourceInclude x:Key="Light" Source="Themes/Light/_index.axaml" />
+                <ResourceInclude x:Key="Light" Source="./Themes/Light/_index.axaml" />
             </ResourceDictionary.ThemeDictionaries>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceInclude Source="../Controls/Banner.axaml" />
+                <ResourceInclude Source="../Controls/_index.axaml" />
                 <ResourceInclude Source="Themes/Shared/_index.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

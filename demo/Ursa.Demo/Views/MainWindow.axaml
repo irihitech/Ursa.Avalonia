@@ -16,10 +16,20 @@
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <TabControl TabStripPlacement="Left">
-        <TabItem Header="Banner">
-            <pages:BannerDemo />
-        </TabItem>
-    </TabControl>
+    <Grid RowDefinitions="Auto, *">
+        <ToggleButton
+            Grid.Row="0"
+            HorizontalAlignment="Right"
+            Content="Update Theme"
+            IsCheckedChanged="ToggleButton_OnIsCheckedChanged" />
+        <TabControl Grid.Row="1" TabStripPlacement="Left">
+            <TabItem Header="Badge">
+                <pages:BadgeDemo />
+            </TabItem>
+            <TabItem Header="Banner">
+                <pages:BannerDemo />
+            </TabItem>
+        </TabControl>
+    </Grid>
 
 </Window>
