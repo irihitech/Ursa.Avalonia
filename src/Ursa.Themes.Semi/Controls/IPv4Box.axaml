@@ -1,0 +1,57 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:IPv4Box}" TargetType="{x:Type u:IPv4Box}">
+        <Setter Property="u:IPv4Box.Template">
+            <ControlTemplate TargetType="u:IPv4Box">
+                <Border
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    CornerRadius="3">
+                    <Grid Width="{TemplateBinding Width}" ColumnDefinitions="*, Auto, *, Auto, *, Auto, *, Auto, * ">
+                        <TextBox
+                            Name="{x:Static u:IPv4Box.PART_FirstTextBox}"
+                            Grid.Column="0"
+                            BorderThickness="0" />
+                        <TextPresenter
+                            Grid.Column="1"
+                            VerticalAlignment="Bottom"
+                            Text="." />
+                        <TextBox
+                            Name="{x:Static u:IPv4Box.PART_SecondTextBox}"
+                            Grid.Column="2"
+                            BorderThickness="0" />
+                        <TextPresenter
+                            Grid.Column="3"
+                            VerticalAlignment="Bottom"
+                            Text="." />
+                        <TextBox
+                            Name="{x:Static u:IPv4Box.PART_ThirdTextBox}"
+                            Grid.Column="4"
+                            BorderThickness="0" />
+                        <TextPresenter
+                            Grid.Column="5"
+                            VerticalAlignment="Bottom"
+                            Text="." />
+                        <TextBox
+                            Name="{x:Static u:IPv4Box.PART_FourthTextBox}"
+                            Grid.Column="6"
+                            BorderThickness="0" />
+                        <Rectangle
+                            Grid.Column="7"
+                            Width="1"
+                            Margin="0,2"
+                            VerticalAlignment="Stretch"
+                            Fill="Black" />
+                        <TextBox
+                            Name="{x:Static u:IPv4Box.PART_PortTextBox}"
+                            Grid.Column="8"
+                            BorderThickness="0" />
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

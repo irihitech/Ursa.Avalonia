@@ -29,6 +29,9 @@
             <TabItem Header="Banner">
                 <pages:BannerDemo />
             </TabItem>
+            <TabItem Header="IPv4Box">
+                <pages:IPv4BoxDemo />
+            </TabItem>
         </TabControl>
     </Grid>
 
