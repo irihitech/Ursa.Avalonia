@@ -8,8 +8,9 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <StackPanel>
+    <StackPanel HorizontalAlignment="Left">
         <TextBlock />
-        <u:IPv4Box Width="500" />
+        <u:IPv4Box />
+        <u:IPv4Box ShowPort="True" />
     </StackPanel>
 </UserControl>

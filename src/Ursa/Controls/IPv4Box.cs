@@ -10,23 +10,30 @@ using Avalonia.Interactivity;
 
 namespace Ursa.Controls;
 
-[TemplatePart(PART_FirstTextBox, typeof(TextBox))]
-[TemplatePart(PART_SecondTextBox, typeof(TextBox))]
-[TemplatePart(PART_ThirdTextBox, typeof(TextBox))]
-[TemplatePart(PART_FourthTextBox, typeof(TextBox))]
-[TemplatePart(PART_PortTextBox, typeof(TextBox))]
+[TemplatePart(PART_FirstTextPresenter, typeof(TextPresenter))]
+[TemplatePart(PART_SecondTextPresenter, typeof(TextPresenter))]
+[TemplatePart(PART_ThirdTextPresenter, typeof(TextPresenter))]
+[TemplatePart(PART_FourthTextPresenter, typeof(TextPresenter))]
+[TemplatePart(PART_PortTextPresenter, typeof(TextPresenter))]
 public class IPv4Box: TemplatedControl
 {
-    public const string PART_FirstTextBox = "PART_FirstTextPresenter";
-    public const string PART_SecondTextBox = "PART_SecondTextPresenter";
-    public const string PART_ThirdTextBox = "PART_ThirdTextPresenter";
-    public const string PART_FourthTextBox = "PART_FourthTextPresenter";
-    public const string PART_PortTextBox = "PART_PortNumericInput";
-    private TextBox? _firstText;
-    private TextBox? _secondText;
-    private TextBox? _thirdText;
-    private TextBox? _fourthText;
-    private TextBox? _portText;
+    public const string PART_FirstTextPresenter = "PART_FirstTextPresenter";
+    public const string PART_SecondTextPresenter = "PART_SecondTextPresenter";
+    public const string PART_ThirdTextPresenter = "PART_ThirdTextPresenter";
+    public const string PART_FourthTextPresenter = "PART_FourthTextPresenter";
+    public const string PART_PortTextPresenter = "PART_PortTextPresenter";
+    private TextPresenter? _firstText;
+    private TextPresenter? _secondText;
+    private TextPresenter? _thirdText;
+    private TextPresenter? _fourthText;
+    private TextPresenter? _portText;
+    private byte _firstByte;
+    private byte _secondByte;
+    private byte _thridByte;
+    private byte _fourthByte;
+    private int _port;
+    private TextPresenter?[] _presenters = new TextPresenter?[5];
+    private TextPresenter? _currentActivePresenter;
 
     public static readonly StyledProperty<bool> ShowPortProperty = AvaloniaProperty.Register<IPv4Box, bool>(
         nameof(ShowPort));
@@ -37,10 +44,10 @@ public class IPv4Box: TemplatedControl
         set => SetValue(ShowPortProperty, value);
     }
     
-    public static readonly StyledProperty<IPAddress> IPAddressProperty = AvaloniaProperty.Register<IPv4Box, IPAddress>(
+    public static readonly StyledProperty<IPAddress?> IPAddressProperty = AvaloniaProperty.Register<IPv4Box, IPAddress?>(
         nameof(IPAddress));
 
-    public IPAddress IPAddress
+    public IPAddress? IPAddress
     {
         get => GetValue(IPAddressProperty);
         set => SetValue(IPAddressProperty, value);
@@ -54,70 +61,79 @@ public class IPv4Box: TemplatedControl
         get => GetValue(PortProperty);
         set => SetValue(PortProperty, value);
     }
-    
-    
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        _firstText = e.NameScope.Find<TextBox>(PART_FirstTextBox);
-        _secondText = e.NameScope.Find<TextBox>(PART_SecondTextBox);
-        _thirdText = e.NameScope.Find<TextBox>(PART_ThirdTextBox);
-        _fourthText = e.NameScope.Find<TextBox>(PART_FourthTextBox);
-        _portText = e.NameScope.Find<TextBox>(PART_PortTextBox);
-
-        _firstText.LostFocus += OnTextLostFocus;
+        ClearTextPresenterEvents(_firstText);
+        ClearTextPresenterEvents(_secondText);
+        ClearTextPresenterEvents(_thirdText);
+        ClearTextPresenterEvents(_fourthText);
+        ClearTextPresenterEvents(_portText);
+        _firstText = e.NameScope.Find<TextPresenter>(PART_FirstTextPresenter);
+        _secondText = e.NameScope.Find<TextPresenter>(PART_SecondTextPresenter);
+        _thirdText = e.NameScope.Find<TextPresenter>(PART_ThirdTextPresenter);
+        _fourthText = e.NameScope.Find<TextPresenter>(PART_FourthTextPresenter);
+        _portText = e.NameScope.Find<TextPresenter>(PART_PortTextPresenter);
+        _presenters[0] = _portText;
+        _presenters[1] = _firstText;
+        _presenters[2] = _secondText;
+        _presenters[3] = _thirdText;
+        _presenters[4] = _fourthText;
+        RegisterTextPresenterEvents(_firstText);
+        RegisterTextPresenterEvents(_secondText);
+        RegisterTextPresenterEvents(_thirdText);
+        RegisterTextPresenterEvents(_fourthText);
+        RegisterTextPresenterEvents(_portText);
     }
 
-    private void OnTextKeyDown(object sender, KeyEventArgs args)
+    private void ClearTextPresenterEvents(TextPresenter? presenter)
     {
-        if (args.Key == Key.Right)
+        if (presenter is null) return;
+        presenter.LostFocus -= OnTextPresenterLostFocus;
+    }
+
+    private void RegisterTextPresenterEvents(TextPresenter? presenter)
+    {
+        if(presenter  is null) return;
+        presenter.LostFocus += OnTextPresenterLostFocus;
+    }
+
+    private void OnTextPresenterLostFocus(object? sender, RoutedEventArgs args)
+    {
+        if (sender is TextPresenter p)
         {
-            _secondText?.Focus();
+            p.HideCaret();
         }
     }
 
-    private void OnTextLostFocus(object? sender, RoutedEventArgs args)
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
-        if (sender?.Equals(_firstText)??false)
+        var source = e.Source;
+        Point position = e.GetPosition(_firstText);
+        foreach (var presenter in _presenters)
         {
-            Debug.WriteLine("FIRST");
-        }
-    }
-
-    protected override void OnKeyDown(KeyEventArgs e)
-    {
-        if (e.Key == Key.Left)
-        {
-            if ((_firstText?.IsFocused??false) && _firstText.SelectionStart == 0)
+            if (presenter?.Bounds.Contains(position) ?? false)
             {
-                _secondText?.Focus();
+                presenter?.ShowCaret();
+                _currentActivePresenter = presenter;
+            }
+            else
+            {
+                presenter?.HideCaret();
             }
         }
-        else if (e.Key == Key.Right)
-        {
-            if ((_firstText?.IsFocused ?? false) && _firstText?.SelectionEnd == 2) 
-            {
-                _firstText.Focus();
-            }
-        }
-        else if (e.Key == Key.Tab)
-        {
-            
-        }
-        else if (!(e.Key is >= Key.D0 and <= Key.D9 || e.Key is >= Key.NumPad0 and <= Key.NumPad9))
-        {
-            return;
-        }
-        base.OnKeyDown(e);
+        Debug.WriteLine(_currentActivePresenter?.Name);
+        base.OnPointerPressed(e);
     }
 
-    protected override void OnTextInput(TextInputEventArgs e)
+    protected override void OnLostFocus(RoutedEventArgs e)
     {
-        if (_firstText != null)
-        {
-            _firstText.Text = e.Text;
-        }
-        base.OnTextInput(e);
+        _firstText?.HideCaret();
+        _secondText?.HideCaret();
+        _thirdText?.HideCaret();
+        _fourthText?.HideCaret();
+        _portText?.HideCaret();
+        _currentActivePresenter = null;
     }
 }

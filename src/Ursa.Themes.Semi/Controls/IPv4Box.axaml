@@ -3,55 +3,88 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
+    <Design.PreviewWith>
+        <StackPanel Margin="20">
+            <TextBlock Text="Hello World" />
+        </StackPanel>
+    </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:IPv4Box}" TargetType="{x:Type u:IPv4Box}">
+        <Setter Property="u:IPv4Box.Focusable" Value="True" />
+        <Setter Property="u:IPv4Box.HorizontalAlignment" Value="Left" />
         <Setter Property="u:IPv4Box.Template">
             <ControlTemplate TargetType="u:IPv4Box">
                 <Border
+                    Name="PART_Border"
+                    MinHeight="30"
+                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                    Background="Transparent"
                     BorderBrush="Black"
                     BorderThickness="1"
                     CornerRadius="3">
-                    <Grid Width="{TemplateBinding Width}" ColumnDefinitions="*, Auto, *, Auto, *, Auto, *, Auto, * ">
-                        <TextBox
-                            Name="{x:Static u:IPv4Box.PART_FirstTextBox}"
+                    <Grid Width="{TemplateBinding Width}" ColumnDefinitions="1*, Auto, 1*, Auto, 1*, Auto, 1*, Auto, * ">
+                        <TextPresenter
+                            Name="{x:Static u:IPv4Box.PART_FirstTextPresenter}"
                             Grid.Column="0"
-                            BorderThickness="0" />
-                        <TextPresenter
+                            MinWidth="48"
+                            VerticalAlignment="Center"
+                            Cursor="IBeam"
+                            Text="123"
+                            TextAlignment="Center" />
+                        <TextBlock
                             Grid.Column="1"
+                            Margin="0,4"
                             VerticalAlignment="Bottom"
+                            Focusable="False"
                             Text="." />
-                        <TextBox
-                            Name="{x:Static u:IPv4Box.PART_SecondTextBox}"
+                        <TextPresenter
+                            Name="{x:Static u:IPv4Box.PART_SecondTextPresenter}"
                             Grid.Column="2"
-                            BorderThickness="0" />
-                        <TextPresenter
+                            MinWidth="48"
+                            VerticalAlignment="Center"
+                            Cursor="IBeam"
+                            Text="123" />
+                        <TextBlock
                             Grid.Column="3"
+                            Margin="0,4"
                             VerticalAlignment="Bottom"
                             Text="." />
-                        <TextBox
-                            Name="{x:Static u:IPv4Box.PART_ThirdTextBox}"
-                            Grid.Column="4"
-                            BorderThickness="0" />
                         <TextPresenter
+                            Name="{x:Static u:IPv4Box.PART_ThirdTextPresenter}"
+                            Grid.Column="4"
+                            MinWidth="48"
+                            VerticalAlignment="Center"
+                            Cursor="IBeam" />
+                        <TextBlock
                             Grid.Column="5"
+                            Margin="0,4"
                             VerticalAlignment="Bottom"
                             Text="." />
-                        <TextBox
-                            Name="{x:Static u:IPv4Box.PART_FourthTextBox}"
+                        <TextPresenter
+                            Name="{x:Static u:IPv4Box.PART_FourthTextPresenter}"
                             Grid.Column="6"
-                            BorderThickness="0" />
+                            MinWidth="48"
+                            VerticalAlignment="Center"
+                            Cursor="IBeam" />
                         <Rectangle
                             Grid.Column="7"
                             Width="1"
-                            Margin="0,2"
+                            Margin="0,4"
                             VerticalAlignment="Stretch"
-                            Fill="Black" />
-                        <TextBox
-                            Name="{x:Static u:IPv4Box.PART_PortTextBox}"
+                            Fill="Black"
+                            IsVisible="{TemplateBinding ShowPort}" />
+                        <TextPresenter
+                            Name="{x:Static u:IPv4Box.PART_PortTextPresenter}"
                             Grid.Column="8"
-                            BorderThickness="0" />
+                            MinWidth="30"
+                            VerticalAlignment="Center"
+                            Cursor="IBeam"
+                            IsVisible="{TemplateBinding ShowPort}" />
                     </Grid>
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:focus-within /template/ Border#PART_Border">
+            <Setter Property="BorderBrush" Value="Red" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>
