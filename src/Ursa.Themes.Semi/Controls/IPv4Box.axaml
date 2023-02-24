@@ -21,11 +21,11 @@
                     BorderBrush="Black"
                     BorderThickness="1"
                     CornerRadius="3">
-                    <Grid Width="{TemplateBinding Width}" ColumnDefinitions="1*, Auto, 1*, Auto, 1*, Auto, 1*, Auto, * ">
+                    <Grid Width="{TemplateBinding Width}" ColumnDefinitions="1*, Auto, 1*, Auto, 1*, Auto, 1*">
                         <TextPresenter
                             Name="{x:Static u:IPv4Box.PART_FirstTextPresenter}"
                             Grid.Column="0"
-                            MinWidth="48"
+                            MinWidth="5"
                             VerticalAlignment="Center"
                             Cursor="IBeam"
                             SelectionBrush="Blue"
@@ -41,12 +41,13 @@
                         <TextPresenter
                             Name="{x:Static u:IPv4Box.PART_SecondTextPresenter}"
                             Grid.Column="2"
-                            MinWidth="48"
+                            MinWidth="5"
                             VerticalAlignment="Center"
                             Cursor="IBeam"
                             SelectionBrush="Blue"
                             SelectionForegroundBrush="White"
-                            Text="123" />
+                            Text="123"
+                            TextAlignment="Center" />
                         <TextBlock
                             Grid.Column="3"
                             Margin="0,4"
@@ -55,11 +56,12 @@
                         <TextPresenter
                             Name="{x:Static u:IPv4Box.PART_ThirdTextPresenter}"
                             Grid.Column="4"
-                            MinWidth="48"
+                            MinWidth="5"
                             VerticalAlignment="Center"
                             Cursor="IBeam"
                             SelectionBrush="Blue"
-                            SelectionForegroundBrush="White" />
+                            SelectionForegroundBrush="White"
+                            TextAlignment="Center" />
                         <TextBlock
                             Grid.Column="5"
                             Margin="0,4"
@@ -68,27 +70,12 @@
                         <TextPresenter
                             Name="{x:Static u:IPv4Box.PART_FourthTextPresenter}"
                             Grid.Column="6"
-                            MinWidth="48"
+                            MinWidth="5"
                             VerticalAlignment="Center"
                             Cursor="IBeam"
                             SelectionBrush="Blue"
-                            SelectionForegroundBrush="White" />
-                        <Rectangle
-                            Grid.Column="7"
-                            Width="1"
-                            Margin="0,4"
-                            VerticalAlignment="Stretch"
-                            Fill="Black"
-                            IsVisible="{TemplateBinding ShowPort}" />
-                        <TextPresenter
-                            Name="{x:Static u:IPv4Box.PART_PortTextPresenter}"
-                            Grid.Column="8"
-                            MinWidth="30"
-                            VerticalAlignment="Center"
-                            Cursor="IBeam"
-                            IsVisible="{TemplateBinding ShowPort}"
-                            SelectionBrush="Blue"
-                            SelectionForegroundBrush="White" />
+                            SelectionForegroundBrush="White"
+                            TextAlignment="Center" />
                     </Grid>
                 </Border>
             </ControlTemplate>

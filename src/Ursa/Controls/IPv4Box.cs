@@ -15,37 +15,24 @@ namespace Ursa.Controls;
 [TemplatePart(PART_SecondTextPresenter, typeof(TextPresenter))]
 [TemplatePart(PART_ThirdTextPresenter, typeof(TextPresenter))]
 [TemplatePart(PART_FourthTextPresenter, typeof(TextPresenter))]
-[TemplatePart(PART_PortTextPresenter, typeof(TextPresenter))]
 public class IPv4Box: TemplatedControl
 {
     public const string PART_FirstTextPresenter = "PART_FirstTextPresenter";
     public const string PART_SecondTextPresenter = "PART_SecondTextPresenter";
     public const string PART_ThirdTextPresenter = "PART_ThirdTextPresenter";
     public const string PART_FourthTextPresenter = "PART_FourthTextPresenter";
-    public const string PART_PortTextPresenter = "PART_PortTextPresenter";
     private TextPresenter? _firstText;
     private TextPresenter? _secondText;
     private TextPresenter? _thirdText;
     private TextPresenter? _fourthText;
-    private TextPresenter? _portText;
     private byte _firstByte;
     private byte _secondByte;
     private byte _thirdByte;
     private byte _fourthByte;
-    private int _port;
-    private TextPresenter?[] _presenters = new TextPresenter?[5];
+    private readonly TextPresenter?[] _presenters = new TextPresenter?[4];
     private byte[] _bytes = new byte[4];
     private TextPresenter? _currentActivePresenter;
 
-    public static readonly StyledProperty<bool> ShowPortProperty = AvaloniaProperty.Register<IPv4Box, bool>(
-        nameof(ShowPort));
-
-    public bool ShowPort
-    {
-        get => GetValue(ShowPortProperty);
-        set => SetValue(ShowPortProperty, value);
-    }
-    
     public static readonly StyledProperty<IPAddress?> IPAddressProperty = AvaloniaProperty.Register<IPv4Box, IPAddress?>(
         nameof(IPAddress));
 
@@ -53,15 +40,6 @@ public class IPv4Box: TemplatedControl
     {
         get => GetValue(IPAddressProperty);
         set => SetValue(IPAddressProperty, value);
-    }
-    
-    public static readonly StyledProperty<int> PortProperty = AvaloniaProperty.Register<IPv4Box, int>(
-        nameof(Port));
-
-    public int Port
-    {
-        get => GetValue(PortProperty);
-        set => SetValue(PortProperty, value);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -71,12 +49,10 @@ public class IPv4Box: TemplatedControl
         _secondText = e.NameScope.Find<TextPresenter>(PART_SecondTextPresenter);
         _thirdText = e.NameScope.Find<TextPresenter>(PART_ThirdTextPresenter);
         _fourthText = e.NameScope.Find<TextPresenter>(PART_FourthTextPresenter);
-        _portText = e.NameScope.Find<TextPresenter>(PART_PortTextPresenter);
-        _presenters[0] = _portText;
-        _presenters[1] = _firstText;
-        _presenters[2] = _secondText;
-        _presenters[3] = _thirdText;
-        _presenters[4] = _fourthText;
+        _presenters[0] = _firstText;
+        _presenters[1] = _secondText;
+        _presenters[2] = _thirdText;
+        _presenters[3] = _fourthText;
     }
 
     protected override void OnKeyDown(KeyEventArgs e)
@@ -238,6 +214,10 @@ public class IPv4Box: TemplatedControl
             ClearSelection(pre);
         }
         _currentActivePresenter = null;
+        _firstByte = byte.TryParse(_firstText?.Text, out byte b1) ? b1 : (byte)0;
+        _secondByte = byte.TryParse(_secondText?.Text, out byte b2) ? b2 : (byte)0;
+        _thirdByte = byte.TryParse(_thirdText?.Text, out byte b3) ? b3 : (byte)0;
+        _fourthByte = byte.TryParse(_fourthText?.Text, out byte b4) ? b4 : (byte)0;
         SetIPAddress();
     }
 
@@ -254,13 +234,6 @@ public class IPv4Box: TemplatedControl
         if (Equals(presenter, _firstText)) _currentActivePresenter = _secondText;
         else if (Equals(presenter, _secondText)) _currentActivePresenter = _thirdText;
         else if (Equals(presenter, _thirdText)) _currentActivePresenter = _fourthText;
-        else if (Equals(presenter, _fourthText))
-        {
-            if (ShowPort)
-            {
-                _currentActivePresenter = _portText;
-            }
-        }
         if(selectAllAfterMove) SelectAll(_currentActivePresenter);
     }
 
@@ -268,8 +241,7 @@ public class IPv4Box: TemplatedControl
     {
         if (presenter is null) return false;
         if (Equals(presenter, _firstText)) return false;
-        if (Equals(presenter, _portText)) _currentActivePresenter = _fourthText;
-        else if (Equals(presenter, _fourthText)) _currentActivePresenter = _thirdText;
+        if (Equals(presenter, _fourthText)) _currentActivePresenter = _thirdText;
         else if (Equals(presenter, _thirdText)) _currentActivePresenter = _secondText;
         else if (Equals(presenter, _secondText)) _currentActivePresenter = _firstText;
         return true;
@@ -300,7 +272,13 @@ public class IPv4Box: TemplatedControl
         var oldText = presenter.Text;
         if (string.IsNullOrWhiteSpace(oldText))
         {
+            presenter.HideCaret();
             MoveToPreviousTextPresenter(presenter);
+            if (_currentActivePresenter != null)
+            {
+                _currentActivePresenter.ShowCaret();
+                _currentActivePresenter.CaretIndex = _currentActivePresenter.Text?.Length ?? 0;
+            }
             return;
         }
         int index = presenter.CaretIndex;
