@@ -90,12 +90,39 @@ public class IPv4Box: TemplatedControl
     static IPv4Box()
     {
         ShowLeadingZeroProperty.Changed.AddClassHandler<IPv4Box>((o, e) => o.OnFormatChange(e));
+        IPAddressProperty.Changed.AddClassHandler<IPv4Box>((o, e) => o.OnIPChanged(e));
     }
 
     private void OnFormatChange(AvaloniaPropertyChangedEventArgs arg)
     {
         bool showLeadingZero = arg.GetNewValue<bool>();
         ParseBytes(showLeadingZero);
+    }
+
+    private void OnIPChanged(AvaloniaPropertyChangedEventArgs arg)
+    {
+        IPAddress? address = arg.GetNewValue<IPAddress?>();
+        if (address is null)
+        {
+            foreach (var presenter in _presenters)
+            {
+                if(presenter!=null) presenter.Text = string.Empty;
+            }
+            ParseBytes(ShowLeadingZero);
+        }
+        else
+        {
+            var sections = address.ToString().Split('.');
+            for (int i = 0; i < 4; i++)
+            {
+                var presenter = _presenters[i];
+                if (presenter != null)
+                {
+                    presenter.Text = sections[i];
+                }
+            }
+            ParseBytes(ShowLeadingZero);
+        }
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
