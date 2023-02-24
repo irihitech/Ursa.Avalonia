@@ -10,7 +10,7 @@
     mc:Ignorable="d">
     <StackPanel HorizontalAlignment="Left">
         <u:IPv4Box Name="box" Width="200" />
-        <u:IPv4Box />
+        <u:IPv4Box Width="200" IsEnabled="False" />
         <TextBlock Text="IP: " />
         <TextBlock Text="{Binding #box.IPAddress}" />
     </StackPanel>

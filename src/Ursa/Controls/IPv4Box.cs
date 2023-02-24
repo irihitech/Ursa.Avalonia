@@ -8,6 +8,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Input.Platform;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 using Avalonia.Media.TextFormatting;
 
 namespace Ursa.Controls;
@@ -43,6 +44,60 @@ public class IPv4Box: TemplatedControl
         set => SetValue(IPAddressProperty, value);
     }
 
+    public static readonly StyledProperty<TextAlignment> TextAlignmentProperty =
+        TextBox.TextAlignmentProperty.AddOwner<IPv4Box>();
+    public TextAlignment TextAlignment
+    {
+        get => GetValue(TextAlignmentProperty);
+        set => SetValue(TextAlignmentProperty, value);
+    }
+
+    public static readonly StyledProperty<IBrush?> SelectionBrushProperty =
+        TextBox.SelectionBrushProperty.AddOwner<IPv4Box>();
+
+    public IBrush? SelectionBrush
+    {
+        get => GetValue(SelectionBrushProperty);
+        set => SetValue(SelectionBrushProperty, value);
+    }
+
+    public static readonly StyledProperty<IBrush?> SelectionForegroundBrushProperty =
+        TextBox.SelectionForegroundBrushProperty.AddOwner<IPv4Box>();
+
+    public IBrush? SelectionForegroundBrush
+    {
+        get => GetValue(SelectionForegroundBrushProperty);
+        set => SetValue(SelectionForegroundBrushProperty, value);
+    }
+
+    public static readonly StyledProperty<IBrush?> CaretBrushProperty = TextBox.CaretBrushProperty.AddOwner<IPv4Box>();
+
+    public IBrush? CaretBrush
+    {
+        get => GetValue(CaretBrushProperty);
+        set => SetValue(CaretBrushProperty, value);
+    }
+
+    public static readonly StyledProperty<bool> ShowLeadingZeroProperty = AvaloniaProperty.Register<IPv4Box, bool>(
+        nameof(ShowLeadingZero));
+
+    public bool ShowLeadingZero
+    {
+        get => GetValue(ShowLeadingZeroProperty);
+        set => SetValue(ShowLeadingZeroProperty, value);
+    }
+
+    static IPv4Box()
+    {
+        ShowLeadingZeroProperty.Changed.AddClassHandler<IPv4Box>((o, e) => o.OnFormatChange(e));
+    }
+
+    private void OnFormatChange(AvaloniaPropertyChangedEventArgs arg)
+    {
+        bool showLeadingZero = arg.GetNewValue<bool>();
+        ParseBytes(showLeadingZero);
+    }
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
@@ -62,7 +117,7 @@ public class IPv4Box: TemplatedControl
         bool Match(List<KeyGesture> gestures) => gestures.Any(g => g.Matches(e));
         if (e.Key == Key.Enter)
         {
-            ParseBytes();
+            ParseBytes(ShowLeadingZero);
             SetIPAddress();
             return;
         }
@@ -83,7 +138,6 @@ public class IPv4Box: TemplatedControl
             }
             MoveToNextPresenter(_currentActivePresenter, true);
             _currentActivePresenter?.ShowCaret();
-            SetIPAddress();
             e.Handled = true;
         }
         else if (e.Key == Key.Back)
@@ -104,6 +158,7 @@ public class IPv4Box: TemplatedControl
                 }
                 else
                 {
+                    ClearSelection(_currentActivePresenter);
                     _currentActivePresenter.CaretIndex++;
                 }
             }
@@ -125,6 +180,7 @@ public class IPv4Box: TemplatedControl
                 }
                 else
                 {
+                    ClearSelection(_currentActivePresenter);
                     _currentActivePresenter.CaretIndex--;
                 }
             }
@@ -223,10 +279,18 @@ public class IPv4Box: TemplatedControl
         {
             if (presenter?.Bounds.Contains(position)??false)
             {
-                presenter?.ShowCaret();
-                _currentActivePresenter = presenter;
-                var caretPosition = position.WithX(position.X - presenter.Bounds.X);
-                presenter?.MoveCaretToPoint(caretPosition);
+                if (e.ClickCount == 1)
+                {
+                    presenter?.ShowCaret();
+                    _currentActivePresenter = presenter;
+                    var caretPosition = position.WithX(position.X - presenter.Bounds.X);
+                    presenter?.MoveCaretToPoint(caretPosition);
+                }
+                else if (e.ClickCount == 2)
+                {
+                    SelectAll(presenter);
+                    presenter.CaretIndex = presenter.Text?.Length??0;
+                }
             }
             else
             {
@@ -246,26 +310,33 @@ public class IPv4Box: TemplatedControl
             ClearSelection(pre);
         }
         _currentActivePresenter = null;
-        ParseBytes();
+        ParseBytes(ShowLeadingZero);
         SetIPAddress();
     }
 
-    private void ParseBytes()
+    private void ParseBytes(bool showLeadingZero)
     {
+        string format = showLeadingZero ? "D3" : "";
         _firstByte = byte.TryParse(_firstText?.Text, out byte b1) ? b1 : (byte)0;
         _secondByte = byte.TryParse(_secondText?.Text, out byte b2) ? b2 : (byte)0;
         _thirdByte = byte.TryParse(_thirdText?.Text, out byte b3) ? b3 : (byte)0;
         _fourthByte = byte.TryParse(_fourthText?.Text, out byte b4) ? b4 : (byte)0;
-        if (_firstText != null) _firstText.Text = _firstByte.ToString();
-        if (_secondText != null) _secondText.Text = _secondByte.ToString();
-        if (_thirdText != null) _thirdText.Text = _thirdByte.ToString();
-        if (_fourthText != null) _fourthText.Text = _fourthByte.ToString();
+        if (_firstText != null) _firstText.Text = _firstByte.ToString(format);
+        if (_secondText != null) _secondText.Text = _secondByte.ToString(format);
+        if (_thirdText != null) _thirdText.Text = _thirdByte.ToString(format);
+        if (_fourthText != null) _fourthText.Text = _fourthByte.ToString(format);
     }
 
     protected override void OnGotFocus(GotFocusEventArgs e)
     {
         _currentActivePresenter = _firstText;
-        _currentActivePresenter?.ShowCaret();
+        if (_currentActivePresenter is null)
+        {
+            base.OnGotFocus(e);
+            return;
+        }
+        _currentActivePresenter.ShowCaret();
+        _currentActivePresenter.CaretIndex = 0;
         base.OnGotFocus(e);
     }
 
@@ -346,10 +417,5 @@ public class IPv4Box: TemplatedControl
             presenter.MoveCaretHorizontal(LogicalDirection.Backward);
             presenter.Text = newText;
         }
-    }
-
-    public async void Cut()
-    {
-        
     }
 }
