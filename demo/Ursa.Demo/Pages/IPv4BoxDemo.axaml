@@ -10,7 +10,9 @@
     mc:Ignorable="d">
     <StackPanel HorizontalAlignment="Left">
         <TextBlock />
-        <u:IPv4Box />
+        <u:IPv4Box Name="box" />
         <u:IPv4Box ShowPort="True" />
+        <TextBlock Text="IP: " />
+        <TextBlock Text="{Binding #box.IPAddress}" />
     </StackPanel>
 </UserControl>

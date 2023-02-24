@@ -28,6 +28,8 @@
                             MinWidth="48"
                             VerticalAlignment="Center"
                             Cursor="IBeam"
+                            SelectionBrush="Blue"
+                            SelectionForegroundBrush="White"
                             Text="123"
                             TextAlignment="Center" />
                         <TextBlock
@@ -42,6 +44,8 @@
                             MinWidth="48"
                             VerticalAlignment="Center"
                             Cursor="IBeam"
+                            SelectionBrush="Blue"
+                            SelectionForegroundBrush="White"
                             Text="123" />
                         <TextBlock
                             Grid.Column="3"
@@ -53,7 +57,9 @@
                             Grid.Column="4"
                             MinWidth="48"
                             VerticalAlignment="Center"
-                            Cursor="IBeam" />
+                            Cursor="IBeam"
+                            SelectionBrush="Blue"
+                            SelectionForegroundBrush="White" />
                         <TextBlock
                             Grid.Column="5"
                             Margin="0,4"
@@ -64,7 +70,9 @@
                             Grid.Column="6"
                             MinWidth="48"
                             VerticalAlignment="Center"
-                            Cursor="IBeam" />
+                            Cursor="IBeam"
+                            SelectionBrush="Blue"
+                            SelectionForegroundBrush="White" />
                         <Rectangle
                             Grid.Column="7"
                             Width="1"
@@ -78,7 +86,9 @@
                             MinWidth="30"
                             VerticalAlignment="Center"
                             Cursor="IBeam"
-                            IsVisible="{TemplateBinding ShowPort}" />
+                            IsVisible="{TemplateBinding ShowPort}"
+                            SelectionBrush="Blue"
+                            SelectionForegroundBrush="White" />
                     </Grid>
                 </Border>
             </ControlTemplate>
