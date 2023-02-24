@@ -154,7 +154,7 @@ public class IPv4Box: TemplatedControl
             _currentActivePresenter.SelectionEnd = _currentActivePresenter.Text?.Length ?? 0;
             return;
         }
-        if (e.Key == Key.Tab)
+        if (e.Key == Key.Tab || e.Key == Key.OemPeriod || e.Key == Key.Decimal)
         {
             _currentActivePresenter?.HideCaret();
             ClearSelection(_currentActivePresenter);
