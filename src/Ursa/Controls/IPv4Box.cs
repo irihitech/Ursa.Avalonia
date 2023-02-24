@@ -440,7 +440,7 @@ public class IPv4Box: TemplatedControl
         {
             int index = presenter.CaretIndex;
             if (index == 0) return;
-            string newText = oldText?.Substring(0, index - 1) + oldText?.Substring(index);
+            string newText = oldText?.Substring(0, index - 1) + oldText?.Substring(Math.Min(index, oldText.Length));
             presenter.MoveCaretHorizontal(LogicalDirection.Backward);
             presenter.Text = newText;
         }
