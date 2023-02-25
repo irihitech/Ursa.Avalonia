@@ -10,6 +10,7 @@ using Avalonia.Input.Platform;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Media.TextFormatting;
+// ReSharper disable InconsistentNaming
 
 namespace Ursa.Controls;
 
@@ -40,7 +41,7 @@ public class IPv4Box: TemplatedControl
     private byte? _fourthByte;
     private readonly TextPresenter?[] _presenters = new TextPresenter?[4];
     private TextPresenter? _currentActivePresenter;
-
+    
     public static readonly StyledProperty<IPAddress?> IPAddressProperty = AvaloniaProperty.Register<IPv4Box, IPAddress?>(
         nameof(IPAddress));
     public IPAddress? IPAddress
@@ -220,7 +221,7 @@ public class IPv4Box: TemplatedControl
         if (e.Handled) return;
         string? s = e.Text;
         if (string.IsNullOrEmpty(s)) return;
-        if (!char.IsNumber(s[0])) return;
+        if (!char.IsNumber(s![0])) return;
         if (_currentActivePresenter != null)
         {
             int index = _currentActivePresenter.CaretIndex;
@@ -236,7 +237,7 @@ public class IPv4Box: TemplatedControl
                 _currentActivePresenter.ClearSelection();
                 oldText = _currentActivePresenter.Text;
 
-                string? newText = string.IsNullOrEmpty(oldText)
+                string newText = string.IsNullOrEmpty(oldText)
                     ? s
                     : oldText?.Substring(0, index) + s + oldText?.Substring(Math.Min(index, oldText.Length));
                 if (newText.Length > 3)
@@ -262,8 +263,6 @@ public class IPv4Box: TemplatedControl
     
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
-        var source = e.Source;
-        PointerPoint? clickInfo = e.GetCurrentPoint(this);
         Point position = e.GetPosition(_firstText);
         foreach (var presenter in _presenters)
         {
@@ -271,10 +270,10 @@ public class IPv4Box: TemplatedControl
             {
                 if (e.ClickCount == 1)
                 {
-                    presenter?.ShowCaret();
+                    presenter.ShowCaret();
                     _currentActivePresenter = presenter;
-                    var caretPosition = position.WithX(position.X - presenter?.Bounds.X ?? 0);
-                    presenter?.MoveCaretToPoint(caretPosition);
+                    var caretPosition = position.WithX(position.X - presenter.Bounds.X);
+                    presenter.MoveCaretToPoint(caretPosition);
                 }
                 else if (e.ClickCount == 2)
                 {
@@ -402,7 +401,7 @@ public class IPv4Box: TemplatedControl
         }
         IPAddress = null;
     }
-
+    
     private void SetIPAddress()
     {
         if (_firstByte is null && _secondByte is null && _thirdByte is null && _fourthByte is null)
