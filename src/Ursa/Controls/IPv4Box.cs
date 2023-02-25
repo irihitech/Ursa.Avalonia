@@ -13,6 +13,13 @@ using Avalonia.Media.TextFormatting;
 
 namespace Ursa.Controls;
 
+public enum IPv4BoxInputMode
+{
+    Normal,
+    // In fast mode, automatically move to next session after 3 digits input.
+    Fast,
+}
+
 [TemplatePart(PART_FirstTextPresenter, typeof(TextPresenter))]
 [TemplatePart(PART_SecondTextPresenter, typeof(TextPresenter))]
 [TemplatePart(PART_ThirdTextPresenter, typeof(TextPresenter))]
@@ -27,17 +34,15 @@ public class IPv4Box: TemplatedControl
     private TextPresenter? _secondText;
     private TextPresenter? _thirdText;
     private TextPresenter? _fourthText;
-    private byte _firstByte;
-    private byte _secondByte;
-    private byte _thirdByte;
-    private byte _fourthByte;
+    private byte? _firstByte;
+    private byte? _secondByte;
+    private byte? _thirdByte;
+    private byte? _fourthByte;
     private readonly TextPresenter?[] _presenters = new TextPresenter?[4];
-    private byte[] _bytes = new byte[4];
     private TextPresenter? _currentActivePresenter;
 
     public static readonly StyledProperty<IPAddress?> IPAddressProperty = AvaloniaProperty.Register<IPv4Box, IPAddress?>(
         nameof(IPAddress));
-
     public IPAddress? IPAddress
     {
         get => GetValue(IPAddressProperty);
@@ -54,7 +59,6 @@ public class IPv4Box: TemplatedControl
 
     public static readonly StyledProperty<IBrush?> SelectionBrushProperty =
         TextBox.SelectionBrushProperty.AddOwner<IPv4Box>();
-
     public IBrush? SelectionBrush
     {
         get => GetValue(SelectionBrushProperty);
@@ -63,7 +67,6 @@ public class IPv4Box: TemplatedControl
 
     public static readonly StyledProperty<IBrush?> SelectionForegroundBrushProperty =
         TextBox.SelectionForegroundBrushProperty.AddOwner<IPv4Box>();
-
     public IBrush? SelectionForegroundBrush
     {
         get => GetValue(SelectionForegroundBrushProperty);
@@ -71,7 +74,6 @@ public class IPv4Box: TemplatedControl
     }
 
     public static readonly StyledProperty<IBrush?> CaretBrushProperty = TextBox.CaretBrushProperty.AddOwner<IPv4Box>();
-
     public IBrush? CaretBrush
     {
         get => GetValue(CaretBrushProperty);
@@ -80,11 +82,18 @@ public class IPv4Box: TemplatedControl
 
     public static readonly StyledProperty<bool> ShowLeadingZeroProperty = AvaloniaProperty.Register<IPv4Box, bool>(
         nameof(ShowLeadingZero));
-
     public bool ShowLeadingZero
     {
         get => GetValue(ShowLeadingZeroProperty);
         set => SetValue(ShowLeadingZeroProperty, value);
+    }
+
+    public static readonly StyledProperty<IPv4BoxInputMode> InputModeProperty = AvaloniaProperty.Register<IPv4Box, IPv4BoxInputMode>(
+        nameof(InputMode));
+    public IPv4BoxInputMode InputMode
+    {
+        get => GetValue(InputModeProperty);
+        set => SetValue(InputModeProperty, value);
     }
 
     static IPv4Box()
@@ -92,6 +101,222 @@ public class IPv4Box: TemplatedControl
         ShowLeadingZeroProperty.Changed.AddClassHandler<IPv4Box>((o, e) => o.OnFormatChange(e));
         IPAddressProperty.Changed.AddClassHandler<IPv4Box>((o, e) => o.OnIPChanged(e));
     }
+    
+    #region Overrides
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        _firstText = e.NameScope.Find<TextPresenter>(PART_FirstTextPresenter);
+        _secondText = e.NameScope.Find<TextPresenter>(PART_SecondTextPresenter);
+        _thirdText = e.NameScope.Find<TextPresenter>(PART_ThirdTextPresenter);
+        _fourthText = e.NameScope.Find<TextPresenter>(PART_FourthTextPresenter);
+        _presenters[0] = _firstText;
+        _presenters[1] = _secondText;
+        _presenters[2] = _thirdText;
+        _presenters[3] = _fourthText;
+    }
+    
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        if (_currentActivePresenter is null) return;
+        var keymap = AvaloniaLocator.Current.GetRequiredService<PlatformHotkeyConfiguration>();
+        bool Match(List<KeyGesture> gestures) => gestures.Any(g => g.Matches(e));
+        if (e.Key == Key.Enter)
+        {
+            ParseBytes(ShowLeadingZero);
+            SetIPAddress();
+            return;
+        }
+        if (Match(keymap.SelectAll))
+        {
+            _currentActivePresenter.SelectionStart = 0;
+            _currentActivePresenter.SelectionEnd = _currentActivePresenter.Text?.Length ?? 0;
+            return;
+        }
+        if (e.Key == Key.Tab)
+        {
+            _currentActivePresenter?.HideCaret();
+            _currentActivePresenter.ClearSelection();
+            if (Equals(_currentActivePresenter, _fourthText))
+            {
+                base.OnKeyDown(e);
+                return;
+            }
+            MoveToNextPresenter(_currentActivePresenter, true);
+            _currentActivePresenter?.ShowCaret();
+            e.Handled = true;
+        }
+        else if (e.Key == Key.OemPeriod || e.Key == Key.Decimal)
+        {
+            if (string.IsNullOrEmpty(_currentActivePresenter.Text))
+            {
+                base.OnKeyDown(e);
+                return;
+            }
+            _currentActivePresenter?.HideCaret();
+            _currentActivePresenter.ClearSelection();
+            if (Equals(_currentActivePresenter, _fourthText))
+            {
+                base.OnKeyDown(e);
+                return;
+            }
+            MoveToNextPresenter(_currentActivePresenter, false);
+            _currentActivePresenter?.ShowCaret();
+            _currentActivePresenter.MoveCaretToStart();
+            e.Handled = true;
+        }
+        else if (e.Key == Key.Back)
+        {
+            DeleteImplementation(_currentActivePresenter);
+        }
+        else if (e.Key == Key.Right )
+        {
+            if (_currentActivePresenter != null)
+            {
+                if (_currentActivePresenter.CaretIndex >= _currentActivePresenter.Text?.Length)
+                {
+                    _currentActivePresenter.HideCaret();
+                    MoveToNextPresenter(_currentActivePresenter, false);
+                    _currentActivePresenter.SelectionStart = 0;
+                    _currentActivePresenter.SelectionEnd = 0;
+                    _currentActivePresenter?.ShowCaret();
+                }
+                else
+                {
+                    _currentActivePresenter.ClearSelection();
+                    _currentActivePresenter.CaretIndex++;
+                }
+            }
+        }
+        else if (e.Key == Key.Left)
+        {
+            if (_currentActivePresenter != null)
+            {
+                if (_currentActivePresenter.CaretIndex == 0)
+                {
+                    _currentActivePresenter.HideCaret();
+                    bool success = MoveToPreviousTextPresenter(_currentActivePresenter);
+                    _currentActivePresenter.ShowCaret();
+                    if (success)
+                    {
+                        _currentActivePresenter.MoveCaretToEnd();
+                    }
+                }
+                else
+                {
+                    _currentActivePresenter.ClearSelection();
+                    _currentActivePresenter.CaretIndex--;
+                }
+            }
+        }
+        else
+        {
+            base.OnKeyDown(e);
+        }
+    }
+    
+    protected override void OnTextInput(TextInputEventArgs e)
+    {
+        if (e.Handled) return;
+        string? s = e.Text;
+        if (string.IsNullOrEmpty(s)) return;
+        if (!char.IsNumber(s[0])) return;
+        if (_currentActivePresenter != null)
+        {
+            int index = _currentActivePresenter.CaretIndex;
+            string? oldText = _currentActivePresenter.Text;
+            if (oldText is null)
+            {
+                _currentActivePresenter.Text = s;
+                _currentActivePresenter.MoveCaretHorizontal();
+            }
+            else
+            {
+                _currentActivePresenter.DeleteSelection();
+                _currentActivePresenter.ClearSelection();
+                oldText = _currentActivePresenter.Text;
+
+                string? newText = string.IsNullOrEmpty(oldText)
+                    ? s
+                    : oldText?.Substring(0, index) + s + oldText?.Substring(Math.Min(index, oldText.Length));
+                if (newText.Length > 3)
+                {
+                    newText = newText.Substring(0, 3);
+                }
+                _currentActivePresenter.Text = newText;
+                _currentActivePresenter.MoveCaretHorizontal();
+                if (_currentActivePresenter.CaretIndex == 3 && InputMode == IPv4BoxInputMode.Fast)
+                {
+                    _currentActivePresenter.HideCaret();
+                    bool success = MoveToNextPresenter(_currentActivePresenter, true);
+                    _currentActivePresenter.ShowCaret();
+                    if (success)
+                    {
+                        _currentActivePresenter.SelectAll();
+                        _currentActivePresenter.MoveCaretToStart();
+                    }
+                }
+            }
+        }
+    }
+    
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    {
+        var source = e.Source;
+        PointerPoint? clickInfo = e.GetCurrentPoint(this);
+        Point position = e.GetPosition(_firstText);
+        foreach (var presenter in _presenters)
+        {
+            if (presenter?.Bounds.Contains(position)??false)
+            {
+                if (e.ClickCount == 1)
+                {
+                    presenter?.ShowCaret();
+                    _currentActivePresenter = presenter;
+                    var caretPosition = position.WithX(position.X - presenter?.Bounds.X ?? 0);
+                    presenter?.MoveCaretToPoint(caretPosition);
+                }
+                else if (e.ClickCount == 2)
+                {
+                    presenter.SelectAll();
+                    presenter.MoveCaretToEnd();
+                }
+            }
+            else
+            {
+                presenter?.HideCaret();
+                presenter.ClearSelection();
+            }
+        }
+        Debug.WriteLine(_currentActivePresenter?.Name);
+        base.OnPointerPressed(e);
+    }
+
+    protected override void OnLostFocus(RoutedEventArgs e)
+    {
+        foreach (var pre in _presenters)
+        {
+            pre?.HideCaret();
+            pre.ClearSelection();
+        }
+        _currentActivePresenter = null;
+        ParseBytes(ShowLeadingZero);
+        SetIPAddress();
+    }
+    
+    protected override void OnGotFocus(GotFocusEventArgs e)
+    {
+        _currentActivePresenter = _firstText;
+        if (_currentActivePresenter is null)
+        {
+            base.OnGotFocus(e);
+            return;
+        }
+        _currentActivePresenter.ShowCaret();
+        _currentActivePresenter.MoveCaretToStart();
+        base.OnGotFocus(e);
+    }
+    #endregion
 
     private void OnFormatChange(AvaloniaPropertyChangedEventArgs arg)
     {
@@ -125,247 +350,28 @@ public class IPv4Box: TemplatedControl
         }
     }
 
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
-    {
-        base.OnApplyTemplate(e);
-        _firstText = e.NameScope.Find<TextPresenter>(PART_FirstTextPresenter);
-        _secondText = e.NameScope.Find<TextPresenter>(PART_SecondTextPresenter);
-        _thirdText = e.NameScope.Find<TextPresenter>(PART_ThirdTextPresenter);
-        _fourthText = e.NameScope.Find<TextPresenter>(PART_FourthTextPresenter);
-        _presenters[0] = _firstText;
-        _presenters[1] = _secondText;
-        _presenters[2] = _thirdText;
-        _presenters[3] = _fourthText;
-    }
-    protected override void OnKeyDown(KeyEventArgs e)
-    {
-        if (_currentActivePresenter is null) return;
-        var keymap = AvaloniaLocator.Current.GetRequiredService<PlatformHotkeyConfiguration>();
-        bool Match(List<KeyGesture> gestures) => gestures.Any(g => g.Matches(e));
-        if (e.Key == Key.Enter)
-        {
-            ParseBytes(ShowLeadingZero);
-            SetIPAddress();
-            return;
-        }
-        if (Match(keymap.SelectAll))
-        {
-            _currentActivePresenter.SelectionStart = 0;
-            _currentActivePresenter.SelectionEnd = _currentActivePresenter.Text?.Length ?? 0;
-            return;
-        }
-        if (e.Key == Key.Tab || e.Key == Key.OemPeriod || e.Key == Key.Decimal)
-        {
-            _currentActivePresenter?.HideCaret();
-            ClearSelection(_currentActivePresenter);
-            if (Equals(_currentActivePresenter, _fourthText))
-            {
-                base.OnKeyDown(e);
-                return;
-            }
-            MoveToNextPresenter(_currentActivePresenter, true);
-            _currentActivePresenter?.ShowCaret();
-            e.Handled = true;
-        }
-        else if (e.Key == Key.Back)
-        {
-            DeleteImplementation(_currentActivePresenter);
-        }
-        else if (e.Key == Key.Right )
-        {
-            if (_currentActivePresenter != null)
-            {
-                if (_currentActivePresenter.CaretIndex >= _currentActivePresenter.Text?.Length)
-                {
-                    _currentActivePresenter.HideCaret();
-                    MoveToNextPresenter(_currentActivePresenter, false);
-                    _currentActivePresenter.SelectionStart = 0;
-                    _currentActivePresenter.SelectionEnd = 0;
-                    _currentActivePresenter?.ShowCaret();
-                }
-                else
-                {
-                    ClearSelection(_currentActivePresenter);
-                    _currentActivePresenter.CaretIndex++;
-                }
-            }
-        }
-        else if (e.Key == Key.Left)
-        {
-            if (_currentActivePresenter != null)
-            {
-                if (_currentActivePresenter.CaretIndex == 0)
-                {
-                    _currentActivePresenter.HideCaret();
-                    bool success = MoveToPreviousTextPresenter(_currentActivePresenter);
-                    _currentActivePresenter.ShowCaret();
-                    if (success)
-                    {
-                        _currentActivePresenter.CaretIndex = _currentActivePresenter.Text?.Length ?? 0;
-                    }
-                    
-                }
-                else
-                {
-                    ClearSelection(_currentActivePresenter);
-                    _currentActivePresenter.CaretIndex--;
-                }
-            }
-        }
-        else
-        {
-            base.OnKeyDown(e);
-        }
-        
-    }
-
-    private void SelectAll(TextPresenter? presenter)
-    {
-        if(presenter is null) return;
-        presenter.SelectionStart = 0;
-        presenter.SelectionEnd = presenter.Text?.Length+1??0;
-    }
-
-    protected override void OnTextInput(TextInputEventArgs e)
-    {
-        if (e.Handled) return;
-        string? s = e.Text;
-        if (string.IsNullOrEmpty(s)) return;
-        if (!char.IsNumber(s[0])) return;
-        if (_currentActivePresenter != null)
-        {
-            int index = _currentActivePresenter.CaretIndex;
-            string? oldText = _currentActivePresenter.Text;
-            if (oldText is null)
-            {
-                _currentActivePresenter.Text = s;
-                _currentActivePresenter.MoveCaretHorizontal();
-            }
-            else
-            {
-                DeleteSelection(_currentActivePresenter);
-                ClearSelection(_currentActivePresenter);
-                oldText = _currentActivePresenter.Text;
-
-                string? newText = string.IsNullOrEmpty(oldText)
-                    ? s
-                    : (oldText?.Substring(0, index) + s + oldText?.Substring(index));
-                if (newText.Length > 3)
-                {
-                    newText = newText.Substring(0, 3);
-                }
-                _currentActivePresenter.Text = newText;
-                _currentActivePresenter.MoveCaretHorizontal();
-                if (_currentActivePresenter.CaretIndex == 3)
-                {
-                    _currentActivePresenter.HideCaret();
-                    bool success = MoveToNextPresenter(_currentActivePresenter, true);
-                    _currentActivePresenter.ShowCaret();
-                    if (success)
-                    {
-                        SelectAll(_currentActivePresenter);
-                        _currentActivePresenter.CaretIndex = 0;
-                    }
-                }
-            }
-        }
-    }
-
-    private void DeleteSelection(TextPresenter? presenter)
-    {
-        if (presenter is null) return;
-        int selectionStart = presenter.SelectionStart;
-        int selectionEnd = presenter.SelectionEnd;
-        if (selectionStart != selectionEnd)
-        {
-            var start = Math.Min(selectionStart, selectionEnd);
-            var end = Math.Max(selectionStart, selectionEnd);
-            var text = presenter.Text;
-
-            string newText = text is null
-                ? string.Empty
-                : text.Substring(0, start) + text.Substring(Math.Min(end, text.Length));
-            presenter.Text = newText;
-            presenter.MoveCaretToTextPosition(start);
-        }
-    }
-
-    private void ClearSelection(TextPresenter? presenter)
-    {
-        if(presenter is null) return;
-        presenter.SelectionStart = 0;
-        presenter.SelectionEnd = 0;
-    }
-
-    protected override void OnPointerPressed(PointerPressedEventArgs e)
-    {
-        var source = e.Source;
-        PointerPoint? clickInfo = e.GetCurrentPoint(this);
-        Point position = e.GetPosition(_firstText);
-        foreach (var presenter in _presenters)
-        {
-            if (presenter?.Bounds.Contains(position)??false)
-            {
-                if (e.ClickCount == 1)
-                {
-                    presenter?.ShowCaret();
-                    _currentActivePresenter = presenter;
-                    var caretPosition = position.WithX(position.X - presenter.Bounds.X);
-                    presenter?.MoveCaretToPoint(caretPosition);
-                }
-                else if (e.ClickCount == 2)
-                {
-                    SelectAll(presenter);
-                    presenter.CaretIndex = presenter.Text?.Length??0;
-                }
-            }
-            else
-            {
-                presenter?.HideCaret();
-                ClearSelection(presenter);
-            }
-        }
-        Debug.WriteLine(_currentActivePresenter?.Name);
-        base.OnPointerPressed(e);
-    }
-
-    protected override void OnLostFocus(RoutedEventArgs e)
-    {
-        foreach (var pre in _presenters)
-        {
-            pre?.HideCaret();
-            ClearSelection(pre);
-        }
-        _currentActivePresenter = null;
-        ParseBytes(ShowLeadingZero);
-        SetIPAddress();
-    }
-
     private void ParseBytes(bool showLeadingZero)
     {
         string format = showLeadingZero ? "D3" : "";
+        if (string.IsNullOrEmpty(_firstText?.Text) && string.IsNullOrEmpty(_secondText?.Text) && string.IsNullOrEmpty(_thirdText?.Text) && string.IsNullOrEmpty(_fourthText?.Text))
+        {
+            _firstByte = null;
+            _secondByte = null;
+            _thirdByte = null;
+            _fourthByte = null;
+            return;
+        }
         _firstByte = byte.TryParse(_firstText?.Text, out byte b1) ? b1 : (byte)0;
         _secondByte = byte.TryParse(_secondText?.Text, out byte b2) ? b2 : (byte)0;
         _thirdByte = byte.TryParse(_thirdText?.Text, out byte b3) ? b3 : (byte)0;
         _fourthByte = byte.TryParse(_fourthText?.Text, out byte b4) ? b4 : (byte)0;
-        if (_firstText != null) _firstText.Text = _firstByte.ToString(format);
-        if (_secondText != null) _secondText.Text = _secondByte.ToString(format);
-        if (_thirdText != null) _thirdText.Text = _thirdByte.ToString(format);
-        if (_fourthText != null) _fourthText.Text = _fourthByte.ToString(format);
+        if (_firstText != null) _firstText.Text = _firstByte?.ToString(format);
+        if (_secondText != null) _secondText.Text = _secondByte?.ToString(format);
+        if (_thirdText != null) _thirdText.Text = _thirdByte?.ToString(format);
+        if (_fourthText != null) _fourthText.Text = _fourthByte?.ToString(format);
     }
 
-    protected override void OnGotFocus(GotFocusEventArgs e)
-    {
-        _currentActivePresenter = _firstText;
-        if (_currentActivePresenter is null)
-        {
-            base.OnGotFocus(e);
-            return;
-        }
-        _currentActivePresenter.ShowCaret();
-        _currentActivePresenter.CaretIndex = 0;
-        base.OnGotFocus(e);
-    }
+    
 
     private bool MoveToNextPresenter(TextPresenter? presenter, bool selectAllAfterMove)
     {
@@ -374,7 +380,7 @@ public class IPv4Box: TemplatedControl
         if (Equals(presenter, _firstText)) _currentActivePresenter = _secondText;
         else if (Equals(presenter, _secondText)) _currentActivePresenter = _thirdText;
         else if (Equals(presenter, _thirdText)) _currentActivePresenter = _fourthText;
-        if(selectAllAfterMove) SelectAll(_currentActivePresenter);
+        if(selectAllAfterMove) _currentActivePresenter.SelectAll();
         return true;
     }
 
@@ -399,11 +405,16 @@ public class IPv4Box: TemplatedControl
 
     private void SetIPAddress()
     {
+        if (_firstByte is null && _secondByte is null && _thirdByte is null && _fourthByte is null)
+        {
+            IPAddress = null;
+            return;
+        }
         long address = 0;
-        address += _firstByte;
-        address += _secondByte << 8;
-        address += _thirdByte << 16;
-        address += (long)_fourthByte << 24;
+        address += _firstByte??0;
+        address += (_secondByte??0) << 8;
+        address += (_thirdByte??0) << 16;
+        address += ((long?)_fourthByte ?? 0) << 24;
         try
         {
             IPAddress = new IPAddress(address);
@@ -420,29 +431,74 @@ public class IPv4Box: TemplatedControl
         var oldText = presenter.Text;
         if (presenter.SelectionStart != presenter.SelectionEnd)
         {
-            int start = presenter.SelectionStart;
-            int end = presenter.SelectionEnd;
-            string newText = oldText?.Substring(0, start) + oldText?.Substring(end);
-            presenter.Text = newText;
-            presenter.CaretIndex = start;
+            presenter.DeleteSelection();
+            presenter.ClearSelection();
         }
-        else if (string.IsNullOrWhiteSpace(oldText))
+        else if (string.IsNullOrWhiteSpace(oldText) || presenter.CaretIndex == 0)
         {
             presenter.HideCaret();
             MoveToPreviousTextPresenter(presenter);
             if (_currentActivePresenter != null)
             {
                 _currentActivePresenter.ShowCaret();
-                _currentActivePresenter.CaretIndex = _currentActivePresenter.Text?.Length ?? 0;
+                _currentActivePresenter.MoveCaretToEnd();
             }
         }
         else
         {
             int index = presenter.CaretIndex;
-            if (index == 0) return;
             string newText = oldText?.Substring(0, index - 1) + oldText?.Substring(Math.Min(index, oldText.Length));
             presenter.MoveCaretHorizontal(LogicalDirection.Backward);
             presenter.Text = newText;
+        }
+    }
+}
+
+public static class TextPresenterHelper
+{
+    public static void MoveCaretToStart(this TextPresenter? presenter)
+    {
+        if (presenter is null) return;
+        presenter.MoveCaretToTextPosition(0);
+    }
+
+    public static void MoveCaretToEnd(this TextPresenter? presenter)
+    {
+        if(presenter is null) return;
+        presenter.MoveCaretToTextPosition(presenter.Text?.Length ?? 0);
+    }
+
+    public static void ClearSelection(this TextPresenter? presenter)
+    {
+        if (presenter is null) return;
+        presenter.SelectionStart = 0;
+        presenter.SelectionEnd = 0;
+    }
+
+    public static void SelectAll(this TextPresenter? presenter)
+    {
+        if(presenter is null) return;
+        if(presenter.Text is null) return;
+        presenter.SelectionStart = 0;
+        presenter.SelectionEnd = presenter.Text.Length;
+    }
+
+    public static void DeleteSelection(this TextPresenter? presenter)
+    {
+        if (presenter is null) return;
+        int selectionStart = presenter.SelectionStart;
+        int selectionEnd = presenter.SelectionEnd;
+        if (selectionStart != selectionEnd)
+        {
+            var start = Math.Min(selectionStart, selectionEnd);
+            var end = Math.Max(selectionStart, selectionEnd);
+            var text = presenter.Text;
+
+            string newText = text is null
+                ? string.Empty
+                : text.Substring(0, start) + text.Substring(Math.Min(end, text.Length));
+            presenter.Text = newText;
+            presenter.MoveCaretToTextPosition(start);
         }
     }
 }

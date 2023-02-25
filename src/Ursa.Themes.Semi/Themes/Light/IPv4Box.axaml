@@ -4,7 +4,7 @@
     <SolidColorBrush x:Key="IPv4BoxPointeroverBackground" Opacity="0.09" Color="#FF2E3238" />
     <SolidColorBrush x:Key="IPv4BoxPressedBackground" Opacity="0.13" Color="#FF2E3238" />
     <SolidColorBrush x:Key="IPv4BoxBorderBrush" Color="Transparent" />
-    <SolidColorBrush x:Key="IPv4BoxDisabledBackground" Opacity="0.04" Color="#2E3238" />
+    <SolidColorBrush x:Key="IPv4BoxDisabledBackground" Opacity="0.02" Color="#2E3238" />
     <SolidColorBrush x:Key="IPv4BoxFocusBorderBrush" Color="#FF0077FA" />
     <SolidColorBrush x:Key="IPv4BoxSelectionBrush" Color="#FF0077FA" />
     <SolidColorBrush x:Key="IPv4BoxSelectionForeground" Color="White" />
