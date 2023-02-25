@@ -137,11 +137,11 @@ public class IPv4Box: TemplatedControl
         }
         else if (Match(keymap.Copy))
         {
-            OnCopy();
+            Copy();
         }
         else if (Match(keymap.Paste))
         {
-            OnPaste();
+            Paste();
         }
         if (e.Key == Key.Tab)
         {
@@ -378,6 +378,11 @@ public class IPv4Box: TemplatedControl
         {
             if (presenter != null) presenter.Text = null;
         }
+
+        _firstByte = null;
+        _secondByte = null;
+        _thirdByte = null;
+        _fourthByte = null;
         IPAddress = null;
     }
     
@@ -487,22 +492,35 @@ public class IPv4Box: TemplatedControl
         }
     }
 
-    public async void OnCopy()
+    public async void Copy()
     {
         string s = string.Join(".", _firstText?.Text, _secondText?.Text, _thirdText?.Text, _fourthText?.Text);
         IClipboard? clipboard = AvaloniaLocator.Current.GetService<IClipboard>();
         clipboard?.SetTextAsync(s);
     }
+    
+    public static KeyGesture? CopyKeyGesture { get; } = AvaloniaLocator.Current.GetService<PlatformHotkeyConfiguration>()?.Copy.FirstOrDefault();
+    public static KeyGesture? PasteKeyGesture { get; } = AvaloniaLocator.Current.GetService<PlatformHotkeyConfiguration>()?.Paste.FirstOrDefault();
+    public static KeyGesture? CutKeyGesture { get; } = AvaloniaLocator.Current.GetService<PlatformHotkeyConfiguration>()?.Cut.FirstOrDefault();
 
-    public async void OnPaste()
+    public async void Paste()
     {
         IClipboard? clipboard = AvaloniaLocator.Current.GetService<IClipboard>();
         if (clipboard is null) return;
-        string? s = await clipboard.GetTextAsync();
+        string s = await clipboard.GetTextAsync();
         if (IPAddress.TryParse(s, out var address))
         {
             IPAddress = address;
         }
+    }
+
+    public async void Cut()
+    {
+        IClipboard? clipboard = AvaloniaLocator.Current.GetService<IClipboard>();
+        if(clipboard is null) return;
+        string s = string.Join(".", _firstText?.Text, _secondText?.Text, _thirdText?.Text, _fourthText?.Text);
+        await clipboard.SetTextAsync(s);
+        Clear();
     }
 }
 

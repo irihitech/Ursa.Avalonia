@@ -8,6 +8,27 @@
             <TextBlock Text="Hello World" />
         </StackPanel>
     </Design.PreviewWith>
+    <MenuFlyout x:Key="IPv4BoxMenuFlyout">
+        <MenuItem
+            x:Name="TextBoxContextFlyoutCutItem"
+            Command="{Binding $parent[u:IPv4Box].Cut}"
+            Header="Cut"
+            InputGesture="{x:Static u:IPv4Box.CutKeyGesture}" />
+        <MenuItem
+            x:Name="TextBoxContextFlyoutCopyItem"
+            Command="{Binding $parent[u:IPv4Box].Copy}"
+            Header="Copy"
+            InputGesture="{x:Static u:IPv4Box.CopyKeyGesture}" />
+        <MenuItem
+            x:Name="TextBoxContextFlyoutPasteItem"
+            Command="{Binding $parent[u:IPv4Box].Paste}"
+            Header="Paste"
+            InputGesture="{x:Static u:IPv4Box.PasteKeyGesture}" />
+        <MenuItem
+            x:Name="TextBoxContextFlyoutClearItem"
+            Command="{Binding $parent[u:IPv4Box].Clear}"
+            Header="Clear" />
+    </MenuFlyout>
     <ControlTheme x:Key="{x:Type u:IPv4Box}" TargetType="{x:Type u:IPv4Box}">
         <Setter Property="u:IPv4Box.Focusable" Value="True" />
         <Setter Property="u:IPv4Box.ShowLeadingZero" Value="True" />
@@ -20,6 +41,7 @@
         <Setter Property="u:IPv4Box.SelectionBrush" Value="{DynamicResource IPv4BoxSelectionBrush}" />
         <Setter Property="u:IPv4Box.SelectionForegroundBrush" Value="{DynamicResource IPv4BoxSelectionForeground}" />
         <Setter Property="u:IPv4Box.CaretBrush" Value="{DynamicResource IPv4BoxCaretBrush}" />
+        <Setter Property="u:IPv4Box.ContextFlyout" Value="{DynamicResource IPv4BoxMenuFlyout}" />
         <Setter Property="u:IPv4Box.Template">
             <ControlTemplate TargetType="u:IPv4Box">
                 <Border
