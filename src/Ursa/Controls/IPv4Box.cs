@@ -125,7 +125,8 @@ public class IPv4Box: TemplatedControl
         if (e.Key == Key.Enter)
         {
             ParseBytes(ShowLeadingZero);
-            SetIPAddress();
+            SetIPAddressInternal();
+            base.OnKeyDown(e);
             return;
         }
         if (Match(keymap.SelectAll))
@@ -133,6 +134,14 @@ public class IPv4Box: TemplatedControl
             _currentActivePresenter.SelectionStart = 0;
             _currentActivePresenter.SelectionEnd = _currentActivePresenter.Text?.Length ?? 0;
             return;
+        }
+        else if (Match(keymap.Copy))
+        {
+            OnCopy();
+        }
+        else if (Match(keymap.Paste))
+        {
+            OnPaste();
         }
         if (e.Key == Key.Tab)
         {
@@ -268,7 +277,7 @@ public class IPv4Box: TemplatedControl
         }
         _currentActivePresenter = null;
         ParseBytes(ShowLeadingZero);
-        SetIPAddress();
+        SetIPAddressInternal();
     }
     
     protected override void OnGotFocus(GotFocusEventArgs e)
@@ -372,7 +381,7 @@ public class IPv4Box: TemplatedControl
         IPAddress = null;
     }
     
-    private void SetIPAddress()
+    private void SetIPAddressInternal()
     {
         if (_firstByte is null && _secondByte is null && _thirdByte is null && _fourthByte is null)
         {
@@ -475,6 +484,24 @@ public class IPv4Box: TemplatedControl
         {
             _currentActivePresenter.ClearSelection();
             _currentActivePresenter.CaretIndex--;
+        }
+    }
+
+    public async void OnCopy()
+    {
+        string s = string.Join(".", _firstText?.Text, _secondText?.Text, _thirdText?.Text, _fourthText?.Text);
+        IClipboard? clipboard = AvaloniaLocator.Current.GetService<IClipboard>();
+        clipboard?.SetTextAsync(s);
+    }
+
+    public async void OnPaste()
+    {
+        IClipboard? clipboard = AvaloniaLocator.Current.GetService<IClipboard>();
+        if (clipboard is null) return;
+        string? s = await clipboard.GetTextAsync();
+        if (IPAddress.TryParse(s, out var address))
+        {
+            IPAddress = address;
         }
     }
 }
