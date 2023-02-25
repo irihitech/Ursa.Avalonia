@@ -172,43 +172,11 @@ public class IPv4Box: TemplatedControl
         }
         else if (e.Key == Key.Right )
         {
-            if (_currentActivePresenter != null)
-            {
-                if (_currentActivePresenter.CaretIndex >= _currentActivePresenter.Text?.Length)
-                {
-                    _currentActivePresenter.HideCaret();
-                    MoveToNextPresenter(_currentActivePresenter, false);
-                    _currentActivePresenter.SelectionStart = 0;
-                    _currentActivePresenter.SelectionEnd = 0;
-                    _currentActivePresenter?.ShowCaret();
-                }
-                else
-                {
-                    _currentActivePresenter.ClearSelection();
-                    _currentActivePresenter.CaretIndex++;
-                }
-            }
+            OnPressRightKey();
         }
         else if (e.Key == Key.Left)
         {
-            if (_currentActivePresenter != null)
-            {
-                if (_currentActivePresenter.CaretIndex == 0)
-                {
-                    _currentActivePresenter.HideCaret();
-                    bool success = MoveToPreviousTextPresenter(_currentActivePresenter);
-                    _currentActivePresenter.ShowCaret();
-                    if (success)
-                    {
-                        _currentActivePresenter.MoveCaretToEnd();
-                    }
-                }
-                else
-                {
-                    _currentActivePresenter.ClearSelection();
-                    _currentActivePresenter.CaretIndex--;
-                }
-            }
+            OnPressLeftKey();
         }
         else
         {
@@ -376,6 +344,7 @@ public class IPv4Box: TemplatedControl
     {
         if (presenter is null) return false;
         if (Equals(presenter, _fourthText)) return false;
+        presenter.ClearSelection();
         if (Equals(presenter, _firstText)) _currentActivePresenter = _secondText;
         else if (Equals(presenter, _secondText)) _currentActivePresenter = _thirdText;
         else if (Equals(presenter, _thirdText)) _currentActivePresenter = _fourthText;
@@ -387,6 +356,7 @@ public class IPv4Box: TemplatedControl
     {
         if (presenter is null) return false;
         if (Equals(presenter, _firstText)) return false;
+        presenter.ClearSelection();
         if (Equals(presenter, _fourthText)) _currentActivePresenter = _thirdText;
         else if (Equals(presenter, _thirdText)) _currentActivePresenter = _secondText;
         else if (Equals(presenter, _secondText)) _currentActivePresenter = _firstText;
@@ -451,6 +421,62 @@ public class IPv4Box: TemplatedControl
             presenter.Text = newText;
         }
     }
+
+    private void OnPressRightKey()
+    {
+        if (_currentActivePresenter is null) return;
+        if (_currentActivePresenter.IsTextSelected())
+        {
+            int end = _currentActivePresenter.SelectionEnd;
+            _currentActivePresenter.ClearSelection();
+            _currentActivePresenter.MoveCaretToTextPosition(end);
+            return;
+        }
+        if (_currentActivePresenter.CaretIndex >= _currentActivePresenter.Text?.Length)
+        {
+            _currentActivePresenter.HideCaret();
+            bool success = MoveToNextPresenter(_currentActivePresenter, false);
+            _currentActivePresenter.ClearSelection();
+            _currentActivePresenter.ShowCaret();
+            if (success)
+            {
+                _currentActivePresenter.MoveCaretToStart();
+            }
+        }
+        else
+        {
+            _currentActivePresenter.ClearSelection();
+            _currentActivePresenter.CaretIndex++;
+        }
+    }
+
+    private void OnPressLeftKey()
+    {
+        if (_currentActivePresenter is null) return;
+        if (_currentActivePresenter.IsTextSelected())
+        {
+            int start = _currentActivePresenter.SelectionStart;
+            _currentActivePresenter.ClearSelection();
+            _currentActivePresenter.MoveCaretToTextPosition(start);
+            return;
+        }
+        if (_currentActivePresenter.CaretIndex == 0)
+        {
+            _currentActivePresenter.HideCaret();
+            bool success = MoveToPreviousTextPresenter(_currentActivePresenter);
+            _currentActivePresenter.ClearSelection();
+            _currentActivePresenter.ShowCaret();
+            if (success)
+            {
+                _currentActivePresenter.MoveCaretToEnd();
+            }
+        }
+        else
+        {
+            _currentActivePresenter.ClearSelection();
+            _currentActivePresenter.CaretIndex--;
+        }
+    }
 }
 
 public static class TextPresenterHelper
@@ -499,5 +525,11 @@ public static class TextPresenterHelper
             presenter.Text = newText;
             presenter.MoveCaretToTextPosition(start);
         }
+    }
+
+    public static bool IsTextSelected(this TextPresenter? presenter)
+    {
+        if (presenter is null) return false;
+        return presenter.SelectionStart != presenter.SelectionEnd;
     }
 }
