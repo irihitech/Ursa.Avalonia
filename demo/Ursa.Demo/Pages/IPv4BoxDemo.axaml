@@ -1,0 +1,43 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.IPv4BoxDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:Ursa.Demo.Pages"
+    xmlns:u="https://irihi.tech/ursa"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Design.DataContext>
+        <pages:IPv4DemoViewMode />
+    </Design.DataContext>
+    <StackPanel HorizontalAlignment="Left">
+        <ToggleButton
+            Name="format"
+            Margin="0,0,0,50"
+            Content="Show Leading Zeroes" />
+        <TextBlock Classes="" Text="Normal" />
+        <u:IPv4Box
+            Name="box"
+            Width="200"
+            ShowLeadingZero="{Binding #format.IsChecked}" />
+
+        <TextBlock Text="IP: " />
+        <TextBlock Text="{Binding #box.IPAddress}" />
+        <TextBlock Classes="" Text="Fast input" />
+        <u:IPv4Box
+            Width="200"
+            InputMode="Fast"
+            ShowLeadingZero="{Binding #format.IsChecked}" />
+
+        <TextBlock Classes="" Text="Binding From Source" />
+        <RepeatButton Command="{Binding ChangeAddress}" Content="Random" />
+        <u:IPv4Box
+            Width="200"
+            IPAddress="{Binding Address}"
+            ShowLeadingZero="{Binding #format.IsChecked}" />
+        <TextBlock Classes="" Text="Disabled" />
+        <u:IPv4Box Width="200" IsEnabled="False" />
+    </StackPanel>
+</UserControl>

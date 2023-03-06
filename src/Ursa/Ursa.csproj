@@ -12,4 +12,8 @@
       <PackageReference Include="XamlNameReferenceGenerator" Version="1.5.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="TypeConverters" />
+    </ItemGroup>
+
 </Project>
