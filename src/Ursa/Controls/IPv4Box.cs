@@ -264,7 +264,6 @@ public class IPv4Box: TemplatedControl
                 presenter.ClearSelection();
             }
         }
-        Debug.WriteLine(_currentActivePresenter?.Name);
         base.OnPointerPressed(e);
     }
 
