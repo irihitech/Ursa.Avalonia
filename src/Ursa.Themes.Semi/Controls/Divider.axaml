@@ -1,0 +1,23 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:Divider}" TargetType="u:Divider">
+        <Setter Property="u:Divider.Template">
+            <ControlTemplate TargetType="u:Divider">
+                <StackPanel Orientation="Horizontal">
+                    <Border
+                        BorderBrush="Gray"
+                        BorderDashArray="{TemplateBinding DashArray}"
+                        BorderThickness="0,0,0,1" />
+                    <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    <Border
+                        BorderBrush="Gray"
+                        BorderDashArray="{TemplateBinding DashArray}"
+                        BorderThickness="0,0,0,1" />
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>
