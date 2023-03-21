@@ -1,8 +1,9 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--  Add Resources Here  -->
     <ResourceDictionary.MergedDictionaries>
-        <ResourceInclude Source="Badge.axaml" />
-        <ResourceInclude Source="Banner.axaml" />
-        <ResourceInclude Source="IPv4Box.axaml" />
+        <MergeResourceInclude Source="Badge.axaml" />
+        <MergeResourceInclude Source="Banner.axaml" />
+        <MergeResourceInclude Source="Divider.axaml" />
+        <MergeResourceInclude Source="IPv4Box.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
