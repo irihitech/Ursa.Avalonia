@@ -8,8 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Avalonia" Version="11.0.0-preview5" />
-      <PackageReference Include="XamlNameReferenceGenerator" Version="1.5.1" />
+      <PackageReference Include="Avalonia" Version="11.0.0-preview6" />
     </ItemGroup>
 
     <ItemGroup>

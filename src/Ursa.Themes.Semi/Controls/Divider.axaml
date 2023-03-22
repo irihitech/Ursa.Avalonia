@@ -37,9 +37,6 @@
 
     <ControlTheme x:Key="{x:Type u:Divider}" TargetType="u:Divider">
         <Setter Property="HorizontalContentAlignment" Value="Left" />
-        <Setter Property="Foreground" Value="{DynamicResource ColorDividerForeground}" />
-        <Setter Property="FontFamily" Value="{DynamicResource FontRegularFontFamily}" />
-        <!--  FontSize to be updated to dynamic resource  -->
         <Setter Property="FontSize" Value="14" />
 
         <Style Selector="^[Orientation=Horizontal]">
