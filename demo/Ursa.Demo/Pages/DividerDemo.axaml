@@ -1,0 +1,30 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.DividerDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel Spacing="20">
+        <u:Divider>Center</u:Divider>
+        <u:Divider HorizontalContentAlignment="Left">Left</u:Divider>
+        <u:Divider HorizontalContentAlignment="Right">Right</u:Divider>
+        <u:Divider HorizontalContentAlignment="Center">Center</u:Divider>
+        <u:Divider HorizontalContentAlignment="Stretch">Stretch</u:Divider>
+        <u:Divider />
+        <u:Divider Orientation="Vertical" />
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="A" />
+            <u:Divider Margin="12,0" Orientation="Vertical" />
+            <TextBlock Text="A" />
+            <u:Divider Orientation="Vertical" />
+            <TextBlock Text="A" />
+        </StackPanel>
+        <Grid Height="100" Background="LightGreen">
+            <u:Divider HorizontalContentAlignment="Stretch">Stretch</u:Divider>
+        </Grid>
+    </StackPanel>
+</UserControl>

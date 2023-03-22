@@ -1,0 +1,118 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <Design.PreviewWith>
+        <StackPanel Spacing="20">
+            <u:Divider Content="Hello" />
+        </StackPanel>
+    </Design.PreviewWith>
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="DividerLeftLine" TargetType="{x:Type Rectangle}">
+        <Setter Property="Rectangle.Fill" Value="{DynamicResource DividerBorderBrush}" />
+        <Setter Property="Rectangle.Height" Value="{DynamicResource SizeDividerWidth}" />
+        <Setter Property="Rectangle.MinWidth" Value="{DynamicResource SizeDividerLeftMinWidth}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </ControlTheme>
+
+    <ControlTheme x:Key="DividerRightLine" TargetType="{x:Type Rectangle}">
+        <Setter Property="Rectangle.Fill" Value="{DynamicResource DividerBorderBrush}" />
+        <Setter Property="Rectangle.Height" Value="{DynamicResource SizeDividerWidth}" />
+        <Setter Property="Rectangle.MinWidth" Value="{DynamicResource SizeDividerRightMinWidth}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </ControlTheme>
+
+    <ControlTheme x:Key="DividerContentPresenter" TargetType="{x:Type ContentPresenter}">
+        <Setter Property="ContentPresenter.Content" Value="{TemplateBinding Content}" />
+        <Setter Property="ContentPresenter.Background" Value="{TemplateBinding Background}" />
+        <Setter Property="TextElement.Foreground" Value="{TemplateBinding Foreground}" />
+        <Setter Property="ContentPresenter.ContentTemplate" Value="{TemplateBinding ContentTemplate}" />
+        <Setter Property="TextElement.FontFamily" Value="{TemplateBinding FontFamily}" />
+        <Setter Property="TextElement.FontWeight" Value="{TemplateBinding FontWeight}" />
+        <Setter Property="TextElement.FontSize" Value="{TemplateBinding FontSize}" />
+        <Setter Property="ContentPresenter.IsVisible" Value="{Binding Content, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}" />
+        <Setter Property="ContentPresenter.Margin" Value="{DynamicResource ThicknessDividerTextMargin}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:Divider}" TargetType="u:Divider">
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="Foreground" Value="{DynamicResource ColorDividerForeground}" />
+        <Setter Property="FontFamily" Value="{DynamicResource FontRegularFontFamily}" />
+        <!--  FontSize to be updated to dynamic resource  -->
+        <Setter Property="FontSize" Value="14" />
+
+        <Style Selector="^[Orientation=Horizontal]">
+            <Style Selector="^[HorizontalContentAlignment=Left]">
+                <Setter Property="Template">
+                    <ControlTemplate>
+                        <Grid
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            ColumnDefinitions="Auto,Auto,*">
+                            <Rectangle Theme="{StaticResource DividerLeftLine}" />
+                            <ContentPresenter Grid.Column="1" Theme="{StaticResource DividerContentPresenter}" />
+                            <Rectangle Grid.Column="2" Theme="{StaticResource DividerRightLine}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter>
+            </Style>
+            <Style Selector="^[HorizontalContentAlignment=Right]">
+                <Setter Property="Template">
+                    <ControlTemplate>
+                        <Grid
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            ColumnDefinitions="*,Auto,Auto">
+                            <Rectangle Theme="{StaticResource DividerLeftLine}" />
+                            <ContentPresenter Grid.Column="1" Theme="{StaticResource DividerContentPresenter}" />
+                            <Rectangle Grid.Column="2" Theme="{StaticResource DividerRightLine}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter>
+            </Style>
+            <Style Selector="^[HorizontalContentAlignment=Center]">
+                <Setter Property="Template">
+                    <ControlTemplate>
+                        <Grid
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            ColumnDefinitions="*,Auto,*">
+                            <Rectangle Theme="{StaticResource DividerLeftLine}" />
+                            <ContentPresenter Grid.Column="1" Theme="{StaticResource DividerContentPresenter}" />
+                            <Rectangle Grid.Column="2" Theme="{StaticResource DividerRightLine}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter>
+            </Style>
+            <Style Selector="^[HorizontalContentAlignment=Stretch]">
+                <Setter Property="Template">
+                    <ControlTemplate>
+                        <Grid
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            ColumnDefinitions="*,Auto,*">
+                            <Rectangle Theme="{StaticResource DividerLeftLine}" />
+                            <ContentPresenter Grid.Column="1" Theme="{StaticResource DividerContentPresenter}" />
+                            <Rectangle Grid.Column="2" Theme="{StaticResource DividerRightLine}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter>
+            </Style>
+        </Style>
+
+        <Style Selector="^[Orientation=Vertical]">
+            <Setter Property="Height" Value="{DynamicResource SizeDividerVerticalHeight}" />
+            <Setter Property="Margin" Value="{DynamicResource ThicknessDividerVerticalMargin}" />
+            <Setter Property="Width" Value="{DynamicResource SizeDividerWidth}" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Rectangle
+                        Width="{TemplateBinding Width}"
+                        Height="{TemplateBinding Height}"
+                        Fill="{DynamicResource DividerBorderBrush}" />
+                </ControlTemplate>
+            </Setter>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>
