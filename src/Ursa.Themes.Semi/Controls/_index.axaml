@@ -5,5 +5,6 @@
         <ResourceInclude Source="Banner.axaml" />
         <ResourceInclude Source="Divider.axaml" />
         <ResourceInclude Source="IPv4Box.axaml" />
+        <ResourceInclude Source="Timeline.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

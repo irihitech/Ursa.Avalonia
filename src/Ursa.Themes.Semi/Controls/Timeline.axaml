@@ -1,0 +1,51 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <Design.PreviewWith>
+        <StackPanel Width="100" Spacing="20">
+            <u:Timeline>
+                <u:TimelineItem Content="Hello" Time="2022-01-01" />
+                <u:TimelineItem Content="World" Time="2022-02-01" />
+                <u:TimelineItem Content="!" Time="2022-03-01" />
+                <u:TimelineItem />
+            </u:Timeline>
+        </StackPanel>
+    </Design.PreviewWith>
+    <!--  Add Resources Here  -->
+    <u:TimelineFormatConverter x:Key="FormatConverter" />
+    <ControlTheme x:Key="{x:Type u:Timeline}" TargetType="u:Timeline">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:Timeline">
+                <Grid Grid.IsSharedSizeScope="True">
+                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:TimelineItem}" TargetType="u:TimelineItem">
+        <Setter Property="u:TimelineItem.Template">
+            <ControlTemplate TargetType="u:TimelineItem">
+                <StackPanel>
+                    <ContentPresenter>
+                        <ContentPresenter.Content>
+                            <MultiBinding Converter="{StaticResource FormatConverter}">
+                                <Binding Path="Time" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Path="TimeFormat" RelativeSource="{RelativeSource TemplatedParent}" />
+                            </MultiBinding>
+                        </ContentPresenter.Content>
+                    </ContentPresenter>
+                    <ContentPresenter Name="content" Content="{TemplateBinding Content}" />
+
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:first /template/ ContentPresenter#content">
+            <Setter Property="ContentPresenter.Foreground" Value="Red" />
+        </Style>
+        <Style Selector="^:last /template/ ContentPresenter#content">
+            <Setter Property="ContentPresenter.Foreground" Value="Green" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

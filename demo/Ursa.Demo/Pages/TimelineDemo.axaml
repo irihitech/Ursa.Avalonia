@@ -1,0 +1,25 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.TimelineDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="viewModels:TimelineDemoViewModel"
+    mc:Ignorable="d">
+
+    <u:Timeline ItemsSource="{Binding Items}">
+        <u:Timeline.ItemTemplate>
+            <DataTemplate x:DataType="viewModels:TimelineItemViewModel">
+                <u:TimelineItem
+                    Content="{Binding Content}"
+                    Time="{Binding Time}"
+                    TimeFormat="{Binding TimeFormat}" />
+            </DataTemplate>
+        </u:Timeline.ItemTemplate>
+    </u:Timeline>
+</UserControl>

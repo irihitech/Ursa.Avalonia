@@ -1,6 +1,11 @@
+using System.Collections.Specialized;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.ComTypes;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Generators;
+using Avalonia.Controls.Presenters;
+using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 
 namespace Ursa.Controls;
@@ -17,33 +22,33 @@ public class Timeline: ItemsControl
         set => SetValue(ItemDescriptionTemplateProperty, value);
     }
 
-    protected override bool IsItemItsOwnContainerOverride(Control item)
+    public Timeline()
     {
-        return item is TimelineItem;
+        ItemsView.CollectionChanged+=ItemsViewOnCollectionChanged;
     }
 
-    protected override Control CreateContainerForItemOverride()
+    private void ItemsViewOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
-        return new TimelineItem();
+        RefreshTimelineItems();
     }
-    
-    protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
+
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
-        base.PrepareContainerForItemOverride(container, item, index);
-        if (container is TimelineItem c )
+        base.OnPropertyChanged(change);
+        RefreshTimelineItems();
+    }
+
+    private void RefreshTimelineItems()
+    {
+        for (int i = 0; i < this.LogicalChildren.Count; i++)
         {
-            if (item is ITimelineItemData data)
+            if (this.LogicalChildren[i] is TimelineItem t)
             {
-                c[TimelineItem.TimeProperty] = data;
-                c[ContentControl.ContentProperty] = data.Content;
-                c[TimelineItem.DescriptionProperty] = data.Description;
-                if(ItemTemplate is {}) c[ContentControl.ContentTemplateProperty] = this.ItemTemplate;
-                if(ItemDescriptionTemplate is {}) c[TimelineItem.DescriptionTemplateProperty] = this.ItemDescriptionTemplate;
+                t.SetPosition(i == 0, i == this.LogicalChildren.Count - 1);
             }
-            else
+            else if (this.LogicalChildren[i] is ContentPresenter { Child: TimelineItem t2 })
             {
-                c.Content = item;
-                if (ItemTemplate is { }) c[ContentControl.ContentTemplateProperty] = this.ItemTemplate;
+                t2.SetPosition(i == 0, i == this.LogicalChildren.Count - 1);
             }
         }
     }

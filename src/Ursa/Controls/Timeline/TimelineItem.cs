@@ -1,3 +1,4 @@
+using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -12,7 +13,7 @@ public class TimelineItem: ContentControl
 {
     public const string PC_First = ":first";
     public const string PC_Last = ":last";
-    
+
     public static readonly StyledProperty<IBrush> IconForegroundProperty =
         AvaloniaProperty.Register<TimelineItem, IBrush>(nameof(IconForeground));
 
@@ -40,7 +41,7 @@ public class TimelineItem: ContentControl
     }
 
     public static readonly StyledProperty<string?> TimeFormatProperty = AvaloniaProperty.Register<TimelineItem, string?>(
-        nameof(TimeFormat));
+        nameof(TimeFormat), defaultValue:CultureInfo.CurrentUICulture.DateTimeFormat.SortableDateTimePattern);
 
     public string? TimeFormat
     {
@@ -55,5 +56,11 @@ public class TimelineItem: ContentControl
     {
         get => GetValue(DescriptionTemplateProperty);
         set => SetValue(DescriptionTemplateProperty, value);
+    }
+
+    internal void SetPosition(bool isFirst, bool isLast)
+    {
+        PseudoClasses.Set(PC_First, isFirst);
+        PseudoClasses.Set(PC_Last, isLast);
     }
 }
