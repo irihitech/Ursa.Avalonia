@@ -16,18 +16,9 @@
     </UserControl.Resources>
     <StackPanel>
         <u:Timeline>
-            <u:TimelineItem
-                Content="Start"
-                Description="Get Started!"
-                Time="2022-01-01" />
-            <u:TimelineItem
-                Content="In between"
-                Description="In Process!"
-                Time="2022-01-02" />
-            <u:TimelineItem
-                Content="Finished"
-                Description="Done!"
-                Time="2022-01-03" />
+            <u:TimelineItem Content="Start" Time="2022-01-01" />
+            <u:TimelineItem Content="In between" Time="2022-01-02" />
+            <u:TimelineItem Content="Finished" Time="2022-01-03" />
         </u:Timeline>
         <u:Timeline HorizontalAlignment="Left" ItemsSource="{Binding Items}">
             <u:Timeline.ItemTemplate>

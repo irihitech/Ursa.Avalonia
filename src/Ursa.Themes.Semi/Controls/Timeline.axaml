@@ -33,7 +33,7 @@
                         Width="1"
                         VerticalAlignment="Stretch"
                         Classes="end"
-                        Fill="Gray" />
+                        Fill="LightGray" />
                     <Grid
                         Grid.Row="0"
                         Grid.RowSpan="2"
@@ -47,29 +47,29 @@
                             Height="8"
                             VerticalAlignment="Top"
                             Classes="start"
-                            Fill="Red" />
+                            Fill="LightGray" />
                         <Ellipse
                             Grid.Row="1"
                             Width="8"
                             Height="8"
-                            Margin="4"
+                            Margin="2"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
-                            Fill="Gray" />
+                            Fill="LightGray" />
                         <Rectangle
                             Grid.Row="2"
                             Grid.Column="0"
                             Width="1"
                             VerticalAlignment="Stretch"
                             Classes="end"
-                            Fill="Gray" />
+                            Fill="LightGray" />
                     </Grid>
                     <ContentPresenter
                         Grid.Row="0"
                         Grid.Column="1"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Bottom"
-                        Foreground="DarkGray">
+                        Foreground="Gray">
                         <ContentPresenter.Content>
                             <MultiBinding Converter="{StaticResource FormatConverter}">
                                 <Binding Path="Time" RelativeSource="{RelativeSource TemplatedParent}" />
