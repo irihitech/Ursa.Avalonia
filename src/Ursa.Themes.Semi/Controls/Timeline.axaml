@@ -17,9 +17,7 @@
     <ControlTheme x:Key="{x:Type u:Timeline}" TargetType="u:Timeline">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Timeline">
-                <Grid Grid.IsSharedSizeScope="True">
-                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
-                </Grid>
+                <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
             </ControlTemplate>
         </Setter>
     </ControlTheme>
@@ -27,16 +25,51 @@
     <ControlTheme x:Key="{x:Type u:TimelineItem}" TargetType="u:TimelineItem">
         <Setter Property="u:TimelineItem.Template">
             <ControlTemplate TargetType="u:TimelineItem">
-                <Grid Background="Pink">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" SharedSizeGroup="Left" />
-                        <ColumnDefinition Width="Auto" SharedSizeGroup="Line" />
-                        <ColumnDefinition Width="1*" SharedSizeGroup="Left" />
-                    </Grid.ColumnDefinitions>
-                    <ContentPresenter
+                <Grid ColumnDefinitions="Auto, *" RowDefinitions="*, Auto, *">
+
+                    <Rectangle
+                        Grid.Row="2"
                         Grid.Column="0"
+                        Width="1"
+                        VerticalAlignment="Stretch"
+                        Classes="end"
+                        Fill="Gray" />
+                    <Grid
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="0"
+                        Width="16"
+                        RowDefinitions="Auto, Auto, *">
+                        <Rectangle
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Width="1"
+                            Height="8"
+                            VerticalAlignment="Top"
+                            Classes="start"
+                            Fill="Red" />
+                        <Ellipse
+                            Grid.Row="1"
+                            Width="8"
+                            Height="8"
+                            Margin="4"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Fill="Gray" />
+                        <Rectangle
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Width="1"
+                            VerticalAlignment="Stretch"
+                            Classes="end"
+                            Fill="Gray" />
+                    </Grid>
+                    <ContentPresenter
+                        Grid.Row="0"
+                        Grid.Column="1"
                         HorizontalAlignment="Stretch"
-                        Background="Aqua">
+                        VerticalAlignment="Bottom"
+                        Foreground="DarkGray">
                         <ContentPresenter.Content>
                             <MultiBinding Converter="{StaticResource FormatConverter}">
                                 <Binding Path="Time" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -44,26 +77,22 @@
                             </MultiBinding>
                         </ContentPresenter.Content>
                     </ContentPresenter>
-                    <Ellipse
-                        Grid.Column="1"
-                        Width="8"
-                        Height="8"
-                        Fill="Red" />
                     <ContentPresenter
                         Name="content"
-                        Grid.Column="2"
-                        HorizontalAlignment="Stretch"
-                        Background="Yellow"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
                         Content="{TemplateBinding Content}"
                         ContentTemplate="{TemplateBinding ContentTemplate}" />
                 </Grid>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^:first /template/ ContentPresenter#content">
-            <Setter Property="ContentPresenter.Foreground" Value="Red" />
+        <Style Selector="^:first /template/ Rectangle.start">
+            <Setter Property="Rectangle.Fill" Value="Transparent" />
         </Style>
-        <Style Selector="^:last /template/ ContentPresenter#content">
-            <Setter Property="ContentPresenter.Foreground" Value="Green" />
+        <Style Selector="^:last /template/ Rectangle.end">
+            <Setter Property="Rectangle.Fill" Value="Transparent" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

@@ -58,9 +58,58 @@ public class TimelineItem: ContentControl
         set => SetValue(DescriptionTemplateProperty, value);
     }
 
-    internal void SetPosition(bool isFirst, bool isLast)
+    internal void SetIndex(bool isFirst, bool isLast)
     {
         PseudoClasses.Set(PC_First, isFirst);
         PseudoClasses.Set(PC_Last, isLast);
+    }
+}
+
+public class TimelineItemLayoutProperties: AvaloniaObject
+{
+    private double _dimensionDelta = 0.01;
+    
+    public static readonly StyledProperty<double> TimeSlotWidthProperty = AvaloniaProperty.Register<TimelineItemLayoutProperties, double>(
+        nameof(TimeSlotWidth));
+
+    public double TimeSlotWidth
+    {
+        get => GetValue(TimeSlotWidthProperty);
+        set
+        {
+            if (Math.Abs(GetValue(TimeSlotWidthProperty) - value) < _dimensionDelta) return; 
+            SetValue(TimeSlotWidthProperty, value);
+        }
+    }
+
+    public static readonly StyledProperty<double> TimeSlotHeightProperty = AvaloniaProperty.Register<TimelineItemLayoutProperties, double>(
+        nameof(TimeSlotHeight));
+
+    public double TimeSlotHeight
+    {
+        get => GetValue(TimeSlotHeightProperty);
+        set
+        {
+            if (Math.Abs(GetValue(TimeSlotHeightProperty) - value) < _dimensionDelta) return;
+            SetValue(TimeSlotHeightProperty, value);
+        }
+    }
+
+    public static readonly StyledProperty<double> ContentSlotWidthProperty = AvaloniaProperty.Register<TimelineItemLayoutProperties, double>(
+        nameof(ContentSlotWidth));
+
+    public double ContentSlotWidth
+    {
+        get => GetValue(ContentSlotWidthProperty);
+        set => SetValue(ContentSlotWidthProperty, value);
+    }
+
+    public static readonly StyledProperty<double> ContentSlotHeightProperty = AvaloniaProperty.Register<TimelineItemLayoutProperties, double>(
+        nameof(ContentSlotHeight));
+
+    public double ContentSlotHeight
+    {
+        get => GetValue(ContentSlotHeightProperty);
+        set => SetValue(ContentSlotHeightProperty, value);
     }
 }

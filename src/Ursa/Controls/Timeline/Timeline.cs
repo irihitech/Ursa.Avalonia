@@ -44,12 +44,13 @@ public class Timeline: ItemsControl
         {
             if (this.LogicalChildren[i] is TimelineItem t)
             {
-                t.SetPosition(i == 0, i == this.LogicalChildren.Count - 1);
+                t.SetIndex(i == 0, i == this.LogicalChildren.Count - 1);
             }
             else if (this.LogicalChildren[i] is ContentPresenter { Child: TimelineItem t2 })
             {
-                t2.SetPosition(i == 0, i == this.LogicalChildren.Count - 1);
+                t2.SetIndex(i == 0, i == this.LogicalChildren.Count - 1);
             }
         }
     }
+    
 }
