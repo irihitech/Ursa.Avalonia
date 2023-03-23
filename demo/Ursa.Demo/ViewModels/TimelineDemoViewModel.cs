@@ -54,42 +54,42 @@ public class TimelineDemoViewModel: ObservableObject
             Time = DateTime.Now,
             TimeFormat = "HH:mm:ss",
             Description = "Item 7",
-            Content = "Content 7"
+            Content = "Content 71231"
         },
         new()
         {
             Time = DateTime.Now,
             TimeFormat = "HH:mm:ss",
             Description = "Item 8",
-            Content = "Content 8"
+            Content = "Content 8123123"
         },
         new()
         {
             Time = DateTime.Now,
             TimeFormat = "HH:mm:ss",
             Description = "Item 9",
-            Content = "Content 9"
+            Content = "Content 9123123"
         },
         new()
         {
             Time = DateTime.Now,
             TimeFormat = "HH:mm:ss",
             Description = "Item 10",
-            Content = "Content 10"
+            Content = "Content 1231231231231231231230"
         },
         new()
         {
             Time = DateTime.Now,
             TimeFormat = "HH:mm:ss",
             Description = "Item 11",
-            Content = "Content 11"
+            Content = "Content 11231231"
         },
         new()
         {
             Time = DateTime.Now,
             TimeFormat = "HH:mm:ss",
             Description = "Item 12",
-            Content = "Content 12"
+            Content = "Content 12123123123123"
         },
         new()
         {

@@ -27,8 +27,16 @@
     <ControlTheme x:Key="{x:Type u:TimelineItem}" TargetType="u:TimelineItem">
         <Setter Property="u:TimelineItem.Template">
             <ControlTemplate TargetType="u:TimelineItem">
-                <StackPanel>
-                    <ContentPresenter>
+                <Grid Background="Pink">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" SharedSizeGroup="Left" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="Line" />
+                        <ColumnDefinition Width="1*" SharedSizeGroup="Left" />
+                    </Grid.ColumnDefinitions>
+                    <ContentPresenter
+                        Grid.Column="0"
+                        HorizontalAlignment="Stretch"
+                        Background="Aqua">
                         <ContentPresenter.Content>
                             <MultiBinding Converter="{StaticResource FormatConverter}">
                                 <Binding Path="Time" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -36,9 +44,19 @@
                             </MultiBinding>
                         </ContentPresenter.Content>
                     </ContentPresenter>
-                    <ContentPresenter Name="content" Content="{TemplateBinding Content}" />
-
-                </StackPanel>
+                    <Ellipse
+                        Grid.Column="1"
+                        Width="8"
+                        Height="8"
+                        Fill="Red" />
+                    <ContentPresenter
+                        Name="content"
+                        Grid.Column="2"
+                        HorizontalAlignment="Stretch"
+                        Background="Yellow"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}" />
+                </Grid>
             </ControlTemplate>
         </Setter>
         <Style Selector="^:first /template/ ContentPresenter#content">

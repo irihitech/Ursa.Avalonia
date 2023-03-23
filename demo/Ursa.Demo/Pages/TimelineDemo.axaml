@@ -8,18 +8,82 @@
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    x:CompileBindings="True"
+    x:CompileBindings="False"
     x:DataType="viewModels:TimelineDemoViewModel"
     mc:Ignorable="d">
-
-    <u:Timeline ItemsSource="{Binding Items}">
-        <u:Timeline.ItemTemplate>
-            <DataTemplate x:DataType="viewModels:TimelineItemViewModel">
-                <u:TimelineItem
-                    Content="{Binding Content}"
-                    Time="{Binding Time}"
-                    TimeFormat="{Binding TimeFormat}" />
-            </DataTemplate>
-        </u:Timeline.ItemTemplate>
-    </u:Timeline>
+    <UserControl.Resources>
+        <u:TimelineFormatConverter x:Key="FormatConverter" />
+    </UserControl.Resources>
+    <StackPanel>
+        <Grid Width="600">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Border
+                Grid.Column="0"
+                Width="300"
+                Height="100"
+                Background="Red" />
+            <Ellipse
+                Grid.Column="1"
+                Width="8"
+                Height="8"
+                Fill="Red" />
+            <Border
+                Grid.Column="2"
+                Width="500"
+                Height="100"
+                Background="Green" />
+        </Grid>
+        <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding Items}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" SharedSizeGroup="Left" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Line" />
+                            <ColumnDefinition Width="1*" SharedSizeGroup="Left" />
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter
+                            Grid.Column="0"
+                            HorizontalAlignment="Stretch"
+                            Background="Aqua"
+                            Content="121231233" />
+                        <Ellipse
+                            Grid.Column="1"
+                            Width="8"
+                            Height="8"
+                            Fill="Red" />
+                        <ContentPresenter
+                            Name="content"
+                            Grid.Column="2"
+                            HorizontalAlignment="Stretch"
+                            Background="Yellow"
+                            Content="{Binding}" />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <u:Timeline HorizontalAlignment="Left" ItemsSource="{Binding Items}">
+            <u:Timeline.ItemTemplate>
+                <DataTemplate x:DataType="viewModels:TimelineItemViewModel">
+                    <u:TimelineItem
+                        Content="{Binding Content}"
+                        Time="{Binding Time}"
+                        TimeFormat="{Binding TimeFormat}">
+                        <u:TimelineItem.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    MaxWidth="100"
+                                    Text="{Binding}"
+                                    TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </u:TimelineItem.ContentTemplate>
+                    </u:TimelineItem>
+                </DataTemplate>
+            </u:Timeline.ItemTemplate>
+        </u:Timeline>
+    </StackPanel>
 </UserControl>
