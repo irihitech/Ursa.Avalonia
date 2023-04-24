@@ -1,0 +1,58 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.TimelineDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="False"
+    x:DataType="viewModels:TimelineDemoViewModel"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <u:TimelineFormatConverter x:Key="FormatConverter" />
+    </UserControl.Resources>
+    <StackPanel>
+        <u:Timeline>
+            <u:TimelineItem
+                Content="Start"
+                ItemType="Warning"
+                Time="2022-01-01" />
+            <u:TimelineItem
+                Content="In between"
+                ItemType="Ongoing"
+                Time="2022-01-02" />
+            <u:TimelineItem
+                Content="Finished"
+                ItemType="Error"
+                Time="2022-01-03" />
+            <u:TimelineItem
+                Content="Finished"
+                IconForeground="Yellow"
+                ItemType="Default"
+                Time="2022-01-03" />
+        </u:Timeline>
+        <u:Timeline HorizontalAlignment="Left" ItemsSource="{Binding Items}">
+            <u:Timeline.ItemTemplate>
+                <DataTemplate x:DataType="viewModels:TimelineItemViewModel">
+                    <u:TimelineItem
+                        Content="{Binding Content}"
+                        ItemType="{Binding ItemType}"
+                        Time="{Binding Time}"
+                        TimeFormat="{Binding TimeFormat}">
+                        <u:TimelineItem.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    MaxWidth="100"
+                                    Text="{Binding}"
+                                    TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </u:TimelineItem.ContentTemplate>
+                    </u:TimelineItem>
+                </DataTemplate>
+            </u:Timeline.ItemTemplate>
+        </u:Timeline>
+    </StackPanel>
+</UserControl>
