@@ -39,6 +39,7 @@
                 <DataTemplate x:DataType="viewModels:TimelineItemViewModel">
                     <u:TimelineItem
                         Content="{Binding Content}"
+                        ItemType="{Binding ItemType}"
                         Time="{Binding Time}"
                         TimeFormat="{Binding TimeFormat}">
                         <u:TimelineItem.ContentTemplate>
