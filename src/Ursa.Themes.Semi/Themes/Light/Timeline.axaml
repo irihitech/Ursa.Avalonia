@@ -5,4 +5,5 @@
     <SolidColorBrush x:Key="SuccessTimelineIconForeground" Color="#FF3BB346" />
     <SolidColorBrush x:Key="WarningTimelineIconForeground" Color="#FFFC8800" />
     <SolidColorBrush x:Key="ErrorTimelineIconForeground" Color="#FFF93920" />
+    <SolidColorBrush x:Key="TimelineLineBrush" Opacity="0.13" Color="#FF2E3238" />
 </ResourceDictionary>

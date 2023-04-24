@@ -48,21 +48,16 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
                             Classes="start"
-                            Fill="LightGray" />
+                            Fill="{DynamicResource TimelineLineBrush}" />
                         <Panel Grid.Row="1">
                             <Ellipse
+                                Name="PART_Indicator"
                                 Width="8"
                                 Height="8"
                                 Margin="2"
                                 HorizontalAlignment="Center"
-                                VerticalAlignment="Top">
-                                <Ellipse.Fill>
-                                    <MultiBinding Converter="{StaticResource ForegroundConverter}">
-                                        <Binding Path="ItemType" RelativeSource="{RelativeSource TemplatedParent}" />
-                                        <Binding Path="IconForeground" RelativeSource="{RelativeSource TemplatedParent}" />
-                                    </MultiBinding>
-                                </Ellipse.Fill>
-                            </Ellipse>
+                                VerticalAlignment="Top"
+                                Fill="{DynamicResource DefaultTimelineIconForeground}" />
                         </Panel>
                         <Rectangle
                             Grid.Row="2"
@@ -71,7 +66,7 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Stretch"
                             Classes="end"
-                            Fill="LightGray" />
+                            Fill="{DynamicResource TimelineLineBrush}" />
                     </Grid>
                     <Rectangle
                         Grid.Row="2"
@@ -80,7 +75,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Stretch"
                         Classes="end"
-                        Fill="LightGray" />
+                        Fill="{DynamicResource TimelineLineBrush}" />
                     <ContentPresenter
                         Grid.Row="0"
                         Grid.Column="1"
@@ -111,6 +106,24 @@
         </Style>
         <Style Selector="^:last /template/ Rectangle.end">
             <Setter Property="Rectangle.Fill" Value="Transparent" />
+        </Style>
+        <Style Selector="^:none /template/ Ellipse#PART_Indicator">
+            <Setter Property="Ellipse.Fill" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=u:TimelineItem}, Path=IconForeground}" />
+        </Style>
+        <Style Selector="^:not(:none):default /template/ Ellipse#PART_Indicator">
+            <Setter Property="Ellipse.Fill" Value="{DynamicResource DefaultTimelineIconForeground}" />
+        </Style>
+        <Style Selector="^:not(:none):ongoing /template/ Ellipse#PART_Indicator">
+            <Setter Property="Ellipse.Fill" Value="{DynamicResource OngoingTimelineIconForeground}" />
+        </Style>
+        <Style Selector="^:not(:none):success /template/ Ellipse#PART_Indicator">
+            <Setter Property="Ellipse.Fill" Value="{DynamicResource SuccessTimelineIconForeground}" />
+        </Style>
+        <Style Selector="^:not(:none):warning /template/ Ellipse#PART_Indicator">
+            <Setter Property="Ellipse.Fill" Value="{DynamicResource WarningTimelineIconForeground}" />
+        </Style>
+        <Style Selector="^:not(:none):error /template/ Ellipse#PART_Indicator">
+            <Setter Property="Ellipse.Fill" Value="{DynamicResource ErrorTimelineIconForeground}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
