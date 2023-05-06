@@ -1,0 +1,22 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:Pagination}" TargetType="u:Pagination">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:Pagination">
+                <StackPanel Orientation="Horizontal">
+                    <Button Name="{x:Static u:Pagination.PART_PreviousButton}" Content="&lt;" />
+                    <Button Name="{x:Static u:Pagination.PART_NextButton}" Content="&gt;" />
+                    <StackPanel Name="{x:Static u:Pagination.PART_ButtonPanel}" Orientation="Horizontal" />
+                    <ComboBox
+                        Name="{x:Static u:Pagination.PART_SizeChangerComboBox}"
+                        ItemsSource="{TemplateBinding PageSizeOptions}"
+                        SelectedItem="{TemplateBinding PageSize,
+                                                       Mode=TwoWay}" />
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

@@ -1,4 +1,5 @@
 using Avalonia;
+using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
@@ -10,14 +11,17 @@ namespace Ursa.Controls;
 [TemplatePart(PART_PreviousButton, typeof(Button))]
 [TemplatePart(PART_NextButton, typeof(Button))]
 [TemplatePart(PART_ButtonPanel, typeof(StackPanel))]
+[TemplatePart(PART_SizeChangerComboBox, typeof(ComboBox))]
 public class Pagination: TemplatedControl
 {
     public const string PART_PreviousButton = "PART_PreviousButton";
     public const string PART_NextButton = "PART_NextButton";
     public const string PART_ButtonPanel = "PART_ButtonPanel";
+    public const string PART_SizeChangerComboBox = "PART_SizeChangerComboBox";
     private Button? _previousButton;
     private Button? _nextButton;
     private StackPanel? _buttonPanel;
+    private ComboBox? _sizeChangerComboBox;
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -27,8 +31,11 @@ public class Pagination: TemplatedControl
         _previousButton = e.NameScope.Find<Button>(PART_PreviousButton);
         _nextButton = e.NameScope.Find<Button>(PART_NextButton);
         _buttonPanel = e.NameScope.Find<StackPanel>(PART_ButtonPanel);
+        _sizeChangerComboBox = e.NameScope.Find<ComboBox>(PART_SizeChangerComboBox);
         if (_previousButton != null) _previousButton.Click += OnButtonClick;
         if (_nextButton != null) _nextButton.Click += OnButtonClick;
+        UpdateButtons();
+
     }
     
     public static readonly StyledProperty<int> CurrentPageProperty = AvaloniaProperty.Register<Pagination, int>(
@@ -37,10 +44,7 @@ public class Pagination: TemplatedControl
     public int CurrentPage
     {
         get => GetValue(CurrentPageProperty);
-        set {
-            int actualValue = CoercePage(value);
-            SetValue(CurrentPageProperty, actualValue);
-        }
+        set => SetValue(CurrentPageProperty, value);
     }
 
     public static readonly StyledProperty<int> TotalCountProperty = AvaloniaProperty.Register<Pagination, int>(
@@ -54,9 +58,9 @@ public class Pagination: TemplatedControl
         get => GetValue(TotalCountProperty);
         set => SetValue(TotalCountProperty, value);
     }
-    
+
     public static readonly StyledProperty<int> PageSizeProperty = AvaloniaProperty.Register<Pagination, int>(
-        nameof(PageSize));
+        nameof(PageSize), defaultValue: 100);
     
     /// <summary>
     /// Page size.
@@ -81,26 +85,13 @@ public class Pagination: TemplatedControl
         private set => SetAndRaise(PageCountProperty, ref _pageCount, value);
     }
 
-    private int _startIndex;
+    public static readonly StyledProperty<AvaloniaList<int>> PageSizeOptionsProperty = AvaloniaProperty.Register<Pagination, AvaloniaList<int>>(
+        nameof(PageSizeOptions));
 
-    public static readonly DirectProperty<Pagination, int> StartIndexProperty = AvaloniaProperty.RegisterDirect<Pagination, int>(
-        nameof(StartIndex), o => o.StartIndex);
-
-    public int StartIndex
+    public AvaloniaList<int> PageSizeOptions
     {
-        get => _startIndex;
-        private set => SetAndRaise(StartIndexProperty, ref _startIndex, value);
-    }
-
-    private int _endIndex;
-
-    public static readonly DirectProperty<Pagination, int> EndIndexProperty = AvaloniaProperty.RegisterDirect<Pagination, int>(
-        nameof(EndIndex), o => o.EndIndex);
-
-    public int EndIndex
-    {
-        get => _endIndex;
-        private set => SetAndRaise(EndIndexProperty, ref _endIndex, value);
+        get => GetValue(PageSizeOptionsProperty);
+        set => SetValue(PageSizeOptionsProperty, value);
     }
 
     public static readonly StyledProperty<ControlTheme> PageButtonThemeProperty = AvaloniaProperty.Register<Pagination, ControlTheme>(
@@ -120,7 +111,16 @@ public class Pagination: TemplatedControl
         get => GetValue(ExpandButtonThemeProperty);
         set => SetValue(ExpandButtonThemeProperty, value);
     }
-    
+
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+        if (change.Property == PageSizeProperty || change.Property == TotalCountProperty)
+        {
+            UpdateButtons();
+        }
+    }
+
     private void OnButtonClick(object? sender, RoutedEventArgs e)
     {
         if (Equals(sender, _previousButton))
@@ -132,12 +132,22 @@ public class Pagination: TemplatedControl
             CurrentPage++;
         }
     }
-    
-    private int CoercePage(int page)
-    {
-        if (page < 1) return 1;
-        if (page > PageCount) return PageCount;
-        return page;
-    }
 
+    private void UpdateButtons()
+    {
+        if (PageSize == 0) return;
+        int currentPage = CurrentPage;
+        
+        int pageCount = TotalCount / PageSize;
+        int residue = TotalCount % PageSize;
+        if (residue > 0)
+        {
+            pageCount++;
+        }
+        _buttonPanel?.Children.Clear();
+        for (int i = 0; i < pageCount; i++)
+        {
+            _buttonPanel?.Children.Add(new Button { Content = i + 1 });
+        }
+    }
 }
