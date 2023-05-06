@@ -19,4 +19,20 @@
             </ControlTemplate>
         </Setter>
     </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:PaginationExpandButton}" TargetType="u:PaginationExpandButton">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:PaginationExpandButton">
+                <Grid>
+                    <Button Name="button" Content="..." />
+                    <Popup
+                        IsLightDismissEnabled="True"
+                        IsOpen="{Binding #button.IsPointerOver}"
+                        PlacementTarget="button">
+                        <ListBox Background="White" ItemsSource="{TemplateBinding Pages}" />
+                    </Popup>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
 </ResourceDictionary>

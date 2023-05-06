@@ -23,6 +23,12 @@ public class Pagination: TemplatedControl
     private StackPanel? _buttonPanel;
     private ComboBox? _sizeChangerComboBox;
 
+    /// <summary>
+    /// To reduce allocation, there are maximum of 7 buttons and 2 selection controls. it will be reused.
+    /// </summary>
+    private PaginationExpandButton? _leftSelection;
+    private PaginationExpandButton? _rightSelection;
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
@@ -34,6 +40,8 @@ public class Pagination: TemplatedControl
         _sizeChangerComboBox = e.NameScope.Find<ComboBox>(PART_SizeChangerComboBox);
         if (_previousButton != null) _previousButton.Click += OnButtonClick;
         if (_nextButton != null) _nextButton.Click += OnButtonClick;
+        _leftSelection = new PaginationExpandButton();
+        _rightSelection = new PaginationExpandButton();
         UpdateButtons();
 
     }
@@ -60,7 +68,7 @@ public class Pagination: TemplatedControl
     }
 
     public static readonly StyledProperty<int> PageSizeProperty = AvaloniaProperty.Register<Pagination, int>(
-        nameof(PageSize), defaultValue: 100);
+        nameof(PageSize), defaultValue: 50);
     
     /// <summary>
     /// Page size.
@@ -147,7 +155,15 @@ public class Pagination: TemplatedControl
         _buttonPanel?.Children.Clear();
         for (int i = 0; i < pageCount; i++)
         {
-            _buttonPanel?.Children.Add(new Button { Content = i + 1 });
+            if (i == 1 && _leftSelection is not null)
+            {
+                _leftSelection.Pages = new AvaloniaList<int>() { PageSize + 1, PageSize + 2, PageSize + 3 };
+                _buttonPanel?.Children.Add(_leftSelection);
+            }
+            else
+            {
+                _buttonPanel?.Children.Add(new Button { Content = i + 1 });
+            }
         }
     }
 }
