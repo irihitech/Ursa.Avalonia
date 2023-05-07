@@ -24,12 +24,33 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:PaginationExpandButton">
                 <Grid>
-                    <Button Name="button" Content="..." />
+                    <Button Name="PART_Button" Content="..." />
                     <Popup
+                        Name="{x:Static u:PaginationExpandButton.PART_Popup}"
                         IsLightDismissEnabled="True"
-                        IsOpen="{Binding #button.IsPointerOver}"
-                        PlacementTarget="button">
-                        <ListBox Background="White" ItemsSource="{TemplateBinding Pages}" />
+                        IsOpen="{TemplateBinding IsDropdownOpen,
+                                                 Mode=TwoWay}"
+                        PlacementTarget="PART_Button">
+                        <Border
+                            Margin="4,0,4,4"
+                            Padding="4"
+                            Background="White"
+                            BorderBrush="LightGray"
+                            BorderThickness="1"
+                            BoxShadow="0 0 8 0 #1A000000"
+                            ClipToBounds="True"
+                            CornerRadius="6">
+                            <ListBox
+                                MinWidth="50"
+                                MaxHeight="300"
+                                ItemsSource="{TemplateBinding Pages}">
+                                <ListBox.ItemContainerTheme>
+                                    <ControlTheme BasedOn="{StaticResource {x:Type ListBoxItem}}" TargetType="ListBoxItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    </ControlTheme>
+                                </ListBox.ItemContainerTheme>
+                            </ListBox>
+                        </Border>
                     </Popup>
                 </Grid>
             </ControlTemplate>

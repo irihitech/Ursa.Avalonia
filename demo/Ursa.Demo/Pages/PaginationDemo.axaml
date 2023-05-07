@@ -13,6 +13,10 @@
         <viewModels:PaginationDemoViewModel />
     </Design.DataContext>
     <StackPanel>
-        <u:Pagination PageSizeOptions="{Binding PageSizes}" TotalCount="300" />
+        <TextBlock Text="{Binding #page.CurrentPage}" />
+        <u:Pagination
+            Name="page"
+            PageSizeOptions="{Binding PageSizes}"
+            TotalCount="300" />
     </StackPanel>
 </UserControl>

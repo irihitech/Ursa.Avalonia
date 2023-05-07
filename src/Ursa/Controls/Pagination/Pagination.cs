@@ -68,7 +68,7 @@ public class Pagination: TemplatedControl
     }
 
     public static readonly StyledProperty<int> PageSizeProperty = AvaloniaProperty.Register<Pagination, int>(
-        nameof(PageSize), defaultValue: 50);
+        nameof(PageSize), defaultValue: 10);
     
     /// <summary>
     /// Page size.
@@ -144,7 +144,7 @@ public class Pagination: TemplatedControl
     private void UpdateButtons()
     {
         if (PageSize == 0) return;
-        int currentPage = CurrentPage;
+        int currentIndex = CurrentPage * PageSize;
         
         int pageCount = TotalCount / PageSize;
         int residue = TotalCount % PageSize;
@@ -162,7 +162,7 @@ public class Pagination: TemplatedControl
             }
             else
             {
-                _buttonPanel?.Children.Add(new Button { Content = i + 1 });
+                _buttonPanel?.Children.Add(new PaginationButton { Content = i + 1, Page = i + 1 });
             }
         }
     }
