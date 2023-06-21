@@ -120,7 +120,7 @@ public class IPv4Box: TemplatedControl
     protected override void OnKeyDown(KeyEventArgs e)
     {
         if (_currentActivePresenter is null) return;
-        var keymap = AvaloniaLocator.Current.GetRequiredService<PlatformHotkeyConfiguration>();
+        var keymap = TopLevel.GetTopLevel(this)?.PlatformSettings?.HotkeyConfiguration;
         bool Match(List<KeyGesture> gestures) => gestures.Any(g => g.Matches(e));
         if (e.Key == Key.Enter)
         {
@@ -129,17 +129,17 @@ public class IPv4Box: TemplatedControl
             base.OnKeyDown(e);
             return;
         }
-        if (Match(keymap.SelectAll))
+        if (keymap is not null && Match(keymap.SelectAll))
         {
             _currentActivePresenter.SelectionStart = 0;
             _currentActivePresenter.SelectionEnd = _currentActivePresenter.Text?.Length ?? 0;
             return;
         }
-        else if (Match(keymap.Copy))
+        else if (keymap is not null && Match(keymap.Copy))
         {
             Copy();
         }
-        else if (Match(keymap.Paste))
+        else if (keymap is not null && Match(keymap.Paste))
         {
             Paste();
         }
@@ -494,17 +494,17 @@ public class IPv4Box: TemplatedControl
     public async void Copy()
     {
         string s = string.Join(".", _firstText?.Text, _secondText?.Text, _thirdText?.Text, _fourthText?.Text);
-        IClipboard? clipboard = AvaloniaLocator.Current.GetService<IClipboard>();
+        IClipboard? clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
         clipboard?.SetTextAsync(s);
     }
     
-    public static KeyGesture? CopyKeyGesture { get; } = AvaloniaLocator.Current.GetService<PlatformHotkeyConfiguration>()?.Copy.FirstOrDefault();
-    public static KeyGesture? PasteKeyGesture { get; } = AvaloniaLocator.Current.GetService<PlatformHotkeyConfiguration>()?.Paste.FirstOrDefault();
-    public static KeyGesture? CutKeyGesture { get; } = AvaloniaLocator.Current.GetService<PlatformHotkeyConfiguration>()?.Cut.FirstOrDefault();
+    public static KeyGesture? CopyKeyGesture { get; } = Application.Current?.PlatformSettings?.HotkeyConfiguration.Copy.FirstOrDefault();
+    public static KeyGesture? PasteKeyGesture { get; } = Application.Current?.PlatformSettings?.HotkeyConfiguration.Paste.FirstOrDefault();
+    public static KeyGesture? CutKeyGesture { get; } = Application.Current?.PlatformSettings?.HotkeyConfiguration.Cut.FirstOrDefault();
 
     public async void Paste()
     {
-        IClipboard? clipboard = AvaloniaLocator.Current.GetService<IClipboard>();
+        IClipboard? clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
         if (clipboard is null) return;
         string s = await clipboard.GetTextAsync();
         if (IPAddress.TryParse(s, out var address))
@@ -515,7 +515,7 @@ public class IPv4Box: TemplatedControl
 
     public async void Cut()
     {
-        IClipboard? clipboard = AvaloniaLocator.Current.GetService<IClipboard>();
+        IClipboard? clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
         if(clipboard is null) return;
         string s = string.Join(".", _firstText?.Text, _secondText?.Text, _thirdText?.Text, _fourthText?.Text);
         await clipboard.SetTextAsync(s);
