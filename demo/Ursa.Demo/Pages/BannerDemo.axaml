@@ -32,7 +32,7 @@
                         Grid.Row="0"
                         Grid.Column="1"
                         MinWidth="200"
-                        Items="{Binding Types}"
+                        ItemsSource="{Binding Types}"
                         SelectedItem="{Binding SelectedType}" />
                     <Label
                         Grid.Row="1"

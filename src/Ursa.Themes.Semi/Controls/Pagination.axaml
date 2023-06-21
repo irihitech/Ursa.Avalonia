@@ -1,0 +1,123 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <Design.PreviewWith>
+        <StackPanel Margin="20">
+            <u:PaginationButton Page="3" />
+        </StackPanel>
+    </Design.PreviewWith>
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:Pagination}" TargetType="u:Pagination">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:Pagination">
+                <StackPanel Orientation="Horizontal">
+                    <u:PaginationButton Name="{x:Static u:Pagination.PART_PreviousButton}">
+                        <PathIcon
+                            Width="12"
+                            Height="12"
+                            Data="{DynamicResource PaginationBackwardGlyph}"
+                            Foreground="{DynamicResource PaginationButtonIconForeground}" />
+                    </u:PaginationButton>
+                    <StackPanel Name="{x:Static u:Pagination.PART_ButtonPanel}" Orientation="Horizontal" />
+                    <u:PaginationButton Name="{x:Static u:Pagination.PART_NextButton}">
+                        <PathIcon
+                            Width="12"
+                            Height="12"
+                            Data="{DynamicResource PaginationForwardGlyph}"
+                            Foreground="{DynamicResource PaginationButtonIconForeground}" />
+                    </u:PaginationButton>
+                    <ComboBox
+                        Name="{x:Static u:Pagination.PART_SizeChangerComboBox}"
+                        IsVisible="{TemplateBinding ShowPageSizeSelector}"
+                        ItemsSource="{TemplateBinding PageSizeOptions}"
+                        SelectedItem="{TemplateBinding PageSize,
+                                                       Mode=TwoWay}" />
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:PaginationButton}" TargetType="u:PaginationButton">
+        <Setter Property="Content" Value="{Binding $self.Page}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="MinWidth" Value="32" />
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="Background" Value="{DynamicResource PaginationButtonDefaultBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource PaginationButtonDefaultForeground}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:PaginationButton">
+                <Border
+                    Padding="4"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="3">
+                    <ContentPresenter
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="{TemplateBinding Content}"
+                        FontWeight="{TemplateBinding FontWeight}"
+                        Foreground="{TemplateBinding Foreground}" />
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:pointerover">
+            <Setter Property="u:PaginationButton.Background" Value="{DynamicResource PaginationButtonPointeroverBackground}" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="u:PaginationButton.Background" Value="{DynamicResource PaginationButtonPressedBackground}" />
+        </Style>
+        <Style Selector="^:left">
+            <Setter Property="u:PaginationButton.Content">
+                <Template>
+                    <PathIcon
+                        Width="12"
+                        Height="12"
+                        Data="{DynamicResource PaginationMoreGlyph}"
+                        Foreground="{DynamicResource PaginationButtonIconForeground}" />
+                </Template>
+            </Setter>
+            <Style Selector="^:pointerover">
+                <Setter Property="u:PaginationButton.Content">
+                    <Template>
+                        <PathIcon
+                            Width="12"
+                            Height="12"
+                            Data="{DynamicResource PaginationFastBackwardGlyph}"
+                            Foreground="{DynamicResource PaginationButtonIconForeground}" />
+                    </Template>
+                </Setter>
+            </Style>
+        </Style>
+        <Style Selector="^:right">
+            <Setter Property="u:PaginationButton.Content">
+                <Template>
+                    <PathIcon
+                        Width="12"
+                        Height="12"
+                        Data="{DynamicResource PaginationMoreGlyph}"
+                        Foreground="{DynamicResource PaginationButtonIconForeground}" />
+                </Template>
+            </Setter>
+            <Style Selector="^:pointerover">
+                <Setter Property="u:PaginationButton.Content">
+                    <Template>
+                        <PathIcon
+                            Width="12"
+                            Height="12"
+                            Data="{DynamicResource PaginationFastForwardGlyph}"
+                            Foreground="{DynamicResource PaginationButtonIconForeground}" />
+                    </Template>
+                </Setter>
+            </Style>
+        </Style>
+        <Style Selector="^:selected">
+            <Setter Property="u:PaginationButton.Background" Value="{DynamicResource PaginationButtonSelectedBackground}" />
+            <Setter Property="u:PaginationButton.Foreground" Value="{DynamicResource PaginationButtonSelectedForeground}" />
+            <Setter Property="u:PaginationButton.FontWeight" Value="600" />
+        </Style>
+    </ControlTheme>
+
+</ResourceDictionary>
