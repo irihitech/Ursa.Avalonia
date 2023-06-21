@@ -14,9 +14,11 @@
     </Design.DataContext>
     <StackPanel>
         <TextBlock Text="{Binding #page.CurrentPage}" />
+        <ToggleSwitch Name="pageSizeSelector" Content="Show Page Size Selector" />
         <u:Pagination
             Name="page"
             PageSizeOptions="10, 20, 50, 100"
+            ShowPageSizeSelector="{Binding #pageSizeSelector.IsChecked}"
             TotalCount="600" />
     </StackPanel>
 </UserControl>
