@@ -17,6 +17,6 @@
         <u:Pagination
             Name="page"
             PageSizeOptions="{Binding PageSizes}"
-            TotalCount="300" />
+            TotalCount="600" />
     </StackPanel>
 </UserControl>

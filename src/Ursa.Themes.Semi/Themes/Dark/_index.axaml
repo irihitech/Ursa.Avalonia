@@ -5,6 +5,7 @@
         <MergeResourceInclude Source="Banner.axaml" />
         <MergeResourceInclude Source="Divider.axaml" />
         <MergeResourceInclude Source="IPv4Box.axaml" />
+        <MergeResourceInclude Source="Pagination.axaml" />
         <MergeResourceInclude Source="Timeline.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

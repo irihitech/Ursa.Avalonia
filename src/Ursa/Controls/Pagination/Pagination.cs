@@ -8,6 +8,11 @@ using Avalonia.Styling;
 
 namespace Ursa.Controls;
 
+/// <summary>
+/// Pagination is a control that displays a series of buttons that can be used to navigate to pages.
+/// CurrentPage starts from 1.
+/// Pagination only stores an approximate index internally.
+/// </summary>
 [TemplatePart(PART_PreviousButton, typeof(Button))]
 [TemplatePart(PART_NextButton, typeof(Button))]
 [TemplatePart(PART_ButtonPanel, typeof(StackPanel))]
@@ -21,13 +26,8 @@ public class Pagination: TemplatedControl
     private Button? _previousButton;
     private Button? _nextButton;
     private StackPanel? _buttonPanel;
+    private readonly PaginationButton[] _buttons = new PaginationButton[7];
     private ComboBox? _sizeChangerComboBox;
-
-    /// <summary>
-    /// To reduce allocation, there are maximum of 7 buttons and 2 selection controls. it will be reused.
-    /// </summary>
-    private PaginationExpandButton? _leftSelection;
-    private PaginationExpandButton? _rightSelection;
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -40,9 +40,8 @@ public class Pagination: TemplatedControl
         _sizeChangerComboBox = e.NameScope.Find<ComboBox>(PART_SizeChangerComboBox);
         if (_previousButton != null) _previousButton.Click += OnButtonClick;
         if (_nextButton != null) _nextButton.Click += OnButtonClick;
-        _leftSelection = new PaginationExpandButton();
-        _rightSelection = new PaginationExpandButton();
-        UpdateButtons();
+        InitializePanelButtons();
+        UpdateButtons(0);
 
     }
     
@@ -111,21 +110,20 @@ public class Pagination: TemplatedControl
         set => SetValue(PageButtonThemeProperty, value);
     }
 
-    public static readonly StyledProperty<ControlTheme> ExpandButtonThemeProperty = AvaloniaProperty.Register<Pagination, ControlTheme>(
-        nameof(ExpandButtonTheme));
-
-    public ControlTheme ExpandButtonTheme
-    {
-        get => GetValue(ExpandButtonThemeProperty);
-        set => SetValue(ExpandButtonThemeProperty, value);
-    }
-
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
-        if (change.Property == PageSizeProperty || change.Property == TotalCountProperty)
+        // When page size is updated, the selected current page must be updated. 
+        if (change.Property == PageSizeProperty)
         {
-            UpdateButtons();
+            int oldPageSize = change.GetOldValue<int>();
+            int index = oldPageSize * CurrentPage;
+            UpdateButtons(index);
+        }
+        else if (change.Property == TotalCountProperty || change.Property == CurrentPageProperty)
+        {
+            int index = PageSize * CurrentPage;
+            UpdateButtons(index);
         }
     }
 
@@ -133,18 +131,60 @@ public class Pagination: TemplatedControl
     {
         if (Equals(sender, _previousButton))
         {
-            CurrentPage--;
+            AddCurrentPage(-1);
         }
         else
         {
-            CurrentPage++;
+            AddCurrentPage(1);
         }
     }
 
-    private void UpdateButtons()
+    private void InitializePanelButtons()
     {
+        if (_buttonPanel is null) return;
+        _buttonPanel.Children.Clear();
+        for (int i = 1; i <= 7; i++)
+        {
+            var button = new PaginationButton() { Page = i, IsVisible = true };
+            _buttonPanel.Children.Add(button);
+            _buttons![i - 1] = button;
+            button.Click+= OnPageButtonClick;
+        }
+    }
+
+    private void OnPageButtonClick(object sender, RoutedEventArgs args)
+    {
+        if (sender is PaginationButton pageButton)
+        {
+            if (pageButton.IsLeftForward)
+            {
+                AddCurrentPage(-5);
+            }
+            else if (pageButton.IsRightForward)
+            {
+                AddCurrentPage(5);
+            }
+            else
+            {
+                CurrentPage = pageButton.Page;
+            }
+        }
+    }
+
+    private void AddCurrentPage(int pageChange)
+    {
+        int newValue = CurrentPage + pageChange;
+        if (newValue <= 0) newValue = 1;
+        else if(newValue>=PageCount) newValue = PageCount;
+        CurrentPage = newValue;
+    }
+
+    private void UpdateButtons(int index)
+    {
+        if (_buttonPanel is null) return;
         if (PageSize == 0) return;
-        int currentIndex = CurrentPage * PageSize;
+
+        int currentIndex = index;
         
         int pageCount = TotalCount / PageSize;
         int residue = TotalCount % PageSize;
@@ -152,18 +192,71 @@ public class Pagination: TemplatedControl
         {
             pageCount++;
         }
-        _buttonPanel?.Children.Clear();
-        for (int i = 0; i < pageCount; i++)
+        
+        PageCount = pageCount;
+        
+        int currentPage = currentIndex/ PageSize;
+        if (currentPage == 0) currentPage++;
+
+        if (pageCount <= 7)
         {
-            if (i == 1 && _leftSelection is not null)
+            for (int i = 0; i < 7; i++)
             {
-                _leftSelection.Pages = new AvaloniaList<int>() { PageSize + 1, PageSize + 2, PageSize + 3 };
-                _buttonPanel?.Children.Add(_leftSelection);
+                if (i < pageCount)
+                {
+                    _buttons[i].IsVisible = true;
+                    _buttons[i].SetStatus(i + 1, i+1 == CurrentPage, false, false);
+                }
+                else
+                {
+                    _buttons[i].IsVisible = false;
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                _buttons[i].IsVisible = true;
+            }
+            int mid = currentPage;
+            if (mid < 4) mid = 4;
+            else if (mid > pageCount - 3) mid = pageCount - 3;
+            _buttons[3].Page = mid;
+            _buttons[2].Page = mid - 1;
+            _buttons[4].Page = mid + 1;
+            _buttons[0].Page = 1;
+            _buttons[6].Page = pageCount;
+            if(mid>4)
+            {
+                _buttons[1].SetStatus(0, false, true, false);
             }
             else
             {
-                _buttonPanel?.Children.Add(new PaginationButton { Content = i + 1, Page = i + 1 });
+                _buttons[1].SetStatus(mid-2, false, false, false);
+            }
+            if(mid<pageCount-3)
+            {
+                _buttons[5].SetStatus(0, false, false, true);
+            }
+            else
+            {
+                _buttons[5].SetStatus(mid+2, false, false, false);
+            }
+
+            foreach (var button in _buttons)
+            {
+                if (button.Page == currentPage)
+                {
+                    button.SetSelected(true);
+                }
+                else
+                {
+                    button.SetSelected(false);
+                }
             }
         }
+
+        CurrentPage = currentPage;
     }
 }

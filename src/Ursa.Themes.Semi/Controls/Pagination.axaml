@@ -2,14 +2,29 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
+    <Design.PreviewWith>
+        <StackPanel Margin="20">
+            <u:PaginationButton Page="3" />
+        </StackPanel>
+    </Design.PreviewWith>
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:Pagination}" TargetType="u:Pagination">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Pagination">
                 <StackPanel Orientation="Horizontal">
-                    <Button Name="{x:Static u:Pagination.PART_PreviousButton}" Content="&lt;" />
-                    <Button Name="{x:Static u:Pagination.PART_NextButton}" Content="&gt;" />
+                    <u:PaginationButton Name="{x:Static u:Pagination.PART_PreviousButton}">
+                        <PathIcon
+                            Width="12"
+                            Height="12"
+                            Data="{DynamicResource PaginationBackwardGlyph}" />
+                    </u:PaginationButton>
                     <StackPanel Name="{x:Static u:Pagination.PART_ButtonPanel}" Orientation="Horizontal" />
+                    <u:PaginationButton Name="{x:Static u:Pagination.PART_NextButton}">
+                        <PathIcon
+                            Width="12"
+                            Height="12"
+                            Data="{DynamicResource PaginationForwardGlyph}" />
+                    </u:PaginationButton>
                     <ComboBox
                         Name="{x:Static u:Pagination.PART_SizeChangerComboBox}"
                         ItemsSource="{TemplateBinding PageSizeOptions}"
@@ -20,40 +35,59 @@
         </Setter>
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type u:PaginationExpandButton}" TargetType="u:PaginationExpandButton">
+    <ControlTheme x:Key="{x:Type u:PaginationButton}" TargetType="u:PaginationButton">
+        <Setter Property="Content" Value="{Binding $self.Page}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="MinWidth" Value="40" />
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
-            <ControlTemplate TargetType="u:PaginationExpandButton">
-                <Grid>
-                    <Button Name="PART_Button" Content="..." />
-                    <Popup
-                        Name="{x:Static u:PaginationExpandButton.PART_Popup}"
-                        IsLightDismissEnabled="True"
-                        IsOpen="{TemplateBinding IsDropdownOpen,
-                                                 Mode=TwoWay}"
-                        PlacementTarget="PART_Button">
-                        <Border
-                            Margin="4,0,4,4"
-                            Padding="4"
-                            Background="White"
-                            BorderBrush="LightGray"
-                            BorderThickness="1"
-                            BoxShadow="0 0 8 0 #1A000000"
-                            ClipToBounds="True"
-                            CornerRadius="6">
-                            <ListBox
-                                MinWidth="50"
-                                MaxHeight="300"
-                                ItemsSource="{TemplateBinding Pages}">
-                                <ListBox.ItemContainerTheme>
-                                    <ControlTheme BasedOn="{StaticResource {x:Type ListBoxItem}}" TargetType="ListBoxItem">
-                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                    </ControlTheme>
-                                </ListBox.ItemContainerTheme>
-                            </ListBox>
-                        </Border>
-                    </Popup>
-                </Grid>
+            <ControlTemplate TargetType="u:PaginationButton">
+                <Border
+                    Padding="8,0"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="3">
+                    <ContentPresenter
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="{TemplateBinding Content}" />
+                </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:pointerover">
+            <Setter Property="u:PaginationButton.Background" Value="LightGray" />
+        </Style>
+        <Style Selector="^:left">
+            <Setter Property="u:PaginationButton.Content" Value="..." />
+            <Style Selector="^:pointerover">
+                <Setter Property="u:PaginationButton.Content">
+                    <Template>
+                        <PathIcon
+                            Width="12"
+                            Height="12"
+                            Data="{DynamicResource PaginationFastBackwardGlyph}" />
+                    </Template>
+                </Setter>
+            </Style>
+        </Style>
+        <Style Selector="^:right">
+            <Setter Property="u:PaginationButton.Content" Value="..." />
+            <Style Selector="^:pointerover">
+                <Setter Property="u:PaginationButton.Content">
+                    <Template>
+                        <PathIcon
+                            Width="12"
+                            Height="12"
+                            Data="{DynamicResource PaginationFastForwardGlyph}" />
+                    </Template>
+                </Setter>
+            </Style>
+        </Style>
+        <Style Selector="^:selected">
+            <Setter Property="u:PaginationButton.Background" Value="LightBlue" />
+        </Style>
     </ControlTheme>
+
+
 </ResourceDictionary>
