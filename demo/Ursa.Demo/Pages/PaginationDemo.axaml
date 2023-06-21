@@ -16,7 +16,7 @@
         <TextBlock Text="{Binding #page.CurrentPage}" />
         <u:Pagination
             Name="page"
-            PageSizeOptions="{Binding PageSizes}"
+            PageSizeOptions="10, 20, 50, 100"
             TotalCount="600" />
     </StackPanel>
 </UserControl>

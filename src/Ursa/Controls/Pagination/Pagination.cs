@@ -13,8 +13,8 @@ namespace Ursa.Controls;
 /// CurrentPage starts from 1.
 /// Pagination only stores an approximate index internally.
 /// </summary>
-[TemplatePart(PART_PreviousButton, typeof(Button))]
-[TemplatePart(PART_NextButton, typeof(Button))]
+[TemplatePart(PART_PreviousButton, typeof(PaginationButton))]
+[TemplatePart(PART_NextButton, typeof(PaginationButton))]
 [TemplatePart(PART_ButtonPanel, typeof(StackPanel))]
 [TemplatePart(PART_SizeChangerComboBox, typeof(ComboBox))]
 public class Pagination: TemplatedControl
@@ -23,8 +23,8 @@ public class Pagination: TemplatedControl
     public const string PART_NextButton = "PART_NextButton";
     public const string PART_ButtonPanel = "PART_ButtonPanel";
     public const string PART_SizeChangerComboBox = "PART_SizeChangerComboBox";
-    private Button? _previousButton;
-    private Button? _nextButton;
+    private PaginationButton? _previousButton;
+    private PaginationButton? _nextButton;
     private StackPanel? _buttonPanel;
     private readonly PaginationButton[] _buttons = new PaginationButton[7];
     private ComboBox? _sizeChangerComboBox;
@@ -34,8 +34,8 @@ public class Pagination: TemplatedControl
         base.OnApplyTemplate(e);
         if (_previousButton != null) _previousButton.Click -= OnButtonClick;
         if (_nextButton != null) _nextButton.Click -= OnButtonClick;
-        _previousButton = e.NameScope.Find<Button>(PART_PreviousButton);
-        _nextButton = e.NameScope.Find<Button>(PART_NextButton);
+        _previousButton = e.NameScope.Find<PaginationButton>(PART_PreviousButton);
+        _nextButton = e.NameScope.Find<PaginationButton>(PART_NextButton);
         _buttonPanel = e.NameScope.Find<StackPanel>(PART_ButtonPanel);
         _sizeChangerComboBox = e.NameScope.Find<ComboBox>(PART_SizeChangerComboBox);
         if (_previousButton != null) _previousButton.Click += OnButtonClick;
@@ -110,6 +110,24 @@ public class Pagination: TemplatedControl
         set => SetValue(PageButtonThemeProperty, value);
     }
 
+    public static readonly StyledProperty<bool> ShowPageSizeSelectorProperty = AvaloniaProperty.Register<Pagination, bool>(
+        nameof(ShowPageSizeSelector));
+
+    public bool ShowPageSizeSelector
+    {
+        get => GetValue(ShowPageSizeSelectorProperty);
+        set => SetValue(ShowPageSizeSelectorProperty, value);
+    }
+
+    public static readonly StyledProperty<bool> ShowQuickJumpProperty = AvaloniaProperty.Register<Pagination, bool>(
+        nameof(ShowQuickJump));
+
+    public bool ShowQuickJump
+    {
+        get => GetValue(ShowQuickJumpProperty);
+        set => SetValue(ShowQuickJumpProperty, value);
+    }
+
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
@@ -156,11 +174,11 @@ public class Pagination: TemplatedControl
     {
         if (sender is PaginationButton pageButton)
         {
-            if (pageButton.IsLeftForward)
+            if (pageButton.IsFastForward)
             {
                 AddCurrentPage(-5);
             }
-            else if (pageButton.IsRightForward)
+            else if (pageButton.IsFastBackward)
             {
                 AddCurrentPage(5);
             }
@@ -258,5 +276,7 @@ public class Pagination: TemplatedControl
         }
 
         CurrentPage = currentPage;
+        if (_previousButton != null) _previousButton.IsEnabled = CurrentPage > 1;
+        if( _nextButton!=null) _nextButton.IsEnabled = CurrentPage < PageCount;
     }
 }
