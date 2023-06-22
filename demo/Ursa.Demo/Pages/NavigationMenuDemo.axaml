@@ -1,0 +1,47 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.NavigationMenuDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:NavigationMenuDemoViewModel"
+    mc:Ignorable="d">
+    <StackPanel>
+        <u:NavigationMenu Name="menu" ItemsSource="{Binding MenuItems}">
+            <u:NavigationMenu.ItemTemplate>
+                <DataTemplate>
+                    <u:NavigationMenuItem Header="{Binding MenuHeader}" ItemsSource="{Binding Children}" />
+                </DataTemplate>
+            </u:NavigationMenu.ItemTemplate>
+        </u:NavigationMenu>
+
+        <TreeView ItemsSource="{Binding MenuItems}">
+            <TreeView.ItemTemplate>
+                <TreeDataTemplate ItemsSource="{Binding Children}">
+                    <ContentControl Content="{Binding MenuHeader}" />
+                </TreeDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+
+        <TextBlock Text="{ReflectionBinding #menu.SelectedMenuItem.MenuHeader}" />
+
+        <u:NavigationMenu>
+            <u:NavigationMenuItem Header="111" />
+            <u:NavigationMenuItem Header="222" />
+            <u:NavigationMenuItem Header="333" />
+        </u:NavigationMenu>
+
+        <u:NavigationMenu ItemsSource="{Binding MenuItems}">
+            <u:NavigationMenu.ItemTemplate>
+                <DataTemplate>
+                    <u:NavigationMenuItem Header="{Binding MenuHeader}" />
+                </DataTemplate>
+            </u:NavigationMenu.ItemTemplate>
+        </u:NavigationMenu>
+    </StackPanel>
+</UserControl>

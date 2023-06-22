@@ -1,0 +1,42 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:NavigationMenu}" TargetType="u:NavigationMenu">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:NavigationMenu">
+                <Border Background="{TemplateBinding Background}">
+                    <StackPanel>
+                        <ContentPresenter Name="PART_HeaderPresenter" Content="Hello" />
+                        <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                    </StackPanel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:NavigationMenuItem}" TargetType="u:NavigationMenuItem">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:NavigationMenuItem">
+                <Border
+                    Padding="4"
+                    BorderBrush="Black"
+                    BorderThickness="1">
+                    <StackPanel>
+                        <ContentPresenter
+                            Name="PART_HeaderPresenter"
+                            Background="{TemplateBinding Background}"
+                            Content="{TemplateBinding Header}"
+                            ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                        <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                    </StackPanel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:selected">
+            <Setter Property="u:NavigationMenuItem.Background" Value="Red" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

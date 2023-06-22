@@ -35,6 +35,9 @@
             <TabItem Header="IPv4Box">
                 <pages:IPv4BoxDemo />
             </TabItem>
+            <TabItem Header="Navigation">
+                <pages:NavigationMenuDemo />
+            </TabItem>
             <TabItem Header="Pagination">
                 <pages:PaginationDemo />
             </TabItem>
