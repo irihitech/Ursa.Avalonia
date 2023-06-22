@@ -21,7 +21,7 @@
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <Border.Transitions>
                         <Transitions>
-                            <DoubleTransition Property="Width" Duration="0:0:0.2" />
+                            <DoubleTransition Property="Width" Duration="0:0:0.1" />
                         </Transitions>
                     </Border.Transitions>
                     <Grid
@@ -170,7 +170,7 @@
             <Setter Property="u:NavigationMenuItem.Background" Value="{DynamicResource NavigationMenuItemSelectedBackground}" />
         </Style>
 
-        <Style Selector="^:closed:empty">
+        <Style Selector="^:closed">
             <Setter Property="Template">
                 <ControlTemplate TargetType="u:NavigationMenuItem">
                     <Border
