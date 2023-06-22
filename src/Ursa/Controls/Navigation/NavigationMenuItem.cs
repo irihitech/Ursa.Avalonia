@@ -2,6 +2,7 @@ using System.Security.Cryptography.X509Certificates;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
+using Avalonia.Controls.Mixins;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
@@ -68,6 +69,7 @@ public class NavigationMenuItem: HeaderedSelectingItemsControl
     static NavigationMenuItem()
     {
         IsClosedProperty.Changed.AddClassHandler<NavigationMenuItem>((o, e) => o.OnIsClosedChanged(e));
+        PressedMixin.Attach<NavigationMenuItem>();
     }
 
     private void OnIsClosedChanged(AvaloniaPropertyChangedEventArgs args)

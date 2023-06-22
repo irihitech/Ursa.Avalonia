@@ -30,20 +30,19 @@
                         Background="{TemplateBinding Background}"
                         RowDefinitions="Auto, *, Auto, Auto">
                         <StackPanel
-                            Margin="18"
+                            Margin="12"
                             HorizontalAlignment="Center"
                             Orientation="Horizontal">
                             <ContentPresenter
                                 Name="PART_IconPresenter"
-                                Margin="0,8"
+                                Margin="0,0,8,0"
                                 VerticalAlignment="Center"
                                 Content="{TemplateBinding Icon}" />
                             <ContentPresenter
                                 Name="PART_HeaderPresenter"
                                 VerticalAlignment="Center"
                                 Content="{TemplateBinding Header}"
-                                ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                FontSize="18" />
+                                ContentTemplate="{TemplateBinding HeaderTemplate}" />
 
                         </StackPanel>
                         <ItemsPresenter Grid.Row="1" ItemsPanel="{TemplateBinding ItemsPanel}" />
@@ -52,13 +51,29 @@
                             Grid.Row="2"
                             Content="{TemplateBinding Footer}"
                             ContentTemplate="{TemplateBinding FooterTemplate}" />
-                        <ToggleButton
+                        <ToggleSwitch
                             Name="{x:Static u:NavigationMenu.PART_CloseButton}"
                             Grid.Row="3"
                             Content="Open"
                             IsChecked="{TemplateBinding IsClosed,
                                                         Mode=TwoWay}"
-                            IsVisible="{TemplateBinding ShowCollapseButton}" />
+                            IsVisible="{TemplateBinding ShowCollapseButton}"
+                            Theme="{DynamicResource ButtonToggleSwitch}">
+                            <ToggleSwitch.OnContent>
+                                <PathIcon
+                                    Width="16"
+                                    Height="16"
+                                    Data="M5 2H19C20.6569 2 22 3.34315 22 5V19C22 20.6569 20.6569 22 19 22H5C3.34315 22 2 20.6569 2 19V5C2 3.34315 3.34315 2 5 2ZM6 4C5.44772 4 5 4.44772 5 5V19C5 19.5523 5.44772 20 6 20H9C9.55229 20 10 19.5523 10 19V5C10 4.44772 9.55229 4 9 4H6Z"
+                                    Foreground="{DynamicResource ButtonDefaultTertiaryForeground}" />
+                            </ToggleSwitch.OnContent>
+                            <ToggleSwitch.OffContent>
+                                <PathIcon
+                                    Width="16"
+                                    Height="16"
+                                    Data="M5 2H19C20.6569 2 22 3.34315 22 5V19C22 20.6569 20.6569 22 19 22H5C3.34315 22 2 20.6569 2 19V5C2 3.34315 3.34315 2 5 2ZM6 4C5.44772 4 5 4.44772 5 5V19C5 19.5523 5.44772 20 6 20H9C9.55229 20 10 19.5523 10 19V5C10 4.44772 9.55229 4 9 4H6Z"
+                                    Foreground="{DynamicResource ButtonDefaultTertiaryForeground}" />
+                            </ToggleSwitch.OffContent>
+                        </ToggleSwitch>
                     </Grid>
                 </Border>
             </ControlTemplate>
@@ -68,7 +83,7 @@
                 <Setter Property="ContentPresenter.IsVisible" Value="False" />
             </Style>
             <Style Selector="^ /template/ Border#PART_RootBorder">
-                <Setter Property="Border.Width" Value="60" />
+                <Setter Property="Border.Width" Value="80" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_IconPresenter">
                 <Setter Property="Grid.HorizontalAlignment" Value="Center" />
@@ -86,7 +101,7 @@
                             Name="PART_HeaderBorder"
                             Margin="0,2"
                             Padding="8"
-                            Background="Transparent"
+                            Background="{DynamicResource NavigationMenuItemDefaultBackground}"
                             CornerRadius="6">
                             <Grid
                                 Name="PART_RootStackPanel"
@@ -95,7 +110,7 @@
                                 <ContentPresenter
                                     Name="PART_IconPresenter"
                                     Grid.Column="1"
-                                    MinWidth="32"
+                                    MinWidth="24"
                                     Margin="{TemplateBinding Level,
                                                              Converter={StaticResource MarginConverter}}"
                                     Content="{TemplateBinding Icon}"
@@ -118,7 +133,8 @@
                                     Grid.Column="3"
                                     Width="8"
                                     Height="8"
-                                    Data="M4.08045 7.59809C4.66624 7.01231 5.61599 7.01231 6.20177 7.59809L11.8586 13.2549L17.5155 7.59809C18.1013 7.01231 19.051 7.01231 19.6368 7.59809C20.2226 8.18388 20.2226 9.13363 19.6368 9.71941L12.9193 16.4369C12.3335 17.0227 11.3838 17.0227 10.798 16.4369L4.08045 9.71941C3.49467 9.13363 3.49467 8.18388 4.08045 7.59809Z">
+                                    Data="M4.08045 7.59809C4.66624 7.01231 5.61599 7.01231 6.20177 7.59809L11.8586 13.2549L17.5155 7.59809C18.1013 7.01231 19.051 7.01231 19.6368 7.59809C20.2226 8.18388 20.2226 9.13363 19.6368 9.71941L12.9193 16.4369C12.3335 17.0227 11.3838 17.0227 10.798 16.4369L4.08045 9.71941C3.49467 9.13363 3.49467 8.18388 4.08045 7.59809Z"
+                                    Foreground="{DynamicResource NavigationMenuItemExpandIconForeground}">
                                     <PathIcon.Transitions>
                                         <Transitions>
                                             <TransformOperationsTransition Property="RenderTransform" Duration="0.1" />
@@ -130,7 +146,6 @@
                         <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}">
                             <ItemsPresenter.Transitions>
                                 <Transitions>
-                                    <DoubleTransition Property="Height" Duration="0:0:0.15" />
                                     <DoubleTransition Property="Opacity" Duration="0:0:0.15" />
                                 </Transitions>
                             </ItemsPresenter.Transitions>
@@ -139,24 +154,51 @@
                 </Border>
             </ControlTemplate>
         </Setter>
+
         <Style Selector="^ /template/ Border#PART_HeaderBorder:pointerover">
-            <Setter Property="Border.Background" Value="LightGray" />
+            <Setter Property="Border.Background" Value="{DynamicResource NavigationMenuItemPointeroverBackground}" />
         </Style>
+        <Style Selector="^ /template/ Border#PART_HeaderBorder:pressed">
+            <Setter Property="Border.Background" Value="{DynamicResource NavigationMenuItemPressedBackground}" />
+        </Style>
+
         <Style Selector="^:highlighted /template/ ContentPresenter#PART_IconPresenter">
-            <Setter Property="u:NavigationMenuItem.Foreground" Value="Blue" />
+            <Setter Property="u:NavigationMenuItem.Foreground" Value="{DynamicResource NavigationMenuItemHighlightForeground}" />
         </Style>
+
         <Style Selector="^:selected /template/ Border#PART_HeaderBorder">
-            <Setter Property="u:NavigationMenuItem.Background" Value="LightBlue" />
+            <Setter Property="u:NavigationMenuItem.Background" Value="{DynamicResource NavigationMenuItemSelectedBackground}" />
         </Style>
-        <Style Selector="^:closed /template/ ContentPresenter#PART_HeaderPresenter">
-            <Setter Property="ContentPresenter.Opacity" Value="0" />
+
+        <Style Selector="^:closed:empty">
+            <Setter Property="Template">
+                <ControlTemplate TargetType="u:NavigationMenuItem">
+                    <Border
+                        Name="PART_HeaderBorder"
+                        Margin="0,2"
+                        Padding="8"
+                        HorizontalAlignment="Center"
+                        Background="{DynamicResource NavigationMenuItemDefaultBackground}"
+                        CornerRadius="6">
+                        <ContentPresenter
+                            Name="PART_IconPresenter"
+                            Grid.Column="1"
+                            MinWidth="24"
+                            Content="{TemplateBinding Icon}"
+                            ContentTemplate="{TemplateBinding IconTemplate}"
+                            ToolTip.ShowDelay="0"
+                            ToolTip.Tip="{TemplateBinding Header}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+            <Style Selector="^ /template/ Border#PART_HeaderBorder:pointerover">
+                <Setter Property="Border.Background" Value="{DynamicResource NavigationMenuItemPointeroverBackground}" />
+            </Style>
+            <Style Selector="^ /template/ Border#PART_HeaderBorder:pressed">
+                <Setter Property="Border.Background" Value="{DynamicResource NavigationMenuItemPressedBackground}" />
+            </Style>
         </Style>
-        <Style Selector="^:closed /template/ StackPanel#PART_RootStackPanel">
-            <Setter Property="StackPanel.HorizontalAlignment" Value="Center" />
-        </Style>
-        <Style Selector="^:closed /template/ ItemsPresenter#PART_ItemsPresenter">
-            <Setter Property="ItemsPresenter.IsVisible" Value="False" />
-        </Style>
+
         <Style Selector="^:collapsed /template/ ItemsPresenter#PART_ItemsPresenter">
             <Setter Property="ItemsPresenter.Height" Value="0" />
             <Setter Property="ItemsPresenter.Opacity" Value="0" />

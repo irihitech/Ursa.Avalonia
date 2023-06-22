@@ -24,9 +24,14 @@
         <u:NavigationMenu
             Name="menu"
             HorizontalAlignment="Left"
-            Header="Semi Avalonia"
             ItemsSource="{Binding MenuItems}"
             ShowCollapseButton="True">
+            <u:NavigationMenu.Header>
+                <TextBlock
+                    Classes="H5"
+                    Text="Semi Avalonia"
+                    Theme="{DynamicResource TitleTextBlock}" />
+            </u:NavigationMenu.Header>
             <u:NavigationMenu.Icon>
                 <PathIcon
                     Width="32"
@@ -44,30 +49,6 @@
                         </u:NavigationMenuItem.Icon>
                     </u:NavigationMenuItem>
                 </TreeDataTemplate>
-            </u:NavigationMenu.ItemTemplate>
-        </u:NavigationMenu>
-
-        <TreeView ItemsSource="{Binding MenuItems}">
-            <TreeView.ItemTemplate>
-                <TreeDataTemplate ItemsSource="{Binding Children}">
-                    <ContentControl Content="{Binding MenuHeader}" />
-                </TreeDataTemplate>
-            </TreeView.ItemTemplate>
-        </TreeView>
-
-        <TextBlock Text="{ReflectionBinding #menu.SelectedItem.MenuHeader}" />
-
-        <u:NavigationMenu>
-            <u:NavigationMenuItem Header="111" />
-            <u:NavigationMenuItem Header="222" />
-            <u:NavigationMenuItem Header="333" />
-        </u:NavigationMenu>
-
-        <u:NavigationMenu ItemsSource="{Binding MenuItems}">
-            <u:NavigationMenu.ItemTemplate>
-                <DataTemplate>
-                    <u:NavigationMenuItem Header="{Binding MenuHeader}" />
-                </DataTemplate>
             </u:NavigationMenu.ItemTemplate>
         </u:NavigationMenu>
     </StackPanel>
