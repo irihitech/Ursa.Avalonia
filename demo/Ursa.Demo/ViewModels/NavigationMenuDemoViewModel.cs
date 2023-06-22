@@ -9,26 +9,29 @@ public class NavigationMenuDemoViewModel: ObservableObject
     {
         new NavigationMenuItemViewModel()
         {
-            MenuHeader = "1",
+            MenuHeader = "任务管理",
+            MenuIconName = "User",
             Children = new ObservableCollection<NavigationMenuItemViewModel>()
             {
-                new NavigationMenuItemViewModel(){
-                    MenuHeader = "11" , 
+                new (){
+                    MenuHeader = "公告管理" , 
+                    MenuIconName = "Star",
                     Children = new ObservableCollection<NavigationMenuItemViewModel>()
                     {
-                        new NavigationMenuItemViewModel(){MenuHeader = "111"},
-                        new NavigationMenuItemViewModel(){MenuHeader = "112"}
+                        new () {MenuHeader = "公告设置"},
+                        new () {MenuHeader = "公告处理"}
                     }},
-                new NavigationMenuItemViewModel(){MenuHeader = "12"}
+                new (){MenuHeader = "任务查询"}
             }
         },
         new NavigationMenuItemViewModel()
         {
-            MenuHeader = "2",
+            MenuHeader = "任务平台",
+            MenuIconName = "Gear",
             Children = new ObservableCollection<NavigationMenuItemViewModel>()
             {
-                new NavigationMenuItemViewModel(){MenuHeader = "21"},
-                new NavigationMenuItemViewModel(){MenuHeader = "22"}
+                new (){MenuHeader = "任务管理"},
+                new (){MenuHeader = "用户任务查询"}
             }
         }
     };
@@ -37,5 +40,6 @@ public class NavigationMenuDemoViewModel: ObservableObject
 public class NavigationMenuItemViewModel: ObservableObject
 {
     public string MenuHeader { get; set; }
+    public string MenuIconName { get; set; }
     public ObservableCollection<NavigationMenuItemViewModel> Children { get; set; } = new();
 }
