@@ -82,7 +82,13 @@ public class NavigationMenuItem: HeaderedSelectingItemsControl
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
-        _rootMenu = this.FindAncestorOfType<NavigationMenu>();
+        
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        GetRootMenu();
         if (ItemTemplate == null && _rootMenu?.ItemTemplate != null)
         {
             SetCurrentValue(ItemTemplateProperty, _rootMenu.ItemTemplate);
@@ -96,6 +102,20 @@ public class NavigationMenuItem: HeaderedSelectingItemsControl
             .Subscribe(new AnonymousObserver<bool>(a => this.IsClosed = a));
         
         Level = CalculateDistanceFromLogicalParent<NavigationMenu>(this) - 1;
+    }
+
+    private void GetRootMenu()
+    {
+        _rootMenu = this.FindAncestorOfType<NavigationMenu>();
+        if (_rootMenu is null)
+        {
+            var popupRoot = TopLevel.GetTopLevel(this) as PopupRoot;
+            if (popupRoot?.Parent is Popup popup)
+            {
+                Control? c = popup.PlacementTarget;
+                _rootMenu = c.FindAncestorOfType<NavigationMenu>();
+            }
+        }
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
