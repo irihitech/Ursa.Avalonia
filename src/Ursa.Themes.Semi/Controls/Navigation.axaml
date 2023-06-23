@@ -217,7 +217,7 @@
                             HorizontalAlignment="Center"
                             Background="{DynamicResource NavigationMenuItemDefaultBackground}"
                             CornerRadius="6">
-                            <Grid ColumnDefinitions="Auto, *, Auto">
+                            <Grid HorizontalAlignment="Stretch" ColumnDefinitions="Auto, *, Auto">
                                 <ContentPresenter
                                     Name="PART_IconPresenter"
                                     Grid.Column="0"
@@ -227,6 +227,7 @@
                                 <ContentPresenter
                                     Name="PART_HeaderPresenter"
                                     Grid.Column="1"
+                                    Margin="12,0"
                                     VerticalAlignment="Center"
                                     Background="{TemplateBinding Background}"
                                     Content="{TemplateBinding Header}"
