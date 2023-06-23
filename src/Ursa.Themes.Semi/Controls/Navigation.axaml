@@ -290,8 +290,8 @@
             <Setter Property="ItemsPresenter.Height" Value="0" />
             <Setter Property="ItemsPresenter.Opacity" Value="0" />
         </Style>
-        <Style Selector="^:not(:empty):collapsed /template/ PathIcon#PART_ExpandIcon">
-            <Setter Property="PathIcon.RenderTransform" Value="rotate(180deg)" />
+        <Style Selector="^:not(:empty):not(:collapsed) /template/ PathIcon#PART_ExpandIcon">
+            <Setter Property="PathIcon.RenderTransform" Value="rotate(-180deg)" />
         </Style>
         <Style Selector="^:empty /template/ PathIcon#PART_ExpandIcon">
             <Setter Property="PathIcon.IsVisible" Value="False" />
