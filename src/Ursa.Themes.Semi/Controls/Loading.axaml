@@ -1,0 +1,78 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters"
+    xmlns:u="clr-namespace:Ursa.Controls;assembly=Ursa">
+    <!--  Add Resources Here  -->
+    <converters:BrushToColorConverter x:Key="BrushToColorConverter" />
+    <ControlTheme x:Key="{x:Type u:LoadingIcon}" TargetType="u:LoadingIcon">
+        <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:LoadingIcon">
+                <Arc
+                    Width="20"
+                    Height="20"
+                    StartAngle="0"
+                    StrokeJoin="Round"
+                    StrokeLineCap="Round"
+                    StrokeThickness="3"
+                    SweepAngle="300">
+                    <Arc.Stroke>
+                        <ConicGradientBrush Angle="70">
+                            <GradientStops>
+                                <GradientStop Offset="0" Color="{Binding Foreground, Converter={StaticResource BrushToColorConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <GradientStop Offset="0.8" Color="Transparent" />
+                            </GradientStops>
+                        </ConicGradientBrush>
+                    </Arc.Stroke>
+                    <Arc.Styles>
+                        <Style Selector="Arc">
+                            <Style.Animations>
+                                <Animation IterationCount="Infinite" Duration="0:0:0.5">
+                                    <KeyFrame Cue="0%">
+                                        <Setter Property="RotateTransform.Angle" Value="0.0" />
+                                    </KeyFrame>
+                                    <KeyFrame Cue="100%">
+                                        <Setter Property="RotateTransform.Angle" Value="-360.0" />
+                                    </KeyFrame>
+                                </Animation>
+                            </Style.Animations>
+                        </Style>
+                    </Arc.Styles>
+                </Arc>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:Loading}" TargetType="u:Loading">
+        <Setter Property="Background">
+            <SolidColorBrush Opacity="0.13" Color="#2E3238" />
+        </Setter>
+        <Setter Property="Indicator">
+            <Template>
+                <u:LoadingIcon />
+            </Template>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:Loading">
+                <Panel IsVisible="{TemplateBinding IsLoading}">
+                    <Border
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="{TemplateBinding Background}" />
+                    <Grid
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        RowDefinitions="Auto, *">
+                        <ContentPresenter HorizontalAlignment="Center" Content="{TemplateBinding Indicator}" />
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            Grid.Row="1"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </Grid>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

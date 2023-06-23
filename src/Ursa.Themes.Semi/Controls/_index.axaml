@@ -5,6 +5,7 @@
         <ResourceInclude Source="Banner.axaml" />
         <ResourceInclude Source="Divider.axaml" />
         <ResourceInclude Source="IPv4Box.axaml" />
+        <ResourceInclude Source="Loading.axaml" />
         <ResourceInclude Source="Navigation.axaml" />
         <ResourceInclude Source="Pagination.axaml" />
         <ResourceInclude Source="Timeline.axaml" />
