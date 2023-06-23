@@ -297,4 +297,40 @@
             <Setter Property="PathIcon.IsVisible" Value="False" />
         </Style>
     </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:NavigationMenuSeparator}" TargetType="u:NavigationMenuSeparator">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:NavigationMenuSeparator">
+                <StackPanel Name="PART_RootPanel" Margin="4,0">
+                    <ContentPresenter
+                        Name="PART_HeaderPresenter"
+                        Margin="4,0"
+                        HorizontalAlignment="Left"
+                        Content="{TemplateBinding Header}"
+                        ContentTemplate="{TemplateBinding HeaderTemplate}"
+                        Foreground="{DynamicResource TextBlockQuaternaryForeground}"
+                        IsVisible="{TemplateBinding Header,
+                                                    Converter={x:Static ObjectConverters.IsNotNull}}">
+                        <ContentPresenter.Styles>
+                            <Style Selector="TextBlock">
+                                <Setter Property="FontSize" Value="12" />
+                            </Style>
+                        </ContentPresenter.Styles>
+                    </ContentPresenter>
+                    <Rectangle
+                        Height="1"
+                        Margin="0,2"
+                        HorizontalAlignment="Stretch"
+                        Fill="{DynamicResource SemiColorBorder}" />
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:closed /template/ StackPanel#PART_RootPanel">
+            <Setter Property="StackPanel.HorizontalAlignment" Value="Center" />
+            <Setter Property="StackPanel.Width" Value="32" />
+        </Style>
+        <Style Selector="^:closed /template/ ContentPresenter#PART_HeaderPresenter">
+            <Setter Property="ContentPresenter.IsVisible" Value="False" />
+        </Style>
+    </ControlTheme>
 </ResourceDictionary>

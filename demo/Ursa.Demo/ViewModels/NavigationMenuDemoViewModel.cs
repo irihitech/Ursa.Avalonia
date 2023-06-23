@@ -26,6 +26,11 @@ public class NavigationMenuDemoViewModel: ObservableObject
         },
         new NavigationMenuItemViewModel()
         {
+            MenuHeader = "附加功能",
+            IsSeparator = true,
+        },
+        new NavigationMenuItemViewModel()
+        {
             MenuHeader = "任务平台",
             MenuIconName = "Gear",
             Children = new ObservableCollection<NavigationMenuItemViewModel>()
@@ -41,5 +46,7 @@ public class NavigationMenuItemViewModel: ObservableObject
 {
     public string MenuHeader { get; set; }
     public string MenuIconName { get; set; }
+    
+    public bool IsSeparator { get; set; }
     public ObservableCollection<NavigationMenuItemViewModel> Children { get; set; } = new();
 }
