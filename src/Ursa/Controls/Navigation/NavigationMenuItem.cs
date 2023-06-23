@@ -15,18 +15,22 @@ using Avalonia.VisualTree;
 
 namespace Ursa.Controls;
 
-[PseudoClasses(PC_Closed, PC_Selected, PC_Highlighted, PC_Collapsed)]
+[PseudoClasses(PC_Closed, PC_Selected, PC_Highlighted, PC_Collapsed, PC_TopLevel)]
+[TemplatePart(PART_Popup, typeof(Popup))]
 public class NavigationMenuItem: HeaderedSelectingItemsControl
 {
     public const string PC_Closed = ":closed";
     public const string PC_Selected = ":selected";
     public const string PC_Highlighted= ":highlighted";
     public const string PC_Collapsed = ":collapsed";
+    public const string PC_TopLevel = ":top-level";
+    public const string PART_Popup = "PART_Popup";
 
     private NavigationMenu? _rootMenu;
     private IDisposable? _ownerSubscription;
     private IDisposable? _itemsBinding;
     private bool _isCollapsed;
+    private Popup? _popup;
 
     public static readonly StyledProperty<bool> IsClosedProperty = AvaloniaProperty.Register<NavigationMenuItem, bool>(
         nameof(IsClosed));
@@ -54,18 +58,16 @@ public class NavigationMenuItem: HeaderedSelectingItemsControl
         get => GetValue(IconTemplateProperty);
         set => SetValue(IconTemplateProperty, value);
     }
-
-    private int _level;
-
+    
     public static readonly DirectProperty<NavigationMenuItem, int> LevelProperty = AvaloniaProperty.RegisterDirect<NavigationMenuItem, int>(
         nameof(Level), o => o.Level);
-
+    private int _level;
     public int Level
     {
         get => _level;
         private set => SetAndRaise(LevelProperty, ref _level, value);
     }
-
+    
     public static readonly StyledProperty<ICommand> CommandProperty = AvaloniaProperty.Register<NavigationMenuItem, ICommand>(
         nameof(Command));
 
@@ -84,6 +86,24 @@ public class NavigationMenuItem: HeaderedSelectingItemsControl
         set => SetValue(CommandParameterProperty, value);
     }
 
+    public static readonly DirectProperty<NavigationMenuItem, bool> IsTopLevelMenuItemProperty = AvaloniaProperty.RegisterDirect<NavigationMenuItem, bool>(
+        nameof(IsTopLevelMenuItem), o => o.IsTopLevelMenuItem, (o, v) => o.IsTopLevelMenuItem = v);
+    private bool _isTopLevelMenuItem;
+    public bool IsTopLevelMenuItem
+    {
+        get => _isTopLevelMenuItem;
+        set => SetAndRaise(IsTopLevelMenuItemProperty, ref _isTopLevelMenuItem, value);
+    }
+
+    public static readonly StyledProperty<bool> IsPopupOpenProperty = AvaloniaProperty.Register<NavigationMenuItem, bool>(
+        nameof(IsPopupOpen));
+
+    public bool IsPopupOpen
+    {
+        get => GetValue(IsPopupOpenProperty);
+        set => SetValue(IsPopupOpenProperty, value);
+    }
+
     static NavigationMenuItem()
     {
         IsClosedProperty.Changed.AddClassHandler<NavigationMenuItem>((o, e) => o.OnIsClosedChanged(e));
@@ -94,13 +114,6 @@ public class NavigationMenuItem: HeaderedSelectingItemsControl
     {
         bool newValue = args.GetNewValue<bool>();
         PseudoClasses.Set(PC_Closed, newValue);
-    }
-
-
-    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
-    {
-        base.OnAttachedToVisualTree(e);
-        
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -116,10 +129,19 @@ public class NavigationMenuItem: HeaderedSelectingItemsControl
             SetCurrentValue(ItemContainerThemeProperty, _rootMenu.ItemContainerTheme);
         }
 
+        if (_rootMenu is not null)
+        {
+            IsClosed = _rootMenu.IsClosed;
+        }
+        
         _rootMenu?.GetObservable(NavigationMenu.IsClosedProperty)
             .Subscribe(new AnonymousObserver<bool>(a => this.IsClosed = a));
-        
+        _rootMenu?.UpdateSelectionFromSelectedItem(_rootMenu.SelectedItem);
+        _popup = e.NameScope.Find<Popup>(PART_Popup);
         Level = CalculateDistanceFromLogicalParent<NavigationMenu>(this) - 1;
+        bool isTopLevel = Level == 1;
+        IsTopLevelMenuItem = isTopLevel;
+        PseudoClasses.Set(PC_TopLevel, isTopLevel);
     }
 
     private void GetRootMenu()
@@ -127,11 +149,10 @@ public class NavigationMenuItem: HeaderedSelectingItemsControl
         _rootMenu = this.FindAncestorOfType<NavigationMenu>();
         if (_rootMenu is null)
         {
-            var popupRoot = TopLevel.GetTopLevel(this) as PopupRoot;
-            if (popupRoot?.Parent is Popup popup)
+            var parents = this.FindLogicalAncestorOfType<NavigationMenu>();
+            if (parents is not null)
             {
-                Control? c = popup.PlacementTarget;
-                _rootMenu = c.FindAncestorOfType<NavigationMenu>();
+                _rootMenu = parents;
             }
         }
     }
@@ -142,8 +163,7 @@ public class NavigationMenuItem: HeaderedSelectingItemsControl
         // Leaf menu node, can be selected. 
         if (this.ItemCount == 0)
         {
-            var parents = this.GetSelfAndLogicalAncestors();
-            if (_rootMenu is not null && parents.Contains(_rootMenu))
+            if (_rootMenu is not null )
             {
                 object? o = this.DataContext ?? this;
                 _rootMenu.SelectedItem = o;
@@ -155,6 +175,10 @@ public class NavigationMenuItem: HeaderedSelectingItemsControl
         {
             _isCollapsed = !_isCollapsed;
             this.PseudoClasses.Set(PC_Collapsed, _isCollapsed);
+            if (_popup is not null)
+            {
+                _popup.IsOpen = !_popup.IsOpen;
+            }
         }
         e.Handled = true;
         Command?.Execute(CommandParameter);
@@ -188,7 +212,7 @@ public class NavigationMenuItem: HeaderedSelectingItemsControl
 
         if (propagateToParent)
         {
-            var parent = this.FindAncestorOfType<NavigationMenuItem>();
+            var parent = this.FindLogicalAncestorOfType<NavigationMenuItem>();
             if (parent != null)
             {
                 parent.SetSelection(this, selected, true);

@@ -111,10 +111,15 @@
                                     Name="PART_IconPresenter"
                                     Grid.Column="1"
                                     MinWidth="24"
-                                    Margin="{TemplateBinding Level,
-                                                             Converter={StaticResource MarginConverter}}"
                                     Content="{TemplateBinding Icon}"
-                                    ContentTemplate="{TemplateBinding IconTemplate}" />
+                                    ContentTemplate="{TemplateBinding IconTemplate}">
+                                    <ContentPresenter.Margin>
+                                        <MultiBinding Converter="{StaticResource MarginConverter}">
+                                            <Binding Path="Level" RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="IsClosed" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        </MultiBinding>
+                                    </ContentPresenter.Margin>
+                                </ContentPresenter>
                                 <ContentPresenter
                                     Name="PART_HeaderPresenter"
                                     Grid.Column="2"
@@ -170,7 +175,7 @@
             <Setter Property="u:NavigationMenuItem.Background" Value="{DynamicResource NavigationMenuItemSelectedBackground}" />
         </Style>
 
-        <Style Selector="^:closed">
+        <Style Selector="^:empty:closed:top-level">
             <Setter Property="Template">
                 <ControlTemplate TargetType="u:NavigationMenuItem">
                     <Border
@@ -179,15 +184,16 @@
                         Padding="8"
                         HorizontalAlignment="Center"
                         Background="{DynamicResource NavigationMenuItemDefaultBackground}"
-                        CornerRadius="6">
+                        CornerRadius="6"
+                        ToolTip.ShowDelay="0"
+                        ToolTip.Tip="{TemplateBinding Header}">
                         <ContentPresenter
                             Name="PART_IconPresenter"
                             Grid.Column="1"
                             MinWidth="24"
+                            Margin="0"
                             Content="{TemplateBinding Icon}"
-                            ContentTemplate="{TemplateBinding IconTemplate}"
-                            ToolTip.ShowDelay="0"
-                            ToolTip.Tip="{TemplateBinding Header}" />
+                            ContentTemplate="{TemplateBinding IconTemplate}" />
                     </Border>
                 </ControlTemplate>
             </Setter>
@@ -199,7 +205,87 @@
             </Style>
         </Style>
 
-        <Style Selector="^:collapsed /template/ ItemsPresenter#PART_ItemsPresenter">
+        <Style Selector="^:not(:empty):closed">
+            <Setter Property="Template">
+                <ControlTemplate TargetType="u:NavigationMenuItem">
+                    <Panel>
+                        <Border
+                            Name="PART_HeaderBorder"
+                            Margin="0,2"
+                            Padding="8"
+                            HorizontalAlignment="Center"
+                            Background="{DynamicResource NavigationMenuItemDefaultBackground}"
+                            CornerRadius="6">
+                            <Grid ColumnDefinitions="Auto, *, Auto">
+                                <ContentPresenter
+                                    Name="PART_IconPresenter"
+                                    Grid.Column="0"
+                                    MinWidth="24"
+                                    Margin="0"
+                                    Content="{TemplateBinding Icon}"
+                                    ContentTemplate="{TemplateBinding IconTemplate}" />
+                                <ContentPresenter
+                                    Name="PART_HeaderPresenter"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Background="{TemplateBinding Background}"
+                                    Content="{TemplateBinding Header}"
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                    IsVisible="{TemplateBinding IsTopLevelMenuItem,
+                                                                Converter={x:Static BoolConverters.Not}}" />
+                                <PathIcon
+                                    Grid.Column="2"
+                                    Width="8"
+                                    Height="8"
+                                    Margin="8,0"
+                                    Data="M4.08045 7.59809C4.66624 7.01231 5.61599 7.01231 6.20177 7.59809L11.8586 13.2549L17.5155 7.59809C18.1013 7.01231 19.051 7.01231 19.6368 7.59809C20.2226 8.18388 20.2226 9.13363 19.6368 9.71941L12.9193 16.4369C12.3335 17.0227 11.3838 17.0227 10.798 16.4369L4.08045 9.71941C3.49467 9.13363 3.49467 8.18388 4.08045 7.59809Z"
+                                    Foreground="{DynamicResource NavigationMenuItemExpandIconForeground}"
+                                    IsVisible="{TemplateBinding IsTopLevelMenuItem,
+                                                                Converter={x:Static BoolConverters.Not}}"
+                                    RenderTransform="rotate(-90deg)" />
+                            </Grid>
+                        </Border>
+                        <Popup
+                            Name="{x:Static u:NavigationMenuItem.PART_Popup}"
+                            IsLightDismissEnabled="True"
+                            IsOpen="{TemplateBinding IsPopupOpen,
+                                                     Mode=TwoWay}"
+                            Placement="RightEdgeAlignedTop"
+                            PlacementTarget="PART_HeaderBorder"
+                            WindowManagerAddShadowHint="False">
+                            <Border
+                                MinWidth="{DynamicResource MenuFlyoutMinWidth}"
+                                MinHeight="{DynamicResource MenuFlyoutMinHeight}"
+                                MaxWidth="{DynamicResource MenuFlyoutMaxWidth}"
+                                MaxHeight="{DynamicResource MenuFlyoutMaxHeight}"
+                                Margin="8"
+                                Padding="{DynamicResource MenuFlyoutPadding}"
+                                HorizontalAlignment="Stretch"
+                                Background="{DynamicResource MenuFlyoutBackground}"
+                                BorderBrush="{DynamicResource MenuFlyoutBorderBrush}"
+                                BorderThickness="{DynamicResource MenuFlyoutBorderThickness}"
+                                BoxShadow="{DynamicResource MenuFlyoutBorderBoxShadow}"
+                                CornerRadius="{DynamicResource MenuFlyoutCornerRadius}">
+                                <ScrollViewer Theme="{DynamicResource MenuScrollViewer}">
+                                    <ItemsPresenter
+                                        Name="PART_ItemsPresenter"
+                                        Grid.IsSharedSizeScope="True"
+                                        ItemsPanel="{TemplateBinding ItemsPanel}" />
+                                </ScrollViewer>
+                            </Border>
+                        </Popup>
+                    </Panel>
+                </ControlTemplate>
+            </Setter>
+            <Style Selector="^ /template/ Border#PART_HeaderBorder:pointerover">
+                <Setter Property="Border.Background" Value="{DynamicResource NavigationMenuItemPointeroverBackground}" />
+            </Style>
+            <Style Selector="^ /template/ Border#PART_HeaderBorder:pressed">
+                <Setter Property="Border.Background" Value="{DynamicResource NavigationMenuItemPressedBackground}" />
+            </Style>
+        </Style>
+
+        <Style Selector="^:not(:closed):collapsed /template/ ItemsPresenter#PART_ItemsPresenter">
             <Setter Property="ItemsPresenter.Height" Value="0" />
             <Setter Property="ItemsPresenter.Opacity" Value="0" />
         </Style>

@@ -134,7 +134,7 @@ public class NavigationMenu: HeaderedItemsControl
         }
     }
 
-    private void UpdateSelectionFromSelectedItem(object? o)
+    internal void UpdateSelectionFromSelectedItem(object? o)
     {
         var children = this.ItemsPanelRoot?.Children;
         if (children is not null)
