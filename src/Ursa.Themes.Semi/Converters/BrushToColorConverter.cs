@@ -1,4 +1,5 @@
 using System.Globalization;
+using Avalonia;
 using Avalonia.Data.Converters;
 using Avalonia.Media;
 
@@ -12,7 +13,7 @@ public class BrushToColorConverter: IValueConverter
         {
             return b.Color;
         }
-        return null;
+        return Colors.Transparent;
     }
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)

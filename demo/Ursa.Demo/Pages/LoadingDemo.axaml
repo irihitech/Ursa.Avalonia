@@ -10,16 +10,16 @@
     mc:Ignorable="d">
     <Grid RowDefinitions="Auto, Auto, *">
         <ToggleSwitch Name="s" Content="Loading" />
-        <u:LoadingIcon Grid.Row="1" />
-        <Panel
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <u:LoadingIcon Classes="Small" />
+            <u:LoadingIcon />
+            <u:LoadingIcon Classes="Large" />
+        </StackPanel>
+        <u:LoadingContainer
             Grid.Row="2"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch">
-            <u:Banner
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Content="Hello Ursa!" />
-            <u:Loading Content="Loading..." IsLoading="{Binding #s.IsChecked}" />
-        </Panel>
+            IsLoading="{Binding #s.IsChecked}"
+            LoadingMessage="Loading...">
+            <Calendar />
+        </u:LoadingContainer>
     </Grid>
 </UserControl>
