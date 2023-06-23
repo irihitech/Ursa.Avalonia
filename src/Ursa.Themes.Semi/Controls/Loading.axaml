@@ -1,0 +1,120 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters"
+    xmlns:u="clr-namespace:Ursa.Controls;assembly=Ursa">
+    <!--  Add Resources Here  -->
+    <converters:BrushToColorConverter x:Key="BrushToColorConverter" />
+    <ControlTheme x:Key="{x:Type u:LoadingIcon}" TargetType="u:LoadingIcon">
+        <Setter Property="Foreground" Value="{DynamicResource LoadingIconForeground}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:LoadingIcon">
+                <Arc
+                    Name="PART_Arc"
+                    Width="20"
+                    Height="20"
+                    StartAngle="0"
+                    StrokeJoin="Round"
+                    StrokeLineCap="Round"
+                    StrokeThickness="3"
+                    SweepAngle="300">
+                    <Arc.Stroke>
+                        <ConicGradientBrush Angle="70">
+                            <GradientStops>
+                                <GradientStop Offset="0" Color="{Binding Foreground, Converter={StaticResource BrushToColorConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <GradientStop Offset="0.2" Color="{Binding Foreground, Converter={StaticResource BrushToColorConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <GradientStop Offset="0.6" Color="Transparent" />
+                            </GradientStops>
+                        </ConicGradientBrush>
+                    </Arc.Stroke>
+                    <Arc.Styles>
+                        <Style Selector="Arc">
+                            <Style.Animations>
+                                <Animation IterationCount="Infinite" Duration="0:0:0.5">
+                                    <KeyFrame Cue="0%">
+                                        <Setter Property="RotateTransform.Angle" Value="0.0" />
+                                    </KeyFrame>
+                                    <KeyFrame Cue="100%">
+                                        <Setter Property="RotateTransform.Angle" Value="-360.0" />
+                                    </KeyFrame>
+                                </Animation>
+                            </Style.Animations>
+                        </Style>
+                    </Arc.Styles>
+                </Arc>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^.Small /template/ Arc#PART_Arc">
+            <Setter Property="Arc.Width" Value="14" />
+            <Setter Property="Arc.Height" Value="14" />
+            <Setter Property="Arc.StrokeThickness" Value="2" />
+        </Style>
+        <Style Selector="^.Large /template/ Arc#PART_Arc">
+            <Setter Property="Arc.Width" Value="32" />
+            <Setter Property="Arc.Height" Value="32" />
+            <Setter Property="Arc.StrokeThickness" Value="5" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:Loading}" TargetType="u:Loading">
+        <Setter Property="Background" Value="{DynamicResource LoadingMaskBackground}" />
+        <Setter Property="Indicator">
+            <Template>
+                <u:LoadingIcon />
+            </Template>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:Loading">
+                <Panel IsVisible="{TemplateBinding IsLoading}">
+                    <Border
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="{TemplateBinding Background}" />
+                    <Grid
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        RowDefinitions="Auto, *">
+                        <ContentPresenter HorizontalAlignment="Center" Content="{TemplateBinding Indicator}" />
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            Grid.Row="1"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            IsVisible="{TemplateBinding Content,
+                                                        Converter={x:Static ObjectConverters.IsNotNull}}" />
+                    </Grid>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:LoadingContainer}" TargetType="u:LoadingContainer">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Indicator">
+            <Template>
+                <u:LoadingIcon />
+            </Template>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:LoadingContainer">
+                <Panel>
+                    <ContentPresenter
+                        Name="PART_ContentPresenter"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    <u:Loading
+                        Content="{TemplateBinding LoadingMessage}"
+                        ContentTemplate="{TemplateBinding LoadingMessageTemplate}"
+                        Indicator="{TemplateBinding Indicator}"
+                        IsLoading="{TemplateBinding IsLoading}" />
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:loading /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Effect" Value="blur(5)" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>
