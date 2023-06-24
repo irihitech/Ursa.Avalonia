@@ -1,4 +1,36 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=netstandard">
     <Geometry x:Key="NavigationMenuExpandIconGlyph">M5 2H19C20.6569 2 22 3.34315 22 5V19C22 20.6569 20.6569 22 19 22H5C3.34315 22 2 20.6569 2 19V5C2 3.34315 3.34315 2 5 2ZM6 4C5.44772 4 5 4.44772 5 5V19C5 19.5523 5.44772 20 6 20H9C9.55229 20 10 19.5523 10 19V5C10 4.44772 9.55229 4 9 4H6Z</Geometry>
     <Geometry x:Key="NavigationMenuItemExpandIconGlyph">M4.08045 7.59809C4.66624 7.01231 5.61599 7.01231 6.20177 7.59809L11.8586 13.2549L17.5155 7.59809C18.1013 7.01231 19.051 7.01231 19.6368 7.59809C20.2226 8.18388 20.2226 9.13363 19.6368 9.71941L12.9193 16.4369C12.3335 17.0227 11.3838 17.0227 10.798 16.4369L4.08045 9.71941C3.49467 9.13363 3.49467 8.18388 4.08045 7.59809Z</Geometry>
+
+    <sys:Double x:Key="NavigationMenuExpandWidth">260</sys:Double>
+    <sys:Double x:Key="NavigationMenuClosedWidth">80</sys:Double>
+    <sys:Double x:Key="NavigationMenuExpandIconWidth">16</sys:Double>
+    <sys:Double x:Key="NavigationMenuExpandIconHeight">16</sys:Double>
+
+    <sys:Double x:Key="NavigationMenuItemIconMinWidth">24</sys:Double>
+    <sys:Double x:Key="NavigationMenuItemExpandIconWidth">8</sys:Double>
+    <sys:Double x:Key="NavigationMenuItemExpandIconHeight">8</sys:Double>
+    <sys:Double x:Key="NavigationMenuItemIconMargin">0</sys:Double>
+    <sys:Double x:Key="NavigationMenuItemCollapsedHeight">0</sys:Double>
+    <sys:Double x:Key="NavigationMenuItemCollapsedOpacity">0</sys:Double>
+
+    <sys:Double x:Key="NavigationMenuSeparatorHeaderFontSize">12</sys:Double>
+    <sys:Double x:Key="NavigationMenuSeparatorBorderHeight">1</sys:Double>
+    <sys:Double x:Key="NavigationMenuSeparatorClosedWidth">32</sys:Double>
+
+
+    <Thickness x:Key="NavigationMenuHeaderMargin">12</Thickness>
+    <Thickness x:Key="NavigationMenuIconMargin">0,0,8,0</Thickness>
+
+    <Thickness x:Key="NavigationMenuItemDefaultMargin">0,2</Thickness>
+    <Thickness x:Key="NavigationMenuItemDefaultPadding">8</Thickness>
+    <Thickness x:Key="NavigationMenuItemDefaultCornerRadius">6</Thickness>
+    <Thickness x:Key="NavigationMenuItemHeaderMargin">12,0</Thickness>
+    <Thickness x:Key="NavigationMenuItemExpandIconMargin">12,0</Thickness>
+    <Thickness x:Key="NavigationMenuItemFlyoutMargin">8</Thickness>
+
+    <Thickness x:Key="NavigationMenuSeparatorMargin">4,0</Thickness>
+    <Thickness x:Key="NavigationMenuSeparatorHeaderMargin">4,0</Thickness>
+    <Thickness x:Key="NavigationMenuSeparatorBorderMargin">0,2</Thickness>
 </ResourceDictionary>

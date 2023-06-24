@@ -13,7 +13,7 @@
             <ControlTemplate TargetType="u:NavigationMenu">
                 <Border
                     Name="PART_RootBorder"
-                    Width="260"
+                    Width="{DynamicResource NavigationMenuExpandWidth}"
                     HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
@@ -30,12 +30,12 @@
                         Background="{TemplateBinding Background}"
                         RowDefinitions="Auto, *, Auto, Auto">
                         <StackPanel
-                            Margin="12"
+                            Margin="{DynamicResource NavigationMenuHeaderMargin}"
                             HorizontalAlignment="Center"
                             Orientation="Horizontal">
                             <ContentPresenter
                                 Name="PART_IconPresenter"
-                                Margin="0,0,8,0"
+                                Margin="{DynamicResource NavigationMenuIconMargin}"
                                 VerticalAlignment="Center"
                                 Content="{TemplateBinding Icon}" />
                             <ContentPresenter
@@ -61,15 +61,15 @@
                             Theme="{DynamicResource ButtonToggleSwitch}">
                             <ToggleSwitch.OnContent>
                                 <PathIcon
-                                    Width="16"
-                                    Height="16"
+                                    Width="{DynamicResource NavigationMenuExpandIconWidth}"
+                                    Height="{DynamicResource NavigationMenuExpandIconHeight}"
                                     Data="{DynamicResource NavigationMenuExpandIconGlyph}"
                                     Foreground="{DynamicResource ButtonDefaultTertiaryForeground}" />
                             </ToggleSwitch.OnContent>
                             <ToggleSwitch.OffContent>
                                 <PathIcon
-                                    Width="16"
-                                    Height="16"
+                                    Width="{DynamicResource NavigationMenuExpandIconWidth}"
+                                    Height="{DynamicResource NavigationMenuExpandIconHeight}"
                                     Data="{DynamicResource NavigationMenuExpandIconGlyph}"
                                     Foreground="{DynamicResource ButtonDefaultTertiaryForeground}" />
                             </ToggleSwitch.OffContent>
@@ -83,7 +83,7 @@
                 <Setter Property="ContentPresenter.IsVisible" Value="False" />
             </Style>
             <Style Selector="^ /template/ Border#PART_RootBorder">
-                <Setter Property="Border.Width" Value="80" />
+                <Setter Property="Border.Width" Value="{DynamicResource NavigationMenuClosedWidth}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_IconPresenter">
                 <Setter Property="Grid.HorizontalAlignment" Value="Center" />
@@ -99,10 +99,10 @@
                     <StackPanel>
                         <Border
                             Name="PART_HeaderBorder"
-                            Margin="0,2"
-                            Padding="8"
+                            Margin="{DynamicResource NavigationMenuItemDefaultMargin}"
+                            Padding="{DynamicResource NavigationMenuItemDefaultPadding}"
                             Background="{DynamicResource NavigationMenuItemDefaultBackground}"
-                            CornerRadius="6">
+                            CornerRadius="{DynamicResource NavigationMenuItemDefaultCornerRadius}">
                             <Grid
                                 Name="PART_RootStackPanel"
                                 HorizontalAlignment="Stretch"
@@ -110,7 +110,7 @@
                                 <ContentPresenter
                                     Name="PART_IconPresenter"
                                     Grid.Column="1"
-                                    MinWidth="24"
+                                    MinWidth="{DynamicResource NavigationMenuItemIconMinWidth}"
                                     Content="{TemplateBinding Icon}"
                                     ContentTemplate="{TemplateBinding IconTemplate}">
                                     <ContentPresenter.Margin>
@@ -123,7 +123,7 @@
                                 <ContentPresenter
                                     Name="PART_HeaderPresenter"
                                     Grid.Column="2"
-                                    Margin="12,0"
+                                    Margin="{DynamicResource NavigationMenuItemHeaderMargin}"
                                     VerticalAlignment="Center"
                                     Background="{TemplateBinding Background}"
                                     Content="{TemplateBinding Header}"
@@ -137,8 +137,8 @@
                                 <PathIcon
                                     Name="PART_ExpandIcon"
                                     Grid.Column="3"
-                                    Width="8"
-                                    Height="8"
+                                    Width="{DynamicResource NavigationMenuItemExpandIconWidth}"
+                                    Height="{DynamicResource NavigationMenuItemExpandIconHeight}"
                                     Data="{DynamicResource NavigationMenuItemExpandIconGlyph}"
                                     Foreground="{DynamicResource NavigationMenuItemExpandIconForeground}">
                                     <PathIcon.Transitions>
@@ -181,18 +181,18 @@
                 <ControlTemplate TargetType="u:NavigationMenuItem">
                     <Border
                         Name="PART_HeaderBorder"
-                        Margin="0,2"
-                        Padding="8"
+                        Margin="{DynamicResource NavigationMenuItemDefaultMargin}"
+                        Padding="{DynamicResource NavigationMenuItemDefaultPadding}"
                         HorizontalAlignment="Center"
                         Background="{DynamicResource NavigationMenuItemDefaultBackground}"
-                        CornerRadius="6"
+                        CornerRadius="{DynamicResource NavigationMenuItemDefaultCornerRadius}"
                         ToolTip.ShowDelay="0"
                         ToolTip.Tip="{TemplateBinding Header}">
                         <ContentPresenter
                             Name="PART_IconPresenter"
                             Grid.Column="1"
-                            MinWidth="24"
-                            Margin="0"
+                            MinWidth="{DynamicResource NavigationMenuItemIconMinWidth}"
+                            Margin="{DynamicResource NavigationMenuItemIconMargin}"
                             Content="{TemplateBinding Icon}"
                             ContentTemplate="{TemplateBinding IconTemplate}" />
                     </Border>
@@ -212,22 +212,22 @@
                     <Panel>
                         <Border
                             Name="PART_HeaderBorder"
-                            Margin="0,2"
-                            Padding="8"
+                            Margin="{DynamicResource NavigationMenuItemDefaultMargin}"
+                            Padding="{DynamicResource NavigationMenuItemDefaultPadding}"
                             HorizontalAlignment="Center"
                             Background="{DynamicResource NavigationMenuItemDefaultBackground}"
-                            CornerRadius="6">
+                            CornerRadius="{DynamicResource NavigationMenuItemDefaultCornerRadius}">
                             <Grid HorizontalAlignment="Stretch" ColumnDefinitions="Auto, *, Auto">
                                 <ContentPresenter
                                     Name="PART_IconPresenter"
                                     Grid.Column="0"
-                                    MinWidth="24"
+                                    MinWidth="{DynamicResource NavigationMenuItemIconMinWidth}"
                                     Content="{TemplateBinding Icon}"
                                     ContentTemplate="{TemplateBinding IconTemplate}" />
                                 <ContentPresenter
                                     Name="PART_HeaderPresenter"
                                     Grid.Column="1"
-                                    Margin="12,0"
+                                    Margin="{DynamicResource NavigationMenuItemHeaderMargin}"
                                     VerticalAlignment="Center"
                                     Background="{TemplateBinding Background}"
                                     Content="{TemplateBinding Header}"
@@ -236,9 +236,9 @@
                                                                 Converter={x:Static BoolConverters.Not}}" />
                                 <PathIcon
                                     Grid.Column="2"
-                                    Width="8"
-                                    Height="8"
-                                    Margin="12,0"
+                                    Width="{DynamicResource NavigationMenuItemExpandIconWidth}"
+                                    Height="{DynamicResource NavigationMenuItemExpandIconHeight}"
+                                    Margin="{DynamicResource NavigationMenuItemExpandIconMargin}"
                                     Data="{DynamicResource NavigationMenuItemExpandIconGlyph}"
                                     Foreground="{DynamicResource NavigationMenuItemExpandIconForeground}"
                                     IsVisible="{TemplateBinding IsTopLevelMenuItem,
@@ -259,7 +259,7 @@
                                 MinHeight="{DynamicResource MenuFlyoutMinHeight}"
                                 MaxWidth="{DynamicResource MenuFlyoutMaxWidth}"
                                 MaxHeight="{DynamicResource MenuFlyoutMaxHeight}"
-                                Margin="8"
+                                Margin="{DynamicResource NavigationMenuItemFlyoutMargin}"
                                 Padding="{DynamicResource MenuFlyoutPadding}"
                                 HorizontalAlignment="Stretch"
                                 Background="{DynamicResource MenuFlyoutBackground}"
@@ -287,8 +287,8 @@
         </Style>
 
         <Style Selector="^:not(:closed):collapsed /template/ ItemsPresenter#PART_ItemsPresenter">
-            <Setter Property="ItemsPresenter.Height" Value="0" />
-            <Setter Property="ItemsPresenter.Opacity" Value="0" />
+            <Setter Property="ItemsPresenter.Height" Value="{DynamicResource NavigationMenuItemCollapsedHeight}" />
+            <Setter Property="ItemsPresenter.Opacity" Value="{DynamicResource NavigationMenuItemCollapsedOpacity}" />
         </Style>
         <Style Selector="^:not(:empty):not(:collapsed) /template/ PathIcon#PART_ExpandIcon">
             <Setter Property="PathIcon.RenderTransform" Value="rotate(-180deg)" />
@@ -301,10 +301,10 @@
     <ControlTheme x:Key="{x:Type u:NavigationMenuSeparator}" TargetType="u:NavigationMenuSeparator">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:NavigationMenuSeparator">
-                <StackPanel Name="PART_RootPanel" Margin="4,0">
+                <StackPanel Name="PART_RootPanel" Margin="{DynamicResource NavigationMenuSeparatorMargin}">
                     <ContentPresenter
                         Name="PART_HeaderPresenter"
-                        Margin="4,0"
+                        Margin="{DynamicResource NavigationMenuSeparatorHeaderMargin}"
                         HorizontalAlignment="Left"
                         Content="{TemplateBinding Header}"
                         ContentTemplate="{TemplateBinding HeaderTemplate}"
@@ -313,13 +313,13 @@
                                                     Converter={x:Static ObjectConverters.IsNotNull}}">
                         <ContentPresenter.Styles>
                             <Style Selector="TextBlock">
-                                <Setter Property="FontSize" Value="12" />
+                                <Setter Property="FontSize" Value="{DynamicResource NavigationMenuSeparatorHeaderFontSize}" />
                             </Style>
                         </ContentPresenter.Styles>
                     </ContentPresenter>
                     <Rectangle
-                        Height="1"
-                        Margin="0,2"
+                        Height="{DynamicResource NavigationMenuSeparatorBorderHeight}"
+                        Margin="{DynamicResource NavigationMenuSeparatorBorderMargin}"
                         HorizontalAlignment="Stretch"
                         Fill="{DynamicResource SemiColorBorder}" />
                 </StackPanel>
@@ -327,7 +327,7 @@
         </Setter>
         <Style Selector="^:closed /template/ StackPanel#PART_RootPanel">
             <Setter Property="StackPanel.HorizontalAlignment" Value="Center" />
-            <Setter Property="StackPanel.Width" Value="32" />
+            <Setter Property="StackPanel.Width" Value="{DynamicResource NavigationMenuSeparatorClosedWidth}" />
         </Style>
         <Style Selector="^:closed /template/ ContentPresenter#PART_HeaderPresenter">
             <Setter Property="ContentPresenter.IsVisible" Value="False" />
