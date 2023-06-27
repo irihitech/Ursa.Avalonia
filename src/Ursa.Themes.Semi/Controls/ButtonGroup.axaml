@@ -40,6 +40,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Padding" Value="{DynamicResource ButtonGroupDefaultPadding}" />
         <Setter Property="FontWeight" Value="{DynamicResource ButtonGroupDefaultFontWeight}" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Button.Template">
@@ -53,12 +54,12 @@
                         DockPanel.Dock="Right"
                         Fill="{DynamicResource ButtonGroupSeparatorForeground}" />
                     <Border
-                        Padding="8"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}">
                         <ContentPresenter
+                            Margin="{TemplateBinding Padding}"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             Content="{TemplateBinding Content}"

@@ -21,6 +21,12 @@
     <Style Selector="u|ButtonGroup.Borderless">
         <Setter Property="Background" Value="Transparent" />
     </Style>
+    <Style Selector="u|ButtonGroup.Large Button">
+        <Setter Property="Padding" Value="{DynamicResource ButtonGroupLargePadding}" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Small Button">
+        <Setter Property="Padding" Value="{DynamicResource ButtonGroupSmallPadding}" />
+    </Style>
     <Style Selector="u|ButtonGroup Button:pointerover">
         <Setter Property="Background" Value="{DynamicResource ButtonGroupDefaultPointeroverBackground}" />
     </Style>

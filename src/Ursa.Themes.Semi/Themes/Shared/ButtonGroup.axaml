@@ -1,0 +1,10 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--  Add Resources Here  -->
+    <x:Double x:Key="ButtonGroupDefaultFontSize">14</x:Double>
+    <FontWeight x:Key="ButtonGroupDefaultFontWeight">600</FontWeight>
+    <CornerRadius x:Key="ButtonGroupCornerRadius">3</CornerRadius>
+
+    <Thickness x:Key="ButtonGroupDefaultPadding">12 6</Thickness>
+    <Thickness x:Key="ButtonGroupLargePadding">16 10</Thickness>
+    <Thickness x:Key="ButtonGroupSmallPadding">6 2</Thickness>
+</ResourceDictionary>

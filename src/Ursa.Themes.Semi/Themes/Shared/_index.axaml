@@ -3,6 +3,7 @@
     <ResourceDictionary.MergedDictionaries>
         <MergeResourceInclude Source="Badge.axaml" />
         <MergeResourceInclude Source="Banner.axaml" />
+        <MergeResourceInclude Source="ButtonGroup.axaml" />
         <MergeResourceInclude Source="Divider.axaml" />
         <MergeResourceInclude Source="IPv4Box.axaml" />
         <MergeResourceInclude Source="NavigationMenu.axaml" />
