@@ -82,7 +82,7 @@ public class TagInputPanel: Panel
             else
             {
                 totalHeight += currentLineHeight;
-                child.Arrange(new Rect(0, totalHeight, finalSize.Width, child.DesiredSize.Height));
+                child.Arrange(new Rect(0, totalHeight, Math.Min(child.DesiredSize.Width, finalSize.Width), child.DesiredSize.Height));
                 currentLineX = child.DesiredSize.Width;
                 currentLineHeight = child.DesiredSize.Height;
             }
