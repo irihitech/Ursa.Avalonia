@@ -3,6 +3,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceInclude Source="Badge.axaml" />
         <ResourceInclude Source="Banner.axaml" />
+        <ResourceInclude Source="ButtonGroup.axaml" />
         <ResourceInclude Source="Divider.axaml" />
         <ResourceInclude Source="IPv4Box.axaml" />
         <ResourceInclude Source="Loading.axaml" />

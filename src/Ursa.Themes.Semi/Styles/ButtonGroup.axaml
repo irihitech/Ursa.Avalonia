@@ -1,0 +1,128 @@
+<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!--  Add Controls for Previewer Here  -->
+            <u:ButtonGroup Classes="Primary Solid">
+                <Button Content="Hello" />
+                <Button Content="Avalonia" />
+                <Button Content="Hello" />
+                <Button Content="IRIHI" />
+            </u:ButtonGroup>
+        </Border>
+    </Design.PreviewWith>
+
+    <!--  Add Styles Here  -->
+    <Style Selector="u|ButtonGroup Button:nth-last-child(1) /template/ Rectangle#PART_Separator">
+        <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Borderless">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Large Button">
+        <Setter Property="Padding" Value="{DynamicResource ButtonGroupLargePadding}" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Small Button">
+        <Setter Property="Padding" Value="{DynamicResource ButtonGroupSmallPadding}" />
+    </Style>
+    <Style Selector="u|ButtonGroup Button:pointerover">
+        <Setter Property="Background" Value="{DynamicResource ButtonGroupDefaultPointeroverBackground}" />
+    </Style>
+    <Style Selector="u|ButtonGroup Button:pressed">
+        <Setter Property="Background" Value="{DynamicResource ButtonGroupDefaultPressedBackground}" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Primary Button">
+        <Setter Property="Foreground" Value="{DynamicResource ButtonGroupDefaultPrimaryForeground}" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Secondary Button">
+        <Setter Property="Foreground" Value="{DynamicResource ButtonGroupDefaultSecondaryForeground}" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Tertiary Button">
+        <Setter Property="Foreground" Value="{DynamicResource ButtonGroupDefaultTertiaryForeground}" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Warning Button">
+        <Setter Property="Foreground" Value="{DynamicResource ButtonGroupDefaultWarningForeground}" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Danger Button">
+        <Setter Property="Foreground" Value="{DynamicResource ButtonGroupDefaultDangerForeground}" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Success Button">
+        <Setter Property="Foreground" Value="{DynamicResource ButtonGroupDefaultSuccessForeground}" />
+    </Style>
+
+    <Style Selector="u|ButtonGroup.Solid.Primary">
+        <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidPrimaryBackground}" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Solid.Secondary">
+        <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidSecondaryBackground}" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Solid.Tertiary">
+        <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidTertiaryBackground}" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Solid.Warning">
+        <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidWarningBackground}" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Solid.Danger">
+        <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidDangerBackground}" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Solid.Success">
+        <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidSuccessBackground}" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Solid Button">
+        <Setter Property="Foreground" Value="{DynamicResource ButtonGroupSolidForeground}" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Solid Button">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <Style Selector="u|ButtonGroup.Solid.Primary Button">
+        <Style Selector="^:pointerover">
+            <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidPrimaryPointeroverBackground}" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidPrimaryPressedBackground}" />
+        </Style>
+    </Style>
+    <Style Selector="u|ButtonGroup.Solid.Secondary Button">
+        <Style Selector="^:pointerover">
+            <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidSecondaryPointeroverBackground}" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidSecondaryPressedBackground}" />
+        </Style>
+    </Style>
+    <Style Selector="u|ButtonGroup.Solid.Tertiary Button">
+        <Style Selector="^:pointerover">
+            <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidTertiaryPointeroverBackground}" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidTertiaryPressedBackground}" />
+        </Style>
+    </Style>
+    <Style Selector="u|ButtonGroup.Solid.Warning Button">
+        <Style Selector="^:pointerover">
+            <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidWarningPointeroverBackground}" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidWarningPressedBackground}" />
+        </Style>
+    </Style>
+    <Style Selector="u|ButtonGroup.Solid.Danger Button">
+        <Style Selector="^:pointerover">
+            <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidDangerPointeroverBackground}" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidDangerPressedBackground}" />
+        </Style>
+    </Style>
+    <Style Selector="u|ButtonGroup.Solid.Success Button">
+        <Style Selector="^:pointerover">
+            <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidSuccessPointeroverBackground}" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidSuccessPressedBackground}" />
+        </Style>
+    </Style>
+
+</Styles>

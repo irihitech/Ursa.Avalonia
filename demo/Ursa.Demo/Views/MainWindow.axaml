@@ -29,6 +29,9 @@
             <TabItem Header="Banner">
                 <pages:BannerDemo />
             </TabItem>
+            <TabItem Header="ButtonGroup">
+                <pages:ButtonGroupDemo />
+            </TabItem>
             <TabItem Header="Divider">
                 <pages:DividerDemo />
             </TabItem>
