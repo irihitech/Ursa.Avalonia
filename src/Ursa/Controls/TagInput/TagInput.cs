@@ -8,6 +8,7 @@ using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Styling;
 
@@ -41,7 +42,7 @@ public class TagInput: TemplatedControl
     public TagInput()
     {
         _textBox = new TextBox();
-        _textBox.KeyDown += OnTextBoxKeyDown;
+        _textBox.AddHandler(InputElement.KeyDownEvent, OnTextBoxKeyDown, RoutingStrategies.Tunnel);
         Items = new AvaloniaList<object>();
         Tags = new ObservableCollection<string>();
     }
@@ -77,7 +78,7 @@ public class TagInput: TemplatedControl
 
     private void OnTextBoxKeyDown(object? sender, KeyEventArgs args)
     {
-        if (args.Key == Avalonia.Input.Key.Enter)
+        if (args.Key == Key.Enter)
         {
             if (_textBox.Text?.Length > 0)
             {
@@ -85,7 +86,14 @@ public class TagInput: TemplatedControl
                 Tags.Insert(Items.Count - 2, _textBox.Text ?? string.Empty);
                 _textBox.Text = "";
             }
-            
+        }
+        else if (args.Key == Key.Delete || args.Key == Key.Back)
+        {
+            if (_textBox.Text?.Length == 0)
+            {
+                Items.RemoveAt(Items.Count - 2);
+                Tags.RemoveAt(Items.Count - 1);
+            }
         }
     }
 
