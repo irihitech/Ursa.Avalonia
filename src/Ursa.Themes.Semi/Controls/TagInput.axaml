@@ -6,6 +6,7 @@
     <ControlTheme x:Key="{x:Type u:TagInput}" TargetType="u:TagInput">
         <Setter Property="InputTheme" Value="{DynamicResource TagInputTextBoxTheme}" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="MinHeight" Value="32" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="ItemTemplate">
             <DataTemplate>
@@ -15,9 +16,10 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:TagInput">
                 <Border
+                    MinHeight="30"
                     Padding="4"
                     VerticalAlignment="Top"
-                    Background="LightGray"
+                    Background="{DynamicResource SemiColorFill0}"
                     CornerRadius="3">
                     <Panel HorizontalAlignment="Stretch">
                         <ItemsControl
@@ -46,8 +48,8 @@
         <Setter Property="TextBox.SelectionBrush" Value="{DynamicResource TextBoxSelectionBackground}" />
         <Setter Property="TextBox.SelectionForegroundBrush" Value="{DynamicResource TextBoxSelectionForeground}" />
         <Setter Property="TextBox.Cursor" Value="Ibeam" />
-        <Setter Property="VerticalContentAlignment" Value="Stretch" />
-        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="ScrollViewer.IsScrollChainingEnabled" Value="True" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -84,14 +86,15 @@
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:ClosableTag}" TargetType="u:ClosableTag">
-        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:ClosableTag">
                 <Border
                     Margin="1"
-                    Background="Transparent"
-                    BorderBrush="Black"
+                    Padding="4,2"
+                    Background="{DynamicResource SemiColorBackground0}"
+                    BorderBrush="{DynamicResource SemiColorBorder}"
                     BorderThickness="1"
                     CornerRadius="3">
                     <DockPanel LastChildFill="True">
@@ -99,6 +102,7 @@
                             Name="{x:Static u:ClosableTag.PART_CloseButton}"
                             Width="8"
                             Height="8"
+                            Margin="4,0"
                             Background="Transparent"
                             Data="M17.6568 19.7782C18.2426 20.3639 19.1924 20.3639 19.7782 19.7782C20.3639 19.1924 20.3639 18.2426 19.7782 17.6568L14.1213 12L19.7782 6.34313C20.3639 5.75734 20.3639 4.8076 19.7782 4.22181C19.1924 3.63602 18.2426 3.63602 17.6568 4.22181L12 9.87866L6.34313 4.22181C5.75734 3.63602 4.8076 3.63602 4.22181 4.22181C3.63602 4.8076 3.63602 5.75734 4.22181 6.34313L9.87866 12L4.22181 17.6568C3.63602 18.2426 3.63602 19.1924 4.22181 19.7782C4.8076 20.3639 5.75734 20.3639 6.34313 19.7782L12 14.1213L17.6568 19.7782Z"
                             DockPanel.Dock="Right" />

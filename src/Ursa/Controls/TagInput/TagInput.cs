@@ -65,6 +65,24 @@ public class TagInput: TemplatedControl
         set => SetValue(ItemTemplateProperty, value);
     }
 
+    public static readonly StyledProperty<string> SeparatorProperty = AvaloniaProperty.Register<TagInput, string>(
+        nameof(Separator));
+
+    public string Separator
+    {
+        get => GetValue(SeparatorProperty);
+        set => SetValue(SeparatorProperty, value);
+    }
+
+    public static readonly StyledProperty<bool> AllowDuplicatesProperty = AvaloniaProperty.Register<TagInput, bool>(
+        nameof(AllowDuplicates), defaultValue: true);
+
+    public bool AllowDuplicates
+    {
+        get => GetValue(AllowDuplicatesProperty);
+        set => SetValue(AllowDuplicatesProperty, value);
+    }
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
@@ -82,8 +100,26 @@ public class TagInput: TemplatedControl
         {
             if (_textBox.Text?.Length > 0)
             {
-                Items.Insert(Items.Count - 1, _textBox.Text);
-                Tags.Insert(Items.Count - 2, _textBox.Text ?? string.Empty);
+                string[] values;
+                if (!string.IsNullOrEmpty(Separator))
+                {
+                    values = _textBox.Text.Split(new string[] { Separator },
+                        StringSplitOptions.RemoveEmptyEntries);
+                }
+                else
+                {
+                    values = new[] { _textBox.Text };
+                }
+
+                if (!AllowDuplicates)
+                {
+                    values = values.Distinct().Except(Tags).ToArray();
+                }
+                for(int i = 0; i < values.Length; i++)
+                {
+                    Items.Insert(Items.Count - 1, values[i]);
+                    Tags.Insert(Items.Count - 2, values[i]);
+                }
                 _textBox.Text = "";
             }
         }
@@ -91,6 +127,10 @@ public class TagInput: TemplatedControl
         {
             if (_textBox.Text?.Length == 0)
             {
+                if (Tags.Count == 0)
+                {
+                    return;
+                }
                 Items.RemoveAt(Items.Count - 2);
                 Tags.RemoveAt(Items.Count - 1);
             }

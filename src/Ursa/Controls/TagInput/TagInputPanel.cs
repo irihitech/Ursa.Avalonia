@@ -71,7 +71,7 @@ public class TagInputPanel: Panel
             // Width is enough to place next child
             if (MathUtilities.GreaterThan(deltaX, child.DesiredSize.Width))
             {
-                child.Arrange(new Rect(currentLineX, totalHeight, child.DesiredSize.Width, child.DesiredSize.Height));
+                child.Arrange(new Rect(currentLineX, totalHeight, child.DesiredSize.Width, Math.Max(child.DesiredSize.Height, currentLineHeight)));
                 currentLineX += child.DesiredSize.Width;
                 currentLineHeight = Math.Max(currentLineHeight, child.DesiredSize.Height);
             }
@@ -99,7 +99,9 @@ public class TagInputPanel: Panel
         }
         else
         {
-            last.Arrange(new Rect(currentLineX, totalHeight,lastDeltaX, last.DesiredSize.Height));
+            currentLineHeight = children.Count == 1 ? finalSize.Height : currentLineHeight;
+            last.Arrange(new Rect(currentLineX, totalHeight, lastDeltaX,
+                Math.Max(currentLineHeight, last.DesiredSize.Height)));
             currentLineHeight = Math.Max(currentLineHeight, last.DesiredSize.Height);
             totalHeight += currentLineHeight;
         }

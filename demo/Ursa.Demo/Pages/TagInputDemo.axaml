@@ -9,7 +9,14 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <StackPanel>
-        <u:TagInput Name="labels" Margin="20" />
+        <u:TagInput
+            Name="labels"
+            Margin="20"
+            Separator="-" />
+        <u:TagInput
+            Margin="20"
+            AllowDuplicates="False"
+            Separator="-" />
         <ListBox ItemsSource="{Binding #labels.Tags}" />
     </StackPanel>
 </UserControl>
