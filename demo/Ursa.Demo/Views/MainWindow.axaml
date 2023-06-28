@@ -47,6 +47,9 @@
             <TabItem Header="Pagination">
                 <pages:PaginationDemo />
             </TabItem>
+            <TabItem Header="TagInput">
+                <pages:TagInputDemo />
+            </TabItem>
             <TabItem Header="Timeline">
                 <pages:TimelineDemo />
             </TabItem>

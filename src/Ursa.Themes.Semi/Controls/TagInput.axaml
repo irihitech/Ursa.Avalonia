@@ -1,0 +1,87 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:TagInput}" TargetType="u:TagInput">
+        <Setter Property="InputTheme" Value="{DynamicResource TagInputTextBoxTheme}" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="ItemTemplate">
+            <DataTemplate>
+                <Label
+                    Classes="Solid"
+                    Content="{Binding}"
+                    Theme="{DynamicResource TagLabel}" />
+            </DataTemplate>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:TagInput">
+                <Border
+                    Padding="4"
+                    VerticalAlignment="Top"
+                    Background="LightGray"
+                    CornerRadius="3">
+                    <Panel HorizontalAlignment="Stretch">
+                        <ItemsControl
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            ItemTemplate="{TemplateBinding ItemTemplate}"
+                            ItemsSource="{TemplateBinding Items}">
+
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <u:TagInputPanel VerticalAlignment="Top" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </Panel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="TagInputTextBoxTheme" TargetType="TextBox">
+        <Setter Property="TextBox.Foreground" Value="{DynamicResource TextBoxForeground}" />
+        <Setter Property="TextBox.Background" Value="{DynamicResource TextBoxDefaultBackground}" />
+        <Setter Property="TextBox.BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
+        <Setter Property="TextBox.SelectionBrush" Value="{DynamicResource TextBoxSelectionBackground}" />
+        <Setter Property="TextBox.SelectionForegroundBrush" Value="{DynamicResource TextBoxSelectionForeground}" />
+        <Setter Property="TextBox.Cursor" Value="Ibeam" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="ScrollViewer.IsScrollChainingEnabled" Value="True" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="TextBox">
+                <Border>
+                    <ScrollViewer
+                        Width="{Binding $parent[TextBox].Bounds.Width}"
+                        AllowAutoHide="{TemplateBinding (ScrollViewer.AllowAutoHide)}"
+                        HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                        IsScrollChainingEnabled="{TemplateBinding (ScrollViewer.IsScrollChainingEnabled)}"
+                        VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
+                        <TextPresenter
+                            Name="PART_TextPresenter"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            CaretBrush="{TemplateBinding CaretBrush}"
+                            CaretIndex="{TemplateBinding CaretIndex}"
+                            LineHeight="{TemplateBinding LineHeight}"
+                            PasswordChar="{TemplateBinding PasswordChar}"
+                            RevealPassword="{TemplateBinding RevealPassword}"
+                            SelectionBrush="{TemplateBinding SelectionBrush}"
+                            SelectionEnd="{TemplateBinding SelectionEnd}"
+                            SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                            SelectionStart="{TemplateBinding SelectionStart}"
+                            Text="{TemplateBinding Text,
+                                                   Mode=TwoWay}"
+                            TextAlignment="{TemplateBinding TextAlignment}"
+                            TextWrapping="{TemplateBinding TextWrapping}" />
+                    </ScrollViewer>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>
