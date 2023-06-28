@@ -17,8 +17,8 @@
             <ControlTemplate TargetType="u:TagInput">
                 <Border
                     MinHeight="30"
-                    Padding="4"
-                    VerticalAlignment="Top"
+                    Padding="8,4"
+                    VerticalAlignment="Stretch"
                     Background="{DynamicResource SemiColorFill0}"
                     CornerRadius="3">
                     <Panel HorizontalAlignment="Stretch">
@@ -55,7 +55,7 @@
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Template">
             <ControlTemplate TargetType="TextBox">
-                <Border>
+                <Border Padding="0,4">
                     <ScrollViewer
                         Width="{Binding $parent[TextBox].Bounds.Width}"
                         AllowAutoHide="{TemplateBinding (ScrollViewer.AllowAutoHide)}"

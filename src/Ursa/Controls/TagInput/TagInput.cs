@@ -139,7 +139,7 @@ public class TagInput: TemplatedControl
 
     public void Close(object o)
     {
-        if (o is ClosableTag t)
+        if (o is Control t)
         {
             var presenter = t.Parent as ContentPresenter;
             if (presenter != null)
