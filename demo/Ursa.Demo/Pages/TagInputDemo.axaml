@@ -16,7 +16,8 @@
         <u:TagInput
             Margin="20"
             AllowDuplicates="False"
-            Separator="-" />
+            Separator="-"
+            Tags="{Binding #labels.Tags}" />
         <ListBox ItemsSource="{Binding #labels.Tags}" />
     </StackPanel>
 </UserControl>
