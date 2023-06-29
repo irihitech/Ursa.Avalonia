@@ -9,6 +9,7 @@
         <MergeResourceInclude Source="Loading.axaml" />
         <MergeResourceInclude Source="NavigationMenu.axaml" />
         <MergeResourceInclude Source="Pagination.axaml" />
+        <MergeResourceInclude Source="TagInput.axaml" />
         <MergeResourceInclude Source="Timeline.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
