@@ -1,3 +1,3 @@
 # Ursa.Avalonia
 
-![Ursa](./assets/ursa.svg)
+![Ursa](./assets/Ursa.svg)
