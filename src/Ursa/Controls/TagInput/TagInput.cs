@@ -30,13 +30,14 @@ public class TagInput: TemplatedControl
         get => GetValue(TagsProperty);
         set => SetValue(TagsProperty, value);
     }
-
-    public static readonly StyledProperty<IList> ItemsProperty = AvaloniaProperty.Register<TagInput, IList>(
-        nameof(Items));
+    
+    public static readonly DirectProperty<TagInput, IList> ItemsProperty = AvaloniaProperty.RegisterDirect<TagInput, IList>(
+        nameof(Items), o => o.Items);
+    private IList _items;
     public IList Items
     {
-        get => GetValue(ItemsProperty);
-        set => SetValue(ItemsProperty, value);
+        get => _items;
+        private set => SetAndRaise(ItemsProperty, ref _items, value);
     }
 
     public TagInput()
@@ -83,15 +84,39 @@ public class TagInput: TemplatedControl
         set => SetValue(AllowDuplicatesProperty, value);
     }
 
+    static TagInput()
+    {
+        InputThemeProperty.Changed.AddClassHandler<TagInput>((o, e) => o.OnInputThemePropertyChanged(e));
+        TagsProperty.Changed.AddClassHandler<TagInput>((o, e) => o.OnTagsPropertyChanged(e));
+    }
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
         _itemsControl =  e.NameScope.Find<ItemsControl>(PART_ItemsControl);
-        if (IsSet(InputThemeProperty) && InputTheme.TargetType == typeof(TextBox))
-        {
-            _textBox.Theme = InputTheme;
-        }
         Items.Add(_textBox);
+    }
+
+    private void OnInputThemePropertyChanged(AvaloniaPropertyChangedEventArgs args)
+    {
+        var newTheme = args.GetNewValue<ControlTheme>();
+        if (newTheme.TargetType == typeof(TextBox))
+        {
+            _textBox.Theme = newTheme;
+        }
+    }
+    
+    private void OnTagsPropertyChanged(AvaloniaPropertyChangedEventArgs args)
+    {
+        var newTags = args.GetNewValue<IList<string>>();
+        for (int i = 0; i < Items.Count - 1; i++)
+        {
+            Items.RemoveAt(Items.Count-1);
+        }
+        for (int i = 0; i < newTags.Count; i++)
+        {
+            Items.Insert(Items.Count - 1, newTags[i]);
+        }
     }
 
     private void OnTextBoxKeyDown(object? sender, KeyEventArgs args)
@@ -141,8 +166,7 @@ public class TagInput: TemplatedControl
     {
         if (o is Control t)
         {
-            var presenter = t.Parent as ContentPresenter;
-            if (presenter != null)
+            if (t.Parent is ContentPresenter presenter)
             {
                 int? index = _itemsControl?.IndexFromContainer(presenter);
                 if (index is >= 0 && index < Items.Count - 1)
