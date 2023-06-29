@@ -14,26 +14,31 @@ using Avalonia.Styling;
 
 namespace Ursa.Controls;
 
-[TemplatePart (PART_ItemsControl, typeof (ItemsControl))]
-public class TagInput: TemplatedControl
+[TemplatePart(PART_ItemsControl, typeof(ItemsControl))]
+public class TagInput : TemplatedControl
 {
     public const string PART_ItemsControl = "PART_ItemsControl";
-    
+
     private readonly TextBox _textBox;
     private ItemsControl? _itemsControl;
-    
-    
-    public static readonly StyledProperty<IList<string>> TagsProperty = AvaloniaProperty.Register<TagInput, IList<string>>(
-        nameof(Tags));
+
+
+    public static readonly StyledProperty<IList<string>> TagsProperty =
+        AvaloniaProperty.Register<TagInput, IList<string>>(
+            nameof(Tags));
+
     public IList<string> Tags
     {
         get => GetValue(TagsProperty);
         set => SetValue(TagsProperty, value);
     }
-    
-    public static readonly DirectProperty<TagInput, IList> ItemsProperty = AvaloniaProperty.RegisterDirect<TagInput, IList>(
-        nameof(Items), o => o.Items);
+
+    public static readonly DirectProperty<TagInput, IList> ItemsProperty =
+        AvaloniaProperty.RegisterDirect<TagInput, IList>(
+            nameof(Items), o => o.Items);
+
     private IList _items;
+
     public IList Items
     {
         get => _items;
@@ -48,8 +53,9 @@ public class TagInput: TemplatedControl
         Tags = new ObservableCollection<string>();
     }
 
-    public static readonly StyledProperty<ControlTheme> InputThemeProperty = AvaloniaProperty.Register<TagInput, ControlTheme>(
-        nameof(InputTheme));
+    public static readonly StyledProperty<ControlTheme> InputThemeProperty =
+        AvaloniaProperty.Register<TagInput, ControlTheme>(
+            nameof(InputTheme));
 
     public ControlTheme InputTheme
     {
@@ -57,8 +63,9 @@ public class TagInput: TemplatedControl
         set => SetValue(InputThemeProperty, value);
     }
 
-    public static readonly StyledProperty<IDataTemplate?> ItemTemplateProperty = AvaloniaProperty.Register<TagInput, IDataTemplate?>(
-        nameof(ItemTemplate));
+    public static readonly StyledProperty<IDataTemplate?> ItemTemplateProperty =
+        AvaloniaProperty.Register<TagInput, IDataTemplate?>(
+            nameof(ItemTemplate));
 
     public IDataTemplate? ItemTemplate
     {
@@ -84,6 +91,27 @@ public class TagInput: TemplatedControl
         set => SetValue(AllowDuplicatesProperty, value);
     }
 
+    public static readonly StyledProperty<object?> InnerLeftContentProperty =
+        AvaloniaProperty.Register<TagInput, object?>(
+            nameof(InnerLeftContent));
+
+    public object? InnerLeftContent
+    {
+        get => GetValue(InnerLeftContentProperty);
+        set => SetValue(InnerLeftContentProperty, value);
+    }
+
+    public static readonly StyledProperty<object?> InnerRightContentProperty =
+        AvaloniaProperty.Register<TagInput, object?>(
+            nameof(InnerRightContent));
+
+    public object? InnerRightContent
+    {
+        get => GetValue(InnerRightContentProperty);
+        set => SetValue(InnerRightContentProperty, value);
+    }
+
+
     static TagInput()
     {
         InputThemeProperty.Changed.AddClassHandler<TagInput>((o, e) => o.OnInputThemePropertyChanged(e));
@@ -93,7 +121,7 @@ public class TagInput: TemplatedControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        _itemsControl =  e.NameScope.Find<ItemsControl>(PART_ItemsControl);
+        _itemsControl = e.NameScope.Find<ItemsControl>(PART_ItemsControl);
         Items.Add(_textBox);
     }
 
@@ -105,14 +133,15 @@ public class TagInput: TemplatedControl
             _textBox.Theme = newTheme;
         }
     }
-    
+
     private void OnTagsPropertyChanged(AvaloniaPropertyChangedEventArgs args)
     {
         var newTags = args.GetNewValue<IList<string>>();
         for (int i = 0; i < Items.Count - 1; i++)
         {
-            Items.RemoveAt(Items.Count-1);
+            Items.RemoveAt(Items.Count - 1);
         }
+
         for (int i = 0; i < newTags.Count; i++)
         {
             Items.Insert(Items.Count - 1, newTags[i]);
@@ -140,11 +169,14 @@ public class TagInput: TemplatedControl
                 {
                     values = values.Distinct().Except(Tags).ToArray();
                 }
-                for(int i = 0; i < values.Length; i++)
+
+                for (int i = 0; i < values.Length; i++)
                 {
-                    Items.Insert(Items.Count - 1, values[i]);
-                    Tags.Insert(Items.Count - 2, values[i]);
+                    int index = Items.Count - 1;
+                    Items.Insert(index, values[i]);
+                    Tags.Insert(index, values[i]);
                 }
+
                 _textBox.Text = "";
             }
         }
@@ -156,8 +188,9 @@ public class TagInput: TemplatedControl
                 {
                     return;
                 }
-                Items.RemoveAt(Items.Count - 2);
-                Tags.RemoveAt(Items.Count - 1);
+                int index = Items.Count - 2;
+                Items.RemoveAt(index);
+                Tags.RemoveAt(index);
             }
         }
     }

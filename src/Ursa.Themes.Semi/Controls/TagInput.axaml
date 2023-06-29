@@ -6,7 +6,7 @@
     <ControlTheme x:Key="{x:Type u:TagInput}" TargetType="u:TagInput">
         <Setter Property="InputTheme" Value="{DynamicResource TagInputTextBoxTheme}" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="MinHeight" Value="{DynamicResource TagInputDefaultHeight}" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="ItemTemplate">
             <DataTemplate>
@@ -16,10 +16,13 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:TagInput">
                 <Border
+                    Name="PART_RootBorder"
                     MinHeight="30"
                     Padding="8,4"
                     VerticalAlignment="Stretch"
-                    Background="{DynamicResource SemiColorFill0}"
+                    Background="{DynamicResource TextBoxDefaultBackground}"
+                    BorderBrush="{DynamicResource TextBoxDefaultBorderBrush}"
+                    BorderThickness="1"
                     CornerRadius="3">
                     <Panel HorizontalAlignment="Stretch">
                         <ItemsControl
@@ -39,6 +42,12 @@
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:pointerover /template/ Border#PART_RootBorder">
+            <Setter Property="Border.Background" Value="{DynamicResource TextBoxPointeroverBackground}" />
+        </Style>
+        <Style Selector="^:focus-within /template/ Border#PART_RootBorder">
+            <Setter Property="Border.BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
+        </Style>
     </ControlTheme>
 
     <ControlTheme x:Key="TagInputTextBoxTheme" TargetType="TextBox">
@@ -48,6 +57,7 @@
         <Setter Property="TextBox.SelectionBrush" Value="{DynamicResource TextBoxSelectionBackground}" />
         <Setter Property="TextBox.SelectionForegroundBrush" Value="{DynamicResource TextBoxSelectionForeground}" />
         <Setter Property="TextBox.Cursor" Value="Ibeam" />
+        <Setter Property="TextBox.CaretBrush" Value="{DynamicResource TextBoxTextCaretBrush}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="ScrollViewer.IsScrollChainingEnabled" Value="True" />
@@ -87,15 +97,19 @@
 
     <ControlTheme x:Key="{x:Type u:ClosableTag}" TargetType="u:ClosableTag">
         <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="u:ClosableTag.Foreground" Value="{DynamicResource LabelTagLightGreyForeground}" />
+        <Setter Property="u:ClosableTag.Background" Value="{DynamicResource ClosableTagBackground}" />
+        <Setter Property="u:ClosableTag.BorderBrush" Value="{DynamicResource SemiColorBorder}" />
+        <Setter Property="u:ClosableTag.BorderThickness" Value="1" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:ClosableTag">
                 <Border
                     Margin="1"
                     Padding="4,2"
-                    Background="{DynamicResource SemiColorBackground0}"
-                    BorderBrush="{DynamicResource SemiColorBorder}"
-                    BorderThickness="1"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="3">
                     <DockPanel LastChildFill="True">
                         <PathIcon
@@ -104,11 +118,13 @@
                             Height="8"
                             Margin="4,0"
                             Background="Transparent"
-                            Data="M17.6568 19.7782C18.2426 20.3639 19.1924 20.3639 19.7782 19.7782C20.3639 19.1924 20.3639 18.2426 19.7782 17.6568L14.1213 12L19.7782 6.34313C20.3639 5.75734 20.3639 4.8076 19.7782 4.22181C19.1924 3.63602 18.2426 3.63602 17.6568 4.22181L12 9.87866L6.34313 4.22181C5.75734 3.63602 4.8076 3.63602 4.22181 4.22181C3.63602 4.8076 3.63602 5.75734 4.22181 6.34313L9.87866 12L4.22181 17.6568C3.63602 18.2426 3.63602 19.1924 4.22181 19.7782C4.8076 20.3639 5.75734 20.3639 6.34313 19.7782L12 14.1213L17.6568 19.7782Z"
-                            DockPanel.Dock="Right" />
+                            Data="{DynamicResource ClosableTagCloseIconGlyph}"
+                            DockPanel.Dock="Right"
+                            Foreground="{TemplateBinding Foreground}" />
                         <TextBlock
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             FontSize="12"
+                            Foreground="{TemplateBinding Foreground}"
                             Text="{TemplateBinding Content}"
                             TextTrimming="CharacterEllipsis" />
                     </DockPanel>
