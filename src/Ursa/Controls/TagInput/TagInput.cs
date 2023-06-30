@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using Avalonia;
 using Avalonia.Collections;
 using Avalonia.Controls;
@@ -137,6 +138,7 @@ public class TagInput : TemplatedControl
     private void OnTagsPropertyChanged(AvaloniaPropertyChangedEventArgs args)
     {
         var newTags = args.GetNewValue<IList<string>>();
+        var oldTags = args.GetOldValue<IList<string>>();
         for (int i = 0; i < Items.Count - 1; i++)
         {
             Items.RemoveAt(Items.Count - 1);
@@ -146,6 +148,46 @@ public class TagInput : TemplatedControl
         {
             Items.Insert(Items.Count - 1, newTags[i]);
         }
+
+        if (oldTags is INotifyCollectionChanged inccold)
+        {
+            inccold.CollectionChanged-= OnCollectionChanged;
+        }
+
+        if (Tags is INotifyCollectionChanged incc)
+        {
+            incc.CollectionChanged += OnCollectionChanged;
+        }
+    }
+
+    private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    {
+        if (e.Action == NotifyCollectionChangedAction.Add)
+        {
+            var items = e.NewItems;
+            int index = e.NewStartingIndex;
+            foreach (var item in items)
+            {
+                if (item is string s)
+                {
+                    Items.Insert(index, s);
+                    index++;
+                }
+            }
+        }
+        else if (e.Action == NotifyCollectionChangedAction.Remove)
+        {
+            var items = e.OldItems;
+            int index = e.OldStartingIndex;
+            foreach (var item in items)
+            {
+                if (item is string s)
+                {
+                    Items.RemoveAt(index);
+                }
+            }
+        }
+
     }
 
     private void OnTextBoxKeyDown(object? sender, KeyEventArgs args)
@@ -173,7 +215,7 @@ public class TagInput : TemplatedControl
                 for (int i = 0; i < values.Length; i++)
                 {
                     int index = Items.Count - 1;
-                    Items.Insert(index, values[i]);
+                    // Items.Insert(index, values[i]);
                     Tags.Insert(index, values[i]);
                 }
 
@@ -189,7 +231,7 @@ public class TagInput : TemplatedControl
                     return;
                 }
                 int index = Items.Count - 2;
-                Items.RemoveAt(index);
+                // Items.RemoveAt(index);
                 Tags.RemoveAt(index);
             }
         }
@@ -204,7 +246,7 @@ public class TagInput : TemplatedControl
                 int? index = _itemsControl?.IndexFromContainer(presenter);
                 if (index is >= 0 && index < Items.Count - 1)
                 {
-                    Items.RemoveAt(index.Value);
+                    // Items.RemoveAt(index.Value);
                     Tags.RemoveAt(index.Value);
                 }
             }
