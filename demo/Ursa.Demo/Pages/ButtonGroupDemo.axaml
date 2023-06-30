@@ -9,7 +9,7 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:CompileBindings="True"
-    x:DataType="vm:ButtonGroupViewModel"
+    x:DataType="vm:ButtonGroupDemoViewModel"
     mc:Ignorable="d">
 
     <StackPanel Margin="20" Spacing="20">

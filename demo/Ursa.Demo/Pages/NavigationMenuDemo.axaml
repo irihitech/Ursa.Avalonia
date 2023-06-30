@@ -42,7 +42,7 @@
                 <u:NavigationMenu.ItemTemplate>
                     <converters:MenuDataTemplateSelector>
                         <converters:MenuDataTemplateSelector.MenuTemplate>
-                            <DataTemplate DataType="vm:NavigationMenuItemViewModel">
+                            <DataTemplate DataType="vm:MenuItemViewModel">
                                 <u:NavigationMenuItem Header="{Binding MenuHeader}" ItemsSource="{Binding Children}">
                                     <u:NavigationMenuItem.Icon>
                                         <PathIcon
@@ -54,7 +54,7 @@
                             </DataTemplate>
                         </converters:MenuDataTemplateSelector.MenuTemplate>
                         <converters:MenuDataTemplateSelector.SeparatorTemplate>
-                            <DataTemplate DataType="vm:NavigationMenuItemViewModel">
+                            <DataTemplate DataType="vm:MenuItemViewModel">
                                 <u:NavigationMenuSeparator Header="{Binding MenuHeader}" />
                             </DataTemplate>
                         </converters:MenuDataTemplateSelector.SeparatorTemplate>

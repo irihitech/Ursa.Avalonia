@@ -128,7 +128,7 @@ public class TagInput : TemplatedControl
     private void OnInputThemePropertyChanged(AvaloniaPropertyChangedEventArgs args)
     {
         var newTheme = args.GetNewValue<ControlTheme>();
-        if (newTheme.TargetType == typeof(TextBox))
+        if (newTheme?.TargetType == typeof(TextBox))
         {
             _textBox.Theme = newTheme;
         }

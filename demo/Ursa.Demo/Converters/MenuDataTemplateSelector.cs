@@ -11,12 +11,11 @@ public class MenuDataTemplateSelector: IDataTemplate
     
     public Control? Build(object? param)
     {
-        if (param is NavigationMenuItemViewModel vm)
+        if (param is MenuItemViewModel vm)
         {
             if (vm.IsSeparator) return SeparatorTemplate?.Build(vm);
             else return MenuTemplate?.Build(vm);
         }
-
         return null;
     }
 
