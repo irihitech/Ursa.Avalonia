@@ -131,7 +131,7 @@ public class NavigationMenuItem: HeaderedSelectingItemsControl
 
         if (_rootMenu is not null)
         {
-            IsClosed = _rootMenu.IsClosed;
+            // IsClosed = _rootMenu.IsClosed;
         }
         
         _rootMenu?.GetObservable(NavigationMenu.IsClosedProperty)
@@ -139,7 +139,7 @@ public class NavigationMenuItem: HeaderedSelectingItemsControl
         _rootMenu?.UpdateSelectionFromSelectedItem(_rootMenu.SelectedItem);
         _popup = e.NameScope.Find<Popup>(PART_Popup);
         Level = CalculateDistanceFromLogicalParent<NavigationMenu>(this) - 1;
-        bool isTopLevel = Level == 1;
+        bool isTopLevel = Level == 0;
         IsTopLevelMenuItem = isTopLevel;
         PseudoClasses.Set(PC_TopLevel, isTopLevel);
     }
@@ -165,7 +165,7 @@ public class NavigationMenuItem: HeaderedSelectingItemsControl
         {
             if (_rootMenu is not null )
             {
-                object? o = this.DataContext ?? this;
+                object? o = this.DataContext == _rootMenu.DataContext ? this : this.DataContext ?? this;
                 _rootMenu.SelectedItem = o;
             }
             SetSelection(this, true, true);
@@ -219,7 +219,7 @@ public class NavigationMenuItem: HeaderedSelectingItemsControl
             }
             else
             {
-                if (selected)
+                if (selected && source!=null)
                 {
                     _rootMenu?.UpdateSelection(this);
                 }
@@ -262,7 +262,10 @@ public class NavigationMenuItem: HeaderedSelectingItemsControl
 
         while (logical != null && !(logical is T))
         {
-            ++result;
+            if (logical is NavigationMenuItem)
+            {
+                result++;
+            }
             logical = logical.LogicalParent;
         }
 

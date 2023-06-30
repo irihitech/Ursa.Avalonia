@@ -24,57 +24,59 @@
                             <DoubleTransition Property="Width" Duration="0:0:0.1" />
                         </Transitions>
                     </Border.Transitions>
-                    <Grid
-                        Name="PART_RootGrid"
-                        HorizontalAlignment="Stretch"
-                        Background="{TemplateBinding Background}"
-                        RowDefinitions="Auto, *, Auto, Auto">
-                        <StackPanel
-                            Margin="{DynamicResource NavigationMenuHeaderMargin}"
-                            HorizontalAlignment="Center"
-                            Orientation="Horizontal">
-                            <ContentPresenter
-                                Name="PART_IconPresenter"
-                                Margin="{DynamicResource NavigationMenuIconMargin}"
-                                VerticalAlignment="Center"
-                                Content="{TemplateBinding Icon}" />
-                            <ContentPresenter
-                                Name="PART_HeaderPresenter"
-                                VerticalAlignment="Center"
-                                Content="{TemplateBinding Header}"
-                                ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <Grid
+                            Name="PART_RootGrid"
+                            HorizontalAlignment="Stretch"
+                            Background="{TemplateBinding Background}"
+                            RowDefinitions="Auto, *, Auto, Auto">
+                            <StackPanel
+                                Margin="{DynamicResource NavigationMenuHeaderMargin}"
+                                HorizontalAlignment="Center"
+                                Orientation="Horizontal">
+                                <ContentPresenter
+                                    Name="PART_IconPresenter"
+                                    Margin="{DynamicResource NavigationMenuIconMargin}"
+                                    VerticalAlignment="Center"
+                                    Content="{TemplateBinding Icon}" />
+                                <ContentPresenter
+                                    Name="PART_HeaderPresenter"
+                                    VerticalAlignment="Center"
+                                    Content="{TemplateBinding Header}"
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}" />
 
-                        </StackPanel>
-                        <ItemsPresenter Grid.Row="1" ItemsPanel="{TemplateBinding ItemsPanel}" />
-                        <ContentPresenter
-                            Name="PART_FooterPresenter"
-                            Grid.Row="2"
-                            Content="{TemplateBinding Footer}"
-                            ContentTemplate="{TemplateBinding FooterTemplate}" />
-                        <ToggleSwitch
-                            Name="{x:Static u:NavigationMenu.PART_CloseButton}"
-                            Grid.Row="3"
-                            Content="Open"
-                            IsChecked="{TemplateBinding IsClosed,
-                                                        Mode=TwoWay}"
-                            IsVisible="{TemplateBinding ShowCollapseButton}"
-                            Theme="{DynamicResource ButtonToggleSwitch}">
-                            <ToggleSwitch.OnContent>
-                                <PathIcon
-                                    Width="{DynamicResource NavigationMenuExpandIconWidth}"
-                                    Height="{DynamicResource NavigationMenuExpandIconHeight}"
-                                    Data="{DynamicResource NavigationMenuExpandIconGlyph}"
-                                    Foreground="{DynamicResource ButtonDefaultTertiaryForeground}" />
-                            </ToggleSwitch.OnContent>
-                            <ToggleSwitch.OffContent>
-                                <PathIcon
-                                    Width="{DynamicResource NavigationMenuExpandIconWidth}"
-                                    Height="{DynamicResource NavigationMenuExpandIconHeight}"
-                                    Data="{DynamicResource NavigationMenuExpandIconGlyph}"
-                                    Foreground="{DynamicResource ButtonDefaultTertiaryForeground}" />
-                            </ToggleSwitch.OffContent>
-                        </ToggleSwitch>
-                    </Grid>
+                            </StackPanel>
+                            <ItemsPresenter Grid.Row="1" ItemsPanel="{TemplateBinding ItemsPanel}" />
+                            <ContentPresenter
+                                Name="PART_FooterPresenter"
+                                Grid.Row="2"
+                                Content="{TemplateBinding Footer}"
+                                ContentTemplate="{TemplateBinding FooterTemplate}" />
+                            <ToggleSwitch
+                                Name="{x:Static u:NavigationMenu.PART_CloseButton}"
+                                Grid.Row="3"
+                                Content="Open"
+                                IsChecked="{TemplateBinding IsClosed,
+                                                            Mode=TwoWay}"
+                                IsVisible="{TemplateBinding ShowCollapseButton}"
+                                Theme="{DynamicResource ButtonToggleSwitch}">
+                                <ToggleSwitch.OnContent>
+                                    <PathIcon
+                                        Width="{DynamicResource NavigationMenuExpandIconWidth}"
+                                        Height="{DynamicResource NavigationMenuExpandIconHeight}"
+                                        Data="{DynamicResource NavigationMenuExpandIconGlyph}"
+                                        Foreground="{DynamicResource ButtonDefaultTertiaryForeground}" />
+                                </ToggleSwitch.OnContent>
+                                <ToggleSwitch.OffContent>
+                                    <PathIcon
+                                        Width="{DynamicResource NavigationMenuExpandIconWidth}"
+                                        Height="{DynamicResource NavigationMenuExpandIconHeight}"
+                                        Data="{DynamicResource NavigationMenuExpandIconGlyph}"
+                                        Foreground="{DynamicResource ButtonDefaultTertiaryForeground}" />
+                                </ToggleSwitch.OffContent>
+                            </ToggleSwitch>
+                        </Grid>
+                    </ScrollViewer>
                 </Border>
             </ControlTemplate>
         </Setter>

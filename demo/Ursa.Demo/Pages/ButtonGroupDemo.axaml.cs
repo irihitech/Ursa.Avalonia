@@ -10,6 +10,6 @@ public partial class ButtonGroupDemo : UserControl
     public ButtonGroupDemo()
     {
         InitializeComponent();
-        this.DataContext = new ButtonGroupViewModel();
+        this.DataContext = new ButtonGroupDemoViewModel();
     }
 }
