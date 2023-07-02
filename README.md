@@ -30,6 +30,8 @@ You can now use Ursa controls in your Avalonia Application.
 </Window>
 ```
 
+![Demo](./assets/demo.jpg)
+
 2. Ursa.Themes.Semi
 
 To make Ursa controls show up in your application, you need to reference to a theme package designed for Ursa. 
@@ -37,6 +39,7 @@ Ursa.Themes.Semi is a theme package for Ursa inspired by Semi Design. You can ad
 
 Add nuget package:
 ```bash
+dotnet add package Semi.Avalonia --version 11.0.0-rc1
 dotnet add package Irihi.Ursa.Themes.Semi --version 0.1.0-beta20230702
 ```
 
