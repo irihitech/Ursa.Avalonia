@@ -49,10 +49,11 @@
                                     Header="{Binding MenuHeader}"
                                     ItemsSource="{Binding Children}">
                                     <u:NavigationMenuItem.Icon>
-                                        <Ellipse
+                                        <Border
                                             Width="10"
                                             Height="10"
-                                            Fill="LightGray" />
+                                            Background="{DynamicResource SemiBlue6}"
+                                            CornerRadius="3" />
                                     </u:NavigationMenuItem.Icon>
                                 </u:NavigationMenuItem>
                             </DataTemplate>
@@ -76,6 +77,7 @@
         <ContentControl
             Grid.Row="1"
             Grid.Column="1"
+            Margin="12"
             Content="{Binding Content}">
             <ContentControl.ContentTemplate>
                 <converters:ViewLocator />
