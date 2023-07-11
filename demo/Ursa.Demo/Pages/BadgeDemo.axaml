@@ -89,6 +89,9 @@
             <u:Badge BadgeContent="URSA" Classes="Danger">
                 <Border Width="100" Height="50" />
             </u:Badge>
+            <u:Badge BadgeContent="URSA" Classes="Success">
+                <Border Width="100" Height="50" />
+            </u:Badge>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <u:Badge
@@ -118,6 +121,12 @@
             <u:Badge
                 BadgeContent="URSA"
                 Classes="Danger"
+                Dot="True">
+                <Border Width="100" Height="50" />
+            </u:Badge>
+            <u:Badge
+                BadgeContent="URSA"
+                Classes="Success"
                 Dot="True">
                 <Border Width="100" Height="50" />
             </u:Badge>

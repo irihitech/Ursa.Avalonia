@@ -130,5 +130,8 @@
         <Style Selector="^.Danger">
             <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeDangerBadgeBackground}" />
         </Style>
+        <Style Selector="^.Success">
+            <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeSuccessBadgeBackground}" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

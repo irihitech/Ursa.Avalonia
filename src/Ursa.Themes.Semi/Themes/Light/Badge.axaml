@@ -7,4 +7,5 @@
     <SolidColorBrush x:Key="BadgeTertiaryBadgeBackground" Color="#6B7075" />
     <SolidColorBrush x:Key="BadgeWarningBadgeBackground" Color="#FC8800" />
     <SolidColorBrush x:Key="BadgeDangerBadgeBackground" Color="#F93920" />
+    <SolidColorBrush x:Key="BadgeSuccessBadgeBackground" Color="#3BB346" />
 </ResourceDictionary>
