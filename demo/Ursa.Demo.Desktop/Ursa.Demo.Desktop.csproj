@@ -3,7 +3,7 @@
         <OutputType>WinExe</OutputType>
         <!--If you are willing to use Windows/MacOS native APIs you will need to create 3 projects.
         One for Windows with net7.0-windows TFM, one for MacOS with net7.0-macos and one with net7.0 TFM for Linux.-->
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
         <Nullable>enable</Nullable>
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     </PropertyGroup>
@@ -20,12 +20,5 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Ursa.Demo\Ursa.Demo.csproj"/>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Update="App.axaml.cs">
-        <DependentUpon>App.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
     </ItemGroup>
 </Project>
