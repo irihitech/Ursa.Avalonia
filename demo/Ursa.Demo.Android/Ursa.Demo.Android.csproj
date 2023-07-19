@@ -4,11 +4,13 @@
         <TargetFramework>net7.0-android</TargetFramework>
         <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
         <Nullable>enable</Nullable>
-        <ApplicationId>com.irihitech.Ursa.Demo</ApplicationId>
+        <ApplicationId>com.irihitech.Ursa</ApplicationId>
         <ApplicationVersion>1</ApplicationVersion>
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
         <AndroidPackageFormat>apk</AndroidPackageFormat>
         <AndroidEnableProfiledAot>False</AndroidEnableProfiledAot>
+        <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+        <RootNamespace>Ursa.Demo.Android</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
