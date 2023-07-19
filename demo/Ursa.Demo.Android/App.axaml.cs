@@ -16,7 +16,7 @@ public partial class App : Application
     {
         if (ApplicationLifetime is ISingleViewApplicationLifetime single)
         {
-            single.MainView = new MainWindow();
+            single.MainView = new MainView();
         }
         base.OnFrameworkInitializationCompleted();
     }

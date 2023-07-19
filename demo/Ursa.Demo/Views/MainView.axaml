@@ -1,0 +1,85 @@
+<UserControl
+    x:Class="Ursa.Demo.Views.MainView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Ursa.Demo.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:MainWindowViewModel"
+    mc:Ignorable="d">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, *">
+        <Border
+            Grid.RowSpan="2"
+            Padding="8,4"
+            VerticalAlignment="Stretch"
+            Theme="{DynamicResource CardBorder}">
+            <u:NavigationMenu ItemsSource="{Binding Menus.MenuItems}" ShowCollapseButton="True">
+                <u:NavigationMenu.Header>
+                    <TextBlock
+                        Classes="H4"
+                        Text="Ursa"
+                        Theme="{DynamicResource TitleTextBlock}" />
+                </u:NavigationMenu.Header>
+                <u:NavigationMenu.Icon>
+                    <Image
+                        Width="48"
+                        Height="48"
+                        RenderOptions.BitmapInterpolationMode="HighQuality"
+                        Source="../Assets/Ursa.ico" />
+                </u:NavigationMenu.Icon>
+                <u:NavigationMenu.ItemTemplate>
+                    <converters:MenuDataTemplateSelector>
+                        <converters:MenuDataTemplateSelector.MenuTemplate>
+                            <DataTemplate DataType="vm:MenuItemViewModel">
+                                <u:NavigationMenuItem
+                                    Command="{Binding ActivateCommand}"
+                                    Header="{Binding MenuHeader}"
+                                    ItemsSource="{Binding Children}">
+                                    <u:NavigationMenuItem.Icon>
+                                        <Border
+                                            Width="10"
+                                            Height="10"
+                                            Background="{DynamicResource SemiBlue6}"
+                                            CornerRadius="3" />
+                                    </u:NavigationMenuItem.Icon>
+                                </u:NavigationMenuItem>
+                            </DataTemplate>
+                        </converters:MenuDataTemplateSelector.MenuTemplate>
+                        <converters:MenuDataTemplateSelector.SeparatorTemplate>
+                            <DataTemplate DataType="vm:MenuItemViewModel">
+                                <u:NavigationMenuSeparator Header="{Binding MenuHeader}" />
+                            </DataTemplate>
+                        </converters:MenuDataTemplateSelector.SeparatorTemplate>
+                    </converters:MenuDataTemplateSelector>
+                </u:NavigationMenu.ItemTemplate>
+            </u:NavigationMenu>
+        </Border>
+
+        <ToggleButton
+            Grid.Row="0"
+            Grid.Column="1"
+            HorizontalAlignment="Right"
+            Content="Update Theme"
+            IsCheckedChanged="ToggleButton_OnIsCheckedChanged" />
+        <ContentControl
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="12"
+            Content="{Binding Content}">
+            <ContentControl.ContentTemplate>
+                <converters:ViewLocator />
+            </ContentControl.ContentTemplate>
+        </ContentControl>
+    </Grid>
+
+</UserControl>
