@@ -1,5 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+    <Import Project="../Package.props"/>
+
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -11,11 +13,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Avalonia" Version="11.0.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="TypeConverters" />
+        <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)"/>
     </ItemGroup>
 
 </Project>
