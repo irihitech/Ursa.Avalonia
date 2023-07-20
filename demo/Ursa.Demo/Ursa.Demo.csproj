@@ -26,11 +26,4 @@
         <ProjectReference Include="..\..\src\Ursa.Themes.Semi\Ursa.Themes.Semi.csproj"/>
         <ProjectReference Include="..\..\src\Ursa\Ursa.csproj"/>
     </ItemGroup>
-
-    <ItemGroup>
-      <Compile Update="App.axaml.cs">
-        <DependentUpon>App.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-    </ItemGroup>
 </Project>
