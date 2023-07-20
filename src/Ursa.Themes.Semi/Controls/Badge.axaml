@@ -10,7 +10,7 @@
     <ControlTheme x:Key="{x:Type u:Badge}" TargetType="{x:Type u:Badge}">
         <!--  Set a very large corner radius to achieve pill look.  -->
         <Setter Property="u:Badge.CornerRadius" Value="100" />
-        <Setter Property="u:Badge.FontSize" Value="8" />
+        <Setter Property="u:Badge.FontSize" Value="14" />
         <Setter Property="u:Badge.Background" Value="{DynamicResource BadgePrimaryBadgeBackground}" />
         <Setter Property="u:Badge.ClipToBounds" Value="False" />
         <Setter Property="u:Badge.HorizontalAlignment" Value="Center" />

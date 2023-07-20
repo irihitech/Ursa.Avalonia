@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
+using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Styling;
 using Ursa.Common;
@@ -75,9 +76,9 @@ public class Badge: ContentControl
         _badgeContent = e.NameScope.Find<ContentPresenter>(PART_BadgeContentPresenter);
     }
 
-    protected override void OnLoaded()
+    protected override void OnLoaded(RoutedEventArgs e)
     {
-        base.OnLoaded();
+        base.OnLoaded(e);
         UpdateBadgePosition();
     }
 

@@ -1,5 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+    <Import Project="../Package.props"/>
+
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -11,11 +13,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Avalonia" Version="11.0.0-rc1.1" />
+        <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Ursa\Ursa.csproj" />
+        <ProjectReference Include="..\Ursa\Ursa.csproj"/>
     </ItemGroup>
-    
+
 </Project>
