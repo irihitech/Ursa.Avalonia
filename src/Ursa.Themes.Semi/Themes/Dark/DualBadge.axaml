@@ -1,3 +1,5 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="DualBadgeDefaultHeaderBackground">LightGray</SolidColorBrush>
+    <SolidColorBrush x:Key="DualBadgeDefaultForeground">White</SolidColorBrush>
+    <SolidColorBrush x:Key="DualBadgeDefaultBackground">#FF5DC264</SolidColorBrush>
+    <SolidColorBrush x:Key="DualBadgeDefaultHeaderBackground">#FF888D92</SolidColorBrush>
 </ResourceDictionary>
