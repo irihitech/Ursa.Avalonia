@@ -32,6 +32,14 @@ public class DualBadge : HeaderedContentControl
         set => SetValue(IconTemplateProperty, value);
     }
 
+    public static readonly StyledProperty<IBrush?> IconForegroundProperty =
+        AvaloniaProperty.Register<DualBadge, IBrush?>(nameof(IconForeground));
+
+    public IBrush? IconForeground
+    {
+        get => GetValue(IconForegroundProperty);
+        set => SetValue(IconForegroundProperty, value);
+    }
 
     public static readonly StyledProperty<IBrush?> HeaderForegroundProperty =
         AvaloniaProperty.Register<DualBadge, IBrush?>(nameof(HeaderForeground));
