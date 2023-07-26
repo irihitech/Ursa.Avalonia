@@ -6,6 +6,7 @@ public static class MenuKeys
     public const string MenuKeyBanner = "Banner";
     public const string MenuKeyButtonGroup = "ButtonGroup";
     public const string MenuKeyDivider = "Divider";
+    public const string MenuKeyDualBadge = "DualBadge";
     public const string MenuKeyIpBox = "IPv4Box";
     public const string MenuKeyLoading = "Loading";
     public const string MenuKeyNavigation = "Navigation";

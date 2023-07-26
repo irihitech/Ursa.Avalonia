@@ -1,0 +1,45 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <ControlTheme x:Key="{x:Type u:DualBadge}" TargetType="{x:Type u:DualBadge}">
+        <Setter Property="u:DualBadge.HorizontalAlignment" Value="Center" />
+        <Setter Property="u:DualBadge.VerticalAlignment" Value="Top" />
+        <Setter Property="u:DualBadge.CornerRadius" Value="16" />
+        <Setter Property="u:DualBadge.HeaderBackground" Value="{DynamicResource DualBadgeDefaultHeaderBackground}" />
+        <Setter Property="u:DualBadge.Margin" Value="0 4" />
+        <Setter Property="u:DualBadge.Template">
+            <ControlTemplate TargetType="{x:Type u:DualBadge}">
+                <Border
+                    HorizontalAlignment="{TemplateBinding u:DualBadge.HorizontalAlignment}"
+                    VerticalAlignment="{TemplateBinding u:DualBadge.VerticalAlignment}"
+                    BorderThickness="{TemplateBinding u:DualBadge.BorderThickness}"
+                    CornerRadius="{TemplateBinding u:DualBadge.CornerRadius}">
+                    <Grid ColumnDefinitions="*,*,*">
+                        <ContentPresenter
+                            Name="{x:Static u:DualBadge.PART_Icon}"
+                            Grid.Column="0"
+                            Margin="{TemplateBinding Padding}"
+                            Background="{TemplateBinding HeaderBackground}" 
+                            Content="{TemplateBinding Icon}"
+                            ContentTemplate="{TemplateBinding IconTemplate}"/>
+                        <ContentPresenter
+                            Name="{x:Static u:DualBadge.PART_HeaderPresenter}"
+                            Grid.Column="1"
+                            Margin="{TemplateBinding Padding}"
+                            Background="{TemplateBinding HeaderBackground}"
+                            Content="{TemplateBinding Header}"
+                            ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                        <ContentPresenter
+                            Name="{x:Static u:DualBadge.PART_ContentPresenter}"
+                            Grid.Column="2"
+                            Margin="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>
