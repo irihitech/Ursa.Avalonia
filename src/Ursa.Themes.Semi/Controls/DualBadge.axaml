@@ -10,7 +10,7 @@
         <Setter Property="u:DualBadge.HeaderForeground" Value="{DynamicResource DualBadgeDefaultHeaderForeground}" />
         <Setter Property="u:DualBadge.HeaderBackground" Value="{DynamicResource DualBadgeDefaultHeaderBackground}" />
         <Setter Property="u:DualBadge.Foreground" Value="{DynamicResource DualBadgeDefaultForeground}" />
-        <Setter Property="u:DualBadge.Background" Value="{DynamicResource DualBadgeDefaultBackground}" />
+        <Setter Property="u:DualBadge.Background" Value="{DynamicResource DualBadgeFlatGreenBackground}" />
         <Setter Property="u:DualBadge.ClipToBounds" Value="False" />
         <Setter Property="u:DualBadge.HorizontalAlignment" Value="Left" />
         <Setter Property="u:DualBadge.VerticalAlignment" Value="Center" />
@@ -59,6 +59,55 @@
             </ControlTemplate>
         </Setter>
 
+        <Style Selector="^.Red">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatRedBackground}" />
+        </Style>
+        <Style Selector="^.Pink">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatPinkBackground}" />
+        </Style>
+        <Style Selector="^.Purple">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatPurpleBackground}" />
+        </Style>
+        <Style Selector="^.Violet">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatVioletBackground}" />
+        </Style>
+        <Style Selector="^.Indigo">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatIndigoBackground}" />
+        </Style>
+        <Style Selector="^.Blue">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatBlueBackground}" />
+        </Style>
+        <Style Selector="^.LightBlue">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatLightBlueBackground}" />
+        </Style>
+        <Style Selector="^.Cyan">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatCyanBackground}" />
+        </Style>
+        <Style Selector="^.Teal">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatTealBackground}" />
+        </Style>
+        <Style Selector="^.Green">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatGreenBackground}" />
+        </Style>
+        <Style Selector="^.LightGreen">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatLightGreenBackground}" />
+        </Style>
+        <Style Selector="^.Lime">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatLimeBackground}" />
+        </Style>
+        <Style Selector="^.Yellow">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatYellowBackground}" />
+        </Style>
+        <Style Selector="^.Amber">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatAmberBackground}" />
+        </Style>
+        <Style Selector="^.Orange">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatOrangeBackground}" />
+        </Style>
+        <Style Selector="^.Grey">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatGreyBackground}" />
+        </Style>
+
         <Style Selector="^.FlatSquare">
             <Setter Property="CornerRadius" Value="0" />
         </Style>
@@ -66,7 +115,54 @@
         <Style Selector="^.Plastic">
             <Setter Property="Padding" Value="4 0" />
             <Setter Property="HeaderBackground" Value="{DynamicResource DualBadgePlasticHeaderBackground}" />
-            <Setter Property="Background" Value="{DynamicResource DualBadgePlasticBackground}" />
+            <Style Selector="^.Red">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticRedBackground}" />
+            </Style>
+            <Style Selector="^.Pink">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticPinkBackground}" />
+            </Style>
+            <Style Selector="^.Purple">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticPurpleBackground}" />
+            </Style>
+            <Style Selector="^.Violet">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticVioletBackground}" />
+            </Style>
+            <Style Selector="^.Indigo">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticIndigoBackground}" />
+            </Style>
+            <Style Selector="^.Blue">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticBlueBackground}" />
+            </Style>
+            <Style Selector="^.LightBlue">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticLightBlueBackground}" />
+            </Style>
+            <Style Selector="^.Cyan">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticCyanBackground}" />
+            </Style>
+            <Style Selector="^.Teal">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticTealBackground}" />
+            </Style>
+            <Style Selector="^.Green">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticGreenBackground}" />
+            </Style>
+            <Style Selector="^.LightGreen">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticLightGreenBackground}" />
+            </Style>
+            <Style Selector="^.Lime">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticLimeBackground}" />
+            </Style>
+            <Style Selector="^.Yellow">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticYellowBackground}" />
+            </Style>
+            <Style Selector="^.Amber">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticAmberBackground}" />
+            </Style>
+            <Style Selector="^.Orange">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticOrangeBackground}" />
+            </Style>
+            <Style Selector="^.Grey">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticGreyBackground}" />
+            </Style>
         </Style>
 
         <Style Selector="^.ForTheBadge">
