@@ -3,5 +3,12 @@
     <SolidColorBrush x:Key="DualBadgeDefaultHeaderForeground">White</SolidColorBrush>
     <SolidColorBrush x:Key="DualBadgeDefaultHeaderBackground">#FF888D92</SolidColorBrush>
     <SolidColorBrush x:Key="DualBadgeDefaultForeground">White</SolidColorBrush>
-    <SolidColorBrush x:Key="DualBadgeDefaultBackground">#FF5DC264</SolidColorBrush>
+    <LinearGradientBrush x:Key="DualBadgeDefaultHeaderBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="#FF555B61" Offset="0" />
+        <GradientStop Color="#FF41464C" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgeDefaultBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="#FF5AC262" Offset="0" />
+        <GradientStop Color="#FF3BB346" Offset="1" />
+    </LinearGradientBrush>
 </ResourceDictionary>

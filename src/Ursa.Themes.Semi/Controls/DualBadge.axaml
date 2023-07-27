@@ -63,4 +63,28 @@
             <Setter Property="HeaderBackground" Value="{Binding Background, RelativeSource={RelativeSource Self}}" />
         </Style>
     </ControlTheme>
+
+    <ControlTheme
+        x:Key="FlatSquare"
+        BasedOn="{StaticResource {x:Type u:DualBadge}}"
+        TargetType="u:DualBadge">
+        <Setter Property="CornerRadius" Value="0" />
+    </ControlTheme>
+
+    <ControlTheme
+        x:Key="Plastic"
+        BasedOn="{StaticResource {x:Type u:DualBadge}}"
+        TargetType="u:DualBadge">
+        <Setter Property="Background">
+
+        </Setter>
+    </ControlTheme>
+    <ControlTheme
+        x:Key="ForTheBadge"
+        BasedOn="{StaticResource {x:Type u:DualBadge}}"
+        TargetType="u:DualBadge">
+        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="Padding" Value="12 6" />
+
+    </ControlTheme>
 </ResourceDictionary>

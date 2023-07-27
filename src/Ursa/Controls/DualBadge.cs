@@ -4,7 +4,6 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
-using Avalonia.Interactivity;
 using Avalonia.Media;
 
 namespace Ursa.Controls;
@@ -72,9 +71,9 @@ public class DualBadge : HeaderedContentControl
         ContentProperty.Changed.AddClassHandler<DualBadge>((o, args) => o.OnContentChanged());
     }
 
-    protected override void OnLoaded(RoutedEventArgs e)
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
-        base.OnLoaded(e);
+        base.OnApplyTemplate(e);
         OnIconChanged();
         OnHeaderChanged();
         OnContentChanged();
