@@ -11,7 +11,7 @@
         <Setter Property="u:DualBadge.Foreground" Value="{DynamicResource DualBadgeDefaultForeground}" />
         <Setter Property="u:DualBadge.Background" Value="{DynamicResource DualBadgeDefaultBackground}" />
         <Setter Property="u:DualBadge.ClipToBounds" Value="False" />
-        <Setter Property="u:DualBadge.HorizontalAlignment" Value="Center" />
+        <Setter Property="u:DualBadge.HorizontalAlignment" Value="Left" />
         <Setter Property="u:DualBadge.VerticalAlignment" Value="Center" />
         <Setter Property="u:DualBadge.UseLayoutRounding" Value="False" />
         <Setter Property="u:DualBadge.Padding" Value="{DynamicResource DualBadgeDefaultPadding}" />
@@ -22,7 +22,7 @@
                     VerticalAlignment="{TemplateBinding VerticalAlignment}"
                     ClipToBounds="True"
                     CornerRadius="{TemplateBinding CornerRadius}">
-                    <Grid ColumnDefinitions="*,*">
+                    <Grid ColumnDefinitions="Auto,Auto">
                         <DockPanel
                             Grid.Column="0"
                             Background="{TemplateBinding HeaderBackground}">
@@ -43,7 +43,7 @@
                                 Foreground="{TemplateBinding HeaderForeground}"
                                 Padding="{TemplateBinding Padding}"
                                 Content="{TemplateBinding Header}"
-                                ContentTemplate="{TemplateBinding HeaderTemplate}"/>
+                                ContentTemplate="{TemplateBinding HeaderTemplate}" />
                         </DockPanel>
                         <ContentPresenter
                             Name="{x:Static u:DualBadge.PART_ContentPresenter}"
@@ -60,7 +60,7 @@
         </Setter>
 
         <Style Selector="^:header-empty">
-            <Setter Property="HeaderBackground" Value="LightGreen" />
+            <Setter Property="HeaderBackground" Value="{Binding Background, RelativeSource={RelativeSource Self}}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

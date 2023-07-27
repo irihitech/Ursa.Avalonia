@@ -4,6 +4,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Avalonia.Interactivity;
 using Avalonia.Media;
 
 namespace Ursa.Controls;
@@ -64,56 +65,33 @@ public class DualBadge : HeaderedContentControl
         set => SetValue(HeaderBackgroundProperty, value);
     }
 
-    public static readonly StyledProperty<bool> IsIconEmptyProperty = AvaloniaProperty.Register<DualBadge, bool>(
-        nameof(IsIconEmpty));
-
-    public bool IsIconEmpty
-    {
-        get => GetValue(IsIconEmptyProperty);
-        set => SetValue(IsIconEmptyProperty, value);
-    }
-
-    public static readonly StyledProperty<bool> IsHeaderEmptyProperty = AvaloniaProperty.Register<DualBadge, bool>(
-        nameof(IsHeaderEmpty));
-
-    public bool IsHeaderEmpty
-    {
-        get => GetValue(IsHeaderEmptyProperty);
-        set => SetValue(IsHeaderEmptyProperty, value);
-    }
-
-    public static readonly StyledProperty<bool> IsContentEmptyProperty = AvaloniaProperty.Register<DualBadge, bool>(
-        nameof(IsContentEmpty));
-
-    public bool IsContentEmpty
-    {
-        get => GetValue(IsContentEmptyProperty);
-        set => SetValue(IsContentEmptyProperty, value);
-    }
-
-
     static DualBadge()
     {
-        IsIconEmptyProperty.Changed.AddClassHandler<DualBadge>((o, e) => o.OnIsIconEmptyChanged(e));
-        IsHeaderEmptyProperty.Changed.AddClassHandler<DualBadge>((o, e) => o.OnIsHeaderEmptyChanged(e));
-        IsContentEmptyProperty.Changed.AddClassHandler<DualBadge>((o, e) => o.OnIsContentEmptyChanged(e));
+        IconProperty.Changed.AddClassHandler<DualBadge>((o, args) => o.OnIconChanged());
+        HeaderProperty.Changed.AddClassHandler<DualBadge>((o, args) => o.OnHeaderChanged());
+        ContentProperty.Changed.AddClassHandler<DualBadge>((o, args) => o.OnContentChanged());
     }
 
-    private void OnIsIconEmptyChanged(AvaloniaPropertyChangedEventArgs args)
+    protected override void OnLoaded(RoutedEventArgs e)
     {
-        bool newValue = args.GetNewValue<bool>();
-        PseudoClasses.Set(PC_IconEmpty, newValue);
+        base.OnLoaded(e);
+        OnIconChanged();
+        OnHeaderChanged();
+        OnContentChanged();
     }
 
-    private void OnIsHeaderEmptyChanged(AvaloniaPropertyChangedEventArgs args)
+    private void OnIconChanged()
     {
-        bool newValue = args.GetNewValue<bool>();
-        PseudoClasses.Set(PC_HeaderEmpty, newValue);
+        PseudoClasses.Set(PC_IconEmpty, Icon is null);
     }
 
-    private void OnIsContentEmptyChanged(AvaloniaPropertyChangedEventArgs args)
+    private void OnHeaderChanged()
     {
-        bool newValue = args.GetNewValue<bool>();
-        PseudoClasses.Set(PC_ContentEmpty, newValue);
+        PseudoClasses.Set(PC_HeaderEmpty, Header is null);
+    }
+
+    private void OnContentChanged()
+    {
+        PseudoClasses.Set(PC_ContentEmpty, Content is null);
     }
 }
