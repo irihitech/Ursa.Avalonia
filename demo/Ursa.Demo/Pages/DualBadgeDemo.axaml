@@ -8,101 +8,140 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <StackPanel HorizontalAlignment="Left" Spacing="20">
-        <u:DualBadge>
-            2.4k
-        </u:DualBadge>
 
-        <u:DualBadge>
-            <u:DualBadge.Icon>
-                <PathIcon
-                    Width="14"
-                    Height="14"
-                    Data="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7ZM9 10.75C9 10.3358 9.33579 10 9.75 10H12.5C13.0523 10 13.5 10.4477 13.5 11V16.5H14.25C14.6642 16.5 15 16.8358 15 17.25C15 17.6642 14.6642 18 14.25 18H9.75C9.33579 18 9 17.6642 9 17.25C9 16.8358 9.33579 16.5 9.75 16.5H10.5V11.5H9.75C9.33579 11.5 9 11.1642 9 10.75Z" />
-            </u:DualBadge.Icon>
-            2.4k
-        </u:DualBadge>
+    <UserControl.Styles>
+        <Style Selector="StackPanel > u|DualBadge">
+            <Setter Property="Margin" Value="0 0 10 0" />
+        </Style>
+    </UserControl.Styles>
 
-        <u:DualBadge
-            Header="downloads">
-            2.4k
-        </u:DualBadge>
+    <ScrollViewer>
+        <StackPanel HorizontalAlignment="Left" Spacing="20">
+            <TextBlock Text="Flat:" />
+            <StackPanel Orientation="Horizontal">
+                <u:DualBadge>
+                    2.4k
+                </u:DualBadge>
+                <u:DualBadge>
+                    <u:DualBadge.Icon>
+                        <PathIcon
+                            Width="14"
+                            Height="14"
+                            Data="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7ZM9 10.75C9 10.3358 9.33579 10 9.75 10H12.5C13.0523 10 13.5 10.4477 13.5 11V16.5H14.25C14.6642 16.5 15 16.8358 15 17.25C15 17.6642 14.6642 18 14.25 18H9.75C9.33579 18 9 17.6642 9 17.25C9 16.8358 9.33579 16.5 9.75 16.5H10.5V11.5H9.75C9.33579 11.5 9 11.1642 9 10.75Z" />
+                    </u:DualBadge.Icon>
+                    2.4k
+                </u:DualBadge>
+                <u:DualBadge
+                    Header="downloads">
+                    2.4k
+                </u:DualBadge>
+                <u:DualBadge
+                    Header="downloads">
+                    <u:DualBadge.Icon>
+                        <PathIcon
+                            Width="14"
+                            Height="14"
+                            Data="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7ZM9 10.75C9 10.3358 9.33579 10 9.75 10H12.5C13.0523 10 13.5 10.4477 13.5 11V16.5H14.25C14.6642 16.5 15 16.8358 15 17.25C15 17.6642 14.6642 18 14.25 18H9.75C9.33579 18 9 17.6642 9 17.25C9 16.8358 9.33579 16.5 9.75 16.5H10.5V11.5H9.75C9.33579 11.5 9 11.1642 9 10.75Z" />
+                    </u:DualBadge.Icon>
+                    2.4k
+                </u:DualBadge>
+            </StackPanel>
 
-        <u:DualBadge
-            Header="downloads">
-            <u:DualBadge.Icon>
-                <PathIcon
-                    Width="14"
-                    Height="14"
-                    Data="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7ZM9 10.75C9 10.3358 9.33579 10 9.75 10H12.5C13.0523 10 13.5 10.4477 13.5 11V16.5H14.25C14.6642 16.5 15 16.8358 15 17.25C15 17.6642 14.6642 18 14.25 18H9.75C9.33579 18 9 17.6642 9 17.25C9 16.8358 9.33579 16.5 9.75 16.5H10.5V11.5H9.75C9.33579 11.5 9 11.1642 9 10.75Z" />
-            </u:DualBadge.Icon>
-            2.4k
-        </u:DualBadge>
+            <TextBlock Text="FlatSquare:" />
+            <StackPanel Orientation="Horizontal">
+                <u:DualBadge Classes="FlatSquare">
+                    2.4k
+                </u:DualBadge>
+                <u:DualBadge Classes="FlatSquare">
+                    <u:DualBadge.Icon>
+                        <PathIcon
+                            Width="14"
+                            Height="14"
+                            Data="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7ZM9 10.75C9 10.3358 9.33579 10 9.75 10H12.5C13.0523 10 13.5 10.4477 13.5 11V16.5H14.25C14.6642 16.5 15 16.8358 15 17.25C15 17.6642 14.6642 18 14.25 18H9.75C9.33579 18 9 17.6642 9 17.25C9 16.8358 9.33579 16.5 9.75 16.5H10.5V11.5H9.75C9.33579 11.5 9 11.1642 9 10.75Z" />
+                    </u:DualBadge.Icon>
+                    2.4k
+                </u:DualBadge>
+                <u:DualBadge
+                    Classes="FlatSquare"
+                    Header="downloads">
+                    2.4k
+                </u:DualBadge>
+                <u:DualBadge
+                    Classes="FlatSquare"
+                    Header="downloads">
+                    <u:DualBadge.Icon>
+                        <PathIcon
+                            Width="14"
+                            Height="14"
+                            Data="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7ZM9 10.75C9 10.3358 9.33579 10 9.75 10H12.5C13.0523 10 13.5 10.4477 13.5 11V16.5H14.25C14.6642 16.5 15 16.8358 15 17.25C15 17.6642 14.6642 18 14.25 18H9.75C9.33579 18 9 17.6642 9 17.25C9 16.8358 9.33579 16.5 9.75 16.5H10.5V11.5H9.75C9.33579 11.5 9 11.1642 9 10.75Z" />
+                    </u:DualBadge.Icon>
+                    2.4k
+                </u:DualBadge>
+            </StackPanel>
 
-        <!--
-        <u:DualBadge Classes="FlatSquare">
-            2.4k
-        </u:DualBadge>
+            <TextBlock Text="Plastic:" />
+            <StackPanel Orientation="Horizontal">
+                <u:DualBadge Classes="Plastic">
+                    2.4k
+                </u:DualBadge>
+                <u:DualBadge Classes="Plastic">
+                    <u:DualBadge.Icon>
+                        <PathIcon
+                            Width="12"
+                            Height="12"
+                            Data="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7ZM9 10.75C9 10.3358 9.33579 10 9.75 10H12.5C13.0523 10 13.5 10.4477 13.5 11V16.5H14.25C14.6642 16.5 15 16.8358 15 17.25C15 17.6642 14.6642 18 14.25 18H9.75C9.33579 18 9 17.6642 9 17.25C9 16.8358 9.33579 16.5 9.75 16.5H10.5V11.5H9.75C9.33579 11.5 9 11.1642 9 10.75Z" />
+                    </u:DualBadge.Icon>
+                    2.4k
+                </u:DualBadge>
+                <u:DualBadge
+                    Classes="Plastic"
+                    Header="downloads">
+                    2.4k
+                </u:DualBadge>
+                <u:DualBadge
+                    Classes="Plastic"
+                    Header="downloads">
+                    <u:DualBadge.Icon>
+                        <PathIcon
+                            Width="12"
+                            Height="12"
+                            Data="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7ZM9 10.75C9 10.3358 9.33579 10 9.75 10H12.5C13.0523 10 13.5 10.4477 13.5 11V16.5H14.25C14.6642 16.5 15 16.8358 15 17.25C15 17.6642 14.6642 18 14.25 18H9.75C9.33579 18 9 17.6642 9 17.25C9 16.8358 9.33579 16.5 9.75 16.5H10.5V11.5H9.75C9.33579 11.5 9 11.1642 9 10.75Z" />
+                    </u:DualBadge.Icon>
+                    2.4k
+                </u:DualBadge>
+            </StackPanel>
 
-        <u:DualBadge Classes="FlatSquare">
-            <u:DualBadge.Icon>
-                <PathIcon
-                    Width="14"
-                    Height="14"
-                    Data="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7ZM9 10.75C9 10.3358 9.33579 10 9.75 10H12.5C13.0523 10 13.5 10.4477 13.5 11V16.5H14.25C14.6642 16.5 15 16.8358 15 17.25C15 17.6642 14.6642 18 14.25 18H9.75C9.33579 18 9 17.6642 9 17.25C9 16.8358 9.33579 16.5 9.75 16.5H10.5V11.5H9.75C9.33579 11.5 9 11.1642 9 10.75Z" />
-            </u:DualBadge.Icon>
-            2.4k
-        </u:DualBadge>
-
-        <u:DualBadge 
-            Classes="FlatSquare"
-            Header="downloads">
-            2.4k
-        </u:DualBadge>
-
-        <u:DualBadge
-            Classes="FlatSquare"
-            Header="downloads">
-            <u:DualBadge.Icon>
-                <PathIcon
-                    Width="14"
-                    Height="14"
-                    Data="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7ZM9 10.75C9 10.3358 9.33579 10 9.75 10H12.5C13.0523 10 13.5 10.4477 13.5 11V16.5H14.25C14.6642 16.5 15 16.8358 15 17.25C15 17.6642 14.6642 18 14.25 18H9.75C9.33579 18 9 17.6642 9 17.25C9 16.8358 9.33579 16.5 9.75 16.5H10.5V11.5H9.75C9.33579 11.5 9 11.1642 9 10.75Z" />
-            </u:DualBadge.Icon>
-            2.4k
-        </u:DualBadge>
-        -->
-
-        <u:DualBadge Theme="{StaticResource ForTheBadge}">
-            2.4K
-        </u:DualBadge>
-
-        <u:DualBadge Theme="{StaticResource ForTheBadge}">
-            <u:DualBadge.Icon>
-                <PathIcon
-                    Width="14"
-                    Height="14"
-                    Data="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7ZM9 10.75C9 10.3358 9.33579 10 9.75 10H12.5C13.0523 10 13.5 10.4477 13.5 11V16.5H14.25C14.6642 16.5 15 16.8358 15 17.25C15 17.6642 14.6642 18 14.25 18H9.75C9.33579 18 9 17.6642 9 17.25C9 16.8358 9.33579 16.5 9.75 16.5H10.5V11.5H9.75C9.33579 11.5 9 11.1642 9 10.75Z" />
-            </u:DualBadge.Icon>
-            2.4K
-        </u:DualBadge>
-
-        <u:DualBadge 
-            Theme="{StaticResource ForTheBadge}"
-            Header="DOWNLOADS">
-            2.4K
-        </u:DualBadge>
-
-        <u:DualBadge
-            Theme="{StaticResource ForTheBadge}"
-            Header="DOWNLOADS">
-            <u:DualBadge.Icon>
-                <PathIcon
-                    Width="14"
-                    Height="14"
-                    Data="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7ZM9 10.75C9 10.3358 9.33579 10 9.75 10H12.5C13.0523 10 13.5 10.4477 13.5 11V16.5H14.25C14.6642 16.5 15 16.8358 15 17.25C15 17.6642 14.6642 18 14.25 18H9.75C9.33579 18 9 17.6642 9 17.25C9 16.8358 9.33579 16.5 9.75 16.5H10.5V11.5H9.75C9.33579 11.5 9 11.1642 9 10.75Z" />
-            </u:DualBadge.Icon>
-            2.4K
-        </u:DualBadge>
-    </StackPanel>
+            <TextBlock Text="ForTheBadge:" />
+            <StackPanel Orientation="Horizontal">
+                <u:DualBadge Classes="ForTheBadge">
+                    2.4K
+                </u:DualBadge>
+                <u:DualBadge Classes="ForTheBadge">
+                    <u:DualBadge.Icon>
+                        <PathIcon
+                            Width="14"
+                            Height="14"
+                            Data="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7ZM9 10.75C9 10.3358 9.33579 10 9.75 10H12.5C13.0523 10 13.5 10.4477 13.5 11V16.5H14.25C14.6642 16.5 15 16.8358 15 17.25C15 17.6642 14.6642 18 14.25 18H9.75C9.33579 18 9 17.6642 9 17.25C9 16.8358 9.33579 16.5 9.75 16.5H10.5V11.5H9.75C9.33579 11.5 9 11.1642 9 10.75Z" />
+                    </u:DualBadge.Icon>
+                    2.4K
+                </u:DualBadge>
+                <u:DualBadge
+                    Classes="ForTheBadge"
+                    Header="DOWNLOADS">
+                    2.4K
+                </u:DualBadge>
+                <u:DualBadge
+                    Classes="ForTheBadge"
+                    Header="DOWNLOADS">
+                    <u:DualBadge.Icon>
+                        <PathIcon
+                            Width="14"
+                            Height="14"
+                            Data="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7ZM9 10.75C9 10.3358 9.33579 10 9.75 10H12.5C13.0523 10 13.5 10.4477 13.5 11V16.5H14.25C14.6642 16.5 15 16.8358 15 17.25C15 17.6642 14.6642 18 14.25 18H9.75C9.33579 18 9 17.6642 9 17.25C9 16.8358 9.33579 16.5 9.75 16.5H10.5V11.5H9.75C9.33579 11.5 9 11.1642 9 10.75Z" />
+                    </u:DualBadge.Icon>
+                    2.4K
+                </u:DualBadge>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

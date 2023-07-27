@@ -1,14 +1,21 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <SolidColorBrush x:Key="DualBadgeDefaultIconForeground">White</SolidColorBrush>
     <SolidColorBrush x:Key="DualBadgeDefaultHeaderForeground">White</SolidColorBrush>
+    <SolidColorBrush x:Key="DualBadgeDefaultForeground">White</SolidColorBrush>
     <LinearGradientBrush x:Key="DualBadgeDefaultHeaderBackground" StartPoint="0%,0%" EndPoint="0%,100%">
         <GradientStop Color="#FF555B61" Offset="0" />
         <GradientStop Color="#FF41464C" Offset="1" />
     </LinearGradientBrush>
-    <SolidColorBrush x:Key="DualBadgeDefaultForeground">White</SolidColorBrush>
     <LinearGradientBrush x:Key="DualBadgeDefaultBackground" StartPoint="0%,0%" EndPoint="0%,100%">
         <GradientStop Color="#FF5AC262" Offset="0" />
         <GradientStop Color="#FF3BB346" Offset="1" />
     </LinearGradientBrush>
-
+    <LinearGradientBrush x:Key="DualBadgePlasticHeaderBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="#FF555B61" Offset="0" />
+        <GradientStop Color="#FF2E3238" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgePlasticBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="#FF5AC262" Offset="0" />
+        <GradientStop Color="#FF30953B" Offset="1" />
+    </LinearGradientBrush>
 </ResourceDictionary>
