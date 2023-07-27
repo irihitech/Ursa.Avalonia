@@ -6,6 +6,7 @@
         <ResourceInclude Source="ButtonGroup.axaml" />
         <ResourceInclude Source="Divider.axaml" />
         <ResourceInclude Source="IPv4Box.axaml" />
+        <ResourceInclude Source="KeyGestureInput.axaml" />
         <ResourceInclude Source="Loading.axaml" />
         <ResourceInclude Source="Navigation.axaml" />
         <ResourceInclude Source="Pagination.axaml" />
