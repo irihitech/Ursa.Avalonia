@@ -11,10 +11,10 @@
         <Setter Property="u:DualBadge.HeaderBackground" Value="{DynamicResource DualBadgeDefaultHeaderBackground}" />
         <Setter Property="u:DualBadge.Foreground" Value="{DynamicResource DualBadgeDefaultForeground}" />
         <Setter Property="u:DualBadge.Background" Value="{DynamicResource DualBadgeFlatGreenBackground}" />
-        <Setter Property="u:DualBadge.ClipToBounds" Value="False" />
-        <Setter Property="u:DualBadge.HorizontalAlignment" Value="Left" />
-        <Setter Property="u:DualBadge.VerticalAlignment" Value="Center" />
-        <Setter Property="u:DualBadge.UseLayoutRounding" Value="False" />
+        <Setter Property="u:DualBadge.ClipToBounds" Value="{DynamicResource DualBadgeDefaultClipToBounds}" />
+        <Setter Property="u:DualBadge.HorizontalAlignment" Value="{DynamicResource DualBadgeDefaultHorizontalAlignment}" />
+        <Setter Property="u:DualBadge.VerticalAlignment" Value="{DynamicResource DualBadgeDefaultVerticalAlignment}" />
+        <Setter Property="u:DualBadge.UseLayoutRounding" Value="{DynamicResource DualBadgeDefaultUseLayoutRounding}" />
         <Setter Property="u:DualBadge.Padding" Value="{DynamicResource DualBadgeDefaultPadding}" />
         <Setter Property="u:DualBadge.Template">
             <ControlTemplate TargetType="{x:Type u:DualBadge}">
@@ -29,8 +29,8 @@
                             Background="{TemplateBinding HeaderBackground}">
                             <ContentPresenter
                                 Name="{x:Static u:DualBadge.PART_Icon}"
-                                Width="14"
-                                Height="14"
+                                Width="{DynamicResource DualBadgeIconWidth}"
+                                Height="{DynamicResource DualBadgeIconHeight}"
                                 IsVisible="{TemplateBinding Icon,Converter={x:Static ObjectConverters.IsNotNull}}"
                                 Foreground="{TemplateBinding IconForeground}"
                                 Margin="{TemplateBinding Padding, Converter={x:Static converters:ThicknessExcludeConverter.Right}}"
@@ -41,7 +41,7 @@
                                 TextElement.FontSize="{TemplateBinding FontSize}"
                                 IsVisible="{TemplateBinding Header,Converter={x:Static ObjectConverters.IsNotNull}}"
                                 Foreground="{TemplateBinding HeaderForeground}"
-                                Margin="{TemplateBinding Padding}"
+                                Padding="{TemplateBinding Padding}"
                                 Content="{TemplateBinding Header}"
                                 ContentTemplate="{TemplateBinding HeaderTemplate}" />
                         </DockPanel>
@@ -109,11 +109,11 @@
         </Style>
 
         <Style Selector="^.FlatSquare">
-            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="CornerRadius" Value="{DynamicResource DualBadgeFlatSquareCornerRadius}" />
         </Style>
 
         <Style Selector="^.Plastic">
-            <Setter Property="Padding" Value="4 0" />
+            <Setter Property="Padding" Value="{DynamicResource DualBadgePlasticPadding}" />
             <Setter Property="HeaderBackground" Value="{DynamicResource DualBadgePlasticHeaderBackground}" />
             <Style Selector="^.Red">
                 <Setter Property="Background" Value="{DynamicResource DualBadgePlasticRedBackground}" />
@@ -166,8 +166,8 @@
         </Style>
 
         <Style Selector="^.ForTheBadge">
-            <Setter Property="CornerRadius" Value="0" />
-            <Setter Property="Padding" Value="10 6" />
+            <Setter Property="CornerRadius" Value="{DynamicResource DualBadgeForTheBadgeCornerRadius}" />
+            <Setter Property="Padding" Value="{DynamicResource DualBadgeForTheBadgePadding}" />
         </Style>
 
         <Style Selector="^:header-empty">
