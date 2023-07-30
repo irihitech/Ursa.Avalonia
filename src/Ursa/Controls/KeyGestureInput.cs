@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Converters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
+using Avalonia.Layout;
 
 namespace Ursa.Controls;
 
@@ -22,17 +23,17 @@ public class KeyGestureInput: TemplatedControl
         set => SetValue(GestureProperty, value);
     }
 
-    public static readonly StyledProperty<IList<Key>> AcceptableKeysProperty = AvaloniaProperty.Register<KeyGestureInput, IList<Key>>(
+    public static readonly StyledProperty<IList<Key>?> AcceptableKeysProperty = AvaloniaProperty.Register<KeyGestureInput, IList<Key>?>(
         nameof(AcceptableKeys));
 
-    public IList<Key> AcceptableKeys
+    public IList<Key>? AcceptableKeys
     {
         get => GetValue(AcceptableKeysProperty);
         set => SetValue(AcceptableKeysProperty, value);
     }
 
     public static readonly StyledProperty<bool> ConsiderKeyModifiersProperty = AvaloniaProperty.Register<KeyGestureInput, bool>(
-        nameof(ConsiderKeyModifiers));
+        nameof(ConsiderKeyModifiers), true);
 
     public bool ConsiderKeyModifiers
     {
@@ -40,10 +41,31 @@ public class KeyGestureInput: TemplatedControl
         set => SetValue(ConsiderKeyModifiersProperty, value);
     }
 
+    public static readonly StyledProperty<HorizontalAlignment> HorizontalContentAlignmentProperty =
+        ContentControl.HorizontalContentAlignmentProperty.AddOwner<KeyGestureInput>(
+            new StyledPropertyMetadata<HorizontalAlignment>(HorizontalAlignment.Center));
+
+    public HorizontalAlignment HorizontalContentAlignment
+    {
+        get => GetValue(HorizontalContentAlignmentProperty);
+        set => SetValue(HorizontalContentAlignmentProperty, value);
+    }
+
+    public static readonly StyledProperty<VerticalAlignment> VerticalContentAlignmentProperty =
+        ContentControl.VerticalContentAlignmentProperty.AddOwner<KeyGestureInput>(
+            new StyledPropertyMetadata<VerticalAlignment>(VerticalAlignment.Center));
+
+    public VerticalAlignment VerticalContentAlignment
+    {
+        get => GetValue(VerticalContentAlignmentProperty);
+        set => SetValue(VerticalContentAlignmentProperty, value);
+    }
+    
+
     protected override void OnKeyDown(KeyEventArgs e)
     {
         // base.OnKeyDown(e);
-        if (!AcceptableKeys.Contains(e.Key))
+        if (AcceptableKeys is not null && !AcceptableKeys.Contains(e.Key))
         {
             return;
         }

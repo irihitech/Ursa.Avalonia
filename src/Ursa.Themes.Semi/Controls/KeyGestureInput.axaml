@@ -7,20 +7,40 @@
     <converters:PlatformKeyGestureConverter x:Key="KeyGestureConverter" />
 
     <ControlTheme x:Key="{x:Type u:KeyGestureInput}" TargetType="u:KeyGestureInput">
+        <Setter Property="Width" Value="{DynamicResource KeyGestureInputWidth}" />
+        <Setter Property="Height" Value="{DynamicResource KeyGestureInputHeight}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource KeyGestureInputCornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:KeyGestureInput">
                 <Border
                     Name="Background"
-                    Width="100"
-                    MinHeight="32"
-                    Background="LightBlue"
-                    BorderThickness="1">
-                    <TextBlock Text="{TemplateBinding Gesture, Converter={StaticResource KeyGestureConverter}}" />
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="{DynamicResource KeyGestureInputBackground}"
+                    BorderBrush="Transparent"
+                    BorderThickness="1"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <SelectableTextBlock
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Text="{TemplateBinding Gesture,
+                                               Converter={StaticResource KeyGestureConverter}}" />
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:pointerover /template/ Border#Background">
+            <Setter Property="Background" Value="{DynamicResource KeyGestureInputPointeroverBackground}" />
+        </Style>
+        <Style Selector="^:pressed /template/ Border#Background">
+            <Setter Property="Background" Value="{DynamicResource KeyGestureInputPressedBackground}" />
+        </Style>
+        <Style Selector="^:focus /template/ Border#Background">
+            <Setter Property="Background" Value="{DynamicResource KeyGestureInputPressedBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource KeyGestureInputFocusBorderBrush}" />
+        </Style>
         <Style Selector="^:focus-within /template/ Border#Background">
-            <Setter Property="BorderBrush" Value="Blue" />
+            <Setter Property="Background" Value="{DynamicResource KeyGestureInputPressedBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource KeyGestureInputFocusBorderBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
