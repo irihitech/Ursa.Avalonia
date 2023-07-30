@@ -5,6 +5,7 @@
         <MergeResourceInclude Source="Banner.axaml" />
         <MergeResourceInclude Source="ButtonGroup.axaml" />
         <MergeResourceInclude Source="Divider.axaml" />
+        <MergeResourceInclude Source="DualBadge.axaml" />
         <MergeResourceInclude Source="IPv4Box.axaml" />
         <MergeResourceInclude Source="NavigationMenu.axaml" />
         <MergeResourceInclude Source="Pagination.axaml" />

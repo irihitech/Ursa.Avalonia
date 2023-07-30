@@ -1,0 +1,177 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:converters="clr-namespace:Ursa.Converters;assembly=Ursa">
+    <ControlTheme x:Key="{x:Type u:DualBadge}" TargetType="u:DualBadge">
+        <Setter Property="u:DualBadge.CornerRadius" Value="{DynamicResource DualBadgeDefaultCornerRadius}" />
+        <Setter Property="u:DualBadge.FontSize" Value="{DynamicResource DualBadgeDefaultFontSize}" />
+        <Setter Property="u:DualBadge.IconForeground" Value="{DynamicResource DualBadgeDefaultIconForeground}" />
+        <Setter Property="u:DualBadge.HeaderForeground" Value="{DynamicResource DualBadgeDefaultHeaderForeground}" />
+        <Setter Property="u:DualBadge.HeaderBackground" Value="{DynamicResource DualBadgeDefaultHeaderBackground}" />
+        <Setter Property="u:DualBadge.Foreground" Value="{DynamicResource DualBadgeDefaultForeground}" />
+        <Setter Property="u:DualBadge.Background" Value="{DynamicResource DualBadgeFlatGreenBackground}" />
+        <Setter Property="u:DualBadge.ClipToBounds" Value="{DynamicResource DualBadgeDefaultClipToBounds}" />
+        <Setter Property="u:DualBadge.HorizontalAlignment" Value="{DynamicResource DualBadgeDefaultHorizontalAlignment}" />
+        <Setter Property="u:DualBadge.VerticalAlignment" Value="{DynamicResource DualBadgeDefaultVerticalAlignment}" />
+        <Setter Property="u:DualBadge.UseLayoutRounding" Value="{DynamicResource DualBadgeDefaultUseLayoutRounding}" />
+        <Setter Property="u:DualBadge.Padding" Value="{DynamicResource DualBadgeDefaultPadding}" />
+        <Setter Property="u:DualBadge.Template">
+            <ControlTemplate TargetType="{x:Type u:DualBadge}">
+                <Border
+                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                    ClipToBounds="True"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <Grid ColumnDefinitions="Auto,Auto">
+                        <DockPanel
+                            Grid.Column="0"
+                            Background="{TemplateBinding HeaderBackground}">
+                            <ContentPresenter
+                                Name="{x:Static u:DualBadge.PART_Icon}"
+                                Width="{DynamicResource DualBadgeIconWidth}"
+                                Height="{DynamicResource DualBadgeIconHeight}"
+                                IsVisible="{TemplateBinding Icon,Converter={x:Static ObjectConverters.IsNotNull}}"
+                                Foreground="{TemplateBinding IconForeground}"
+                                Margin="{TemplateBinding Padding, Converter={x:Static converters:ThicknessExcludeConverter.Right}}"
+                                Content="{TemplateBinding Icon}"
+                                ContentTemplate="{TemplateBinding IconTemplate}" />
+                            <ContentPresenter
+                                Name="{x:Static u:DualBadge.PART_HeaderPresenter}"
+                                TextElement.FontSize="{TemplateBinding FontSize}"
+                                IsVisible="{TemplateBinding Header,Converter={x:Static ObjectConverters.IsNotNull}}"
+                                Foreground="{TemplateBinding HeaderForeground}"
+                                Padding="{TemplateBinding Padding}"
+                                Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                        </DockPanel>
+                        <ContentPresenter
+                            Name="{x:Static u:DualBadge.PART_ContentPresenter}"
+                            Grid.Column="1"
+                            TextElement.FontSize="{TemplateBinding FontSize}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^.Red">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatRedBackground}" />
+        </Style>
+        <Style Selector="^.Pink">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatPinkBackground}" />
+        </Style>
+        <Style Selector="^.Purple">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatPurpleBackground}" />
+        </Style>
+        <Style Selector="^.Violet">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatVioletBackground}" />
+        </Style>
+        <Style Selector="^.Indigo">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatIndigoBackground}" />
+        </Style>
+        <Style Selector="^.Blue">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatBlueBackground}" />
+        </Style>
+        <Style Selector="^.LightBlue">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatLightBlueBackground}" />
+        </Style>
+        <Style Selector="^.Cyan">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatCyanBackground}" />
+        </Style>
+        <Style Selector="^.Teal">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatTealBackground}" />
+        </Style>
+        <Style Selector="^.Green">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatGreenBackground}" />
+        </Style>
+        <Style Selector="^.LightGreen">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatLightGreenBackground}" />
+        </Style>
+        <Style Selector="^.Lime">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatLimeBackground}" />
+        </Style>
+        <Style Selector="^.Yellow">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatYellowBackground}" />
+        </Style>
+        <Style Selector="^.Amber">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatAmberBackground}" />
+        </Style>
+        <Style Selector="^.Orange">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatOrangeBackground}" />
+        </Style>
+        <Style Selector="^.Grey">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatGreyBackground}" />
+        </Style>
+
+        <Style Selector="^.FlatSquare">
+            <Setter Property="CornerRadius" Value="{DynamicResource DualBadgeFlatSquareCornerRadius}" />
+        </Style>
+
+        <Style Selector="^.Plastic">
+            <Setter Property="Padding" Value="{DynamicResource DualBadgePlasticPadding}" />
+            <Setter Property="HeaderBackground" Value="{DynamicResource DualBadgePlasticHeaderBackground}" />
+            <Style Selector="^.Red">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticRedBackground}" />
+            </Style>
+            <Style Selector="^.Pink">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticPinkBackground}" />
+            </Style>
+            <Style Selector="^.Purple">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticPurpleBackground}" />
+            </Style>
+            <Style Selector="^.Violet">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticVioletBackground}" />
+            </Style>
+            <Style Selector="^.Indigo">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticIndigoBackground}" />
+            </Style>
+            <Style Selector="^.Blue">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticBlueBackground}" />
+            </Style>
+            <Style Selector="^.LightBlue">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticLightBlueBackground}" />
+            </Style>
+            <Style Selector="^.Cyan">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticCyanBackground}" />
+            </Style>
+            <Style Selector="^.Teal">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticTealBackground}" />
+            </Style>
+            <Style Selector="^.Green">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticGreenBackground}" />
+            </Style>
+            <Style Selector="^.LightGreen">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticLightGreenBackground}" />
+            </Style>
+            <Style Selector="^.Lime">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticLimeBackground}" />
+            </Style>
+            <Style Selector="^.Yellow">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticYellowBackground}" />
+            </Style>
+            <Style Selector="^.Amber">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticAmberBackground}" />
+            </Style>
+            <Style Selector="^.Orange">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticOrangeBackground}" />
+            </Style>
+            <Style Selector="^.Grey">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticGreyBackground}" />
+            </Style>
+        </Style>
+
+        <Style Selector="^.ForTheBadge">
+            <Setter Property="CornerRadius" Value="{DynamicResource DualBadgeForTheBadgeCornerRadius}" />
+            <Setter Property="Padding" Value="{DynamicResource DualBadgeForTheBadgePadding}" />
+        </Style>
+
+        <Style Selector="^:header-empty">
+            <Setter Property="HeaderBackground" Value="{Binding Background, RelativeSource={RelativeSource Self}}" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>
