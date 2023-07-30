@@ -1,0 +1,26 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:ImageViewer}" TargetType="u:ImageViewer">
+
+        <Setter Property="Template">
+            <ControlTemplate TargetType="{x:Type u:ImageViewer}">
+                <VisualLayerManager Name="{x:Static u:ImageViewer.PART_Layer}">
+                    <Border Background="Transparent" ClipToBounds="True">
+                        <Image Name="{x:Static u:ImageViewer.PART_Image}" Source="{TemplateBinding Source}">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="{Binding Scale, RelativeSource={RelativeSource TemplatedParent}}" ScaleY="{Binding Scale, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <TranslateTransform X="{Binding TranslateX, RelativeSource={RelativeSource TemplatedParent}}" Y="{Binding TranslateY, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <RotateTransform Angle="0" />
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                    </Border>
+                </VisualLayerManager>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>
