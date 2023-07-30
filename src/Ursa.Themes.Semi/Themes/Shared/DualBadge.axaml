@@ -4,7 +4,7 @@
     <Thickness x:Key="DualBadgeDefaultThickness">1</Thickness>
     <Thickness x:Key="DualBadgeDefaultPadding">4 2</Thickness>
     <HorizontalAlignment x:Key="DualBadgeDefaultHorizontalAlignment">Left</HorizontalAlignment>
-    <HorizontalAlignment x:Key="DualBadgeDefaultVerticalAlignment">Center</HorizontalAlignment>
+    <VerticalAlignment x:Key="DualBadgeDefaultVerticalAlignment">Center</VerticalAlignment>
     <x:Boolean x:Key="DualBadgeDefaultClipToBounds">False</x:Boolean>
     <x:Boolean x:Key="DualBadgeDefaultUseLayoutRounding">False</x:Boolean>
     <x:Double x:Key="DualBadgeIconWidth">14</x:Double>
