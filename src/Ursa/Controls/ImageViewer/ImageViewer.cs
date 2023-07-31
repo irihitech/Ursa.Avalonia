@@ -21,6 +21,7 @@ public class ImageViewer: TemplatedControl
     private VisualLayerManager? _layer;
     private Point? _lastClickPoint;
     private Point? _lastlocation;
+    private bool _moving;
 
     public static readonly StyledProperty<Control?> OverlayerProperty = AvaloniaProperty.Register<ImageViewer, Control?>(
         nameof(Overlayer));
@@ -83,7 +84,7 @@ public class ImageViewer: TemplatedControl
 
     private void OnTranslateYChanged(AvaloniaPropertyChangedEventArgs args)
     {
-        if (PseudoClasses.Contains(PC_Moving)) return;
+        if (_moving) return;
         var newValue = args.GetNewValue<double>();
         if (_lastlocation is not null)
         {
@@ -97,7 +98,7 @@ public class ImageViewer: TemplatedControl
 
     private void OnTranslateXChanged(AvaloniaPropertyChangedEventArgs args)
     {
-        if (PseudoClasses.Contains(PC_Moving)) return;
+        if (_moving) return;
         var newValue = args.GetNewValue<double>();
         if (_lastlocation is not null)
         {
@@ -189,6 +190,7 @@ public class ImageViewer: TemplatedControl
         base.OnPointerPressed(e);
         e.Pointer.Capture(this);
         _lastClickPoint = e.GetPosition(this);
+        _moving = true;
     }
 
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
@@ -197,5 +199,6 @@ public class ImageViewer: TemplatedControl
         e.Pointer.Capture(null);
         _lastlocation = new Point(TranslateX, TranslateY);
         PseudoClasses.Set(PC_Moving, false);
+        _moving = false;
     }
 }
