@@ -8,6 +8,10 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="MaskBackground" Opacity="0.2" Color="Red" />
+        <SolidColorBrush x:Key="MaskBorder" Color="Red" />
+    </UserControl.Resources>
     <StackPanel>
         <u:ImageViewer
             Name="viewer"
@@ -15,16 +19,38 @@
             Height="300"
             Source="../Assets/WORLD.png">
             <u:ImageViewer.Overlayer>
-                <Rectangle
+                <Grid
                     HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Fill="Transparent"
-                    IsHitTestVisible="False"
-                    Opacity="0.2" />
+                    ColumnDefinitions="*, Auto, *"
+                    IsVisible="{Binding #maskSwitch.IsChecked}">
+                    <Border
+                        Grid.Column="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="{StaticResource MaskBackground}"
+                        BorderBrush="{StaticResource MaskBorder}"
+                        BorderThickness="0,0,1,0"
+                        IsHitTestVisible="False" />
+                    <Rectangle
+                        Grid.Column="1"
+                        Width="150"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Fill="Transparent"
+                        IsHitTestVisible="False" />
+                    <Border
+                        Grid.Column="2"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="{StaticResource MaskBackground}"
+                        BorderBrush="{StaticResource MaskBorder}"
+                        BorderThickness="1,0,0,0"
+                        IsHitTestVisible="False" />
+                </Grid>
             </u:ImageViewer.Overlayer>
         </u:ImageViewer>
 
-        <Grid ColumnDefinitions="Auto, Auto, *" RowDefinitions="Auto, Auto, Auto">
+        <Grid ColumnDefinitions="Auto, Auto, *" RowDefinitions="Auto, Auto, Auto, Auto">
             <TextBlock
                 Grid.Row="0"
                 Grid.Column="0"
@@ -76,6 +102,16 @@
                 Grid.Row="2"
                 Grid.Column="2"
                 Text="{Binding #viewer.TranslateY, StringFormat=\{0:0.0\}}" />
+
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="0"
+                Text="Show Mask" />
+            <ToggleSwitch
+                Name="maskSwitch"
+                Grid.Row="3"
+                Grid.Column="1"
+                Theme="{DynamicResource SimpleToggleSwitch}" />
         </Grid>
     </StackPanel>
 </UserControl>

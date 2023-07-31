@@ -72,10 +72,29 @@ public class ImageViewer: TemplatedControl
         get => _translateY;
         set => SetAndRaise(TranslateYProperty, ref _translateY, value);
     }
+
+    public static readonly StyledProperty<double> SmallChangeProperty = AvaloniaProperty.Register<ImageViewer, double>(
+        nameof(SmallChange), defaultValue: 1);
+
+    public double SmallChange
+    {
+        get => GetValue(SmallChangeProperty);
+        set => SetValue(SmallChangeProperty, value);
+    }
+
+    public static readonly StyledProperty<double> LargeChangeProperty = AvaloniaProperty.Register<ImageViewer, double>(
+        nameof(LargeChange), defaultValue: 10);
+
+    public double LargeChange
+    {
+        get => GetValue(LargeChangeProperty);
+        set => SetValue(LargeChangeProperty, value);
+    }
     
 
     static ImageViewer()
     {
+        FocusableProperty.OverrideDefaultValue<ImageViewer>(true);
         OverlayerProperty.Changed.AddClassHandler<ImageViewer>((o, e) => o.OnOverlayerChanged(e));
         SourceProperty.Changed.AddClassHandler<ImageViewer>((o, e) => o.OnSourceChanged(e));
         TranslateXProperty.Changed.AddClassHandler<ImageViewer>((o,e)=>o.OnTranslateXChanged(e));
@@ -200,5 +219,26 @@ public class ImageViewer: TemplatedControl
         _lastlocation = new Point(TranslateX, TranslateY);
         PseudoClasses.Set(PC_Moving, false);
         _moving = false;
+    }
+
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        double step = e.KeyModifiers.HasFlag(KeyModifiers.Control) ? LargeChange : SmallChange;
+        switch (e.Key)
+        {
+            case Key.Left:
+                TranslateX -= step;
+                break;
+            case Key.Right:
+                TranslateX += step;
+                break;
+            case Key.Up:
+                TranslateY -= step;
+                break;
+            case Key.Down:
+                TranslateY += step;
+                break;
+        }
+        base.OnKeyDown(e);
     }
 }
