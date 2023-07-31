@@ -10,20 +10,72 @@
     mc:Ignorable="d">
     <StackPanel>
         <u:ImageViewer
-            Name="imageViewer"
+            Name="viewer"
             Width="600"
             Height="300"
             Source="../Assets/WORLD.png">
             <u:ImageViewer.Overlayer>
                 <Rectangle
-                    Width="100"
-                    Height="100"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
-                    Fill="Red"
+                    Fill="Transparent"
                     IsHitTestVisible="False"
                     Opacity="0.2" />
             </u:ImageViewer.Overlayer>
         </u:ImageViewer>
+
+        <Grid ColumnDefinitions="Auto, Auto, *" RowDefinitions="Auto, Auto, Auto">
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="Scale" />
+            <Slider
+                Grid.Row="0"
+                Grid.Column="1"
+                Width="200"
+                Maximum="10"
+                Minimum="0.1"
+                Value="{Binding #viewer.Scale}" />
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="2"
+                Text="{Binding #viewer.Scale, StringFormat=\{0:0.00000\}}" />
+
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
+                Text="TranslateX" />
+            <Slider
+                Grid.Row="1"
+                Grid.Column="1"
+                Width="200"
+                IsSnapToTickEnabled="True"
+                Maximum="300"
+                Minimum="-300"
+                TickFrequency="0.1"
+                Value="{Binding #viewer.TranslateX}" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="2"
+                Text="{Binding #viewer.TranslateX, StringFormat=\{0:0.0\}}" />
+
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="0"
+                Text="TranslateY" />
+            <Slider
+                Grid.Row="2"
+                Grid.Column="1"
+                Width="200"
+                IsSnapToTickEnabled="True"
+                Maximum="300"
+                Minimum="-300"
+                TickFrequency="0.1"
+                Value="{Binding #viewer.TranslateY}" />
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="2"
+                Text="{Binding #viewer.TranslateY, StringFormat=\{0:0.0\}}" />
+        </Grid>
     </StackPanel>
 </UserControl>

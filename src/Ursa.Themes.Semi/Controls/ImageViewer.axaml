@@ -4,12 +4,15 @@
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:ImageViewer}" TargetType="u:ImageViewer">
-
+        <Setter Property="Background" Value="LightGray" />
         <Setter Property="Template">
             <ControlTemplate TargetType="{x:Type u:ImageViewer}">
                 <VisualLayerManager Name="{x:Static u:ImageViewer.PART_Layer}">
-                    <Border Background="Transparent" ClipToBounds="True">
-                        <Image Name="{x:Static u:ImageViewer.PART_Image}" Source="{TemplateBinding Source}">
+                    <Border Background="{TemplateBinding Background}" ClipToBounds="True">
+                        <Image
+                            Name="{x:Static u:ImageViewer.PART_Image}"
+                            Source="{TemplateBinding Source}"
+                            Stretch="Uniform">
                             <Image.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="{Binding Scale, RelativeSource={RelativeSource TemplatedParent}}" ScaleY="{Binding Scale, RelativeSource={RelativeSource TemplatedParent}}" />
@@ -22,5 +25,8 @@
                 </VisualLayerManager>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:moving">
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>
