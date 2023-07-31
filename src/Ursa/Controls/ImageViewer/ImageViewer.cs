@@ -90,7 +90,15 @@ public class ImageViewer: TemplatedControl
         get => GetValue(LargeChangeProperty);
         set => SetValue(LargeChangeProperty, value);
     }
-    
+
+    public static readonly StyledProperty<Stretch> StretchProperty =
+        Image.StretchProperty.AddOwner<ImageViewer>(new StyledPropertyMetadata<Stretch>(Stretch.Uniform));
+
+    public Stretch Stretch
+    {
+        get => GetValue(StretchProperty);
+        set => SetValue(StretchProperty, value);
+    }
 
     static ImageViewer()
     {
@@ -99,6 +107,7 @@ public class ImageViewer: TemplatedControl
         SourceProperty.Changed.AddClassHandler<ImageViewer>((o, e) => o.OnSourceChanged(e));
         TranslateXProperty.Changed.AddClassHandler<ImageViewer>((o,e)=>o.OnTranslateXChanged(e));
         TranslateYProperty.Changed.AddClassHandler<ImageViewer>((o, e) => o.OnTranslateYChanged(e));
+        StretchProperty.Changed.AddClassHandler<ImageViewer>((o, e) => o.OnStretchChanged(e));
     }
 
     private void OnTranslateYChanged(AvaloniaPropertyChangedEventArgs args)
@@ -149,7 +158,25 @@ public class ImageViewer: TemplatedControl
             _image.Width = size.Width;
             _image.Height = size.Height;
         }
-        Scale = Math.Max(width/size.Width, height/size.Height);
+        Scale = GetScaleRatio(width/size.Width, height/size.Height, this.Stretch);
+    }
+
+    private void OnStretchChanged(AvaloniaPropertyChangedEventArgs args)
+    {
+        var stretch = args.GetNewValue<Stretch>();
+        Scale = GetScaleRatio(Width / _image!.Width, Height / _image!.Height, stretch);
+    }
+    
+    private double GetScaleRatio(double widthRatio, double heightRatio, Stretch stretch)
+    {
+        return stretch switch
+        {
+            Stretch.Fill => 1d,
+            Stretch.None => 1d,
+            Stretch.Uniform => Math.Min(widthRatio, heightRatio),
+            Stretch.UniformToFill => Math.Max(widthRatio, heightRatio),
+            _ => 1d,
+        };
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -164,7 +191,7 @@ public class ImageViewer: TemplatedControl
             double height = this.Height;
             _image.Width = size.Width;
             _image.Height = size.Height;
-            Scale = Math.Max(width/size.Width, height/size.Height);
+            Scale = GetScaleRatio(width/size.Width, height/size.Height, this.Stretch);
         }
         if (Overlayer is { } c)
         {
