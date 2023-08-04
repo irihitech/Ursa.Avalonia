@@ -9,8 +9,8 @@
 
     <ControlTheme x:Key="{x:Type u:Badge}" TargetType="{x:Type u:Badge}">
         <!--  Set a very large corner radius to achieve pill look.  -->
-        <Setter Property="u:Badge.CornerRadius" Value="100" />
-        <Setter Property="u:Badge.FontSize" Value="14" />
+        <Setter Property="u:Badge.CornerRadius" Value="{DynamicResource BadgeCornerRadius}" />
+        <Setter Property="u:Badge.FontSize" Value="{DynamicResource BadgeFontSize}" />
         <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeForeground}" />
         <Setter Property="u:Badge.Background" Value="{DynamicResource BadgePrimaryBadgeBackground}" />
         <Setter Property="u:Badge.ClipToBounds" Value="False" />
@@ -19,7 +19,7 @@
         <Setter Property="u:Badge.BorderThickness" Value="{DynamicResource BadgeBorderThickness}" />
         <Setter Property="u:Badge.UseLayoutRounding" Value="False" />
         <Setter Property="u:Badge.BorderBrush" Value="{DynamicResource BadgeBorderBrush}" />
-        <Setter Property="u:Badge.CornerPosition" Value="TopRight" />
+        <Setter Property="u:Badge.CornerPosition" Value="{DynamicResource BadgeCornerPosition}" />
         <Setter Property="u:Badge.Template">
             <ControlTemplate TargetType="{x:Type u:Badge}">
                 <Grid
@@ -36,8 +36,8 @@
                         ContentTemplate="{TemplateBinding ContentTemplate}" />
                     <Border
                         Name="{x:Static u:Badge.PART_BadgeContainer}"
-                        MinWidth="{DynamicResource BadgeHeight}"
-                        MinHeight="{DynamicResource BadgeHeight}"
+                        MinWidth="{DynamicResource BadgeMinWidth}"
+                        MinHeight="{DynamicResource BadgeMinHeight}"
                         Padding="{DynamicResource BadgePadding}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
@@ -85,7 +85,7 @@
                             ContentTemplate="{TemplateBinding ContentTemplate}" />
                         <Border
                             Name="{x:Static u:Badge.PART_BadgeContainer}"
-                            Width="{DynamicResource BadgeDotHeight}"
+                            Width="{DynamicResource BadgeDotWidth}"
                             Height="{DynamicResource BadgeDotHeight}"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
