@@ -72,32 +72,24 @@ public class KeyGestureInput: TemplatedControl
 
         if (!ConsiderKeyModifiers)
         {
-            if(e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl || e.Key == Key.LeftAlt || e.Key == Key.RightAlt || e.Key == Key.LeftShift || e.Key == Key.RightShift || e.Key == Key.LWin || e.Key == Key.RWin)
+            if(e.Key is Key.LeftCtrl or Key.RightCtrl or Key.LeftAlt or Key.RightAlt or Key.LeftShift or Key.RightShift or Key.LWin or Key.RWin)
             {
                 return;
             }
             Gesture = new KeyGesture(e.Key);
         }
         KeyGesture gesture;
-        if (e.KeyModifiers == KeyModifiers.Control && (e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl))
+        switch (e.KeyModifiers)
         {
-            gesture = new KeyGesture(e.Key);
-        }
-        else if (e.KeyModifiers == KeyModifiers.Alt && (e.Key == Key.LeftAlt || e.Key == Key.RightAlt))
-        {
-            gesture = new KeyGesture(e.Key);
-        }
-        else if (e.KeyModifiers == KeyModifiers.Shift && (e.Key == Key.LeftShift || e.Key == Key.RightShift))
-        {
-            gesture = new KeyGesture(e.Key);
-        }
-        else if (e.KeyModifiers == KeyModifiers.Meta && (e.Key == Key.LWin || e.Key == Key.RWin))
-        {
-            gesture = new KeyGesture(e.Key);
-        }
-        else
-        {
-            gesture = new KeyGesture(e.Key, e.KeyModifiers);
+            case KeyModifiers.Control when e.Key is Key.LeftCtrl or Key.RightCtrl:
+            case KeyModifiers.Alt when e.Key is Key.LeftAlt or Key.RightAlt:
+            case KeyModifiers.Shift when e.Key is Key.LeftShift or Key.RightShift:
+            case KeyModifiers.Meta when e.Key is Key.LWin or Key.RWin:
+                gesture = new KeyGesture(e.Key);
+                break;
+            default:
+                gesture = new KeyGesture(e.Key, e.KeyModifiers);
+                break;
         }
         Gesture = gesture;
         e.Handled = true;
