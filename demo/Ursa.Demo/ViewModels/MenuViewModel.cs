@@ -17,6 +17,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Divider", Key = MenuKeys.MenuKeyDivider },
             new() { MenuHeader = "DualBadge", Key = MenuKeys.MenuKeyDualBadge },
             new() { MenuHeader = "IPv4Box", Key = MenuKeys.MenuKeyIpBox },
+            new() { MenuHeader = "KeyGestureInput", Key = MenuKeys.MenuKeyKeyGestureInput },
             new() { MenuHeader = "Loading", Key = MenuKeys.MenuKeyLoading },
             new() { MenuHeader = "Navigation", Key = MenuKeys.MenuKeyNavigation },
             new() { MenuHeader = "Pagination", Key = MenuKeys.MenuKeyPagination },

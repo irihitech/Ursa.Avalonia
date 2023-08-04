@@ -30,6 +30,7 @@ public class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyDivider => new DividerDemoViewModel(),
             MenuKeys.MenuKeyDualBadge => new DualBadgeDemoViewModel(),
             MenuKeys.MenuKeyIpBox => new IPv4BoxDemoViewModel(),
+            MenuKeys.MenuKeyKeyGestureInput => new KeyGestureInputDemoViewModel(),
             MenuKeys.MenuKeyLoading => new LoadingDemoViewModel(),
             MenuKeys.MenuKeyNavigation => new NavigationMenuDemoViewModel(),
             MenuKeys.MenuKeyPagination => new PaginationDemoViewModel(),

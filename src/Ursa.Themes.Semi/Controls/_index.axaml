@@ -7,6 +7,7 @@
         <ResourceInclude Source="Divider.axaml" />
         <ResourceInclude Source="DualBadge.axaml" />
         <ResourceInclude Source="IPv4Box.axaml" />
+        <ResourceInclude Source="KeyGestureInput.axaml" />
         <ResourceInclude Source="Loading.axaml" />
         <ResourceInclude Source="Navigation.axaml" />
         <ResourceInclude Source="Pagination.axaml" />
