@@ -45,12 +45,12 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}"
-                        IsVisible="{Binding !!BadgeContent, RelativeSource={RelativeSource TemplatedParent}}"
+                        IsVisible="{Binding !!Header, RelativeSource={RelativeSource TemplatedParent}}"
                         RenderTransformOrigin=".5,.5"
                         Theme="{TemplateBinding BadgeTheme}"
                         UseLayoutRounding="False">
                         <ContentPresenter
-                            Name="{x:Static u:Badge.PART_BadgeContentPresenter}"
+                            Name="{x:Static u:Badge.PART_HeaderPresenter}"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Focusable="False"
@@ -59,7 +59,7 @@
                             TextElement.Foreground="{TemplateBinding Foreground}">
                             <ContentPresenter.Content>
                                 <MultiBinding Converter="{StaticResource BadgeContentConverter}">
-                                    <Binding Path="BadgeContent" RelativeSource="{RelativeSource TemplatedParent}" />
+                                    <Binding Path="Header" RelativeSource="{RelativeSource TemplatedParent}" />
                                     <Binding Path="OverflowCount" RelativeSource="{RelativeSource TemplatedParent}" />
                                 </MultiBinding>
                             </ContentPresenter.Content>
@@ -93,7 +93,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}"
-                            IsVisible="{Binding !!BadgeContent, RelativeSource={RelativeSource TemplatedParent}}"
+                            IsVisible="{Binding !!Header, RelativeSource={RelativeSource TemplatedParent}}"
                             RenderTransformOrigin=".5,.5" />
                     </Grid>
                 </ControlTemplate>

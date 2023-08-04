@@ -27,152 +27,152 @@
             <StackPanel Orientation="Horizontal">
                 <u:Badge
                     HorizontalAlignment="Center"
-                    BadgeContent="500"
+                    Header="500"
                     OverflowCount="100">
                     <Border Width="100" Height="50" />
                 </u:Badge>
-                <u:Badge BadgeContent="SUCCEED!">
+                <u:Badge Header="SUCCEED!">
                     <Border Width="100" Height="50" />
                 </u:Badge>
-                <u:Badge BadgeContent="Hello" />
-                <u:Badge BadgeContent="Hello" Dot="True" />
+                <u:Badge Header="Hello" />
+                <u:Badge Header="Hello" Dot="True" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <u:Badge BadgeContent="5" CornerPosition="TopLeft">
+                <u:Badge Header="5" CornerPosition="TopLeft">
                     <Border Width="100" Height="50" />
                 </u:Badge>
-                <u:Badge BadgeContent="5" CornerPosition="TopRight">
+                <u:Badge Header="5" CornerPosition="TopRight">
                     <Border Width="100" Height="50" />
                 </u:Badge>
-                <u:Badge BadgeContent="5" CornerPosition="BottomLeft">
+                <u:Badge Header="5" CornerPosition="BottomLeft">
                     <Border Width="100" Height="50" />
                 </u:Badge>
-                <u:Badge BadgeContent="5" CornerPosition="BottomRight">
+                <u:Badge Header="5" CornerPosition="BottomRight">
                     <Border Width="100" Height="50" />
                 </u:Badge>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <u:Badge
-                    BadgeContent="VIP"
+                    Header="VIP"
                     CornerPosition="TopLeft"
                     Dot="True">
                     <Border Width="100" Height="50" />
                 </u:Badge>
                 <u:Badge
-                    BadgeContent="VIP"
+                    Header="VIP"
                     CornerPosition="TopRight"
                     Dot="True">
                     <Border Width="100" Height="50" />
                 </u:Badge>
                 <u:Badge
-                    BadgeContent="VIP"
+                    Header="VIP"
                     CornerPosition="BottomLeft"
                     Dot="True">
                     <Border Width="100" Height="50" />
                 </u:Badge>
                 <u:Badge
-                    BadgeContent="VIP"
+                    Header="VIP"
                     CornerPosition="BottomRight"
                     Dot="True">
                     <Border Width="100" Height="50" />
                 </u:Badge>
             </StackPanel>
-            <u:Badge HorizontalAlignment="Stretch" BadgeContent="VIP">
+            <u:Badge HorizontalAlignment="Stretch" Header="VIP">
                 <Border Height="50" />
             </u:Badge>
             <StackPanel Orientation="Horizontal">
-                <u:Badge BadgeContent="URSA" Classes="Primary">
+                <u:Badge Header="URSA" Classes="Primary">
                     <Border Width="100" Height="50" />
                 </u:Badge>
-                <u:Badge BadgeContent="URSA" Classes="Secondary">
+                <u:Badge Header="URSA" Classes="Secondary">
                     <Border Width="100" Height="50" />
                 </u:Badge>
-                <u:Badge BadgeContent="URSA" Classes="Tertiary">
+                <u:Badge Header="URSA" Classes="Tertiary">
                     <Border Width="100" Height="50" />
                 </u:Badge>
-                <u:Badge BadgeContent="URSA" Classes="Warning">
+                <u:Badge Header="URSA" Classes="Warning">
                     <Border Width="100" Height="50" />
                 </u:Badge>
-                <u:Badge BadgeContent="URSA" Classes="Danger">
+                <u:Badge Header="URSA" Classes="Danger">
                     <Border Width="100" Height="50" />
                 </u:Badge>
-                <u:Badge BadgeContent="URSA" Classes="Success">
-                    <Border Width="100" Height="50" />
-                </u:Badge>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <u:Badge BadgeContent="URSA" Classes="Light Primary">
-                    <Border Width="100" Height="50" />
-                </u:Badge>
-                <u:Badge BadgeContent="URSA" Classes="Light Secondary">
-                    <Border Width="100" Height="50" />
-                </u:Badge>
-                <u:Badge BadgeContent="URSA" Classes="Light Tertiary">
-                    <Border Width="100" Height="50" />
-                </u:Badge>
-                <u:Badge BadgeContent="URSA" Classes="Light Warning">
-                    <Border Width="100" Height="50" />
-                </u:Badge>
-                <u:Badge BadgeContent="URSA" Classes="Light Danger">
-                    <Border Width="100" Height="50" />
-                </u:Badge>
-                <u:Badge BadgeContent="URSA" Classes="Light Success">
+                <u:Badge Header="URSA" Classes="Success">
                     <Border Width="100" Height="50" />
                 </u:Badge>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <u:Badge BadgeContent="URSA" Classes="Inverted Primary">
+                <u:Badge Header="URSA" Classes="Light Primary">
                     <Border Width="100" Height="50" />
                 </u:Badge>
-                <u:Badge BadgeContent="URSA" Classes="Inverted Secondary">
+                <u:Badge Header="URSA" Classes="Light Secondary">
                     <Border Width="100" Height="50" />
                 </u:Badge>
-                <u:Badge BadgeContent="URSA" Classes="Inverted Tertiary">
+                <u:Badge Header="URSA" Classes="Light Tertiary">
                     <Border Width="100" Height="50" />
                 </u:Badge>
-                <u:Badge BadgeContent="URSA" Classes="Inverted Warning">
+                <u:Badge Header="URSA" Classes="Light Warning">
                     <Border Width="100" Height="50" />
                 </u:Badge>
-                <u:Badge BadgeContent="URSA" Classes="Inverted Danger">
+                <u:Badge Header="URSA" Classes="Light Danger">
                     <Border Width="100" Height="50" />
                 </u:Badge>
-                <u:Badge BadgeContent="URSA" Classes="Inverted Success">
+                <u:Badge Header="URSA" Classes="Light Success">
+                    <Border Width="100" Height="50" />
+                </u:Badge>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <u:Badge Header="URSA" Classes="Inverted Primary">
+                    <Border Width="100" Height="50" />
+                </u:Badge>
+                <u:Badge Header="URSA" Classes="Inverted Secondary">
+                    <Border Width="100" Height="50" />
+                </u:Badge>
+                <u:Badge Header="URSA" Classes="Inverted Tertiary">
+                    <Border Width="100" Height="50" />
+                </u:Badge>
+                <u:Badge Header="URSA" Classes="Inverted Warning">
+                    <Border Width="100" Height="50" />
+                </u:Badge>
+                <u:Badge Header="URSA" Classes="Inverted Danger">
+                    <Border Width="100" Height="50" />
+                </u:Badge>
+                <u:Badge Header="URSA" Classes="Inverted Success">
                     <Border Width="100" Height="50" />
                 </u:Badge>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <u:Badge
-                    BadgeContent="URSA"
+                    Header="URSA"
                     Classes="Primary"
                     Dot="True">
                     <Border Width="100" Height="50" />
                 </u:Badge>
                 <u:Badge
-                    BadgeContent="URSA"
+                    Header="URSA"
                     Classes="Secondary"
                     Dot="True">
                     <Border Width="100" Height="50" />
                 </u:Badge>
                 <u:Badge
-                    BadgeContent="URSA"
+                    Header="URSA"
                     Classes="Tertiary"
                     Dot="True">
                     <Border Width="100" Height="50" />
                 </u:Badge>
                 <u:Badge
-                    BadgeContent="URSA"
+                    Header="URSA"
                     Classes="Warning"
                     Dot="True">
                     <Border Width="100" Height="50" />
                 </u:Badge>
                 <u:Badge
-                    BadgeContent="URSA"
+                    Header="URSA"
                     Classes="Danger"
                     Dot="True">
                     <Border Width="100" Height="50" />
                 </u:Badge>
                 <u:Badge
-                    BadgeContent="URSA"
+                    Header="URSA"
                     Classes="Success"
                     Dot="True">
                     <Border Width="100" Height="50" />
@@ -180,37 +180,37 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <u:Badge
-                    BadgeContent="URSA"
+                    Header="URSA"
                     Classes="Light Primary"
                     Dot="True">
                     <Border Width="100" Height="50" />
                 </u:Badge>
                 <u:Badge
-                    BadgeContent="URSA"
+                    Header="URSA"
                     Classes="Light Secondary"
                     Dot="True">
                     <Border Width="100" Height="50" />
                 </u:Badge>
                 <u:Badge
-                    BadgeContent="URSA"
+                    Header="URSA"
                     Classes="Light Tertiary"
                     Dot="True">
                     <Border Width="100" Height="50" />
                 </u:Badge>
                 <u:Badge
-                    BadgeContent="URSA"
+                    Header="URSA"
                     Classes="Light Warning"
                     Dot="True">
                     <Border Width="100" Height="50" />
                 </u:Badge>
                 <u:Badge
-                    BadgeContent="URSA"
+                    Header="URSA"
                     Classes="Light Danger"
                     Dot="True">
                     <Border Width="100" Height="50" />
                 </u:Badge>
                 <u:Badge
-                    BadgeContent="URSA"
+                    Header="URSA"
                     Classes="Light Success"
                     Dot="True">
                     <Border Width="100" Height="50" />
@@ -219,37 +219,37 @@
             <Border Background="LightGray" CornerRadius="4">
                 <StackPanel Orientation="Horizontal">
                     <u:Badge
-                        BadgeContent="URSA"
+                        Header="URSA"
                         Classes="Inverted Primary"
                         Dot="True">
                         <Border Width="100" Height="50" />
                     </u:Badge>
                     <u:Badge
-                        BadgeContent="URSA"
+                        Header="URSA"
                         Classes="Inverted Primary"
                         Dot="True">
                         <Border Width="100" Height="50" />
                     </u:Badge>
                     <u:Badge
-                        BadgeContent="URSA"
+                        Header="URSA"
                         Classes="Inverted Secondary"
                         Dot="True">
                         <Border Width="100" Height="50" />
                     </u:Badge>
                     <u:Badge
-                        BadgeContent="URSA"
+                        Header="URSA"
                         Classes="Inverted Tertiary"
                         Dot="True">
                         <Border Width="100" Height="50" />
                     </u:Badge>
                     <u:Badge
-                        BadgeContent="URSA"
+                        Header="URSA"
                         Classes="Inverted Warning"
                         Dot="True">
                         <Border Width="100" Height="50" />
                     </u:Badge>
                     <u:Badge
-                        BadgeContent="URSA"
+                        Header="URSA"
                         Classes="Inverted Danger"
                         Dot="True">
                         <Border Width="100" Height="50" />

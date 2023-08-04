@@ -1,7 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
-using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Media;
@@ -10,18 +9,14 @@ using Ursa.Common;
 
 namespace Ursa.Controls;
 
-[TemplatePart(PART_ContentPresenter, typeof(ContentPresenter))]
 [TemplatePart(PART_BadgeContainer, typeof(Border))]
-[TemplatePart(PART_BadgeContentPresenter, typeof(ContentPresenter))]
-public class Badge: ContentControl
+public class Badge: HeaderedContentControl
 {
     public const string PART_ContentPresenter = "PART_ContentPresenter";
     public const string PART_BadgeContainer = "PART_BadgeContainer";
-    public const string PART_BadgeContentPresenter = "PART_BadgeContentPresenter";
-    
-    private ContentPresenter? _content;
+    public const string PART_HeaderPresenter = "PART_HeaderPresenter";
+
     private Border? _badgeContainer;
-    private ContentPresenter? _badgeContent;
 
     public static readonly StyledProperty<ControlTheme> BadgeThemeProperty = AvaloniaProperty.Register<Badge, ControlTheme>(
         nameof(BadgeTheme));
@@ -37,14 +32,6 @@ public class Badge: ContentControl
     {
         get => GetValue(DotProperty);
         set => SetValue(DotProperty, value);
-    }
-
-    public static readonly StyledProperty<object?> BadgeContentProperty = AvaloniaProperty.Register<Badge, object?>(
-        nameof(BadgeContent));
-    public object? BadgeContent
-    {
-        get => GetValue(BadgeContentProperty);
-        set => SetValue(BadgeContentProperty, value);
     }
 
     public static readonly StyledProperty<CornerPosition> CornerPositionProperty = AvaloniaProperty.Register<Badge, CornerPosition>(
@@ -65,15 +52,13 @@ public class Badge: ContentControl
 
     static Badge()
     {
-        BadgeContentProperty.Changed.AddClassHandler<Badge>((badge, args) => badge.UpdateBadgePosition());
+        HeaderProperty.Changed.AddClassHandler<Badge>((badge, args) => badge.UpdateBadgePosition());
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        _content = e.NameScope.Find<ContentPresenter>(PART_ContentPresenter);
         _badgeContainer = e.NameScope.Find<Border>(PART_BadgeContainer);
-        _badgeContent = e.NameScope.Find<ContentPresenter>(PART_BadgeContentPresenter);
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
@@ -92,7 +77,7 @@ public class Badge: ContentControl
     {
         var vertical = CornerPosition is CornerPosition.BottomLeft or CornerPosition.BottomRight ? 1 : -1;
         var horizontal = CornerPosition is CornerPosition.TopRight or CornerPosition.BottomRight ? 1 : -1;
-        if (_badgeContainer is not null && _content?.Child is not null)
+        if (_badgeContainer is not null && base.Presenter?.Child is not null)
         {
             _badgeContainer.RenderTransform = new TransformGroup()
             {
