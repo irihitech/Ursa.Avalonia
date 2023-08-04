@@ -20,7 +20,7 @@ public class ImageViewer: TemplatedControl
     private Image? _image = null!;
     private VisualLayerManager? _layer;
     private Point? _lastClickPoint;
-    private Point? _lastlocation;
+    private Point? _lastLocation;
     private bool _moving;
 
     public static readonly StyledProperty<Control?> OverlayerProperty = AvaloniaProperty.Register<ImageViewer, Control?>(
@@ -114,13 +114,13 @@ public class ImageViewer: TemplatedControl
     {
         if (_moving) return;
         var newValue = args.GetNewValue<double>();
-        if (_lastlocation is not null)
+        if (_lastLocation is not null)
         {
-            _lastlocation = _lastlocation.Value.WithY(newValue);
+            _lastLocation = _lastLocation.Value.WithY(newValue);
         }
         else
         {
-            _lastlocation = new Point(0, newValue);
+            _lastLocation = new Point(0, newValue);
         }
     }
 
@@ -128,13 +128,13 @@ public class ImageViewer: TemplatedControl
     {
         if (_moving) return;
         var newValue = args.GetNewValue<double>();
-        if (_lastlocation is not null)
+        if (_lastLocation is not null)
         {
-            _lastlocation = _lastlocation.Value.WithX(newValue);
+            _lastLocation = _lastLocation.Value.WithX(newValue);
         }
         else
         {
-            _lastlocation = new Point(newValue, 0);
+            _lastLocation = new Point(newValue, 0);
         }
     }
 
@@ -151,8 +151,8 @@ public class ImageViewer: TemplatedControl
     {
         IImage image = args.GetNewValue<IImage>();
         Size size = image.Size;
-        double width = this.Width;
-        double height = this.Height;
+        double width = this.Bounds.Width;
+        double height = this.Bounds.Height;
         if (_image is not null)
         {
             _image.Width = size.Width;
@@ -187,8 +187,8 @@ public class ImageViewer: TemplatedControl
         if (Source is { } i)
         {
             Size size = i.Size;
-            double width = this.Width;
-            double height = this.Height;
+            double width = Bounds.Width;
+            double height = Bounds.Height;
             _image.Width = size.Width;
             _image.Height = size.Height;
             Scale = GetScaleRatio(width/size.Width, height/size.Height, this.Stretch);
@@ -226,8 +226,8 @@ public class ImageViewer: TemplatedControl
             Point p = e.GetPosition(this);
             double deltaX = p.X - _lastClickPoint.Value.X;
             double deltaY = p.Y - _lastClickPoint.Value.Y;
-            TranslateX = deltaX + (_lastlocation?.X ?? 0);
-            TranslateY = deltaY + (_lastlocation?.Y ?? 0);
+            TranslateX = deltaX + (_lastLocation?.X ?? 0);
+            TranslateY = deltaY + (_lastLocation?.Y ?? 0);
         }
     }
 
@@ -243,7 +243,7 @@ public class ImageViewer: TemplatedControl
     {
         base.OnPointerReleased(e);
         e.Pointer.Capture(null);
-        _lastlocation = new Point(TranslateX, TranslateY);
+        _lastLocation = new Point(TranslateX, TranslateY);
         PseudoClasses.Set(PC_Moving, false);
         _moving = false;
     }
