@@ -138,6 +138,12 @@
                 Command="{Binding ResetCommand}">
                 Reset
             </Button>
+            <Button
+                Grid.Row="4"
+                Grid.Column="2"
+                Command="{Binding OpenCommand}">
+                Open
+            </Button>
         </Grid>
     </StackPanel>
 </UserControl>

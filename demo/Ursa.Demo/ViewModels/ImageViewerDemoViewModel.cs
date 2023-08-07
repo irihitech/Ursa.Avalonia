@@ -1,10 +1,16 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Avalonia.Platform;
+using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using SkiaSharp;
@@ -13,8 +19,10 @@ namespace Ursa.Demo.ViewModels;
 
 public partial class ImageViewerDemoViewModel : ObservableObject
 {
+    private string? _path;
     public ICommand CutCommand { get; set; }
     public ICommand ResetCommand { get; set; }
+    public ICommand OpenCommand { get; set; }
     [ObservableProperty] public double _translateX;
     [ObservableProperty] public double _translateY;
     [ObservableProperty] public double _scale;
@@ -25,20 +33,47 @@ public partial class ImageViewerDemoViewModel : ObservableObject
         Reset();
         CutCommand = new RelayCommand(Cut);
         ResetCommand = new RelayCommand(Reset);
+        OpenCommand = new AsyncRelayCommand(Open);
     }
 
     private void Reset()
     {
-        Source = new Bitmap("C:/Projects/irihi/Ursa.Avalonia/demo/Ursa.Demo/Assets/WORLD.png");
+        if (_path is not null)
+        {
+            Source = new Bitmap(_path);
+        }
         Scale = 1d;
         TranslateX = 0;
         TranslateY = 0;
     }
 
+    private async Task Open()
+    {
+        if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime { MainWindow.StorageProvider: { } sp })
+        {
+            var files = await sp.OpenFilePickerAsync(new FilePickerOpenOptions()
+            {
+                AllowMultiple = false,
+                FileTypeFilter = new List<FilePickerFileType>()
+                {
+                    new("Media file")
+                    {
+                        Patterns = new List<string>() { "*.jpg", "*.jpeg", "*.png", },
+                    }
+                }
+            });
+            var file = files.FirstOrDefault();
+            if (file is null) return;
+            _path = file.Path.LocalPath;
+            Source = new Bitmap(_path);
+        }
+    }
+
     private void Cut()
     {
+        if (_path is null) return;
         using var skData =
-            SKData.CreateCopy(File.ReadAllBytes("C:/Projects/irihi/Ursa.Avalonia/demo/Ursa.Demo/Assets/WORLD.png")
+            SKData.CreateCopy(File.ReadAllBytes(_path)
                 .ToArray());
         SKBitmap bitmap = SKBitmap.Decode(skData);
         SKBitmap newb = new SKBitmap();
