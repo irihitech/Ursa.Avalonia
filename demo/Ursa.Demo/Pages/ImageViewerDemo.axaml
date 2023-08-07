@@ -5,8 +5,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="viewModels:ImageViewerDemoViewModel"
     mc:Ignorable="d">
     <UserControl.Resources>
         <SolidColorBrush x:Key="MaskBackground" Opacity="0.2" Color="Red" />
@@ -16,8 +19,11 @@
         <u:ImageViewer
             Name="viewer"
             Width="600"
-            Height="300"
-            Source="../Assets/WORLD.png">
+            Height="400"
+            TranslateX="{Binding TranslateX,Mode=TwoWay}"
+            TranslateY="{Binding TranslateY,Mode=TwoWay}"
+            Scale="{Binding Scale,Mode=TwoWay}"
+            Source="{Binding Source}">
             <u:ImageViewer.Overlayer>
                 <Grid
                     HorizontalAlignment="Stretch"
@@ -31,13 +37,19 @@
                         BorderBrush="{StaticResource MaskBorder}"
                         BorderThickness="0,0,1,0"
                         IsHitTestVisible="False" />
-                    <Rectangle
+                    <Border
                         Grid.Column="1"
-                        Width="150"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"
-                        Fill="Transparent"
-                        IsHitTestVisible="False" />
+                        Width="180"
+                        Height="320"
+                        BorderBrush="{StaticResource MaskBorder}"
+                        BorderThickness="0,1">
+                        <Rectangle
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Fill="Transparent"
+                            IsHitTestVisible="False" />
+                    </Border>
+
                     <Border
                         Grid.Column="2"
                         HorizontalAlignment="Stretch"
@@ -50,7 +62,7 @@
             </u:ImageViewer.Overlayer>
         </u:ImageViewer>
 
-        <Grid ColumnDefinitions="Auto, Auto, *" RowDefinitions="Auto, Auto, Auto, Auto">
+        <Grid ColumnDefinitions="Auto, Auto, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto">
             <TextBlock
                 Grid.Row="0"
                 Grid.Column="0"
@@ -94,8 +106,8 @@
                 Grid.Column="1"
                 Width="200"
                 IsSnapToTickEnabled="True"
-                Maximum="300"
-                Minimum="-300"
+                Maximum="200"
+                Minimum="-200"
                 TickFrequency="0.1"
                 Value="{Binding #viewer.TranslateY}" />
             <TextBlock
@@ -111,7 +123,21 @@
                 Name="maskSwitch"
                 Grid.Row="3"
                 Grid.Column="1"
+                IsChecked="True"
                 Theme="{DynamicResource SimpleToggleSwitch}" />
+
+            <Button
+                Grid.Row="4"
+                Grid.Column="0"
+                Command="{Binding CutCommand}">
+                Cut
+            </Button>
+            <Button
+                Grid.Row="4"
+                Grid.Column="1"
+                Command="{Binding ResetCommand}">
+                Reset
+            </Button>
         </Grid>
     </StackPanel>
 </UserControl>
