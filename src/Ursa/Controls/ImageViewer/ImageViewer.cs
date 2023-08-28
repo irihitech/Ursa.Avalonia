@@ -149,7 +149,8 @@ public class ImageViewer: TemplatedControl
 
     private void OnSourceChanged(AvaloniaPropertyChangedEventArgs args)
     {
-        IImage image = args.GetNewValue<IImage>();
+        IImage? image = args.GetNewValue<IImage?>();
+        if (image is null) return;
         Size size = image.Size;
         double width = this.Bounds.Width;
         double height = this.Bounds.Height;
