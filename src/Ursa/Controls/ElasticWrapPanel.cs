@@ -102,9 +102,8 @@ public class ElasticWrapPanel : WrapPanel
             itemWidthSet ? itemWidth : 0,
             itemHeightSet ? itemHeight : 0);
 
-        for (int i = 0, count = children.Count; i < count; i++)
+        foreach (var child in children)
         {
-            var child = children[i];
             UVSize sz;
             if (ElasticWrapPanel.GetIsFixToRB(child))
             {
@@ -200,138 +199,133 @@ public class ElasticWrapPanel : WrapPanel
 
     protected override Size ArrangeOverride(Size finalSize)
     {
-        //设否元素宽的设置，是否元素高度设置
-        bool isItemWidthSet = !double.IsNaN(this.ItemWidth) && this.ItemWidth > 0;
-        bool isItemHeightSet = !double.IsNaN(this.ItemHeight) && this.ItemHeight > 0;
+        //是否元素宽度设置，是否元素高度设置
+        bool itemWidthSet = !double.IsNaN(ItemWidth);
+        bool itemHeightSet = !double.IsNaN(ItemHeight);
 
         //这个给非空间测量大小
-        UVSize itemSetSize = new UVSize(this.Orientation,
-            (isItemWidthSet ? this.ItemWidth : 0),
-            (isItemHeightSet ? this.ItemHeight : 0));
+        UVSize itemSetSize = new UVSize(Orientation,
+            itemWidthSet ? ItemWidth : 0,
+            itemHeightSet ? ItemHeight : 0);
 
-        //给定的空间大小测量UVSize,用于没有ItemWidth和ItemHeight时候测量元素空间大小，FixToRB=True的元素也使用这个
-        UVSize uvConstraint = new UVSize(Orientation, finalSize.Width, finalSize.Height);
+        //给定的空间大小测量 UVSize，用于没有 ItemWidth 和 ItemHeight 时候测量元素空间大小
+        //FixToRB=True 的元素也使用这个
+        UVSize uvFinalSize = new UVSize(Orientation, finalSize.Width, finalSize.Height);
 
         //用于存放同一方向的元素列/行 集合
-        List<UVCollection> lineUiCollection = new List<UVCollection>();
+        List<UVCollection> lineUVCollection = new List<UVCollection>();
 
         #region 得到同一方向元素集合的集合
 
-        //写一个If只是用于减少外层变量，反感的请将if注释
-        //if (lineUiCollection != null)   
+        //当前元素集合行/列
+        UVCollection curLineUIs = new UVCollection(Orientation, itemSetSize);
+
+        //遍历内部元素
+        var children = Children;
+        foreach (var child in children)
         {
-            //当前元素集合行/列
-            UVCollection curLineUis = new UVCollection(this.Orientation, itemSetSize);
-
-            //遍历内部元素
-            var children = Children;
-            for (int i = 0, count = children.Count; i < count; i++)
+            UVSize sz;
+            if (ElasticWrapPanel.GetIsFixToRB(child))
             {
-                var child = children[i];
-                // if (child.Visibility == Visibility.Collapsed) continue;
-                UVSize uvSize = new UVSize();
-                if (ElasticWrapPanel.GetIsFixToRB(child))
+                //此元素需要设置到固定靠右/底的型为操作，测量元素大小时需要放开
+                sz = new UVSize(Orientation, child.DesiredSize.Width, child.DesiredSize.Height);
+                double lengthCount = 1;
+                if (sz.U > 0 && itemSetSize.U > 0)
                 {
-                    //此元素需要设置到固定靠右/底的型为操作，测量元素大小时需要放开
-                    uvSize = new UVSize(Orientation, child.DesiredSize.Width, child.DesiredSize.Height);
-                    double lengthCount = 1;
-                    if (uvSize.U > 0 && itemSetSize.U > 0)
+                    if (sz.U < itemSetSize.U)
                     {
-                        if (uvSize.U < itemSetSize.U)
-                        {
-                            //保持比例
-                            uvSize.U = itemSetSize.U;
-                        }
-                        else
-                        {
-                            //设置了同方向中元素的长度，所以这里要按照比例
-                            lengthCount = Math.Ceiling(uvSize.U / itemSetSize.U);
-                            //sz.U = lengthCount * ItemSetSize.U;
-                            uvSize.U = Math.Min(uvSize.U, uvConstraint.U);
-                        }
-                    }
-
-                    if (uvSize.V > 0 && itemSetSize.V > 0 && uvSize.V < itemSetSize.V)
-                    {
-                        //设置了垂直方向元素长度，如果此元素空间需求小于，则按照ItemSetSize.V
-                        uvSize.V = itemSetSize.V;
-                    }
-
-                    if (MathUtilities.GreaterThan(curLineUis.TotalU + uvSize.U, uvConstraint.U))
-                    {
-                        //当前同一 列/行 如果容纳 此元素空间将超出
-                        if (curLineUis.Count > 0)
-                        {
-                            lineUiCollection.Add(curLineUis);
-                        }
-
-                        curLineUis = new UVCollection(Orientation, itemSetSize);
-                        curLineUis.Add(child, uvSize, Convert.ToInt32(lengthCount));
+                        //保持比例
+                        sz.U = itemSetSize.U;
                     }
                     else
                     {
-                        //这里是元素空间足够
-                        curLineUis.Add(child, uvSize, Convert.ToInt32(lengthCount));
+                        //设置了同方向中元素的长度，所以这里要按照比例
+                        lengthCount = Math.Ceiling(sz.U / itemSetSize.U);
+                        //sz.U = lengthCount * ItemSetSize.U;
+                        sz.U = Math.Min(sz.U, uvFinalSize.U);
+                    }
+                }
+
+                if (sz.V > 0 && itemSetSize.V > 0 && sz.V < itemSetSize.V)
+                {
+                    //设置了垂直方向元素长度，如果此元素空间需求小于，则按照ItemSetSize.V
+                    sz.V = itemSetSize.V;
+                }
+
+                if (MathUtilities.GreaterThan(curLineUIs.TotalU + sz.U, uvFinalSize.U))
+                {
+                    //当前同一 列/行 如果容纳 此元素空间将超出
+                    if (curLineUIs.Count > 0)
+                    {
+                        lineUVCollection.Add(curLineUIs);
                     }
 
-                    lineUiCollection.Add(curLineUis);
-                    //下一个可能是换行元素....不管了以后闲得蛋疼再弄吧
-                    curLineUis = new UVCollection(Orientation, itemSetSize);
+                    curLineUIs = new UVCollection(Orientation, itemSetSize);
+                    curLineUIs.Add(child, sz, Convert.ToInt32(lengthCount));
                 }
                 else
                 {
-                    uvSize = new UVSize(Orientation,
-                        (isItemWidthSet ? this.ItemWidth : child.DesiredSize.Width),
-                        (isItemHeightSet ? this.ItemHeight : child.DesiredSize.Height));
+                    //这里是元素空间足够
+                    curLineUIs.Add(child, sz, Convert.ToInt32(lengthCount));
+                }
 
-                    if (MathUtilities.GreaterThan(curLineUis.TotalU + uvSize.U, uvConstraint.U))
+                lineUVCollection.Add(curLineUIs);
+                //下一个可能是换行元素....不管了以后闲得蛋疼再弄吧
+                curLineUIs = new UVCollection(Orientation, itemSetSize);
+            }
+            else
+            {
+                sz = new UVSize(Orientation,
+                    itemWidthSet ? ItemWidth : child.DesiredSize.Width,
+                    itemHeightSet ? ItemHeight : child.DesiredSize.Height);
+
+                if (MathUtilities.GreaterThan(curLineUIs.TotalU + sz.U, uvFinalSize.U)) // Need to switch to another line
+                {
+                    //当前同一 列/行 如果容纳 此元素空间将超出
+                    if (curLineUIs.Count > 0)
                     {
-                        //当前同一 列/行 如果容纳 此元素空间将超出
-                        if (curLineUis.Count > 0)
-                        {
-                            lineUiCollection.Add(curLineUis);
-                        }
-
-                        curLineUis = new UVCollection(Orientation, itemSetSize);
-                        curLineUis.Add(child, uvSize);
-                        if (MathUtilities.GreaterThan(uvSize.U, uvConstraint.U))
-                        {
-                            lineUiCollection.Add(curLineUis);
-                            curLineUis = new UVCollection(Orientation, itemSetSize);
-                        }
+                        lineUVCollection.Add(curLineUIs);
                     }
-                    else
+
+                    curLineUIs = new UVCollection(Orientation, itemSetSize);
+                    curLineUIs.Add(child, sz);
+                    if (MathUtilities.GreaterThan(sz.U, uvFinalSize.U))
                     {
-                        //空间足够
-                        curLineUis.Add(child, uvSize);
+                        lineUVCollection.Add(curLineUIs);
+                        curLineUIs = new UVCollection(Orientation, itemSetSize);
                     }
                 }
+                else
+                {
+                    //空间足够
+                    curLineUIs.Add(child, sz);
+                }
             }
+        }
 
-            if (curLineUis.Count > 0 && !lineUiCollection.Contains(curLineUis))
-            {
-                lineUiCollection.Add(curLineUis);
-            }
+        if (curLineUIs.Count > 0 && !lineUVCollection.Contains(curLineUIs))
+        {
+            lineUVCollection.Add(curLineUIs);
         }
 
         #endregion
 
         bool isFillU = false;
         bool isFillV = false;
-        switch (this.Orientation)
+        switch (Orientation)
         {
             case Orientation.Horizontal:
-                isFillU = this.IsFillHorizontal;
-                isFillV = this.IsFillVertical;
+                isFillU = IsFillHorizontal;
+                isFillV = IsFillVertical;
                 break;
 
             case Orientation.Vertical:
-                isFillU = this.IsFillVertical;
-                isFillV = this.IsFillHorizontal;
+                isFillU = IsFillVertical;
+                isFillV = IsFillHorizontal;
                 break;
         }
 
-        if (lineUiCollection.Count > 0)
+        if (lineUVCollection.Count > 0)
         {
             double accumulatedV = 0;
             double adaptULength = 0;
@@ -341,10 +335,10 @@ public class ElasticWrapPanel : WrapPanel
             {
                 if (itemSetSize.U > 0)
                 {
-                    int maxElementCount = lineUiCollection
+                    int maxElementCount = lineUVCollection
                         .Max(uiSet => uiSet.UICollection
                             .Sum(p => p.Value.ULengthCount));
-                    adaptULength = (uvConstraint.U - maxElementCount * itemSetSize.U) / maxElementCount;
+                    adaptULength = (uvFinalSize.U - maxElementCount * itemSetSize.U) / maxElementCount;
                     adaptULength = Math.Max(adaptULength, 0);
                 }
             }
@@ -354,19 +348,19 @@ public class ElasticWrapPanel : WrapPanel
                 if (itemSetSize.V > 0)
                 {
                     isAdaptV = true;
-                    adaptVLength = uvConstraint.V / lineUiCollection.Count;
+                    adaptVLength = uvFinalSize.V / lineUVCollection.Count;
                 }
             }
 
-            bool isHorizontal = (Orientation == Orientation.Horizontal);
-            foreach (var lineUVCollection in lineUiCollection)
+            bool isHorizontal = Orientation == Orientation.Horizontal;
+            foreach (var uvCollection in lineUVCollection)
             {
                 double u = 0;
-                var lineUiEles = lineUVCollection.UICollection.Keys.ToList();
-                double linevV = isAdaptV ? adaptVLength : lineUVCollection.LineV;
-                foreach (var child in lineUiEles)
+                var lineUIEles = uvCollection.UICollection.Keys.ToList();
+                double linevV = isAdaptV ? adaptVLength : uvCollection.LineV;
+                foreach (var child in lineUIEles)
                 {
-                    UVLengthSize childSize = lineUVCollection.UICollection[child];
+                    UVLengthSize childSize = uvCollection.UICollection[child];
 
                     double layoutSlotU = childSize.UVSize.U + childSize.ULengthCount * adaptULength;
                     double layoutSlotV = isAdaptV ? linevV : childSize.UVSize.V;
@@ -382,30 +376,30 @@ public class ElasticWrapPanel : WrapPanel
                     {
                         if (itemSetSize.U > 0)
                         {
-                            //说明同方向有宽度设置，这里尽量按照ItemULength保持
+                            //说明同方向有宽度设置，这里尽量按照 ItemULength 保持
                             layoutSlotU = childSize.ULengthCount * itemSetSize.U +
                                           childSize.ULengthCount * adaptULength;
-                            double leaveULength = uvConstraint.U - u;
+                            double leaveULength = uvFinalSize.U - u;
                             layoutSlotU = Math.Min(leaveULength, layoutSlotU);
                         }
 
                         child.Arrange(new Rect(
-                            (isHorizontal ? Math.Max(0, (uvConstraint.U - layoutSlotU)) : accumulatedV),
-                            (isHorizontal ? accumulatedV : Math.Max(0, (uvConstraint.U - layoutSlotU))),
-                            (isHorizontal ? layoutSlotU : layoutSlotV),
-                            (isHorizontal ? layoutSlotV : layoutSlotU)));
+                            isHorizontal ? Math.Max(0, uvFinalSize.U - layoutSlotU) : accumulatedV,
+                            isHorizontal ? accumulatedV : Math.Max(0, uvFinalSize.U - layoutSlotU),
+                            isHorizontal ? layoutSlotU : layoutSlotV,
+                            isHorizontal ? layoutSlotV : layoutSlotU));
                     }
 
                     u += layoutSlotU;
                 }
 
                 accumulatedV += linevV;
-                lineUiEles.Clear();
+                lineUIEles.Clear();
             }
         }
 
-        lineUiCollection.ForEach(col => col.Dispose());
-        lineUiCollection.Clear();
+        lineUVCollection.ForEach(col => col.Dispose());
+        lineUVCollection.Clear();
         return finalSize;
     }
 
@@ -478,9 +472,9 @@ public class ElasticWrapPanel : WrapPanel
 
         public UVCollection(Orientation orientation, UVSize itemSetSize)
         {
-            this.UICollection = new Dictionary<Control, UVLengthSize>();
+            UICollection = new Dictionary<Control, UVLengthSize>();
             LineDesireUVSize = new UVSize(orientation);
-            this.ItemSetSize = itemSetSize;
+            ItemSetSize = itemSetSize;
         }
 
         public double TotalU => LineDesireUVSize.U;
@@ -489,10 +483,10 @@ public class ElasticWrapPanel : WrapPanel
 
         public void Add(Control element, UVSize childSize, int itemULength = 1)
         {
-            if (this.UICollection.ContainsKey(element))
+            if (UICollection.ContainsKey(element))
                 throw new InvalidOperationException("The element already exists and cannot be added repeatedly.");
 
-            this.UICollection[element] = new UVLengthSize(childSize, itemULength);
+            UICollection[element] = new UVLengthSize(childSize, itemULength);
             LineDesireUVSize.U += childSize.U;
             LineDesireUVSize.V = Math.Max(LineDesireUVSize.V, childSize.V);
         }
