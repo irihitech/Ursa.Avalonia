@@ -65,60 +65,60 @@ public class ElasticWrapPanel : WrapPanel
 
     #endregion
 
-    protected override Size MeasureOverride(Size availableSize)
+    protected override Size MeasureOverride(Size constraint)
     {
-        //是否元素宽度设置，是否元素高度设置
-        bool isItemWidthSet = !double.IsNaN(this.ItemWidth) && this.ItemWidth > 0;
-        bool isItemHeightSet = !double.IsNaN(this.ItemHeight) && this.ItemHeight > 0;
+        double itemWidth = ItemWidth;
+        double itemHeight = ItemHeight;
+        var orientation = Orientation;
+        var children = Children;
+        // 将元素按照水平/垂直排列的方式得出同一行/列所需的空间需求
+        var curLineSize = new UVSize(orientation);
+        // 计算处此 ElasticWrapPanel 所需的空间大小需求结果
+        var panelSize = new UVSize(orientation);
+        // 给定的空间大小测量 UVSize，用于没有 ItemWidth 和 ItemHeight 时候测量元素空间大小
+        // FixToRB=True 的元素也使用这个
+        var uvConstraint = new UVSize(orientation, constraint.Width, constraint.Height);
+        bool itemWidthSet = !double.IsNaN(itemWidth);
+        bool itemHeightSet = !double.IsNaN(itemHeight);
 
-        //非FixToRB=True元素使用测量需求空间Size
-        Size childConstraint = new Size(
-            (isItemWidthSet ? this.ItemWidth : availableSize.Width),
-            (isItemHeightSet ? this.ItemHeight : availableSize.Height));
+        var childConstraint = new Size(
+            itemWidthSet ? itemWidth : constraint.Width,
+            itemHeightSet ? itemHeight : constraint.Height);
 
-        //FixToRB=True元素使用测量需求空间Size
-        Size childFixConstraint = new Size(availableSize.Width, availableSize.Height);
-        if (Orientation == Orientation.Horizontal && isItemHeightSet)
+        // FixToRB=True 元素使用测量需求空间 Size
+        Size childFixConstraint = new Size(constraint.Width, constraint.Height);
+        switch (orientation)
         {
-            childFixConstraint = new Size(availableSize.Width, this.ItemHeight);
+            case Orientation.Horizontal when itemHeightSet:
+                childFixConstraint = new Size(constraint.Width, itemHeight);
+                break;
+            case Orientation.Vertical when itemWidthSet:
+                childFixConstraint = new Size(itemWidth, itemHeight);
+                break;
         }
-
-        if (Orientation == Orientation.Vertical && isItemWidthSet)
-        {
-            childFixConstraint = new Size(this.ItemWidth, this.ItemHeight);
-        }
-
 
         //这个给非空间测量大小
-        UVSize itemSetSize = new UVSize(this.Orientation,
-            (isItemWidthSet ? this.ItemWidth : 0),
-            (isItemHeightSet ? this.ItemHeight : 0));
+        UVSize itemSetSize = new UVSize(orientation,
+            itemWidthSet ? itemWidth : 0,
+            itemHeightSet ? itemHeight : 0);
 
-        //给定的空间大小测量UVSize,用于没有ItemWidth和ItemHeight时候测量元素空间大小， FixToRB=True的元素也使用这个
-        UVSize uvConstraint = new UVSize(Orientation, availableSize.Width, availableSize.Height);
-        //将元素按照水平/垂直排列的方式得出同一行/列所需的空间需求
-        UVSize curLineSize = new UVSize(Orientation);
-        //计算处此ElasticWrapPanel所需的空间大小需求结果
-        UVSize desireResultSize = new UVSize(Orientation);
-
-        var children = Children;
         for (int i = 0, count = children.Count; i < count; i++)
         {
             var child = children[i];
-            UVSize uvSize;
+            UVSize sz;
             if (ElasticWrapPanel.GetIsFixToRB(child))
             {
                 //此元素需要设置到固定靠右/底的型为操作，测量元素大小时需要放开
                 child.Measure(childFixConstraint);
-                uvSize = new UVSize(Orientation, child.DesiredSize.Width, child.DesiredSize.Height);
+                sz = new UVSize(orientation, child.DesiredSize.Width, child.DesiredSize.Height);
 
                 //主要是我对与这个固定住的元素的需求宽度高度按照那个标准有点头疼，干脆放开用最大控件算了
-                if (uvSize.U > 0 && itemSetSize.U > 0)
+                if (sz.U > 0 && itemSetSize.U > 0)
                 {
-                    if (uvSize.U < itemSetSize.U)
+                    if (sz.U < itemSetSize.U)
                     {
                         //保持比例
-                        uvSize.U = itemSetSize.U;
+                        sz.U = itemSetSize.U;
                     }
                     else
                     {
@@ -126,78 +126,76 @@ public class ElasticWrapPanel : WrapPanel
                         //double lengthCount = Math.Ceiling(sz.U / ItemSetSize.U);
                         //sz.U = lengthCount * ItemSetSize.U;
                         //这里防止意外
-                        uvSize.U = Math.Min(uvSize.U, uvConstraint.U);
+                        sz.U = Math.Min(sz.U, uvConstraint.U);
                     }
                 }
 
-                if (uvSize.V > 0 && itemSetSize.V > 0 && uvSize.V < itemSetSize.V)
+                if (sz.V > 0 && itemSetSize.V > 0 && sz.V < itemSetSize.V)
                 {
                     //设置了垂直方向元素长度，如果此元素空间需求小于，则按照ItemSetSize.V
-                    uvSize.V = itemSetSize.V;
+                    sz.V = itemSetSize.V;
                 }
 
-                if (MathUtilities.GreaterThan(curLineSize.U + uvSize.U, uvConstraint.U))
+                if (MathUtilities.GreaterThan(curLineSize.U + sz.U, uvConstraint.U))
                 {
                     //当前同一 列/行 如果容纳 此元素空间将超出
-                    desireResultSize.U = Math.Max(curLineSize.U, desireResultSize.U);
-                    desireResultSize.V += curLineSize.V;
-
-                    curLineSize = uvSize;
+                    panelSize.U = Math.Max(curLineSize.U, panelSize.U);
+                    panelSize.V += curLineSize.V;
+                    curLineSize = sz;
 
                     //当前元素需要启1个新行
-                    desireResultSize.U = Math.Max(curLineSize.U, desireResultSize.U);
-                    desireResultSize.V += curLineSize.V;
+                    panelSize.U = Math.Max(curLineSize.U, panelSize.U);
+                    panelSize.V += curLineSize.V;
                 }
-
                 else
                 {
                     //这里是元素空间足够 填充式布局
-                    curLineSize.U += uvSize.U;
-                    curLineSize.V = Math.Max(uvSize.V, curLineSize.V);
-                    desireResultSize.U = Math.Max(curLineSize.U, desireResultSize.U);
-                    desireResultSize.V += curLineSize.V;
+                    curLineSize.U += sz.U;
+                    curLineSize.V = Math.Max(sz.V, curLineSize.V);
+                    panelSize.U = Math.Max(curLineSize.U, panelSize.U);
+                    panelSize.V += curLineSize.V;
                 }
 
                 //下一个可能是换行元素....用于存放全新1行
-                curLineSize = new UVSize(Orientation);
+                curLineSize = new UVSize(orientation);
             }
             else
             {
-                //如果设置元素宽度或高度，其高度宽度尽可能按照设置值给定
+                // Flow passes its own constraint to children
                 child.Measure(childConstraint);
-                uvSize = new UVSize(Orientation,
-                    (isItemWidthSet ? this.ItemWidth : child.DesiredSize.Width),
-                    (isItemHeightSet ? this.ItemHeight : child.DesiredSize.Height));
-                if (MathUtilities.GreaterThan(curLineSize.U + uvSize.U, uvConstraint.U))
+
+                // This is the size of the child in UV space
+                sz = new UVSize(Orientation,
+                    itemWidthSet ? this.ItemWidth : child.DesiredSize.Width,
+                    itemHeightSet ? this.ItemHeight : child.DesiredSize.Height);
+
+                if (MathUtilities.GreaterThan(curLineSize.U + sz.U, uvConstraint.U)) // Need to switch to another line
                 {
-                    //当前同一 列/行 如果容纳 此元素空间将超出
-                    desireResultSize.U = Math.Max(curLineSize.U, desireResultSize.U);
-                    desireResultSize.V += curLineSize.V;
-                    curLineSize = uvSize;
-                    if (MathUtilities.GreaterThan(uvSize.U, uvConstraint.U))
+                    panelSize.U = Math.Max(curLineSize.U, panelSize.U);
+                    panelSize.V += curLineSize.V;
+                    curLineSize = sz;
+
+                    if (MathUtilities.GreaterThan(sz.U, uvConstraint.U)) // The element is wider then the constraint - give it a separate line
                     {
-                        //此元素同Orientation方向长度大于给定约束长度，则当前元素为一行
-                        desireResultSize.U = Math.Max(uvSize.U, desireResultSize.U);
-                        desireResultSize.V += uvSize.V;
-                        //用于存放全新1行宽度
+                        panelSize.U = Math.Max(sz.U, panelSize.U);
+                        panelSize.V += sz.V;
                         curLineSize = new UVSize(Orientation);
                     }
                 }
-                else
+                else // Continue to accumulate a line
                 {
-                    //当前同一 列/行 元素空间足够，可以容纳当前元素
-                    curLineSize.U += uvSize.U;
-                    curLineSize.V = Math.Max(uvSize.V, curLineSize.V);
+                    curLineSize.U += sz.U;
+                    curLineSize.V = Math.Max(sz.V, curLineSize.V);
                 }
             }
         }
 
-        //the last line size, if any should be added
-        desireResultSize.U = Math.Max(curLineSize.U, desireResultSize.U);
-        desireResultSize.V += curLineSize.V;
+        // The last line size, if any should be added
+        panelSize.U = Math.Max(curLineSize.U, panelSize.U);
+        panelSize.V += curLineSize.V;
 
-        //go from UV space to W/H space
-        return new Size(desireResultSize.Width, desireResultSize.Height);
+        // Go from UV space to W/H space
+        return new Size(panelSize.Width, panelSize.Height);
     }
 
     protected override Size ArrangeOverride(Size finalSize)
