@@ -3,6 +3,8 @@ using Avalonia.Controls;
 using Avalonia.Layout;
 using Avalonia.Utilities;
 
+using static System.Math;
+
 namespace Ursa.Controls;
 
 public class ElasticWrapPanel : WrapPanel
@@ -122,10 +124,10 @@ public class ElasticWrapPanel : WrapPanel
                     else
                     {
                         //设置了同方向中元素的长度，所以这里要按照比例
-                        //double lengthCount = Math.Ceiling(sz.U / ItemSetSize.U);
+                        //double lengthCount = Ceiling(sz.U / ItemSetSize.U);
                         //sz.U = lengthCount * ItemSetSize.U;
                         //这里防止意外
-                        sz.U = Math.Min(sz.U, uvConstraint.U);
+                        sz.U = Min(sz.U, uvConstraint.U);
                     }
                 }
 
@@ -138,20 +140,20 @@ public class ElasticWrapPanel : WrapPanel
                 if (MathUtilities.GreaterThan(curLineSize.U + sz.U, uvConstraint.U))
                 {
                     //当前同一 列/行 如果容纳 此元素空间将超出
-                    panelSize.U = Math.Max(curLineSize.U, panelSize.U);
+                    panelSize.U = Max(curLineSize.U, panelSize.U);
                     panelSize.V += curLineSize.V;
                     curLineSize = sz;
 
                     //当前元素需要启1个新行
-                    panelSize.U = Math.Max(curLineSize.U, panelSize.U);
+                    panelSize.U = Max(curLineSize.U, panelSize.U);
                     panelSize.V += curLineSize.V;
                 }
                 else
                 {
                     //这里是元素空间足够 填充式布局
                     curLineSize.U += sz.U;
-                    curLineSize.V = Math.Max(sz.V, curLineSize.V);
-                    panelSize.U = Math.Max(curLineSize.U, panelSize.U);
+                    curLineSize.V = Max(sz.V, curLineSize.V);
+                    panelSize.U = Max(curLineSize.U, panelSize.U);
                     panelSize.V += curLineSize.V;
                 }
 
@@ -164,33 +166,33 @@ public class ElasticWrapPanel : WrapPanel
                 child.Measure(childConstraint);
 
                 // This is the size of the child in UV space
-                sz = new UVSize(Orientation,
-                    itemWidthSet ? this.ItemWidth : child.DesiredSize.Width,
-                    itemHeightSet ? this.ItemHeight : child.DesiredSize.Height);
+                sz = new UVSize(orientation,
+                    itemWidthSet ? itemWidth : child.DesiredSize.Width,
+                    itemHeightSet ? itemHeight : child.DesiredSize.Height);
 
                 if (MathUtilities.GreaterThan(curLineSize.U + sz.U, uvConstraint.U)) // Need to switch to another line
                 {
-                    panelSize.U = Math.Max(curLineSize.U, panelSize.U);
+                    panelSize.U = Max(curLineSize.U, panelSize.U);
                     panelSize.V += curLineSize.V;
                     curLineSize = sz;
 
                     if (MathUtilities.GreaterThan(sz.U, uvConstraint.U)) // The element is wider then the constraint - give it a separate line
                     {
-                        panelSize.U = Math.Max(sz.U, panelSize.U);
+                        panelSize.U = Max(sz.U, panelSize.U);
                         panelSize.V += sz.V;
-                        curLineSize = new UVSize(Orientation);
+                        curLineSize = new UVSize(orientation);
                     }
                 }
                 else // Continue to accumulate a line
                 {
                     curLineSize.U += sz.U;
-                    curLineSize.V = Math.Max(sz.V, curLineSize.V);
+                    curLineSize.V = Max(sz.V, curLineSize.V);
                 }
             }
         }
 
         // The last line size, if any should be added
-        panelSize.U = Math.Max(curLineSize.U, panelSize.U);
+        panelSize.U = Max(curLineSize.U, panelSize.U);
         panelSize.V += curLineSize.V;
 
         // Go from UV space to W/H space
@@ -240,9 +242,9 @@ public class ElasticWrapPanel : WrapPanel
                     else
                     {
                         //设置了同方向中元素的长度，所以这里要按照比例
-                        lengthCount = Math.Ceiling(sz.U / itemSetSize.U);
+                        lengthCount = Ceiling(sz.U / itemSetSize.U);
                         //sz.U = lengthCount * ItemSetSize.U;
-                        sz.U = Math.Min(sz.U, uvFinalSize.U);
+                        sz.U = Min(sz.U, uvFinalSize.U);
                     }
                 }
 
@@ -339,7 +341,7 @@ public class ElasticWrapPanel : WrapPanel
                         .Max(uiSet => uiSet.UICollection
                             .Sum(p => p.Value.ULengthCount));
                     adaptULength = (uvFinalSize.U - maxElementCount * itemSetSize.U) / maxElementCount;
-                    adaptULength = Math.Max(adaptULength, 0);
+                    adaptULength = Max(adaptULength, 0);
                 }
             }
 
@@ -380,12 +382,12 @@ public class ElasticWrapPanel : WrapPanel
                             layoutSlotU = childSize.ULengthCount * itemSetSize.U +
                                           childSize.ULengthCount * adaptULength;
                             double leaveULength = uvFinalSize.U - u;
-                            layoutSlotU = Math.Min(leaveULength, layoutSlotU);
+                            layoutSlotU = Min(leaveULength, layoutSlotU);
                         }
 
                         child.Arrange(new Rect(
-                            isHorizontal ? Math.Max(0, uvFinalSize.U - layoutSlotU) : accumulatedV,
-                            isHorizontal ? accumulatedV : Math.Max(0, uvFinalSize.U - layoutSlotU),
+                            isHorizontal ? Max(0, uvFinalSize.U - layoutSlotU) : accumulatedV,
+                            isHorizontal ? accumulatedV : Max(0, uvFinalSize.U - layoutSlotU),
                             isHorizontal ? layoutSlotU : layoutSlotV,
                             isHorizontal ? layoutSlotV : layoutSlotU));
                     }
@@ -488,7 +490,7 @@ public class ElasticWrapPanel : WrapPanel
 
             UICollection[element] = new UVLengthSize(childSize, itemULength);
             LineDesireUVSize.U += childSize.U;
-            LineDesireUVSize.V = Math.Max(LineDesireUVSize.V, childSize.V);
+            LineDesireUVSize.V = Max(LineDesireUVSize.V, childSize.V);
         }
 
         public int Count => UICollection.Count;
