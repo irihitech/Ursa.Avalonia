@@ -19,6 +19,13 @@ public partial class ElasticWrapPanelDemoViewModel : ObservableObject
     [ObservableProperty] private double? _itemWidth;
     [ObservableProperty] private double? _itemHeight;
 
+    [ObservableProperty] private double? _itemSelfWidth;
+    [ObservableProperty] private double? _itemSelfHeight;
+
+    [ObservableProperty] private HorizontalAlignment _cmbHAlign;
+    [ObservableProperty] private VerticalAlignment _cmbVAlign;
+    [ObservableProperty] private ObservableCollection<HorizontalAlignment> _cmbHAligns = null!;
+    [ObservableProperty] private ObservableCollection<VerticalAlignment> _cmbVAligns = null!;
 
     public ElasticWrapPanelDemoViewModel()
     {
@@ -38,5 +45,25 @@ public partial class ElasticWrapPanelDemoViewModel : ObservableObject
         IsFillVertical = false;
         ItemWidth = 40d;
         ItemHeight = 40d;
+
+        ItemSelfWidth = double.NaN;
+        ItemSelfHeight = double.NaN;
+
+        CmbHAligns = new ObservableCollection<HorizontalAlignment>()
+        {
+            HorizontalAlignment.Stretch,
+            HorizontalAlignment.Left,
+            HorizontalAlignment.Center,
+            HorizontalAlignment.Right
+        };
+        CmbVAligns = new ObservableCollection<VerticalAlignment>()
+        {
+            VerticalAlignment.Stretch,
+            VerticalAlignment.Top,
+            VerticalAlignment.Center,
+            VerticalAlignment.Bottom
+        };
+        CmbHAlign = HorizontalAlignment.Stretch;
+        CmbVAlign = VerticalAlignment.Stretch;
     }
 }

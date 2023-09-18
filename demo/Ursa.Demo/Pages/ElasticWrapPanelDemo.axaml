@@ -149,78 +149,84 @@
 
             <TabItem Header="FixToRB">
                 <DockPanel>
-                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                        <TextBlock Text="输入控件宽度" VerticalAlignment="Center" />
-                        <Grid>
-                            <Rectangle x:Name="Rect2" />
-                            <TextBox MinWidth="60" Height="22" VerticalContentAlignment="Center"
-                                     Text="{Binding ElementName=Rect2,Path=Width,Mode=TwoWay}" />
-                        </Grid>
-                        <TextBlock Text="输入控件高度" VerticalAlignment="Center" />
-                        <Grid>
-                            <TextBox MinWidth="60" Height="22" VerticalContentAlignment="Center"
-                                     Text="{Binding ElementName=Rect2,Path=Height,Mode=TwoWay}" />
-                        </Grid>
-                        <ComboBox x:Name="cmbVerAlig" SelectedIndex="3" Width="70">
-                            <VerticalAlignment>Top</VerticalAlignment>
-                            <VerticalAlignment>Center</VerticalAlignment>
-                            <VerticalAlignment>Bottom</VerticalAlignment>
-                            <VerticalAlignment>Stretch</VerticalAlignment>
-                        </ComboBox>
-                        <ComboBox x:Name="cmbHorAlig" SelectedIndex="3" Width="70">
-                            <HorizontalAlignment>Left</HorizontalAlignment>
-                            <HorizontalAlignment>Center</HorizontalAlignment>
-                            <HorizontalAlignment>Right</HorizontalAlignment>
-                            <HorizontalAlignment>Stretch</HorizontalAlignment>
-                        </ComboBox>
+                    <StackPanel DockPanel.Dock="Top" x:Name="ControlBar2">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Control Width" />
+                            <TextBox Text="{Binding ItemSelfWidth}" />
+                            <TextBlock Text="Control Height" />
+                            <TextBox Text="{Binding  ItemSelfHeight}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Horizontal Alignment" />
+                            <ComboBox SelectedItem="{Binding CmbHAlign}"
+                                      ItemsSource="{Binding CmbHAligns}" />
+                            <TextBlock Text="Vertical Alignment" />
+                            <ComboBox SelectedItem="{Binding CmbVAlign}"
+                                      ItemsSource="{Binding CmbVAligns}" />
+                        </StackPanel>
+                        <StackPanel.Styles>
+                            <Style Selector="StackPanel#ControlBar2 > StackPanel > TextBlock">
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="Margin" Value="10 0" />
+                            </Style>
+                            <Style Selector="StackPanel#ControlBar2 > StackPanel > TextBox, NumericUpDown">
+                                <Setter Property="Width" Value="100" />
+                            </Style>
+                            <Style Selector="StackPanel#ControlBar2 > StackPanel > ComboBox">
+                                <Setter Property="Width" Value="130" />
+                            </Style>
+                        </StackPanel.Styles>
                     </StackPanel>
+
                     <TabControl>
-                        <TabItem Header="一个">
-                            <StackPanel x:Name="UnifornGrid1">
+                        <TabItem Header="Single">
+                            <StackPanel>
                                 <ScrollViewer
                                     HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
                                     VerticalScrollBarVisibility="{Binding VerticalVisibility}">
                                     <DockPanel>
-                                        <Label Content="WrapPanel" Background="#FFCBCBEA" DockPanel.Dock="Top" />
+                                        <Label DockPanel.Dock="Top"
+                                               Content="WrapPanel"
+                                               Background="{DynamicResource SemiPurple2Color}" />
                                         <WrapPanel ItemWidth="{Binding ItemWidth}"
                                                    ItemHeight="{Binding ItemHeight}"
                                                    Orientation="{Binding SelectedOrientation}">
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容1" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 1" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容2" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 2" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容3" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 3" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容4" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 4" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容5" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 5" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容6" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 6" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
                                             <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
                                                          u:ElasticWrapPanel.FixToRB="True"
-                                                         HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
-                                                         VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
-                                                <Button Content="查询" MinHeight="22" Margin="1" />
-                                                <Button Content="导出" MinHeight="22" Margin="1" />
+                                                         HorizontalAlignment="{Binding CmbHAlign}"
+                                                         VerticalAlignment="{Binding CmbVAlign}">
+                                                <Button Content="Search" MinHeight="20" Margin="1" />
+                                                <Button Content="Export" MinHeight="20" Margin="1" />
                                             </UniformGrid>
                                         </WrapPanel>
                                     </DockPanel>
@@ -229,139 +235,143 @@
                                     HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
                                     VerticalScrollBarVisibility="{Binding VerticalVisibility}">
                                     <DockPanel>
-                                        <Label Content="ElasticWrapPanel" Background="#FFB4F1AA"
-                                               DockPanel.Dock="Top" />
+                                        <Label DockPanel.Dock="Top"
+                                               Content="ElasticWrapPanel"
+                                               Background="{DynamicResource SemiGreen2Color}" />
                                         <u:ElasticWrapPanel
                                             IsFillHorizontal="{Binding IsFillHorizontal}"
                                             IsFillVertical="{Binding IsFillVertical}"
                                             ItemWidth="{Binding ItemWidth}"
                                             ItemHeight="{Binding ItemHeight}"
                                             Orientation="{Binding SelectedOrientation}">
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容1" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 1" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容2" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 2" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容3" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 3" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容4" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 4" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容5" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 5" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容6" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 6" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
                                             <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
                                                          u:ElasticWrapPanel.FixToRB="True"
-                                                         HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
-                                                         VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
-                                                <Button Content="查询" MinHeight="22" Margin="1" />
-                                                <Button Content="导出" MinHeight="22" Margin="1" />
+                                                         HorizontalAlignment="{Binding CmbHAlign}"
+                                                         VerticalAlignment="{Binding CmbVAlign}">
+                                                <Button Content="Search" MinHeight="20" Margin="1" />
+                                                <Button Content="Export" MinHeight="20" Margin="1" />
                                             </UniformGrid>
                                         </u:ElasticWrapPanel>
                                     </DockPanel>
                                 </ScrollViewer>
                             </StackPanel>
                         </TabItem>
-                        <TabItem Header="多个">
-                            <StackPanel x:Name="UnifornGrid2">
+                        <TabItem Header="Multiply">
+                            <StackPanel>
                                 <ScrollViewer
                                     HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
                                     VerticalScrollBarVisibility="{Binding VerticalVisibility}">
                                     <DockPanel>
-                                        <Label Content="WrapPanel" Background="#FFCBCBEA" DockPanel.Dock="Top" />
+                                        <Label
+                                            DockPanel.Dock="Top"
+                                            Content="WrapPanel"
+                                            Background="{DynamicResource SemiPurple2Color}" />
                                         <WrapPanel ItemWidth="{Binding ItemWidth}"
                                                    ItemHeight="{Binding ItemHeight}"
                                                    Orientation="{Binding SelectedOrientation}">
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容1" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 1" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容2" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 2" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容3" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 3" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容4" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 4" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容5" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 5" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容6" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 6" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
                                             <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
                                                          u:ElasticWrapPanel.FixToRB="True"
-                                                         HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
-                                                         VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
-                                                <Button Content="查询" MinHeight="22" Margin="1" />
-                                                <Button Content="导出" MinHeight="22" Margin="1" />
+                                                         HorizontalAlignment="{Binding CmbHAlign}"
+                                                         VerticalAlignment="{Binding CmbVAlign}">
+                                                <Button Content="Search" MinHeight="20" Margin="1" />
+                                                <Button Content="Export" MinHeight="20" Margin="1" />
                                             </UniformGrid>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容1" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 1" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容2" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 2" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容3" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 3" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容4" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 4" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容5" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 5" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容6" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 6" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
                                             <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
                                                          u:ElasticWrapPanel.FixToRB="True"
-                                                         HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
-                                                         VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
-                                                <Button Content="查询" MinHeight="22" Margin="1" />
-                                                <Button Content="导出" MinHeight="22" Margin="1" />
+                                                         HorizontalAlignment="{Binding CmbHAlign}"
+                                                         VerticalAlignment="{Binding CmbVAlign}">
+                                                <Button Content="Search" MinHeight="20" Margin="1" />
+                                                <Button Content="Export" MinHeight="20" Margin="1" />
                                             </UniformGrid>
                                         </WrapPanel>
                                     </DockPanel>
@@ -370,87 +380,88 @@
                                     HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
                                     VerticalScrollBarVisibility="{Binding VerticalVisibility}">
                                     <DockPanel>
-                                        <Label Content="ElasticWrapPanel" Background="#FFB4F1AA"
-                                               DockPanel.Dock="Top" />
+                                        <Label DockPanel.Dock="Top"
+                                               Content="ElasticWrapPanel"
+                                               Background="{DynamicResource SemiGreen2Color}" />
                                         <u:ElasticWrapPanel
                                             IsFillHorizontal="{Binding IsFillHorizontal}"
                                             IsFillVertical="{Binding IsFillVertical}"
                                             ItemWidth="{Binding ItemWidth}"
                                             ItemHeight="{Binding ItemHeight}"
                                             Orientation="{Binding SelectedOrientation}">
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容1" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 1" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容2" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 2" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容3" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 3" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容4" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 4" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容5" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 5" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容6" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 6" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
                                             <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
                                                          u:ElasticWrapPanel.FixToRB="True"
-                                                         HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
-                                                         VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
-                                                <Button Content="查询" MinHeight="22" Margin="1" />
-                                                <Button Content="导出" MinHeight="22" Margin="1" />
+                                                         HorizontalAlignment="{Binding CmbHAlign}"
+                                                         VerticalAlignment="{Binding CmbVAlign}">
+                                                <Button Content="Search" MinHeight="20" Margin="1" />
+                                                <Button Content="Export" MinHeight="20" Margin="1" />
                                             </UniformGrid>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容1" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 1" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容2" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 2" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容3" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 3" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容4" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 4" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容5" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 5" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
-                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                       Height="{Binding ElementName=Rect2,Path=Height}">
-                                                <TextBlock Text="内容6" VerticalAlignment="Center" />
-                                                <TextBox MinHeight="23" />
+                                            <DockPanel Width="{Binding ItemSelfWidth}"
+                                                       Height="{Binding ItemSelfHeight}">
+                                                <TextBlock Text="Content 6" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="20" />
                                             </DockPanel>
                                             <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
                                                          u:ElasticWrapPanel.FixToRB="True"
-                                                         HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
-                                                         VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
-                                                <Button Content="查询" MinHeight="22" Margin="1" />
-                                                <Button Content="导出" MinHeight="22" Margin="1" />
+                                                         HorizontalAlignment="{Binding CmbHAlign}"
+                                                         VerticalAlignment="{Binding CmbVAlign}">
+                                                <Button Content="Search" MinHeight="20" Margin="1" />
+                                                <Button Content="Export" MinHeight="20" Margin="1" />
                                             </UniformGrid>
                                         </u:ElasticWrapPanel>
                                     </DockPanel>
