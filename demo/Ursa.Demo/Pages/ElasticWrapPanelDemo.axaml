@@ -3,63 +3,59 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:u="https://irihi.tech/ursa"
+             xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+             x:CompileBindings="True"
+             x:DataType="viewModels:ElasticWrapPanelDemoViewModel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.ElasticWrapPanelDemo">
     <Grid>
         <DockPanel>
-            <TextBlock Text="一个优化奇怪的WrapPanel" DockPanel.Dock="Top" FontWeight="Bold" />
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                <TextBlock Text="排列方式" VerticalAlignment="Center" />
-                <ComboBox x:Name="CmbOrientation" Width="90" SelectedIndex="1">
-                    <Orientation>Vertical</Orientation>
-                    <Orientation>Horizontal</Orientation>
-                </ComboBox>
-                <TextBlock Text="水平滚动条" VerticalAlignment="Center" />
-                <ComboBox x:Name="ScrollViewHVisb" Width="90" SelectedIndex="0">
-                    <ScrollBarVisibility>Auto</ScrollBarVisibility>
-                    <ScrollBarVisibility>Disabled</ScrollBarVisibility>
-                    <ScrollBarVisibility>Hidden</ScrollBarVisibility>
-                    <ScrollBarVisibility>Visible</ScrollBarVisibility>
-                </ComboBox>
-                <TextBlock Text="垂直滚动条" VerticalAlignment="Center" />
-                <ComboBox x:Name="ScrollViewVVisb" Width="90" SelectedIndex="0">
-                    <ScrollBarVisibility>Auto</ScrollBarVisibility>
-                    <ScrollBarVisibility>Disabled</ScrollBarVisibility>
-                    <ScrollBarVisibility>Hidden</ScrollBarVisibility>
-                    <ScrollBarVisibility>Visible</ScrollBarVisibility>
-                </ComboBox>
+            <StackPanel DockPanel.Dock="Top" x:Name="ControlBar">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Orientation" />
+                    <ComboBox ItemsSource="{Binding Orientations}"
+                              SelectedItem="{Binding SelectedOrientation}" />
+                    <TextBlock Text="HorizontalScrollBar" />
+                    <ComboBox ItemsSource="{Binding HScrollBarVisibilities}"
+                              SelectedItem="{Binding HorizontalVisibility}" />
+                    <TextBlock Text="VerticalScrollBar" />
+                    <ComboBox ItemsSource="{Binding VScrollBarVisibilities}"
+                              SelectedItem="{Binding VerticalVisibility}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox IsChecked="{Binding IsFillHorizontal}"
+                              Content="IsFillHorizontal" />
+                    <TextBlock Text="ItemWidth" />
+                    <TextBox Text="{Binding ItemWidth}" />
+                    <CheckBox IsChecked="{Binding IsFillVertical}"
+                              Content="IsFillVertical" />
+                    <TextBlock Text="ItemHeight" />
+                    <TextBox Text="{Binding ItemHeight}" />
+                </StackPanel>
+                <StackPanel.Styles>
+                    <Style Selector="StackPanel#ControlBar > StackPanel > TextBlock">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Margin" Value="10 0" />
+                    </Style>
+                    <Style Selector="StackPanel#ControlBar > StackPanel > TextBox">
+                        <Setter Property="Width" Value="100" />
+                    </Style>
+                    <Style Selector="StackPanel#ControlBar > StackPanel > ComboBox">
+                        <Setter Property="Width" Value="130" />
+                    </Style>
+                </StackPanel.Styles>
             </StackPanel>
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                <CheckBox x:Name="chkFillWidth" IsChecked="True" Content="水平平铺"
-                          VerticalAlignment="Center" VerticalContentAlignment="Center"
-                          Margin="0,0,10,0" />
-                <TextBlock Text="宽度" VerticalAlignment="Center" />
-                <Grid>
-                    <!-- <Rectangle x:Name="Rect1" Width="100" Visibility="Collapsed" /> -->
-                    <Rectangle x:Name="Rect1" Width="100" />
-                    <TextBox x:Name="txtItemWidth" MinWidth="60" Height="22" VerticalContentAlignment="Center"
-                             Text="{Binding ElementName=Rect1,Path=Width,Mode=TwoWay}" />
-                </Grid>
-                <CheckBox x:Name="chkFillHeight" IsChecked="True" Content="垂直平铺"
-                          VerticalAlignment="Center" VerticalContentAlignment="Center"
-                          Margin="0,0,10,0" />
-                <TextBlock Text="高度" VerticalAlignment="Center" />
-                <Grid>
-                    <TextBox x:Name="txtItemHeight" MinWidth="60" Height="22" VerticalContentAlignment="Center"
-                             Text="{Binding ElementName=Rect1,Path=Height,Mode=TwoWay}" />
-                </Grid>
-                <TextBlock Text="* 数字可填入NaN" Foreground="Red" VerticalAlignment="Center" />
-            </StackPanel>
+
             <TabControl>
                 <TabItem Header="平铺Demo">
                     <TabControl>
                         <TabItem Header="情景1（高度充满）">
-                            <u:ElasticWrapPanel x:Name="ElasticWrapPanel" Grid.Row="3"
-                                           IsFillHorizontal="{Binding ElementName=chkFillWidth,Path=IsChecked,Mode=TwoWay}"
-                                           IsFillVertical="{Binding ElementName=chkFillHeight,Path=IsChecked,Mode=TwoWay}"
-                                           ItemWidth="{Binding ElementName=Rect1,Path=Width}"
-                                           ItemHeight="{Binding ElementName=Rect1,Path=Height}"
-                                           Orientation="{Binding ElementName=CmbOrientation,Path=SelectedValue}">
+                            <u:ElasticWrapPanel x:Name="ElasticWrapPanel"
+                                                IsFillHorizontal="{Binding IsFillHorizontal}"
+                                                IsFillVertical="{Binding IsFillVertical}"
+                                                ItemWidth="{Binding ItemWidth}"
+                                                ItemHeight="{Binding ItemHeight}"
+                                                Orientation="{Binding SelectedOrientation}">
                                 <DockPanel MinHeight="35" Margin="0,0,5,2">
                                     <DockPanel.Background>
                                         <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
@@ -137,17 +133,13 @@
                             </u:ElasticWrapPanel>
                         </TabItem>
                         <TabItem Header="情景2（高度Auto）">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
+                            <Grid RowDefinitions="auto,*">
                                 <u:ElasticWrapPanel
-                                    IsFillHorizontal="{Binding ElementName=chkFillWidth,Path=IsChecked,Mode=TwoWay}"
-                                    IsFillVertical="{Binding ElementName=chkFillHeight,Path=IsChecked,Mode=TwoWay}"
-                                    ItemWidth="{Binding ElementName=Rect1,Path=Width}"
-                                    ItemHeight="{Binding ElementName=Rect1,Path=Height}"
-                                    Orientation="{Binding ElementName=CmbOrientation,Path=SelectedValue}">
+                                    IsFillHorizontal="{Binding IsFillHorizontal}"
+                                    IsFillVertical="{Binding IsFillVertical}"
+                                    ItemWidth="{Binding ItemWidth}"
+                                    ItemHeight="{Binding ItemHeight}"
+                                    Orientation="{Binding SelectedOrientation}">
                                     <DockPanel MinHeight="35" Margin="0,0,5,2">
                                         <DockPanel.Background>
                                             <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
@@ -225,21 +217,21 @@
                                     </DockPanel>
                                 </u:ElasticWrapPanel>
                                 <Border Grid.Row="1" BorderThickness="1" BorderBrush="Red" Margin="0,4">
-                                    <Label Content="这里是VS扩展git源码提交部分界面不实现！" />
+                                    <Label Content="This is blank" />
                                 </Border>
                             </Grid>
                         </TabItem>
                         <TabItem Header="情景3(ScrollView中表现)">
-                            <Border Grid.Row="3" Margin="70,30" BorderBrush="Red" BorderThickness="1">
+                            <Border Margin="70,30" BorderBrush="Red" BorderThickness="1">
                                 <ScrollViewer
-                                    HorizontalScrollBarVisibility="{Binding ElementName=ScrollViewHVisb,Path=SelectedValue}"
-                                    VerticalScrollBarVisibility="{Binding ElementName=ScrollViewVVisb,Path=SelectedValue}">
+                                    HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
+                                    VerticalScrollBarVisibility="{Binding VerticalVisibility}">
                                     <u:ElasticWrapPanel x:Name="ElasticWrapPanel3"
-                                                   IsFillHorizontal="{Binding ElementName=chkFillWidth,Path=IsChecked,Mode=TwoWay}"
-                                                   IsFillVertical="{Binding ElementName=chkFillHeight,Path=IsChecked,Mode=TwoWay}"
-                                                   ItemWidth="{Binding ElementName=Rect1,Path=Width}"
-                                                   ItemHeight="{Binding ElementName=Rect1,Path=Height}"
-                                                   Orientation="{Binding ElementName=CmbOrientation,Path=SelectedValue}">
+                                                        IsFillHorizontal="{Binding IsFillHorizontal}"
+                                                        IsFillVertical="{Binding IsFillVertical}"
+                                                        ItemWidth="{Binding ItemWidth}"
+                                                        ItemHeight="{Binding ItemHeight}"
+                                                        Orientation="{Binding SelectedOrientation}">
                                         <DockPanel MinHeight="35" Margin="0,0,5,2">
                                             <DockPanel.Background>
                                                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
@@ -352,13 +344,13 @@
                             <TabItem Header="一个">
                                 <StackPanel x:Name="UnifornGrid1">
                                     <ScrollViewer
-                                        HorizontalScrollBarVisibility="{Binding ElementName=ScrollViewHVisb,Path=SelectedValue}"
-                                        VerticalScrollBarVisibility="{Binding ElementName=ScrollViewVVisb,Path=SelectedValue}">
+                                        HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
+                                        VerticalScrollBarVisibility="{Binding VerticalVisibility}">
                                         <DockPanel>
                                             <Label Content="WrapPanel" Background="#FFCBCBEA" DockPanel.Dock="Top" />
-                                            <WrapPanel ItemWidth="{Binding ElementName=Rect1,Path=Width}"
-                                                       ItemHeight="{Binding ElementName=Rect1,Path=Height}"
-                                                       Orientation="{Binding ElementName=CmbOrientation,Path=SelectedValue}">
+                                            <WrapPanel ItemWidth="{Binding ItemWidth}"
+                                                       ItemHeight="{Binding ItemHeight}"
+                                                       Orientation="{Binding SelectedOrientation}">
                                                 <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
                                                            Height="{Binding ElementName=Rect2,Path=Height}">
                                                     <TextBlock Text="内容1" VerticalAlignment="Center" />
@@ -400,16 +392,17 @@
                                         </DockPanel>
                                     </ScrollViewer>
                                     <ScrollViewer
-                                        HorizontalScrollBarVisibility="{Binding ElementName=ScrollViewHVisb,Path=SelectedValue}"
-                                        VerticalScrollBarVisibility="{Binding ElementName=ScrollViewVVisb,Path=SelectedValue}">
+                                        HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
+                                        VerticalScrollBarVisibility="{Binding VerticalVisibility}">
                                         <DockPanel>
-                                            <Label Content="ElasticWrapPanel" Background="#FFB4F1AA" DockPanel.Dock="Top" />
+                                            <Label Content="ElasticWrapPanel" Background="#FFB4F1AA"
+                                                   DockPanel.Dock="Top" />
                                             <u:ElasticWrapPanel
-                                                IsFillHorizontal="{Binding ElementName=chkFillWidth,Path=IsChecked,Mode=TwoWay}"
-                                                IsFillVertical="{Binding ElementName=chkFillHeight,Path=IsChecked,Mode=TwoWay}"
-                                                ItemWidth="{Binding ElementName=Rect1,Path=Width}"
-                                                ItemHeight="{Binding ElementName=Rect1,Path=Height}"
-                                                Orientation="{Binding ElementName=CmbOrientation,Path=SelectedValue}">
+                                                IsFillHorizontal="{Binding IsFillHorizontal}"
+                                                IsFillVertical="{Binding IsFillVertical}"
+                                                ItemWidth="{Binding ItemWidth}"
+                                                ItemHeight="{Binding ItemHeight}"
+                                                Orientation="{Binding SelectedOrientation}">
                                                 <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
                                                            Height="{Binding ElementName=Rect2,Path=Height}">
                                                     <TextBlock Text="内容1" VerticalAlignment="Center" />
@@ -455,13 +448,13 @@
                             <TabItem Header="多个">
                                 <StackPanel x:Name="UnifornGrid2">
                                     <ScrollViewer
-                                        HorizontalScrollBarVisibility="{Binding ElementName=ScrollViewHVisb,Path=SelectedValue}"
-                                        VerticalScrollBarVisibility="{Binding ElementName=ScrollViewVVisb,Path=SelectedValue}">
+                                        HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
+                                        VerticalScrollBarVisibility="{Binding VerticalVisibility}">
                                         <DockPanel>
                                             <Label Content="WrapPanel" Background="#FFCBCBEA" DockPanel.Dock="Top" />
-                                            <WrapPanel ItemWidth="{Binding ElementName=Rect1,Path=Width}"
-                                                       ItemHeight="{Binding ElementName=Rect1,Path=Height}"
-                                                       Orientation="{Binding ElementName=CmbOrientation,Path=SelectedValue}">
+                                            <WrapPanel ItemWidth="{Binding ItemWidth}"
+                                                       ItemHeight="{Binding ItemHeight}"
+                                                       Orientation="{Binding SelectedOrientation}">
                                                 <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
                                                            Height="{Binding ElementName=Rect2,Path=Height}">
                                                     <TextBlock Text="内容1" VerticalAlignment="Center" />
@@ -540,16 +533,17 @@
                                         </DockPanel>
                                     </ScrollViewer>
                                     <ScrollViewer
-                                        HorizontalScrollBarVisibility="{Binding ElementName=ScrollViewHVisb,Path=SelectedValue}"
-                                        VerticalScrollBarVisibility="{Binding ElementName=ScrollViewVVisb,Path=SelectedValue}">
+                                        HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
+                                        VerticalScrollBarVisibility="{Binding VerticalVisibility}">
                                         <DockPanel>
-                                            <Label Content="ElasticWrapPanel" Background="#FFB4F1AA" DockPanel.Dock="Top" />
+                                            <Label Content="ElasticWrapPanel" Background="#FFB4F1AA"
+                                                   DockPanel.Dock="Top" />
                                             <u:ElasticWrapPanel
-                                                IsFillHorizontal="{Binding ElementName=chkFillWidth,Path=IsChecked,Mode=TwoWay}"
-                                                IsFillVertical="{Binding ElementName=chkFillHeight,Path=IsChecked,Mode=TwoWay}"
-                                                ItemWidth="{Binding ElementName=Rect1,Path=Width}"
-                                                ItemHeight="{Binding ElementName=Rect1,Path=Height}"
-                                                Orientation="{Binding ElementName=CmbOrientation,Path=SelectedValue}">
+                                                IsFillHorizontal="{Binding IsFillHorizontal}"
+                                                IsFillVertical="{Binding IsFillVertical}"
+                                                ItemWidth="{Binding ItemWidth}"
+                                                ItemHeight="{Binding ItemHeight}"
+                                                Orientation="{Binding SelectedOrientation}">
                                                 <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
                                                            Height="{Binding ElementName=Rect2,Path=Height}">
                                                     <TextBlock Text="内容1" VerticalAlignment="Center" />
@@ -634,17 +628,5 @@
                 </TabItem>
             </TabControl>
         </DockPanel>
-        <Border HorizontalAlignment="Right" VerticalAlignment="Top" IsHitTestVisible="False"
-                BorderBrush="Blue" Background="#FF56AFFD" Margin="5,5,5,5" BorderThickness="1"
-                TextElement.FontFamily="微软雅黑" TextElement.FontWeight="Thin" Opacity="0.35"
-                TextElement.Foreground="White" Padding="4">
-            <StackPanel>
-                <TextBlock Text="ElasticWrapPanel控件" />
-                <TextBlock Text="IsFillHorizontal属性：有ItemWidth情况下水平平铺" />
-                <TextBlock Text="IsFillVertical属性：有ItemHeight情况下水平平铺" />
-                <TextBlock Text="ElasticWrapPanel.FixToRB：水平排列元素时则向右对齐换行" />
-                <TextBlock TextAlignment="Right" Text="垂直排列元素时则向底部对齐换行" />
-            </StackPanel>
-        </Border>
     </Grid>
 </UserControl>
