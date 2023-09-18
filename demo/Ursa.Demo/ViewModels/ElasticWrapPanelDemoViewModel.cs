@@ -16,8 +16,8 @@ public partial class ElasticWrapPanelDemoViewModel : ObservableObject
 
     [ObservableProperty] private bool _isFillHorizontal;
     [ObservableProperty] private bool _isFillVertical;
-    [ObservableProperty] private double _itemWidth;
-    [ObservableProperty] private double _itemHeight;
+    [ObservableProperty] private double? _itemWidth;
+    [ObservableProperty] private double? _itemHeight;
 
 
     public ElasticWrapPanelDemoViewModel()
@@ -36,7 +36,7 @@ public partial class ElasticWrapPanelDemoViewModel : ObservableObject
 
         IsFillHorizontal = true;
         IsFillVertical = false;
-        ItemWidth = 100d;
-        ItemHeight = double.NaN;
+        ItemWidth = 40d;
+        ItemHeight = 40d;
     }
 }

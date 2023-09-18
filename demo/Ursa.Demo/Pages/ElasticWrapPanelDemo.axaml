@@ -8,625 +8,458 @@
              x:DataType="viewModels:ElasticWrapPanelDemoViewModel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.ElasticWrapPanelDemo">
-    <Grid>
-        <DockPanel>
-            <StackPanel DockPanel.Dock="Top" x:Name="ControlBar">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Orientation" />
-                    <ComboBox ItemsSource="{Binding Orientations}"
-                              SelectedItem="{Binding SelectedOrientation}" />
-                    <TextBlock Text="HorizontalScrollBar" />
-                    <ComboBox ItemsSource="{Binding HScrollBarVisibilities}"
-                              SelectedItem="{Binding HorizontalVisibility}" />
-                    <TextBlock Text="VerticalScrollBar" />
-                    <ComboBox ItemsSource="{Binding VScrollBarVisibilities}"
-                              SelectedItem="{Binding VerticalVisibility}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <CheckBox IsChecked="{Binding IsFillHorizontal}"
-                              Content="IsFillHorizontal" />
-                    <TextBlock Text="ItemWidth" />
-                    <TextBox Text="{Binding ItemWidth}" />
-                    <CheckBox IsChecked="{Binding IsFillVertical}"
-                              Content="IsFillVertical" />
-                    <TextBlock Text="ItemHeight" />
-                    <TextBox Text="{Binding ItemHeight}" />
-                </StackPanel>
-                <StackPanel.Styles>
-                    <Style Selector="StackPanel#ControlBar > StackPanel > TextBlock">
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                        <Setter Property="Margin" Value="10 0" />
-                    </Style>
-                    <Style Selector="StackPanel#ControlBar > StackPanel > TextBox">
-                        <Setter Property="Width" Value="100" />
-                    </Style>
-                    <Style Selector="StackPanel#ControlBar > StackPanel > ComboBox">
-                        <Setter Property="Width" Value="130" />
-                    </Style>
-                </StackPanel.Styles>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" x:Name="ControlBar">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Orientation" />
+                <ComboBox ItemsSource="{Binding Orientations}"
+                          SelectedItem="{Binding SelectedOrientation}" />
+                <TextBlock Text="HorizontalScrollBar" />
+                <ComboBox ItemsSource="{Binding HScrollBarVisibilities}"
+                          SelectedItem="{Binding HorizontalVisibility}" />
+                <TextBlock Text="VerticalScrollBar" />
+                <ComboBox ItemsSource="{Binding VScrollBarVisibilities}"
+                          SelectedItem="{Binding VerticalVisibility}" />
             </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding IsFillHorizontal}"
+                          Content="IsFillHorizontal" />
+                <TextBlock Text="ItemWidth" />
+                <NumericUpDown Value="{Binding ItemWidth}"
+                               Increment="1" Minimum="0" Maximum="1000" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding IsFillVertical}"
+                          Content="IsFillVertical" />
+                <TextBlock Text="ItemHeight" />
+                <NumericUpDown Value="{Binding ItemHeight}"
+                               Increment="1" Minimum="0" Maximum="1000" />
+            </StackPanel>
+            <StackPanel.Styles>
+                <Style Selector="StackPanel#ControlBar > StackPanel > TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="10 0" />
+                </Style>
+                <Style Selector="StackPanel#ControlBar > StackPanel > TextBox, NumericUpDown">
+                    <Setter Property="Width" Value="100" />
+                </Style>
+                <Style Selector="StackPanel#ControlBar > StackPanel > ComboBox">
+                    <Setter Property="Width" Value="130" />
+                </Style>
+            </StackPanel.Styles>
+        </StackPanel>
 
-            <TabControl>
-                <TabItem Header="平铺Demo">
-                    <TabControl>
-                        <TabItem Header="情景1（高度充满）">
-                            <u:ElasticWrapPanel x:Name="ElasticWrapPanel"
-                                                IsFillHorizontal="{Binding IsFillHorizontal}"
-                                                IsFillVertical="{Binding IsFillVertical}"
-                                                ItemWidth="{Binding ItemWidth}"
-                                                ItemHeight="{Binding ItemHeight}"
-                                                Orientation="{Binding SelectedOrientation}">
-                                <DockPanel MinHeight="35" Margin="0,0,5,2">
-                                    <DockPanel.Background>
-                                        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                            <GradientStop Color="#FFA6A6A6" Offset="0" />
-                                            <GradientStop Color="#FFCFCFCF" Offset="1" />
-                                        </LinearGradientBrush>
-                                    </DockPanel.Background>
-                                    <Rectangle Fill="#F05033" Width="4" />
-                                    <Grid Margin="5">
-                                        <Ellipse StrokeThickness="2" Width="25" Height="25" Stroke="Black" />
-                                        <Ellipse StrokeThickness="2" Width="17" Height="17" Fill="#FFB8B2B2" />
-                                    </Grid>
-                                    <TextBlock Text="Changed" FontWeight="Medium" FontSize="16"
-                                               VerticalAlignment="Center" />
-                                </DockPanel>
-                                <DockPanel MinHeight="35" Margin="0,0,5,2">
-                                    <DockPanel.Background>
-                                        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                            <GradientStop Color="#FFA6A6A6" Offset="0" />
-                                            <GradientStop Color="#FFCFCFCF" Offset="1" />
-                                        </LinearGradientBrush>
-                                    </DockPanel.Background>
-                                    <Rectangle Fill="#F05033" Width="4" />
-                                    <Grid Margin="5">
-                                        <Ellipse StrokeThickness="2" Width="25" Height="25" Stroke="Black" />
-                                        <Ellipse StrokeThickness="2" Width="17" Height="17" Fill="#FFDCA1A1" />
-                                    </Grid>
-                                    <TextBlock Text="Branches" FontWeight="Medium" FontSize="16"
-                                               VerticalAlignment="Center" />
-                                </DockPanel>
-                                <DockPanel MinHeight="35" Margin="0,0,5,2">
-                                    <DockPanel.Background>
-                                        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                            <GradientStop Color="#FFA6A6A6" Offset="0" />
-                                            <GradientStop Color="#FFCFCFCF" Offset="1" />
-                                        </LinearGradientBrush>
-                                    </DockPanel.Background>
-                                    <Rectangle Fill="#FF3333F0" Width="4" />
-                                    <Grid Margin="5">
-                                        <Ellipse StrokeThickness="2" Width="25" Height="25" Stroke="Black" />
-                                        <Ellipse StrokeThickness="2" Width="17" Height="17" Fill="#FFB5B9BD" />
-                                    </Grid>
-                                    <TextBlock Text="Sync" FontWeight="Medium" FontSize="16" VerticalAlignment="Center" />
-                                </DockPanel>
-                                <DockPanel MinHeight="35" Margin="0,0,5,2">
-                                    <DockPanel.Background>
-                                        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                            <GradientStop Color="#FFA6A6A6" Offset="0" />
-                                            <GradientStop Color="#FFCFCFCF" Offset="1" />
-                                        </LinearGradientBrush>
-                                    </DockPanel.Background>
-                                    <Rectangle Fill="#FF616161" Width="4" />
-                                    <Grid Margin="5">
-                                        <Ellipse StrokeThickness="2" Width="25" Height="25" Stroke="Black" />
-                                        <Ellipse StrokeThickness="2" Width="17" Height="17" Fill="#FF3E3E3E" />
-                                    </Grid>
-                                    <TextBlock Text="Setting" FontWeight="Medium" FontSize="16"
-                                               VerticalAlignment="Center" />
-                                </DockPanel>
-                                <DockPanel MinHeight="35" Margin="0,0,5,2">
-                                    <DockPanel.Background>
-                                        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                            <GradientStop Color="#FFA6A6A6" Offset="0" />
-                                            <GradientStop Color="#FF555E85" Offset="1" />
-                                        </LinearGradientBrush>
-                                    </DockPanel.Background>
-                                    <Rectangle Fill="#FF616161" Width="4" />
-                                    <Grid Margin="5">
-                                        <Ellipse StrokeThickness="2" Width="25" Height="25" Stroke="Black" />
-                                        <Ellipse StrokeThickness="2" Width="17" Height="17" Fill="#FF93B6AA" />
-                                    </Grid>
-                                    <TextBlock Text="Others" FontWeight="Medium" FontSize="16"
-                                               VerticalAlignment="Center" />
-                                </DockPanel>
+        <TabControl>
+            <TabItem Header="Flat">
+                <TabControl>
+                    <TabItem Header="Common">
+                        <u:ElasticWrapPanel
+                            IsFillHorizontal="{Binding IsFillHorizontal}"
+                            IsFillVertical="{Binding IsFillVertical}"
+                            ItemWidth="{Binding ItemWidth}"
+                            ItemHeight="{Binding ItemHeight}"
+                            Orientation="{Binding SelectedOrientation}">
+                            <Border Background="{DynamicResource SemiRed5Color}" />
+                            <Border Background="{DynamicResource SemiPink5Color}" />
+                            <Border Background="{DynamicResource SemiPurple5Color}" />
+                            <Border Background="{DynamicResource SemiViolet5Color}" />
+                            <Border Background="{DynamicResource SemiIndigo5Color}" />
+                            <Border Background="{DynamicResource SemiBlue5Color}" />
+                            <Border Background="{DynamicResource SemiLightBlue5Color}" />
+                            <Border Background="{DynamicResource SemiCyan5Color}" />
+                            <Border Background="{DynamicResource SemiTeal5Color}" />
+                            <Border Background="{DynamicResource SemiGreen5Color}" />
+                            <Border Background="{DynamicResource SemiLightGreen5Color}" />
+                            <Border Background="{DynamicResource SemiLime5Color}" />
+                            <Border Background="{DynamicResource SemiYellow5Color}" />
+                            <Border Background="{DynamicResource SemiAmber5Color}" />
+                            <Border Background="{DynamicResource SemiOrange5Color}" />
+                            <Border Background="{DynamicResource SemiGrey5Color}" />
+                        </u:ElasticWrapPanel>
+                    </TabItem>
+                    <TabItem Header="Grid Auto">
+                        <Grid RowDefinitions="auto,*">
+                            <u:ElasticWrapPanel
+                                Grid.Row="0"
+                                IsFillHorizontal="{Binding IsFillHorizontal}"
+                                IsFillVertical="{Binding IsFillVertical}"
+                                ItemWidth="{Binding ItemWidth}"
+                                ItemHeight="{Binding ItemHeight}"
+                                Orientation="{Binding SelectedOrientation}">
+                                <Border Background="{DynamicResource SemiRed5Color}" />
+                                <Border Background="{DynamicResource SemiPink5Color}" />
+                                <Border Background="{DynamicResource SemiPurple5Color}" />
+                                <Border Background="{DynamicResource SemiViolet5Color}" />
+                                <Border Background="{DynamicResource SemiIndigo5Color}" />
+                                <Border Background="{DynamicResource SemiBlue5Color}" />
+                                <Border Background="{DynamicResource SemiLightBlue5Color}" />
+                                <Border Background="{DynamicResource SemiCyan5Color}" />
+                                <Border Background="{DynamicResource SemiTeal5Color}" />
+                                <Border Background="{DynamicResource SemiGreen5Color}" />
+                                <Border Background="{DynamicResource SemiLightGreen5Color}" />
+                                <Border Background="{DynamicResource SemiLime5Color}" />
+                                <Border Background="{DynamicResource SemiYellow5Color}" />
+                                <Border Background="{DynamicResource SemiAmber5Color}" />
+                                <Border Background="{DynamicResource SemiOrange5Color}" />
+                                <Border Background="{DynamicResource SemiGrey5Color}" />
                             </u:ElasticWrapPanel>
-                        </TabItem>
-                        <TabItem Header="情景2（高度Auto）">
-                            <Grid RowDefinitions="auto,*">
+                            <Border Grid.Row="1"
+                                    BorderThickness="1"
+                                    BorderBrush="{DynamicResource SemiGrey9Color}"
+                                    Margin="0,4">
+                                <TextBlock Text="This is blank" />
+                            </Border>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="ScrollViewer">
+                        <Border BorderThickness="1"
+                                BorderBrush="{DynamicResource SemiGrey9Color}"
+                                Margin="0,4">
+                            <ScrollViewer
+                                HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
+                                VerticalScrollBarVisibility="{Binding VerticalVisibility}">
                                 <u:ElasticWrapPanel
                                     IsFillHorizontal="{Binding IsFillHorizontal}"
                                     IsFillVertical="{Binding IsFillVertical}"
                                     ItemWidth="{Binding ItemWidth}"
                                     ItemHeight="{Binding ItemHeight}"
                                     Orientation="{Binding SelectedOrientation}">
-                                    <DockPanel MinHeight="35" Margin="0,0,5,2">
-                                        <DockPanel.Background>
-                                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                                <GradientStop Color="#FFA6A6A6" Offset="0" />
-                                                <GradientStop Color="#FFCFCFCF" Offset="1" />
-                                            </LinearGradientBrush>
-                                        </DockPanel.Background>
-                                        <Rectangle Fill="#F05033" Width="4" />
-                                        <Grid Margin="5">
-                                            <Ellipse StrokeThickness="2" Width="25" Height="25" Stroke="Black" />
-                                            <Ellipse StrokeThickness="2" Width="17" Height="17" Fill="#FFB8B2B2" />
-                                        </Grid>
-                                        <TextBlock Text="Changed" FontWeight="Medium" FontSize="16"
-                                                   VerticalAlignment="Center" />
-                                    </DockPanel>
-                                    <DockPanel MinHeight="35" Margin="0,0,5,2">
-                                        <DockPanel.Background>
-                                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                                <GradientStop Color="#FFA6A6A6" Offset="0" />
-                                                <GradientStop Color="#FFCFCFCF" Offset="1" />
-                                            </LinearGradientBrush>
-                                        </DockPanel.Background>
-                                        <Rectangle Fill="#F05033" Width="4" />
-                                        <Grid Margin="5">
-                                            <Ellipse StrokeThickness="2" Width="25" Height="25" Stroke="Black" />
-                                            <Ellipse StrokeThickness="2" Width="17" Height="17" Fill="#FFDCA1A1" />
-                                        </Grid>
-                                        <TextBlock Text="Branches" FontWeight="Medium" FontSize="16"
-                                                   VerticalAlignment="Center" />
-                                    </DockPanel>
-                                    <DockPanel MinHeight="35" Margin="0,0,5,2">
-                                        <DockPanel.Background>
-                                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                                <GradientStop Color="#FFA6A6A6" Offset="0" />
-                                                <GradientStop Color="#FFCFCFCF" Offset="1" />
-                                            </LinearGradientBrush>
-                                        </DockPanel.Background>
-                                        <Rectangle Fill="#FF3333F0" Width="4" />
-                                        <Grid Margin="5">
-                                            <Ellipse StrokeThickness="2" Width="25" Height="25" Stroke="Black" />
-                                            <Ellipse StrokeThickness="2" Width="17" Height="17" Fill="#FFB5B9BD" />
-                                        </Grid>
-                                        <TextBlock Text="Sync" FontWeight="Medium" FontSize="16"
-                                                   VerticalAlignment="Center" />
-                                    </DockPanel>
-                                    <DockPanel MinHeight="35" Margin="0,0,5,2">
-                                        <DockPanel.Background>
-                                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                                <GradientStop Color="#FFA6A6A6" Offset="0" />
-                                                <GradientStop Color="#FFCFCFCF" Offset="1" />
-                                            </LinearGradientBrush>
-                                        </DockPanel.Background>
-                                        <Rectangle Fill="#FF616161" Width="4" />
-                                        <Grid Margin="5">
-                                            <Ellipse StrokeThickness="2" Width="25" Height="25" Stroke="Black" />
-                                            <Ellipse StrokeThickness="2" Width="17" Height="17" Fill="#FF3E3E3E" />
-                                        </Grid>
-                                        <TextBlock Text="Setting" FontWeight="Medium" FontSize="16"
-                                                   VerticalAlignment="Center" />
-                                    </DockPanel>
-                                    <DockPanel MinHeight="35" Margin="0,0,5,2">
-                                        <DockPanel.Background>
-                                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                                <GradientStop Color="#FFA6A6A6" Offset="0" />
-                                                <GradientStop Color="#FF555E85" Offset="1" />
-                                            </LinearGradientBrush>
-                                        </DockPanel.Background>
-                                        <Rectangle Fill="#FF616161" Width="4" />
-                                        <Grid Margin="5">
-                                            <Ellipse StrokeThickness="2" Width="25" Height="25" Stroke="Black" />
-                                            <Ellipse StrokeThickness="2" Width="17" Height="17" Fill="#FF93B6AA" />
-                                        </Grid>
-                                        <TextBlock Text="Others" FontWeight="Medium" FontSize="16"
-                                                   VerticalAlignment="Center" />
-                                    </DockPanel>
+                                    <Border Background="{DynamicResource SemiRed5Color}" />
+                                    <Border Background="{DynamicResource SemiPink5Color}" />
+                                    <Border Background="{DynamicResource SemiPurple5Color}" />
+                                    <Border Background="{DynamicResource SemiViolet5Color}" />
+                                    <Border Background="{DynamicResource SemiIndigo5Color}" />
+                                    <Border Background="{DynamicResource SemiBlue5Color}" />
+                                    <Border Background="{DynamicResource SemiLightBlue5Color}" />
+                                    <Border Background="{DynamicResource SemiCyan5Color}" />
+                                    <Border Background="{DynamicResource SemiTeal5Color}" />
+                                    <Border Background="{DynamicResource SemiGreen5Color}" />
+                                    <Border Background="{DynamicResource SemiLightGreen5Color}" />
+                                    <Border Background="{DynamicResource SemiLime5Color}" />
+                                    <Border Background="{DynamicResource SemiYellow5Color}" />
+                                    <Border Background="{DynamicResource SemiAmber5Color}" />
+                                    <Border Background="{DynamicResource SemiOrange5Color}" />
+                                    <Border Background="{DynamicResource SemiGrey5Color}" />
                                 </u:ElasticWrapPanel>
-                                <Border Grid.Row="1" BorderThickness="1" BorderBrush="Red" Margin="0,4">
-                                    <Label Content="This is blank" />
-                                </Border>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="情景3(ScrollView中表现)">
-                            <Border Margin="70,30" BorderBrush="Red" BorderThickness="1">
+                            </ScrollViewer>
+                        </Border>
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+
+            <TabItem Header="FixToRB">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                        <TextBlock Text="输入控件宽度" VerticalAlignment="Center" />
+                        <Grid>
+                            <Rectangle x:Name="Rect2" />
+                            <TextBox MinWidth="60" Height="22" VerticalContentAlignment="Center"
+                                     Text="{Binding ElementName=Rect2,Path=Width,Mode=TwoWay}" />
+                        </Grid>
+                        <TextBlock Text="输入控件高度" VerticalAlignment="Center" />
+                        <Grid>
+                            <TextBox MinWidth="60" Height="22" VerticalContentAlignment="Center"
+                                     Text="{Binding ElementName=Rect2,Path=Height,Mode=TwoWay}" />
+                        </Grid>
+                        <ComboBox x:Name="cmbVerAlig" SelectedIndex="3" Width="70">
+                            <VerticalAlignment>Top</VerticalAlignment>
+                            <VerticalAlignment>Center</VerticalAlignment>
+                            <VerticalAlignment>Bottom</VerticalAlignment>
+                            <VerticalAlignment>Stretch</VerticalAlignment>
+                        </ComboBox>
+                        <ComboBox x:Name="cmbHorAlig" SelectedIndex="3" Width="70">
+                            <HorizontalAlignment>Left</HorizontalAlignment>
+                            <HorizontalAlignment>Center</HorizontalAlignment>
+                            <HorizontalAlignment>Right</HorizontalAlignment>
+                            <HorizontalAlignment>Stretch</HorizontalAlignment>
+                        </ComboBox>
+                    </StackPanel>
+                    <TabControl>
+                        <TabItem Header="一个">
+                            <StackPanel x:Name="UnifornGrid1">
                                 <ScrollViewer
                                     HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
                                     VerticalScrollBarVisibility="{Binding VerticalVisibility}">
-                                    <u:ElasticWrapPanel x:Name="ElasticWrapPanel3"
-                                                        IsFillHorizontal="{Binding IsFillHorizontal}"
-                                                        IsFillVertical="{Binding IsFillVertical}"
-                                                        ItemWidth="{Binding ItemWidth}"
-                                                        ItemHeight="{Binding ItemHeight}"
-                                                        Orientation="{Binding SelectedOrientation}">
-                                        <DockPanel MinHeight="35" Margin="0,0,5,2">
-                                            <DockPanel.Background>
-                                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                                    <GradientStop Color="#FFA6A6A6" Offset="0" />
-                                                    <GradientStop Color="#FFCFCFCF" Offset="1" />
-                                                </LinearGradientBrush>
-                                            </DockPanel.Background>
-                                            <Rectangle Fill="#F05033" Width="4" />
-                                            <Grid Margin="5">
-                                                <Ellipse StrokeThickness="2" Width="25" Height="25" Stroke="Black" />
-                                                <Ellipse StrokeThickness="2" Width="17" Height="17" Fill="#FFB8B2B2" />
-                                            </Grid>
-                                            <TextBlock Text="Changed" FontWeight="Medium" FontSize="16"
-                                                       VerticalAlignment="Center" />
-                                        </DockPanel>
-                                        <DockPanel MinHeight="35" Margin="0,0,5,2">
-                                            <DockPanel.Background>
-                                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                                    <GradientStop Color="#FFA6A6A6" Offset="0" />
-                                                    <GradientStop Color="#FFCFCFCF" Offset="1" />
-                                                </LinearGradientBrush>
-                                            </DockPanel.Background>
-                                            <Rectangle Fill="#F05033" Width="4" />
-                                            <Grid Margin="5">
-                                                <Ellipse StrokeThickness="2" Width="25" Height="25" Stroke="Black" />
-                                                <Ellipse StrokeThickness="2" Width="17" Height="17" Fill="#FFDCA1A1" />
-                                            </Grid>
-                                            <TextBlock Text="Branches" FontWeight="Medium" FontSize="16"
-                                                       VerticalAlignment="Center" />
-                                        </DockPanel>
-                                        <DockPanel MinHeight="35" Margin="0,0,5,2">
-                                            <DockPanel.Background>
-                                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                                    <GradientStop Color="#FFA6A6A6" Offset="0" />
-                                                    <GradientStop Color="#FFCFCFCF" Offset="1" />
-                                                </LinearGradientBrush>
-                                            </DockPanel.Background>
-                                            <Rectangle Fill="#FF3333F0" Width="4" />
-                                            <Grid Margin="5">
-                                                <Ellipse StrokeThickness="2" Width="25" Height="25" Stroke="Black" />
-                                                <Ellipse StrokeThickness="2" Width="17" Height="17" Fill="#FFB5B9BD" />
-                                            </Grid>
-                                            <TextBlock Text="Sync" FontWeight="Medium" FontSize="16"
-                                                       VerticalAlignment="Center" />
-                                        </DockPanel>
-                                        <DockPanel MinHeight="35" Margin="0,0,5,2">
-                                            <DockPanel.Background>
-                                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                                    <GradientStop Color="#FFA6A6A6" Offset="0" />
-                                                    <GradientStop Color="#FFCFCFCF" Offset="1" />
-                                                </LinearGradientBrush>
-                                            </DockPanel.Background>
-                                            <Rectangle Fill="#FF616161" Width="4" />
-                                            <Grid Margin="5">
-                                                <Ellipse StrokeThickness="2" Width="25" Height="25" Stroke="Black" />
-                                                <Ellipse StrokeThickness="2" Width="17" Height="17" Fill="#FF3E3E3E" />
-                                            </Grid>
-                                            <TextBlock Text="Setting" FontWeight="Medium" FontSize="16"
-                                                       VerticalAlignment="Center" />
-                                        </DockPanel>
-                                        <DockPanel MinHeight="35" Margin="0,0,5,2">
-                                            <DockPanel.Background>
-                                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                                    <GradientStop Color="#FFA6A6A6" Offset="0" />
-                                                    <GradientStop Color="#FF555E85" Offset="1" />
-                                                </LinearGradientBrush>
-                                            </DockPanel.Background>
-                                            <Rectangle Fill="#FF616161" Width="4" />
-                                            <Grid Margin="5">
-                                                <Ellipse StrokeThickness="2" Width="25" Height="25" Stroke="Black" />
-                                                <Ellipse StrokeThickness="2" Width="17" Height="17" Fill="#FF93B6AA" />
-                                            </Grid>
-                                            <TextBlock Text="Others" FontWeight="Medium" FontSize="16"
-                                                       VerticalAlignment="Center" />
-                                        </DockPanel>
-                                    </u:ElasticWrapPanel>
+                                    <DockPanel>
+                                        <Label Content="WrapPanel" Background="#FFCBCBEA" DockPanel.Dock="Top" />
+                                        <WrapPanel ItemWidth="{Binding ItemWidth}"
+                                                   ItemHeight="{Binding ItemHeight}"
+                                                   Orientation="{Binding SelectedOrientation}">
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容1" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容2" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容3" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容4" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容5" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容6" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
+                                                         u:ElasticWrapPanel.FixToRB="True"
+                                                         HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
+                                                         VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
+                                                <Button Content="查询" MinHeight="22" Margin="1" />
+                                                <Button Content="导出" MinHeight="22" Margin="1" />
+                                            </UniformGrid>
+                                        </WrapPanel>
+                                    </DockPanel>
                                 </ScrollViewer>
-                            </Border>
+                                <ScrollViewer
+                                    HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
+                                    VerticalScrollBarVisibility="{Binding VerticalVisibility}">
+                                    <DockPanel>
+                                        <Label Content="ElasticWrapPanel" Background="#FFB4F1AA"
+                                               DockPanel.Dock="Top" />
+                                        <u:ElasticWrapPanel
+                                            IsFillHorizontal="{Binding IsFillHorizontal}"
+                                            IsFillVertical="{Binding IsFillVertical}"
+                                            ItemWidth="{Binding ItemWidth}"
+                                            ItemHeight="{Binding ItemHeight}"
+                                            Orientation="{Binding SelectedOrientation}">
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容1" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容2" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容3" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容4" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容5" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容6" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
+                                                         u:ElasticWrapPanel.FixToRB="True"
+                                                         HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
+                                                         VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
+                                                <Button Content="查询" MinHeight="22" Margin="1" />
+                                                <Button Content="导出" MinHeight="22" Margin="1" />
+                                            </UniformGrid>
+                                        </u:ElasticWrapPanel>
+                                    </DockPanel>
+                                </ScrollViewer>
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem Header="多个">
+                            <StackPanel x:Name="UnifornGrid2">
+                                <ScrollViewer
+                                    HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
+                                    VerticalScrollBarVisibility="{Binding VerticalVisibility}">
+                                    <DockPanel>
+                                        <Label Content="WrapPanel" Background="#FFCBCBEA" DockPanel.Dock="Top" />
+                                        <WrapPanel ItemWidth="{Binding ItemWidth}"
+                                                   ItemHeight="{Binding ItemHeight}"
+                                                   Orientation="{Binding SelectedOrientation}">
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容1" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容2" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容3" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容4" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容5" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容6" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
+                                                         u:ElasticWrapPanel.FixToRB="True"
+                                                         HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
+                                                         VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
+                                                <Button Content="查询" MinHeight="22" Margin="1" />
+                                                <Button Content="导出" MinHeight="22" Margin="1" />
+                                            </UniformGrid>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容1" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容2" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容3" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容4" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容5" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容6" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
+                                                         u:ElasticWrapPanel.FixToRB="True"
+                                                         HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
+                                                         VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
+                                                <Button Content="查询" MinHeight="22" Margin="1" />
+                                                <Button Content="导出" MinHeight="22" Margin="1" />
+                                            </UniformGrid>
+                                        </WrapPanel>
+                                    </DockPanel>
+                                </ScrollViewer>
+                                <ScrollViewer
+                                    HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
+                                    VerticalScrollBarVisibility="{Binding VerticalVisibility}">
+                                    <DockPanel>
+                                        <Label Content="ElasticWrapPanel" Background="#FFB4F1AA"
+                                               DockPanel.Dock="Top" />
+                                        <u:ElasticWrapPanel
+                                            IsFillHorizontal="{Binding IsFillHorizontal}"
+                                            IsFillVertical="{Binding IsFillVertical}"
+                                            ItemWidth="{Binding ItemWidth}"
+                                            ItemHeight="{Binding ItemHeight}"
+                                            Orientation="{Binding SelectedOrientation}">
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容1" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容2" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容3" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容4" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容5" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容6" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
+                                                         u:ElasticWrapPanel.FixToRB="True"
+                                                         HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
+                                                         VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
+                                                <Button Content="查询" MinHeight="22" Margin="1" />
+                                                <Button Content="导出" MinHeight="22" Margin="1" />
+                                            </UniformGrid>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容1" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容2" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容3" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容4" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容5" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
+                                                       Height="{Binding ElementName=Rect2,Path=Height}">
+                                                <TextBlock Text="内容6" VerticalAlignment="Center" />
+                                                <TextBox MinHeight="23" />
+                                            </DockPanel>
+                                            <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
+                                                         u:ElasticWrapPanel.FixToRB="True"
+                                                         HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
+                                                         VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
+                                                <Button Content="查询" MinHeight="22" Margin="1" />
+                                                <Button Content="导出" MinHeight="22" Margin="1" />
+                                            </UniformGrid>
+                                        </u:ElasticWrapPanel>
+                                    </DockPanel>
+                                </ScrollViewer>
+                            </StackPanel>
                         </TabItem>
                     </TabControl>
-                </TabItem>
-                <TabItem Header="平铺+靠右">
-                    <DockPanel>
-                        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                            <TextBlock Text="输入控件宽度" VerticalAlignment="Center" />
-                            <Grid>
-                                <Rectangle x:Name="Rect2" />
-                                <TextBox MinWidth="60" Height="22" VerticalContentAlignment="Center"
-                                         Text="{Binding ElementName=Rect2,Path=Width,Mode=TwoWay}" />
-                            </Grid>
-                            <TextBlock Text="输入控件高度" VerticalAlignment="Center" />
-                            <Grid>
-                                <TextBox MinWidth="60" Height="22" VerticalContentAlignment="Center"
-                                         Text="{Binding ElementName=Rect2,Path=Height,Mode=TwoWay}" />
-                            </Grid>
-                            <ComboBox x:Name="cmbVerAlig" SelectedIndex="3" Width="70">
-                                <VerticalAlignment>Top</VerticalAlignment>
-                                <VerticalAlignment>Center</VerticalAlignment>
-                                <VerticalAlignment>Bottom</VerticalAlignment>
-                                <VerticalAlignment>Stretch</VerticalAlignment>
-                            </ComboBox>
-                            <ComboBox x:Name="cmbHorAlig" SelectedIndex="3" Width="70">
-                                <HorizontalAlignment>Left</HorizontalAlignment>
-                                <HorizontalAlignment>Center</HorizontalAlignment>
-                                <HorizontalAlignment>Right</HorizontalAlignment>
-                                <HorizontalAlignment>Stretch</HorizontalAlignment>
-                            </ComboBox>
-                        </StackPanel>
-                        <TabControl>
-                            <TabItem Header="一个">
-                                <StackPanel x:Name="UnifornGrid1">
-                                    <ScrollViewer
-                                        HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
-                                        VerticalScrollBarVisibility="{Binding VerticalVisibility}">
-                                        <DockPanel>
-                                            <Label Content="WrapPanel" Background="#FFCBCBEA" DockPanel.Dock="Top" />
-                                            <WrapPanel ItemWidth="{Binding ItemWidth}"
-                                                       ItemHeight="{Binding ItemHeight}"
-                                                       Orientation="{Binding SelectedOrientation}">
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容1" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容2" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容3" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容4" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容5" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容6" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
-                                                             u:ElasticWrapPanel.FixToRB="True"
-                                                             HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
-                                                             VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
-                                                    <Button Content="查询" MinHeight="22" Margin="1" />
-                                                    <Button Content="导出" MinHeight="22" Margin="1" />
-                                                </UniformGrid>
-                                            </WrapPanel>
-                                        </DockPanel>
-                                    </ScrollViewer>
-                                    <ScrollViewer
-                                        HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
-                                        VerticalScrollBarVisibility="{Binding VerticalVisibility}">
-                                        <DockPanel>
-                                            <Label Content="ElasticWrapPanel" Background="#FFB4F1AA"
-                                                   DockPanel.Dock="Top" />
-                                            <u:ElasticWrapPanel
-                                                IsFillHorizontal="{Binding IsFillHorizontal}"
-                                                IsFillVertical="{Binding IsFillVertical}"
-                                                ItemWidth="{Binding ItemWidth}"
-                                                ItemHeight="{Binding ItemHeight}"
-                                                Orientation="{Binding SelectedOrientation}">
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容1" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容2" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容3" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容4" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容5" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容6" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
-                                                             u:ElasticWrapPanel.FixToRB="True"
-                                                             HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
-                                                             VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
-                                                    <Button Content="查询" MinHeight="22" Margin="1" />
-                                                    <Button Content="导出" MinHeight="22" Margin="1" />
-                                                </UniformGrid>
-                                            </u:ElasticWrapPanel>
-                                        </DockPanel>
-                                    </ScrollViewer>
-                                </StackPanel>
-                            </TabItem>
-                            <TabItem Header="多个">
-                                <StackPanel x:Name="UnifornGrid2">
-                                    <ScrollViewer
-                                        HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
-                                        VerticalScrollBarVisibility="{Binding VerticalVisibility}">
-                                        <DockPanel>
-                                            <Label Content="WrapPanel" Background="#FFCBCBEA" DockPanel.Dock="Top" />
-                                            <WrapPanel ItemWidth="{Binding ItemWidth}"
-                                                       ItemHeight="{Binding ItemHeight}"
-                                                       Orientation="{Binding SelectedOrientation}">
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容1" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容2" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容3" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容4" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容5" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容6" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
-                                                             u:ElasticWrapPanel.FixToRB="True"
-                                                             HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
-                                                             VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
-                                                    <Button Content="查询" MinHeight="22" Margin="1" />
-                                                    <Button Content="导出" MinHeight="22" Margin="1" />
-                                                </UniformGrid>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容1" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容2" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容3" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容4" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容5" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容6" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
-                                                             u:ElasticWrapPanel.FixToRB="True"
-                                                             HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
-                                                             VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
-                                                    <Button Content="查询" MinHeight="22" Margin="1" />
-                                                    <Button Content="导出" MinHeight="22" Margin="1" />
-                                                </UniformGrid>
-                                            </WrapPanel>
-                                        </DockPanel>
-                                    </ScrollViewer>
-                                    <ScrollViewer
-                                        HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
-                                        VerticalScrollBarVisibility="{Binding VerticalVisibility}">
-                                        <DockPanel>
-                                            <Label Content="ElasticWrapPanel" Background="#FFB4F1AA"
-                                                   DockPanel.Dock="Top" />
-                                            <u:ElasticWrapPanel
-                                                IsFillHorizontal="{Binding IsFillHorizontal}"
-                                                IsFillVertical="{Binding IsFillVertical}"
-                                                ItemWidth="{Binding ItemWidth}"
-                                                ItemHeight="{Binding ItemHeight}"
-                                                Orientation="{Binding SelectedOrientation}">
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容1" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容2" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容3" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容4" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容5" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容6" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
-                                                             u:ElasticWrapPanel.FixToRB="True"
-                                                             HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
-                                                             VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
-                                                    <Button Content="查询" MinHeight="22" Margin="1" />
-                                                    <Button Content="导出" MinHeight="22" Margin="1" />
-                                                </UniformGrid>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容1" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容2" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容3" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容4" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容5" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <DockPanel Margin="0,2" Width="{Binding ElementName=Rect2,Path=Width}"
-                                                           Height="{Binding ElementName=Rect2,Path=Height}">
-                                                    <TextBlock Text="内容6" VerticalAlignment="Center" />
-                                                    <TextBox MinHeight="23" />
-                                                </DockPanel>
-                                                <UniformGrid Rows="1" Margin="5,0" MinWidth="200"
-                                                             u:ElasticWrapPanel.FixToRB="True"
-                                                             HorizontalAlignment="{Binding ElementName=cmbHorAlig,Path=SelectedValue}"
-                                                             VerticalAlignment="{Binding ElementName=cmbVerAlig,Path=SelectedValue}">
-                                                    <Button Content="查询" MinHeight="22" Margin="1" />
-                                                    <Button Content="导出" MinHeight="22" Margin="1" />
-                                                </UniformGrid>
-                                            </u:ElasticWrapPanel>
-                                        </DockPanel>
-                                    </ScrollViewer>
-                                </StackPanel>
-                            </TabItem>
-                        </TabControl>
-                    </DockPanel>
-                </TabItem>
-            </TabControl>
-        </DockPanel>
-    </Grid>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
 </UserControl>
