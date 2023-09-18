@@ -12,9 +12,9 @@ public class ElasticWrapPanel : WrapPanel
     static ElasticWrapPanel()
     {
         IsFillHorizontalProperty.Changed.AddClassHandler<Control>(OnIsFillPropertyChanged);
-        IsFillHorizontalProperty.Changed.AddClassHandler<Control>(OnIsFillPropertyChanged);
+        IsFillVerticalProperty.Changed.AddClassHandler<Control>(OnIsFillPropertyChanged);
 
-        AffectsMeasure<ElasticWrapPanel>(IsFillHorizontalProperty, IsFillHorizontalProperty);
+        AffectsMeasure<ElasticWrapPanel>(IsFillHorizontalProperty, IsFillVerticalProperty);
     }
 
     #region AttachedProperty
@@ -95,7 +95,7 @@ public class ElasticWrapPanel : WrapPanel
                 childFixConstraint = new Size(constraint.Width, itemHeight);
                 break;
             case Orientation.Vertical when itemWidthSet:
-                childFixConstraint = new Size(itemWidth, itemHeight);
+                childFixConstraint = new Size(itemWidth, constraint.Height);
                 break;
         }
 
