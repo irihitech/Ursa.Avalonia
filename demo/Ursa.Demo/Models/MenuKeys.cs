@@ -2,6 +2,7 @@ namespace Ursa.Demo;
 
 public static class MenuKeys
 {
+    public const string MenuKeyIntroduction = "Introduction";
     public const string MenuKeyBadge = "Badge";
     public const string MenuKeyBanner = "Banner";
     public const string MenuKeyButtonGroup = "ButtonGroup";

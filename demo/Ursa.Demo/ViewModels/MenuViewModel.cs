@@ -10,6 +10,7 @@ public class MenuViewModel: ViewModelBase
     {
         MenuItems = new ObservableCollection<MenuItemViewModel>()
         {
+            new() { MenuHeader = "Introduction", Key = MenuKeys.MenuKeyIntroduction, IsSeparator = false },
             new() { MenuHeader = "Controls", IsSeparator = true },
             new() { MenuHeader = "Badge", Key = MenuKeys.MenuKeyBadge },
             new() { MenuHeader = "Banner", Key = MenuKeys.MenuKeyBanner },
