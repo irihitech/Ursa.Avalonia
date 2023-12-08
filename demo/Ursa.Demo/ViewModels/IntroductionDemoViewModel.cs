@@ -1,9 +1,11 @@
+using System;
 using System.Collections.ObjectModel;
+using System.Net;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Ursa.Demo.ViewModels;
 
-public class IntroductionDemoViewModel : ObservableObject
+public partial class IntroductionDemoViewModel : ObservableObject
 {
     public ObservableCollection<MenuItemViewModel> MenuItems { get; set; } = new()
     {
@@ -43,5 +45,16 @@ public class IntroductionDemoViewModel : ObservableObject
         }
     };
 
-    public ObservableCollection<string> ButtonGroupItems { get; set; } = ["Ding", "Otter", "Husky", "Mr. 17", "Cass"];
+    public ObservableCollection<string> ButtonGroupItems { get; set; } = new()
+    {
+        "Avalonia", "WPF", "Xamarin"
+    };
+
+    [ObservableProperty] private IPAddress? _address;
+
+    public void ChangeAddress()
+    {
+        long l = Random.Shared.NextInt64(0x00000000FFFFFFFF);
+        Address = new IPAddress(l);
+    }
 }
