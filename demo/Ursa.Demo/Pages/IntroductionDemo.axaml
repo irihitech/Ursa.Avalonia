@@ -12,8 +12,7 @@
     mc:Ignorable="d">
     <UserControl.Resources>
         <PathGeometry x:Key="InfoPath">M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7ZM9 10.75C9 10.3358 9.33579 10 9.75 10H12.5C13.0523 10 13.5 10.4477 13.5 11V16.5H14.25C14.6642 16.5 15 16.8358 15 17.25C15 17.6642 14.6642 18 14.25 18H9.75C9.33579 18 9 17.6642 9 17.25C9 16.8358 9.33579 16.5 9.75 16.5H10.5V11.5H9.75C9.33579 11.5 9 11.1642 9 10.75Z</PathGeometry>
-        <SolidColorBrush x:Key="MaskBackground" Opacity="0.2" Color="Red" />
-        <SolidColorBrush x:Key="MaskBorder" Color="Red" />
+        <SolidColorBrush x:Key="MaskBackground" Opacity="0.2" Color="{DynamicResource SemiRed5Color}" />
     </UserControl.Resources>
 
     <Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, *, *">
@@ -71,8 +70,10 @@
 
         <StackPanel Grid.Column="1" Grid.Row="1" Spacing="20" Margin="8">
             <u:ImageViewer
-                Height="300"
                 Name="viewer"
+                Height="300"
+                Scale="0.2"
+                Background="{DynamicResource SemiGrey1Color}"
                 Source="../Assets/WORLD.png">
                 <u:ImageViewer.Overlayer>
                     <Grid
@@ -83,8 +84,8 @@
                             Grid.Column="0"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
-                            Background="{StaticResource MaskBackground}"
-                            BorderBrush="{StaticResource MaskBorder}"
+                            Background="{DynamicResource MaskBackground}"
+                            BorderBrush="{DynamicResource SemiRed5Color}"
                             BorderThickness="0,0,1,0"
                             IsHitTestVisible="False" />
                         <Rectangle
@@ -98,80 +99,24 @@
                             Grid.Column="2"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
-                            Background="{StaticResource MaskBackground}"
-                            BorderBrush="{StaticResource MaskBorder}"
+                            Background="{DynamicResource MaskBackground}"
+                            BorderBrush="{DynamicResource SemiRed5Color}"
                             BorderThickness="1,0,0,0"
                             IsHitTestVisible="False" />
                     </Grid>
                 </u:ImageViewer.Overlayer>
             </u:ImageViewer>
-            <Grid ColumnDefinitions="Auto, Auto, *" RowDefinitions="Auto, Auto, Auto, Auto">
-                <TextBlock
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Text="Scale" />
-                <Slider
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Width="200"
-                    Maximum="10"
-                    Minimum="0.1"
-                    Value="{Binding #viewer.Scale}" />
-                <TextBlock
-                    Grid.Row="0"
-                    Grid.Column="2"
-                    Text="{Binding #viewer.Scale, StringFormat=\{0:0.00000\}}" />
-
-                <TextBlock
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Text="TranslateX" />
-                <Slider
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Width="200"
-                    IsSnapToTickEnabled="True"
-                    Maximum="300"
-                    Minimum="-300"
-                    TickFrequency="0.1"
-                    Value="{Binding #viewer.TranslateX}" />
-                <TextBlock
-                    Grid.Row="1"
-                    Grid.Column="2"
-                    Text="{Binding #viewer.TranslateX, StringFormat=\{0:0.0\}}" />
-
-                <TextBlock
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Text="TranslateY" />
-                <Slider
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Width="200"
-                    IsSnapToTickEnabled="True"
-                    Maximum="300"
-                    Minimum="-300"
-                    TickFrequency="0.1"
-                    Value="{Binding #viewer.TranslateY}" />
-                <TextBlock
-                    Grid.Row="2"
-                    Grid.Column="2"
-                    Text="{Binding #viewer.TranslateY, StringFormat=\{0:0.0\}}" />
-
-                <TextBlock
-                    Grid.Row="3"
-                    Grid.Column="0"
-                    Text="Show Mask" />
+            <u:Divider>
                 <ToggleSwitch
                     Name="maskSwitch"
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Theme="{DynamicResource SimpleToggleSwitch}" />
-            </Grid>
+                    IsChecked="True"
+                    OnContent="Show Mask"
+                    OffContent="Show Mask" />
+            </u:Divider>
         </StackPanel>
 
         <StackPanel Grid.Column="2" Grid.Row="1" Spacing="20" Margin="8">
-            <u:Divider HorizontalContentAlignment="Left">Badge</u:Divider>
+            <u:Divider HorizontalContentAlignment="Right">Badge</u:Divider>
             <StackPanel.Styles>
                 <Style Selector="u|Badge">
                     <Setter Property="Margin" Value="12" />
@@ -254,12 +199,24 @@
                 </u:DualBadge>
             </StackPanel>
 
-            <u:Divider HorizontalContentAlignment="Right">ButtonGroup</u:Divider>
-            <u:ButtonGroup Classes="Primary Solid" ItemsSource="{Binding ButtonGroupItems}" />
-            <u:ButtonGroup Classes="Primary" ItemsSource="{Binding ButtonGroupItems}" />
-            <u:ButtonGroup Classes="Primary Borderless" ItemsSource="{Binding ButtonGroupItems}" />
-            <u:ButtonGroup Classes="Primary Large" ItemsSource="{Binding ButtonGroupItems}" />
-            <u:ButtonGroup Classes="Primary Small" ItemsSource="{Binding ButtonGroupItems}" />
+            <u:Divider HorizontalContentAlignment="Left">
+                <ToggleSwitch
+                    Name="s"
+                    OffContent="ButtonGroup"
+                    OnContent="ButtonGroup"
+                    IsChecked="True" />
+            </u:Divider>
+            <u:LoadingContainer
+                IsLoading="{Binding #s.IsChecked}"
+                LoadingMessage="Loading...">
+                <StackPanel>
+                    <u:ButtonGroup Classes="Primary Solid" ItemsSource="{Binding ButtonGroupItems}" />
+                    <u:ButtonGroup Classes="Primary" ItemsSource="{Binding ButtonGroupItems}" />
+                    <u:ButtonGroup Classes="Primary Borderless" ItemsSource="{Binding ButtonGroupItems}" />
+                    <u:ButtonGroup Classes="Primary Large" ItemsSource="{Binding ButtonGroupItems}" />
+                    <u:ButtonGroup Classes="Primary Small" ItemsSource="{Binding ButtonGroupItems}" />
+                </StackPanel>
+            </u:LoadingContainer>
         </StackPanel>
 
     </Grid>
