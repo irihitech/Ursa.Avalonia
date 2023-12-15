@@ -143,10 +143,12 @@ public class TagInput : TemplatedControl
         {
             Items.RemoveAt(Items.Count - 1);
         }
-
-        for (int i = 0; i < newTags.Count; i++)
+        if (newTags != null)
         {
-            Items.Insert(Items.Count - 1, newTags[i]);
+            for (int i = 0; i < newTags.Count; i++)
+            {
+                Items.Add(newTags[i]);
+            }
         }
 
         if (oldTags is INotifyCollectionChanged inccold)
