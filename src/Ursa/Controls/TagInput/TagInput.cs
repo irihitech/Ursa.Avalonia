@@ -49,8 +49,11 @@ public class TagInput : TemplatedControl
     public TagInput()
     {
         _textBox = new TextBox();
-        _textBox.AddHandler(InputElement.KeyDownEvent, OnTextBoxKeyDown, RoutingStrategies.Tunnel);
-        Items = new AvaloniaList<object>();
+        _textBox.AddHandler(KeyDownEvent, OnTextBoxKeyDown, RoutingStrategies.Tunnel);
+        Items = new AvaloniaList<object>
+        {
+            _textBox
+        };
         Tags = new ObservableCollection<string>();
     }
 
@@ -123,7 +126,6 @@ public class TagInput : TemplatedControl
     {
         base.OnApplyTemplate(e);
         _itemsControl = e.NameScope.Find<ItemsControl>(PART_ItemsControl);
-        Items.Add(_textBox);
     }
 
     private void OnInputThemePropertyChanged(AvaloniaPropertyChangedEventArgs args)
@@ -147,10 +149,9 @@ public class TagInput : TemplatedControl
         {
             for (int i = 0; i < newTags.Count; i++)
             {
-                Items.Add(newTags[i]);
+                Items.Insert(Items.Count - 1, newTags[i]);
             }
-        }
-
+        } 
         if (oldTags is INotifyCollectionChanged inccold)
         {
             inccold.CollectionChanged-= OnCollectionChanged;
