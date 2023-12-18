@@ -210,24 +210,22 @@ public class TagInput : TemplatedControl
                     values = new[] { _textBox.Text };
                 }
 
-                if (!AllowDuplicates)
-                {
+                if (!AllowDuplicates && Tags != null)
                     values = values.Distinct().Except(Tags).ToArray();
-                }
 
                 for (int i = 0; i < values.Length; i++)
                 {
                     int index = Items.Count - 1;
                     // Items.Insert(index, values[i]);
-                    Tags.Insert(index, values[i]);
+                    Tags?.Insert(index, values[i]);
                 }
 
                 _textBox.Text = "";
             }
         }
         else if (args.Key == Key.Delete || args.Key == Key.Back)
-        {
-            if (_textBox.Text?.Length == 0)
+        { 
+            if (string.IsNullOrEmpty(_textBox.Text)||_textBox.Text?.Length == 0)
             {
                 if (Tags.Count == 0)
                 {
