@@ -83,6 +83,9 @@ public class Timeline: ItemsControl
         base.PrepareContainerForItemOverride(container, item, index);
         if (container is TimelineItem t)
         {
+            bool start = index == 0;
+            bool end = index == ItemCount - 1;
+            t.SetEnd(start, end);
             if (IconMemberBinding != null)
             {
                 t.Bind(TimelineItem.IconProperty, IconMemberBinding);

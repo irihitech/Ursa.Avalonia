@@ -32,9 +32,9 @@
                     >
         </u:Timeline>
         <u:Timeline>
-            <u:TimelineItem Header="第一步" Content="Step 1"></u:TimelineItem>
-            <u:TimelineItem Header="第二步" Content="Step 2"></u:TimelineItem>
-            <u:TimelineItem Header="第三步" Content="Step 3"></u:TimelineItem>
+            <u:TimelineItem Header="第一步" Content="Step 1" Type="Default"></u:TimelineItem>
+            <u:TimelineItem Header="第二步" Content="Step 2" Type="Default"></u:TimelineItem>
+            <u:TimelineItem Header="第三步" Content="Step 3" Type="Default"></u:TimelineItem>
         </u:Timeline>
     </StackPanel>
 </UserControl>

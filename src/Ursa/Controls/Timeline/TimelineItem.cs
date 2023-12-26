@@ -8,6 +8,7 @@ using Avalonia.Media;
 
 namespace Ursa.Controls;
 
+[PseudoClasses(":first", ":last")]
 public class TimelineItem: HeaderedContentControl
 {
     public static readonly StyledProperty<object?> IconProperty = AvaloniaProperty.Register<TimelineItem, object?>(
@@ -36,6 +37,10 @@ public class TimelineItem: HeaderedContentControl
         get => GetValue(TypeProperty);
         set => SetValue(TypeProperty, value);
     }
-    
-    
+
+    internal void SetEnd(bool start, bool end)
+    {
+        PseudoClasses.Set(":first", start);
+        PseudoClasses.Set(":last", end);
+    }
 }
