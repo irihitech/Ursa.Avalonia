@@ -49,8 +49,11 @@ public class TagInput : TemplatedControl
     public TagInput()
     {
         _textBox = new TextBox();
-        _textBox.AddHandler(InputElement.KeyDownEvent, OnTextBoxKeyDown, RoutingStrategies.Tunnel);
-        Items = new AvaloniaList<object>();
+        _textBox.AddHandler(KeyDownEvent, OnTextBoxKeyDown, RoutingStrategies.Tunnel);
+        Items = new AvaloniaList<object>
+        {
+            _textBox
+        };
         Tags = new ObservableCollection<string>();
     }
 
@@ -123,7 +126,6 @@ public class TagInput : TemplatedControl
     {
         base.OnApplyTemplate(e);
         _itemsControl = e.NameScope.Find<ItemsControl>(PART_ItemsControl);
-        Items.Add(_textBox);
     }
 
     private void OnInputThemePropertyChanged(AvaloniaPropertyChangedEventArgs args)
@@ -143,12 +145,13 @@ public class TagInput : TemplatedControl
         {
             Items.RemoveAt(Items.Count - 1);
         }
-
-        for (int i = 0; i < newTags.Count; i++)
+        if (newTags != null)
         {
-            Items.Insert(Items.Count - 1, newTags[i]);
-        }
-
+            for (int i = 0; i < newTags.Count; i++)
+            {
+                Items.Insert(Items.Count - 1, newTags[i]);
+            }
+        } 
         if (oldTags is INotifyCollectionChanged inccold)
         {
             inccold.CollectionChanged-= OnCollectionChanged;
@@ -207,24 +210,22 @@ public class TagInput : TemplatedControl
                     values = new[] { _textBox.Text };
                 }
 
-                if (!AllowDuplicates)
-                {
+                if (!AllowDuplicates && Tags != null)
                     values = values.Distinct().Except(Tags).ToArray();
-                }
 
                 for (int i = 0; i < values.Length; i++)
                 {
                     int index = Items.Count - 1;
                     // Items.Insert(index, values[i]);
-                    Tags.Insert(index, values[i]);
+                    Tags?.Insert(index, values[i]);
                 }
 
                 _textBox.Text = "";
             }
         }
         else if (args.Key == Key.Delete || args.Key == Key.Back)
-        {
-            if (_textBox.Text?.Length == 0)
+        { 
+            if (string.IsNullOrEmpty(_textBox.Text)||_textBox.Text?.Length == 0)
             {
                 if (Tags.Count == 0)
                 {
