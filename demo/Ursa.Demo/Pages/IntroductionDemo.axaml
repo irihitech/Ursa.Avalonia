@@ -1,0 +1,305 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.IntroductionDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Ursa.Demo.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Ursa.Demo.ViewModels"
+    d:DesignHeight="800"
+    d:DesignWidth="1600"
+    mc:Ignorable="d">
+    <Design.DataContext>
+        <vm:IntroductionDemoViewModel />
+    </Design.DataContext>
+    <UserControl.Resources>
+        <PathGeometry x:Key="InfoPath">M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7ZM9 10.75C9 10.3358 9.33579 10 9.75 10H12.5C13.0523 10 13.5 10.4477 13.5 11V16.5H14.25C14.6642 16.5 15 16.8358 15 17.25C15 17.6642 14.6642 18 14.25 18H9.75C9.33579 18 9 17.6642 9 17.25C9 16.8358 9.33579 16.5 9.75 16.5H10.5V11.5H9.75C9.33579 11.5 9 11.1642 9 10.75Z</PathGeometry>
+        <SolidColorBrush x:Key="MaskBackground" Opacity="0.2" Color="{DynamicResource SemiBlue3Color}" />
+        <SolidColorBrush x:Key="MaskBorderBrush" Color="{DynamicResource SemiBlue5Color}" />
+    </UserControl.Resources>
+    <UserControl.Styles>
+        <Style Selector="u|Badge">
+            <Setter Property="Margin" Value="10" />
+            <Style Selector="^ > Border">
+                <Setter Property="Theme" Value="{DynamicResource CardBorder}" />
+                <Setter Property="Width" Value="100" />
+                <Setter Property="Height" Value="60" />
+            </Style>
+        </Style>
+        <Style Selector="u|DualBadge">
+            <Setter Property="Margin" Value="4" />
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+            <Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, Auto, Auto">
+                <u:Banner
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="0"
+                    Classes="Bordered"
+                    Content="Aesthetic revolution of productivity. "
+                    Header="Welcome to IRIHI Technology!"
+                    Type="Information" />
+                <u:NavigationMenu Grid.Column="0" Grid.Row="1" ItemsSource="{Binding MenuItems}">
+                    <u:NavigationMenu.Resources>
+                        <converters:IconNameConverter x:Key="IconNameConverter">
+                            <PathGeometry x:Key="User">M12 16C13.9818 16 15.7453 14.3394 16.7142 11.8589C17.3163 11.6122 17.8892 10.8644 18.1508 9.88823C18.4909 8.61881 18.4234 7.48536 17.4964 7.13266C17.4064 2.7111 15.6617 1 12 1C8.33858 1 6.59387 2.71088 6.50372 7.13179C5.57454 7.48354 5.50668 8.61777 5.84709 9.8882C6.10904 10.8658 6.68318 11.6143 7.28626 11.8599C8.2552 14.3398 10.0186 16 12 16Z M19.6049 22C20.8385 22 21.7171 20.8487 20.867 19.9547C19.1971 18.1985 15.853 17 12 17C8.14699 17 4.80292 18.1985 3.133 19.9547C2.2829 20.8487 3.16148 22 4.39513 22H19.6049Z</PathGeometry>
+                            <PathGeometry x:Key="Star">M10.7525 1.90411C11.1451 0.698628 12.8549 0.698631 13.2475 1.90411L15.2395 8.01946H21.6858C22.9565 8.01946 23.4848 9.64143 22.4568 10.3865L17.2417 14.1659L19.2337 20.2813C19.6263 21.4868 18.2431 22.4892 17.2151 21.7442L12 17.9647L6.78489 21.7442C5.75687 22.4892 4.37368 21.4868 4.76635 20.2813L6.75834 14.1659L1.54323 10.3865C0.515206 9.64142 1.04354 8.01946 2.31425 8.01946H8.76048L10.7525 1.90411Z</PathGeometry>
+                            <PathGeometry x:Key="Gear">M7.99973 5.07197C7.19713 5.53535 6.20729 5.53113 5.40866 5.06092L5.1637 4.91669C4.55751 4.55978 3.77662 4.65563 3.34264 5.20927C2.69567 6.03462 2.17585 6.94251 1.79166 7.90124C1.53027 8.55354 1.83733 9.27693 2.449 9.62286L2.69407 9.76145C3.50107 10.2178 4.00002 11.0732 4.00002 12.0003C4.00002 12.9271 3.50145 13.7822 2.69492 14.2387L2.44842 14.3783C1.83596 14.725 1.52888 15.4497 1.79213 16.1024C1.98358 16.577 2.21048 17.044 2.47374 17.5C2.73723 17.9564 3.0285 18.3868 3.34416 18.7902C3.77773 19.3443 4.5588 19.4406 5.16498 19.0834L5.40839 18.9399C6.20714 18.4692 7.19739 18.4648 8.0003 18.9284C8.80291 19.3918 9.29417 20.2511 9.28627 21.1778L9.28386 21.4601C9.27787 22.1629 9.75107 22.7906 10.4468 22.8903C11.4692 23.0368 12.5154 23.0404 13.5537 22.8927C14.2499 22.7936 14.7231 22.1653 14.7169 21.462L14.7143 21.1785C14.7061 20.2514 15.1974 19.3916 16.0003 18.928C16.8029 18.4647 17.7927 18.4689 18.5914 18.9391L18.8363 19.0833C19.4425 19.4402 20.2234 19.3444 20.6574 18.7907C21.3044 17.9654 21.8242 17.0575 22.2084 16.0988C22.4698 15.4465 22.1627 14.7231 21.551 14.3772L21.306 14.2386C20.499 13.7822 20 12.9268 20 11.9997C20 11.0729 20.4986 10.2178 21.3051 9.76126L21.5516 9.62174C22.1641 9.27506 22.4712 8.55029 22.2079 7.89761C22.0165 7.42297 21.7896 6.95598 21.5263 6.50001C21.2628 6.04362 20.9715 5.61325 20.6559 5.20982C20.2223 4.65568 19.4412 4.55944 18.8351 4.91665L18.5916 5.06009C17.7929 5.53078 16.8026 5.53519 15.9997 5.07163C15.1971 4.60825 14.7059 3.74891 14.7138 2.82218L14.7162 2.53994C14.7222 1.83708 14.249 1.20945 13.5532 1.10973C12.5308 0.963214 11.4846 0.959581 10.4464 1.10733C9.75011 1.20641 9.27691 1.83473 9.28317 2.53798L9.28569 2.82154C9.29395 3.74862 8.80264 4.60841 7.99973 5.07197ZM14 15.4641C15.9132 14.3595 16.5687 11.9132 15.4641 9.99999C14.3595 8.08682 11.9132 7.43132 10 8.53589C8.08684 9.64046 7.43134 12.0868 8.53591 14C9.64048 15.9132 12.0868 16.5687 14 15.4641Z</PathGeometry>
+                        </converters:IconNameConverter>
+                    </u:NavigationMenu.Resources>
+                    <u:NavigationMenu.Header>
+                        <TextBlock
+                            Classes="H5"
+                            Text="Ursa"
+                            Theme="{DynamicResource TitleTextBlock}" />
+                    </u:NavigationMenu.Header>
+                    <u:NavigationMenu.Icon>
+                        <Image
+                            Width="48"
+                            Height="48"
+                            RenderOptions.BitmapInterpolationMode="HighQuality"
+                            Source="../Assets/Ursa.ico" />
+                    </u:NavigationMenu.Icon>
+                    <u:NavigationMenu.ItemTemplate>
+                        <converters:MenuDataTemplateSelector>
+                            <converters:MenuDataTemplateSelector.MenuTemplate>
+                                <DataTemplate DataType="vm:MenuItemViewModel">
+                                    <u:NavigationMenuItem Header="{Binding MenuHeader}"
+                                                          ItemsSource="{Binding Children}">
+                                        <u:NavigationMenuItem.Icon>
+                                            <PathIcon
+                                                Width="16"
+                                                Height="16"
+                                                Data="{Binding MenuIconName, Converter={StaticResource IconNameConverter}}" />
+                                        </u:NavigationMenuItem.Icon>
+                                    </u:NavigationMenuItem>
+                                </DataTemplate>
+                            </converters:MenuDataTemplateSelector.MenuTemplate>
+                            <converters:MenuDataTemplateSelector.SeparatorTemplate>
+                                <DataTemplate DataType="vm:MenuItemViewModel">
+                                    <u:NavigationMenuSeparator Header="{Binding MenuHeader}" />
+                                </DataTemplate>
+                            </converters:MenuDataTemplateSelector.SeparatorTemplate>
+                        </converters:MenuDataTemplateSelector>
+                    </u:NavigationMenu.ItemTemplate>
+                </u:NavigationMenu>
+
+                <StackPanel Grid.Column="1" Grid.Row="1" Spacing="20" Margin="8">
+                    <u:ImageViewer
+                        Name="viewer"
+                        Width="600"
+                        Height="300"
+                        Scale="0.2"
+                        Background="{DynamicResource SemiGrey1Color}"
+                        Source="../Assets/IRIHI.png">
+                        <u:ImageViewer.Overlayer>
+                            <Grid
+                                HorizontalAlignment="Stretch"
+                                ColumnDefinitions="*, Auto, *"
+                                IsVisible="{Binding #maskSwitch.IsChecked}">
+                                <Border
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Background="{DynamicResource MaskBackground}"
+                                    BorderBrush="{DynamicResource MaskBorderBrush}"
+                                    BorderThickness="0,0,1,0"
+                                    IsHitTestVisible="False" />
+                                <Rectangle
+                                    Grid.Column="1"
+                                    Width="150"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Fill="Transparent"
+                                    IsHitTestVisible="False" />
+                                <Border
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Background="{DynamicResource MaskBackground}"
+                                    BorderBrush="{DynamicResource MaskBorderBrush}"
+                                    BorderThickness="1,0,0,0"
+                                    IsHitTestVisible="False" />
+                            </Grid>
+                        </u:ImageViewer.Overlayer>
+                    </u:ImageViewer>
+                    <u:Divider>
+                        <ToggleSwitch
+                            Name="maskSwitch"
+                            IsChecked="True"
+                            OnContent="Show Mask"
+                            OffContent="Show Mask" />
+                    </u:Divider>
+                    <Grid ColumnDefinitions="*,Auto,*">
+                        <StackPanel Grid.Column="0" Spacing="20">
+                            <u:IPv4Box HorizontalAlignment="Stretch" />
+                            <u:IPv4Box HorizontalAlignment="Stretch" InputMode="Fast" />
+                            <RepeatButton Command="{Binding ChangeAddress}" Content="Random" />
+                            <u:IPv4Box HorizontalAlignment="Stretch"
+                                       ShowLeadingZero="True"
+                                       IPAddress="{Binding Address}" />
+                            <u:IPv4Box HorizontalAlignment="Stretch" IsEnabled="False" />
+                        </StackPanel>
+                        <u:Timeline Grid.Column="1">
+                            <u:TimelineItem
+                                Content="ToDo"
+                                ItemType="Default"
+                                Time="2022-01-01" />
+                            <u:TimelineItem
+                                Content="Start"
+                                ItemType="Ongoing"
+                                Time="2022-01-02" />
+                            <u:TimelineItem
+                                Content="In between"
+                                ItemType="Success"
+                                Time="2022-01-03" />
+                            <u:TimelineItem
+                                Content="In between"
+                                ItemType="Warning"
+                                Time="2022-01-04" />
+                            <u:TimelineItem
+                                Content="Finished"
+                                ItemType="Error"
+                                Time="2022-01-05" />
+                        </u:Timeline>
+                        <StackPanel Grid.Column="2" Spacing="20">
+                            <u:ButtonGroup Classes="Primary Solid" ItemsSource="{Binding ButtonGroupItems}" />
+                            <u:ButtonGroup Classes="Primary" ItemsSource="{Binding ButtonGroupItems}" />
+                            <u:ButtonGroup Classes="Primary Borderless" ItemsSource="{Binding ButtonGroupItems}" />
+                            <u:ButtonGroup Classes="Primary Large" ItemsSource="{Binding ButtonGroupItems}" />
+                            <u:ButtonGroup Classes="Primary Small" ItemsSource="{Binding ButtonGroupItems}" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Grid.Row="1" Spacing="20" Margin="8">
+                    <u:Divider HorizontalContentAlignment="Right">Badge</u:Divider>
+                    <WrapPanel Orientation="Horizontal">
+                        <u:Badge BadgeContent="Ursa" CornerPosition="TopRight">
+                            <Border Classes="Hover">
+                                <TextBlock Text="Pyro"/>
+                            </Border>
+                        </u:Badge>
+                        <u:Badge
+                            HorizontalAlignment="Center"
+                            CornerPosition="TopRight"
+                            BadgeContent="500"
+                            OverflowCount="99">
+                            <Border Classes="Hover">
+                                <TextBlock Text="Hydro"/>
+                            </Border>
+                        </u:Badge>
+                        <u:Badge
+                            BadgeContent="Ursa"
+                            CornerPosition="TopRight"
+                            Dot="True">
+                            <Border Classes="Hover">
+                                <TextBlock Text="Ameno"/>
+                            </Border>
+                        </u:Badge>
+
+                        <u:Badge BadgeContent="Ursa" />
+                        <u:Badge BadgeContent="Ursa" Dot="True" />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <u:Badge BadgeContent="Ursa" Classes="Secondary">
+                            <Border Classes="Hover">
+                                <TextBlock Text="Electro"/>
+                            </Border>
+                        </u:Badge>
+                        <u:Badge BadgeContent="Ursa" Classes="Tertiary" CornerPosition="BottomLeft">
+                            <Border Classes="Hover">
+                                <TextBlock Text="Dendro"/>
+                            </Border>
+                        </u:Badge>
+                        <u:Badge BadgeContent="Ursa" Classes="Warning" CornerPosition="BottomRight">
+                            <Border Classes="Hover">
+                                <TextBlock Text="Cryo"/>
+                            </Border>
+                        </u:Badge>
+                        <u:Badge BadgeContent="Ursa" Classes="Danger" CornerPosition="TopRight">
+                            <Border Classes="Hover">
+                                <TextBlock Text="Geo"/>
+                            </Border>
+                        </u:Badge>
+                    </WrapPanel>
+
+                    <u:Divider>DualBadge</u:Divider>
+                    <WrapPanel Orientation="Horizontal">
+                        <u:DualBadge Header="downloads">
+                            <u:DualBadge.Icon>
+                                <PathIcon
+                                    Width="14"
+                                    Height="14"
+                                    Data="{StaticResource InfoPath}" />
+                            </u:DualBadge.Icon>
+                            2.4k
+                        </u:DualBadge>
+                        <u:DualBadge Classes="FlatSquare" Header="downloads">
+                            <u:DualBadge.Icon>
+                                <PathIcon
+                                    Width="14"
+                                    Height="14"
+                                    Data="{StaticResource InfoPath}" />
+                            </u:DualBadge.Icon>
+                            2.4k
+                        </u:DualBadge>
+                        <u:DualBadge Classes="Plastic" Header="downloads">
+                            <u:DualBadge.Icon>
+                                <PathIcon
+                                    Width="12"
+                                    Height="12"
+                                    Data="{StaticResource InfoPath}" />
+                            </u:DualBadge.Icon>
+                            2.4k
+                        </u:DualBadge>
+                        <u:DualBadge Classes="ForTheBadge" Header="downloads">
+                            <u:DualBadge.Icon>
+                                <PathIcon
+                                    Width="12"
+                                    Height="12"
+                                    Data="{StaticResource InfoPath}" />
+                            </u:DualBadge.Icon>
+                            2.4k
+                        </u:DualBadge>
+                    </WrapPanel>
+
+                    <u:Divider HorizontalContentAlignment="Left">
+                        <ToggleSwitch
+                            Name="s"
+                            OffContent="Divider"
+                            OnContent="Divider"
+                            IsChecked="True" />
+                    </u:Divider>
+                    <u:LoadingContainer
+                        IsLoading="{Binding #s.IsChecked}"
+                        HorizontalContentAlignment="Stretch"
+                        LoadingMessage="Loading...">
+                        <StackPanel Spacing="20">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Windows" />
+                                <u:Divider Margin="12,0" Orientation="Vertical" />
+                                <TextBlock Text="macOS" />
+                                <u:Divider Orientation="Vertical" />
+                                <TextBlock Text="Linux" />
+                            </StackPanel>
+                            <Grid Height="100" Background="{DynamicResource MaskBackground}">
+                                <u:Divider HorizontalContentAlignment="Stretch">Stretch</u:Divider>
+                            </Grid>
+                        </StackPanel>
+                    </u:LoadingContainer>
+                    <u:TagInput HorizontalAlignment="Left" Width="550" />
+                    <u:Pagination
+                        PageSizeOptions="10, 20, 50, 100"
+                        ShowPageSizeSelector="True"
+                        TotalCount="600" />
+                </StackPanel>
+
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

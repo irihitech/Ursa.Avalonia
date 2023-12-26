@@ -24,11 +24,13 @@ public class MainViewViewModel : ViewModelBase
     {
         Content = s switch
         {
+            MenuKeys.MenuKeyIntroduction => new IntroductionDemoViewModel(),
             MenuKeys.MenuKeyBadge => new BadgeDemoViewModel(),
             MenuKeys.MenuKeyBanner => new BannerDemoViewModel(),
             MenuKeys.MenuKeyButtonGroup => new ButtonGroupDemoViewModel(),
             MenuKeys.MenuKeyDivider => new DividerDemoViewModel(),
             MenuKeys.MenuKeyDualBadge => new DualBadgeDemoViewModel(),
+            MenuKeys.MenuKeyImageViewer => new ImageViewerDemoViewModel(),
             MenuKeys.MenuKeyIpBox => new IPv4BoxDemoViewModel(),
             MenuKeys.MenuKeyKeyGestureInput => new KeyGestureInputDemoViewModel(),
             MenuKeys.MenuKeyLoading => new LoadingDemoViewModel(),
