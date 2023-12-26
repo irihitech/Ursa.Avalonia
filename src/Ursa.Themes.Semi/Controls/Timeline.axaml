@@ -50,14 +50,11 @@
                             Classes="start"
                             Fill="{DynamicResource TimelineLineBrush}" />
                         <Panel Grid.Row="1">
-                            <Ellipse
-                                Name="PART_Indicator"
-                                Width="8"
-                                Height="8"
-                                Margin="2"
+                            <ContentPresenter
+                                Content="{TemplateBinding Icon}"
                                 HorizontalAlignment="Center"
-                                VerticalAlignment="Top"
-                                Fill="{DynamicResource DefaultTimelineIconForeground}" />
+                                VerticalAlignment="Center"
+                                ContentTemplate="{TemplateBinding IconTemplate}"/>
                         </Panel>
                         <Rectangle
                             Grid.Row="2"

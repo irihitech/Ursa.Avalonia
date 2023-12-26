@@ -6,15 +6,29 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+    xmlns:selectors="clr-namespace:Ursa.Demo.TemplateSelectors"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:DataType="viewModels:TimelineDemoViewModel"
     x:CompileBindings="True"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <selectors:TimelineIconTemplateSelector x:Key="IconSelector">
+                <Ellipse x:Key="Default" Width="12" Height="12" Fill="{DynamicResource SemiGray6}"></Ellipse>
+                <Ellipse x:Key="Ongoing" Width="12" Height="12" Fill="{DynamicResource SemiBlue6}"></Ellipse>
+                <Ellipse x:Key="Success" Width="12" Height="12" Fill="{DynamicResource SemiGreen6}"></Ellipse>
+                <Ellipse x:Key="Warning" Width="12" Height="12" Fill="{DynamicResource SemiOrange6}"></Ellipse>
+                <Ellipse x:Key="Error" Width="12" Height="12" Fill="{DynamicResource SemiRed6}"></Ellipse>
+            </selectors:TimelineIconTemplateSelector>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <StackPanel>
         <u:Timeline ItemsSource="{Binding Items}"
                     HeaderMemberBinding="{ReflectionBinding Header}"
                     DescriptionMemberBinding="{ReflectionBinding Description}"
+                    IconMemberBinding="{ReflectionBinding ItemType}"
+                    IconTemplate="{StaticResource IconSelector}"
                     >
         </u:Timeline>
         <u:Timeline>

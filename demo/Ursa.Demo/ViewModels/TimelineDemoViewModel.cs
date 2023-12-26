@@ -22,7 +22,7 @@ public class TimelineDemoViewModel: ViewModelBase
             TimeFormat = "HH:mm:ss",
             Description = "Item 2",
             Header = "发布成功",
-            ItemType = TimelineItemType.Success,
+            ItemType = TimelineItemType.Ongoing,
         },
         new()
         {
@@ -30,7 +30,7 @@ public class TimelineDemoViewModel: ViewModelBase
             TimeFormat = "HH:mm:ss",
             Description = "Item 3",
             Header = "审核失败",
-            ItemType = TimelineItemType.Ongoing,
+            ItemType = TimelineItemType.Error,
         }
     };
 }
