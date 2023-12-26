@@ -36,6 +36,7 @@ public class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyPagination => new PaginationDemoViewModel(),
             MenuKeys.MenuKeyTagInput => new TagInputDemoViewModel(),
             MenuKeys.MenuKeyTimeline => new TimelineDemoViewModel(),
+            MenuKeys.MenuKeySkeleton => new SkeletonDemoViewModel(),
         };
     }
 }

@@ -11,5 +11,6 @@
         <MergeResourceInclude Source="NavigationMenu.axaml" />
         <MergeResourceInclude Source="Pagination.axaml" />
         <MergeResourceInclude Source="TagInput.axaml" />
+        <MergeResourceInclude Source="Skeleton.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

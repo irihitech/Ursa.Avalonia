@@ -23,6 +23,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Pagination", Key = MenuKeys.MenuKeyPagination },
             new() { MenuHeader = "TagInput", Key = MenuKeys.MenuKeyTagInput },
             new() { MenuHeader = "Timeline", Key = MenuKeys.MenuKeyTimeline },
+            new() { MenuHeader = "Skeleton", Key = MenuKeys.MenuKeySkeleton },
         };
     }
 }

@@ -13,5 +13,6 @@
         <ResourceInclude Source="Pagination.axaml" />
         <ResourceInclude Source="TagInput.axaml" />
         <ResourceInclude Source="Timeline.axaml" />
+        <ResourceInclude Source="Skeleton.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
