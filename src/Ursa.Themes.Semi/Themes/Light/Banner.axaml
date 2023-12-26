@@ -2,12 +2,12 @@
     <!--  Add Resources Here  -->
     <SolidColorBrush x:Key="BannerInformationBackground" Color="#EAF5FF" />
     <SolidColorBrush x:Key="BannerInformationBorderBrush" Color="#0077FA" />
+    <SolidColorBrush x:Key="BannerSuccessBackground" Color="#ECF7EC" />
+    <SolidColorBrush x:Key="BannerSuccessBorderBrush" Color="#3BB346" />
     <SolidColorBrush x:Key="BannerWarningBackground" Color="#FFF8EA" />
     <SolidColorBrush x:Key="BannerWarningBorderBrush" Color="#FC8800" />
     <SolidColorBrush x:Key="BannerErrorBackground" Color="#FEF2ED" />
     <SolidColorBrush x:Key="BannerErrorBorderBrush" Color="#F93920" />
-    <SolidColorBrush x:Key="BannerSuccessBackground" Color="#ECF7EC" />
-    <SolidColorBrush x:Key="BannerSuccessBorderBrush" Color="#3BB346" />
 
     <SolidColorBrush x:Key="BannerCloseButtonForeground" Opacity="0.62" Color="#1C1F23" />
 </ResourceDictionary>

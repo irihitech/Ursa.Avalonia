@@ -26,10 +26,10 @@
     <converters:TimelineItemTypeToIconForegroundConverter
         x:Key="ForegroundConverter"
         DefaultBrush="{DynamicResource DefaultTimelineIconForeground}"
-        ErrorBrush="{DynamicResource ErrorTimelineIconForeground}"
         OngoingBrush="{DynamicResource OngoingTimelineIconForeground}"
         SuccessBrush="{DynamicResource SuccessTimelineIconForeground}"
-        WarningBrush="{DynamicResource WarningTimelineIconForeground}" />
+        WarningBrush="{DynamicResource WarningTimelineIconForeground}"
+        ErrorBrush="{DynamicResource ErrorTimelineIconForeground}" />
 
     <ControlTheme x:Key="{x:Type u:TimelineItem}" TargetType="u:TimelineItem">
         <Setter Property="u:TimelineItem.Template">
