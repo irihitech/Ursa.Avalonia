@@ -144,6 +144,7 @@
                                        IPAddress="{Binding Address}" />
                             <u:IPv4Box HorizontalAlignment="Stretch" IsEnabled="False" />
                         </StackPanel>
+                        <!--
                         <u:Timeline Grid.Column="1">
                             <u:TimelineItem
                                 Content="ToDo"
@@ -166,6 +167,7 @@
                                 ItemType="Error"
                                 Time="2022-01-05" />
                         </u:Timeline>
+                        -->
                         <StackPanel Grid.Column="2" Spacing="20">
                             <u:ButtonGroup Classes="Primary Solid" ItemsSource="{Binding ButtonGroupItems}" />
                             <u:ButtonGroup Classes="Primary" ItemsSource="{Binding ButtonGroupItems}" />

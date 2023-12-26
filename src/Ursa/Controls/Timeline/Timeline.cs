@@ -1,56 +1,104 @@
 using System.Collections.Specialized;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.ComTypes;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Generators;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Avalonia.Data;
+using Avalonia.Metadata;
 
 namespace Ursa.Controls;
 
 public class Timeline: ItemsControl
 {
+    public static readonly StyledProperty<IBinding?> IconMemberBindingProperty = AvaloniaProperty.Register<Timeline, IBinding?>(
+        nameof(IconMemberBinding));
+
+    [AssignBinding]
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public IBinding? IconMemberBinding
+    {
+        get => GetValue(IconMemberBindingProperty);
+        set => SetValue(IconMemberBindingProperty, value);
+    }
+
+    public static readonly StyledProperty<IBinding?> HeaderMemberBindingProperty = AvaloniaProperty.Register<Timeline, IBinding?>(
+        nameof(HeaderMemberBinding));
+
+    [AssignBinding]
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public IBinding? HeaderMemberBinding
+    {
+        get => GetValue(HeaderMemberBindingProperty);
+        set => SetValue(HeaderMemberBindingProperty, value);
+    }
+
+    public static readonly StyledProperty<IBinding?> DescriptionMemberBindingProperty = AvaloniaProperty.Register<Timeline, IBinding?>(
+        nameof(DescriptionMemberBinding));
     
-    public static readonly StyledProperty<IDataTemplate?> ItemDescriptionTemplateProperty = AvaloniaProperty.Register<Timeline, IDataTemplate?>(
-        nameof(ItemDescriptionTemplate));
-
-    public IDataTemplate? ItemDescriptionTemplate
+    [AssignBinding]
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public IBinding? DescriptionMemberBinding
     {
-        get => GetValue(ItemDescriptionTemplateProperty);
-        set => SetValue(ItemDescriptionTemplateProperty, value);
+        get => GetValue(DescriptionMemberBindingProperty);
+        set => SetValue(DescriptionMemberBindingProperty, value);
+    }
+    
+
+    public static readonly StyledProperty<IDataTemplate?> IconTemplateProperty = AvaloniaProperty.Register<Timeline, IDataTemplate?>(
+        nameof(IconTemplate));
+
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public IDataTemplate? IconTemplate
+    {
+        get => GetValue(IconTemplateProperty);
+        set => SetValue(IconTemplateProperty, value);
     }
 
-    public Timeline()
+    public static readonly StyledProperty<IDataTemplate?> DescriptionTemplateProperty = AvaloniaProperty.Register<Timeline, IDataTemplate?>(
+        nameof(DescriptionTemplate));
+
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public IDataTemplate? DescriptionTemplate
     {
-        ItemsView.CollectionChanged+=ItemsViewOnCollectionChanged;
+        get => GetValue(DescriptionTemplateProperty);
+        set => SetValue(DescriptionTemplateProperty, value);
     }
 
-    private void ItemsViewOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
-        RefreshTimelineItems();
+        recycleKey = null;
+        return item is not TimelineItem;
     }
 
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey)
     {
-        base.OnPropertyChanged(change);
-        RefreshTimelineItems();
+        if (item is TimelineItem t) return t;
+        return new TimelineItem();
     }
 
-    private void RefreshTimelineItems()
+    protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
     {
-        for (int i = 0; i < this.LogicalChildren.Count; i++)
+        base.PrepareContainerForItemOverride(container, item, index);
+        if (container is TimelineItem t)
         {
-            if (this.LogicalChildren[i] is TimelineItem t)
+            if (IconMemberBinding != null)
             {
-                t.SetIndex(i == 0, i == this.LogicalChildren.Count - 1);
+                t.Bind(TimelineItem.IconProperty, IconMemberBinding);
             }
-            else if (this.LogicalChildren[i] is ContentPresenter { Child: TimelineItem t2 })
+            if (HeaderMemberBinding != null)
             {
-                t2.SetIndex(i == 0, i == this.LogicalChildren.Count - 1);
+                t.Bind(HeaderedContentControl.HeaderProperty, HeaderMemberBinding);
             }
+            if (DescriptionMemberBinding != null)
+            {
+                t.Bind(ContentControl.ContentProperty, DescriptionMemberBinding);
+            }
+            t.SetCurrentValue(TimelineItem.IconTemplateProperty, IconTemplate);
+            t.SetCurrentValue(HeaderedContentControl.HeaderTemplateProperty, ItemTemplate);
+            t.SetCurrentValue(ContentControl.ContentTemplateProperty, DescriptionTemplate);
         }
+
     }
-    
 }

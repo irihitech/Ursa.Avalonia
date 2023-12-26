@@ -6,9 +6,9 @@
     <Design.PreviewWith>
         <StackPanel Width="100" Spacing="20">
             <u:Timeline>
-                <u:TimelineItem Content="Hello" Time="2022-01-01" />
-                <u:TimelineItem Content="World" Time="2022-02-01" />
-                <u:TimelineItem Content="!" Time="2022-03-01" />
+                <u:TimelineItem Content="Hello" />
+                <u:TimelineItem Content="World" />
+                <u:TimelineItem Content="!" />
                 <u:TimelineItem />
             </u:Timeline>
         </StackPanel>
@@ -81,13 +81,9 @@
                         Grid.Column="1"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Bottom"
+                        Content="{TemplateBinding Header}"
+                        ContentTemplate="{TemplateBinding HeaderTemplate}"
                         Foreground="Gray">
-                        <ContentPresenter.Content>
-                            <MultiBinding Converter="{StaticResource FormatConverter}">
-                                <Binding Path="Time" RelativeSource="{RelativeSource TemplatedParent}" />
-                                <Binding Path="TimeFormat" RelativeSource="{RelativeSource TemplatedParent}" />
-                            </MultiBinding>
-                        </ContentPresenter.Content>
                     </ContentPresenter>
                     <ContentPresenter
                         Name="content"
