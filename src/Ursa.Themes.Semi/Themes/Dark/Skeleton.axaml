@@ -9,5 +9,6 @@
         <GradientStop Offset="1" Color="#FF2E3238" />
         <GradientStop Offset="1" Color="#FF1C1F23" />
     </LinearGradientBrush>
+    <SolidColorBrush x:Key="SkeletonDefaultBackground" Color="#FF1C1F23"></SolidColorBrush>
     <!--  Add Resources Here  -->
 </ResourceDictionary>
