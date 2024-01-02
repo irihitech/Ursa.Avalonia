@@ -4,37 +4,67 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:selectors="clr-namespace:Ursa.Demo.TemplateSelectors"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
-    xmlns:selectors="clr-namespace:Ursa.Demo.TemplateSelectors"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    x:DataType="viewModels:TimelineDemoViewModel"
     x:CompileBindings="True"
+    x:DataType="viewModels:TimelineDemoViewModel"
     mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
             <selectors:TimelineIconTemplateSelector x:Key="IconSelector">
-                <Ellipse x:Key="Default" Width="12" Height="12" Fill="{DynamicResource SemiGray6}"></Ellipse>
-                <Ellipse x:Key="Ongoing" Width="12" Height="12" Fill="{DynamicResource SemiBlue6}"></Ellipse>
-                <Ellipse x:Key="Success" Width="12" Height="12" Fill="{DynamicResource SemiGreen6}"></Ellipse>
-                <Ellipse x:Key="Warning" Width="12" Height="12" Fill="{DynamicResource SemiOrange6}"></Ellipse>
-                <Ellipse x:Key="Error" Width="12" Height="12" Fill="{DynamicResource SemiRed6}"></Ellipse>
+                <Ellipse
+                    x:Key="Default"
+                    Width="12"
+                    Height="12"
+                    Fill="{DynamicResource SemiGray6}" />
+                <Ellipse
+                    x:Key="Ongoing"
+                    Width="12"
+                    Height="12"
+                    Fill="{DynamicResource SemiBlue6}" />
+                <Ellipse
+                    x:Key="Success"
+                    Width="12"
+                    Height="12"
+                    Fill="{DynamicResource SemiGreen6}" />
+                <Ellipse
+                    x:Key="Warning"
+                    Width="12"
+                    Height="12"
+                    Fill="{DynamicResource SemiOrange6}" />
+                <Ellipse
+                    x:Key="Error"
+                    Width="12"
+                    Height="12"
+                    Fill="{DynamicResource SemiRed6}" />
             </selectors:TimelineIconTemplateSelector>
         </ResourceDictionary>
     </UserControl.Resources>
     <StackPanel>
-        <u:Timeline ItemsSource="{Binding Items}"
-                    HeaderMemberBinding="{ReflectionBinding Header}"
-                    DescriptionMemberBinding="{ReflectionBinding Description}"
-                    IconMemberBinding="{ReflectionBinding ItemType}"
-                    IconTemplate="{StaticResource IconSelector}"
-                    >
-        </u:Timeline>
+        <u:Timeline
+            HorizontalAlignment="Left"
+            DescriptionMemberBinding="{ReflectionBinding Description}"
+            DisplayMemberBinding="{ReflectionBinding Header}"
+            HeaderMemberBinding="{ReflectionBinding Header}"
+            IconMemberBinding="{ReflectionBinding ItemType}"
+            IconTemplate="{StaticResource IconSelector}"
+            ItemsSource="{Binding Items}" />
         <u:Timeline>
-            <u:TimelineItem Header="第一步" Content="Step 1" Type="Default"></u:TimelineItem>
-            <u:TimelineItem Header="第二步" Content="Step 2" Type="Default"></u:TimelineItem>
-            <u:TimelineItem Header="第三步" Content="Step 3" Type="Default"></u:TimelineItem>
+            <u:TimelineItem
+                Content="Step 1"
+                Header="第一步"
+                Type="Default" />
+            <u:TimelineItem
+                Content="Step 2"
+                Header="第二步"
+                Type="Default" />
+            <u:TimelineItem
+                Content="Step 3"
+                Header="第三步"
+                Type="Default" />
         </u:Timeline>
     </StackPanel>
 </UserControl>

@@ -6,12 +6,15 @@ using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
+using Avalonia.Layout;
 using Avalonia.Metadata;
 
 namespace Ursa.Controls;
 
 public class Timeline: ItemsControl
 {
+    private static readonly FuncTemplate<Panel?> DefaultPanel = new((Func<Panel>)(() => new TimelinePanel()));
+    
     public static readonly StyledProperty<IBinding?> IconMemberBindingProperty = AvaloniaProperty.Register<Timeline, IBinding?>(
         nameof(IconMemberBinding));
 
@@ -64,6 +67,29 @@ public class Timeline: ItemsControl
     {
         get => GetValue(DescriptionTemplateProperty);
         set => SetValue(DescriptionTemplateProperty, value);
+    }
+
+    public static readonly StyledProperty<TimelineDisplayMode> ModeProperty = AvaloniaProperty.Register<Timeline, TimelineDisplayMode>(
+        nameof(Mode));
+
+    public TimelineDisplayMode Mode
+    {
+        get => GetValue(ModeProperty);
+        set => SetValue(ModeProperty, value);
+    }
+
+    static Timeline()
+    {
+        ItemsPanelProperty.OverrideDefaultValue<Timeline>(DefaultPanel);
+        ModeProperty.Changed.AddClassHandler<Timeline, TimelineDisplayMode>((t, e) => { t.OnDisplayModeChanged(e); });
+    }
+
+    private void OnDisplayModeChanged(AvaloniaPropertyChangedEventArgs<TimelineDisplayMode> e)
+    {
+        if (this.ItemsPanelRoot is TimelinePanel panel)
+        {
+            panel.Mode = e.NewValue.Value;
+        }
     }
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)

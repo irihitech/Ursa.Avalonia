@@ -26,48 +26,35 @@
     <converters:TimelineItemTypeToIconForegroundConverter
         x:Key="ForegroundConverter"
         DefaultBrush="{DynamicResource DefaultTimelineIconForeground}"
+        ErrorBrush="{DynamicResource ErrorTimelineIconForeground}"
         OngoingBrush="{DynamicResource OngoingTimelineIconForeground}"
         SuccessBrush="{DynamicResource SuccessTimelineIconForeground}"
-        WarningBrush="{DynamicResource WarningTimelineIconForeground}"
-        ErrorBrush="{DynamicResource ErrorTimelineIconForeground}" />
+        WarningBrush="{DynamicResource WarningTimelineIconForeground}" />
 
     <ControlTheme x:Key="{x:Type u:TimelineItem}" TargetType="u:TimelineItem">
         <Setter Property="u:TimelineItem.Template">
             <ControlTemplate TargetType="u:TimelineItem">
-                <Grid ColumnDefinitions="Auto, *" RowDefinitions="*, Auto, *">
-                    <Grid
+                <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="*, Auto, *">
+                    <Rectangle
                         Grid.Row="0"
-                        Grid.RowSpan="2"
-                        Grid.Column="0"
-                        RowDefinitions="Auto, Auto, *">
-                        <Rectangle
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            Width="1"
-                            Height="8"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Top"
-                            Classes="start"
-                            Fill="{DynamicResource TimelineLineBrush}" />
-                        <Panel Grid.Row="1">
-                            <ContentPresenter
-                                Content="{TemplateBinding Icon}"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                ContentTemplate="{TemplateBinding IconTemplate}"/>
-                        </Panel>
-                        <Rectangle
-                            Grid.Row="2"
-                            Grid.Column="0"
-                            Width="1"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Stretch"
-                            Classes="end"
-                            Fill="{DynamicResource TimelineLineBrush}" />
-                    </Grid>
+                        Grid.Column="1"
+                        Width="1"
+                        Height="8"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Classes="start"
+                        Fill="{DynamicResource TimelineLineBrush}" />
+                    <ContentPresenter
+                        Name="PART_IconPresenter"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="{TemplateBinding Icon}"
+                        ContentTemplate="{TemplateBinding IconTemplate}" />
                     <Rectangle
                         Grid.Row="2"
-                        Grid.Column="0"
+                        Grid.Column="1"
                         Width="1"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Stretch"
@@ -80,8 +67,7 @@
                         VerticalAlignment="Bottom"
                         Content="{TemplateBinding Header}"
                         ContentTemplate="{TemplateBinding HeaderTemplate}"
-                        Foreground="Gray">
-                    </ContentPresenter>
+                        Foreground="Gray" />
                     <ContentPresenter
                         Name="content"
                         Grid.Row="1"
@@ -100,23 +86,12 @@
         <Style Selector="^:last /template/ Rectangle.end">
             <Setter Property="Rectangle.Fill" Value="Transparent" />
         </Style>
-        <Style Selector="^:none /template/ Ellipse#PART_Indicator">
-            <Setter Property="Ellipse.Fill" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=u:TimelineItem}, Path=IconForeground}" />
-        </Style>
-        <Style Selector="^:not(:none):default /template/ Ellipse#PART_Indicator">
-            <Setter Property="Ellipse.Fill" Value="{DynamicResource DefaultTimelineIconForeground}" />
-        </Style>
-        <Style Selector="^:not(:none):ongoing /template/ Ellipse#PART_Indicator">
-            <Setter Property="Ellipse.Fill" Value="{DynamicResource OngoingTimelineIconForeground}" />
-        </Style>
-        <Style Selector="^:not(:none):success /template/ Ellipse#PART_Indicator">
-            <Setter Property="Ellipse.Fill" Value="{DynamicResource SuccessTimelineIconForeground}" />
-        </Style>
-        <Style Selector="^:not(:none):warning /template/ Ellipse#PART_Indicator">
-            <Setter Property="Ellipse.Fill" Value="{DynamicResource WarningTimelineIconForeground}" />
-        </Style>
-        <Style Selector="^:not(:none):error /template/ Ellipse#PART_Indicator">
-            <Setter Property="Ellipse.Fill" Value="{DynamicResource ErrorTimelineIconForeground}" />
+        <Style Selector="^:empty-icon /template/ ContentPresenter#PART_IconPresenter">
+            <Setter Property="Content">
+                <Template>
+                    <Ellipse Width="8" Height="8" Fill="Gray"></Ellipse>
+                </Template>
+            </Setter>
         </Style>
     </ControlTheme>
 </ResourceDictionary>

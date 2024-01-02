@@ -8,9 +8,13 @@ using Avalonia.Media;
 
 namespace Ursa.Controls;
 
-[PseudoClasses(":first", ":last")]
+[PseudoClasses(PC_First, PC_Last, PC_EmptyIcon)]
 public class TimelineItem: HeaderedContentControl
 {
+    public const string PC_First = ":first";
+    public const string PC_Last = ":last";
+    public const string PC_EmptyIcon = ":empty-icon";
+    
     public static readonly StyledProperty<object?> IconProperty = AvaloniaProperty.Register<TimelineItem, object?>(
         nameof(Icon));
 
@@ -37,10 +41,47 @@ public class TimelineItem: HeaderedContentControl
         get => GetValue(TypeProperty);
         set => SetValue(TypeProperty, value);
     }
+    
+    public static readonly DirectProperty<TimelineItem, double> LeftWidthProperty = AvaloniaProperty.RegisterDirect<TimelineItem, double>(
+        nameof(LeftWidth), o => o.LeftWidth, (o, v) => o.LeftWidth = v);
+    private double _leftWidth;
+    public double LeftWidth
+    {
+        get => _leftWidth;
+        set => SetAndRaise(LeftWidthProperty, ref _leftWidth, value);
+    }
+    
+    public static readonly DirectProperty<TimelineItem, double> IconWidthProperty = AvaloniaProperty.RegisterDirect<TimelineItem, double>(
+        nameof(IconWidth), o => o.IconWidth, (o, v) => o.IconWidth = v);
+    private double _iconWidth;
+    public double IconWidth
+    {
+        get => _iconWidth;
+        set => SetAndRaise(IconWidthProperty, ref _iconWidth, value);
+    }
+    
+    public static readonly DirectProperty<TimelineItem, double> RightWidthProperty = AvaloniaProperty.RegisterDirect<TimelineItem, double>(
+        nameof(RightWidth), o => o.RightWidth, (o, v) => o.RightWidth = v);
+    private double _rightWidth;
+    public double RightWidth
+    {
+        get => _rightWidth;
+        set => SetAndRaise(RightWidthProperty, ref _rightWidth, value);
+    }
+
+    static TimelineItem()
+    {
+        IconProperty.Changed.AddClassHandler<TimelineItem, object?>((item, args) => { item.OnIconChanged(args); });
+    }
+
+    private void OnIconChanged(AvaloniaPropertyChangedEventArgs<object?> args)
+    {
+        PseudoClasses.Set(PC_EmptyIcon, args.NewValue.Value is null);
+    }
 
     internal void SetEnd(bool start, bool end)
     {
-        PseudoClasses.Set(":first", start);
-        PseudoClasses.Set(":last", end);
+        PseudoClasses.Set(PC_First, start);
+        PseudoClasses.Set(PC_Last, end);
     }
 }
