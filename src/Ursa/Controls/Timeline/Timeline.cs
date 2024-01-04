@@ -69,6 +69,27 @@ public class Timeline: ItemsControl
         set => SetValue(DescriptionTemplateProperty, value);
     }
 
+    public static readonly StyledProperty<IBinding?> TimeMemberBindingProperty = AvaloniaProperty.Register<Timeline, IBinding?>(
+        nameof(TimeMemberBinding));
+
+    [AssignBinding]
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public IBinding? TimeMemberBinding
+    {
+        get => GetValue(TimeMemberBindingProperty);
+        set => SetValue(TimeMemberBindingProperty, value);
+    }
+
+    public static readonly StyledProperty<string?> TimeFormatProperty = AvaloniaProperty.Register<Timeline, string?>(
+        nameof(TimeFormat), defaultValue:"yyyy-MM-dd HH:mm:ss");
+
+    public string? TimeFormat
+    {
+        get => GetValue(TimeFormatProperty);
+        set => SetValue(TimeFormatProperty, value);
+    }
+    
+
     public static readonly StyledProperty<TimelineDisplayMode> ModeProperty = AvaloniaProperty.Register<Timeline, TimelineDisplayMode>(
         nameof(Mode));
 
@@ -124,6 +145,11 @@ public class Timeline: ItemsControl
             {
                 t.Bind(ContentControl.ContentProperty, DescriptionMemberBinding);
             }
+            if (TimeMemberBinding != null)
+            {
+                t.Bind(TimelineItem.TimeProperty, TimeMemberBinding);
+            }
+            t.SetCurrentValue(TimelineItem.TimeFormatProperty, TimeFormat);
             t.SetCurrentValue(TimelineItem.IconTemplateProperty, IconTemplate);
             t.SetCurrentValue(HeaderedContentControl.HeaderTemplateProperty, ItemTemplate);
             t.SetCurrentValue(ContentControl.ContentTemplateProperty, DescriptionTemplate);

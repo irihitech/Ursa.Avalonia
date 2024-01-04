@@ -18,7 +18,7 @@
     <ControlTheme x:Key="{x:Type u:Timeline}" TargetType="u:Timeline">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Timeline">
-                <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                <ItemsPresenter Grid.IsSharedSizeScope="True" ItemsPanel="{TemplateBinding ItemsPanel}" />
             </ControlTemplate>
         </Setter>
     </ControlTheme>
@@ -32,51 +32,64 @@
         WarningBrush="{DynamicResource WarningTimelineIconForeground}" />
 
     <ControlTheme x:Key="{x:Type u:TimelineItem}" TargetType="u:TimelineItem">
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
         <Setter Property="u:TimelineItem.Template">
             <ControlTemplate TargetType="u:TimelineItem">
-                <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="*, Auto, *">
-                    <Rectangle
+                <Grid Name="PART_RootGrid" 
+                      RowDefinitions="Auto, Auto, Auto" 
+                      ColumnDefinitions="Auto, Auto, Auto">
+                    <!--  Icon and Axis  -->
+                    <Grid
+                        Name="PART_IconAxisRoot"
                         Grid.Row="0"
+                        Grid.RowSpan="3"
                         Grid.Column="1"
-                        Width="1"
-                        Height="8"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Top"
-                        Classes="start"
-                        Fill="{DynamicResource TimelineLineBrush}" />
-                    <ContentPresenter
-                        Name="PART_IconPresenter"
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Content="{TemplateBinding Icon}"
-                        ContentTemplate="{TemplateBinding IconTemplate}" />
-                    <Rectangle
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        Width="1"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Stretch"
-                        Classes="end"
-                        Fill="{DynamicResource TimelineLineBrush}" />
+                        RowDefinitions="Auto, *">
+                        <ContentPresenter
+                            Name="PART_Icon"
+                            Grid.Row="0"
+                            Margin="8"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{TemplateBinding Icon}"
+                            ContentTemplate="{TemplateBinding IconTemplate}" />
+                        <Rectangle
+                            Grid.Row="1"
+                            Width="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Stretch"
+                            Classes="end"
+                            Fill="{DynamicResource TimelineLineBrush}" />
+                    </Grid>
                     <ContentPresenter
                         Grid.Row="0"
-                        Grid.Column="1"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Bottom"
+                        Grid.Column="2"
+                        Name="PART_Header"
+                        Margin="8 4"
                         Content="{TemplateBinding Header}"
-                        ContentTemplate="{TemplateBinding HeaderTemplate}"
-                        Foreground="Gray" />
+                        ContentTemplate="{TemplateBinding HeaderTemplate}" />
                     <ContentPresenter
-                        Name="content"
                         Grid.Row="1"
-                        Grid.Column="1"
-                        Margin="0,0,0,16"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
+                        Grid.Column="2"
+                        Name="PART_Content"
+                        Margin="8 2"
                         Content="{TemplateBinding Content}"
                         ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Name="PART_Time"
+                        Margin="8 2"
+                        TextWrapping="Wrap"
+                        >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource FormatConverter}">
+                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Time"></Binding>
+                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="TimeFormat"></Binding>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
                 </Grid>
             </ControlTemplate>
         </Setter>
@@ -86,12 +99,57 @@
         <Style Selector="^:last /template/ Rectangle.end">
             <Setter Property="Rectangle.Fill" Value="Transparent" />
         </Style>
-        <Style Selector="^:empty-icon /template/ ContentPresenter#PART_IconPresenter">
+        <Style Selector="^:empty-icon /template/ ContentPresenter#PART_Icon">
             <Setter Property="Content">
                 <Template>
-                    <Ellipse Width="8" Height="8" Fill="Gray"></Ellipse>
+                    <Ellipse
+                        Width="8"
+                        Height="8"
+                        Fill="Gray" />
                 </Template>
             </Setter>
+        </Style>
+        <Style Selector="^:all-left">
+            <Style Selector="^ /template/ ContentPresenter#PART_Header">
+                <Setter Property="Grid.Row" Value="0"></Setter>
+                <Setter Property="Grid.Column" Value="0"></Setter>
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_Content">
+                <Setter Property="Grid.Row" Value="1"></Setter>
+                <Setter Property="Grid.Column" Value="0"></Setter>
+            </Style>
+            <Style Selector="^ /template/ TextBlock#PART_Time">
+                <Setter Property="Grid.Row" Value="2"></Setter>
+                <Setter Property="Grid.Column" Value="0"></Setter>
+            </Style>
+        </Style>
+        <Style Selector="^:all-right">
+            <Style Selector="^ /template/ ContentPresenter#PART_Header">
+                <Setter Property="Grid.Row" Value="0"></Setter>
+                <Setter Property="Grid.Column" Value="2"></Setter>
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_Content">
+                <Setter Property="Grid.Row" Value="1"></Setter>
+                <Setter Property="Grid.Column" Value="2"></Setter>
+            </Style>
+            <Style Selector="^ /template/ TextBlock#PART_Time">
+                <Setter Property="Grid.Row" Value="2"></Setter>
+                <Setter Property="Grid.Column" Value="2"></Setter>
+            </Style>
+        </Style>
+        <Style Selector="^:separate">
+            <Style Selector="^ /template/ ContentPresenter#PART_Header">
+                <Setter Property="Grid.Row" Value="0"></Setter>
+                <Setter Property="Grid.Column" Value="2"></Setter>
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_Content">
+                <Setter Property="Grid.Row" Value="1"></Setter>
+                <Setter Property="Grid.Column" Value="2"></Setter>
+            </Style>
+            <Style Selector="^ /template/ TextBlock#PART_Time">
+                <Setter Property="Grid.Row" Value="0"></Setter>
+                <Setter Property="Grid.Column" Value="0"></Setter>
+            </Style>
         </Style>
     </ControlTheme>
 </ResourceDictionary>

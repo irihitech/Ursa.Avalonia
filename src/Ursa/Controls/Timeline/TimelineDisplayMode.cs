@@ -7,3 +7,10 @@ public enum TimelineDisplayMode
     Right,
     Alternate,
 }
+
+public enum TimelineItemDisplayMode
+{
+    Left,
+    Right,
+    Separate,
+}

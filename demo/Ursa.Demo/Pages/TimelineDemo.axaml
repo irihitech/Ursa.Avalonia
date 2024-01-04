@@ -47,23 +47,26 @@
         <u:Timeline
             HorizontalAlignment="Left"
             DescriptionMemberBinding="{ReflectionBinding Description}"
-            DisplayMemberBinding="{ReflectionBinding Header}"
             HeaderMemberBinding="{ReflectionBinding Header}"
             IconMemberBinding="{ReflectionBinding ItemType}"
             IconTemplate="{StaticResource IconSelector}"
-            ItemsSource="{Binding Items}" />
-        <u:Timeline>
+            ItemsSource="{Binding Items}"
+            TimeMemberBinding="{ReflectionBinding Time}" />
+        <u:Timeline HorizontalAlignment="Left">
             <u:TimelineItem
                 Content="Step 1"
                 Header="第一步"
+                Mode="Left"
                 Type="Default" />
             <u:TimelineItem
                 Content="Step 2"
                 Header="第二步"
+                Mode="Right"
                 Type="Default" />
             <u:TimelineItem
                 Content="Step 3"
                 Header="第三步"
+                Mode="Separate"
                 Type="Default" />
         </u:Timeline>
     </StackPanel>

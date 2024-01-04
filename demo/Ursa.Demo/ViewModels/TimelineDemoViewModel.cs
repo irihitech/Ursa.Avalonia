@@ -11,7 +11,6 @@ public class TimelineDemoViewModel: ViewModelBase
         new()
         {
             Time = DateTime.Now,
-            TimeFormat = "yyyy-MM-dd HH:mm:ss",
             Description = "Item 1",
             Header = "审核中",
             ItemType = TimelineItemType.Success,
@@ -19,7 +18,6 @@ public class TimelineDemoViewModel: ViewModelBase
         new()
         {
             Time = DateTime.Now,
-            TimeFormat = "HH:mm:ss",
             Description = "Item 2",
             Header = "发布成功",
             ItemType = TimelineItemType.Ongoing,
@@ -27,7 +25,6 @@ public class TimelineDemoViewModel: ViewModelBase
         new()
         {
             Time = DateTime.Now,
-            TimeFormat = "HH:mm:ss",
             Description = "Item 3",
             Header = "审核失败",
             ItemType = TimelineItemType.Error,
