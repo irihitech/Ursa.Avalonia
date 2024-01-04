@@ -11,7 +11,7 @@ namespace Ursa.Controls;
 
 [PseudoClasses(PC_First, PC_Last, PC_EmptyIcon)]
 [TemplatePart(PART_Header, typeof(ContentPresenter))]
-[TemplatePart(PART_Icon, typeof(ContentPresenter))]
+[TemplatePart(PART_Icon, typeof(Panel))]
 [TemplatePart(PART_Content, typeof(ContentPresenter))]
 [TemplatePart(PART_Time, typeof(TextBlock))]
 [TemplatePart(PART_RootGrid, typeof(Grid))]
@@ -30,7 +30,7 @@ public class TimelineItem: HeaderedContentControl
     public const string PART_RootGrid = "PART_RootGrid";
     
     private ContentPresenter? _headerPresenter;
-    private ContentPresenter? _iconPresenter;
+    private Panel? _iconPresenter;
     private ContentPresenter? _contentPresenter;
     private TextBlock? _timePresenter;
     private Grid? _rootGrid;
@@ -138,11 +138,11 @@ public class TimelineItem: HeaderedContentControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
+        _rootGrid = e.NameScope.Find<Grid>(PART_RootGrid);
         _headerPresenter = e.NameScope.Find<ContentPresenter>(PART_Header);
-        _iconPresenter = e.NameScope.Find<ContentPresenter>(PART_Icon);
+        _iconPresenter = e.NameScope.Find<Panel>(PART_Icon);
         _contentPresenter = e.NameScope.Find<ContentPresenter>(PART_Content);
         _timePresenter = e.NameScope.Find<TextBlock>(PART_Time);
-        _rootGrid = e.NameScope.Find<Grid>(PART_RootGrid);
         PseudoClasses.Set(PC_EmptyIcon, Icon is null);
         SetMode(Mode);
     }

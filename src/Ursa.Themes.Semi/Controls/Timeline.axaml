@@ -47,17 +47,24 @@
                         Grid.RowSpan="3"
                         Grid.Column="1"
                         RowDefinitions="Auto, *">
-                        <ContentPresenter
-                            Name="{x:Static u:TimelineItem.PART_Icon}"
-                            Grid.Row="0"
-                            Margin="8"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Content="{TemplateBinding Icon}"
-                            ContentTemplate="{TemplateBinding IconTemplate}" />
+                        <Panel Grid.Row="0" Name="{x:Static u:TimelineItem.PART_Icon}">
+                            <ContentPresenter
+                                Margin="8"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Icon}"
+                                ContentTemplate="{TemplateBinding IconTemplate}" />
+                            <Ellipse
+                                Name="PART_DefaultIcon"
+                                Width="12"
+                                Height="12"
+                                Margin="8"
+                                IsVisible="False"
+                                Fill="Gray" />
+                        </Panel>
                         <Rectangle
                             Grid.Row="1"
-                            Width="1"
+                            Width="2"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Stretch"
                             Classes="end"
@@ -102,21 +109,26 @@
                 </Grid>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^:first /template/ Rectangle.start">
-            <Setter Property="Rectangle.Fill" Value="Transparent" />
-        </Style>
         <Style Selector="^:last /template/ Rectangle.end">
             <Setter Property="Rectangle.Fill" Value="Transparent" />
         </Style>
-        <Style Selector="^:empty-icon /template/ ContentPresenter#PART_Icon">
-            <Setter Property="Content">
-                <Template>
-                    <Ellipse
-                        Width="8"
-                        Height="8"
-                        Fill="Gray" />
-                </Template>
-            </Setter>
+        <Style Selector="^:empty-icon /template/ Ellipse#PART_DefaultIcon">
+            <Setter Property="IsVisible" Value="True"/>
+        </Style>
+        <Style Selector="^:empty-icon[Type=Default] /template/ Ellipse#PART_DefaultIcon">
+            <Setter Property="Fill" Value="{DynamicResource SemiGrey6}"/>
+        </Style>
+        <Style Selector="^:empty-icon[Type=Error] /template/ Ellipse#PART_DefaultIcon">
+            <Setter Property="Fill" Value="{DynamicResource SemiRed6}"/>
+        </Style>
+        <Style Selector="^:empty-icon[Type=Ongoing] /template/ Ellipse#PART_DefaultIcon">
+            <Setter Property="Fill" Value="{DynamicResource SemiBlue6}"/>
+        </Style>
+        <Style Selector="^:empty-icon[Type=Success] /template/ Ellipse#PART_DefaultIcon">
+            <Setter Property="Fill" Value="{DynamicResource SemiGreen6}"/>
+        </Style>
+        <Style Selector="^:empty-icon[Type=Warning] /template/ Ellipse#PART_DefaultIcon">
+            <Setter Property="Fill" Value="{DynamicResource SemiOrange6}"/>
         </Style>
         <Style Selector="^:all-left">
             <Style Selector="^ /template/ ContentPresenter#PART_Header">

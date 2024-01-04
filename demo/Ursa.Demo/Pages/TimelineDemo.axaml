@@ -23,7 +23,7 @@
             </selectors:TimelineIconTemplateSelector>
         </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel>
+    <WrapPanel>
         <u:Timeline
             Mode="Alternate"
             HorizontalAlignment="Left"
@@ -65,12 +65,22 @@
                 Content="Step 2"
                 Header="第二步"
                 Mode="Right"
-                Type="Default" />
+                Type="Success" />
             <u:TimelineItem
                 Content="Step 3"
                 Header="第三步"
                 Mode="Separate"
-                Type="Default" />
+                Type="Warning" />
+            <u:TimelineItem
+                Content="Step 4"
+                Header="第四步"
+                Mode="Separate"
+                Type="Ongoing" />
+            <u:TimelineItem
+                Content="Step 5"
+                Header="第五步"
+                Mode="Separate"
+                Type="Error" />
         </u:Timeline>
-    </StackPanel>
+    </WrapPanel>
 </UserControl>

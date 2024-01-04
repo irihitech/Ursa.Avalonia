@@ -63,15 +63,13 @@ public class TimelinePanel: Panel
             if (child is TimelineItem t)
             {
                 t.SetWidth(left, mid, right);
-                rect = rect.WithHeight(t.DesiredSize.Height);
                 t.InvalidateArrange();
-                //rect = rect.WithHeight(t.DesiredSize.Height);
+                rect = rect.WithHeight(t.DesiredSize.Height);
                 child.Arrange(rect);
                 rect = rect.WithY(rect.Y + t.DesiredSize.Height);
                 height+=t.DesiredSize.Height;
             }
         }
-        //return base.ArrangeOverride(finalSize);
         return new Size(left + mid + right, height);
     }
 }
