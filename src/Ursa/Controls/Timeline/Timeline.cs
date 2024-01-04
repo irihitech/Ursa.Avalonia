@@ -37,15 +37,15 @@ public class Timeline: ItemsControl
         set => SetValue(HeaderMemberBindingProperty, value);
     }
 
-    public static readonly StyledProperty<IBinding?> DescriptionMemberBindingProperty = AvaloniaProperty.Register<Timeline, IBinding?>(
-        nameof(DescriptionMemberBinding));
+    public static readonly StyledProperty<IBinding?> ContentMemberBindingProperty = AvaloniaProperty.Register<Timeline, IBinding?>(
+        nameof(ContentMemberBinding));
     
     [AssignBinding]
     [InheritDataTypeFromItems(nameof(ItemsSource))]
-    public IBinding? DescriptionMemberBinding
+    public IBinding? ContentMemberBinding
     {
-        get => GetValue(DescriptionMemberBindingProperty);
-        set => SetValue(DescriptionMemberBindingProperty, value);
+        get => GetValue(ContentMemberBindingProperty);
+        set => SetValue(ContentMemberBindingProperty, value);
     }
     
 
@@ -110,6 +110,7 @@ public class Timeline: ItemsControl
         if (this.ItemsPanelRoot is TimelinePanel panel)
         {
             panel.Mode = e.NewValue.Value;
+            SetItemMode();
         }
     }
 
@@ -133,7 +134,7 @@ public class Timeline: ItemsControl
             bool start = index == 0;
             bool end = index == ItemCount - 1;
             t.SetEnd(start, end);
-            if (IconMemberBinding != null)
+            if (IconMemberBinding is not null)
             {
                 t.Bind(TimelineItem.IconProperty, IconMemberBinding);
             }
@@ -141,9 +142,9 @@ public class Timeline: ItemsControl
             {
                 t.Bind(HeaderedContentControl.HeaderProperty, HeaderMemberBinding);
             }
-            if (DescriptionMemberBinding != null)
+            if (ContentMemberBinding != null)
             {
-                t.Bind(ContentControl.ContentProperty, DescriptionMemberBinding);
+                t.Bind(ContentControl.ContentProperty, ContentMemberBinding);
             }
             if (TimeMemberBinding != null)
             {
@@ -161,6 +162,58 @@ public class Timeline: ItemsControl
     {
         var panel = this.ItemsPanelRoot as TimelinePanel;
         panel.Mode = this.Mode;
+        SetItemMode();
         return base.ArrangeOverride(finalSize);
+    }
+
+    private void SetItemMode()
+    {
+        if (ItemsPanelRoot is TimelinePanel panel)
+        {
+            var items = panel.Children.OfType<TimelineItem>();
+            if (Mode == TimelineDisplayMode.Left)
+            {
+                foreach (var item in items)
+                {
+                    SetIfUnset(item, TimelineItem.ModeProperty, TimelineItemDisplayMode.Left);
+                }
+            }
+            else if (Mode == TimelineDisplayMode.Right)
+            {
+                foreach (var item in items)
+                {
+                    SetIfUnset(item, TimelineItem.ModeProperty, TimelineItemDisplayMode.Right);
+                }
+            }
+            else if (Mode == TimelineDisplayMode.Center)
+            {
+                foreach (var item in items)
+                {
+                    SetIfUnset(item, TimelineItem.ModeProperty, TimelineItemDisplayMode.Separate);
+                }
+            }
+            else if (Mode == TimelineDisplayMode.Alternate)
+            {
+                bool left = false;
+                foreach (var item in items)
+                {
+                    if (left)
+                    {
+                        SetIfUnset(item, TimelineItem.ModeProperty, TimelineItemDisplayMode.Left);
+                    }
+                    else
+                    {
+                        SetIfUnset(item, TimelineItem.ModeProperty, TimelineItemDisplayMode.Right);
+                    }
+                    left = !left;
+                }
+            }
+        }
+    }
+    
+    private void SetIfUnset<T>(AvaloniaObject target, StyledProperty<T> property, T value)
+    {
+        if (!target.IsSet(property))
+            target.SetCurrentValue(property, value);
     }
 }

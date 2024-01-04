@@ -74,9 +74,4 @@ public class TimelinePanel: Panel
         //return base.ArrangeOverride(finalSize);
         return new Size(left + mid + right, height);
     }
-
-    public override void ApplyTemplate()
-    {
-        base.ApplyTemplate();
-    }
 }

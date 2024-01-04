@@ -17,7 +17,11 @@ public class TimelineIconTemplateSelector: ResourceDictionary, IDataTemplate
             if (ContainsKey(s))
             {
                 object? o = this[s];
-                if (o is Control c) return c;
+                if (o is SolidColorBrush c)
+                {
+                    var ellipse = new Ellipse() { Width = 12, Height = 12, Fill = c };
+                    return ellipse;
+                }
             }
         }
         return null;

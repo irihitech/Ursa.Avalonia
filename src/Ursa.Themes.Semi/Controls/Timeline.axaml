@@ -32,13 +32,14 @@
         WarningBrush="{DynamicResource WarningTimelineIconForeground}" />
 
     <ControlTheme x:Key="{x:Type u:TimelineItem}" TargetType="u:TimelineItem">
-        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="u:TimelineItem.Template">
             <ControlTemplate TargetType="u:TimelineItem">
-                <Grid Name="PART_RootGrid" 
-                      RowDefinitions="Auto, Auto, Auto" 
-                      ColumnDefinitions="Auto, Auto, Auto">
+                <Grid
+                    Name="PART_RootGrid"
+                    ColumnDefinitions="Auto, Auto, Auto"
+                    RowDefinitions="Auto, Auto, Auto">
                     <!--  Icon and Axis  -->
                     <Grid
                         Name="PART_IconAxisRoot"
@@ -63,36 +64,38 @@
                             Fill="{DynamicResource TimelineLineBrush}" />
                     </Grid>
                     <ContentPresenter
+                        Name="PART_Header"
                         Grid.Row="0"
                         Grid.Column="2"
-                        Name="PART_Header"
-                        Margin="8 4"
+                        Margin="8,4"
+                        VerticalAlignment="Top"
                         Content="{TemplateBinding Header}"
-                        Foreground="{DynamicResource SemiGrey9}"
+                        ContentTemplate="{TemplateBinding HeaderTemplate}"
                         FontSize="14"
-                        ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                        Foreground="{DynamicResource SemiGrey9}" />
                     <ContentPresenter
+                        Name="PART_Content"
                         Grid.Row="1"
                         Grid.Column="2"
-                        Name="PART_Content"
-                        Margin="8 2"
-                        TextElement.Foreground="Gray"
-                        TextElement.FontSize="12"
+                        Margin="8,2"
+                        VerticalAlignment="Top"
                         Content="{TemplateBinding Content}"
-                        ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        TextElement.FontSize="12"
+                        TextElement.Foreground="Gray" />
                     <TextBlock
+                        Name="PART_Time"
                         Grid.Row="0"
                         Grid.Column="0"
-                        Name="PART_Time"
-                        Margin="8 2 8 16"
-                        Foreground="Gray"
+                        Margin="8,2"
+                        VerticalAlignment="Top"
                         FontSize="12"
-                        TextWrapping="Wrap"
-                        >
+                        Foreground="Gray"
+                        TextWrapping="Wrap">
                         <TextBlock.Text>
                             <MultiBinding Converter="{StaticResource FormatConverter}">
-                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Time"></Binding>
-                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="TimeFormat"></Binding>
+                                <Binding Path="Time" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Path="TimeFormat" RelativeSource="{RelativeSource TemplatedParent}" />
                             </MultiBinding>
                         </TextBlock.Text>
                     </TextBlock>
@@ -117,62 +120,65 @@
         </Style>
         <Style Selector="^:all-left">
             <Style Selector="^ /template/ ContentPresenter#PART_Header">
-                <Setter Property="Grid.Row" Value="0"></Setter>
-                <Setter Property="Grid.Column" Value="0"></Setter>
-                <Setter Property="HorizontalContentAlignment" Value="Right"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                <Setter Property="Grid.Row" Value="0" />
+                <Setter Property="Grid.Column" Value="0" />
+                <Setter Property="HorizontalContentAlignment" Value="Right" />
+                <Setter Property="HorizontalAlignment" Value="Right" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_Content">
-                <Setter Property="Grid.Row" Value="1"></Setter>
-                <Setter Property="Grid.Column" Value="0"></Setter>
-                <Setter Property="HorizontalContentAlignment" Value="Right"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                <Setter Property="Grid.Row" Value="1" />
+                <Setter Property="Grid.Column" Value="0" />
+                <Setter Property="HorizontalContentAlignment" Value="Right" />
+                <Setter Property="HorizontalAlignment" Value="Right" />
             </Style>
             <Style Selector="^ /template/ TextBlock#PART_Time">
-                <Setter Property="Grid.Row" Value="2"></Setter>
-                <Setter Property="Grid.Column" Value="0"></Setter>
-                <Setter Property="TextAlignment" Value="Right"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                <Setter Property="Grid.Row" Value="2" />
+                <Setter Property="Grid.Column" Value="0" />
+                <Setter Property="TextAlignment" Value="Right" />
+                <Setter Property="HorizontalAlignment" Value="Right" />
+                <Setter Property="Margin" Value="8 2 8 12"></Setter>
             </Style>
         </Style>
         <Style Selector="^:all-right">
             <Style Selector="^ /template/ ContentPresenter#PART_Header">
-                <Setter Property="Grid.Row" Value="0"></Setter>
-                <Setter Property="Grid.Column" Value="2"></Setter>
-                <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                <Setter Property="Grid.Row" Value="0" />
+                <Setter Property="Grid.Column" Value="2" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_Content">
-                <Setter Property="Grid.Row" Value="1"></Setter>
-                <Setter Property="Grid.Column" Value="2"></Setter>
-                <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                <Setter Property="Grid.Row" Value="1" />
+                <Setter Property="Grid.Column" Value="2" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
             </Style>
             <Style Selector="^ /template/ TextBlock#PART_Time">
-                <Setter Property="Grid.Row" Value="2"></Setter>
-                <Setter Property="Grid.Column" Value="2"></Setter>
-                <Setter Property="TextAlignment" Value="Left"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                <Setter Property="Grid.Row" Value="2" />
+                <Setter Property="Grid.Column" Value="2" />
+                <Setter Property="TextAlignment" Value="Left" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="Margin" Value="8 2 8 12"></Setter>
             </Style>
         </Style>
         <Style Selector="^:separate">
             <Style Selector="^ /template/ ContentPresenter#PART_Header">
-                <Setter Property="Grid.Row" Value="0"></Setter>
-                <Setter Property="Grid.Column" Value="2"></Setter>
-                <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                <Setter Property="Grid.Row" Value="0" />
+                <Setter Property="Grid.Column" Value="2" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_Content">
-                <Setter Property="Grid.Row" Value="1"></Setter>
-                <Setter Property="Grid.Column" Value="2"></Setter>
-                <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                <Setter Property="Grid.Row" Value="1" />
+                <Setter Property="Grid.Column" Value="2" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="Margin" Value="8 2 8 12"></Setter>
             </Style>
             <Style Selector="^ /template/ TextBlock#PART_Time">
-                <Setter Property="Grid.Row" Value="0"></Setter>
-                <Setter Property="Grid.Column" Value="0"></Setter>
-                <Setter Property="TextAlignment" Value="Right"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                <Setter Property="Grid.Row" Value="0" />
+                <Setter Property="Grid.Column" Value="0" />
+                <Setter Property="TextAlignment" Value="Right" />
+                <Setter Property="HorizontalAlignment" Value="Right" />
             </Style>
         </Style>
     </ControlTheme>
