@@ -156,4 +156,11 @@ public class Timeline: ItemsControl
         }
 
     }
+
+    protected override Size ArrangeOverride(Size finalSize)
+    {
+        var panel = this.ItemsPanelRoot as TimelinePanel;
+        panel.Mode = this.Mode;
+        return base.ArrangeOverride(finalSize);
+    }
 }

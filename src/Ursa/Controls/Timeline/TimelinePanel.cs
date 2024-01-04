@@ -25,7 +25,6 @@ public class TimelinePanel: Panel
         double left = 0;
         double right = 0;
         double icon = 0;
-        double width = 0;
         double height = 0;
         foreach (var child in Children)
         {
@@ -33,40 +32,51 @@ public class TimelinePanel: Panel
             if (child is TimelineItem t)
             {
                 var doubles = t.GetWidth();
+                left = Math.Max(left, doubles.left);
+                icon = Math.Max(icon, doubles.mid);
+                right = Math.Max(right, doubles.right);
             }
-            width = Math.Max(width, child.DesiredSize.Width);
             height+=child.DesiredSize.Height;
         }
-        foreach (var child in Children)
-        {
-            if (child is TimelineItem t)
-            {
-                t.LeftWidth = left;
-                t.RightWidth = right;
-                t.IconWidth = icon;
-            }
-        }
-
-        return new Size(width, height);
+        return new Size(left+icon+right, height);
     }
 
     protected override Size ArrangeOverride(Size finalSize)
     {
-        Rect rect = new Rect();
+        
+        double left = 0, mid = 0, right = 0;
+        double height = 0;
         foreach (var child in Children)
         {
-            rect = rect.WithWidth(Math.Max(rect.Width, child.DesiredSize.Width));
-            rect = rect.WithHeight(rect.Height + child.DesiredSize.Height);
-            child.Arrange(rect);
-            rect = rect.WithY(rect.Y+child.DesiredSize.Height);
             if (child is TimelineItem t)
             {
                 var doubles = t.GetWidth();
-                t.SetWidth(0, 0, 0, 0);
+                left = Math.Max(left, doubles.left);
+                mid = Math.Max(mid, doubles.mid);
+                right = Math.Max(right, doubles.right);
             }
-            
+        }
+
+        Rect rect = new Rect(0, 0, left + mid + right, 0);
+        foreach (var child in Children)
+        {
+            if (child is TimelineItem t)
+            {
+                t.SetWidth(left, mid, right);
+                rect = rect.WithHeight(t.DesiredSize.Height);
+                t.InvalidateArrange();
+                //rect = rect.WithHeight(t.DesiredSize.Height);
+                child.Arrange(rect);
+                rect = rect.WithY(rect.Y + t.DesiredSize.Height);
+                height+=t.DesiredSize.Height;
+            }
         }
         //return base.ArrangeOverride(finalSize);
-        return rect.Size;
+        return new Size(left + mid + right, height);
+    }
+
+    public override void ApplyTemplate()
+    {
+        base.ApplyTemplate();
     }
 }

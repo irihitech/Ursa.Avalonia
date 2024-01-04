@@ -158,13 +158,35 @@ public class TimelineItem: HeaderedContentControl
         PseudoClasses.Set(PC_Last, end);
     }
 
-    internal (double?, double?, double?, double?) GetWidth()
+    internal (double left, double mid, double right) GetWidth()
     {
-        return (_headerPresenter?.Bounds.Width, _contentPresenter?.Bounds.Width, _iconPresenter?.Bounds.Width, _timePresenter?.Bounds.Width);
+        if (_headerPresenter is null) return new ValueTuple<double, double, double>(0, 0, 0);
+        double header = _headerPresenter?.DesiredSize.Width ?? 0;
+        double icon = _iconPresenter?.DesiredSize.Width ?? 0;
+        double content = _contentPresenter?.DesiredSize.Width ?? 0;
+        double time = _timePresenter?.DesiredSize.Width ?? 0;
+        double max = Math.Max(header, content);
+        if (Mode == TimelineItemDisplayMode.Left)
+        {
+            max = Math.Max(max, time);
+            return (max, icon, 0);
+        }
+        if (Mode == TimelineItemDisplayMode.Right)
+        {
+            max = Math.Max(max, time);
+            return (0, icon, max);
+        }
+        if (Mode == TimelineItemDisplayMode.Separate)
+        {
+            return (time, icon, max);
+        }
+        return new ValueTuple<double, double, double>(0, 0, 0);
     }
 
-    internal void SetWidth(double? header, double? content, double? icon, double? time)
+    internal void SetWidth(double? left, double? mid, double? right)
     {
-        _rootGrid.ColumnDefinitions[0].Width = new GridLength(200);
+        _rootGrid.ColumnDefinitions[0].Width = new GridLength(left??0);
+        _rootGrid.ColumnDefinitions[1].Width = new GridLength(mid??0);
+        _rootGrid.ColumnDefinitions[2].Width = new GridLength(right??0);
     }
 }
