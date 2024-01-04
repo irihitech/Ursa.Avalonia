@@ -138,12 +138,12 @@ public class TimelineItem: HeaderedContentControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        PseudoClasses.Set(PC_EmptyIcon, Icon is null);
         _headerPresenter = e.NameScope.Find<ContentPresenter>(PART_Header);
         _iconPresenter = e.NameScope.Find<ContentPresenter>(PART_Icon);
         _contentPresenter = e.NameScope.Find<ContentPresenter>(PART_Content);
         _timePresenter = e.NameScope.Find<TextBlock>(PART_Time);
         _rootGrid = e.NameScope.Find<Grid>(PART_RootGrid);
+        PseudoClasses.Set(PC_EmptyIcon, Icon is null);
         SetMode(Mode);
     }
 
@@ -185,6 +185,7 @@ public class TimelineItem: HeaderedContentControl
 
     internal void SetWidth(double? left, double? mid, double? right)
     {
+        if (_rootGrid is null) return;
         _rootGrid.ColumnDefinitions[0].Width = new GridLength(left??0);
         _rootGrid.ColumnDefinitions[1].Width = new GridLength(mid??0);
         _rootGrid.ColumnDefinitions[2].Width = new GridLength(right??0);

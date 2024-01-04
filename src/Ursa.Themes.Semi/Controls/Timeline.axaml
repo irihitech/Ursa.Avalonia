@@ -48,7 +48,7 @@
                         Grid.Column="1"
                         RowDefinitions="Auto, *">
                         <ContentPresenter
-                            Name="PART_Icon"
+                            Name="{x:Static u:TimelineItem.PART_Icon}"
                             Grid.Row="0"
                             Margin="8"
                             HorizontalAlignment="Center"
@@ -64,7 +64,7 @@
                             Fill="{DynamicResource TimelineLineBrush}" />
                     </Grid>
                     <ContentPresenter
-                        Name="PART_Header"
+                        Name="{x:Static u:TimelineItem.PART_Header}"
                         Grid.Row="0"
                         Grid.Column="2"
                         Margin="8,4"
@@ -74,7 +74,7 @@
                         FontSize="14"
                         Foreground="{DynamicResource SemiGrey9}" />
                     <ContentPresenter
-                        Name="PART_Content"
+                        Name="{x:Static u:TimelineItem.PART_Content}"
                         Grid.Row="1"
                         Grid.Column="2"
                         Margin="8,2"
@@ -84,7 +84,7 @@
                         TextElement.FontSize="12"
                         TextElement.Foreground="Gray" />
                     <TextBlock
-                        Name="PART_Time"
+                        Name="{x:Static u:TimelineItem.PART_Time}"
                         Grid.Row="0"
                         Grid.Column="0"
                         Margin="8,2"
