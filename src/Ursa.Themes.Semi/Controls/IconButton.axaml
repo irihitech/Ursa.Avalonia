@@ -4,21 +4,106 @@
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:IconButton}" TargetType="u:IconButton">
+        <Setter Property="Background" Value="{DynamicResource ButtonDefaultBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultPrimaryForeground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ButtonDefaultBorderBrush}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource ButtonCornerRadius}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource ButtonBorderThickness}" />
+        <Setter Property="Padding" Value="{DynamicResource ButtonDefaultPadding}" />
+        <Setter Property="RenderTransform" Value="none" />
+        <Setter Property="FontSize" Value="{DynamicResource ButtonDefaultFontSize}" />
+        <Setter Property="FontWeight" Value="{DynamicResource ButtonDefaultFontWeight}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="MinHeight" Value="12" />
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:IconButton">
-                <Border>
+                <Border
+                    Padding="{TemplateBinding Padding}"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    TextElement.FontSize="{TemplateBinding FontSize}"
+                    TextElement.FontWeight="{TemplateBinding FontWeight}"
+                    UseLayoutRounding="False">
                     <Grid
                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                         ColumnDefinitions="Auto, Auto">
-                        <Panel Grid.Column="0">
-                            <ContentPresenter Content="{TemplateBinding Icon}" ContentTemplate="{TemplateBinding IconTemplate}" />
-                            <u:LoadingIcon Foreground="Red" IsVisible="{TemplateBinding IsLoading}" />
+                        <Panel Grid.Column="0" Margin="0,0,4,0">
+                            <Panel.IsVisible>
+                                <MultiBinding Converter="{x:Static BoolConverters.Or}">
+                                    <Binding
+                                        Path="IsLoading"
+                                        RelativeSource="{RelativeSource TemplatedParent}" />
+                                    <Binding
+                                        Converter="{x:Static ObjectConverters.IsNotNull}"
+                                        Path="Icon"
+                                        RelativeSource="{RelativeSource TemplatedParent}" />
+                                </MultiBinding>
+                            </Panel.IsVisible>
+                            <ContentPresenter
+                                Content="{TemplateBinding Icon}"
+                                ContentTemplate="{TemplateBinding IconTemplate}"
+                                IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=!IsLoading}" />
+                            <u:LoadingIcon
+                                Classes="Small"
+                                Foreground="{TemplateBinding Foreground}"
+                                IsVisible="{TemplateBinding IsLoading}" />
                         </Panel>
                         <ContentPresenter Grid.Column="1" Content="{TemplateBinding Content}" />
                     </Grid>
                 </Border>
             </ControlTemplate>
         </Setter>
+
+        <Style Selector="^:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.98)" />
+        </Style>
+
+        <Style Selector="^.Primary">
+            <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultPrimaryForeground}" />
+        </Style>
+        <Style Selector="^.Secondary">
+            <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultSecondaryForeground}" />
+        </Style>
+        <Style Selector="^.Tertiary">
+            <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultTertiaryForeground}" />
+        </Style>
+        <Style Selector="^.Success">
+            <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultSuccessForeground}" />
+        </Style>
+        <Style Selector="^.Warning">
+            <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultWarningForeground}" />
+        </Style>
+        <Style Selector="^.Danger">
+            <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultDangerForeground}" />
+        </Style>
+
+        <Style Selector="^:pointerover">
+            <Setter Property="BorderBrush" Value="{DynamicResource ButtonDefaultPointeroverBorderBrush}" />
+            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPointeroverBackground}" />
+        </Style>
+
+        <Style Selector="^:pressed">
+            <Setter Property="BorderBrush" Value="{DynamicResource ButtonDefaultPressedBorderBrush}" />
+            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPressedBackground}" />
+        </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="BorderBrush" Value="{DynamicResource ButtonDefaultDisabledBorderBrush}" />
+            <Setter Property="Background" Value="{DynamicResource ButtonDefaultDisabledBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultDisabledForeground}" />
+        </Style>
+
+        <Style Selector="^.Large">
+            <Setter Property="Padding" Value="{DynamicResource ButtonLargePadding}" />
+        </Style>
+        <Style Selector="^.Small">
+            <Setter Property="Padding" Value="{DynamicResource ButtonSmallPadding}" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>
