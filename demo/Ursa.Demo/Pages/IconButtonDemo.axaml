@@ -22,7 +22,72 @@
                     Data="{StaticResource iconGlyph}" />
             </u:IconButton.Icon>
         </u:IconButton>
-        <u:IconButton Content="GitHub" IsLoading="{Binding #loading.IsChecked}" Width="150">
+        <u:IconButton
+            Width="150"
+            Content="GitHub"
+            IsLoading="{Binding #loading.IsChecked}">
+            <u:IconButton.Icon>
+                <PathIcon
+                    Width="14"
+                    Height="14"
+                    Data="{StaticResource iconGlyph}" />
+            </u:IconButton.Icon>
+        </u:IconButton>
+        <u:IconButton
+            Width="150"
+            Classes="Warning"
+            Content="GitHub"
+            IsLoading="{Binding #loading.IsChecked}">
+            <u:IconButton.Icon>
+                <PathIcon
+                    Width="14"
+                    Height="14"
+                    Data="{StaticResource iconGlyph}" />
+            </u:IconButton.Icon>
+        </u:IconButton>
+        <u:IconButton
+            Width="150"
+            Content="GitHub"
+            IsLoading="{Binding #loading.IsChecked}"
+            Theme="{DynamicResource SolidIconButton}">
+            <u:IconButton.Icon>
+                <PathIcon
+                    Width="14"
+                    Height="14"
+                    Data="{StaticResource iconGlyph}" />
+            </u:IconButton.Icon>
+        </u:IconButton>
+        <u:IconButton
+            Width="150"
+            Classes="Warning"
+            Content="GitHub"
+            IsLoading="{Binding #loading.IsChecked}"
+            Theme="{DynamicResource SolidIconButton}">
+            <u:IconButton.Icon>
+                <PathIcon
+                    Width="14"
+                    Height="14"
+                    Data="{StaticResource iconGlyph}" />
+            </u:IconButton.Icon>
+        </u:IconButton>
+        <u:IconButton
+            Width="150"
+            Content="GitHub"
+            IsLoading="{Binding #loading.IsChecked}"
+            Theme="{DynamicResource BorderlessIconButton}">
+            <u:IconButton.Icon>
+                <PathIcon
+                    Width="14"
+                    Height="14"
+                    Data="{StaticResource iconGlyph}" />
+            </u:IconButton.Icon>
+        </u:IconButton>
+        <u:IconButton
+            Width="150"
+            Classes="Warning"
+            Content="GitHub"
+            IsLoading="{Binding #loading.IsChecked}"
+            Theme="{DynamicResource BorderlessIconButton}">
             <u:IconButton.Icon>
                 <PathIcon
                     Width="14"
