@@ -1,0 +1,24 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:IconButton}" TargetType="u:IconButton">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:IconButton">
+                <Border>
+                    <Grid
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        ColumnDefinitions="Auto, Auto">
+                        <Panel Grid.Column="0">
+                            <ContentPresenter Content="{TemplateBinding Icon}" ContentTemplate="{TemplateBinding IconTemplate}" />
+                            <u:LoadingIcon Foreground="Red" IsVisible="{TemplateBinding IsLoading}" />
+                        </Panel>
+                        <ContentPresenter Grid.Column="1" Content="{TemplateBinding Content}" />
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

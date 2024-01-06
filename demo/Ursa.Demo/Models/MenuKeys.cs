@@ -10,6 +10,7 @@ public static class MenuKeys
     public const string MenuKeyDualBadge = "DualBadge";
     public const string MenuKeyImageViewer = "ImageViewer";
     public const string MenuKeyIpBox = "IPv4Box";
+    public const string MenuKeyIconButton = "IconButton";
     public const string MenuKeyKeyGestureInput = "KeyGestureInput";
     public const string MenuKeyLoading = "Loading";
     public const string MenuKeyNavigation = "Navigation";

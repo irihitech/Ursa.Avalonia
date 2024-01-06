@@ -17,6 +17,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "ButtonGroup", Key = MenuKeys.MenuKeyButtonGroup },
             new() { MenuHeader = "Divider", Key = MenuKeys.MenuKeyDivider },
             new() { MenuHeader = "DualBadge", Key = MenuKeys.MenuKeyDualBadge },
+            new() { MenuHeader = "IconButton", Key = MenuKeys.MenuKeyIconButton },
             new() { MenuHeader = "ImageViewer", Key = MenuKeys.MenuKeyImageViewer },
             new() { MenuHeader = "IPv4Box", Key = MenuKeys.MenuKeyIpBox },
             new() { MenuHeader = "KeyGestureInput", Key = MenuKeys.MenuKeyKeyGestureInput },
