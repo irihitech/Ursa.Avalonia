@@ -22,6 +22,14 @@
                     Data="{StaticResource iconGlyph}" />
             </u:IconButton.Icon>
         </u:IconButton>
+        <u:IconButton Content="GitHub" IsLoading="{Binding #loading.IsChecked}" IconPlacement="Right">
+            <u:IconButton.Icon>
+                <PathIcon
+                    Width="14"
+                    Height="14"
+                    Data="{StaticResource iconGlyph}" />
+            </u:IconButton.Icon>
+        </u:IconButton>
         <u:IconButton
             Width="150"
             Content="GitHub"

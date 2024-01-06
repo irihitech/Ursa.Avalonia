@@ -33,12 +33,13 @@
                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                         ColumnDefinitions="Auto, Auto">
-                        <Panel Grid.Column="0" Margin="0,0,4,0">
+                        <Panel
+                            Name="PART_IconRoot"
+                            Grid.Column="0"
+                            Margin="0,0,8,0">
                             <Panel.IsVisible>
                                 <MultiBinding Converter="{x:Static BoolConverters.Or}">
-                                    <Binding
-                                        Path="IsLoading"
-                                        RelativeSource="{RelativeSource TemplatedParent}" />
+                                    <Binding Path="IsLoading" RelativeSource="{RelativeSource TemplatedParent}" />
                                     <Binding
                                         Converter="{x:Static ObjectConverters.IsNotNull}"
                                         Path="Icon"
@@ -54,7 +55,10 @@
                                 Foreground="{TemplateBinding Foreground}"
                                 IsVisible="{TemplateBinding IsLoading}" />
                         </Panel>
-                        <ContentPresenter Grid.Column="1" Content="{TemplateBinding Content}" />
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            Grid.Column="1"
+                            Content="{TemplateBinding Content}" />
                     </Grid>
                 </Border>
             </ControlTemplate>
@@ -99,6 +103,16 @@
             <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultDisabledForeground}" />
         </Style>
 
+        <Style Selector="^:right">
+            <Style Selector="^ /template/ Panel#PART_IconRoot">
+                <Setter Property="Grid.Column" Value="1" />
+                <Setter Property="Margin" Value="8 0 0 0" />
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Grid.Column" Value="0" />
+            </Style>
+        </Style>
+
         <Style Selector="^.Large">
             <Setter Property="Padding" Value="{DynamicResource ButtonLargePadding}" />
         </Style>
@@ -106,8 +120,8 @@
             <Setter Property="Padding" Value="{DynamicResource ButtonSmallPadding}" />
         </Style>
     </ControlTheme>
-    
-        <ControlTheme
+
+    <ControlTheme
         x:Key="SolidIconButton"
         BasedOn="{StaticResource {x:Type u:IconButton}}"
         TargetType="u:IconButton">
