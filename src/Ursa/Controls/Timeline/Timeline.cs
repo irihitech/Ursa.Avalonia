@@ -150,10 +150,11 @@ public class Timeline: ItemsControl
             {
                 t.Bind(TimelineItem.TimeProperty, TimeMemberBinding);
             }
-            t.SetCurrentValue(TimelineItem.TimeFormatProperty, TimeFormat);
-            t.SetCurrentValue(TimelineItem.IconTemplateProperty, IconTemplate);
-            t.SetCurrentValue(HeaderedContentControl.HeaderTemplateProperty, ItemTemplate);
-            t.SetCurrentValue(ContentControl.ContentTemplateProperty, DescriptionTemplate);
+
+            t.SetIfUnset(TimelineItem.TimeFormatProperty, TimeFormat);
+            t.SetIfUnset(TimelineItem.IconTemplateProperty, IconTemplate);
+            t.SetIfUnset(HeaderedContentControl.HeaderTemplateProperty, ItemTemplate);
+            t.SetIfUnset(ContentControl.ContentTemplateProperty, DescriptionTemplate);
         }
 
     }

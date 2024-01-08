@@ -80,6 +80,7 @@
                 Content="Step 5"
                 Header="第五步"
                 Mode="Separate"
+                TimeFormat="yyyy-MM-dd"
                 Type="Error" />
         </u:Timeline>
     </WrapPanel>

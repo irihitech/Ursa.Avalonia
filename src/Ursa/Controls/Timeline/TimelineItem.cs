@@ -190,4 +190,12 @@ public class TimelineItem: HeaderedContentControl
         _rootGrid.ColumnDefinitions[1].Width = new GridLength(mid??0);
         _rootGrid.ColumnDefinitions[2].Width = new GridLength(right??0);
     }
+
+    internal void SetIfUnset<T>(AvaloniaProperty<T> property, T value)
+    {
+        if (!IsSet(property))
+        {
+            SetCurrentValue(property, value);
+        }
+    }
 }
