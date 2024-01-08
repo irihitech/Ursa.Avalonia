@@ -144,27 +144,29 @@
                                        IPAddress="{Binding Address}" />
                             <u:IPv4Box HorizontalAlignment="Stretch" IsEnabled="False" />
                         </StackPanel>
-                        <u:Timeline Grid.Column="1">
+                        <u:Timeline Grid.Column="1" HorizontalAlignment="Left" Mode="Alternate">
                             <u:TimelineItem
-                                Content="ToDo"
-                                ItemType="Default"
-                                Time="2022-01-01" />
+                                Content="Step 1"
+                                Header="ToDo"
+                                Type="Default"
+                                Time="2023-01-14 09:24:05"/>
                             <u:TimelineItem
-                                Content="Start"
-                                ItemType="Ongoing"
-                                Time="2022-01-02" />
+                                Content="Step 2"
+                                Header="Start"
+                                Position="Right"
+                                Type="Ongoing"
+                                Time="2024-01-04 22:32:58"/>
                             <u:TimelineItem
-                                Content="In between"
-                                ItemType="Success"
-                                Time="2022-01-03" />
+                                Content="Step 3"
+                                Header="In Between"
+                                Type="Warning"
+                                Time="2024-01-05 00:08:29"/>
                             <u:TimelineItem
-                                Content="In between"
-                                ItemType="Warning"
-                                Time="2022-01-04" />
-                            <u:TimelineItem
-                                Content="Finished"
-                                ItemType="Error"
-                                Time="2022-01-05" />
+                                Content="Step 4"
+                                Header="Finished"
+                                Position="Right"
+                                Type="Success" 
+                                Time="2024-01-05 00:27:44"/>
                         </u:Timeline>
                         <StackPanel Grid.Column="2" Spacing="20">
                             <u:ButtonGroup Classes="Primary Solid" ItemsSource="{Binding ButtonGroupItems}" />
