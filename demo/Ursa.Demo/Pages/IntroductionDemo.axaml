@@ -153,7 +153,7 @@
                             <u:TimelineItem
                                 Content="Step 2"
                                 Header="Start"
-                                Mode="Right"
+                                Position="Right"
                                 Type="Ongoing"
                                 Time="2024-01-04 22:32:58"/>
                             <u:TimelineItem
@@ -164,7 +164,7 @@
                             <u:TimelineItem
                                 Content="Step 4"
                                 Header="Finished"
-                                Mode="Right"
+                                Position="Right"
                                 Type="Success" 
                                 Time="2024-01-05 00:27:44"/>
                         </u:Timeline>

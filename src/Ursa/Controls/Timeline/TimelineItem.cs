@@ -62,13 +62,13 @@ public class TimelineItem: HeaderedContentControl
         set => SetValue(TypeProperty, value);
     }
 
-    public static readonly StyledProperty<TimelineItemDisplayMode> ModeProperty = AvaloniaProperty.Register<TimelineItem, TimelineItemDisplayMode>(
-        nameof(Mode), defaultValue: TimelineItemDisplayMode.Right);
+    public static readonly StyledProperty<TimelineItemPosition> PositionProperty = AvaloniaProperty.Register<TimelineItem, TimelineItemPosition>(
+        nameof(Position), defaultValue: TimelineItemPosition.Right);
 
-    public TimelineItemDisplayMode Mode
+    public TimelineItemPosition Position
     {
-        get => GetValue(ModeProperty);
-        set => SetValue(ModeProperty, value);
+        get => GetValue(PositionProperty);
+        set => SetValue(PositionProperty, value);
     }
     
     public static readonly DirectProperty<TimelineItem, double> LeftWidthProperty = AvaloniaProperty.RegisterDirect<TimelineItem, double>(
@@ -119,20 +119,20 @@ public class TimelineItem: HeaderedContentControl
     static TimelineItem()
     {
         IconProperty.Changed.AddClassHandler<TimelineItem, object?>((item, args) => { item.OnIconChanged(args); });
-        ModeProperty.Changed.AddClassHandler<TimelineItem, TimelineItemDisplayMode>((item, args) => { item.OnModeChanged(args); });
+        PositionProperty.Changed.AddClassHandler<TimelineItem, TimelineItemPosition>((item, args) => { item.OnModeChanged(args); });
         AffectsMeasure<TimelineItem>(LeftWidthProperty, RightWidthProperty, IconWidthProperty);
     }
 
-    private void OnModeChanged(AvaloniaPropertyChangedEventArgs<TimelineItemDisplayMode> args)
+    private void OnModeChanged(AvaloniaPropertyChangedEventArgs<TimelineItemPosition> args)
     {
         SetMode(args.NewValue.Value);
     }
 
-    private void SetMode(TimelineItemDisplayMode mode)
+    private void SetMode(TimelineItemPosition mode)
     {
-        PseudoClasses.Set(PC_AllLeft, mode == TimelineItemDisplayMode.Left);
-        PseudoClasses.Set(PC_AllRight, mode == TimelineItemDisplayMode.Right);
-        PseudoClasses.Set(PC_Separate, mode == TimelineItemDisplayMode.Separate);
+        PseudoClasses.Set(PC_AllLeft, mode == TimelineItemPosition.Left);
+        PseudoClasses.Set(PC_AllRight, mode == TimelineItemPosition.Right);
+        PseudoClasses.Set(PC_Separate, mode == TimelineItemPosition.Separate);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -144,7 +144,7 @@ public class TimelineItem: HeaderedContentControl
         _contentPresenter = e.NameScope.Find<ContentPresenter>(PART_Content);
         _timePresenter = e.NameScope.Find<TextBlock>(PART_Time);
         PseudoClasses.Set(PC_EmptyIcon, Icon is null);
-        SetMode(Mode);
+        SetMode(Position);
     }
 
     private void OnIconChanged(AvaloniaPropertyChangedEventArgs<object?> args)
@@ -166,17 +166,17 @@ public class TimelineItem: HeaderedContentControl
         double content = _contentPresenter?.DesiredSize.Width ?? 0;
         double time = _timePresenter?.DesiredSize.Width ?? 0;
         double max = Math.Max(header, content);
-        if (Mode == TimelineItemDisplayMode.Left)
+        if (Position == TimelineItemPosition.Left)
         {
             max = Math.Max(max, time);
             return (0, icon, max);
         }
-        if (Mode == TimelineItemDisplayMode.Right)
+        if (Position == TimelineItemPosition.Right)
         {
             max = Math.Max(max, time);
             return (max    , icon, 0);
         }
-        if (Mode == TimelineItemDisplayMode.Separate)
+        if (Position == TimelineItemPosition.Separate)
         {
             return (time, icon, max);
         }

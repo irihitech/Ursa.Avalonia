@@ -14,7 +14,7 @@ public enum TimelineDisplayMode
 /// Right means line is placed right to TimelineItem content.
 /// Separate means line is placed between TimelineItem content and time.
 /// </summary>
-public enum TimelineItemDisplayMode
+public enum TimelineItemPosition
 {
     Left,
     Right,

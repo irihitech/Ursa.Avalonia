@@ -176,21 +176,21 @@ public class Timeline: ItemsControl
             {
                 foreach (var item in items)
                 {
-                    SetIfUnset(item, TimelineItem.ModeProperty, TimelineItemDisplayMode.Left);
+                    SetIfUnset(item, TimelineItem.PositionProperty, TimelineItemPosition.Left);
                 }
             }
             else if (Mode == TimelineDisplayMode.Right)
             {
                 foreach (var item in items)
                 {
-                    SetIfUnset(item, TimelineItem.ModeProperty, TimelineItemDisplayMode.Right);
+                    SetIfUnset(item, TimelineItem.PositionProperty, TimelineItemPosition.Right);
                 }
             }
             else if (Mode == TimelineDisplayMode.Center)
             {
                 foreach (var item in items)
                 {
-                    SetIfUnset(item, TimelineItem.ModeProperty, TimelineItemDisplayMode.Separate);
+                    SetIfUnset(item, TimelineItem.PositionProperty, TimelineItemPosition.Separate);
                 }
             }
             else if (Mode == TimelineDisplayMode.Alternate)
@@ -200,11 +200,11 @@ public class Timeline: ItemsControl
                 {
                     if (left)
                     {
-                        SetIfUnset(item, TimelineItem.ModeProperty, TimelineItemDisplayMode.Left);
+                        SetIfUnset(item, TimelineItem.PositionProperty, TimelineItemPosition.Left);
                     }
                     else
                     {
-                        SetIfUnset(item, TimelineItem.ModeProperty, TimelineItemDisplayMode.Right);
+                        SetIfUnset(item, TimelineItem.PositionProperty, TimelineItemPosition.Right);
                     }
                     left = !left;
                 }

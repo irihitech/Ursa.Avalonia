@@ -59,27 +59,27 @@
             <u:TimelineItem
                 Content="Step 1"
                 Header="第一步"
-                Mode="Left"
+                Position="Left"
                 Type="Default" />
             <u:TimelineItem
                 Content="Step 2"
                 Header="第二步"
-                Mode="Right"
+                Position="Right"
                 Type="Success" />
             <u:TimelineItem
                 Content="Step 3"
                 Header="第三步"
-                Mode="Separate"
+                Position="Separate"
                 Type="Warning" />
             <u:TimelineItem
                 Content="Step 4"
                 Header="第四步"
-                Mode="Separate"
+                Position="Separate"
                 Type="Ongoing" />
             <u:TimelineItem
                 Content="Step 5"
                 Header="第五步"
-                Mode="Separate"
+                Position="Separate"
                 TimeFormat="yyyy-MM-dd"
                 Type="Error" />
         </u:Timeline>
