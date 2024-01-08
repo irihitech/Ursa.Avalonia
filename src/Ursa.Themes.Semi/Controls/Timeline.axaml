@@ -133,27 +133,6 @@
         <Style Selector="^:all-left">
             <Style Selector="^ /template/ ContentPresenter#PART_Header">
                 <Setter Property="Grid.Row" Value="0" />
-                <Setter Property="Grid.Column" Value="0" />
-                <Setter Property="HorizontalContentAlignment" Value="Right" />
-                <Setter Property="HorizontalAlignment" Value="Right" />
-            </Style>
-            <Style Selector="^ /template/ ContentPresenter#PART_Content">
-                <Setter Property="Grid.Row" Value="1" />
-                <Setter Property="Grid.Column" Value="0" />
-                <Setter Property="HorizontalContentAlignment" Value="Right" />
-                <Setter Property="HorizontalAlignment" Value="Right" />
-            </Style>
-            <Style Selector="^ /template/ TextBlock#PART_Time">
-                <Setter Property="Grid.Row" Value="2" />
-                <Setter Property="Grid.Column" Value="0" />
-                <Setter Property="TextAlignment" Value="Right" />
-                <Setter Property="HorizontalAlignment" Value="Right" />
-                <Setter Property="Margin" Value="8 2 8 12"></Setter>
-            </Style>
-        </Style>
-        <Style Selector="^:all-right">
-            <Style Selector="^ /template/ ContentPresenter#PART_Header">
-                <Setter Property="Grid.Row" Value="0" />
                 <Setter Property="Grid.Column" Value="2" />
                 <Setter Property="HorizontalContentAlignment" Value="Left" />
                 <Setter Property="HorizontalAlignment" Value="Left" />
@@ -169,6 +148,27 @@
                 <Setter Property="Grid.Column" Value="2" />
                 <Setter Property="TextAlignment" Value="Left" />
                 <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="Margin" Value="8 2 8 12"></Setter>
+            </Style>
+        </Style>
+        <Style Selector="^:all-right">
+            <Style Selector="^ /template/ ContentPresenter#PART_Header">
+                <Setter Property="Grid.Row" Value="0" />
+                <Setter Property="Grid.Column" Value="0" />
+                <Setter Property="HorizontalContentAlignment" Value="Right" />
+                <Setter Property="HorizontalAlignment" Value="Right" />
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_Content">
+                <Setter Property="Grid.Row" Value="1" />
+                <Setter Property="Grid.Column" Value="0" />
+                <Setter Property="HorizontalContentAlignment" Value="Right" />
+                <Setter Property="HorizontalAlignment" Value="Right" />
+            </Style>
+            <Style Selector="^ /template/ TextBlock#PART_Time">
+                <Setter Property="Grid.Row" Value="2" />
+                <Setter Property="Grid.Column" Value="0" />
+                <Setter Property="TextAlignment" Value="Right" />
+                <Setter Property="HorizontalAlignment" Value="Right" />
                 <Setter Property="Margin" Value="8 2 8 12"></Setter>
             </Style>
         </Style>

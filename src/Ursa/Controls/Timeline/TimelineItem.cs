@@ -169,12 +169,12 @@ public class TimelineItem: HeaderedContentControl
         if (Mode == TimelineItemDisplayMode.Left)
         {
             max = Math.Max(max, time);
-            return (max, icon, 0);
+            return (0, icon, max);
         }
         if (Mode == TimelineItemDisplayMode.Right)
         {
             max = Math.Max(max, time);
-            return (0, icon, max);
+            return (max    , icon, 0);
         }
         if (Mode == TimelineItemDisplayMode.Separate)
         {
