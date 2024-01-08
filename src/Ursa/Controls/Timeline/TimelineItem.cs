@@ -9,7 +9,7 @@ using Avalonia.Media;
 
 namespace Ursa.Controls;
 
-[PseudoClasses(PC_First, PC_Last, PC_EmptyIcon)]
+[PseudoClasses(PC_First, PC_Last, PC_EmptyIcon, PC_AllLeft, PC_AllRight, PC_Separate)]
 [TemplatePart(PART_Header, typeof(ContentPresenter))]
 [TemplatePart(PART_Icon, typeof(Panel))]
 [TemplatePart(PART_Content, typeof(ContentPresenter))]
