@@ -17,6 +17,6 @@ public class MessageBoxDemoViewModel: ObservableObject
 
     private async Task OnDefaultMessageAsync()
     {
-        await MessageBox.ShowAsync("Hello Message Box");
+        var result = await MessageBox.ShowAsync("Hello Message Box");
     }
 }

@@ -5,7 +5,7 @@ namespace Ursa.Controls;
 
 public static class MessageBox
 {
-    public static async Task ShowAsync(string message)
+    public static async Task<MessageBoxResult> ShowAsync(string message)
     {
         var messageWindow = new MessageBoxWindow()
         {
@@ -18,11 +18,17 @@ public static class MessageBox
             if (main is null)
             {
                 messageWindow.Show();
+                return MessageBoxResult.None;
             }
             else
             {
-                await messageWindow.ShowDialog(main);
+                var result = await messageWindow.ShowDialog<MessageBoxResult>(main);
+                return result;
             }
+        }
+        else
+        {
+            return MessageBoxResult.None;
         }
     }
 }

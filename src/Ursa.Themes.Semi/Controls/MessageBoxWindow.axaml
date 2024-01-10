@@ -1,39 +1,52 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:u="https://irihi.tech/ursa">
-    <!-- Add Resources Here -->
-    <ControlTheme TargetType="u:MessageBoxWindow" x:Key="{x:Type u:MessageBoxWindow}">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:MessageBoxWindow}" TargetType="u:MessageBoxWindow">
+        <Setter Property="Title" Value="{x:Null}"></Setter>
         <Setter Property="Background" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
-        <Setter Property="Padding" Value="48 24"></Setter>
-        <Setter Property="MinHeight" Value="300"></Setter>
-        <Setter Property="SizeToContent" Value="WidthAndHeight"></Setter>
-        <Setter Property="WindowStartupLocation" Value="CenterOwner"></Setter>
-        <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="48"></Setter>
-        <Setter Property="ExtendClientAreaToDecorationsHint" Value="True"></Setter>
-        <Setter Property="SystemDecorations" Value="BorderOnly"></Setter>
-        <Setter Property="CanResize" Value="True"></Setter>
+        <Setter Property="Padding" Value="48 24" />
+        <Setter Property="SizeToContent" Value="WidthAndHeight" />
+        <Setter Property="WindowStartupLocation" Value="CenterOwner" />
+        <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="0" />
+        <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
+        <Setter Property="SystemDecorations" Value="BorderOnly" />
+        <Setter Property="CanResize" Value="True" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:MessageBoxWindow">
                 <Panel>
                     <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
                     <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
-                    <VisualLayerManager>
-                        <VisualLayerManager.ChromeOverlayLayer>
-                            <TitleBar />
-                        </VisualLayerManager.ChromeOverlayLayer>
-                        <ContentPresenter Grid.Row="0"
-                                          Name="PART_ContentPresenter"
-                                          Margin="{TemplateBinding Padding}"
-                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
-                    </VisualLayerManager>
+                    <Grid RowDefinitions="Auto, *, Auto">
+                        <Grid ColumnDefinitions="*, Auto" Grid.Row="0">
+                            <TextBlock Grid.Column="0" Text="{TemplateBinding Title}" />
+                            <Button
+                                Grid.Column="1"
+                                Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
+                                Content="X"
+                                />
+                        </Grid>
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            Grid.Row="1"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <StackPanel Grid.Row="2" Orientation="Horizontal">
+                            <Button Name="{x:Static u:MessageBoxWindow.PART_YesButton}" Classes="Primary" Content="Yes" />
+                            <Button Name="{x:Static u:MessageBoxWindow.PART_NoButton}" Classes="Danger" Content="No" />
+                            <Button Name="{x:Static u:MessageBoxWindow.PART_OKButton}" Classes="Primary" Content="OK" />
+                            <Button Name="{x:Static u:MessageBoxWindow.PART_CancelButton}" Classes="Tertiary" Content="Cancel" />
+                        </StackPanel>
+                    </Grid>
                 </Panel>
             </ControlTemplate>
         </Setter>
