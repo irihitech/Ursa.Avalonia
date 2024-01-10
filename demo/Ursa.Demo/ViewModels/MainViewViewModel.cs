@@ -35,6 +35,7 @@ public class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyIpBox => new IPv4BoxDemoViewModel(),
             MenuKeys.MenuKeyKeyGestureInput => new KeyGestureInputDemoViewModel(),
             MenuKeys.MenuKeyLoading => new LoadingDemoViewModel(),
+            MenuKeys.MenuKeyMessageBox => new MessageBoxDemoViewModel(),
             MenuKeys.MenuKeyNavigation => new NavigationMenuDemoViewModel(),
             MenuKeys.MenuKeyPagination => new PaginationDemoViewModel(),
             MenuKeys.MenuKeyTagInput => new TagInputDemoViewModel(),

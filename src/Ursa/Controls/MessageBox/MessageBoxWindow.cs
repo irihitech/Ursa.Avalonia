@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Platform;
 
-namespace Ursa.Controls.MessageBox;
+namespace Ursa.Controls;
 
 public class MessageBoxWindow: Window
 {
@@ -9,7 +9,6 @@ public class MessageBoxWindow: Window
 
     static MessageBoxWindow()
     {
-        ExtendClientAreaChromeHintsProperty.OverrideDefaultValue<MessageBoxWindow>(ExtendClientAreaChromeHints
-            .NoChrome);
+        
     }
 }

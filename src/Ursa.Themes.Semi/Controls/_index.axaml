@@ -11,6 +11,7 @@
         <ResourceInclude Source="IPv4Box.axaml" />
         <ResourceInclude Source="KeyGestureInput.axaml" />
         <ResourceInclude Source="Loading.axaml" />
+        <ResourceInclude Source="MessageBoxWindow.axaml" />
         <ResourceInclude Source="Navigation.axaml" />
         <ResourceInclude Source="Pagination.axaml" />
         <ResourceInclude Source="TagInput.axaml" />

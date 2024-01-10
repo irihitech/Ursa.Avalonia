@@ -13,6 +13,7 @@ public static class MenuKeys
     public const string MenuKeyIconButton = "IconButton";
     public const string MenuKeyKeyGestureInput = "KeyGestureInput";
     public const string MenuKeyLoading = "Loading";
+    public const string MenuKeyMessageBox = "MessageBox";
     public const string MenuKeyNavigation = "Navigation";
     public const string MenuKeyPagination = "Pagination";
     public const string MenuKeyTagInput = "TagInput";

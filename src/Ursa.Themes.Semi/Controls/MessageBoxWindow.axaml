@@ -1,0 +1,41 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa">
+    <!-- Add Resources Here -->
+    <ControlTheme TargetType="u:MessageBoxWindow" x:Key="{x:Type u:MessageBoxWindow}">
+        <Setter Property="Background" Value="{DynamicResource WindowDefaultBackground}" />
+        <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
+        <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
+        <Setter Property="Padding" Value="48 24"></Setter>
+        <Setter Property="MinHeight" Value="300"></Setter>
+        <Setter Property="SizeToContent" Value="WidthAndHeight"></Setter>
+        <Setter Property="WindowStartupLocation" Value="CenterOwner"></Setter>
+        <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="48"></Setter>
+        <Setter Property="ExtendClientAreaToDecorationsHint" Value="True"></Setter>
+        <Setter Property="SystemDecorations" Value="BorderOnly"></Setter>
+        <Setter Property="CanResize" Value="True"></Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:MessageBoxWindow">
+                <Panel>
+                    <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
+                    <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
+                    <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
+                    <VisualLayerManager>
+                        <VisualLayerManager.ChromeOverlayLayer>
+                            <TitleBar />
+                        </VisualLayerManager.ChromeOverlayLayer>
+                        <ContentPresenter Grid.Row="0"
+                                          Name="PART_ContentPresenter"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </VisualLayerManager>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>
