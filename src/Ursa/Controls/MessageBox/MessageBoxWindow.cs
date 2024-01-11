@@ -189,9 +189,6 @@ public class MessageBoxWindow : Window
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
-        if (TopLevel.GetTopLevel(this) is Window toplevel)
-        {
-            toplevel.BeginMoveDrag(e);
-        }
+        BeginMoveDrag(e);
     }
 }
