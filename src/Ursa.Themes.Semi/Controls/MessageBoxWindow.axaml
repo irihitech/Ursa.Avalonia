@@ -80,25 +80,25 @@
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
                             <Button
-                                Name="{x:Static u:MessageBoxWindow.PART_YesButton}"
+                                Name="{x:Static u:MessageBoxWindow.PART_CancelButton}"
                                 Margin="8,0,0,0"
-                                Classes="Primary"
-                                Content="Yes" />
+                                Classes="Tertiary"
+                                Content="Cancel" />
                             <Button
                                 Name="{x:Static u:MessageBoxWindow.PART_NoButton}"
                                 Margin="8,0,0,0"
                                 Classes="Danger"
                                 Content="No" />
                             <Button
+                                Name="{x:Static u:MessageBoxWindow.PART_YesButton}"
+                                Margin="8,0,0,0"
+                                Classes="Primary"
+                                Content="Yes" />
+                            <Button
                                 Name="{x:Static u:MessageBoxWindow.PART_OKButton}"
                                 Margin="8,0,0,0"
                                 Classes="Primary"
                                 Content="OK" />
-                            <Button
-                                Name="{x:Static u:MessageBoxWindow.PART_CancelButton}"
-                                Margin="8,0,0,0"
-                                Classes="Tertiary"
-                                Content="Cancel" />
                         </StackPanel>
                     </Grid>
                 </Panel>
