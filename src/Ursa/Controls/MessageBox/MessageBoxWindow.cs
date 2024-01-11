@@ -13,7 +13,7 @@ namespace Ursa.Controls;
 [TemplatePart(PART_OKButton, typeof(Button))]
 [TemplatePart(PART_CancelButton, typeof(Button))]
 [TemplatePart(PART_YesButton, typeof(Button))]
-public class MessageBoxWindow: Window
+public class MessageBoxWindow : Window
 {
     public const string PART_CloseButton = "PART_CloseButton";
     public const string PART_YesButton = "PART_YesButton";
@@ -22,17 +22,18 @@ public class MessageBoxWindow: Window
     public const string PART_CancelButton = "PART_CancelButton";
 
     private MessageBoxButton _buttonConfigs;
-    
+
     private Button? _closeButton;
     private Button? _yesButton;
     private Button? _noButton;
     private Button? _okButton;
     private Button? _cancelButton;
-    
+
     protected override Type StyleKeyOverride => typeof(MessageBoxWindow);
 
-    public static readonly StyledProperty<MessageBoxIcon> MessageIconProperty = AvaloniaProperty.Register<MessageBoxWindow, MessageBoxIcon>(
-        nameof(MessageIcon));
+    public static readonly StyledProperty<MessageBoxIcon> MessageIconProperty =
+        AvaloniaProperty.Register<MessageBoxWindow, MessageBoxIcon>(
+            nameof(MessageIcon));
 
     public MessageBoxIcon MessageIcon
     {
@@ -57,22 +58,27 @@ public class MessageBoxWindow: Window
         {
             _closeButton.Click -= OnCloseButtonClick;
         }
+
         if (_yesButton != null)
         {
             _yesButton.Click -= OnYesButtonClick;
         }
+
         if (_noButton != null)
         {
             _noButton.Click -= OnNoButtonClick;
         }
+
         if (_okButton != null)
         {
             _okButton.Click -= OnOKButtonClick;
         }
+
         if (_cancelButton != null)
         {
             _cancelButton.Click -= OnCancelButtonClick;
         }
+
         _yesButton = e.NameScope.Find<Button>(PART_YesButton);
         _noButton = e.NameScope.Find<Button>(PART_NoButton);
         _okButton = e.NameScope.Find<Button>(PART_OKButton);
@@ -82,22 +88,27 @@ public class MessageBoxWindow: Window
         {
             _closeButton.Click += OnCloseButtonClick;
         }
+
         if (_yesButton is not null)
         {
             _yesButton.Click += OnYesButtonClick;
         }
+
         if (_noButton is not null)
         {
             _noButton.Click += OnNoButtonClick;
         }
+
         if (_okButton is not null)
         {
             _okButton.Click += OnOKButtonClick;
         }
+
         if (_cancelButton is not null)
         {
             _cancelButton.Click += OnCancelButtonClick;
         }
+
         SetButtonVisibility();
     }
 
@@ -143,24 +154,25 @@ public class MessageBoxWindow: Window
         {
             Close(MessageBoxResult.OK);
         }
+
         Close(MessageBoxResult.Cancel);
     }
-    
+
     private void OnYesButtonClick(object sender, RoutedEventArgs e)
     {
         Close(MessageBoxResult.Yes);
     }
-    
+
     private void OnNoButtonClick(object sender, RoutedEventArgs e)
     {
         Close(MessageBoxResult.No);
     }
-    
+
     private void OnOKButtonClick(object sender, RoutedEventArgs e)
     {
         Close(MessageBoxResult.OK);
     }
-    
+
     private void OnCancelButtonClick(object sender, RoutedEventArgs e)
     {
         Close(MessageBoxResult.Cancel);
@@ -172,6 +184,14 @@ public class MessageBoxWindow: Window
         if (e.Key == Key.Escape && _buttonConfigs == MessageBoxButton.OK)
         {
             Close(MessageBoxResult.OK);
+        }
+    }
+
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    {
+        if (TopLevel.GetTopLevel(this) is Window toplevel)
+        {
+            toplevel.BeginMoveDrag(e);
         }
     }
 }
