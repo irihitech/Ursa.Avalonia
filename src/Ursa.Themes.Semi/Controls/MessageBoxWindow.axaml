@@ -4,7 +4,7 @@
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:MessageBoxWindow}" TargetType="u:MessageBoxWindow">
-        <Setter Property="Title" Value="{x:Null}"></Setter>
+        <Setter Property="Title" Value="{x:Null}" />
         <Setter Property="Background" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
@@ -24,13 +24,30 @@
                     <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
                     <Grid RowDefinitions="Auto, *, Auto">
-                        <Grid ColumnDefinitions="*, Auto" Grid.Row="0">
-                            <TextBlock Grid.Column="0" Text="{TemplateBinding Title}" />
+                        <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
+                            <TextBlock Grid.Column="0" Text="{TemplateBinding Title}" Margin="8 8 0 0" FontWeight="Bold" FontSize="14" />
+                            <!-- A temporary style copied from Semi. Will replace when I get time -->
                             <Button
-                                Grid.Column="1"
                                 Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
-                                Content="X"
-                                />
+                                Grid.Column="1"
+                                Margin="0,4,4,0"
+                                Background="{DynamicResource CaptionButtonClosePointeroverBackground}"
+                                BorderBrush="{DynamicResource CaptionButtonClosePressedBackground}"
+                                Theme="{DynamicResource CaptionButton}">
+                                <Button.Styles>
+                                    <Style Selector="Button:pointerover">
+                                        <Setter Property="Foreground" Value="White" />
+                                    </Style>
+                                    <Style Selector="Button:pressed">
+                                        <Setter Property="Foreground" Value="White" />
+                                    </Style>
+                                </Button.Styles>
+                                <PathIcon
+                                    Width="12"
+                                    Height="12"
+                                    Data="{DynamicResource WindowCloseIconGlyph}"
+                                    Foreground="{Binding $parent[Button].Foreground}" />
+                            </Button>
                         </Grid>
                         <ContentPresenter
                             Name="PART_ContentPresenter"
@@ -40,11 +57,31 @@
                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}" />
-                        <StackPanel Grid.Row="2" Orientation="Horizontal">
-                            <Button Name="{x:Static u:MessageBoxWindow.PART_YesButton}" Classes="Primary" Content="Yes" />
-                            <Button Name="{x:Static u:MessageBoxWindow.PART_NoButton}" Classes="Danger" Content="No" />
-                            <Button Name="{x:Static u:MessageBoxWindow.PART_OKButton}" Classes="Primary" Content="OK" />
-                            <Button Name="{x:Static u:MessageBoxWindow.PART_CancelButton}" Classes="Tertiary" Content="Cancel" />
+                        <StackPanel
+                            Grid.Row="2"
+                            Margin="0,0,8,8"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                            <Button
+                                Name="{x:Static u:MessageBoxWindow.PART_YesButton}"
+                                Margin="8,0,0,0"
+                                Classes="Primary"
+                                Content="Yes" />
+                            <Button
+                                Name="{x:Static u:MessageBoxWindow.PART_NoButton}"
+                                Margin="8,0,0,0"
+                                Classes="Danger"
+                                Content="No" />
+                            <Button
+                                Name="{x:Static u:MessageBoxWindow.PART_OKButton}"
+                                Margin="8,0,0,0"
+                                Classes="Primary"
+                                Content="OK" />
+                            <Button
+                                Name="{x:Static u:MessageBoxWindow.PART_CancelButton}"
+                                Margin="8,0,0,0"
+                                Classes="Tertiary"
+                                Content="Cancel" />
                         </StackPanel>
                     </Grid>
                 </Panel>

@@ -93,39 +93,80 @@ public class MessageBoxWindow: Window
         {
             _cancelButton.Click += OnCancelButtonClick;
         }
+        SetButtonVisibility();
+    }
+
+    private void SetButtonVisibility()
+    {
+        if (_buttonConfigs == MessageBoxButton.OK)
+        {
+            if (_closeButton != null) _closeButton.IsVisible = true;
+            if (_yesButton != null) _yesButton.IsVisible = false;
+            if (_noButton != null) _noButton.IsVisible = false;
+            if (_okButton != null) _okButton.IsVisible = true;
+            if (_cancelButton != null) _cancelButton.IsVisible = false;
+        }
+        else if (_buttonConfigs == MessageBoxButton.OKCancel)
+        {
+            if (_closeButton != null) _closeButton.IsVisible = true;
+            if (_yesButton != null) _yesButton.IsVisible = false;
+            if (_noButton != null) _noButton.IsVisible = false;
+            if (_okButton != null) _okButton.IsVisible = true;
+            if (_cancelButton != null) _cancelButton.IsVisible = true;
+        }
+        else if (_buttonConfigs == MessageBoxButton.YesNo)
+        {
+            if (_closeButton != null) _closeButton.IsVisible = false;
+            if (_yesButton != null) _yesButton.IsVisible = true;
+            if (_noButton != null) _noButton.IsVisible = true;
+            if (_okButton != null) _okButton.IsVisible = false;
+            if (_cancelButton != null) _cancelButton.IsVisible = false;
+        }
+        else if (_buttonConfigs == MessageBoxButton.YesNoCancel)
+        {
+            if (_closeButton != null) _closeButton.IsVisible = true;
+            if (_yesButton != null) _yesButton.IsVisible = true;
+            if (_noButton != null) _noButton.IsVisible = true;
+            if (_okButton != null) _okButton.IsVisible = false;
+            if (_cancelButton != null) _cancelButton.IsVisible = true;
+        }
     }
 
     private void OnCloseButtonClick(object sender, RoutedEventArgs e)
     {
-        this.Close(MessageBoxResult.None);
+        if (_buttonConfigs == MessageBoxButton.OK)
+        {
+            Close(MessageBoxResult.OK);
+        }
+        Close(MessageBoxResult.Cancel);
     }
     
     private void OnYesButtonClick(object sender, RoutedEventArgs e)
     {
-        this.Close(MessageBoxResult.Yes);
+        Close(MessageBoxResult.Yes);
     }
     
     private void OnNoButtonClick(object sender, RoutedEventArgs e)
     {
-        this.Close(MessageBoxResult.No);
+        Close(MessageBoxResult.No);
     }
     
     private void OnOKButtonClick(object sender, RoutedEventArgs e)
     {
-        this.Close(MessageBoxResult.OK);
+        Close(MessageBoxResult.OK);
     }
     
     private void OnCancelButtonClick(object sender, RoutedEventArgs e)
     {
-        this.Close(MessageBoxResult.Cancel);
+        Close(MessageBoxResult.Cancel);
     }
 
     protected override void OnKeyUp(KeyEventArgs e)
     {
         base.OnKeyUp(e);
-        if (e.Key == Key.Escape)
+        if (e.Key == Key.Escape && _buttonConfigs == MessageBoxButton.OK)
         {
-            this.Close(MessageBoxResult.None);
+            Close(MessageBoxResult.OK);
         }
     }
 }

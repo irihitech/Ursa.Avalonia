@@ -31,4 +31,32 @@ public static class MessageBox
             return MessageBoxResult.None;
         }
     }
+    
+    public static async Task<MessageBoxResult> ShowAsync(string message, string title, MessageBoxButton button)
+    {
+        var messageWindow = new MessageBoxWindow(button)
+        {
+            Content = message,
+            Title = title
+        };
+        var lifetime = Application.Current?.ApplicationLifetime;
+        if (lifetime is IClassicDesktopStyleApplicationLifetime classLifetime)
+        {
+            var main = classLifetime.MainWindow;
+            if (main is null)
+            {
+                messageWindow.Show();
+                return MessageBoxResult.None;
+            }
+            else
+            {
+                var result = await messageWindow.ShowDialog<MessageBoxResult>(main);
+                return result;
+            }
+        }
+        else
+        {
+            return MessageBoxResult.None;
+        }
+    }
 }

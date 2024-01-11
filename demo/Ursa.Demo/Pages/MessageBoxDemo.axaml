@@ -9,5 +9,9 @@
              x:Class="Ursa.Demo.Pages.MessageBoxDemo">
     <StackPanel HorizontalAlignment="Left">
         <Button Content="Default" Command="{Binding DefaultMessageBoxCommand}"></Button>
+        <Button Content="OK" Command="{Binding OkCommand}" ></Button>
+        <Button Content="OKCancel" Command="{Binding OkCancelCommand}" ></Button>
+        <Button Content="YesNo" Command="{Binding YesNoCommand}" ></Button>
+        <Button Content="YesNoCancel" Command="{Binding YesNoCancelCommand}" ></Button>
     </StackPanel>
 </UserControl>
