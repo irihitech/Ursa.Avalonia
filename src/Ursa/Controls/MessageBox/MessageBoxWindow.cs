@@ -1,3 +1,4 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
@@ -30,9 +31,13 @@ public class MessageBoxWindow: Window
     
     protected override Type StyleKeyOverride => typeof(MessageBoxWindow);
 
-    static MessageBoxWindow()
+    public static readonly StyledProperty<MessageBoxIcon> MessageIconProperty = AvaloniaProperty.Register<MessageBoxWindow, MessageBoxIcon>(
+        nameof(MessageIcon));
+
+    public MessageBoxIcon MessageIcon
     {
-        
+        get => GetValue(MessageIconProperty);
+        set => SetValue(MessageIconProperty, value);
     }
 
     public MessageBoxWindow()
