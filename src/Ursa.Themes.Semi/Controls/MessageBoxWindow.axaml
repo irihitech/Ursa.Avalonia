@@ -30,6 +30,8 @@
                                 Margin="8,8,0,0"
                                 FontSize="14"
                                 FontWeight="Bold"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap"
                                 Text="{TemplateBinding Title}" />
                             <!--  A temporary style copied from Semi. Will replace when I get time  -->
                             <Button
@@ -134,7 +136,7 @@
         </Style>
         <Style Selector="^[MessageIcon=Warning] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
-            <Setter Property="Foreground" Value="{DynamicResource SemiYellow6}" />
+            <Setter Property="Foreground" Value="{DynamicResource SemiOrange6}" />
             <Setter Property="Data" Value="{DynamicResource MessageBoxWindowWarningIconGlyph}" />
         </Style>
         <Style Selector="^[MessageIcon=Success] /template/ PathIcon#PART_Icon">
