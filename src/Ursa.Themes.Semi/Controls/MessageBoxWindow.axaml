@@ -114,12 +114,12 @@
         <Style Selector="^[MessageIcon=None] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="False" />
         </Style>
-        <Style Selector="^[MessageIcon=Asterisk] /template/ PathIcon#PART_Icon ^[MessageIcon=Information] /template/ PathIcon#PART_Icon">
+        <Style Selector="^[MessageIcon=Asterisk] /template/ PathIcon#PART_Icon, ^[MessageIcon=Information] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
             <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
             <Setter Property="Data" Value="{DynamicResource MessageBoxWindowInformationIconGlyph}" />
         </Style>
-        <Style Selector="^[MessageIcon=Error] /template/ PathIcon#PART_Icon ^[MessageIcon=Hand] /template/ PathIcon#PART_Icon ^[MessageIcon=Stop] /template/ PathIcon#PART_Icon">
+        <Style Selector="^[MessageIcon=Error] /template/ PathIcon#PART_Icon, ^[MessageIcon=Hand] /template/ PathIcon#PART_Icon, ^[MessageIcon=Stop] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
             <Setter Property="Foreground" Value="{DynamicResource SemiRed6}" />
             <Setter Property="Data" Value="{DynamicResource MessageBoxWindowErrorIconGlyph}" />
