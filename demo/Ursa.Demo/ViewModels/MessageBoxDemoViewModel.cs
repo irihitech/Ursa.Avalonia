@@ -10,6 +10,12 @@ namespace Ursa.Demo.ViewModels;
 
 public class MessageBoxDemoViewModel: ObservableObject
 {
+    private readonly string _longMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+
+    private readonly string _shortMessage = "Welcome to Ursa Avalonia!";
+    private string _message;
+    private string _title;
+
     public ICommand DefaultMessageBoxCommand { get; set; }
     public ICommand OkCommand { get; set; }
     public ICommand YesNoCommand { get; set; }
@@ -32,6 +38,33 @@ public class MessageBoxDemoViewModel: ObservableObject
         set => SetProperty(ref _result, value);
     }
 
+    private bool _useLong;
+
+    public bool UseLong
+    {
+        get => _useLong;
+        set
+        {
+            SetProperty(ref _useLong, value);
+            _message = value ? _longMessage : _shortMessage;
+        }
+    }
+
+    private bool _useTitle;
+
+    public bool UseTitle
+    {
+        get => _useTitle;
+        set
+        {
+            SetProperty(ref _useTitle, value);
+            _title = value ? "Ursa MessageBox" : string.Empty;
+        }
+    }
+    
+    
+    
+
     public MessageBoxDemoViewModel()
     {
         DefaultMessageBoxCommand = new AsyncRelayCommand(OnDefaultMessageAsync);
@@ -42,30 +75,31 @@ public class MessageBoxDemoViewModel: ObservableObject
         Icons = new ObservableCollection<MessageBoxIcon>(
             Enum.GetValues<MessageBoxIcon>());
         SelectedIcon = MessageBoxIcon.None;
+        _message = _shortMessage;
     }
 
     private async Task OnDefaultMessageAsync()
     {
-        Result = await MessageBox.ShowAsync("Hello Message Box", icon: SelectedIcon);
+        Result = await MessageBox.ShowAsync(_message, _title, icon: SelectedIcon);
     }
     
     private async Task OnOkAsync()
     {
-        Result = await MessageBox.ShowAsync("Hello Message Box", "Hello", icon: SelectedIcon, button:MessageBoxButton.OK);
+        Result = await MessageBox.ShowAsync(_message, _title, icon: SelectedIcon, button:MessageBoxButton.OK);
     }
     
     private async Task OnYesNoAsync()
     {
-        Result = await MessageBox.ShowAsync("Hello Message Box", "Hello", icon: SelectedIcon, button: MessageBoxButton.YesNo);
+        Result = await MessageBox.ShowAsync(_message, _title, icon: SelectedIcon, button: MessageBoxButton.YesNo);
     }
     
     private async Task OnYesNoCancelAsync()
     {
-        Result = await MessageBox.ShowAsync("Hello Message Box", "Hello", icon: SelectedIcon, button: MessageBoxButton.YesNoCancel);
+        Result = await MessageBox.ShowAsync(_message, _title, icon: SelectedIcon, button: MessageBoxButton.YesNoCancel);
     }
-    
+
     private async Task OnOkCancelAsync()
     {
-        Result = await MessageBox.ShowAsync("Hello Message Box", "Hello", icon: SelectedIcon, button:MessageBoxButton.OKCancel);
+        Result = await MessageBox.ShowAsync(_message, _title, icon: SelectedIcon, button:MessageBoxButton.OKCancel);
     }
 }

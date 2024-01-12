@@ -18,6 +18,8 @@
     </UserControl.Styles>
     <StackPanel HorizontalAlignment="Left">
         <ComboBox ItemsSource="{Binding Icons}" SelectedItem="{Binding SelectedIcon}" />
+        <ToggleSwitch Content="Try Long Message" IsChecked="{Binding UseLong}"></ToggleSwitch>
+        <ToggleSwitch Content="Show Title" IsChecked="{Binding UseTitle}"></ToggleSwitch>
         <Button Command="{Binding DefaultMessageBoxCommand}" Content="Default" />
         <Button Command="{Binding OkCommand}" Content="OK" />
         <Button Command="{Binding OkCancelCommand}" Content="OKCancel" />
