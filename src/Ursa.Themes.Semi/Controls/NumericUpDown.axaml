@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa">
+    <!-- Add Resources Here -->
+    <ControlTheme x:Key="{x:Type u:NumericUpDown}" TargetType="{x:Type u:NumericUpDown}">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Rectangle Fill="Red" Width="100" Height="100"></Rectangle>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

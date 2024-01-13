@@ -14,6 +14,7 @@ public static class MenuKeys
     public const string MenuKeyKeyGestureInput = "KeyGestureInput";
     public const string MenuKeyLoading = "Loading";
     public const string MenuKeyNavigation = "Navigation";
+    public const string MenuKeyNumericUpDown = "NumericUpDown";
     public const string MenuKeyPagination = "Pagination";
     public const string MenuKeyTagInput = "TagInput";
     public const string MenuKeyTimeline = "Timeline";

@@ -23,6 +23,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "KeyGestureInput", Key = MenuKeys.MenuKeyKeyGestureInput },
             new() { MenuHeader = "Loading", Key = MenuKeys.MenuKeyLoading },
             new() { MenuHeader = "Navigation", Key = MenuKeys.MenuKeyNavigation },
+            new() { MenuHeader = "NumericUpDown", Key = MenuKeys.MenuKeyNumericUpDown },
             new() { MenuHeader = "Pagination", Key = MenuKeys.MenuKeyPagination },
             new() { MenuHeader = "TagInput", Key = MenuKeys.MenuKeyTagInput },
             new() { MenuHeader = "Timeline", Key = MenuKeys.MenuKeyTimeline },
