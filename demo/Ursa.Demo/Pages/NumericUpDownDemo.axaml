@@ -14,13 +14,13 @@
         </Style>
     </UserControl.Styles>
     <StackPanel HorizontalAlignment="Left">
-        <u:NumericIntUpDown Name="input" Step="1" Value="2" Watermark="Input Value" />
+        <u:NumericIntUpDown Name="input" Step="1" Value="2" Watermark="Input Value" IsReadOnly="True" />
         <TextBlock Text="{Binding #input.Value}" ></TextBlock>
         <u:NumericDoubleUpDown Name="inputDouble" Step="0.5" Value="3.1" EmptyInputValue="1"></u:NumericDoubleUpDown>
         <TextBlock Text="{Binding #inputDouble.Value}"></TextBlock>
         <u:NumericByteUpDown Name="inputByte" Step="1" Value="3" EmptyInputValue="1"></u:NumericByteUpDown>
         <TextBlock Text="{Binding #inputByte.Value}"></TextBlock>
         <TextBlock Text="Drag"></TextBlock>
-        <u:NumericIntUpDown  Step="1" Value="2" Watermark="Input Value" IsTextEditable="False" />
+        <u:NumericIntUpDown  Step="1" Value="2" Watermark="Input Value" AllowDrag="True" />
     </StackPanel>
 </UserControl>

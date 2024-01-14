@@ -38,8 +38,7 @@
                                 VerticalAlignment="Stretch"
                                 Background="Transparent"
                                 Cursor="SizeAll"
-                                IsVisible="{TemplateBinding IsTextEditable,
-                                                            Converter={x:Static BoolConverters.Not}}" />
+                                IsVisible="{TemplateBinding AllowDrag}" />
                         </Panel>
                     </ButtonSpinner>
                 </DataValidationErrors>

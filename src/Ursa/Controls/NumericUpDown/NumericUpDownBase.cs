@@ -27,13 +27,13 @@ public abstract class NumericUpDown : TemplatedControl
     private Point? _point;
     protected internal bool _updateFromTextInput;
     
-    public static readonly StyledProperty<bool> IsTextEditableProperty = AvaloniaProperty.Register<NumericUpDown, bool>(
-        nameof(IsTextEditable), defaultValue: true);
+    public static readonly StyledProperty<bool> AllowDragProperty = AvaloniaProperty.Register<NumericUpDown, bool>(
+        nameof(AllowDrag), defaultValue: false);
 
-    public bool IsTextEditable
+    public bool AllowDrag
     {
-        get => GetValue(IsTextEditableProperty);
-        set => SetValue(IsTextEditableProperty, value);
+        get => GetValue(AllowDragProperty);
+        set => SetValue(AllowDragProperty, value);
     }
 
     public static readonly StyledProperty<bool> IsReadOnlyProperty = AvaloniaProperty.Register<NumericUpDown, bool>(
@@ -183,6 +183,10 @@ public abstract class NumericUpDown : TemplatedControl
     {
         CommitInput(true);
         base.OnLostFocus(e);
+        if(AllowDrag && _dragPanel is not null)
+        {
+            _dragPanel.IsVisible = true;
+        }
     }
 
     protected override void OnKeyDown(KeyEventArgs e)
@@ -192,11 +196,23 @@ public abstract class NumericUpDown : TemplatedControl
             var commitSuccess = CommitInput(true);
             e.Handled = !commitSuccess;
         }
+
+        if (e.Key == Key.Escape)
+        {
+            if (AllowDrag && _dragPanel is not null)
+            {
+                _dragPanel.IsVisible = true;
+            }
+        }
     }
 
     private void OnDragPanelPointerPressed(object sender, PointerPressedEventArgs e)
     {
         _point = e.GetPosition(this);
+        if (e.ClickCount == 2 && _dragPanel is not null && AllowDrag)
+        {
+            _dragPanel.IsVisible = false;
+        }
         _textBox?.Focus();
     }
     
@@ -207,7 +223,7 @@ public abstract class NumericUpDown : TemplatedControl
     
     private void OnDragPanelPointerMoved(object sender, PointerEventArgs e)
     {
-        if (IsTextEditable) return;
+        if (!AllowDrag) return;
         if(!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
         var point = e.GetPosition(this);
         var delta = point - _point;
@@ -420,6 +436,7 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
         {
             _textBox.Text = ConvertValueToText(Value);
         }
+        SetValidSpinDirection();
     }
 
     protected virtual T? Clamp(T? value, T max, T min)
