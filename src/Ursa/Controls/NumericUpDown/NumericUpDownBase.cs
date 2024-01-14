@@ -82,7 +82,7 @@ public abstract class NumericUpDown : TemplatedControl
     }
 
     public static readonly StyledProperty<NumberStyles> ParsingNumberStyleProperty = AvaloniaProperty.Register<NumericUpDown, NumberStyles>(
-        nameof(ParsingNumberStyle));
+        nameof(ParsingNumberStyle), defaultValue: NumberStyles.Any);
 
     public NumberStyles ParsingNumberStyle
     {

@@ -44,8 +44,7 @@ public class NumericDoubleUpDown : NumericUpDownBase<double>
 
     protected override bool ParseText(string? text, out double? number)
     {
-        // Weird bug
-        var result = double.TryParse(text, out var value);
+        var result = double.TryParse(text, ParsingNumberStyle, NumberFormat, out var value);
         number = value;
         return result;
     }
