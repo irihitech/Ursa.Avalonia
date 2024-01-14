@@ -449,11 +449,11 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
         }
         if (value.Value.CompareTo(max) > 0)
         {
-            return Maximum;
+            return max;
         }
         if (value.Value.CompareTo(min) < 0)
         {
-            return Minimum;
+            return min;
         }
         return value;
     }
@@ -520,7 +520,7 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
                     if (_textBox!= null && !Equals(_textBox.Text, newText))
                     {
                         _textBox.Text = newText;
-                        _textBox.CaretIndex = newText?.Length??0;
+                        _textBox.CaretIndex = newText?.Length ?? 0;
                     }
                 }
             }
@@ -609,7 +609,7 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
         SetCurrentValue(ValueProperty, Clamp(value, Maximum, Minimum));
     }
     
-    protected abstract bool ParseText(string? text, out T? number);
+    protected abstract bool ParseText(string? text, out T number);
     protected abstract string? ValueToString(T? value);
     protected abstract T Zero { get; }
     protected abstract T? Add(T? a, T? b);

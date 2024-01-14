@@ -15,12 +15,8 @@ public class NumericIntUpDown : NumericUpDownBase<int>
         StepProperty.OverrideDefaultValue<NumericIntUpDown>(1);
     }
 
-    protected override bool ParseText(string? text, out int? number)
-    {
-        var result = int.TryParse(text, ParsingNumberStyle, NumberFormat, out var value);
-        number = value;
-        return result;
-    }
+    protected override bool ParseText(string? text, out int number) =>
+        int.TryParse(text, ParsingNumberStyle, NumberFormat, out number);
 
     protected override string? ValueToString(int? value) => value?.ToString(FormatString, NumberFormat);
 
@@ -42,12 +38,8 @@ public class NumericDoubleUpDown : NumericUpDownBase<double>
         StepProperty.OverrideDefaultValue<NumericDoubleUpDown>(1);
     }
 
-    protected override bool ParseText(string? text, out double? number)
-    {
-        var result = double.TryParse(text, ParsingNumberStyle, NumberFormat, out var value);
-        number = value;
-        return result;
-    }
+    protected override bool ParseText(string? text, out double number) =>
+        double.TryParse(text, ParsingNumberStyle, NumberFormat, out number);
 
     protected override string? ValueToString(double? value) => value?.ToString(FormatString, NumberFormat);
 
@@ -69,12 +61,8 @@ public class NumericByteUpDown : NumericUpDownBase<byte>
         StepProperty.OverrideDefaultValue<NumericByteUpDown>(1);
     }
 
-    protected override bool ParseText(string? text, out byte? number)
-    {
-        var result = byte.TryParse(text, ParsingNumberStyle, NumberFormat, out var value);
-        number = value;
-        return result;
-    }
+    protected override bool ParseText(string? text, out byte number) =>
+        byte.TryParse(text, ParsingNumberStyle, NumberFormat, out number);
 
     protected override string? ValueToString(byte? value) => value?.ToString(FormatString, NumberFormat);
 
@@ -96,12 +84,8 @@ public class NumericSByteUpDown : NumericUpDownBase<sbyte>
         StepProperty.OverrideDefaultValue<NumericSByteUpDown>(1);
     }
 
-    protected override bool ParseText(string? text, out sbyte? number)
-    {
-        var result = sbyte.TryParse(text, ParsingNumberStyle, NumberFormat, out var value);
-        number = value;
-        return result;
-    }
+    protected override bool ParseText(string? text, out sbyte number) =>
+        sbyte.TryParse(text, ParsingNumberStyle, NumberFormat, out number);
 
     protected override string? ValueToString(sbyte? value) => value?.ToString(FormatString, NumberFormat);
 
@@ -123,12 +107,8 @@ public class NumericShortUpDown : NumericUpDownBase<short>
         StepProperty.OverrideDefaultValue<NumericShortUpDown>(1);
     }
 
-    protected override bool ParseText(string? text, out short? number)
-    {
-        var result = short.TryParse(text, ParsingNumberStyle, NumberFormat, out var value);
-        number = value;
-        return result;
-    }
+    protected override bool ParseText(string? text, out short number) =>
+        short.TryParse(text, ParsingNumberStyle, NumberFormat, out number);
 
     protected override string? ValueToString(short? value) => value?.ToString(FormatString, NumberFormat);
 
@@ -150,12 +130,8 @@ public class NumericUShortUpDown : NumericUpDownBase<ushort>
         StepProperty.OverrideDefaultValue<NumericUShortUpDown>(1);
     }
 
-    protected override bool ParseText(string? text, out ushort? number)
-    {
-        var result = ushort.TryParse(text, ParsingNumberStyle, NumberFormat, out var value);
-        number = value;
-        return result;
-    }
+    protected override bool ParseText(string? text, out ushort number) =>
+        ushort.TryParse(text, ParsingNumberStyle, NumberFormat, out number);
 
     protected override string? ValueToString(ushort? value) => value?.ToString(FormatString, NumberFormat);
 
@@ -177,12 +153,8 @@ public class NumericLongUpDown : NumericUpDownBase<long>
         StepProperty.OverrideDefaultValue<NumericLongUpDown>(1);
     }
 
-    protected override bool ParseText(string? text, out long? number)
-    {
-        var result = long.TryParse(text, ParsingNumberStyle, NumberFormat, out var value);
-        number = value;
-        return result;
-    }
+    protected override bool ParseText(string? text, out long number) =>
+        long.TryParse(text, ParsingNumberStyle, NumberFormat, out number);
 
     protected override string? ValueToString(long? value) => value?.ToString(FormatString, NumberFormat);
 
@@ -204,12 +176,8 @@ public class NumericULongUpDown : NumericUpDownBase<ulong>
         StepProperty.OverrideDefaultValue<NumericULongUpDown>(1);
     }
 
-    protected override bool ParseText(string? text, out ulong? number)
-    {
-        var result = ulong.TryParse(text, ParsingNumberStyle, NumberFormat, out var value);
-        number = value;
-        return result;
-    }
+    protected override bool ParseText(string? text, out ulong number) =>
+        ulong.TryParse(text, ParsingNumberStyle, NumberFormat, out number);
 
     protected override string? ValueToString(ulong? value) => value?.ToString(FormatString, NumberFormat);
 
@@ -231,12 +199,8 @@ public class NumericFloatUpDown : NumericUpDownBase<float>
         StepProperty.OverrideDefaultValue<NumericFloatUpDown>(1);
     }
 
-    protected override bool ParseText(string? text, out float? number)
-    {
-        var result = float.TryParse(text, ParsingNumberStyle, NumberFormat, out var value);
-        number = value;
-        return result;
-    }
+    protected override bool ParseText(string? text, out float number) =>
+        float.TryParse(text, ParsingNumberStyle, NumberFormat, out number);
 
     protected override string? ValueToString(float? value) => value?.ToString(FormatString, NumberFormat);
 
@@ -258,12 +222,8 @@ public class NumericDecimalUpDown : NumericUpDownBase<decimal>
         StepProperty.OverrideDefaultValue<NumericDecimalUpDown>(1);
     }
 
-    protected override bool ParseText(string? text, out decimal? number)
-    {
-        var result = decimal.TryParse(text, ParsingNumberStyle, NumberFormat, out var value);
-        number = value;
-        return result;
-    }
+    protected override bool ParseText(string? text, out decimal number) =>
+        decimal.TryParse(text, ParsingNumberStyle, NumberFormat, out number);
 
     protected override string? ValueToString(decimal? value) => value?.ToString(FormatString, NumberFormat);
 
