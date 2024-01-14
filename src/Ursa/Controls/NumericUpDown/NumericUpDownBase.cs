@@ -290,6 +290,8 @@ public abstract class NumericUpDown : TemplatedControl
 
     protected abstract bool SyncTextAndValue(bool fromTextToValue = false, string? text = null,
         bool forceTextUpdate = false);
+
+    public abstract void Clear();
 }
 
 public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComparable<T>
@@ -613,4 +615,9 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
     protected abstract T? Add(T? a, T? b);
     protected abstract T? Minus(T? a, T? b);
 
+    public override void Clear()
+    {
+        SetCurrentValue(ValueProperty, EmptyInputValue);
+        SyncTextAndValue(false, forceTextUpdate: true);
+    }
 }

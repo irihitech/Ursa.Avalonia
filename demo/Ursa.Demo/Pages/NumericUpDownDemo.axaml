@@ -14,7 +14,7 @@
         </Style>
     </UserControl.Styles>
     <StackPanel HorizontalAlignment="Left">
-        <u:NumericIntUpDown Name="input" Step="1" Value="2" Watermark="Input Value" IsReadOnly="True" />
+        <u:NumericIntUpDown Name="input" Step="1" Value="2" Watermark="Input Value" Classes="ClearButton" />
         <TextBlock Text="{Binding #input.Value}" ></TextBlock>
         <u:NumericDoubleUpDown Name="inputDouble" Step="0.5" Value="3.1" EmptyInputValue="1"></u:NumericDoubleUpDown>
         <TextBlock Text="{Binding #inputDouble.Value}"></TextBlock>
