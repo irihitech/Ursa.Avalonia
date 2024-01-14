@@ -230,7 +230,7 @@ public abstract class NumericUpDown : TemplatedControl
     private int GetDelta(Point point)
     {
         bool horizontal = Math.Abs(point.X) > Math.Abs(point.Y);
-        var value = horizontal ? point.X : point.Y;
+        var value = horizontal ? point.X : -point.Y;
         return value switch
         {
             > 0 => 1,
