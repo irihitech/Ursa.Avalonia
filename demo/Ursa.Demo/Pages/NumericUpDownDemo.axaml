@@ -8,14 +8,19 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <StackPanel>
-        <u:IntUpDown Name="input" Step="1" Value="2" Watermark="Input Value" />
+    <UserControl.Styles>
+        <Style Selector=":is(u|NumericUpDown)">
+            <Setter Property="Width" Value="240"></Setter>
+        </Style>
+    </UserControl.Styles>
+    <StackPanel HorizontalAlignment="Left">
+        <u:NumericIntUpDown Name="input" Step="1" Value="2" Watermark="Input Value" />
         <TextBlock Text="{Binding #input.Value}" ></TextBlock>
-        <u:DoubleUpDown Name="inputDouble" Step="0.5" Value="3.1" EmptyInputValue="1"></u:DoubleUpDown>
+        <u:NumericDoubleUpDown Name="inputDouble" Step="0.5" Value="3.1" EmptyInputValue="1"></u:NumericDoubleUpDown>
         <TextBlock Text="{Binding #inputDouble.Value}"></TextBlock>
-        <u:ByteUpDown Name="inputByte" Step="1" Value="3" EmptyInputValue="1"></u:ByteUpDown>
+        <u:NumericByteUpDown Name="inputByte" Step="1" Value="3" EmptyInputValue="1"></u:NumericByteUpDown>
         <TextBlock Text="{Binding #inputByte.Value}"></TextBlock>
         <TextBlock Text="Drag"></TextBlock>
-        <u:IntUpDown  Step="1" Value="2" Watermark="Input Value" TextEditable="False" />
+        <u:NumericIntUpDown  Step="1" Value="2" Watermark="Input Value" TextEditable="False" />
     </StackPanel>
 </UserControl>
