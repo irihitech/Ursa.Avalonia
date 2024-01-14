@@ -21,6 +21,6 @@
         <u:NumericByteUpDown Name="inputByte" Step="1" Value="3" EmptyInputValue="1"></u:NumericByteUpDown>
         <TextBlock Text="{Binding #inputByte.Value}"></TextBlock>
         <TextBlock Text="Drag"></TextBlock>
-        <u:NumericIntUpDown  Step="1" Value="2" Watermark="Input Value" TextEditable="False" />
+        <u:NumericIntUpDown  Step="1" Value="2" Watermark="Input Value" IsTextEditable="False" />
     </StackPanel>
 </UserControl>

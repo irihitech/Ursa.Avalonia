@@ -27,13 +27,13 @@ public abstract class NumericUpDown : TemplatedControl
     private Point? _point;
     protected internal bool _updateFromTextInput;
     
-    public static readonly StyledProperty<bool> TextEditableProperty = AvaloniaProperty.Register<NumericUpDown, bool>(
-        nameof(TextEditable), defaultValue: true);
+    public static readonly StyledProperty<bool> IsTextEditableProperty = AvaloniaProperty.Register<NumericUpDown, bool>(
+        nameof(IsTextEditable), defaultValue: true);
 
-    public bool TextEditable
+    public bool IsTextEditable
     {
-        get => GetValue(TextEditableProperty);
-        set => SetValue(TextEditableProperty, value);
+        get => GetValue(IsTextEditableProperty);
+        set => SetValue(IsTextEditableProperty, value);
     }
 
     public static readonly StyledProperty<bool> IsReadOnlyProperty = AvaloniaProperty.Register<NumericUpDown, bool>(
@@ -207,7 +207,7 @@ public abstract class NumericUpDown : TemplatedControl
     
     private void OnDragPanelPointerMoved(object sender, PointerEventArgs e)
     {
-        if (TextEditable) return;
+        if (IsTextEditable) return;
         if(!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
         var point = e.GetPosition(this);
         var delta = point - _point;

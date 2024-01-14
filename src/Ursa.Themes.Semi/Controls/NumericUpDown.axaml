@@ -38,7 +38,7 @@
                                 VerticalAlignment="Stretch"
                                 Background="Transparent"
                                 Cursor="SizeAll"
-                                IsVisible="{TemplateBinding TextEditable,
+                                IsVisible="{TemplateBinding IsTextEditable,
                                                             Converter={x:Static BoolConverters.Not}}" />
                         </Panel>
                     </ButtonSpinner>
