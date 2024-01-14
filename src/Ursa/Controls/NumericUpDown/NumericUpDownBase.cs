@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics;
+using System.Globalization;
 using System.Net.Mime;
 using Avalonia;
 using Avalonia.Controls;
@@ -156,12 +157,6 @@ public abstract class NumericUpDown : TemplatedControl
         {
             _spinner.Spin -= OnSpin;
         }
-        if(_textBox is not null)
-        {
-            _textBox.TextChanged -= OnTextChange;
-            
-        }
-
         if (_dragPanel is not null)
         {
             _dragPanel.PointerPressed -= OnDragPanelPointerPressed;
@@ -170,16 +165,11 @@ public abstract class NumericUpDown : TemplatedControl
         }
         _spinner = e.NameScope.Find<ButtonSpinner>(PART_Spinner);
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
+        _dragPanel = e.NameScope.Find<Panel>(PART_DragPanel);
         if (_spinner is not null)
         {
             _spinner.Spin += OnSpin;
         }
-
-        if (_textBox is not null)
-        {
-            _textBox.TextChanged += OnTextChange;
-        }
-
         if (_dragPanel is not null)
         {
             _dragPanel.PointerPressed+= OnDragPanelPointerPressed;
@@ -199,7 +189,7 @@ public abstract class NumericUpDown : TemplatedControl
     {
         if (e.Key == Key.Enter)
         {
-            var commitSuccess = CommitInput();
+            var commitSuccess = CommitInput(true);
             e.Handled = !commitSuccess;
         }
     }
@@ -216,22 +206,38 @@ public abstract class NumericUpDown : TemplatedControl
     
     private void OnDragPanelPointerMoved(object sender, PointerEventArgs e)
     {
+        if (TextEditable) return;
+        if(!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
         var point = e.GetPosition(this);
         var delta = point - _point;
         if (delta is null)
         {
             return;
         }
+        int d = GetDelta(delta.Value);
+        if(d > 0)
+        {
+            Increase();
+        }
+        else if (d < 0)
+        {
+            Decrease();
+        }
+        _point = point;
     }
 
-    [Obsolete]
-    private void OnTextChange(object sender, TextChangedEventArgs e)
+    private int GetDelta(Point point)
     {
-        _updateFromTextInput = true;
-        SyncTextAndValue();
-        _updateFromTextInput = false;
+        bool horizontal = Math.Abs(point.X) > Math.Abs(point.Y);
+        var value = horizontal ? point.X : point.Y;
+        return value switch
+        {
+            > 0 => 1,
+            < 0 => -1,
+            _ => 0
+        };
     }
-
+    
     private void OnSpin(object sender, SpinEventArgs e)
     {
         if (AllowSpin && !IsReadOnly)
@@ -495,6 +501,7 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
                     if (_textBox!= null && !Equals(_textBox.Text, newText))
                     {
                         _textBox.Text = newText;
+                        _textBox.CaretIndex = newText?.Length??0;
                     }
                 }
             }
