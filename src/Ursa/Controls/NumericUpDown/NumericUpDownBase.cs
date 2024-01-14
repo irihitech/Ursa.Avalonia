@@ -197,6 +197,7 @@ public abstract class NumericUpDown : TemplatedControl
     private void OnDragPanelPointerPressed(object sender, PointerPressedEventArgs e)
     {
         _point = e.GetPosition(this);
+        _textBox?.Focus();
     }
     
     private void OnDragPanelPointerReleased(object sender, PointerReleasedEventArgs e)
@@ -476,7 +477,6 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
             {
                 try
                 {
-                    // TODO
                     var newValue = ConvertTextToValue(text);
                     if (EmptyInputValue is not null && newValue is null)
                     {
