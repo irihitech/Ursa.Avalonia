@@ -1,48 +1,32 @@
-﻿using Avalonia.Utilities;
+﻿using System.Globalization;
+using Avalonia.Controls;
+using Avalonia.Utilities;
 
 namespace Ursa.Controls;
 
-public class IntUpDown: NumericUpDownBase<int>
+public class IntUpDown : NumericUpDownBase<int>
 {
     protected override Type StyleKeyOverride { get; } = typeof(NumericUpDown);
 
     static IntUpDown()
     {
         MaximumProperty.OverrideDefaultValue<IntUpDown>(int.MaxValue);
+        MinimumProperty.OverrideDefaultValue<IntUpDown>(int.MinValue);
         StepProperty.OverrideDefaultValue<IntUpDown>(1);
     }
-    
-    protected override void Increase()
+
+    protected override bool ParseText(string? text, out int? number)
     {
-        Value += Step;
+        var result = int.TryParse(text, ParsingNumberStyle, NumberFormat, out var value);
+        number = value;
+        return result;
     }
 
-    protected override void Decrease()
-    {
-        Value -= Step;
-    }
-    
-    protected override void UpdateTextToValue(string x)
-    {
-        if (int.TryParse(x, out var value))
-        {
-            Value = value;
-        }
-    }
+    protected override string? ValueToString(int? value) => value?.ToString(FormatString, NumberFormat);
 
-    protected override bool CommitInput()
-    {
-        // throw new NotImplementedException();
-        return true;
-    }
+    protected override int Zero => 0;
 
-    protected override void SyncTextAndValue()
-    {
-        // throw new NotImplementedException();
-    }
+    protected override int? Add(int? a, int? b) => a + b;
 
-    protected override int Clamp()
-    {
-        return MathUtilities.Clamp(Value, Maximum, Minimum);
-    }
+    protected override int? Minus(int? a, int? b) => a - b;
 }
