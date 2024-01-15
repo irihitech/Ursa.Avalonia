@@ -13,9 +13,15 @@
         <Setter Property="Padding" Value="48 24" />
         <Setter Property="SizeToContent" Value="WidthAndHeight" />
         <Setter Property="WindowStartupLocation" Value="CenterOwner" />
-        <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="0" />
+        <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="1" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
-        <Setter Property="SystemDecorations" Value="BorderOnly" />
+        <Setter Property="ExtendClientAreaChromeHints" Value="SystemChrome"/>
+        <Setter Property="SystemDecorations">
+            <OnPlatform >
+                <OnPlatform.Windows><SystemDecorations>Full</SystemDecorations></OnPlatform.Windows>
+                <OnPlatform.Default><SystemDecorations>BorderOnly</SystemDecorations></OnPlatform.Default>
+            </OnPlatform>
+        </Setter>
         <Setter Property="CanResize" Value="False" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:MessageBoxWindow">
@@ -23,6 +29,7 @@
                     <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
                     <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
+                    <ChromeOverlayLayer></ChromeOverlayLayer>
                     <Grid RowDefinitions="Auto, *, Auto">
                         <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
                             <TextBlock
