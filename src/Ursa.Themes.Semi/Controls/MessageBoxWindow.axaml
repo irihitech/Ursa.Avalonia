@@ -16,7 +16,12 @@
         <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="1" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
         <Setter Property="ExtendClientAreaChromeHints" Value="SystemChrome"/>
-        <Setter Property="SystemDecorations" Value="Full" />
+        <Setter Property="SystemDecorations">
+            <OnPlatform >
+                <OnPlatform.Windows><SystemDecorations>Full</SystemDecorations></OnPlatform.Windows>
+                <OnPlatform.Default><SystemDecorations>BorderOnly</SystemDecorations></OnPlatform.Default>
+            </OnPlatform>
+        </Setter>
         <Setter Property="CanResize" Value="False" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:MessageBoxWindow">
