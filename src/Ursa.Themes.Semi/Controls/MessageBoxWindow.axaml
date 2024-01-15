@@ -1,0 +1,149 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:MessageBoxWindow}" TargetType="u:MessageBoxWindow">
+        <Setter Property="Title" Value="{x:Null}" />
+        <Setter Property="Background" Value="{DynamicResource WindowDefaultBackground}" />
+        <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
+        <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
+        <Setter Property="Padding" Value="48 24" />
+        <Setter Property="SizeToContent" Value="WidthAndHeight" />
+        <Setter Property="WindowStartupLocation" Value="CenterOwner" />
+        <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="0" />
+        <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
+        <Setter Property="SystemDecorations" Value="BorderOnly" />
+        <Setter Property="CanResize" Value="False" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:MessageBoxWindow">
+                <Panel>
+                    <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
+                    <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
+                    <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
+                    <Grid RowDefinitions="Auto, *, Auto">
+                        <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
+                            <TextBlock
+                                Grid.Column="0"
+                                Margin="8,8,0,0"
+                                FontSize="14"
+                                FontWeight="Bold"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap"
+                                Text="{TemplateBinding Title}" />
+                            <!--  A temporary style copied from Semi. Will replace when I get time  -->
+                            <Button
+                                Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
+                                Grid.Column="1"
+                                Margin="0,4,4,0"
+                                Background="{DynamicResource CaptionButtonClosePointeroverBackground}"
+                                BorderBrush="{DynamicResource CaptionButtonClosePressedBackground}"
+                                Theme="{DynamicResource CaptionButton}">
+                                <Button.Styles>
+                                    <Style Selector="Button:pointerover">
+                                        <Setter Property="Foreground" Value="White" />
+                                    </Style>
+                                    <Style Selector="Button:pressed">
+                                        <Setter Property="Foreground" Value="White" />
+                                    </Style>
+                                </Button.Styles>
+                                <PathIcon
+                                    Width="12"
+                                    Height="12"
+                                    Data="{DynamicResource WindowCloseIconGlyph}"
+                                    Foreground="{Binding $parent[Button].Foreground}" />
+                            </Button>
+                        </Grid>
+                        <Grid
+                            Grid.Row="1"
+                            Margin="{TemplateBinding Padding}"
+                            MaxWidth="{DynamicResource MessageBoxWindowContentMaxWidth}"
+                            ColumnDefinitions="Auto, *">
+                            <PathIcon
+                                Name="PART_Icon"
+                                Grid.Column="0"
+                                Width="24"
+                                Height="24"
+                                Margin="0,0,12,0"
+                                VerticalAlignment="Center" />
+                            <ScrollViewer
+                                Grid.Column="1"
+                                MaxHeight="300"
+                                HorizontalScrollBarVisibility="Disabled"
+                                VerticalScrollBarVisibility="Auto">
+                                <TextBlock
+                                    Name="PART_ContentPresenter"
+                                    VerticalAlignment="Center"
+                                    Text="{TemplateBinding Content}"
+                                    TextAlignment="Left"
+                                    TextWrapping="Wrap" />
+                            </ScrollViewer>
+                        </Grid>
+                        <StackPanel
+                            Grid.Row="2"
+                            Margin="0,0,8,8"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                            <Button
+                                Name="{x:Static u:MessageBoxWindow.PART_CancelButton}"
+                                Margin="8,0,0,0"
+                                Classes="Tertiary"
+                                Content="Cancel" />
+                            <Button
+                                Name="{x:Static u:MessageBoxWindow.PART_NoButton}"
+                                Margin="8,0,0,0"
+                                Classes="Danger"
+                                Content="No" />
+                            <Button
+                                Name="{x:Static u:MessageBoxWindow.PART_YesButton}"
+                                Margin="8,0,0,0"
+                                Classes="Primary"
+                                Content="Yes" />
+                            <Button
+                                Name="{x:Static u:MessageBoxWindow.PART_OKButton}"
+                                Margin="8,0,0,0"
+                                Classes="Primary"
+                                Content="OK" />
+                        </StackPanel>
+                    </Grid>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^[MessageIcon=None] /template/ PathIcon#PART_Icon">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+        <Style Selector="^[MessageIcon=Asterisk] /template/ PathIcon#PART_Icon, ^[MessageIcon=Information] /template/ PathIcon#PART_Icon">
+            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
+            <Setter Property="Data" Value="{DynamicResource MessageBoxWindowInformationIconGlyph}" />
+        </Style>
+        <Style Selector="^[MessageIcon=Error] /template/ PathIcon#PART_Icon, ^[MessageIcon=Hand] /template/ PathIcon#PART_Icon, ^[MessageIcon=Stop] /template/ PathIcon#PART_Icon">
+            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="Foreground" Value="{DynamicResource SemiRed6}" />
+            <Setter Property="Data" Value="{DynamicResource MessageBoxWindowErrorIconGlyph}" />
+        </Style>
+        <Style Selector="^[MessageIcon=Exclamation] /template/ PathIcon#PART_Icon">
+            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="Foreground" Value="{DynamicResource SemiYellow6}" />
+            <Setter Property="Data" Value="{DynamicResource MessageBoxWindowWarningIconGlyph}" />
+        </Style>
+        <Style Selector="^[MessageIcon=Question] /template/ PathIcon#PART_Icon">
+            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
+            <Setter Property="Data" Value="{DynamicResource MessageBoxWindowQuestionIconGlyph}" />
+        </Style>
+        <Style Selector="^[MessageIcon=Warning] /template/ PathIcon#PART_Icon">
+            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="Foreground" Value="{DynamicResource SemiOrange6}" />
+            <Setter Property="Data" Value="{DynamicResource MessageBoxWindowWarningIconGlyph}" />
+        </Style>
+        <Style Selector="^[MessageIcon=Success] /template/ PathIcon#PART_Icon">
+            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="Foreground" Value="{DynamicResource SemiGreen6}" />
+            <Setter Property="Data" Value="{DynamicResource MessageBoxWindowSuccessIconGlyph}" />
+        </Style>
+
+    </ControlTheme>
+</ResourceDictionary>
