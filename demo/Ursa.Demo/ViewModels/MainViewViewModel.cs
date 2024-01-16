@@ -37,6 +37,7 @@ public class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyLoading => new LoadingDemoViewModel(),
             MenuKeys.MenuKeyMessageBox => new MessageBoxDemoViewModel(),
             MenuKeys.MenuKeyNavigation => new NavigationMenuDemoViewModel(),
+            MenuKeys.MenuKeyNumericUpDown => new NumericUpDownDemoViewModel(),
             MenuKeys.MenuKeyPagination => new PaginationDemoViewModel(),
             MenuKeys.MenuKeyTagInput => new TagInputDemoViewModel(),
             MenuKeys.MenuKeyTimeline => new TimelineDemoViewModel(),

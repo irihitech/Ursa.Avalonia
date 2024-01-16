@@ -1,0 +1,26 @@
+﻿<UserControl
+    x:Class="Ursa.Demo.Pages.NumericUpDownDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Styles>
+        <Style Selector=":is(u|NumericUpDown)">
+            <Setter Property="Width" Value="240"></Setter>
+        </Style>
+    </UserControl.Styles>
+    <StackPanel HorizontalAlignment="Left">
+        <u:NumericIntUpDown Name="input" InnerLeftContent="Age" Step="1" Value="2" Watermark="Input Value" Classes="ClearButton" />
+        <TextBlock Text="{Binding #input.Value}" ></TextBlock>
+        <u:NumericDoubleUpDown Name="inputDouble" Step="0.5" Value="3.1" EmptyInputValue="1"></u:NumericDoubleUpDown>
+        <TextBlock Text="{Binding #inputDouble.Value}"></TextBlock>
+        <u:NumericByteUpDown Name="inputByte" Step="1" Value="3" EmptyInputValue="1"></u:NumericByteUpDown>
+        <TextBlock Text="{Binding #inputByte.Value}"></TextBlock>
+        <TextBlock Text="Drag"></TextBlock>
+        <u:NumericIntUpDown  Step="1" Value="2" Watermark="Input Value" AllowDrag="True" />
+    </StackPanel>
+</UserControl>

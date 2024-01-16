@@ -13,6 +13,7 @@
         <ResourceInclude Source="Loading.axaml" />
         <ResourceInclude Source="MessageBoxWindow.axaml" />
         <ResourceInclude Source="Navigation.axaml" />
+        <ResourceInclude Source="NumericUpDown.axaml" />
         <ResourceInclude Source="Pagination.axaml" />
         <ResourceInclude Source="TagInput.axaml" />
         <ResourceInclude Source="Timeline.axaml" />
