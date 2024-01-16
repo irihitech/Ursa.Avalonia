@@ -108,15 +108,6 @@ public abstract class NumericUpDown : TemplatedControl
         set => SetValue(AllowSpinProperty, value);
     }
 
-    public static readonly StyledProperty<bool> AllowMouseWheelProperty = AvaloniaProperty.Register<NumericUpDown, bool>(
-        nameof(AllowMouseWheel));
-
-    public bool AllowMouseWheel
-    {
-        get => GetValue(AllowMouseWheelProperty);
-        set => SetValue(AllowMouseWheelProperty, value);
-    }
-
     public event EventHandler<SpinEventArgs>? Spinned;
     
     static NumericUpDown()
@@ -223,7 +214,7 @@ public abstract class NumericUpDown : TemplatedControl
     
     private void OnDragPanelPointerMoved(object sender, PointerEventArgs e)
     {
-        if (!AllowDrag) return;
+        if (!AllowDrag || IsReadOnly) return;
         if(!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
         var point = e.GetPosition(this);
         var delta = point - _point;
