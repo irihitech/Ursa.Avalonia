@@ -10,6 +10,8 @@ namespace Ursa.Controls.RangeSlider;
 /// </summary>
 public class RangeTrack: Control
 {
+    private double _density;
+    
     public static readonly StyledProperty<double> MinimumProperty = AvaloniaProperty.Register<RangeTrack, double>(
         nameof(Minimum));
 
@@ -55,10 +57,10 @@ public class RangeTrack: Control
         set => SetValue(OrientationProperty, value);
     }
 
-    public static readonly StyledProperty<RepeatButton> UpperButtonProperty = AvaloniaProperty.Register<RangeTrack, RepeatButton>(
+    public static readonly StyledProperty<Button?> UpperButtonProperty = AvaloniaProperty.Register<RangeTrack, Button?>(
         nameof(UpperButton));
 
-    public RepeatButton UpperButton
+    public Button? UpperButton
     {
         get => GetValue(UpperButtonProperty);
         set => SetValue(UpperButtonProperty, value);
@@ -111,12 +113,19 @@ public class RangeTrack: Control
     
     static RangeTrack()
     {
+        OrientationProperty.Changed.AddClassHandler<RangeTrack, Orientation>((o, e) => o.OnOrientationChanged(e));
         AffectsArrange<RangeTrack>(MinimumProperty, MaximumProperty, LowerValueProperty, UpperValueProperty, OrientationProperty, IsDirectionReversedProperty);
+    }
+
+    private void OnOrientationChanged(AvaloniaPropertyChangedEventArgs<Orientation> args)
+    {
+        Orientation o = args.NewValue.Value;
+        this.PseudoClasses.Set("", true);
     }
 
     protected override Size MeasureOverride(Size availableSize)
     {
-        var desiredSize = new Size(0.0, 0.0);
+        var desiredSize = new Size();
         if (LowerThumb is not null && UpperThumb is not null)
         {
             LowerThumb.Measure(availableSize);
@@ -132,7 +141,70 @@ public class RangeTrack: Control
                     LowerThumb.DesiredSize.Height + UpperThumb.DesiredSize.Height);
             }
         }
-        
         return desiredSize;
+    }
+
+    protected override Size ArrangeOverride(Size finalSize)
+    {
+        var vertical = Orientation == Orientation.Vertical;
+        double lowerButtonLength, innerButtonLength, upperButtonLength, lowerThumbLength, upperThumbLength;
+        ComputeSliderLengths(finalSize, vertical, out lowerButtonLength, out innerButtonLength, out upperButtonLength,
+            out lowerThumbLength, out upperThumbLength);
+        
+        return base.ArrangeOverride(finalSize);
+    }
+    
+    private void ComputeSliderLengths(
+        Size arrangeSize, 
+        bool isVertical, 
+        out double lowerButtonLength, 
+        out double innerButtonLength, 
+        out double upperButtonLength, 
+        out double lowerThumbLength, 
+        out double upperThumbLength)
+    {
+        
+        double min = Minimum;
+        double max = Maximum;
+        double all = Math.Max(0, max - min);
+        double lowerOffset = Math.Min(all, LowerValue - min);
+        double upperOffset = Math.Min(all, UpperValue - min);
+
+        double trackLength;
+        if (isVertical)
+        {
+            trackLength = arrangeSize.Height;
+            lowerThumbLength = LowerThumb?.DesiredSize.Height ?? 0;
+            upperThumbLength = UpperThumb?.DesiredSize.Height ?? 0;
+        }
+        else
+        {
+            trackLength = arrangeSize.Width;
+            lowerThumbLength = LowerThumb?.DesiredSize.Width ?? 0;
+            upperThumbLength = UpperThumb?.DesiredSize.Width ?? 0;
+        }
+        
+        CoerceLength(ref lowerThumbLength, trackLength);
+        CoerceLength(ref upperThumbLength, trackLength);
+        
+        double remainingLength = trackLength -lowerThumbLength - upperThumbLength;
+        
+        lowerButtonLength = remainingLength * lowerOffset / all;
+        upperButtonLength = remainingLength * upperOffset / all;
+        innerButtonLength = remainingLength - lowerButtonLength - upperButtonLength;
+
+        _density = all / remainingLength;
+    }
+
+    private static void CoerceLength(ref double componentLength, double trackLength)
+    {
+        if (componentLength < 0)
+        {
+            componentLength = 0.0;
+        }
+        else if (componentLength > trackLength || double.IsNaN(componentLength))
+        {
+            componentLength = trackLength;
+        }
     }
 }
