@@ -17,6 +17,7 @@ public static class MenuKeys
     public const string MenuKeyNavigation = "Navigation";
     public const string MenuKeyNumericUpDown = "NumericUpDown";
     public const string MenuKeyPagination = "Pagination";
+    public const string MenuKeyRangeSlider = "RangeSlider";
     public const string MenuKeyTagInput = "TagInput";
     public const string MenuKeyTimeline = "Timeline";
 

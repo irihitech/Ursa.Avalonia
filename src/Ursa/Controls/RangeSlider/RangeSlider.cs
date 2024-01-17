@@ -2,7 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 
-namespace Ursa.Controls.RangeSlider;
+namespace Ursa.Controls;
 
 [TemplatePart(PART_DecreaseButton, typeof(Button))]
 [TemplatePart(PART_IncreaseButton, typeof(Button))]
