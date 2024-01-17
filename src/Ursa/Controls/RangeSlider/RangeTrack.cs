@@ -68,31 +68,31 @@ public class RangeTrack: Control
         set => SetValue(OrientationProperty, value);
     }
 
-    public static readonly StyledProperty<Button?> UpperButtonProperty = AvaloniaProperty.Register<RangeTrack, Button?>(
-        nameof(UpperButton));
+    public static readonly StyledProperty<Control?> UpperSectionProperty = AvaloniaProperty.Register<RangeTrack, Control?>(
+        nameof(UpperSection));
 
-    public Button? UpperButton
+    public Control? UpperSection
     {
-        get => GetValue(UpperButtonProperty);
-        set => SetValue(UpperButtonProperty, value);
+        get => GetValue(UpperSectionProperty);
+        set => SetValue(UpperSectionProperty, value);
     }
 
-    public static readonly StyledProperty<Button?> LowerButtonProperty = AvaloniaProperty.Register<RangeTrack, Button?>(
-        nameof(LowerButton));
+    public static readonly StyledProperty<Control?> LowerSectionProperty = AvaloniaProperty.Register<RangeTrack, Control?>(
+        nameof(LowerSection));
 
-    public Button? LowerButton
+    public Control? LowerSection
     {
-        get => GetValue(LowerButtonProperty);
-        set => SetValue(LowerButtonProperty, value);
+        get => GetValue(LowerSectionProperty);
+        set => SetValue(LowerSectionProperty, value);
     }
 
-    public static readonly StyledProperty<Button?> InnerButtonProperty = AvaloniaProperty.Register<RangeTrack, Button?>(
-        nameof(InnerButton));
+    public static readonly StyledProperty<Control?> InnerSectionProperty = AvaloniaProperty.Register<RangeTrack, Control?>(
+        nameof(InnerSection));
 
-    public Button? InnerButton
+    public Control? InnerSection
     {
-        get => GetValue(InnerButtonProperty);
-        set => SetValue(InnerButtonProperty, value);
+        get => GetValue(InnerSectionProperty);
+        set => SetValue(InnerSectionProperty, value);
     }
     
     public static readonly StyledProperty<Thumb?> UpperThumbProperty = AvaloniaProperty.Register<RangeTrack, Thumb?>(
@@ -136,9 +136,9 @@ public class RangeTrack: Control
         OrientationProperty.Changed.AddClassHandler<RangeTrack, Orientation>((o, e) => o.OnOrientationChanged(e));
         LowerThumbProperty.Changed.AddClassHandler<RangeTrack, Thumb?>((o, e) => o.OnThumbChanged(e));
         UpperThumbProperty.Changed.AddClassHandler<RangeTrack, Thumb?>((o, e) => o.OnThumbChanged(e));
-        LowerButtonProperty.Changed.AddClassHandler<RangeTrack, Button?>((o, e) => o.OnButtonChanged(e));
-        UpperButtonProperty.Changed.AddClassHandler<RangeTrack, Button?>((o, e) => o.OnButtonChanged(e));
-        InnerButtonProperty.Changed.AddClassHandler<RangeTrack, Button?>((o, e) => o.OnButtonChanged(e));
+        LowerSectionProperty.Changed.AddClassHandler<RangeTrack, Control?>((o, e) => o.OnSectionChanged(e));
+        UpperSectionProperty.Changed.AddClassHandler<RangeTrack, Control?>((o, e) => o.OnSectionChanged(e));
+        InnerSectionProperty.Changed.AddClassHandler<RangeTrack, Control?>((o, e) => o.OnSectionChanged(e));
         MinimumProperty.Changed.AddClassHandler<RangeTrack, double>((o, e) => o.OnMinimumChanged(e));
         MaximumProperty.Changed.AddClassHandler<RangeTrack, double>((o, e) => o.OnMaximumChanged(e));
         LowerValueProperty.Changed.AddClassHandler<RangeTrack, double>((o, e) => o.OnValueChanged(e, true));
@@ -181,19 +181,19 @@ public class RangeTrack: Control
         }
     }
 
-    private void OnButtonChanged(AvaloniaPropertyChangedEventArgs<Button?> args)
+    private void OnSectionChanged(AvaloniaPropertyChangedEventArgs<Control?> args)
     {
-        var oldButton = args.OldValue.Value;
-        var newButton = args.NewValue.Value;
-        if (oldButton is not null)
+        var oldSection = args.OldValue.Value;
+        var newSection = args.NewValue.Value;
+        if (oldSection is not null)
         {
-            LogicalChildren.Remove(oldButton);
-            VisualChildren.Remove(oldButton);
+            LogicalChildren.Remove(oldSection);
+            VisualChildren.Remove(oldSection);
         }
-        if (newButton is not null)
+        if (newSection is not null)
         {
-            LogicalChildren.Add(newButton);
-            VisualChildren.Add(newButton);
+            LogicalChildren.Add(newSection);
+            VisualChildren.Add(newSection);
         }
     }
 
@@ -216,7 +216,8 @@ public class RangeTrack: Control
     }
 
     private void OnThumbDragDelta(object sender, VectorEventArgs e)
-    { 
+    {
+        return;
         if(sender is not Thumb thumb) return;
         bool lower = thumb == LowerThumb;
         double scale = IsDirectionReversed ? -1 : 1;
@@ -324,36 +325,36 @@ public class RangeTrack: Control
             if (IsDirectionReversed)
             {
                 pieceSize = pieceSize.WithHeight(upperButtonLength);
-                UpperButton?.Arrange(new Rect(offset, pieceSize));
+                UpperSection?.Arrange(new Rect(offset, pieceSize));
                 offset = offset.WithY(offset.Y + upperButtonLength);
                 pieceSize = pieceSize.WithHeight(upperThumbLength);
                 UpperThumb?.Arrange(new Rect(offset, pieceSize));
                 offset = offset.WithY(offset.Y + upperThumbLength);
                 pieceSize = pieceSize.WithHeight(innerButtonLength);
-                InnerButton?.Arrange(new Rect(offset, pieceSize));
+                InnerSection?.Arrange(new Rect(offset, pieceSize));
                 offset = offset.WithY(offset.Y + innerButtonLength);
                 pieceSize = pieceSize.WithHeight(lowerThumbLength);
                 LowerThumb?.Arrange(new Rect(offset, pieceSize));
                 offset = offset.WithY(offset.Y + lowerThumbLength);
                 pieceSize = pieceSize.WithHeight(lowerButtonLength);
-                LowerButton?.Arrange(new Rect(offset, pieceSize));
+                LowerSection?.Arrange(new Rect(offset, pieceSize));
             }
             else
             {
                 pieceSize = pieceSize.WithHeight(lowerButtonLength);
-                LowerButton?.Arrange(new Rect(offset, pieceSize));
+                LowerSection?.Arrange(new Rect(offset, pieceSize));
                 offset = offset.WithY(offset.Y + lowerButtonLength);
                 pieceSize = pieceSize.WithHeight(lowerThumbLength);
                 LowerThumb?.Arrange(new Rect(offset, pieceSize));
                 offset = offset.WithY(offset.Y + lowerThumbLength);
                 pieceSize = pieceSize.WithHeight(innerButtonLength);
-                InnerButton?.Arrange(new Rect(offset, pieceSize));
+                InnerSection?.Arrange(new Rect(offset, pieceSize));
                 offset = offset.WithY(offset.Y + innerButtonLength);
                 pieceSize = pieceSize.WithHeight(upperThumbLength);
                 UpperThumb?.Arrange(new Rect(offset, pieceSize));
                 offset = offset.WithY(offset.Y + upperThumbLength);
                 pieceSize = pieceSize.WithHeight(upperButtonLength);
-                UpperButton?.Arrange(new Rect(offset, pieceSize));
+                UpperSection?.Arrange(new Rect(offset, pieceSize));
             }
         }
         else
@@ -366,36 +367,36 @@ public class RangeTrack: Control
             if (IsDirectionReversed)
             {
                 pieceSize = pieceSize.WithWidth(upperButtonLength);
-                UpperButton?.Arrange(new Rect(offset, pieceSize));
+                UpperSection?.Arrange(new Rect(offset, pieceSize));
                 offset = offset.WithX(offset.X + upperButtonLength);
                 pieceSize = pieceSize.WithWidth(upperThumbLength);
                 UpperThumb?.Arrange(new Rect(offset, pieceSize));
                 offset = offset.WithX(offset.X + upperThumbLength);
                 pieceSize = pieceSize.WithWidth(innerButtonLength);
-                InnerButton?.Arrange(new Rect(offset, pieceSize));
+                InnerSection?.Arrange(new Rect(offset, pieceSize));
                 offset = offset.WithX(offset.X + innerButtonLength);
                 pieceSize = pieceSize.WithWidth(lowerThumbLength);
                 LowerThumb?.Arrange(new Rect(offset, pieceSize));
                 offset = offset.WithX(offset.X + lowerThumbLength);
                 pieceSize = pieceSize.WithWidth(lowerButtonLength);
-                LowerButton?.Arrange(new Rect(offset, pieceSize));
+                LowerSection?.Arrange(new Rect(offset, pieceSize));
             }
             else
             {
                 pieceSize = pieceSize.WithWidth(lowerButtonLength);
-                LowerButton?.Arrange(new Rect(offset, pieceSize));
+                LowerSection?.Arrange(new Rect(offset, pieceSize));
                 offset = offset.WithX(offset.X + lowerButtonLength);
                 pieceSize = pieceSize.WithWidth(lowerThumbLength);
                 LowerThumb?.Arrange(new Rect(offset, pieceSize));
                 offset = offset.WithX(offset.X + lowerThumbLength);
                 pieceSize = pieceSize.WithWidth(innerButtonLength);
-                InnerButton?.Arrange(new Rect(offset, pieceSize));
+                InnerSection?.Arrange(new Rect(offset, pieceSize));
                 offset = offset.WithX(offset.X + innerButtonLength);
                 pieceSize = pieceSize.WithWidth(upperThumbLength);
                 UpperThumb?.Arrange(new Rect(offset, pieceSize));
                 offset = offset.WithX(offset.X + upperThumbLength);
                 pieceSize = pieceSize.WithWidth(upperButtonLength);
-                UpperButton?.Arrange(new Rect(offset, pieceSize));
+                UpperSection?.Arrange(new Rect(offset, pieceSize));
                 
             }
         }
@@ -456,5 +457,19 @@ public class RangeTrack: Control
     private static bool ValidateDouble(double value)
     {
         return !double.IsInfinity(value) && !double.IsNaN(value);
+    }
+    
+    internal double GetThumbLength()
+    {
+        return Orientation == Orientation.Horizontal
+            ? LowerThumb?.Bounds.Width ?? 0 + UpperThumb?.Bounds.Width ?? 0
+            : LowerThumb?.Bounds.Height ?? 0 + UpperThumb?.Bounds.Height ?? 0;
+    }
+
+    internal double GetTrackLength()
+    {
+        return Orientation == Orientation.Horizontal
+            ? Bounds.Width
+            : Bounds.Height;
     }
 }

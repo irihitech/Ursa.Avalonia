@@ -1,42 +1,48 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:u="https://irihi.tech/ursa">
-    <!-- Add Resources Here -->
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:RangeSlider}" TargetType="u:RangeSlider">
+        <Setter Property="TrackWidth" Value="8" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:RangeSlider">
-                <u:RangeTrack 
-                    Minimum="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" 
-                    Maximum="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" 
+                <u:RangeTrack
+                    Name="{x:Static u:RangeSlider.PART_Track}"
                     LowerValue="{Binding LowerValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                    UpperValue="{Binding UpperValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay} ">
-                    <u:RangeTrack.LowerButton>
-                        <Button Content="Lower"></Button>
-                    </u:RangeTrack.LowerButton>
+                    Maximum="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                    Minimum="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                    UpperValue="{Binding UpperValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                    <u:RangeTrack.LowerSection>
+                        <Border
+                            Height="{TemplateBinding TrackWidth}"
+                            Background="Gray"
+                            CornerRadius="100" />
+                    </u:RangeTrack.LowerSection>
                     <u:RangeTrack.LowerThumb>
-                        <Thumb>
-                            <Thumb.Template>
-                                <ControlTemplate>
-                                    <Border Background="Red" Width="10" Height="10"></Border>
-                                </ControlTemplate>
-                            </Thumb.Template>   
-                        </Thumb>
+                        <Thumb
+                            Width="16"
+                            Height="16"
+                            Theme="{DynamicResource SliderThumbTheme}" />
                     </u:RangeTrack.LowerThumb>
-                    <u:RangeTrack.InnerButton>
-                        <Button Content="Inner"></Button>
-                    </u:RangeTrack.InnerButton>
+                    <u:RangeTrack.InnerSection>
+                        <Border
+                            Height="{TemplateBinding TrackWidth}"
+                            Background="Blue"
+                            CornerRadius="100" />
+                    </u:RangeTrack.InnerSection>
                     <u:RangeTrack.UpperThumb>
-                        <Thumb>
-                            <Thumb.Template>
-                                <ControlTemplate>
-                                    <Border Background="Green" Width="10" Height="10"></Border>
-                                </ControlTemplate>
-                            </Thumb.Template>
-                        </Thumb>
+                        <Thumb
+                            Width="16"
+                            Height="16"
+                            Theme="{DynamicResource SliderThumbTheme}" />
                     </u:RangeTrack.UpperThumb>
-                    <u:RangeTrack.UpperButton>
-                        <Button Content="Upper"></Button>
-                    </u:RangeTrack.UpperButton>
+                    <u:RangeTrack.UpperSection>
+                        <Border
+                            Height="{TemplateBinding TrackWidth}"
+                            Background="Gray"
+                            CornerRadius="100" />
+                    </u:RangeTrack.UpperSection>
                 </u:RangeTrack>
             </ControlTemplate>
         </Setter>
