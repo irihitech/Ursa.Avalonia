@@ -6,7 +6,16 @@
              mc:Ignorable="d" d:DesignWidth="800"
              d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.RangeSliderDemo">
+    <UserControl.Styles>
+        <Style Selector="u|NumericDoubleUpDown">
+            <Setter Property="Width" Value="300"></Setter>
+        </Style>
+    </UserControl.Styles>
     <StackPanel>
-        <u:RangeSlider Height="60"/>
+        <u:RangeSlider Name="range" Height="60"/>
+        <u:NumericDoubleUpDown InnerLeftContent="Minimum" Value="{Binding #range.Minimum, Mode=TwoWay}" />
+        <u:NumericDoubleUpDown InnerLeftContent="Maximum" Value="{Binding #range.Maximum, Mode=TwoWay}" />
+        <u:NumericDoubleUpDown InnerLeftContent="LowerValue" Value="{Binding #range.LowerValue, Mode=TwoWay}" />
+        <u:NumericDoubleUpDown InnerLeftContent="UpperValue" Value="{Binding #range.UpperValue, Mode=TwoWay}" />
     </StackPanel>
 </UserControl>

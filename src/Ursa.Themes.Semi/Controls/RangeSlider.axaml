@@ -5,7 +5,11 @@
     <ControlTheme x:Key="{x:Type u:RangeSlider}" TargetType="u:RangeSlider">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:RangeSlider">
-                <u:RangeTrack Minimum="0" Maximum="100" LowerValue="20" UpperValue="65">
+                <u:RangeTrack 
+                    Minimum="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" 
+                    Maximum="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" 
+                    LowerValue="{Binding LowerValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                    UpperValue="{Binding UpperValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay} ">
                     <u:RangeTrack.LowerButton>
                         <Button Content="Lower"></Button>
                     </u:RangeTrack.LowerButton>

@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
@@ -23,7 +24,7 @@ public class RangeTrack: Control
     private Vector _lastDrag;
     
     public static readonly StyledProperty<double> MinimumProperty = AvaloniaProperty.Register<RangeTrack, double>(
-        nameof(Minimum), coerce: CoerceMinimum);
+        nameof(Minimum), coerce: CoerceMinimum, defaultBindingMode:BindingMode.TwoWay);
 
     public double Minimum
     {
@@ -32,7 +33,7 @@ public class RangeTrack: Control
     }
 
     public static readonly StyledProperty<double> MaximumProperty = AvaloniaProperty.Register<RangeTrack, double>(
-        nameof(Maximum), coerce: CoerceMaximum);
+        nameof(Maximum), coerce: CoerceMaximum, defaultBindingMode: BindingMode.TwoWay);
 
     public double Maximum
     {
@@ -41,7 +42,7 @@ public class RangeTrack: Control
     }
     
     public static readonly StyledProperty<double> LowerValueProperty = AvaloniaProperty.Register<RangeTrack, double>(
-        nameof(LowerValue), coerce: CoerceLowerValue);
+        nameof(LowerValue), coerce: CoerceLowerValue, defaultBindingMode: BindingMode.TwoWay);
     
     public double LowerValue
     {
@@ -50,7 +51,7 @@ public class RangeTrack: Control
     }
     
     public static readonly StyledProperty<double> UpperValueProperty = AvaloniaProperty.Register<RangeTrack, double>(
-        nameof(UpperValue), coerce: CoerceUpperValue);
+        nameof(UpperValue), coerce: CoerceUpperValue, defaultBindingMode: BindingMode.TwoWay);
     
     public double UpperValue
     {
