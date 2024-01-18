@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using Avalonia;
+using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Mixins;
@@ -12,9 +13,12 @@ using Avalonia.Utilities;
 namespace Ursa.Controls;
 
 [TemplatePart(PART_Track, typeof(RangeTrack))]
+[PseudoClasses(PC_Horizontal, PC_Vertical)]
 public class RangeSlider: TemplatedControl
 {
     public const string PART_Track = "PART_Track";
+    private const string PC_Horizontal= "horizontal";
+    private const string PC_Vertical = "vertical";
 
     private RangeTrack? _track;
     private bool _isDragging;
@@ -75,6 +79,42 @@ public class RangeSlider: TemplatedControl
         get => GetValue(IsDirectionReversedProperty);
         set => SetValue(IsDirectionReversedProperty, value);
     }
+
+    public static readonly StyledProperty<double> TickFrequencyProperty = AvaloniaProperty.Register<RangeSlider, double>(
+        nameof(TickFrequency));
+
+    public double TickFrequency
+    {
+        get => GetValue(TickFrequencyProperty);
+        set => SetValue(TickFrequencyProperty, value);
+    }
+
+    public static readonly StyledProperty<AvaloniaList<double>?> TicksProperty =
+        TickBar.TicksProperty.AddOwner<RangeSlider>();
+
+    public AvaloniaList<double>? Ticks
+    {
+        get => GetValue(TicksProperty);
+        set => SetValue(TicksProperty, value);
+    }
+
+    public static readonly StyledProperty<TickPlacement> TickPlacementProperty =
+        Slider.TickPlacementProperty.AddOwner<RangeSlider>();
+
+    public TickPlacement TickPlacement
+    {
+        get => GetValue(TickPlacementProperty);
+        set => SetValue(TickPlacementProperty, value);
+    }
+
+    public static readonly StyledProperty<bool> IsSnapToTickProperty = AvaloniaProperty.Register<RangeSlider, bool>(
+        nameof(IsSnapToTick));
+
+    public bool IsSnapToTick
+    {
+        get => GetValue(IsSnapToTickProperty);
+        set => SetValue(IsSnapToTickProperty, value);
+    }
     
     static RangeSlider()
     {
@@ -82,10 +122,18 @@ public class RangeSlider: TemplatedControl
         FocusableProperty.OverrideDefaultValue<RangeSlider>(true);
         IsHitTestVisibleProperty.OverrideDefaultValue<RangeSlider>(true);
         OrientationProperty.OverrideDefaultValue<RangeSlider>(Orientation.Horizontal);
+        OrientationProperty.Changed.AddClassHandler<RangeSlider, Avalonia.Layout.Orientation>((o,e)=>o.OnOrientationChanged(e));
         MinimumProperty.OverrideDefaultValue<RangeSlider>(0);
         MaximumProperty.OverrideDefaultValue<RangeSlider>(100);
         LowerValueProperty.OverrideDefaultValue<RangeSlider>(0);
         UpperValueProperty.OverrideDefaultValue<RangeSlider>(100);
+    }
+
+    private void OnOrientationChanged(AvaloniaPropertyChangedEventArgs<Orientation> args)
+    {
+        var value = args.NewValue.Value;
+        PseudoClasses.Set(PC_Horizontal, value == Orientation.Horizontal);
+        PseudoClasses.Set(PC_Vertical, value == Orientation.Vertical);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -141,16 +189,50 @@ public class RangeSlider: TemplatedControl
         if (thumb is null) return;
         if (thumb == _track.LowerThumb)
         {
-            SetCurrentValue(LowerValueProperty, value);
+            SetCurrentValue(LowerValueProperty, IsSnapToTick ? SnapToTick(value) : value);
         }
         else
         {
-            SetCurrentValue(UpperValueProperty, value);
+            SetCurrentValue(UpperValueProperty, IsSnapToTick ? SnapToTick(value) : value);
         }
     }
 
     private double SnapToTick(double value)
     {
+        if (IsSnapToTick)
+        {
+            var previous = Minimum;
+            var next = Maximum;
+            
+            var ticks = Ticks;
+            
+            if (ticks != null && ticks.Count > 0)
+            {
+                foreach (var tick in ticks)
+                {
+                    if (MathUtilities.AreClose(tick, value))
+                    {
+                        return value;
+                    }
+
+                    if (MathUtilities.LessThan(tick, value) && MathUtilities.GreaterThan(tick, previous))
+                    {
+                        previous = tick;
+                    }
+                    else if (MathUtilities.GreaterThan(tick, value) && MathUtilities.LessThan(tick, next))
+                    {
+                        next = tick;
+                    }
+                }
+            }
+            else if (MathUtilities.GreaterThan(TickFrequency, 0.0))
+            {
+                previous = Minimum + Math.Round((value - Minimum) / TickFrequency) * TickFrequency;
+                next = Math.Min(Maximum, previous + TickFrequency);
+            }
+            value = MathUtilities.GreaterThanOrClose(value, (previous + next) * 0.5) ? next : previous;
+        }
+
         return value;
     }
 
