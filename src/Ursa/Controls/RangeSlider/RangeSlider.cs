@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -100,11 +101,13 @@ public class RangeSlider: TemplatedControl
         
     }
 
+    private Thumb? _currentThumb;
     private void PointerPress(object sender, PointerPressedEventArgs e)
     {
         if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
         {
             var point = e.GetCurrentPoint(_track);
+            _currentThumb = GetThumbByPoint(point);
             MoveToPoint(point);
             _isDragging = true;
         }
@@ -126,29 +129,71 @@ public class RangeSlider: TemplatedControl
     private void PointerRelease(object sender, PointerReleasedEventArgs e)
     {
         _isDragging = false;
+        _currentThumb = null;
     }
 
     private void MoveToPoint(PointerPoint posOnTrack)
     {
         if (_track is null) return;
-        var isHorizontal = Orientation == Orientation.Horizontal;
-        var thumbLength = _track.GetThumbLength();
-        var trackLength = _track.GetTrackLength() - thumbLength;
-        var pos = isHorizontal ? posOnTrack.Position.X : posOnTrack.Position.Y;
-        var lowerPosition = isHorizontal? _track.LowerThumb.Bounds.X : _track.LowerThumb.Bounds.Y;
-        var upperPosition = isHorizontal? _track.UpperThumb.Bounds.X : _track.UpperThumb.Bounds.Y;
-        bool lower =  Math.Abs(pos - lowerPosition) < Math.Abs(pos - upperPosition);
-        var logicalPosition = MathUtilities.Clamp((pos - thumbLength*0.5) / trackLength, 0.0, 1.0);
-        var invert = isHorizontal ? IsDirectionReversed ? 1.0 : 0 :
-            IsDirectionReversed ? 0 : 1.0;
-        var calValue = Math.Abs(invert - logicalPosition);
-        var range = Maximum - Minimum;
-        var finalValue = calValue * range + Minimum;
-        SetCurrentValue(lower? LowerValueProperty: UpperValueProperty, finalValue);
+        var value = GetValueByPoint(posOnTrack);
+        var thumb = GetThumbByPoint(posOnTrack);
+        if (_currentThumb !=null && _currentThumb != thumb) return;
+        if (thumb is null) return;
+        if (thumb == _track.LowerThumb)
+        {
+            SetCurrentValue(LowerValueProperty, value);
+        }
+        else
+        {
+            SetCurrentValue(UpperValueProperty, value);
+        }
     }
 
     private double SnapToTick(double value)
     {
         return value;
+    }
+
+    private Thumb? GetThumbByPoint(PointerPoint point)
+    {
+        var isHorizontal = Orientation == Orientation.Horizontal;
+        var lowerThumbPosition = isHorizontal? _track?.LowerThumb?.Bounds.Position.X : _track?.LowerThumb?.Bounds.Position.Y;
+        var upperThumbPosition = isHorizontal? _track?.UpperThumb?.Bounds.Position.X : _track?.UpperThumb?.Bounds.Position.Y;
+        var thumbWidth = isHorizontal? _track?.LowerThumb?.Bounds.Width : _track?.LowerThumb?.Bounds.Height;
+        var pointerPosition = isHorizontal? point.Position.X : point.Position.Y;
+
+        var lowerDistance = Math.Abs((lowerThumbPosition ?? 0) - pointerPosition);
+        var upperDistance = Math.Abs((upperThumbPosition ?? 0) - pointerPosition);
+
+        if (lowerDistance<upperDistance)
+        {
+            return _track?.LowerThumb;
+        }
+        else
+        {
+            return _track?.UpperThumb;
+        }
+    }
+    
+    private double GetValueByPoint(PointerPoint point)
+    {
+        if (_track is null) return 0;
+        var isHorizontal = Orientation == Orientation.Horizontal;
+        var trackLength = _track.GetTrackLength();
+        var pointPosition = isHorizontal ? point.Position.X : point.Position.Y;
+        var thumbLength = _track.GetThumbLength() * 0.5;
+        if(pointPosition < thumbLength)
+            return isHorizontal? Minimum : Maximum;
+        if (pointPosition > trackLength - thumbLength)
+            return isHorizontal? Maximum : Minimum;
+        trackLength -= thumbLength * 2;
+        pointPosition = MathUtilities.Clamp(pointPosition / trackLength, 0.0, 1.0);
+        var invert = isHorizontal 
+            ? IsDirectionReversed ? 1.0 : 0 
+            : IsDirectionReversed ? 0 : 1.0;
+        var calValue = Math.Abs(invert - pointPosition);
+        var range = Maximum - Minimum;
+        var finalValue = calValue * range + Minimum;
+        return finalValue;
     }
 }
