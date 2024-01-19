@@ -4,7 +4,9 @@
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:RangeSlider}" TargetType="u:RangeSlider">
-        <Setter Property="TrackWidth" Value="8" />
+        <Setter Property="Background" Value="{DynamicResource SliderTrackBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource SliderTrackForeground}" />
+        <Setter Property="TrackWidth" Value="4" />
         <Style Selector="^:horizontal">
             <Setter Property="Template">
                 <ControlTemplate TargetType="u:RangeSlider">
@@ -58,8 +60,9 @@
                                 UpperValue="{Binding UpperValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
                                 <u:RangeTrack.LowerSection>
                                     <Border
+                                        Name="PART_LowerSection"
                                         Height="{TemplateBinding TrackWidth}"
-                                        Background="Gray"
+                                        Background="{TemplateBinding Background}"
                                         CornerRadius="100" />
                                 </u:RangeTrack.LowerSection>
                                 <u:RangeTrack.LowerThumb>
@@ -70,8 +73,9 @@
                                 </u:RangeTrack.LowerThumb>
                                 <u:RangeTrack.InnerSection>
                                     <Border
+                                        Name="PART_InnerSection"
                                         Height="{TemplateBinding TrackWidth}"
-                                        Background="Blue"
+                                        Background="{TemplateBinding Foreground}"
                                         CornerRadius="100" />
                                 </u:RangeTrack.InnerSection>
                                 <u:RangeTrack.UpperThumb>
@@ -82,8 +86,9 @@
                                 </u:RangeTrack.UpperThumb>
                                 <u:RangeTrack.UpperSection>
                                     <Border
+                                        Name="PART_UpperSection"
                                         Height="{TemplateBinding TrackWidth}"
-                                        Background="Gray"
+                                        Background="{TemplateBinding Background}"
                                         CornerRadius="100" />
                                 </u:RangeTrack.UpperSection>
                             </u:RangeTrack>
@@ -145,8 +150,9 @@
                                 UpperValue="{Binding UpperValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
                                 <u:RangeTrack.LowerSection>
                                     <Border
-                                        Height="{TemplateBinding TrackWidth}"
-                                        Background="Gray"
+                                        Name="PART_LowerSection"
+                                        Width="{TemplateBinding TrackWidth}"
+                                        Background="{TemplateBinding Background}"
                                         CornerRadius="100" />
                                 </u:RangeTrack.LowerSection>
                                 <u:RangeTrack.LowerThumb>
@@ -157,8 +163,9 @@
                                 </u:RangeTrack.LowerThumb>
                                 <u:RangeTrack.InnerSection>
                                     <Border
-                                        Height="{TemplateBinding TrackWidth}"
-                                        Background="Blue"
+                                        Name="PART_InnerSection"
+                                        Width="{TemplateBinding TrackWidth}"
+                                        Background="{TemplateBinding Foreground}"
                                         CornerRadius="100" />
                                 </u:RangeTrack.InnerSection>
                                 <u:RangeTrack.UpperThumb>
@@ -169,8 +176,9 @@
                                 </u:RangeTrack.UpperThumb>
                                 <u:RangeTrack.UpperSection>
                                     <Border
-                                        Height="{TemplateBinding TrackWidth}"
-                                        Background="Gray"
+                                        Name="PART_UpperSection"
+                                        Width="{TemplateBinding TrackWidth}"
+                                        Background="{TemplateBinding Background}"
                                         CornerRadius="100" />
                                 </u:RangeTrack.UpperSection>
                             </u:RangeTrack>
@@ -197,6 +205,20 @@
 
         <Style Selector="^:error /template/ Thumb#thumb">
             <Setter Property="BorderBrush" Value="{DynamicResource DataValidationErrorsSelectedBorderBrush}" />
+        </Style>
+        
+        <Style Selector="^:disabled">
+            <Style Selector="^ /template/ Border#PART_InnerSection">
+                <Setter Property="Background" Value="{DynamicResource SliderTrackDisabledForeground}" />
+            </Style>
+
+            <Style Selector="^ /template/ Border#PART_UpperSection, ^ /template/ Border#PART_LowerSection">
+                <Setter Property="Background" Value="{DynamicResource SliderTrackDisabledBackground}" />
+            </Style>
+
+            <Style Selector="^ /template/ Thumb">
+                <Setter Property="BorderBrush" Value="{DynamicResource SliderThumbDisabledBorderBrush}" />
+            </Style>
         </Style>
     </ControlTheme>
 </ResourceDictionary>
