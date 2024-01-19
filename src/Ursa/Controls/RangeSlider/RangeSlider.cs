@@ -17,8 +17,8 @@ namespace Ursa.Controls;
 public class RangeSlider: TemplatedControl
 {
     public const string PART_Track = "PART_Track";
-    private const string PC_Horizontal= "horizontal";
-    private const string PC_Vertical = "vertical";
+    private const string PC_Horizontal= ":horizontal";
+    private const string PC_Vertical = ":vertical";
 
     private RangeTrack? _track;
     private bool _isDragging;
@@ -128,12 +128,16 @@ public class RangeSlider: TemplatedControl
         LowerValueProperty.OverrideDefaultValue<RangeSlider>(0);
         UpperValueProperty.OverrideDefaultValue<RangeSlider>(100);
     }
+    
+    public RangeSlider()
+    {
+        UpdatePseudoClasses(Orientation);
+    }
 
     private void OnOrientationChanged(AvaloniaPropertyChangedEventArgs<Orientation> args)
     {
         var value = args.NewValue.Value;
-        PseudoClasses.Set(PC_Horizontal, value == Orientation.Horizontal);
-        PseudoClasses.Set(PC_Vertical, value == Orientation.Vertical);
+        UpdatePseudoClasses(value);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -146,10 +150,10 @@ public class RangeSlider: TemplatedControl
         _pointerMoveDisposable = this.AddDisposableHandler(PointerMovedEvent, PointerMove, RoutingStrategies.Tunnel);
         _pointerPressedDisposable = this.AddDisposableHandler(PointerPressedEvent, PointerPress, RoutingStrategies.Tunnel);
         _pointerReleasedDisposable = this.AddDisposableHandler(PointerReleasedEvent, PointerRelease, RoutingStrategies.Tunnel);
-        
     }
 
     private Thumb? _currentThumb;
+    
     private void PointerPress(object sender, PointerPressedEventArgs e)
     {
         if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
@@ -266,22 +270,11 @@ public class RangeSlider: TemplatedControl
         var range = Maximum - Minimum;
         var finalValue = ratio * range + Minimum;
         return finalValue;
-        /*
-        var trackLength = _track.GetTrackLength();
-        var thumbLength = _track.GetThumbLength() * 0.5;
-        if(pointPosition < thumbLength * 0.5)
-            return isHorizontal? Minimum : Maximum;
-        if (pointPosition > trackLength - thumbLength * 0.5)
-            return isHorizontal? Maximum : Minimum;
-        trackLength -= thumbLength * 2;
-        pointPosition = MathUtilities.Clamp(pointPosition / trackLength, 0.0, 1.0);
-        var invert = isHorizontal
-            ? IsDirectionReversed ? 1.0 : 0
-            : IsDirectionReversed ? 0 : 1.0;
-        var calValue = Math.Abs(invert - pointPosition);
-        var range = Maximum - Minimum;
-        var finalValue = calValue * range + Minimum;
-        return finalValue;
-        */
+    }
+    
+    private void UpdatePseudoClasses(Orientation o)
+    {
+        this.PseudoClasses.Set(PC_Vertical, o == Orientation.Vertical);
+        this.PseudoClasses.Set(PC_Horizontal, o == Orientation.Horizontal);
     }
 }

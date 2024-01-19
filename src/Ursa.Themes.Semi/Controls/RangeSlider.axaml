@@ -5,46 +5,198 @@
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:RangeSlider}" TargetType="u:RangeSlider">
         <Setter Property="TrackWidth" Value="8" />
-        <Setter Property="Template">
-            <ControlTemplate TargetType="u:RangeSlider">
-                <u:RangeTrack
-                    Name="{x:Static u:RangeSlider.PART_Track}"
-                    LowerValue="{Binding LowerValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                    Maximum="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                    Minimum="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                    UpperValue="{Binding UpperValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
-                    <u:RangeTrack.LowerSection>
-                        <Border
-                            Height="{TemplateBinding TrackWidth}"
-                            Background="Gray"
-                            CornerRadius="100" />
-                    </u:RangeTrack.LowerSection>
-                    <u:RangeTrack.LowerThumb>
-                        <Thumb
-                            Width="16"
-                            Height="16"
-                            Theme="{DynamicResource SliderThumbTheme}" />
-                    </u:RangeTrack.LowerThumb>
-                    <u:RangeTrack.InnerSection>
-                        <Border
-                            Height="{TemplateBinding TrackWidth}"
-                            Background="Blue"
-                            CornerRadius="100" />
-                    </u:RangeTrack.InnerSection>
-                    <u:RangeTrack.UpperThumb>
-                        <Thumb
-                            Width="16"
-                            Height="16"
-                            Theme="{DynamicResource SliderThumbTheme}" />
-                    </u:RangeTrack.UpperThumb>
-                    <u:RangeTrack.UpperSection>
-                        <Border
-                            Height="{TemplateBinding TrackWidth}"
-                            Background="Gray"
-                            CornerRadius="100" />
-                    </u:RangeTrack.UpperSection>
-                </u:RangeTrack>
-            </ControlTemplate>
-        </Setter>
+        <Style Selector="^:horizontal">
+            <Setter Property="Template">
+                <ControlTemplate TargetType="u:RangeSlider">
+                    <DataValidationErrors>
+                        <Grid
+                            x:Name="SliderContainer"
+                            Margin="{TemplateBinding Padding}"
+                            Background="Transparent"
+                            RowDefinitions="Auto,Auto,Auto">
+                            <Grid.Styles>
+                                <Style Selector="TickBar">
+                                    <Setter Property="ReservedSpace" Value="{Binding #PART_Track.LowerThumb.Bounds}" />
+                                </Style>
+                            </Grid.Styles>
+                            <TickBar
+                                Name="TopTickBar"
+                                Grid.Row="0"
+                                Height="{DynamicResource SliderTickHorizontalHeight}"
+                                Margin="0,0,0,4"
+                                VerticalAlignment="Bottom"
+                                Fill="{DynamicResource SliderTickForeground}"
+                                IsVisible="False"
+                                Maximum="{TemplateBinding u:RangeSlider.Maximum}"
+                                Minimum="{TemplateBinding u:RangeSlider.Minimum}"
+                                Orientation="{TemplateBinding u:RangeSlider.Orientation}"
+                                Placement="Top"
+                                TickFrequency="{TemplateBinding u:RangeSlider.TickFrequency}"
+                                Ticks="{TemplateBinding Ticks}" />
+                            <TickBar
+                                Name="BottomTickBar"
+                                Grid.Row="2"
+                                Height="{DynamicResource SliderTickHorizontalHeight}"
+                                Margin="0,4,0,0"
+                                VerticalAlignment="Top"
+                                Fill="{DynamicResource SliderTickForeground}"
+                                IsVisible="False"
+                                Maximum="{TemplateBinding u:RangeSlider.Maximum}"
+                                Minimum="{TemplateBinding u:RangeSlider.Minimum}"
+                                Orientation="{TemplateBinding u:RangeSlider.Orientation}"
+                                Placement="Bottom"
+                                TickFrequency="{TemplateBinding u:RangeSlider.TickFrequency}"
+                                Ticks="{TemplateBinding Ticks}" />
+                            <u:RangeTrack
+                                Name="{x:Static u:RangeSlider.PART_Track}"
+                                Grid.Row="1"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                LowerValue="{Binding LowerValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                Maximum="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                Minimum="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                UpperValue="{Binding UpperValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                                <u:RangeTrack.LowerSection>
+                                    <Border
+                                        Height="{TemplateBinding TrackWidth}"
+                                        Background="Gray"
+                                        CornerRadius="100" />
+                                </u:RangeTrack.LowerSection>
+                                <u:RangeTrack.LowerThumb>
+                                    <Thumb
+                                        Width="16"
+                                        Height="16"
+                                        Theme="{DynamicResource SliderThumbTheme}" />
+                                </u:RangeTrack.LowerThumb>
+                                <u:RangeTrack.InnerSection>
+                                    <Border
+                                        Height="{TemplateBinding TrackWidth}"
+                                        Background="Blue"
+                                        CornerRadius="100" />
+                                </u:RangeTrack.InnerSection>
+                                <u:RangeTrack.UpperThumb>
+                                    <Thumb
+                                        Width="16"
+                                        Height="16"
+                                        Theme="{DynamicResource SliderThumbTheme}" />
+                                </u:RangeTrack.UpperThumb>
+                                <u:RangeTrack.UpperSection>
+                                    <Border
+                                        Height="{TemplateBinding TrackWidth}"
+                                        Background="Gray"
+                                        CornerRadius="100" />
+                                </u:RangeTrack.UpperSection>
+                            </u:RangeTrack>
+                        </Grid>
+                    </DataValidationErrors>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="^:vertical">
+            <Setter Property="Template">
+                <ControlTemplate TargetType="u:RangeSlider">
+                    <DataValidationErrors>
+                        <Grid
+                            x:Name="SliderContainer"
+                            Margin="{TemplateBinding Padding}"
+                            Background="{DynamicResource SliderContainerBackground}"
+                            ColumnDefinitions="Auto,Auto,Auto">
+                            <Grid.Styles>
+                                <Style Selector="TickBar">
+                                    <Setter Property="ReservedSpace" Value="{Binding #PART_Track.LowerThumb.Bounds}" />
+                                </Style>
+                            </Grid.Styles>
+                            <TickBar
+                                Name="LeftTickBar"
+                                Grid.Column="0"
+                                Width="{DynamicResource SliderTickVerticalWidth}"
+                                Margin="0,0,4,0"
+                                HorizontalAlignment="Right"
+                                Fill="{DynamicResource SliderTickForeground}"
+                                IsVisible="False"
+                                Maximum="{TemplateBinding u:RangeSlider.Maximum}"
+                                Minimum="{TemplateBinding u:RangeSlider.Minimum}"
+                                Orientation="{TemplateBinding u:RangeSlider.Orientation}"
+                                Placement="Left"
+                                TickFrequency="{TemplateBinding u:RangeSlider.TickFrequency}"
+                                Ticks="{TemplateBinding Ticks}" />
+                            <TickBar
+                                Name="RightTickBar"
+                                Grid.Column="2"
+                                Width="{DynamicResource SliderTickVerticalWidth}"
+                                Margin="4,0,0,0"
+                                HorizontalAlignment="Left"
+                                Fill="{DynamicResource SliderTickForeground}"
+                                IsVisible="False"
+                                Maximum="{TemplateBinding u:RangeSlider.Maximum}"
+                                Minimum="{TemplateBinding u:RangeSlider.Minimum}"
+                                Orientation="{TemplateBinding u:RangeSlider.Orientation}"
+                                Placement="Right"
+                                TickFrequency="{TemplateBinding u:RangeSlider.TickFrequency}"
+                                Ticks="{TemplateBinding Ticks}" />
+                            <u:RangeTrack
+                                Name="{x:Static u:RangeSlider.PART_Track}"
+                                Grid.Column="1"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                LowerValue="{Binding LowerValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                Maximum="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                Minimum="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                UpperValue="{Binding UpperValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                                <u:RangeTrack.LowerSection>
+                                    <Border
+                                        Height="{TemplateBinding TrackWidth}"
+                                        Background="Gray"
+                                        CornerRadius="100" />
+                                </u:RangeTrack.LowerSection>
+                                <u:RangeTrack.LowerThumb>
+                                    <Thumb
+                                        Width="16"
+                                        Height="16"
+                                        Theme="{DynamicResource SliderThumbTheme}" />
+                                </u:RangeTrack.LowerThumb>
+                                <u:RangeTrack.InnerSection>
+                                    <Border
+                                        Height="{TemplateBinding TrackWidth}"
+                                        Background="Blue"
+                                        CornerRadius="100" />
+                                </u:RangeTrack.InnerSection>
+                                <u:RangeTrack.UpperThumb>
+                                    <Thumb
+                                        Width="16"
+                                        Height="16"
+                                        Theme="{DynamicResource SliderThumbTheme}" />
+                                </u:RangeTrack.UpperThumb>
+                                <u:RangeTrack.UpperSection>
+                                    <Border
+                                        Height="{TemplateBinding TrackWidth}"
+                                        Background="Gray"
+                                        CornerRadius="100" />
+                                </u:RangeTrack.UpperSection>
+                            </u:RangeTrack>
+                        </Grid>
+                    </DataValidationErrors>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="^[TickPlacement=TopLeft] /template/ TickBar#LeftTickBar, ^[TickPlacement=Outside] /template/ TickBar#LeftTickBar">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+
+        <Style Selector="^[TickPlacement=TopLeft] /template/ TickBar#TopTickBar, ^[TickPlacement=Outside] /template/ TickBar#TopTickBar">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+
+        <Style Selector="^[TickPlacement=BottomRight] /template/ TickBar#BottomTickBar, ^[TickPlacement=Outside] /template/ TickBar#BottomTickBar">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+
+        <Style Selector="^[TickPlacement=BottomRight] /template/ TickBar#RightTickBar, ^[TickPlacement=Outside] /template/ TickBar#RightTickBar">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+
+        <Style Selector="^:error /template/ Thumb#thumb">
+            <Setter Property="BorderBrush" Value="{DynamicResource DataValidationErrorsSelectedBorderBrush}" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>
