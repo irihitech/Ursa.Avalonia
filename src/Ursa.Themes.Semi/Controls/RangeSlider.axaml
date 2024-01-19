@@ -54,11 +54,11 @@
                                 Grid.Row="1"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
-                                Orientation="{Binding Orientation, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                LowerValue="{Binding LowerValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                Maximum="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                Minimum="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                UpperValue="{Binding UpperValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                                Orientation="{Binding Orientation, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                LowerValue="{Binding LowerValue, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                Maximum="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                Minimum="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                UpperValue="{Binding UpperValue, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}">
                                 <u:RangeTrack.LowerSection>
                                     <Border
                                         Name="PART_LowerSection"
@@ -145,11 +145,11 @@
                                 Grid.Column="1"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
-                                Orientation="{Binding Orientation, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                LowerValue="{Binding LowerValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                Maximum="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                Minimum="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                UpperValue="{Binding UpperValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                                Orientation="{Binding Orientation, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                LowerValue="{Binding LowerValue, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                Maximum="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                Minimum="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                UpperValue="{Binding UpperValue, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}">
                                 <u:RangeTrack.LowerSection>
                                     <Border
                                         Name="PART_LowerSection"

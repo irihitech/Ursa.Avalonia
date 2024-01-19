@@ -4,6 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:u="https://irihi.tech/ursa"
              mc:Ignorable="d" d:DesignWidth="800"
+             xmlns:vm="using:Ursa.Demo.ViewModels"
+             x:DataType="vm:RangeSliderDemoViewModel"
+             x:CompileBindings="True"
              d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.RangeSliderDemo">
     <UserControl.Styles>
@@ -12,11 +15,12 @@
         </Style>
     </UserControl.Styles>
     <StackPanel>
-        <u:RangeSlider Name="range" TickFrequency="5" IsSnapToTick="True" TickPlacement="TopLeft"/>
+        <u:RangeSlider  TickFrequency="5" IsSnapToTick="True" TickPlacement="TopLeft"/>
         <u:NumericDoubleUpDown InnerLeftContent="Minimum" Value="{Binding #range.Minimum, Mode=TwoWay}" />
         <u:NumericDoubleUpDown InnerLeftContent="Maximum" Value="{Binding #range.Maximum, Mode=TwoWay}" />
         <u:NumericDoubleUpDown InnerLeftContent="LowerValue" Value="{Binding #range.LowerValue, Mode=TwoWay}" />
         <u:NumericDoubleUpDown InnerLeftContent="UpperValue" Value="{Binding #range.UpperValue, Mode=TwoWay}" />
-        <u:RangeSlider TickFrequency="5" Orientation="Vertical" Height="300"></u:RangeSlider>
+        <ComboBox ItemsSource="{Binding Orientations}" SelectedItem="{Binding Orientation}"></ComboBox>
+        <u:RangeSlider Name="range" TickFrequency="5" Orientation="{Binding Orientation}" Height="300"></u:RangeSlider>
     </StackPanel>
 </UserControl>
