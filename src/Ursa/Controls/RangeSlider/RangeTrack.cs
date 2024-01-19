@@ -495,4 +495,53 @@ public class RangeTrack: Control
             ? Bounds.Width
             : Bounds.Height;
     }
+
+    internal double GetRatioByPoint(double position)
+    {
+        bool isHorizontal = Orientation == Orientation.Horizontal;
+        var range = LowerSection?.Bounds.Width + InnerSection?.Bounds.Width + UpperSection?.Bounds.Width ?? double.Epsilon;
+        if (isHorizontal)
+        {
+            
+            if (IsDirectionReversed)
+            {
+                double trackStart = UpperThumb?.Bounds.Width/2 ?? 0;
+                double trackEnd = trackStart + range;
+                if (position < trackStart) return 1.0;
+                if (position > trackEnd) return 0.0;
+                double diff = trackEnd - position;
+                return diff / range;
+            }
+            else
+            {
+                double trackStart = LowerThumb?.Bounds.Width/2 ?? 0;
+                double trackEnd = trackStart + range;
+                if (position < trackStart) return 0.0;
+                if (position > trackEnd) return 1.0;
+                double diff = position - trackStart;
+                return diff / range;
+            }
+        }
+        else
+        {
+            if (IsDirectionReversed)
+            {
+                double trackStart = UpperThumb?.Bounds.Height/2 ?? 0;
+                double trackEnd = trackStart + range;
+                if (position < trackStart) return 1.0;
+                if (position > trackEnd) return 0.0;
+                double diff = trackEnd - position;
+                return diff / range;
+            }
+            else
+            {
+                double trackStart = LowerThumb?.Bounds.Height/2 ?? 0;
+                double trackEnd = trackStart + range;
+                if (position < trackStart) return 0.0;
+                if (position > trackEnd) return 1.0;
+                double diff = position - trackStart;
+                return diff / range;
+            }
+        }
+    }
 }

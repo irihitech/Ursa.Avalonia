@@ -12,7 +12,7 @@
         </Style>
     </UserControl.Styles>
     <StackPanel>
-        <u:RangeSlider Name="range" Height="24" TickFrequency="5" IsSnapToTick="False"/>
+        <u:RangeSlider Name="range" Height="24" TickFrequency="5" IsSnapToTick="True"/>
         <u:NumericDoubleUpDown InnerLeftContent="Minimum" Value="{Binding #range.Minimum, Mode=TwoWay}" />
         <u:NumericDoubleUpDown InnerLeftContent="Maximum" Value="{Binding #range.Maximum, Mode=TwoWay}" />
         <u:NumericDoubleUpDown InnerLeftContent="LowerValue" Value="{Binding #range.LowerValue, Mode=TwoWay}" />

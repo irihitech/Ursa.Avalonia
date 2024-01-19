@@ -239,9 +239,8 @@ public class RangeSlider: TemplatedControl
     private Thumb? GetThumbByPoint(PointerPoint point)
     {
         var isHorizontal = Orientation == Orientation.Horizontal;
-        var lowerThumbPosition = isHorizontal? _track?.LowerThumb?.Bounds.Position.X : _track?.LowerThumb?.Bounds.Position.Y;
-        var upperThumbPosition = isHorizontal? _track?.UpperThumb?.Bounds.Position.X : _track?.UpperThumb?.Bounds.Position.Y;
-        var thumbWidth = isHorizontal? _track?.LowerThumb?.Bounds.Width : _track?.LowerThumb?.Bounds.Height;
+        var lowerThumbPosition = isHorizontal? _track?.LowerThumb?.Bounds.Center.X : _track?.LowerThumb?.Bounds.Center.Y;
+        var upperThumbPosition = isHorizontal? _track?.UpperThumb?.Bounds.Center.X : _track?.UpperThumb?.Bounds.Center.Y;
         var pointerPosition = isHorizontal? point.Position.X : point.Position.Y;
 
         var lowerDistance = Math.Abs((lowerThumbPosition ?? 0) - pointerPosition);
@@ -261,21 +260,28 @@ public class RangeSlider: TemplatedControl
     {
         if (_track is null) return 0;
         var isHorizontal = Orientation == Orientation.Horizontal;
-        var trackLength = _track.GetTrackLength();
+
         var pointPosition = isHorizontal ? point.Position.X : point.Position.Y;
+        var ratio = _track.GetRatioByPoint(pointPosition);
+        var range = Maximum - Minimum;
+        var finalValue = ratio * range + Minimum;
+        return finalValue;
+        /*
+        var trackLength = _track.GetTrackLength();
         var thumbLength = _track.GetThumbLength() * 0.5;
-        if(pointPosition < thumbLength)
+        if(pointPosition < thumbLength * 0.5)
             return isHorizontal? Minimum : Maximum;
-        if (pointPosition > trackLength - thumbLength)
+        if (pointPosition > trackLength - thumbLength * 0.5)
             return isHorizontal? Maximum : Minimum;
         trackLength -= thumbLength * 2;
         pointPosition = MathUtilities.Clamp(pointPosition / trackLength, 0.0, 1.0);
-        var invert = isHorizontal 
-            ? IsDirectionReversed ? 1.0 : 0 
+        var invert = isHorizontal
+            ? IsDirectionReversed ? 1.0 : 0
             : IsDirectionReversed ? 0 : 1.0;
         var calValue = Math.Abs(invert - pointPosition);
         var range = Maximum - Minimum;
         var finalValue = calValue * range + Minimum;
         return finalValue;
+        */
     }
 }
