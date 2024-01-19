@@ -499,10 +499,11 @@ public class RangeTrack: Control
     internal double GetRatioByPoint(double position)
     {
         bool isHorizontal = Orientation == Orientation.Horizontal;
-        var range = LowerSection?.Bounds.Width + InnerSection?.Bounds.Width + UpperSection?.Bounds.Width ?? double.Epsilon;
+        var range = isHorizontal? 
+            LowerSection?.Bounds.Width + InnerSection?.Bounds.Width + UpperSection?.Bounds.Width ?? double.Epsilon
+            : LowerSection?.Bounds.Height + InnerSection?.Bounds.Height + UpperSection?.Bounds.Height ?? double.Epsilon;
         if (isHorizontal)
         {
-            
             if (IsDirectionReversed)
             {
                 double trackStart = UpperThumb?.Bounds.Width/2 ?? 0;
