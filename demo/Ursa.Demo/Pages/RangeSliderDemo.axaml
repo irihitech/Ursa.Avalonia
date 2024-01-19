@@ -17,5 +17,6 @@
         <u:NumericDoubleUpDown InnerLeftContent="Maximum" Value="{Binding #range.Maximum, Mode=TwoWay}" />
         <u:NumericDoubleUpDown InnerLeftContent="LowerValue" Value="{Binding #range.LowerValue, Mode=TwoWay}" />
         <u:NumericDoubleUpDown InnerLeftContent="UpperValue" Value="{Binding #range.UpperValue, Mode=TwoWay}" />
+        <u:RangeSlider TickFrequency="5" Orientation="Vertical" Height="300"></u:RangeSlider>
     </StackPanel>
 </UserControl>

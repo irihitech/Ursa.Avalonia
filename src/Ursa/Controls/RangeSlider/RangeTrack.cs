@@ -234,12 +234,12 @@ public class RangeTrack: Control
     {
         return ValidateDouble(value)
             ? Math.Max(value, sender.GetValue(MinimumProperty))
-            : sender.GetValue(MinimumProperty);
+            : sender.GetValue(MaximumProperty);
     }
 
     private static double CoerceMinimum(AvaloniaObject sender, double value)
     {
-        return ValidateDouble(value) ? value : sender.GetValue(MaximumProperty);
+        return ValidateDouble(value) ? value : sender.GetValue(MinimumProperty);
     }
 
     private static double CoerceLowerValue(AvaloniaObject sender, double value)
