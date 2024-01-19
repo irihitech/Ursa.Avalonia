@@ -116,19 +116,40 @@ public class RangeSlider: TemplatedControl
         set => SetValue(IsSnapToTickProperty, value);
     }
     
+    public static readonly RoutedEvent<RangeValueChangedEventArgs> ValueChangedEvent =
+        RoutedEvent.Register<RangeSlider, RangeValueChangedEventArgs>(nameof(ValueChanged), RoutingStrategies.Bubble);
+    
+    public event EventHandler<RangeValueChangedEventArgs> ValueChanged
+    {
+        add => AddHandler(ValueChangedEvent, value);
+        remove => RemoveHandler(ValueChangedEvent, value);
+    } 
+    
     static RangeSlider()
     {
         PressedMixin.Attach<RangeSlider>();
         FocusableProperty.OverrideDefaultValue<RangeSlider>(true);
         IsHitTestVisibleProperty.OverrideDefaultValue<RangeSlider>(true);
         OrientationProperty.OverrideDefaultValue<RangeSlider>(Orientation.Horizontal);
-        OrientationProperty.Changed.AddClassHandler<RangeSlider, Avalonia.Layout.Orientation>((o,e)=>o.OnOrientationChanged(e));
+        OrientationProperty.Changed.AddClassHandler<RangeSlider, Orientation>((o,e)=>o.OnOrientationChanged(e));
         MinimumProperty.OverrideDefaultValue<RangeSlider>(0);
         MaximumProperty.OverrideDefaultValue<RangeSlider>(100);
         LowerValueProperty.OverrideDefaultValue<RangeSlider>(0);
         UpperValueProperty.OverrideDefaultValue<RangeSlider>(100);
+        LowerValueProperty.Changed.AddClassHandler<RangeSlider, double>((o, e) => o.OnValueChanged(e, true));
+        UpperValueProperty.Changed.AddClassHandler<RangeSlider, double>((o, e) => o.OnValueChanged(e, false));
     }
-    
+
+    private void OnValueChanged(AvaloniaPropertyChangedEventArgs<double> args, bool isLower)
+    {
+        var oldValue = args.OldValue.Value;
+        var newValue = args.NewValue.Value;
+        if (oldValue != newValue)
+        {
+            RaiseEvent(new RangeValueChangedEventArgs(ValueChangedEvent, this, oldValue, newValue, isLower));
+        }
+    }
+
     public RangeSlider()
     {
         UpdatePseudoClasses(Orientation);

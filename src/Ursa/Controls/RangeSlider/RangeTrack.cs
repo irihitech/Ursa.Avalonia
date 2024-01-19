@@ -212,45 +212,15 @@ public class RangeTrack: Control
         var newThumb = args.NewValue.Value;
         if(oldThumb is not null)
         {
-            oldThumb.DragDelta -= OnThumbDragDelta;
             LogicalChildren.Remove(oldThumb);
             VisualChildren.Remove(oldThumb);
         }
         if (newThumb is not null)
         {
-            newThumb.DragDelta += OnThumbDragDelta;
             newThumb.ZIndex = 5;
             LogicalChildren.Add(newThumb);
             VisualChildren.Add(newThumb);
         }
-    }
-
-    private void OnThumbDragDelta(object sender, VectorEventArgs e)
-    {
-        return;
-        if(sender is not Thumb thumb) return;
-        bool lower = thumb == LowerThumb;
-        double scale = IsDirectionReversed ? -1 : 1;
-        double originalValue = lower ? LowerValue : UpperValue;
-        double value;
-        if (Orientation == Orientation.Horizontal)
-        {
-            value = scale * e.Vector.X * _density;
-        }
-        else
-        {
-            value = -1 * scale * e.Vector.Y * _density;
-        }
-        var factor = e.Vector / value;
-        if (lower)
-        {
-            SetCurrentValue(LowerValueProperty, MathUtilities.Clamp(originalValue + value, Minimum, UpperValue));
-        }
-        else
-        {
-            SetCurrentValue(UpperValueProperty, MathUtilities.Clamp(originalValue + value, LowerValue, Maximum));
-        }
-        
     }
 
     private void OnOrientationChanged(AvaloniaPropertyChangedEventArgs<Orientation> args)
@@ -480,20 +450,6 @@ public class RangeTrack: Control
     private static bool ValidateDouble(double value)
     {
         return !double.IsInfinity(value) && !double.IsNaN(value);
-    }
-    
-    internal double GetThumbLength()
-    {
-        return Orientation == Orientation.Horizontal
-            ? LowerThumb?.Bounds.Width ?? 0 + UpperThumb?.Bounds.Width ?? 0
-            : LowerThumb?.Bounds.Height ?? 0 + UpperThumb?.Bounds.Height ?? 0;
-    }
-
-    internal double GetTrackLength()
-    {
-        return Orientation == Orientation.Horizontal
-            ? Bounds.Width
-            : Bounds.Height;
     }
 
     internal double GetRatioByPoint(double position)
