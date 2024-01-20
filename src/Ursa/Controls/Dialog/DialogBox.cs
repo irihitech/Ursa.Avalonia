@@ -1,4 +1,7 @@
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Shapes;
+using Avalonia.Media;
 
 namespace Ursa.Controls;
 
@@ -15,6 +18,20 @@ public static class DialogBox
     {
         TView t = new TView();
         t.DataContext = vm;
-        return;
+    }
+
+    public static async Task<object?> ShowOverlayAsync<TView, TViewModel>(TViewModel vm, string hostId)
+        where TView : Control, new()
+        where TViewModel: new()
+    {
+        var t = new Border()
+        {
+            Width = 100, Height = 100, Background = Brushes.Aqua, BorderBrush = Brushes.Yellow,
+            BorderThickness = new Thickness(1)
+        };
+        t.DataContext = vm;
+        var host = OverlayDialogManager.GetOverlayDialogHost(hostId);
+        host?.Children.Add(t);
+        return null;
     }
 }

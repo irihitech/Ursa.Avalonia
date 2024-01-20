@@ -1,0 +1,29 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.DialogDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:DialogDemoViewModel"
+    mc:Ignorable="d">
+    <Grid ColumnDefinitions="Auto, *">
+        <StackPanel Grid.Column="0">
+            <Button Command="{Binding ShowLocalOverlayDialogCommand}">Show Local Overlay Dialog</Button>
+            <Button Command="{Binding ShowGlobalOverlayDialogCommand}"> Show Global Overlay Dialog </Button>
+        </StackPanel>
+        <Grid Grid.Column="1">
+            <Button
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Command="{Binding ShowLocalOverlayDialogCommand}">
+                Show Local Overlay Dialog
+            </Button>
+            <u:OverlayDialogHost HostId="LocalHost" />
+        </Grid>
+    </Grid>
+</UserControl>

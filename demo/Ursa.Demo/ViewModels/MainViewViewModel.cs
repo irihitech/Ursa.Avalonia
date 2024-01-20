@@ -28,6 +28,7 @@ public class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyBadge => new BadgeDemoViewModel(),
             MenuKeys.MenuKeyBanner => new BannerDemoViewModel(),
             MenuKeys.MenuKeyButtonGroup => new ButtonGroupDemoViewModel(),
+            MenuKeys.MenuKeyDialog => new DialogDemoViewModel(),
             MenuKeys.MenuKeyDivider => new DividerDemoViewModel(),
             MenuKeys.MenuKeyDualBadge => new DualBadgeDemoViewModel(),
             MenuKeys.MenuKeyImageViewer => new ImageViewerDemoViewModel(),
