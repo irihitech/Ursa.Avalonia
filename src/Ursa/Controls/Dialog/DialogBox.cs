@@ -24,10 +24,10 @@ public static class DialogBox
         where TView : Control, new()
         where TViewModel: new()
     {
-        var t = new Border()
+        var t = new DialogControl()
         {
-            Width = 100, Height = 100, Background = Brushes.Aqua, BorderBrush = Brushes.Yellow,
-            BorderThickness = new Thickness(1)
+            Content = new TView(){ DataContext = vm },
+            DataContext = vm,
         };
         t.DataContext = vm;
         var host = OverlayDialogManager.GetOverlayDialogHost(hostId);
