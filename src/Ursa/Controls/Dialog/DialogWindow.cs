@@ -1,27 +1,30 @@
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
-using Avalonia.Interactivity;
 
 namespace Ursa.Controls;
 
 [TemplatePart(PART_CloseButton, typeof(Button))]
-public class DialogControl: ContentControl
+public class DialogWindow: Window
 {
     public const string PART_CloseButton = "PART_CloseButton";
     
-    
-    
+    protected override Type StyleKeyOverride { get; } = typeof(DialogWindow);
+
     private Button? _closeButton;
-    public event EventHandler OnClose;
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-    }
-
-    public void Show()
-    {
+        _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
+        
+        if (_closeButton != null)
+        {
+            _closeButton.Click += (sender, args) =>
+            {
+                Close();
+            };
+        }
         
     }
 }

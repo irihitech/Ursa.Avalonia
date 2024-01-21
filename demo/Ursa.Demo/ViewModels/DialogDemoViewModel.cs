@@ -1,10 +1,12 @@
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
+using Ursa.Demo.Pages;
 
 namespace Ursa.Demo.ViewModels;
 
@@ -12,19 +14,26 @@ public class DialogDemoViewModel: ObservableObject
 {
     public ICommand ShowLocalOverlayDialogCommand { get; }
     public ICommand ShowGlobalOverlayDialogCommand { get; }
+    public ICommand ShowGlobalDialogCommand { get; }
 
     public DialogDemoViewModel()
     {
-        ShowLocalOverlayDialogCommand = new RelayCommand(ShowLocalOverlayDialog);
-        ShowGlobalOverlayDialogCommand = new RelayCommand(ShowGlobalOverlayDialog);
+        ShowLocalOverlayDialogCommand = new AsyncRelayCommand(ShowLocalOverlayDialog);
+        ShowGlobalOverlayDialogCommand = new AsyncRelayCommand(ShowGlobalOverlayDialog);
+        ShowGlobalDialogCommand = new AsyncRelayCommand(ShowGlobalDialog);
     }
 
-    private async void ShowGlobalOverlayDialog()
+    private async Task ShowGlobalDialog()
+    {
+        await DialogBox.ShowAsync<BadgeDemo, BadgeDemoViewModel, string>(new BadgeDemoViewModel());
+    }
+
+    private async Task ShowGlobalOverlayDialog()
     {
         await DialogBox.ShowOverlayAsync<Banner, DateTime>(DateTime.Now, "GlobalHost");
     }
 
-    private async void ShowLocalOverlayDialog()
+    private async Task ShowLocalOverlayDialog()
     {
         await DialogBox.ShowOverlayAsync<Banner, DateTime>(DateTime.Now, "LocalHost");
     }
