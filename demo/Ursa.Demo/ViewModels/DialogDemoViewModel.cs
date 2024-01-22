@@ -42,13 +42,13 @@ public class DialogDemoViewModel: ObservableObject
 
     private async Task ShowGlobalDialog()
     {
-        var result = await DialogBox.ShowAsync<DialogWithAction, DialogWithActionViewModel, bool>(new DialogWithActionViewModel());
+        var result = await DialogBox.ShowAsync<DialogWithAction, DialogWithActionViewModel, bool>(DialogViewModel);
         Result = result;
     }
 
     private async Task ShowGlobalOverlayDialog()
     {
-        await DialogBox.ShowOverlayAsync<DialogWithAction, DialogWithActionViewModel, bool>(new DialogWithActionViewModel(), "GlobalHost");
+        Result = await DialogBox.ShowOverlayAsync<DialogWithAction, DialogWithActionViewModel, bool>(DialogViewModel, "GlobalHost");
     }
 
     private async Task ShowLocalOverlayDialog()
