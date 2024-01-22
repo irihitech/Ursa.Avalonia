@@ -52,6 +52,7 @@
                             <u:RangeTrack
                                 Name="{x:Static u:RangeSlider.PART_Track}"
                                 Grid.Row="1"
+                                Cursor="Hand"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
                                 Orientation="{Binding Orientation, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
@@ -142,6 +143,7 @@
                                 Ticks="{TemplateBinding Ticks}" />
                             <u:RangeTrack
                                 Name="{x:Static u:RangeSlider.PART_Track}"
+                                Cursor="Hand"
                                 Grid.Column="1"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"

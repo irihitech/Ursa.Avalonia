@@ -13,18 +13,21 @@ using Avalonia.Utilities;
 namespace Ursa.Controls;
 
 [TemplatePart(PART_Track, typeof(RangeTrack))]
-[PseudoClasses(PC_Horizontal, PC_Vertical)]
+[PseudoClasses(PC_Horizontal, PC_Vertical, PC_Pressed)]
 public class RangeSlider: TemplatedControl
 {
     public const string PART_Track = "PART_Track";
     private const string PC_Horizontal= ":horizontal";
     private const string PC_Vertical = ":vertical";
+    private const string PC_Pressed = ":pressed";
 
     private RangeTrack? _track;
     private bool _isDragging;
     private IDisposable? _pointerPressedDisposable;
     private IDisposable? _pointerMoveDisposable;
     private IDisposable? _pointerReleasedDisposable;
+
+    private const double Tolerance = 0.0001;
 
     public static readonly StyledProperty<double> MinimumProperty = RangeTrack.MinimumProperty.AddOwner<RangeSlider>();
     public double Minimum
@@ -144,7 +147,7 @@ public class RangeSlider: TemplatedControl
     {
         var oldValue = args.OldValue.Value;
         var newValue = args.NewValue.Value;
-        if (oldValue != newValue)
+        if (Math.Abs(oldValue - newValue) > Tolerance)
         {
             RaiseEvent(new RangeValueChangedEventArgs(ValueChangedEvent, this, oldValue, newValue, isLower));
         }

@@ -22,7 +22,9 @@ public class RangeTrack: Control
     public const string PC_Vertical = ":vertical";
     private double _density;
     private Vector _lastDrag;
-    
+
+    private const double Tolerance = 0.0001;
+
     public static readonly StyledProperty<double> MinimumProperty = AvaloniaProperty.Register<RangeTrack, double>(
         nameof(Minimum), coerce: CoerceMinimum, defaultBindingMode:BindingMode.TwoWay);
 
@@ -165,7 +167,7 @@ public class RangeTrack: Control
     {
         var oldValue = args.OldValue.Value;
         var newValue = args.NewValue.Value;
-        if (oldValue != newValue)
+        if (Math.Abs(oldValue - newValue) > Tolerance)
         {
             RaiseEvent(new RangeValueChangedEventArgs(ValueChangedEvent, this, oldValue, newValue, isLower));
         }
