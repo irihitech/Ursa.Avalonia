@@ -25,7 +25,7 @@ public class DialogDemoViewModel: ObservableObject
 
     private async Task ShowGlobalDialog()
     {
-        await DialogBox.ShowAsync<BadgeDemo, BadgeDemoViewModel, string>(new BadgeDemoViewModel());
+        var result = await DialogBox.ShowAsync<ButtonGroupDemo, ButtonGroupDemoViewModel, string>(new ButtonGroupDemoViewModel());
     }
 
     private async Task ShowGlobalOverlayDialog()

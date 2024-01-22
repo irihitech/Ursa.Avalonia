@@ -8,14 +8,12 @@ namespace Ursa.Controls;
 
 public static class DialogBox
 {
-    public static async Task<TResult?> ShowAsync<TView, TViewModel, TResult>(TViewModel vm) where TView : Control, new()
+    public static async Task<TResult?> ShowAsync<TView, TViewModel, TResult>(TViewModel vm) 
+        where TView : Control, new()
     {
         var window = new DialogWindow()
         {
-            Content = new TView()
-            {
-                DataContext = vm,
-            },
+            Content = new TView(),
             DataContext = vm,
         };
         var lifetime = Application.Current?.ApplicationLifetime;
