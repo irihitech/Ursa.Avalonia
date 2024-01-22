@@ -74,8 +74,9 @@ public class DialogControl: ContentControl
     {
         if (this.DataContext is IDialogContext context)
         {
-            OnClose?.Invoke(this, args);
+            OnClose?.Invoke(this, Equals(sender, _closeButton) ? context.DefaultCloseResult : args);
         }
+        
         else
         {
             OnClose?.Invoke(this, null);

@@ -56,7 +56,6 @@ public class DialogDemoViewModel: ObservableObject
         var vm = new DialogWithActionViewModel();
         var result = await DialogBox.ShowOverlayAsync<DialogWithAction, DialogWithActionViewModel, bool>(
             DialogViewModel, "LocalHost");
-        Date = vm.Date;
         Result = result;
     }
 }
