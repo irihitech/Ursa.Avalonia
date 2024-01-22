@@ -306,26 +306,6 @@ public class RangeTrack: Control
             CoerceLength(ref upperThumbLength, finalSize.Height);
             if (IsDirectionReversed)
             {
-                offset = offset.WithY(upperThumbLength * 0.5);
-                pieceSize = pieceSize.WithHeight(upperButtonLength);
-                UpperSection?.Arrange(new Rect(offset, pieceSize));
-                offset = offset.WithY(offset.Y + upperButtonLength);
-                pieceSize = pieceSize.WithHeight(innerButtonLength);
-                InnerSection?.Arrange(new Rect(offset, pieceSize));
-                offset = offset.WithY(offset.Y + innerButtonLength);
-                pieceSize = pieceSize.WithHeight(lowerButtonLength);
-                LowerSection?.Arrange(new Rect(offset, pieceSize));
-                
-                offset = offset.WithY(upperButtonLength);
-                pieceSize = pieceSize.WithHeight(upperThumbLength);
-                UpperThumb?.Arrange(new Rect(offset, pieceSize));
-                
-                offset = offset.WithY(upperButtonLength+innerButtonLength);
-                pieceSize = pieceSize.WithHeight(lowerThumbLength);
-                LowerThumb?.Arrange(new Rect(offset, pieceSize));
-            }
-            else
-            {
                 offset = offset.WithY(lowerThumbLength * 0.5);
                 pieceSize = pieceSize.WithHeight(lowerButtonLength);
                 LowerSection?.Arrange(new Rect(offset, pieceSize));
@@ -343,6 +323,26 @@ public class RangeTrack: Control
                 offset = offset.WithY(lowerButtonLength + innerButtonLength);
                 pieceSize = pieceSize.WithHeight(upperThumbLength);
                 UpperThumb?.Arrange(new Rect(offset, pieceSize));
+            }
+            else
+            {
+                offset = offset.WithY(upperThumbLength * 0.5);
+                pieceSize = pieceSize.WithHeight(upperButtonLength);
+                UpperSection?.Arrange(new Rect(offset, pieceSize));
+                offset = offset.WithY(offset.Y + upperButtonLength);
+                pieceSize = pieceSize.WithHeight(innerButtonLength);
+                InnerSection?.Arrange(new Rect(offset, pieceSize));
+                offset = offset.WithY(offset.Y + innerButtonLength);
+                pieceSize = pieceSize.WithHeight(lowerButtonLength);
+                LowerSection?.Arrange(new Rect(offset, pieceSize));
+
+                offset = offset.WithY(upperButtonLength);
+                pieceSize = pieceSize.WithHeight(upperThumbLength);
+                UpperThumb?.Arrange(new Rect(offset, pieceSize));
+
+                offset = offset.WithY(upperButtonLength + innerButtonLength);
+                pieceSize = pieceSize.WithHeight(lowerThumbLength);
+                LowerThumb?.Arrange(new Rect(offset, pieceSize));
             }
         }
         else
@@ -485,20 +485,20 @@ public class RangeTrack: Control
         {
             if (IsDirectionReversed)
             {
-                double trackStart = UpperThumb?.Bounds.Height/2 ?? 0;
-                double trackEnd = trackStart + range;
-                if (position < trackStart) return 1.0;
-                if (position > trackEnd) return 0.0;
-                double diff = trackEnd - position;
-                return diff / range;
-            }
-            else
-            {
-                double trackStart = LowerThumb?.Bounds.Height/2 ?? 0;
+                double trackStart = LowerThumb?.Bounds.Height / 2 ?? 0;
                 double trackEnd = trackStart + range;
                 if (position < trackStart) return 0.0;
                 if (position > trackEnd) return 1.0;
                 double diff = position - trackStart;
+                return diff / range;
+            }
+            else
+            {
+                double trackStart = UpperThumb?.Bounds.Height / 2 ?? 0;
+                double trackEnd = trackStart + range;
+                if (position < trackStart) return 1.0;
+                if (position > trackEnd) return 0.0;
+                double diff = trackEnd - position;
                 return diff / range;
             }
         }
