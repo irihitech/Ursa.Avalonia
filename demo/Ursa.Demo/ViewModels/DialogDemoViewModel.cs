@@ -1,8 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Avalonia.Controls;
-using Avalonia.Controls.Shapes;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
@@ -30,11 +28,11 @@ public class DialogDemoViewModel: ObservableObject
 
     private async Task ShowGlobalOverlayDialog()
     {
-        await DialogBox.ShowOverlayAsync<Banner, DateTime>(DateTime.Now, "GlobalHost");
+        await DialogBox.ShowOverlayAsync<ButtonGroupDemo, ButtonGroupDemoViewModel>(new ButtonGroupDemoViewModel(), "GlobalHost");
     }
 
     private async Task ShowLocalOverlayDialog()
     {
-        await DialogBox.ShowOverlayAsync<Banner, DateTime>(DateTime.Now, "LocalHost");
+        await DialogBox.ShowOverlayAsync<ButtonGroupDemo, ButtonGroupDemoViewModel>(new ButtonGroupDemoViewModel(), "LocalHost");
     }
 }

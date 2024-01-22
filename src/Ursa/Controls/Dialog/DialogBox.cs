@@ -58,7 +58,7 @@ public static class DialogBox
         };
         t.DataContext = vm;
         var host = OverlayDialogManager.GetOverlayDialogHost(hostId);
-        host?.Children.Add(t);
+        host?.AddDialog(t);
         return null;
     }
 }

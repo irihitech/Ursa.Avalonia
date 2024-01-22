@@ -84,6 +84,17 @@ public class OverlayDialogHost: Canvas
     public void AddDialog(DialogControl control)
     {
         this.Children.Add(control);
+        control.OnClose += OnDialogClose;
+    }
+
+    private void OnDialogClose(object sender, object? e)
+    {
+        if (sender is DialogControl control)
+        {
+            this.Children.Remove(control);
+            control.OnClose -= OnDialogClose;
+        }
+        
     }
 
     public void AddModalDialog(DialogControl control)
