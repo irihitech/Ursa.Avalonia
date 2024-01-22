@@ -14,7 +14,7 @@
                     Theme="{DynamicResource CardBorder}">
                     <Grid RowDefinitions="Auto, *, Auto">
                         <StackPanel Grid.Row="0" HorizontalAlignment="Right">
-                            <Button Name="{x:Static u:DialogControl.PART_CloseButton}">Close</Button>
+                            <Button Name="{x:Static u:DialogControl.PART_CloseButton}" >Close</Button>
                         </StackPanel>
                         <ContentPresenter
                             Grid.Row="0"
@@ -58,8 +58,8 @@
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
                     <ChromeOverlayLayer />
                     <Grid RowDefinitions="Auto, *, Auto">
-                        <Button Name="{x:Static u:DialogWindow.PART_CloseButton}" VerticalAlignment="Top">Close</Button>
-                        <ContentPresenter Content="{TemplateBinding Content}" />
+                        <Button Name="{x:Static u:DialogWindow.PART_CloseButton}" VerticalAlignment="Top" HorizontalAlignment="Right">Close</Button>
+                        <ContentPresenter Grid.Row="0" Grid.RowSpan="2" Content="{TemplateBinding Content}" />
                     </Grid>
                 </Panel>
             </ControlTemplate>

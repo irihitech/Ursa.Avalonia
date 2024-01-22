@@ -4,6 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Shapes;
 using Avalonia.Input;
+using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Utilities;
 using Avalonia.VisualTree;
@@ -36,6 +37,24 @@ public class OverlayDialogHost: Canvas
     {
         base.OnAttachedToVisualTree(e);
         OverlayDialogManager.RegisterOverlayDialogHost(this, HostId);
+        this.Children.Add(new Border()
+        {
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            VerticalAlignment = VerticalAlignment.Stretch,
+            Background = Brushes.Black,
+            Opacity = 0.3,
+            IsVisible = false,
+        });
+    }
+
+    protected override void OnSizeChanged(SizeChangedEventArgs e)
+    {
+        base.OnSizeChanged(e);
+        if (this.Children.Count > 0)
+        {
+            this.Children[0].Width = this.Bounds.Width;
+            this.Children[0].Height = this.Bounds.Height;
+        }
     }
 
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
@@ -85,6 +104,10 @@ public class OverlayDialogHost: Canvas
     {
         this.Children.Add(control);
         control.OnClose += OnDialogClose;
+        if (this.Children.Count > 1)
+        {
+            this.Children[0].IsVisible = true;
+        }
     }
 
     private void OnDialogClose(object sender, object? e)
@@ -93,6 +116,10 @@ public class OverlayDialogHost: Canvas
         {
             this.Children.Remove(control);
             control.OnClose -= OnDialogClose;
+            if (this.Children.Count == 1)
+            {
+                this.Children[0].IsVisible = false;
+            }
         }
         
     }

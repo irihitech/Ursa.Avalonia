@@ -1,6 +1,7 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 
 namespace Ursa.Controls;
@@ -58,5 +59,10 @@ public class DialogWindow: Window
         {
             Close(null);
         }
+    }
+
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    {
+        this.BeginMoveDrag(e);
     }
 }
