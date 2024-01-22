@@ -20,10 +20,6 @@
                             Grid.Row="0"
                             Grid.RowSpan="2"
                             Content="{TemplateBinding Content}" />
-                        <StackPanel Grid.Row="2">
-                            <Button>OK</Button>
-                            <Button>Cancel</Button>
-                        </StackPanel>
                     </Grid>
                 </Border>
             </ControlTemplate>

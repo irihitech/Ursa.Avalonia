@@ -23,6 +23,16 @@ public class DialogDemoViewModel: ObservableObject
         set => SetProperty(ref _result, value);
     }
 
+    private DateTime _date;
+
+    public DateTime Date
+    {
+        get => _date;
+        set => SetProperty(ref _date, value);
+    }
+
+    public DialogWithActionViewModel DialogViewModel { get; set; } = new DialogWithActionViewModel();
+
     public DialogDemoViewModel()
     {
         ShowLocalOverlayDialogCommand = new AsyncRelayCommand(ShowLocalOverlayDialog);
@@ -43,8 +53,10 @@ public class DialogDemoViewModel: ObservableObject
 
     private async Task ShowLocalOverlayDialog()
     {
+        var vm = new DialogWithActionViewModel();
         var result = await DialogBox.ShowOverlayAsync<DialogWithAction, DialogWithActionViewModel, bool>(
-            new DialogWithActionViewModel(), "LocalHost");
+            DialogViewModel, "LocalHost");
+        Date = vm.Date;
         Result = result;
     }
 }

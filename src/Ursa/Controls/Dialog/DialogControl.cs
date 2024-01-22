@@ -10,8 +10,6 @@ public class DialogControl: ContentControl
 {
     public const string PART_CloseButton = "PART_CloseButton";
     
-    
-    
     private Button? _closeButton;
     public event EventHandler<object?> OnClose;
 
@@ -38,17 +36,22 @@ public class DialogControl: ContentControl
     public Task<T> ShowAsync<T>()
     {
         var tcs = new TaskCompletionSource<T>();
-        this.OnClose+= (sender, args) =>
+
+        void OnCloseHandler(object sender, object? args)
         {
             if (args is T result)
             {
                 tcs.SetResult(result);
+                OnClose-= OnCloseHandler;
             }
             else
             {
-                tcs.SetResult(default);
+                tcs.SetResult(default(T));
+                OnClose-= OnCloseHandler;
             }
-        };
+        }
+
+        this.OnClose += OnCloseHandler;
         return tcs.Task;
     }
 
