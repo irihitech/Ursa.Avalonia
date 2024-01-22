@@ -4,6 +4,7 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
+using Ursa.Demo.Dialogs;
 using Ursa.Demo.Pages;
 
 namespace Ursa.Demo.ViewModels;
@@ -14,6 +15,14 @@ public class DialogDemoViewModel: ObservableObject
     public ICommand ShowGlobalOverlayDialogCommand { get; }
     public ICommand ShowGlobalDialogCommand { get; }
 
+    private object? _result;
+
+    public object? Result
+    {
+        get => _result;
+        set => SetProperty(ref _result, value);
+    }
+
     public DialogDemoViewModel()
     {
         ShowLocalOverlayDialogCommand = new AsyncRelayCommand(ShowLocalOverlayDialog);
@@ -23,16 +32,19 @@ public class DialogDemoViewModel: ObservableObject
 
     private async Task ShowGlobalDialog()
     {
-        var result = await DialogBox.ShowAsync<ButtonGroupDemo, ButtonGroupDemoViewModel, string>(new ButtonGroupDemoViewModel());
+        var result = await DialogBox.ShowAsync<DialogWithAction, DialogWithActionViewModel, bool>(new DialogWithActionViewModel());
+        Result = result;
     }
 
     private async Task ShowGlobalOverlayDialog()
     {
-        await DialogBox.ShowOverlayAsync<ButtonGroupDemo, ButtonGroupDemoViewModel>(new ButtonGroupDemoViewModel(), "GlobalHost");
+        await DialogBox.ShowOverlayAsync<DialogWithAction, DialogWithActionViewModel, bool>(new DialogWithActionViewModel(), "GlobalHost");
     }
 
     private async Task ShowLocalOverlayDialog()
     {
-        await DialogBox.ShowOverlayAsync<ButtonGroupDemo, ButtonGroupDemoViewModel>(new ButtonGroupDemoViewModel(), "LocalHost");
+        var result = await DialogBox.ShowOverlayAsync<DialogWithAction, DialogWithActionViewModel, bool>(
+            new DialogWithActionViewModel(), "LocalHost");
+        Result = result;
     }
 }

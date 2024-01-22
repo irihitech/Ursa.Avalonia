@@ -47,7 +47,7 @@ public static class DialogBox
     }
     
 
-    public static async Task<object?> ShowOverlayAsync<TView, TViewModel>(TViewModel vm, string hostId)
+    public static Task<TResult> ShowOverlayAsync<TView, TViewModel, TResult>(TViewModel vm, string hostId)
         where TView : Control, new()
         where TViewModel: new()
     {
@@ -59,6 +59,6 @@ public static class DialogBox
         t.DataContext = vm;
         var host = OverlayDialogManager.GetOverlayDialogHost(hostId);
         host?.AddDialog(t);
-        return null;
+        return t.ShowAsync<TResult>();
     }
 }

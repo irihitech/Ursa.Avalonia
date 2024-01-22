@@ -27,18 +27,36 @@ public class DialogControl: ContentControl
         {
             _closeButton.Click += Close;
         }
-    }
 
-    public void Show()
+        if (this.DataContext is IDialogContext context)
+        {
+            context.Closed += Close;
+        }
+    }
+    
+
+    public Task<T> ShowAsync<T>()
     {
-        
+        var tcs = new TaskCompletionSource<T>();
+        this.OnClose+= (sender, args) =>
+        {
+            if (args is T result)
+            {
+                tcs.SetResult(result);
+            }
+            else
+            {
+                tcs.SetResult(default);
+            }
+        };
+        return tcs.Task;
     }
 
     private void Close(object sender, object args)
     {
         if (this.DataContext is IDialogContext context)
         {
-            OnClose?.Invoke(this, context.DefaultCloseResult);
+            OnClose?.Invoke(this, args);
         }
         else
         {

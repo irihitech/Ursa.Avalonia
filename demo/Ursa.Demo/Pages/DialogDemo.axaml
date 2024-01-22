@@ -13,6 +13,10 @@
     mc:Ignorable="d">
     <Grid ColumnDefinitions="Auto, *">
         <StackPanel Grid.Column="0">
+            <TextBlock>
+                <Run Text="Result: "></Run>
+                <Run Text="{Binding Result}"></Run>
+            </TextBlock>
             <Button Command="{Binding ShowGlobalDialogCommand}">Show Dialog</Button>
             <Button Command="{Binding ShowLocalOverlayDialogCommand}">Show Local Overlay Dialog</Button>
             <Button Command="{Binding ShowGlobalOverlayDialogCommand}"> Show Global Overlay Dialog </Button>
