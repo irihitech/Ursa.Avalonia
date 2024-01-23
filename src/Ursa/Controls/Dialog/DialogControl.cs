@@ -2,16 +2,20 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 
 namespace Ursa.Controls;
 
 [TemplatePart(PART_CloseButton, typeof(Button))]
+[TemplatePart(PART_TitleArea, typeof(Panel))]
 public class DialogControl: ContentControl
 {
     public const string PART_CloseButton = "PART_CloseButton";
+    public const string PART_TitleArea = "PART_TitleArea";
     
     private Button? _closeButton;
+    private Panel? _titleArea;
     public event EventHandler<object?>? OnClose;
 
     static DialogControl()
@@ -32,6 +36,7 @@ public class DialogControl: ContentControl
         }
         
     }
+    
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -40,13 +45,30 @@ public class DialogControl: ContentControl
         {
             _closeButton.Click -= Close;
         }
+        _titleArea?.RemoveHandler(PointerMovedEvent, OnTitlePointerMove);
+        _titleArea?.RemoveHandler(PointerPressedEvent, OnTitlePointerPressed);
+        
         _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
+        _titleArea = e.NameScope.Find<Panel>(PART_TitleArea);
         if (_closeButton is not null)
         {
             _closeButton.Click += Close;
         }
+        _titleArea?.AddHandler(PointerMovedEvent, OnTitlePointerMove, RoutingStrategies.Bubble);
+        _titleArea?.AddHandler(PointerPressedEvent, OnTitlePointerPressed, RoutingStrategies.Bubble);
+        
     }
-    
+
+    private void OnTitlePointerPressed(object sender, PointerPressedEventArgs e)
+    {
+        e.Source = this;
+    }
+
+    private void OnTitlePointerMove(object sender, PointerEventArgs e)
+    {
+        e.Source = this;
+    }
+
 
     public Task<T> ShowAsync<T>()
     {

@@ -5,6 +5,7 @@
         <ResourceInclude Source="Banner.axaml" />
         <ResourceInclude Source="ButtonGroup.axaml" />
         <ResourceInclude Source="Dialog.axaml" />
+        <ResourceInclude Source="DialogShared.axaml" />
         <ResourceInclude Source="Divider.axaml" />
         <ResourceInclude Source="DualBadge.axaml" />
         <ResourceInclude Source="IconButton.axaml" />

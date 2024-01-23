@@ -15,12 +15,6 @@ public class OverlayDialogHost: Canvas
 {
     private readonly List<DialogControl> _dialogs = new();
     private readonly List<DialogControl> _modalDialogs = new();
-
-    private Rectangle _overlayMask = new()
-    {
-        Fill = new SolidColorBrush(new Color(1, 0, 0, 0)),
-        [Rectangle.ZIndexProperty] = 0,
-    };
     
     public static readonly StyledProperty<string> HostIdProperty = AvaloniaProperty.Register<OverlayDialogHost, string>(
         nameof(HostId));
@@ -66,37 +60,27 @@ public class OverlayDialogHost: Canvas
     protected override void OnPointerMoved(PointerEventArgs e)
     {
         base.OnPointerMoved(e);
-        if (e.Source is Control item)
+        if (e.Source is DialogControl item)
         {
             if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
             {
-                var parent  = item.FindAncestorOfType<DialogControl>();
-                if (parent is null)
-                {
-                    return;
-                }
                 var p = e.GetPosition(this);
                 var left=  p.X - _lastPoint.X;
                 var top = p.Y - _lastPoint.Y;
-                left = MathUtilities.Clamp(left, 0, Bounds.Width - parent.Bounds.Width);
-                top = MathUtilities.Clamp(top, 0, Bounds.Height - parent.Bounds.Height);
-                Canvas.SetLeft(parent, left);
-                Canvas.SetTop(parent, top);
+                left = MathUtilities.Clamp(left, 0, Bounds.Width - item.Bounds.Width);
+                top = MathUtilities.Clamp(top, 0, Bounds.Height - item.Bounds.Height);
+                Canvas.SetLeft(item, left);
+                Canvas.SetTop(item, top);
             }
         }
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
-        base.OnPointerPressed(e);
-        if (e.Source is Control item)
+        // base.OnPointerPressed(e);
+        if (e.Source is DialogControl item)
         {
-            var parent  = item.FindAncestorOfType<DialogControl>();
-            if (parent is null)
-            {
-                return;
-            }
-            _lastPoint = e.GetPosition(parent);
+            _lastPoint = e.GetPosition(item);
         }
     }
 

@@ -45,23 +45,7 @@
                                 Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
                                 Grid.Column="1"
                                 Margin="0,4,4,0"
-                                Background="{DynamicResource CaptionButtonClosePointeroverBackground}"
-                                BorderBrush="{DynamicResource CaptionButtonClosePressedBackground}"
-                                Theme="{DynamicResource CaptionButton}">
-                                <Button.Styles>
-                                    <Style Selector="Button:pointerover">
-                                        <Setter Property="Foreground" Value="White" />
-                                    </Style>
-                                    <Style Selector="Button:pressed">
-                                        <Setter Property="Foreground" Value="White" />
-                                    </Style>
-                                </Button.Styles>
-                                <PathIcon
-                                    Width="12"
-                                    Height="12"
-                                    Data="{DynamicResource WindowCloseIconGlyph}"
-                                    Foreground="{Binding $parent[Button].Foreground}" />
-                            </Button>
+                                Theme="{DynamicResource CloseButton}"/>
                         </Grid>
                         <Grid
                             Grid.Row="1"
