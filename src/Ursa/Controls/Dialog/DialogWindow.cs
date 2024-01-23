@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
@@ -15,21 +16,21 @@ public class DialogWindow: Window
 
     private Button? _closeButton;
 
-    protected override void OnDataContextBeginUpdate()
+    static DialogWindow()
     {
-        base.OnDataContextBeginUpdate();
-        if (DataContext is IDialogContext context)
-        {
-            context.Closed-= OnDialogClose;
-        }
+        DataContextProperty.Changed.AddClassHandler<DialogWindow, object?>((o, e) => o.OnDataContextChange(e));
     }
-
-    protected override void OnDataContextEndUpdate()
+    
+    private void OnDataContextChange(AvaloniaPropertyChangedEventArgs<object?> args)
     {
-        base.OnDataContextEndUpdate();
-        if (DataContext is IDialogContext context)
+        if (args.OldValue.Value is IDialogContext oldContext)
         {
-            context.Closed += OnDialogClose;
+            oldContext.Closed-= OnDialogClose;
+        }
+
+        if (args.NewValue.Value is IDialogContext newContext)
+        {
+            newContext.Closed += OnDialogClose;
         }
     }
 

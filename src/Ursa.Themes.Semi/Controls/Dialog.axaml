@@ -3,38 +3,58 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:OverlayDialogHost}" TargetType="u:OverlayDialogHost">
+        <Setter Property="OverlayMaskBrush" Value="{DynamicResource OverlayDialogMaskBrush}"></Setter>
+    </ControlTheme>
     <ControlTheme x:Key="{x:Type u:DialogControl}" TargetType="u:DialogControl">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:DialogControl">
                 <Border
+                    Padding="0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Classes="Hover"
                     IsHitTestVisible="True"
-                    Padding="2"
                     Theme="{DynamicResource CardBorder}">
                     <Grid RowDefinitions="Auto, *, Auto">
-                        <DockPanel
-                            Name="{x:Static u:DialogControl.PART_TitleArea}"
-                            Grid.Row="0"
-                            LastChildFill="False"
-                            Background="Transparent">
-                            <TextBlock DockPanel.Dock="Left" Text="Title" Margin="8 8 0 0" />
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            Grid.Row="1"
+                            Content="{TemplateBinding Content}" />
+                        <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
+                            <Panel
+                                Name="{x:Static u:DialogControl.PART_TitleArea}"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Background="Transparent" >
+                                <Panel.ContextFlyout>
+                                    <MenuFlyout>
+                                        <MenuItem Header="Bring to Top"></MenuItem>
+                                    </MenuFlyout>
+                                </Panel.ContextFlyout>
+                            </Panel>
+                            <TextBlock
+                                Grid.Column="0"
+                                Margin="8,8,0,0"
+                                DockPanel.Dock="Left"
+                                Text="{TemplateBinding Title}"
+                                Classes="Strong"
+                                IsVisible="{TemplateBinding Title, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                />
                             <Button
                                 Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
-                                DockPanel.Dock="Right"
+                                Grid.Column="1"
                                 Margin="0,4,4,0"
-                                Theme="{DynamicResource CloseButton}">
-                            </Button>
-                        </DockPanel>
-                        <ContentPresenter
-                            Grid.Row="0"
-                            Grid.RowSpan="3"
-                            Content="{TemplateBinding Content}" />
+                                DockPanel.Dock="Right"
+                                Theme="{DynamicResource CloseButton}" />
+                        </Grid>
                     </Grid>
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:extend /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Grid.Row" Value="0" />
+            <Setter Property="Grid.RowSpan" Value="3" />
+        </Style>
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:DialogWindow}" TargetType="u:DialogWindow">
@@ -69,16 +89,17 @@
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
                     <ChromeOverlayLayer />
                     <Grid RowDefinitions="Auto, *, Auto">
-                        <Button
-                            Name="{x:Static u:DialogWindow.PART_CloseButton}"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Top">
-                            Close
-                        </Button>
                         <ContentPresenter
                             Grid.Row="0"
                             Grid.RowSpan="2"
                             Content="{TemplateBinding Content}" />
+                        <Button
+                            Name="{x:Static u:DialogWindow.PART_CloseButton}"
+                            Grid.Row="0"
+                            Margin="0,4,4,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Theme="{DynamicResource CloseButton}" />
                     </Grid>
                 </Panel>
             </ControlTemplate>

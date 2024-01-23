@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -16,10 +17,13 @@ public partial class DialogWithActionViewModel: ObservableObject, IDialogContext
     public ICommand OKCommand { get; set; }
     public ICommand CancelCommand { get; set; }
     
+    public ICommand DialogCommand { get; set; }
+    
     public DialogWithActionViewModel()
     {
         OKCommand = new RelayCommand(OK);
         CancelCommand = new RelayCommand(Cancel);
+        DialogCommand = new AsyncRelayCommand(ShowDialog);
         Title = "Please select a date";
         Date = DateTime.Now;
     }
@@ -32,5 +36,10 @@ public partial class DialogWithActionViewModel: ObservableObject, IDialogContext
     private void Cancel()
     {
         Closed?.Invoke(this, false);
+    }
+    
+    private async Task ShowDialog()
+    {
+        await DialogBox.ShowOverlayModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(new DialogWithActionViewModel(), "GlobalHost");
     }
 }

@@ -15,39 +15,44 @@ public class OverlayDialogHost: Canvas
 {
     private readonly List<DialogControl> _dialogs = new();
     private readonly List<DialogControl> _modalDialogs = new();
+    private readonly List<Border> _masks = new();
     
-    public static readonly StyledProperty<string> HostIdProperty = AvaloniaProperty.Register<OverlayDialogHost, string>(
-        nameof(HostId));
-
-    public string HostId
-    {
-        get => GetValue(HostIdProperty);
-        set => SetValue(HostIdProperty, value);
-    }
+    public string? HostId { get; set; }
     
     private Point _lastPoint;
+
+    public static readonly StyledProperty<IBrush?> OverlayMaskBrushProperty = AvaloniaProperty.Register<OverlayDialogHost, IBrush?>(
+        nameof(OverlayMaskBrush));
+
+    public IBrush? OverlayMaskBrush
+    {
+        get => GetValue(OverlayMaskBrushProperty);
+        set => SetValue(OverlayMaskBrushProperty, value);
+    }
+    
+    private Border CreateOverlayMask() => new()
+    {
+        HorizontalAlignment = HorizontalAlignment.Stretch,
+        VerticalAlignment = VerticalAlignment.Stretch,
+        Width = this.Bounds.Width,
+        Height =  this.Bounds.Height,
+        [!BackgroundProperty] = this[!OverlayMaskBrushProperty],
+        IsVisible = true,
+    };
     
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
         OverlayDialogManager.RegisterOverlayDialogHost(this, HostId);
-        this.Children.Add(new Border()
-        {
-            HorizontalAlignment = HorizontalAlignment.Stretch,
-            VerticalAlignment = VerticalAlignment.Stretch,
-            Background = Brushes.Black,
-            Opacity = 0.3,
-            IsVisible = false,
-        });
     }
 
     protected override void OnSizeChanged(SizeChangedEventArgs e)
     {
         base.OnSizeChanged(e);
-        if (this.Children.Count > 0)
+        for (int i = 0; i < _masks.Count; i++)
         {
-            this.Children[0].Width = this.Bounds.Width;
-            this.Children[0].Height = this.Bounds.Height;
+            _masks[i].Width = this.Bounds.Width;
+            _masks[i].Width = this.Bounds.Height;
         }
     }
 
@@ -87,11 +92,8 @@ public class OverlayDialogHost: Canvas
     public void AddDialog(DialogControl control)
     {
         this.Children.Add(control);
+        _dialogs.Add(control);
         control.OnClose += OnDialogClose;
-        if (this.Children.Count > 1)
-        {
-            this.Children[0].IsVisible = true;
-        }
     }
 
     private void OnDialogClose(object sender, object? e)
@@ -100,16 +102,38 @@ public class OverlayDialogHost: Canvas
         {
             this.Children.Remove(control);
             control.OnClose -= OnDialogClose;
-            if (this.Children.Count == 1)
+            if (_dialogs.Contains(control))
             {
-                this.Children[0].IsVisible = false;
+                _dialogs.Remove(control);
+            }
+            else if(_modalDialogs.Contains(control))
+            {
+                _modalDialogs.Remove(control);
+                if (_masks.Count > 0)
+                {
+                    var last = _masks.Last();
+                    this.Children.Remove(last);
+                    _masks.Remove(last);
+                    if (_masks.Count > 0)
+                    {
+                        _masks.Last().IsVisible= true;
+                    }
+                }
             }
         }
-        
     }
 
     public void AddModalDialog(DialogControl control)
     {
+        var mask = CreateOverlayMask();
+        this.Children.Add(mask);
         this.Children.Add(control);
+        _modalDialogs.Add(control);
+        for (int i = 0; i < _masks.Count; i++)
+        {
+            _masks[i].IsVisible = false;
+        }
+        _masks.Add(mask);
+        control.OnClose += OnDialogClose;
     }
 }

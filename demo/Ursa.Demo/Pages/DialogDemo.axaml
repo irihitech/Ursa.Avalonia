@@ -21,15 +21,16 @@
                 <Run Text="Date: "></Run>
                 <Run Text="{Binding DialogViewModel.Date}"></Run>
             </TextBlock>
-            <Button Command="{Binding ShowGlobalDialogCommand}">Show Dialog</Button>
-            <Button Command="{Binding ShowLocalOverlayDialogCommand}">Show Local Overlay Dialog</Button>
-            <Button Command="{Binding ShowGlobalOverlayDialogCommand}"> Show Global Overlay Dialog </Button>
+            <Button Command="{Binding ShowGlobalModalDialogCommand}">Show Modal Dialog</Button>
+            <Button Command="{Binding ShowLocalOverlayModalDialogCommand}">Show Local Overlay Modal Dialog</Button>
+            <Button Command="{Binding ShowGlobalOverlayModalDialogCommand}"> Show Global Overlay Modal Dialog </Button>
+            <Button Command="{Binding ShowGlobalOverlayDialogCommand}">Show Global Overlay Dialog</Button>
         </StackPanel>
         <Grid Grid.Column="1">
             <Button
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Command="{Binding ShowLocalOverlayDialogCommand}">
+                Command="{Binding ShowLocalOverlayModalDialogCommand}">
                 Show Local Overlay Dialog
             </Button>
             <u:OverlayDialogHost HostId="LocalHost" />

@@ -9,18 +9,39 @@ namespace Ursa.Controls;
 
 [TemplatePart(PART_CloseButton, typeof(Button))]
 [TemplatePart(PART_TitleArea, typeof(Panel))]
+[PseudoClasses(PC_ExtendClientArea)]
 public class DialogControl: ContentControl
 {
     public const string PART_CloseButton = "PART_CloseButton";
     public const string PART_TitleArea = "PART_TitleArea";
+    public const string PC_ExtendClientArea = ":extend";
     
     private Button? _closeButton;
     private Panel? _titleArea;
     public event EventHandler<object?>? OnClose;
 
+    public static readonly StyledProperty<string?> TitleProperty = AvaloniaProperty.Register<DialogControl, string?>(
+        nameof(Title));
+
+    public string? Title
+    {
+        get => GetValue(TitleProperty);
+        set => SetValue(TitleProperty, value);
+    }
+
+    public static readonly StyledProperty<bool> ExtendToClientAreaProperty = AvaloniaProperty.Register<DialogControl, bool>(
+        nameof(ExtendToClientArea));
+
+    public bool ExtendToClientArea
+    {
+        get => GetValue(ExtendToClientAreaProperty);
+        set => SetValue(ExtendToClientAreaProperty, value);
+    }
+
     static DialogControl()
     {
         DataContextProperty.Changed.AddClassHandler<DialogControl, object?>((o, e) => o.OnDataContextChange(e));
+        ExtendToClientAreaProperty.Changed.AddClassHandler<DialogControl, bool>((o, e) => o.PseudoClasses.Set(PC_ExtendClientArea, e.NewValue.Value));
     }
 
     private void OnDataContextChange(AvaloniaPropertyChangedEventArgs<object?> args)
@@ -34,7 +55,6 @@ public class DialogControl: ContentControl
         {
             newContext.Closed += Close;
         }
-        
     }
     
 

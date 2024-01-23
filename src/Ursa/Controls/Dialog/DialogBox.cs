@@ -8,7 +8,7 @@ namespace Ursa.Controls;
 
 public static class DialogBox
 {
-    public static async Task<TResult?> ShowAsync<TView, TViewModel, TResult>(TViewModel vm) 
+    public static async Task<TResult?> ShowModalAsync<TView, TViewModel, TResult>(TViewModel vm) 
         where TView : Control, new()
     {
         var window = new DialogWindow()
@@ -37,28 +37,68 @@ public static class DialogBox
         }
     }
     
-    public static async Task<TResult> ShowAsync<TView, TViewModel, TResult>(Window owner, TViewModel vm) where 
+    public static async Task<TResult> ShowModalAsync<TView, TViewModel, TResult>(Window owner, TViewModel vm) where 
         TView: Control, new()
     {
-        var window = new DialogWindow();
-        window.Content = new TView();
-        window.DataContext = vm;
+        var window = new DialogWindow
+        {
+            Content = new TView() { DataContext = vm },
+            DataContext = vm
+        };
         return await window.ShowDialog<TResult>(owner);
     }
     
 
-    public static Task<TResult> ShowOverlayAsync<TView, TViewModel, TResult>(TViewModel vm, string hostId)
+    public static Task<TResult> ShowOverlayModalAsync<TView, TViewModel, TResult>(TViewModel vm, string hostId)
         where TView : Control, new()
-        where TViewModel: new()
     {
         var t = new DialogControl()
         {
             Content = new TView(){ DataContext = vm },
             DataContext = vm,
         };
-        t.DataContext = vm;
+        var host = OverlayDialogManager.GetOverlayDialogHost(hostId);
+        host?.AddModalDialog(t);
+        return t.ShowAsync<TResult>();
+    }
+
+    public static Task<TResult> ShowOverlayModalAsync<TView, TViewModel, TResult>(TViewModel vm, string hostId,
+        DialogOptions options)
+        where TView : Control, new()
+    {
+        var t = new DialogControl()
+        {
+            Content = new TView() { DataContext = vm },
+            DataContext = vm,
+            ExtendToClientArea = options.ExtendToClientArea,
+            Title = options.Title,
+        };
+        var host = OverlayDialogManager.GetOverlayDialogHost(hostId);
+        host?.AddModalDialog(t);
+        return t.ShowAsync<TResult>();
+    }
+
+    public static void ShowOverlay<TView, TViewModel>(TViewModel vm, string hostId)
+        where TView: Control, new()
+    {
+        var t = new DialogControl()
+        {
+            Content = new TView() { DataContext = vm },
+            DataContext = vm,
+        };
         var host = OverlayDialogManager.GetOverlayDialogHost(hostId);
         host?.AddDialog(t);
-        return t.ShowAsync<TResult>();
+    }
+
+    public static void ShowOverlay<TView, TViewModel>(TViewModel vm, string hostId, DialogOptions options)
+        where TView: Control, new()
+    {
+        var t = new DialogControl()
+        {
+            Content = new TView() { DataContext = vm },
+            DataContext = vm,
+        };
+        var host = OverlayDialogManager.GetOverlayDialogHost(hostId);
+        host?.AddModalDialog(t);
     }
 }

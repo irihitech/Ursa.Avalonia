@@ -11,9 +11,11 @@ namespace Ursa.Demo.ViewModels;
 
 public class DialogDemoViewModel: ObservableObject
 {
-    public ICommand ShowLocalOverlayDialogCommand { get; }
+    public ICommand ShowLocalOverlayModalDialogCommand { get; }
+    public ICommand ShowGlobalOverlayModalDialogCommand { get; }
+    public ICommand ShowGlobalModalDialogCommand { get; }
+    
     public ICommand ShowGlobalOverlayDialogCommand { get; }
-    public ICommand ShowGlobalDialogCommand { get; }
 
     private object? _result;
 
@@ -35,27 +37,33 @@ public class DialogDemoViewModel: ObservableObject
 
     public DialogDemoViewModel()
     {
-        ShowLocalOverlayDialogCommand = new AsyncRelayCommand(ShowLocalOverlayDialog);
-        ShowGlobalOverlayDialogCommand = new AsyncRelayCommand(ShowGlobalOverlayDialog);
-        ShowGlobalDialogCommand = new AsyncRelayCommand(ShowGlobalDialog);
+        ShowLocalOverlayModalDialogCommand = new AsyncRelayCommand(ShowLocalOverlayModalDialog);
+        ShowGlobalOverlayModalDialogCommand = new AsyncRelayCommand(ShowGlobalOverlayModalDialog);
+        ShowGlobalModalDialogCommand = new AsyncRelayCommand(ShowGlobalModalDialog);
+        ShowGlobalOverlayDialogCommand = new RelayCommand(ShowGlobalOverlayDialog);
     }
 
-    private async Task ShowGlobalDialog()
+    private void ShowGlobalOverlayDialog()
     {
-        var result = await DialogBox.ShowAsync<DialogWithAction, DialogWithActionViewModel, bool>(DialogViewModel);
+        DialogBox.ShowOverlay<DialogWithAction, DialogWithActionViewModel>(new DialogWithActionViewModel(), "GlobalHost");
+    }
+
+    private async Task ShowGlobalModalDialog()
+    {
+        var result = await DialogBox.ShowModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(DialogViewModel);
         Result = result;
     }
 
-    private async Task ShowGlobalOverlayDialog()
+    private async Task ShowGlobalOverlayModalDialog()
     {
-        Result = await DialogBox.ShowOverlayAsync<DialogWithAction, DialogWithActionViewModel, bool>(DialogViewModel, "GlobalHost");
+        Result = await DialogBox.ShowOverlayModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(DialogViewModel, "GlobalHost");
     }
 
-    private async Task ShowLocalOverlayDialog()
+    private async Task ShowLocalOverlayModalDialog()
     {
         var vm = new DialogWithActionViewModel();
-        var result = await DialogBox.ShowOverlayAsync<DialogWithAction, DialogWithActionViewModel, bool>(
-            DialogViewModel, "LocalHost");
+        var result = await DialogBox.ShowOverlayModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(
+            DialogViewModel, "LocalHost", new DialogOptions(){ ExtendToClientArea = true });
         Result = result;
     }
 }
