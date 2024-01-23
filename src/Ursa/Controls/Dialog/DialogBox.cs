@@ -97,6 +97,8 @@ public static class DialogBox
         {
             Content = new TView() { DataContext = vm },
             DataContext = vm,
+            ExtendToClientArea = options.ExtendToClientArea,
+            Title = options.Title,
         };
         var host = OverlayDialogManager.GetOverlayDialogHost(hostId);
         host?.AddModalDialog(t);

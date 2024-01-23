@@ -26,11 +26,6 @@
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2"
                                 Background="Transparent" >
-                                <Panel.ContextFlyout>
-                                    <MenuFlyout>
-                                        <MenuItem Header="Bring to Top"></MenuItem>
-                                    </MenuFlyout>
-                                </Panel.ContextFlyout>
                             </Panel>
                             <TextBlock
                                 Grid.Column="0"
@@ -54,6 +49,16 @@
         <Style Selector="^:extend /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Grid.Row" Value="0" />
             <Setter Property="Grid.RowSpan" Value="3" />
+        </Style>
+        <Style Selector="^:not(:modal) /template/ Panel#PART_TitleArea">
+            <Setter Property="ContextFlyout">
+                <MenuFlyout>
+                    <MenuItem Header="Bring Forward" Command="{Binding $parent[u:DialogControl].BringForward}"></MenuItem>
+                    <MenuItem Header="Send Backward" Command="{Binding $parent[u:DialogControl].SendBackward}" ></MenuItem>
+                    <MenuItem Header="Bring To Front" Command="{Binding $parent[u:DialogControl].BringToFront}"></MenuItem>
+                    <MenuItem Header="Send To Back" Command="{Binding $parent[u:DialogControl].SendToBack}"></MenuItem>
+                </MenuFlyout>
+            </Setter>
         </Style>
     </ControlTheme>
 

@@ -15,10 +15,12 @@ public class DialogControl: ContentControl
     public const string PART_CloseButton = "PART_CloseButton";
     public const string PART_TitleArea = "PART_TitleArea";
     public const string PC_ExtendClientArea = ":extend";
+    public const string PC_Modal = ":modal";
     
     private Button? _closeButton;
     private Panel? _titleArea;
     public event EventHandler<object?>? OnClose;
+    public event EventHandler<DialogLayerChangeEventArgs>? OnLayerChange;
 
     public static readonly StyledProperty<string?> TitleProperty = AvaloniaProperty.Register<DialogControl, string?>(
         nameof(Title));
@@ -93,7 +95,7 @@ public class DialogControl: ContentControl
     public Task<T> ShowAsync<T>()
     {
         var tcs = new TaskCompletionSource<T>();
-
+        PseudoClasses.Set(PC_Modal, true);
         void OnCloseHandler(object sender, object? args)
         {
             if (args is T result)
@@ -123,5 +125,25 @@ public class DialogControl: ContentControl
         {
             OnClose?.Invoke(this, null);
         }
+    }
+
+    public void BringForward()
+    {
+        OnLayerChange?.Invoke(this, new DialogLayerChangeEventArgs(DialogLayerChangeType.BringForward));
+    }
+
+    public void SendBackward()
+    {
+        OnLayerChange?.Invoke(this, new DialogLayerChangeEventArgs(DialogLayerChangeType.SendBackward));
+    } 
+    
+    public void BringToFront()
+    {
+        OnLayerChange?.Invoke(this, new DialogLayerChangeEventArgs(DialogLayerChangeType.BringToFront));
+    }
+    
+    public void SendToBack()
+    {
+        OnLayerChange?.Invoke(this, new DialogLayerChangeEventArgs(DialogLayerChangeType.SendToBack));
     }
 }

@@ -9,37 +9,38 @@ using Avalonia.Media;
 using Avalonia.Utilities;
 using Avalonia.VisualTree;
 
-namespace Ursa.Controls; 
+namespace Ursa.Controls;
 
-public class OverlayDialogHost: Canvas
+public class OverlayDialogHost : Canvas
 {
     private readonly List<DialogControl> _dialogs = new();
     private readonly List<DialogControl> _modalDialogs = new();
     private readonly List<Border> _masks = new();
-    
+
     public string? HostId { get; set; }
-    
+
     private Point _lastPoint;
 
-    public static readonly StyledProperty<IBrush?> OverlayMaskBrushProperty = AvaloniaProperty.Register<OverlayDialogHost, IBrush?>(
-        nameof(OverlayMaskBrush));
+    public static readonly StyledProperty<IBrush?> OverlayMaskBrushProperty =
+        AvaloniaProperty.Register<OverlayDialogHost, IBrush?>(
+            nameof(OverlayMaskBrush));
 
     public IBrush? OverlayMaskBrush
     {
         get => GetValue(OverlayMaskBrushProperty);
         set => SetValue(OverlayMaskBrushProperty, value);
     }
-    
+
     private Border CreateOverlayMask() => new()
     {
         HorizontalAlignment = HorizontalAlignment.Stretch,
         VerticalAlignment = VerticalAlignment.Stretch,
         Width = this.Bounds.Width,
-        Height =  this.Bounds.Height,
+        Height = this.Bounds.Height,
         [!BackgroundProperty] = this[!OverlayMaskBrushProperty],
         IsVisible = true,
     };
-    
+
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
@@ -70,7 +71,7 @@ public class OverlayDialogHost: Canvas
             if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
             {
                 var p = e.GetPosition(this);
-                var left=  p.X - _lastPoint.X;
+                var left = p.X - _lastPoint.X;
                 var top = p.Y - _lastPoint.Y;
                 left = MathUtilities.Clamp(left, 0, Bounds.Width - item.Bounds.Width);
                 top = MathUtilities.Clamp(top, 0, Bounds.Height - item.Bounds.Height);
@@ -93,7 +94,9 @@ public class OverlayDialogHost: Canvas
     {
         this.Children.Add(control);
         _dialogs.Add(control);
+        control.ZIndex = Children.Last().ZIndex + 1;
         control.OnClose += OnDialogClose;
+        control.OnLayerChange += OnDialogLayerChange;
     }
 
     private void OnDialogClose(object sender, object? e)
@@ -102,11 +105,12 @@ public class OverlayDialogHost: Canvas
         {
             this.Children.Remove(control);
             control.OnClose -= OnDialogClose;
+            control.OnLayerChange -= OnDialogLayerChange;
             if (_dialogs.Contains(control))
             {
                 _dialogs.Remove(control);
             }
-            else if(_modalDialogs.Contains(control))
+            else if (_modalDialogs.Contains(control))
             {
                 _modalDialogs.Remove(control);
                 if (_masks.Count > 0)
@@ -116,7 +120,7 @@ public class OverlayDialogHost: Canvas
                     _masks.Remove(last);
                     if (_masks.Count > 0)
                     {
-                        _masks.Last().IsVisible= true;
+                        _masks.Last().IsVisible = true;
                     }
                 }
             }
@@ -133,7 +137,41 @@ public class OverlayDialogHost: Canvas
         {
             _masks[i].IsVisible = false;
         }
+
         _masks.Add(mask);
         control.OnClose += OnDialogClose;
+        control.OnLayerChange += OnDialogLayerChange;
+    }
+
+    private void OnDialogLayerChange(object sender, DialogLayerChangeEventArgs e)
+    {
+        if (sender is not DialogControl control)
+            return;
+        if (!_dialogs.Contains(control))
+            return;
+        int index = _dialogs.IndexOf(control);
+        _dialogs.Remove(control);
+        int newIndex = index;
+        switch (e.ChangeType)
+        {
+            case DialogLayerChangeType.BringForward:
+                newIndex = MathUtilities.Clamp(index + 1, 0, _dialogs.Count);
+                break;
+            case DialogLayerChangeType.SendBackward:
+                newIndex = MathUtilities.Clamp(index - 1, 0, _dialogs.Count);
+                break;
+            case DialogLayerChangeType.BringToFront:
+                newIndex = _dialogs.Count;
+                break;
+            case DialogLayerChangeType.SendToBack:
+                newIndex = 0;
+                break;
+        }
+
+        _dialogs.Insert(newIndex, control);
+        for (int i = 0; i < _dialogs.Count; i++)
+        {
+            _dialogs[i].ZIndex = i;
+        }
     }
 }
