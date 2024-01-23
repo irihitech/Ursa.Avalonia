@@ -41,13 +41,13 @@ public class OverlayDialogHost : Canvas
         IsVisible = true,
     };
 
-    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+    protected sealed override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
         OverlayDialogManager.RegisterOverlayDialogHost(this, HostId);
     }
 
-    protected override void OnSizeChanged(SizeChangedEventArgs e)
+    protected sealed override void OnSizeChanged(SizeChangedEventArgs e)
     {
         base.OnSizeChanged(e);
         for (int i = 0; i < _masks.Count; i++)
@@ -90,7 +90,7 @@ public class OverlayDialogHost : Canvas
         }
     }
 
-    public void AddDialog(DialogControl control)
+    internal void AddDialog(DialogControl control)
     {
         this.Children.Add(control);
         _dialogs.Add(control);
@@ -127,18 +127,25 @@ public class OverlayDialogHost : Canvas
         }
     }
 
-    public void AddModalDialog(DialogControl control)
+    internal void AddModalDialog(DialogControl control)
     {
         var mask = CreateOverlayMask();
-        this.Children.Add(mask);
-        this.Children.Add(control);
+        _masks.Add(mask);
         _modalDialogs.Add(control);
-        for (int i = 0; i < _masks.Count; i++)
+        int start = _dialogs.LastOrDefault()?.ZIndex ?? 1;
+        for (int i = 0; i < _masks.Count; i += 1)
         {
-            _masks[i].IsVisible = false;
+            _masks[i].ZIndex = start + 2 * i;
+            _modalDialogs[i].ZIndex = start + 2 * i + 1;
+        }
+        
+        for (int i = 0; i < _masks.Count-1; i++)
+        {
+            _masks[i].Opacity = 0.5;
         }
 
-        _masks.Add(mask);
+        this.Children.Add(mask);
+        this.Children.Add(control);
         control.OnClose += OnDialogClose;
         control.OnLayerChange += OnDialogLayerChange;
     }
@@ -173,5 +180,12 @@ public class OverlayDialogHost : Canvas
         {
             _dialogs[i].ZIndex = i;
         }
+
+        for (int i = 0; i < _masks.Count * 2; i += 2) 
+        {
+            _masks[i].ZIndex = _dialogs.Count + i;
+            _modalDialogs[i].ZIndex = _dialogs.Count + i + 1;
+        }
+        
     }
 }
