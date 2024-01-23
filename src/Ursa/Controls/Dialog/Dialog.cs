@@ -6,39 +6,34 @@ using Avalonia.Media;
 
 namespace Ursa.Controls;
 
-public static class DialogBox
+public static class Dialog
 {
     public static async Task<TResult?> ShowModalAsync<TView, TViewModel, TResult>(TViewModel vm) 
         where TView : Control, new()
     {
-        var window = new DialogWindow()
-        {
-            Content = new TView(),
-            DataContext = vm,
-        };
+
         var lifetime = Application.Current?.ApplicationLifetime;
         if (lifetime is IClassicDesktopStyleApplicationLifetime classLifetime)
         {
-            var main = classLifetime.MainWindow;
-            if (main is null)
+            var window = new DialogWindow
+            {
+                Content = new TView { DataContext = vm },
+                DataContext = vm,
+            };
+            if (classLifetime.MainWindow is not { } main)
             {
                 window.Show();
-                return default(TResult);
+                return default;
             }
-            else
-            {
-                var result = await window.ShowDialog<TResult>(main);
-                return result;
-            }
+            var result = await window.ShowDialog<TResult>(main);
+            return result;
         }
-        else
-        {
-            return default(TResult);
-        }
+
+        return default(TResult);
     }
     
-    public static async Task<TResult> ShowModalAsync<TView, TViewModel, TResult>(Window owner, TViewModel vm) where 
-        TView: Control, new()
+    public static async Task<TResult> ShowModalAsync<TView, TViewModel, TResult>(Window owner, TViewModel? vm) 
+        where TView: Control, new()
     {
         var window = new DialogWindow
         {
@@ -47,9 +42,11 @@ public static class DialogBox
         };
         return await window.ShowDialog<TResult>(owner);
     }
-    
+}
 
-    public static Task<TResult> ShowOverlayModalAsync<TView, TViewModel, TResult>(TViewModel vm, string hostId)
+public static class OverlayDialog
+{
+    public static Task<TResult> ShowModalAsync<TView, TViewModel, TResult>(TViewModel vm, string? hostId = null)
         where TView : Control, new()
     {
         var t = new DialogControl()
@@ -62,8 +59,7 @@ public static class DialogBox
         return t.ShowAsync<TResult>();
     }
 
-    public static Task<TResult> ShowOverlayModalAsync<TView, TViewModel, TResult>(TViewModel vm, string hostId,
-        DialogOptions options)
+    public static Task<TResult> ShowModalAsync<TView, TViewModel, TResult>(TViewModel vm, DialogOptions options, string? hostId = null)
         where TView : Control, new()
     {
         var t = new DialogControl()
@@ -78,7 +74,7 @@ public static class DialogBox
         return t.ShowAsync<TResult>();
     }
 
-    public static void ShowOverlay<TView, TViewModel>(TViewModel vm, string hostId)
+    public static void Show<TView, TViewModel>(TViewModel vm, string? hostId = null)
         where TView: Control, new()
     {
         var t = new DialogControl()
@@ -90,7 +86,7 @@ public static class DialogBox
         host?.AddDialog(t);
     }
 
-    public static void ShowOverlay<TView, TViewModel>(TViewModel vm, string hostId, DialogOptions options)
+    public static void Show<TView, TViewModel>(TViewModel vm, DialogOptions options, string? hostId)
         where TView: Control, new()
     {
         var t = new DialogControl()

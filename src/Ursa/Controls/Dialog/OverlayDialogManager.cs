@@ -4,20 +4,39 @@ namespace Ursa.Controls;
 
 internal static class OverlayDialogManager
 {
-    private static ConcurrentDictionary<string, OverlayDialogHost> _hosts = new();
+    private static OverlayDialogHost? _defaultHost;
+    private static readonly ConcurrentDictionary<string, OverlayDialogHost> Hosts = new();
     
-    public static void RegisterOverlayDialogHost(OverlayDialogHost host, string id)
+    public static void RegisterOverlayDialogHost(OverlayDialogHost host, string? id)
     {
-        _hosts.TryAdd(id, host);
+        if (id == null)
+        {
+            if (_defaultHost != null)
+            {
+                throw new InvalidOperationException("Cannot register multiple OverlayDialogHost with empty HostId");
+            }
+            _defaultHost = host;
+            return;
+        }
+        Hosts.TryAdd(id, host);
     }
     
-    public static void UnregisterOverlayDialogHost(string id)
+    public static void UnregisterOverlayDialogHost(string? id)
     {
-        _hosts.TryRemove(id, out _);
+        if (id is null)
+        {
+            _defaultHost = null;
+            return;
+        }
+        Hosts.TryRemove(id, out _);
     }
     
-    public static OverlayDialogHost? GetOverlayDialogHost(string id)
+    public static OverlayDialogHost? GetOverlayDialogHost(string? id)
     {
-        return _hosts.TryGetValue(id, out var host) ? host : null;
+        if (id is null)
+        {
+            return _defaultHost;
+        }
+        return Hosts.TryGetValue(id, out var host) ? host : null;
     }
 }

@@ -1,13 +1,9 @@
-using System.Collections.Specialized;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
-using Avalonia.Controls.Shapes;
 using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Utilities;
-using Avalonia.VisualTree;
 
 namespace Ursa.Controls;
 
@@ -53,7 +49,7 @@ public class OverlayDialogHost : Canvas
         for (int i = 0; i < _masks.Count; i++)
         {
             _masks[i].Width = this.Bounds.Width;
-            _masks[i].Width = this.Bounds.Height;
+            _masks[i].Height = this.Bounds.Height;
         }
     }
 
@@ -94,9 +90,9 @@ public class OverlayDialogHost : Canvas
     {
         this.Children.Add(control);
         _dialogs.Add(control);
-        control.ZIndex = Children.Last().ZIndex + 1;
         control.OnClose += OnDialogClose;
         control.OnLayerChange += OnDialogLayerChange;
+        ResetZIndices();
     }
 
     private void OnDialogClose(object sender, object? e)
@@ -124,32 +120,31 @@ public class OverlayDialogHost : Canvas
                     }
                 }
             }
+            ResetZIndices();
         }
     }
 
+    /// <summary>
+    ///  Add a dialog as a modal dialog to the host
+    /// </summary>
+    /// <param name="control"></param>
     internal void AddModalDialog(DialogControl control)
     {
         var mask = CreateOverlayMask();
         _masks.Add(mask);
         _modalDialogs.Add(control);
-        int start = _dialogs.LastOrDefault()?.ZIndex ?? 1;
-        for (int i = 0; i < _masks.Count; i += 1)
-        {
-            _masks[i].ZIndex = start + 2 * i;
-            _modalDialogs[i].ZIndex = start + 2 * i + 1;
-        }
-        
         for (int i = 0; i < _masks.Count-1; i++)
         {
             _masks[i].Opacity = 0.5;
         }
-
+        ResetZIndices();
         this.Children.Add(mask);
         this.Children.Add(control);
         control.OnClose += OnDialogClose;
         control.OnLayerChange += OnDialogLayerChange;
     }
 
+    // Handle dialog layer change event
     private void OnDialogLayerChange(object sender, DialogLayerChangeEventArgs e)
     {
         if (sender is not DialogControl control)
@@ -187,5 +182,22 @@ public class OverlayDialogHost : Canvas
             _modalDialogs[i].ZIndex = _dialogs.Count + i + 1;
         }
         
+    }
+
+    private void ResetZIndices()
+    {
+        int index = 0;
+        for ( int i = 0; i< _dialogs.Count; i++)
+        {
+            _dialogs[i].ZIndex = index;
+            index++;
+        }
+        for(int i = 0; i< _masks.Count; i++)
+        {
+            _masks[i].ZIndex = index;
+            index++;
+            _modalDialogs[i].ZIndex = index;
+            index++;
+        }
     }
 }

@@ -40,6 +40,6 @@ public partial class DialogWithActionViewModel: ObservableObject, IDialogContext
     
     private async Task ShowDialog()
     {
-        await DialogBox.ShowOverlayModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(new DialogWithActionViewModel(), "GlobalHost");
+        await OverlayDialog.ShowModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(new DialogWithActionViewModel());
     }
 }

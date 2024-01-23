@@ -45,25 +45,25 @@ public class DialogDemoViewModel: ObservableObject
 
     private void ShowGlobalOverlayDialog()
     {
-        DialogBox.ShowOverlay<DialogWithAction, DialogWithActionViewModel>(new DialogWithActionViewModel(), "GlobalHost");
+        OverlayDialog.Show<DialogWithAction, DialogWithActionViewModel>(new DialogWithActionViewModel());
     }
 
     private async Task ShowGlobalModalDialog()
     {
-        var result = await DialogBox.ShowModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(DialogViewModel);
+        var result = await Dialog.ShowModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(DialogViewModel);
         Result = result;
     }
 
     private async Task ShowGlobalOverlayModalDialog()
     {
-        Result = await DialogBox.ShowOverlayModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(DialogViewModel, "GlobalHost");
+        Result = await OverlayDialog.ShowModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(DialogViewModel);
     }
 
     private async Task ShowLocalOverlayModalDialog()
     {
         var vm = new DialogWithActionViewModel();
-        var result = await DialogBox.ShowOverlayModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(
-            DialogViewModel, "LocalHost", new DialogOptions(){ ExtendToClientArea = true });
+        var result = await OverlayDialog.ShowModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(
+            DialogViewModel, new DialogOptions() { ExtendToClientArea = true }, "LocalHost");
         Result = result;
     }
 }
