@@ -54,7 +54,7 @@ public static class OverlayDialog
             Content = new TView(){ DataContext = vm },
             DataContext = vm,
         };
-        var host = OverlayDialogManager.GetOverlayDialogHost(hostId);
+        var host = OverlayDialogManager.GetHost(hostId);
         host?.AddModalDialog(t);
         return t.ShowAsync<TResult>();
     }
@@ -69,7 +69,7 @@ public static class OverlayDialog
             ExtendToClientArea = options.ExtendToClientArea,
             Title = options.Title,
         };
-        var host = OverlayDialogManager.GetOverlayDialogHost(hostId);
+        var host = OverlayDialogManager.GetHost(hostId);
         host?.AddModalDialog(t);
         return t.ShowAsync<TResult>();
     }
@@ -82,7 +82,7 @@ public static class OverlayDialog
             Content = new TView() { DataContext = vm },
             DataContext = vm,
         };
-        var host = OverlayDialogManager.GetOverlayDialogHost(hostId);
+        var host = OverlayDialogManager.GetHost(hostId);
         host?.AddDialog(t);
     }
 
@@ -96,7 +96,7 @@ public static class OverlayDialog
             ExtendToClientArea = options.ExtendToClientArea,
             Title = options.Title,
         };
-        var host = OverlayDialogManager.GetOverlayDialogHost(hostId);
+        var host = OverlayDialogManager.GetHost(hostId);
         host?.AddModalDialog(t);
     }
 }

@@ -7,7 +7,7 @@ internal static class OverlayDialogManager
     private static OverlayDialogHost? _defaultHost;
     private static readonly ConcurrentDictionary<string, OverlayDialogHost> Hosts = new();
     
-    public static void RegisterOverlayDialogHost(OverlayDialogHost host, string? id)
+    public static void RegisterHost(OverlayDialogHost host, string? id)
     {
         if (id == null)
         {
@@ -21,7 +21,7 @@ internal static class OverlayDialogManager
         Hosts.TryAdd(id, host);
     }
     
-    public static void UnregisterOverlayDialogHost(string? id)
+    public static void UnregisterHost(string? id)
     {
         if (id is null)
         {
@@ -31,7 +31,7 @@ internal static class OverlayDialogManager
         Hosts.TryRemove(id, out _);
     }
     
-    public static OverlayDialogHost? GetOverlayDialogHost(string? id)
+    public static OverlayDialogHost? GetHost(string? id)
     {
         if (id is null)
         {

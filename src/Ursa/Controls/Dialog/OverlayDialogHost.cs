@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Media;
@@ -40,7 +41,7 @@ public class OverlayDialogHost : Canvas
     protected sealed override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
-        OverlayDialogManager.RegisterOverlayDialogHost(this, HostId);
+        OverlayDialogManager.RegisterHost(this, HostId);
     }
 
     protected sealed override void OnSizeChanged(SizeChangedEventArgs e)
@@ -55,7 +56,7 @@ public class OverlayDialogHost : Canvas
 
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
     {
-        OverlayDialogManager.UnregisterOverlayDialogHost(HostId);
+        OverlayDialogManager.UnregisterHost(HostId);
         base.OnDetachedFromVisualTree(e);
     }
 
@@ -90,6 +91,9 @@ public class OverlayDialogHost : Canvas
     {
         this.Children.Add(control);
         _dialogs.Add(control);
+        control.Measure(this.Bounds.Size);
+        control.Arrange(new Rect(control.DesiredSize));
+        SetToCenter(control);
         control.OnClose += OnDialogClose;
         control.OnLayerChange += OnDialogLayerChange;
         ResetZIndices();
@@ -140,6 +144,9 @@ public class OverlayDialogHost : Canvas
         ResetZIndices();
         this.Children.Add(mask);
         this.Children.Add(control);
+        control.Measure(this.Bounds.Size);
+        control.Arrange(new Rect(control.DesiredSize));
+        SetToCenter(control);
         control.OnClose += OnDialogClose;
         control.OnLayerChange += OnDialogLayerChange;
     }
@@ -199,5 +206,17 @@ public class OverlayDialogHost : Canvas
             _modalDialogs[i].ZIndex = index;
             index++;
         }
+    }
+
+    private void SetToCenter(DialogControl? control)
+    {
+        // return;
+        if (control is null) return;
+        double left = (this.Bounds.Width - control.Bounds.Width) / 2;
+        double top = (this.Bounds.Height - control.Bounds.Height) / 2;
+        left = MathUtilities.Clamp(left, 0, Bounds.Width);
+        top = MathUtilities.Clamp(top, 0, Bounds.Height);
+        Canvas.SetLeft(control, left);
+        Canvas.SetTop(control, top);
     }
 }

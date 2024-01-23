@@ -33,7 +33,9 @@
                 Command="{Binding ShowLocalOverlayModalDialogCommand}">
                 Show Local Overlay Dialog
             </Button>
-            <u:OverlayDialogHost HostId="LocalHost" />
+            <Border CornerRadius="20" ClipToBounds="True">
+                <u:OverlayDialogHost HostId="LocalHost" />
+            </Border>
         </Grid>
     </Grid>
 </UserControl>
