@@ -43,8 +43,21 @@
                             <DataTemplate DataType="vm:MenuItemViewModel">
                                 <u:NavigationMenuItem
                                     Command="{Binding ActivateCommand}"
-                                    Header="{Binding MenuHeader}"
+                                    Header="{Binding}"
                                     ItemsSource="{Binding Children}">
+                                    <u:NavigationMenuItem.HeaderTemplate>
+                                        <DataTemplate x:DataType="vm:MenuItemViewModel">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock HorizontalAlignment="Left" Text="{Binding MenuHeader}" />
+                                                <u:Badge
+                                                    Margin="8,0,0,0"
+                                                    HorizontalAlignment="Left"
+                                                    BadgeContent="{Binding Status}"
+                                                    CornerPosition="TopRight" />
+                                            </StackPanel>
+
+                                        </DataTemplate>
+                                    </u:NavigationMenuItem.HeaderTemplate>
                                     <u:NavigationMenuItem.Icon>
                                         <Border
                                             Width="10"

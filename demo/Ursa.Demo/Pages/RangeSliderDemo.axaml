@@ -1,0 +1,52 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.RangeSliderDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:RangeSliderDemoViewModel"
+    mc:Ignorable="d">
+    <UserControl.Styles>
+        <Style Selector="u|NumericDoubleUpDown">
+            <Setter Property="Width" Value="300" />
+        </Style>
+    </UserControl.Styles>
+    <StackPanel>
+        <u:RangeSlider
+            IsSnapToTick="True"
+            TickFrequency="5"
+            TickPlacement="TopLeft" 
+            Minimum="{Binding #range.Minimum, Mode=TwoWay}"
+            Maximum="{Binding #range.Maximum, Mode=TwoWay}"
+            LowerValue="{Binding #range.LowerValue, Mode=TwoWay}"
+            UpperValue="{Binding #range.UpperValue, Mode=TwoWay}"/>
+        <u:NumericDoubleUpDown InnerLeftContent="Minimum" Value="{Binding #range.Minimum, Mode=TwoWay}" />
+        <u:NumericDoubleUpDown InnerLeftContent="Maximum" Value="{Binding #range.Maximum, Mode=TwoWay}" />
+        <u:NumericDoubleUpDown InnerLeftContent="LowerValue" Value="{Binding #range.LowerValue, Mode=TwoWay}" />
+        <u:NumericDoubleUpDown InnerLeftContent="UpperValue" Value="{Binding #range.UpperValue, Mode=TwoWay}" />
+        <ComboBox ItemsSource="{Binding Orientations}" SelectedItem="{Binding Orientation}" />
+        <u:RangeSlider
+            Name="range"
+            Margin="8"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Orientation="{Binding Orientation}"
+            TickFrequency="5">
+            <u:RangeSlider.Styles>
+                <Style Selector="u|RangeSlider:horizontal">
+                    <Setter Property="Width" Value="400" />
+                    <Setter Property="Height" Value="40" />
+                </Style>
+                <Style Selector="u|RangeSlider:vertical">
+                    <Setter Property="Width" Value="40" />
+                    <Setter Property="Height" Value="400" />
+                </Style>
+            </u:RangeSlider.Styles>
+        </u:RangeSlider>
+    </StackPanel>
+</UserControl>
