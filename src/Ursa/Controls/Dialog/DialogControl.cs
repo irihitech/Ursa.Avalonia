@@ -127,23 +127,11 @@ public class DialogControl: ContentControl
         }
     }
 
-    public void BringForward()
+    public void UpdateLayer(object? o)
     {
-        OnLayerChange?.Invoke(this, new DialogLayerChangeEventArgs(DialogLayerChangeType.BringForward));
-    }
-
-    public void SendBackward()
-    {
-        OnLayerChange?.Invoke(this, new DialogLayerChangeEventArgs(DialogLayerChangeType.SendBackward));
-    } 
-    
-    public void BringToFront()
-    {
-        OnLayerChange?.Invoke(this, new DialogLayerChangeEventArgs(DialogLayerChangeType.BringToFront));
-    }
-    
-    public void SendToBack()
-    {
-        OnLayerChange?.Invoke(this, new DialogLayerChangeEventArgs(DialogLayerChangeType.SendToBack));
+        if (o is DialogLayerChangeType t)
+        {
+            OnLayerChange?.Invoke(this, new DialogLayerChangeEventArgs(t));
+        }
     }
 }

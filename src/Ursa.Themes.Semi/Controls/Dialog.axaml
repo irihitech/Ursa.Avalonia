@@ -4,7 +4,7 @@
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:OverlayDialogHost}" TargetType="u:OverlayDialogHost">
-        <Setter Property="OverlayMaskBrush" Value="{DynamicResource OverlayDialogMaskBrush}"></Setter>
+        <Setter Property="OverlayMaskBrush" Value="{DynamicResource OverlayDialogMaskBrush}" />
     </ControlTheme>
     <ControlTheme x:Key="{x:Type u:DialogControl}" TargetType="u:DialogControl">
         <Setter Property="Template">
@@ -25,16 +25,15 @@
                                 Name="{x:Static u:DialogControl.PART_TitleArea}"
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2"
-                                Background="Transparent" >
-                            </Panel>
+                                Background="Transparent" />
                             <TextBlock
                                 Grid.Column="0"
                                 Margin="8,8,0,0"
-                                DockPanel.Dock="Left"
-                                Text="{TemplateBinding Title}"
                                 Classes="Strong"
-                                IsVisible="{TemplateBinding Title, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                />
+                                DockPanel.Dock="Left"
+                                IsVisible="{TemplateBinding Title,
+                                                            Converter={x:Static ObjectConverters.IsNotNull}}"
+                                Text="{TemplateBinding Title}" />
                             <Button
                                 Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
                                 Grid.Column="1"
@@ -53,24 +52,48 @@
         <Style Selector="^:not(:modal) /template/ Panel#PART_TitleArea">
             <Setter Property="ContextFlyout">
                 <MenuFlyout>
-                    <MenuItem Header="Bring Forward" Command="{Binding $parent[u:DialogControl].BringForward}">
+                    <MenuItem
+                        Command="{Binding $parent[u:DialogControl].UpdateLayer}"
+                        CommandParameter="{x:Static u:DialogLayerChangeType.BringForward}"
+                        Header="Bring Forward">
                         <MenuItem.Icon>
-                            <PathIcon Width="12" Height="12" Data="{DynamicResource DialogArrangeBringForwardGlyph}"></PathIcon>
+                            <PathIcon
+                                Width="12"
+                                Height="12"
+                                Data="{DynamicResource DialogArrangeBringForwardGlyph}" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Bring To Front" Command="{Binding $parent[u:DialogControl].BringToFront}">
+                    <MenuItem
+                        Command="{Binding $parent[u:DialogControl].UpdateLayer}"
+                        CommandParameter="{x:Static u:DialogLayerChangeType.BringToFront}"
+                        Header="Bring To Front">
                         <MenuItem.Icon>
-                            <PathIcon Width="12" Height="12" Data="{DynamicResource DialogArrangeBringToFrontGlyph}"></PathIcon>
+                            <PathIcon
+                                Width="12"
+                                Height="12"
+                                Data="{DynamicResource DialogArrangeBringToFrontGlyph}" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Send Backward" Command="{Binding $parent[u:DialogControl].SendBackward}" >
+                    <MenuItem
+                        Command="{Binding $parent[u:DialogControl].UpdateLayer}"
+                        CommandParameter="{x:Static u:DialogLayerChangeType.SendBackward}"
+                        Header="Send Backward">
                         <MenuItem.Icon>
-                            <PathIcon Width="12" Height="12" Data="{DynamicResource DialogArrangeSendBackwardGlyph}"></PathIcon>
+                            <PathIcon
+                                Width="12"
+                                Height="12"
+                                Data="{DynamicResource DialogArrangeSendBackwardGlyph}" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Send To Back" Command="{Binding $parent[u:DialogControl].SendToBack}">
+                    <MenuItem
+                        Command="{Binding $parent[u:DialogControl].UpdateLayer}"
+                        CommandParameter="{x:Static u:DialogLayerChangeType.SendToBack}"
+                        Header="Send To Back">
                         <MenuItem.Icon>
-                            <PathIcon Width="12" Height="12" Data="{DynamicResource DialogArrangeSendToBackGlyph}"></PathIcon>
+                            <PathIcon
+                                Width="12"
+                                Height="12"
+                                Data="{DynamicResource DialogArrangeSendToBackGlyph}" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuFlyout>
