@@ -3,79 +3,162 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Controls.Shapes;
 using Avalonia.Media;
+using Ursa.Common;
 
 namespace Ursa.Controls;
 
 public static class Dialog
 {
-    public static async Task<TResult?> ShowModalAsync<TView, TViewModel, TResult>(TViewModel vm) 
+    /// <summary>
+    /// Show a Window Modal Dialog that with all content fully customized. 
+    /// </summary>
+    /// <param name="vm"></param>
+    /// <typeparam name="TView"></typeparam>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <typeparam name="TResult"></typeparam>
+    /// <returns></returns>
+    public static async Task<TResult?> ShowCustomModalAsync<TView, TViewModel, TResult>(TViewModel vm) 
         where TView : Control, new()
     {
-
-        var lifetime = Application.Current?.ApplicationLifetime;
-        if (lifetime is IClassicDesktopStyleApplicationLifetime classLifetime)
-        {
-            var window = new DialogWindow
-            {
-                Content = new TView { DataContext = vm },
-                DataContext = vm,
-            };
-            if (classLifetime.MainWindow is not { } main)
-            {
-                window.Show();
-                return default;
-            }
-            var result = await window.ShowDialog<TResult>(main);
-            return result;
-        }
-
-        return default(TResult);
+        var mainWindow = GetMainWindow();
+        return await ShowCustomModalAsync<TView, TViewModel, TResult>(mainWindow, vm);
     }
     
-    public static async Task<TResult> ShowModalAsync<TView, TViewModel, TResult>(Window owner, TViewModel? vm) 
+    
+    /// <summary>
+    /// Show a Window Modal Dialog that with all content fully customized. And the owner of the dialog is specified.
+    /// </summary>
+    /// <param name="owner"></param>
+    /// <param name="vm"></param>
+    /// <typeparam name="TView"></typeparam>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <typeparam name="TResult"></typeparam>
+    /// <returns></returns>
+    public static async Task<TResult> ShowCustomModalAsync<TView, TViewModel, TResult>(Window? owner, TViewModel? vm) 
         where TView: Control, new()
     {
         var window = new DialogWindow
         {
-            Content = new TView() { DataContext = vm },
-            DataContext = vm
+            Content = new TView { DataContext = vm },
+            DataContext = vm,
         };
-        return await window.ShowDialog<TResult>(owner);
+        if (owner is null)
+        {
+            window.Show();
+            return default;
+        }
+        else
+        {
+            var result = await window.ShowDialog<TResult>(owner);
+            return result;
+        }
+    }
+    
+    public static async Task<DialogResult> ShowModalAsync<TView, TViewModel>(
+        Window? owner, 
+        TViewModel vm, 
+        string? title = null, 
+        DialogIcon icon = DialogIcon.None, 
+        DialogButton buttons = DialogButton.OKCancel)
+        where TView : Control, new()
+    {
+        var window = new DefaultDialogWindow()
+        {
+            Content = new TView() { DataContext = vm },
+            DataContext = vm,
+            Buttons = buttons,
+            Title = title,
+            Icon = icon,
+        };
+        if (owner is null)
+        {
+            window.Show();
+            return DialogResult.None;
+        }
+        else
+        {
+            var result = await window.ShowDialog<DialogResult>(owner);
+            return result;
+        }
+    }
+    
+    public static async Task<DialogResult> ShowModalAsync<TView, TViewModel>(
+        TViewModel vm, 
+        string? title = null, 
+        DialogIcon icon = DialogIcon.None, 
+        DialogButton buttons = DialogButton.OKCancel)
+        where TView: Control, new()
+    {
+        var mainWindow = GetMainWindow();
+        return await ShowModalAsync<TView, TViewModel>(mainWindow, vm, title, icon, buttons);
+    }
+    
+    private static Window? GetMainWindow()
+    {
+        var lifetime = Application.Current?.ApplicationLifetime;
+        return lifetime is IClassicDesktopStyleApplicationLifetime { MainWindow: { } w } ? w : null;
     }
 }
 
 public static class OverlayDialog
 {
-    public static Task<TResult> ShowModalAsync<TView, TViewModel, TResult>(TViewModel vm, string? hostId = null)
+    public static Task<DialogResult> ShowModalAsync<TView, TViewModel>(
+        TViewModel vm, 
+        string? hostId = null, 
+        string? title = null,
+        DialogIcon icon = DialogIcon.None,
+        DialogButton buttons = DialogButton.OKCancel)
         where TView : Control, new()
     {
-        var t = new DialogControl()
+        var t = new DefaultDialogControl()
         {
             Content = new TView(){ DataContext = vm },
             DataContext = vm,
+            Buttons = buttons,
+            Title = title,
+            Icon = icon,
         };
         var host = OverlayDialogManager.GetHost(hostId);
         host?.AddModalDialog(t);
-        return t.ShowAsync<TResult>();
+        return t.ShowAsync<DialogResult>();
     }
 
-    public static Task<TResult> ShowModalAsync<TView, TViewModel, TResult>(TViewModel vm, DialogOptions options, string? hostId = null)
-        where TView : Control, new()
+    public static Task<TResult> ShowCustomModalAsync<TView, TViewModel, TResult>(
+        TViewModel vm, 
+        string? hostId = null)
+        where TView: Control, new()
     {
         var t = new DialogControl()
         {
             Content = new TView() { DataContext = vm },
             DataContext = vm,
-            ExtendToClientArea = options.ExtendToClientArea,
-            Title = options.Title,
-            Buttons = options.DefaultButtons,
         };
         var host = OverlayDialogManager.GetHost(hostId);
         host?.AddModalDialog(t);
         return t.ShowAsync<TResult>();
     }
 
-    public static void Show<TView, TViewModel>(TViewModel vm, string? hostId = null)
+    public static void Show<TView, TViewModel>(
+        TViewModel vm, 
+        string? hostId = null, 
+        string? title = null, 
+        DialogIcon icon = DialogIcon.None, 
+        DialogButton buttons = DialogButton.OKCancel)
+        where TView: Control, new()
+    {
+        var t = new DefaultDialogControl()
+        {
+            Content = new TView() { DataContext = vm },
+            DataContext = vm,
+            Buttons = buttons,
+            Title = title,
+            Icon = icon,
+        };
+        var host = OverlayDialogManager.GetHost(hostId);
+        host?.AddDialog(t);
+    }
+
+    public static void ShowCustom<TView, TViewModel>(TViewModel vm, string? hostId = null)
         where TView: Control, new()
     {
         var t = new DialogControl()
@@ -86,19 +169,5 @@ public static class OverlayDialog
         var host = OverlayDialogManager.GetHost(hostId);
         host?.AddDialog(t);
     }
-
-    public static void Show<TView, TViewModel>(TViewModel vm, DialogOptions options, string? hostId)
-        where TView: Control, new()
-    {
-        var t = new DialogControl()
-        {
-            Content = new TView() { DataContext = vm },
-            DataContext = vm,
-            ExtendToClientArea = options.ExtendToClientArea,
-            Title = options.Title,
-            Buttons = options.DefaultButtons,
-        };
-        var host = OverlayDialogManager.GetHost(hostId);
-        host?.AddModalDialog(t);
-    }
+    
 }

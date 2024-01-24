@@ -11,7 +11,12 @@ public partial class DialogWithActionViewModel: ObservableObject, IDialogContext
 {
     [ObservableProperty] private string _title;
     [ObservableProperty] private DateTime _date;
-    public object? DefaultCloseResult { get; set; } = true;
+
+    public void Close()
+    {
+        Closed?.Invoke(this, false);
+    }
+
     public event EventHandler<object?>? Closed;
     
     public ICommand OKCommand { get; set; }
@@ -40,6 +45,6 @@ public partial class DialogWithActionViewModel: ObservableObject, IDialogContext
     
     private async Task ShowDialog()
     {
-        await OverlayDialog.ShowModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(new DialogWithActionViewModel());
+        await OverlayDialog.ShowCustomModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(new DialogWithActionViewModel());
     }
 }

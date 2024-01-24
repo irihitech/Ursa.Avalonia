@@ -13,9 +13,96 @@
                     Padding="0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
+                    Classes="Shadow"
+                    CornerRadius="12"
                     IsHitTestVisible="True"
                     Theme="{DynamicResource CardBorder}">
-                    <Grid RowDefinitions="Auto, *, Auto">
+                    <Grid RowDefinitions="Auto, *">
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Content="{TemplateBinding Content}" />
+                        <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
+                            <Panel
+                                Name="{x:Static u:DialogControl.PART_TitleArea}"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Background="Transparent" />
+                            <Button
+                                Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
+                                Grid.Column="1"
+                                Margin="0,24,24,0"
+                                DockPanel.Dock="Right"
+                                Theme="{DynamicResource CloseButton}" />
+                        </Grid>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:not(:modal) /template/ Panel#PART_TitleArea">
+            <Setter Property="ContextFlyout">
+                <MenuFlyout>
+                    <MenuItem
+                        Command="{Binding $parent[u:DefaultDialogControl].UpdateLayer}"
+                        CommandParameter="{x:Static u:DialogLayerChangeType.BringForward}"
+                        Header="Bring Forward">
+                        <MenuItem.Icon>
+                            <PathIcon
+                                Width="12"
+                                Height="12"
+                                Data="{DynamicResource DialogArrangeBringForwardGlyph}" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem
+                        Command="{Binding $parent[u:DefaultDialogControl].UpdateLayer}"
+                        CommandParameter="{x:Static u:DialogLayerChangeType.BringToFront}"
+                        Header="Bring To Front">
+                        <MenuItem.Icon>
+                            <PathIcon
+                                Width="12"
+                                Height="12"
+                                Data="{DynamicResource DialogArrangeBringToFrontGlyph}" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem
+                        Command="{Binding $parent[u:DefaultDialogControl].UpdateLayer}"
+                        CommandParameter="{x:Static u:DialogLayerChangeType.SendBackward}"
+                        Header="Send Backward">
+                        <MenuItem.Icon>
+                            <PathIcon
+                                Width="12"
+                                Height="12"
+                                Data="{DynamicResource DialogArrangeSendBackwardGlyph}" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem
+                        Command="{Binding $parent[u:DefaultDialogControl].UpdateLayer}"
+                        CommandParameter="{x:Static u:DialogLayerChangeType.SendToBack}"
+                        Header="Send To Back">
+                        <MenuItem.Icon>
+                            <PathIcon
+                                Width="12"
+                                Height="12"
+                                Data="{DynamicResource DialogArrangeSendToBackGlyph}" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuFlyout>
+            </Setter>
+        </Style>
+    </ControlTheme>
+    <ControlTheme x:Key="{x:Type u:DefaultDialogControl}" TargetType="u:DefaultDialogControl">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:DefaultDialogControl">
+                <Border
+                    Padding="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Classes="Shadow"
+                    CornerRadius="12"
+                    IsHitTestVisible="True"
+                    Theme="{DynamicResource CardBorder}">
+                    <Grid Margin="24" RowDefinitions="Auto, *, Auto">
                         <ContentPresenter
                             Name="PART_ContentPresenter"
                             Grid.Row="1"
@@ -47,22 +134,22 @@
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
                             <Button
-                                Name="{x:Static u:DialogControl.PART_CancelButton}"
+                                Name="{x:Static u:DefaultDialogControl.PART_CancelButton}"
                                 Margin="8,0,0,0"
                                 Classes="Tertiary"
                                 Content="Cancel" />
                             <Button
-                                Name="{x:Static u:DialogControl.PART_NoButton}"
+                                Name="{x:Static u:DefaultDialogControl.PART_NoButton}"
                                 Margin="8,0,0,0"
                                 Classes="Danger"
                                 Content="No" />
                             <Button
-                                Name="{x:Static u:DialogControl.PART_YesButton}"
+                                Name="{x:Static u:DefaultDialogControl.PART_YesButton}"
                                 Margin="8,0,0,0"
                                 Classes="Primary"
                                 Content="Yes" />
                             <Button
-                                Name="{x:Static u:DialogControl.PART_OKButton}"
+                                Name="{x:Static u:DefaultDialogControl.PART_OKButton}"
                                 Margin="8,0,0,0"
                                 Classes="Primary"
                                 Content="OK" />
@@ -71,15 +158,11 @@
                 </Border>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^:extend /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Grid.Row" Value="0" />
-            <Setter Property="Grid.RowSpan" Value="3" />
-        </Style>
         <Style Selector="^:not(:modal) /template/ Panel#PART_TitleArea">
             <Setter Property="ContextFlyout">
                 <MenuFlyout>
                     <MenuItem
-                        Command="{Binding $parent[u:DialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DefaultDialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.BringForward}"
                         Header="Bring Forward">
                         <MenuItem.Icon>
@@ -90,7 +173,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem
-                        Command="{Binding $parent[u:DialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DefaultDialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.BringToFront}"
                         Header="Bring To Front">
                         <MenuItem.Icon>
@@ -101,7 +184,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem
-                        Command="{Binding $parent[u:DialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DefaultDialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.SendBackward}"
                         Header="Send Backward">
                         <MenuItem.Icon>
@@ -112,7 +195,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem
-                        Command="{Binding $parent[u:DialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DefaultDialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.SendToBack}"
                         Header="Send To Back">
                         <MenuItem.Icon>
@@ -163,13 +246,47 @@
                             Grid.Row="0"
                             Grid.RowSpan="2"
                             Content="{TemplateBinding Content}" />
-                        <Button
-                            Name="{x:Static u:DialogWindow.PART_CloseButton}"
-                            Grid.Row="0"
-                            Margin="0,4,4,0"
+                        <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
+                            <TextBlock
+                                Grid.Column="0"
+                                Margin="8,8,0,0"
+                                FontSize="14"
+                                FontWeight="Bold"
+                                Text="{TemplateBinding Title}"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap" />
+                            <Button
+                                Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
+                                Grid.Column="1"
+                                Margin="0,4,4,0"
+                                Theme="{DynamicResource CloseButton}" />
+                        </Grid>
+                        <StackPanel
+                            Grid.Row="2"
+                            Margin="0,0,8,8"
                             HorizontalAlignment="Right"
-                            VerticalAlignment="Top"
-                            Theme="{DynamicResource CloseButton}" />
+                            Orientation="Horizontal">
+                            <Button
+                                Name="{x:Static u:DefaultDialogControl.PART_CancelButton}"
+                                Margin="8,0,0,0"
+                                Classes="Tertiary"
+                                Content="Cancel" />
+                            <Button
+                                Name="{x:Static u:DefaultDialogControl.PART_NoButton}"
+                                Margin="8,0,0,0"
+                                Classes="Danger"
+                                Content="No" />
+                            <Button
+                                Name="{x:Static u:DefaultDialogControl.PART_YesButton}"
+                                Margin="8,0,0,0"
+                                Classes="Primary"
+                                Content="Yes" />
+                            <Button
+                                Name="{x:Static u:DefaultDialogControl.PART_OKButton}"
+                                Margin="8,0,0,0"
+                                Classes="Primary"
+                                Content="OK" />
+                        </StackPanel>
                     </Grid>
                 </Panel>
             </ControlTemplate>

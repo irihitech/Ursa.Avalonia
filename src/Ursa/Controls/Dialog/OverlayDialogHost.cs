@@ -11,7 +11,7 @@ namespace Ursa.Controls;
 public class OverlayDialogHost : Canvas
 {
     private readonly List<DialogControl> _dialogs = new();
-    private readonly List<DialogControl> _modalDialogs = new();
+    private readonly List<DialogControl> _modalDialogs = new(); 
     private readonly List<Border> _masks = new();
 
     public string? HostId { get; set; }
@@ -63,7 +63,7 @@ public class OverlayDialogHost : Canvas
     protected override void OnPointerMoved(PointerEventArgs e)
     {
         base.OnPointerMoved(e);
-        if (e.Source is DialogControl item)
+        if (e.Source is DefaultDialogControl item)
         {
             if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
             {
@@ -94,18 +94,18 @@ public class OverlayDialogHost : Canvas
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetToCenter(control);
-        control.OnDialogControlClose += OnDialogControlDialogClose;
-        control.OnLayerChange += OnDialogLayerChange;
+        control.DialogControlClosing += OnDialogControlClosing;
+        control.LayerChanged += OnDialogLayerChanged;
         ResetZIndices();
     }
 
-    private void OnDialogControlDialogClose(object sender, object? e)
+    private void OnDialogControlClosing(object sender, object? e)
     {
         if (sender is DialogControl control)
         {
             this.Children.Remove(control);
-            control.OnDialogControlClose -= OnDialogControlDialogClose;
-            control.OnLayerChange -= OnDialogLayerChange;
+            control.DialogControlClosing -= OnDialogControlClosing;
+            control.LayerChanged -= OnDialogLayerChanged;
             if (_dialogs.Contains(control))
             {
                 _dialogs.Remove(control);
@@ -137,6 +137,7 @@ public class OverlayDialogHost : Canvas
         var mask = CreateOverlayMask();
         _masks.Add(mask);
         _modalDialogs.Add(control);
+        control.SetAsModal(true);
         for (int i = 0; i < _masks.Count-1; i++)
         {
             _masks[i].Opacity = 0.5;
@@ -147,14 +148,14 @@ public class OverlayDialogHost : Canvas
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetToCenter(control);
-        control.OnDialogControlClose += OnDialogControlDialogClose;
-        control.OnLayerChange += OnDialogLayerChange;
+        control.DialogControlClosing += OnDialogControlClosing;
+        control.LayerChanged += OnDialogLayerChanged;
     }
 
     // Handle dialog layer change event
-    private void OnDialogLayerChange(object sender, DialogLayerChangeEventArgs e)
+    private void OnDialogLayerChanged(object sender, DialogLayerChangeEventArgs e)
     {
-        if (sender is not DialogControl control)
+        if (sender is not DefaultDialogControl control)
             return;
         if (!_dialogs.Contains(control))
             return;

@@ -15,13 +15,10 @@ public class DialogDemoViewModel: ObservableObject
     public ICommand ShowLocalOverlayModalDialogCommand { get; }
     public ICommand ShowGlobalOverlayModalDialogCommand { get; }
     public ICommand ShowGlobalModalDialogCommand { get; }
-    
     public ICommand ShowGlobalOverlayDialogCommand { get; }
-    
     public ICommand ShowPlainGlobalOverlayDialogCommand { get; }
 
     private object? _result;
-
     public object? Result
     {
         get => _result;
@@ -54,31 +51,27 @@ public class DialogDemoViewModel: ObservableObject
 
     private async Task ShowGlobalModalDialog()
     {
-        var result = await Dialog.ShowModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(DialogViewModel);
+        var result = await Dialog.ShowCustomModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(DialogViewModel);
         Result = result;
     }
 
     private async Task ShowGlobalOverlayModalDialog()
     {
-        Result = await OverlayDialog.ShowModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(DialogViewModel);
+        Result = await OverlayDialog.ShowCustomModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(DialogViewModel);
     }
 
     private async Task ShowLocalOverlayModalDialog()
     {
         var vm = new DialogWithActionViewModel();
-        var result = await OverlayDialog.ShowModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(
-            DialogViewModel, new DialogOptions() { ExtendToClientArea = true}, "LocalHost");
+        var result = await OverlayDialog.ShowCustomModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(
+            DialogViewModel, "LocalHost");
         Result = result;
     }
     
     public async Task ShowPlainGlobalOverlayDialog()
     {
-        var result = await OverlayDialog.ShowModalAsync<PlainDialog, PlainDialogViewModel, object?>(
+        var result = await OverlayDialog.ShowCustomModalAsync<PlainDialog, PlainDialogViewModel, object?>(
             new PlainDialogViewModel(),
-            new DialogOptions()
-            {
-                DefaultButtons = DialogButton.OKCancel,
-            }, 
             "LocalHost");
     }
 }

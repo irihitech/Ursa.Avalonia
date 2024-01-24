@@ -1,0 +1,125 @@
+﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
+using Avalonia.Controls.Primitives;
+using Avalonia.Interactivity;
+using Ursa.Common;
+
+namespace Ursa.Controls;
+
+[TemplatePart(PART_YesButton, typeof(Button))]
+[TemplatePart(PART_NoButton, typeof(Button))]
+[TemplatePart(PART_OKButton, typeof(Button))]
+[TemplatePart(PART_CancelButton, typeof(Button))]
+public class DefaultDialogWindow: DialogWindow
+{
+    protected override Type StyleKeyOverride { get; } = typeof(DefaultDialogWindow);
+    
+    public const string PART_YesButton = "PART_YesButton";
+    public const string PART_NoButton = "PART_NoButton";
+    public const string PART_OKButton = "PART_OKButton";
+    public const string PART_CancelButton = "PART_CancelButton";
+    
+    private Button? _yesButton;
+    private Button? _noButton;
+    private Button? _okButton;
+    private Button? _cancelButton;
+
+    public static readonly StyledProperty<DialogButton> ButtonsProperty = AvaloniaProperty.Register<DefaultDialogWindow, DialogButton>(
+        nameof(Buttons));
+
+    public DialogButton Buttons
+    {
+        get => GetValue(ButtonsProperty);
+        set => SetValue(ButtonsProperty, value);
+    }
+
+    public new static readonly StyledProperty<DialogIcon> IconProperty = AvaloniaProperty.Register<DefaultDialogWindow, DialogIcon>(
+        nameof(Icon));
+
+    public new DialogIcon Icon
+    {
+        get => GetValue(IconProperty);
+        set => SetValue(IconProperty, value);
+    }
+    
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        EventHelper.UnregisterClickEvent(OnDefaultClose, _okButton, _cancelButton, _yesButton, _noButton);
+        
+        _okButton = e.NameScope.Find<Button>(PART_OKButton);
+        _cancelButton = e.NameScope.Find<Button>(PART_CancelButton);
+        _yesButton = e.NameScope.Find<Button>(PART_YesButton);
+        _noButton = e.NameScope.Find<Button>(PART_NoButton);
+        
+        EventHelper.RegisterClickEvent(OnDefaultClose, _yesButton, _noButton, _okButton, _cancelButton);
+        SetButtonVisibility();
+    }
+
+    private void OnDefaultClose(object sender, RoutedEventArgs e)
+    {
+        if (sender == _yesButton)
+        {
+            Close(DialogResult.Yes);
+            return;
+        }
+        if(sender == _noButton)
+        {
+            Close(DialogResult.No);
+            return;
+        }
+        if(sender == _okButton)
+        {
+            Close(DialogResult.OK);
+            return;
+        }
+        if(sender == _cancelButton)
+        {
+            Close(DialogResult.Cancel);
+            return;
+        }
+    }
+
+    private void SetButtonVisibility()
+    {
+        switch (Buttons)
+        {
+            case DialogButton.None:
+                SetVisibility(_okButton, false);
+                SetVisibility(_cancelButton, false);
+                SetVisibility(_yesButton, false);
+                SetVisibility(_noButton, false);
+                break;
+            case DialogButton.OK:
+                SetVisibility(_okButton, true);
+                SetVisibility(_cancelButton, false);
+                SetVisibility(_yesButton, false);
+                SetVisibility(_noButton, false);
+                break;
+            case DialogButton.OKCancel:
+                SetVisibility(_okButton, true);
+                SetVisibility(_cancelButton, true);
+                SetVisibility(_yesButton, false);
+                SetVisibility(_noButton, false);
+                break;
+            case DialogButton.YesNo:
+                SetVisibility(_okButton, false);
+                SetVisibility(_cancelButton, false);
+                SetVisibility(_yesButton, true);
+                SetVisibility(_noButton, true);
+                break;
+            case DialogButton.YesNoCancel:
+                SetVisibility(_okButton, false);
+                SetVisibility(_cancelButton, true);
+                SetVisibility(_yesButton, true);
+                SetVisibility(_noButton, true);
+                break;
+        }
+    }
+    
+    private void SetVisibility(Button? button, bool visible)
+    {
+        if (button is not null) button.IsVisible = visible;
+    }
+}

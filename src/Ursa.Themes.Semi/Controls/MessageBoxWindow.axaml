@@ -40,7 +40,6 @@
                                 TextTrimming="CharacterEllipsis"
                                 TextWrapping="NoWrap"
                                 Text="{TemplateBinding Title}" />
-                            <!--  A temporary style copied from Semi. Will replace when I get time  -->
                             <Button
                                 Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
                                 Grid.Column="1"

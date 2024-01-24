@@ -4,6 +4,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Ursa.Common;
 
 namespace Ursa.Controls;
 
@@ -25,27 +26,24 @@ public class DialogWindow: Window
     {
         if (args.OldValue.Value is IDialogContext oldContext)
         {
-            oldContext.Closed-= OnDialogClose;
+            oldContext.Closed-= OnDialogContextClose;
         }
 
         if (args.NewValue.Value is IDialogContext newContext)
         {
-            newContext.Closed += OnDialogClose;
+            newContext.Closed += OnDialogContextClose;
         }
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
+        EventHelper.UnregisterClickEvent(OnDefaultClose, _closeButton);
         _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
-        
-        if (_closeButton != null)
-        {
-            _closeButton.Click += OnDefaultClose;
-        }
+        EventHelper.RegisterClickEvent(OnDefaultClose, _closeButton);
     }
 
-    private void OnDialogClose(object? sender, object? args)
+    private void OnDialogContextClose(object? sender, object? args)
     {
         Close(args);
     }
@@ -54,7 +52,7 @@ public class DialogWindow: Window
     {
         if (DataContext is IDialogContext context)
         {
-            Close(context.DefaultCloseResult);
+            context.Close();
         }
         else
         {

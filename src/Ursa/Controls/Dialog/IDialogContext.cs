@@ -2,6 +2,6 @@ namespace Ursa.Controls;
 
 public interface IDialogContext
 {
-    object? DefaultCloseResult { get; set; }
+    void Close();
     event EventHandler<object?> Closed;
 }
