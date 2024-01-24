@@ -94,17 +94,17 @@ public class OverlayDialogHost : Canvas
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetToCenter(control);
-        control.OnClose += OnDialogClose;
+        control.OnDialogControlClose += OnDialogControlDialogClose;
         control.OnLayerChange += OnDialogLayerChange;
         ResetZIndices();
     }
 
-    private void OnDialogClose(object sender, object? e)
+    private void OnDialogControlDialogClose(object sender, object? e)
     {
         if (sender is DialogControl control)
         {
             this.Children.Remove(control);
-            control.OnClose -= OnDialogClose;
+            control.OnDialogControlClose -= OnDialogControlDialogClose;
             control.OnLayerChange -= OnDialogLayerChange;
             if (_dialogs.Contains(control))
             {
@@ -147,7 +147,7 @@ public class OverlayDialogHost : Canvas
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetToCenter(control);
-        control.OnClose += OnDialogClose;
+        control.OnDialogControlClose += OnDialogControlDialogClose;
         control.OnLayerChange += OnDialogLayerChange;
     }
 

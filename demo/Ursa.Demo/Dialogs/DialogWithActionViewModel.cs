@@ -12,7 +12,7 @@ public partial class DialogWithActionViewModel: ObservableObject, IDialogContext
     [ObservableProperty] private string _title;
     [ObservableProperty] private DateTime _date;
     public object? DefaultCloseResult { get; set; } = true;
-    public event EventHandler<object>? Closed;
+    public event EventHandler<object?>? Closed;
     
     public ICommand OKCommand { get; set; }
     public ICommand CancelCommand { get; set; }

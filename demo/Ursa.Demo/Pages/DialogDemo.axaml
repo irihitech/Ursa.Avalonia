@@ -25,6 +25,7 @@
             <Button Command="{Binding ShowLocalOverlayModalDialogCommand}">Show Local Overlay Modal Dialog</Button>
             <Button Command="{Binding ShowGlobalOverlayModalDialogCommand}"> Show Global Overlay Modal Dialog </Button>
             <Button Command="{Binding ShowGlobalOverlayDialogCommand}">Show Global Overlay Dialog</Button>
+            <Button Command="{Binding ShowPlainGlobalOverlayDialogCommand}">Default Buttons</Button>
         </StackPanel>
         <Grid Grid.Column="1">
             <Button

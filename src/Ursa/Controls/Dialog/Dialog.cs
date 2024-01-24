@@ -68,6 +68,7 @@ public static class OverlayDialog
             DataContext = vm,
             ExtendToClientArea = options.ExtendToClientArea,
             Title = options.Title,
+            Buttons = options.DefaultButtons,
         };
         var host = OverlayDialogManager.GetHost(hostId);
         host?.AddModalDialog(t);
@@ -95,6 +96,7 @@ public static class OverlayDialog
             DataContext = vm,
             ExtendToClientArea = options.ExtendToClientArea,
             Title = options.Title,
+            Buttons = options.DefaultButtons,
         };
         var host = OverlayDialogManager.GetHost(hostId);
         host?.AddModalDialog(t);

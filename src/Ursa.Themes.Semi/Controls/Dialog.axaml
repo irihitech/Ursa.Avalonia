@@ -41,6 +41,32 @@
                                 DockPanel.Dock="Right"
                                 Theme="{DynamicResource CloseButton}" />
                         </Grid>
+                        <StackPanel
+                            Grid.Row="2"
+                            Margin="0,0,8,8"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                            <Button
+                                Name="{x:Static u:DialogControl.PART_CancelButton}"
+                                Margin="8,0,0,0"
+                                Classes="Tertiary"
+                                Content="Cancel" />
+                            <Button
+                                Name="{x:Static u:DialogControl.PART_NoButton}"
+                                Margin="8,0,0,0"
+                                Classes="Danger"
+                                Content="No" />
+                            <Button
+                                Name="{x:Static u:DialogControl.PART_YesButton}"
+                                Margin="8,0,0,0"
+                                Classes="Primary"
+                                Content="Yes" />
+                            <Button
+                                Name="{x:Static u:DialogControl.PART_OKButton}"
+                                Margin="8,0,0,0"
+                                Classes="Primary"
+                                Content="OK" />
+                        </StackPanel>
                     </Grid>
                 </Border>
             </ControlTemplate>

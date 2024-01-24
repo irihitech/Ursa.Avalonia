@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Ursa.Common;
 using Ursa.Controls;
 using Ursa.Demo.Dialogs;
 using Ursa.Demo.Pages;
@@ -16,6 +17,8 @@ public class DialogDemoViewModel: ObservableObject
     public ICommand ShowGlobalModalDialogCommand { get; }
     
     public ICommand ShowGlobalOverlayDialogCommand { get; }
+    
+    public ICommand ShowPlainGlobalOverlayDialogCommand { get; }
 
     private object? _result;
 
@@ -41,6 +44,7 @@ public class DialogDemoViewModel: ObservableObject
         ShowGlobalOverlayModalDialogCommand = new AsyncRelayCommand(ShowGlobalOverlayModalDialog);
         ShowGlobalModalDialogCommand = new AsyncRelayCommand(ShowGlobalModalDialog);
         ShowGlobalOverlayDialogCommand = new RelayCommand(ShowGlobalOverlayDialog);
+        ShowPlainGlobalOverlayDialogCommand = new AsyncRelayCommand(ShowPlainGlobalOverlayDialog);
     }
 
     private void ShowGlobalOverlayDialog()
@@ -63,7 +67,18 @@ public class DialogDemoViewModel: ObservableObject
     {
         var vm = new DialogWithActionViewModel();
         var result = await OverlayDialog.ShowModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(
-            DialogViewModel, new DialogOptions() { ExtendToClientArea = true }, "LocalHost");
+            DialogViewModel, new DialogOptions() { ExtendToClientArea = true}, "LocalHost");
         Result = result;
+    }
+    
+    public async Task ShowPlainGlobalOverlayDialog()
+    {
+        var result = await OverlayDialog.ShowModalAsync<PlainDialog, PlainDialogViewModel, object?>(
+            new PlainDialogViewModel(),
+            new DialogOptions()
+            {
+                DefaultButtons = DialogButton.OKCancel,
+            }, 
+            "LocalHost");
     }
 }
