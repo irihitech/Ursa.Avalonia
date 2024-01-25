@@ -17,15 +17,18 @@
                 <StackPanel>
                     <ToggleSwitch
                         Name="overlay"
+                        Content="Window/Overlay"
                         IsChecked="{Binding IsWindow}"
                         OffContent="Overlay"
                         OnContent="Window" />
                     <ToggleSwitch
+                        Content="Global/Local"
                         IsVisible="{Binding !#overlay.IsChecked}"
                         IsChecked="{Binding IsGlobal}"
                         OffContent="Local"
                         OnContent="Global" />
                     <ToggleSwitch
+                        Content="Modal/Regular"
                         IsVisible="{Binding !#overlay.IsChecked}"
                         IsChecked="{Binding IsModal}"
                         OffContent="Regular"
@@ -51,9 +54,9 @@
             </TabItem>
             <TabItem Header="Custom">
                 <StackPanel>
-                    <ToggleSwitch OffContent="Overlay" OnContent="Window" IsChecked="{Binding IsWindow}" Name="overlay2" />
-                    <ToggleSwitch IsVisible="{Binding !#overlay2.IsChecked}" OffContent="Local" OnContent="Global" IsChecked="{Binding IsGlobal}" />
-                    <ToggleSwitch IsVisible="{Binding !#overlay2.IsChecked}" OffContent="Regular" OnContent="Modal" IsChecked="{Binding IsModal}" />
+                    <ToggleSwitch Content="Window/Overlay" OffContent="Overlay" OnContent="Window" IsChecked="{Binding IsWindow}" Name="overlay2" />
+                    <ToggleSwitch Content="Global/Local" IsVisible="{Binding !#overlay2.IsChecked}" OffContent="Local" OnContent="Global" IsChecked="{Binding IsGlobal}" />
+                    <ToggleSwitch Content="Modal/Regular" IsVisible="{Binding !#overlay2.IsChecked}" OffContent="Regular" OnContent="Modal" IsChecked="{Binding IsModal}" />
                     <Button Content="Show Dialog" Command="{Binding ShowCustomDialogCommand}" />
                     <TextBlock>
                         <Run Text="Custom Result: "></Run>
