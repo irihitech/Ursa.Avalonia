@@ -61,7 +61,14 @@ public class MessageBoxDemoViewModel: ObservableObject
             _title = value ? "Ursa MessageBox" : string.Empty;
         }
     }
-    
+
+    private bool _useOverlay;
+
+    public bool UseOverlay
+    {
+        get => _useOverlay;
+        set => SetProperty(ref _useOverlay, value);
+    }
     
     
 
@@ -80,26 +87,46 @@ public class MessageBoxDemoViewModel: ObservableObject
 
     private async Task OnDefaultMessageAsync()
     {
-        Result = await MessageBox.ShowAsync(_message, _title, icon: SelectedIcon);
+        if (UseOverlay)
+        {
+            Result = await MessageBox.ShowOverlayAsync(_message, _title, icon: SelectedIcon);
+        }
+        else
+        {
+            Result = await MessageBox.ShowAsync(_message, _title, icon: SelectedIcon);
+        }
+        
     }
     
     private async Task OnOkAsync()
     {
-        Result = await MessageBox.ShowAsync(_message, _title, icon: SelectedIcon, button:MessageBoxButton.OK);
+        await Show(MessageBoxButton.OK);
     }
     
     private async Task OnYesNoAsync()
     {
-        Result = await MessageBox.ShowAsync(_message, _title, icon: SelectedIcon, button: MessageBoxButton.YesNo);
+        await Show(MessageBoxButton.YesNo);
     }
     
     private async Task OnYesNoCancelAsync()
     {
-        Result = await MessageBox.ShowAsync(_message, _title, icon: SelectedIcon, button: MessageBoxButton.YesNoCancel);
+        await Show(MessageBoxButton.YesNoCancel);
     }
 
     private async Task OnOkCancelAsync()
     {
-        Result = await MessageBox.ShowAsync(_message, _title, icon: SelectedIcon, button:MessageBoxButton.OKCancel);
+        await Show(MessageBoxButton.OK);
+    }
+
+    private async Task Show(MessageBoxButton button)
+    {
+        if (UseOverlay)
+        {
+            Result = await MessageBox.ShowOverlayAsync(_message, _title, icon: SelectedIcon, button:button);
+        }
+        else
+        {
+            Result = await MessageBox.ShowAsync(_message, _title, icon: SelectedIcon, button:button);
+        }
     }
 }

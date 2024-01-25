@@ -17,7 +17,7 @@ public class DialogControl: ContentControl
     public const string PART_TitleArea = "PART_TitleArea";
     public const string PC_Modal = ":modal";
     
-    private Button? _closeButton;
+    protected internal Button? _closeButton;
     private Panel? _titleArea;
     public event EventHandler<DialogLayerChangeEventArgs>? LayerChanged;
     public event EventHandler<object?>? DialogControlClosing;

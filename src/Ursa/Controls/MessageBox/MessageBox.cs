@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Controls.Notifications;
+using Avalonia.Styling;
 
 namespace Ursa.Controls;
 
@@ -54,6 +55,27 @@ public static class MessageBox
             MessageIcon = icon,
         };
         var result = await messageWindow.ShowDialog<MessageBoxResult>(owner);
+        return result;
+    }
+
+    public static async Task<MessageBoxResult> ShowOverlayAsync(
+        string message,
+        string? title = null,
+        string? hostId = null,
+        MessageBoxIcon icon = MessageBoxIcon.None,
+        MessageBoxButton button = MessageBoxButton.OKCancel)
+    {
+        var host = OverlayDialogManager.GetHost(hostId);
+        if (host is null) return MessageBoxResult.None;
+        var messageControl = new MessageBoxControl()
+        {
+            Content = message,
+            Title = title,
+            Buttons = button,
+            MessageIcon = icon,
+        };
+        host.AddModalDialog(messageControl);
+        var result = await messageControl.ShowAsync<MessageBoxResult>();
         return result;
     }
 }
