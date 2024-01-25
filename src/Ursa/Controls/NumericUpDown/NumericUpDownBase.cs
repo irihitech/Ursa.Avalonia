@@ -5,6 +5,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Data;
 using Avalonia.Data.Converters;
 using Avalonia.Input;
 using Avalonia.Interactivity;
@@ -288,7 +289,7 @@ public abstract class NumericUpDown : TemplatedControl
 public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComparable<T>
 {
     public static readonly StyledProperty<T?> ValueProperty = AvaloniaProperty.Register<NumericUpDownBase<T>, T?>(
-        nameof(Value));
+        nameof(Value), defaultBindingMode: BindingMode.TwoWay);
 
     public T? Value
     {
@@ -297,7 +298,7 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
     }
 
     public static readonly StyledProperty<T> MaximumProperty = AvaloniaProperty.Register<NumericUpDownBase<T>, T>(
-        nameof(Maximum), coerce: CoerceMaximum);
+        nameof(Maximum), defaultBindingMode:BindingMode.TwoWay, coerce: CoerceMaximum);
     
     public T Maximum
     {
@@ -306,7 +307,7 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
     }
 
     public static readonly StyledProperty<T> MinimumProperty = AvaloniaProperty.Register<NumericUpDownBase<T>, T>(
-        nameof(Minimum), coerce: CoerceMinimum);
+        nameof(Minimum), defaultBindingMode:BindingMode.TwoWay, coerce: CoerceMinimum);
 
     public T Minimum
     {
