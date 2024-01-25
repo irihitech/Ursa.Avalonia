@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800"
+             xmlns:vm="clr-namespace:Ursa.Demo.ViewModels;assembly=Ursa.Demo"
+             xmlns:u="https://irihi.tech/ursa"
+             x:DataType="vm:EnumSelectorDemoViewModel"
+             x:CompileBindings="True"
+             d:DesignHeight="450"
+             x:Class="Ursa.Demo.Pages.EnumSelectorDemo">
+    <StackPanel>
+        <TextBlock Text="Select Type"></TextBlock>
+        <ComboBox ItemsSource="{Binding Types}" DisplayMemberBinding="{Binding Name}" SelectedItem="{Binding SelectedType}"/>
+        <TextBlock Text="Select Value"></TextBlock>
+        <u:EnumSelector EnumType="{Binding SelectedType}" Value="{Binding Value}" />
+        <TextBlock Text="{Binding Value}"></TextBlock>
+    </StackPanel>
+</UserControl>
