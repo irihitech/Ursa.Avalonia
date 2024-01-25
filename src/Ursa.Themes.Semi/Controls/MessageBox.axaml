@@ -5,7 +5,7 @@
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:MessageBoxWindow}" TargetType="u:MessageBoxWindow">
         <Setter Property="Title" Value="{x:Null}" />
-        <Setter Property="Background" Value="{DynamicResource WindowDefaultBackground}" />
+        <Setter Property="Background" Value="{DynamicResource BorderCardBackground}" />
         <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />

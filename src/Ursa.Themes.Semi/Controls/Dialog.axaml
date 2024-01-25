@@ -359,7 +359,7 @@
 
     <ControlTheme x:Key="{x:Type u:DialogWindow}" TargetType="u:DialogWindow">
         <Setter Property="Title" Value="{x:Null}" />
-        <Setter Property="Background" Value="{DynamicResource WindowDefaultBackground}" />
+        <Setter Property="Background" Value="{DynamicResource BorderCardBackground}" />
         <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
@@ -416,7 +416,7 @@
 
     <ControlTheme x:Key="{x:Type u:DefaultDialogWindow}" TargetType="u:DefaultDialogWindow">
         <Setter Property="Title" Value="{x:Null}" />
-        <Setter Property="Background" Value="{DynamicResource WindowDefaultBackground}" />
+        <Setter Property="Background" Value="{DynamicResource BorderCardBackground}" />
         <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
