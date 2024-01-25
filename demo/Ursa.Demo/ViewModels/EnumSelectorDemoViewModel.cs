@@ -1,5 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Input;
 using Avalonia.Animation;
 using Avalonia.Controls;
 using Avalonia.Data;
@@ -7,6 +9,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Ursa.Demo.ViewModels;
 
@@ -50,6 +53,15 @@ public class EnumSelectorDemoViewModel: ObservableObject
             typeof(Key),
             typeof(KeyModifiers),
             typeof(RoutingStrategies),
+            typeof(CustomEnum),
         };
     }
+}
+
+public enum CustomEnum
+{
+    [Description("是")]
+    Yes,
+    [Description("否")]
+    No,
 }
