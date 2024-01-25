@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:Ursa.Demo.Dialogs"
              x:DataType="local:DialogWithActionViewModel"
              x:CompileBindings="True"
+             Background="{DynamicResource SemiYellow1}"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Dialogs.DialogWithAction">
     <StackPanel Margin="24">

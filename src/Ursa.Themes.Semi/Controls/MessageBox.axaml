@@ -41,6 +41,7 @@
                                 Grid.Column="0"
                                 Width="24"
                                 Height="24"
+                                Margin="0 0 8 0"
                                 IsHitTestVisible="False"
                                 VerticalAlignment="Center" />
                             <TextBlock
@@ -48,6 +49,7 @@
                                 FontSize="16"
                                 FontWeight="Bold"
                                 IsHitTestVisible="False"
+                                VerticalAlignment="Center"
                                 Text="{TemplateBinding Title}"
                                 TextTrimming="CharacterEllipsis"
                                 TextWrapping="NoWrap" />

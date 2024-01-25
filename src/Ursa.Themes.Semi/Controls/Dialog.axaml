@@ -129,6 +129,7 @@
                                 VerticalAlignment="Center"
                                 Height="16" />
                             <TextBlock
+                                Name="PART_Title"
                                 Grid.Column="1"
                                 Margin="0 24 0 0 "
                                 FontWeight="Bold"
@@ -182,6 +183,9 @@
         <Style Selector="^[Mode=None]">
             <Style Selector="^ /template/ PathIcon#PART_Icon">
                 <Setter Property="IsVisible" Value="False"></Setter>
+            </Style>
+            <Style Selector="^ /template/ TextBlock#PART_Title">
+                <Setter Property="Margin" Value="24 24 0 0"></Setter>
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="theme:ClassHelper.Classes" Value="Primary"></Setter>
@@ -386,7 +390,7 @@
                         <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
                             <TextBlock
                                 Grid.Column="0"
-                                Margin="8,8,0,0"
+                                Margin="24, 24,0,0"
                                 FontSize="14"
                                 FontWeight="Bold"
                                 Text="{TemplateBinding Title}"
@@ -429,7 +433,7 @@
         </Setter>
         <Setter Property="CanResize" Value="False" />
         <Setter Property="Template">
-            <ControlTemplate TargetType="u:DialogWindow">
+            <ControlTemplate TargetType="u:DefaultDialogWindow">
                 <Panel>
                     <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
                     <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
@@ -455,6 +459,7 @@
                                 VerticalAlignment="Center"
                                 Height="16" />
                             <TextBlock
+                                Name="PART_Title"
                                 Grid.Column="1"
                                 Margin="0 24 0 0 "
                                 FontWeight="Bold"
@@ -505,9 +510,12 @@
                 </Panel>
             </ControlTemplate>
         </Setter>
-                <Style Selector="^[Mode=None]">
+        <Style Selector="^[Mode=None]">
             <Style Selector="^ /template/ PathIcon#PART_Icon">
                 <Setter Property="IsVisible" Value="False"></Setter>
+            </Style>
+            <Style Selector="^ /template/ TextBlock#PART_Title">
+                <Setter Property="Margin" Value="24 24 0 0"></Setter>
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="theme:ClassHelper.Classes" Value="Primary"></Setter>

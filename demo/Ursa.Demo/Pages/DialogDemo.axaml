@@ -12,29 +12,62 @@
     x:DataType="vm:DialogDemoViewModel"
     mc:Ignorable="d">
     <Grid ColumnDefinitions="Auto, *">
-        <StackPanel Grid.Column="0">
-            <TextBlock>
-                <Run Text="Result: "></Run>
-                <Run Text="{Binding Result}"></Run>
-            </TextBlock>
-            <TextBlock>
-                <Run Text="Date: "></Run>
-                <Run Text="{Binding DialogViewModel.Date}"></Run>
-            </TextBlock>
-            <Button Command="{Binding ShowDefaultWindowCommand}">Show Default Modal Dialog</Button>
-            <Button Command="{Binding ShowGlobalModalDialogCommand}">Show Custom Modal Dialog</Button>
-            <Button Command="{Binding ShowLocalOverlayModalDialogCommand}">Show Local Overlay Modal Dialog</Button>
-            <Button Command="{Binding ShowGlobalOverlayModalDialogCommand}"> Show Global Overlay Modal Dialog </Button>
-            <Button Command="{Binding ShowGlobalOverlayDialogCommand}">Show Global Overlay Dialog</Button>
-        </StackPanel>
+        <TabControl Grid.Column="0" Width="300">
+            <TabItem Header="Default">
+                <StackPanel>
+                    <ToggleSwitch
+                        Name="overlay"
+                        IsChecked="{Binding IsWindow}"
+                        OffContent="Overlay"
+                        OnContent="Window" />
+                    <ToggleSwitch
+                        IsVisible="{Binding !#overlay.IsChecked}"
+                        IsChecked="{Binding IsGlobal}"
+                        OffContent="Local"
+                        OnContent="Global" />
+                    <ToggleSwitch
+                        IsVisible="{Binding !#overlay.IsChecked}"
+                        IsChecked="{Binding IsModal}"
+                        OffContent="Regular"
+                        OnContent="Modal" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Buttons" />
+                        <ComboBox ItemsSource="{Binding Buttons}" SelectedItem="{Binding SelectedButton}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Mode" />
+                        <ComboBox ItemsSource="{Binding Modes}" SelectedItem="{Binding SelectedMode}"/>
+                    </StackPanel>
+                    <Button Content="Show Dialog" Command="{Binding ShowDialogCommand}" />
+                    <TextBlock>
+                        <Run Text="Default Result: "></Run>
+                        <Run Text="{Binding DefaultResult}"/>
+                    </TextBlock>
+                    <TextBlock>
+                        <Run Text="Dialog Date: "></Run>
+                        <Run Text="{Binding Date}"/>
+                    </TextBlock>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Custom">
+                <StackPanel>
+                    <ToggleSwitch OffContent="Overlay" OnContent="Window" IsChecked="{Binding IsWindow}" Name="overlay2" />
+                    <ToggleSwitch IsVisible="{Binding !#overlay2.IsChecked}" OffContent="Local" OnContent="Global" IsChecked="{Binding IsGlobal}" />
+                    <ToggleSwitch IsVisible="{Binding !#overlay2.IsChecked}" OffContent="Regular" OnContent="Modal" IsChecked="{Binding IsModal}" />
+                    <Button Content="Show Dialog" Command="{Binding ShowCustomDialogCommand}" />
+                    <TextBlock>
+                        <Run Text="Custom Result: "></Run>
+                        <Run Text="{Binding Result}"/>
+                    </TextBlock>
+                    <TextBlock>
+                        <Run Text="Dialog Date: "></Run>
+                        <Run Text="{Binding Date}"/>
+                    </TextBlock>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
         <Grid Grid.Column="1">
-            <Button
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Command="{Binding ShowLocalOverlayModalDialogCommand}">
-                Show Local Overlay Dialog
-            </Button>
-            <Border CornerRadius="20" ClipToBounds="True">
+            <Border ClipToBounds="True" CornerRadius="20" BorderThickness="1" BorderBrush="{DynamicResource SemiGrey1}">
                 <u:OverlayDialogHost HostId="LocalHost" />
             </Border>
         </Grid>
