@@ -45,7 +45,7 @@
                                 VerticalAlignment="Center" />
                             <TextBlock
                                 Grid.Column="1"
-                                FontSize="14"
+                                FontSize="16"
                                 FontWeight="Bold"
                                 IsHitTestVisible="False"
                                 Text="{TemplateBinding Title}"
