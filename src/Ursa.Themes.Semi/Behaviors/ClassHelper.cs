@@ -17,8 +17,8 @@ internal class ClassHelper: AvaloniaObject
     
     private static void OnClassesChanged(StyledElement sender, AvaloniaPropertyChangedEventArgs value)
     {
-        IEnumerable<string> classes = value.GetNewValue<IEnumerable<string>>();
+        string classes = value.GetNewValue<string>();
         sender.Classes.Clear();
-        sender.Classes.AddRange(classes);
+        sender.Classes.Add(classes);
     }
 }

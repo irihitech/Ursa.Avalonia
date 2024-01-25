@@ -58,7 +58,7 @@ public static class Dialog
         Window? owner, 
         TViewModel vm, 
         string? title = null, 
-        DialogIcon icon = DialogIcon.None, 
+        DialogMode mode = DialogMode.None, 
         DialogButton buttons = DialogButton.OKCancel)
         where TView : Control, new()
     {
@@ -68,7 +68,7 @@ public static class Dialog
             DataContext = vm,
             Buttons = buttons,
             Title = title,
-            Icon = icon,
+            Mode = mode,
         };
         if (owner is null)
         {
@@ -85,12 +85,12 @@ public static class Dialog
     public static async Task<DialogResult> ShowModalAsync<TView, TViewModel>(
         TViewModel vm, 
         string? title = null, 
-        DialogIcon icon = DialogIcon.None, 
+        DialogMode mode = DialogMode.None, 
         DialogButton buttons = DialogButton.OKCancel)
         where TView: Control, new()
     {
         var mainWindow = GetMainWindow();
-        return await ShowModalAsync<TView, TViewModel>(mainWindow, vm, title, icon, buttons);
+        return await ShowModalAsync<TView, TViewModel>(mainWindow, vm, title, mode, buttons);
     }
     
     private static Window? GetMainWindow()
@@ -106,7 +106,7 @@ public static class OverlayDialog
         TViewModel vm, 
         string? hostId = null, 
         string? title = null,
-        DialogIcon icon = DialogIcon.None,
+        DialogMode mode = DialogMode.None,
         DialogButton buttons = DialogButton.OKCancel)
         where TView : Control, new()
     {
@@ -116,7 +116,7 @@ public static class OverlayDialog
             DataContext = vm,
             Buttons = buttons,
             Title = title,
-            Icon = icon,
+            Mode = mode,
         };
         var host = OverlayDialogManager.GetHost(hostId);
         host?.AddModalDialog(t);
@@ -142,7 +142,7 @@ public static class OverlayDialog
         TViewModel vm, 
         string? hostId = null, 
         string? title = null, 
-        DialogIcon icon = DialogIcon.None, 
+        DialogMode mode = DialogMode.None, 
         DialogButton buttons = DialogButton.OKCancel)
         where TView: Control, new()
     {
@@ -152,7 +152,7 @@ public static class OverlayDialog
             DataContext = vm,
             Buttons = buttons,
             Title = title,
-            Icon = icon,
+            Mode = mode,
         };
         var host = OverlayDialogManager.GetHost(hostId);
         host?.AddDialog(t);

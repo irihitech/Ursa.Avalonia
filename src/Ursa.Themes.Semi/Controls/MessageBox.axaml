@@ -107,32 +107,32 @@
         <Style Selector="^[MessageIcon=Asterisk] /template/ PathIcon#PART_Icon, ^[MessageIcon=Information] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
             <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
-            <Setter Property="Data" Value="{DynamicResource MessageBoxWindowInformationIconGlyph}" />
+            <Setter Property="Data" Value="{DynamicResource DialogInformationIconGlyph}" />
         </Style>
         <Style Selector="^[MessageIcon=Error] /template/ PathIcon#PART_Icon, ^[MessageIcon=Hand] /template/ PathIcon#PART_Icon, ^[MessageIcon=Stop] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
             <Setter Property="Foreground" Value="{DynamicResource SemiRed6}" />
-            <Setter Property="Data" Value="{DynamicResource MessageBoxWindowErrorIconGlyph}" />
+            <Setter Property="Data" Value="{DynamicResource DialogErrorIconGlyph}" />
         </Style>
         <Style Selector="^[MessageIcon=Exclamation] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
             <Setter Property="Foreground" Value="{DynamicResource SemiYellow6}" />
-            <Setter Property="Data" Value="{DynamicResource MessageBoxWindowWarningIconGlyph}" />
+            <Setter Property="Data" Value="{DynamicResource DialogWarningIconGlyph}" />
         </Style>
         <Style Selector="^[MessageIcon=Question] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
             <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
-            <Setter Property="Data" Value="{DynamicResource MessageBoxWindowQuestionIconGlyph}" />
+            <Setter Property="Data" Value="{DynamicResource DialogQuestionIconGlyph}" />
         </Style>
         <Style Selector="^[MessageIcon=Warning] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
             <Setter Property="Foreground" Value="{DynamicResource SemiOrange6}" />
-            <Setter Property="Data" Value="{DynamicResource MessageBoxWindowWarningIconGlyph}" />
+            <Setter Property="Data" Value="{DynamicResource DialogWarningIconGlyph}" />
         </Style>
         <Style Selector="^[MessageIcon=Success] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
             <Setter Property="Foreground" Value="{DynamicResource SemiGreen6}" />
-            <Setter Property="Data" Value="{DynamicResource MessageBoxWindowSuccessIconGlyph}" />
+            <Setter Property="Data" Value="{DynamicResource DialogSuccessIconGlyph}" />
         </Style>
 
     </ControlTheme>

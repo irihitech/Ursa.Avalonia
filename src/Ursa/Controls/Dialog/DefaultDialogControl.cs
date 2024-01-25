@@ -44,13 +44,13 @@ public class DefaultDialogControl: DialogControl
         set => SetValue(ButtonsProperty, value);
     }
 
-    public static readonly StyledProperty<DialogIcon> IconProperty = AvaloniaProperty.Register<DefaultDialogControl, DialogIcon>(
-        nameof(Icon));
+    public static readonly StyledProperty<DialogMode> ModeProperty = AvaloniaProperty.Register<DefaultDialogControl, DialogMode>(
+        nameof(Mode));
 
-    public DialogIcon Icon
+    public DialogMode Mode
     {
-        get => GetValue(IconProperty);
-        set => SetValue(IconProperty, value);
+        get => GetValue(ModeProperty);
+        set => SetValue(ModeProperty, value);
     }
     
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)

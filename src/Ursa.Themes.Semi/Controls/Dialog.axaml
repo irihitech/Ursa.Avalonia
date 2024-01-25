@@ -13,6 +13,7 @@
             <ControlTemplate TargetType="u:DialogControl">
                 <Border
                     Padding="0"
+                    Margin="4"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Classes="Shadow"
@@ -47,7 +48,7 @@
             <Setter Property="ContextFlyout">
                 <MenuFlyout>
                     <MenuItem
-                        Command="{Binding $parent[u:DefaultDialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.BringForward}"
                         Header="Bring Forward">
                         <MenuItem.Icon>
@@ -58,7 +59,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem
-                        Command="{Binding $parent[u:DefaultDialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.BringToFront}"
                         Header="Bring To Front">
                         <MenuItem.Icon>
@@ -69,7 +70,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem
-                        Command="{Binding $parent[u:DefaultDialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.SendBackward}"
                         Header="Send Backward">
                         <MenuItem.Icon>
@@ -80,7 +81,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem
-                        Command="{Binding $parent[u:DefaultDialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.SendToBack}"
                         Header="Send To Back">
                         <MenuItem.Icon>
@@ -94,6 +95,7 @@
             </Setter>
         </Style>
     </ControlTheme>
+    
     <ControlTheme x:Key="{x:Type u:DefaultDialogControl}" TargetType="u:DefaultDialogControl">
         <Setter Property="CornerRadius" Value="12"></Setter>
         <Setter Property="Template">
@@ -107,10 +109,11 @@
                     ClipToBounds="True"
                     IsHitTestVisible="True"
                     Theme="{DynamicResource CardBorder}">
-                    <Grid Margin="24" RowDefinitions="Auto, *, Auto">
+                    <Grid RowDefinitions="Auto, *, Auto">
                         <ContentPresenter
                             Name="PART_ContentPresenter"
                             Grid.Row="1"
+                            Margin="24 8"
                             Content="{TemplateBinding Content}" />
                         <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto">
                             <Panel
@@ -121,27 +124,31 @@
                             <PathIcon
                                 Name="PART_Icon"
                                 Grid.Column="0"
-                                Margin="0 0 8 0"
+                                Margin="24 24 8 0"
                                 Width="16"
+                                VerticalAlignment="Center"
                                 Height="16" />
                             <TextBlock
                                 Grid.Column="1"
-                                Margin="8,8,0,0"
-                                Classes="Strong"
+                                Margin="0 24 0 0 "
+                                FontWeight="Bold"
+                                FontSize="16"
                                 TextWrapping="Wrap"
+                                VerticalAlignment="Center"
+                                IsHitTestVisible="False"
                                 IsVisible="{TemplateBinding Title,
                                                             Converter={x:Static ObjectConverters.IsNotNull}}"
                                 Text="{TemplateBinding Title}" />
                             <Button
                                 Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
                                 Grid.Column="2"
-                                Margin="0,4,4,0"
+                                Margin="0 24 24 0"
                                 DockPanel.Dock="Right"
                                 Theme="{DynamicResource CloseButton}" />
                         </Grid>
                         <StackPanel
                             Grid.Row="2"
-                            Margin="0,0,8,8"
+                            Margin="24 0 24 24"
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
                             <Button
@@ -153,6 +160,7 @@
                                 Name="{x:Static u:DefaultDialogControl.PART_NoButton}"
                                 Margin="8,0,0,0"
                                 Classes="Danger"
+                                Theme="{DynamicResource SolidButton}"
                                 Content="否" />
                             <Button
                                 Name="{x:Static u:DefaultDialogControl.PART_YesButton}"
@@ -171,21 +179,119 @@
                 </Border>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^[Icon=None]">
+        <Style Selector="^[Mode=None]">
             <Style Selector="^ /template/ PathIcon#PART_Icon">
                 <Setter Property="IsVisible" Value="False"></Setter>
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="theme:ClassHelper.Classes" Value="Primary"></Setter>
             </Style>
+            <Style Selector="^ /template/ Button#PART_YesButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Primary"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_NoButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Danger"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_CancelButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary"></Setter>
+            </Style>
         </Style>
-        <Style Selector="^[Icon=Info]">
+        <Style Selector="^[Mode=Info]">
             <Style Selector="^ /template/ PathIcon#PART_Icon">
                 <Setter Property="IsVisible" Value="True"></Setter>
+                <Setter Property="Data" Value="{DynamicResource DialogInformationIconGlyph}"></Setter>
                 <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}"></Setter>
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="theme:ClassHelper.Classes" Value="Primary"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_YesButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Primary"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_NoButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Danger"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_CancelButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary"></Setter>
+            </Style>
+        </Style>
+        <Style Selector="^[Mode=Warning]">
+            <Style Selector="^ /template/ PathIcon#PART_Icon">
+                <Setter Property="IsVisible" Value="True"></Setter>
+                <Setter Property="Data" Value="{DynamicResource DialogWarningIconGlyph}"></Setter>
+                <Setter Property="Foreground" Value="{DynamicResource SemiOrange6}"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_OKButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Warning"></Setter>
+                <Setter Property="Theme" Value="{DynamicResource SolidButton}"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_YesButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Warning"></Setter>
+                <Setter Property="Theme" Value="{DynamicResource SolidButton}"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_NoButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Danger"></Setter>
+                <Setter Property="Theme" Value="{DynamicResource SolidButton}"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_CancelButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary"></Setter>
+            </Style>
+        </Style>
+        <Style Selector="^[Mode=Error]">
+            <Style Selector="^ /template/ PathIcon#PART_Icon">
+                <Setter Property="IsVisible" Value="True"></Setter>
+                <Setter Property="Data" Value="{DynamicResource DialogErrorIconGlyph}"></Setter>
+                <Setter Property="Foreground" Value="{DynamicResource SemiRed6}"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_OKButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Danger"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_YesButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Danger"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_NoButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_CancelButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary"></Setter>
+            </Style>
+        </Style>
+        <Style Selector="^[Mode=Question]">
+            <Style Selector="^ /template/ PathIcon#PART_Icon">
+                <Setter Property="IsVisible" Value="True"></Setter>
+                <Setter Property="Data" Value="{DynamicResource DialogQuestionIconGlyph}"></Setter>
+                <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_OKButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Primary"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_YesButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Primary"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_NoButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Danger"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_CancelButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary"></Setter>
+            </Style>
+        </Style>
+        <Style Selector="^[Mode=Success]">
+            <Style Selector="^ /template/ PathIcon#PART_Icon">
+                <Setter Property="IsVisible" Value="True"></Setter>
+                <Setter Property="Data" Value="{DynamicResource DialogSuccessIconGlyph}"></Setter>
+                <Setter Property="Foreground" Value="{DynamicResource SemiGreen6}"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_OKButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Success"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_YesButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Success"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_NoButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Danger"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_CancelButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary"></Setter>
             </Style>
         </Style>
 
@@ -193,7 +299,7 @@
             <Setter Property="ContextFlyout">
                 <MenuFlyout>
                     <MenuItem
-                        Command="{Binding $parent[u:DefaultDialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.BringForward}"
                         Header="Bring Forward">
                         <MenuItem.Icon>
@@ -204,7 +310,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem
-                        Command="{Binding $parent[u:DefaultDialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.BringToFront}"
                         Header="Bring To Front">
                         <MenuItem.Icon>
@@ -215,7 +321,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem
-                        Command="{Binding $parent[u:DefaultDialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.SendBackward}"
                         Header="Send Backward">
                         <MenuItem.Icon>
@@ -226,7 +332,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem
-                        Command="{Binding $parent[u:DefaultDialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.SendToBack}"
                         Header="Send To Back">
                         <MenuItem.Icon>
@@ -331,53 +437,188 @@
                     <ChromeOverlayLayer />
                     <Grid RowDefinitions="Auto, *, Auto">
                         <ContentPresenter
-                            Grid.Row="0"
-                            Grid.RowSpan="2"
+                            Name="PART_ContentPresenter"
+                            Grid.Row="1"
+                            Margin="24 8"
                             Content="{TemplateBinding Content}" />
-                        <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
-                            <TextBlock
+                        <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto">
+                            <Panel
+                                Name="{x:Static u:DialogControl.PART_TitleArea}"
                                 Grid.Column="0"
-                                Margin="8,8,0,0"
-                                FontSize="14"
+                                Grid.ColumnSpan="3"
+                                Background="Transparent" />
+                            <PathIcon
+                                Name="PART_Icon"
+                                Grid.Column="0"
+                                Margin="24 24 8 0"
+                                Width="16"
+                                VerticalAlignment="Center"
+                                Height="16" />
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="0 24 0 0 "
                                 FontWeight="Bold"
-                                Text="{TemplateBinding Title}"
-                                TextTrimming="CharacterEllipsis"
-                                TextWrapping="NoWrap" />
+                                FontSize="16"
+                                TextWrapping="Wrap"
+                                VerticalAlignment="Center"
+                                IsHitTestVisible="False"
+                                IsVisible="{TemplateBinding Title,
+                                                            Converter={x:Static ObjectConverters.IsNotNull}}"
+                                Text="{TemplateBinding Title}" />
                             <Button
                                 Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
-                                Grid.Column="1"
-                                Margin="0,4,4,0"
+                                Grid.Column="2"
+                                Margin="0 24 24 0"
+                                DockPanel.Dock="Right"
                                 Theme="{DynamicResource CloseButton}" />
                         </Grid>
                         <StackPanel
                             Grid.Row="2"
-                            Margin="0,0,8,8"
+                            Margin="24 0 24 24"
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
                             <Button
-                                Name="{x:Static u:DefaultDialogWindow.PART_CancelButton}"
+                                Name="{x:Static u:DefaultDialogControl.PART_CancelButton}"
                                 Margin="8,0,0,0"
                                 Classes="Tertiary"
                                 Content="取消" />
                             <Button
-                                Name="{x:Static u:DefaultDialogWindow.PART_NoButton}"
+                                Name="{x:Static u:DefaultDialogControl.PART_NoButton}"
                                 Margin="8,0,0,0"
                                 Classes="Danger"
+                                Theme="{DynamicResource SolidButton}"
                                 Content="否" />
                             <Button
-                                Name="{x:Static u:DefaultDialogWindow.PART_YesButton}"
+                                Name="{x:Static u:DefaultDialogControl.PART_YesButton}"
                                 Margin="8,0,0,0"
                                 Classes="Primary"
+                                Theme="{DynamicResource SolidButton}"
                                 Content="是" />
                             <Button
-                                Name="{x:Static u:DefaultDialogWindow.PART_OKButton}"
+                                Name="{x:Static u:DefaultDialogControl.PART_OKButton}"
                                 Margin="8,0,0,0"
                                 Classes="Primary"
+                                Theme="{DynamicResource SolidButton}"
                                 Content="确认" />
                         </StackPanel>
                     </Grid>
                 </Panel>
             </ControlTemplate>
         </Setter>
+                <Style Selector="^[Mode=None]">
+            <Style Selector="^ /template/ PathIcon#PART_Icon">
+                <Setter Property="IsVisible" Value="False"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_OKButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Primary"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_YesButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Primary"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_NoButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Danger"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_CancelButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary"></Setter>
+            </Style>
+        </Style>
+        <Style Selector="^[Mode=Info]">
+            <Style Selector="^ /template/ PathIcon#PART_Icon">
+                <Setter Property="IsVisible" Value="True"></Setter>
+                <Setter Property="Data" Value="{DynamicResource DialogInformationIconGlyph}"></Setter>
+                <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_OKButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Primary"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_YesButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Primary"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_NoButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Danger"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_CancelButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary"></Setter>
+            </Style>
+        </Style>
+        <Style Selector="^[Mode=Warning]">
+            <Style Selector="^ /template/ PathIcon#PART_Icon">
+                <Setter Property="IsVisible" Value="True"></Setter>
+                <Setter Property="Data" Value="{DynamicResource DialogWarningIconGlyph}"></Setter>
+                <Setter Property="Foreground" Value="{DynamicResource SemiOrange6}"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_OKButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Warning"></Setter>
+                <Setter Property="Theme" Value="{DynamicResource SolidButton}"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_YesButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Warning"></Setter>
+                <Setter Property="Theme" Value="{DynamicResource SolidButton}"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_NoButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Danger"></Setter>
+                <Setter Property="Theme" Value="{DynamicResource SolidButton}"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_CancelButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary"></Setter>
+            </Style>
+        </Style>
+        <Style Selector="^[Mode=Error]">
+            <Style Selector="^ /template/ PathIcon#PART_Icon">
+                <Setter Property="IsVisible" Value="True"></Setter>
+                <Setter Property="Data" Value="{DynamicResource DialogErrorIconGlyph}"></Setter>
+                <Setter Property="Foreground" Value="{DynamicResource SemiRed6}"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_OKButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Danger"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_YesButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Danger"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_NoButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_CancelButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary"></Setter>
+            </Style>
+        </Style>
+        <Style Selector="^[Mode=Question]">
+            <Style Selector="^ /template/ PathIcon#PART_Icon">
+                <Setter Property="IsVisible" Value="True"></Setter>
+                <Setter Property="Data" Value="{DynamicResource DialogQuestionIconGlyph}"></Setter>
+                <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_OKButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Primary"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_YesButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Primary"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_NoButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Danger"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_CancelButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary"></Setter>
+            </Style>
+        </Style>
+        <Style Selector="^[Mode=Success]">
+            <Style Selector="^ /template/ PathIcon#PART_Icon">
+                <Setter Property="IsVisible" Value="True"></Setter>
+                <Setter Property="Data" Value="{DynamicResource DialogSuccessIconGlyph}"></Setter>
+                <Setter Property="Foreground" Value="{DynamicResource SemiGreen6}"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_OKButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Success"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_YesButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Success"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_NoButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Danger"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Button#PART_CancelButton">
+                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary"></Setter>
+            </Style>
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

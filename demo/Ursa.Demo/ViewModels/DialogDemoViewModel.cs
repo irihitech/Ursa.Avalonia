@@ -16,7 +16,7 @@ public class DialogDemoViewModel: ObservableObject
     public ICommand ShowGlobalOverlayModalDialogCommand { get; }
     public ICommand ShowGlobalModalDialogCommand { get; }
     public ICommand ShowGlobalOverlayDialogCommand { get; }
-    public ICommand ShowPlainGlobalOverlayDialogCommand { get; }
+    public ICommand ShowDefaultWindowCommand { get; }
 
     private object? _result;
     public object? Result
@@ -41,12 +41,20 @@ public class DialogDemoViewModel: ObservableObject
         ShowGlobalOverlayModalDialogCommand = new AsyncRelayCommand(ShowGlobalOverlayModalDialog);
         ShowGlobalModalDialogCommand = new AsyncRelayCommand(ShowGlobalModalDialog);
         ShowGlobalOverlayDialogCommand = new RelayCommand(ShowGlobalOverlayDialog);
-        ShowPlainGlobalOverlayDialogCommand = new AsyncRelayCommand(ShowPlainGlobalOverlayDialog);
+        ShowDefaultWindowCommand = new AsyncRelayCommand(ShowDefaultWindow);
+    }
+
+    private async Task ShowDefaultWindow()
+    {
+        var result = await Dialog.ShowModalAsync<PlainDialog, PlainDialogViewModel>(new PlainDialogViewModel(),
+            mode: DialogMode.Error, buttons: DialogButton.OKCancel, title:"确定取消预约吗？");
+        Result = result;
+        return;
     }
 
     private void ShowGlobalOverlayDialog()
     {
-        OverlayDialog.Show<DialogWithAction, DialogWithActionViewModel>(new DialogWithActionViewModel());
+        OverlayDialog.ShowCustom<DialogWithAction, DialogWithActionViewModel>(new DialogWithActionViewModel());
     }
 
     private async Task ShowGlobalModalDialog()
@@ -57,21 +65,15 @@ public class DialogDemoViewModel: ObservableObject
 
     private async Task ShowGlobalOverlayModalDialog()
     {
-        Result = await OverlayDialog.ShowCustomModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(DialogViewModel);
+        Result = await OverlayDialog.ShowModalAsync<PlainDialog, PlainDialogViewModel>(new PlainDialogViewModel(),
+            title: "Please select a date", mode: DialogMode.Error, buttons: DialogButton.YesNoCancel);
     }
 
     private async Task ShowLocalOverlayModalDialog()
     {
         var vm = new DialogWithActionViewModel();
         var result = await OverlayDialog.ShowCustomModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(
-            DialogViewModel, "LocalHost");
+            vm, "LocalHost");
         Result = result;
-    }
-    
-    public async Task ShowPlainGlobalOverlayDialog()
-    {
-        var result = await OverlayDialog.ShowCustomModalAsync<PlainDialog, PlainDialogViewModel, object?>(
-            new PlainDialogViewModel(),
-            "LocalHost");
     }
 }

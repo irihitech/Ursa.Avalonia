@@ -1,6 +1,6 @@
 ﻿namespace Ursa.Controls;
 
-public enum DialogIcon
+public enum DialogMode
 {
     Info,
     Warning,

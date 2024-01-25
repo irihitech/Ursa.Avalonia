@@ -63,7 +63,7 @@ public class OverlayDialogHost : Canvas
     protected override void OnPointerMoved(PointerEventArgs e)
     {
         base.OnPointerMoved(e);
-        if (e.Source is DefaultDialogControl item)
+        if (e.Source is DialogControl item)
         {
             if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
             {
@@ -155,7 +155,7 @@ public class OverlayDialogHost : Canvas
     // Handle dialog layer change event
     private void OnDialogLayerChanged(object sender, DialogLayerChangeEventArgs e)
     {
-        if (sender is not DefaultDialogControl control)
+        if (sender is not DialogControl control)
             return;
         if (!_dialogs.Contains(control))
             return;
