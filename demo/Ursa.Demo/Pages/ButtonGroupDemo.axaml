@@ -13,10 +13,20 @@
     mc:Ignorable="d">
 
     <StackPanel Margin="20" Spacing="20">
-        <u:ButtonGroup Classes="Primary Solid" ItemsSource="{Binding Items}" />
-        <u:ButtonGroup Classes="Primary" ItemsSource="{Binding Items}" />
-        <u:ButtonGroup Classes="Primary Borderless" ItemsSource="{Binding Items}" />
-        <u:ButtonGroup Classes="Primary Large" ItemsSource="{Binding Items}" />
-        <u:ButtonGroup Classes="Primary Small" ItemsSource="{Binding Items}" />
+        <u:ButtonGroup Classes="Primary Solid" 
+                       CommandBinding="{Binding InvokeCommand}"
+                       ItemsSource="{Binding Items}" >
+            <u:ButtonGroup.ItemTemplate>
+                <DataTemplate x:DataType="vm:ButtonItem">
+                    <TextBlock Text="{Binding Name}" Foreground="{DynamicResource SemiGrey3}"></TextBlock>
+                </DataTemplate>
+            </u:ButtonGroup.ItemTemplate>
+        </u:ButtonGroup>
+        
+        <u:ButtonGroup Classes="Primary" 
+                       ContentBinding="{Binding Name}"
+                       CommandBinding="{Binding InvokeCommand}"
+                       ItemsSource="{Binding Items}" >
+        </u:ButtonGroup>
     </StackPanel>
 </UserControl>
