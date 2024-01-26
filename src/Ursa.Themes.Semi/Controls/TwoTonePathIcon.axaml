@@ -1,0 +1,38 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:TwoTonePathIcon}" TargetType="u:TwoTonePathIcon">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Height" Value="{DynamicResource IconElementThemeHeight}" />
+        <Setter Property="Width" Value="{DynamicResource IconElementThemeWidth}" />
+        <Setter Property="StrokeThickness" Value="0.4" />
+        <Setter Property="Foreground" Value="{DynamicResource SemiBlue2}" />
+        <Setter Property="StrokeBrush" Value="{DynamicResource SemiBlue6}" />
+        <Setter Property="ActiveForeground" Value="{DynamicResource SemiBlue6}" />
+        <Setter Property="ActiveStrokeBrush" Value="{DynamicResource SemiBlue6}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:TwoTonePathIcon">
+                <Border Background="{TemplateBinding Background}">
+                    <Panel>
+                        <Viewbox Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                            <Path
+                                Name="PART_Fill"
+                                Data="{TemplateBinding Data}"
+                                StrokeThickness="{TemplateBinding StrokeThickness}"
+                                StrokeJoin="Round"
+                                Fill="{TemplateBinding Foreground}"
+                                Stroke="{TemplateBinding StrokeBrush}"
+                                Stretch="Uniform" />
+                        </Viewbox>
+                    </Panel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:active /template/ Path#PART_Fill">
+            <Setter Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActiveForeground}" />
+            <Setter Property="Stroke" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActiveStrokeBrush}" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>
