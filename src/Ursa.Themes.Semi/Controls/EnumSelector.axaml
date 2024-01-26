@@ -4,6 +4,7 @@
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:EnumSelector}" TargetType="u:EnumSelector">
+        <Setter Property="Width" Value="100" />
         <Setter Property="HorizontalAlignment" Value="Left"></Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:EnumSelector">
