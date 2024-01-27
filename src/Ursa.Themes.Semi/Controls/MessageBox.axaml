@@ -88,24 +88,24 @@
                                 Name="{x:Static u:MessageBoxWindow.PART_CancelButton}"
                                 Margin="8,0,0,0"
                                 Classes="Tertiary"
-                                Content="Cancel" />
+                                Content="{DynamicResource STRING_MENU_DIALOG_CANCEL}" />
                             <Button
                                 Name="{x:Static u:MessageBoxWindow.PART_NoButton}"
                                 Margin="8,0,0,0"
                                 Classes="Danger"
-                                Content="No"
+                                Content="{DynamicResource STRING_MENU_DIALOG_NO}"
                                 Theme="{DynamicResource SolidButton}" />
                             <Button
                                 Name="{x:Static u:MessageBoxWindow.PART_YesButton}"
                                 Margin="8,0,0,0"
                                 Classes="Primary"
-                                Content="Yes"
+                                Content="{DynamicResource STRING_MENU_DIALOG_YES}"
                                 Theme="{DynamicResource SolidButton}" />
                             <Button
                                 Name="{x:Static u:MessageBoxWindow.PART_OKButton}"
                                 Margin="8,0,0,0"
                                 Classes="Primary"
-                                Content="OK"
+                                Content="{DynamicResource STRING_MENU_DIALOG_OK}"
                                 Theme="{DynamicResource SolidButton}" />
                         </StackPanel>
                     </Grid>
@@ -219,24 +219,24 @@
                                     Name="{x:Static u:MessageBoxControl.PART_CancelButton}"
                                     Margin="8,0,0,0"
                                     Classes="Tertiary"
-                                    Content="Cancel" />
+                                    Content="{DynamicResource STRING_MENU_DIALOG_CANCEL}" />
                                 <Button
                                     Name="{x:Static u:MessageBoxControl.PART_NoButton}"
                                     Margin="8,0,0,0"
                                     Classes="Danger"
-                                    Content="No"
+                                    Content="{DynamicResource STRING_MENU_DIALOG_NO}"
                                     Theme="{DynamicResource SolidButton}" />
                                 <Button
                                     Name="{x:Static u:MessageBoxControl.PART_YesButton}"
                                     Margin="8,0,0,0"
                                     Classes="Primary"
-                                    Content="Yes"
+                                    Content="{DynamicResource STRING_MENU_DIALOG_YES}"
                                     Theme="{DynamicResource SolidButton}" />
                                 <Button
                                     Name="{x:Static u:MessageBoxControl.PART_OKButton}"
                                     Margin="8,0,0,0"
                                     Classes="Primary"
-                                    Content="OK"
+                                    Content="{DynamicResource STRING_MENU_DIALOG_OK}"
                                     Theme="{DynamicResource SolidButton}" />
                             </StackPanel>
                         </Grid>

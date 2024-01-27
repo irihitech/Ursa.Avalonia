@@ -52,7 +52,7 @@
                     <MenuItem
                         Command="{Binding $parent[u:DialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.BringForward}"
-                        Header="Bring Forward">
+                        Header="{DynamicResource STRING_MENU_BRING_FORWARD}">
                         <MenuItem.Icon>
                             <PathIcon
                                 Width="12"
@@ -63,7 +63,7 @@
                     <MenuItem
                         Command="{Binding $parent[u:DialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.BringToFront}"
-                        Header="Bring To Front">
+                        Header="{DynamicResource STRING_MENU_BRING_TO_FRONT}">
                         <MenuItem.Icon>
                             <PathIcon
                                 Width="12"
@@ -74,7 +74,7 @@
                     <MenuItem
                         Command="{Binding $parent[u:DialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.SendBackward}"
-                        Header="Send Backward">
+                        Header="{DynamicResource STRING_MENU_SEND_BACKWARD}">
                         <MenuItem.Icon>
                             <PathIcon
                                 Width="12"
@@ -85,7 +85,7 @@
                     <MenuItem
                         Command="{Binding $parent[u:DialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.SendToBack}"
-                        Header="Send To Back">
+                        Header="{DynamicResource STRING_MENU_SEND_TO_BACK}">
                         <MenuItem.Icon>
                             <PathIcon
                                 Width="12"
@@ -161,24 +161,24 @@
                                     Name="{x:Static u:DefaultDialogControl.PART_CancelButton}"
                                     Margin="8,0,0,0"
                                     Classes="Tertiary"
-                                    Content="取消" />
+                                    Content="{DynamicResource STRING_MENU_DIALOG_CANCEL}" />
                                 <Button
                                     Name="{x:Static u:DefaultDialogControl.PART_NoButton}"
                                     Margin="8,0,0,0"
                                     Classes="Danger"
-                                    Content="否"
+                                    Content="{DynamicResource STRING_MENU_DIALOG_NO}"
                                     Theme="{DynamicResource SolidButton}" />
                                 <Button
                                     Name="{x:Static u:DefaultDialogControl.PART_YesButton}"
                                     Margin="8,0,0,0"
                                     Classes="Primary"
-                                    Content="是"
+                                    Content="{DynamicResource STRING_MENU_DIALOG_YES}"
                                     Theme="{DynamicResource SolidButton}" />
                                 <Button
                                     Name="{x:Static u:DefaultDialogControl.PART_OKButton}"
                                     Margin="8,0,0,0"
                                     Classes="Primary"
-                                    Content="确认"
+                                    Content="{DynamicResource STRING_MENU_DIALOG_OK}"
                                     Theme="{DynamicResource SolidButton}" />
                             </StackPanel>
                         </Grid>
@@ -311,7 +311,7 @@
                     <MenuItem
                         Command="{Binding $parent[u:DialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.BringForward}"
-                        Header="Bring Forward">
+                        Header="{DynamicResource STRING_MENU_BRING_FORWARD}">
                         <MenuItem.Icon>
                             <PathIcon
                                 Width="12"
@@ -322,7 +322,7 @@
                     <MenuItem
                         Command="{Binding $parent[u:DialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.BringToFront}"
-                        Header="Bring To Front">
+                        Header="{DynamicResource STRING_MENU_BRING_TO_FRONT}">
                         <MenuItem.Icon>
                             <PathIcon
                                 Width="12"
@@ -333,7 +333,7 @@
                     <MenuItem
                         Command="{Binding $parent[u:DialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.SendBackward}"
-                        Header="Send Backward">
+                        Header="{DynamicResource STRING_MENU_SEND_BACKWARD}">
                         <MenuItem.Icon>
                             <PathIcon
                                 Width="12"
@@ -344,7 +344,7 @@
                     <MenuItem
                         Command="{Binding $parent[u:DialogControl].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.SendToBack}"
-                        Header="Send To Back">
+                        Header="{DynamicResource STRING_MENU_SEND_TO_BACK}">
                         <MenuItem.Icon>
                             <PathIcon
                                 Width="12"
@@ -492,24 +492,24 @@
                                 Name="{x:Static u:DefaultDialogControl.PART_CancelButton}"
                                 Margin="8,0,0,0"
                                 Classes="Tertiary"
-                                Content="取消" />
+                                Content="{DynamicResource STRING_MENU_DIALOG_CANCEL}" />
                             <Button
                                 Name="{x:Static u:DefaultDialogControl.PART_NoButton}"
                                 Margin="8,0,0,0"
                                 Classes="Danger"
-                                Content="否"
+                                Content="{DynamicResource STRING_MENU_DIALOG_NO}"
                                 Theme="{DynamicResource SolidButton}" />
                             <Button
                                 Name="{x:Static u:DefaultDialogControl.PART_YesButton}"
                                 Margin="8,0,0,0"
                                 Classes="Primary"
-                                Content="是"
+                                Content="{DynamicResource STRING_MENU_DIALOG_YES}"
                                 Theme="{DynamicResource SolidButton}" />
                             <Button
                                 Name="{x:Static u:DefaultDialogControl.PART_OKButton}"
                                 Margin="8,0,0,0"
                                 Classes="Primary"
-                                Content="确认"
+                                Content="{DynamicResource STRING_MENU_DIALOG_OK}"
                                 Theme="{DynamicResource SolidButton}" />
                         </StackPanel>
                     </Grid>

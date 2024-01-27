@@ -1,9 +1,4 @@
-<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Design.PreviewWith>
-        <Border Padding="20">
-            <!--  Add Controls for Previewer Here  -->
-        </Border>
-    </Design.PreviewWith>
+<Styles x:Class="Ursa.Themes.Semi.SemiTheme" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Styles.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
@@ -13,11 +8,11 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="../Controls/_index.axaml" />
                 <ResourceInclude Source="Themes/Shared/_index.axaml" />
+                <ResourceInclude Source="Locale/zh-cn.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Styles.Resources>
 
     <StyleInclude Source="../Styles/_index.axaml" />
-
     <!--  Add Styles Here  -->
 </Styles>
