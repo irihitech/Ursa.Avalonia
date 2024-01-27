@@ -115,7 +115,7 @@ public class MessageBoxDemoViewModel: ObservableObject
 
     private async Task OnOkCancelAsync()
     {
-        await Show(MessageBoxButton.OK);
+        await Show(MessageBoxButton.OKCancel);
     }
 
     private async Task Show(MessageBoxButton button)
