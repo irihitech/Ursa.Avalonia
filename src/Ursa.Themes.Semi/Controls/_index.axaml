@@ -19,5 +19,6 @@
         <ResourceInclude Source="RangeSlider.axaml" />
         <ResourceInclude Source="TagInput.axaml" />
         <ResourceInclude Source="Timeline.axaml" />
+        <ResourceInclude Source="TwoTonePathIcon.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

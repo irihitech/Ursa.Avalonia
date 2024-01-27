@@ -18,7 +18,10 @@
                        ItemsSource="{Binding Items}" >
             <u:ButtonGroup.ItemTemplate>
                 <DataTemplate x:DataType="vm:ButtonItem">
-                    <TextBlock Text="{Binding Name}" Foreground="{DynamicResource SemiGrey3}"></TextBlock>
+                    <TextBlock>
+                        <Run Text="🐼"></Run>
+                        <Run Text="{Binding Name}"></Run>
+                    </TextBlock>
                 </DataTemplate>
             </u:ButtonGroup.ItemTemplate>
         </u:ButtonGroup>
