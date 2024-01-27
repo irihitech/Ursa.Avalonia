@@ -2,6 +2,7 @@
     x:Class="Ursa.Demo.Pages.IconButtonDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:common="clr-namespace:Ursa.Common;assembly=Ursa"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
@@ -11,18 +12,28 @@
     <UserControl.Resources>
         <StreamGeometry x:Key="iconGlyph">M12.0101 1C5.92171 1 1 5.92171 1 12.0101C1 16.8771 4.15354 20.9967 8.5284 22.455C9.07526 22.5644 9.27577 22.218 9.27577 21.9264C9.27577 21.6712 9.25754 20.7962 9.25754 19.8848C6.19514 20.541 5.55714 18.5723 5.55714 18.5723C5.06497 17.2963 4.33583 16.9682 4.33583 16.9682C3.33326 16.2938 4.40874 16.2938 4.40874 16.2938C5.52069 16.3667 6.104 17.4239 6.104 17.4239C7.08834 19.101 8.67423 18.627 9.31223 18.3354C9.40337 17.6245 9.69503 17.1323 10.0049 16.8589C7.56229 16.6037 4.99206 15.6558 4.99206 11.4267C4.99206 10.2237 5.42954 9.23931 6.12223 8.47371C6.01286 8.20028 5.63006 7.07011 6.2316 5.55714C6.2316 5.55714 7.16126 5.26548 9.25754 6.68731C10.1325 6.45034 11.0804 6.32274 12.0101 6.32274C12.9397 6.32274 13.8876 6.45034 14.7626 6.68731C16.8589 5.26548 17.7885 5.55714 17.7885 5.55714C18.3901 7.07011 18.0073 8.20028 17.8979 8.47371C18.6088 9.23931 19.0281 10.2237 19.0281 11.4267C19.0281 15.6558 16.4578 16.5854 13.997 16.8589C14.398 17.2052 14.7443 17.8614 14.7443 18.9004C14.7443 20.377 14.7261 21.5618 14.7261 21.9264C14.7261 22.218 14.9266 22.5644 15.4735 22.455C19.8483 20.9967 23.0019 16.8771 23.0019 12.0101C23.0201 5.92171 18.0802 1 12.0101 1Z</StreamGeometry>
     </UserControl.Resources>
-    <StackPanel HorizontalAlignment="Left">
-        <ToggleButton Name="loading" Content="Toggle Loading" />
-        <u:IconButton Content="Hello World" IsLoading="{Binding #loading.IsChecked}" />
-        <u:IconButton Content="GitHub" IsLoading="{Binding #loading.IsChecked}">
+    <StackPanel HorizontalAlignment="Left" Spacing="16">
+        <ToggleSwitch Name="loading" Content="Toggle Loading" />
+        <u:EnumSelector Name="placement" EnumType="{x:Type common:IconPlacement}" />
+        <u:IconButton
+            Content="Hello World"
+            IconPlacement="{Binding #placement.Value}"
+            IsLoading="{Binding #loading.IsChecked}" />
+        <u:IconButton
+            Content="Hello Panda"
+            IconPlacement="{Binding #placement.Value}"
+            IsLoading="{Binding #loading.IsChecked}">
             <u:IconButton.Icon>
-                <PathIcon
-                    Width="14"
-                    Height="14"
-                    Data="{StaticResource iconGlyph}" />
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    FontSize="40"
+                    Text="🐼" />
             </u:IconButton.Icon>
         </u:IconButton>
-        <u:IconButton Content="GitHub" IsLoading="{Binding #loading.IsChecked}" IconPlacement="Right">
+        <u:IconButton
+            Content="GitHub"
+            IconPlacement="{Binding #placement.Value}"
+            IsLoading="{Binding #loading.IsChecked}">
             <u:IconButton.Icon>
                 <PathIcon
                     Width="14"
@@ -33,6 +44,7 @@
         <u:IconButton
             Width="150"
             Content="GitHub"
+            IconPlacement="{Binding #placement.Value}"
             IsLoading="{Binding #loading.IsChecked}">
             <u:IconButton.Icon>
                 <PathIcon
@@ -45,6 +57,7 @@
             Width="150"
             Classes="Warning"
             Content="GitHub"
+            IconPlacement="{Binding #placement.Value}"
             IsLoading="{Binding #loading.IsChecked}">
             <u:IconButton.Icon>
                 <PathIcon
@@ -56,6 +69,7 @@
         <u:IconButton
             Width="150"
             Content="GitHub"
+            IconPlacement="{Binding #placement.Value}"
             IsLoading="{Binding #loading.IsChecked}"
             Theme="{DynamicResource SolidIconButton}">
             <u:IconButton.Icon>
@@ -69,6 +83,7 @@
             Width="150"
             Classes="Warning"
             Content="GitHub"
+            IconPlacement="{Binding #placement.Value}"
             IsLoading="{Binding #loading.IsChecked}"
             Theme="{DynamicResource SolidIconButton}">
             <u:IconButton.Icon>
@@ -79,28 +94,14 @@
             </u:IconButton.Icon>
         </u:IconButton>
         <u:IconButton
-            Width="150"
-            Content="GitHub"
+            Classes="Danger"
             IsLoading="{Binding #loading.IsChecked}"
-            Theme="{DynamicResource BorderlessIconButton}">
+            Theme="{DynamicResource SolidIconButton}">
             <u:IconButton.Icon>
-                <PathIcon
-                    Width="14"
-                    Height="14"
-                    Data="{StaticResource iconGlyph}" />
-            </u:IconButton.Icon>
-        </u:IconButton>
-        <u:IconButton
-            Width="150"
-            Classes="Warning"
-            Content="GitHub"
-            IsLoading="{Binding #loading.IsChecked}"
-            Theme="{DynamicResource BorderlessIconButton}">
-            <u:IconButton.Icon>
-                <PathIcon
-                    Width="14"
-                    Height="14"
-                    Data="{StaticResource iconGlyph}" />
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    FontSize="40"
+                    Text="🐼" />
             </u:IconButton.Icon>
         </u:IconButton>
     </StackPanel>
