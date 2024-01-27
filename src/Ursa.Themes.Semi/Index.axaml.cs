@@ -32,6 +32,7 @@ public class SemiTheme: Styles
             _locale = value;
             var resource = TryGetLocaleResource(value);
             var d = AvaloniaXamlLoader.Load(sp, new Uri(resource)) as ResourceDictionary;
+            if (d is null) return;
             foreach (var kv in d)
             {
                 this.Resources.Add(kv);
@@ -39,7 +40,7 @@ public class SemiTheme: Styles
         }
     }
     
-    private string TryGetLocaleResource(CultureInfo? locale)
+    private static string TryGetLocaleResource(CultureInfo? locale)
     {
         if (locale is null)
         {
