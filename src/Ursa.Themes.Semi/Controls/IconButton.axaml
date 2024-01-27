@@ -1,8 +1,10 @@
 ﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters"
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
+    <converters:BooleansToOpacityConverter x:Key="OpacityConverter" />
     <ControlTheme x:Key="{x:Type u:IconButton}" TargetType="u:IconButton">
         <Setter Property="Background" Value="{DynamicResource ButtonDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultPrimaryForeground}" />
@@ -32,7 +34,8 @@
                     <Grid
                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                        ColumnDefinitions="Auto, Auto">
+                        ColumnDefinitions="Auto, Auto"
+                        RowDefinitions="Auto, Auto">
                         <Panel
                             Name="PART_IconRoot"
                             Grid.Column="0"
@@ -49,7 +52,7 @@
                             <ContentPresenter
                                 Content="{TemplateBinding Icon}"
                                 ContentTemplate="{TemplateBinding IconTemplate}"
-                                IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=!IsLoading}" />
+                                Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=!IsLoading, Converter={StaticResource OpacityConverter}}" />
                             <u:LoadingIcon
                                 Classes="Small"
                                 Foreground="{TemplateBinding Foreground}"
@@ -58,6 +61,8 @@
                         <ContentPresenter
                             Name="PART_ContentPresenter"
                             Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
                             Content="{TemplateBinding Content}" />
                     </Grid>
                 </Border>
@@ -106,10 +111,48 @@
         <Style Selector="^:right">
             <Style Selector="^ /template/ Panel#PART_IconRoot">
                 <Setter Property="Grid.Column" Value="1" />
+                <Setter Property="Grid.Row" Value="0" />
                 <Setter Property="Margin" Value="8 0 0 0" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                 <Setter Property="Grid.Column" Value="0" />
+                <Setter Property="Grid.Row" Value="0" />
+            </Style>
+        </Style>
+
+        <Style Selector="^:left">
+            <Style Selector="^ /template/ Panel#PART_IconRoot">
+                <Setter Property="Grid.Column" Value="0" />
+                <Setter Property="Grid.Row" Value="0" />
+                <Setter Property="Margin" Value="0 0 8 0" />
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Grid.Column" Value="1" />
+                <Setter Property="Grid.Row" Value="0" />
+            </Style>
+        </Style>
+
+        <Style Selector="^:top">
+            <Style Selector="^ /template/ Panel#PART_IconRoot">
+                <Setter Property="Grid.Column" Value="0" />
+                <Setter Property="Grid.Row" Value="0" />
+                <Setter Property="Margin" Value="0 0 0 4" />
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Grid.Column" Value="0" />
+                <Setter Property="Grid.Row" Value="1" />
+            </Style>
+        </Style>
+
+        <Style Selector="^:bottom">
+            <Style Selector="^ /template/ Panel#PART_IconRoot">
+                <Setter Property="Grid.Column" Value="0" />
+                <Setter Property="Grid.Row" Value="1" />
+                <Setter Property="Margin" Value="0 4 0 0" />
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Grid.Column" Value="0" />
+                <Setter Property="Grid.Row" Value="0" />
             </Style>
         </Style>
 

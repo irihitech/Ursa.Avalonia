@@ -3,14 +3,18 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Avalonia.Layout;
 using Ursa.Common;
 
 namespace Ursa.Controls;
 
-[PseudoClasses(PC_Right)]
+[PseudoClasses(PC_Right, PC_Left, PC_Top, PC_Bottom)]
 public class IconButton: Button
 {
     public const string PC_Right = ":right";
+    public const string PC_Left = ":left";
+    public const string PC_Top = ":top";
+    public const string PC_Bottom = ":bottom";
     
     public static readonly StyledProperty<object?> IconProperty = AvaloniaProperty.Register<IconButton, object?>(
         nameof(Icon));
@@ -64,6 +68,9 @@ public class IconButton: Button
 
     private void SetPlacement(IconPlacement placement)
     {
+        PseudoClasses.Set(PC_Left, placement == IconPlacement.Left);
         PseudoClasses.Set(PC_Right, placement == IconPlacement.Right);
+        PseudoClasses.Set(PC_Top, placement == IconPlacement.Top);
+        PseudoClasses.Set(PC_Bottom, placement == IconPlacement.Bottom);
     }
 }
