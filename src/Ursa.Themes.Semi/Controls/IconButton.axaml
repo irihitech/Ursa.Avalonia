@@ -38,8 +38,7 @@
                         RowDefinitions="Auto, Auto">
                         <Panel
                             Name="PART_IconRoot"
-                            Grid.Column="0"
-                            Margin="0,0,8,0">
+                            Grid.Column="0">
                             <Panel.IsVisible>
                                 <MultiBinding Converter="{x:Static BoolConverters.Or}">
                                     <Binding Path="IsLoading" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -61,6 +60,7 @@
                         <ContentPresenter
                             Name="PART_ContentPresenter"
                             Grid.Column="1"
+                            Margin="8 0 0 0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Content="{TemplateBinding Content}" />
@@ -107,16 +107,20 @@
             <Setter Property="Background" Value="{DynamicResource ButtonDefaultDisabledBackground}" />
             <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultDisabledForeground}" />
         </Style>
+        
+        <Style Selector="^:empty[IsLoading=False] /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Margin" Value="0"></Setter>
+        </Style>
 
         <Style Selector="^:right">
             <Style Selector="^ /template/ Panel#PART_IconRoot">
                 <Setter Property="Grid.Column" Value="1" />
                 <Setter Property="Grid.Row" Value="0" />
-                <Setter Property="Margin" Value="8 0 0 0" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                 <Setter Property="Grid.Column" Value="0" />
                 <Setter Property="Grid.Row" Value="0" />
+                <Setter Property="Margin" Value="0 0 8 0" />
             </Style>
         </Style>
 
@@ -124,11 +128,11 @@
             <Style Selector="^ /template/ Panel#PART_IconRoot">
                 <Setter Property="Grid.Column" Value="0" />
                 <Setter Property="Grid.Row" Value="0" />
-                <Setter Property="Margin" Value="0 0 8 0" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                 <Setter Property="Grid.Column" Value="1" />
                 <Setter Property="Grid.Row" Value="0" />
+                <Setter Property="Margin" Value="8 0 0 0" />
             </Style>
         </Style>
 
@@ -136,11 +140,11 @@
             <Style Selector="^ /template/ Panel#PART_IconRoot">
                 <Setter Property="Grid.Column" Value="0" />
                 <Setter Property="Grid.Row" Value="0" />
-                <Setter Property="Margin" Value="0 0 0 4" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                 <Setter Property="Grid.Column" Value="0" />
                 <Setter Property="Grid.Row" Value="1" />
+                <Setter Property="Margin" Value="0 4 0 0" />
             </Style>
         </Style>
 
@@ -148,11 +152,11 @@
             <Style Selector="^ /template/ Panel#PART_IconRoot">
                 <Setter Property="Grid.Column" Value="0" />
                 <Setter Property="Grid.Row" Value="1" />
-                <Setter Property="Margin" Value="0 4 0 0" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                 <Setter Property="Grid.Column" Value="0" />
                 <Setter Property="Grid.Row" Value="0" />
+                <Setter Property="Margin" Value="0 0 0 4" />
             </Style>
         </Style>
 

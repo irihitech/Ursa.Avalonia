@@ -24,7 +24,10 @@
             IconPlacement="{Binding #placement.Value}"
             IsLoading="{Binding #loading.IsChecked}">
             <u:IconButton.Icon>
-                <TextBlock Text="🐼" HorizontalAlignment="Center" FontSize="40" />
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    FontSize="40"
+                    Text="🐼" />
             </u:IconButton.Icon>
         </u:IconButton>
         <u:IconButton
@@ -88,6 +91,17 @@
                     Width="14"
                     Height="14"
                     Data="{StaticResource iconGlyph}" />
+            </u:IconButton.Icon>
+        </u:IconButton>
+        <u:IconButton
+            Classes="Danger"
+            IsLoading="{Binding #loading.IsChecked}"
+            Theme="{DynamicResource SolidIconButton}">
+            <u:IconButton.Icon>
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    FontSize="40"
+                    Text="🐼" />
             </u:IconButton.Icon>
         </u:IconButton>
     </StackPanel>

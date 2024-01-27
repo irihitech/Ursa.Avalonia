@@ -8,13 +8,14 @@ using Ursa.Common;
 
 namespace Ursa.Controls;
 
-[PseudoClasses(PC_Right, PC_Left, PC_Top, PC_Bottom)]
+[PseudoClasses(PC_Right, PC_Left, PC_Top, PC_Bottom, PC_Empty)]
 public class IconButton: Button
 {
     public const string PC_Right = ":right";
     public const string PC_Left = ":left";
     public const string PC_Top = ":top";
     public const string PC_Bottom = ":bottom";
+    public const string PC_Empty = ":empty";
     
     public static readonly StyledProperty<object?> IconProperty = AvaloniaProperty.Register<IconButton, object?>(
         nameof(Icon));
@@ -56,18 +57,32 @@ public class IconButton: Button
     {
         IconPlacementProperty.Changed.AddClassHandler<IconButton, IconPlacement>((o, e) =>
         {
-            o.SetPlacement(e.NewValue.Value);
+            o.SetPlacement(e.NewValue.Value, o.Icon);
+        });
+        IconProperty.Changed.AddClassHandler<IconButton, object?>((o, e) =>
+        {
+            o.SetPlacement(o.IconPlacement, e.NewValue.Value);
         });
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        SetPlacement(IconPlacement);
+        SetPlacement(IconPlacement, Icon);
     }
 
-    private void SetPlacement(IconPlacement placement)
+    private void SetPlacement(IconPlacement placement, object? icon)
     {
+        if (icon is null)
+        {
+            PseudoClasses.Set(PC_Empty, true);
+            PseudoClasses.Set(PC_Left, false);
+            PseudoClasses.Set(PC_Right, false);
+            PseudoClasses.Set(PC_Top, false);
+            PseudoClasses.Set(PC_Bottom, false);
+            return;
+        }
+        PseudoClasses.Set(PC_Empty, false);
         PseudoClasses.Set(PC_Left, placement == IconPlacement.Left);
         PseudoClasses.Set(PC_Right, placement == IconPlacement.Right);
         PseudoClasses.Set(PC_Top, placement == IconPlacement.Top);
