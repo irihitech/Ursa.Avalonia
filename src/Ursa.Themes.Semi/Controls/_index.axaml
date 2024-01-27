@@ -8,6 +8,7 @@
         <ResourceInclude Source="DialogShared.axaml" />
         <ResourceInclude Source="Divider.axaml" />
         <ResourceInclude Source="DualBadge.axaml" />
+        <ResourceInclude Source="EnumSelector.axaml" />
         <ResourceInclude Source="IconButton.axaml" />
         <ResourceInclude Source="ImageViewer.axaml" />
         <ResourceInclude Source="IPv4Box.axaml" />
@@ -17,7 +18,9 @@
         <ResourceInclude Source="Navigation.axaml" />
         <ResourceInclude Source="NumericUpDown.axaml" />
         <ResourceInclude Source="Pagination.axaml" />
+        <ResourceInclude Source="RangeSlider.axaml" />
         <ResourceInclude Source="TagInput.axaml" />
         <ResourceInclude Source="Timeline.axaml" />
+        <ResourceInclude Source="TwoTonePathIcon.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
