@@ -1,0 +1,20 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Ursa.Demo.Dialogs"
+             x:DataType="local:DialogWithActionViewModel"
+             x:CompileBindings="True"
+             Background="{DynamicResource SemiYellow1}"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Ursa.Demo.Dialogs.DialogWithAction">
+    <StackPanel Margin="24">
+        <TextBlock FontSize="16" FontWeight="600" Margin="8"  Text="{Binding Title}"></TextBlock>
+        <Calendar SelectedDate="{Binding Date}" ></Calendar>
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="8">
+            <Button Content="Dialog" Command="{Binding DialogCommand}"></Button>
+            <Button Content="OK" Command="{Binding OKCommand}"></Button>
+            <Button Content="Cancel" Command="{Binding CancelCommand}"></Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,78 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.DialogDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:DialogDemoViewModel"
+    mc:Ignorable="d">
+    <Grid ColumnDefinitions="Auto, *">
+        <TabControl Grid.Column="0" Width="300">
+            <TabItem Header="Default">
+                <StackPanel>
+                    <ToggleSwitch
+                        Name="overlay"
+                        Content="Window/Overlay"
+                        IsChecked="{Binding IsWindow}"
+                        OffContent="Overlay"
+                        OnContent="Window" />
+                    <ToggleSwitch
+                        Content="Global/Local"
+                        IsVisible="{Binding !#overlay.IsChecked}"
+                        IsChecked="{Binding IsGlobal}"
+                        OffContent="Local"
+                        OnContent="Global" />
+                    <ToggleSwitch
+                        Content="Modal/Regular"
+                        IsVisible="{Binding !#overlay.IsChecked}"
+                        IsChecked="{Binding IsModal}"
+                        OffContent="Regular"
+                        OnContent="Modal" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Buttons" />
+                        <ComboBox ItemsSource="{Binding Buttons}" SelectedItem="{Binding SelectedButton}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Mode" />
+                        <ComboBox ItemsSource="{Binding Modes}" SelectedItem="{Binding SelectedMode}"/>
+                    </StackPanel>
+                    <Button Content="Show Dialog" Command="{Binding ShowDialogCommand}" />
+                    <TextBlock>
+                        <Run Text="Default Result: "></Run>
+                        <Run Text="{Binding DefaultResult}"/>
+                    </TextBlock>
+                    <TextBlock>
+                        <Run Text="Dialog Date: "></Run>
+                        <Run Text="{Binding Date}"/>
+                    </TextBlock>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Custom">
+                <StackPanel>
+                    <ToggleSwitch Content="Window/Overlay" OffContent="Overlay" OnContent="Window" IsChecked="{Binding IsWindow}" Name="overlay2" />
+                    <ToggleSwitch Content="Global/Local" IsVisible="{Binding !#overlay2.IsChecked}" OffContent="Local" OnContent="Global" IsChecked="{Binding IsGlobal}" />
+                    <ToggleSwitch Content="Modal/Regular" IsVisible="{Binding !#overlay2.IsChecked}" OffContent="Regular" OnContent="Modal" IsChecked="{Binding IsModal}" />
+                    <Button Content="Show Dialog" Command="{Binding ShowCustomDialogCommand}" />
+                    <TextBlock>
+                        <Run Text="Custom Result: "></Run>
+                        <Run Text="{Binding Result}"/>
+                    </TextBlock>
+                    <TextBlock>
+                        <Run Text="Dialog Date: "></Run>
+                        <Run Text="{Binding Date}"/>
+                    </TextBlock>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+        <Grid Grid.Column="1">
+            <Border ClipToBounds="True" CornerRadius="20" BorderThickness="1" BorderBrush="{DynamicResource SemiGrey1}">
+                <u:OverlayDialogHost HostId="LocalHost" />
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>
