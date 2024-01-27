@@ -20,6 +20,7 @@ public class SemiTheme: Styles
     private readonly IServiceProvider? sp;
     public SemiTheme(IServiceProvider? provider = null)
     {
+        sp = provider;
         AvaloniaXamlLoader.Load(provider, this);
     }
 
