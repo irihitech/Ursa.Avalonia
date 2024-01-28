@@ -26,12 +26,12 @@ public class DialogWindow: Window
     {
         if (args.OldValue.Value is IDialogContext oldContext)
         {
-            oldContext.Closed-= OnDialogContextClose;
+            oldContext.RequestClose-= OnContextRequestClose;
         }
 
         if (args.NewValue.Value is IDialogContext newContext)
         {
-            newContext.Closed += OnDialogContextClose;
+            newContext.RequestClose += OnContextRequestClose;
         }
     }
 
@@ -43,7 +43,7 @@ public class DialogWindow: Window
         EventHelper.RegisterClickEvent(OnDefaultClose, _closeButton);
     }
 
-    private void OnDialogContextClose(object? sender, object? args)
+    private void OnContextRequestClose(object? sender, object? args)
     {
         Close(args);
     }

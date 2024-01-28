@@ -194,6 +194,7 @@ public abstract class NumericUpDown : TemplatedControl
             if (AllowDrag && _dragPanel is not null)
             {
                 _dragPanel.IsVisible = true;
+                _dragPanel.Focus();
             }
         }
     }
@@ -204,8 +205,14 @@ public abstract class NumericUpDown : TemplatedControl
         if (e.ClickCount == 2 && _dragPanel is not null && AllowDrag)
         {
             _dragPanel.IsVisible = false;
+            _textBox.IsReadOnly = false;
         }
-        _textBox?.Focus();
+        else
+        {
+            _textBox?.Focus();
+            _textBox!.IsReadOnly = true;
+        }
+        
     }
     
     private void OnDragPanelPointerReleased(object sender, PointerReleasedEventArgs e)

@@ -31,12 +31,12 @@ public class DialogControl: ContentControl
     {
         if (args.OldValue.Value is IDialogContext oldContext)
         {
-            oldContext.Closed-= CloseFromContext;
+            oldContext.RequestClose-= OnContextRequestClose;
         }
 
         if (args.NewValue.Value is IDialogContext newContext)
         {
-            newContext.Closed += CloseFromContext;
+            newContext.RequestClose += OnContextRequestClose;
         }
     }
     
@@ -102,7 +102,7 @@ public class DialogControl: ContentControl
         }
     }
 
-    private void CloseFromContext(object sender, object? args)
+    private void OnContextRequestClose(object sender, object? args)
     {
         if (this.DataContext is IDialogContext context)
         {

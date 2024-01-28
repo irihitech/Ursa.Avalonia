@@ -14,10 +14,10 @@ public partial class DialogWithActionViewModel: ObservableObject, IDialogContext
 
     public void Close()
     {
-        Closed?.Invoke(this, false);
+        RequestClose?.Invoke(this, false);
     }
 
-    public event EventHandler<object?>? Closed;
+    public event EventHandler<object?>? RequestClose;
     
     public ICommand OKCommand { get; set; }
     public ICommand CancelCommand { get; set; }
@@ -35,12 +35,12 @@ public partial class DialogWithActionViewModel: ObservableObject, IDialogContext
 
     private void OK()
     {
-        Closed?.Invoke(this, true);
+        RequestClose?.Invoke(this, true);
     }
 
     private void Cancel()
     {
-        Closed?.Invoke(this, false);
+        RequestClose?.Invoke(this, false);
     }
     
     private async Task ShowDialog()
