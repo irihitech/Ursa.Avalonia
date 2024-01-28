@@ -13,7 +13,7 @@ Ursa is a UI library for building cross-platform UIs with Avalonia UI.
 
 Add nuget package:
 ```bash
-dotnet add package Irihi.Ursa --version 0.1.0-beta20230702
+dotnet add package Irihi.Ursa --version 0.2.0-beta20240128
 ```
 
 You can now use Ursa controls in your Avalonia Application.
