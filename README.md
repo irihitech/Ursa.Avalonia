@@ -13,7 +13,7 @@ Ursa is a UI library for building cross-platform UIs with Avalonia UI.
 
 Add nuget package:
 ```bash
-dotnet add package Irihi.Ursa --version 0.2.0-beta20240128
+dotnet add package Irihi.Ursa --version 0.2.0-beta20240129
 ```
 
 You can now use Ursa controls in your Avalonia Application.
@@ -42,7 +42,7 @@ Ursa.Themes.Semi is a theme package for Ursa inspired by Semi Design. You can ad
 Add nuget package:
 ```bash
 dotnet add package Semi.Avalonia --version 11.0.7
-dotnet add package Irihi.Ursa.Themes.Semi --version 0.2.0-beta20240128
+dotnet add package Irihi.Ursa.Themes.Semi --version 0.2.0-beta20240129
 ```
 
 Include Styles in application:
