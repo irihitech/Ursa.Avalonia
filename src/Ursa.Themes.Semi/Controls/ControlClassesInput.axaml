@@ -1,0 +1,14 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:ControlClassesInput}" TargetType="u:ControlClassesInput">
+        <Setter Property="Width" Value="200" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:ControlClassesInput">
+                <u:TagInput HorizontalAlignment="Stretch" Tags="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TargetClasses, Mode=TwoWay}" />
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

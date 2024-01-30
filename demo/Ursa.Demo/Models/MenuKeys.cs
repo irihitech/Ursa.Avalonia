@@ -6,6 +6,7 @@ public static class MenuKeys
     public const string MenuKeyBadge = "Badge";
     public const string MenuKeyBanner = "Banner";
     public const string MenuKeyButtonGroup = "ButtonGroup";
+    public const string MenuKeyClassInput = "Class Input";
     public const string MenuKeyDialog = "Dialog";
     public const string MenuKeyDivider = "Divider";
     public const string MenuKeyDualBadge = "DualBadge";
