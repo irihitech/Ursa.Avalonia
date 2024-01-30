@@ -7,7 +7,7 @@
         <Setter Property="Width" Value="200" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:ControlClassesInput">
-                <u:TagInput HorizontalAlignment="Stretch" Tags="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TargetClasses, Mode=TwoWay}" />
+                <u:TagInput HorizontalAlignment="Stretch" AllowDuplicates="False" Tags="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TargetClasses, Mode=TwoWay}" />
             </ControlTemplate>
         </Setter>
     </ControlTheme>
