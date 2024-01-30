@@ -22,14 +22,17 @@ public class ControlClassesInput: TemplatedControl
         get => GetValue(TargetProperty);
         set => SetValue(TargetProperty, value);
     }
-    
-    public static readonly StyledProperty<ObservableCollection<string>?> TargetClassesProperty = AvaloniaProperty.Register<ControlClassesInput, ObservableCollection<string>?>(
-        nameof(TargetClasses));
-    
-    public ObservableCollection<string>? TargetClasses
+
+
+    private ObservableCollection<string> _targetClasses;
+
+    internal static readonly DirectProperty<ControlClassesInput, ObservableCollection<string>> TargetClassesProperty = AvaloniaProperty.RegisterDirect<ControlClassesInput, ObservableCollection<string>>(
+        nameof(TargetClasses), o => o.TargetClasses, (o, v) => o.TargetClasses = v);
+
+    internal ObservableCollection<string> TargetClasses
     {
-        get => GetValue(TargetClassesProperty);
-        set => SetValue(TargetClassesProperty, value);
+        get => _targetClasses;
+        set => SetAndRaise(TargetClassesProperty, ref _targetClasses, value);
     }
 
     public static readonly AttachedProperty<ControlClassesInput?> SourceProperty =
