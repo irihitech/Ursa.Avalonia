@@ -74,13 +74,13 @@ public class ControlClassesInput: TemplatedControl
         var newValue = args.NewValue.Value;
         if (newValue is null)
         {
-            SaveHistory(new List<string>());
+            SaveHistory(new List<string>(), true);
             return;
         }
         else
         {
             var classes = newValue.Where(a => !string.IsNullOrWhiteSpace(a)).Distinct().ToList();
-            SaveHistory(classes);
+            SaveHistory(classes, true);
             if (newValue is INotifyCollectionChanged incc)
             {
                 incc.CollectionChanged+=InccOnCollectionChanged;
@@ -91,20 +91,20 @@ public class ControlClassesInput: TemplatedControl
 
     private void InccOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
-        SaveHistory(TargetClasses?.ToList() ?? new List<string>());
+        SaveHistory(TargetClasses?.ToList() ?? new List<string>(), true);
     }
 
-    private void SaveHistory(List<string> strings)
+    private void SaveHistory(List<string> strings, bool fromInput)
     {
         _history.AddLast(strings);
         if (_history.Count > CountOfHistoricalRecord)
         {
             _history.RemoveFirst();
         }
-        SetClassesToTarget();
+        SetClassesToTarget(fromInput);
     }
 
-    private void SetClassesToTarget()
+    private void SetClassesToTarget(bool fromInput)
     {
         List<string> strings;
         if (_history.Count == 0)
@@ -114,6 +114,11 @@ public class ControlClassesInput: TemplatedControl
         else
         {
             strings = _history.Last.Value;
+        }
+
+        if (!fromInput)
+        {
+            SetCurrentValue(TargetClassesProperty, new ObservableCollection<string>(strings));
         }
         if (Target is not null)
         {
@@ -130,8 +135,8 @@ public class ControlClassesInput: TemplatedControl
         var node = _history.Last;
         _history.RemoveLast();
         _undoHistory.AddFirst(node);
-        SetCurrentValue(TargetClassesProperty, new AvaloniaList<string>(node.Value));
-        SetClassesToTarget();
+        SetCurrentValue(TargetClassesProperty, new ObservableCollection<string>(node.Value));
+        SetClassesToTarget(false);
     }
 
     public void Redo()
@@ -139,12 +144,12 @@ public class ControlClassesInput: TemplatedControl
         var node = _undoHistory.First;
         _undoHistory.RemoveFirst();
         _history.AddLast(node);
-        SetCurrentValue(TargetClassesProperty, new AvaloniaList<string>(node.Value));
-        SetClassesToTarget();
+        SetCurrentValue(TargetClassesProperty, new ObservableCollection<string>(node.Value));
+        SetClassesToTarget(false);
     }
 
     public void Clear()
     {
-        SaveHistory(new List<string>());
+        SaveHistory(new List<string>(), false);
     }
 }
