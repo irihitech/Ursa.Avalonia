@@ -10,6 +10,7 @@
                 <u:TagInput HorizontalAlignment="Stretch" AllowDuplicates="False" Tags="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TargetClasses, Mode=TwoWay}" />
             </ControlTemplate>
         </Setter>
+        <!--
         <Setter Property="ContextFlyout">
             <MenuFlyout>
                 <MenuItem Header="Undo" Command="{Binding $parent[u:ControlClassesInput].UnDo}" />
@@ -17,5 +18,6 @@
                 <MenuItem Header="Clear" Command="{Binding $parent[u:ControlClassesInput].Clear}" />
             </MenuFlyout>
         </Setter>
+        -->
     </ControlTheme>
 </ResourceDictionary>
