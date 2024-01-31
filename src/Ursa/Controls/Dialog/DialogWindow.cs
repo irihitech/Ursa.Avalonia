@@ -9,13 +9,15 @@ using Ursa.Common;
 namespace Ursa.Controls;
 
 [TemplatePart(PART_CloseButton, typeof(Button))]
+[TemplatePart(PART_TitleArea, typeof(Panel))]
 public class DialogWindow: Window
 {
     public const string PART_CloseButton = "PART_CloseButton";
-    
+    public const string PART_TitleArea = "PART_TitleArea";
     protected override Type StyleKeyOverride { get; } = typeof(DialogWindow);
 
     private Button? _closeButton;
+    private Panel? _titleArea;
 
     static DialogWindow()
     {
@@ -39,7 +41,10 @@ public class DialogWindow: Window
     {
         base.OnApplyTemplate(e);
         EventHelper.UnregisterClickEvent(OnDefaultClose, _closeButton);
+        _titleArea?.RemoveHandler(PointerPressedEvent, OnTitlePointerPressed);
         _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
+        _titleArea = e.NameScope.Find<Panel>(PART_TitleArea);
+        _titleArea?.AddHandler(PointerPressedEvent, OnTitlePointerPressed, RoutingStrategies.Bubble);
         EventHelper.RegisterClickEvent(OnDefaultClose, _closeButton);
     }
 
@@ -59,8 +64,8 @@ public class DialogWindow: Window
             Close(null);
         }
     }
-
-    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    
+    private void OnTitlePointerPressed(object sender, PointerPressedEventArgs e)
     {
         this.BeginMoveDrag(e);
     }

@@ -387,28 +387,34 @@
                     <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
                     <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
-                    <ChromeOverlayLayer />
-                    <Grid RowDefinitions="Auto, *">
-                        <ContentPresenter
-                            Grid.Row="0"
-                            Grid.RowSpan="2"
-                            Content="{TemplateBinding Content}" />
-                        <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
-                            <TextBlock
-                                Grid.Column="0"
-                                Margin="24,24,0,0"
-                                FontSize="14"
-                                FontWeight="Bold"
-                                Text="{TemplateBinding Title}"
-                                TextTrimming="CharacterEllipsis"
-                                TextWrapping="NoWrap" />
-                            <Button
-                                Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
-                                Grid.Column="1"
-                                Margin="0,24,24,0"
-                                Theme="{DynamicResource CloseButton}" />
+                    <VisualLayerManager>
+                        <Grid RowDefinitions="Auto, *">
+                            <ContentPresenter
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Content="{TemplateBinding Content}" />
+                            <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
+                                <Panel
+                                    Name="{x:Static u:DialogWindow.PART_TitleArea}"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Background="Transparent" />
+                                <TextBlock
+                                    Grid.Column="0"
+                                    Margin="24,24,0,0"
+                                    FontSize="14"
+                                    FontWeight="Bold"
+                                    Text="{TemplateBinding Title}"
+                                    TextTrimming="CharacterEllipsis"
+                                    TextWrapping="NoWrap" />
+                                <Button
+                                    Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
+                                    Grid.Column="1"
+                                    Margin="0,24,24,0"
+                                    Theme="{DynamicResource CloseButton}" />
+                            </Grid>
                         </Grid>
-                    </Grid>
+                    </VisualLayerManager>
                 </Panel>
             </ControlTemplate>
         </Setter>
@@ -444,75 +450,76 @@
                     <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
                     <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
-                    <ChromeOverlayLayer />
-                    <Grid RowDefinitions="Auto, *, Auto">
-                        <ContentPresenter
-                            Name="PART_ContentPresenter"
-                            Grid.Row="1"
-                            Margin="24,8"
-                            Content="{TemplateBinding Content}" />
-                        <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto">
-                            <Panel
-                                Name="{x:Static u:DialogControl.PART_TitleArea}"
-                                Grid.Column="0"
-                                Grid.ColumnSpan="3"
-                                Background="Transparent" />
-                            <PathIcon
-                                Name="PART_Icon"
-                                Grid.Column="0"
-                                Width="16"
-                                Height="16"
-                                Margin="24,24,8,0"
-                                VerticalAlignment="Center" />
-                            <TextBlock
-                                Name="PART_Title"
-                                Grid.Column="1"
-                                Margin="0,24,0,0"
-                                VerticalAlignment="Center"
-                                FontSize="16"
-                                FontWeight="Bold"
-                                IsHitTestVisible="False"
-                                IsVisible="{TemplateBinding Title,
-                                                            Converter={x:Static ObjectConverters.IsNotNull}}"
-                                Text="{TemplateBinding Title}"
-                                TextWrapping="Wrap" />
-                            <Button
-                                Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
-                                Grid.Column="2"
-                                Margin="0,24,24,0"
-                                DockPanel.Dock="Right"
-                                Theme="{DynamicResource CloseButton}" />
+                    <VisualLayerManager>
+                        <Grid RowDefinitions="Auto, *, Auto">
+                            <ContentPresenter
+                                Name="PART_ContentPresenter"
+                                Grid.Row="1"
+                                Margin="24,8"
+                                Content="{TemplateBinding Content}" />
+                            <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto">
+                                <Panel
+                                    Name="{x:Static u:DialogWindow.PART_TitleArea}"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    Background="Transparent" />
+                                <PathIcon
+                                    Name="PART_Icon"
+                                    Grid.Column="0"
+                                    Width="16"
+                                    Height="16"
+                                    Margin="24,24,8,0"
+                                    VerticalAlignment="Center" />
+                                <TextBlock
+                                    Name="PART_Title"
+                                    Grid.Column="1"
+                                    Margin="0,24,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    FontWeight="Bold"
+                                    IsHitTestVisible="False"
+                                    IsVisible="{TemplateBinding Title,
+                                                                Converter={x:Static ObjectConverters.IsNotNull}}"
+                                    Text="{TemplateBinding Title}"
+                                    TextWrapping="Wrap" />
+                                <Button
+                                    Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
+                                    Grid.Column="2"
+                                    Margin="0,24,24,0"
+                                    DockPanel.Dock="Right"
+                                    Theme="{DynamicResource CloseButton}" />
+                            </Grid>
+                            <StackPanel
+                                Grid.Row="2"
+                                Margin="24,0,24,24"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+                                <Button
+                                    Name="{x:Static u:DefaultDialogControl.PART_CancelButton}"
+                                    Margin="8,0,0,0"
+                                    Classes="Tertiary"
+                                    Content="{DynamicResource STRING_MENU_DIALOG_CANCEL}" />
+                                <Button
+                                    Name="{x:Static u:DefaultDialogControl.PART_NoButton}"
+                                    Margin="8,0,0,0"
+                                    Classes="Danger"
+                                    Content="{DynamicResource STRING_MENU_DIALOG_NO}"
+                                    Theme="{DynamicResource SolidButton}" />
+                                <Button
+                                    Name="{x:Static u:DefaultDialogControl.PART_YesButton}"
+                                    Margin="8,0,0,0"
+                                    Classes="Primary"
+                                    Content="{DynamicResource STRING_MENU_DIALOG_YES}"
+                                    Theme="{DynamicResource SolidButton}" />
+                                <Button
+                                    Name="{x:Static u:DefaultDialogControl.PART_OKButton}"
+                                    Margin="8,0,0,0"
+                                    Classes="Primary"
+                                    Content="{DynamicResource STRING_MENU_DIALOG_OK}"
+                                    Theme="{DynamicResource SolidButton}" />
+                            </StackPanel>
                         </Grid>
-                        <StackPanel
-                            Grid.Row="2"
-                            Margin="24,0,24,24"
-                            HorizontalAlignment="Right"
-                            Orientation="Horizontal">
-                            <Button
-                                Name="{x:Static u:DefaultDialogControl.PART_CancelButton}"
-                                Margin="8,0,0,0"
-                                Classes="Tertiary"
-                                Content="{DynamicResource STRING_MENU_DIALOG_CANCEL}" />
-                            <Button
-                                Name="{x:Static u:DefaultDialogControl.PART_NoButton}"
-                                Margin="8,0,0,0"
-                                Classes="Danger"
-                                Content="{DynamicResource STRING_MENU_DIALOG_NO}"
-                                Theme="{DynamicResource SolidButton}" />
-                            <Button
-                                Name="{x:Static u:DefaultDialogControl.PART_YesButton}"
-                                Margin="8,0,0,0"
-                                Classes="Primary"
-                                Content="{DynamicResource STRING_MENU_DIALOG_YES}"
-                                Theme="{DynamicResource SolidButton}" />
-                            <Button
-                                Name="{x:Static u:DefaultDialogControl.PART_OKButton}"
-                                Margin="8,0,0,0"
-                                Classes="Primary"
-                                Content="{DynamicResource STRING_MENU_DIALOG_OK}"
-                                Theme="{DynamicResource SolidButton}" />
-                        </StackPanel>
-                    </Grid>
+                    </VisualLayerManager>
                 </Panel>
             </ControlTemplate>
         </Setter>

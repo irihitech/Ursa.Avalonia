@@ -9,5 +9,10 @@
              x:Class="Ursa.Demo.Dialogs.PlainDialog">
     <StackPanel>
         <Calendar SelectedDate="{Binding Date}" ></Calendar>
+        <ComboBox>
+            <ComboBoxItem>A</ComboBoxItem>
+            <ComboBoxItem>B</ComboBoxItem>
+            <ComboBoxItem>C</ComboBoxItem>
+        </ComboBox>
     </StackPanel>
 </UserControl>
