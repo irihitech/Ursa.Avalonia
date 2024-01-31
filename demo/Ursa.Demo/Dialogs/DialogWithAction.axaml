@@ -15,6 +15,11 @@
             <Button Content="Dialog" Command="{Binding DialogCommand}"></Button>
             <Button Content="OK" Command="{Binding OKCommand}"></Button>
             <Button Content="Cancel" Command="{Binding CancelCommand}"></Button>
+            <ComboBox>
+                <ComboBoxItem>A</ComboBoxItem>
+                <ComboBoxItem>B</ComboBoxItem>
+                <ComboBoxItem>C</ComboBoxItem>
+            </ComboBox>
         </StackPanel>
     </StackPanel>
 </UserControl>
