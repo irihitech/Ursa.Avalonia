@@ -6,7 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.ClassInputDemo">
     <StackPanel HorizontalAlignment="Left" Spacing="20">
-        <u:ControlClassesInput Name="input" />
+        <u:ControlClassesInput Name="input" Separator=" " />
         <Button u:ControlClassesInput.Source="{Binding #input}" Content="Hello Panda" />
         <Button u:ControlClassesInput.Source="{Binding #input}" Content="Hello Panda" />
         <Button u:ControlClassesInput.Source="{Binding #input}" Content="Hello Panda" />

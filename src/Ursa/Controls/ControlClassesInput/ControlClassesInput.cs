@@ -24,6 +24,15 @@ public class ControlClassesInput: TemplatedControl
         set => SetValue(TargetProperty, value);
     }
 
+    public static readonly StyledProperty<string> SeparatorProperty =
+        TagInput.SeparatorProperty.AddOwner<ControlClassesInput>();
+
+    public string Separator
+    {
+        get => GetValue(SeparatorProperty);
+        set => SetValue(SeparatorProperty, value);
+    }
+
 
     private ObservableCollection<string> _targetClasses;
 
@@ -44,7 +53,7 @@ public class ControlClassesInput: TemplatedControl
 
     static ControlClassesInput()
     {
-        TargetClassesProperty.Changed.AddClassHandler<ControlClassesInput, ObservableCollection<string>?>((o,e)=>o.OnClassesChanged(e));
+        TargetClassesProperty.Changed.AddClassHandler<ControlClassesInput, ObservableCollection<string>>((o,e)=>o.OnClassesChanged(e));
         SourceProperty.Changed.AddClassHandler<StyledElement, ControlClassesInput?>(HandleSourceChange);
     }
 
@@ -67,8 +76,6 @@ public class ControlClassesInput: TemplatedControl
             newControl._targets.Remove(oldControl);
         }
     }
-
-    private static readonly char[] _separators = {' ', '\t', '\n', '\r'};
     
     private void OnClassesChanged(AvaloniaPropertyChangedEventArgs<ObservableCollection<string>?> args)
     {
