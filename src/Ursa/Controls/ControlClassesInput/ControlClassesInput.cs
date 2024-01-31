@@ -11,6 +11,7 @@ public class ControlClassesInput: TemplatedControl
 {
     LinkedList<List<string>> _history = new();
     LinkedList<List<string>> _undoHistory = new();
+    private bool _disableHistory = false;
     
     public int CountOfHistoricalRecord { get; set; } = 10;
     
@@ -50,7 +51,7 @@ public class ControlClassesInput: TemplatedControl
     public ControlClassesInput()
     {
         TargetClasses = new ObservableCollection<string>();
-        TargetClasses.CollectionChanged += InccOnCollectionChanged;
+        //TargetClasses.CollectionChanged += InccOnCollectionChanged;
     }
 
     private List<StyledElement> _targets = new();
@@ -91,12 +92,14 @@ public class ControlClassesInput: TemplatedControl
 
     private void InccOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
+        if(_disableHistory) return;
         SaveHistory(TargetClasses?.ToList() ?? new List<string>(), true);
     }
 
     private void SaveHistory(List<string> strings, bool fromInput)
     {
         _history.AddLast(strings);
+        _undoHistory.Clear();
         if (_history.Count > CountOfHistoricalRecord)
         {
             _history.RemoveFirst();
@@ -135,7 +138,13 @@ public class ControlClassesInput: TemplatedControl
         var node = _history.Last;
         _history.RemoveLast();
         _undoHistory.AddFirst(node);
-        SetCurrentValue(TargetClassesProperty, new ObservableCollection<string>(node.Value));
+        _disableHistory = true;
+        TargetClasses.Clear();
+        foreach (var value in _history.Last.Value)
+        {
+            TargetClasses.Add(value);
+        }
+        _disableHistory = false;
         SetClassesToTarget(false);
     }
 
@@ -144,7 +153,13 @@ public class ControlClassesInput: TemplatedControl
         var node = _undoHistory.First;
         _undoHistory.RemoveFirst();
         _history.AddLast(node);
-        SetCurrentValue(TargetClassesProperty, new ObservableCollection<string>(node.Value));
+        _disableHistory = true;
+        TargetClasses.Clear();
+        foreach (var value in _history.Last.Value)
+        {
+            TargetClasses.Add(value);
+        }
+        _disableHistory = false;
         SetClassesToTarget(false);
     }
 
