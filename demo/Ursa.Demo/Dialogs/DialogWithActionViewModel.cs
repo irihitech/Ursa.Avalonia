@@ -45,6 +45,6 @@ public partial class DialogWithActionViewModel: ObservableObject, IDialogContext
     
     private async Task ShowDialog()
     {
-        await OverlayDialog.ShowCustomModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(new DialogWithActionViewModel());
+        await OverlayDialog.ShowCustomModal<DialogWithAction, DialogWithActionViewModel, bool>(new DialogWithActionViewModel());
     }
 }

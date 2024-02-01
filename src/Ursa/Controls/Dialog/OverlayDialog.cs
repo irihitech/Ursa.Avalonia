@@ -5,72 +5,188 @@ namespace Ursa.Controls;
 
 public static class OverlayDialog
 {
-    public static Task<DialogResult> ShowModalAsync<TView, TViewModel>(
-        TViewModel vm, 
-        string? hostId = null, 
-        string? title = null,
-        DialogMode mode = DialogMode.None,
-        DialogButton buttons = DialogButton.OKCancel)
+    public static void Show<TView, TViewModel>(TViewModel vm, string? hostId = null,
+        OverlayDialogOptions? options = null)
         where TView : Control, new()
     {
+        var host = OverlayDialogManager.GetHost(hostId);
+        if (host is null) return;
         var t = new DefaultDialogControl()
         {
             Content = new TView(){ DataContext = vm },
             DataContext = vm,
-            Buttons = buttons,
-            Title = title,
-            Mode = mode,
         };
+        ConfigureDefaultDialogControl(t, options);
+        host?.AddDialog(t);
+    }
+    
+    public static void Show(Control control, object? vm, string? hostId = null,
+        OverlayDialogOptions? options = null)
+    {
         var host = OverlayDialogManager.GetHost(hostId);
+        if (host is null) return;
+        var t = new DefaultDialogControl()
+        {
+            Content = control,
+            DataContext = vm,
+        };
+        ConfigureDefaultDialogControl(t, options);
+        host?.AddDialog(t);
+        
+    }
+    
+    public static void Show(object? vm, string? hostId = null, OverlayDialogOptions? options = null)
+    {
+        var host = OverlayDialogManager.GetHost(hostId);
+        if (host is null) return;
+        var view = host.GetDataTemplate(vm)?.Build(vm);
+        if (view is null) view = new ContentControl();
+        view.DataContext = vm;
+        var t = new DefaultDialogControl()
+        {
+            Content = view,
+            DataContext = vm,
+        };
+        ConfigureDefaultDialogControl(t, options);
+        host.AddDialog(t);
+    }
+    
+    public static void ShowCustom<TView, TViewModel>(TViewModel vm, string? hostId = null,
+        OverlayDialogOptions? options = null)
+        where TView: Control, new()
+    {
+        var host = OverlayDialogManager.GetHost(hostId);
+        if (host is null) return;
+        var t = new DialogControl()
+        {
+            Content = new TView(),
+            DataContext = vm,
+        };
+        ConfigureDialogControl(t, options);
+        host?.AddDialog(t);
+    }
+    
+    public static void ShowCustom(Control control, object? vm, string? hostId = null,
+        OverlayDialogOptions? options = null)
+    {
+        var host = OverlayDialogManager.GetHost(hostId);
+        if (host is null) return;
+        var t = new DialogControl()
+        {
+            Content = control,
+            DataContext = vm,
+        };
+        ConfigureDialogControl(t, options);
+        host?.AddDialog(t);
+    }
+    
+    public static void ShowCustom(object? vm, string? hostId = null,
+        OverlayDialogOptions? options = null)
+    {
+        var host = OverlayDialogManager.GetHost(hostId);
+        if (host is null) return;
+        var view = host.GetDataTemplate(vm)?.Build(vm);
+        if (view is null) view = new ContentControl();
+        view.DataContext = vm;
+        var t = new DialogControl()
+        {
+            Content = view,
+            DataContext = vm,
+        };
+        ConfigureDialogControl(t, options);
+        host.AddDialog(t);
+    }
+    
+    public static Task<DialogResult> ShowModal<TView, TViewModel>(TViewModel vm, string? hostId = null,
+        OverlayDialogOptions? options = null)
+        where TView: Control, new()
+    {
+        var host = OverlayDialogManager.GetHost(hostId);
+        if (host is null) return Task.FromResult(DialogResult.None);
+        var t = new DefaultDialogControl()
+        {
+            Content = new TView(),
+            DataContext = vm,
+        };
+        ConfigureDefaultDialogControl(t, options);
         host?.AddModalDialog(t);
         return t.ShowAsync<DialogResult>();
     }
-
-    public static Task<TResult> ShowCustomModalAsync<TView, TViewModel, TResult>(
-        TViewModel vm, 
-        string? hostId = null)
-        where TView: Control, new()
+    
+    public static Task<DialogResult> ShowModal(Control control, object? vm, string? hostId = null,
+        OverlayDialogOptions? options = null)
     {
-        var t = new DialogControl()
-        {
-            Content = new TView() { DataContext = vm },
-            DataContext = vm,
-        };
         var host = OverlayDialogManager.GetHost(hostId);
-        host?.AddModalDialog(t);
-        return t.ShowAsync<TResult>();
-    }
-
-    public static void Show<TView, TViewModel>(
-        TViewModel vm, 
-        string? hostId = null, 
-        string? title = null, 
-        DialogMode mode = DialogMode.None, 
-        DialogButton buttons = DialogButton.OKCancel)
-        where TView: Control, new()
-    {
+        if (host is null) return Task.FromResult(DialogResult.None);
         var t = new DefaultDialogControl()
         {
-            Content = new TView() { DataContext = vm },
+            Content = control,
             DataContext = vm,
-            Buttons = buttons,
-            Title = title,
-            Mode = mode,
         };
-        var host = OverlayDialogManager.GetHost(hostId);
-        host?.AddDialog(t);
+        ConfigureDefaultDialogControl(t, options);
+        host?.AddModalDialog(t);
+        return t.ShowAsync<DialogResult>();
     }
-
-    public static void ShowCustom<TView, TViewModel>(TViewModel vm, string? hostId = null)
+    
+    public static Task<TResult?> ShowCustomModal<TView, TViewModel, TResult>(TViewModel vm, string? hostId = null,
+        OverlayDialogOptions? options = null)
         where TView: Control, new()
     {
+        var host = OverlayDialogManager.GetHost(hostId);
+        if (host is null) return Task.FromResult(default(TResult));
         var t = new DialogControl()
         {
-            Content = new TView() { DataContext = vm },
+            Content = new TView(),
             DataContext = vm,
         };
+        ConfigureDialogControl(t, options);
+        host?.AddModalDialog(t);
+        return t.ShowAsync<TResult?>();
+    }
+    
+    public static Task<TResult?> ShowCustomModal<TResult>(Control control, object? vm, string? hostId = null,
+        OverlayDialogOptions? options = null)
+    {
         var host = OverlayDialogManager.GetHost(hostId);
-        host?.AddDialog(t);
+        if (host is null) return Task.FromResult(default(TResult));
+        var view = host.GetDataTemplate(vm)?.Build(vm);
+        if (view is null) view = new ContentControl();
+        view.DataContext = vm;
+        var t = new DialogControl()
+        {
+            Content = view,
+            DataContext = vm,
+        };
+        ConfigureDialogControl(t, options);
+        host?.AddModalDialog(t);
+        return t.ShowAsync<TResult?>();
+    }
+    
+    private static void ConfigureDialogControl(DialogControl control, OverlayDialogOptions? options)
+    {
+        if (options is null) options = new OverlayDialogOptions();
+        control.HorizontalAnchor = options.HorizontalAnchor;
+        control.VerticalAnchor = options.VerticalAnchor;
+        control.InitialHorizontalOffset =
+            control.HorizontalAnchor == HorizontalPosition.Center ? null : options.HorizontalOffset;
+        control.InitialHorizontalOffset =
+            options.VerticalAnchor == VerticalPosition.Center ? null : options.VerticalOffset;
+        control.CanClickOnMaskToClose = options.CanClickOnMaskToClose;
+    }
+    
+    private static void ConfigureDefaultDialogControl(DefaultDialogControl control, OverlayDialogOptions? options)
+    {
+        if (options is null) options = new OverlayDialogOptions();
+        control.HorizontalAnchor = options.HorizontalAnchor;
+        control.VerticalAnchor = options.VerticalAnchor;
+        control.InitialHorizontalOffset =
+            control.HorizontalAnchor == HorizontalPosition.Center ? null : options.HorizontalOffset;
+        control.InitialHorizontalOffset =
+            options.VerticalAnchor == VerticalPosition.Center ? null : options.VerticalOffset;
+        control.CanClickOnMaskToClose = options.CanClickOnMaskToClose;
+        control.Mode = options.Mode;
+        control.Buttons = options.Buttons;
+        control.Title = options.Title;
     }
     
     

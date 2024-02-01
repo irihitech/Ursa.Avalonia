@@ -19,11 +19,18 @@ public class DialogControl: ContentControl
     
     protected internal Button? _closeButton;
     private Panel? _titleArea;
+    
+    internal HorizontalPosition HorizontalAnchor { get; set; }
+    internal VerticalPosition VerticalAnchor { get; set; }
+    internal double? InitialHorizontalOffset { get; set; }
+    internal double? InitialVerticalOffset { get; set; }
+    internal bool CanClickOnMaskToClose { get; set; }
+    
     public event EventHandler<DialogLayerChangeEventArgs>? LayerChanged;
     public event EventHandler<object?>? DialogControlClosing;
 
     static DialogControl()
-    {
+    { 
         DataContextProperty.Changed.AddClassHandler<DialogControl, object?>((o, e) => o.OnDataContextChange(e));
     }
 

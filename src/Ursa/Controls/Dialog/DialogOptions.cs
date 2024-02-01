@@ -25,8 +25,3 @@ public class DialogOptions
 
     public DialogButton Button { get; set; } = DialogButton.OKCancel;
 }
-
-public class OverlayDialogOptions
-{
-    public bool ClickOnMaskToClose { get; set; } = false;
-}

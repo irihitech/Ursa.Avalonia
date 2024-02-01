@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Media;
@@ -219,5 +220,18 @@ public class OverlayDialogHost : Canvas
         top = MathUtilities.Clamp(top, 0, Bounds.Height);
         Canvas.SetLeft(control, left);
         Canvas.SetTop(control, top);
+    }
+
+    internal IDataTemplate? GetDataTemplate(object? o)
+    {
+        if (o is null) return null;
+        IDataTemplate? result = null;
+        var templates = this.DataTemplates.ToList();
+        result = templates.FirstOrDefault(a => a.Match(o));
+        if (result != null) return result;
+        var resources = this.Resources.Where(a => a.Value is IDataTemplate).Select(a => a.Value)
+            .OfType<IDataTemplate>();
+        result = resources.FirstOrDefault(a => a.Match(o));
+        return result;
     }
 }

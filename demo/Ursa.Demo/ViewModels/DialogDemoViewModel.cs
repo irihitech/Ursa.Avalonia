@@ -103,12 +103,15 @@ public class DialogDemoViewModel: ObservableObject
         {
             if (IsModal)
             {
-                DefaultResult = await OverlayDialog.ShowModalAsync<PlainDialog, PlainDialogViewModel>(
+                DefaultResult = await OverlayDialog.ShowModal<PlainDialog, PlainDialogViewModel>(
                     vm,
                     IsGlobal ? null : "LocalHost",
-                    "Please select a date",
-                    SelectedMode,
-                    SelectedButton
+                    new OverlayDialogOptions()
+                    {
+                        Title = "Please select a date",
+                        Mode = SelectedMode,
+                        Buttons = SelectedButton
+                    }
                 );
                 Date = vm.Date;
             }
@@ -117,9 +120,12 @@ public class DialogDemoViewModel: ObservableObject
                 OverlayDialog.Show<PlainDialog, PlainDialogViewModel>(
                     new PlainDialogViewModel(),
                     IsGlobal ? null : "LocalHost",
-                    "Please select a date",
-                    SelectedMode,
-                    SelectedButton);
+                    new OverlayDialogOptions()
+                    {
+                        Title = "Please select a date",
+                        Mode = SelectedMode,
+                        Buttons = SelectedButton
+                    });
             }
         }
         
@@ -148,7 +154,7 @@ public class DialogDemoViewModel: ObservableObject
         {
             if (IsModal)
             {
-                Result = await OverlayDialog.ShowCustomModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(
+                Result = await OverlayDialog.ShowCustomModal<DialogWithAction, DialogWithActionViewModel, bool>(
                     vm, IsGlobal ? null : "LocalHost");
                 Date = vm.Date;
             }
