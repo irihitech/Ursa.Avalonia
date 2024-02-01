@@ -90,11 +90,13 @@ public class DialogDemoViewModel: ObservableObject
         var vm = new PlainDialogViewModel();
         if (IsWindow)
         {
-            DefaultResult = await Dialog.ShowModalAsync<PlainDialog, PlainDialogViewModel>(
-                vm,
-                "Please select a date",
-                SelectedMode,
-                SelectedButton);
+            DefaultResult = await Dialog.ShowModal<PlainDialog, PlainDialogViewModel>(
+                vm, options: new DialogOptions()
+                {
+                    Title = "Please select a date",
+                    Mode = SelectedMode,
+                    Button = SelectedButton
+                });
             Date = vm.Date;
         }
         else
@@ -131,7 +133,7 @@ public class DialogDemoViewModel: ObservableObject
 
             if (IsModal)
             {
-                Result = await Dialog.ShowCustomModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(
+                Result = await Dialog.ShowCustomModal<DialogWithAction, DialogWithActionViewModel, bool>(
                     vm);
                 Date = vm.Date;
             }
