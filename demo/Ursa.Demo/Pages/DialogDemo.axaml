@@ -56,7 +56,7 @@
                 <StackPanel>
                     <ToggleSwitch Content="Window/Overlay" OffContent="Overlay" OnContent="Window" IsChecked="{Binding IsWindow}" Name="overlay2" />
                     <ToggleSwitch Content="Global/Local" IsVisible="{Binding !#overlay2.IsChecked}" OffContent="Local" OnContent="Global" IsChecked="{Binding IsGlobal}" />
-                    <ToggleSwitch Content="Modal/Regular" IsVisible="{Binding !#overlay2.IsChecked}" OffContent="Regular" OnContent="Modal" IsChecked="{Binding IsModal}" />
+                    <ToggleSwitch Content="Modal/Regular" OffContent="Regular" OnContent="Modal" IsChecked="{Binding IsModal}" />
                     <Button Content="Show Dialog" Command="{Binding ShowCustomDialogCommand}" />
                     <TextBlock>
                         <Run Text="Custom Result: "></Run>

@@ -128,10 +128,19 @@ public class DialogDemoViewModel: ObservableObject
         var vm = new DialogWithActionViewModel();
         if (IsWindow)
         {
+
+            if (IsModal)
+            {
+                Result = await Dialog.ShowCustomModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(
+                    vm);
+                Date = vm.Date;
+            }
+            else
+            {
+                Dialog.ShowCustom<DialogWithAction, DialogWithActionViewModel>(
+                    vm);
+            }
             
-            Result = await Dialog.ShowCustomModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(
-                vm);
-            Date = vm.Date;
         }
         else
         {
