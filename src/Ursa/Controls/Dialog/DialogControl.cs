@@ -135,4 +135,16 @@ public class DialogControl: ContentControl
     {
         PseudoClasses.Set(PC_Modal, modal);
     }
+
+    public void Close()
+    {
+        if (this.DataContext is IDialogContext context)
+        {
+            context.Close();
+        }
+        else
+        {
+            DialogControlClosing?.Invoke(this, DialogResult.None);
+        }
+    }
 }

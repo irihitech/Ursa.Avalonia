@@ -54,6 +54,13 @@ public class DialogDemoViewModel: ObservableObject
         get => _isModal;
         set => SetProperty(ref _isModal, value);
     }
+    
+    private bool _canCloseMaskToClose;
+    public bool CanCloseMaskToClose
+    {
+        get => _canCloseMaskToClose;
+        set => SetProperty(ref _canCloseMaskToClose, value);
+    }
 
     private DialogResult? _defaultResult;
     public DialogResult? DefaultResult
@@ -110,7 +117,8 @@ public class DialogDemoViewModel: ObservableObject
                     {
                         Title = "Please select a date",
                         Mode = SelectedMode,
-                        Buttons = SelectedButton
+                        Buttons = SelectedButton,
+                        CanClickOnMaskToClose = CanCloseMaskToClose,
                     }
                 );
                 Date = vm.Date;
@@ -155,7 +163,10 @@ public class DialogDemoViewModel: ObservableObject
             if (IsModal)
             {
                 Result = await OverlayDialog.ShowCustomModal<DialogWithAction, DialogWithActionViewModel, bool>(
-                    vm, IsGlobal ? null : "LocalHost");
+                    vm, IsGlobal ? null : "LocalHost", options: new OverlayDialogOptions()
+                    {
+                        CanClickOnMaskToClose = CanCloseMaskToClose,
+                    });
                 Date = vm.Date;
             }
             else

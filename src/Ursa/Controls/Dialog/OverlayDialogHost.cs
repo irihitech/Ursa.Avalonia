@@ -32,15 +32,34 @@ public class OverlayDialogHost : Canvas
         set => SetValue(OverlayMaskBrushProperty, value);
     }
 
-    private Border CreateOverlayMask() => new()
+    private Border CreateOverlayMask(bool canCloseOnClick)
     {
-        HorizontalAlignment = HorizontalAlignment.Stretch,
-        VerticalAlignment = VerticalAlignment.Stretch,
-        Width = this.Bounds.Width,
-        Height = this.Bounds.Height,
-        [!BackgroundProperty] = this[!OverlayMaskBrushProperty],
-        IsVisible = true,
-    };
+        Border border = new()
+        {
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            VerticalAlignment = VerticalAlignment.Stretch,
+            Width = this.Bounds.Width,
+            Height = this.Bounds.Height,
+            [!BackgroundProperty] = this[!OverlayMaskBrushProperty],
+            IsVisible = true,
+        };
+        if (canCloseOnClick)
+        {
+            border.AddHandler(PointerReleasedEvent, ClickBorderToCloseDialog);
+        }
+        return border;
+    }
+
+    private void ClickBorderToCloseDialog(object sender, PointerReleasedEventArgs e)
+    {
+        if (sender is Border border)
+        {
+            int i = _masks.IndexOf(border);
+            DialogControl dialog = _modalDialogs[i];
+            dialog.Close();
+            border.RemoveHandler(PointerReleasedEvent, ClickBorderToCloseDialog);
+        }
+    }
 
     protected sealed override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
@@ -138,7 +157,7 @@ public class OverlayDialogHost : Canvas
     /// <param name="control"></param>
     internal void AddModalDialog(DialogControl control)
     {
-        var mask = CreateOverlayMask();
+        var mask = CreateOverlayMask(control.CanClickOnMaskToClose);
         _masks.Add(mask);
         _modalDialogs.Add(control);
         control.SetAsModal(true);
