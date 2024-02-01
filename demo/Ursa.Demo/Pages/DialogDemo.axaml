@@ -71,7 +71,13 @@
         </TabControl>
         <Grid Grid.Column="1">
             <Border ClipToBounds="True" CornerRadius="20" BorderThickness="1" BorderBrush="{DynamicResource SemiGrey1}">
-                <u:OverlayDialogHost HostId="LocalHost" />
+                <u:OverlayDialogHost HostId="LocalHost">
+                    <u:OverlayDialogHost.DialogDataTemplates>
+                        <DataTemplate DataType="x:String">
+                            <TextBlock Text="{Binding Path=.}" Foreground="Red" Margin="24 24 48 24"></TextBlock>
+                        </DataTemplate>
+                    </u:OverlayDialogHost.DialogDataTemplates>
+                </u:OverlayDialogHost>
             </Border>
         </Grid>
     </Grid>

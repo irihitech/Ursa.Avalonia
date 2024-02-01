@@ -19,6 +19,9 @@ public class OverlayDialogHost : Canvas
 
     private Point _lastPoint;
 
+
+    public DataTemplates DialogDataTemplates { get; set; } = new DataTemplates();
+
     public static readonly StyledProperty<IBrush?> OverlayMaskBrushProperty =
         AvaloniaProperty.Register<OverlayDialogHost, IBrush?>(
             nameof(OverlayMaskBrush));
@@ -226,12 +229,18 @@ public class OverlayDialogHost : Canvas
     {
         if (o is null) return null;
         IDataTemplate? result = null;
-        var templates = this.DataTemplates.ToList();
+        var templates = this.DialogDataTemplates;
         result = templates.FirstOrDefault(a => a.Match(o));
         if (result != null) return result;
-        var resources = this.Resources.Where(a => a.Value is IDataTemplate).Select(a => a.Value)
-            .OfType<IDataTemplate>();
-        result = resources.FirstOrDefault(a => a.Match(o));
+        var keys = this.Resources.Keys;
+        foreach (var key in keys)
+        {
+            if (Resources.TryGetValue(key, out var value) && value is IDataTemplate t)
+            {
+                result = t;
+                break;
+            }
+        }
         return result;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using Ursa.Common;
 
 namespace Ursa.Controls;
@@ -86,7 +87,7 @@ public static class OverlayDialog
         var host = OverlayDialogManager.GetHost(hostId);
         if (host is null) return;
         var view = host.GetDataTemplate(vm)?.Build(vm);
-        if (view is null) view = new ContentControl();
+        if (view is null) view = new ContentControl() { Padding = new Thickness(24) };
         view.DataContext = vm;
         var t = new DialogControl()
         {
@@ -149,8 +150,23 @@ public static class OverlayDialog
     {
         var host = OverlayDialogManager.GetHost(hostId);
         if (host is null) return Task.FromResult(default(TResult));
+        var t = new DialogControl()
+        {
+            Content = control,
+            DataContext = vm,
+        };
+        ConfigureDialogControl(t, options);
+        host?.AddModalDialog(t);
+        return t.ShowAsync<TResult?>();
+    }
+    
+    public static Task<TResult?> ShowCustomModal<TResult>(object? vm, string? hostId = null,
+        OverlayDialogOptions? options = null)
+    {
+        var host = OverlayDialogManager.GetHost(hostId);
+        if (host is null) return Task.FromResult(default(TResult));
         var view = host.GetDataTemplate(vm)?.Build(vm);
-        if (view is null) view = new ContentControl();
+        if (view is null) view = new ContentControl() { Padding = new Thickness(24) };
         view.DataContext = vm;
         var t = new DialogControl()
         {
