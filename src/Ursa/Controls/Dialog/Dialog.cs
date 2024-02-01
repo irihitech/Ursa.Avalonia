@@ -24,6 +24,19 @@ public static class Dialog
         return await ShowCustomModalAsync<TView, TViewModel, TResult>(mainWindow, vm);
     }
     
+    /// <summary>
+    /// Show a Window Dialog that with all content fully customized. 
+    /// </summary>
+    /// <param name="vm"></param>
+    /// <typeparam name="TView"></typeparam>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <returns></returns>
+    public static void ShowCustom<TView, TViewModel>(TViewModel vm) 
+        where TView : Control, new()
+    {
+        var mainWindow = GetMainWindow();
+        ShowCustom<TView, TViewModel>(mainWindow, vm);
+    }
     
     /// <summary>
     /// Show a Window Modal Dialog that with all content fully customized. And the owner of the dialog is specified.
@@ -51,6 +64,33 @@ public static class Dialog
         {
             var result = await window.ShowDialog<TResult>(owner);
             return result;
+        }
+    }
+    
+    
+    /// <summary>
+    /// Show a Window Dialog that with all content fully customized. And the owner of the dialog is specified.
+    /// </summary>
+    /// <param name="owner"></param>
+    /// <param name="vm"></param>
+    /// <typeparam name="TView"></typeparam>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <returns></returns>
+    public static void ShowCustom<TView, TViewModel>(Window? owner, TViewModel? vm) 
+        where TView: Control, new()
+    {
+        var window = new DialogWindow
+        {
+            Content = new TView { DataContext = vm },
+            DataContext = vm,
+        };
+        if (owner is null)
+        {
+            window.Show();
+        }
+        else
+        {
+            window.Show(owner);
         }
     }
     
@@ -169,5 +209,6 @@ public static class OverlayDialog
         var host = OverlayDialogManager.GetHost(hostId);
         host?.AddDialog(t);
     }
+    
     
 }
