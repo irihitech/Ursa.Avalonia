@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
+using Avalonia.Input.GestureRecognizers;
 using Avalonia.Interactivity;
 using Ursa.Common;
 
@@ -22,8 +23,12 @@ public class DialogControl: ContentControl
     
     internal HorizontalPosition HorizontalAnchor { get; set; }
     internal VerticalPosition VerticalAnchor { get; set; }
-    internal double? InitialHorizontalOffset { get; set; }
-    internal double? InitialVerticalOffset { get; set; }
+    internal HorizontalPosition ActualHorizontalAnchor { get; set; }
+    internal VerticalPosition ActualVerticalAnchor { get; set; }
+    internal double? HorizontalOffset { get; set; }
+    internal double? VerticalOffset { get; set; }
+    internal double? HorizontalOffsetRatio { get; set; }
+    internal double? VerticalOffsetRatio { get; set; }
     internal bool CanClickOnMaskToClose { get; set; }
     
     public event EventHandler<DialogLayerChangeEventArgs>? LayerChanged;
@@ -55,6 +60,7 @@ public class DialogControl: ContentControl
 
         _titleArea?.RemoveHandler(PointerMovedEvent, OnTitlePointerMove);
         _titleArea?.RemoveHandler(PointerPressedEvent, OnTitlePointerPressed);
+        _titleArea?.RemoveHandler(PointerReleasedEvent, OnTitlePointerRelease);
         
         _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
         _titleArea = e.NameScope.Find<Panel>(PART_TitleArea);
@@ -62,6 +68,7 @@ public class DialogControl: ContentControl
         
         _titleArea?.AddHandler(PointerMovedEvent, OnTitlePointerMove, RoutingStrategies.Bubble);
         _titleArea?.AddHandler(PointerPressedEvent, OnTitlePointerPressed, RoutingStrategies.Bubble);
+        _titleArea?.AddHandler(PointerReleasedEvent, OnTitlePointerRelease, RoutingStrategies.Bubble);
         EventHelper.RegisterClickEvent(Close, _closeButton);
     }
     
@@ -75,11 +82,16 @@ public class DialogControl: ContentControl
         e.Source = this;
     }
 
+    private void OnTitlePointerRelease(object sender, PointerReleasedEventArgs e)
+    {
+        e.Source = this;
+    }
+
 
     public Task<T?> ShowAsync<T>(CancellationToken? token = default)
     { 
         var tcs = new TaskCompletionSource<T?>();
-        token?.Register(Close);
+        token?.Register(CloseDialog);
         void OnCloseHandler(object sender, object? args)
         {
             if (args is T result)
@@ -137,7 +149,7 @@ public class DialogControl: ContentControl
         PseudoClasses.Set(PC_Modal, modal);
     }
 
-    public void Close()
+    public void CloseDialog()
     {
         if (this.DataContext is IDialogContext context)
         {

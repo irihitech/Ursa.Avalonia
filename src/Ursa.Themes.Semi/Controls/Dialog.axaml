@@ -46,6 +46,23 @@
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^ /template/ Panel#PART_TitleArea">
+            <Setter Property="ContextFlyout">
+                <MenuFlyout>
+                    <MenuItem
+                        Command="{Binding $parent[u:DialogControl].CloseDialog}"
+                        CommandParameter="{x:Static u:DialogLayerChangeType.BringForward}"
+                        Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
+                        <MenuItem.Icon>
+                            <PathIcon
+                                Width="12"
+                                Height="12"
+                                Data="{DynamicResource WindowCloseIconGlyph}" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuFlyout>
+            </Setter>
+        </Style>
         <Style Selector="^:not(:modal) /template/ Panel#PART_TitleArea">
             <Setter Property="ContextFlyout">
                 <MenuFlyout>
@@ -93,6 +110,17 @@
                                 Data="{DynamicResource DialogArrangeSendToBackGlyph}" />
                         </MenuItem.Icon>
                     </MenuItem>
+                    <MenuItem
+                        Command="{Binding $parent[u:DialogControl].CloseDialog}"
+                        CommandParameter="{x:Static u:DialogLayerChangeType.BringForward}"
+                        Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
+                        <MenuItem.Icon>
+                            <PathIcon
+                                Width="12"
+                                Height="12"
+                                Data="{DynamicResource WindowCloseIconGlyph}" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuFlyout>
             </Setter>
         </Style>
@@ -115,11 +143,13 @@
                     Theme="{DynamicResource CardBorder}">
                     <Border ClipToBounds="True" CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid RowDefinitions="Auto, *, Auto">
-                            <ContentPresenter
-                                Name="PART_ContentPresenter"
-                                Grid.Row="1"
-                                Margin="24,8"
-                                Content="{TemplateBinding Content}" />
+                            <ScrollViewer Grid.Row="1">
+                                <ContentPresenter
+                                    Name="PART_ContentPresenter"
+                                    Grid.Row="1"
+                                    Margin="24,8"
+                                    Content="{TemplateBinding Content}" />
+                            </ScrollViewer>
                             <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto">
                                 <Panel
                                     Name="{x:Static u:DialogControl.PART_TitleArea}"
@@ -304,7 +334,23 @@
                 <Setter Property="theme:ClassHelper.Classes" Value="Tertiary" />
             </Style>
         </Style>
-
+        <Style Selector="^ /template/ Panel#PART_TitleArea">
+            <Setter Property="ContextFlyout">
+                <MenuFlyout>
+                    <MenuItem
+                        Command="{Binding $parent[u:DialogControl].CloseDialog}"
+                        CommandParameter="{x:Static u:DialogLayerChangeType.BringForward}"
+                        Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
+                        <MenuItem.Icon>
+                            <PathIcon
+                                Width="12"
+                                Height="12"
+                                Data="{DynamicResource WindowCloseIconGlyph}" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuFlyout>
+            </Setter>
+        </Style>
         <Style Selector="^:not(:modal) /template/ Panel#PART_TitleArea">
             <Setter Property="ContextFlyout">
                 <MenuFlyout>
@@ -350,6 +396,17 @@
                                 Width="12"
                                 Height="12"
                                 Data="{DynamicResource DialogArrangeSendToBackGlyph}" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem
+                        Command="{Binding $parent[u:DialogControl].CloseDialog}"
+                        CommandParameter="{x:Static u:DialogLayerChangeType.BringForward}"
+                        Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
+                        <MenuItem.Icon>
+                            <PathIcon
+                                Width="12"
+                                Height="12"
+                                Data="{DynamicResource WindowCloseIconGlyph}" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuFlyout>

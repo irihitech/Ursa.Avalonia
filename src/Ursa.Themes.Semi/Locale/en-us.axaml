@@ -9,4 +9,5 @@
     <x:String x:Key="STRING_MENU_DIALOG_CANCEL">Cancel</x:String>
     <x:String x:Key="STRING_MENU_DIALOG_YES">Yes</x:String>
     <x:String x:Key="STRING_MENU_DIALOG_NO">No</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_CLOSE">Close</x:String>
 </ResourceDictionary>

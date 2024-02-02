@@ -183,9 +183,11 @@ public static class OverlayDialog
         if (options is null) options = new OverlayDialogOptions();
         control.HorizontalAnchor = options.HorizontalAnchor;
         control.VerticalAnchor = options.VerticalAnchor;
-        control.InitialHorizontalOffset =
+        control.ActualHorizontalAnchor = options.HorizontalAnchor;
+        control.ActualVerticalAnchor = options.VerticalAnchor;
+        control.HorizontalOffset =
             control.HorizontalAnchor == HorizontalPosition.Center ? null : options.HorizontalOffset;
-        control.InitialVerticalOffset =
+        control.VerticalOffset =
             options.VerticalAnchor == VerticalPosition.Center ? null : options.VerticalOffset;
         control.CanClickOnMaskToClose = options.CanClickOnMaskToClose;
     }
@@ -195,9 +197,11 @@ public static class OverlayDialog
         if (options is null) options = new OverlayDialogOptions();
         control.HorizontalAnchor = options.HorizontalAnchor;
         control.VerticalAnchor = options.VerticalAnchor;
-        control.InitialHorizontalOffset =
+        control.ActualHorizontalAnchor = options.HorizontalAnchor;
+        control.ActualVerticalAnchor = options.VerticalAnchor;
+        control.HorizontalOffset =
             control.HorizontalAnchor == HorizontalPosition.Center ? null : options.HorizontalOffset;
-        control.InitialVerticalOffset =
+        control.VerticalOffset =
             options.VerticalAnchor == VerticalPosition.Center ? null : options.VerticalOffset;
         control.CanClickOnMaskToClose = options.CanClickOnMaskToClose;
         control.Mode = options.Mode;

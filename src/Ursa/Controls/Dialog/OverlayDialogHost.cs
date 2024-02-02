@@ -1,4 +1,5 @@
 using Avalonia;
+using Avalonia.Animation;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
@@ -21,6 +22,7 @@ public class OverlayDialogHost : Canvas
 
 
     public DataTemplates DialogDataTemplates { get; set; } = new DataTemplates();
+    public Thickness SnapThickness { get; set; } = new Thickness(0);
 
     public static readonly StyledProperty<IBrush?> OverlayMaskBrushProperty =
         AvaloniaProperty.Register<OverlayDialogHost, IBrush?>(
@@ -56,7 +58,7 @@ public class OverlayDialogHost : Canvas
         {
             int i = _masks.IndexOf(border);
             DialogControl dialog = _modalDialogs[i];
-            dialog.Close();
+            dialog.CloseDialog();
             border.RemoveHandler(PointerReleasedEvent, ClickBorderToCloseDialog);
         }
     }
@@ -75,6 +77,44 @@ public class OverlayDialogHost : Canvas
             _masks[i].Width = this.Bounds.Width;
             _masks[i].Height = this.Bounds.Height;
         }
+
+        var oldSize = e.PreviousSize;
+        var newSize = e.NewSize;
+        foreach (var dialog in _dialogs)
+        {
+            ResetDialogPosition(dialog, oldSize, newSize);
+        }
+
+        foreach (var modalDialog in _modalDialogs)
+        {
+            ResetDialogPosition(modalDialog, oldSize, newSize);
+        }
+    }
+    
+    private void ResetDialogPosition(DialogControl control, Size oldSize, Size newSize)
+    {
+        var width = newSize.Width - control.Bounds.Width;
+        var height = newSize.Height - control.Bounds.Height;
+        var newLeft = width * control.HorizontalOffsetRatio??0;
+        var newTop = height * control.VerticalOffsetRatio??0;
+        if(control.ActualHorizontalAnchor == HorizontalPosition.Left)
+        {
+            newLeft = 0;
+        }
+        if (control.ActualHorizontalAnchor == HorizontalPosition.Right)
+        {
+            newLeft = newSize.Width - control.Bounds.Width;
+        }
+        if (control.ActualVerticalAnchor == VerticalPosition.Top)
+        {
+            newTop = 0;
+        }
+        if (control.ActualVerticalAnchor == VerticalPosition.Bottom)
+        {
+            newTop = newSize.Height - control.Bounds.Height;
+        }
+        SetLeft(control, Math.Max(0.0, newLeft));
+        SetTop(control, Math.Max(0.0, newTop));
     }
 
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
@@ -85,7 +125,6 @@ public class OverlayDialogHost : Canvas
 
     protected override void OnPointerMoved(PointerEventArgs e)
     {
-        base.OnPointerMoved(e);
         if (e.Source is DialogControl item)
         {
             if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
@@ -95,18 +134,25 @@ public class OverlayDialogHost : Canvas
                 var top = p.Y - _lastPoint.Y;
                 left = MathUtilities.Clamp(left, 0, Bounds.Width - item.Bounds.Width);
                 top = MathUtilities.Clamp(top, 0, Bounds.Height - item.Bounds.Height);
-                Canvas.SetLeft(item, left);
-                Canvas.SetTop(item, top);
+                SetLeft(item, left);
+                SetTop(item, top);
             }
         }
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
-        // base.OnPointerPressed(e);
         if (e.Source is DialogControl item)
         {
             _lastPoint = e.GetPosition(item);
+        }
+    }
+
+    protected override void OnPointerReleased(PointerReleasedEventArgs e)
+    {
+        if (e.Source is DialogControl item)
+        {
+            AnchorDialog(item);
         }
     }
 
@@ -116,7 +162,7 @@ public class OverlayDialogHost : Canvas
         _dialogs.Add(control);
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
-        SetToCenter(control);
+        SetToPosition(control);
         control.DialogControlClosing += OnDialogControlClosing;
         control.LayerChanged += OnDialogLayerChanged;
         ResetZIndices();
@@ -126,7 +172,7 @@ public class OverlayDialogHost : Canvas
     {
         if (sender is DialogControl control)
         {
-            this.Children.Remove(control);
+            Children.Remove(control);
             control.DialogControlClosing -= OnDialogControlClosing;
             control.LayerChanged -= OnDialogLayerChanged;
             if (_dialogs.Contains(control))
@@ -170,7 +216,7 @@ public class OverlayDialogHost : Canvas
         this.Children.Add(control);
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
-        SetToCenter(control);
+        SetToPosition(control);
         control.DialogControlClosing += OnDialogControlClosing;
         control.LayerChanged += OnDialogLayerChanged;
     }
@@ -232,16 +278,105 @@ public class OverlayDialogHost : Canvas
         }
     }
 
-    private void SetToCenter(DialogControl? control)
+    private void SetToPosition(DialogControl? control)
     {
-        // return;
         if (control is null) return;
-        double left = (this.Bounds.Width - control.Bounds.Width) / 2;
-        double top = (this.Bounds.Height - control.Bounds.Height) / 2;
-        left = MathUtilities.Clamp(left, 0, Bounds.Width);
-        top = MathUtilities.Clamp(top, 0, Bounds.Height);
-        Canvas.SetLeft(control, left);
-        Canvas.SetTop(control, top);
+        double left = GetLeftPosition(control);
+        double top = GetTopPosition(control);
+        SetLeft(control, left);
+        SetTop(control, top);
+        AnchorDialog(control);
+    }
+    
+    private void AnchorDialog(DialogControl control)
+    {
+        control.ActualHorizontalAnchor = HorizontalPosition.Center;
+        control.ActualVerticalAnchor = VerticalPosition.Center;
+        double left = GetLeft(control);
+        double top = GetTop(control);
+        double right = Bounds.Width - left - control.Bounds.Width;
+        double bottom = Bounds.Height - top - control.Bounds.Height;
+        if(top < SnapThickness.Top)
+        {
+            SetTop(control, 0);
+            control.ActualVerticalAnchor = VerticalPosition.Top;
+            control.VerticalOffsetRatio = 0;
+        }
+        if(bottom > Bounds.Height - SnapThickness.Bottom)
+        {
+            SetTop(control, Bounds.Height - control.Bounds.Height);
+            control.ActualVerticalAnchor = VerticalPosition.Bottom;
+            control.VerticalOffsetRatio = 1;
+        }
+        if(left < SnapThickness.Left)
+        {
+            SetLeft(control, 0);
+            control.ActualHorizontalAnchor = HorizontalPosition.Left;
+            control.HorizontalOffsetRatio = 0;
+        }
+        if(right > Bounds.Width - SnapThickness.Right)
+        {
+            SetLeft(control, Bounds.Width - control.Bounds.Width);
+            control.ActualHorizontalAnchor = HorizontalPosition.Right;
+            control.HorizontalOffsetRatio = 1;
+        }
+        left = GetLeft(control);
+        top = GetTop(control);
+        right = Bounds.Width - left - control.Bounds.Width;
+        bottom = Bounds.Height - top - control.Bounds.Height;
+        control.HorizontalOffsetRatio = left / (left + right);
+        control.VerticalOffsetRatio = top / (top + bottom);
+    }
+
+    private double GetLeftPosition(DialogControl control)
+    {
+        double left = 0;
+        double offset = Math.Max(0, control.HorizontalOffset ?? 0);
+        left = this.Bounds.Width - control.Bounds.Width;
+        if (control.HorizontalAnchor == HorizontalPosition.Center)
+        {
+            left *= 0.5;
+            (double min, double max) = MathUtilities.GetMinMax(0, Bounds.Width * 0.5);
+            left = MathUtilities.Clamp(left, min, max);
+        }
+        else if (control.HorizontalAnchor == HorizontalPosition.Left)
+        {
+            (double min, double max) = MathUtilities.GetMinMax(0, offset);
+            left = MathUtilities.Clamp(left, min, max);
+        }
+        else if (control.HorizontalAnchor == HorizontalPosition.Right)
+        {
+            double leftOffset = Bounds.Width - control.Bounds.Width - offset;
+            leftOffset = Math.Max(0, leftOffset);
+            if(control.HorizontalOffset.HasValue)
+            {
+                left = MathUtilities.Clamp(left, 0, leftOffset);
+            }
+        }
+        return left;
+    }
+
+    private double GetTopPosition(DialogControl control)
+    {
+        double top = 0;
+        double offset = Math.Max(0, control.VerticalOffset ?? 0);
+        top = this.Bounds.Height - control.Bounds.Height;
+        if (control.VerticalAnchor == VerticalPosition.Center)
+        {
+            top *= 0.5;
+            (double min, double max) = MathUtilities.GetMinMax(0, Bounds.Height * 0.5);
+            top = MathUtilities.Clamp(top, min, max);
+        }
+        else if (control.VerticalAnchor == VerticalPosition.Top)
+        {
+            top = MathUtilities.Clamp(top, 0, offset);
+        }
+        else if (control.VerticalAnchor == VerticalPosition.Bottom)
+        {
+            var topOffset = Math.Max(0, Bounds.Height - control.Bounds.Height - offset);
+            top = MathUtilities.Clamp(top, 0, topOffset);
+        }
+        return top;
     }
 
     internal IDataTemplate? GetDataTemplate(object? o)

@@ -93,7 +93,7 @@
                 <converters:ViewLocator />
             </ContentControl.ContentTemplate>
         </ContentControl>
-        <u:OverlayDialogHost Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <u:OverlayDialogHost Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" SnapThickness="20"/>
     </Grid>
 
 </UserControl>

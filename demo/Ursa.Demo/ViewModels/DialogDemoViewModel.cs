@@ -119,6 +119,10 @@ public class DialogDemoViewModel: ObservableObject
                         Mode = SelectedMode,
                         Buttons = SelectedButton,
                         CanClickOnMaskToClose = CanCloseMaskToClose,
+                        HorizontalAnchor = HorizontalPosition.Right,
+                        HorizontalOffset = 50,
+                        VerticalAnchor = VerticalPosition.Top,
+                        VerticalOffset = 50,
                     }
                 );
                 Date = vm.Date;
