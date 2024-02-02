@@ -153,7 +153,7 @@ public class DialogControl: ContentControl
         PseudoClasses.Set(PC_Modal, modal);
     }
 
-    public void CloseDialog()
+    internal void CloseDialog()
     {
         if (this.DataContext is IDialogContext context)
         {
