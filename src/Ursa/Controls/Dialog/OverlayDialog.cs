@@ -99,7 +99,7 @@ public static class OverlayDialog
     }
     
     public static Task<DialogResult> ShowModal<TView, TViewModel>(TViewModel vm, string? hostId = null,
-        OverlayDialogOptions? options = null)
+        OverlayDialogOptions? options = null, CancellationToken? token = default)
         where TView: Control, new()
     {
         var host = OverlayDialogManager.GetHost(hostId);
@@ -111,11 +111,11 @@ public static class OverlayDialog
         };
         ConfigureDefaultDialogControl(t, options);
         host?.AddModalDialog(t);
-        return t.ShowAsync<DialogResult>();
+        return t.ShowAsync<DialogResult>(token);
     }
     
     public static Task<DialogResult> ShowModal(Control control, object? vm, string? hostId = null,
-        OverlayDialogOptions? options = null)
+        OverlayDialogOptions? options = null, CancellationToken? token = default)
     {
         var host = OverlayDialogManager.GetHost(hostId);
         if (host is null) return Task.FromResult(DialogResult.None);
@@ -126,11 +126,11 @@ public static class OverlayDialog
         };
         ConfigureDefaultDialogControl(t, options);
         host?.AddModalDialog(t);
-        return t.ShowAsync<DialogResult>();
+        return t.ShowAsync<DialogResult>(token);
     }
     
     public static Task<TResult?> ShowCustomModal<TView, TViewModel, TResult>(TViewModel vm, string? hostId = null,
-        OverlayDialogOptions? options = null)
+        OverlayDialogOptions? options = null, CancellationToken? token = default)
         where TView: Control, new()
     {
         var host = OverlayDialogManager.GetHost(hostId);
@@ -142,11 +142,11 @@ public static class OverlayDialog
         };
         ConfigureDialogControl(t, options);
         host?.AddModalDialog(t);
-        return t.ShowAsync<TResult?>();
+        return t.ShowAsync<TResult?>(token);
     }
     
     public static Task<TResult?> ShowCustomModal<TResult>(Control control, object? vm, string? hostId = null,
-        OverlayDialogOptions? options = null)
+        OverlayDialogOptions? options = null, CancellationToken? token = default)
     {
         var host = OverlayDialogManager.GetHost(hostId);
         if (host is null) return Task.FromResult(default(TResult));
@@ -157,11 +157,11 @@ public static class OverlayDialog
         };
         ConfigureDialogControl(t, options);
         host?.AddModalDialog(t);
-        return t.ShowAsync<TResult?>();
+        return t.ShowAsync<TResult?>(token);
     }
     
     public static Task<TResult?> ShowCustomModal<TResult>(object? vm, string? hostId = null,
-        OverlayDialogOptions? options = null)
+        OverlayDialogOptions? options = null, CancellationToken? token = default)
     {
         var host = OverlayDialogManager.GetHost(hostId);
         if (host is null) return Task.FromResult(default(TResult));
@@ -175,7 +175,7 @@ public static class OverlayDialog
         };
         ConfigureDialogControl(t, options);
         host?.AddModalDialog(t);
-        return t.ShowAsync<TResult?>();
+        return t.ShowAsync<TResult?>(token);
     }
     
     private static void ConfigureDialogControl(DialogControl control, OverlayDialogOptions? options)
@@ -185,7 +185,7 @@ public static class OverlayDialog
         control.VerticalAnchor = options.VerticalAnchor;
         control.InitialHorizontalOffset =
             control.HorizontalAnchor == HorizontalPosition.Center ? null : options.HorizontalOffset;
-        control.InitialHorizontalOffset =
+        control.InitialVerticalOffset =
             options.VerticalAnchor == VerticalPosition.Center ? null : options.VerticalOffset;
         control.CanClickOnMaskToClose = options.CanClickOnMaskToClose;
     }
@@ -197,7 +197,7 @@ public static class OverlayDialog
         control.VerticalAnchor = options.VerticalAnchor;
         control.InitialHorizontalOffset =
             control.HorizontalAnchor == HorizontalPosition.Center ? null : options.HorizontalOffset;
-        control.InitialHorizontalOffset =
+        control.InitialVerticalOffset =
             options.VerticalAnchor == VerticalPosition.Center ? null : options.VerticalOffset;
         control.CanClickOnMaskToClose = options.CanClickOnMaskToClose;
         control.Mode = options.Mode;

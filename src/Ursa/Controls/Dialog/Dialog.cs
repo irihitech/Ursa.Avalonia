@@ -26,7 +26,7 @@ public static class Dialog
             Content = new TView(),
             DataContext = vm,
         };
-        AssignOptionsToDialogWindow(window, options);
+        ConfigureDialogWindow(window, options);
         owner ??= GetMainWindow();
         if (owner is null)
         {
@@ -52,7 +52,7 @@ public static class Dialog
             Content = view,
             DataContext = vm,
         };
-        AssignOptionsToDialogWindow(window, options);
+        ConfigureDialogWindow(window, options);
         owner ??= GetMainWindow();
         if (owner is null)
         {
@@ -82,7 +82,7 @@ public static class Dialog
             Content = new TView(),
             DataContext = vm,
         };
-        AssignOptionsToDefaultDialogWindow(window, options);
+        ConfigureDefaultDialogWindow(window, options);
         owner ??= GetMainWindow();
         if (owner is null)
         {
@@ -107,7 +107,7 @@ public static class Dialog
             Content = view,
             DataContext = vm,
         };
-        AssignOptionsToDefaultDialogWindow(window, options);
+        ConfigureDefaultDialogWindow(window, options);
         owner ??= GetMainWindow();
         if (owner is null)
         {
@@ -136,7 +136,7 @@ public static class Dialog
             Content = new TView(),
             DataContext = vm,
         };
-        AssignOptionsToDialogWindow(window, options);
+        ConfigureDialogWindow(window, options);
         owner ??= GetMainWindow();
         if (owner is null)
         {
@@ -163,7 +163,7 @@ public static class Dialog
             Content = view,
             DataContext = vm,
         };
-        AssignOptionsToDialogWindow(window, options);
+        ConfigureDialogWindow(window, options);
         owner ??= GetMainWindow();
         if (owner is null)
         {
@@ -188,7 +188,7 @@ public static class Dialog
     /// </summary>
     /// <param name="window"></param>
     /// <param name="options"></param>
-    private static void AssignOptionsToDialogWindow(DialogWindow window, DialogOptions? options)
+    private static void ConfigureDialogWindow(DialogWindow window, DialogOptions? options)
     {
         if (options is null)
         {
@@ -214,7 +214,7 @@ public static class Dialog
     /// </summary>
     /// <param name="window"></param>
     /// <param name="options"></param>
-    private static void AssignOptionsToDefaultDialogWindow(DefaultDialogWindow window, DialogOptions? options)
+    private static void ConfigureDefaultDialogWindow(DefaultDialogWindow window, DialogOptions? options)
     {
         if (options is null)
         {

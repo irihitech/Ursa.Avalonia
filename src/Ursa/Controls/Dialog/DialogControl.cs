@@ -76,9 +76,10 @@ public class DialogControl: ContentControl
     }
 
 
-    public Task<T> ShowAsync<T>()
-    {
-        var tcs = new TaskCompletionSource<T>();
+    public Task<T?> ShowAsync<T>(CancellationToken? token = default)
+    { 
+        var tcs = new TaskCompletionSource<T?>();
+        token?.Register(Close);
         void OnCloseHandler(object sender, object? args)
         {
             if (args is T result)
