@@ -324,8 +324,9 @@ public class OverlayDialogHost : Canvas
         top = GetTop(control);
         right = Bounds.Width - left - control.Bounds.Width;
         bottom = Bounds.Height - top - control.Bounds.Height;
-        control.HorizontalOffsetRatio = left / (left + right);
-        control.VerticalOffsetRatio = top / (top + bottom);
+
+        control.HorizontalOffsetRatio = (left + right) == 0 ? 0 : left / (left + right);
+        control.VerticalOffsetRatio = (top + bottom) == 0 ? 0 : top / (top + bottom);
     }
 
     private double GetLeftPosition(DialogControl control)
