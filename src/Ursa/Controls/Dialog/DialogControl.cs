@@ -5,6 +5,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Input.GestureRecognizers;
 using Avalonia.Interactivity;
+using Avalonia.Threading;
 using Ursa.Common;
 
 namespace Ursa.Controls;
@@ -91,7 +92,10 @@ public class DialogControl: ContentControl
     public Task<T?> ShowAsync<T>(CancellationToken? token = default)
     { 
         var tcs = new TaskCompletionSource<T?>();
-        token?.Register(CloseDialog);
+        token?.Register(() =>
+        {
+            Dispatcher.UIThread.Invoke(CloseDialog);
+        });
         void OnCloseHandler(object sender, object? args)
         {
             if (args is T result)
