@@ -28,6 +28,7 @@
                         OffContent="Local"
                         OnContent="Global" />
                     <ToggleSwitch
+                        Name="defaultModal"
                         Content="Modal/Regular"
                         IsChecked="{Binding IsModal}"
                         IsVisible="{Binding !#overlay.IsChecked}"
@@ -36,6 +37,7 @@
                     <ToggleSwitch
                         Content="ClickOnMaskToClose"
                         IsChecked="{Binding CanCloseMaskToClose}"
+                        IsVisible="{Binding #defaultModal.IsChecked}"
                         OffContent="No"
                         OnContent="Yes" />
                     <StackPanel Orientation="Horizontal">
@@ -73,12 +75,14 @@
                         OnContent="Global" />
                     <ToggleSwitch
                         Content="Modal/Regular"
+                        Name="modal"
                         IsChecked="{Binding IsModal}"
                         OffContent="Regular"
                         OnContent="Modal" />
                     <ToggleSwitch
                         Content="ClickOnMaskToClose"
                         IsChecked="{Binding CanCloseMaskToClose}"
+                        IsVisible="{Binding #modal.IsChecked}"
                         OffContent="No"
                         OnContent="Yes" />
                     <Button Command="{Binding ShowCustomDialogCommand}" Content="Show Dialog" />
