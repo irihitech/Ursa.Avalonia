@@ -44,10 +44,10 @@ public class IconButton: Button
         set => SetValue(IsLoadingProperty, value);
     }
 
-    public static readonly StyledProperty<IconPlacement> IconPlacementProperty = AvaloniaProperty.Register<IconButton, IconPlacement>(
-        nameof(IconPlacement), defaultValue: IconPlacement.Left);
+    public static readonly StyledProperty<Position> IconPlacementProperty = AvaloniaProperty.Register<IconButton, Position>(
+        nameof(IconPlacement), defaultValue: Position.Left);
 
-    public IconPlacement IconPlacement
+    public Position IconPlacement
     {
         get => GetValue(IconPlacementProperty);
         set => SetValue(IconPlacementProperty, value);
@@ -55,7 +55,7 @@ public class IconButton: Button
 
     static IconButton()
     {
-        IconPlacementProperty.Changed.AddClassHandler<IconButton, IconPlacement>((o, e) =>
+        IconPlacementProperty.Changed.AddClassHandler<IconButton, Position>((o, e) =>
         {
             o.SetPlacement(e.NewValue.Value, o.Icon);
         });
@@ -71,7 +71,7 @@ public class IconButton: Button
         SetPlacement(IconPlacement, Icon);
     }
 
-    private void SetPlacement(IconPlacement placement, object? icon)
+    private void SetPlacement(Position placement, object? icon)
     {
         if (icon is null)
         {
@@ -83,9 +83,9 @@ public class IconButton: Button
             return;
         }
         PseudoClasses.Set(PC_Empty, false);
-        PseudoClasses.Set(PC_Left, placement == IconPlacement.Left);
-        PseudoClasses.Set(PC_Right, placement == IconPlacement.Right);
-        PseudoClasses.Set(PC_Top, placement == IconPlacement.Top);
-        PseudoClasses.Set(PC_Bottom, placement == IconPlacement.Bottom);
+        PseudoClasses.Set(PC_Left, placement == Position.Left);
+        PseudoClasses.Set(PC_Right, placement == Position.Right);
+        PseudoClasses.Set(PC_Top, placement == Position.Top);
+        PseudoClasses.Set(PC_Bottom, placement == Position.Bottom);
     }
 }

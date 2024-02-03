@@ -163,8 +163,8 @@ public class OverlayDialogHost : Canvas
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetToPosition(control);
-        control.DialogControlClosing += OnDialogControlClosing;
-        control.LayerChanged += OnDialogLayerChanged;
+        control.AddHandler(DialogControl.ClosedEvent, OnDialogControlClosing);
+        control.AddHandler(DialogControl.LayerChangedEvent, OnDialogLayerChanged);
         ResetZIndices();
     }
 
@@ -173,8 +173,8 @@ public class OverlayDialogHost : Canvas
         if (sender is DialogControl control)
         {
             Children.Remove(control);
-            control.DialogControlClosing -= OnDialogControlClosing;
-            control.LayerChanged -= OnDialogLayerChanged;
+            control.RemoveHandler(DialogControl.ClosedEvent, OnDialogControlClosing);
+            control.RemoveHandler(DialogControl.LayerChangedEvent, OnDialogLayerChanged);
             if (_dialogs.Contains(control))
             {
                 _dialogs.Remove(control);
@@ -217,8 +217,8 @@ public class OverlayDialogHost : Canvas
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetToPosition(control);
-        control.DialogControlClosing += OnDialogControlClosing;
-        control.LayerChanged += OnDialogLayerChanged;
+        control.AddHandler(DialogControl.ClosedEvent, OnDialogControlClosing);
+        control.AddHandler(DialogControl.LayerChangedEvent, OnDialogLayerChanged);
     }
 
     // Handle dialog layer change event

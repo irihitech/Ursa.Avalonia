@@ -5,6 +5,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Ursa.Common;
+using Ursa.EventArgs;
 
 namespace Ursa.Controls;
 

@@ -7,6 +7,7 @@ using Avalonia.Input.GestureRecognizers;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
 using Ursa.Common;
+using Ursa.EventArgs;
 
 namespace Ursa.Controls;
 
@@ -32,9 +33,23 @@ public class DialogControl: ContentControl
     internal double? VerticalOffsetRatio { get; set; }
     internal bool CanClickOnMaskToClose { get; set; }
     internal bool IsCloseButtonVisible { get; set; }
+
+    public static readonly RoutedEvent<DialogLayerChangeEventArgs> LayerChangedEvent = RoutedEvent.Register<DialogControl, DialogLayerChangeEventArgs>(
+        nameof(LayerChanged), RoutingStrategies.Bubble);
+    public event EventHandler<DialogLayerChangeEventArgs> LayerChanged
+    {
+        add => AddHandler(LayerChangedEvent, value);
+        remove => RemoveHandler(LayerChangedEvent, value);
+    }
     
-    public event EventHandler<DialogLayerChangeEventArgs>? LayerChanged;
-    public event EventHandler<object?>? DialogControlClosing;
+    public static readonly RoutedEvent<ResultEventArgs> ClosedEvent = RoutedEvent.Register<DrawerControl, ResultEventArgs>(
+        nameof(Closed), RoutingStrategies.Bubble);
+    
+    public event EventHandler<ResultEventArgs> Closed
+    {
+        add => AddHandler(ClosedEvent, value);
+        remove => RemoveHandler(ClosedEvent, value);
+    }
 
     static DialogControl()
     { 
@@ -45,9 +60,8 @@ public class DialogControl: ContentControl
     {
         if (args.OldValue.Value is IDialogContext oldContext)
         {
-            oldContext.RequestClose-= OnContextRequestClose;
+            oldContext.RequestClose -= OnContextRequestClose;
         }
-
         if (args.NewValue.Value is IDialogContext newContext)
         {
             newContext.RequestClose += OnContextRequestClose;
@@ -99,21 +113,21 @@ public class DialogControl: ContentControl
         {
             Dispatcher.UIThread.Invoke(CloseDialog);
         });
-        void OnCloseHandler(object sender, object? args)
+        
+        void OnCloseHandler(object sender, ResultEventArgs? args)
         {
-            if (args is T result)
+            if (args?.Result is T result)
             {
                 tcs.SetResult(result);
-                DialogControlClosing-= OnCloseHandler;
             }
             else
             {
-                tcs.SetResult(default(T));
-                DialogControlClosing-= OnCloseHandler;
+                tcs.SetResult(default);
             }
+            RemoveHandler(ClosedEvent, OnCloseHandler);
         }
 
-        this.DialogControlClosing += OnCloseHandler;
+        AddHandler(ClosedEvent, OnCloseHandler);
         return tcs.Task;
     }
 
@@ -121,7 +135,7 @@ public class DialogControl: ContentControl
 
     private void OnContextRequestClose(object sender, object? args)
     {
-        DialogControlClosing?.Invoke(this, args);
+        RaiseEvent(new ResultEventArgs(ClosedEvent, args));
     }
     
 
@@ -129,7 +143,7 @@ public class DialogControl: ContentControl
     {
         if (o is DialogLayerChangeType t)
         {
-            LayerChanged?.Invoke(this, new DialogLayerChangeEventArgs(t));
+            RaiseEvent(new DialogLayerChangeEventArgs(LayerChangedEvent, t));
         }
     }
     
@@ -138,9 +152,9 @@ public class DialogControl: ContentControl
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="args"></param>
-    protected internal virtual void OnDialogControlClosing(object sender, object? args)
+    protected virtual void OnDialogControlClosing(object sender, object? args)
     {
-        DialogControlClosing?.Invoke(this, args);
+        RaiseEvent(new ResultEventArgs(ClosedEvent, args));
     }
 
     internal void SetAsModal(bool modal)
@@ -161,7 +175,7 @@ public class DialogControl: ContentControl
         }
         else
         {
-            DialogControlClosing?.Invoke(this, null);
+            OnDialogControlClosing(this, null);
         }
     }
 }

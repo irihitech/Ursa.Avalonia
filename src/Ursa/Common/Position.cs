@@ -1,6 +1,6 @@
 ﻿namespace Ursa.Common;
 
-public enum IconPlacement
+public enum Position
 {
     Left,
     Top,
