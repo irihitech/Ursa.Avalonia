@@ -1,6 +1,4 @@
-﻿using Ursa.Common;
-
-namespace Ursa.Controls;
+﻿namespace Ursa.Controls;
 
 public enum HorizontalPosition
 {
@@ -26,4 +24,5 @@ public class OverlayDialogOptions
     public DialogMode Mode { get; set; } = DialogMode.None;
     public DialogButton Buttons { get; set; } = DialogButton.OKCancel;
     public string? Title { get; set; } = null;
+    public bool IsCloseButtonVisible { get; set; } = true;
 }

@@ -1,11 +1,11 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
-using Ursa.Common;
 
 namespace Ursa.Controls;
 
 public class DialogOptions
 {
+    public static DialogOptions Default { get; } = new DialogOptions();
     /// <summary>
     /// The Startup Location of DialogWindow. Default is <see cref="WindowStartupLocation.CenterOwner"/>
     /// </summary>
@@ -24,4 +24,6 @@ public class DialogOptions
     public DialogMode Mode { get; set; } = DialogMode.None;
 
     public DialogButton Button { get; set; } = DialogButton.OKCancel;
+
+    public bool IsCloseButtonVisible { get; set; } = true;
 }

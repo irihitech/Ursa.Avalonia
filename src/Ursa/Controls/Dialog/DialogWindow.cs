@@ -16,8 +16,10 @@ public class DialogWindow: Window
     public const string PART_TitleArea = "PART_TitleArea";
     protected override Type StyleKeyOverride { get; } = typeof(DialogWindow);
 
-    private Button? _closeButton;
+    protected internal Button? _closeButton;
     private Panel? _titleArea;
+    
+    internal bool IsCloseButtonVisible { get; set; }
 
     static DialogWindow()
     {
@@ -40,12 +42,16 @@ public class DialogWindow: Window
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        EventHelper.UnregisterClickEvent(OnDefaultClose, _closeButton);
+        EventHelper.UnregisterClickEvent(OnCloseButtonClicked, _closeButton);
         _titleArea?.RemoveHandler(PointerPressedEvent, OnTitlePointerPressed);
         _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
+        if (_closeButton is not null)
+        {
+            _closeButton.IsVisible = IsCloseButtonVisible;
+        }
         _titleArea = e.NameScope.Find<Panel>(PART_TitleArea);
         _titleArea?.AddHandler(PointerPressedEvent, OnTitlePointerPressed, RoutingStrategies.Bubble);
-        EventHelper.RegisterClickEvent(OnDefaultClose, _closeButton);
+        EventHelper.RegisterClickEvent(OnCloseButtonClicked, _closeButton);
     }
 
     private void OnContextRequestClose(object? sender, object? args)
@@ -53,7 +59,7 @@ public class DialogWindow: Window
         Close(args);
     }
 
-    private void OnDefaultClose(object sender, RoutedEventArgs args)
+    protected internal virtual void OnCloseButtonClicked(object sender, RoutedEventArgs args)
     {
         if (DataContext is IDialogContext context)
         {
