@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ursa.Demo.iOS", "demo\Ursa.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ursa.Demo.Browser", "demo\Ursa.Demo.Browser\Ursa.Demo.Browser.csproj", "{D1942476-8473-4608-BB9F-5AC01083BBDA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ursa.PrismExtension", "src\Ursa.PrismExtension\Ursa.PrismExtension.csproj", "{2E934F60-F5DF-4856-B05A-B949C7F9D948}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{D1942476-8473-4608-BB9F-5AC01083BBDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1942476-8473-4608-BB9F-5AC01083BBDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1942476-8473-4608-BB9F-5AC01083BBDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E934F60-F5DF-4856-B05A-B949C7F9D948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E934F60-F5DF-4856-B05A-B949C7F9D948}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E934F60-F5DF-4856-B05A-B949C7F9D948}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E934F60-F5DF-4856-B05A-B949C7F9D948}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{407A91FD-A88B-459B-8DCE-8C6AA98279FE} = {A41BAF0D-DA61-4A63-889A-084BAD36FD66}
