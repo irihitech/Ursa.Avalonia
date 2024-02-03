@@ -16,6 +16,7 @@ public enum VerticalPosition
 
 public class OverlayDialogOptions
 {
+    internal static OverlayDialogOptions Default { get; } = new OverlayDialogOptions();
     public bool CanClickOnMaskToClose { get; set; } = false;
     public HorizontalPosition HorizontalAnchor { get; set; } = HorizontalPosition.Center;
     public VerticalPosition VerticalAnchor { get; set; } = VerticalPosition.Center;

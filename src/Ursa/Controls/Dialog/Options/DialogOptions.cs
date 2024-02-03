@@ -5,7 +5,7 @@ namespace Ursa.Controls;
 
 public class DialogOptions
 {
-    public static DialogOptions Default { get; } = new DialogOptions();
+    internal static DialogOptions Default { get; } = new DialogOptions();
     /// <summary>
     /// The Startup Location of DialogWindow. Default is <see cref="WindowStartupLocation.CenterOwner"/>
     /// </summary>

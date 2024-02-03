@@ -180,7 +180,7 @@ public static class OverlayDialog
     
     private static void ConfigureDialogControl(DialogControl control, OverlayDialogOptions? options)
     {
-        if (options is null) options = new OverlayDialogOptions();
+        options ??= OverlayDialogOptions.Default;
         control.HorizontalAnchor = options.HorizontalAnchor;
         control.VerticalAnchor = options.VerticalAnchor;
         control.ActualHorizontalAnchor = options.HorizontalAnchor;

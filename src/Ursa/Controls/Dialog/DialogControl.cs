@@ -21,9 +21,9 @@ public class DialogControl: ContentControl
     
     protected internal Button? _closeButton;
     private Panel? _titleArea;
-    
-    internal HorizontalPosition HorizontalAnchor { get; set; }
-    internal VerticalPosition VerticalAnchor { get; set; }
+
+    internal HorizontalPosition HorizontalAnchor { get; set; } = HorizontalPosition.Center;
+    internal VerticalPosition VerticalAnchor { get; set; } = VerticalPosition.Center;
     internal HorizontalPosition ActualHorizontalAnchor { get; set; }
     internal VerticalPosition ActualVerticalAnchor { get; set; }
     internal double? HorizontalOffset { get; set; }

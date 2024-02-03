@@ -217,10 +217,7 @@ public static class Dialog
     /// <param name="options"></param>
     private static void ConfigureDefaultDialogWindow(DefaultDialogWindow window, DialogOptions? options)
     {
-        if (options is null)
-        {
-            options = new DialogOptions();
-        }
+        options ??= DialogOptions.Default;
         window.WindowStartupLocation = options.StartupLocation;
         window.Title = options.Title;
         window.Buttons = options.Button;
