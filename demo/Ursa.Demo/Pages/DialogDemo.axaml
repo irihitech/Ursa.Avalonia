@@ -23,55 +23,96 @@
                         OnContent="Window" />
                     <ToggleSwitch
                         Content="Global/Local"
-                        IsVisible="{Binding !#overlay.IsChecked}"
                         IsChecked="{Binding IsGlobal}"
+                        IsVisible="{Binding !#overlay.IsChecked}"
                         OffContent="Local"
                         OnContent="Global" />
                     <ToggleSwitch
+                        Name="defaultModal"
                         Content="Modal/Regular"
-                        IsVisible="{Binding !#overlay.IsChecked}"
                         IsChecked="{Binding IsModal}"
+                        IsVisible="{Binding !#overlay.IsChecked}"
                         OffContent="Regular"
                         OnContent="Modal" />
+                    <ToggleSwitch
+                        Content="ClickOnMaskToClose"
+                        IsChecked="{Binding CanCloseMaskToClose}"
+                        IsVisible="{Binding #defaultModal.IsChecked}"
+                        OffContent="No"
+                        OnContent="Yes" />
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Buttons" />
                         <ComboBox ItemsSource="{Binding Buttons}" SelectedItem="{Binding SelectedButton}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Mode" />
-                        <ComboBox ItemsSource="{Binding Modes}" SelectedItem="{Binding SelectedMode}"/>
+                        <ComboBox ItemsSource="{Binding Modes}" SelectedItem="{Binding SelectedMode}" />
                     </StackPanel>
-                    <Button Content="Show Dialog" Command="{Binding ShowDialogCommand}" />
+                    <Button Command="{Binding ShowDialogCommand}" Content="Show Dialog" />
                     <TextBlock>
-                        <Run Text="Default Result: "></Run>
-                        <Run Text="{Binding DefaultResult}"/>
+                        <Run Text="Default Result: " />
+                        <Run Text="{Binding DefaultResult}" />
                     </TextBlock>
                     <TextBlock>
-                        <Run Text="Dialog Date: "></Run>
-                        <Run Text="{Binding Date}"/>
+                        <Run Text="Dialog Date: " />
+                        <Run Text="{Binding Date}" />
                     </TextBlock>
                 </StackPanel>
             </TabItem>
             <TabItem Header="Custom">
                 <StackPanel>
-                    <ToggleSwitch Content="Window/Overlay" OffContent="Overlay" OnContent="Window" IsChecked="{Binding IsWindow}" Name="overlay2" />
-                    <ToggleSwitch Content="Global/Local" IsVisible="{Binding !#overlay2.IsChecked}" OffContent="Local" OnContent="Global" IsChecked="{Binding IsGlobal}" />
-                    <ToggleSwitch Content="Modal/Regular" OffContent="Regular" OnContent="Modal" IsChecked="{Binding IsModal}" />
-                    <Button Content="Show Dialog" Command="{Binding ShowCustomDialogCommand}" />
+                    <ToggleSwitch
+                        Name="overlay2"
+                        Content="Window/Overlay"
+                        IsChecked="{Binding IsWindow}"
+                        OffContent="Overlay"
+                        OnContent="Window" />
+                    <ToggleSwitch
+                        Content="Global/Local"
+                        IsChecked="{Binding IsGlobal}"
+                        IsVisible="{Binding !#overlay2.IsChecked}"
+                        OffContent="Local"
+                        OnContent="Global" />
+                    <ToggleSwitch
+                        Content="Modal/Regular"
+                        Name="modal"
+                        IsChecked="{Binding IsModal}"
+                        OffContent="Regular"
+                        OnContent="Modal" />
+                    <ToggleSwitch
+                        Content="ClickOnMaskToClose"
+                        IsChecked="{Binding CanCloseMaskToClose}"
+                        IsVisible="{Binding #modal.IsChecked}"
+                        OffContent="No"
+                        OnContent="Yes" />
+                    <Button Command="{Binding ShowCustomDialogCommand}" Content="Show Dialog" />
                     <TextBlock>
-                        <Run Text="Custom Result: "></Run>
-                        <Run Text="{Binding Result}"/>
+                        <Run Text="Custom Result: " />
+                        <Run Text="{Binding Result}" />
                     </TextBlock>
                     <TextBlock>
-                        <Run Text="Dialog Date: "></Run>
-                        <Run Text="{Binding Date}"/>
+                        <Run Text="Dialog Date: " />
+                        <Run Text="{Binding Date}" />
                     </TextBlock>
                 </StackPanel>
             </TabItem>
         </TabControl>
         <Grid Grid.Column="1">
-            <Border ClipToBounds="True" CornerRadius="20" BorderThickness="1" BorderBrush="{DynamicResource SemiGrey1}">
-                <u:OverlayDialogHost HostId="LocalHost" />
+            <Border
+                BorderBrush="{DynamicResource SemiGrey1}"
+                BorderThickness="1"
+                ClipToBounds="True"
+                CornerRadius="20">
+                <u:OverlayDialogHost HostId="LocalHost">
+                    <u:OverlayDialogHost.DialogDataTemplates>
+                        <DataTemplate DataType="x:String">
+                            <TextBlock
+                                Margin="24,24,48,24"
+                                Foreground="Red"
+                                Text="{Binding Path=.}" />
+                        </DataTemplate>
+                    </u:OverlayDialogHost.DialogDataTemplates>
+                </u:OverlayDialogHost>
             </Border>
         </Grid>
     </Grid>

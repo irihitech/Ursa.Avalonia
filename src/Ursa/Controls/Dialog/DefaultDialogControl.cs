@@ -68,6 +68,8 @@ public class DefaultDialogControl: DialogControl
     
     private void SetButtonVisibility()
     {
+        bool isCloseButtonVisible = DataContext is IDialogContext || Buttons != DialogButton.YesNo;
+        SetVisibility(_closeButton, isCloseButtonVisible);
         switch (Buttons)
         {
             case DialogButton.None:
@@ -128,6 +130,27 @@ public class DefaultDialogControl: DialogControl
             {
                 OnDialogControlClosing(this, DialogResult.No);
             }
+        }
+    }
+
+    internal override void CloseDialog()
+    {
+        if (DataContext is IDialogContext context)
+        {
+            context.Close();
+        }
+        else
+        {
+            DialogResult result = Buttons switch
+            {
+                DialogButton.None => DialogResult.None,
+                DialogButton.OK => DialogResult.OK,
+                DialogButton.OKCancel => DialogResult.Cancel,
+                DialogButton.YesNo => DialogResult.No,
+                DialogButton.YesNoCancel => DialogResult.Cancel,
+                _ => DialogResult.None
+            };
+            OnDialogControlClosing(this, result);
         }
     }
 }

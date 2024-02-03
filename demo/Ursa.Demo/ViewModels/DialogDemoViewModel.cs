@@ -54,6 +54,13 @@ public class DialogDemoViewModel: ObservableObject
         get => _isModal;
         set => SetProperty(ref _isModal, value);
     }
+    
+    private bool _canCloseMaskToClose;
+    public bool CanCloseMaskToClose
+    {
+        get => _canCloseMaskToClose;
+        set => SetProperty(ref _canCloseMaskToClose, value);
+    }
 
     private DialogResult? _defaultResult;
     public DialogResult? DefaultResult
@@ -90,23 +97,33 @@ public class DialogDemoViewModel: ObservableObject
         var vm = new PlainDialogViewModel();
         if (IsWindow)
         {
-            DefaultResult = await Dialog.ShowModalAsync<PlainDialog, PlainDialogViewModel>(
-                vm,
-                "Please select a date",
-                SelectedMode,
-                SelectedButton);
+            DefaultResult = await Dialog.ShowModal<PlainDialog, PlainDialogViewModel>(
+                vm, options: new DialogOptions()
+                {
+                    Title = "Please select a date",
+                    Mode = SelectedMode,
+                    Button = SelectedButton
+                });
             Date = vm.Date;
         }
         else
         {
             if (IsModal)
             {
-                DefaultResult = await OverlayDialog.ShowModalAsync<PlainDialog, PlainDialogViewModel>(
+                DefaultResult = await OverlayDialog.ShowModal<PlainDialog, PlainDialogViewModel>(
                     vm,
                     IsGlobal ? null : "LocalHost",
-                    "Please select a date",
-                    SelectedMode,
-                    SelectedButton
+                    new OverlayDialogOptions()
+                    {
+                        Title = "Please select a date",
+                        Mode = SelectedMode,
+                        Buttons = SelectedButton,
+                        CanClickOnMaskToClose = CanCloseMaskToClose,
+                        HorizontalAnchor = HorizontalPosition.Right,
+                        HorizontalOffset = 50,
+                        VerticalAnchor = VerticalPosition.Top,
+                        VerticalOffset = 50,
+                    }
                 );
                 Date = vm.Date;
             }
@@ -115,9 +132,12 @@ public class DialogDemoViewModel: ObservableObject
                 OverlayDialog.Show<PlainDialog, PlainDialogViewModel>(
                     new PlainDialogViewModel(),
                     IsGlobal ? null : "LocalHost",
-                    "Please select a date",
-                    SelectedMode,
-                    SelectedButton);
+                    new OverlayDialogOptions()
+                    {
+                        Title = "Please select a date",
+                        Mode = SelectedMode,
+                        Buttons = SelectedButton
+                    });
             }
         }
         
@@ -131,7 +151,7 @@ public class DialogDemoViewModel: ObservableObject
 
             if (IsModal)
             {
-                Result = await Dialog.ShowCustomModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(
+                Result = await Dialog.ShowCustomModal<DialogWithAction, DialogWithActionViewModel, bool>(
                     vm);
                 Date = vm.Date;
             }
@@ -146,8 +166,11 @@ public class DialogDemoViewModel: ObservableObject
         {
             if (IsModal)
             {
-                Result = await OverlayDialog.ShowCustomModalAsync<DialogWithAction, DialogWithActionViewModel, bool>(
-                    vm, IsGlobal ? null : "LocalHost");
+                Result = await OverlayDialog.ShowCustomModal<DialogWithAction, DialogWithActionViewModel, bool>(
+                    vm, IsGlobal ? null : "LocalHost", options: new OverlayDialogOptions()
+                    {
+                        CanClickOnMaskToClose = CanCloseMaskToClose,
+                    });
                 Date = vm.Date;
             }
             else

@@ -81,7 +81,7 @@
                         </Grid>
                         <StackPanel
                             Grid.Row="2"
-                            Margin="0,0,24,24"
+                            Margin="24,0,24,24"
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
                             <Button
@@ -244,6 +244,20 @@
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^ /template/ Panel#PART_TitleArea">
+            <Setter Property="ContextFlyout">
+                <MenuFlyout>
+                    <MenuItem Command="{Binding $parent[u:DialogControl].CloseDialog}" Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
+                        <MenuItem.Icon>
+                            <PathIcon
+                                Width="12"
+                                Height="12"
+                                Data="{DynamicResource WindowCloseIconGlyph}" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuFlyout>
+            </Setter>
+        </Style>
         <Style Selector="^[MessageIcon=None] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="False" />
         </Style>

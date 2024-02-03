@@ -1,4 +1,4 @@
-﻿namespace Ursa.Common;
+﻿namespace Ursa.Controls;
 
 public enum DialogButton
 {

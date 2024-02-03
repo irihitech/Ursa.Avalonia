@@ -132,4 +132,17 @@ public class MessageBoxControl: DialogControl
     {
         if (button is not null) button.IsVisible = visible;
     }
+
+    internal override void CloseDialog()
+    {
+        MessageBoxResult result = Buttons switch
+        {
+            MessageBoxButton.OK => MessageBoxResult.OK,
+            MessageBoxButton.OKCancel => MessageBoxResult.Cancel,
+            MessageBoxButton.YesNo => MessageBoxResult.No,
+            MessageBoxButton.YesNoCancel => MessageBoxResult.Cancel,
+            _ => MessageBoxResult.None
+        };
+        OnDialogControlClosing(this, result);
+    }
 }
