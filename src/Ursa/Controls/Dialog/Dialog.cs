@@ -196,6 +196,7 @@ public static class Dialog
         }
         window.WindowStartupLocation = options.StartupLocation;
         window.Title = options.Title;
+        window.IsCloseButtonVisible = options.IsCloseButtonVisible;
         if (options.StartupLocation == WindowStartupLocation.Manual)
         {
             if (options.Position is not null)
