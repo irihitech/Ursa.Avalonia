@@ -302,7 +302,7 @@ public class OverlayDialogHost : Canvas
             control.ActualVerticalAnchor = VerticalPosition.Top;
             control.VerticalOffsetRatio = 0;
         }
-        if(bottom > Bounds.Height - SnapThickness.Bottom)
+        if(bottom < SnapThickness.Bottom)
         {
             SetTop(control, Bounds.Height - control.Bounds.Height);
             control.ActualVerticalAnchor = VerticalPosition.Bottom;
@@ -314,7 +314,7 @@ public class OverlayDialogHost : Canvas
             control.ActualHorizontalAnchor = HorizontalPosition.Left;
             control.HorizontalOffsetRatio = 0;
         }
-        if(right > Bounds.Width - SnapThickness.Right)
+        if(right < SnapThickness.Right)
         {
             SetLeft(control, Bounds.Width - control.Bounds.Width);
             control.ActualHorizontalAnchor = HorizontalPosition.Right;
