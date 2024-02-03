@@ -7,7 +7,7 @@ public static class UrsaDialogServiceExtension
 {
     internal const string UrsaDialogViewPrefix = "URSA_DIALOG_VIEW_";
     
-    public static void RegisterDialogService(this IContainerRegistry containerRegistry)
+    public static void RegisterUrsaDialogService(this IContainerRegistry containerRegistry)
     {
         containerRegistry.RegisterSingleton<IUrsaDialogService, UrsaDialogService>();
         containerRegistry.RegisterSingleton<IUrsaOverlayDialogService, UrsaOverlayDialogService>();
