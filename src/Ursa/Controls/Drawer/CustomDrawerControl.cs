@@ -4,8 +4,6 @@ namespace Ursa.Controls;
 
 public class CustomDrawerControl: DrawerControlBase
 {
-    internal bool IsCloseButtonVisible { get; set; }
-    
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);

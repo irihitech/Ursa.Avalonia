@@ -92,7 +92,7 @@ public partial class OverlayDialogHost
         ResetZIndices();
     }
     
-    private void OnDialogControlClosing(object sender, object? e)
+    private async void OnDialogControlClosing(object sender, object? e)
     {
         if (sender is DialogControlBase control)
         {
@@ -109,6 +109,7 @@ public partial class OverlayDialogHost
                 if (_masks.Count > 0)
                 {
                     var last = _masks.Last();
+                    await _maskDisappearAnimation.RunAsync(last);
                     this.Children.Remove(last);
                     _masks.Remove(last);
                     if (_masks.Count > 0)
@@ -116,6 +117,7 @@ public partial class OverlayDialogHost
                         _masks.Last().IsVisible = true;
                     }
                 }
+                
             }
             ResetZIndices();
         }
@@ -143,33 +145,7 @@ public partial class OverlayDialogHost
         SetToPosition(control);
         control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDialogControlClosing);
         control.AddHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged);
-    }
-    
-    
-
-    private void OnDrawerControlClosing(object sender, ResultEventArgs e)
-    {
-        if (sender is DrawerControlBase control)
-        {
-            Children.Remove(control);
-            control.RemoveHandler(CustomDialogControl.ClosedEvent, OnDialogControlClosing);
-            control.RemoveHandler(CustomDialogControl.LayerChangedEvent, OnDialogLayerChanged);
-            if (_modalDialogs.Contains(control))
-            {
-                _modalDialogs.Remove(control);
-                if (_masks.Count > 0)
-                {
-                    var last = _masks.Last();
-                    this.Children.Remove(last);
-                    _masks.Remove(last);
-                    if (_masks.Count > 0)
-                    {
-                        _masks.Last().IsVisible = true;
-                    }
-                }
-            }
-            ResetZIndices();
-        }
+        _maskAppearAnimation.RunAsync(mask);
     }
 
     // Handle dialog layer change event

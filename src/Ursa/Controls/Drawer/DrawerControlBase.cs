@@ -40,7 +40,7 @@ public const string PART_CloseButton = "PART_CloseButton";
 
     public static readonly StyledProperty<bool> IsCloseButtonVisibleProperty =
         AvaloniaProperty.Register<DrawerControlBase, bool>(
-            nameof(IsCloseButtonVisible));
+            nameof(IsCloseButtonVisible), defaultValue: true);
 
     public bool IsCloseButtonVisible
     {

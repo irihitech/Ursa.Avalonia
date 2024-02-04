@@ -1,10 +1,12 @@
 using Avalonia;
+using Avalonia.Animation;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Media;
 using Ursa.Controls.OverlayShared;
 using Avalonia.Layout;
+using Avalonia.Styling;
 
 namespace Ursa.Controls;
 
@@ -13,6 +15,28 @@ public partial class OverlayDialogHost: Canvas
     private readonly List<OverlayFeedbackElement> _dialogs = new();
     private readonly List<OverlayFeedbackElement> _modalDialogs = new(); 
     private readonly List<Border> _masks = new();
+    private static readonly Animation _maskAppearAnimation;
+    private static readonly Animation _maskDisappearAnimation;
+    
+    static OverlayDialogHost()
+    {
+        _maskAppearAnimation = CreateOpacityAnimation(true);
+        _maskDisappearAnimation = CreateOpacityAnimation(false);
+    }
+    
+    private static Animation CreateOpacityAnimation(bool appear)
+    {
+        var animation = new Animation();
+        animation.FillMode = FillMode.Forward;
+        var keyFrame1 = new KeyFrame(){ Cue = new Cue(0.0) };
+        keyFrame1.Setters.Add(new Setter() { Property = OpacityProperty, Value = appear ? 0.0 : 1.0 });
+        var keyFrame2 = new KeyFrame() { Cue = new Cue(1.0) };
+        keyFrame2.Setters.Add(new Setter() { Property = OpacityProperty, Value = appear ? 1.0 : 0.0 });
+        animation.Children.Add(keyFrame1);
+        animation.Children.Add(keyFrame2);
+        animation.Duration = TimeSpan.FromSeconds(0.3);
+        return animation;
+    }
     
     public string? HostId { get; set; }
     

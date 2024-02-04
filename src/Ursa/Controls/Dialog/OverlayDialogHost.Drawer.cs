@@ -4,6 +4,7 @@ using Avalonia.Animation.Easings;
 using Avalonia.Controls;
 using Avalonia.Styling;
 using Ursa.Controls.OverlayShared;
+using Ursa.EventArgs;
 
 namespace Ursa.Controls;
 
@@ -60,5 +61,30 @@ public partial class OverlayDialogHost
         animation.Children.Add(keyFrame2);
         animation.Duration = TimeSpan.FromSeconds(0.3);
         return animation;
+    }
+    
+    private void OnDrawerControlClosing(object sender, ResultEventArgs e)
+    {
+        if (sender is DrawerControlBase control)
+        {
+            Children.Remove(control);
+            control.RemoveHandler(OverlayFeedbackElement.ClosedEvent, OnDialogControlClosing);
+            control.RemoveHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged);
+            if (_modalDialogs.Contains(control))
+            {
+                _modalDialogs.Remove(control);
+                if (_masks.Count > 0)
+                {
+                    var last = _masks.Last();
+                    this.Children.Remove(last);
+                    _masks.Remove(last);
+                    if (_masks.Count > 0)
+                    {
+                        _masks.Last().IsVisible = true;
+                    }
+                }
+            }
+            ResetZIndices();
+        }
     }
 }
