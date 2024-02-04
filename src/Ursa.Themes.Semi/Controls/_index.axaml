@@ -7,6 +7,7 @@
         <ResourceInclude Source="Dialog.axaml" />
         <ResourceInclude Source="DialogShared.axaml" />
         <ResourceInclude Source="Divider.axaml" />
+        <ResourceInclude Source="Drawer.axaml" />
         <ResourceInclude Source="DualBadge.axaml" />
         <ResourceInclude Source="EnumSelector.axaml" />
         <ResourceInclude Source="IconButton.axaml" />

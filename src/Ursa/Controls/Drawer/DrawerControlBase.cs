@@ -1,5 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
+using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
 using Ursa.Common;
@@ -7,10 +9,15 @@ using Ursa.EventArgs;
 
 namespace Ursa.Controls;
 
+[TemplatePart(PART_CloseButton, typeof(Button))]
 public abstract class DrawerControlBase: ContentControl
 {
+public const string PART_CloseButton = "PART_CloseButton";
+    
     internal bool CanClickOnMaskToClose { get; set; }
+    internal bool ShowCloseButton { get; set; }
 
+    protected internal Button? _closeButton;
     
     public static readonly StyledProperty<Position> PositionProperty = AvaloniaProperty.Register<DrawerControlBase, Position>(
         nameof(Position));
@@ -43,7 +50,7 @@ public abstract class DrawerControlBase: ContentControl
     public static readonly RoutedEvent<ResultEventArgs> ClosedEvent = RoutedEvent.Register<DrawerControlBase, ResultEventArgs>(
         nameof(Closed), RoutingStrategies.Bubble);
     
-    public event EventHandler<ResultEventArgs> Closed
+    public event EventHandler<ResultEventArgs>? Closed
     {
         add => AddHandler(ClosedEvent, value);
         remove => RemoveHandler(ClosedEvent, value);
@@ -52,6 +59,14 @@ public abstract class DrawerControlBase: ContentControl
     static DrawerControlBase()
     {
         DataContextProperty.Changed.AddClassHandler<DrawerControlBase, object?>((o, e) => o.OnDataContextChange(e));
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        EventHelper.UnregisterClickEvent(OnCloseButtonClick, _closeButton);
+        _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
+        EventHelper.RegisterClickEvent(OnCloseButtonClick, _closeButton);
     }
 
     private void OnDataContextChange(AvaloniaPropertyChangedEventArgs<object?> args)
@@ -70,6 +85,8 @@ public abstract class DrawerControlBase: ContentControl
     {
         RaiseEvent(new ResultEventArgs(ClosedEvent, e));
     }
+
+    private void OnCloseButtonClick(object sender, RoutedEventArgs e) => CloseDrawer();
 
     public Task<T?> ShowAsync<T>(CancellationToken? token = default)
     { 
@@ -97,6 +114,13 @@ public abstract class DrawerControlBase: ContentControl
 
     internal virtual void CloseDrawer()
     {
-        RaiseEvent(new ResultEventArgs(ClosedEvent, null));
+        if (DataContext is IDialogContext context)
+        {
+            context.Close();
+        }
+        else
+        {
+            RaiseEvent(new ResultEventArgs(ClosedEvent, null));
+        }
     }
 }

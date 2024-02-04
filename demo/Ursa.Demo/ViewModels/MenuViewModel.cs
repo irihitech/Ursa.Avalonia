@@ -17,6 +17,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Button Group", Key = MenuKeys.MenuKeyButtonGroup, Status = "Updated"},
             new() { MenuHeader = "Dialog", Key = MenuKeys.MenuKeyDialog },
             new() { MenuHeader = "Divider", Key = MenuKeys.MenuKeyDivider },
+            new() { MenuHeader = "Drawer", Key = MenuKeys.MenuKeyDrawer },
             new() { MenuHeader = "DualBadge", Key = MenuKeys.MenuKeyDualBadge },
             new() { MenuHeader = "Enum Selector", Key = MenuKeys.MenuKeyEnumSelector },
             new() { MenuHeader = "Icon Button", Key = MenuKeys.MenuKeyIconButton },

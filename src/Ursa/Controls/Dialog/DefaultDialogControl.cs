@@ -9,7 +9,6 @@ using Ursa.EventArgs;
 
 namespace Ursa.Controls;
 
-
 [TemplatePart(PART_OKButton, typeof(Button))]
 [TemplatePart(PART_CancelButton, typeof(Button))]
 [TemplatePart(PART_YesButton, typeof(Button))]

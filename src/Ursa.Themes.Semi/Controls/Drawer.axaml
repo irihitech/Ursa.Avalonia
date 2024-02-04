@@ -1,0 +1,44 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa">
+    <ControlTheme TargetType="u:CustomDrawerControl" x:Key="{x:Type u:CustomDrawerControl}">
+        <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+        <Setter Property="MinWidth" Value="400"></Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:CustomDrawerControl">
+                <Border Margin="8 0 0 0"
+                        Padding="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Classes="Shadow"
+                        ClipToBounds="False"
+                        CornerRadius="12 0 0 12"
+                        IsHitTestVisible="True"
+                        Theme="{DynamicResource CardBorder}">
+                    <Border ClipToBounds="True" CornerRadius="12 0 0 12">
+                        <Grid RowDefinitions="Auto, *">
+                            <ContentPresenter
+                                Name="PART_ContentPresenter"
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Content="{TemplateBinding Content}" />
+                            <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
+                                <Panel
+                                    Name="{x:Static u:DialogControl.PART_TitleArea}"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Background="Transparent" />
+                                <Button
+                                    Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
+                                    Grid.Column="1"
+                                    Margin="0,24,24,0"
+                                    DockPanel.Dock="Right"
+                                    Theme="{DynamicResource CloseButton}" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

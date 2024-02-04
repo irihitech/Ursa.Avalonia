@@ -1,19 +1,22 @@
 using Avalonia;
 using Avalonia.Animation;
+using Avalonia.Animation.Easings;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Media;
+using Avalonia.Styling;
 using Avalonia.Utilities;
+using Ursa.EventArgs;
 
 namespace Ursa.Controls;
 
 public class OverlayDialogHost : Canvas
 {
     private readonly List<DialogControl> _dialogs = new();
-    private readonly List<DialogControl> _modalDialogs = new(); 
+    private readonly List<Control> _modalDialogs = new(); 
     private readonly List<Border> _masks = new();
 
     public string? HostId { get; set; }
@@ -57,9 +60,16 @@ public class OverlayDialogHost : Canvas
         if (sender is Border border)
         {
             int i = _masks.IndexOf(border);
-            DialogControl dialog = _modalDialogs[i];
-            dialog.CloseDialog();
-            border.RemoveHandler(PointerReleasedEvent, ClickBorderToCloseDialog);
+            if (_modalDialogs[i] is DialogControl dialog)
+            {
+                dialog?.CloseDialog();
+                border.RemoveHandler(PointerReleasedEvent, ClickBorderToCloseDialog);
+            }
+            else if(_modalDialogs[i] is DrawerControlBase drawer)
+            {
+                drawer.CloseDrawer();
+                border.RemoveHandler(PointerReleasedEvent, ClickBorderToCloseDialog);
+            }
         }
     }
 
@@ -87,7 +97,11 @@ public class OverlayDialogHost : Canvas
 
         foreach (var modalDialog in _modalDialogs)
         {
-            ResetDialogPosition(modalDialog, oldSize, newSize);
+            if (modalDialog is DialogControl c)
+            {
+                ResetDialogPosition(c, oldSize, newSize);
+            }
+            
         }
     }
     
@@ -168,10 +182,7 @@ public class OverlayDialogHost : Canvas
         ResetZIndices();
     }
 
-    internal void AddDrawer(DrawerControlBase control)
-    {
-        
-    }
+
 
     private void OnDialogControlClosing(object sender, object? e)
     {
@@ -224,6 +235,84 @@ public class OverlayDialogHost : Canvas
         SetToPosition(control);
         control.AddHandler(DialogControl.ClosedEvent, OnDialogControlClosing);
         control.AddHandler(DialogControl.LayerChangedEvent, OnDialogLayerChanged);
+    }
+    
+    internal async void AddDrawer(DrawerControlBase control)
+    {
+        var mask = CreateOverlayMask(false);
+        mask.Opacity = 0;
+        _masks.Add(mask);
+        _modalDialogs.Add(control);
+        // control.SetAsModal(true);
+        for (int i = 0; i < _masks.Count-1; i++)
+        {
+            _masks[i].Opacity = 0.5;
+        }
+        ResetZIndices();
+        this.Children.Add(mask);
+        this.Children.Add(control);
+        control.Measure(this.Bounds.Size);
+        control.Arrange(new Rect(control.DesiredSize));
+        control.Height = this.Bounds.Height;
+        control.AddHandler(DrawerControlBase.ClosedEvent, OnDrawerControlClosing);
+        // SetLeft(control, this.Bounds.Width - control.Bounds.Width);
+        var animation = CreateAnimation(control.Bounds.Width);
+        var animation2 = CreateOpacityAnimation();
+        await Task.WhenAll(animation.RunAsync(control), animation2.RunAsync(mask));
+    }
+
+    private Animation CreateAnimation(double width)
+    {
+        var animation = new Animation();
+        animation.Easing = new CubicEaseOut();
+        animation.FillMode = FillMode.Forward;
+        var keyFrame1 = new KeyFrame(){ Cue = new Cue(0.0) };
+        keyFrame1.Setters.Add(new Setter() { Property = Canvas.LeftProperty, Value = Bounds.Width });
+        var keyFrame2 = new KeyFrame() { Cue = new Cue(1.0) };
+        keyFrame2.Setters.Add(new Setter() { Property = Canvas.LeftProperty, Value = Bounds.Width - width });
+        animation.Children.Add(keyFrame1);
+        animation.Children.Add(keyFrame2);
+        animation.Duration = TimeSpan.FromSeconds(0.3);
+        return animation;
+    }
+    
+    private Animation CreateOpacityAnimation()
+    {
+        var animation = new Animation();
+        animation.FillMode = FillMode.Forward;
+        var keyFrame1 = new KeyFrame(){ Cue = new Cue(0.0) };
+        keyFrame1.Setters.Add(new Setter(){ Property = OpacityProperty, Value = 0.0});
+        var keyFrame2 = new KeyFrame() { Cue = new Cue(1.0) };
+        keyFrame2.Setters.Add(new Setter() { Property = OpacityProperty, Value = 1.0 });
+        animation.Children.Add(keyFrame1);
+        animation.Children.Add(keyFrame2);
+        animation.Duration = TimeSpan.FromSeconds(0.3);
+        return animation;
+    }
+
+    private void OnDrawerControlClosing(object sender, ResultEventArgs e)
+    {
+        if (sender is DrawerControlBase control)
+        {
+            Children.Remove(control);
+            control.RemoveHandler(DialogControl.ClosedEvent, OnDialogControlClosing);
+            control.RemoveHandler(DialogControl.LayerChangedEvent, OnDialogLayerChanged);
+            if (_modalDialogs.Contains(control))
+            {
+                _modalDialogs.Remove(control);
+                if (_masks.Count > 0)
+                {
+                    var last = _masks.Last();
+                    this.Children.Remove(last);
+                    _masks.Remove(last);
+                    if (_masks.Count > 0)
+                    {
+                        _masks.Last().IsVisible = true;
+                    }
+                }
+            }
+            ResetZIndices();
+        }
     }
 
     // Handle dialog layer change event
