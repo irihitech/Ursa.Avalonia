@@ -165,7 +165,7 @@
                         <Grid RowDefinitions="Auto, *, Auto">
                             <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto">
                                 <Panel
-                                    Name="{x:Static u:DialogControl.PART_TitleArea}"
+                                    Name="{x:Static u:DialogControlBase.PART_TitleArea}"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="3"
                                     Background="Transparent" />
@@ -247,7 +247,7 @@
         <Style Selector="^ /template/ Panel#PART_TitleArea">
             <Setter Property="ContextFlyout">
                 <MenuFlyout>
-                    <MenuItem Command="{Binding $parent[u:DialogControl].CloseDialog}" Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
+                    <MenuItem Command="{Binding $parent[u:CustomDialogControl].CloseDialog}" Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
                         <MenuItem.Icon>
                             <PathIcon
                                 Width="12"

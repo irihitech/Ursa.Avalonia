@@ -13,8 +13,7 @@ namespace Ursa.Controls;
 [TemplatePart(PART_CancelButton, typeof(Button))]
 [TemplatePart(PART_YesButton, typeof(Button))]
 [TemplatePart(PART_NoButton, typeof(Button))]
-[TemplatePart(PART_TitleArea, typeof(Panel))]
-public class DefaultDialogControl: DialogControl
+public class DefaultDialogControl: DialogControlBase
 {
     public const string PART_OKButton = "PART_OKButton";
     public const string PART_CancelButton = "PART_CancelButton";
@@ -104,11 +103,6 @@ public class DefaultDialogControl: DialogControl
                 break;
         }
     }
-
-    private void SetVisibility(Button? button, bool visible)
-    {
-        if (button is not null) button.IsVisible = visible;
-    }
     
     private void DefaultButtonsClose(object sender, RoutedEventArgs args)
     {
@@ -116,24 +110,24 @@ public class DefaultDialogControl: DialogControl
         {
             if (button == _okButton)
             {
-                OnDialogControlClosing(this, DialogResult.OK);
+                OnElementClosing(this, DialogResult.OK);
             }
             else if (button == _cancelButton)
             {
-                OnDialogControlClosing(this, DialogResult.Cancel);
+                OnElementClosing(this, DialogResult.Cancel);
             }
             else if (button == _yesButton)
             {
-                OnDialogControlClosing(this, DialogResult.Yes);
+                OnElementClosing(this, DialogResult.Yes);
             }
             else if (button == _noButton)
             {
-                OnDialogControlClosing(this, DialogResult.No);
+                OnElementClosing(this, DialogResult.No);
             }
         }
     }
 
-    internal override void CloseDialog()
+    public override void Close()
     {
         if (DataContext is IDialogContext context)
         {
@@ -150,7 +144,7 @@ public class DefaultDialogControl: DialogControl
                 DialogButton.YesNoCancel => DialogResult.Cancel,
                 _ => DialogResult.None
             };
-            OnDialogControlClosing(this, result);
+            OnElementClosing(this, result);
         }
     }
 }

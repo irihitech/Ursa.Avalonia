@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Styling;
@@ -12,12 +13,11 @@ namespace Ursa.Controls;
 /// <summary>
 /// The messageBox used to display in OverlayDialogHost. 
 /// </summary>
-[TemplatePart(PART_CloseButton, typeof(Button))]
 [TemplatePart(PART_NoButton, typeof(Button))]
 [TemplatePart(PART_OKButton, typeof(Button))]
 [TemplatePart(PART_CancelButton, typeof(Button))]
 [TemplatePart(PART_YesButton, typeof(Button))]
-public class MessageBoxControl: DialogControl
+public class MessageBoxControl: DialogControlBase
 {
     public const string PART_YesButton = "PART_YesButton";
     public const string PART_NoButton = "PART_NoButton";
@@ -80,19 +80,19 @@ public class MessageBoxControl: DialogControl
         {
             if (button == _okButton)
             {
-                OnDialogControlClosing(this, MessageBoxResult.OK);
+                OnElementClosing(this, MessageBoxResult.OK);
             }
             else if (button == _cancelButton)
             {
-                OnDialogControlClosing(this, MessageBoxResult.Cancel);
+                OnElementClosing(this, MessageBoxResult.Cancel);
             }
             else if (button == _yesButton)
             {
-                OnDialogControlClosing(this, MessageBoxResult.Yes);
+                OnElementClosing(this, MessageBoxResult.Yes);
             }
             else if (button == _noButton)
             {
-                OnDialogControlClosing(this, MessageBoxResult.No);
+                OnElementClosing(this, MessageBoxResult.No);
             }
         }
     }
@@ -127,13 +127,8 @@ public class MessageBoxControl: DialogControl
                 break;
         }
     }
-    
-    private void SetVisibility(Button? button, bool visible)
-    {
-        if (button is not null) button.IsVisible = visible;
-    }
 
-    internal override void CloseDialog()
+    public override void Close()
     {
         MessageBoxResult result = Buttons switch
         {
@@ -143,6 +138,6 @@ public class MessageBoxControl: DialogControl
             MessageBoxButton.YesNoCancel => MessageBoxResult.Cancel,
             _ => MessageBoxResult.None
         };
-        OnDialogControlClosing(this, result);
+        OnElementClosing(this, result);
     }
 }

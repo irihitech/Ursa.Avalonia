@@ -24,7 +24,7 @@
                                 Content="{TemplateBinding Content}" />
                             <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
                                 <Panel
-                                    Name="{x:Static u:DialogControl.PART_TitleArea}"
+                                    Name="{x:Static u:DialogControlBase.PART_TitleArea}"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"
                                     Background="Transparent" />

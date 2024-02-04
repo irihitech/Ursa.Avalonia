@@ -5,12 +5,13 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
 using Ursa.Common;
+using Ursa.Controls.OverlayShared;
 using Ursa.EventArgs;
 
 namespace Ursa.Controls;
 
 [TemplatePart(PART_CloseButton, typeof(Button))]
-public abstract class DrawerControlBase: ContentControl
+public abstract class DrawerControlBase: OverlayFeedbackElement
 {
 public const string PART_CloseButton = "PART_CloseButton";
     
@@ -47,15 +48,6 @@ public const string PART_CloseButton = "PART_CloseButton";
         set => SetValue(IsCloseButtonVisibleProperty, value);
     }
     
-    public static readonly RoutedEvent<ResultEventArgs> ClosedEvent = RoutedEvent.Register<DrawerControlBase, ResultEventArgs>(
-        nameof(Closed), RoutingStrategies.Bubble);
-    
-    public event EventHandler<ResultEventArgs>? Closed
-    {
-        add => AddHandler(ClosedEvent, value);
-        remove => RemoveHandler(ClosedEvent, value);
-    }
-    
     static DrawerControlBase()
     {
         DataContextProperty.Changed.AddClassHandler<DrawerControlBase, object?>((o, e) => o.OnDataContextChange(e));
@@ -86,33 +78,9 @@ public const string PART_CloseButton = "PART_CloseButton";
         RaiseEvent(new ResultEventArgs(ClosedEvent, e));
     }
 
-    private void OnCloseButtonClick(object sender, RoutedEventArgs e) => CloseDrawer();
+    private void OnCloseButtonClick(object sender, RoutedEventArgs e) => Close();
 
-    public Task<T?> ShowAsync<T>(CancellationToken? token = default)
-    { 
-        var tcs = new TaskCompletionSource<T?>();
-        token?.Register(() =>
-        {
-            Dispatcher.UIThread.Invoke(CloseDrawer);
-        });
-        
-        void OnCloseHandler(object sender, ResultEventArgs args)
-        {
-            if (args.Result is T result)
-            {
-                tcs.SetResult(result);
-            }
-            else
-            {
-                tcs.SetResult(default(T));
-            }
-            RemoveHandler(ClosedEvent, OnCloseHandler);
-        }
-        AddHandler(ClosedEvent, OnCloseHandler);
-        return tcs.Task;
-    }
-
-    internal virtual void CloseDrawer()
+    public override void Close()
     {
         if (DataContext is IDialogContext context)
         {
