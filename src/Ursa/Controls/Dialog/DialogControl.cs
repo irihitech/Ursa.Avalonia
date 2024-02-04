@@ -42,7 +42,7 @@ public class DialogControl: ContentControl
         remove => RemoveHandler(LayerChangedEvent, value);
     }
     
-    public static readonly RoutedEvent<ResultEventArgs> ClosedEvent = RoutedEvent.Register<DrawerControl, ResultEventArgs>(
+    public static readonly RoutedEvent<ResultEventArgs> ClosedEvent = RoutedEvent.Register<DrawerControlBase, ResultEventArgs>(
         nameof(Closed), RoutingStrategies.Bubble);
     
     public event EventHandler<ResultEventArgs> Closed

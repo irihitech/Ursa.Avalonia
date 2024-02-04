@@ -168,6 +168,11 @@ public class OverlayDialogHost : Canvas
         ResetZIndices();
     }
 
+    internal void AddDrawer(DrawerControlBase control)
+    {
+        
+    }
+
     private void OnDialogControlClosing(object sender, object? e)
     {
         if (sender is DialogControl control)
