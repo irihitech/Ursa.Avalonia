@@ -28,7 +28,6 @@ public partial class OverlayDialogHost
         control.Arrange(new Rect(control.DesiredSize));
         control.Height = this.Bounds.Height;
         control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDrawerControlClosing);
-        // SetLeft(control, this.Bounds.Width - control.Bounds.Width);
         var animation = CreateAnimation(control.Bounds.Width);
         var animation2 = CreateOpacityAnimation();
         await Task.WhenAll(animation.RunAsync(control), animation2.RunAsync(mask));

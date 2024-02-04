@@ -20,6 +20,7 @@ public partial class OverlayDialogHost: Canvas
     
     static OverlayDialogHost()
     {
+        ClipToBoundsProperty.OverrideDefaultValue<OverlayDialogHost>(true);
         _maskAppearAnimation = CreateOpacityAnimation(true);
         _maskDisappearAnimation = CreateOpacityAnimation(false);
     }
@@ -34,7 +35,7 @@ public partial class OverlayDialogHost: Canvas
         keyFrame2.Setters.Add(new Setter() { Property = OpacityProperty, Value = appear ? 1.0 : 0.0 });
         animation.Children.Add(keyFrame1);
         animation.Children.Add(keyFrame2);
-        animation.Duration = TimeSpan.FromSeconds(0.3);
+        animation.Duration = TimeSpan.FromSeconds(0.2);
         return animation;
     }
     
@@ -75,9 +76,9 @@ public partial class OverlayDialogHost: Canvas
         if (sender is Border border)
         {
             int i = _masks.IndexOf(border);
-            if (_modalDialogs[i] is { } dialog)
+            if (_modalDialogs[i] is { } element)
             {
-                dialog.Close();
+                element.Close();
                 border.RemoveHandler(PointerReleasedEvent, ClickBorderToCloseDialog);
             }
         }
