@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
@@ -21,6 +22,33 @@ public class DefaultDrawerControl: DrawerControlBase
     private Button? _noButton;
     private Button? _okButton;
     private Button? _cancelButton;
+
+    public static readonly StyledProperty<DialogButton> ButtonsProperty = AvaloniaProperty.Register<DefaultDrawerControl, DialogButton>(
+        nameof(Buttons), DialogButton.OKCancel);
+
+    public DialogButton Buttons
+    {
+        get => GetValue(ButtonsProperty);
+        set => SetValue(ButtonsProperty, value);
+    }
+
+    public static readonly StyledProperty<DialogMode> ModeProperty = AvaloniaProperty.Register<DefaultDrawerControl, DialogMode>(
+        nameof(Mode), DialogMode.None);
+
+    public DialogMode Mode
+    {
+        get => GetValue(ModeProperty);
+        set => SetValue(ModeProperty, value);
+    }
+
+    public static readonly StyledProperty<string?> TitleProperty = AvaloniaProperty.Register<DefaultDrawerControl, string?>(
+        nameof(Title));
+
+    public string? Title
+    {
+        get => GetValue(TitleProperty);
+        set => SetValue(TitleProperty, value);
+    }
     
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {

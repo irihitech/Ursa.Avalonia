@@ -21,8 +21,7 @@ public partial class OverlayDialogHost
     
     public Thickness SnapThickness { get; set; } = new Thickness(0);
     
-    
-    private void ResetDialogPosition(DialogControlBase control, Size newSize)
+    private static void ResetDialogPosition(DialogControlBase control, Size newSize)
     {
         var width = newSize.Width - control.Bounds.Width;
         var height = newSize.Height - control.Bounds.Height;
@@ -77,7 +76,7 @@ public partial class OverlayDialogHost
     {
         if (e.Source is DialogControlBase item)
         {
-            AnchorDialog(item);
+            AnchorAndUpdatePositionInfo(item);
         }
     }
 
@@ -183,10 +182,10 @@ public partial class OverlayDialogHost
         double top = GetTopPosition(control);
         SetLeft(control, left);
         SetTop(control, top);
-        AnchorDialog(control);
+        AnchorAndUpdatePositionInfo(control);
     }
     
-    private void AnchorDialog(DialogControlBase control)
+    private void AnchorAndUpdatePositionInfo(DialogControlBase control)
     {
         control.ActualHorizontalAnchor = HorizontalPosition.Center;
         control.ActualVerticalAnchor = VerticalPosition.Center;

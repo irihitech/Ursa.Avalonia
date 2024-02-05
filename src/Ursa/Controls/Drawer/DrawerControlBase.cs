@@ -16,12 +16,12 @@ public abstract class DrawerControlBase: OverlayFeedbackElement
 public const string PART_CloseButton = "PART_CloseButton";
     
     internal bool CanClickOnMaskToClose { get; set; }
-    internal bool ShowCloseButton { get; set; }
 
     protected internal Button? _closeButton;
-    
-    public static readonly StyledProperty<Position> PositionProperty = AvaloniaProperty.Register<DrawerControlBase, Position>(
-        nameof(Position));
+
+    public static readonly StyledProperty<Position> PositionProperty =
+        AvaloniaProperty.Register<DrawerControlBase, Position>(
+            nameof(Position), defaultValue: Position.Right);
 
     public Position Position
     {
@@ -47,6 +47,9 @@ public const string PART_CloseButton = "PART_CloseButton";
         get => GetValue(IsCloseButtonVisibleProperty);
         set => SetValue(IsCloseButtonVisibleProperty, value);
     }
+    
+    protected internal bool ShowMask { get; set; }
+    protected internal bool CanLightDismiss { get; set; }
     
     static DrawerControlBase()
     {

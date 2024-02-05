@@ -3,16 +3,17 @@
                     xmlns:u="https://irihi.tech/ursa">
     <ControlTheme TargetType="u:CustomDrawerControl" x:Key="{x:Type u:CustomDrawerControl}">
         <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
-        <Setter Property="MinWidth" Value="400"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:CustomDrawerControl">
-                <Border Margin="8 0 0 0"
+                <Border Margin="8 -1 -1 -1"
                         Padding="0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         Classes="Shadow"
                         ClipToBounds="False"
                         CornerRadius="12 0 0 12"
+                        BorderThickness="1 0 0 0"
                         IsHitTestVisible="True"
                         Theme="{DynamicResource CardBorder}">
                     <Border ClipToBounds="True" CornerRadius="12 0 0 12">

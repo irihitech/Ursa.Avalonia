@@ -5,11 +5,13 @@
              mc:Ignorable="d" d:DesignWidth="800"
              xmlns:vm="clr-namespace:Ursa.Demo.ViewModels;assembly=Ursa.Demo"
              xmlns:u="https://irihi.tech/ursa"
+             xmlns:common="clr-namespace:Ursa.Common;assembly=Ursa"
              x:DataType="vm:DrawerDemoViewModel"
              x:CompileBindings="True"
              d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.DrawerDemo">
-    <Canvas HorizontalAlignment="Left" Width="500">
+    <StackPanel HorizontalAlignment="Left" >
+        <u:EnumSelector EnumType="{x:Type common:Position}" Value="{Binding SelectedPosition}"></u:EnumSelector>
         <Button Content="Call Drawer" HorizontalAlignment="Stretch" Command="{Binding OpenDrawerCommand}"></Button>
-    </Canvas>
+    </StackPanel>
 </UserControl>
