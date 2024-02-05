@@ -135,6 +135,11 @@
 
     <ControlTheme x:Key="{x:Type u:DefaultDialogControl}" TargetType="u:DefaultDialogControl">
         <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Duration="0.2" Property="RenderTransform"/>
+            </Transitions>
+        </Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:DefaultDialogControl">
                 <Border
@@ -223,6 +228,9 @@
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^[IsClosed=True]">
+            <Setter Property="RenderTransform" Value="scale(0.95)"/>
+        </Style>
         <Style Selector="^[Mode=None]">
             <Style Selector="^ /template/ PathIcon#PART_Icon">
                 <Setter Property="IsVisible" Value="False" />

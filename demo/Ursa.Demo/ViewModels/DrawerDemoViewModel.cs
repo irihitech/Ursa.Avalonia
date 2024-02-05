@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 using Ursa.Common;
 using Ursa.Controls;
 using Ursa.Controls.Options;
+using Ursa.Demo.Dialogs;
 
 namespace Ursa.Demo.ViewModels;
 
@@ -23,6 +24,7 @@ public partial class DrawerDemoViewModel: ObservableObject
 
     private async Task OpenDrawer()
     {
-        await Drawer.ShowCustom<Calendar, string, bool>("Hello World", new CustomDrawerOptions() { Position = SelectedPosition, MinWidth = 400 });
+        await Drawer.ShowCustom<DialogWithAction, DialogWithActionViewModel, bool>(new DialogWithActionViewModel(),
+            new CustomDrawerOptions() { Position = SelectedPosition, MinWidth = 400, MinHeight = 400});
     }
 }

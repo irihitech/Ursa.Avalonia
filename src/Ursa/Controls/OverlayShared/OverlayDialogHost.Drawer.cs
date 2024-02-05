@@ -46,6 +46,30 @@ public partial class OverlayDialogHost
             control.Width = this.Bounds.Width;
         }
     }
+    
+    private static void ResetDrawerPosition(DrawerControlBase control, Size newSize)
+    {
+        if (control.Position == Position.Right)
+        {
+            control.Height = newSize.Height;
+            SetLeft(control, newSize.Width - control.Bounds.Width);
+        }
+        else if (control.Position == Position.Left)
+        {
+            control.Height = newSize.Height;
+            SetLeft(control, 0);
+        }
+        else if (control.Position == Position.Bottom)
+        {
+            control.Width = newSize.Width;
+            SetTop(control, 0);
+        }
+        else
+        {
+            control.Width = newSize.Width;
+            SetTop(control, newSize.Height-control.Bounds.Height);
+        }
+    }
 
     private Animation CreateAnimation(Size elementBounds, Position position, bool appear = true)
     {

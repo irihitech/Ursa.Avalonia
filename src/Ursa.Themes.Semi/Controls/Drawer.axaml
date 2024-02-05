@@ -6,7 +6,8 @@
         <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:CustomDrawerControl">
-                <Border Margin="8 -1 -1 -1"
+                <Border Name="PART_Root" 
+                        Margin="8 -1 -1 -1"
                         Padding="0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
@@ -41,5 +42,25 @@
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^[Position=Right] /template/ Border#PART_Root">
+            <Setter Property="Margin" Value="8 0 0 0" />
+            <Setter Property="CornerRadius" Value="12 0 0  12" />
+            <Setter Property="BorderThickness" Value="1 0 0 0" />
+        </Style>
+        <Style Selector="^[Position=Left] /template/ Border#PART_Root">
+            <Setter Property="Margin" Value="0 0 8 0" />
+            <Setter Property="CornerRadius" Value="0 12 12 0" />
+            <Setter Property="BorderThickness" Value="0 0 1 0" />
+        </Style>
+        <Style Selector="^[Position=Top] /template/ Border#PART_Root">
+            <Setter Property="Margin" Value="0 0 0 8" />
+            <Setter Property="CornerRadius" Value="0 0 12 12" />
+            <Setter Property="BorderThickness" Value="0 0 0 1" />
+        </Style>
+        <Style Selector="^[Position=Bottom] /template/ Border#PART_Root">
+            <Setter Property="Margin" Value="0 8 0 0" />
+            <Setter Property="CornerRadius" Value="12 12 0 0" />
+            <Setter Property="BorderThickness" Value="0 1 0 0" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

@@ -130,6 +130,10 @@ public partial class OverlayDialogHost: Canvas
             {
                 ResetDialogPosition(d, e.NewSize);
             }
+            else if (_layers[i].Element is DrawerControlBase drawer)
+            {
+                ResetDrawerPosition(drawer, e.NewSize);
+            }
         }
     }
     
