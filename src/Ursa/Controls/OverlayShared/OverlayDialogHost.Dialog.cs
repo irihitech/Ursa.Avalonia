@@ -10,6 +10,7 @@ using Avalonia.Media;
 using Avalonia.Styling;
 using Avalonia.Utilities;
 using Ursa.Controls.OverlayShared;
+using Ursa.Controls.Shapes;
 using Ursa.EventArgs;
 
 namespace Ursa.Controls;
@@ -21,7 +22,7 @@ public partial class OverlayDialogHost
     public Thickness SnapThickness { get; set; } = new Thickness(0);
     
     
-    private void ResetDialogPosition(DialogControlBase control, Size oldSize, Size newSize)
+    private void ResetDialogPosition(DialogControlBase control, Size newSize)
     {
         var width = newSize.Width - control.Bounds.Width;
         var height = newSize.Height - control.Bounds.Height;
@@ -82,8 +83,17 @@ public partial class OverlayDialogHost
 
     internal void AddDialog(DialogControlBase control)
     {
+        PureRectangle? mask = null;
+        if (control.CanLightDismiss)
+        {
+            CreateOverlayMask(false, control.CanLightDismiss);
+        }
+        if (mask is not null)
+        {
+            Children.Add(mask);
+        }
         this.Children.Add(control);
-        _dialogs.Add(control);
+        _layers.Add(new DialogPair(mask, control));
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetToPosition(control);
@@ -96,27 +106,19 @@ public partial class OverlayDialogHost
     {
         if (sender is DialogControlBase control)
         {
-            Children.Remove(control);
+            var layer = _layers.FirstOrDefault(a => a.Element == control);
+            if (layer is null) return;
+            _layers.Remove(layer);
+
             control.RemoveHandler(OverlayFeedbackElement.ClosedEvent, OnDialogControlClosing);
             control.RemoveHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged);
-            if (_dialogs.Contains(control))
+            
+            Children.Remove(control);
+
+            if (layer.Mask is not null)
             {
-                _dialogs.Remove(control);
-            }
-            else if (_modalDialogs.Contains(control))
-            {
-                if (_masks.Count > 0)
-                {
-                    var last = _masks.Last();
-                    await _maskDisappearAnimation.RunAsync(last);
-                    this.Children.Remove(last);
-                    _masks.Remove(last);
-                    if (_masks.Count > 0)
-                    {
-                        _masks.Last().IsVisible = true;
-                    }
-                }
-                _modalDialogs.Remove(control);
+                await _maskDisappearAnimation.RunAsync(layer.Mask);
+                Children.Remove(layer.Mask);
             }
             
             ResetZIndices();
@@ -129,9 +131,8 @@ public partial class OverlayDialogHost
     /// <param name="control"></param>
     internal void AddModalDialog(DialogControlBase control)
     {
-        var mask = CreateOverlayMask(control.CanClickOnMaskToClose);
-        _masks.Add(mask);
-        _modalDialogs.Add(control);
+        var mask = CreateOverlayMask(true, control.CanClickOnMaskToClose);
+        _layers.Add(new DialogPair(mask, control));
         control.SetAsModal(true);
         ResetZIndices();
         this.Children.Add(mask);
@@ -148,41 +149,31 @@ public partial class OverlayDialogHost
     // Handle dialog layer change event
     private void OnDialogLayerChanged(object sender, DialogLayerChangeEventArgs e)
     {
-        if (sender is not CustomDialogControl control)
+        if (sender is not DialogControlBase control)
             return;
-        if (!_dialogs.Contains(control))
-            return;
-        int index = _dialogs.IndexOf(control);
-        _dialogs.Remove(control);
+        var layer = _layers.FirstOrDefault(a => a.Element == control);
+        if (layer is null) return;
+        int index = _layers.IndexOf(layer);
+        _layers.Remove(layer);
         int newIndex = index;
         switch (e.ChangeType)
         {
             case DialogLayerChangeType.BringForward:
-                newIndex = MathUtilities.Clamp(index + 1, 0, _dialogs.Count);
+                newIndex = MathUtilities.Clamp(index + 1, 0, _layers.Count);
                 break;
             case DialogLayerChangeType.SendBackward:
-                newIndex = MathUtilities.Clamp(index - 1, 0, _dialogs.Count);
+                newIndex = MathUtilities.Clamp(index - 1, 0, _layers.Count);
                 break;
             case DialogLayerChangeType.BringToFront:
-                newIndex = _dialogs.Count;
+                newIndex = _layers.Count;
                 break;
             case DialogLayerChangeType.SendToBack:
                 newIndex = 0;
                 break;
         }
 
-        _dialogs.Insert(newIndex, control);
-        for (int i = 0; i < _dialogs.Count; i++)
-        {
-            _dialogs[i].ZIndex = i;
-        }
-
-        for (int i = 0; i < _masks.Count * 2; i += 2) 
-        {
-            _masks[i].ZIndex = _dialogs.Count + i;
-            (_modalDialogs[i] as Control)!.ZIndex = _dialogs.Count + i + 1;
-        }
-        
+        _layers.Insert(newIndex, layer);
+        ResetZIndices();
     }
     
     private void SetToPosition(DialogControlBase? control)

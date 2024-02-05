@@ -191,6 +191,7 @@ public static class OverlayDialog
             options.VerticalAnchor == VerticalPosition.Center ? null : options.VerticalOffset;
         control.CanClickOnMaskToClose = options.CanClickOnMaskToClose;
         control.IsCloseButtonVisible = options.IsCloseButtonVisible;
+        control.CanLightDismiss = options.CanLightDismiss;
     }
     
     private static void ConfigureDefaultDialogControl(DefaultDialogControl control, OverlayDialogOptions? options)
@@ -208,6 +209,7 @@ public static class OverlayDialog
         control.Mode = options.Mode;
         control.Buttons = options.Buttons;
         control.Title = options.Title;
+        control.CanLightDismiss = options.CanLightDismiss;
     }
     
     

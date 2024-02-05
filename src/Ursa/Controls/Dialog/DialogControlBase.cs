@@ -27,6 +27,7 @@ public abstract class DialogControlBase: OverlayFeedbackElement
     internal double? HorizontalOffsetRatio { get; set; }
     internal double? VerticalOffsetRatio { get; set; }
     internal bool CanClickOnMaskToClose { get; set; }
+    internal bool CanLightDismiss { get; set; }
     
     protected internal Button? _closeButton;
     private Panel? _titleArea;

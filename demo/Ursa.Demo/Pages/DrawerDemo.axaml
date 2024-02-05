@@ -4,11 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800"
              xmlns:vm="clr-namespace:Ursa.Demo.ViewModels;assembly=Ursa.Demo"
+             xmlns:u="https://irihi.tech/ursa"
              x:DataType="vm:DrawerDemoViewModel"
              x:CompileBindings="True"
              d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.DrawerDemo">
-    <StackPanel HorizontalAlignment="Left">
-        <Button Content="Call Drawer" Command="{Binding OpenDrawerCommand}"></Button>
-    </StackPanel>
+    <Canvas HorizontalAlignment="Left" Width="500">
+        <Button Content="Call Drawer" HorizontalAlignment="Stretch" Command="{Binding OpenDrawerCommand}"></Button>
+    </Canvas>
 </UserControl>

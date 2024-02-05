@@ -7,6 +7,7 @@ using Avalonia.Input;
 using Avalonia.Media;
 using Ursa.Controls.OverlayShared;
 using Avalonia.Layout;
+using Avalonia.Media.Immutable;
 using Avalonia.Styling;
 using Ursa.Controls.Shapes;
 
@@ -14,18 +15,21 @@ namespace Ursa.Controls;
 
 public partial class OverlayDialogHost: Canvas
 {
-    private readonly List<OverlayFeedbackElement> _dialogs = new();
-    private readonly List<OverlayFeedbackElement> _modalDialogs = new(); 
-    private readonly List<PureRectangle> _masks = new();
     private static readonly Animation _maskAppearAnimation;
     private static readonly Animation _maskDisappearAnimation;
 
     private readonly List<DialogPair> _layers = new List<DialogPair>();
     
-    private struct DialogPair
+    private class DialogPair
     {
-        internal PureRectangle Mask;
-        internal OverlayFeedbackElement Dialog;
+        internal PureRectangle? Mask;
+        internal OverlayFeedbackElement Element;
+
+        public DialogPair(PureRectangle? mask, OverlayFeedbackElement element)
+        {
+            Mask = mask;
+            Element = element;
+        }
     }
     
     static OverlayDialogHost()
@@ -63,33 +67,38 @@ public partial class OverlayDialogHost: Canvas
         set => SetValue(OverlayMaskBrushProperty, value);
     }
     
-    private PureRectangle CreateOverlayMask(bool canCloseOnClick)
+    private PureRectangle CreateOverlayMask(bool modal, bool canCloseOnClick)
     {
         PureRectangle rec = new()
         {
-            HorizontalAlignment = HorizontalAlignment.Stretch,
-            VerticalAlignment = VerticalAlignment.Stretch,
             Width = this.Bounds.Width,
             Height = this.Bounds.Height,
-            [!Shape.FillProperty] = this[!OverlayMaskBrushProperty],
             IsVisible = true,
         };
+        if (modal)
+        {
+            rec[!Shape.FillProperty] = this[!OverlayMaskBrushProperty];
+        }
+        else if(canCloseOnClick) 
+        { 
+            rec.SetCurrentValue(Shape.FillProperty, Brushes.Transparent);
+        }
         if (canCloseOnClick)
         {
-            rec.AddHandler(PointerReleasedEvent, ClickBorderToCloseDialog);
+            rec.AddHandler(PointerReleasedEvent, ClickMaskToCloseDialog);
         }
         return rec;
     }
     
-    private void ClickBorderToCloseDialog(object sender, PointerReleasedEventArgs e)
+    private void ClickMaskToCloseDialog(object sender, PointerReleasedEventArgs e)
     {
         if (sender is PureRectangle border)
         {
-            int i = _masks.IndexOf(border);
-            if (_modalDialogs[i] is { } element)
+            var layer = _layers.FirstOrDefault(a => a.Mask == border);
+            if (layer is not null)
             {
-                element.Close();
-                border.RemoveHandler(PointerReleasedEvent, ClickBorderToCloseDialog);
+                layer.Element.Close();
+                border.RemoveHandler(PointerReleasedEvent, ClickMaskToCloseDialog);
             }
         }
     }
@@ -110,26 +119,16 @@ public partial class OverlayDialogHost: Canvas
     protected sealed override void OnSizeChanged(SizeChangedEventArgs e)
     {
         base.OnSizeChanged(e);
-        for (int i = 0; i < _masks.Count; i++)
+        for (int i = 0; i < _layers.Count; i++)
         {
-            _masks[i].Width = this.Bounds.Width;
-            _masks[i].Height = this.Bounds.Height;
-        }
-
-        var oldSize = e.PreviousSize;
-        var newSize = e.NewSize;
-        foreach (var dialog in _dialogs)
-        {
-            if (dialog is DialogControlBase c)
+            if (_layers[i].Mask is { } rect)
             {
-                ResetDialogPosition(c, oldSize, newSize);
+                rect.Width = this.Bounds.Width;
+                rect.Height = this.Bounds.Height;
             }
-        }
-        foreach (var modalDialog in _modalDialogs)
-        {
-            if (modalDialog is DialogControlBase c)
+            if (_layers[i].Element is DialogControlBase d)
             {
-                ResetDialogPosition(c, oldSize, newSize);
+                ResetDialogPosition(d, e.NewSize);
             }
         }
     }
@@ -137,31 +136,17 @@ public partial class OverlayDialogHost: Canvas
     private void ResetZIndices()
     {
         int index = 0;
-        for ( int i = 0; i< _dialogs.Count; i++)
-        {
-            _dialogs[i].ZIndex = index;
-            index++;
-        }
-        for(int i = 0; i< _masks.Count; i++)
-        {
-            _masks[i].ZIndex = index;
-            index++;
-            (_modalDialogs[i] as Control)!.ZIndex = index;
-            index++;
-        }
-
-        int index2 = 0;
         for (int i = 0; i < _layers.Count; i++)
         {
             if(_layers[i].Mask is { } mask)
             {
-                mask.ZIndex = index2;
-                index2++;
+                mask.ZIndex = index;
+                index++;
             }
-            if(_layers[i].Dialog is { } dialog)
+            if(_layers[i].Element is { } dialog)
             {
-                dialog.ZIndex = index2;
-                index2++;
+                dialog.ZIndex = index;
+                index++;
             }
         }
     }

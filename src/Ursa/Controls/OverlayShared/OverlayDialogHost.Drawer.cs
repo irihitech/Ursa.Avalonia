@@ -12,15 +12,9 @@ public partial class OverlayDialogHost
 {
     internal async void AddDrawer(DrawerControlBase control)
     {
-        var mask = CreateOverlayMask(false);
+        var mask = CreateOverlayMask(true, false);
         mask.Opacity = 0;
-        _masks.Add(mask);
-        _modalDialogs.Add(control);
-        // control.SetAsModal(true);
-        for (int i = 0; i < _masks.Count-1; i++)
-        {
-            _masks[i].Opacity = 0.5;
-        }
+        _layers.Add(new DialogPair(mask, control));
         ResetZIndices();
         this.Children.Add(mask);
         this.Children.Add(control);
@@ -66,23 +60,16 @@ public partial class OverlayDialogHost
     {
         if (sender is DrawerControlBase control)
         {
+            var layer = _layers.FirstOrDefault(a => a.Element == control);
+            if(layer is null) return;
+            _layers.Remove(layer);
+            if (layer.Mask is not null)
+            {
+                layer.Mask.RemoveHandler(PointerPressedEvent, ClickMaskToCloseDialog);
+            }
             Children.Remove(control);
             control.RemoveHandler(OverlayFeedbackElement.ClosedEvent, OnDialogControlClosing);
             control.RemoveHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged);
-            if (_modalDialogs.Contains(control))
-            {
-                _modalDialogs.Remove(control);
-                if (_masks.Count > 0)
-                {
-                    var last = _masks.Last();
-                    this.Children.Remove(last);
-                    _masks.Remove(last);
-                    if (_masks.Count > 0)
-                    {
-                        _masks.Last().IsVisible = true;
-                    }
-                }
-            }
             ResetZIndices();
         }
     }

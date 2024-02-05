@@ -59,8 +59,7 @@
             <Setter Property="ContextFlyout">
                 <MenuFlyout>
                     <MenuItem
-                        Command="{Binding $parent[u:CustomDialogControl].CloseDialog}"
-                        CommandParameter="{x:Static u:DialogLayerChangeType.BringForward}"
+                        Command="{Binding $parent[u:DialogControlBase].Close}"
                         Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
                         <MenuItem.Icon>
                             <PathIcon
@@ -76,7 +75,7 @@
             <Setter Property="ContextFlyout">
                 <MenuFlyout>
                     <MenuItem
-                        Command="{Binding $parent[u:CustomDialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DialogControlBase].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.BringForward}"
                         Header="{DynamicResource STRING_MENU_BRING_FORWARD}">
                         <MenuItem.Icon>
@@ -87,7 +86,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem
-                        Command="{Binding $parent[u:CustomDialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DialogControlBase].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.BringToFront}"
                         Header="{DynamicResource STRING_MENU_BRING_TO_FRONT}">
                         <MenuItem.Icon>
@@ -98,7 +97,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem
-                        Command="{Binding $parent[u:CustomDialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DialogControlBase].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.SendBackward}"
                         Header="{DynamicResource STRING_MENU_SEND_BACKWARD}">
                         <MenuItem.Icon>
@@ -109,7 +108,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem
-                        Command="{Binding $parent[u:CustomDialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DialogControlBase].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.SendToBack}"
                         Header="{DynamicResource STRING_MENU_SEND_TO_BACK}">
                         <MenuItem.Icon>
@@ -120,8 +119,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem
-                        Command="{Binding $parent[u:CustomDialogControl].CloseDialog}"
-                        CommandParameter="{x:Static u:DialogLayerChangeType.BringForward}"
+                        Command="{Binding $parent[u:DialogControlBase].Close}"
                         Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
                         <MenuItem.Icon>
                             <PathIcon
@@ -347,8 +345,7 @@
             <Setter Property="ContextFlyout">
                 <MenuFlyout>
                     <MenuItem
-                        Command="{Binding $parent[u:CustomDialogControl].CloseDialog}"
-                        CommandParameter="{x:Static u:DialogLayerChangeType.BringForward}"
+                        Command="{Binding $parent[u:DialogControlBase].Close}"
                         Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
                         <MenuItem.Icon>
                             <PathIcon
@@ -364,7 +361,7 @@
             <Setter Property="ContextFlyout">
                 <MenuFlyout>
                     <MenuItem
-                        Command="{Binding $parent[u:CustomDialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DialogControlBase].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.BringForward}"
                         Header="{DynamicResource STRING_MENU_BRING_FORWARD}">
                         <MenuItem.Icon>
@@ -375,7 +372,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem
-                        Command="{Binding $parent[u:CustomDialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DialogControlBase].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.BringToFront}"
                         Header="{DynamicResource STRING_MENU_BRING_TO_FRONT}">
                         <MenuItem.Icon>
@@ -386,7 +383,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem
-                        Command="{Binding $parent[u:CustomDialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DialogControlBase].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.SendBackward}"
                         Header="{DynamicResource STRING_MENU_SEND_BACKWARD}">
                         <MenuItem.Icon>
@@ -397,7 +394,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem
-                        Command="{Binding $parent[u:CustomDialogControl].UpdateLayer}"
+                        Command="{Binding $parent[u:DialogControlBase].UpdateLayer}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.SendToBack}"
                         Header="{DynamicResource STRING_MENU_SEND_TO_BACK}">
                         <MenuItem.Icon>
@@ -408,7 +405,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem
-                        Command="{Binding $parent[u:CustomDialogControl].CloseDialog}"
+                        Command="{Binding $parent[u:DialogControlBase].Close}"
                         CommandParameter="{x:Static u:DialogLayerChangeType.BringForward}"
                         Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
                         <MenuItem.Icon>
