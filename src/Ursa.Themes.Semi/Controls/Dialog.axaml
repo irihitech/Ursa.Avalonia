@@ -9,6 +9,12 @@
     </ControlTheme>
     <ControlTheme x:Key="{x:Type u:CustomDialogControl}" TargetType="u:CustomDialogControl">
         <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Duration="0.2" Property="RenderTransform"/>
+            </Transitions>
+        </Setter>
+        <Setter Property="RenderTransform" Value="scale(1.0)"></Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:CustomDialogControl">
                 <Border
@@ -46,6 +52,9 @@
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^[IsClosed=True]">
+            <Setter Property="RenderTransform" Value="scale(0.95)"/>
+        </Style>
         <Style Selector="^ /template/ Panel#PART_TitleArea">
             <Setter Property="ContextFlyout">
                 <MenuFlyout>

@@ -105,7 +105,6 @@ public partial class OverlayDialogHost
             }
             else if (_modalDialogs.Contains(control))
             {
-                _modalDialogs.Remove(control);
                 if (_masks.Count > 0)
                 {
                     var last = _masks.Last();
@@ -117,8 +116,9 @@ public partial class OverlayDialogHost
                         _masks.Last().IsVisible = true;
                     }
                 }
-                
+                _modalDialogs.Remove(control);
             }
+            
             ResetZIndices();
         }
     }
@@ -133,10 +133,6 @@ public partial class OverlayDialogHost
         _masks.Add(mask);
         _modalDialogs.Add(control);
         control.SetAsModal(true);
-        for (int i = 0; i < _masks.Count-1; i++)
-        {
-            _masks[i].Opacity = 0.5;
-        }
         ResetZIndices();
         this.Children.Add(mask);
         this.Children.Add(control);
@@ -146,6 +142,7 @@ public partial class OverlayDialogHost
         control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDialogControlClosing);
         control.AddHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged);
         _maskAppearAnimation.RunAsync(mask);
+        control.IsClosed = false;
     }
 
     // Handle dialog layer change event

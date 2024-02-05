@@ -1,12 +1,14 @@
 using Avalonia;
 using Avalonia.Animation;
 using Avalonia.Controls;
+using Avalonia.Controls.Shapes;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Media;
 using Ursa.Controls.OverlayShared;
 using Avalonia.Layout;
 using Avalonia.Styling;
+using Ursa.Controls.Shapes;
 
 namespace Ursa.Controls;
 
@@ -14,9 +16,17 @@ public partial class OverlayDialogHost: Canvas
 {
     private readonly List<OverlayFeedbackElement> _dialogs = new();
     private readonly List<OverlayFeedbackElement> _modalDialogs = new(); 
-    private readonly List<Border> _masks = new();
+    private readonly List<PureRectangle> _masks = new();
     private static readonly Animation _maskAppearAnimation;
     private static readonly Animation _maskDisappearAnimation;
+
+    private readonly List<DialogPair> _layers = new List<DialogPair>();
+    
+    private struct DialogPair
+    {
+        internal PureRectangle Mask;
+        internal OverlayFeedbackElement Dialog;
+    }
     
     static OverlayDialogHost()
     {
@@ -29,9 +39,9 @@ public partial class OverlayDialogHost: Canvas
     {
         var animation = new Animation();
         animation.FillMode = FillMode.Forward;
-        var keyFrame1 = new KeyFrame(){ Cue = new Cue(0.0) };
+        var keyFrame1 = new KeyFrame{ Cue = new Cue(0.0) };
         keyFrame1.Setters.Add(new Setter() { Property = OpacityProperty, Value = appear ? 0.0 : 1.0 });
-        var keyFrame2 = new KeyFrame() { Cue = new Cue(1.0) };
+        var keyFrame2 = new KeyFrame{ Cue = new Cue(1.0) };
         keyFrame2.Setters.Add(new Setter() { Property = OpacityProperty, Value = appear ? 1.0 : 0.0 });
         animation.Children.Add(keyFrame1);
         animation.Children.Add(keyFrame2);
@@ -53,27 +63,27 @@ public partial class OverlayDialogHost: Canvas
         set => SetValue(OverlayMaskBrushProperty, value);
     }
     
-    private Border CreateOverlayMask(bool canCloseOnClick)
+    private PureRectangle CreateOverlayMask(bool canCloseOnClick)
     {
-        Border border = new()
+        PureRectangle rec = new()
         {
             HorizontalAlignment = HorizontalAlignment.Stretch,
             VerticalAlignment = VerticalAlignment.Stretch,
             Width = this.Bounds.Width,
             Height = this.Bounds.Height,
-            [!BackgroundProperty] = this[!OverlayMaskBrushProperty],
+            [!Shape.FillProperty] = this[!OverlayMaskBrushProperty],
             IsVisible = true,
         };
         if (canCloseOnClick)
         {
-            border.AddHandler(PointerReleasedEvent, ClickBorderToCloseDialog);
+            rec.AddHandler(PointerReleasedEvent, ClickBorderToCloseDialog);
         }
-        return border;
+        return rec;
     }
     
     private void ClickBorderToCloseDialog(object sender, PointerReleasedEventArgs e)
     {
-        if (sender is Border border)
+        if (sender is PureRectangle border)
         {
             int i = _masks.IndexOf(border);
             if (_modalDialogs[i] is { } element)
@@ -138,6 +148,21 @@ public partial class OverlayDialogHost: Canvas
             index++;
             (_modalDialogs[i] as Control)!.ZIndex = index;
             index++;
+        }
+
+        int index2 = 0;
+        for (int i = 0; i < _layers.Count; i++)
+        {
+            if(_layers[i].Mask is { } mask)
+            {
+                mask.ZIndex = index2;
+                index2++;
+            }
+            if(_layers[i].Dialog is { } dialog)
+            {
+                dialog.ZIndex = index2;
+                index2++;
+            }
         }
     }
     

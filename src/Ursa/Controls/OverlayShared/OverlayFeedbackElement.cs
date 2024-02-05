@@ -8,11 +8,26 @@ namespace Ursa.Controls.OverlayShared;
 
 public abstract class OverlayFeedbackElement: ContentControl
 {
+    public static readonly StyledProperty<bool> IsClosedProperty =
+        AvaloniaProperty.Register<OverlayFeedbackElement, bool>(nameof(IsClosed), defaultValue: true);
+
+    public bool IsClosed
+    {
+        get => GetValue(IsClosedProperty);
+        set => SetValue(IsClosedProperty, value);
+    }
+    
     static OverlayFeedbackElement()
     {
         DataContextProperty.Changed.AddClassHandler<CustomDialogControl, object?>((o, e) => o.OnDataContextChange(e));
+        ClosedEvent.AddClassHandler<OverlayFeedbackElement>((o,e)=>o.OnClosed(e));
     }
-    
+
+    private void OnClosed(ResultEventArgs arg2)
+    {
+        SetCurrentValue(IsClosedProperty,true);
+    }
+
     public static readonly RoutedEvent<ResultEventArgs> ClosedEvent = RoutedEvent.Register<DrawerControlBase, ResultEventArgs>(
         nameof(Closed), RoutingStrategies.Bubble);
     
