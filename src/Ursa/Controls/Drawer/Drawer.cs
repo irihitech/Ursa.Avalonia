@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using Ursa.Common;
 using Ursa.Controls.Options;
 
@@ -6,11 +7,11 @@ namespace Ursa.Controls;
 
 public static class Drawer
 {
-    public static Task<DialogResult?> Show<TView, TViewModel>(TViewModel vm, string? hostId = null, DefaultDrawerOptions? options = null)
+    public static Task<DialogResult> Show<TView, TViewModel>(TViewModel vm, string? hostId = null, DefaultDrawerOptions? options = null)
         where TView: Control, new()
     {
         var host = OverlayDialogManager.GetHost(hostId);
-        if (host is null) return Task.FromResult(default(DialogResult?));
+        if (host is null) return Task.FromResult(default(DialogResult));
         var drawer = new DefaultDrawerControl()
         {
             Content = new TView(),
@@ -18,7 +19,39 @@ public static class Drawer
         };
         ConfigureDefaultDrawer(drawer, options);
         host.AddDrawer(drawer);
-        return drawer.ShowAsync<DialogResult?>();
+        return drawer.ShowAsync<DialogResult>();
+    }
+
+    public static Task<DialogResult> Show(Control control, object? vm, string? hostId = null,
+        DefaultDrawerOptions? options = null)
+    {
+        var host = OverlayDialogManager.GetHost(hostId);
+        if (host is null) return Task.FromResult(default(DialogResult));
+        var drawer = new DefaultDrawerControl()
+        {
+            Content = control,
+            DataContext = vm,
+        };
+        ConfigureDefaultDrawer(drawer, options);
+        host.AddDrawer(drawer);
+        return drawer.ShowAsync<DialogResult>();
+    }
+
+    public static Task<DialogResult> Show(object? vm, string? hostId = null, DefaultDrawerOptions? options = null)
+    {
+        var host = OverlayDialogManager.GetHost(hostId);
+        if (host is null) return Task.FromResult(default(DialogResult));
+        var view = host.GetDataTemplate(vm)?.Build(vm);
+        if (view is null) view = new ContentControl() { Padding = new Thickness(24) };
+        view.DataContext = vm;
+        var drawer = new DefaultDrawerControl()
+        {
+            Content = view,
+            DataContext = vm,
+        };
+        ConfigureDefaultDrawer(drawer, options);
+        host.AddDrawer(drawer);
+        return drawer.ShowAsync<DialogResult>();
     }
     
     public static Task<TResult?> ShowCustom<TView, TViewModel, TResult>(TViewModel vm, string? hostId = null, CustomDrawerOptions? options = null)
@@ -35,6 +68,38 @@ public static class Drawer
         host.AddDrawer(dialog);
         return dialog.ShowAsync<TResult>();
     }
+    
+    public static Task<TResult?> ShowCustom<TResult>(Control control, object? vm, string? hostId = null, CustomDrawerOptions? options = null)
+    {
+        var host = OverlayDialogManager.GetHost(hostId);
+        if (host is null) return Task.FromResult(default(TResult));
+        var dialog = new CustomDrawerControl()
+        {
+            Content = control,
+            DataContext = vm,
+        };
+        ConfigureCustomDrawer(dialog, options);
+        host.AddDrawer(dialog);
+        return dialog.ShowAsync<TResult>();
+    }
+    
+    public static Task<TResult?> ShowCustom<TResult>(object? vm, string? hostId = null, CustomDrawerOptions? options = null)
+    {
+        var host = OverlayDialogManager.GetHost(hostId);
+        if (host is null) return Task.FromResult(default(TResult));
+        var view = host.GetDataTemplate(vm)?.Build(vm);
+        if (view is null) view = new ContentControl() { Padding = new Thickness(24) };
+        view.DataContext = vm;
+        var dialog = new CustomDrawerControl()
+        {
+            Content = view,
+            DataContext = vm,
+        };
+        ConfigureCustomDrawer(dialog, options);
+        host.AddDrawer(dialog);
+        return dialog.ShowAsync<TResult>();
+    }
+    
     
     private static void ConfigureCustomDrawer(CustomDrawerControl drawer, CustomDrawerOptions? options)
     {
