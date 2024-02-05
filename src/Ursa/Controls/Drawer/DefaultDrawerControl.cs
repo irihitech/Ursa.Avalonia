@@ -59,9 +59,68 @@ public class DefaultDrawerControl: DrawerControlBase
         _okButton = e.NameScope.Find<Button>(PART_OKButton);
         _cancelButton = e.NameScope.Find<Button>(PART_CancelButton);
         EventHelper.RegisterClickEvent(OnDefaultButtonClick, _yesButton, _noButton, _okButton, _cancelButton);
+        SetButtonVisibility();
+    }
+    
+    private void SetButtonVisibility()
+    {
+        bool isCloseButtonVisible = DataContext is IDialogContext || Buttons != DialogButton.YesNo;
+        SetVisibility(_closeButton, isCloseButtonVisible);
+        switch (Buttons)
+        {
+            case DialogButton.None:
+                SetVisibility(_okButton, false);
+                SetVisibility(_cancelButton, false);
+                SetVisibility(_yesButton, false);
+                SetVisibility(_noButton, false);
+                break;
+            case DialogButton.OK:
+                SetVisibility(_okButton, true);
+                SetVisibility(_cancelButton, false);
+                SetVisibility(_yesButton, false);
+                SetVisibility(_noButton, false);
+                break;
+            case DialogButton.OKCancel:
+                SetVisibility(_okButton, true);
+                SetVisibility(_cancelButton, true);
+                SetVisibility(_yesButton, false);
+                SetVisibility(_noButton, false);
+                break;
+            case DialogButton.YesNo:
+                SetVisibility(_okButton, false);
+                SetVisibility(_cancelButton, false);
+                SetVisibility(_yesButton, true);
+                SetVisibility(_noButton, true);
+                break;
+            case DialogButton.YesNoCancel:
+                SetVisibility(_okButton, false);
+                SetVisibility(_cancelButton, true);
+                SetVisibility(_yesButton, true);
+                SetVisibility(_noButton, true);
+                break;
+        }
     }
     
     private void OnDefaultButtonClick(object? sender, RoutedEventArgs e)
     {
+        if (sender is Button button)
+        {
+            if (button == _okButton)
+            {
+                OnElementClosing(this, DialogResult.OK);
+            }
+            else if (button == _cancelButton)
+            {
+                OnElementClosing(this, DialogResult.Cancel);
+            }
+            else if (button == _yesButton)
+            {
+                OnElementClosing(this, DialogResult.Yes);
+            }
+            else if (button == _noButton)
+            {
+                OnElementClosing(this, DialogResult.No);
+            }
+        }
     }
 }

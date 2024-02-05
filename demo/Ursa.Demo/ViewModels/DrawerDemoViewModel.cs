@@ -13,6 +13,7 @@ namespace Ursa.Demo.ViewModels;
 public partial class DrawerDemoViewModel: ObservableObject
 {
     public ICommand OpenDrawerCommand { get; set; }
+    public ICommand OpenDefaultDrawerCommand { get; set; }
     
     [ObservableProperty] private Position _selectedPosition;
     
@@ -20,6 +21,19 @@ public partial class DrawerDemoViewModel: ObservableObject
     public DrawerDemoViewModel()
     {
         OpenDrawerCommand = new AsyncRelayCommand(OpenDrawer);
+        OpenDefaultDrawerCommand = new AsyncRelayCommand(OpenDefaultDrawer);
+        SelectedPosition = Position.Right;
+    }
+
+    private Task OpenDefaultDrawer()
+    {
+        return Drawer.Show<PlainDialog, PlainDialogViewModel, bool>(new PlainDialogViewModel(), new DefaultDrawerOptions()
+        {
+            Buttons = DialogButton.OKCancel,
+            Position = SelectedPosition,
+            Title = "Please select a date",
+            CanClickOnMaskToClose = false,
+        });
     }
 
     private async Task OpenDrawer()

@@ -13,5 +13,6 @@
     <StackPanel HorizontalAlignment="Left" >
         <u:EnumSelector EnumType="{x:Type common:Position}" Value="{Binding SelectedPosition}"></u:EnumSelector>
         <Button Content="Call Drawer" HorizontalAlignment="Stretch" Command="{Binding OpenDrawerCommand}"></Button>
+        <Button Content="Default Drawer" Command="{Binding OpenDefaultDrawerCommand}"></Button>
     </StackPanel>
 </UserControl>
