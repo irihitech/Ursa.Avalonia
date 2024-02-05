@@ -1,3 +1,5 @@
+using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia.Controls;
@@ -12,33 +14,54 @@ namespace Ursa.Demo.ViewModels;
 
 public partial class DrawerDemoViewModel: ObservableObject
 {
-    public ICommand OpenDrawerCommand { get; set; }
-    public ICommand OpenDefaultDrawerCommand { get; set; }
-    
-    [ObservableProperty] private Position _selectedPosition;
-    
+    public ICommand ShowDialogCommand { get; set; }
+    public ICommand ShowCustomDialogCommand { get; set; }
 
+    [ObservableProperty] private Position _selectedPosition;
+    [ObservableProperty] private DialogButton _selectedButton;
+    [ObservableProperty] private bool _isGlobal;
+    [ObservableProperty] private bool _canCloseMaskToClose;
+    [ObservableProperty] private DialogResult? _defaultResult;
+    [ObservableProperty] private bool _result;
+    [ObservableProperty] private bool _showMask;
+    [ObservableProperty] private DateTime? _date;
+    
+    
     public DrawerDemoViewModel()
     {
-        OpenDrawerCommand = new AsyncRelayCommand(OpenDrawer);
-        OpenDefaultDrawerCommand = new AsyncRelayCommand(OpenDefaultDrawer);
-        SelectedPosition = Position.Right;
+        ShowDialogCommand = new AsyncRelayCommand(ShowDefaultDialog);
+        ShowCustomDialogCommand = new AsyncRelayCommand(ShowCustomDrawer);
     }
-
-    private Task OpenDefaultDrawer()
+    
+    private async Task ShowDefaultDialog()
     {
-        return Drawer.Show<PlainDialog, PlainDialogViewModel, bool>(new PlainDialogViewModel(), new DefaultDrawerOptions()
-        {
-            Buttons = DialogButton.OKCancel,
-            Position = SelectedPosition,
-            Title = "Please select a date",
-            CanClickOnMaskToClose = false,
-        });
+        var vm = new PlainDialogViewModel();
+        DefaultResult = await Drawer.Show<PlainDialog, PlainDialogViewModel>(
+            vm,
+            IsGlobal ? null : "LocalHost",
+            new DefaultDrawerOptions()
+            {
+                Title = "Please select a date",
+                Position = SelectedPosition,
+                Buttons = SelectedButton,
+                CanClickOnMaskToClose = CanCloseMaskToClose,
+                ShowMask = ShowMask,
+            });
+        Date = vm.Date;
     }
-
-    private async Task OpenDrawer()
+    
+    private async Task ShowCustomDrawer()
     {
-        await Drawer.ShowCustom<DialogWithAction, DialogWithActionViewModel, bool>(new DialogWithActionViewModel(),
-            new CustomDrawerOptions() { Position = SelectedPosition, MinWidth = 400, MinHeight = 400});
+        var vm = new DialogWithActionViewModel();
+        Result = await Drawer.ShowCustom<DialogWithAction, DialogWithActionViewModel, bool>(
+            vm,
+            IsGlobal ? null : "LocalHost",
+            new CustomDrawerOptions()
+            {
+                Position = SelectedPosition,
+                CanClickOnMaskToClose = CanCloseMaskToClose,
+                ShowMask = ShowMask,
+            });
+        Date = vm.Date;
     }
 }

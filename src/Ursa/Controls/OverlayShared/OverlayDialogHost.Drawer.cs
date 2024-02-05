@@ -32,7 +32,15 @@ public partial class OverlayDialogHost
         SetDrawerPosition(control);
         control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDrawerControlClosing);
         var animation = CreateAnimation(control.Bounds.Size, control.Position, true);
-        await Task.WhenAll(animation.RunAsync(control), _maskAppearAnimation.RunAsync(mask));
+        if (mask is null)
+        {
+            await animation.RunAsync(control);
+        }
+        else
+        {
+            await Task.WhenAll(animation.RunAsync(control), _maskAppearAnimation.RunAsync(mask));
+        }
+        
     }
 
     private void SetDrawerPosition(DrawerControlBase control)
@@ -59,7 +67,7 @@ public partial class OverlayDialogHost
             control.Height = newSize.Height;
             SetLeft(control, 0);
         }
-        else if (control.Position == Position.Bottom)
+        else if (control.Position == Position.Top)
         {
             control.Width = newSize.Width;
             SetTop(control, 0);

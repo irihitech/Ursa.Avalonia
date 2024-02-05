@@ -17,7 +17,7 @@
                         BorderThickness="1 0 0 0"
                         IsHitTestVisible="True"
                         Theme="{DynamicResource CardBorder}">
-                    <Border ClipToBounds="True" CornerRadius="12 0 0 12">
+                    <Border ClipToBounds="True" CornerRadius="{Binding #PART_Root.CornerRadius}">
                         <Grid RowDefinitions="Auto, *">
                             <ContentPresenter
                                 Name="PART_ContentPresenter"
@@ -80,7 +80,7 @@
                         BorderThickness="1 0 0 0"
                         IsHitTestVisible="True"
                         Theme="{DynamicResource CardBorder}">
-                    <Border ClipToBounds="True" CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border ClipToBounds="True" CornerRadius="{Binding #PART_Root.CornerRadius}">
                         <Grid RowDefinitions="Auto, *, Auto">
                             <ScrollViewer Grid.Row="1">
                                 <ContentPresenter

@@ -4,6 +4,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Ursa.Common;
+using Ursa.EventArgs;
 
 namespace Ursa.Controls;
 
@@ -121,6 +122,27 @@ public class DefaultDrawerControl: DrawerControlBase
             {
                 OnElementClosing(this, DialogResult.No);
             }
+        }
+    }
+    
+    public override void Close()
+    {
+        if (DataContext is IDialogContext context)
+        {
+            context.Close();
+        }
+        else
+        {
+            DialogResult result = Buttons switch
+            {
+                DialogButton.None => DialogResult.None,
+                DialogButton.OK => DialogResult.OK,
+                DialogButton.OKCancel => DialogResult.Cancel,
+                DialogButton.YesNo => DialogResult.No,
+                DialogButton.YesNoCancel => DialogResult.Cancel,
+                _ => DialogResult.None
+            };
+            RaiseEvent(new ResultEventArgs(ClosedEvent, result));
         }
     }
 }

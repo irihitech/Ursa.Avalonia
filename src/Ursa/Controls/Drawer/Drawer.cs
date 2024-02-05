@@ -6,11 +6,11 @@ namespace Ursa.Controls;
 
 public static class Drawer
 {
-    public static Task<TResult?> Show<TView, TViewModel, TResult>(TViewModel vm, DefaultDrawerOptions? options = null)
+    public static Task<DialogResult?> Show<TView, TViewModel>(TViewModel vm, string? hostId = null, DefaultDrawerOptions? options = null)
         where TView: Control, new()
     {
-        var host = OverlayDialogManager.GetHost(null);
-        if (host is null) return Task.FromResult(default(TResult));
+        var host = OverlayDialogManager.GetHost(hostId);
+        if (host is null) return Task.FromResult(default(DialogResult?));
         var drawer = new DefaultDrawerControl()
         {
             Content = new TView(),
@@ -18,13 +18,13 @@ public static class Drawer
         };
         ConfigureDefaultDrawer(drawer, options);
         host.AddDrawer(drawer);
-        return drawer.ShowAsync<TResult>();
+        return drawer.ShowAsync<DialogResult?>();
     }
     
-    public static Task<TResult?> ShowCustom<TView, TViewModel, TResult>(TViewModel vm, CustomDrawerOptions? options = null)
+    public static Task<TResult?> ShowCustom<TView, TViewModel, TResult>(TViewModel vm, string? hostId = null, CustomDrawerOptions? options = null)
         where TView: Control, new()
     {
-        var host = OverlayDialogManager.GetHost(null);
+        var host = OverlayDialogManager.GetHost(hostId);
         if (host is null) return Task.FromResult(default(TResult));
         var dialog = new CustomDrawerControl()
         {
