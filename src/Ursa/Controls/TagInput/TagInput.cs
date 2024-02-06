@@ -190,6 +190,12 @@ public class TagInput : TemplatedControl
                 }
             }
         }
+        else if (e.Action == NotifyCollectionChangedAction.Reset)
+        {
+            Items.Clear();
+            Items.Add(_textBox);
+            InvalidateVisual();
+        }
 
     }
 
