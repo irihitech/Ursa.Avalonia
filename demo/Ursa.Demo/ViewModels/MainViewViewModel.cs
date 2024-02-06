@@ -47,6 +47,7 @@ public class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyTagInput => new TagInputDemoViewModel(),
             MenuKeys.MenuKeyTimeline => new TimelineDemoViewModel(),
             MenuKeys.MenuKeyTwoTonePathIcon => new TwoTonePathIconDemoViewModel(),
+            MenuKeys.MenuKeyThemeToggler => new ThemeTogglerDemoViewModel(),
         };
     }
 }

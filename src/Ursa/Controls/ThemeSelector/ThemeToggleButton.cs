@@ -28,18 +28,22 @@ public class ThemeToggleButton: ThemeSelectorBase
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        EventHelper.UnregisterEvent(ToggleButton.IsCheckedChangedEvent, OnButtonCheckedChanged, _button);
+        EventHelper.UnregisterEvent(Button.ClickEvent, OnButtonClickedChanged, _button);
         _button = e.NameScope.Get<ToggleButton>(PART_ThemeToggleButton);
-        EventHelper.RegisterEvent(ToggleButton.IsCheckedChangedEvent, OnButtonCheckedChanged, _button);
+        EventHelper.RegisterEvent(Button.ClickEvent, OnButtonClickedChanged, _button);
         PropertyHelper.SetValue(ToggleButton.IsCheckedProperty, _currentTheme == ThemeVariant.Light, _button);
     }
 
-    private void OnButtonCheckedChanged(object sender, RoutedEventArgs e)
+    private void OnButtonClickedChanged(object sender, RoutedEventArgs e)
     {
         var newTheme = (sender as ToggleButton)!.IsChecked;
         if (newTheme is null) return;
-        SelectedTheme = newTheme.Value ? ThemeVariant.Light : ThemeVariant.Dark;
+        SetCurrentValue(SelectedThemeProperty, newTheme.Value ? ThemeVariant.Light : ThemeVariant.Dark);
     }
-    
-    
+
+    protected internal override void SyncThemeFromScope(ThemeVariant? theme)
+    {
+        base.SyncThemeFromScope(theme);
+        PropertyHelper.SetValue(ToggleButton.IsCheckedProperty, theme == ThemeVariant.Light, _button);
+    }
 }
