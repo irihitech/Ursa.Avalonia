@@ -40,11 +40,14 @@ public abstract class ThemeSelectorBase: TemplatedControl
 
     private void OnTargetScopeChanged(AvaloniaPropertyChangedEventArgs<ThemeVariantScope?> args)
     {
-        var target = args.NewValue.Value;
-        if (target is not null)
+        if (args.OldValue.Value is { } oldTarget)
         {
-            SyncThemeFromScope(target.ActualThemeVariant);
-            target.ActualThemeVariantChanged += OnScopeThemeChanged;
+            oldTarget.ActualThemeVariantChanged -= OnScopeThemeChanged;
+        }
+        if (args.NewValue.Value is { } newTarget)
+        {
+            newTarget.ActualThemeVariantChanged += OnScopeThemeChanged;
+            SyncThemeFromScope(newTarget.ActualThemeVariant);
         }
     }
 
@@ -66,7 +69,7 @@ public abstract class ThemeSelectorBase: TemplatedControl
         _syncFromScope = false;
     }
 
-    protected internal virtual void SyncThemeFromScope(ThemeVariant? theme)
+    protected virtual void SyncThemeFromScope(ThemeVariant? theme)
     {
         this.SelectedTheme = theme;
     }
@@ -86,7 +89,6 @@ public abstract class ThemeSelectorBase: TemplatedControl
             _scope.ActualThemeVariantChanged += OnScopeThemeChanged;
             SyncThemeFromScope(_scope.ActualThemeVariant);
         }
-
         if (TargetScope is not null)
         {
             SyncThemeFromScope(TargetScope.ActualThemeVariant);
@@ -100,7 +102,6 @@ public abstract class ThemeSelectorBase: TemplatedControl
         {
             _application.ActualThemeVariantChanged -= OnScopeThemeChanged;
         }
-
         if (_scope is not null)
         {
             _scope.ActualThemeVariantChanged -= OnScopeThemeChanged;

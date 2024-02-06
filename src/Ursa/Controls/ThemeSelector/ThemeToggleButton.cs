@@ -41,7 +41,7 @@ public class ThemeToggleButton: ThemeSelectorBase
         SetCurrentValue(SelectedThemeProperty, newTheme.Value ? ThemeVariant.Light : ThemeVariant.Dark);
     }
 
-    protected internal override void SyncThemeFromScope(ThemeVariant? theme)
+    protected override void SyncThemeFromScope(ThemeVariant? theme)
     {
         base.SyncThemeFromScope(theme);
         PropertyHelper.SetValue(ToggleButton.IsCheckedProperty, theme == ThemeVariant.Light, _button);
