@@ -77,13 +77,10 @@
                 </u:NavigationMenu.ItemTemplate>
             </u:NavigationMenu>
         </Border>
-
-        <ToggleButton
+        <u:ThemeToggleButton
             Grid.Row="0"
             Grid.Column="1"
-            HorizontalAlignment="Right"
-            Content="Update Theme"
-            IsCheckedChanged="ToggleButton_OnIsCheckedChanged" />
+            HorizontalAlignment="Right"/>
         <ContentControl
             Grid.Row="1"
             Grid.Column="1"

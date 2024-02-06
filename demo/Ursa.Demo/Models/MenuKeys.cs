@@ -25,5 +25,6 @@ public static class MenuKeys
     public const string MenuKeyTagInput = "TagInput";
     public const string MenuKeyTimeline = "Timeline";
     public const string MenuKeyTwoTonePathIcon = "TwoTonePathIcon";
+    public const string MenuKeyThemeToggler = "ThemeToggler";
 
 }

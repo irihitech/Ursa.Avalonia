@@ -32,6 +32,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Pagination", Key = MenuKeys.MenuKeyPagination },
             new() { MenuHeader = "RangeSlider", Key = MenuKeys.MenuKeyRangeSlider, Status = "New"},
             new() { MenuHeader = "TagInput", Key = MenuKeys.MenuKeyTagInput },
+            new() { MenuHeader = "Theme Toggler", Key = MenuKeys.MenuKeyThemeToggler },
             new() { MenuHeader = "Timeline", Key = MenuKeys.MenuKeyTimeline, Status = "Updated" },
             new() { MenuHeader = "TwoTonePathIcon", Key = MenuKeys.MenuKeyTwoTonePathIcon, Status = "New"},
         };
