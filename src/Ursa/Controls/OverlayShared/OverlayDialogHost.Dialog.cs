@@ -1,97 +1,27 @@
 using Avalonia;
 using Avalonia.Animation;
+using Avalonia.Animation.Easings;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Media;
+using Avalonia.Styling;
 using Avalonia.Utilities;
+using Ursa.Controls.OverlayShared;
+using Ursa.Controls.Shapes;
+using Ursa.EventArgs;
 
 namespace Ursa.Controls;
 
-public class OverlayDialogHost : Canvas
+public partial class OverlayDialogHost
 {
-    private readonly List<DialogControl> _dialogs = new();
-    private readonly List<DialogControl> _modalDialogs = new(); 
-    private readonly List<Border> _masks = new();
-
-    public string? HostId { get; set; }
-
     private Point _lastPoint;
-
-
-    public DataTemplates DialogDataTemplates { get; set; } = new DataTemplates();
-    public Thickness SnapThickness { get; set; } = new Thickness(0);
-
-    public static readonly StyledProperty<IBrush?> OverlayMaskBrushProperty =
-        AvaloniaProperty.Register<OverlayDialogHost, IBrush?>(
-            nameof(OverlayMaskBrush));
-
-    public IBrush? OverlayMaskBrush
-    {
-        get => GetValue(OverlayMaskBrushProperty);
-        set => SetValue(OverlayMaskBrushProperty, value);
-    }
-
-    private Border CreateOverlayMask(bool canCloseOnClick)
-    {
-        Border border = new()
-        {
-            HorizontalAlignment = HorizontalAlignment.Stretch,
-            VerticalAlignment = VerticalAlignment.Stretch,
-            Width = this.Bounds.Width,
-            Height = this.Bounds.Height,
-            [!BackgroundProperty] = this[!OverlayMaskBrushProperty],
-            IsVisible = true,
-        };
-        if (canCloseOnClick)
-        {
-            border.AddHandler(PointerReleasedEvent, ClickBorderToCloseDialog);
-        }
-        return border;
-    }
-
-    private void ClickBorderToCloseDialog(object sender, PointerReleasedEventArgs e)
-    {
-        if (sender is Border border)
-        {
-            int i = _masks.IndexOf(border);
-            DialogControl dialog = _modalDialogs[i];
-            dialog.CloseDialog();
-            border.RemoveHandler(PointerReleasedEvent, ClickBorderToCloseDialog);
-        }
-    }
-
-    protected sealed override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
-    {
-        base.OnAttachedToVisualTree(e);
-        OverlayDialogManager.RegisterHost(this, HostId);
-    }
-
-    protected sealed override void OnSizeChanged(SizeChangedEventArgs e)
-    {
-        base.OnSizeChanged(e);
-        for (int i = 0; i < _masks.Count; i++)
-        {
-            _masks[i].Width = this.Bounds.Width;
-            _masks[i].Height = this.Bounds.Height;
-        }
-
-        var oldSize = e.PreviousSize;
-        var newSize = e.NewSize;
-        foreach (var dialog in _dialogs)
-        {
-            ResetDialogPosition(dialog, oldSize, newSize);
-        }
-
-        foreach (var modalDialog in _modalDialogs)
-        {
-            ResetDialogPosition(modalDialog, oldSize, newSize);
-        }
-    }
     
-    private void ResetDialogPosition(DialogControl control, Size oldSize, Size newSize)
+    public Thickness SnapThickness { get; set; } = new Thickness(0);
+    
+    private static void ResetDialogPosition(DialogControlBase control, Size newSize)
     {
         var width = newSize.Width - control.Bounds.Width;
         var height = newSize.Height - control.Bounds.Height;
@@ -116,16 +46,10 @@ public class OverlayDialogHost : Canvas
         SetLeft(control, Math.Max(0.0, newLeft));
         SetTop(control, Math.Max(0.0, newTop));
     }
-
-    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
-    {
-        OverlayDialogManager.UnregisterHost(HostId);
-        base.OnDetachedFromVisualTree(e);
-    }
-
+    
     protected override void OnPointerMoved(PointerEventArgs e)
     {
-        if (e.Source is DialogControl item)
+        if (e.Source is DialogControlBase item)
         {
             if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
             {
@@ -142,7 +66,7 @@ public class OverlayDialogHost : Canvas
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
-        if (e.Source is DialogControl item)
+        if (e.Source is DialogControlBase item)
         {
             _lastPoint = e.GetPosition(item);
         }
@@ -150,49 +74,52 @@ public class OverlayDialogHost : Canvas
 
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
     {
-        if (e.Source is DialogControl item)
+        if (e.Source is DialogControlBase item)
         {
-            AnchorDialog(item);
+            AnchorAndUpdatePositionInfo(item);
         }
     }
 
-    internal void AddDialog(DialogControl control)
+    internal void AddDialog(DialogControlBase control)
     {
+        PureRectangle? mask = null;
+        if (control.CanLightDismiss)
+        {
+            CreateOverlayMask(false, control.CanLightDismiss);
+        }
+        if (mask is not null)
+        {
+            Children.Add(mask);
+        }
         this.Children.Add(control);
-        _dialogs.Add(control);
+        _layers.Add(new DialogPair(mask, control));
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetToPosition(control);
-        control.DialogControlClosing += OnDialogControlClosing;
-        control.LayerChanged += OnDialogLayerChanged;
+        control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDialogControlClosing);
+        control.AddHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged);
         ResetZIndices();
     }
-
-    private void OnDialogControlClosing(object sender, object? e)
+    
+    private async void OnDialogControlClosing(object sender, object? e)
     {
-        if (sender is DialogControl control)
+        if (sender is DialogControlBase control)
         {
+            var layer = _layers.FirstOrDefault(a => a.Element == control);
+            if (layer is null) return;
+            _layers.Remove(layer);
+
+            control.RemoveHandler(OverlayFeedbackElement.ClosedEvent, OnDialogControlClosing);
+            control.RemoveHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged);
+            
             Children.Remove(control);
-            control.DialogControlClosing -= OnDialogControlClosing;
-            control.LayerChanged -= OnDialogLayerChanged;
-            if (_dialogs.Contains(control))
+
+            if (layer.Mask is not null)
             {
-                _dialogs.Remove(control);
+                await _maskDisappearAnimation.RunAsync(layer.Mask);
+                Children.Remove(layer.Mask);
             }
-            else if (_modalDialogs.Contains(control))
-            {
-                _modalDialogs.Remove(control);
-                if (_masks.Count > 0)
-                {
-                    var last = _masks.Last();
-                    this.Children.Remove(last);
-                    _masks.Remove(last);
-                    if (_masks.Count > 0)
-                    {
-                        _masks.Last().IsVisible = true;
-                    }
-                }
-            }
+            
             ResetZIndices();
         }
     }
@@ -201,94 +128,64 @@ public class OverlayDialogHost : Canvas
     ///  Add a dialog as a modal dialog to the host
     /// </summary>
     /// <param name="control"></param>
-    internal void AddModalDialog(DialogControl control)
+    internal void AddModalDialog(DialogControlBase control)
     {
-        var mask = CreateOverlayMask(control.CanClickOnMaskToClose);
-        _masks.Add(mask);
-        _modalDialogs.Add(control);
+        var mask = CreateOverlayMask(true, control.CanClickOnMaskToClose);
+        _layers.Add(new DialogPair(mask, control));
         control.SetAsModal(true);
-        for (int i = 0; i < _masks.Count-1; i++)
-        {
-            _masks[i].Opacity = 0.5;
-        }
         ResetZIndices();
         this.Children.Add(mask);
         this.Children.Add(control);
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetToPosition(control);
-        control.DialogControlClosing += OnDialogControlClosing;
-        control.LayerChanged += OnDialogLayerChanged;
+        control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDialogControlClosing);
+        control.AddHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged);
+        _maskAppearAnimation.RunAsync(mask);
+        control.IsClosed = false;
     }
 
     // Handle dialog layer change event
     private void OnDialogLayerChanged(object sender, DialogLayerChangeEventArgs e)
     {
-        if (sender is not DialogControl control)
+        if (sender is not DialogControlBase control)
             return;
-        if (!_dialogs.Contains(control))
-            return;
-        int index = _dialogs.IndexOf(control);
-        _dialogs.Remove(control);
+        var layer = _layers.FirstOrDefault(a => a.Element == control);
+        if (layer is null) return;
+        int index = _layers.IndexOf(layer);
+        _layers.Remove(layer);
         int newIndex = index;
         switch (e.ChangeType)
         {
             case DialogLayerChangeType.BringForward:
-                newIndex = MathUtilities.Clamp(index + 1, 0, _dialogs.Count);
+                newIndex = MathUtilities.Clamp(index + 1, 0, _layers.Count);
                 break;
             case DialogLayerChangeType.SendBackward:
-                newIndex = MathUtilities.Clamp(index - 1, 0, _dialogs.Count);
+                newIndex = MathUtilities.Clamp(index - 1, 0, _layers.Count);
                 break;
             case DialogLayerChangeType.BringToFront:
-                newIndex = _dialogs.Count;
+                newIndex = _layers.Count;
                 break;
             case DialogLayerChangeType.SendToBack:
                 newIndex = 0;
                 break;
         }
 
-        _dialogs.Insert(newIndex, control);
-        for (int i = 0; i < _dialogs.Count; i++)
-        {
-            _dialogs[i].ZIndex = i;
-        }
-
-        for (int i = 0; i < _masks.Count * 2; i += 2) 
-        {
-            _masks[i].ZIndex = _dialogs.Count + i;
-            _modalDialogs[i].ZIndex = _dialogs.Count + i + 1;
-        }
-        
+        _layers.Insert(newIndex, layer);
+        ResetZIndices();
     }
-
-    private void ResetZIndices()
-    {
-        int index = 0;
-        for ( int i = 0; i< _dialogs.Count; i++)
-        {
-            _dialogs[i].ZIndex = index;
-            index++;
-        }
-        for(int i = 0; i< _masks.Count; i++)
-        {
-            _masks[i].ZIndex = index;
-            index++;
-            _modalDialogs[i].ZIndex = index;
-            index++;
-        }
-    }
-
-    private void SetToPosition(DialogControl? control)
+    
+    private void SetToPosition(DialogControlBase? control)
     {
         if (control is null) return;
         double left = GetLeftPosition(control);
         double top = GetTopPosition(control);
         SetLeft(control, left);
         SetTop(control, top);
-        AnchorDialog(control);
+        AnchorAndUpdatePositionInfo(control);
     }
     
-    private void AnchorDialog(DialogControl control)
+    private void AnchorAndUpdatePositionInfo(DialogControlBase control)
     {
         control.ActualHorizontalAnchor = HorizontalPosition.Center;
         control.ActualVerticalAnchor = VerticalPosition.Center;
@@ -329,7 +226,7 @@ public class OverlayDialogHost : Canvas
         control.VerticalOffsetRatio = (top + bottom) == 0 ? 0 : top / (top + bottom);
     }
 
-    private double GetLeftPosition(DialogControl control)
+    private double GetLeftPosition(DialogControlBase control)
     {
         double left = 0;
         double offset = Math.Max(0, control.HorizontalOffset ?? 0);
@@ -355,9 +252,9 @@ public class OverlayDialogHost : Canvas
             }
         }
         return left;
-    }
+    } 
 
-    private double GetTopPosition(DialogControl control)
+    private double GetTopPosition(DialogControlBase control)
     {
         double top = 0;
         double offset = Math.Max(0, control.VerticalOffset ?? 0);
@@ -380,22 +277,5 @@ public class OverlayDialogHost : Canvas
         return top;
     }
 
-    internal IDataTemplate? GetDataTemplate(object? o)
-    {
-        if (o is null) return null;
-        IDataTemplate? result = null;
-        var templates = this.DialogDataTemplates;
-        result = templates.FirstOrDefault(a => a.Match(o));
-        if (result != null) return result;
-        var keys = this.Resources.Keys;
-        foreach (var key in keys)
-        {
-            if (Resources.TryGetValue(key, out var value) && value is IDataTemplate t)
-            {
-                result = t;
-                break;
-            }
-        }
-        return result;
-    }
+    
 }

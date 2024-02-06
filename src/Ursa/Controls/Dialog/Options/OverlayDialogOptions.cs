@@ -26,4 +26,6 @@ public class OverlayDialogOptions
     public DialogButton Buttons { get; set; } = DialogButton.OKCancel;
     public string? Title { get; set; } = null;
     public bool IsCloseButtonVisible { get; set; } = true;
+    
+    public bool CanLightDismiss { get; set; }
 }

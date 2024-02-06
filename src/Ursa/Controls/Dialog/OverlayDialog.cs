@@ -58,7 +58,7 @@ public static class OverlayDialog
     {
         var host = OverlayDialogManager.GetHost(hostId);
         if (host is null) return;
-        var t = new DialogControl()
+        var t = new CustomDialogControl()
         {
             Content = new TView(),
             DataContext = vm,
@@ -72,7 +72,7 @@ public static class OverlayDialog
     {
         var host = OverlayDialogManager.GetHost(hostId);
         if (host is null) return;
-        var t = new DialogControl()
+        var t = new CustomDialogControl()
         {
             Content = control,
             DataContext = vm,
@@ -89,7 +89,7 @@ public static class OverlayDialog
         var view = host.GetDataTemplate(vm)?.Build(vm);
         if (view is null) view = new ContentControl() { Padding = new Thickness(24) };
         view.DataContext = vm;
-        var t = new DialogControl()
+        var t = new CustomDialogControl()
         {
             Content = view,
             DataContext = vm,
@@ -135,7 +135,7 @@ public static class OverlayDialog
     {
         var host = OverlayDialogManager.GetHost(hostId);
         if (host is null) return Task.FromResult(default(TResult));
-        var t = new DialogControl()
+        var t = new CustomDialogControl()
         {
             Content = new TView(),
             DataContext = vm,
@@ -150,7 +150,7 @@ public static class OverlayDialog
     {
         var host = OverlayDialogManager.GetHost(hostId);
         if (host is null) return Task.FromResult(default(TResult));
-        var t = new DialogControl()
+        var t = new CustomDialogControl()
         {
             Content = control,
             DataContext = vm,
@@ -168,7 +168,7 @@ public static class OverlayDialog
         var view = host.GetDataTemplate(vm)?.Build(vm);
         if (view is null) view = new ContentControl() { Padding = new Thickness(24) };
         view.DataContext = vm;
-        var t = new DialogControl()
+        var t = new CustomDialogControl()
         {
             Content = view,
             DataContext = vm,
@@ -178,7 +178,7 @@ public static class OverlayDialog
         return t.ShowAsync<TResult?>(token);
     }
     
-    private static void ConfigureDialogControl(DialogControl control, OverlayDialogOptions? options)
+    private static void ConfigureDialogControl(CustomDialogControl control, OverlayDialogOptions? options)
     {
         options ??= OverlayDialogOptions.Default;
         control.HorizontalAnchor = options.HorizontalAnchor;
@@ -191,6 +191,7 @@ public static class OverlayDialog
             options.VerticalAnchor == VerticalPosition.Center ? null : options.VerticalOffset;
         control.CanClickOnMaskToClose = options.CanClickOnMaskToClose;
         control.IsCloseButtonVisible = options.IsCloseButtonVisible;
+        control.CanLightDismiss = options.CanLightDismiss;
     }
     
     private static void ConfigureDefaultDialogControl(DefaultDialogControl control, OverlayDialogOptions? options)
@@ -208,6 +209,7 @@ public static class OverlayDialog
         control.Mode = options.Mode;
         control.Buttons = options.Buttons;
         control.Title = options.Title;
+        control.CanLightDismiss = options.CanLightDismiss;
     }
     
     

@@ -14,7 +14,7 @@
     </UserControl.Resources>
     <StackPanel HorizontalAlignment="Left" Spacing="16">
         <ToggleSwitch Name="loading" Content="Toggle Loading" />
-        <u:EnumSelector Name="placement" EnumType="{x:Type common:IconPlacement}" />
+        <u:EnumSelector Name="placement" EnumType="{x:Type common:Position}" />
         <u:IconButton
             Content="Hello World"
             IconPlacement="{Binding #placement.Value}"

@@ -9,6 +9,7 @@ public static class MenuKeys
     public const string MenuKeyClassInput = "Class Input";
     public const string MenuKeyDialog = "Dialog";
     public const string MenuKeyDivider = "Divider";
+    public const string MenuKeyDrawer = "Drawer";
     public const string MenuKeyDualBadge = "DualBadge";
     public const string MenuKeyEnumSelector = "EnumSelector";
     public const string MenuKeyImageViewer = "ImageViewer";
