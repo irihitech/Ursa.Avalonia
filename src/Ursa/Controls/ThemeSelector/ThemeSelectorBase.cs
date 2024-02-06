@@ -4,6 +4,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.LogicalTree;
 using Avalonia.Styling;
 using Ursa.Common;
+using System;
 
 namespace Ursa.Controls;
 
@@ -51,7 +52,7 @@ public abstract class ThemeSelectorBase: TemplatedControl
         }
     }
 
-    private void OnScopeThemeChanged(object sender, EventArgs e)
+    private void OnScopeThemeChanged(object sender, System.EventArgs e)
     {
         _syncFromScope = true;
         if (this.TargetScope is { } target)
