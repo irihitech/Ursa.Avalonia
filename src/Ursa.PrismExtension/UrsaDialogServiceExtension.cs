@@ -11,6 +11,7 @@ public static class UrsaDialogServiceExtension
     {
         containerRegistry.RegisterSingleton<IUrsaDialogService, UrsaDialogService>();
         containerRegistry.RegisterSingleton<IUrsaOverlayDialogService, UrsaOverlayDialogService>();
+        containerRegistry.RegisterSingleton<IUrsaDialogService, UrsaDialogService>();
     }
     
     public static void RegisterUrsaDialogView<T>(this IContainerRegistry containerRegistry, string name) where T : Control
