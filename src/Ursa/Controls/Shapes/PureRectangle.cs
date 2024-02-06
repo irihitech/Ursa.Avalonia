@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
 using Avalonia.Media;
 
@@ -7,29 +8,23 @@ namespace Ursa.Controls.Shapes;
 /// <summary>
 /// A rectangle, with no corner radius.
 /// </summary>
-public class PureRectangle: Shape
+public class PureRectangle: Control
 {
+    public static readonly StyledProperty<IBrush?> BackgroundProperty = AvaloniaProperty.Register<PureRectangle, IBrush?>(
+        nameof(Background));
+
+    public IBrush? Background
+    {
+        get => GetValue(BackgroundProperty);
+        set => SetValue(BackgroundProperty, value);
+    }
     static PureRectangle()
     {
         FocusableProperty.OverrideDefaultValue<PureRectangle>(false);
-        AffectsGeometry<PureRectangle>(BoundsProperty);
-    }
-    protected override Geometry? CreateDefiningGeometry()
-    {
-        StreamGeometry geometry = new StreamGeometry();
-        Rect rect = new Rect(this.Bounds.Size).Deflate(this.StrokeThickness / 2.0);
-        using StreamGeometryContext context = geometry.Open();
-        context.BeginFigure(new Point(rect.Left, rect.Top), true);
-        context.LineTo(new Point(rect.Right, rect.Top));
-        context.LineTo(new Point(rect.Right, rect.Bottom));
-        context.LineTo(new Point(rect.Left, rect.Bottom));
-        context.LineTo(new Point(rect.Left, rect.Top));
-        context.EndFigure(true);
-        return geometry;
     }
 
-    protected override Size MeasureOverride(Size availableSize)
+    public override void Render(DrawingContext context)
     {
-        return new Size(this.StrokeThickness, this.StrokeThickness);
+        context.DrawRectangle(Background, null, new Rect(Bounds.Size));
     }
 }

@@ -77,7 +77,7 @@ public partial class OverlayDialogHost: Canvas
         };
         if (modal)
         {
-            rec[!Shape.FillProperty] = this[!OverlayMaskBrushProperty];
+            rec[!PureRectangle.BackgroundProperty] = this[!OverlayMaskBrushProperty];
         }
         else if(canCloseOnClick) 
         { 
