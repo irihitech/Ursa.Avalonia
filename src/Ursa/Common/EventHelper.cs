@@ -20,4 +20,22 @@ internal static class EventHelper
             if(button is not null) button.Click -= handler;
         }
     }
+    
+    public static void RegisterEvent<TArgs>(RoutedEvent<TArgs> routedEvent, EventHandler<TArgs> handler, params Button?[] controls)
+        where TArgs : RoutedEventArgs
+    {
+        foreach (var control in controls)
+        {
+            control?.AddHandler(routedEvent, handler);
+        }
+    }
+    
+    public static void UnregisterEvent<TArgs>(RoutedEvent<TArgs> routedEvent, EventHandler<TArgs> handler, params Button?[] controls)
+        where TArgs : RoutedEventArgs
+    {
+        foreach (var control in controls)
+        {
+            control?.RemoveHandler(routedEvent, handler);
+        }
+    }
 }
