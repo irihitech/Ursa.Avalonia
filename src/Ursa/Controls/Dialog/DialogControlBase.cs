@@ -64,9 +64,9 @@ public abstract class DialogControlBase: OverlayFeedbackElement
         _titleArea?.AddHandler(PointerMovedEvent, OnTitlePointerMove, RoutingStrategies.Bubble);
         _titleArea?.AddHandler(PointerPressedEvent, OnTitlePointerPressed, RoutingStrategies.Bubble);
         _titleArea?.AddHandler(PointerReleasedEvent, OnTitlePointerRelease, RoutingStrategies.Bubble);
-        Button.ClickEvent.AddHandler(OnCloseButtonClick, _closeButton);
-        _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
         Button.ClickEvent.RemoveHandler(OnCloseButtonClick, _closeButton);
+        _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
+        Button.ClickEvent.AddHandler(OnCloseButtonClick, _closeButton);
     }
     
     private void OnTitlePointerPressed(object sender, PointerPressedEventArgs e)
