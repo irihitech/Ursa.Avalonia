@@ -5,6 +5,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Platform;
+using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
 
 namespace Ursa.Controls;
@@ -55,97 +56,38 @@ public class MessageBoxWindow : Window
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        if (_closeButton != null)
-        {
-            _closeButton.Click -= OnCloseButtonClick;
-        }
-
-        if (_yesButton != null)
-        {
-            _yesButton.Click -= OnYesButtonClick;
-        }
-
-        if (_noButton != null)
-        {
-            _noButton.Click -= OnNoButtonClick;
-        }
-
-        if (_okButton != null)
-        {
-            _okButton.Click -= OnOKButtonClick;
-        }
-
-        if (_cancelButton != null)
-        {
-            _cancelButton.Click -= OnCancelButtonClick;
-        }
-
+        Button.ClickEvent.RemoveHandler(OnDefaultButtonClick, _yesButton, _noButton, _okButton, _cancelButton);
+        Button.ClickEvent.RemoveHandler(OnCloseButtonClick, _closeButton);
         _yesButton = e.NameScope.Find<Button>(PART_YesButton);
         _noButton = e.NameScope.Find<Button>(PART_NoButton);
         _okButton = e.NameScope.Find<Button>(PART_OKButton);
         _cancelButton = e.NameScope.Find<Button>(PART_CancelButton);
         _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
-        if (_closeButton is not null)
-        {
-            _closeButton.Click += OnCloseButtonClick;
-        }
-
-        if (_yesButton is not null)
-        {
-            _yesButton.Click += OnYesButtonClick;
-        }
-
-        if (_noButton is not null)
-        {
-            _noButton.Click += OnNoButtonClick;
-        }
-
-        if (_okButton is not null)
-        {
-            _okButton.Click += OnOKButtonClick;
-        }
-
-        if (_cancelButton is not null)
-        {
-            _cancelButton.Click += OnCancelButtonClick;
-        }
-
+        Button.ClickEvent.AddHandler(OnDefaultButtonClick, _yesButton, _noButton, _okButton, _cancelButton);
+        Button.ClickEvent.AddHandler(OnCloseButtonClick, _closeButton);
         SetButtonVisibility();
     }
 
     private void SetButtonVisibility()
     {
-        if (_buttonConfigs == MessageBoxButton.OK)
+        switch (_buttonConfigs)
         {
-            if (_closeButton != null) _closeButton.IsVisible = true;
-            if (_yesButton != null) _yesButton.IsVisible = false;
-            if (_noButton != null) _noButton.IsVisible = false;
-            if (_okButton != null) _okButton.IsVisible = true;
-            if (_cancelButton != null) _cancelButton.IsVisible = false;
-        }
-        else if (_buttonConfigs == MessageBoxButton.OKCancel)
-        {
-            if (_closeButton != null) _closeButton.IsVisible = true;
-            if (_yesButton != null) _yesButton.IsVisible = false;
-            if (_noButton != null) _noButton.IsVisible = false;
-            if (_okButton != null) _okButton.IsVisible = true;
-            if (_cancelButton != null) _cancelButton.IsVisible = true;
-        }
-        else if (_buttonConfigs == MessageBoxButton.YesNo)
-        {
-            if (_closeButton != null) _closeButton.IsVisible = false;
-            if (_yesButton != null) _yesButton.IsVisible = true;
-            if (_noButton != null) _noButton.IsVisible = true;
-            if (_okButton != null) _okButton.IsVisible = false;
-            if (_cancelButton != null) _cancelButton.IsVisible = false;
-        }
-        else if (_buttonConfigs == MessageBoxButton.YesNoCancel)
-        {
-            if (_closeButton != null) _closeButton.IsVisible = true;
-            if (_yesButton != null) _yesButton.IsVisible = true;
-            if (_noButton != null) _noButton.IsVisible = true;
-            if (_okButton != null) _okButton.IsVisible = false;
-            if (_cancelButton != null) _cancelButton.IsVisible = true;
+            case MessageBoxButton.OK:
+                Button.IsVisibleProperty.SetValue(true, _okButton);
+                Button.IsVisibleProperty.SetValue(false, _cancelButton, _yesButton, _noButton);
+                break;
+            case MessageBoxButton.OKCancel:
+                Button.IsVisibleProperty.SetValue(true, _okButton, _cancelButton);
+                Button.IsVisibleProperty.SetValue(false, _yesButton, _noButton);
+                break;
+            case MessageBoxButton.YesNo:
+                Button.IsVisibleProperty.SetValue(false, _okButton, _cancelButton);
+                Button.IsVisibleProperty.SetValue(true, _yesButton, _noButton);
+                break;
+            case MessageBoxButton.YesNoCancel:
+                Button.IsVisibleProperty.SetValue(false, _okButton);
+                Button.IsVisibleProperty.SetValue(true, _cancelButton, _yesButton, _noButton);
+                break;
         }
     }
 
@@ -159,24 +101,24 @@ public class MessageBoxWindow : Window
         Close(MessageBoxResult.Cancel);
     }
 
-    private void OnYesButtonClick(object sender, RoutedEventArgs e)
+    private void OnDefaultButtonClick(object sender, RoutedEventArgs e)
     {
-        Close(MessageBoxResult.Yes);
-    }
-
-    private void OnNoButtonClick(object sender, RoutedEventArgs e)
-    {
-        Close(MessageBoxResult.No);
-    }
-
-    private void OnOKButtonClick(object sender, RoutedEventArgs e)
-    {
-        Close(MessageBoxResult.OK);
-    }
-
-    private void OnCancelButtonClick(object sender, RoutedEventArgs e)
-    {
-        Close(MessageBoxResult.Cancel);
+        if (sender == _okButton)
+        {
+            Close(MessageBoxResult.OK);
+        }
+        else if (sender == _cancelButton)
+        {
+            Close(MessageBoxResult.Cancel);
+        }
+        else if (sender == _yesButton)
+        {
+            Close(MessageBoxResult.Yes);
+        }
+        else if (sender == _noButton)
+        {
+            Close(MessageBoxResult.No);
+        }
     }
 
     protected override void OnKeyUp(KeyEventArgs e)

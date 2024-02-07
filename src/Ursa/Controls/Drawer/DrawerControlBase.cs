@@ -4,6 +4,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
+using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
 using Ursa.Controls.OverlayShared;
 using Ursa.EventArgs;
@@ -59,9 +60,9 @@ public const string PART_CloseButton = "PART_CloseButton";
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        EventHelper.UnregisterClickEvent(OnCloseButtonClick, _closeButton);
+        Button.ClickEvent.RemoveHandler(OnCloseButtonClick, _closeButton);
         _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
-        EventHelper.RegisterClickEvent(OnCloseButtonClick, _closeButton);
+        Button.ClickEvent.AddHandler(OnCloseButtonClick, _closeButton);
     }
 
     private void OnDataContextChange(AvaloniaPropertyChangedEventArgs<object?> args)

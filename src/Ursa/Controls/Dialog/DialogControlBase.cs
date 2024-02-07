@@ -3,6 +3,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
 using Ursa.Controls.OverlayShared;
 using Ursa.EventArgs;
@@ -63,9 +64,9 @@ public abstract class DialogControlBase: OverlayFeedbackElement
         _titleArea?.AddHandler(PointerMovedEvent, OnTitlePointerMove, RoutingStrategies.Bubble);
         _titleArea?.AddHandler(PointerPressedEvent, OnTitlePointerPressed, RoutingStrategies.Bubble);
         _titleArea?.AddHandler(PointerReleasedEvent, OnTitlePointerRelease, RoutingStrategies.Bubble);
-        EventHelper.UnregisterClickEvent(OnCloseButtonClick, _closeButton);
+        Button.ClickEvent.RemoveHandler(OnCloseButtonClick, _closeButton);
         _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
-        EventHelper.RegisterClickEvent(OnCloseButtonClick, _closeButton);
+        Button.ClickEvent.AddHandler(OnCloseButtonClick, _closeButton);
     }
     
     private void OnTitlePointerPressed(object sender, PointerPressedEventArgs e)
