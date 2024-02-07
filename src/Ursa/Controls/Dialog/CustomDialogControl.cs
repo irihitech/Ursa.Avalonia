@@ -6,6 +6,7 @@ using Avalonia.Input;
 using Avalonia.Input.GestureRecognizers;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
+using Irihi.Avalonia.Shared.Contracts;
 using Ursa.Common;
 using Ursa.Controls.OverlayShared;
 using Ursa.EventArgs;

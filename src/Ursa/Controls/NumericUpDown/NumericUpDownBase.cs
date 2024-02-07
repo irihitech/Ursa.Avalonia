@@ -9,13 +9,14 @@ using Avalonia.Data;
 using Avalonia.Data.Converters;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Irihi.Avalonia.Shared.Contracts;
 
 namespace Ursa.Controls;
 
 [TemplatePart(PART_Spinner, typeof(ButtonSpinner))]
 [TemplatePart(PART_TextBox, typeof(TextBox))]
 [TemplatePart(PART_DragPanel, typeof(Panel))]
-public abstract class NumericUpDown : TemplatedControl
+public abstract class NumericUpDown : TemplatedControl, IClearControl
 {
     public const string PART_Spinner = "PART_Spinner";
     public const string PART_TextBox = "PART_TextBox";
