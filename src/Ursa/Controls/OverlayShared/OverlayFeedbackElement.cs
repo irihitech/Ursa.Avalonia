@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
+using Irihi.Avalonia.Shared.Contracts;
 using Ursa.EventArgs;
 
 namespace Ursa.Controls.OverlayShared;

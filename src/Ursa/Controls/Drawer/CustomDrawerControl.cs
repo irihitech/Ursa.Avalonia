@@ -1,4 +1,5 @@
 using Avalonia.Controls.Primitives;
+using Irihi.Avalonia.Shared.Contracts;
 
 namespace Ursa.Controls;
 
