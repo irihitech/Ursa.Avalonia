@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
+using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
 
 namespace Ursa.Controls;
@@ -46,14 +47,12 @@ public class DefaultDialogWindow: DialogWindow
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        EventHelper.UnregisterClickEvent(OnDefaultClose, _okButton, _cancelButton, _yesButton, _noButton);
-        
+        Button.ClickEvent.RemoveHandler(OnDefaultClose, _okButton, _cancelButton, _yesButton, _noButton);
         _okButton = e.NameScope.Find<Button>(PART_OKButton);
         _cancelButton = e.NameScope.Find<Button>(PART_CancelButton);
         _yesButton = e.NameScope.Find<Button>(PART_YesButton);
         _noButton = e.NameScope.Find<Button>(PART_NoButton);
-        
-        EventHelper.RegisterClickEvent(OnDefaultClose, _yesButton, _noButton, _okButton, _cancelButton);
+        Button.ClickEvent.AddHandler(OnDefaultClose, _okButton, _cancelButton, _yesButton, _noButton);
         SetButtonVisibility();
     }
 

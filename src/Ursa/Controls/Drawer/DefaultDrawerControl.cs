@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
+using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
 using Ursa.EventArgs;
 
@@ -54,50 +55,39 @@ public class DefaultDrawerControl: DrawerControlBase
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        EventHelper.UnregisterClickEvent(OnDefaultButtonClick, _yesButton, _noButton, _okButton, _cancelButton);
+        Button.ClickEvent.RemoveHandler(OnDefaultButtonClick, _yesButton, _noButton, _okButton, _cancelButton);
         _yesButton = e.NameScope.Find<Button>(PART_YesButton);
         _noButton = e.NameScope.Find<Button>(PART_NoButton);
         _okButton = e.NameScope.Find<Button>(PART_OKButton);
         _cancelButton = e.NameScope.Find<Button>(PART_CancelButton);
-        EventHelper.RegisterClickEvent(OnDefaultButtonClick, _yesButton, _noButton, _okButton, _cancelButton);
+        Button.ClickEvent.AddHandler(OnDefaultButtonClick, _yesButton, _noButton, _okButton, _cancelButton);
         SetButtonVisibility();
     }
     
     private void SetButtonVisibility()
     {
         bool isCloseButtonVisible = DataContext is IDialogContext || Buttons != DialogButton.YesNo;
-        SetVisibility(_closeButton, isCloseButtonVisible);
+        Button.IsVisibleProperty.SetValue(isCloseButtonVisible, _closeButton);
         switch (Buttons)
         {
             case DialogButton.None:
-                SetVisibility(_okButton, false);
-                SetVisibility(_cancelButton, false);
-                SetVisibility(_yesButton, false);
-                SetVisibility(_noButton, false);
+                Button.IsVisibleProperty.SetValue(false, _okButton, _cancelButton, _yesButton, _noButton);
                 break;
             case DialogButton.OK:
-                SetVisibility(_okButton, true);
-                SetVisibility(_cancelButton, false);
-                SetVisibility(_yesButton, false);
-                SetVisibility(_noButton, false);
+                Button.IsVisibleProperty.SetValue(true, _okButton);
+                Button.IsVisibleProperty.SetValue(false, _cancelButton, _yesButton, _noButton);
                 break;
             case DialogButton.OKCancel:
-                SetVisibility(_okButton, true);
-                SetVisibility(_cancelButton, true);
-                SetVisibility(_yesButton, false);
-                SetVisibility(_noButton, false);
+                Button.IsVisibleProperty.SetValue(true, _okButton, _cancelButton);
+                Button.IsVisibleProperty.SetValue(false, _yesButton, _noButton);
                 break;
             case DialogButton.YesNo:
-                SetVisibility(_okButton, false);
-                SetVisibility(_cancelButton, false);
-                SetVisibility(_yesButton, true);
-                SetVisibility(_noButton, true);
+                Button.IsVisibleProperty.SetValue(false, _okButton, _cancelButton);
+                Button.IsVisibleProperty.SetValue(true, _yesButton, _noButton);
                 break;
             case DialogButton.YesNoCancel:
-                SetVisibility(_okButton, false);
-                SetVisibility(_cancelButton, true);
-                SetVisibility(_yesButton, true);
-                SetVisibility(_noButton, true);
+                Button.IsVisibleProperty.SetValue(false, _okButton);
+                Button.IsVisibleProperty.SetValue(true, _cancelButton, _yesButton, _noButton);
                 break;
         }
     }

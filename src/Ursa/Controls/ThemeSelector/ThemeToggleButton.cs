@@ -4,6 +4,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Styling;
+using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
 
 namespace Ursa.Controls;
@@ -28,10 +29,10 @@ public class ThemeToggleButton: ThemeSelectorBase
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        EventHelper.UnregisterEvent(Button.ClickEvent, OnButtonClickedChanged, _button);
+        Button.ClickEvent.RemoveHandler(OnButtonClickedChanged, _button);
         _button = e.NameScope.Get<ToggleButton>(PART_ThemeToggleButton);
-        EventHelper.RegisterEvent(Button.ClickEvent, OnButtonClickedChanged, _button);
-        PropertyHelper.SetValue(ToggleButton.IsCheckedProperty, _currentTheme == ThemeVariant.Light, _button);
+        Button.ClickEvent.AddHandler(OnButtonClickedChanged, _button);
+        ToggleButton.IsCheckedProperty.SetValue(_currentTheme == ThemeVariant.Light, _button);
     }
 
     private void OnButtonClickedChanged(object sender, RoutedEventArgs e)
@@ -44,6 +45,6 @@ public class ThemeToggleButton: ThemeSelectorBase
     protected override void SyncThemeFromScope(ThemeVariant? theme)
     {
         base.SyncThemeFromScope(theme);
-        PropertyHelper.SetValue(ToggleButton.IsCheckedProperty, theme == ThemeVariant.Light, _button);
+        ToggleButton.IsCheckedProperty.SetValue(theme == ThemeVariant.Light, _button);
     }
 }

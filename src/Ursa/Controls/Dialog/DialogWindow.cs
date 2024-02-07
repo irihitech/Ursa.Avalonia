@@ -4,6 +4,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
 
 namespace Ursa.Controls;
@@ -42,16 +43,14 @@ public class DialogWindow: Window
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        EventHelper.UnregisterClickEvent(OnCloseButtonClicked, _closeButton);
+        Button.ClickEvent.RemoveHandler(OnCloseButtonClicked, _closeButton);
         _titleArea?.RemoveHandler(PointerPressedEvent, OnTitlePointerPressed);
         _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
-        if (_closeButton is not null)
-        {
-            _closeButton.IsVisible = IsCloseButtonVisible;
-        }
+        Button.IsVisibleProperty.SetValue(IsCloseButtonVisible, _closeButton);
+        Button.ClickEvent.AddHandler(OnCloseButtonClicked, _closeButton);
         _titleArea = e.NameScope.Find<Panel>(PART_TitleArea);
         _titleArea?.AddHandler(PointerPressedEvent, OnTitlePointerPressed, RoutingStrategies.Bubble);
-        EventHelper.RegisterClickEvent(OnCloseButtonClicked, _closeButton);
+
     }
 
     private void OnContextRequestClose(object? sender, object? args)

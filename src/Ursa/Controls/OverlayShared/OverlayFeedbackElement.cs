@@ -84,10 +84,5 @@ public abstract class OverlayFeedbackElement: ContentControl
         return tcs.Task;
     }
     
-    protected static void SetVisibility(Button? button, bool visible)
-    {
-        if (button is not null) button.IsVisible = visible;
-    }
-    
     public abstract void Close();
 }

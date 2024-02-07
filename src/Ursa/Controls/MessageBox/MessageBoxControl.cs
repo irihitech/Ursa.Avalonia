@@ -6,6 +6,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Styling;
+using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
 
 namespace Ursa.Controls;
@@ -65,12 +66,12 @@ public class MessageBoxControl: DialogControlBase
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        EventHelper.UnregisterClickEvent(DefaultButtonsClose, _okButton, _cancelButton, _yesButton, _noButton);
+        Button.ClickEvent.RemoveHandler(DefaultButtonsClose, _okButton, _cancelButton, _yesButton, _noButton);
         _okButton = e.NameScope.Find<Button>(PART_OKButton);
         _cancelButton = e.NameScope.Find<Button>(PART_CancelButton);
         _yesButton = e.NameScope.Find<Button>(PART_YesButton);
         _noButton = e.NameScope.Find<Button>(PART_NoButton);
-        EventHelper.RegisterClickEvent(DefaultButtonsClose, _okButton, _cancelButton, _yesButton, _noButton);
+        Button.ClickEvent.AddHandler(DefaultButtonsClose, _okButton, _cancelButton, _yesButton, _noButton);
         SetButtonVisibility();
     }
 
@@ -102,28 +103,20 @@ public class MessageBoxControl: DialogControlBase
         switch (Buttons)
         {
             case MessageBoxButton.OK:
-                SetVisibility(_okButton, true);
-                SetVisibility(_cancelButton, false);
-                SetVisibility(_yesButton, false);
-                SetVisibility(_noButton, false);
+                Button.IsVisibleProperty.SetValue(true, _okButton);
+                Button.IsVisibleProperty.SetValue(false, _cancelButton, _yesButton, _noButton);
                 break;
             case MessageBoxButton.OKCancel:
-                SetVisibility(_okButton, true);
-                SetVisibility(_cancelButton, true);
-                SetVisibility(_yesButton, false);
-                SetVisibility(_noButton, false);
+                Button.IsVisibleProperty.SetValue(true, _okButton, _cancelButton);
+                Button.IsVisibleProperty.SetValue(false, _yesButton, _noButton);
                 break;
             case MessageBoxButton.YesNo:
-                SetVisibility(_okButton, false);
-                SetVisibility(_cancelButton, false);
-                SetVisibility(_yesButton, true);
-                SetVisibility(_noButton, true);
+                Button.IsVisibleProperty.SetValue(false, _okButton, _cancelButton);
+                Button.IsVisibleProperty.SetValue(true, _yesButton, _noButton);
                 break;
             case MessageBoxButton.YesNoCancel:
-                SetVisibility(_okButton, false);
-                SetVisibility(_cancelButton, true);
-                SetVisibility(_yesButton, true);
-                SetVisibility(_noButton, true);
+                Button.IsVisibleProperty.SetValue(false, _okButton);
+                Button.IsVisibleProperty.SetValue(true, _cancelButton, _yesButton, _noButton);
                 break;
         }
     }
