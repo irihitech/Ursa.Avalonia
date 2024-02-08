@@ -1,6 +1,8 @@
+using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
+using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Selection;
 using Avalonia.Controls.Templates;
@@ -11,14 +13,23 @@ using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-[TemplatePart(PART_Indicator, typeof(Control))]
+[TemplatePart(PART_Indicator, typeof(ContentPresenter))]
 public class SelectionList: SelectingItemsControl
 {
     public const string PART_Indicator = "PART_Indicator";
     private static readonly FuncTemplate<Panel?> DefaultPanel = new(() => new StackPanel());
     
-    private Control? _indicator;
     private ImplicitAnimationCollection? _implicitAnimations;
+    private ContentPresenter? _indicator;
+
+    public static readonly StyledProperty<Control?> IndicatorProperty = AvaloniaProperty.Register<SelectionList, Control?>(
+        nameof(Indicator));
+
+    public Control? Indicator
+    {
+        get => GetValue(IndicatorProperty);
+        set => SetValue(IndicatorProperty, value);
+    }
     
     static SelectionList()
     {
@@ -75,23 +86,21 @@ public class SelectionList: SelectingItemsControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        _indicator = e.NameScope.Find<Control>(PART_Indicator);
-        _indicator?.Arrange(new Rect());
+        _indicator= e.NameScope.Find<ContentPresenter>(PART_Indicator);
+        EnsureIndicatorAnimation();
+    }
+
+    private void EnsureIndicatorAnimation()
+    {
         if (_indicator is not null)
         {
             _indicator.Opacity = 0;
             SetUpAnimation();
             if (ElementComposition.GetElementVisual(_indicator) is { } v)
             {
-               v.ImplicitAnimations = _implicitAnimations;
+                v.ImplicitAnimations = _implicitAnimations;
             }
-            _indicator.SizeChanged += OnIndicatorSizeChanged;
         }
-    }
-
-    private void OnIndicatorSizeChanged(object sender, SizeChangedEventArgs e)
-    {
-        
     }
 
     internal void SelectByIndex(int index)
@@ -103,13 +112,16 @@ public class SelectionList: SelectingItemsControl
     
     private void SetUpAnimation()
     {
+        if (_implicitAnimations != null) return;
+        var compositorVisual = ElementComposition.GetElementVisual(this);
+        if (compositorVisual is null) return;
         var compositor = ElementComposition.GetElementVisual(this)!.Compositor;
         var offsetAnimation = compositor.CreateVector3KeyFrameAnimation();
-        offsetAnimation.Target = "Offset";
+        offsetAnimation.Target = nameof(CompositionVisual.Offset);
         offsetAnimation.InsertExpressionKeyFrame(1.0f, "this.FinalValue");
         offsetAnimation.Duration = TimeSpan.FromSeconds(0.3);
         var sizeAnimation = compositor.CreateVector2KeyFrameAnimation();
-        sizeAnimation.Target = "Size";
+        sizeAnimation.Target = nameof(CompositionVisual.Size);
         sizeAnimation.InsertExpressionKeyFrame(1.0f, "this.FinalValue");
         sizeAnimation.Duration = TimeSpan.FromSeconds(0.3);
         var opacityAnimation = compositor.CreateScalarKeyFrameAnimation();
@@ -118,9 +130,19 @@ public class SelectionList: SelectingItemsControl
         opacityAnimation.Duration = TimeSpan.FromSeconds(0.3);
 
         _implicitAnimations = compositor.CreateImplicitAnimationCollection();
-        _implicitAnimations["Offset"] = offsetAnimation;
-        _implicitAnimations["Size"] = sizeAnimation;
-        _implicitAnimations["Opacity"] = opacityAnimation;
+        _implicitAnimations[nameof(CompositionVisual.Offset)] = offsetAnimation;
+        _implicitAnimations[nameof(CompositionVisual.Size)] = sizeAnimation;
+        _implicitAnimations[nameof(CompositionVisual.Opacity)] = opacityAnimation;
     }
     
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        var hotkeys = Application.Current!.PlatformSettings?.HotkeyConfiguration;
+        
+        if (e.Key.ToNavigationDirection() is { } direction &&  direction.IsDirectional())
+        {
+            e.Handled |= MoveSelection(direction, WrapSelection);
+        }
+        base.OnKeyDown(e);
+    }
 }
