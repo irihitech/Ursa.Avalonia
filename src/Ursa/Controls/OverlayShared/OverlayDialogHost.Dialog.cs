@@ -92,7 +92,7 @@ public partial class OverlayDialogHost
             Children.Add(mask);
         }
         this.Children.Add(control);
-        _layers.Add(new DialogPair(mask, control));
+        _layers.Add(new DialogPair(mask, control, false));
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetToPosition(control);
@@ -118,6 +118,11 @@ public partial class OverlayDialogHost
             {
                 await _maskDisappearAnimation.RunAsync(layer.Mask);
                 Children.Remove(layer.Mask);
+                if (layer.Modal)
+                {
+                    _modalCount--;
+                    HasModal = _modalCount > 0;
+                }
             }
             
             ResetZIndices();
@@ -142,6 +147,8 @@ public partial class OverlayDialogHost
         control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDialogControlClosing);
         control.AddHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged);
         _maskAppearAnimation.RunAsync(mask);
+        _modalCount++;
+        HasModal = _modalCount > 0;
         control.IsClosed = false;
     }
 
