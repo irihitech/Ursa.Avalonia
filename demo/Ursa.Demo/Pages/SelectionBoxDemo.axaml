@@ -1,0 +1,55 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.SelectionListDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:SelectionListDemoViewModel"
+    mc:Ignorable="d">
+    <StackPanel HorizontalAlignment="Left">
+        <u:SelectionList ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}">
+            <u:SelectionList.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </u:SelectionList.ItemsPanel>
+        </u:SelectionList>
+        <u:SelectionList ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" />
+        <u:SelectionList ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}">
+            <u:SelectionList.Indicator>
+                <Border Background="Transparent" CornerRadius="4">
+                    <Border
+                        Width="4"
+                        Margin="0,8"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Stretch"
+                        Background="{DynamicResource SemiBlue6}"
+                        CornerRadius="4" />
+                </Border>
+            </u:SelectionList.Indicator>
+            <u:SelectionList.ItemTemplate>
+                <DataTemplate>
+                    <Panel Height="40">
+                        <TextBlock
+                            Classes.Active="{Binding $parent[u:SelectionListItem].IsSelected, Mode=OneWay}"
+                            Margin="8,0"
+                            VerticalAlignment="Center"
+                            Text="{Binding}">
+                            <TextBlock.Styles>
+                                <Style Selector="TextBlock.Active">
+                                    <Setter Property="Foreground" Value="{DynamicResource SemiOrange6}" />
+                                </Style>
+                            </TextBlock.Styles>
+                        </TextBlock>
+                    </Panel>
+                </DataTemplate>
+            </u:SelectionList.ItemTemplate>
+        </u:SelectionList>
+        <Button Command="{Binding Clear}">Clear</Button>
+    </StackPanel>
+</UserControl>

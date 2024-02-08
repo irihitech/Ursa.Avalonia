@@ -1,0 +1,61 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <ControlTheme x:Key="{x:Type u:SelectionList}" TargetType="u:SelectionList">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Indicator">
+            <Template>
+                <Border
+                    Margin="2"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="{DynamicResource SemiBlue1}"
+                    Theme="{DynamicResource CardBorder}" />
+            </Template>
+        </Setter>
+        <Setter Property="ListBox.Template">
+            <ControlTemplate TargetType="u:SelectionList">
+                <Border
+                    Name="border"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    ClipToBounds="{TemplateBinding ClipToBounds}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <Panel>
+                        <ContentPresenter Name="{x:Static u:SelectionList.PART_Indicator}" Content="{TemplateBinding Indicator}" />
+                        <ItemsPresenter
+                            Name="PART_ItemsPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            ItemsPanel="{TemplateBinding ItemsPanel}" />
+                    </Panel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:SelectionListItem}" TargetType="u:SelectionListItem">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="8" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:SelectionListItem">
+                <ContentPresenter
+                    Name="PART_ContentPresenter"
+                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                    Padding="{TemplateBinding Padding}"
+                    Background="{TemplateBinding Background}"
+                    Content="{TemplateBinding Content}"
+                    FontWeight="{TemplateBinding FontWeight}"
+                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                    Foreground="{TemplateBinding Foreground}" />
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:selected">
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

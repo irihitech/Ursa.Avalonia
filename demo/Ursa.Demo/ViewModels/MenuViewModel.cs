@@ -31,6 +31,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "NumericUpDown", Key = MenuKeys.MenuKeyNumericUpDown, Status = "New" },
             new() { MenuHeader = "Pagination", Key = MenuKeys.MenuKeyPagination },
             new() { MenuHeader = "RangeSlider", Key = MenuKeys.MenuKeyRangeSlider, Status = "New"},
+            new() { MenuHeader = "Selection List", Key = MenuKeys.MenuKeySelectionList, Status = "New" },
             new() { MenuHeader = "TagInput", Key = MenuKeys.MenuKeyTagInput },
             new() { MenuHeader = "Theme Toggler", Key = MenuKeys.MenuKeyThemeToggler },
             new() { MenuHeader = "Timeline", Key = MenuKeys.MenuKeyTimeline, Status = "Updated" },
