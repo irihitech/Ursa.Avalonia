@@ -116,12 +116,13 @@ public partial class OverlayDialogHost
 
             if (layer.Mask is not null)
             {
-                await _maskDisappearAnimation.RunAsync(layer.Mask);
                 Children.Remove(layer.Mask);
+                
                 if (layer.Modal)
                 {
                     _modalCount--;
                     HasModal = _modalCount > 0;
+                    await _maskDisappearAnimation.RunAsync(layer.Mask);
                 }
             }
             
