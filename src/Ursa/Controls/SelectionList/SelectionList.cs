@@ -70,6 +70,11 @@ public class SelectionList: SelectingItemsControl
             if (container is null) return size;
             _indicator.Arrange(container.Bounds);
         }
+        else
+        {
+            // This is a hack. The indicator is not visible, so we arrange it to a 1x1 rectangle
+            _indicator?.Arrange(new Rect(new Point(), new Size(1, 1)));
+        }
         return size;
     }
 
