@@ -28,4 +28,5 @@ public class OverlayDialogOptions
     public bool IsCloseButtonVisible { get; set; } = true;
     
     public bool CanLightDismiss { get; set; }
+    public bool CanDragMove { get; set; } = true;
 }

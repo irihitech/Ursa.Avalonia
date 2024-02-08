@@ -192,6 +192,7 @@ public static class OverlayDialog
         control.CanClickOnMaskToClose = options.CanClickOnMaskToClose;
         control.IsCloseButtonVisible = options.IsCloseButtonVisible;
         control.CanLightDismiss = options.CanLightDismiss;
+        control.CanDragMove = options.CanDragMove;
     }
     
     private static void ConfigureDefaultDialogControl(DefaultDialogControl control, OverlayDialogOptions? options)
@@ -210,6 +211,7 @@ public static class OverlayDialog
         control.Buttons = options.Buttons;
         control.Title = options.Title;
         control.CanLightDismiss = options.CanLightDismiss;
+        control.CanDragMove = options.CanDragMove;
     }
     
     
