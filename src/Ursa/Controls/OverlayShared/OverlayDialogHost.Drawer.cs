@@ -15,13 +15,9 @@ public partial class OverlayDialogHost
     internal async void AddDrawer(DrawerControlBase control)
     {
         PureRectangle? mask = null;
-        if (control.ShowMask == false && control.CanLightDismiss)
+        if (control.CanLightDismiss)
         {
             mask = CreateOverlayMask(false, true);
-        }
-        else if (control.ShowMask)
-        {
-            mask = CreateOverlayMask(control.ShowMask, control.CanClickOnMaskToClose);
         }
         _layers.Add(new DialogPair(mask, control));
         ResetZIndices();
@@ -40,7 +36,21 @@ public partial class OverlayDialogHost
         {
             await Task.WhenAll(animation.RunAsync(control), _maskAppearAnimation.RunAsync(mask));
         }
-        
+    }
+    
+    internal async void AddModalDrawer(DrawerControlBase control)
+    {
+        PureRectangle? mask = CreateOverlayMask(true, control.CanLightDismiss);
+        _layers.Add(new DialogPair(mask, control));
+        this.Children.Add(mask);
+        this.Children.Add(control);
+        ResetZIndices();
+        control.Measure(this.Bounds.Size);
+        control.Arrange(new Rect(control.DesiredSize));
+        SetDrawerPosition(control);
+        control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDrawerControlClosing);
+        var animation = CreateAnimation(control.Bounds.Size, control.Position);
+        await Task.WhenAll(animation.RunAsync(control), _maskAppearAnimation.RunAsync(mask));
     }
 
     private void SetDrawerPosition(DrawerControlBase control)

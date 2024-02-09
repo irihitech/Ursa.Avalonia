@@ -16,81 +16,89 @@
     <Design.DataContext>
         <vm:MainViewViewModel />
     </Design.DataContext>
+    <Panel>
+        <Grid
+            Classes.Blur="{Binding #host.HasModal}"
+            ColumnDefinitions="Auto, *"
+            RowDefinitions="Auto, *">
+            <Grid.Styles>
+                <Style Selector="Grid.Blur">
+                    <Setter Property="Effect" Value="blur(20)" />
+                </Style>
+            </Grid.Styles>
+            <Border
+                Grid.RowSpan="2"
+                Padding="8,4"
+                VerticalAlignment="Stretch"
+                Theme="{DynamicResource CardBorder}">
+                <u:NavigationMenu ItemsSource="{Binding Menus.MenuItems}" ShowCollapseButton="True">
+                    <u:NavigationMenu.Header>
+                        <TextBlock
+                            Classes="H4"
+                            Text="Ursa"
+                            Theme="{DynamicResource TitleTextBlock}" />
+                    </u:NavigationMenu.Header>
+                    <u:NavigationMenu.Icon>
+                        <Image
+                            Width="48"
+                            Height="48"
+                            RenderOptions.BitmapInterpolationMode="HighQuality"
+                            Source="../Assets/Ursa.ico" />
+                    </u:NavigationMenu.Icon>
+                    <u:NavigationMenu.ItemTemplate>
+                        <converters:MenuDataTemplateSelector>
+                            <converters:MenuDataTemplateSelector.MenuTemplate>
+                                <DataTemplate DataType="vm:MenuItemViewModel">
+                                    <u:NavigationMenuItem
+                                        Command="{Binding ActivateCommand}"
+                                        Header="{Binding}"
+                                        ItemsSource="{Binding Children}">
+                                        <u:NavigationMenuItem.HeaderTemplate>
+                                            <DataTemplate x:DataType="vm:MenuItemViewModel">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock HorizontalAlignment="Left" Text="{Binding MenuHeader}" />
+                                                    <u:Badge
+                                                        Margin="8,0,0,0"
+                                                        HorizontalAlignment="Left"
+                                                        BadgeContent="{Binding Status}"
+                                                        CornerPosition="TopRight" />
+                                                </StackPanel>
 
-    <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, *">
-        <Border
-            Grid.RowSpan="2"
-            Padding="8,4"
-            VerticalAlignment="Stretch"
-            Theme="{DynamicResource CardBorder}">
-            <u:NavigationMenu ItemsSource="{Binding Menus.MenuItems}" ShowCollapseButton="True">
-                <u:NavigationMenu.Header>
-                    <TextBlock
-                        Classes="H4"
-                        Text="Ursa"
-                        Theme="{DynamicResource TitleTextBlock}" />
-                </u:NavigationMenu.Header>
-                <u:NavigationMenu.Icon>
-                    <Image
-                        Width="48"
-                        Height="48"
-                        RenderOptions.BitmapInterpolationMode="HighQuality"
-                        Source="../Assets/Ursa.ico" />
-                </u:NavigationMenu.Icon>
-                <u:NavigationMenu.ItemTemplate>
-                    <converters:MenuDataTemplateSelector>
-                        <converters:MenuDataTemplateSelector.MenuTemplate>
-                            <DataTemplate DataType="vm:MenuItemViewModel">
-                                <u:NavigationMenuItem
-                                    Command="{Binding ActivateCommand}"
-                                    Header="{Binding}"
-                                    ItemsSource="{Binding Children}">
-                                    <u:NavigationMenuItem.HeaderTemplate>
-                                        <DataTemplate x:DataType="vm:MenuItemViewModel">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock HorizontalAlignment="Left" Text="{Binding MenuHeader}" />
-                                                <u:Badge
-                                                    Margin="8,0,0,0"
-                                                    HorizontalAlignment="Left"
-                                                    BadgeContent="{Binding Status}"
-                                                    CornerPosition="TopRight" />
-                                            </StackPanel>
-
-                                        </DataTemplate>
-                                    </u:NavigationMenuItem.HeaderTemplate>
-                                    <u:NavigationMenuItem.Icon>
-                                        <Border
-                                            Width="10"
-                                            Height="10"
-                                            Background="{DynamicResource SemiBlue6}"
-                                            CornerRadius="3" />
-                                    </u:NavigationMenuItem.Icon>
-                                </u:NavigationMenuItem>
-                            </DataTemplate>
-                        </converters:MenuDataTemplateSelector.MenuTemplate>
-                        <converters:MenuDataTemplateSelector.SeparatorTemplate>
-                            <DataTemplate DataType="vm:MenuItemViewModel">
-                                <u:NavigationMenuSeparator Header="{Binding MenuHeader}" />
-                            </DataTemplate>
-                        </converters:MenuDataTemplateSelector.SeparatorTemplate>
-                    </converters:MenuDataTemplateSelector>
-                </u:NavigationMenu.ItemTemplate>
-            </u:NavigationMenu>
-        </Border>
-        <u:ThemeToggleButton
-            Grid.Row="0"
-            Grid.Column="1"
-            HorizontalAlignment="Right"/>
-        <ContentControl
-            Grid.Row="1"
-            Grid.Column="1"
-            Margin="12"
-            Content="{Binding Content}">
-            <ContentControl.ContentTemplate>
-                <converters:ViewLocator />
-            </ContentControl.ContentTemplate>
-        </ContentControl>
-        <u:OverlayDialogHost Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" SnapThickness="20"/>
-    </Grid>
-
+                                            </DataTemplate>
+                                        </u:NavigationMenuItem.HeaderTemplate>
+                                        <u:NavigationMenuItem.Icon>
+                                            <Border
+                                                Width="10"
+                                                Height="10"
+                                                Background="{DynamicResource SemiBlue6}"
+                                                CornerRadius="3" />
+                                        </u:NavigationMenuItem.Icon>
+                                    </u:NavigationMenuItem>
+                                </DataTemplate>
+                            </converters:MenuDataTemplateSelector.MenuTemplate>
+                            <converters:MenuDataTemplateSelector.SeparatorTemplate>
+                                <DataTemplate DataType="vm:MenuItemViewModel">
+                                    <u:NavigationMenuSeparator Header="{Binding MenuHeader}" />
+                                </DataTemplate>
+                            </converters:MenuDataTemplateSelector.SeparatorTemplate>
+                        </converters:MenuDataTemplateSelector>
+                    </u:NavigationMenu.ItemTemplate>
+                </u:NavigationMenu>
+            </Border>
+            <u:ThemeToggleButton
+                Grid.Row="0"
+                Grid.Column="1"
+                HorizontalAlignment="Right" />
+            <ContentControl
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="12"
+                Content="{Binding Content}">
+                <ContentControl.ContentTemplate>
+                    <converters:ViewLocator />
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+        </Grid>
+        <u:OverlayDialogHost Name="host" SnapThickness="20" />
+    </Panel>
 </UserControl>

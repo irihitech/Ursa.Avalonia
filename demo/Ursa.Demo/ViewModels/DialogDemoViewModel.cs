@@ -55,11 +55,11 @@ public class DialogDemoViewModel: ObservableObject
         set => SetProperty(ref _isModal, value);
     }
     
-    private bool _canCloseMaskToClose;
-    public bool CanCloseMaskToClose
+    private bool _canLightDismiss;
+    public bool CanLightDismiss
     {
-        get => _canCloseMaskToClose;
-        set => SetProperty(ref _canCloseMaskToClose, value);
+        get => _canLightDismiss;
+        set => SetProperty(ref _canLightDismiss, value);
     }
 
     private DialogResult? _defaultResult;
@@ -118,7 +118,7 @@ public class DialogDemoViewModel: ObservableObject
                         Title = "Please select a date",
                         Mode = SelectedMode,
                         Buttons = SelectedButton,
-                        CanClickOnMaskToClose = CanCloseMaskToClose,
+                        CanLightDismiss = CanLightDismiss,
                         HorizontalAnchor = HorizontalPosition.Right,
                         HorizontalOffset = 50,
                         VerticalAnchor = VerticalPosition.Top,
@@ -136,7 +136,8 @@ public class DialogDemoViewModel: ObservableObject
                     {
                         Title = "Please select a date",
                         Mode = SelectedMode,
-                        Buttons = SelectedButton
+                        Buttons = SelectedButton,
+                        CanLightDismiss = CanLightDismiss,
                     });
             }
         }
@@ -169,14 +170,15 @@ public class DialogDemoViewModel: ObservableObject
                 Result = await OverlayDialog.ShowCustomModal<DialogWithAction, DialogWithActionViewModel, bool>(
                     vm, IsGlobal ? null : "LocalHost", options: new OverlayDialogOptions()
                     {
-                        CanClickOnMaskToClose = CanCloseMaskToClose,
+                        CanLightDismiss = CanLightDismiss,
                     });
                 Date = vm.Date;
             }
             else
             {
                 OverlayDialog.ShowCustom<DialogWithAction, DialogWithActionViewModel>(new DialogWithActionViewModel(),
-                    IsGlobal ? null : "LocalHost");
+                    IsGlobal ? null : "LocalHost",
+                    options: new OverlayDialogOptions{ CanLightDismiss = CanLightDismiss });
             }
         }
         

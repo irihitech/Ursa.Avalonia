@@ -85,14 +85,14 @@ public partial class OverlayDialogHost
         PureRectangle? mask = null;
         if (control.CanLightDismiss)
         {
-            CreateOverlayMask(false, control.CanLightDismiss);
+            mask = CreateOverlayMask(false, control.CanLightDismiss);
         }
         if (mask is not null)
         {
             Children.Add(mask);
         }
         this.Children.Add(control);
-        _layers.Add(new DialogPair(mask, control));
+        _layers.Add(new DialogPair(mask, control, false));
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetToPosition(control);
@@ -116,8 +116,14 @@ public partial class OverlayDialogHost
 
             if (layer.Mask is not null)
             {
-                await _maskDisappearAnimation.RunAsync(layer.Mask);
                 Children.Remove(layer.Mask);
+                
+                if (layer.Modal)
+                {
+                    _modalCount--;
+                    HasModal = _modalCount > 0;
+                    await _maskDisappearAnimation.RunAsync(layer.Mask);
+                }
             }
             
             ResetZIndices();
@@ -130,7 +136,7 @@ public partial class OverlayDialogHost
     /// <param name="control"></param>
     internal void AddModalDialog(DialogControlBase control)
     {
-        var mask = CreateOverlayMask(true, control.CanClickOnMaskToClose);
+        var mask = CreateOverlayMask(true, control.CanLightDismiss);
         _layers.Add(new DialogPair(mask, control));
         control.SetAsModal(true);
         ResetZIndices();
@@ -142,6 +148,8 @@ public partial class OverlayDialogHost
         control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDialogControlClosing);
         control.AddHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged);
         _maskAppearAnimation.RunAsync(mask);
+        _modalCount++;
+        HasModal = _modalCount > 0;
         control.IsClosed = false;
     }
 

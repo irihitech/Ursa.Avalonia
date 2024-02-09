@@ -18,7 +18,7 @@ public static class OverlayDialog
             DataContext = vm,
         };
         ConfigureDefaultDialogControl(t, options);
-        host?.AddDialog(t);
+        host.AddDialog(t);
     }
     
     public static void Show(Control control, object? vm, string? hostId = null,
@@ -32,7 +32,7 @@ public static class OverlayDialog
             DataContext = vm,
         };
         ConfigureDefaultDialogControl(t, options);
-        host?.AddDialog(t);
+        host.AddDialog(t);
         
     }
     
@@ -63,8 +63,8 @@ public static class OverlayDialog
             Content = new TView(),
             DataContext = vm,
         };
-        ConfigureDialogControl(t, options);
-        host?.AddDialog(t);
+        ConfigureCustomDialogControl(t, options);
+        host.AddDialog(t);
     }
     
     public static void ShowCustom(Control control, object? vm, string? hostId = null,
@@ -77,8 +77,8 @@ public static class OverlayDialog
             Content = control,
             DataContext = vm,
         };
-        ConfigureDialogControl(t, options);
-        host?.AddDialog(t);
+        ConfigureCustomDialogControl(t, options);
+        host.AddDialog(t);
     }
     
     public static void ShowCustom(object? vm, string? hostId = null,
@@ -94,7 +94,7 @@ public static class OverlayDialog
             Content = view,
             DataContext = vm,
         };
-        ConfigureDialogControl(t, options);
+        ConfigureCustomDialogControl(t, options);
         host.AddDialog(t);
     }
     
@@ -110,7 +110,7 @@ public static class OverlayDialog
             DataContext = vm,
         };
         ConfigureDefaultDialogControl(t, options);
-        host?.AddModalDialog(t);
+        host.AddModalDialog(t);
         return t.ShowAsync<DialogResult>(token);
     }
     
@@ -125,7 +125,7 @@ public static class OverlayDialog
             DataContext = vm,
         };
         ConfigureDefaultDialogControl(t, options);
-        host?.AddModalDialog(t);
+        host.AddModalDialog(t);
         return t.ShowAsync<DialogResult>(token);
     }
     
@@ -140,8 +140,8 @@ public static class OverlayDialog
             Content = new TView(),
             DataContext = vm,
         };
-        ConfigureDialogControl(t, options);
-        host?.AddModalDialog(t);
+        ConfigureCustomDialogControl(t, options);
+        host.AddModalDialog(t);
         return t.ShowAsync<TResult?>(token);
     }
     
@@ -155,8 +155,8 @@ public static class OverlayDialog
             Content = control,
             DataContext = vm,
         };
-        ConfigureDialogControl(t, options);
-        host?.AddModalDialog(t);
+        ConfigureCustomDialogControl(t, options);
+        host.AddModalDialog(t);
         return t.ShowAsync<TResult?>(token);
     }
     
@@ -173,12 +173,12 @@ public static class OverlayDialog
             Content = view,
             DataContext = vm,
         };
-        ConfigureDialogControl(t, options);
-        host?.AddModalDialog(t);
+        ConfigureCustomDialogControl(t, options);
+        host.AddModalDialog(t);
         return t.ShowAsync<TResult?>(token);
     }
     
-    private static void ConfigureDialogControl(CustomDialogControl control, OverlayDialogOptions? options)
+    private static void ConfigureCustomDialogControl(CustomDialogControl control, OverlayDialogOptions? options)
     {
         options ??= OverlayDialogOptions.Default;
         control.HorizontalAnchor = options.HorizontalAnchor;
@@ -189,9 +189,9 @@ public static class OverlayDialog
             control.HorizontalAnchor == HorizontalPosition.Center ? null : options.HorizontalOffset;
         control.VerticalOffset =
             options.VerticalAnchor == VerticalPosition.Center ? null : options.VerticalOffset;
-        control.CanClickOnMaskToClose = options.CanClickOnMaskToClose;
-        control.IsCloseButtonVisible = options.IsCloseButtonVisible;
+        control.IsCloseButtonVisible = options.ShowCloseButton;
         control.CanLightDismiss = options.CanLightDismiss;
+        control.CanDragMove = options.CanDragMove;
     }
     
     private static void ConfigureDefaultDialogControl(DefaultDialogControl control, OverlayDialogOptions? options)
@@ -205,11 +205,11 @@ public static class OverlayDialog
             control.HorizontalAnchor == HorizontalPosition.Center ? null : options.HorizontalOffset;
         control.VerticalOffset =
             options.VerticalAnchor == VerticalPosition.Center ? null : options.VerticalOffset;
-        control.CanClickOnMaskToClose = options.CanClickOnMaskToClose;
         control.Mode = options.Mode;
         control.Buttons = options.Buttons;
         control.Title = options.Title;
         control.CanLightDismiss = options.CanLightDismiss;
+        control.CanDragMove = options.CanDragMove;
     }
     
     

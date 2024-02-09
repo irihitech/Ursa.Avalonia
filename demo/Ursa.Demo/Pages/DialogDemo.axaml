@@ -36,8 +36,7 @@
                         OnContent="Modal" />
                     <ToggleSwitch
                         Content="ClickOnMaskToClose"
-                        IsChecked="{Binding CanCloseMaskToClose}"
-                        IsVisible="{Binding #defaultModal.IsChecked}"
+                        IsChecked="{Binding CanLightDismiss}"
                         OffContent="No"
                         OnContent="Yes" />
                     <StackPanel Orientation="Horizontal">
@@ -81,8 +80,7 @@
                         OnContent="Modal" />
                     <ToggleSwitch
                         Content="ClickOnMaskToClose"
-                        IsChecked="{Binding CanCloseMaskToClose}"
-                        IsVisible="{Binding #modal.IsChecked}"
+                        IsChecked="{Binding CanLightDismiss}"
                         OffContent="No"
                         OnContent="Yes" />
                     <Button Command="{Binding ShowCustomDialogCommand}" Content="Show Dialog" />

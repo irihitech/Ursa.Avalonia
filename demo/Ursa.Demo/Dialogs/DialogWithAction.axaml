@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Ursa.Demo.Dialogs"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
     HorizontalAlignment="Stretch"
     VerticalAlignment="Stretch"
     d:DesignHeight="450"
@@ -30,6 +31,7 @@
             HorizontalAlignment="Right"
             Orientation="Horizontal"
             Spacing="8">
+            <Rectangle Width="10" Height="10" Fill="Red" u:DialogControlBase.CanClose="True"></Rectangle>
             <Button Command="{Binding DialogCommand}" Content="Dialog" />
             <Button Command="{Binding OKCommand}" Content="OK" />
             <Button Command="{Binding CancelCommand}" Content="Cancel" />

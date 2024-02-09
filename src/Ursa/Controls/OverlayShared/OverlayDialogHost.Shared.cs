@@ -24,12 +24,27 @@ public partial class OverlayDialogHost: Canvas
     {
         internal PureRectangle? Mask;
         internal OverlayFeedbackElement Element;
+        internal bool Modal;
 
-        public DialogPair(PureRectangle? mask, OverlayFeedbackElement element)
+        public DialogPair(PureRectangle? mask, OverlayFeedbackElement element, bool modal = true)
         {
             Mask = mask;
             Element = element;
+            Modal = modal;
         }
+    }
+
+    private int _modalCount = 0;
+    
+    
+
+    public static readonly DirectProperty<OverlayDialogHost, bool> HasModalProperty = AvaloniaProperty.RegisterDirect<OverlayDialogHost, bool>(
+        nameof(HasModal), o => o.HasModal);
+    private bool _hasModal;
+    public bool HasModal
+    {
+        get => _hasModal;
+        private set => SetAndRaise(HasModalProperty, ref _hasModal, value);
     }
     
     static OverlayDialogHost()
@@ -81,7 +96,7 @@ public partial class OverlayDialogHost: Canvas
         }
         else if(canCloseOnClick) 
         { 
-            rec.SetCurrentValue(Shape.FillProperty, Brushes.Transparent);
+            rec.SetCurrentValue(PureRectangle.BackgroundProperty, Brushes.Transparent);
         }
         if (canCloseOnClick)
         {

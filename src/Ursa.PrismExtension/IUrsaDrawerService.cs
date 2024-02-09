@@ -5,6 +5,8 @@ namespace Ursa.PrismExtension;
 
 public interface IUrsaDrawerService
 {
-    public Task<DialogResult> ShowDrawer(string viewName, object? vm, string? hostId = null, DefaultDrawerOptions? options = null);
-    public Task<TResult?> ShowCustomDrawer<TResult>(string viewName, object? vm, string? hostId = null, CustomDrawerOptions? options = null);
+    public void Show(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null);
+    public void ShowCustom<TResult>(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null);
+    public Task<DialogResult> ShowModal(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null);
+    public Task<TResult?> ShowCustomModal<TResult>(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null);
 }
