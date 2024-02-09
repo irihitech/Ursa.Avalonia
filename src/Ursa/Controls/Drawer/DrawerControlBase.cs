@@ -15,9 +15,7 @@ namespace Ursa.Controls;
 [TemplatePart(PART_CloseButton, typeof(Button))]
 public abstract class DrawerControlBase: OverlayFeedbackElement
 {
-public const string PART_CloseButton = "PART_CloseButton";
-    
-    internal bool CanClickOnMaskToClose { get; set; }
+    public const string PART_CloseButton = "PART_CloseButton";
 
     protected internal Button? _closeButton;
 
@@ -50,7 +48,6 @@ public const string PART_CloseButton = "PART_CloseButton";
         set => SetValue(IsCloseButtonVisibleProperty, value);
     }
     
-    protected internal bool ShowMask { get; set; }
     protected internal bool CanLightDismiss { get; set; }
     
     static DrawerControlBase()

@@ -23,13 +23,13 @@
                         OffContent="Local"
                         OnContent="Global" />
                     <ToggleSwitch
-                        Content="ShowMask"
-                        IsChecked="{Binding ShowMask}"
+                        Content="Modal"
+                        IsChecked="{Binding IsModal}"
                         OffContent="No"
                         OnContent="Yes" />
                     <ToggleSwitch
-                        Content="ClickOnMaskToClose"
-                        IsChecked="{Binding CanCloseMaskToClose}"
+                        Content="CanLightDismiss"
+                        IsChecked="{Binding CanLightDismiss}"
                         OffContent="No"
                         OnContent="Yes" />
                     <StackPanel Orientation="Horizontal">
@@ -56,13 +56,13 @@
                         OffContent="Local"
                         OnContent="Global" />
                     <ToggleSwitch
-                        Content="ClickOnMaskToClose"
-                        IsChecked="{Binding CanCloseMaskToClose}"
+                        Content="CanLightDismiss"
+                        IsChecked="{Binding CanLightDismiss}"
                         OffContent="No"
                         OnContent="Yes" />
                     <ToggleSwitch
-                        Content="ShowMask"
-                        IsChecked="{Binding ShowMask}"
+                        Content="Modal"
+                        IsChecked="{Binding IsModal}"
                         OffContent="No"
                         OnContent="Yes" />
                     <Button Command="{Binding ShowCustomDialogCommand}" Content="Show Custom Drawer" />

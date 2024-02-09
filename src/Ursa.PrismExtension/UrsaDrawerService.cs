@@ -7,16 +7,27 @@ namespace Ursa.PrismExtension;
 
 public class UrsaDrawerService(IContainerExtension container): IUrsaDrawerService 
 {
-    public Task<DialogResult> ShowDrawer(string viewName, object? vm, string? hostId = null, DefaultDrawerOptions? options = null)
+    public void Show(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null)
     {
         var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
-        return Drawer.Show(v, vm, hostId, options);
+        Drawer.Show(v, vm, hostId, options);
     }
-    
-    public Task<TResult?> ShowCustomDrawer<TResult>(string viewName, object? vm, string? hostId = null,
-        CustomDrawerOptions? options = null)
+
+    public void ShowCustom<TResult>(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null)
     {
         var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
-        return Drawer.ShowCustom<TResult?>(v, vm, hostId, options);
+        Drawer.ShowCustom(v, vm, hostId, options);
+    }
+
+    public Task<DialogResult> ShowModal(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null)
+    {
+        var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
+        return Drawer.ShowModal(v, vm, hostId, options);
+    }
+
+    public Task<TResult?> ShowCustomModal<TResult>(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null)
+    {
+        var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
+        return Drawer.ShowCustomModal<TResult?>(v, vm, hostId, options);
     }
 }

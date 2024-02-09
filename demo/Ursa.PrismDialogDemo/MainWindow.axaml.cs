@@ -7,15 +7,22 @@ namespace Ursa.PrismDialogDemo;
 
 public partial class MainWindow : Window
 {
-    private IUrsaOverlayDialogService _ursa;
-    public MainWindow(IUrsaOverlayDialogService ursa)
+    private IUrsaOverlayDialogService _dialogService;
+    private IUrsaDrawerService _drawerService;
+    public MainWindow(IUrsaOverlayDialogService dialogService, IUrsaDrawerService drawerService)
     {
         InitializeComponent();
-        _ursa = ursa;
+        _dialogService = dialogService;
+        _drawerService = drawerService;
     }
 
-    private void Button_OnClick(object? sender, RoutedEventArgs e)
+    private void DialogButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        _ursa.ShowModal("Default", null, null, null);
+        _dialogService.ShowModal("Default", null, null, null);
+    }
+
+    private void DrawerButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        _drawerService.ShowModal("Default", null, null, null);
     }
 }

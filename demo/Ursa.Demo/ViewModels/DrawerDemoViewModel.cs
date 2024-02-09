@@ -20,10 +20,10 @@ public partial class DrawerDemoViewModel: ObservableObject
     [ObservableProperty] private Position _selectedPosition;
     [ObservableProperty] private DialogButton _selectedButton;
     [ObservableProperty] private bool _isGlobal;
-    [ObservableProperty] private bool _canCloseMaskToClose;
+    [ObservableProperty] private bool _canLightDismiss;
     [ObservableProperty] private DialogResult? _defaultResult;
     [ObservableProperty] private bool _result;
-    [ObservableProperty] private bool _showMask;
+    [ObservableProperty] private bool _isModal;
     [ObservableProperty] private DateTime? _date;
     
     
@@ -36,32 +36,60 @@ public partial class DrawerDemoViewModel: ObservableObject
     private async Task ShowDefaultDialog()
     {
         var vm = new PlainDialogViewModel();
-        DefaultResult = await Drawer.Show<PlainDialog, PlainDialogViewModel>(
-            vm,
-            IsGlobal ? null : "LocalHost",
-            new DefaultDrawerOptions()
-            {
-                Title = "Please select a date",
-                Position = SelectedPosition,
-                Buttons = SelectedButton,
-                CanClickOnMaskToClose = CanCloseMaskToClose,
-                ShowMask = ShowMask,
-            });
-        Date = vm.Date;
+        if (IsModal)
+        {
+            DefaultResult = await Drawer.ShowModal<PlainDialog, PlainDialogViewModel>(
+                vm,
+                IsGlobal ? null : "LocalHost",
+                new DrawerOptions()
+                {
+                    Title = "Please select a date",
+                    Position = SelectedPosition,
+                    Buttons = SelectedButton,
+                    CanLightDismiss = CanLightDismiss,
+                });
+            Date = vm.Date;
+        }
+        else
+        {
+            Drawer.Show<PlainDialog, PlainDialogViewModel>(
+                vm,
+                IsGlobal ? null : "LocalHost",
+                new DrawerOptions()
+                {
+                    Title = "Please select a date",
+                    Position = SelectedPosition,
+                    Buttons = SelectedButton,
+                    CanLightDismiss = CanLightDismiss,
+                });
+        }
     }
     
     private async Task ShowCustomDrawer()
     {
         var vm = new DialogWithActionViewModel();
-        Result = await Drawer.ShowCustom<DialogWithAction, DialogWithActionViewModel, bool>(
-            vm,
-            IsGlobal ? null : "LocalHost",
-            new CustomDrawerOptions()
-            {
-                Position = SelectedPosition,
-                CanClickOnMaskToClose = CanCloseMaskToClose,
-                ShowMask = ShowMask,
-            });
-        Date = vm.Date;
+        if (IsModal)
+        {
+            Result = await Drawer.ShowCustomModal<DialogWithAction, DialogWithActionViewModel, bool>(
+                vm,
+                IsGlobal ? null : "LocalHost",
+                new DrawerOptions()
+                {
+                    Position = SelectedPosition,
+                    CanLightDismiss = CanLightDismiss,
+                });
+            Date = vm.Date;
+        }
+        else
+        {
+            Drawer.ShowCustom<DialogWithAction, DialogWithActionViewModel>(
+                vm,
+                IsGlobal ? null : "LocalHost",
+                new DrawerOptions()
+                {
+                    Position = SelectedPosition,
+                    CanLightDismiss = CanLightDismiss,
+                });
+        }
     }
 }
