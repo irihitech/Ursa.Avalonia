@@ -96,7 +96,7 @@ public partial class OverlayDialogHost: Canvas
         }
         else if(canCloseOnClick) 
         { 
-            rec.SetCurrentValue(Shape.FillProperty, Brushes.Transparent);
+            rec.SetCurrentValue(PureRectangle.BackgroundProperty, Brushes.Transparent);
         }
         if (canCloseOnClick)
         {

@@ -85,7 +85,7 @@ public partial class OverlayDialogHost
         PureRectangle? mask = null;
         if (control.CanLightDismiss)
         {
-            CreateOverlayMask(false, control.CanLightDismiss);
+            mask = CreateOverlayMask(false, control.CanLightDismiss);
         }
         if (mask is not null)
         {
@@ -136,7 +136,7 @@ public partial class OverlayDialogHost
     /// <param name="control"></param>
     internal void AddModalDialog(DialogControlBase control)
     {
-        var mask = CreateOverlayMask(true, control.CanClickOnMaskToClose);
+        var mask = CreateOverlayMask(true, control.CanLightDismiss);
         _layers.Add(new DialogPair(mask, control));
         control.SetAsModal(true);
         ResetZIndices();

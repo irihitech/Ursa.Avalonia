@@ -29,7 +29,6 @@ public abstract class DialogControlBase : OverlayFeedbackElement
     internal double? VerticalOffset { get; set; }
     internal double? HorizontalOffsetRatio { get; set; }
     internal double? VerticalOffsetRatio { get; set; }
-    internal bool CanClickOnMaskToClose { get; set; }
     internal bool CanLightDismiss { get; set; }
     internal bool CanDragMove { get; set; }
 
