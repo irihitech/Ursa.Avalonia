@@ -51,5 +51,22 @@
             </u:SelectionList.ItemTemplate>
         </u:SelectionList>
         <Button Command="{Binding Clear}">Clear</Button>
+        <u:NavMenu>
+            <u:NavMenuItem Header="Menu 1">
+                <u:NavMenuItem.Icon>
+                    <Rectangle Width="10" Height="10" Fill="Red"></Rectangle>
+                </u:NavMenuItem.Icon>
+            </u:NavMenuItem>
+            <u:NavMenuItem Header="Menu 2">
+                <u:NavMenuItem.Icon>
+                    <Rectangle Width="20" Height="10" Fill="Red"></Rectangle>
+                </u:NavMenuItem.Icon>
+            </u:NavMenuItem>
+            <u:NavMenuItem Header="Menu 3">
+                <u:NavMenuItem.Icon>
+                    <Rectangle Width="30" Height="10" Fill="Red"></Rectangle>
+                </u:NavMenuItem.Icon>
+            </u:NavMenuItem>
+        </u:NavMenu>
     </StackPanel>
 </UserControl>
