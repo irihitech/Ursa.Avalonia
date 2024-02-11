@@ -19,6 +19,7 @@ public static class MenuKeys
     public const string MenuKeyLoading = "Loading";
     public const string MenuKeyMessageBox = "MessageBox";
     public const string MenuKeyNavigation = "Navigation";
+    public const string MenuKeyNavMenu = "NavMenu";
     public const string MenuKeyNumericUpDown = "NumericUpDown";
     public const string MenuKeyPagination = "Pagination";
     public const string MenuKeyRangeSlider = "RangeSlider";

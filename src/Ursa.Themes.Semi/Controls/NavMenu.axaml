@@ -3,6 +3,7 @@
                     xmlns:u="https://irihi.tech/ursa">
     <!-- Add Resources Here -->
     <ControlTheme TargetType="u:NavMenu" x:Key="{x:Type u:NavMenu}">
+        <Setter Property="Grid.IsSharedSizeScope" Value="True"></Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:NavMenu">
                 <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" Grid.IsSharedSizeScope="True"/>
@@ -20,7 +21,7 @@
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <ContentPresenter Content="{TemplateBinding Icon}" />
+                            <ContentPresenter Content="{TemplateBinding Icon}" HorizontalAlignment="Left" />
                             <ContentPresenter Grid.Column="1" Content="{TemplateBinding Header}" />
                         </Grid>
                     </Expander.Header>
