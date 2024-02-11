@@ -5,7 +5,7 @@
              xmlns:u="https://irihi.tech/ursa"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.NavMenuDemo">
-    <u:NavMenu>
+    <u:NavMenu Name="menu">
         <u:NavMenuItem Header="Menu 1">
             <u:NavMenuItem.Icon>
                 <Rectangle Width="10" Height="10" Fill="Red"></Rectangle>
@@ -21,5 +21,7 @@
                 <Rectangle Width="30" Height="10" Fill="Red"></Rectangle>
             </u:NavMenuItem.Icon>
         </u:NavMenuItem>
+        <u:Divider Content="Divider"></u:Divider>
+        <TextBlock Text="{Binding #menu.SelectedItem}"></TextBlock>
     </u:NavMenu>
 </UserControl>

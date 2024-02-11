@@ -60,6 +60,7 @@ public class NavMenuItem: HeaderedSelectingItemsControl
     {
         base.OnAttachedToVisualTree(e);
         _rootMenu = GetRootMenu();
+        UpdateSelection(1);
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)

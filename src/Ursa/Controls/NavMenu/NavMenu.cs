@@ -1,11 +1,33 @@
-﻿using Avalonia.Controls;
+﻿using System.Diagnostics;
+using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Data;
 using Avalonia.LogicalTree;
 
 namespace Ursa.Controls;
 
-public class NavMenu: SelectingItemsControl
+public class NavMenu: ItemsControl
 {
+    public static readonly StyledProperty<object?> SelectedItemProperty = AvaloniaProperty.Register<NavMenu, object?>(
+        nameof(SelectedItem), defaultBindingMode: BindingMode.TwoWay);
+
+    public object? SelectedItem
+    {
+        get => GetValue(SelectedItemProperty);
+        set => SetValue(SelectedItemProperty, value);
+    }
+
+    static NavMenu()
+    {
+        SelectedItemProperty.Changed.AddClassHandler<NavMenu, object?>((o, e) => o.OnSelectedItemChange(e));
+    }
+
+    private void OnSelectedItemChange(AvaloniaPropertyChangedEventArgs<object?> args)
+    {
+        Debug.WriteLine(args.NewValue.Value);
+    }
+
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
         return NeedsContainer<NavMenuItem>(item, out recycleKey);
@@ -26,6 +48,14 @@ public class NavMenu: SelectingItemsControl
             {
                 child.IsSelected = false;
             }
+        }
+        if (item.DataContext is not null && item.DataContext != this.DataContext)
+        {
+            SelectedItem = item.DataContext;
+        }
+        else
+        {
+            SelectedItem = item;
         }
         item.IsSelected = true;
     }

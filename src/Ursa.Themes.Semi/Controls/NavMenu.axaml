@@ -14,19 +14,17 @@
     <ControlTheme TargetType="u:NavMenuItem" x:Key="{x:Type u:NavMenuItem}">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:NavMenuItem">
-                <Expander>
-                    <Expander.Header>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <ContentPresenter Content="{TemplateBinding Icon}" HorizontalAlignment="Left" />
-                            <ContentPresenter Grid.Column="1" Content="{TemplateBinding Header}" />
-                        </Grid>
-                    </Expander.Header>
-                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
-                </Expander>
+                <Grid RowDefinitions="Auto, *">
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter Content="{TemplateBinding Icon}" HorizontalAlignment="Left" />
+                        <ContentPresenter Grid.Column="1" Content="{TemplateBinding Header}" />
+                    </Grid>
+                    <ItemsPresenter Grid.Row="1" ItemsPanel="{TemplateBinding ItemsPanel}" />
+                </Grid>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
