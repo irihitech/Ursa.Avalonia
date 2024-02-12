@@ -2,6 +2,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Controls.Templates;
 using Avalonia.Data;
 using Avalonia.LogicalTree;
 using Avalonia.Metadata;
@@ -63,6 +64,24 @@ public class NavMenu: ItemsControl
         set => SetValue(CommandBindingProperty, value);
     }
 
+    public static readonly StyledProperty<IDataTemplate?> HeaderTemplateProperty = AvaloniaProperty.Register<NavMenu, IDataTemplate?>(
+        nameof(HeaderTemplate));
+
+    public IDataTemplate? HeaderTemplate
+    {
+        get => GetValue(HeaderTemplateProperty);
+        set => SetValue(HeaderTemplateProperty, value);
+    }
+
+    public static readonly StyledProperty<IDataTemplate?> IconTemplateProperty = AvaloniaProperty.Register<NavMenu, IDataTemplate?>(
+        nameof(IconTemplate));
+
+    public IDataTemplate? IconTemplate
+    {
+        get => GetValue(IconTemplateProperty);
+        set => SetValue(IconTemplateProperty, value);
+    }
+
     static NavMenu()
     {
         SelectedItemProperty.Changed.AddClassHandler<NavMenu, object?>((o, e) => o.OnSelectedItemChange(e));
@@ -83,30 +102,6 @@ public class NavMenu: ItemsControl
         return new NavMenuItem();
     }
 
-    protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
-    {
-        base.PrepareContainerForItemOverride(container, item, index);
-        if (container is NavMenuItem navMenuItem)
-        {
-            if (IconBinding is not null)
-            {
-                navMenuItem[!NavMenuItem.IconProperty] = IconBinding;
-            }
-            if (HeaderBinding is not null)
-            {
-                navMenuItem[!HeaderedItemsControl.HeaderProperty] = HeaderBinding;
-            }
-            if (SubMenuBinding is not null)
-            {
-                navMenuItem[!ItemsSourceProperty] = SubMenuBinding;
-            }
-            if (CommandBinding is not null)
-            {
-                navMenuItem[!NavMenuItem.CommandProperty] = CommandBinding;
-            }
-        }
-    }
-
     internal void SelectItem(NavMenuItem item, NavMenuItem parent)
     {
         // if (item.IsSelected) return;
@@ -116,12 +111,9 @@ public class NavMenu: ItemsControl
             {
                 continue;
             }
-            else
+            if (child is NavMenuItem navMenuItem)
             {
-                if (child is NavMenuItem navMenuItem)
-                {
-                    navMenuItem.ClearSelection();
-                }
+                navMenuItem.ClearSelection();
             }
         }
         if (item.DataContext is not null && item.DataContext != this.DataContext)

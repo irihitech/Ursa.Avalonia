@@ -48,9 +48,15 @@
             <u:NavMenu
                 Name="menu"
                 ItemsSource="{Binding MenuItems}"
-                HeaderBinding="{Binding}"
+                HeaderBinding="{Binding Header}"
                 SubMenuBinding="{Binding  Children}"
-                IconBinding="{Binding Header}"/>
+                IconBinding="{Binding}">
+                <u:NavMenu.IconTemplate>
+                    <DataTemplate>
+                        <Rectangle Width="10" Height="10" Fill="Blue"></Rectangle>
+                    </DataTemplate>
+                </u:NavMenu.IconTemplate>
+            </u:NavMenu>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

@@ -17,7 +17,7 @@
     <ControlTheme x:Key="{x:Type u:NavMenuItem}" TargetType="u:NavMenuItem">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:NavMenuItem">
-                <Grid RowDefinitions="Auto, *" Background="{TemplateBinding Background}">
+                <Grid Background="{TemplateBinding Background}" RowDefinitions="Auto, *">
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
@@ -25,15 +25,16 @@
                             <ColumnDefinition Width="Auto" SharedSizeGroup="Expander" />
                         </Grid.ColumnDefinitions>
                         <ContentPresenter
-                            HorizontalAlignment="Left"
                             Padding="8"
+                            HorizontalAlignment="Left"
                             Background="Transparent"
-                            Content="{TemplateBinding Icon}" />
+                            Content="{TemplateBinding Icon}"
+                            ContentTemplate="{TemplateBinding IconTemplate}" />
                         <ContentPresenter
                             Grid.Column="1"
-                            Padding="0 8"
+                            Padding="0,8"
                             Background="Transparent"
-                            Content="{TemplateBinding Header}" />
+                            Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" />
                     </Grid>
                     <ItemsPresenter
                         Grid.Row="1"
@@ -43,7 +44,7 @@
                 </Grid>
             </ControlTemplate>
         </Setter>
-        
+
         <Style Selector="^:selected">
             <Setter Property="Background" Value="{DynamicResource NavigationMenuItemSelectedBackground}" />
         </Style>

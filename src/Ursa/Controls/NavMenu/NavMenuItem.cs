@@ -83,6 +83,28 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         get => _isHighlighted;
         private set => SetAndRaise(IsHighlightedProperty, ref _isHighlighted, value);
     }
+
+    private bool _isCollapsed;
+
+    public static readonly DirectProperty<NavMenuItem, bool> IsCollapsedProperty = AvaloniaProperty.RegisterDirect<NavMenuItem, bool>(
+        nameof(IsCollapsed), o => o.IsCollapsed, (o, v) => o.IsCollapsed = v);
+
+    public bool IsCollapsed
+    {
+        get => _isCollapsed;
+        set => SetAndRaise(IsCollapsedProperty, ref _isCollapsed, value);
+    }
+
+    private bool _isClosed;
+
+    public static readonly DirectProperty<NavMenuItem, bool> IsClosedProperty = AvaloniaProperty.RegisterDirect<NavMenuItem, bool>(
+        nameof(IsClosed), o => o.IsClosed, (o, v) => o.IsClosed = v);
+
+    public bool IsClosed
+    {
+        get => _isClosed;
+        set => SetAndRaise(IsClosedProperty, ref _isClosed, value);
+    }
     
     
     internal int Level { get; set; }
@@ -109,35 +131,33 @@ public class NavMenuItem: HeaderedSelectingItemsControl
     {
         return new NavMenuItem();
     }
-
-    protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
-    {
-        base.PrepareContainerForItemOverride(container, item, index);
-        if (container is NavMenuItem navMenuItem)
-        {
-            if (_rootMenu?.HeaderBinding is not null)
-            {
-                container[!HeaderProperty] = _rootMenu.HeaderBinding;
-            }
-            if (_rootMenu?.IconBinding is not null)
-            {
-                container[!IconProperty] = _rootMenu.IconBinding;
-            }
-            if (_rootMenu?.SubMenuBinding is not null)
-            {
-                container[!ItemsSourceProperty] = _rootMenu.SubMenuBinding;
-            }
-            if (_rootMenu?.CommandBinding is not null)
-            {
-                container[!CommandProperty] = _rootMenu.CommandBinding;
-            }
-        }
-    }
-
+    
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
         _rootMenu = GetRootMenu();
+        if (_rootMenu is not null)
+        {
+            if (_rootMenu.IconBinding is not null)
+            {
+                this[!IconProperty] = _rootMenu.IconBinding;
+            }
+            if (_rootMenu.HeaderBinding is not null)
+            {
+                this[!HeaderProperty] = _rootMenu.HeaderBinding;
+            }
+            if (_rootMenu.SubMenuBinding is not null)
+            {
+                this[!ItemsSourceProperty] = _rootMenu.SubMenuBinding;
+            }
+            if (_rootMenu.CommandBinding is not null)
+            {
+                this[!CommandProperty] = _rootMenu.CommandBinding;
+            }
+            this[!IconTemplateProperty] = _rootMenu[!NavMenu.IconTemplateProperty];
+            this[!HeaderTemplateProperty] = _rootMenu[!NavMenu.HeaderTemplateProperty];
+        }
+        
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -154,6 +174,10 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         if (this.ItemCount == 0)
         {
             SelectItem(this);
+        }
+        else
+        {
+            
         }
         Command?.Execute(CommandParameter);
         e.Handled = true;
