@@ -52,6 +52,17 @@ public class NavMenu: ItemsControl
         set => SetValue(SubMenuBindingProperty, value);
     }
 
+    public static readonly StyledProperty<IBinding?> CommandBindingProperty = AvaloniaProperty.Register<NavMenu, IBinding?>(
+        nameof(CommandBinding));
+
+    [AssignBinding]
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public IBinding? CommandBinding
+    {
+        get => GetValue(CommandBindingProperty);
+        set => SetValue(CommandBindingProperty, value);
+    }
+
     static NavMenu()
     {
         SelectedItemProperty.Changed.AddClassHandler<NavMenu, object?>((o, e) => o.OnSelectedItemChange(e));
@@ -89,18 +100,28 @@ public class NavMenu: ItemsControl
             {
                 navMenuItem[!ItemsSourceProperty] = SubMenuBinding;
             }
+            if (CommandBinding is not null)
+            {
+                navMenuItem[!NavMenuItem.CommandProperty] = CommandBinding;
+            }
         }
     }
 
-    internal void SelectItem(NavMenuItem item)
+    internal void SelectItem(NavMenuItem item, NavMenuItem parent)
     {
-        if (item.IsSelected) return;
-        var children = this.LogicalChildren.OfType<NavMenuItem>();
-        foreach (var child in children)
+        // if (item.IsSelected) return;
+        foreach (var child in LogicalChildren)
         {
-            if (child != item)
+            if (child == parent)
             {
-                child.IsSelected = false;
+                continue;
+            }
+            else
+            {
+                if (child is NavMenuItem navMenuItem)
+                {
+                    navMenuItem.ClearSelection();
+                }
             }
         }
         if (item.DataContext is not null && item.DataContext != this.DataContext)

@@ -1,5 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Ursa.Controls;
 
 namespace Ursa.Demo.ViewModels;
 
@@ -11,7 +15,12 @@ public class NavMenuDemoViewModel: ObservableObject
         {
             new MenuItem() { Header = "Getting Started" },
             new MenuItem() { Header = "Design Principles" },
-            new MenuItem() { Header = "Contributing" },
+            new MenuItem() { Header = "Contributing", Children =
+            {
+                new MenuItem() { Header = "Code of Conduct" },
+                new MenuItem() { Header = "How to Contribute" },
+                new MenuItem() { Header = "Development Workflow" },
+            }},
         }},
         new MenuItem { Header = "Badge" },
         new MenuItem { Header = "Banner" },
@@ -45,5 +54,17 @@ public class MenuItem
 {
     public string? Header { get; set; }
     public string? Icon { get; set; }
+    public ICommand NavigationCommand { get; set; }
+
+    public MenuItem()
+    {
+        NavigationCommand = new AsyncRelayCommand(OnNavigate);
+    }
+
+    private async Task OnNavigate()
+    {
+        await MessageBox.ShowOverlayAsync(Header??string.Empty, "Navigation Result");
+    }
+
     public ObservableCollection<MenuItem> Children { get; set; } = new ObservableCollection<MenuItem>();
 }

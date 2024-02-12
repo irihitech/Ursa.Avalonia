@@ -12,7 +12,9 @@
     x:DataType="vm:NavMenuDemoViewModel"
     mc:Ignorable="d">
     <StackPanel>
-        <u:NavMenu>
+        <TextBlock Text="{ReflectionBinding #menu2.SelectedItem.Header}"></TextBlock>
+        <u:NavMenu Name="menu2">
+
             <u:NavMenuItem Header="Menu 1">
                 <u:NavMenuItem.Icon>
                     <Rectangle
