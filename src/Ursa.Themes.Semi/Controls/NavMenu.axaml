@@ -7,7 +7,9 @@
         <Setter Property="Grid.IsSharedSizeScope" Value="True" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:NavMenu">
-                <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                </ScrollViewer>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
@@ -15,19 +17,22 @@
     <ControlTheme x:Key="{x:Type u:NavMenuItem}" TargetType="u:NavMenuItem">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:NavMenuItem">
-                <Grid RowDefinitions="Auto, *">
+                <Grid RowDefinitions="Auto, *" Background="{TemplateBinding Background}">
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" SharedSizeGroup="Header" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Expander" />
                         </Grid.ColumnDefinitions>
                         <ContentPresenter
                             HorizontalAlignment="Left"
-                            Background="Aqua"
+                            Padding="8"
+                            Background="Transparent"
                             Content="{TemplateBinding Icon}" />
                         <ContentPresenter
                             Grid.Column="1"
-                            Background="LightYellow"
+                            Padding="0 8"
+                            Background="Transparent"
                             Content="{TemplateBinding Header}" />
                     </Grid>
                     <ItemsPresenter
@@ -38,5 +43,9 @@
                 </Grid>
             </ControlTemplate>
         </Setter>
+        
+        <Style Selector="^:selected">
+            <Setter Property="Background" Value="{DynamicResource NavigationMenuItemSelectedBackground}" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

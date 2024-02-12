@@ -13,7 +13,12 @@ public class NavMenuDemoViewModel: ObservableObject
     {
         new MenuItem { Header = "Introduction" , Children =
         {
-            new MenuItem() { Header = "Getting Started" },
+            new MenuItem() { Header = "Getting Started", Children =
+            {
+                new MenuItem() { Header = "Code of Conduct" },
+                new MenuItem() { Header = "How to Contribute" },
+                new MenuItem() { Header = "Development Workflow" },
+            }},
             new MenuItem() { Header = "Design Principles" },
             new MenuItem() { Header = "Contributing", Children =
             {

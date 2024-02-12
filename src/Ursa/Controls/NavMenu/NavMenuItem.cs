@@ -11,6 +11,12 @@ using Avalonia.VisualTree;
 
 namespace Ursa.Controls;
 
+/// <summary>
+/// Navigation Menu Item
+/// <para>Note:</para>
+/// <para>collapsed: Entire menu is collapsed, only first level icon is displayed. Submenus are in popup. </para>
+/// <para>closed: When menu is not in collapsed mode, represents whether submenu is hidden. </para>
+/// </summary>
 [PseudoClasses(PC_Highlighted, PC_Collapsed, PC_Closed, PC_FirstLevel, PC_Selector)]
 public class NavMenuItem: HeaderedSelectingItemsControl
 {
@@ -145,7 +151,10 @@ public class NavMenuItem: HeaderedSelectingItemsControl
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
         base.OnPointerPressed(e);
-        SelectItem(this);
+        if (this.ItemCount == 0)
+        {
+            SelectItem(this);
+        }
         Command?.Execute(CommandParameter);
         e.Handled = true;
     }
@@ -165,6 +174,14 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         if (this.Parent is NavMenuItem menuItem)
         {
             menuItem.SelectItem(item);
+            var items = menuItem.LogicalChildren.OfType<NavMenuItem>();
+            foreach (var child in items)
+            {
+                if (child != this)
+                {
+                    child.ClearSelection();
+                }
+            }
         }
         else if (this.Parent is NavMenu menu)
         {
