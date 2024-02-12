@@ -1,5 +1,7 @@
-﻿using Avalonia;
+﻿using System.Windows.Input;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Mixins;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
@@ -9,8 +11,11 @@ using Avalonia.VisualTree;
 
 namespace Ursa.Controls;
 
+[PseudoClasses(PC_Highlighted)]
 public class NavMenuItem: HeaderedSelectingItemsControl
 {
+    public const string PC_Highlighted = "highlighted";
+    
     private NavMenu? _rootMenu;
     
     public static readonly StyledProperty<object?> IconProperty = AvaloniaProperty.Register<NavMenuItem, object?>(
@@ -31,6 +36,15 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         set => SetValue(IconTemplateProperty, value);
     }
 
+    public static readonly StyledProperty<ICommand?> CommandProperty = AvaloniaProperty.Register<NavMenuItem, ICommand?>(
+        nameof(Command));
+
+    public ICommand? Command
+    {
+        get => GetValue(CommandProperty);
+        set => SetValue(CommandProperty, value);
+    }
+
     public new static readonly StyledProperty<bool> IsSelectedProperty =
         SelectingItemsControl.IsSelectedProperty.AddOwner<NavMenuItem>();
 
@@ -39,6 +53,8 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         get => GetValue(IsSelectedProperty);
         set => SetValue(IsSelectedProperty, value);
     }
+    
+    
 
     static NavMenuItem()
     {
@@ -56,26 +72,34 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         return new NavMenuItem();
     }
 
+    protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
+    {
+        base.PrepareContainerForItemOverride(container, item, index);
+        if (container is NavMenuItem navMenuItem)
+        {
+            if (_rootMenu?.HeaderBinding is not null)
+            {
+                container[!HeaderProperty] = _rootMenu.HeaderBinding;
+            }
+        }
+    }
+
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
         _rootMenu = GetRootMenu();
-        UpdateSelection(1);
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
         base.OnPointerPressed(e);
         _rootMenu?.SelectItem(this);
+        e.Handled = true;
     }
 
     private NavMenu? GetRootMenu()
     {
-        var root = this.FindAncestorOfType<NavMenu>();
-        if (root is null)
-        {
-            root = this.FindLogicalAncestorOfType<NavMenu>();
-        }
+        var root = this.FindAncestorOfType<NavMenu>() ?? this.FindLogicalAncestorOfType<NavMenu>();
         return root;
     }
 }

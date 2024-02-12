@@ -4,6 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.LogicalTree;
+using Avalonia.Metadata;
 
 namespace Ursa.Controls;
 
@@ -16,6 +17,39 @@ public class NavMenu: ItemsControl
     {
         get => GetValue(SelectedItemProperty);
         set => SetValue(SelectedItemProperty, value);
+    }
+
+    public static readonly StyledProperty<IBinding?> IconBindingProperty = AvaloniaProperty.Register<NavMenu, IBinding?>(
+        nameof(IconBinding));
+
+    [AssignBinding]
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public IBinding? IconBinding
+    {
+        get => GetValue(IconBindingProperty);
+        set => SetValue(IconBindingProperty, value);
+    }
+
+    public static readonly StyledProperty<IBinding?> HeaderBindingProperty = AvaloniaProperty.Register<NavMenu, IBinding?>(
+        nameof(HeaderBinding));
+
+    [AssignBinding]
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public IBinding? HeaderBinding
+    {
+        get => GetValue(HeaderBindingProperty);
+        set => SetValue(HeaderBindingProperty, value);
+    }
+
+    public static readonly StyledProperty<IBinding?> SubMenuBindingProperty = AvaloniaProperty.Register<NavMenu, IBinding?>(
+        nameof(SubMenuBinding));
+
+    [AssignBinding]
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public IBinding? SubMenuBinding
+    {
+        get => GetValue(SubMenuBindingProperty);
+        set => SetValue(SubMenuBindingProperty, value);
     }
 
     static NavMenu()
@@ -37,7 +71,27 @@ public class NavMenu: ItemsControl
     {
         return new NavMenuItem();
     }
-    
+
+    protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
+    {
+        base.PrepareContainerForItemOverride(container, item, index);
+        if (container is NavMenuItem navMenuItem)
+        {
+            if (IconBinding is not null)
+            {
+                navMenuItem[!NavMenuItem.IconProperty] = IconBinding;
+            }
+            if (HeaderBinding is not null)
+            {
+                navMenuItem[!HeaderedItemsControl.HeaderProperty] = HeaderBinding;
+            }
+            if (SubMenuBinding is not null)
+            {
+                navMenuItem[!ItemsSourceProperty] = SubMenuBinding;
+            }
+        }
+    }
+
     internal void SelectItem(NavMenuItem item)
     {
         if (item.IsSelected) return;
