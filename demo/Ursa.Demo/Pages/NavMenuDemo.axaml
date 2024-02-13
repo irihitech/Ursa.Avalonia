@@ -2,34 +2,50 @@
     x:Class="Ursa.Demo.Pages.NavMenuDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Ursa.Demo.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="using:Ursa.Demo.ViewModels"
-    xmlns:converters="clr-namespace:Ursa.Demo.Converters"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:CompileBindings="True"
     x:DataType="vm:NavMenuDemoViewModel"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <converters:IconNameToPathConverter x:Key="IconConverter"/> 
+        <converters:IconNameToPathConverter x:Key="IconConverter" />
     </UserControl.Resources>
-    <Grid ColumnDefinitions="Auto, Auto" RowDefinitions="Auto, Auto, *" HorizontalAlignment="Left">
-        <ToggleButton Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Name="collapse">Collapse</ToggleButton>
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="{ReflectionBinding #menu.SelectedItem.Header}" />
-        <Border Grid.Row="2" Grid.Column="0" Theme="{DynamicResource CardBorder}" HorizontalAlignment="Left" Padding="0">
+    <Grid
+        HorizontalAlignment="Left"
+        ColumnDefinitions="Auto, Auto"
+        RowDefinitions="Auto, Auto, *">
+        <ToggleButton
+            Name="collapse"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2">
+            Collapse
+        </ToggleButton>
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="0"
+            Text="{ReflectionBinding #menu.SelectedItem.Header}" />
+        <Border
+            Grid.Row="2"
+            Grid.Column="0"
+            Padding="0"
+            HorizontalAlignment="Left"
+            Theme="{DynamicResource CardBorder}">
             <u:NavMenu
                 Name="menu"
-                Header="Welcome to Ursa!"
                 HeaderBinding="{Binding Header}"
                 IconBinding="{Binding IconIndex}"
                 IsHorizontalCollapsed="{Binding #collapse.IsChecked, Mode=OneWay}"
                 ItemsSource="{Binding MenuItems}"
                 SubMenuBinding="{Binding Children}">
                 <u:NavMenu.Styles>
-                    <Style Selector="u|NavMenuItem" x:DataType="vm:MenuItem">
-                        <Setter Property="IsSeparator" Value="{Binding IsSeparator}"></Setter>
+                    <Style x:DataType="vm:MenuItem" Selector="u|NavMenuItem">
+                        <Setter Property="IsSeparator" Value="{Binding IsSeparator}" />
                     </Style>
                 </u:NavMenu.Styles>
                 <u:NavMenu.IconTemplate>
@@ -37,26 +53,43 @@
                         <u:TwoTonePathIcon
                             Width="16"
                             Height="16"
-                            Data="{Binding Converter={StaticResource IconConverter}}"
-                            StrokeBrush="{DynamicResource SemiGrey5}"
-                            Foreground="{DynamicResource SemiGrey5}"
-                            ActiveStrokeBrush="{DynamicResource SemiBlue5}"
                             ActiveForeground="{DynamicResource SemiBlue5}"
-                            IsActive="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=u:NavMenuItem}, Path=IsHighlighted, Mode=TwoWay}">
-                        </u:TwoTonePathIcon>
+                            ActiveStrokeBrush="{DynamicResource SemiBlue5}"
+                            Data="{Binding Converter={StaticResource IconConverter}}"
+                            Foreground="{DynamicResource SemiGrey5}"
+                            IsActive="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=u:NavMenuItem}, Path=IsHighlighted, Mode=TwoWay}"
+                            StrokeBrush="{DynamicResource SemiGrey5}" />
                     </DataTemplate>
                 </u:NavMenu.IconTemplate>
-                <u:NavMenu.Footer>
-                    <Image
-                        Width="48"
-                        Height="48"
-                        RenderOptions.BitmapInterpolationMode="HighQuality"
-                        Source="../Assets/Ursa.ico" />
-                </u:NavMenu.Footer>
+                <u:NavMenu.Header>
+                    <Grid ColumnDefinitions="Auto, Auto" HorizontalAlignment="Center">
+                        <Image
+                            u:NavMenu.CanToggle="True"
+                            Width="48"
+                            Height="48"
+                            Margin="4 12"
+                            RenderOptions.BitmapInterpolationMode="HighQuality"
+                            Source="../Assets/Ursa.ico" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Classes="H5"
+                            VerticalAlignment="Center"
+                            Text="Ursa Avalonia"
+                            IsVisible="{Binding !#menu.IsHorizontalCollapsed}"
+                            Theme="{DynamicResource TitleTextBlock}" />
+                    </Grid>
+                </u:NavMenu.Header>
             </u:NavMenu>
         </Border>
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="{ReflectionBinding #menu2.SelectedItem.Header}"></TextBlock>
-        <u:NavMenu Grid.Row="2" Grid.Column="1" Name="menu2" IsHorizontalCollapsed="{Binding #collapse.IsChecked}">
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="1"
+            Text="{ReflectionBinding #menu2.SelectedItem.Header}" />
+        <u:NavMenu
+            Name="menu2"
+            Grid.Row="2"
+            Grid.Column="1"
+            IsHorizontalCollapsed="{Binding #collapse.IsChecked}">
             <u:NavMenuItem Header="Menu 1">
                 <u:NavMenuItem.Icon>
                     <Rectangle
@@ -64,9 +97,9 @@
                         Height="10"
                         Fill="Red" />
                 </u:NavMenuItem.Icon>
-                <u:NavMenuItem Header="Sub Menu 1"></u:NavMenuItem>
-                <u:NavMenuItem Header="Sub Menu 2"></u:NavMenuItem>
-                <u:NavMenuItem Header="Sub Menu 3"></u:NavMenuItem>
+                <u:NavMenuItem Header="Sub Menu 1" />
+                <u:NavMenuItem Header="Sub Menu 2" />
+                <u:NavMenuItem Header="Sub Menu 3" />
             </u:NavMenuItem>
             <u:NavMenuItem Header="Menu 2">
                 <u:NavMenuItem.Icon>

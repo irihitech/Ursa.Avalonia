@@ -5,6 +5,8 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
+using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 using Avalonia.Metadata;
 using Irihi.Avalonia.Shared.Helpers;
@@ -125,11 +127,39 @@ public class NavMenu: ItemsControl
         get => GetValue(FooterProperty);
         set => SetValue(FooterProperty, value);
     }
+
+    public static readonly AttachedProperty<bool> CanToggleProperty =
+        AvaloniaProperty.RegisterAttached<NavMenu, InputElement, bool>("CanToggle");
+
+    public static void SetCanToggle(InputElement obj, bool value) => obj.SetValue(CanToggleProperty, value);
+    public static bool GetCanToggle(InputElement obj) => obj.GetValue(CanToggleProperty);
     
     static NavMenu()
     {
         SelectedItemProperty.Changed.AddClassHandler<NavMenu, object?>((o, e) => o.OnSelectedItemChange(e));
         PropertyToPseudoClassMixin.Attach<NavMenu>(IsHorizontalCollapsedProperty, PC_HorizontalCollapsed);
+        CanToggleProperty.Changed.AddClassHandler<InputElement, bool>(OnInputRegisteredAsToggle);
+    }
+
+    private static void OnInputRegisteredAsToggle(InputElement input, AvaloniaPropertyChangedEventArgs<bool> e)
+    {
+        if (e.NewValue.Value)
+        {
+            input.AddHandler(PointerPressedEvent, OnElementToggle);
+        }
+        else
+        {
+            input.RemoveHandler(PointerPressedEvent, OnElementToggle);
+        }
+    }
+
+    private static void OnElementToggle(object? sender, RoutedEventArgs args)
+    {
+        if (sender is not InputElement input) return;
+        var nav = input.FindLogicalAncestorOfType<NavMenu>();
+        if(nav is null) return;
+        bool collapsed = nav.IsHorizontalCollapsed;
+        nav.IsHorizontalCollapsed = !collapsed;
     }
 
     private void OnSelectedItemChange(AvaloniaPropertyChangedEventArgs<object?> args)

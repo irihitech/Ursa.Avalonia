@@ -128,6 +128,9 @@
         <Setter Property="Template" Value="{StaticResource DefaultNavMenuItemTemplate}" />
         <Style Selector="^:selected">
             <Setter Property="Background" Value="{DynamicResource NavigationMenuItemSelectedBackground}" />
+            <Style Selector="^:pointerover">
+                <Setter Property="Background" Value="{DynamicResource NavigationMenuItemSelectedBackground}" />
+            </Style>
         </Style>
         <Style Selector="^:vertical-collapsed /template/ ItemsPresenter#PART_ItemsPresenter">
             <Setter Property="Height" Value="0" />
