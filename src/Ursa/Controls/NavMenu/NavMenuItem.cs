@@ -124,7 +124,15 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         get => _level;
         set => SetAndRaise(LevelProperty, ref _level, value);
     }
-    
+
+    public static readonly StyledProperty<bool> IsSeparatorProperty = AvaloniaProperty.Register<NavMenuItem, bool>(
+        nameof(IsSeparator));
+
+    public bool IsSeparator
+    {
+        get => GetValue(IsSeparatorProperty);
+        set => SetValue(IsSeparatorProperty, value);
+    }
 
     static NavMenuItem()
     {
@@ -222,6 +230,11 @@ public class NavMenuItem: HeaderedSelectingItemsControl
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
+        if (IsSeparator)
+        {
+            e.Handled = true;
+            return;
+        }
         base.OnPointerPressed(e);
         if (this.ItemCount == 0)
         {

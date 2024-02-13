@@ -20,13 +20,18 @@
         <TextBlock Grid.Row="1" Grid.Column="0" Text="{ReflectionBinding #menu.SelectedItem.Header}" />
         <Border Grid.Row="2" Grid.Column="0" Theme="{DynamicResource CardBorder}" HorizontalAlignment="Left" Padding="0">
             <u:NavMenu
-                Header="Hello Ursa"
                 Name="menu"
+                Header="Welcome to Ursa!"
                 HeaderBinding="{Binding Header}"
                 IconBinding="{Binding IconIndex}"
                 IsHorizontalCollapsed="{Binding #collapse.IsChecked, Mode=OneWay}"
                 ItemsSource="{Binding MenuItems}"
                 SubMenuBinding="{Binding Children}">
+                <u:NavMenu.Styles>
+                    <Style Selector="u|NavMenuItem" x:DataType="vm:MenuItem">
+                        <Setter Property="IsSeparator" Value="{Binding IsSeparator}"></Setter>
+                    </Style>
+                </u:NavMenu.Styles>
                 <u:NavMenu.IconTemplate>
                     <DataTemplate DataType="{x:Type x:Int32}">
                         <u:TwoTonePathIcon
@@ -42,7 +47,11 @@
                     </DataTemplate>
                 </u:NavMenu.IconTemplate>
                 <u:NavMenu.Footer>
-                    <Button>Collapse</Button>
+                    <Image
+                        Width="48"
+                        Height="48"
+                        RenderOptions.BitmapInterpolationMode="HighQuality"
+                        Source="../Assets/Ursa.ico" />
                 </u:NavMenu.Footer>
             </u:NavMenu>
         </Border>
@@ -76,16 +85,5 @@
                 </u:NavMenuItem.Icon>
             </u:NavMenuItem>
         </u:NavMenu>
-        <StackPanel HorizontalAlignment="Left">
-            
-            
-            
-            
-            
-            
-            
-
-           
-        </StackPanel>
     </Grid>
 </UserControl>

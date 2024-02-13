@@ -19,7 +19,7 @@ public class NavMenuDemoViewModel: ObservableObject
                 new MenuItem() { Header = "How to Contribute" },
                 new MenuItem() { Header = "Development Workflow" },
             }},
-            new MenuItem() { Header = "Design Principles" },
+            new MenuItem() { Header = "Design Principles"},
             new MenuItem() { Header = "Contributing", Children =
             {
                 new MenuItem() { Header = "Code of Conduct" },
@@ -27,6 +27,7 @@ public class NavMenuDemoViewModel: ObservableObject
                 new MenuItem() { Header = "Development Workflow" },
             }},
         }},
+        new MenuItem { Header = "Controls", IsSeparator = true},
         new MenuItem { Header = "Badge" },
         new MenuItem { Header = "Banner" },
         new MenuItem { Header = "ButtonGroup" },
@@ -57,11 +58,13 @@ public class NavMenuDemoViewModel: ObservableObject
 
 public class MenuItem
 {
-    public string? Header { get; set; }
-    public string? Icon { get; set; }
-    public int IconIndex { get; set; }
-    public ICommand NavigationCommand { get; set; }
     static Random r = new Random();
+    
+    public string? Header { get; set; }
+    public int IconIndex { get; set; }
+    public bool IsSeparator { get; set; }
+    public ICommand NavigationCommand { get; set; }
+
     public MenuItem()
     {
         NavigationCommand = new AsyncRelayCommand(OnNavigate);
