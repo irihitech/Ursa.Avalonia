@@ -235,9 +235,16 @@ public class NavMenuItem: HeaderedSelectingItemsControl
             }
             else
             {
-                if (_border?.ContextFlyout is not null)
+                if (_popup is not null)
                 {
-                    _border.ContextFlyout.ShowAt(this);
+                    if (_popup.IsOpen)
+                    {
+                        _popup.Close();
+                    }
+                    else
+                    {
+                        _popup.Open();
+                    }
                 }
             }
         }

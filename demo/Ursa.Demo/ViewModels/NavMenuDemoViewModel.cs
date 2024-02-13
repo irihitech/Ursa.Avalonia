@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -58,11 +59,13 @@ public class MenuItem
 {
     public string? Header { get; set; }
     public string? Icon { get; set; }
+    public int IconIndex { get; set; }
     public ICommand NavigationCommand { get; set; }
-
+    static Random r = new Random();
     public MenuItem()
     {
         NavigationCommand = new AsyncRelayCommand(OnNavigate);
+        IconIndex = r.Next(100);
     }
 
     private async Task OnNavigate()
