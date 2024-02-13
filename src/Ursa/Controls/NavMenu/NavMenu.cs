@@ -72,6 +72,9 @@ public class NavMenu: ItemsControl
     public static readonly StyledProperty<IDataTemplate?> HeaderTemplateProperty = AvaloniaProperty.Register<NavMenu, IDataTemplate?>(
         nameof(HeaderTemplate));
 
+    /// <summary>
+    /// Header Template is used for MenuItem headers, not menu header. 
+    /// </summary>
     public IDataTemplate? HeaderTemplate
     {
         get => GetValue(HeaderTemplateProperty);
@@ -105,6 +108,24 @@ public class NavMenu: ItemsControl
         set => SetValue(IsHorizontalCollapsedProperty, value);
     }
 
+    public static readonly StyledProperty<object?> HeaderProperty =
+        HeaderedContentControl.HeaderProperty.AddOwner<NavMenu>();
+
+    public object? Header
+    {
+        get => GetValue(HeaderProperty);
+        set => SetValue(HeaderProperty, value);
+    }
+
+    public static readonly StyledProperty<object?> FooterProperty = AvaloniaProperty.Register<NavMenu, object?>(
+        nameof(Footer));
+
+    public object? Footer
+    {
+        get => GetValue(FooterProperty);
+        set => SetValue(FooterProperty, value);
+    }
+    
     static NavMenu()
     {
         SelectedItemProperty.Changed.AddClassHandler<NavMenu, object?>((o, e) => o.OnSelectedItemChange(e));

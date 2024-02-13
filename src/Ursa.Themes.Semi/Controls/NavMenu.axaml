@@ -12,9 +12,13 @@
         <Setter Property="SubMenuIndent" Value="24" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:NavMenu">
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
-                </ScrollViewer>
+                <DockPanel LastChildFill="True">
+                    <ContentPresenter Content="{TemplateBinding Header}" DockPanel.Dock="Top"></ContentPresenter>
+                    <ContentPresenter Content="{TemplateBinding Footer}" DockPanel.Dock="Bottom"></ContentPresenter>
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                    </ScrollViewer>
+                </DockPanel>
             </ControlTemplate>
         </Setter>
         <Style Selector="^:horizontal-collapsed">

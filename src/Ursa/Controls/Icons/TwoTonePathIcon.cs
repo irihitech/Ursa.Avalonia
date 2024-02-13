@@ -5,6 +5,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Media;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -75,13 +76,7 @@ public class TwoTonePathIcon: TemplatedControl
             ForegroundProperty,
             ActiveForegroundProperty,
             ActiveStrokeBrushProperty);
-        IsActiveProperty.Changed.AddClassHandler<TwoTonePathIcon, bool>((o, e) => o.OnIsActiveChanged(e));
-    }
-
-    private void OnIsActiveChanged(AvaloniaPropertyChangedEventArgs<bool> args)
-    {
-        var newValue = args.NewValue.Value;
-        PseudoClasses.Set(PC_Active, newValue);
+        PropertyToPseudoClassMixin.Attach<TwoTonePathIcon>(IsActiveProperty, PC_Active);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)

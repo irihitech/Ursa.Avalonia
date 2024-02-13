@@ -15,69 +15,77 @@
     <UserControl.Resources>
         <converters:IconNameToPathConverter x:Key="IconConverter"/> 
     </UserControl.Resources>
-    <ScrollViewer>
-        <StackPanel HorizontalAlignment="Left">
-            <TextBlock Text="{ReflectionBinding #menu2.SelectedItem.Header}"></TextBlock>
-            <u:NavMenu Name="menu2" Width="300" IsHorizontalCollapsed="{Binding #collapse.IsChecked}">
-                <u:NavMenuItem Header="Menu 1">
-                    <u:NavMenuItem.Icon>
-                        <Rectangle
-                            Width="10"
-                            Height="10"
-                            Fill="Red" />
-                    </u:NavMenuItem.Icon>
-                    <u:NavMenuItem Header="Sub Menu 1"></u:NavMenuItem>
-                    <u:NavMenuItem Header="Sub Menu 2"></u:NavMenuItem>
-                    <u:NavMenuItem Header="Sub Menu 3"></u:NavMenuItem>
-                </u:NavMenuItem>
-                <u:NavMenuItem Header="Menu 2">
-                    <u:NavMenuItem.Icon>
-                        <Rectangle
-                            Width="20"
-                            Height="10"
-                            Fill="Red" />
-                    </u:NavMenuItem.Icon>
-                </u:NavMenuItem>
-                <u:NavMenuItem Header="Menu 3">
-                    <u:NavMenuItem.Icon>
-                        <Rectangle
-                            Width="30"
-                            Height="10"
-                            Fill="Red" />
-                    </u:NavMenuItem.Icon>
-                </u:NavMenuItem>
+    <Grid ColumnDefinitions="Auto, Auto" RowDefinitions="Auto, Auto, *" HorizontalAlignment="Left">
+        <ToggleButton Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Name="collapse">Collapse</ToggleButton>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="{ReflectionBinding #menu.SelectedItem.Header}" />
+        <Border Grid.Row="2" Grid.Column="0" Theme="{DynamicResource CardBorder}" HorizontalAlignment="Left" Padding="0">
+            <u:NavMenu
+                Header="Hello Ursa"
+                Name="menu"
+                HeaderBinding="{Binding Header}"
+                IconBinding="{Binding IconIndex}"
+                IsHorizontalCollapsed="{Binding #collapse.IsChecked, Mode=OneWay}"
+                ItemsSource="{Binding MenuItems}"
+                SubMenuBinding="{Binding Children}">
+                <u:NavMenu.IconTemplate>
+                    <DataTemplate DataType="{x:Type x:Int32}">
+                        <u:TwoTonePathIcon
+                            Width="16"
+                            Height="16"
+                            Data="{Binding Converter={StaticResource IconConverter}}"
+                            StrokeBrush="{DynamicResource SemiGrey5}"
+                            Foreground="{DynamicResource SemiGrey5}"
+                            ActiveStrokeBrush="{DynamicResource SemiBlue5}"
+                            ActiveForeground="{DynamicResource SemiBlue5}"
+                            IsActive="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=u:NavMenuItem}, Path=IsHighlighted, Mode=TwoWay}">
+                        </u:TwoTonePathIcon>
+                    </DataTemplate>
+                </u:NavMenu.IconTemplate>
+                <u:NavMenu.Footer>
+                    <Button>Collapse</Button>
+                </u:NavMenu.Footer>
             </u:NavMenu>
-            <u:Divider Content="Divider" />
+        </Border>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="{ReflectionBinding #menu2.SelectedItem.Header}"></TextBlock>
+        <u:NavMenu Grid.Row="2" Grid.Column="1" Name="menu2" IsHorizontalCollapsed="{Binding #collapse.IsChecked}">
+            <u:NavMenuItem Header="Menu 1">
+                <u:NavMenuItem.Icon>
+                    <Rectangle
+                        Width="10"
+                        Height="10"
+                        Fill="Red" />
+                </u:NavMenuItem.Icon>
+                <u:NavMenuItem Header="Sub Menu 1"></u:NavMenuItem>
+                <u:NavMenuItem Header="Sub Menu 2"></u:NavMenuItem>
+                <u:NavMenuItem Header="Sub Menu 3"></u:NavMenuItem>
+            </u:NavMenuItem>
+            <u:NavMenuItem Header="Menu 2">
+                <u:NavMenuItem.Icon>
+                    <Rectangle
+                        Width="10"
+                        Height="10"
+                        Fill="Red" />
+                </u:NavMenuItem.Icon>
+            </u:NavMenuItem>
+            <u:NavMenuItem Header="Menu 3">
+                <u:NavMenuItem.Icon>
+                    <Rectangle
+                        Width="10"
+                        Height="10"
+                        Fill="Red" />
+                </u:NavMenuItem.Icon>
+            </u:NavMenuItem>
+        </u:NavMenu>
+        <StackPanel HorizontalAlignment="Left">
             
-            <TextBlock Text="{ReflectionBinding #menu.SelectedItem.Header}" />
-            <ToggleButton Name="collapse">Collapse</ToggleButton>
             
-            <Border Theme="{DynamicResource CardBorder}" HorizontalAlignment="Left" Padding="0">
-                <u:NavMenu
-                    Name="menu"
-                    HeaderBinding="{Binding Header}"
-                    IconBinding="{Binding IconIndex}"
-                    IsHorizontalCollapsed="{Binding #collapse.IsChecked, Mode=OneWay}"
-                    ItemsSource="{Binding MenuItems}"
-                    SubMenuBinding="{Binding Children}">
-                    <u:NavMenu.IconTemplate>
-                        <DataTemplate DataType="{x:Type x:Int32}">
-                            <u:TwoTonePathIcon
-                                Width="18"
-                                Height="18"
-                                Data="{Binding Converter={StaticResource IconConverter}}"
-                                StrokeBrush="{DynamicResource SemiBlue2}"
-                                Foreground="{DynamicResource SemiBlue2}"
-                                ActiveStrokeBrush="{DynamicResource SemiBlue6}"
-                                ActiveForeground="{DynamicResource SemiBlue6}"
-                                IsActive="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=u:NavMenuItem}, Path=IsHighlighted, Mode=TwoWay}">
-                            </u:TwoTonePathIcon>
-                        </DataTemplate>
-                    </u:NavMenu.IconTemplate>
-                </u:NavMenu>
-            </Border>
+            
+            
+            
+            
+            
 
            
         </StackPanel>
-    </ScrollViewer>
+    </Grid>
 </UserControl>
