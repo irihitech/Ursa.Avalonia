@@ -1,16 +1,21 @@
 ﻿using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
 using Avalonia.LogicalTree;
 using Avalonia.Metadata;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
+[PseudoClasses(PC_HorizontalCollapsed)]
 public class NavMenu: ItemsControl
 {
+    public const string PC_HorizontalCollapsed = ":horizontal-collapsed";
+    
     public static readonly StyledProperty<object?> SelectedItemProperty = AvaloniaProperty.Register<NavMenu, object?>(
         nameof(SelectedItem), defaultBindingMode: BindingMode.TwoWay);
 
@@ -82,9 +87,28 @@ public class NavMenu: ItemsControl
         set => SetValue(IconTemplateProperty, value);
     }
 
+    public static readonly StyledProperty<double> SubMenuIndentProperty = AvaloniaProperty.Register<NavMenu, double>(
+        nameof(SubMenuIndent), defaultValue: 20.0);
+
+    public double SubMenuIndent
+    {
+        get => GetValue(SubMenuIndentProperty);
+        set => SetValue(SubMenuIndentProperty, value);
+    }
+
+    public static readonly StyledProperty<bool> IsHorizontalCollapsedProperty = AvaloniaProperty.Register<NavMenu, bool>(
+        nameof(IsHorizontalCollapsed));
+
+    public bool IsHorizontalCollapsed
+    {
+        get => GetValue(IsHorizontalCollapsedProperty);
+        set => SetValue(IsHorizontalCollapsedProperty, value);
+    }
+
     static NavMenu()
     {
         SelectedItemProperty.Changed.AddClassHandler<NavMenu, object?>((o, e) => o.OnSelectedItemChange(e));
+        PropertyToPseudoClassMixin.Attach<NavMenu>(IsHorizontalCollapsedProperty, PC_HorizontalCollapsed);
     }
 
     private void OnSelectedItemChange(AvaloniaPropertyChangedEventArgs<object?> args)

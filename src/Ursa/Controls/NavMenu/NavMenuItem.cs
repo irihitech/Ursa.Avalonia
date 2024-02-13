@@ -13,17 +13,14 @@ namespace Ursa.Controls;
 
 /// <summary>
 /// Navigation Menu Item
-/// <para>Note:</para>
-/// <para>collapsed: Entire menu is collapsed, only first level icon is displayed. Submenus are in popup. </para>
-/// <para>closed: When menu is not in collapsed mode, represents whether submenu is hidden. </para>
 /// </summary>
-[PseudoClasses(PC_Highlighted, PC_Collapsed, PC_Closed, PC_FirstLevel, PC_Selector)]
+[PseudoClasses(PC_Highlighted, PC_HorizontalCollapsed, PC_VerticalCollapsed, PC_FirstLevel, PC_Selector)]
 public class NavMenuItem: HeaderedSelectingItemsControl
 {
     public const string PC_Highlighted = ":highlighted";
     public const string PC_FirstLevel = ":first-level";
-    public const string PC_Collapsed = ":collapsed";
-    public const string PC_Closed = ":closed";
+    public const string PC_HorizontalCollapsed = ":horizontal-collapsed";
+    public const string PC_VerticalCollapsed = ":vertical-collapsed";
     public const string PC_Selector = ":selector";
     
     private NavMenu? _rootMenu;
@@ -84,30 +81,25 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         private set => SetAndRaise(IsHighlightedProperty, ref _isHighlighted, value);
     }
 
-    private bool _isCollapsed;
+    public static readonly StyledProperty<double> SubMenuIndentProperty =
+        NavMenu.SubMenuIndentProperty.AddOwner<NavMenuItem>();
 
-    public static readonly DirectProperty<NavMenuItem, bool> IsCollapsedProperty = AvaloniaProperty.RegisterDirect<NavMenuItem, bool>(
-        nameof(IsCollapsed), o => o.IsCollapsed, (o, v) => o.IsCollapsed = v);
-
-    public bool IsCollapsed
+    public double SubMenuIndent
     {
-        get => _isCollapsed;
-        set => SetAndRaise(IsCollapsedProperty, ref _isCollapsed, value);
+        get => GetValue(SubMenuIndentProperty);
+        set => SetValue(SubMenuIndentProperty, value);
     }
 
-    private bool _isClosed;
+    
 
-    public static readonly DirectProperty<NavMenuItem, bool> IsClosedProperty = AvaloniaProperty.RegisterDirect<NavMenuItem, bool>(
-        nameof(IsClosed), o => o.IsClosed, (o, v) => o.IsClosed = v);
-
-    public bool IsClosed
+    internal static readonly DirectProperty<NavMenuItem, int> LevelProperty = AvaloniaProperty.RegisterDirect<NavMenuItem, int>(
+        nameof(Level), o => o.Level, (o, v) => o.Level = v);
+    private int _level;
+    internal int Level
     {
-        get => _isClosed;
-        set => SetAndRaise(IsClosedProperty, ref _isClosed, value);
+        get => _level;
+        set => SetAndRaise(LevelProperty, ref _level, value);
     }
-    
-    
-    internal int Level { get; set; }
     
 
     static NavMenuItem()
@@ -115,6 +107,12 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         SelectableMixin.Attach<NavMenuItem>(IsSelectedProperty);
         PressedMixin.Attach<NavMenuItem>();
         IsHighlightedProperty.Changed.AddClassHandler<NavMenuItem, bool>((o, e) => o.OnIsHighlightedChange(e));
+        LevelProperty.Changed.AddClassHandler<NavMenuItem, int>((item, args) => item.OnLevelChange(args));
+    }
+
+    private void OnLevelChange(AvaloniaPropertyChangedEventArgs<int> args)
+    {
+        PseudoClasses.Set(PC_FirstLevel, args.NewValue.Value == 0);
     }
 
     private void OnIsHighlightedChange(AvaloniaPropertyChangedEventArgs<bool> args)
@@ -164,8 +162,7 @@ public class NavMenuItem: HeaderedSelectingItemsControl
     {
         var children = this.ItemsPanelRoot?.Children.ToList();
         base.OnApplyTemplate(e);
-        Level = CalculateDistanceFromLogicalParent<NavMenuItem>(this);
-        PseudoClasses.Set(PC_FirstLevel, Level == 0);
+        SetCurrentValue(LevelProperty,CalculateDistanceFromLogicalParent<NavMenu>(this));
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
