@@ -8,6 +8,7 @@ using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.LogicalTree;
 using Avalonia.VisualTree;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -25,6 +26,7 @@ public class NavMenuItem: HeaderedSelectingItemsControl
     
     private NavMenu? _rootMenu;
     private Panel? _popupPanel;
+    private Popup? _popup;
     
     public static readonly StyledProperty<object?> IconProperty = AvaloniaProperty.Register<NavMenuItem, object?>(
         nameof(Icon));
@@ -81,6 +83,24 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         private set => SetAndRaise(IsHighlightedProperty, ref _isHighlighted, value);
     }
 
+    public static readonly StyledProperty<bool> IsHorizontalCollapsedProperty =
+        NavMenu.IsHorizontalCollapsedProperty.AddOwner<NavMenuItem>();
+
+    public bool IsHorizontalCollapsed
+    {
+        get => GetValue(IsHorizontalCollapsedProperty);
+        set => SetValue(IsHorizontalCollapsedProperty, value);
+    }
+
+    public static readonly StyledProperty<bool> IsVerticalCollapsedProperty = AvaloniaProperty.Register<NavMenuItem, bool>(
+        nameof(IsVerticalCollapsed));
+
+    public bool IsVerticalCollapsed
+    {
+        get => GetValue(IsVerticalCollapsedProperty);
+        set => SetValue(IsVerticalCollapsedProperty, value);
+    }
+
     public static readonly StyledProperty<double> SubMenuIndentProperty =
         NavMenu.SubMenuIndentProperty.AddOwner<NavMenuItem>();
 
@@ -89,8 +109,6 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         get => GetValue(SubMenuIndentProperty);
         set => SetValue(SubMenuIndentProperty, value);
     }
-
-    
 
     internal static readonly DirectProperty<NavMenuItem, int> LevelProperty = AvaloniaProperty.RegisterDirect<NavMenuItem, int>(
         nameof(Level), o => o.Level, (o, v) => o.Level = v);
@@ -104,20 +122,18 @@ public class NavMenuItem: HeaderedSelectingItemsControl
 
     static NavMenuItem()
     {
-        SelectableMixin.Attach<NavMenuItem>(IsSelectedProperty);
+        // SelectableMixin.Attach<NavMenuItem>(IsSelectedProperty);
         PressedMixin.Attach<NavMenuItem>();
-        IsHighlightedProperty.Changed.AddClassHandler<NavMenuItem, bool>((o, e) => o.OnIsHighlightedChange(e));
         LevelProperty.Changed.AddClassHandler<NavMenuItem, int>((item, args) => item.OnLevelChange(args));
+        PropertyToPseudoClassMixin.Attach<NavMenuItem>(IsHighlightedProperty, PC_Highlighted);
+        PropertyToPseudoClassMixin.Attach<NavMenuItem>(IsHorizontalCollapsedProperty, PC_HorizontalCollapsed);
+        PropertyToPseudoClassMixin.Attach<NavMenuItem>(IsVerticalCollapsedProperty, PC_VerticalCollapsed);
+        PropertyToPseudoClassMixin.Attach<NavMenuItem>(IsSelectedProperty, ":selected", IsSelectedChangedEvent);
     }
 
     private void OnLevelChange(AvaloniaPropertyChangedEventArgs<int> args)
     {
-        PseudoClasses.Set(PC_FirstLevel, args.NewValue.Value == 0);
-    }
-
-    private void OnIsHighlightedChange(AvaloniaPropertyChangedEventArgs<bool> args)
-    {
-        PseudoClasses.Set(PC_Highlighted, args.NewValue.Value);
+        PseudoClasses.Set(PC_FirstLevel, args.NewValue.Value == 1);
     }
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
@@ -154,6 +170,8 @@ public class NavMenuItem: HeaderedSelectingItemsControl
             }
             this[!IconTemplateProperty] = _rootMenu[!NavMenu.IconTemplateProperty];
             this[!HeaderTemplateProperty] = _rootMenu[!NavMenu.HeaderTemplateProperty];
+            this[!SubMenuIndentProperty] = _rootMenu[!NavMenu.SubMenuIndentProperty];
+            this[!IsHorizontalCollapsedProperty] = _rootMenu[!NavMenu.IsHorizontalCollapsedProperty];
         }
         
     }
@@ -163,6 +181,7 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         var children = this.ItemsPanelRoot?.Children.ToList();
         base.OnApplyTemplate(e);
         SetCurrentValue(LevelProperty,CalculateDistanceFromLogicalParent<NavMenu>(this));
+        _popup = e.NameScope.Find<Popup>("PART_Popup");
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
@@ -174,7 +193,24 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         }
         else
         {
-            
+            if (!IsHorizontalCollapsed) 
+            {
+                SetCurrentValue(IsVerticalCollapsedProperty, !IsVerticalCollapsed);
+            }
+            else
+            {
+                if (_popup is not null)
+                {
+                    if (_popup.IsOpen)
+                    {
+                        _popup.Close();
+                    }
+                    else
+                    {
+                        _popup.Open();
+                    }
+                }
+            }
         }
         Command?.Execute(CommandParameter);
         e.Handled = true;

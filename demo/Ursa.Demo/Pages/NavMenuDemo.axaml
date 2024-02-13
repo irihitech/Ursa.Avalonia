@@ -12,9 +12,9 @@
     x:DataType="vm:NavMenuDemoViewModel"
     mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel>
+        <StackPanel HorizontalAlignment="Left">
             <TextBlock Text="{ReflectionBinding #menu2.SelectedItem.Header}"></TextBlock>
-            <u:NavMenu Name="menu2">
+            <u:NavMenu Name="menu2" Width="300" IsHorizontalCollapsed="{Binding #collapse.IsChecked}">
                 <u:NavMenuItem Header="Menu 1">
                     <u:NavMenuItem.Icon>
                         <Rectangle
@@ -45,8 +45,11 @@
             </u:NavMenu>
             <u:Divider Content="Divider" />
             <TextBlock Text="{ReflectionBinding #menu.SelectedItem.Header}" />
+            <ToggleButton Name="collapse">Collapse</ToggleButton>
             <u:NavMenu
                 Name="menu"
+                Width="300"
+                IsHorizontalCollapsed="{Binding #collapse.IsChecked, Mode=OneWay}"
                 ItemsSource="{Binding MenuItems}"
                 HeaderBinding="{Binding Header}"
                 SubMenuBinding="{Binding  Children}"

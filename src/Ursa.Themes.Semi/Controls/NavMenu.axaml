@@ -1,10 +1,15 @@
 ﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters"
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
+
+    <converters:NavMenuMarginConverter x:Key="NavMarginConverter" />
+
     <ControlTheme x:Key="{x:Type u:NavMenu}" TargetType="u:NavMenu">
         <Setter Property="Grid.IsSharedSizeScope" Value="True" />
+        <Setter Property="SubMenuIndent" Value="16" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:NavMenu">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
@@ -14,39 +19,160 @@
         </Setter>
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type u:NavMenuItem}" TargetType="u:NavMenuItem">
-        <Setter Property="Template">
-            <ControlTemplate TargetType="u:NavMenuItem">
-                <Grid Background="{TemplateBinding Background}" RowDefinitions="Auto, *">
-                    <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
-                            <ColumnDefinition Width="*" SharedSizeGroup="Header" />
-                            <ColumnDefinition Width="Auto" SharedSizeGroup="Expander" />
-                        </Grid.ColumnDefinitions>
-                        <ContentPresenter
-                            Padding="8"
-                            HorizontalAlignment="Left"
-                            Background="Transparent"
-                            Content="{TemplateBinding Icon}"
-                            ContentTemplate="{TemplateBinding IconTemplate}" />
-                        <ContentPresenter
-                            Grid.Column="1"
-                            Padding="0,8"
-                            Background="Transparent"
-                            Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" />
-                    </Grid>
-                    <ItemsPresenter
-                        Grid.Row="1"
-                        Margin="20,0,0,0"
-                        Grid.IsSharedSizeScope="True"
-                        ItemsPanel="{TemplateBinding ItemsPanel}" />
+    <ControlTemplate x:Key="DefaultNavMenuItemTemplate" TargetType="u:NavMenuItem">
+        <Grid RowDefinitions="Auto, *">
+            <Border
+                Grid.Row="0"
+                Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"
+                CornerRadius="4">
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.Margin>
+                        <MultiBinding Converter="{StaticResource NavMarginConverter}">
+                            <Binding Path="SubMenuIndent" RelativeSource="{RelativeSource TemplatedParent}" />
+                            <Binding Path="Level" RelativeSource="{RelativeSource TemplatedParent}" />
+                        </MultiBinding>
+                    </Grid.Margin>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="Expander" />
+                    </Grid.ColumnDefinitions>
+                    <ContentPresenter
+                        Padding="8"
+                        HorizontalAlignment="Left"
+                        Background="Transparent"
+                        Content="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}"
+                        ContentTemplate="{Binding IconTemplate, RelativeSource={RelativeSource TemplatedParent}}" />
+                    <ContentPresenter
+                        Grid.Column="1"
+                        Padding="0,8"
+                        Background="Transparent"
+                        Content="{Binding Header, RelativeSource={RelativeSource TemplatedParent}}"
+                        ContentTemplate="{Binding HeaderTemplate, RelativeSource={RelativeSource TemplatedParent}}" />
+                    <PathIcon
+                        Name="PART_ExpanderIcon"
+                        Grid.Column="2"
+                        Width="8"
+                        Height="8"
+                        Margin="12,0"
+                        Data="{DynamicResource NavigationMenuItemExpandIconGlyph}"
+                        Foreground="{DynamicResource NavigationMenuItemExpandIconForeground}">
+                        <PathIcon.Transitions>
+                            <Transitions>
+                                <TransformOperationsTransition Property="RenderTransform" Duration="0.1" />
+                            </Transitions>
+                        </PathIcon.Transitions>
+                    </PathIcon>
                 </Grid>
-            </ControlTemplate>
-        </Setter>
-
+            </Border>
+            <LayoutTransformControl
+                Name="PART_Transform"
+                Grid.Row="1"
+                VerticalAlignment="Top"
+                RenderTransformOrigin="0.5,0">
+                <ItemsPresenter Grid.IsSharedSizeScope="True" ItemsPanel="{Binding ItemsPanel, RelativeSource={RelativeSource TemplatedParent}}" />
+                <LayoutTransformControl.Transitions>
+                    <Transitions>
+                        <TransformOperationsTransition Property="LayoutTransform" Duration="0.1" />
+                    </Transitions>
+                </LayoutTransformControl.Transitions>
+            </LayoutTransformControl>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="TopLevelCollapsedNavMenuItemTemplate" TargetType="u:NavMenuItem">
+        <Border
+            MinWidth="24"
+            MinHeight="24"
+            HorizontalAlignment="Left">
+            <Grid>
+                <ContentPresenter
+                    Name="PART_IconPresenter"
+                    Content="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}"
+                    ContentTemplate="{Binding IconTemplate, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Popup
+                    Name="PART_Popup"
+                    IsLightDismissEnabled="True"
+                    Placement="RightEdgeAlignedTop"
+                    PlacementTarget="{Binding #PART_IconPresenter}">
+                    <Border Theme="{DynamicResource CardBorder}" Grid.IsSharedSizeScope="True">
+                        <ItemsPresenter ItemsPanel="{Binding ItemsPanel, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </Border>
+                </Popup>
+            </Grid>
+        </Border>
+    </ControlTemplate>
+    
+    <ControlTemplate x:Key="CollapsedNavMenuItemTemplate" TargetType="u:NavMenuItem">
+        <Border
+            Name="PART_Border"
+            MinWidth="24"
+            MinHeight="24"
+            HorizontalAlignment="Stretch">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Expander" />
+                </Grid.ColumnDefinitions>
+                <ContentPresenter
+                    Padding="8"
+                    HorizontalAlignment="Left"
+                    Background="Transparent"
+                    Content="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}"
+                    ContentTemplate="{Binding IconTemplate, RelativeSource={RelativeSource TemplatedParent}}" />
+                <ContentPresenter
+                    Grid.Column="1"
+                    Padding="0,8"
+                    Background="Transparent"
+                    Content="{Binding Header, RelativeSource={RelativeSource TemplatedParent}}"
+                    ContentTemplate="{Binding HeaderTemplate, RelativeSource={RelativeSource TemplatedParent}}" />
+                <PathIcon
+                    Name="PART_ExpanderIcon"
+                    Grid.Column="2"
+                    Width="8"
+                    Height="8"
+                    Margin="12,0"
+                    Data="{DynamicResource NavigationMenuItemExpandIconGlyph}"
+                    Foreground="{DynamicResource NavigationMenuItemExpandIconForeground}">
+                    <PathIcon.Transitions>
+                        <Transitions>
+                            <TransformOperationsTransition Property="RenderTransform" Duration="0.1" />
+                        </Transitions>
+                    </PathIcon.Transitions>
+                </PathIcon>
+                <Popup Grid.Column="0"
+                    Name="PART_Popup"
+                    IsLightDismissEnabled="True"
+                    Placement="RightEdgeAlignedTop"
+                    PlacementTarget="{Binding #PART_Border}">
+                    <Border Theme="{DynamicResource CardBorder}" Grid.IsSharedSizeScope="True">
+                        <ItemsPresenter ItemsPanel="{Binding ItemsPanel, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </Border>
+                </Popup>
+            </Grid>
+        </Border>
+    </ControlTemplate>
+    
+    <ControlTheme x:Key="{x:Type u:NavMenuItem}" TargetType="u:NavMenuItem">
+        <Setter Property="Template" Value="{StaticResource DefaultNavMenuItemTemplate}" />
         <Style Selector="^:selected">
             <Setter Property="Background" Value="{DynamicResource NavigationMenuItemSelectedBackground}" />
         </Style>
+        <Style Selector="^:vertical-collapsed /template/ LayoutTransformControl#PART_Transform">
+            <Setter Property="LayoutTransform" Value="scale(1,0)" />
+        </Style>
+        <Style Selector="^:vertical-collapsed /template/ PathIcon#PART_ExpanderIcon">
+            <Setter Property="RenderTransform" Value="rotate(180deg)" />
+        </Style>
+        <Style Selector="^:empty /template/ PathIcon#PART_ExpanderIcon">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+        <Style Selector="^:horizontal-collapsed:first-level">
+            <Setter Property="Template" Value="{StaticResource TopLevelCollapsedNavMenuItemTemplate}" />
+        </Style>
+        <Style Selector="^:horizontal-collapsed:not(:first-level)">
+            <Setter Property="Template" Value="{StaticResource CollapsedNavMenuItemTemplate}" />
+        </Style>
     </ControlTheme>
+
 </ResourceDictionary>

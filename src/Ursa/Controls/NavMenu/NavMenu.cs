@@ -88,7 +88,7 @@ public class NavMenu: ItemsControl
     }
 
     public static readonly StyledProperty<double> SubMenuIndentProperty = AvaloniaProperty.Register<NavMenu, double>(
-        nameof(SubMenuIndent), defaultValue: 20.0);
+        nameof(SubMenuIndent));
 
     public double SubMenuIndent
     {
