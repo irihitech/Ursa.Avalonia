@@ -54,9 +54,20 @@
                 HeaderBinding="{Binding Header}"
                 SubMenuBinding="{Binding  Children}"
                 IconBinding="{Binding}">
+                <u:NavMenu.Styles>
+                    <Style Selector="Rectangle">
+                        <Setter Property="Fill" Value="Blue"></Setter>
+                    </Style>
+                    <Style Selector="Rectangle.Active">
+                        <Setter Property="Fill" Value="Red"></Setter>
+                    </Style>
+                </u:NavMenu.Styles>
                 <u:NavMenu.IconTemplate>
                     <DataTemplate>
-                        <Rectangle Width="10" Height="10" Fill="Blue"></Rectangle>
+                        <Rectangle
+                            Classes.Active="{Binding $parent[u:NavMenuItem].IsHighlighted}"
+                            Width="10" Height="10" >
+                        </Rectangle>
                     </DataTemplate>
                 </u:NavMenu.IconTemplate>
             </u:NavMenu>

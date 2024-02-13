@@ -10,7 +10,7 @@ public class NavMenuMarginConverter: IMultiValueConverter
     {
         if (values[0] is double indent && values[1] is int level)
         {
-            return new Thickness(indent * level, 0, 0, 0);
+            return new Thickness(indent * (level-1), 0, 0, 0);
         }
         return AvaloniaProperty.UnsetValue;
     }
