@@ -172,6 +172,10 @@ public class NavMenuItem: HeaderedSelectingItemsControl
             this[!HeaderTemplateProperty] = _rootMenu[!NavMenu.HeaderTemplateProperty];
             this[!SubMenuIndentProperty] = _rootMenu[!NavMenu.SubMenuIndentProperty];
             this[!IsHorizontalCollapsedProperty] = _rootMenu[!NavMenu.IsHorizontalCollapsedProperty];
+            if (this == _rootMenu.SelectedItem || this.DataContext == _rootMenu.SelectedItem)
+            {
+                SelectItem(this);
+            }
         }
         
     }
