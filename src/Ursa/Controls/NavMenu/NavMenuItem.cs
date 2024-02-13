@@ -5,7 +5,9 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Mixins;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Avalonia.Data;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Helpers;
@@ -27,6 +29,8 @@ public class NavMenuItem: HeaderedSelectingItemsControl
     private NavMenu? _rootMenu;
     private Panel? _popupPanel;
     private Popup? _popup;
+    private Panel? _overflowPanel;
+    private Border? _border;
     
     public static readonly StyledProperty<object?> IconProperty = AvaloniaProperty.Register<NavMenuItem, object?>(
         nameof(Icon));
@@ -74,8 +78,10 @@ public class NavMenuItem: HeaderedSelectingItemsControl
 
     private bool _isHighlighted;
 
-    public static readonly DirectProperty<NavMenuItem, bool> IsHighlightedProperty = AvaloniaProperty.RegisterDirect<NavMenuItem, bool>(
-        nameof(IsHighlighted), o => o.IsHighlighted, (o, v) => o.IsHighlighted = v);
+    public static readonly DirectProperty<NavMenuItem, bool> IsHighlightedProperty =
+        AvaloniaProperty.RegisterDirect<NavMenuItem, bool>(
+            nameof(IsHighlighted), o => o.IsHighlighted, (o, v) => o.IsHighlighted = v,
+            defaultBindingMode: BindingMode.TwoWay);
 
     public bool IsHighlighted
     {
@@ -129,6 +135,26 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         PropertyToPseudoClassMixin.Attach<NavMenuItem>(IsHorizontalCollapsedProperty, PC_HorizontalCollapsed);
         PropertyToPseudoClassMixin.Attach<NavMenuItem>(IsVerticalCollapsedProperty, PC_VerticalCollapsed);
         PropertyToPseudoClassMixin.Attach<NavMenuItem>(IsSelectedProperty, ":selected", IsSelectedChangedEvent);
+        IsHorizontalCollapsedProperty.Changed.AddClassHandler<NavMenuItem, bool>((item, args) =>
+            item.OnIsHorizontalCollapsedChanged(args));
+    }
+
+    private void OnIsHorizontalCollapsedChanged(AvaloniaPropertyChangedEventArgs<bool> args)
+    {
+        if (args.NewValue.Value)
+        {
+            if (this.ItemsPanelRoot is OverflowStackPanel s)
+            {
+                s.MoveChildrenToOverflowPanel();
+            }
+        }
+        else
+        {
+            if (this.ItemsPanelRoot is OverflowStackPanel s)
+            {
+                s.MoveChildrenToMainPanel();
+            }
+        }
     }
 
     private void OnLevelChange(AvaloniaPropertyChangedEventArgs<int> args)
@@ -150,6 +176,15 @@ public class NavMenuItem: HeaderedSelectingItemsControl
     {
         base.OnAttachedToVisualTree(e);
         _rootMenu = GetRootMenu();
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        SetCurrentValue(LevelProperty,CalculateDistanceFromLogicalParent<NavMenu>(this));
+        _popup = e.NameScope.Find<Popup>("PART_Popup");
+        _overflowPanel = e.NameScope.Find<Panel>("PART_OverflowPanel");
+        _border = e.NameScope.Find<Border>("PART_Border");
         if (_rootMenu is not null)
         {
             if (_rootMenu.IconBinding is not null)
@@ -172,20 +207,17 @@ public class NavMenuItem: HeaderedSelectingItemsControl
             this[!HeaderTemplateProperty] = _rootMenu[!NavMenu.HeaderTemplateProperty];
             this[!SubMenuIndentProperty] = _rootMenu[!NavMenu.SubMenuIndentProperty];
             this[!IsHorizontalCollapsedProperty] = _rootMenu[!NavMenu.IsHorizontalCollapsedProperty];
-            if (this == _rootMenu.SelectedItem || this.DataContext == _rootMenu.SelectedItem)
-            {
-                SelectItem(this);
-            }
         }
-        
     }
 
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    protected override void OnLoaded(RoutedEventArgs e)
     {
-        var children = this.ItemsPanelRoot?.Children.ToList();
-        base.OnApplyTemplate(e);
-        SetCurrentValue(LevelProperty,CalculateDistanceFromLogicalParent<NavMenu>(this));
-        _popup = e.NameScope.Find<Popup>("PART_Popup");
+        base.OnLoaded(e);
+        var root = this.ItemsPanelRoot;
+        if (root is OverflowStackPanel stack)
+        {
+            stack.OverflowPanel = _overflowPanel;
+        }
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
@@ -203,16 +235,9 @@ public class NavMenuItem: HeaderedSelectingItemsControl
             }
             else
             {
-                if (_popup is not null)
+                if (_border?.ContextFlyout is not null)
                 {
-                    if (_popup.IsOpen)
-                    {
-                        _popup.Close();
-                    }
-                    else
-                    {
-                        _popup.Open();
-                    }
+                    _border.ContextFlyout.ShowAt(this);
                 }
             }
         }

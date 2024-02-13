@@ -13,6 +13,7 @@
     mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel HorizontalAlignment="Left">
+            <!--
             <TextBlock Text="{ReflectionBinding #menu2.SelectedItem.Header}"></TextBlock>
             <u:NavMenu Name="menu2" Width="300" IsHorizontalCollapsed="{Binding #collapse.IsChecked}">
                 <u:NavMenuItem Header="Menu 1">
@@ -44,29 +45,32 @@
                 </u:NavMenuItem>
             </u:NavMenu>
             <u:Divider Content="Divider" />
+            -->
             <TextBlock Text="{ReflectionBinding #menu.SelectedItem.Header}" />
             <ToggleButton Name="collapse">Collapse</ToggleButton>
+
             <u:NavMenu
                 Name="menu"
                 Width="300"
+                HeaderBinding="{Binding Header}"
+                IconBinding="{Binding}"
                 IsHorizontalCollapsed="{Binding #collapse.IsChecked, Mode=OneWay}"
                 ItemsSource="{Binding MenuItems}"
-                HeaderBinding="{Binding Header}"
-                SubMenuBinding="{Binding  Children}"
-                IconBinding="{Binding}">
+                SubMenuBinding="{Binding Children}">
                 <u:NavMenu.Styles>
                     <Style Selector="Rectangle">
-                        <Setter Property="Fill" Value="Blue"></Setter>
+                        <Setter Property="Fill" Value="Blue" />
                     </Style>
                     <Style Selector="Rectangle.Active">
-                        <Setter Property="Fill" Value="Red"></Setter>
+                        <Setter Property="Fill" Value="Red" />
                     </Style>
                 </u:NavMenu.Styles>
                 <u:NavMenu.IconTemplate>
                     <DataTemplate>
                         <Rectangle
-                            Classes.Active="{Binding $parent[u:NavMenuItem].IsHighlighted}"
-                            Width="10" Height="10" >
+                            Width="10"
+                            Height="10"
+                            Classes.Active="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=u:NavMenuItem}, Path=IsHighlighted, Mode=TwoWay}">
                         </Rectangle>
                     </DataTemplate>
                 </u:NavMenu.IconTemplate>
