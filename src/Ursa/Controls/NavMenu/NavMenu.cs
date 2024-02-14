@@ -135,6 +135,14 @@ public class NavMenu: ItemsControl
     public static void SetCanToggle(InputElement obj, bool value) => obj.SetValue(CanToggleProperty, value);
     public static bool GetCanToggle(InputElement obj) => obj.GetValue(CanToggleProperty);
     
+    public static readonly RoutedEvent<SelectionChangedEventArgs> SelectionChangedEvent = RoutedEvent.Register<NavMenu, SelectionChangedEventArgs>(nameof(SelectionChanged), RoutingStrategies.Bubble);
+    
+    public event EventHandler<SelectionChangedEventArgs>? SelectionChanged
+    {
+        add => AddHandler(SelectionChangedEvent, value);
+        remove => RemoveHandler(SelectionChangedEvent, value);
+    }
+    
     static NavMenu()
     {
         SelectedItemProperty.Changed.AddClassHandler<NavMenu, object?>((o, e) => o.OnSelectedItemChange(e));
@@ -169,11 +177,20 @@ public class NavMenu: ItemsControl
     /// <param name="args"></param>
     private void OnSelectedItemChange(AvaloniaPropertyChangedEventArgs<object?> args)
     {
-        if (_updateFromUI) return;
+        SelectionChangedEventArgs a = new SelectionChangedEventArgs(
+            SelectionChangedEvent,
+            new [] { args.OldValue.Value },
+            new [] { args.NewValue.Value });
+        if (_updateFromUI)
+        {
+            RaiseEvent(a);
+            return;
+        }
         var newValue = args.NewValue.Value;
         if (newValue is null)
         {
             ClearAll();
+            RaiseEvent(a);
             return;
         }
         var leaves = GetLeafMenus();
@@ -186,8 +203,11 @@ public class NavMenu: ItemsControl
                 found = true;
             }
         }
-        if (found) return;
-        ClearAll();
+        if (!found)
+        {
+            ClearAll();
+        }
+        RaiseEvent(a);
     }
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
@@ -205,7 +225,6 @@ public class NavMenu: ItemsControl
     internal void SelectItem(NavMenuItem item, NavMenuItem parent)
     {
         _updateFromUI = true;
-        // if (item.IsSelected) return;
         foreach (var child in LogicalChildren)
         {
             if (child == parent)
@@ -226,7 +245,6 @@ public class NavMenu: ItemsControl
             SelectedItem = item;
         }
         item.BringIntoView();
-        // item.IsSelected = true;
         _updateFromUI = false;
     }
 

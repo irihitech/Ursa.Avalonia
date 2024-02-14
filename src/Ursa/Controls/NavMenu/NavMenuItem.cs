@@ -18,7 +18,7 @@ namespace Ursa.Controls;
 /// Navigation Menu Item
 /// </summary>
 [PseudoClasses(PC_Highlighted, PC_HorizontalCollapsed, PC_VerticalCollapsed, PC_FirstLevel, PC_Selector)]
-public class NavMenuItem: HeaderedSelectingItemsControl
+public class NavMenuItem: HeaderedItemsControl
 {
     public const string PC_Highlighted = ":highlighted";
     public const string PC_FirstLevel = ":first-level";
@@ -30,7 +30,6 @@ public class NavMenuItem: HeaderedSelectingItemsControl
     private Panel? _popupPanel;
     private Popup? _popup;
     private Panel? _overflowPanel;
-    private Border? _border;
     
     public static readonly StyledProperty<object?> IconProperty = AvaloniaProperty.Register<NavMenuItem, object?>(
         nameof(Icon));
@@ -67,7 +66,7 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         set => SetValue(CommandParameterProperty, value);
     }
 
-    public new static readonly StyledProperty<bool> IsSelectedProperty =
+    public static readonly StyledProperty<bool> IsSelectedProperty =
         SelectingItemsControl.IsSelectedProperty.AddOwner<NavMenuItem>();
 
     public bool IsSelected
@@ -75,6 +74,8 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         get => GetValue(IsSelectedProperty);
         set => SetValue(IsSelectedProperty, value);
     }
+    
+    public static readonly RoutedEvent<RoutedEventArgs> IsSelectedChangedEvent = RoutedEvent.Register<SelectingItemsControl, RoutedEventArgs>("IsSelectedChanged", RoutingStrategies.Bubble);
 
     private bool _isHighlighted;
 
@@ -192,7 +193,6 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         SetCurrentValue(LevelProperty,CalculateDistanceFromLogicalParent<NavMenu>(this));
         _popup = e.NameScope.Find<Popup>("PART_Popup");
         _overflowPanel = e.NameScope.Find<Panel>("PART_OverflowPanel");
-        _border = e.NameScope.Find<Border>("PART_Border");
         if (_rootMenu is not null)
         {
             if (_rootMenu.IconBinding is not null)

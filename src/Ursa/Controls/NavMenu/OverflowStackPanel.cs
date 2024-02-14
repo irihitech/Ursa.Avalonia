@@ -10,8 +10,8 @@ public class OverflowStackPanel: StackPanel
         var children = this.Children.ToList();
         foreach (var child in children)
         {
-            this.Children.Remove(child);
-            this.OverflowPanel?.Children.Add(child);
+            Children.Remove(child);
+            OverflowPanel?.Children.Add(child);
         }
     }
     
@@ -22,8 +22,8 @@ public class OverflowStackPanel: StackPanel
         {
             foreach (var child in children)
             {
-                this.OverflowPanel?.Children.Remove(child);
-                this.Children.Add(child);
+                OverflowPanel?.Children.Remove(child);
+                Children.Add(child);
             }
         }
     }
