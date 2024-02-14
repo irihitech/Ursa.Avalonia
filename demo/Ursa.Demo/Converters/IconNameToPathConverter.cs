@@ -26,6 +26,12 @@ public class IconNameToPathConverter: IValueConverter
             string s = paths[i % paths.Length];
             return StreamGeometry.Parse(s);
         }
+        else if (value is string s)
+        {
+            int hash = s.GetHashCode();
+            string path = paths[Math.Abs(hash) % paths.Length];
+            return StreamGeometry.Parse(path);
+        }
         return AvaloniaProperty.UnsetValue;
     }
 

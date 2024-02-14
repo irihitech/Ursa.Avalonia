@@ -13,17 +13,35 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:NavMenu">
                 <DockPanel LastChildFill="True">
-                    <ContentPresenter Content="{TemplateBinding Header}" DockPanel.Dock="Top"></ContentPresenter>
-                    <ContentPresenter Content="{TemplateBinding Footer}" DockPanel.Dock="Bottom"></ContentPresenter>
-                    <ScrollViewer HorizontalAlignment="Center" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                    <ContentPresenter Content="{TemplateBinding Header}" DockPanel.Dock="Top" />
+                    <ContentPresenter Content="{TemplateBinding Footer}" DockPanel.Dock="Bottom" />
+                    <ScrollViewer
+                        HorizontalAlignment="Center"
+                        HorizontalScrollBarVisibility="Disabled"
+                        AllowAutoHide="True"
+                        Theme="{DynamicResource StaticScrollViewer}"
+                        VerticalScrollBarVisibility="Auto">
+                        <ScrollViewer.Styles>
+                            <Style Selector="ScrollViewer /template/ ScrollBar">
+                                <Setter Property="Opacity" Value="0"></Setter>
+                            </Style>
+                            <Style Selector="ScrollViewer:pointerover">
+                                <Style Selector="^ /template/ ScrollBar#PART_HorizontalScrollBar">
+                                    <Setter Property="Opacity" Value="1" />
+                                </Style>
+                                <Style Selector="^ /template/ ScrollBar#PART_VerticalScrollBar">
+                                    <Setter Property="Opacity" Value="1" />
+                                </Style>
+                            </Style>
+                        </ScrollViewer.Styles>
                         <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
                     </ScrollViewer>
                 </DockPanel>
             </ControlTemplate>
         </Setter>
         <Style Selector="^:horizontal-collapsed">
-            <Setter Property="Width" Value="{x:Static x:Double.NaN}"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Width" Value="{x:Static x:Double.NaN}" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
         </Style>
     </ControlTheme>
 
@@ -33,9 +51,9 @@
                 Name="PART_Border"
                 Grid.Row="0"
                 MinHeight="32"
-                Cursor="Hand"
                 Background="{TemplateBinding u:NavMenuItem.Background}"
-                CornerRadius="4">
+                CornerRadius="4"
+                Cursor="Hand">
                 <Grid
                     Name="PART_RootGrid"
                     HorizontalAlignment="Stretch"
@@ -119,7 +137,7 @@
     </ControlTemplate>
     <ControlTheme x:Key="{x:Type u:NavMenuItem}" TargetType="u:NavMenuItem">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="ItemsPanel">
             <ItemsPanelTemplate>
                 <u:OverflowStackPanel />
@@ -146,7 +164,7 @@
             <Setter Property="Background" Value="{DynamicResource NavigationMenuItemPointeroverBackground}" />
         </Style>
         <Style Selector="^:horizontal-collapsed:first-level">
-            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left" />
             <Style Selector="^ /template/ Border#PART_Border">
                 <Setter Property="ToolTip.Tip" Value="{Binding Header, RelativeSource={RelativeSource TemplatedParent}}" />
                 <Setter Property="ToolTip.ShowDelay" Value="0" />
@@ -157,7 +175,7 @@
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_IconPresenter">
                 <Setter Property="Grid.ColumnSpan" Value="3" />
-                <Setter Property="Margin" Value="0 8"></Setter>
+                <Setter Property="Margin" Value="0 8" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter">
@@ -172,7 +190,7 @@
             <Style Selector="^ /template/ Grid#PART_RootGrid">
                 <Setter Property="HorizontalAlignment" Value="Left" />
             </Style>
-            
+
         </Style>
         <Style Selector="^:horizontal-collapsed:not(:first-level)">
             <Style Selector="^ /template/ PathIcon#PART_ExpanderIcon">
@@ -182,7 +200,10 @@
         <Style Selector="^[IsSeparator=True]">
             <Setter Property="Template">
                 <ControlTemplate>
-                    <StackPanel Cursor="No" Name="PART_RootPanel" Margin="{DynamicResource NavigationMenuSeparatorMargin}">
+                    <StackPanel
+                        Name="PART_RootPanel"
+                        Margin="{DynamicResource NavigationMenuSeparatorMargin}"
+                        Cursor="No">
                         <ContentPresenter
                             Name="PART_HeaderPresenter"
                             Margin="{DynamicResource NavigationMenuSeparatorHeaderMargin}"
@@ -190,7 +211,8 @@
                             Content="{TemplateBinding Header}"
                             ContentTemplate="{TemplateBinding HeaderTemplate}"
                             Foreground="{DynamicResource TextBlockQuaternaryForeground}"
-                            IsVisible="{TemplateBinding Header, Converter={x:Static ObjectConverters.IsNotNull}}">
+                            IsVisible="{TemplateBinding Header,
+                                                        Converter={x:Static ObjectConverters.IsNotNull}}">
                             <ContentPresenter.Styles>
                                 <Style Selector="TextBlock">
                                     <Setter Property="FontSize" Value="{DynamicResource NavigationMenuSeparatorHeaderFontSize}" />
@@ -207,13 +229,13 @@
                 </ControlTemplate>
             </Setter>
             <Style Selector="^:horizontal-collapsed:first-level">
-                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center" />
                 <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter">
-                    <Setter Property="IsVisible" Value="False"></Setter>
+                    <Setter Property="IsVisible" Value="False" />
                 </Style>
                 <Style Selector="^ /template/ Rectangle#PART_SeparatorBorder">
-                    <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                    <Setter Property="Width" Value="12"></Setter>
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="Width" Value="12" />
                 </Style>
             </Style>
         </Style>
