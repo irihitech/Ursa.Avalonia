@@ -163,6 +163,10 @@ public class NavMenu: ItemsControl
         nav.IsHorizontalCollapsed = !collapsed;
     }
 
+    /// <summary>
+    /// this implementation only works in the case that only leaf menu item is allowed to select. It will be changed if we introduce parent level selection in the future. 
+    /// </summary>
+    /// <param name="args"></param>
     private void OnSelectedItemChange(AvaloniaPropertyChangedEventArgs<object?> args)
     {
         if (_updateFromUI) return;
