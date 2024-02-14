@@ -31,6 +31,7 @@ public class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyClassInput => new ClassInputDemoViewModel(),
             MenuKeys.MenuKeyDialog => new DialogDemoViewModel(),
             MenuKeys.MenuKeyDivider => new DividerDemoViewModel(),
+            MenuKeys.MenuKeyDisableContainer => new DisableContainerDemoViewModel(),
             MenuKeys.MenuKeyDrawer => new DrawerDemoViewModel(),
             MenuKeys.MenuKeyDualBadge => new DualBadgeDemoViewModel(),
             MenuKeys.MenuKeyEnumSelector => new EnumSelectorDemoViewModel(),

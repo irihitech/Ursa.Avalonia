@@ -7,6 +7,7 @@
         <ResourceInclude Source="ControlClassesInput.axaml" />
         <ResourceInclude Source="Dialog.axaml" />
         <ResourceInclude Source="DialogShared.axaml" />
+        <ResourceInclude Source="DisableContainer.axaml" />
         <ResourceInclude Source="Divider.axaml" />
         <ResourceInclude Source="Drawer.axaml" />
         <ResourceInclude Source="DualBadge.axaml" />
