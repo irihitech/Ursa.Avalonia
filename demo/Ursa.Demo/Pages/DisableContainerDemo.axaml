@@ -13,5 +13,8 @@
         <u:DisableContainer DisabledTip="This is disabled. ">
             <Calendar IsEnabled="{Binding #s.IsChecked}"></Calendar>
         </u:DisableContainer>
+        <u:DisableContainer>
+            <Calendar IsEnabled="{Binding #s.IsChecked}"></Calendar>
+        </u:DisableContainer>
     </StackPanel>
 </UserControl>
