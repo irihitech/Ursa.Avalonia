@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Reflection;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -164,7 +165,25 @@ public class NavMenu: ItemsControl
 
     private void OnSelectedItemChange(AvaloniaPropertyChangedEventArgs<object?> args)
     {
-        Debug.WriteLine(args.NewValue.Value);
+        if (_updateFromUI) return;
+        var newValue = args.NewValue.Value;
+        if (newValue is null)
+        {
+            ClearAll();
+            return;
+        }
+        var leaves = GetLeafMenus();
+        bool found = false;
+        foreach (var leaf in leaves)
+        {
+            if (leaf == newValue || leaf.DataContext == newValue)
+            {
+                leaf.SelectItem(leaf);
+                found = true;
+            }
+        }
+        if (found) return;
+        ClearAll();
     }
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
@@ -177,8 +196,11 @@ public class NavMenu: ItemsControl
         return new NavMenuItem();
     }
 
+    private bool _updateFromUI;
+
     internal void SelectItem(NavMenuItem item, NavMenuItem parent)
     {
+        _updateFromUI = true;
         // if (item.IsSelected) return;
         foreach (var child in LogicalChildren)
         {
@@ -199,6 +221,34 @@ public class NavMenu: ItemsControl
         {
             SelectedItem = item;
         }
-        item.IsSelected = true;
+        item.BringIntoView();
+        // item.IsSelected = true;
+        _updateFromUI = false;
+    }
+
+    private IEnumerable<NavMenuItem> GetLeafMenus()
+    {
+        foreach (var child in LogicalChildren)   
+        {
+            if (child is NavMenuItem item)
+            {
+                var leafs = item.GetLeafMenus();
+                foreach (var leaf in leafs)
+                {
+                    yield return leaf;
+                }
+            }
+        }
+    }
+
+    private void ClearAll()
+    {
+        foreach (var child in LogicalChildren)   
+        {
+            if (child is NavMenuItem item)
+            {
+                item.ClearSelection();
+            }
+        }
     }
 }

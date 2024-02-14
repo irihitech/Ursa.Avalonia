@@ -26,10 +26,10 @@
             Grid.ColumnSpan="2">
             Collapse
         </ToggleButton>
-        <TextBlock
-            Grid.Row="1"
-            Grid.Column="0"
-            Text="{ReflectionBinding #menu.SelectedItem.Header}" />
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock Text="{Binding SelectedMenuItem.Header}" />
+            <Button Command="{Binding RandomCommand}">Random a selection</Button>
+        </StackPanel>
         <Border
             Grid.Row="2"
             Grid.Column="0"
@@ -42,6 +42,7 @@
                 IconBinding="{Binding IconIndex}"
                 IsHorizontalCollapsed="{Binding #collapse.IsChecked, Mode=OneWay}"
                 ItemsSource="{Binding MenuItems}"
+                SelectedItem="{Binding SelectedMenuItem}"
                 SubMenuBinding="{Binding Children}">
                 <u:NavMenu.Styles>
                     <Style x:DataType="vm:MenuItem" Selector="u|NavMenuItem">
@@ -62,20 +63,20 @@
                     </DataTemplate>
                 </u:NavMenu.IconTemplate>
                 <u:NavMenu.Header>
-                    <Grid ColumnDefinitions="Auto, Auto" HorizontalAlignment="Center">
+                    <Grid HorizontalAlignment="Center" ColumnDefinitions="Auto, Auto">
                         <Image
-                            u:NavMenu.CanToggle="True"
                             Width="48"
                             Height="48"
-                            Margin="4 12"
+                            Margin="4,12"
+                            u:NavMenu.CanToggle="True"
                             RenderOptions.BitmapInterpolationMode="HighQuality"
                             Source="../Assets/Ursa.ico" />
                         <TextBlock
                             Grid.Column="1"
-                            Classes="H5"
                             VerticalAlignment="Center"
-                            Text="Ursa Avalonia"
+                            Classes="H5"
                             IsVisible="{Binding !#menu.IsHorizontalCollapsed}"
+                            Text="Ursa Avalonia"
                             Theme="{DynamicResource TitleTextBlock}" />
                     </Grid>
                 </u:NavMenu.Header>

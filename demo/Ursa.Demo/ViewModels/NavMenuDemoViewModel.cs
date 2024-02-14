@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -9,6 +10,13 @@ namespace Ursa.Demo.ViewModels;
 
 public class NavMenuDemoViewModel: ObservableObject
 {
+    private MenuItem? _selectedMenuItem;
+
+    public MenuItem? SelectedMenuItem
+    {
+        get=>_selectedMenuItem;
+        set => SetProperty(ref _selectedMenuItem, value);
+    }
     public ObservableCollection<MenuItem> MenuItems { get; set; } = new ObservableCollection<MenuItem>
     {
         new MenuItem { Header = "Introduction" , Children =
@@ -54,6 +62,30 @@ public class NavMenuDemoViewModel: ObservableObject
         new MenuItem { Header = "TwoTonePathIcon" },
         new MenuItem { Header = "ThemeToggler" }
     };
+
+    public ICommand RandomCommand { get; set; }
+    public NavMenuDemoViewModel()
+    {
+        RandomCommand = new RelayCommand(OnRandom);
+    }
+
+    private void OnRandom()
+    {
+        var items = GetLeaves();
+        var index = new Random().Next(items.Count);
+        SelectedMenuItem = items[index];
+    }
+    
+    private List<MenuItem> GetLeaves()
+    {
+        List<MenuItem> items = new();
+        foreach (var item in MenuItems)
+        {
+            items.AddRange(item.GetLeaves());
+        }
+
+        return items;
+    }
 }
 
 public class MenuItem
@@ -77,4 +109,22 @@ public class MenuItem
     }
 
     public ObservableCollection<MenuItem> Children { get; set; } = new ObservableCollection<MenuItem>();
+
+    public IEnumerable<MenuItem> GetLeaves()
+    {
+        if (this.Children.Count == 0)
+        {
+            yield return this;
+            yield break;
+        }
+
+        foreach (var child in Children)
+        {
+            var items = child.GetLeaves();
+            foreach (var item in items)
+            {
+                yield return item;
+            }
+        }
+    }
 }

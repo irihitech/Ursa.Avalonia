@@ -265,7 +265,7 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         e.Handled = true;
     }
     
-    protected void SelectItem(NavMenuItem item)
+    internal void SelectItem(NavMenuItem item)
     {
         if (item == this)
         {
@@ -328,5 +328,25 @@ public class NavMenuItem: HeaderedSelectingItemsControl
         }
 
         return logical != null ? result : @default;
+    }
+    
+    internal IEnumerable<NavMenuItem> GetLeafMenus()
+    {
+        if (this.ItemCount == 0)
+        {
+            yield return this;
+            yield break;
+        }
+        foreach (var child in LogicalChildren)   
+        {
+            if (child is NavMenuItem item)
+            {
+                var items = item.GetLeafMenus();
+                foreach (var i in items)
+                {
+                    yield return i;
+                }
+            }
+        }
     }
 }
