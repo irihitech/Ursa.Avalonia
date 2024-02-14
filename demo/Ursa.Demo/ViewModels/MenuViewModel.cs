@@ -28,6 +28,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Loading", Key = MenuKeys.MenuKeyLoading },
             new() { MenuHeader = "Message Box", Key = MenuKeys.MenuKeyMessageBox, Status = "New" },
             new() { MenuHeader = "Navigation", Key = MenuKeys.MenuKeyNavigation, Status = "WIP" },
+            new() { MenuHeader = "Nav Menu", Key = MenuKeys.MenuKeyNavMenu, Status = "WIP"},
             new() { MenuHeader = "NumericUpDown", Key = MenuKeys.MenuKeyNumericUpDown, Status = "New" },
             new() { MenuHeader = "Pagination", Key = MenuKeys.MenuKeyPagination },
             new() { MenuHeader = "RangeSlider", Key = MenuKeys.MenuKeyRangeSlider, Status = "New"},
