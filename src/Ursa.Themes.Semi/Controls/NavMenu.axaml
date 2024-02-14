@@ -166,7 +166,11 @@
         <Style Selector="^:horizontal-collapsed:first-level">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Style Selector="^ /template/ Border#PART_Border">
-                <Setter Property="ToolTip.Tip" Value="{Binding Header, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="ToolTip.Tip" >
+                    <Template>
+                        <ContentPresenter Content="{TemplateBinding u:NavMenuItem.Header}" ContentTemplate="{TemplateBinding u:NavMenuItem.HeaderTemplate}"></ContentPresenter>
+                    </Template>
+                </Setter>
                 <Setter Property="ToolTip.ShowDelay" Value="0" />
                 <Setter Property="HorizontalAlignment" Value="Left" />
             </Style>
