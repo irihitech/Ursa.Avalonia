@@ -20,6 +20,7 @@
         <ResourceInclude Source="Navigation.axaml" />
         <ResourceInclude Source="NavMenu.axaml" />
         <ResourceInclude Source="NumericUpDown.axaml" />
+        <ResourceInclude Source="NumberDisplayer.axaml" />
         <ResourceInclude Source="Pagination.axaml" />
         <ResourceInclude Source="RangeSlider.axaml" />
         <ResourceInclude Source="SelectionList.axaml" />
