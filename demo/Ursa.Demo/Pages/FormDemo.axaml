@@ -1,0 +1,27 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:Ursa.Demo.ViewModels;assembly=Ursa.Demo"
+             xmlns:u="https://irihi.tech/ursa"
+             x:DataType="vm:FormDemoViewModel"
+             x:CompileBindings="True"
+             x:Class="Ursa.Demo.Pages.FormDemo">
+    <StackPanel>
+        <u:Form DataContext="{Binding Model}" >
+            <u:FormGroup Header="Information">
+                <TextBox u:Form.Label="Name" Text="{Binding Name}"/>
+                <TextBox u:Form.Label="Email" Text="{Binding Email}"/>
+            </u:FormGroup>
+            <u:FormItem>
+                <CalendarDatePicker u:Form.Label="Date" SelectedDate="{Binding Date}" />
+            </u:FormItem>
+        </u:Form>
+        <StackPanel>
+            <TextBlock Text="{Binding Model.Name}"></TextBlock>
+            <TextBlock Text="{Binding Model.Email}"></TextBlock>
+            <TextBlock Text="{Binding Model.Date}"></TextBlock>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

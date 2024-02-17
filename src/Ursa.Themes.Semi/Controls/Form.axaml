@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa">
+    <!-- Add Resources Here -->
+    <ControlTheme x:Key="{x:Type u:Form}" TargetType="u:Form">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:Form">
+                <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"></ItemsPresenter>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+    
+    <ControlTheme x:Key="{x:Type u:FormGroup}" TargetType="u:FormGroup">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:FormGroup">
+                <StackPanel>
+                    <ContentPresenter Content="{TemplateBinding Header}"/>
+                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"/>
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+    
+    <ControlTheme x:Key="{x:Type u:FormItem}" TargetType="u:FormItem">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:FormItem">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{TemplateBinding Label}" />
+                    <ContentPresenter Content="{TemplateBinding Content}"/>
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>
