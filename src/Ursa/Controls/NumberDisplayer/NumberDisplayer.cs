@@ -91,6 +91,8 @@ public abstract class NumberDisplayer<T>: NumberDisplayerBase
             Setters = { new Setter{Property = InternalValueProperty } }
         });
         Animation.SetAnimator(_animation.Children[0].Setters[0], GetAnimator());
+        Animation.SetAnimator(_animation.Children[1].Setters[0], GetAnimator());
+        InternalValue = Value;
     }
 
     private void OnDurationChanged(AvaloniaPropertyChangedEventArgs<TimeSpan> args)
@@ -101,11 +103,12 @@ public abstract class NumberDisplayer<T>: NumberDisplayerBase
 
     protected virtual void OnValueChanged(T? oldValue, T? newValue)
     {
+        if (_animation is null) return;
         _cts.Cancel();
         _cts = new CancellationTokenSource();
-        (_animation?.Children[0].Setters[0] as Setter)!.Value = oldValue;
-        (_animation?.Children[1].Setters[0] as Setter)!.Value = newValue;
-        _animation?.RunAsync(this, _cts.Token);
+        (_animation.Children[0].Setters[0] as Setter)!.Value = oldValue;
+        (_animation.Children[1].Setters[0] as Setter)!.Value = newValue;
+        _animation.RunAsync(this, _cts.Token);
     }
 
     protected abstract InterpolatingAnimator<T> GetAnimator();
@@ -155,6 +158,29 @@ public class DoubleDisplayer : NumberDisplayer<double>
     }
 
     protected override string GetString(double value)
+    {
+        return value.ToString(StringFormat);
+    }
+}
+
+public class DateDisplay : NumberDisplayer<DateTime>
+{
+    protected override Type StyleKeyOverride { get; } = typeof(NumberDisplayerBase);
+
+    protected override InterpolatingAnimator<DateTime> GetAnimator()
+    {
+        return new DateAnimator();
+    }
+
+    private class DateAnimator : InterpolatingAnimator<DateTime>
+    {
+        public override DateTime Interpolate(double progress, DateTime oldValue, DateTime newValue)
+        {
+            return oldValue + TimeSpan.FromTicks((long)((newValue - oldValue).Ticks * progress));
+        }
+    }
+
+    protected override string GetString(DateTime value)
     {
         return value.ToString(StringFormat);
     }

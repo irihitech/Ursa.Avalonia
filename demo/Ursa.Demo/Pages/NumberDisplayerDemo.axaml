@@ -12,5 +12,6 @@
         <Button Command="{Binding IncreaseCommand}" >Change</Button>
         <u:Int32Displayer Value="{Binding Value}"></u:Int32Displayer>
         <u:DoubleDisplayer Value="{Binding DoubleValue}" StringFormat="N2"></u:DoubleDisplayer>
+        <u:DateDisplay Value="{Binding DateValue}" StringFormat="yyyy-MM-dd"></u:DateDisplay>
     </StackPanel>
 </UserControl>
