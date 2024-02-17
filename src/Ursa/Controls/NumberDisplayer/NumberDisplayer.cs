@@ -1,8 +1,10 @@
 ﻿using Avalonia;
 using Avalonia.Animation;
 using Avalonia.Controls;
+using Avalonia.Controls.Documents;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
+using Avalonia.Media;
 using Avalonia.Styling;
 
 namespace Ursa.Controls;
@@ -13,7 +15,7 @@ public abstract class NumberDisplayerBase : TemplatedControl
         nameof(InternalText), o => o.InternalText, (o, v) => o.InternalText = v);
     private string _internalText;
     
-    public string InternalText
+    internal string InternalText
     {
         get => _internalText;
         set => SetAndRaise(InternalTextProperty, ref _internalText, value);
@@ -51,11 +53,11 @@ public abstract class NumberDisplayer<T>: NumberDisplayerBase
         get => GetValue(ValueProperty);
         set => SetValue(ValueProperty, value);
     }
-    
-    public static readonly StyledProperty<T?> InternalValueProperty = AvaloniaProperty.Register<NumberDisplayer<T>, T?>(
-        nameof(InternalValue));
 
-    public T? InternalValue
+    private static readonly StyledProperty<T?> InternalValueProperty = AvaloniaProperty.Register<NumberDisplayer<T>, T?>(
+        nameof(InternalValue), defaultBindingMode:BindingMode.TwoWay);
+
+    private T? InternalValue
     {
         get => GetValue(InternalValueProperty);
         set => SetValue(InternalValueProperty, value);
@@ -73,13 +75,15 @@ public abstract class NumberDisplayer<T>: NumberDisplayerBase
         });
         DurationProperty.Changed.AddClassHandler<NumberDisplayer<T>, TimeSpan>((item, args) =>item.OnDurationChanged(args));
     }
-
-    protected override void OnInitialized()
+    
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
-        base.OnInitialized();
-        _animation = new Animation();
-        _animation.Duration = Duration;
-        _animation.FillMode = FillMode.Forward;
+        base.OnApplyTemplate(e);
+        _animation = new Animation
+        {
+            Duration = Duration,
+            FillMode = FillMode.Forward
+        };
         _animation.Children.Add(new KeyFrame()
         {
             Cue = new Cue(0.0),
@@ -92,7 +96,9 @@ public abstract class NumberDisplayer<T>: NumberDisplayerBase
         });
         Animation.SetAnimator(_animation.Children[0].Setters[0], GetAnimator());
         Animation.SetAnimator(_animation.Children[1].Setters[0], GetAnimator());
-        InternalValue = Value;
+        
+        // Display value directly to text on initialization in case value equals to default. 
+        SetCurrentValue(InternalTextProperty, this.GetString(Value));
     }
 
     private void OnDurationChanged(AvaloniaPropertyChangedEventArgs<TimeSpan> args)
@@ -101,9 +107,13 @@ public abstract class NumberDisplayer<T>: NumberDisplayerBase
         _animation.Duration = args.NewValue.Value;
     }
 
-    protected virtual void OnValueChanged(T? oldValue, T? newValue)
+    private void OnValueChanged(T? oldValue, T? newValue)
     {
-        if (_animation is null) return;
+        if (_animation is null)
+        {
+            SetCurrentValue(InternalValueProperty, newValue);
+            return;
+        }
         _cts.Cancel();
         _cts = new CancellationTokenSource();
         (_animation.Children[0].Setters[0] as Setter)!.Value = oldValue;
@@ -119,7 +129,6 @@ public abstract class NumberDisplayer<T>: NumberDisplayerBase
 public class Int32Displayer : NumberDisplayer<int>
 {
     protected override Type StyleKeyOverride { get; } = typeof(NumberDisplayerBase);
-    
 
     protected override InterpolatingAnimator<int> GetAnimator()
     {
@@ -176,7 +185,8 @@ public class DateDisplay : NumberDisplayer<DateTime>
     {
         public override DateTime Interpolate(double progress, DateTime oldValue, DateTime newValue)
         {
-            return oldValue + TimeSpan.FromTicks((long)((newValue - oldValue).Ticks * progress));
+            var diff = (newValue - oldValue).TotalSeconds;
+            return oldValue + TimeSpan.FromSeconds(diff * progress);
         }
     }
 

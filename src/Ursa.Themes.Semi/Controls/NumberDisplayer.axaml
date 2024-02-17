@@ -8,7 +8,16 @@
         <Setter Property="Duration" Value="0:0:0.2" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:NumberDisplayerBase">
-                <TextBlock Text="{TemplateBinding InternalText, Mode=OneWay}" />
+                <TextBlock
+                    FontSize="{TemplateBinding FontSize}"
+                    Foreground="{TemplateBinding Foreground}"
+                    FontFamily="{TemplateBinding FontFamily}"
+                    Background="{TemplateBinding Background}"
+                    FontWeight="{TemplateBinding FontWeight}"
+                    FontStyle="{TemplateBinding FontSize}"
+                    FontStretch="{TemplateBinding FontStretch}"
+                    Text="{TemplateBinding InternalText,
+                                           Mode=OneWay}" />
             </ControlTemplate>
         </Setter>
     </ControlTheme>
