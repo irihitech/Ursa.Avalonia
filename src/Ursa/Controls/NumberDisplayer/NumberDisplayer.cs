@@ -3,6 +3,7 @@ using Avalonia.Animation;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
+using Avalonia.Styling;
 
 namespace Ursa.Controls;
 
@@ -11,6 +12,7 @@ public abstract class NumberDisplayerBase : TemplatedControl
     public static readonly DirectProperty<NumberDisplayerBase, string> InternalTextProperty = AvaloniaProperty.RegisterDirect<NumberDisplayerBase, string>(
         nameof(InternalText), o => o.InternalText, (o, v) => o.InternalText = v);
     private string _internalText;
+    
     public string InternalText
     {
         get => _internalText;
@@ -38,6 +40,9 @@ public abstract class NumberDisplayerBase : TemplatedControl
 
 public abstract class NumberDisplayer<T>: NumberDisplayerBase
 {
+    private Animation? _animation;
+    private CancellationTokenSource _cts = new ();
+    
     public static readonly StyledProperty<T?> ValueProperty = AvaloniaProperty.Register<NumberDisplayer<T>, T?>(
         nameof(Value), defaultBindingMode:BindingMode.TwoWay);
 
@@ -60,7 +65,7 @@ public abstract class NumberDisplayer<T>: NumberDisplayerBase
     {
         ValueProperty.Changed.AddClassHandler<NumberDisplayer<T>, T?>((item, args) =>
         {
-            item.InternalValue = args.NewValue.Value;
+            item.OnValueChanged(args.OldValue.Value, args.NewValue.Value);
         });
         InternalValueProperty.Changed.AddClassHandler<NumberDisplayer<T>, T?>((item, args) =>
         {
@@ -68,29 +73,62 @@ public abstract class NumberDisplayer<T>: NumberDisplayerBase
         });
         DurationProperty.Changed.AddClassHandler<NumberDisplayer<T>, TimeSpan>((item, args) =>item.OnDurationChanged(args));
     }
-    
-    private void OnDurationChanged(AvaloniaPropertyChangedEventArgs<TimeSpan> args)
+
+    protected override void OnInitialized()
     {
-        this.Transitions ??= new Transitions();
-        this.Transitions?.Clear();
-        this.Transitions?.Add(GetTransition(args.NewValue.Value));
+        base.OnInitialized();
+        _animation = new Animation();
+        _animation.Duration = Duration;
+        _animation.FillMode = FillMode.Forward;
+        _animation.Children.Add(new KeyFrame()
+        {
+            Cue = new Cue(0.0),
+            Setters = { new Setter{Property = InternalValueProperty } }
+        });
+        _animation.Children.Add(new KeyFrame()
+        {
+            Cue = new Cue(1.0),
+            Setters = { new Setter{Property = InternalValueProperty } }
+        });
+        Animation.SetAnimator(_animation.Children[0].Setters[0], GetAnimator());
     }
 
-    protected abstract ITransition GetTransition(TimeSpan duration);
+    private void OnDurationChanged(AvaloniaPropertyChangedEventArgs<TimeSpan> args)
+    {
+        if (_animation is null) return;
+        _animation.Duration = args.NewValue.Value;
+    }
+
+    protected virtual void OnValueChanged(T? oldValue, T? newValue)
+    {
+        _cts.Cancel();
+        _cts = new CancellationTokenSource();
+        (_animation?.Children[0].Setters[0] as Setter)!.Value = oldValue;
+        (_animation?.Children[1].Setters[0] as Setter)!.Value = newValue;
+        _animation?.RunAsync(this, _cts.Token);
+    }
+
+    protected abstract InterpolatingAnimator<T> GetAnimator();
+    
     protected abstract string GetString(T? value);
 }
 
 public class Int32Displayer : NumberDisplayer<int>
 {
     protected override Type StyleKeyOverride { get; } = typeof(NumberDisplayerBase);
+    
 
-    protected override ITransition GetTransition(TimeSpan duration)
+    protected override InterpolatingAnimator<int> GetAnimator()
     {
-        return new IntegerTransition()
+        return new IntAnimator();
+    }
+
+    private class IntAnimator : InterpolatingAnimator<int>
+    {
+        public override int Interpolate(double progress, int oldValue, int newValue)
         {
-            Property = InternalValueProperty,
-            Duration = duration
-        };
+            return oldValue + (int)((newValue - oldValue) * progress);
+        }
     }
 
     protected override string GetString(int value)
@@ -103,13 +141,17 @@ public class DoubleDisplayer : NumberDisplayer<double>
 {
     protected override Type StyleKeyOverride { get; } = typeof(NumberDisplayerBase);
 
-    protected override ITransition GetTransition(TimeSpan duration)
+    protected override InterpolatingAnimator<double> GetAnimator()
     {
-        return new DoubleTransition()
+        return new DoubleAnimator();
+    }
+
+    private class DoubleAnimator : InterpolatingAnimator<double>
+    {
+        public override double Interpolate(double progress, double oldValue, double newValue)
         {
-            Property = InternalValueProperty,
-            Duration = duration
-        };
+            return oldValue + (newValue - oldValue) * progress;
+        }
     }
 
     protected override string GetString(double value)
