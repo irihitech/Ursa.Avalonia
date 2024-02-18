@@ -19,5 +19,13 @@
             FontSize="30"
             StringFormat="yyyy-MM-dd"
             Value="{Binding DateValue}" />
+        <TextBlock Text="Selectable: "></TextBlock>
+        <u:Int32Displayer Value="{Binding Value}" IsSelectable="True" />
+        <u:DoubleDisplayer StringFormat="N2" Value="{Binding DoubleValue}" IsSelectable="True" />
+        <u:DateDisplay
+            FontSize="30"
+            StringFormat="yyyy-MM-dd"
+            IsSelectable="True"
+            Value="{Binding DateValue}" />
     </StackPanel>
 </UserControl>

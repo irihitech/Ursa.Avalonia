@@ -16,9 +16,23 @@
                     FontWeight="{TemplateBinding FontWeight}"
                     FontStyle="{TemplateBinding FontSize}"
                     FontStretch="{TemplateBinding FontStretch}"
-                    Text="{TemplateBinding InternalText,
-                                           Mode=OneWay}" />
+                    Text="{TemplateBinding InternalText, Mode=OneWay}" />
             </ControlTemplate>
         </Setter>
+        <Style Selector="^[IsSelectable=True]">
+            <Setter Property="Template">
+                <ControlTemplate TargetType="u:NumberDisplayerBase">
+                    <SelectableTextBlock
+                        FontSize="{TemplateBinding FontSize}"
+                        Foreground="{TemplateBinding Foreground}"
+                        FontFamily="{TemplateBinding FontFamily}"
+                        Background="{TemplateBinding Background}"
+                        FontWeight="{TemplateBinding FontWeight}"
+                        FontStyle="{TemplateBinding FontSize}"
+                        FontStretch="{TemplateBinding FontStretch}"
+                        Text="{TemplateBinding InternalText, Mode=OneWay}" />
+                </ControlTemplate>
+            </Setter>
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

@@ -35,6 +35,15 @@ public abstract class NumberDisplayerBase : TemplatedControl
         get => GetValue(StringFormatProperty);
         set => SetValue(StringFormatProperty, value);
     }
+
+    public static readonly StyledProperty<bool> IsSelectableProperty = AvaloniaProperty.Register<NumberDisplayerBase, bool>(
+        nameof(IsSelectable));
+
+    public bool IsSelectable
+    {
+        get => GetValue(IsSelectableProperty);
+        set => SetValue(IsSelectableProperty, value);
+    }
 }
 
 public abstract class NumberDisplayer<T>: NumberDisplayerBase
