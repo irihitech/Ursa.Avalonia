@@ -7,12 +7,13 @@
     <converters:PlatformKeyGestureConverter x:Key="KeyGestureConverter" />
 
     <ControlTheme x:Key="{x:Type u:KeyGestureInput}" TargetType="u:KeyGestureInput">
-        <Setter Property="Width" Value="{DynamicResource KeyGestureInputWidth}" />
-        <Setter Property="Height" Value="{DynamicResource KeyGestureInputHeight}" />
+        <Setter Property="MinWidth" Value="{DynamicResource KeyGestureInputWidth}" />
+        <Setter Property="MinHeight" Value="{DynamicResource KeyGestureInputHeight}" />
         <Setter Property="Background" Value="{DynamicResource KeyGestureInputBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource KeyGestureInputBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource KeyGestureInputBorderThickness}" />
         <Setter Property="CornerRadius" Value="{DynamicResource KeyGestureInputCornerRadius}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
         <Setter Property="Padding" Value="8 0" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:KeyGestureInput">
@@ -25,8 +26,8 @@
                     BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <Panel VerticalAlignment="Stretch" Margin="{TemplateBinding Padding}">
-                        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <ContentPresenter
+                        <Grid ColumnDefinitions="Auto, *, Auto" >
+                            <ContentPresenter Grid.Column="0"
                                 Content="{TemplateBinding InnerLeftContent}"
                                 Padding="{TemplateBinding Padding, Converter={x:Static ursaConverters:ThicknessIncludeConverter.Right}}"
                                 DockPanel.Dock="Left"
@@ -36,6 +37,7 @@
                                 IsVisible="{Binding Path=InnerLeftContent, RelativeSource={RelativeSource TemplatedParent},
                                                             Converter={x:Static ObjectConverters.IsNotNull}}" />
                             <ContentPresenter
+                                Grid.Column="2"
                                 Content="{TemplateBinding InnerRightContent}"
                                 DockPanel.Dock="Right"
                                 Padding="{TemplateBinding Padding, Converter={x:Static ursaConverters:ThicknessIncludeConverter.Left}}"
@@ -45,11 +47,12 @@
                                 IsVisible="{Binding Path=InnerRightContent, RelativeSource={RelativeSource TemplatedParent},
                                                             Converter={x:Static ObjectConverters.IsNotNull}}" />
                             <SelectableTextBlock
+                                Grid.Column="1"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Text="{TemplateBinding Gesture,
                                                        Converter={StaticResource KeyGestureConverter}}" />
-                            <Button
+                            <Button Grid.Column="0" Grid.ColumnSpan="3"
                                 Name="PART_ClearButton"
                                 Margin="0,0,8,0"
                                 HorizontalAlignment="Right"
@@ -57,7 +60,7 @@
                                 Focusable="False"
                                 IsVisible="False"
                                 Theme="{DynamicResource InputClearButton}" />
-                        </DockPanel>
+                        </Grid>
                     </Panel>
                 </Border>
             </ControlTemplate>

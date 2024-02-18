@@ -13,7 +13,7 @@
     mc:Ignorable="d">
     <StackPanel Margin="20">
         <TextBlock Text="Accept all keys" />
-        <u:KeyGestureInput Width="300" HorizontalAlignment="Left" />
+        <u:KeyGestureInput HorizontalAlignment="Left" />
         <TextBlock Text="Accept only A,B and C" />
         <u:KeyGestureInput
             Width="300"
@@ -22,5 +22,6 @@
             Classes="ClearButton"
             InnerLeftContent="Attack"
             InnerRightContent="Default" />
+        <u:KeyGestureInput HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" />
     </StackPanel>
 </UserControl>
