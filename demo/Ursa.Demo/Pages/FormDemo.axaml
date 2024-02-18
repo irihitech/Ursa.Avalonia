@@ -45,6 +45,19 @@
                 <u:FormItem Label="Please select a Date">
                     <CalendarDatePicker SelectedDate="{Binding Date}" />
                 </u:FormItem>
+                
+                <u:FormGroup Header="Education">
+                    <TextBox
+                        HorizontalAlignment="Stretch"
+                        u:FormItem.IsRequired="True"
+                        u:FormItem.Label="Name"
+                        Text="{Binding Name}" />
+                    <TextBox
+                        HorizontalAlignment="Stretch"
+                        u:FormItem.Label="Email"
+                        u:FormItem.IsRequired="True"
+                        Text="{Binding Email}" />
+                </u:FormGroup>
                 <u:FormItem Label="Click to Submit">
                     <Button Content="Button With Label" />
                 </u:FormItem>

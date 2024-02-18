@@ -21,7 +21,7 @@
     <ControlTheme x:Key="{x:Type u:FormGroup}" TargetType="u:FormGroup">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:FormGroup">
-                <StackPanel>
+                <StackPanel Margin="0 28 0 0">
                     <ContentPresenter Content="{TemplateBinding Header}" FontWeight="Bold" FontSize="18" />
                     <Rectangle
                         Height="1"
