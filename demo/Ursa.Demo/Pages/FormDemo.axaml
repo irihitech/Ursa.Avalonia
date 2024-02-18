@@ -12,47 +12,47 @@
     x:CompileBindings="True"
     x:DataType="vm:FormDemoViewModel"
     mc:Ignorable="d">
-    <StackPanel>
+    <ScrollViewer>
         <StackPanel>
-            <u:EnumSelector
-                Name="position"
-                EnumType="common:Position"
-                Value="{x:Static common:Position.Top}" />
-            <u:EnumSelector
-                Name="alignment"
-                EnumType="HorizontalAlignment"
-                Value="{x:Static HorizontalAlignment.Left}" />
+            <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="Auto, Auto">
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Label Position" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Label Alignment" VerticalAlignment="Center"></TextBlock>
+                <u:EnumSelector Grid.Row="0" Grid.Column="1"
+                    Name="position"
+                    EnumType="common:Position"
+                    Value="{x:Static common:Position.Top}" />
+                <u:EnumSelector Grid.Row="1" Grid.Column="1"
+                    Name="alignment"
+                    EnumType="HorizontalAlignment"
+                    Value="{x:Static HorizontalAlignment.Left}" />
+            </Grid>
+            <u:Form
+                DataContext="{Binding Model}"
+                LabelAlignment="{Binding #alignment.Value}"
+                LabelPosition="{Binding #position.Value}"
+                LabelWidth="*">
+                <u:FormGroup Header="Information">
+                    <TextBox
+                        Width="300"
+                        u:FormItem.IsRequired="True"
+                        u:FormItem.Label="Name"
+                        Text="{Binding Name}" />
+                    <TextBox
+                        Width="300"
+                        u:FormItem.Label="Email"
+                        Text="{Binding Email}" />
+                </u:FormGroup>
+                <u:FormItem Label="Please select a Date">
+                    <CalendarDatePicker SelectedDate="{Binding Date}" />
+                </u:FormItem>
+                <u:FormItem Label="Click to Submit">
+                    <Button Content="Button With Label" />
+                </u:FormItem>
+                <CheckBox Content="I Agree User Agreement" u:FormItem.NoLabel="True"></CheckBox>
+                <u:FormItem NoLabel="True">
+                    <Button HorizontalAlignment="Left" Content="No Label" />
+                </u:FormItem>
+            </u:Form>
         </StackPanel>
-        <u:Form
-            DataContext="{Binding Model}"
-            LabelAlignment="{Binding #alignment.Value}"
-            LabelPosition="{Binding #position.Value}"
-            LabelWidth="*">
-            <u:FormGroup Header="Information">
-                <TextBox
-                    Width="300"
-                    u:FormItem.IsRequired="True"
-                    u:FormItem.Label="Name"
-                    Text="{Binding Name}" />
-                <TextBox
-                    Width="300"
-                    u:FormItem.Label="Email"
-                    Text="{Binding Email}" />
-            </u:FormGroup>
-            <u:FormItem Label="Please select a Date">
-                <Calendar SelectedDate="{Binding Date}" />
-            </u:FormItem>
-            <u:FormItem Label="Click to Submit">
-                <Button Content="With Label" />
-            </u:FormItem>
-            <u:FormItem NoLabel="True">
-                <Button HorizontalAlignment="Left" Content="No Label" />
-            </u:FormItem>
-        </u:Form>
-        <StackPanel>
-            <TextBlock Text="{Binding Model.Name}" />
-            <TextBlock Text="{Binding Model.Email}" />
-            <TextBlock Text="{Binding Model.Date}" />
-        </StackPanel>
-    </StackPanel>
+    </ScrollViewer>
 </UserControl>

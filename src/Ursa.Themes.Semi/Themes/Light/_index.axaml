@@ -7,6 +7,7 @@
         <MergeResourceInclude Source="Dialog.axaml" />
         <MergeResourceInclude Source="Divider.axaml" />
         <MergeResourceInclude Source="DualBadge.axaml" />
+        <MergeResourceInclude Source="Form.axaml" />
         <MergeResourceInclude Source="IPv4Box.axaml" />
         <MergeResourceInclude Source="KeyGestureInput.axaml" />
         <MergeResourceInclude Source="Loading.axaml" />

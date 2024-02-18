@@ -70,6 +70,7 @@ public class Form: ItemsControl
             Content = control,
             [!FormItem.LabelProperty] = control[!FormItem.LabelProperty],
             [!FormItem.IsRequiredProperty] = control[!FormItem.IsRequiredProperty],
+            [!FormItem.NoLabelProperty] = control[!FormItem.NoLabelProperty],
         };
     }
 }

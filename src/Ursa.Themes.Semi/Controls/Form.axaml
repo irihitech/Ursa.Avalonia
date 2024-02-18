@@ -22,12 +22,12 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:FormGroup">
                 <StackPanel>
-                    <ContentPresenter Content="{TemplateBinding Header}" FontWeight="Bold" />
+                    <ContentPresenter Content="{TemplateBinding Header}" FontWeight="Bold" FontSize="18" />
                     <Rectangle
                         Height="1"
                         Margin="0,8"
                         HorizontalAlignment="Stretch"
-                        Fill="LightGray" />
+                        Fill="{DynamicResource FormGroupBorderBrush}" />
                     <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
                 </StackPanel>
             </ControlTemplate>
