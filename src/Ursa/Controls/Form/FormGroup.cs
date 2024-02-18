@@ -6,13 +6,6 @@ namespace Ursa.Controls;
 
 public class FormGroup: HeaderedItemsControl
 {
-    public static readonly StyledProperty<GridLength> LabelWidthProperty = Form.LabelWidthProperty.AddOwner<FormGroup>();
-
-    public GridLength LabelWidth
-    {
-        get => GetValue(LabelWidthProperty);
-        set => SetValue(LabelWidthProperty, value);
-    }
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
         recycleKey = null;
@@ -25,17 +18,9 @@ public class FormGroup: HeaderedItemsControl
         return new FormItem
         {
             Content = control,
-            [!FormItem.LabelProperty] = control.GetObservable(Form.LabelProperty).ToBinding(),
-            [!FormItem.IsRequiredProperty] = control.GetObservable(Form.IsRequiredProperty).ToBinding(),
+            [!FormItem.LabelProperty] = control[!FormItem.LabelProperty],
+            [!FormItem.IsRequiredProperty] = control[!FormItem.IsRequiredProperty],
         };
     }
-
-    protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
-    {
-        base.PrepareContainerForItemOverride(container, item, index);
-        if (container is FormItem formItem)
-        {
-            formItem.LabelWidth = LabelWidth;
-        }
-    }
+    
 }

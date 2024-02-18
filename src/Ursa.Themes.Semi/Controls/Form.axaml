@@ -1,36 +1,97 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:u="https://irihi.tech/ursa">
-    <!-- Add Resources Here -->
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:Form}" TargetType="u:Form">
+        <Setter Property="Grid.IsSharedSizeScope" Value="False" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Form">
                 <DataValidationErrors>
-                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"></ItemsPresenter>
+                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
                 </DataValidationErrors>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:fixed-width">
+            <Setter Property="Grid.IsSharedSizeScope" Value="True" />
+        </Style>
     </ControlTheme>
-    
+
     <ControlTheme x:Key="{x:Type u:FormGroup}" TargetType="u:FormGroup">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:FormGroup">
                 <StackPanel>
-                    <ContentPresenter Content="{TemplateBinding Header}"/>
-                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"/>
+                    <ContentPresenter Content="{TemplateBinding Header}" FontWeight="Bold" />
+                    <Rectangle
+                        Height="1"
+                        Margin="0,8"
+                        HorizontalAlignment="Stretch"
+                        Fill="LightGray" />
+                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
                 </StackPanel>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
-    
+
     <ControlTheme x:Key="{x:Type u:FormItem}" TargetType="u:FormItem">
+        <Setter Property="Margin" Value="0 8" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:FormItem">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{TemplateBinding Label}" />
-                    <ContentPresenter Content="{TemplateBinding Content}"/>
+                <StackPanel>
+                    <StackPanel
+                        Name="PART_LabelPanel"
+                        Margin="0,0,0,4"
+                        HorizontalAlignment="{TemplateBinding LabelAlignment}"
+                        Orientation="Horizontal">
+                        <ContentPresenter Content="{TemplateBinding Label}" FontWeight="Bold" />
+                        <TextBlock
+                            Foreground="{DynamicResource SemiRed6}"
+                            IsVisible="{TemplateBinding IsRequired}"
+                            Text="*" />
+                    </StackPanel>
+                    <ContentPresenter Content="{TemplateBinding Content}" />
                 </StackPanel>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:not(:no-label):horizontal">
+            <Setter Property="Template">
+                <ControlTemplate TargetType="u:FormItem">
+                    <Grid RowDefinitions="*, *">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Label" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Width="{TemplateBinding LabelWidth}">
+                            <StackPanel
+                                Name="PART_LabelPanel"
+                                Margin="8,8,8,0"
+                                HorizontalAlignment="{TemplateBinding LabelAlignment}"
+                                Orientation="Horizontal">
+                                <ContentPresenter Content="{TemplateBinding Label}" FontWeight="Bold" />
+                                <TextBlock
+                                    Foreground="{DynamicResource SemiRed6}"
+                                    IsVisible="{TemplateBinding IsRequired}"
+                                    Text="*" />
+                            </StackPanel>
+                        </Border>
+                        <ContentPresenter
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Content="{TemplateBinding Content}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="^:no-label">
+            <Setter Property="Template">
+                <ControlTemplate TargetType="u:FormItem">
+                    <ContentPresenter Content="{TemplateBinding Content}" />
+                </ControlTemplate>
+            </Setter>
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

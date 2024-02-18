@@ -1,59 +1,65 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
+using Avalonia.Layout;
 using Ursa.Common;
 
 namespace Ursa.Controls;
 
+[PseudoClasses(PC_FixedWidth)]
 public class Form: ItemsControl
 {
-    #region Attached Properties
-
-    public static readonly AttachedProperty<object?> LabelProperty =
-        AvaloniaProperty.RegisterAttached<Form, Control, object?>("Label");
-    public static void SetLabel(Control obj, object? value) => obj.SetValue(LabelProperty, value);
-    public static object? GetLabel(Control obj) => obj.GetValue(LabelProperty);
+    public const string PC_FixedWidth = ":fixed-width";
     
+    public static readonly StyledProperty<GridLength> LabelWidthProperty = AvaloniaProperty.Register<Form, GridLength>(
+        nameof(LabelWidth));
 
-    public static readonly AttachedProperty<bool> IsRequiredProperty =
-        AvaloniaProperty.RegisterAttached<Form, Control, bool>("IsRequired");
-    public static void SetIsRequired(Control obj, bool value) => obj.SetValue(IsRequiredProperty, value);
-    public static bool GetIsRequired(Control obj) => obj.GetValue(IsRequiredProperty);
-
-    public static readonly AttachedProperty<GridLength> LabelWidthProperty =
-        AvaloniaProperty.RegisterAttached<Form, Control, GridLength>("LabelWidth");
-
-    public static void SetLabelWidth(Control obj, GridLength value) => obj.SetValue(LabelWidthProperty, value);
-    public static GridLength GetLabelWidth(Control obj) => obj.GetValue(LabelWidthProperty);
-
-    #endregion
-    
+    /// <summary>
+    /// Behavior:
+    /// <para>Fixed Width: all labels are with fixed length. </para>
+    /// <para>Star: all labels are aligned by max length. </para>
+    /// <para>Auto: labels are not aligned. </para>
+    /// </summary>
+    public GridLength LabelWidth
+    {
+        get => GetValue(LabelWidthProperty);
+        set => SetValue(LabelWidthProperty, value);
+    }
 
     public static readonly StyledProperty<Position> LabelPositionProperty = AvaloniaProperty.Register<Form, Position>(
-        nameof(LabelPosition));
-    /// <summary>
-    /// Only Left and Top work.
-    /// </summary>
+        nameof(LabelPosition), defaultValue: Position.Top);
+
     public Position LabelPosition
     {
         get => GetValue(LabelPositionProperty);
         set => SetValue(LabelPositionProperty, value);
     }
 
-    public static readonly StyledProperty<Position> LabelAlignmentProperty = AvaloniaProperty.Register<Form, Position>(
-        nameof(LabelAlignment));
-    /// <summary>
-    /// Only Left and Right work. 
-    /// </summary>
-    public Position LabelAlignment
+    public static readonly StyledProperty<HorizontalAlignment> LabelAlignmentProperty = AvaloniaProperty.Register<Form, HorizontalAlignment>(
+        nameof(LabelAlignment), defaultValue: HorizontalAlignment.Left);
+
+    public HorizontalAlignment LabelAlignment
     {
         get => GetValue(LabelAlignmentProperty);
         set => SetValue(LabelAlignmentProperty, value);
     }
 
+    static Form()
+    {
+        LabelWidthProperty.Changed.AddClassHandler<Form, GridLength>((x, args) => x.LabelWidthChanged(args));
+    }
+
+    private void LabelWidthChanged(AvaloniaPropertyChangedEventArgs<GridLength> args)
+    {
+        var newValue = args.NewValue.Value;
+        bool isFixed = newValue.IsStar || newValue.IsAbsolute;
+        PseudoClasses.Set(PC_FixedWidth, isFixed);
+    }
+
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
         recycleKey = null;
-        return item is FormItem or FormGroup;
+        return item is not FormItem && item is not FormGroup;
     }
     
     protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey)
@@ -62,27 +68,8 @@ public class Form: ItemsControl
         return new FormItem()
         {
             Content = control,
-            [!LabelProperty] = control.GetObservable(Form.LabelProperty).ToBinding(),
-            [!IsRequiredProperty] = control.GetObservable(Form.IsRequiredProperty).ToBinding(),
+            [!FormItem.LabelProperty] = control[!FormItem.LabelProperty],
+            [!FormItem.IsRequiredProperty] = control[!FormItem.IsRequiredProperty],
         };
-    }
-
-    protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
-    {
-        base.PrepareContainerForItemOverride(container, item, index);
-        if (container is FormGroup group)
-        {
-            if (!group.IsSet(FormGroup.LabelWidthProperty))
-            {
-                group[!LabelWidthProperty] = this.GetObservable(LabelWidthProperty).ToBinding();
-            }
-        }
-        else if (container is FormItem formItem)
-        {
-            if(!formItem.IsSet(FormItem.LabelWidthProperty))
-            {
-                formItem[!LabelWidthProperty] = this.GetObservable(LabelWidthProperty).ToBinding();
-            }
-        }
     }
 }
