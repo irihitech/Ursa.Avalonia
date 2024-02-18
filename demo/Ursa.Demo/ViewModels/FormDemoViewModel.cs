@@ -40,4 +40,9 @@ public partial class DataModel : ObservableObject
         get => _date;
         set => SetProperty(ref _date, value);
     }
+
+    public DataModel()
+    {
+        Date = DateTime.Today;
+    }
 }

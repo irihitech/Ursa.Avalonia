@@ -9,10 +9,10 @@
              x:CompileBindings="True"
              x:Class="Ursa.Demo.Pages.FormDemo">
     <StackPanel>
-        <u:Form DataContext="{Binding Model}" >
+        <u:Form DataContext="{Binding Model}" LabelWidth="Auto">
             <u:FormGroup Header="Information">
-                <TextBox u:Form.Label="Name" Text="{Binding Name}"/>
-                <TextBox u:Form.Label="Email" Text="{Binding Email}"/>
+                <TextBox u:Form.Label="Name" Text="{Binding Name}" Width="300"/>
+                <TextBox u:Form.Label="Email" Text="{Binding Email}" Width="300"/>
             </u:FormGroup>
             <u:FormItem>
                 <CalendarDatePicker u:Form.Label="Date" SelectedDate="{Binding Date}" />
