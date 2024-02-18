@@ -27,7 +27,7 @@
                         Height="1"
                         Margin="0,8"
                         HorizontalAlignment="Stretch"
-                        Fill="{DynamicResource FormGroupBorderBrush}" />
+                        Fill="{DynamicResource SemiColorBorder}" />
                     <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
                 </StackPanel>
             </ControlTemplate>
