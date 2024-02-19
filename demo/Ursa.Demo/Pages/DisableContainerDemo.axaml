@@ -1,0 +1,29 @@
+﻿<UserControl
+    x:Class="Ursa.Demo.Pages.DisableContainerDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel HorizontalAlignment="Left" Spacing="20">
+        <ToggleSwitch Name="s" IsChecked="True" />
+        <u:DisableContainer DisabledTip="This is disabled. ">
+            <Button IsEnabled="{Binding #s.IsChecked}">Hello World!</Button>
+        </u:DisableContainer>
+        <u:DisableContainer DisabledTip="This is disabled. ">
+            <Calendar IsEnabled="{Binding #s.IsChecked}" />
+        </u:DisableContainer>
+        <u:DisableContainer>
+            <Button IsEnabled="{Binding #s.IsChecked}">Hello Avalonia</Button>
+        </u:DisableContainer>
+        <Button
+            u:DisabledAdorner.DisabledTip="Fine"
+            u:DisabledAdorner.IsEnabled="True"
+            IsEnabled="{Binding #s.IsChecked}">
+            Hello Avalonia
+        </Button>
+    </StackPanel>
+</UserControl>
