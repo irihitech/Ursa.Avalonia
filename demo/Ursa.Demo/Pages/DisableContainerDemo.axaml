@@ -17,7 +17,7 @@
             <Calendar IsEnabled="{Binding #s.IsChecked}" />
         </u:DisableContainer>
         <u:DisableContainer>
-            <Button IsEnabled="{Binding #s.IsChecked}">Hello Avalonnia</Button>
+            <Button IsEnabled="{Binding #s.IsChecked}">Hello Avalonia</Button>
         </u:DisableContainer>
         <Button
             u:DisabledAdorner.DisabledTip="Fine"
