@@ -62,7 +62,15 @@ public class DateDisplay : NumberDisplayer<DateTime>
         public override DateTime Interpolate(double progress, DateTime oldValue, DateTime newValue)
         {
             var diff = (newValue - oldValue).TotalSeconds;
-            return oldValue + TimeSpan.FromSeconds(diff * progress);
+            try
+            {
+                return oldValue + TimeSpan.FromSeconds(diff * progress);
+            }
+            catch
+            {
+                return oldValue;
+            }
+            
         }
     }
 

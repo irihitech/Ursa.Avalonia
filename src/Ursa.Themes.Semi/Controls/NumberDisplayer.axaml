@@ -14,7 +14,7 @@
                     FontFamily="{TemplateBinding FontFamily}"
                     Background="{TemplateBinding Background}"
                     FontWeight="{TemplateBinding FontWeight}"
-                    FontStyle="{TemplateBinding FontSize}"
+                    FontStyle="{TemplateBinding FontStyle}"
                     FontStretch="{TemplateBinding FontStretch}"
                     Text="{TemplateBinding InternalText, Mode=OneWay}" />
             </ControlTemplate>
@@ -28,7 +28,7 @@
                         FontFamily="{TemplateBinding FontFamily}"
                         Background="{TemplateBinding Background}"
                         FontWeight="{TemplateBinding FontWeight}"
-                        FontStyle="{TemplateBinding FontSize}"
+                        FontStyle="{TemplateBinding FontStyle}"
                         FontStretch="{TemplateBinding FontStretch}"
                         Text="{TemplateBinding InternalText, Mode=OneWay}" />
                 </ControlTemplate>

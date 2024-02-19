@@ -1,6 +1,8 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Shapes;
+using Avalonia.Markup.Xaml.Templates;
 using Avalonia.Media;
 
 namespace Ursa.Controls.Shapes;
@@ -10,8 +12,8 @@ namespace Ursa.Controls.Shapes;
 /// </summary>
 public class PureRectangle: Control
 {
-    public static readonly StyledProperty<IBrush?> BackgroundProperty = AvaloniaProperty.Register<PureRectangle, IBrush?>(
-        nameof(Background));
+    public static readonly StyledProperty<IBrush?> BackgroundProperty =
+        TemplatedControl.BackgroundProperty.AddOwner<PureRectangle>();
 
     public IBrush? Background
     {
@@ -21,6 +23,7 @@ public class PureRectangle: Control
     static PureRectangle()
     {
         FocusableProperty.OverrideDefaultValue<PureRectangle>(false);
+        AffectsRender<PureRectangle>(BackgroundProperty);
     }
 
     public override void Render(DrawingContext context)
