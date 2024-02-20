@@ -13,6 +13,7 @@ public static class MenuKeys
     public const string MenuKeyDrawer = "Drawer";
     public const string MenuKeyDualBadge = "DualBadge";
     public const string MenuKeyEnumSelector = "EnumSelector";
+    public const string MenuKeyForm = "Form";
     public const string MenuKeyImageViewer = "ImageViewer";
     public const string MenuKeyIpBox = "IPv4Box";
     public const string MenuKeyIconButton = "IconButton";
