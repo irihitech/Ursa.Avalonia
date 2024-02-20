@@ -17,4 +17,8 @@
         <PackageReference Include="Irihi.Avalonia.Shared" Version="0.1.2" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Controls\Panels\" />
+    </ItemGroup>
+
 </Project>

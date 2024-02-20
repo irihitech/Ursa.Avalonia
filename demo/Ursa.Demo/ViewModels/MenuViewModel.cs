@@ -40,6 +40,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Theme Toggler", Key = MenuKeys.MenuKeyThemeToggler },
             new() { MenuHeader = "Timeline", Key = MenuKeys.MenuKeyTimeline, Status = "Updated" },
             new() { MenuHeader = "TwoTonePathIcon", Key = MenuKeys.MenuKeyTwoTonePathIcon, Status = "New"},
+            new() { MenuHeader = "ToolBar", Key = MenuKeys.MenuKeyToolBar, Status = "New" }
         };
     }
 }

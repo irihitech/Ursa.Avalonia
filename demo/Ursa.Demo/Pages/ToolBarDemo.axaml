@@ -1,0 +1,24 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:vm="using:Ursa.Demo.ViewModels"
+             xmlns:template="using:Ursa.Demo.Converters"
+             x:DataType="vm:ToolBarDemoViewModel"
+             x:CompileBindings="True"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Ursa.Demo.Pages.ToolBarDemo">
+    <StackPanel>
+        <u:ToolBar>
+            <Button Content="Button 1" />
+            <Button Content="Button 2" />
+            <Button Content="Button 3" />
+        </u:ToolBar>
+        <u:ToolBar ItemsSource="{Binding Items}">
+            <u:ToolBar.ItemTemplate>
+                <template:ToolBarItemTemplateSelector/>
+            </u:ToolBar.ItemTemplate>
+        </u:ToolBar>
+    </StackPanel>
+</UserControl>

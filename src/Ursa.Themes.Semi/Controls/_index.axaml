@@ -30,5 +30,6 @@
         <ResourceInclude Source="ThemeSelector.axaml" />
         <ResourceInclude Source="Timeline.axaml" />
         <ResourceInclude Source="TwoTonePathIcon.axaml" />
+        <ResourceInclude Source="ToolBar.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
