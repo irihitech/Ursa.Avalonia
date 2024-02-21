@@ -36,6 +36,12 @@ public class ToolBar: HeaderedItemsControl
         set => SetValue(BandProperty, value);
     }
 
+    public static readonly AttachedProperty<OverflowMode> OverflowModeProperty =
+        AvaloniaProperty.RegisterAttached<ToolBar, Control?, OverflowMode>("OverflowMode");
+
+    public static void SetOverflowMode(Control? obj, OverflowMode value) => obj.SetValue(OverflowModeProperty, value);
+    public static OverflowMode GetOverflowMode(Control? obj) => obj.GetValue(OverflowModeProperty);
+
     static ToolBar()
     {
         IsTabStopProperty.OverrideDefaultValue<ToolBar>(false);

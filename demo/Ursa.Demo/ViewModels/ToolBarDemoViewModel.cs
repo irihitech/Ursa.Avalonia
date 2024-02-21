@@ -13,11 +13,11 @@ public partial class ToolBarDemoViewModel: ObservableObject
     {
         Items = new()
         {
-            new ToolBarButtonItemViewModel() { Content = "New" },
+            new ToolBarButtonItemViewModel() { Content = "New", OverflowMode = OverflowMode.AsNeeded},
             new ToolBarButtonItemViewModel() { Content = "Open" },
             new ToolBarButtonItemViewModel() { Content = "Save" },
             new ToolBarCheckBoxItemViweModel() { Content = "Bold" },
-            new ToolBarCheckBoxItemViweModel() { Content = "Italic" },
+            new ToolBarCheckBoxItemViweModel() { Content = "Italic", OverflowMode = OverflowMode.Never},
             new ToolBarComboBoxItemViewModel() { Content = "Font Size", Items = new (){ "10", "12", "14"  } }
         };
     }
@@ -25,7 +25,7 @@ public partial class ToolBarDemoViewModel: ObservableObject
 
 public abstract class ToolBarItemViewModel: ObservableObject
 {
-    
+    public OverflowMode OverflowMode { get; set; }
 }
 
 public class ToolBarButtonItemViewModel: ToolBarItemViewModel

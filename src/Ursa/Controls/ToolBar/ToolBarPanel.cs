@@ -28,7 +28,24 @@ public class ToolBarPanel: StackPanel
 
     protected override Size MeasureOverride(Size availableSize)
     {
-        return base.MeasureOverride(availableSize);
-        
+        var size = base.MeasureOverride(availableSize);
+        var children = this.Children;
+        var children2 = this.OverflowPanel?.Children;
+        var all = children.ToList();
+        if (children2 != null)
+        {
+            all.AddRange(children2);
+        }
+        this.Children.Clear();
+        OverflowPanel?.Children.Clear();
+        for (int i = 0; i < all.Count - 1; i++)
+        {
+            this.Children.Add(all[i]);
+        }
+        if (all.Count > 0)
+        {
+            OverflowPanel?.Children.Add(all.Last());
+        }
+        return size;
     }
 }

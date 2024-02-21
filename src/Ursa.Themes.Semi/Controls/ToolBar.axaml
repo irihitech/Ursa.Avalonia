@@ -23,8 +23,8 @@
                             Fill="Gray" />
                         <ContentPresenter Margin="4 0" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" />
                         <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Left" ItemsPanel="{TemplateBinding ItemsPanel}"/>
-                        <Button Content="More"></Button>
-                        <Popup>
+                        <ToggleButton Name="button" Content="More"></ToggleButton>
+                        <Popup IsOpen="{Binding #button.IsChecked, Mode=TwoWay}" PlacementTarget="{Binding #button}" IsLightDismissEnabled="True">
                             <Border Theme="{DynamicResource CardBorder}">
                                 <StackPanel Name="{x:Static u:ToolBar.PART_OverflowPanel}"></StackPanel>
                             </Border>

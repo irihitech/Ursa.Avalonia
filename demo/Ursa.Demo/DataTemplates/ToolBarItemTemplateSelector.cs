@@ -2,6 +2,7 @@
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
+using Ursa.Controls;
 using Ursa.Demo.ViewModels;
 
 namespace Ursa.Demo.Converters;
@@ -18,6 +19,7 @@ public class ToolBarItemTemplateSelector: IDataTemplate
             {
                 [!ContentControl.ContentProperty] = new Binding() { Path = "Content" },
                 [!Button.CommandProperty] = new Binding() { Path = "Command" },
+                [!ToolBar.OverflowModeProperty] = new Binding(){ Path = "OverflowMode" }
             };
         }
         if (param is ToolBarCheckBoxItemViweModel cb)
@@ -27,6 +29,7 @@ public class ToolBarItemTemplateSelector: IDataTemplate
                 [!ContentControl.ContentProperty] = new Binding() { Path = "Content" },
                 [!ToggleButton.IsCheckedProperty] = new Binding() { Path = "IsChecked" },
                 [!Button.CommandProperty] = new Binding() { Path = "Command" },
+                [!ToolBar.OverflowModeProperty] = new Binding(){ Path = "OverflowMode" }
             };
         }
         if (param is ToolBarComboBoxItemViewModel combo)
@@ -36,6 +39,7 @@ public class ToolBarItemTemplateSelector: IDataTemplate
                 [!ContentControl.ContentProperty] = new Binding() { Path = "Content" },
                 [!SelectingItemsControl.SelectedItemProperty] = new Binding() { Path = "SelectedItem" },
                 [!ItemsControl.ItemsSourceProperty] = new Binding() { Path = "Items" },
+                [!ToolBar.OverflowModeProperty] = new Binding(){ Path = "OverflowMode" }
             };
         }
         return new Button() { Content = "Undefined Item" };

@@ -5,6 +5,6 @@
     xmlns:u-semi="https://irihi.tech/ursa/themes/semi">
     <Application.Styles>
         <StyleInclude Source="avares://Semi.Avalonia/Themes/Index.axaml" />
-        <u-semi:SemiTheme Locale="zh-CN"/>
+        <u-semi:SemiTheme Locale="zh-CN" />
     </Application.Styles>
 </Application>
