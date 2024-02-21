@@ -6,30 +6,43 @@
     <ControlTheme x:Key="{x:Type u:ToolBar}" TargetType="u:ToolBar">
         <Setter Property="ItemsPanel">
             <ItemsPanelTemplate>
-                <u:ToolBarPanel/>
+                <u:ToolBarPanel />
             </ItemsPanelTemplate>
         </Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:ToolBar">
                 <Border
                     Padding="2"
-                    Theme="{DynamicResource CardBorder}"
-                    CornerRadius="4">
-                    <StackPanel Orientation="{TemplateBinding Orientation}">
+                    CornerRadius="4"
+                    Theme="{DynamicResource CardBorder}">
+                    <DockPanel LastChildFill="True">
                         <Rectangle
                             Width="1"
+                            Margin="4,0"
                             VerticalAlignment="Stretch"
-                            Margin="4 0"
+                            DockPanel.Dock="Left"
                             Fill="Gray" />
-                        <ContentPresenter Margin="4 0" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" />
-                        <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Left" ItemsPanel="{TemplateBinding ItemsPanel}"/>
-                        <ToggleButton Name="button" Content="More"></ToggleButton>
-                        <Popup IsOpen="{Binding #button.IsChecked, Mode=TwoWay}" PlacementTarget="{Binding #button}" IsLightDismissEnabled="True">
-                            <Border Theme="{DynamicResource CardBorder}">
-                                <StackPanel Name="{x:Static u:ToolBar.PART_OverflowPanel}"></StackPanel>
-                            </Border>
-                        </Popup>
-                    </StackPanel>
+                        <ContentPresenter
+                            Margin="4,0"
+                            Content="{TemplateBinding Header}"
+                            ContentTemplate="{TemplateBinding HeaderTemplate}"
+                            DockPanel.Dock="Left" />
+                        <Panel DockPanel.Dock="Right">
+                            <ToggleButton Name="button" Content="More" />
+                            <Popup
+                                IsLightDismissEnabled="True"
+                                IsOpen="{Binding #button.IsChecked, Mode=TwoWay}"
+                                PlacementTarget="{Binding #button}">
+                                <Border Theme="{DynamicResource CardBorder}">
+                                    <StackPanel Name="{x:Static u:ToolBar.PART_OverflowPanel}" />
+                                </Border>
+                            </Popup>
+                        </Panel>
+                        <ItemsPresenter
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            ItemsPanel="{TemplateBinding ItemsPanel}" />
+                    </DockPanel>
                 </Border>
             </ControlTemplate>
         </Setter>

@@ -5,6 +5,7 @@ using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Layout;
+using Avalonia.Markup.Xaml.Templates;
 
 namespace Ursa.Controls;
 
@@ -57,6 +58,27 @@ public class ToolBar: HeaderedItemsControl
     protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey)
     {
         return new ContentPresenter();
+    }
+
+    protected override void ContainerForItemPreparedOverride(Control container, object? item, int index)
+    {
+        base.ContainerForItemPreparedOverride(container, item, index);
+        if (item is Control s)
+        {
+            container[!ToolBar.OverflowModeProperty] = s[!ToolBar.OverflowModeProperty];
+        }
+        else
+        {
+            if (container is ContentPresenter p)
+            {
+                p.ApplyTemplate();
+                var c = p.Child;
+                if (c != null)
+                {
+                    container[!ToolBar.OverflowModeProperty] = c[!ToolBar.OverflowModeProperty];
+                }
+            }
+        }
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)

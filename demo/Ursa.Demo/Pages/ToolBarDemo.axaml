@@ -10,15 +10,16 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.ToolBarDemo">
     <StackPanel>
-        <u:ToolBar>
+        <u:ToolBar HorizontalAlignment="Left">
             <Button Content="Button 1" />
             <Button Content="Button 2" />
-            <Button Content="Button 3" />
+            <Button Content="Button 3" u:ToolBar.OverflowMode="Always" />
         </u:ToolBar>
-        <u:ToolBar ItemsSource="{Binding Items}">
+        <u:ToolBar ItemsSource="{Binding Items}" HorizontalAlignment="Left">
             <u:ToolBar.ItemTemplate>
                 <template:ToolBarItemTemplateSelector/>
             </u:ToolBar.ItemTemplate>
         </u:ToolBar>
+        <CheckBox Content="Check"></CheckBox>
     </StackPanel>
 </UserControl>

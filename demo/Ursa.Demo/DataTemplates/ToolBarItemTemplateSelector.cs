@@ -28,7 +28,6 @@ public class ToolBarItemTemplateSelector: IDataTemplate
             {
                 [!ContentControl.ContentProperty] = new Binding() { Path = "Content" },
                 [!ToggleButton.IsCheckedProperty] = new Binding() { Path = "IsChecked" },
-                [!Button.CommandProperty] = new Binding() { Path = "Command" },
                 [!ToolBar.OverflowModeProperty] = new Binding(){ Path = "OverflowMode" }
             };
         }
@@ -39,7 +38,7 @@ public class ToolBarItemTemplateSelector: IDataTemplate
                 [!ContentControl.ContentProperty] = new Binding() { Path = "Content" },
                 [!SelectingItemsControl.SelectedItemProperty] = new Binding() { Path = "SelectedItem" },
                 [!ItemsControl.ItemsSourceProperty] = new Binding() { Path = "Items" },
-                [!ToolBar.OverflowModeProperty] = new Binding(){ Path = "OverflowMode" }
+                [ToolBar.OverflowModeProperty] = OverflowMode.Always,
             };
         }
         return new Button() { Content = "Undefined Item" };
