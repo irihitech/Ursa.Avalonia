@@ -10,7 +10,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.ToolBarDemo">
     <StackPanel>
-        <u:ToolBar HorizontalAlignment="Left">
+        <u:ToolBar HorizontalAlignment="Left" Header="Hello World">
             <Button Content="Button 1" />
             <Button Content="Button 2" />
             <Button Content="Button 3" u:ToolBar.OverflowMode="Always" />
@@ -20,6 +20,5 @@
                 <template:ToolBarItemTemplateSelector/>
             </u:ToolBar.ItemTemplate>
         </u:ToolBar>
-        <CheckBox Content="Check"></CheckBox>
     </StackPanel>
 </UserControl>

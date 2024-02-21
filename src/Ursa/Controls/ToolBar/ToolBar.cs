@@ -38,10 +38,16 @@ public class ToolBar: HeaderedItemsControl
     }
 
     public static readonly AttachedProperty<OverflowMode> OverflowModeProperty =
-        AvaloniaProperty.RegisterAttached<ToolBar, Control?, OverflowMode>("OverflowMode");
+        AvaloniaProperty.RegisterAttached<ToolBar, Control, OverflowMode>("OverflowMode");
 
-    public static void SetOverflowMode(Control? obj, OverflowMode value) => obj.SetValue(OverflowModeProperty, value);
-    public static OverflowMode GetOverflowMode(Control? obj) => obj.GetValue(OverflowModeProperty);
+    public static void SetOverflowMode(Control obj, OverflowMode value) => obj.SetValue(OverflowModeProperty, value);
+    public static OverflowMode GetOverflowMode(Control obj) => obj.GetValue(OverflowModeProperty);
+
+    internal static readonly AttachedProperty<bool> IsOverflowItemProperty =
+        AvaloniaProperty.RegisterAttached<ToolBar, Control, bool>("IsOverflowItem");
+
+    internal static void SetIsOverflowItem(Control obj, bool value) => obj.SetValue(IsOverflowItemProperty, value);
+    internal static bool GetIsOverflowItem(Control obj) => obj.GetValue(IsOverflowItemProperty);
 
     static ToolBar()
     {

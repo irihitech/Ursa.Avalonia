@@ -2,7 +2,6 @@
 using Avalonia.Controls;
 using Avalonia.Layout;
 using Avalonia.LogicalTree;
-using Avalonia.VisualTree;
 
 namespace Ursa.Controls;
 
@@ -45,16 +44,18 @@ public class ToolBarPanel: StackPanel
         Size measureSize = availableSize;
         bool horizontal = Orientation == Orientation.Horizontal;
         bool hasVisibleChildren = false;
-        measureSize = horizontal
-            ? measureSize.WithWidth(double.PositiveInfinity)
-            : measureSize.WithHeight(double.PositiveInfinity);
+        measureSize = new Size(double.PositiveInfinity, double.PositiveInfinity);
         int index = 0;
         if (logicalChildren is null) return size;
         for (int count = logicalChildren.Count; index < count; ++index)
         {
             Control control = logicalChildren[index];
             var mode = ToolBar.GetOverflowMode(control);
-            if(mode == OverflowMode.Always) continue;
+            if (mode == OverflowMode.Always)
+            {
+                ToolBar.SetIsOverflowItem(control, true);
+                continue;
+            }
             bool isVisible = control.IsVisible;
             if (isVisible)
             {
@@ -83,6 +84,21 @@ public class ToolBarPanel: StackPanel
 
     protected override Size ArrangeOverride(Size finalSize)
     {
+        var logicalChildren = _parent?.GetLogicalChildren().OfType<Control>().ToList();
+        Children.Clear();
+        OverflowPanel?.Children.Clear();
+        foreach (var child in logicalChildren)
+        {
+            if (ToolBar.GetIsOverflowItem(child))
+            {
+                OverflowPanel?.Children.Add(child);
+            }
+            else
+            {
+                this.Children.Add(child);
+            }
+        }
+        return base.ArrangeOverride(finalSize);
         if (_parent is null)
         {
             return finalSize;
