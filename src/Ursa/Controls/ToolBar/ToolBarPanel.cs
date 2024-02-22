@@ -44,9 +44,55 @@ public class ToolBarPanel: StackPanel
         Size measureSize = availableSize;
         bool horizontal = Orientation == Orientation.Horizontal;
         bool hasVisibleChildren = false;
-        measureSize = new Size(double.PositiveInfinity, double.PositiveInfinity);
         int index = 0;
         if (logicalChildren is null) return size;
+        for (int i = 0; i < logicalChildren.Count; i++)
+        {
+            Control control = logicalChildren[i];
+            var mode = ToolBar.GetOverflowMode(control);
+            control.Measure(measureSize);
+            if (mode == OverflowMode.Always)
+            {
+                ToolBar.SetIsOverflowItem(control, true);
+                continue;
+            }
+            else if (mode == OverflowMode.Never)
+            {
+                if (control.IsVisible)
+                {
+                    hasVisibleChildren = true;
+                    size = horizontal
+                        ? size.WithWidth(size.Width + control.DesiredSize.Width + spacing)
+                            .WithHeight(Math.Max(size.Height, control.DesiredSize.Height))
+                        : size.WithHeight(size.Height + control.DesiredSize.Height + spacing)
+                            .WithWidth(Math.Max(size.Width, control.DesiredSize.Width));
+                    ToolBar.SetIsOverflowItem(control, false);
+                }
+            }
+        }
+        for(int i = 0; i < logicalChildren.Count; i++)
+        {
+            Control control = logicalChildren[i];
+            var mode = ToolBar.GetOverflowMode(control);
+            if (mode != OverflowMode.AsNeeded) continue;
+            bool isFit = horizontal
+                ? (size.Width + control.DesiredSize.Width <= availableSize.Width)
+                : (size.Height + control.DesiredSize.Height <= availableSize.Height);
+            if (isFit)
+            {
+                ToolBar.SetIsOverflowItem(control, false);
+                size = horizontal
+                    ? size.WithWidth(size.Width + control.DesiredSize.Width + spacing)
+                        .WithHeight(Math.Max(size.Height, control.DesiredSize.Height))
+                    : size.WithHeight(size.Height + control.DesiredSize.Height + spacing)
+                        .WithWidth(Math.Max(size.Width, control.DesiredSize.Width));
+            }
+            else
+            {
+                ToolBar.SetIsOverflowItem(control, true);
+            }
+        }
+        /*
         for (int count = logicalChildren.Count; index < count; ++index)
         {
             Control control = logicalChildren[index];
@@ -74,11 +120,12 @@ public class ToolBarPanel: StackPanel
                 size = size.WithWidth(Math.Max(size.Width, desiredSize.Width));
             }
         }
-
+        */
         if (hasVisibleChildren)
         {
             size = horizontal ? size.WithWidth(size.Width - spacing) : size.WithHeight(size.Height - spacing);
         }
+
         return size;
     }
 

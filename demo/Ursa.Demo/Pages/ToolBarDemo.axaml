@@ -12,7 +12,7 @@
     <StackPanel>
         <u:ToolBar HorizontalAlignment="Left" Header="Hello World">
             <Button Content="Button 1" />
-            <Button Content="Button 2" />
+            <Button Content="Button 2" u:ToolBar.OverflowMode="AsNeeded" />
             <Button Content="Button 3" u:ToolBar.OverflowMode="Always" />
         </u:ToolBar>
         <u:ToolBar ItemsSource="{Binding Items}" HorizontalAlignment="Left">
