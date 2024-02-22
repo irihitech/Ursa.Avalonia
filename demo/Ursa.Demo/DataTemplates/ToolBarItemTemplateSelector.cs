@@ -19,7 +19,7 @@ public class ToolBarItemTemplateSelector: IDataTemplate
             {
                 [!ContentControl.ContentProperty] = new Binding() { Path = "Content" },
                 [!Button.CommandProperty] = new Binding() { Path = "Command" },
-                [!ToolBar.OverflowModeProperty] = new Binding(){ Path = "OverflowMode" }
+                //[!ToolBar.OverflowModeProperty] = new Binding(){ Path = "OverflowMode" }
             };
         }
         if (param is ToolBarCheckBoxItemViweModel cb)
@@ -28,7 +28,7 @@ public class ToolBarItemTemplateSelector: IDataTemplate
             {
                 [!ContentControl.ContentProperty] = new Binding() { Path = "Content" },
                 [!ToggleButton.IsCheckedProperty] = new Binding() { Path = "IsChecked" },
-                [!ToolBar.OverflowModeProperty] = new Binding(){ Path = "OverflowMode" }
+                //[!ToolBar.OverflowModeProperty] = new Binding(){ Path = "OverflowMode" }
             };
         }
         if (param is ToolBarComboBoxItemViewModel combo)

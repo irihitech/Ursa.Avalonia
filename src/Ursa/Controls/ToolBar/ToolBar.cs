@@ -81,6 +81,7 @@ public class ToolBar: HeaderedItemsControl
                 var c = p.Child;
                 if (c != null)
                 {
+                    // container[ToolBar.OverflowModeProperty] = c[ToolBar.OverflowModeProperty];
                     container[!ToolBar.OverflowModeProperty] = c[!ToolBar.OverflowModeProperty];
                 }
             }
