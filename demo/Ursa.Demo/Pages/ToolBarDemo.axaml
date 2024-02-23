@@ -23,20 +23,13 @@
             <Button u:ToolBar.OverflowMode="AsNeeded" Content="Button 3" />
             <ToggleButton Content="Toggle"></ToggleButton>
         </u:ToolBar>
-        <u:ToolBar
-            HorizontalAlignment="Left"
-            DockPanel.Dock="Top"
-            ItemsSource="{Binding Items}">
-            <u:ToolBar.ItemTemplate>
-                <template:ToolBarItemTemplateSelector />
-            </u:ToolBar.ItemTemplate>
-        </u:ToolBar>
+        <u:EnumSelector EnumType="Orientation" Name="Orientation" DockPanel.Dock="Top"></u:EnumSelector>
         <u:ToolBar
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             DockPanel.Dock="Top"
-            ItemsSource="{Binding Items}"
-            Orientation="Vertical">
+            Orientation="{Binding #Orientation.Value}"
+            ItemsSource="{Binding Items}">
             <u:ToolBar.ItemTemplate>
                 <template:ToolBarItemTemplateSelector />
             </u:ToolBar.ItemTemplate>

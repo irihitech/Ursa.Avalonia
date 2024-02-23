@@ -41,6 +41,7 @@
                     Theme="{DynamicResource CardBorder}">
                     <DockPanel LastChildFill="True">
                         <ContentPresenter
+                            Name="PART_Header"
                             Margin="8,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
@@ -50,14 +51,14 @@
                             DockPanel.Dock="Left"
                             IsVisible="{TemplateBinding Header,
                                                         Converter={x:Static ObjectConverters.IsNotNull}}" />
-                        <Panel Name="PART_PopupButton" DockPanel.Dock="Right">
+                        <Panel Name="PART_PopupButtonPanel" DockPanel.Dock="Right">
                             <ToggleButton
                                 Name="button"
                                 IsVisible="False"
                                 Padding="8,0"
                                 VerticalAlignment="Stretch"
                                 Theme="{DynamicResource ToolBarExpandToggleButton}">
-                                <PathIcon Height="16" Data="{DynamicResource ToolBarHorizontalMoreGlyph}"></PathIcon>
+                                <PathIcon Name="PART_Icon" Height="16" Data="{DynamicResource ToolBarHorizontalMoreGlyph}"></PathIcon>
                             </ToggleButton>
                             <Popup
                                 IsLightDismissEnabled="True"
@@ -82,51 +83,20 @@
         </Style>
         <Style Selector="^[Orientation=Vertical]">
             <Setter Property="PopupPlacement" Value="RightEdgeAlignedTop" />
-            <Setter Property="Template">
-                <ControlTemplate TargetType="u:ToolBar">
-                    <Border
-                        Padding="2"
-                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                        CornerRadius="4"
-                        Theme="{DynamicResource CardBorder}">
-                        <DockPanel LastChildFill="True">
-                            <ContentPresenter
-                                Margin="8,0"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Top"
-                                Foreground="{DynamicResource SemiColorText2}"
-                                Content="{TemplateBinding Header}"
-                                ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                DockPanel.Dock="Top"
-                                IsVisible="{TemplateBinding Header,
-                                                            Converter={x:Static ObjectConverters.IsNotNull}}" />
-                            <Panel Name="PART_PopupButton" DockPanel.Dock="Bottom">
-                                <ToggleButton
-                                    Name="button"
-                                    IsVisible="False"
-                                    Padding="0 8"
-                                    Theme="{DynamicResource ToolBarExpandToggleButton}">
-                                    <PathIcon Width="16" Data="{DynamicResource ToolBarVerticalMoreGlyph}" />
-                                </ToggleButton>
-                                <Popup
-                                    IsLightDismissEnabled="True"
-                                    IsOpen="{Binding #button.IsChecked, Mode=TwoWay}"
-                                    Placement="{TemplateBinding PopupPlacement}"
-                                    PlacementTarget="{Binding #button}">
-                                    <Border Theme="{DynamicResource CardBorder}" Padding="2">
-                                        <StackPanel Name="{x:Static u:ToolBar.PART_OverflowPanel}" />
-                                    </Border>
-                                </Popup>
-                            </Panel>
-                            <ItemsPresenter
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                ItemsPanel="{TemplateBinding ItemsPanel}" />
-                        </DockPanel>
-                    </Border>
-                </ControlTemplate>
-            </Setter>
+            <Style Selector="^ /template/ ContentPresenter#PART_Header">
+                <Setter Property="DockPanel.Dock" Value="Top"></Setter>
+            </Style>
+            <Style Selector="^ /template/ Panel#PART_PopupButtonPanel">
+                <Setter Property="DockPanel.Dock" Value="Bottom"></Setter>
+            </Style>
+            <Style Selector="^ /template/ ToggleButton#button">
+                <Setter Property="Padding" Value="0 8"></Setter>
+            </Style>
+            <Style Selector="^ /template/ PathIcon#PART_Icon">
+                <Setter Property="Data" Value="{DynamicResource ToolBarVerticalMoreGlyph}"></Setter>
+                <Setter Property="Width" Value="16"></Setter>
+                <Setter Property="Height" Value="{x:Static x:Double.NaN}"></Setter>
+            </Style>
         </Style>
         <Style Selector="^:overflow /template/ ToggleButton#button">
             <Setter Property="IsVisible" Value="True"></Setter>
