@@ -31,5 +31,6 @@ public static class MenuKeys
     public const string MenuKeyTimeline = "Timeline";
     public const string MenuKeyTwoTonePathIcon = "TwoTonePathIcon";
     public const string MenuKeyThemeToggler = "ThemeToggler";
+    public const string MenuKeyToolBar = "ToolBar";
 
 }

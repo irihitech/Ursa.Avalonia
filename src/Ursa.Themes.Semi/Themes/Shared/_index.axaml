@@ -15,5 +15,6 @@
         <MergeResourceInclude Source="Pagination.axaml" />
         <MergeResourceInclude Source="TagInput.axaml" />
         <MergeResourceInclude Source="ThemeSelector.axaml" />
+        <MergeResourceInclude Source="ToolBar.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
