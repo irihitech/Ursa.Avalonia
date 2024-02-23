@@ -18,8 +18,10 @@
             DockPanel.Dock="Top"
             Header="Hello World">
             <Button Content="Button 1" u:ToolBar.OverflowMode="Never" />
+            <u:ToolBarSeparator/>
             <Button u:ToolBar.OverflowMode="AsNeeded" Content="Button 2" />
             <Button u:ToolBar.OverflowMode="AsNeeded" Content="Button 3" />
+            <ToggleButton Content="Toggle"></ToggleButton>
         </u:ToolBar>
         <u:ToolBar
             HorizontalAlignment="Left"

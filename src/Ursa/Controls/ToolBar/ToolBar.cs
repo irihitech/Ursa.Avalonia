@@ -86,7 +86,11 @@ public class ToolBar: HeaderedItemsControl
         {
             return c;
         }
-        return ItemTemplate?.Build(item) ?? new ContentPresenter();
+        if(ItemTemplate is not null && ItemTemplate.Match(item))
+        {
+            return ItemTemplate.Build(item)?? new ContentPresenter();
+        }
+        return new ContentPresenter();
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)

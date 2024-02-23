@@ -116,8 +116,24 @@ public class ToolBarPanel: StackPanel
             {
                 Children.Add(child);
             }
+
+            if (child is ToolBarSeparator s)
+            {
+                s.IsVisible = true;
+            }
         }
 
+        var thisLast = this.Children.LastOrDefault();
+        if (thisLast is ToolBarSeparator s2)
+        {
+            s2.IsVisible = false;
+        }
+
+        var thatFirst = OverflowPanel?.Children.FirstOrDefault();
+        if (thatFirst is ToolBarSeparator s3)
+        {
+            s3.IsVisible = false;
+        }
         if (_parent != null) _parent.HasOverflowItems = overflow;
         return base.ArrangeOverride(finalSize);
     }

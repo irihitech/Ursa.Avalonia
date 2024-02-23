@@ -9,17 +9,22 @@ namespace Ursa.Demo.Converters;
 
 public class ToolBarItemTemplateSelector: IDataTemplate
 {
+    
     public static ToolBarItemTemplateSelector Instance { get; } = new();
     public Control? Build(object? param)
     {
         if (param is null) return null;
+        if (param is ToolBarSeparatorViewModel sep)
+        {
+            return new ToolBarSeparator();
+        }
         if (param is ToolBarButtonItemViewModel vm)
         {
             return new Button()
             {
                 [!ContentControl.ContentProperty] = new Binding() { Path = "Content" },
                 [!Button.CommandProperty] = new Binding() { Path = "Command" },
-                //[!ToolBar.OverflowModeProperty] = new Binding(){ Path = "OverflowMode" }
+                [!ToolBar.OverflowModeProperty] = new Binding(){Path = nameof(ToolBarItemViewModel.OverflowMode)},
             };
         }
         if (param is ToolBarCheckBoxItemViweModel cb)
@@ -28,7 +33,7 @@ public class ToolBarItemTemplateSelector: IDataTemplate
             {
                 [!ContentControl.ContentProperty] = new Binding() { Path = "Content" },
                 [!ToggleButton.IsCheckedProperty] = new Binding() { Path = "IsChecked" },
-                //[!ToolBar.OverflowModeProperty] = new Binding(){ Path = "OverflowMode" }
+                [!ToolBar.OverflowModeProperty] = new Binding(){Path = nameof(ToolBarItemViewModel.OverflowMode)},
             };
         }
         if (param is ToolBarComboBoxItemViewModel combo)
@@ -38,7 +43,7 @@ public class ToolBarItemTemplateSelector: IDataTemplate
                 [!ContentControl.ContentProperty] = new Binding() { Path = "Content" },
                 [!SelectingItemsControl.SelectedItemProperty] = new Binding() { Path = "SelectedItem" },
                 [!ItemsControl.ItemsSourceProperty] = new Binding() { Path = "Items" },
-                [ToolBar.OverflowModeProperty] = OverflowMode.Always,
+                [!ToolBar.OverflowModeProperty] = new Binding(){Path = nameof(ToolBarItemViewModel.OverflowMode)},
             };
         }
         return new Button() { Content = "Undefined Item" };
