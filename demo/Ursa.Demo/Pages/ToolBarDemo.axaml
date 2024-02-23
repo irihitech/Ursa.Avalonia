@@ -70,7 +70,7 @@
             Grid.Row="2"
             Grid.Column="2"
             RowDefinitions="Auto, *">
-            <u:ToolBar>
+            <u:ToolBar Margin="16">
                 <ToggleButton Name="bold">
                     <PathIcon
                         Width="16"
