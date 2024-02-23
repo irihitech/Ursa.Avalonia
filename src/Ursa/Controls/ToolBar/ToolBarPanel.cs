@@ -70,11 +70,20 @@ public class ToolBarPanel: StackPanel
                 }
             }
         }
+        bool isOverflow = false;
         for(int i = 0; i < logicalChildren.Count; i++)
         {
             Control control = logicalChildren[i];
             var mode = ToolBar.GetOverflowMode(control);
             if (mode != OverflowMode.AsNeeded) continue;
+            //Always keeps the order of display. It's very un reasonable to display the second but short control
+            //and push the first control to the overflow panel. So once a control is marked as overflow, the following
+            //controls will be marked as overflow too.
+            if (isOverflow)
+            {
+                ToolBar.SetIsOverflowItem(control, isOverflow);
+                continue;
+            }
             bool isFit = horizontal
                 ? (size.Width + control.DesiredSize.Width <= availableSize.Width)
                 : (size.Height + control.DesiredSize.Height <= availableSize.Height);
@@ -89,38 +98,10 @@ public class ToolBarPanel: StackPanel
             }
             else
             {
-                ToolBar.SetIsOverflowItem(control, true);
+                isOverflow = true;
+                ToolBar.SetIsOverflowItem(control, isOverflow);
             }
         }
-        /*
-        for (int count = logicalChildren.Count; index < count; ++index)
-        {
-            Control control = logicalChildren[index];
-            var mode = ToolBar.GetOverflowMode(control);
-            if (mode == OverflowMode.Always)
-            {
-                ToolBar.SetIsOverflowItem(control, true);
-                continue;
-            }
-            bool isVisible = control.IsVisible;
-            if (isVisible)
-            {
-                hasVisibleChildren = true;
-            }
-            control.Measure(measureSize);
-            Size desiredSize = control.DesiredSize;
-            if (horizontal)
-            {
-                size = size.WithWidth(size.Width + desiredSize.Width + (isVisible ? spacing : 0));
-                size = size.WithHeight(Math.Max(size.Height, desiredSize.Height));
-            }
-            else
-            {
-                size = size.WithHeight(size.Height + desiredSize.Height + (isVisible ? spacing : 0));
-                size = size.WithWidth(Math.Max(size.Width, desiredSize.Width));
-            }
-        }
-        */
         if (hasVisibleChildren)
         {
             size = horizontal ? size.WithWidth(size.Width - spacing) : size.WithHeight(size.Height - spacing);
@@ -131,9 +112,11 @@ public class ToolBarPanel: StackPanel
 
     protected override Size ArrangeOverride(Size finalSize)
     {
-        var logicalChildren = _parent?.GetLogicalChildren().OfType<Control>().ToList();
         Children.Clear();
         OverflowPanel?.Children.Clear();
+        InvalidateVisual();
+        var logicalChildren = _parent?.GetLogicalChildren().OfType<Control>().ToList();
+        if(logicalChildren is null) return finalSize;
         foreach (var child in logicalChildren)
         {
             if (ToolBar.GetIsOverflowItem(child))
@@ -146,55 +129,6 @@ public class ToolBarPanel: StackPanel
             }
         }
         return base.ArrangeOverride(finalSize);
-        if (_parent is null)
-        {
-            return finalSize;
-        }
-        var all = _parent.GetLogicalChildren().OfType<Control>().ToList();
-        Children.Clear();
-        OverflowPanel?.Children.Clear();
-        Size currentSize = new Size();
-        bool horizontal = Orientation == Orientation.Horizontal;
-        double spacing = 0;
-        Rect arrangeRect = new Rect(finalSize);
-        double previousChildSize = 0.0;
-        for (var i = 0; i < all.Count; i++)
-        {
-            var control = all[i];
-            if (!control.IsVisible) continue;
-            var desiredSize = control.DesiredSize;
-            var mode = ToolBar.GetOverflowMode(control);
-            if (mode == OverflowMode.Always)
-            {
-                OverflowPanel?.Children.Add(control);
-            }
-            else
-            {
-                Children.Add(control);
-                if (horizontal)
-                {
-                    arrangeRect = arrangeRect.WithX(arrangeRect.X + previousChildSize);
-                    previousChildSize = control.DesiredSize.Width;
-                    arrangeRect = arrangeRect.WithWidth(previousChildSize);
-                    arrangeRect = arrangeRect.WithHeight(Math.Max(finalSize.Height, control.DesiredSize.Height));
-                    previousChildSize += spacing;
-                    currentSize = currentSize.WithWidth(currentSize.Width + desiredSize.Width + spacing);
-                    currentSize = currentSize.WithHeight(Math.Max(currentSize.Height, desiredSize.Height));
-                }
-                else
-                {
-                    arrangeRect = arrangeRect.WithY(arrangeRect.Y + previousChildSize);
-                    previousChildSize = control.DesiredSize.Height;
-                    arrangeRect = arrangeRect.WithHeight(previousChildSize);
-                    arrangeRect = arrangeRect.WithWidth(Math.Max(finalSize.Width, control.DesiredSize.Width));
-                    previousChildSize += spacing;
-                    currentSize = currentSize.WithHeight(currentSize.Height + desiredSize.Height + spacing);
-                    currentSize = currentSize.WithWidth(Math.Max(currentSize.Width, desiredSize.Width));
-                }
-                control.Arrange(arrangeRect);
-            }
-        }
-        return currentSize;
     }
 
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
