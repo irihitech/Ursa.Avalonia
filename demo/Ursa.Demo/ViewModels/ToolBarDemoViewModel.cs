@@ -15,7 +15,14 @@ public partial class ToolBarDemoViewModel: ObservableObject
         {
             new ToolBarButtonItemViewModel() { Content = "New", OverflowMode = OverflowMode.AsNeeded},
             new ToolBarButtonItemViewModel() { Content = "Open" },
-            new ToolBarButtonItemViewModel() { Content = "Save" },
+            new ToolBarButtonItemViewModel() { Content = "Save1" },
+            new ToolBarButtonItemViewModel() { Content = "Save2" },
+            new ToolBarButtonItemViewModel() { Content = "Save3" },
+            new ToolBarButtonItemViewModel() { Content = "Save4" },
+            new ToolBarButtonItemViewModel() { Content = "Save5" },
+            new ToolBarButtonItemViewModel() { Content = "Save6" },
+            new ToolBarButtonItemViewModel() { Content = "Save7" },
+            new ToolBarButtonItemViewModel() { Content = "Save8" },
             new ToolBarCheckBoxItemViweModel() { Content = "Bold" },
             new ToolBarCheckBoxItemViweModel() { Content = "Italic", OverflowMode = OverflowMode.Never},
             new ToolBarComboBoxItemViewModel() { Content = "Font Size", Items = new (){ "10", "12", "14"  } }

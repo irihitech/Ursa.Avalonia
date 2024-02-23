@@ -1,24 +1,43 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:u="https://irihi.tech/ursa"
-             xmlns:vm="using:Ursa.Demo.ViewModels"
-             xmlns:template="using:Ursa.Demo.Converters"
-             x:DataType="vm:ToolBarDemoViewModel"
-             x:CompileBindings="True"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Ursa.Demo.Pages.ToolBarDemo">
-    <StackPanel>
-        <u:ToolBar HorizontalAlignment="Left" Header="Hello World">
-            <Button Content="Button 1" />
-            <Button Content="Button 2" u:ToolBar.OverflowMode="AsNeeded" />
-            <Button Content="Button 3" u:ToolBar.OverflowMode="Always" />
+﻿<UserControl
+    x:Class="Ursa.Demo.Pages.ToolBarDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:template="using:Ursa.Demo.Converters"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:ToolBarDemoViewModel"
+    mc:Ignorable="d">
+    <DockPanel>
+        <u:ToolBar
+            HorizontalAlignment="Left"
+            DockPanel.Dock="Top"
+            Header="Hello World">
+            <Button Content="Button 1" u:ToolBar.OverflowMode="Never" />
+            <Button u:ToolBar.OverflowMode="AsNeeded" Content="Button 2" />
+            <Button u:ToolBar.OverflowMode="AsNeeded" Content="Button 3" />
         </u:ToolBar>
-        <u:ToolBar ItemsSource="{Binding Items}" HorizontalAlignment="Left">
+        <u:ToolBar
+            HorizontalAlignment="Left"
+            DockPanel.Dock="Top"
+            ItemsSource="{Binding Items}">
             <u:ToolBar.ItemTemplate>
-                <template:ToolBarItemTemplateSelector/>
+                <template:ToolBarItemTemplateSelector />
             </u:ToolBar.ItemTemplate>
         </u:ToolBar>
-    </StackPanel>
+        <u:ToolBar
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            DockPanel.Dock="Top"
+            ItemsSource="{Binding Items}"
+            Orientation="Vertical">
+            <u:ToolBar.ItemTemplate>
+                <template:ToolBarItemTemplateSelector />
+            </u:ToolBar.ItemTemplate>
+        </u:ToolBar>
+    </DockPanel>
 </UserControl>

@@ -6,13 +6,16 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml.Templates;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
+[PseudoClasses(PC_Overflow)]
 [TemplatePart(PART_OverflowPanel, typeof(Panel))]
 public class ToolBar: HeaderedItemsControl
 {
     public const string PART_OverflowPanel = "PART_OverflowPanel";
+    public const string PC_Overflow = ":overflow";
     
     internal Panel? OverflowPanel { get; private set; }
     
@@ -27,14 +30,14 @@ public class ToolBar: HeaderedItemsControl
         get => GetValue(OrientationProperty);
         set => SetValue(OrientationProperty, value);
     }
-    
-    public static readonly StyledProperty<int> BandProperty = AvaloniaProperty.Register<ToolBar, int>(
-        nameof(Band));
-    
-    public int Band
+
+    public static readonly StyledProperty<PlacementMode> PopupPlacementProperty =
+        Popup.PlacementProperty.AddOwner<ToolBar>();
+
+    public PlacementMode PopupPlacement
     {
-        get => GetValue(BandProperty);
-        set => SetValue(BandProperty, value);
+        get => GetValue(PopupPlacementProperty);
+        set => SetValue(PopupPlacementProperty, value);
     }
 
     public static readonly AttachedProperty<OverflowMode> OverflowModeProperty =
@@ -49,11 +52,27 @@ public class ToolBar: HeaderedItemsControl
     internal static void SetIsOverflowItem(Control obj, bool value) => obj.SetValue(IsOverflowItemProperty, value);
     internal static bool GetIsOverflowItem(Control obj) => obj.GetValue(IsOverflowItemProperty);
 
+    private bool _hasOverflowItems;
+    internal bool HasOverflowItems
+    {
+        get => _hasOverflowItems;
+        set
+        {
+            _hasOverflowItems = value;
+            PseudoClasses.Set(PC_Overflow, value);
+        }
+    }
+
     static ToolBar()
     {
         IsTabStopProperty.OverrideDefaultValue<ToolBar>(false);
         ItemsPanelProperty.OverrideDefaultValue<ToolBar>(DefaultTemplate);
         OrientationProperty.OverrideDefaultValue<ToolBar>(Orientation.Horizontal);
+        // TODO: use helper method after merged and upgrade helper dependency. 
+        IsOverflowItemProperty.Changed.AddClassHandler<Control, bool>((o, e) =>
+        {
+            PseudolassesExtensions.Set(o.Classes, PC_Overflow, e.NewValue.Value);
+        });
     }
     
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
@@ -63,29 +82,11 @@ public class ToolBar: HeaderedItemsControl
 
     protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey)
     {
-        return new ContentPresenter();
-    }
-
-    protected override void ContainerForItemPreparedOverride(Control container, object? item, int index)
-    {
-        base.ContainerForItemPreparedOverride(container, item, index);
-        if (item is Control s)
+        if(item is Control c)
         {
-            container[!ToolBar.OverflowModeProperty] = s[!ToolBar.OverflowModeProperty];
+            return c;
         }
-        else
-        {
-            if (container is ContentPresenter p)
-            {
-                p.ApplyTemplate();
-                var c = p.Child;
-                if (c != null)
-                {
-                    container[ToolBar.OverflowModeProperty] = c[ToolBar.OverflowModeProperty];
-                    // container[!ToolBar.OverflowModeProperty] = c[!ToolBar.OverflowModeProperty];
-                }
-            }
-        }
+        return ItemTemplate?.Build(item) ?? new ContentPresenter();
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)

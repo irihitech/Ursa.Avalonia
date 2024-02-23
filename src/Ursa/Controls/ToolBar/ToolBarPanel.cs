@@ -10,17 +10,8 @@ public class ToolBarPanel: StackPanel
     private ToolBar? _parent;
     private Panel? _overflowPanel;
 
-    internal Panel? OverflowPanel => _overflowPanel ??= _parent?.OverflowPanel;
+    private Panel? OverflowPanel => _overflowPanel ??= _parent?.OverflowPanel;
     internal ToolBar? ParentToolBar => _parent ??= this.TemplatedParent as ToolBar;
-
-    public static readonly StyledProperty<Orientation> OrientationProperty =
-        StackPanel.OrientationProperty.AddOwner<ToolBar>();
-
-    public Orientation Orientation
-    {
-        get => GetValue(OrientationProperty);
-        set => SetValue(OrientationProperty, value);
-    }
 
     static ToolBarPanel()
     {
@@ -38,13 +29,11 @@ public class ToolBarPanel: StackPanel
     protected override Size MeasureOverride(Size availableSize)
     {
         var logicalChildren = _parent?.GetLogicalChildren().OfType<Control>().ToList();
-        var parent = this.GetLogicalParent();
         Size size = new Size();
         double spacing = 0;
         Size measureSize = availableSize;
         bool horizontal = Orientation == Orientation.Horizontal;
         bool hasVisibleChildren = false;
-        int index = 0;
         if (logicalChildren is null) return size;
         for (int i = 0; i < logicalChildren.Count; i++)
         {
@@ -54,7 +43,6 @@ public class ToolBarPanel: StackPanel
             if (mode == OverflowMode.Always)
             {
                 ToolBar.SetIsOverflowItem(control, true);
-                continue;
             }
             else if (mode == OverflowMode.Never)
             {
@@ -114,30 +102,33 @@ public class ToolBarPanel: StackPanel
     {
         Children.Clear();
         OverflowPanel?.Children.Clear();
-        InvalidateVisual();
         var logicalChildren = _parent?.GetLogicalChildren().OfType<Control>().ToList();
         if(logicalChildren is null) return finalSize;
+        bool overflow = false;
         foreach (var child in logicalChildren)
         {
             if (ToolBar.GetIsOverflowItem(child))
             {
                 OverflowPanel?.Children.Add(child);
+                overflow = true;
             }
             else
             {
-                this.Children.Add(child);
+                Children.Add(child);
             }
         }
+
+        if (_parent != null) _parent.HasOverflowItems = overflow;
         return base.ArrangeOverride(finalSize);
     }
 
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
     {
-        var list = OverflowPanel?.Children?.ToList();
+        var list = OverflowPanel?.Children.ToList();
         if (list is not null)
         {
-            OverflowPanel?.Children?.Clear();
-            this.Children.AddRange(list);
+            OverflowPanel?.Children.Clear();
+            Children.AddRange(list);
         }
         base.OnDetachedFromVisualTree(e);
     }
