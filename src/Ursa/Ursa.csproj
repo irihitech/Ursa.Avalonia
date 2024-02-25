@@ -7,13 +7,18 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>11</LangVersion>
-        <Version>0.1.0-beta20230702</Version>
+        <Version>0.2.0-beta20240213</Version>
         <Authors>IRIHI Technology Co., Ltd.</Authors>
         <PackageId>Irihi.Ursa</PackageId>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+        <PackageReference Include="Irihi.Avalonia.Shared" Version="0.1.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controls\Panels\" />
     </ItemGroup>
 
 </Project>

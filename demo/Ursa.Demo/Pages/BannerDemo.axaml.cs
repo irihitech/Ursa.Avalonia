@@ -14,16 +14,17 @@ public partial class BannerDemo : UserControl
         InitializeComponent();
         this.DataContext = new BannerDemoViewModel();
     }
-    
+
     private void InitializeComponent()
     {
         AvaloniaXamlLoader.Load(this);
     }
 }
 
-public class BannerDemoViewModel: ViewModelBase
+public class BannerDemoViewModel : ViewModelBase
 {
     private ObservableCollection<NotificationType> _types;
+
     public ObservableCollection<NotificationType> Types
     {
         get => _types;
@@ -48,6 +49,9 @@ public class BannerDemoViewModel: ViewModelBase
 
     public BannerDemoViewModel()
     {
-        Types = new ObservableCollection<NotificationType>() { NotificationType.Information, NotificationType.Warning, NotificationType.Error, NotificationType.Success };
+        Types = new ObservableCollection<NotificationType>()
+        {
+            NotificationType.Information, NotificationType.Success, NotificationType.Warning, NotificationType.Error
+        };
     }
 }

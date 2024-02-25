@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa">
+    <!-- Add Resources Here -->
+    <ControlTheme TargetType="u:ThemeToggleButton" x:Key="{x:Type u:ThemeToggleButton}">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:ThemeToggleButton">
+                <ToggleSwitch
+                    Padding="4"
+                    Name="{x:Static u:ThemeToggleButton.PART_ThemeToggleButton}"
+                    Theme="{DynamicResource ButtonToggleSwitch}">
+                    <ToggleSwitch.OnContent>
+                        <PathIcon
+                            Width="16"
+                            Height="16"
+                            Data="{DynamicResource ThemeSelectorButtonLightGlyph}"
+                            Foreground="{DynamicResource ButtonDefaultTertiaryForeground}" />
+                    </ToggleSwitch.OnContent>
+                    <ToggleSwitch.OffContent>
+                        <PathIcon
+                            Width="16"
+                            Height="16"
+                            Data="{DynamicResource ThemeSelectorButtonDarkGlyph}"
+                            Foreground="{DynamicResource ButtonDefaultTertiaryForeground}" />
+                    </ToggleSwitch.OffContent>
+                </ToggleSwitch>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

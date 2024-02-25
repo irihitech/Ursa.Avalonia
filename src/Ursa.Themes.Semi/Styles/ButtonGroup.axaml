@@ -42,14 +42,14 @@
     <Style Selector="u|ButtonGroup.Tertiary Button">
         <Setter Property="Foreground" Value="{DynamicResource ButtonGroupDefaultTertiaryForeground}" />
     </Style>
+    <Style Selector="u|ButtonGroup.Success Button">
+        <Setter Property="Foreground" Value="{DynamicResource ButtonGroupDefaultSuccessForeground}" />
+    </Style>
     <Style Selector="u|ButtonGroup.Warning Button">
         <Setter Property="Foreground" Value="{DynamicResource ButtonGroupDefaultWarningForeground}" />
     </Style>
     <Style Selector="u|ButtonGroup.Danger Button">
         <Setter Property="Foreground" Value="{DynamicResource ButtonGroupDefaultDangerForeground}" />
-    </Style>
-    <Style Selector="u|ButtonGroup.Success Button">
-        <Setter Property="Foreground" Value="{DynamicResource ButtonGroupDefaultSuccessForeground}" />
     </Style>
 
     <Style Selector="u|ButtonGroup.Solid.Primary">
@@ -61,14 +61,14 @@
     <Style Selector="u|ButtonGroup.Solid.Tertiary">
         <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidTertiaryBackground}" />
     </Style>
+    <Style Selector="u|ButtonGroup.Solid.Success">
+        <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidSuccessBackground}" />
+    </Style>
     <Style Selector="u|ButtonGroup.Solid.Warning">
         <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidWarningBackground}" />
     </Style>
     <Style Selector="u|ButtonGroup.Solid.Danger">
         <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidDangerBackground}" />
-    </Style>
-    <Style Selector="u|ButtonGroup.Solid.Success">
-        <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidSuccessBackground}" />
     </Style>
     <Style Selector="u|ButtonGroup.Solid Button">
         <Setter Property="Foreground" Value="{DynamicResource ButtonGroupSolidForeground}" />
@@ -100,6 +100,14 @@
             <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidTertiaryPressedBackground}" />
         </Style>
     </Style>
+    <Style Selector="u|ButtonGroup.Solid.Success Button">
+        <Style Selector="^:pointerover">
+            <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidSuccessPointeroverBackground}" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidSuccessPressedBackground}" />
+        </Style>
+    </Style>
     <Style Selector="u|ButtonGroup.Solid.Warning Button">
         <Style Selector="^:pointerover">
             <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidWarningPointeroverBackground}" />
@@ -114,14 +122,6 @@
         </Style>
         <Style Selector="^:pressed">
             <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidDangerPressedBackground}" />
-        </Style>
-    </Style>
-    <Style Selector="u|ButtonGroup.Solid.Success Button">
-        <Style Selector="^:pointerover">
-            <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidSuccessPointeroverBackground}" />
-        </Style>
-        <Style Selector="^:pressed">
-            <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidSuccessPressedBackground}" />
         </Style>
     </Style>
 

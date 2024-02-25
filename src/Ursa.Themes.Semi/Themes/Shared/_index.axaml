@@ -4,13 +4,18 @@
         <MergeResourceInclude Source="Badge.axaml" />
         <MergeResourceInclude Source="Banner.axaml" />
         <MergeResourceInclude Source="ButtonGroup.axaml" />
+        <MergeResourceInclude Source="Dialog.axaml" />
+        <MergeResourceInclude Source="DialogShared.axaml" />
         <MergeResourceInclude Source="Divider.axaml" />
         <MergeResourceInclude Source="DualBadge.axaml" />
         <MergeResourceInclude Source="IPv4Box.axaml" />
         <MergeResourceInclude Source="KeyGestureInput.axaml" />
+        <MergeResourceInclude Source="MessageBox.axaml" />
         <MergeResourceInclude Source="NavigationMenu.axaml" />
         <MergeResourceInclude Source="Pagination.axaml" />
         <MergeResourceInclude Source="TagInput.axaml" />
         <MergeResourceInclude Source="Skeleton.axaml" />
+        <MergeResourceInclude Source="ThemeSelector.axaml" />
+        <MergeResourceInclude Source="ToolBar.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

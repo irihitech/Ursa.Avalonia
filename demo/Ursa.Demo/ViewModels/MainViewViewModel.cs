@@ -24,19 +24,37 @@ public class MainViewViewModel : ViewModelBase
     {
         Content = s switch
         {
+            MenuKeys.MenuKeyIntroduction => new IntroductionDemoViewModel(),
             MenuKeys.MenuKeyBadge => new BadgeDemoViewModel(),
             MenuKeys.MenuKeyBanner => new BannerDemoViewModel(),
             MenuKeys.MenuKeyButtonGroup => new ButtonGroupDemoViewModel(),
+            MenuKeys.MenuKeyClassInput => new ClassInputDemoViewModel(),
+            MenuKeys.MenuKeyDialog => new DialogDemoViewModel(),
             MenuKeys.MenuKeyDivider => new DividerDemoViewModel(),
+            MenuKeys.MenuKeyDisableContainer => new DisableContainerDemoViewModel(),
+            MenuKeys.MenuKeyDrawer => new DrawerDemoViewModel(),
             MenuKeys.MenuKeyDualBadge => new DualBadgeDemoViewModel(),
+            MenuKeys.MenuKeyEnumSelector => new EnumSelectorDemoViewModel(),
+            MenuKeys.MenuKeyForm => new FormDemoViewModel(),
+            MenuKeys.MenuKeyImageViewer => new ImageViewerDemoViewModel(),
+            MenuKeys.MenuKeyIconButton => new IconButtonDemoViewModel(),
             MenuKeys.MenuKeyIpBox => new IPv4BoxDemoViewModel(),
             MenuKeys.MenuKeyKeyGestureInput => new KeyGestureInputDemoViewModel(),
             MenuKeys.MenuKeyLoading => new LoadingDemoViewModel(),
-            MenuKeys.MenuKeyNavigation => new NavigationMenuDemoViewModel(),
+            MenuKeys.MenuKeyMessageBox => new MessageBoxDemoViewModel(),
+            MenuKeys.MenuKeyNavMenu => new NavMenuDemoViewModel(),
+            MenuKeys.MenuKeyNumberDisplayer => new NumberDisplayerDemoViewModel(),
+            MenuKeys.MenuKeyNumericUpDown => new NumericUpDownDemoViewModel(),
             MenuKeys.MenuKeyPagination => new PaginationDemoViewModel(),
+            MenuKeys.MenuKeyRangeSlider => new RangeSliderDemoViewModel(),
+            MenuKeys.MenuKeySelectionList => new SelectionListDemoViewModel(),
+            MenuKeys.MenuKeySkeleton => new SkeletonDemoViewModel(),
             MenuKeys.MenuKeyTagInput => new TagInputDemoViewModel(),
             MenuKeys.MenuKeyTimeline => new TimelineDemoViewModel(),
             MenuKeys.MenuKeySkeleton => new SkeletonDemoViewModel(),
+            MenuKeys.MenuKeyTwoTonePathIcon => new TwoTonePathIconDemoViewModel(),
+            MenuKeys.MenuKeyThemeToggler => new ThemeTogglerDemoViewModel(),
+            MenuKeys.MenuKeyToolBar => new ToolBarDemoViewModel(),
         };
     }
 }

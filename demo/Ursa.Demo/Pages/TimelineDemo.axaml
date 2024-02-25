@@ -4,55 +4,84 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:selectors="clr-namespace:Ursa.Demo.TemplateSelectors"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    x:CompileBindings="False"
+    x:CompileBindings="True"
     x:DataType="viewModels:TimelineDemoViewModel"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <u:TimelineFormatConverter x:Key="FormatConverter" />
+        <ResourceDictionary>
+            <selectors:TimelineIconTemplateSelector x:Key="IconSelector" >
+                <SolidColorBrush x:Key="Default" Color="{DynamicResource SemiGray6Color}"></SolidColorBrush>
+                <SolidColorBrush x:Key="Ongoing" Color="{DynamicResource SemiBlue6Color}"></SolidColorBrush>
+                <SolidColorBrush x:Key="Success" Color="{DynamicResource SemiGreen6Color}"></SolidColorBrush>
+                <SolidColorBrush x:Key="Warning" Color="{DynamicResource SemiOrange6Color}"></SolidColorBrush>
+                <SolidColorBrush x:Key="Error" Color="{DynamicResource SemiRed6Color}"></SolidColorBrush>
+            </selectors:TimelineIconTemplateSelector>
+        </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel>
-        <u:Timeline>
-            <u:TimelineItem
-                Content="Start"
-                ItemType="Warning"
-                Time="2022-01-01" />
-            <u:TimelineItem
-                Content="In between"
-                ItemType="Ongoing"
-                Time="2022-01-02" />
-            <u:TimelineItem
-                Content="Finished"
-                ItemType="Error"
-                Time="2022-01-03" />
-            <u:TimelineItem
-                Content="Finished"
-                IconForeground="Yellow"
-                ItemType="Default"
-                Time="2022-01-03" />
+    <WrapPanel>
+        <u:Timeline
+            Mode="Alternate"
+            HorizontalAlignment="Left"
+            ContentMemberBinding="{ReflectionBinding Description}"
+            HeaderMemberBinding="{ReflectionBinding Header}"
+            IconMemberBinding="{ReflectionBinding ItemType}"
+            IconTemplate="{StaticResource IconSelector}"
+            ItemsSource="{Binding Items}"
+            TimeMemberBinding="{ReflectionBinding Time}" >
+                
         </u:Timeline>
-        <u:Timeline HorizontalAlignment="Left" ItemsSource="{Binding Items}">
-            <u:Timeline.ItemTemplate>
-                <DataTemplate x:DataType="viewModels:TimelineItemViewModel">
-                    <u:TimelineItem
-                        Content="{Binding Content}"
-                        ItemType="{Binding ItemType}"
-                        Time="{Binding Time}"
-                        TimeFormat="{Binding TimeFormat}">
-                        <u:TimelineItem.ContentTemplate>
-                            <DataTemplate>
-                                <TextBlock
-                                    MaxWidth="100"
-                                    Text="{Binding}"
-                                    TextWrapping="Wrap" />
-                            </DataTemplate>
-                        </u:TimelineItem.ContentTemplate>
-                    </u:TimelineItem>
-                </DataTemplate>
-            </u:Timeline.ItemTemplate>
+        <u:Timeline
+            Mode="Left"
+            HorizontalAlignment="Left"
+            ContentMemberBinding="{ReflectionBinding Description}"
+            HeaderMemberBinding="{ReflectionBinding Header}"
+            IconMemberBinding="{ReflectionBinding ItemType}"
+            IconTemplate="{StaticResource IconSelector}"
+            ItemsSource="{Binding Items}"
+            TimeMemberBinding="{ReflectionBinding Time}" >
         </u:Timeline>
-    </StackPanel>
+        <u:Timeline
+            Mode="Right"
+            HorizontalAlignment="Left"
+            ContentMemberBinding="{ReflectionBinding Description}"
+            HeaderMemberBinding="{ReflectionBinding Header}"
+            IconMemberBinding="{ReflectionBinding ItemType}"
+            IconTemplate="{StaticResource IconSelector}"
+            ItemsSource="{Binding Items}"
+            TimeMemberBinding="{ReflectionBinding Time}" >
+        </u:Timeline>
+        <u:Timeline HorizontalAlignment="Left" Mode="Alternate">
+            <u:TimelineItem
+                Content="Step 1"
+                Header="第一步"
+                Position="Left"
+                Type="Default" />
+            <u:TimelineItem
+                Content="Step 2"
+                Header="第二步"
+                Position="Right"
+                Type="Success" />
+            <u:TimelineItem
+                Content="Step 3"
+                Header="第三步"
+                Position="Separate"
+                Type="Warning" />
+            <u:TimelineItem
+                Content="Step 4"
+                Header="第四步"
+                Position="Separate"
+                Type="Ongoing" />
+            <u:TimelineItem
+                Content="Step 5"
+                Header="第五步"
+                Position="Separate"
+                TimeFormat="yyyy-MM-dd"
+                Type="Error" />
+        </u:Timeline>
+    </WrapPanel>
 </UserControl>

@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Version>0.2.0-beta20240213</Version>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Authors>IRIHI Technology Co., Ltd.</Authors>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+        <PackageId>Irihi.Ursa.PrismExtension</PackageId>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Ursa\Ursa.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Prism.Core" Version="8.1.97" />
+    </ItemGroup>
+
+</Project>
