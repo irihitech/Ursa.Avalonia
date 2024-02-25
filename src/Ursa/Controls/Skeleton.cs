@@ -17,13 +17,13 @@ namespace Ursa.Controls
             set { SetValue(IsActiveProperty, value); }
         }
 
-        public static readonly StyledProperty<bool> LoadingProperty = 
-            AvaloniaProperty.Register<Skeleton, bool>(nameof(Loading));
+        public static readonly StyledProperty<bool> IsLoadingProperty = 
+            AvaloniaProperty.Register<Skeleton, bool>(nameof(IsLoading));
 
-        public bool Loading
+        public bool IsLoading
         {
-            get => GetValue(LoadingProperty);
-            set => SetValue(LoadingProperty, value);
+            get => GetValue(IsLoadingProperty);
+            set => SetValue(IsLoadingProperty, value);
         }
     }
 }
