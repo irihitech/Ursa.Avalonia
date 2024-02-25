@@ -9,24 +9,23 @@
 
     <ControlTheme x:Key="{x:Type u:Badge}" TargetType="{x:Type u:Badge}">
         <!--  Set a very large corner radius to achieve pill look.  -->
-        <Setter Property="u:Badge.CornerRadius" Value="{DynamicResource BadgeCornerRadius}" />
-        <Setter Property="u:Badge.FontSize" Value="{DynamicResource BadgeFontSize}" />
-        <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeForeground}" />
-        <Setter Property="u:Badge.Background" Value="{DynamicResource BadgePrimaryBadgeBackground}" />
-        <Setter Property="u:Badge.ClipToBounds" Value="False" />
-        <Setter Property="u:Badge.HorizontalAlignment" Value="Center" />
-        <Setter Property="u:Badge.VerticalAlignment" Value="Center" />
-        <Setter Property="u:Badge.BorderThickness" Value="{DynamicResource BadgeBorderThickness}" />
-        <Setter Property="u:Badge.UseLayoutRounding" Value="False" />
-        <Setter Property="u:Badge.BorderBrush" Value="{DynamicResource BadgeBorderBrush}" />
-        <Setter Property="u:Badge.CornerPosition" Value="{DynamicResource BadgeCornerPosition}" />
-        <Setter Property="u:Badge.Template">
+        <Setter Property="CornerRadius" Value="{DynamicResource BadgeCornerRadius}" />
+        <Setter Property="BadgeFontSize" Value="{DynamicResource BadgeFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource BadgeForeground}" />
+        <Setter Property="Background" Value="{DynamicResource BadgePrimaryBadgeBackground}" />
+        <Setter Property="ClipToBounds" Value="False" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="{DynamicResource BadgeBorderThickness}" />
+        <Setter Property="UseLayoutRounding" Value="False" />
+        <Setter Property="BorderBrush" Value="{DynamicResource BadgeBorderBrush}" />
+        <Setter Property="CornerPosition" Value="{DynamicResource BadgeCornerPosition}" />
+        <Setter Property="Template">
             <ControlTemplate TargetType="{x:Type u:Badge}">
                 <Grid
                     HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                     VerticalAlignment="{TemplateBinding VerticalAlignment}"
                     ClipToBounds="False">
-
                     <ContentPresenter
                         Name="{x:Static u:Badge.PART_ContentPresenter}"
                         Margin="{TemplateBinding Padding}"
@@ -55,7 +54,7 @@
                             VerticalAlignment="Center"
                             Focusable="False"
                             IsTabStop="False"
-                            TextElement.FontSize="{TemplateBinding FontSize}"
+                            TextElement.FontSize="{TemplateBinding BadgeFontSize}"
                             TextElement.Foreground="{TemplateBinding Foreground}">
                             <ContentPresenter.Content>
                                 <MultiBinding Converter="{StaticResource BadgeContentConverter}">
