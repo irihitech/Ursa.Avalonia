@@ -57,7 +57,7 @@ public class FormItem: ContentControl
     
     static FormItem()
     {
-        PropertyToPseudoClassMixin.Attach<FormItem>(NoLabelProperty, PC_NoLabel);
+        NoLabelProperty.AffectsPseudoClass<FormItem>(PC_NoLabel);
     }
 
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)

@@ -76,7 +76,7 @@ public class TwoTonePathIcon: TemplatedControl
             ForegroundProperty,
             ActiveForegroundProperty,
             ActiveStrokeBrushProperty);
-        PropertyToPseudoClassMixin.Attach<TwoTonePathIcon>(IsActiveProperty, PC_Active);
+        IsActiveProperty.AffectsPseudoClass<TwoTonePathIcon>(PC_Active);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)

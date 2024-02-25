@@ -6,6 +6,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Media;
 using Avalonia.Metadata;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -61,22 +62,10 @@ public class ButtonGroup: ItemsControl
         base.PrepareContainerForItemOverride(container, item, index);
         if(container is Button button)
         {
-            if ( CommandBinding is not null)
-            {
-                button[!Button.CommandProperty] = CommandBinding;
-            }
-            if ( CommandParameterBinding is not null)
-            {
-                button[!Button.CommandParameterProperty] = CommandParameterBinding;
-            }
-            if ( ContentBinding is not null)
-            {
-                button[!Button.ContentProperty] = ContentBinding;
-            }
-            if (ItemTemplate is not null)
-            {
-                button.ContentTemplate = ItemTemplate;
-            }
+            button.TryBind(Button.CommandProperty, CommandBinding);
+            button.TryBind(Button.CommandParameterProperty, CommandParameterBinding);
+            button.TryBind(ContentControl.ContentProperty, ContentBinding);
+            button.TryBind(ContentControl.ContentTemplateProperty, this[!ItemTemplateProperty]);
         }
     }
 }
