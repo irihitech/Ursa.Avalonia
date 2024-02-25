@@ -1,0 +1,33 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:EnumSelector}" TargetType="u:EnumSelector">
+        <Setter Property="Width" Value="100" />
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:EnumSelector">
+                <ComboBox
+                    Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Bounds.Width}"
+                    Name="PART_ComboBox"
+                    ItemsSource="{TemplateBinding Values}"
+                    SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedValue, Mode=TwoWay}" />
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^[DisplayDescription=True] /template/ ComboBox">
+            <Setter Property="ItemTemplate">
+                <DataTemplate x:DataType="u:EnumItemTuple">
+                    <TextBlock Text="{Binding DisplayName}"></TextBlock>
+                </DataTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="^[DisplayDescription=False] /template/ ComboBox">
+            <Setter Property="ItemTemplate">
+                <DataTemplate x:DataType="u:EnumItemTuple">
+                    <TextBlock Text="{Binding Value}"></TextBlock>
+                </DataTemplate>
+            </Setter>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

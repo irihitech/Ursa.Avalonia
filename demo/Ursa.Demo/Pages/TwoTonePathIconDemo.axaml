@@ -1,0 +1,18 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Ursa.Demo.Pages.TwoTonePathIconDemo">
+    <StackPanel>
+        <TextBlock Text="Size"></TextBlock>
+        <Slider Name="width" Minimum="0" Maximum="100" Value="20" Width="300"></Slider>
+        <ToggleSwitch Name="active" Content="Active"></ToggleSwitch>
+        <u:TwoTonePathIcon
+            IsActive="{Binding ElementName=active, Path=IsChecked}"
+            Width="{Binding #width.Value}"
+            Height="{Binding #width.Value}"
+            Data="M12 3L2 12H5V20H19V12H22L12 3M13 18H11V16H13V18M13 14H11V8H13V14Z"/>
+    </StackPanel>
+</UserControl>

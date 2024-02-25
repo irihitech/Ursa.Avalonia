@@ -1,0 +1,31 @@
+﻿<UserControl
+    x:Class="Ursa.Demo.Pages.NumberDisplayerDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:NumberDisplayerDemoViewModel"
+    mc:Ignorable="d">
+    <StackPanel HorizontalAlignment="Left">
+        <Button Command="{Binding IncreaseCommand}">Change</Button>
+        <u:Int32Displayer Value="{Binding Value}" />
+        <u:DoubleDisplayer StringFormat="N2" Value="{Binding DoubleValue}" />
+        <u:DateDisplay
+            FontSize="30"
+            StringFormat="yyyy-MM-dd"
+            Value="{Binding DateValue}" />
+        <TextBlock Text="Selectable: "></TextBlock>
+        <u:Int32Displayer Value="{Binding Value}" IsSelectable="True" />
+        <u:DoubleDisplayer StringFormat="N2" Value="{Binding DoubleValue}" IsSelectable="True" />
+        <u:DateDisplay
+            FontSize="30"
+            StringFormat="yyyy-MM-dd"
+            IsSelectable="True"
+            Value="{Binding DateValue}" />
+    </StackPanel>
+</UserControl>

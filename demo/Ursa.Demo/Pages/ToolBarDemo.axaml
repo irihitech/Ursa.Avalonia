@@ -1,0 +1,136 @@
+﻿<UserControl
+    x:Class="Ursa.Demo.Pages.ToolBarDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:template="using:Ursa.Demo.Converters"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:ToolBarDemoViewModel"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <StreamGeometry x:Key="BoldGlyph">M13.5,15.5H10V12.5H13.5A1.5,1.5 0 0,1 15,14A1.5,1.5 0 0,1 13.5,15.5M10,6.5H13A1.5,1.5 0 0,1 14.5,8A1.5,1.5 0 0,1 13,9.5H10M15.6,10.79C16.57,10.11 17.25,9 17.25,8C17.25,5.74 15.5,4 13.25,4H7V18H14.04C16.14,18 17.75,16.3 17.75,14.21C17.75,12.69 16.89,11.39 15.6,10.79Z</StreamGeometry>
+            <StreamGeometry x:Key="ItalicGlyph">M10,4V7H12.21L8.79,15H6V18H14V15H11.79L15.21,7H18V4H10Z</StreamGeometry>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid ColumnDefinitions="Auto, Auto, *" RowDefinitions="Auto, Auto, *">
+        <u:EnumSelector Name="Orientation" EnumType="Orientation" />
+        <u:ToolBar
+            DockPanel.Dock="Top"
+            Header="Hello World"
+            Orientation="{Binding #Orientation.Value}">
+            <Button u:ToolBar.OverflowMode="Never" Content="Button 1" />
+            <u:ToolBarSeparator />
+            <Button u:ToolBar.OverflowMode="AsNeeded" Content="Button 2" />
+            <Button u:ToolBar.OverflowMode="AsNeeded" Content="Button 3" />
+            <ToggleButton Content="Toggle" />
+            <u:ToolBar.Styles>
+                <Style Selector="u|ToolBar[Orientation=Vertical]">
+                    <Setter Property="Grid.Row" Value="1" />
+                    <Setter Property="Grid.Column" Value="1" />
+                    <Setter Property="Grid.RowSpan" Value="2" />
+                    <Setter Property="Grid.ColumnSpan" Value="1" />
+                </Style>
+                <Style Selector="u|ToolBar[Orientation=Horizontal]">
+                    <Setter Property="Grid.Row" Value="1" />
+                    <Setter Property="Grid.Column" Value="1" />
+                    <Setter Property="Grid.RowSpan" Value="1" />
+                    <Setter Property="Grid.ColumnSpan" Value="3" />
+                </Style>
+            </u:ToolBar.Styles>
+        </u:ToolBar>
+        <u:ToolBar
+            DockPanel.Dock="Top"
+            ItemsSource="{Binding Items}"
+            Orientation="{Binding #Orientation.Value}">
+            <u:ToolBar.ItemTemplate>
+                <template:ToolBarItemTemplateSelector />
+            </u:ToolBar.ItemTemplate>
+            <u:ToolBar.Styles>
+                <Style Selector="u|ToolBar[Orientation=Vertical]">
+                    <Setter Property="Grid.Row" Value="1" />
+                    <Setter Property="Grid.Column" Value="0" />
+                    <Setter Property="Grid.RowSpan" Value="2" />
+                    <Setter Property="Grid.ColumnSpan" Value="1" />
+                </Style>
+                <Style Selector="u|ToolBar[Orientation=Horizontal]">
+                    <Setter Property="Grid.Row" Value="0" />
+                    <Setter Property="Grid.Column" Value="1" />
+                    <Setter Property="Grid.RowSpan" Value="1" />
+                    <Setter Property="Grid.ColumnSpan" Value="3" />
+                </Style>
+            </u:ToolBar.Styles>
+        </u:ToolBar>
+        <Grid
+            Grid.Row="2"
+            Grid.Column="2"
+            RowDefinitions="Auto, *">
+            <u:ToolBar Margin="16">
+                <ToggleButton Name="bold">
+                    <PathIcon
+                        Width="16"
+                        Height="16"
+                        Data="{DynamicResource BoldGlyph}" />
+                </ToggleButton>
+                <ToggleButton Name="italic">
+                    <PathIcon
+                        Width="16"
+                        Height="16"
+                        Data="{DynamicResource ItalicGlyph}" />
+                </ToggleButton>
+                <u:ToolBarSeparator />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="8,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Font Size" />
+                    <ComboBox
+                        Name="size"
+                        Width="90"
+                        SelectedIndex="0">
+                        <x:Double>8</x:Double>
+                        <x:Double>16</x:Double>
+                        <x:Double>32</x:Double>
+                    </ComboBox>
+                </StackPanel>
+                <u:ToolBar.Styles>
+                    <Style Selector="u|ToolBar[Orientation=Horizontal]">
+                        <Setter Property="Grid.Row" Value="2" />
+                        <Setter Property="Grid.Column" Value="1" />
+                        <Setter Property="Grid.RowSpan" Value="1" />
+                        <Setter Property="Grid.ColumnSpan" Value="3" />
+                    </Style>
+                </u:ToolBar.Styles>
+
+            </u:ToolBar>
+            <TextBlock
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Classes.Bold="{Binding #bold.IsChecked}"
+                Classes.Italic="{Binding #italic.IsChecked}"
+                FontSize="{Binding #size.SelectedItem}"
+                Text="Hello Ursa Avalonia">
+                <TextBlock.Styles>
+                    <Style Selector="TextBlock">
+                        <Setter Property="FontWeight" Value="Regular" />
+                        <Setter Property="FontSize" Value="8" />
+                        <Setter Property="FontStyle" Value="Normal" />
+                    </Style>
+                    <Style Selector="TextBlock.Bold">
+                        <Setter Property="FontWeight" Value="Bold" />
+                    </Style>
+                    <Style Selector="TextBlock.Italic">
+                        <Setter Property="FontStyle" Value="Italic" />
+                    </Style>
+                </TextBlock.Styles>
+            </TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>

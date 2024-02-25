@@ -5,6 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Ursa.Demo.ViewModels"
+    x:DataType="vm:TagInputDemoViewModel"
+    x:CompileBindings="True"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -12,14 +15,14 @@
         <u:TagInput
             Name="labels"
             Margin="20"
-            AllowDuplicates="False"
+            AllowDuplicates="True"
             Separator="-"
             Tags="{Binding Tags}" />
         <u:TagInput
             Margin="20"
             AllowDuplicates="False"
             Separator="-"
-            Tags="{Binding #labels.Tags}" />
-        <ListBox ItemsSource="{Binding #labels.Tags}" />
+            Tags="{Binding DistinctTags}" />
+        <ListBox ItemsSource="{Binding DistinctTags}" />
     </StackPanel>
 </UserControl>

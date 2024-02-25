@@ -4,15 +4,32 @@
         <ResourceInclude Source="Badge.axaml" />
         <ResourceInclude Source="Banner.axaml" />
         <ResourceInclude Source="ButtonGroup.axaml" />
+        <ResourceInclude Source="ControlClassesInput.axaml" />
+        <ResourceInclude Source="Dialog.axaml" />
+        <ResourceInclude Source="DialogShared.axaml" />
+        <ResourceInclude Source="DisableContainer.axaml" />
         <ResourceInclude Source="Divider.axaml" />
+        <ResourceInclude Source="Drawer.axaml" />
         <ResourceInclude Source="DualBadge.axaml" />
+        <ResourceInclude Source="EnumSelector.axaml" />
+        <ResourceInclude Source="Form.axaml" />
+        <ResourceInclude Source="IconButton.axaml" />
+        <ResourceInclude Source="ImageViewer.axaml" />
         <ResourceInclude Source="IPv4Box.axaml" />
         <ResourceInclude Source="KeyGestureInput.axaml" />
         <ResourceInclude Source="Loading.axaml" />
-        <ResourceInclude Source="Navigation.axaml" />
+        <ResourceInclude Source="MessageBox.axaml" />
+        <ResourceInclude Source="NavMenu.axaml" />
+        <ResourceInclude Source="NumericUpDown.axaml" />
+        <ResourceInclude Source="NumberDisplayer.axaml" />
         <ResourceInclude Source="Pagination.axaml" />
+        <ResourceInclude Source="RangeSlider.axaml" />
+        <ResourceInclude Source="SelectionList.axaml" />
         <ResourceInclude Source="TagInput.axaml" />
+        <ResourceInclude Source="ThemeSelector.axaml" />
         <ResourceInclude Source="Timeline.axaml" />
         <ResourceInclude Source="Skeleton.axaml" />
+        <ResourceInclude Source="TwoTonePathIcon.axaml" />
+        <ResourceInclude Source="ToolBar.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

@@ -6,5 +6,6 @@
     </Design.PreviewWith>
     <StyleInclude Source="ButtonGroup.axaml" />
     <StyleInclude Source="Skeleton.axaml" />
+    <StyleInclude Source="ToolBar.axaml"/>
     <!--  Add Styles Here  -->
 </Styles>

@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Add Resources Here -->
+    <x:String x:Key="STRING_MENU_BRING_TO_FRONT">Bring to Front</x:String>
+    <x:String x:Key="STRING_MENU_BRING_FORWARD">Bring Forward</x:String>
+    <x:String x:Key="STRING_MENU_SEND_BACKWARD">Send Backward</x:String>
+    <x:String x:Key="STRING_MENU_SEND_TO_BACK">Send to Back</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_OK">OK</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_CANCEL">Cancel</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_YES">Yes</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_NO">No</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_CLOSE">Close</x:String>
+</ResourceDictionary>

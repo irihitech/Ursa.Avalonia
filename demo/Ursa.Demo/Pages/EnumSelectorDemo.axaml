@@ -1,0 +1,30 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.EnumSelectorDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="clr-namespace:Ursa.Demo.ViewModels;assembly=Ursa.Demo"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:EnumSelectorDemoViewModel"
+    mc:Ignorable="d">
+    <StackPanel>
+        <ToggleSwitch Name="description" Content="Show Description" />
+        <TextBlock Text="Select Type" />
+        <ComboBox
+            Width="200"
+            DisplayMemberBinding="{Binding Name}"
+            ItemsSource="{Binding Types}"
+            SelectedItem="{Binding SelectedType}" />
+        <TextBlock Text="Select Value" />
+        <u:EnumSelector
+            Width="200"
+            DisplayDescription="{Binding #description.IsChecked}"
+            EnumType="{Binding SelectedType}"
+            Value="{Binding Value}" />
+        <TextBlock Text="{Binding Value}" />
+    </StackPanel>
+</UserControl>

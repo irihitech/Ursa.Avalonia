@@ -2,17 +2,19 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="using:Avalonia.Controls.Converters"
+    xmlns:ursaConverters="using:Ursa.Converters"
     xmlns:u="https://irihi.tech/ursa">
     <converters:PlatformKeyGestureConverter x:Key="KeyGestureConverter" />
 
     <ControlTheme x:Key="{x:Type u:KeyGestureInput}" TargetType="u:KeyGestureInput">
-        <Setter Property="Width" Value="{DynamicResource KeyGestureInputWidth}" />
-        <Setter Property="Height" Value="{DynamicResource KeyGestureInputHeight}" />
+        <Setter Property="MinWidth" Value="{DynamicResource KeyGestureInputWidth}" />
+        <Setter Property="MinHeight" Value="{DynamicResource KeyGestureInputHeight}" />
         <Setter Property="Background" Value="{DynamicResource KeyGestureInputBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource KeyGestureInputBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource KeyGestureInputBorderThickness}" />
         <Setter Property="CornerRadius" Value="{DynamicResource KeyGestureInputCornerRadius}" />
-
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Padding" Value="8 0" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:KeyGestureInput">
                 <Border
@@ -23,11 +25,43 @@
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="{TemplateBinding CornerRadius}">
-                    <SelectableTextBlock
-                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                        Text="{TemplateBinding Gesture,
-                                               Converter={StaticResource KeyGestureConverter}}" />
+                    <Panel VerticalAlignment="Stretch" Margin="{TemplateBinding Padding}">
+                        <Grid ColumnDefinitions="Auto, *, Auto" >
+                            <ContentPresenter Grid.Column="0"
+                                Content="{TemplateBinding InnerLeftContent}"
+                                Padding="{TemplateBinding Padding, Converter={x:Static ursaConverters:ThicknessIncludeConverter.Right}}"
+                                DockPanel.Dock="Left"
+                                VerticalAlignment="Stretch"
+                                VerticalContentAlignment="Center"
+                                Foreground="{DynamicResource TextBoxInnerForeground}"
+                                IsVisible="{Binding Path=InnerLeftContent, RelativeSource={RelativeSource TemplatedParent},
+                                                            Converter={x:Static ObjectConverters.IsNotNull}}" />
+                            <ContentPresenter
+                                Grid.Column="2"
+                                Content="{TemplateBinding InnerRightContent}"
+                                DockPanel.Dock="Right"
+                                Padding="{TemplateBinding Padding, Converter={x:Static ursaConverters:ThicknessIncludeConverter.Left}}"
+                                VerticalAlignment="Stretch"
+                                VerticalContentAlignment="Center"
+                                Foreground="{DynamicResource TextBoxInnerForeground}"
+                                IsVisible="{Binding Path=InnerRightContent, RelativeSource={RelativeSource TemplatedParent},
+                                                            Converter={x:Static ObjectConverters.IsNotNull}}" />
+                            <SelectableTextBlock
+                                Grid.Column="1"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Text="{TemplateBinding Gesture,
+                                                       Converter={StaticResource KeyGestureConverter}}" />
+                            <Button Grid.Column="0" Grid.ColumnSpan="3"
+                                Name="PART_ClearButton"
+                                Margin="0,0,8,0"
+                                HorizontalAlignment="Right"
+                                Command="{Binding $parent[u:KeyGestureInput].Clear}"
+                                Focusable="False"
+                                IsVisible="False"
+                                Theme="{DynamicResource InputClearButton}" />
+                        </Grid>
+                    </Panel>
                 </Border>
             </ControlTemplate>
         </Setter>
@@ -44,6 +78,14 @@
         <Style Selector="^:focus-within /template/ Border#Background">
             <Setter Property="Background" Value="{DynamicResource KeyGestureInputPressedBackground}" />
             <Setter Property="BorderBrush" Value="{DynamicResource KeyGestureInputFocusBorderBrush}" />
+        </Style>
+        <Style Selector="^:not(:empty).clearButton, ^:not(:empty).ClearButton">
+            <Style Selector="^:focus /template/ Button#PART_ClearButton">
+                <Setter Property="IsVisible" Value="True" />
+            </Style>
+            <Style Selector="^:pointerover /template/ Button#PART_ClearButton">
+                <Setter Property="IsVisible" Value="True" />
+            </Style>
         </Style>
     </ControlTheme>
 </ResourceDictionary>
