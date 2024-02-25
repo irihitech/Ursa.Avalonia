@@ -136,7 +136,7 @@
                 <StackPanel Grid.Column="2" Grid.Row="1" Spacing="20" Margin="8">
                     <u:Divider HorizontalContentAlignment="Right">Badge</u:Divider>
                     <WrapPanel Orientation="Horizontal">
-                        <u:Badge BadgeContent="Ursa" CornerPosition="TopRight">
+                        <u:Badge Header="Ursa" CornerPosition="TopRight">
                             <Border Classes="Hover">
                                 <TextBlock Text="Pyro"/>
                             </Border>
@@ -144,14 +144,14 @@
                         <u:Badge
                             HorizontalAlignment="Center"
                             CornerPosition="TopRight"
-                            BadgeContent="500"
+                            Header="500"
                             OverflowCount="99">
                             <Border Classes="Hover">
                                 <TextBlock Text="Hydro"/>
                             </Border>
                         </u:Badge>
                         <u:Badge
-                            BadgeContent="Ursa"
+                            Header="Ursa"
                             CornerPosition="TopRight"
                             Dot="True">
                             <Border Classes="Hover">
@@ -159,26 +159,26 @@
                             </Border>
                         </u:Badge>
 
-                        <u:Badge BadgeContent="Ursa" />
-                        <u:Badge BadgeContent="Ursa" Dot="True" />
+                        <u:Badge Header="Ursa" />
+                        <u:Badge Header="Ursa" Dot="True" />
                     </WrapPanel>
                     <WrapPanel Orientation="Horizontal">
-                        <u:Badge BadgeContent="Ursa" Classes="Secondary">
+                        <u:Badge Header="Ursa" Classes="Secondary">
                             <Border Classes="Hover">
                                 <TextBlock Text="Electro"/>
                             </Border>
                         </u:Badge>
-                        <u:Badge BadgeContent="Ursa" Classes="Tertiary" CornerPosition="BottomLeft">
+                        <u:Badge Header="Ursa" Classes="Tertiary" CornerPosition="BottomLeft">
                             <Border Classes="Hover">
                                 <TextBlock Text="Dendro"/>
                             </Border>
                         </u:Badge>
-                        <u:Badge BadgeContent="Ursa" Classes="Warning" CornerPosition="BottomRight">
+                        <u:Badge Header="Ursa" Classes="Warning" CornerPosition="BottomRight">
                             <Border Classes="Hover">
                                 <TextBlock Text="Cryo"/>
                             </Border>
                         </u:Badge>
-                        <u:Badge BadgeContent="Ursa" Classes="Danger" CornerPosition="TopRight">
+                        <u:Badge Header="Ursa" Classes="Danger" CornerPosition="TopRight">
                             <Border Classes="Hover">
                                 <TextBlock Text="Geo"/>
                             </Border>

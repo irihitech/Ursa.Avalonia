@@ -60,13 +60,11 @@
                         <DataTemplate x:DataType="vm:MenuItemViewModel">
                             <StackPanel Orientation="Horizontal" MinWidth="240">
                                 <TextBlock HorizontalAlignment="Left" Text="{Binding MenuHeader}" />
-                                <Label
+                                <u:Badge
                                     Margin="8,0,0,0"
                                     HorizontalAlignment="Left"
-                                    Theme="{DynamicResource TagLabel}"
-                                    Classes="Blue Solid"
                                     IsVisible="{Binding Status, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                    Content="{Binding Status}"/>
+                                    Header="{Binding Status}"/>
                             </StackPanel>
                         </DataTemplate>
                     </u:NavMenu.HeaderTemplate>
