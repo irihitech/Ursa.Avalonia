@@ -27,14 +27,14 @@
                         <Border
                             x:Name="PART_LoadingBorder"
                             Classes.Active="{Binding Path= IsActive, RelativeSource={RelativeSource TemplatedParent}}"
-                            IsHitTestVisible="{TemplateBinding Loading}"
+                            IsHitTestVisible="{TemplateBinding IsLoading}"
                             Background="{DynamicResource SkeletonDefaultBackground}"
-                            IsVisible="{TemplateBinding Loading}">
+                            IsVisible="{TemplateBinding IsLoading}">
                         </Border>
                         <Border
                             x:Name="PART_ActiveBorder"
-                            IsHitTestVisible="{TemplateBinding Loading}"
-                            IsVisible="{TemplateBinding Loading}"
+                            IsHitTestVisible="{TemplateBinding IsLoading}"
+                            IsVisible="{TemplateBinding IsLoading}"
                             >
                         </Border>
                     </Panel>

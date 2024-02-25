@@ -8,7 +8,7 @@
     </Design.PreviewWith>
 
     <!-- Add Styles Here -->
-    <Style Selector="u|Skeleton[IsActive=True][Loading=True] /template/ Border#PART_ActiveBorder">
+    <Style Selector="u|Skeleton[IsActive=True][IsLoading=True] /template/ Border#PART_ActiveBorder">
         <Style.Animations>
             <Animation
                 FillMode="None"
