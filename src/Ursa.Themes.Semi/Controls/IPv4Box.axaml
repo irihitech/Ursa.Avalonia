@@ -121,7 +121,8 @@
             <Setter Property="Border.BorderBrush" Value="{DynamicResource IPv4BoxFocusBorderBrush}" />
         </Style>
         <Style Selector="^:disabled">
-            <Setter Property="Border.Background" Value="{DynamicResource IPv4BoxDisabledBackground}" />
+            <Setter Property="Background" Value="{DynamicResource IPv4BoxDisabledBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource SemiColorDisabledText}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

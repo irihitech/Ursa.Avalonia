@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 
@@ -149,6 +150,7 @@ public class ImageViewer: TemplatedControl
 
     private void OnSourceChanged(AvaloniaPropertyChangedEventArgs args)
     {
+        if(!IsLoaded) return;
         IImage image = args.GetNewValue<IImage>();
         Size size = image.Size;
         double width = this.Bounds.Width;
@@ -184,7 +186,16 @@ public class ImageViewer: TemplatedControl
         base.OnApplyTemplate(e);
         _image = e.NameScope.Get<Image>(PART_Image);
         _layer = e.NameScope.Get<VisualLayerManager>(PART_Layer);
-        if (Source is { } i)
+        if (Overlayer is { } c)
+        {
+            AdornerLayer.SetAdorner(this, c);
+        }
+    }
+
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        if (Source is { } i && _image is { })    
         {
             Size size = i.Size;
             double width = Bounds.Width;
@@ -193,12 +204,7 @@ public class ImageViewer: TemplatedControl
             _image.Height = size.Height;
             Scale = GetScaleRatio(width/size.Width, height/size.Height, this.Stretch);
         }
-        if (Overlayer is { } c)
-        {
-            AdornerLayer.SetAdorner(this, c);
-        }
     }
-
 
 
     protected override void OnPointerWheelChanged(PointerWheelEventArgs e)
