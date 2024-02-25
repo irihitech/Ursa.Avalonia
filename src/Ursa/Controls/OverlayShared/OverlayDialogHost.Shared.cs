@@ -126,6 +126,10 @@ public partial class OverlayDialogHost: Canvas
     
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
     {
+        while (_layers.Count>0)
+        {
+            _layers[0].Element.Close();
+        }
         OverlayDialogManager.UnregisterHost(HostId);
         base.OnDetachedFromVisualTree(e);
     }
