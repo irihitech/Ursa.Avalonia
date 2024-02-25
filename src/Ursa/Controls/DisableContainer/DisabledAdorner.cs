@@ -1,12 +1,10 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
-using Avalonia.Data;
-using Avalonia.Data.Converters;
 using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Media;
-using Ursa.Controls.Shapes;
+using Irihi.Avalonia.Shared.Shapes;
 
 namespace Ursa.Controls;
 
@@ -33,7 +31,7 @@ public class DisabledAdorner
     {
         if (arg2.NewValue.Value)
         {
-            var pureRectangle = new Border()
+            var pureRectangle = new PureRectangle()
             {
                 Background = Brushes.Transparent,
                 IsHitTestVisible = true,
