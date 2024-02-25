@@ -27,6 +27,7 @@ public static class MenuKeys
     public const string MenuKeyRangeSlider = "RangeSlider";
     public const string MenuKeySelectionList = "SelectionList";
     public const string MenuKeyTagInput = "TagInput";
+    public const string MenuKeySkeleton = "Skeleton"; 
     public const string MenuKeyTimeline = "Timeline";
     public const string MenuKeyTwoTonePathIcon = "TwoTonePathIcon";
     public const string MenuKeyThemeToggler = "ThemeToggler";

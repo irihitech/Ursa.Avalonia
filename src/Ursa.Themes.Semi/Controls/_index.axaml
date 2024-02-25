@@ -28,6 +28,7 @@
         <ResourceInclude Source="TagInput.axaml" />
         <ResourceInclude Source="ThemeSelector.axaml" />
         <ResourceInclude Source="Timeline.axaml" />
+        <ResourceInclude Source="Skeleton.axaml" />
         <ResourceInclude Source="TwoTonePathIcon.axaml" />
         <ResourceInclude Source="ToolBar.axaml" />
     </ResourceDictionary.MergedDictionaries>

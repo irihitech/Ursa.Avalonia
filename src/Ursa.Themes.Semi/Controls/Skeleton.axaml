@@ -1,0 +1,62 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!--  Add Controls for Previewer Here  -->
+        </Border>
+    </Design.PreviewWith>
+    <ControlTheme x:Key="{x:Type u:Skeleton}" TargetType="u:Skeleton">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:Skeleton">
+                <Border
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    ClipToBounds="{TemplateBinding ClipToBounds}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <Panel>
+                        <ContentPresenter
+                            x:Name="PART_ContentPresenter"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <Border
+                            x:Name="PART_Border"
+                            Classes.Active="{Binding Path= IsActive, RelativeSource={RelativeSource TemplatedParent}}"
+                            IsHitTestVisible="{TemplateBinding Loading}"
+                            IsVisible="{TemplateBinding Loading}"
+                            >
+                            <Border.Styles>
+                                <Style Selector="Border">
+                                    <Setter Property="Background" Value="{DynamicResource SkeletonDefaultBackground}"></Setter>
+                                </Style>
+                                <Style Selector="Border.Active">
+                                    <Style.Animations>
+                                        <Animation
+                                            FillMode="None"
+                                            IterationCount="Infinite"
+                                            Easing="CubicEaseInOut"
+                                            PlaybackDirection="Alternate"
+                                            Duration="0:0:1.4">
+                                            <KeyFrame Cue="0%">
+                                                <Setter Property="Border.Background" Value="{DynamicResource SkeletonStartAnimationBackground}" />
+                                            </KeyFrame>
+                                            <KeyFrame Cue="100%">
+                                                <Setter Property="Border.Background" Value="{DynamicResource SkeletonEndAnimationBackground}" />
+                                            </KeyFrame>
+                                        </Animation>
+                                    </Style.Animations>
+                                </Style>
+                            </Border.Styles>
+                        </Border>
+                    </Panel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+    <!--  Add Styles Here  -->
+</ResourceDictionary>
