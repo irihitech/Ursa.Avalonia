@@ -39,7 +39,7 @@
                     CornerRadius="2"
                     IsActive="{Binding #active.IsChecked}"
                     Loading="{Binding #loading.IsChecked}">
-                    <TextBlock Margin="0,2" Text="是先有鸡还是先有蛋" />
+                    <SelectableTextBlock Margin="0,2" Text="是先有鸡还是先有蛋" />
                 </u:Skeleton>
                 <u:Skeleton
                     Margin="0,0,100,0"
@@ -47,14 +47,14 @@
                     CornerRadius="2"
                     IsActive="{Binding #active.IsChecked}"
                     Loading="{Binding #loading.IsChecked}">
-                    <TextBlock Margin="0,2" Text="什么是工匠精神" />
+                    <SelectableTextBlock Margin="0,2" Text="什么是工匠精神" />
                 </u:Skeleton>
                 <u:Skeleton
                     VerticalAlignment="Bottom"
                     CornerRadius="2"
                     IsActive="{Binding #active.IsChecked}"
                     Loading="{Binding #loading.IsChecked}">
-                    <TextBlock Margin="0,2" Text="看山不是山，看水不是水，看山还是山，看水还是水" />
+                    <SelectableTextBlock Margin="0,2" Text="看山不是山，看水不是水，看山还是山，看水还是水" />
                 </u:Skeleton>
             </UniformGrid>
         </Grid>

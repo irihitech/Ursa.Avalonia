@@ -25,33 +25,17 @@
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}" />
                         <Border
-                            x:Name="PART_Border"
+                            x:Name="PART_LoadingBorder"
                             Classes.Active="{Binding Path= IsActive, RelativeSource={RelativeSource TemplatedParent}}"
+                            IsHitTestVisible="{TemplateBinding Loading}"
+                            Background="{DynamicResource SkeletonDefaultBackground}"
+                            IsVisible="{TemplateBinding Loading}">
+                        </Border>
+                        <Border
+                            x:Name="PART_ActiveBorder"
                             IsHitTestVisible="{TemplateBinding Loading}"
                             IsVisible="{TemplateBinding Loading}"
                             >
-                            <Border.Styles>
-                                <Style Selector="Border">
-                                    <Setter Property="Background" Value="{DynamicResource SkeletonDefaultBackground}"></Setter>
-                                </Style>
-                                <Style Selector="Border.Active">
-                                    <Style.Animations>
-                                        <Animation
-                                            FillMode="None"
-                                            IterationCount="Infinite"
-                                            Easing="CubicEaseInOut"
-                                            PlaybackDirection="Alternate"
-                                            Duration="0:0:1.4">
-                                            <KeyFrame Cue="0%">
-                                                <Setter Property="Border.Background" Value="{DynamicResource SkeletonStartAnimationBackground}" />
-                                            </KeyFrame>
-                                            <KeyFrame Cue="100%">
-                                                <Setter Property="Border.Background" Value="{DynamicResource SkeletonEndAnimationBackground}" />
-                                            </KeyFrame>
-                                        </Animation>
-                                    </Style.Animations>
-                                </Style>
-                            </Border.Styles>
                         </Border>
                     </Panel>
                 </Border>

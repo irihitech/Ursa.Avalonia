@@ -1,0 +1,28 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:u="https://irihi.tech/ursa">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    <Style Selector="u|Skeleton[IsActive=True][Loading=True] /template/ Border#PART_ActiveBorder">
+        <Style.Animations>
+            <Animation
+                FillMode="None"
+                IterationCount="Infinite"
+                Easing="CubicEaseInOut"
+                PlaybackDirection="Alternate"
+                Duration="0:0:1.4">
+                <KeyFrame Cue="0%">
+                    <Setter Property="Border.Background" Value="{DynamicResource SkeletonStartAnimationBackground}" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="Border.Background" Value="{DynamicResource SkeletonEndAnimationBackground}" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+</Styles>
