@@ -146,7 +146,7 @@ public class NavMenu: ItemsControl
     static NavMenu()
     {
         SelectedItemProperty.Changed.AddClassHandler<NavMenu, object?>((o, e) => o.OnSelectedItemChange(e));
-        PropertyToPseudoClassMixin.Attach<NavMenu>(IsHorizontalCollapsedProperty, PC_HorizontalCollapsed);
+        IsHorizontalCollapsedProperty.AffectsPseudoClass<NavMenu>(PC_HorizontalCollapsed);
         CanToggleProperty.Changed.AddClassHandler<InputElement, bool>(OnInputRegisteredAsToggle);
     }
 

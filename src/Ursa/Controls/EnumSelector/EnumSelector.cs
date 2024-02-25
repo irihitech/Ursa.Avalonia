@@ -37,7 +37,7 @@ public class EnumSelector: TemplatedControl
         if (o is not EnumSelector selector) return null;
         if (value is null) return null;
         if (value.GetType() != selector.EnumType) return null;
-        var first = selector.Values.FirstOrDefault(a => Equals(a.Value, value));
+        var first = selector.Values?.FirstOrDefault(a => Equals(a.Value, value));
         if (first is null) return null;
         return value;
     }

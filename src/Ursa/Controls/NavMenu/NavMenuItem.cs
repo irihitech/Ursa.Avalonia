@@ -140,10 +140,10 @@ public class NavMenuItem: HeaderedItemsControl
         // SelectableMixin.Attach<NavMenuItem>(IsSelectedProperty);
         PressedMixin.Attach<NavMenuItem>();
         LevelProperty.Changed.AddClassHandler<NavMenuItem, int>((item, args) => item.OnLevelChange(args));
-        PropertyToPseudoClassMixin.Attach<NavMenuItem>(IsHighlightedProperty, PC_Highlighted);
-        PropertyToPseudoClassMixin.Attach<NavMenuItem>(IsHorizontalCollapsedProperty, PC_HorizontalCollapsed);
-        PropertyToPseudoClassMixin.Attach<NavMenuItem>(IsVerticalCollapsedProperty, PC_VerticalCollapsed);
-        PropertyToPseudoClassMixin.Attach<NavMenuItem>(IsSelectedProperty, ":selected", IsSelectedChangedEvent);
+        IsHighlightedProperty.AffectsPseudoClass<NavMenuItem>(PC_Highlighted);
+        IsHorizontalCollapsedProperty.AffectsPseudoClass<NavMenuItem>(PC_HorizontalCollapsed);
+        IsVerticalCollapsedProperty.AffectsPseudoClass<NavMenuItem>(PC_VerticalCollapsed);
+        IsSelectedProperty.AffectsPseudoClass<NavMenuItem>(":selected", IsSelectedChangedEvent);
         IsHorizontalCollapsedProperty.Changed.AddClassHandler<NavMenuItem, bool>((item, args) =>
             item.OnIsHorizontalCollapsedChanged(args));
     }
@@ -195,22 +195,10 @@ public class NavMenuItem: HeaderedItemsControl
         _overflowPanel = e.NameScope.Find<Panel>("PART_OverflowPanel");
         if (_rootMenu is not null)
         {
-            if (_rootMenu.IconBinding is not null)
-            {
-                this[!IconProperty] = _rootMenu.IconBinding;
-            }
-            if (_rootMenu.HeaderBinding is not null)
-            {
-                this[!HeaderProperty] = _rootMenu.HeaderBinding;
-            }
-            if (_rootMenu.SubMenuBinding is not null)
-            {
-                this[!ItemsSourceProperty] = _rootMenu.SubMenuBinding;
-            }
-            if (_rootMenu.CommandBinding is not null)
-            {
-                this[!CommandProperty] = _rootMenu.CommandBinding;
-            }
+            this.TryBind(IconProperty, _rootMenu.IconBinding);
+            this.TryBind(HeaderProperty, _rootMenu.HeaderBinding);
+            this.TryBind(ItemsSourceProperty, _rootMenu.SubMenuBinding);
+            this.TryBind(CommandProperty, _rootMenu.CommandBinding);
             this[!IconTemplateProperty] = _rootMenu[!NavMenu.IconTemplateProperty];
             this[!HeaderTemplateProperty] = _rootMenu[!NavMenu.HeaderTemplateProperty];
             this[!SubMenuIndentProperty] = _rootMenu[!NavMenu.SubMenuIndentProperty];

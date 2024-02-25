@@ -42,7 +42,6 @@ public class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyKeyGestureInput => new KeyGestureInputDemoViewModel(),
             MenuKeys.MenuKeyLoading => new LoadingDemoViewModel(),
             MenuKeys.MenuKeyMessageBox => new MessageBoxDemoViewModel(),
-            MenuKeys.MenuKeyNavigation => new NavigationMenuDemoViewModel(),
             MenuKeys.MenuKeyNavMenu => new NavMenuDemoViewModel(),
             MenuKeys.MenuKeyNumberDisplayer => new NumberDisplayerDemoViewModel(),
             MenuKeys.MenuKeyNumericUpDown => new NumericUpDownDemoViewModel(),
