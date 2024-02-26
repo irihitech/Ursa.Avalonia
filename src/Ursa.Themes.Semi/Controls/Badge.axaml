@@ -32,7 +32,8 @@
                         HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                         VerticalAlignment="{TemplateBinding VerticalAlignment}"
                         Content="{TemplateBinding Content}"
-                        ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        ContentTemplate="{TemplateBinding ContentTemplate}" 
+                        Foreground="{DynamicResource BadgeContentForeground}"/>
                     <Border
                         Name="{x:Static u:Badge.PART_BadgeContainer}"
                         MinWidth="{DynamicResource BadgeMinWidth}"
@@ -81,7 +82,8 @@
                             HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalAlignment}"
                             Content="{TemplateBinding Content}"
-                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            ContentTemplate="{TemplateBinding ContentTemplate}" 
+                            Foreground="{DynamicResource BadgeContentForeground}"/>
                         <Border
                             Name="{x:Static u:Badge.PART_BadgeContainer}"
                             Width="{DynamicResource BadgeDotWidth}"
@@ -100,86 +102,86 @@
         </Style>
 
         <Style Selector="^[CornerPosition=TopLeft] /template/ Border#PART_BadgeContainer">
-            <Setter Property="u:Badge.HorizontalAlignment" Value="Left" />
-            <Setter Property="u:Badge.VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
         <Style Selector="^[CornerPosition=TopRight] /template/ Border#PART_BadgeContainer">
-            <Setter Property="u:Badge.HorizontalAlignment" Value="Right" />
-            <Setter Property="u:Badge.VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
         <Style Selector="^[CornerPosition=BottomLeft] /template/ Border#PART_BadgeContainer">
-            <Setter Property="u:Badge.HorizontalAlignment" Value="Left" />
-            <Setter Property="u:Badge.VerticalAlignment" Value="Bottom" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
         </Style>
         <Style Selector="^[CornerPosition=BottomRight] /template/ Border#PART_BadgeContainer">
-            <Setter Property="u:Badge.HorizontalAlignment" Value="Right" />
-            <Setter Property="u:Badge.VerticalAlignment" Value="Bottom" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
         </Style>
 
         <Style Selector="^.Primary">
-            <Setter Property="u:Badge.Background" Value="{DynamicResource BadgePrimaryBadgeBackground}" />
+            <Setter Property="Background" Value="{DynamicResource BadgePrimaryBadgeBackground}" />
         </Style>
         <Style Selector="^.Secondary">
-            <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeSecondaryBadgeBackground}" />
+            <Setter Property="Background" Value="{DynamicResource BadgeSecondaryBadgeBackground}" />
         </Style>
         <Style Selector="^.Tertiary">
-            <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeTertiaryBadgeBackground}" />
+            <Setter Property="Background" Value="{DynamicResource BadgeTertiaryBadgeBackground}" />
         </Style>
         <Style Selector="^.Success">
-            <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeSuccessBadgeBackground}" />
+            <Setter Property="Background" Value="{DynamicResource BadgeSuccessBadgeBackground}" />
         </Style>
         <Style Selector="^.Warning">
-            <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeWarningBadgeBackground}" />
+            <Setter Property="Background" Value="{DynamicResource BadgeWarningBadgeBackground}" />
         </Style>
         <Style Selector="^.Danger">
-            <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeDangerBadgeBackground}" />
+            <Setter Property="Background" Value="{DynamicResource BadgeDangerBadgeBackground}" />
         </Style>
 
         <Style Selector="^.Light">
             <Style Selector="^.Primary">
-                <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeLightPrimaryBadgeForeground}" />
-                <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeLightPrimaryBadgeBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource BadgeLightPrimaryBadgeForeground}" />
+                <Setter Property="Background" Value="{DynamicResource BadgeLightPrimaryBadgeBackground}" />
             </Style>
             <Style Selector="^.Secondary">
-                <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeLightSecondaryBadgeForeground}" />
-                <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeLightSecondaryBadgeBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource BadgeLightSecondaryBadgeForeground}" />
+                <Setter Property="Background" Value="{DynamicResource BadgeLightSecondaryBadgeBackground}" />
             </Style>
             <Style Selector="^.Tertiary">
-                <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeLightTertiaryBadgeForeground}" />
-                <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeLightTertiaryBadgeBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource BadgeLightTertiaryBadgeForeground}" />
+                <Setter Property="Background" Value="{DynamicResource BadgeLightTertiaryBadgeBackground}" />
             </Style>
             <Style Selector="^.Success">
-                <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeLightSuccessBadgeForeground}" />
-                <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeLightSuccessBadgeBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource BadgeLightSuccessBadgeForeground}" />
+                <Setter Property="Background" Value="{DynamicResource BadgeLightSuccessBadgeBackground}" />
             </Style>
             <Style Selector="^.Warning">
-                <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeLightWarningBadgeForeground}" />
-                <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeLightWarningBadgeBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource BadgeLightWarningBadgeForeground}" />
+                <Setter Property="Background" Value="{DynamicResource BadgeLightWarningBadgeBackground}" />
             </Style>
             <Style Selector="^.Danger">
-                <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeLightDangerBadgeForeground}" />
-                <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeLightDangerBadgeBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource BadgeLightDangerBadgeForeground}" />
+                <Setter Property="Background" Value="{DynamicResource BadgeLightDangerBadgeBackground}" />
             </Style>
         </Style>
         <Style Selector="^.Inverted">
-            <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeInvertedBadgeBackground}" />
+            <Setter Property="Background" Value="{DynamicResource BadgeInvertedBadgeBackground}" />
             <Style Selector="^.Primary">
-                <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeInvertedPrimaryBadgeForeground}" />
+                <Setter Property="Foreground" Value="{DynamicResource BadgeInvertedPrimaryBadgeForeground}" />
             </Style>
             <Style Selector="^.Secondary">
-                <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeInvertedSecondaryBadgeForeground}" />
+                <Setter Property="Foreground" Value="{DynamicResource BadgeInvertedSecondaryBadgeForeground}" />
             </Style>
             <Style Selector="^.Tertiary">
-                <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeInvertedTertiaryBadgeForeground}" />
+                <Setter Property="Foreground" Value="{DynamicResource BadgeInvertedTertiaryBadgeForeground}" />
             </Style>
             <Style Selector="^.Success">
-                <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeInvertedSuccessBadgeForeground}" />
+                <Setter Property="Foreground" Value="{DynamicResource BadgeInvertedSuccessBadgeForeground}" />
             </Style>
             <Style Selector="^.Warning">
-                <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeInvertedWarningBadgeForeground}" />
+                <Setter Property="Foreground" Value="{DynamicResource BadgeInvertedWarningBadgeForeground}" />
             </Style>
             <Style Selector="^.Danger">
-                <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeInvertedDangerBadgeForeground}" />
+                <Setter Property="Foreground" Value="{DynamicResource BadgeInvertedDangerBadgeForeground}" />
             </Style>
         </Style>
     </ControlTheme>

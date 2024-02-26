@@ -5,8 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
-    d:DesignHeight="1000"
-    d:DesignWidth="800"
+    d:DesignHeight="850"
+    d:DesignWidth="850"
     mc:Ignorable="d">
     <ScrollViewer HorizontalScrollBarVisibility="Auto">
         <StackPanel
@@ -17,10 +17,14 @@
             <StackPanel.Styles>
                 <Style Selector="u|Badge">
                     <Setter Property="Margin" Value="14" />
-                </Style>
-                <Style Selector="u|Badge > Border">
-                    <Setter Property="Background" Value="{DynamicResource SemiOrange3}" />
-                    <Setter Property="CornerRadius" Value="8" />
+                    <Style Selector="^ Border">
+                        <Setter Property="Background" Value="{DynamicResource SemiOrange3}" />
+                        <Setter Property="CornerRadius" Value="8" />
+                        <Style Selector="^ TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </Style>
                 </Style>
             </StackPanel.Styles>
 
@@ -29,26 +33,38 @@
                     HorizontalAlignment="Center"
                     Header="500"
                     OverflowCount="100">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="SUCCEED!">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="Hello" />
                 <u:Badge Header="Hello" Dot="True" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <u:Badge Header="5" CornerPosition="TopLeft">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="5" CornerPosition="TopRight">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="5" CornerPosition="BottomLeft">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="5" CornerPosition="BottomRight">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -56,88 +72,134 @@
                     Header="VIP"
                     CornerPosition="TopLeft"
                     Dot="True">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge
                     Header="VIP"
                     CornerPosition="TopRight"
                     Dot="True">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge
                     Header="VIP"
                     CornerPosition="BottomLeft"
                     Dot="True">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge
                     Header="VIP"
                     CornerPosition="BottomRight"
                     Dot="True">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
             </StackPanel>
             <u:Badge HorizontalAlignment="Stretch" Header="VIP">
-                <Border Height="50" />
+                <Border Height="50">
+                    <TextBlock Text="■■■"/>
+                </Border>
             </u:Badge>
             <StackPanel Orientation="Horizontal">
                 <u:Badge Header="URSA" Classes="Primary">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Secondary">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Tertiary">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Success">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Warning">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Danger">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <u:Badge Header="URSA" Classes="Light Primary">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Light Secondary">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Light Tertiary">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Light Success">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Light Warning">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Light Danger">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <u:Badge Header="URSA" Classes="Inverted Primary">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Inverted Secondary">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Inverted Tertiary">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Inverted Success">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Inverted Warning">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Inverted Danger">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -145,37 +207,49 @@
                     Header="URSA"
                     Classes="Primary"
                     Dot="True">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Secondary"
                     Dot="True">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Tertiary"
                     Dot="True">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Success"
                     Dot="True">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Warning"
                     Dot="True">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Danger"
                     Dot="True">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -183,37 +257,49 @@
                     Header="URSA"
                     Classes="Light Primary"
                     Dot="True">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Light Secondary"
                     Dot="True">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Light Tertiary"
                     Dot="True">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Light Success"
                     Dot="True">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Light Warning"
                     Dot="True">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Light Danger"
                     Dot="True">
-                    <Border Width="100" Height="50" />
+                    <Border Width="100" Height="50">
+                        <TextBlock Text="■■■"/>
+                    </Border>
                 </u:Badge>
             </StackPanel>
             <Border Background="{DynamicResource SemiGrey2}" CornerRadius="4">
@@ -222,37 +308,49 @@
                         Header="URSA"
                         Classes="Inverted Primary"
                         Dot="True">
-                        <Border Width="100" Height="50" />
+                        <Border Width="100" Height="50">
+                            <TextBlock Text="■■■"/>
+                        </Border>
                     </u:Badge>
                     <u:Badge
                         Header="URSA"
                         Classes="Inverted Secondary"
                         Dot="True">
-                        <Border Width="100" Height="50" />
+                        <Border Width="100" Height="50">
+                            <TextBlock Text="■■■"/>
+                        </Border>
                     </u:Badge>
                     <u:Badge
                         Header="URSA"
                         Classes="Inverted Tertiary"
                         Dot="True">
-                        <Border Width="100" Height="50" />
+                        <Border Width="100" Height="50">
+                            <TextBlock Text="■■■"/>
+                        </Border>
                     </u:Badge>
                     <u:Badge
                         Header="URSA"
                         Classes="Inverted Success"
                         Dot="True">
-                        <Border Width="100" Height="50" />
+                        <Border Width="100" Height="50">
+                            <TextBlock Text="■■■"/>
+                        </Border>
                     </u:Badge>
                     <u:Badge
                         Header="URSA"
                         Classes="Inverted Warning"
                         Dot="True">
-                        <Border Width="100" Height="50" />
+                        <Border Width="100" Height="50">
+                            <TextBlock Text="■■■"/>
+                        </Border>
                     </u:Badge>
                     <u:Badge
                         Header="URSA"
                         Classes="Inverted Danger"
                         Dot="True">
-                        <Border Width="100" Height="50" />
+                        <Border Width="100" Height="50">
+                            <TextBlock Text="■■■"/>
+                        </Border>
                     </u:Badge>
                 </StackPanel>
             </Border>
