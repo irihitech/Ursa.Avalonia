@@ -109,96 +109,96 @@
             <StackPanel Orientation="Horizontal">
                 <u:Badge Header="URSA" Classes="Primary">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Solid"/>
                     </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Secondary">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Solid"/>
                     </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Tertiary">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Solid"/>
                     </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Success">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Solid"/>
                     </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Warning">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Solid"/>
                     </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Danger">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Solid"/>
                     </Border>
                 </u:Badge>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <u:Badge Header="URSA" Classes="Light Primary">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Light"/>
                     </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Light Secondary">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Light"/>
                     </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Light Tertiary">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Light"/>
                     </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Light Success">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Light"/>
                     </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Light Warning">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Light"/>
                     </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Light Danger">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Light"/>
                     </Border>
                 </u:Badge>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <u:Badge Header="URSA" Classes="Inverted Primary">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Inverted"/>
                     </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Inverted Secondary">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Inverted"/>
                     </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Inverted Tertiary">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Inverted"/>
                     </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Inverted Success">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Inverted"/>
                     </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Inverted Warning">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Inverted"/>
                     </Border>
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Inverted Danger">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Inverted"/>
                     </Border>
                 </u:Badge>
             </StackPanel>
@@ -208,7 +208,7 @@
                     Classes="Primary"
                     Dot="True">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Solid"/>
                     </Border>
                 </u:Badge>
                 <u:Badge
@@ -216,7 +216,7 @@
                     Classes="Secondary"
                     Dot="True">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Solid"/>
                     </Border>
                 </u:Badge>
                 <u:Badge
@@ -224,7 +224,7 @@
                     Classes="Tertiary"
                     Dot="True">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Solid"/>
                     </Border>
                 </u:Badge>
                 <u:Badge
@@ -232,7 +232,7 @@
                     Classes="Success"
                     Dot="True">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Solid"/>
                     </Border>
                 </u:Badge>
                 <u:Badge
@@ -240,7 +240,7 @@
                     Classes="Warning"
                     Dot="True">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Solid"/>
                     </Border>
                 </u:Badge>
                 <u:Badge
@@ -248,7 +248,7 @@
                     Classes="Danger"
                     Dot="True">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Solid"/>
                     </Border>
                 </u:Badge>
             </StackPanel>
@@ -258,7 +258,7 @@
                     Classes="Light Primary"
                     Dot="True">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Light"/>
                     </Border>
                 </u:Badge>
                 <u:Badge
@@ -266,7 +266,7 @@
                     Classes="Light Secondary"
                     Dot="True">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Light"/>
                     </Border>
                 </u:Badge>
                 <u:Badge
@@ -274,7 +274,7 @@
                     Classes="Light Tertiary"
                     Dot="True">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Light"/>
                     </Border>
                 </u:Badge>
                 <u:Badge
@@ -282,7 +282,7 @@
                     Classes="Light Success"
                     Dot="True">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Light"/>
                     </Border>
                 </u:Badge>
                 <u:Badge
@@ -290,7 +290,7 @@
                     Classes="Light Warning"
                     Dot="True">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Light"/>
                     </Border>
                 </u:Badge>
                 <u:Badge
@@ -298,7 +298,7 @@
                     Classes="Light Danger"
                     Dot="True">
                     <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
+                        <TextBlock Text="Light"/>
                     </Border>
                 </u:Badge>
             </StackPanel>
@@ -309,7 +309,7 @@
                         Classes="Inverted Primary"
                         Dot="True">
                         <Border Width="100" Height="50">
-                            <TextBlock Text="■■■"/>
+                            <TextBlock Text="Inverted"/>
                         </Border>
                     </u:Badge>
                     <u:Badge
@@ -317,7 +317,7 @@
                         Classes="Inverted Secondary"
                         Dot="True">
                         <Border Width="100" Height="50">
-                            <TextBlock Text="■■■"/>
+                            <TextBlock Text="Inverted"/>
                         </Border>
                     </u:Badge>
                     <u:Badge
@@ -325,7 +325,7 @@
                         Classes="Inverted Tertiary"
                         Dot="True">
                         <Border Width="100" Height="50">
-                            <TextBlock Text="■■■"/>
+                            <TextBlock Text="Inverted"/>
                         </Border>
                     </u:Badge>
                     <u:Badge
@@ -333,7 +333,7 @@
                         Classes="Inverted Success"
                         Dot="True">
                         <Border Width="100" Height="50">
-                            <TextBlock Text="■■■"/>
+                            <TextBlock Text="Inverted"/>
                         </Border>
                     </u:Badge>
                     <u:Badge
@@ -341,7 +341,7 @@
                         Classes="Inverted Warning"
                         Dot="True">
                         <Border Width="100" Height="50">
-                            <TextBlock Text="■■■"/>
+                            <TextBlock Text="Inverted"/>
                         </Border>
                     </u:Badge>
                     <u:Badge
@@ -349,7 +349,7 @@
                         Classes="Inverted Danger"
                         Dot="True">
                         <Border Width="100" Height="50">
-                            <TextBlock Text="■■■"/>
+                            <TextBlock Text="Inverted"/>
                         </Border>
                     </u:Badge>
                 </StackPanel>
