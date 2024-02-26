@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <Version>0.2.0-beta20240213</Version>
+        <Version>0.3.0-beta20240226</Version>
         <ImplicitUsings>enable</ImplicitUsings>
         <Authors>IRIHI Technology Co., Ltd.</Authors>
         <Nullable>enable</Nullable>

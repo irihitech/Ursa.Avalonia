@@ -6,8 +6,8 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <LangVersion>11</LangVersion>
-        <Version>0.2.0-beta20240213</Version>
+        <LangVersion>latest</LangVersion>
+        <Version>0.3.0-beta20240226</Version>
         <Authors>IRIHI Technology Co., Ltd.</Authors>
         <PackageId>Irihi.Ursa</PackageId>
     </PropertyGroup>
