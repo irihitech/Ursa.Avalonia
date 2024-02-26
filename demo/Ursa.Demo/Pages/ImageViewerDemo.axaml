@@ -13,6 +13,10 @@
         <SolidColorBrush x:Key="MaskBorder" Color="Red" />
     </UserControl.Resources>
     <StackPanel>
+        <u:Banner
+            Content="Setting the Scale before loading has no effect."
+            Header="Notice"
+            Type="Warning" />
         <u:ImageViewer
             Name="viewer"
             Width="600"

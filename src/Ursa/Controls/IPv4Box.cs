@@ -115,6 +115,19 @@ public class IPv4Box: TemplatedControl
         _presenters[1] = _secondText;
         _presenters[2] = _thirdText;
         _presenters[3] = _fourthText;
+        if (this.IPAddress != null)
+        {
+            var sections = IPAddress.ToString().Split('.');
+            for (int i = 0; i < 4; i++)
+            {
+                var presenter = _presenters[i];
+                if (presenter != null)
+                {
+                    presenter.Text = sections[i];
+                }
+            }
+            ParseBytes(ShowLeadingZero);
+        }
     }
     
     protected override void OnKeyDown(KeyEventArgs e)
