@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:u="https://irihi.tech/ursa">
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:iri="https://irihi.tech/shared">
     <Design.PreviewWith>
         <Border Padding="20">
             <!--  Add Controls for Previewer Here  -->
@@ -24,19 +25,19 @@
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}" />
-                        <Border
+                        <iri:PureRectangle
                             x:Name="PART_LoadingBorder"
                             Classes.Active="{Binding Path= IsActive, RelativeSource={RelativeSource TemplatedParent}}"
                             IsHitTestVisible="{TemplateBinding IsLoading}"
                             Background="{DynamicResource SkeletonDefaultBackground}"
                             IsVisible="{TemplateBinding IsLoading}">
-                        </Border>
-                        <Border
+                        </iri:PureRectangle>
+                        <iri:PureRectangle
                             x:Name="PART_ActiveBorder"
                             IsHitTestVisible="{TemplateBinding IsLoading}"
                             IsVisible="{TemplateBinding IsLoading}"
                             >
-                        </Border>
+                        </iri:PureRectangle>
                     </Panel>
                 </Border>
             </ControlTemplate>

@@ -1,6 +1,7 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:u="https://irihi.tech/ursa">
+        xmlns:u="https://irihi.tech/ursa"
+        xmlns:iri="https://irihi.tech/shared">
     <Design.PreviewWith>
         <Border Padding="20">
             <!-- Add Controls for Previewer Here -->
@@ -8,7 +9,7 @@
     </Design.PreviewWith>
 
     <!-- Add Styles Here -->
-    <Style Selector="u|Skeleton[IsActive=True][IsLoading=True] /template/ Border#PART_ActiveBorder">
+    <Style Selector="u|Skeleton[IsActive=True][IsLoading=True] /template/ iri|PureRectangle#PART_ActiveBorder">
         <Style.Animations>
             <Animation
                 FillMode="None"
@@ -17,10 +18,10 @@
                 PlaybackDirection="Alternate"
                 Duration="0:0:1.4">
                 <KeyFrame Cue="0%">
-                    <Setter Property="Border.Background" Value="{DynamicResource SkeletonStartAnimationBackground}" />
+                    <Setter Property="Background" Value="{DynamicResource SkeletonStartAnimationBackground}" />
                 </KeyFrame>
                 <KeyFrame Cue="100%">
-                    <Setter Property="Border.Background" Value="{DynamicResource SkeletonEndAnimationBackground}" />
+                    <Setter Property="Background" Value="{DynamicResource SkeletonEndAnimationBackground}" />
                 </KeyFrame>
             </Animation>
         </Style.Animations>

@@ -1,15 +1,12 @@
 using Avalonia;
 using Avalonia.Animation;
 using Avalonia.Controls;
-using Avalonia.Controls.Shapes;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Media;
 using Ursa.Controls.OverlayShared;
-using Avalonia.Layout;
-using Avalonia.Media.Immutable;
 using Avalonia.Styling;
-using Ursa.Controls.Shapes;
+using Irihi.Avalonia.Shared.Shapes;
 
 namespace Ursa.Controls;
 

@@ -1,17 +1,8 @@
 using Avalonia;
-using Avalonia.Animation;
-using Avalonia.Animation.Easings;
-using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
-using Avalonia.Controls.Templates;
 using Avalonia.Input;
-using Avalonia.Layout;
-using Avalonia.Media;
-using Avalonia.Styling;
 using Avalonia.Utilities;
+using Irihi.Avalonia.Shared.Shapes;
 using Ursa.Controls.OverlayShared;
-using Ursa.Controls.Shapes;
-using Ursa.EventArgs;
 
 namespace Ursa.Controls;
 

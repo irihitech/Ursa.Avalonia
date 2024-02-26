@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters"
     xmlns:u="clr-namespace:Ursa.Controls;assembly=Ursa"
-    xmlns:shapes="clr-namespace:Ursa.Controls.Shapes;assembly=Ursa">
+    xmlns:iri="https://irihi.tech/shared">
     <!--  Add Resources Here  -->
     <converters:BrushToColorConverter x:Key="BrushToColorConverter" />
     <ControlTheme x:Key="{x:Type u:LoadingIcon}" TargetType="u:LoadingIcon">
@@ -68,9 +68,10 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Loading">
                 <Panel IsVisible="{TemplateBinding IsLoading}">
-                    <shapes:PureRectangle
+                    <iri:PureRectangle
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
+                        IsHitTestVisible="True"
                         Background="{TemplateBinding Background}" />
                     <Grid
                         HorizontalAlignment="Center"
