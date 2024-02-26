@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
-    d:DesignHeight="450"
+    d:DesignHeight="1000"
     d:DesignWidth="800"
     mc:Ignorable="d">
     <ScrollViewer HorizontalScrollBarVisibility="Auto">
@@ -19,7 +19,7 @@
                     <Setter Property="Margin" Value="14" />
                 </Style>
                 <Style Selector="u|Badge > Border">
-                    <Setter Property="Background" Value="Orange" />
+                    <Setter Property="Background" Value="{DynamicResource SemiOrange3}" />
                     <Setter Property="CornerRadius" Value="8" />
                 </Style>
             </StackPanel.Styles>
@@ -90,13 +90,13 @@
                 <u:Badge Header="URSA" Classes="Tertiary">
                     <Border Width="100" Height="50" />
                 </u:Badge>
+                <u:Badge Header="URSA" Classes="Success">
+                    <Border Width="100" Height="50" />
+                </u:Badge>
                 <u:Badge Header="URSA" Classes="Warning">
                     <Border Width="100" Height="50" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Danger">
-                    <Border Width="100" Height="50" />
-                </u:Badge>
-                <u:Badge Header="URSA" Classes="Success">
                     <Border Width="100" Height="50" />
                 </u:Badge>
             </StackPanel>
@@ -110,13 +110,13 @@
                 <u:Badge Header="URSA" Classes="Light Tertiary">
                     <Border Width="100" Height="50" />
                 </u:Badge>
+                <u:Badge Header="URSA" Classes="Light Success">
+                    <Border Width="100" Height="50" />
+                </u:Badge>
                 <u:Badge Header="URSA" Classes="Light Warning">
                     <Border Width="100" Height="50" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Light Danger">
-                    <Border Width="100" Height="50" />
-                </u:Badge>
-                <u:Badge Header="URSA" Classes="Light Success">
                     <Border Width="100" Height="50" />
                 </u:Badge>
             </StackPanel>
@@ -130,13 +130,13 @@
                 <u:Badge Header="URSA" Classes="Inverted Tertiary">
                     <Border Width="100" Height="50" />
                 </u:Badge>
+                <u:Badge Header="URSA" Classes="Inverted Success">
+                    <Border Width="100" Height="50" />
+                </u:Badge>
                 <u:Badge Header="URSA" Classes="Inverted Warning">
                     <Border Width="100" Height="50" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Inverted Danger">
-                    <Border Width="100" Height="50" />
-                </u:Badge>
-                <u:Badge Header="URSA" Classes="Inverted Success">
                     <Border Width="100" Height="50" />
                 </u:Badge>
             </StackPanel>
@@ -161,6 +161,12 @@
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
+                    Classes="Success"
+                    Dot="True">
+                    <Border Width="100" Height="50" />
+                </u:Badge>
+                <u:Badge
+                    Header="URSA"
                     Classes="Warning"
                     Dot="True">
                     <Border Width="100" Height="50" />
@@ -168,12 +174,6 @@
                 <u:Badge
                     Header="URSA"
                     Classes="Danger"
-                    Dot="True">
-                    <Border Width="100" Height="50" />
-                </u:Badge>
-                <u:Badge
-                    Header="URSA"
-                    Classes="Success"
                     Dot="True">
                     <Border Width="100" Height="50" />
                 </u:Badge>
@@ -199,6 +199,12 @@
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
+                    Classes="Light Success"
+                    Dot="True">
+                    <Border Width="100" Height="50" />
+                </u:Badge>
+                <u:Badge
+                    Header="URSA"
                     Classes="Light Warning"
                     Dot="True">
                     <Border Width="100" Height="50" />
@@ -209,21 +215,9 @@
                     Dot="True">
                     <Border Width="100" Height="50" />
                 </u:Badge>
-                <u:Badge
-                    Header="URSA"
-                    Classes="Light Success"
-                    Dot="True">
-                    <Border Width="100" Height="50" />
-                </u:Badge>
             </StackPanel>
-            <Border Background="LightGray" CornerRadius="4">
+            <Border Background="{DynamicResource SemiGrey2}" CornerRadius="4">
                 <StackPanel Orientation="Horizontal">
-                    <u:Badge
-                        Header="URSA"
-                        Classes="Inverted Primary"
-                        Dot="True">
-                        <Border Width="100" Height="50" />
-                    </u:Badge>
                     <u:Badge
                         Header="URSA"
                         Classes="Inverted Primary"
@@ -239,6 +233,12 @@
                     <u:Badge
                         Header="URSA"
                         Classes="Inverted Tertiary"
+                        Dot="True">
+                        <Border Width="100" Height="50" />
+                    </u:Badge>
+                    <u:Badge
+                        Header="URSA"
+                        Classes="Inverted Success"
                         Dot="True">
                         <Border Width="100" Height="50" />
                     </u:Badge>

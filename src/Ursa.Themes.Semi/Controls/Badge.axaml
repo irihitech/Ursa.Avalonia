@@ -125,14 +125,14 @@
         <Style Selector="^.Tertiary">
             <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeTertiaryBadgeBackground}" />
         </Style>
+        <Style Selector="^.Success">
+            <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeSuccessBadgeBackground}" />
+        </Style>
         <Style Selector="^.Warning">
             <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeWarningBadgeBackground}" />
         </Style>
         <Style Selector="^.Danger">
             <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeDangerBadgeBackground}" />
-        </Style>
-        <Style Selector="^.Success">
-            <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeSuccessBadgeBackground}" />
         </Style>
 
         <Style Selector="^.Light">
@@ -148,6 +148,10 @@
                 <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeLightTertiaryBadgeForeground}" />
                 <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeLightTertiaryBadgeBackground}" />
             </Style>
+            <Style Selector="^.Success">
+                <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeLightSuccessBadgeForeground}" />
+                <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeLightSuccessBadgeBackground}" />
+            </Style>
             <Style Selector="^.Warning">
                 <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeLightWarningBadgeForeground}" />
                 <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeLightWarningBadgeBackground}" />
@@ -155,10 +159,6 @@
             <Style Selector="^.Danger">
                 <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeLightDangerBadgeForeground}" />
                 <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeLightDangerBadgeBackground}" />
-            </Style>
-            <Style Selector="^.Success">
-                <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeLightSuccessBadgeForeground}" />
-                <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeLightSuccessBadgeBackground}" />
             </Style>
         </Style>
         <Style Selector="^.Inverted">
@@ -172,14 +172,14 @@
             <Style Selector="^.Tertiary">
                 <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeInvertedTertiaryBadgeForeground}" />
             </Style>
+            <Style Selector="^.Success">
+                <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeInvertedSuccessBadgeForeground}" />
+            </Style>
             <Style Selector="^.Warning">
                 <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeInvertedWarningBadgeForeground}" />
             </Style>
             <Style Selector="^.Danger">
                 <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeInvertedDangerBadgeForeground}" />
-            </Style>
-            <Style Selector="^.Success">
-                <Setter Property="u:Badge.Foreground" Value="{DynamicResource BadgeInvertedSuccessBadgeForeground}" />
             </Style>
         </Style>
     </ControlTheme>
