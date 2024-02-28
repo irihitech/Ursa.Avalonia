@@ -63,6 +63,7 @@
                             Margin="8 0 0 0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
+                            IsVisible="{TemplateBinding Content, Converter={x:Static ObjectConverters.IsNotNull}}"
                             Content="{TemplateBinding Content}" />
                     </Grid>
                 </Border>
