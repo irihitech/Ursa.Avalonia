@@ -1,6 +1,7 @@
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Templates;
 
 namespace Ursa.Controls;
 
@@ -32,6 +33,15 @@ public class BreadcrumbItem: ContentControl
     {
         get => GetValue(CommandProperty);
         set => SetValue(CommandProperty, value);
+    }
+
+    public static readonly StyledProperty<IDataTemplate?> IconTemplateProperty = AvaloniaProperty.Register<BreadcrumbItem, IDataTemplate?>(
+        nameof(IconTemplate));
+
+    public IDataTemplate? IconTemplate
+    {
+        get => GetValue(IconTemplateProperty);
+        set => SetValue(IconTemplateProperty, value);
     }
 
     static BreadcrumbItem()

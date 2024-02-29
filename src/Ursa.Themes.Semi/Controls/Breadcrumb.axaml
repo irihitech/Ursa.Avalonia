@@ -1,0 +1,25 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa">
+    <!-- Add Resources Here -->
+    <ControlTheme x:Key="{x:Type u:Breadcrumb}" TargetType="u:Breadcrumb">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:Breadcrumb">
+                <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+    
+    <ControlTheme x:Key="{x:Type u:BreadcrumbItem}" TargetType="u:BreadcrumbItem">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:BreadcrumbItem">
+                <Border BorderBrush="Red" BorderThickness="2" Margin="4">
+                    <StackPanel Orientation="Horizontal">
+                        <ContentPresenter Content="{TemplateBinding Icon}" />
+                        <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}"/>
+                    </StackPanel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

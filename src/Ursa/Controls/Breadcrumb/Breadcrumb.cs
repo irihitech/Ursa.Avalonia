@@ -4,6 +4,7 @@ using Avalonia.Controls.Templates;
 using Avalonia.Data;
 using Avalonia.Layout;
 using Avalonia.Metadata;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -47,6 +48,15 @@ public class Breadcrumb: ItemsControl
         get => GetValue(SeparatorProperty);
         set => SetValue(SeparatorProperty, value);
     }
+
+    public static readonly StyledProperty<IDataTemplate?> IconTemplateProperty = AvaloniaProperty.Register<Breadcrumb, IDataTemplate?>(
+        nameof(IconTemplate));
+
+    public IDataTemplate? IconTemplate
+    {
+        get => GetValue(IconTemplateProperty);
+        set => SetValue(IconTemplateProperty, value);
+    }
     
     static Breadcrumb()
     {
@@ -66,20 +76,23 @@ public class Breadcrumb: ItemsControl
     protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
     {
         base.PrepareContainerForItemOverride(container, item, index);
-        if (container is BreadcrumbItem breadcrumbItem)
+        if (container is not BreadcrumbItem breadcrumbItem) return;
+        if (!breadcrumbItem.IsSet(BreadcrumbItem.SeparatorProperty))
         {
-            if (!breadcrumbItem.IsSet(BreadcrumbItem.SeparatorProperty))
+            SeparatorProperty.Changed.AddClassHandler<Breadcrumb, object?>((o, e) =>
             {
-                SeparatorProperty.Changed.AddClassHandler<Breadcrumb, object?>((o, e) =>
+                breadcrumbItem.Separator = e.NewValue.Value switch
                 {
-                    breadcrumbItem.Separator = e.NewValue.Value switch
-                    {
-                        string s => s,
-                        ITemplate<Control> t => t.Build(),
-                        _ => e.NewValue.Value?.ToString()
-                    };
-                });
-            }
+                    string s => s,
+                    ITemplate<Control> t => t.Build(),
+                    _ => e.NewValue.Value?.ToString()
+                };
+            });
+        }
+        bool b = breadcrumbItem.IsSet(BreadcrumbItem.IconProperty);
+        if(!breadcrumbItem.IsSet(BreadcrumbItem.IconProperty) && IconBinding != null)
+        {
+            breadcrumbItem[!BreadcrumbItem.IconProperty] = IconBinding;
         }
     }
 }
