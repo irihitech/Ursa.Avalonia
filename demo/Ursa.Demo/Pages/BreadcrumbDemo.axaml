@@ -7,9 +7,11 @@
              d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.BreadcrumbDemo">
     <StackPanel>
-        <u:Breadcrumb>
+        <u:Breadcrumb >
             <TextBlock Text="Hello"></TextBlock>
-            <u:BreadcrumbItem Content="World" Icon="?"></u:BreadcrumbItem>
+            <u:BreadcrumbItem Icon="?" Separator="♥"></u:BreadcrumbItem>
+            <TextBlock Text="Avalonia"></TextBlock>
+            <TextBlock Text="Ursa"></TextBlock>
         </u:Breadcrumb>
     </StackPanel>
 </UserControl>

@@ -57,6 +57,15 @@ public class Breadcrumb: ItemsControl
         get => GetValue(IconTemplateProperty);
         set => SetValue(IconTemplateProperty, value);
     }
+
+    public static readonly StyledProperty<int> MaxItemCountProperty = AvaloniaProperty.Register<Breadcrumb, int>(
+        nameof(MaxItemCount), defaultValue: 4);
+
+    public int MaxItemCount
+    {
+        get => GetValue(MaxItemCountProperty);
+        set => SetValue(MaxItemCountProperty, value);
+    }
     
     static Breadcrumb()
     {
@@ -79,20 +88,35 @@ public class Breadcrumb: ItemsControl
         if (container is not BreadcrumbItem breadcrumbItem) return;
         if (!breadcrumbItem.IsSet(BreadcrumbItem.SeparatorProperty))
         {
-            SeparatorProperty.Changed.AddClassHandler<Breadcrumb, object?>((o, e) =>
+            if (GetSeparatorInstance(Separator) is { } a)
             {
-                breadcrumbItem.Separator = e.NewValue.Value switch
-                {
-                    string s => s,
-                    ITemplate<Control> t => t.Build(),
-                    _ => e.NewValue.Value?.ToString()
-                };
+                breadcrumbItem.Separator = a;
+            }
+            SeparatorProperty.Changed.AddClassHandler<Breadcrumb, object?>((_, args) =>
+            {
+                if (GetSeparatorInstance(args.NewValue.Value) is { } b)
+                    breadcrumbItem.Separator = b;
             });
         }
-        bool b = breadcrumbItem.IsSet(BreadcrumbItem.IconProperty);
-        if(!breadcrumbItem.IsSet(BreadcrumbItem.IconProperty) && IconBinding != null)
+        if (!breadcrumbItem.IsSet(BreadcrumbItem.IconProperty) && IconBinding != null)
         {
             breadcrumbItem[!BreadcrumbItem.IconProperty] = IconBinding;
         }
+        if (!breadcrumbItem.IsSet(BreadcrumbItem.CommandProperty) && CommandBinding != null)
+        {
+            breadcrumbItem[!BreadcrumbItem.CommandProperty] = CommandBinding;
+        }
+        if (!breadcrumbItem.IsSet(BreadcrumbItem.IconTemplateProperty) && IconTemplate != null)
+        {
+            breadcrumbItem.IconTemplate = IconTemplate;
+        }
     }
+
+    private static object? GetSeparatorInstance(object? separator) => separator switch
+    {
+        null => null,
+        string s => s,
+        ITemplate<Control?> t => t.Build(),
+        _ => separator.ToString()
+    };
 }

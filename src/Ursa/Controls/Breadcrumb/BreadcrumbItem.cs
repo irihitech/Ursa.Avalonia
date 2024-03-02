@@ -9,7 +9,7 @@ public class BreadcrumbItem: ContentControl
 {
     public static readonly StyledProperty<object?> SeparatorProperty =
         AvaloniaProperty.Register<BreadcrumbItem, object?>(
-            nameof(Separator), "/");
+            nameof(Separator));
 
     public object? Separator
     {

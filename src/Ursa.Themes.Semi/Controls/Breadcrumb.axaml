@@ -17,6 +17,7 @@
                     <StackPanel Orientation="Horizontal">
                         <ContentPresenter Content="{TemplateBinding Icon}" />
                         <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}"/>
+                        <ContentPresenter Name="Separator" Content="{TemplateBinding Separator}"></ContentPresenter>
                     </StackPanel>
                 </Border>
             </ControlTemplate>
