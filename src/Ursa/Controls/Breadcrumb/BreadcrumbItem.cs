@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Templates;
+using Avalonia.Input;
 
 namespace Ursa.Controls;
 
@@ -47,8 +48,9 @@ public class BreadcrumbItem: ContentControl
         set => SetValue(IconTemplateProperty, value);
     }
 
-    static BreadcrumbItem()
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
-        
+        base.OnPointerPressed(e);
+        Command?.Execute(null);
     }
 }

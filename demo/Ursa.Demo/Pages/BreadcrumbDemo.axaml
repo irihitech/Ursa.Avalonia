@@ -26,6 +26,7 @@
         <u:Breadcrumb
             DisplayMemberBinding="{Binding Section}"
             IconBinding="{Binding Icon}"
+            CommandBinding="{Binding Command}"
             ItemsSource="{Binding Items1}">
             <u:Breadcrumb.IconTemplate>
                 <DataTemplate DataType="x:String">

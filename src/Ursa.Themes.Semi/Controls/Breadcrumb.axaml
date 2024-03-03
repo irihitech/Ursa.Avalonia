@@ -33,7 +33,7 @@
                             VerticalAlignment="Center"
                             Content="{TemplateBinding Icon}"
                             ContentTemplate="{TemplateBinding IconTemplate}"
-                            Foreground="{TemplateBinding Foreground}"
+                            Foreground="{DynamicResource SemiColorText2}"
                             IsVisible="{TemplateBinding Icon,
                                                         Converter={x:Static ObjectConverters.IsNotNull}}" />
                         <ContentPresenter
