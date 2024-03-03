@@ -1,12 +1,15 @@
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Templates;
 
 namespace Ursa.Controls;
 
+[PseudoClasses(PC_Last)]
 public class BreadcrumbItem: ContentControl
 {
+    public const string PC_Last = ":last";
     public static readonly StyledProperty<object?> SeparatorProperty =
         AvaloniaProperty.Register<BreadcrumbItem, object?>(
             nameof(Separator));

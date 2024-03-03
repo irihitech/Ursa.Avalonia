@@ -15,6 +15,7 @@ public class BreadcrumbDemoViewModel: ObservableObject
             new BreadcrumbDemoItem() { Section = "Page 1", Icon = "Page" },
             new BreadcrumbDemoItem() { Section = "Page 2", Icon = "Page" },
             new BreadcrumbDemoItem() { Section = "Page 3", Icon = "Page" },
+            new BreadcrumbDemoItem() { Section = "Page 4", Icon = "Page" },
         };
     }
 }

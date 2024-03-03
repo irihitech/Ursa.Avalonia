@@ -56,15 +56,6 @@ public class Breadcrumb: ItemsControl
         get => GetValue(IconTemplateProperty);
         set => SetValue(IconTemplateProperty, value);
     }
-
-    public static readonly StyledProperty<int> MaxItemCountProperty = AvaloniaProperty.Register<Breadcrumb, int>(
-        nameof(MaxItemCount), defaultValue: 4);
-
-    public int MaxItemCount
-    {
-        get => GetValue(MaxItemCountProperty);
-        set => SetValue(MaxItemCountProperty, value);
-    }
     
     static Breadcrumb()
     {
@@ -84,7 +75,6 @@ public class Breadcrumb: ItemsControl
     protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
     {
         // base.PrepareContainerForItemOverride(container, item, index);
-        if (container == item) return;
         if (container is not BreadcrumbItem breadcrumbItem) return;
         if (!breadcrumbItem.IsSet(BreadcrumbItem.SeparatorProperty))
         {
@@ -98,6 +88,10 @@ public class Breadcrumb: ItemsControl
                     breadcrumbItem.Separator = b;
             });
         }
+
+        PseudolassesExtensions.Set(container.Classes, BreadcrumbItem.PC_Last, index == ItemCount - 1);
+
+        if (container == item) return;
         if(!breadcrumbItem.IsSet(ContentControl.ContentProperty))
         {
             breadcrumbItem.SetCurrentValue(ContentControl.ContentProperty, item);
@@ -105,6 +99,10 @@ public class Breadcrumb: ItemsControl
             {
                 breadcrumbItem[!ContentControl.ContentProperty] = DisplayMemberBinding;
             }
+        }
+        if (!breadcrumbItem.IsSet(ContentControl.ContentTemplateProperty) && this.ItemTemplate != null)
+        {
+            breadcrumbItem.SetCurrentValue(ContentControl.ContentTemplateProperty, this.ItemTemplate);
         }
         if (!breadcrumbItem.IsSet(BreadcrumbItem.IconProperty) && IconBinding != null)
         {

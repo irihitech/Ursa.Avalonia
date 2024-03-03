@@ -1,36 +1,85 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:u="https://irihi.tech/ursa">
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
         <StackPanel>
-            <u:Breadcrumb >
-                <TextBlock Text="Hello"></TextBlock>
-                <u:BreadcrumbItem Icon="?" Separator="♥"></u:BreadcrumbItem>
-                <TextBlock Text="Avalonia"></TextBlock>
-                <TextBlock Text="Ursa"></TextBlock>
+            <u:Breadcrumb>
+                <TextBlock Text="Hello" />
+                <u:BreadcrumbItem Content="World" Icon="♥" />
+                <TextBlock Text="Avalonia" />
+                <TextBlock Text="Ursa" />
             </u:Breadcrumb>
         </StackPanel>
     </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:Breadcrumb}" TargetType="u:Breadcrumb">
-        <Setter Property="Separator" Value="/"></Setter>
+        <Setter Property="Separator" Value="/" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Breadcrumb">
                 <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
             </ControlTemplate>
         </Setter>
     </ControlTheme>
-    
+
     <ControlTheme x:Key="{x:Type u:BreadcrumbItem}" TargetType="u:BreadcrumbItem">
+        <Setter Property="Cursor" Value="Hand"></Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:BreadcrumbItem">
-                <Border BorderBrush="Red" BorderThickness="2" Margin="4">
+                <Border Background="Transparent">
                     <StackPanel Orientation="Horizontal">
-                        <ContentPresenter Content="{TemplateBinding Icon}" ContentTemplate="{TemplateBinding IconTemplate}" />
-                        <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
-                        <ContentPresenter Name="Separator" Content="{TemplateBinding Separator}"></ContentPresenter>
+                        <ContentPresenter
+                            Name="PART_IconPresenter"
+                            Margin="0 0 4 0"
+                            VerticalAlignment="Center"
+                            Content="{TemplateBinding Icon}"
+                            ContentTemplate="{TemplateBinding IconTemplate}"
+                            Foreground="{TemplateBinding Foreground}"
+                            IsVisible="{TemplateBinding Icon,
+                                                        Converter={x:Static ObjectConverters.IsNotNull}}" />
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            VerticalAlignment="Center"
+                            IsVisible="{TemplateBinding Content,
+                                        Converter={x:Static ObjectConverters.IsNotNull}}"
+                            Foreground="{DynamicResource SemiColorText2}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <ContentPresenter Name="Separator" VerticalAlignment="Center" Content="{TemplateBinding Separator}" Foreground="{DynamicResource SemiColorText3}" Margin="4 0">
+                            <ContentPresenter.IsVisible>
+                                <TemplateBinding Property="Separator" Converter="{x:Static ObjectConverters.IsNotNull}" />
+                            </ContentPresenter.IsVisible>
+                        </ContentPresenter>
                     </StackPanel>
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:last">
+            <Style Selector="^ /template/ ContentPresenter#PART_IconPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}"/>
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#Separator">
+                <Setter Property="IsVisible" Value="False"/>
+            </Style>
+            <Style Selector="^:pointerover">
+                <Style Selector="^ /template/ ContentPresenter#PART_IconPresenter">
+                    <Setter Property="Foreground" Value="{DynamicResource SemiBlue5}"/>
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="Foreground" Value="{DynamicResource SemiBlue5}"/>
+                </Style>
+            </Style>
+        </Style>
+        <Style Selector="^:pointerover">
+            <Style Selector="^ /template/ ContentPresenter#PART_IconPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource SemiBlue5}"/>
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource SemiBlue5}"/>
+            </Style>
+        </Style>
     </ControlTheme>
 </ResourceDictionary>
