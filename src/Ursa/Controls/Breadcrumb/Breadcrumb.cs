@@ -4,7 +4,6 @@ using Avalonia.Controls.Templates;
 using Avalonia.Data;
 using Avalonia.Layout;
 using Avalonia.Metadata;
-using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -84,7 +83,8 @@ public class Breadcrumb: ItemsControl
 
     protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
     {
-        base.PrepareContainerForItemOverride(container, item, index);
+        // base.PrepareContainerForItemOverride(container, item, index);
+        if (container == item) return;
         if (container is not BreadcrumbItem breadcrumbItem) return;
         if (!breadcrumbItem.IsSet(BreadcrumbItem.SeparatorProperty))
         {
@@ -97,6 +97,14 @@ public class Breadcrumb: ItemsControl
                 if (GetSeparatorInstance(args.NewValue.Value) is { } b)
                     breadcrumbItem.Separator = b;
             });
+        }
+        if(!breadcrumbItem.IsSet(ContentControl.ContentProperty))
+        {
+            breadcrumbItem.SetCurrentValue(ContentControl.ContentProperty, item);
+            if (DisplayMemberBinding is not null)
+            {
+                breadcrumbItem[!ContentControl.ContentProperty] = DisplayMemberBinding;
+            }
         }
         if (!breadcrumbItem.IsSet(BreadcrumbItem.IconProperty) && IconBinding != null)
         {

@@ -1,8 +1,18 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:u="https://irihi.tech/ursa">
-    <!-- Add Resources Here -->
+    <Design.PreviewWith>
+        <StackPanel>
+            <u:Breadcrumb >
+                <TextBlock Text="Hello"></TextBlock>
+                <u:BreadcrumbItem Icon="?" Separator="♥"></u:BreadcrumbItem>
+                <TextBlock Text="Avalonia"></TextBlock>
+                <TextBlock Text="Ursa"></TextBlock>
+            </u:Breadcrumb>
+        </StackPanel>
+    </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:Breadcrumb}" TargetType="u:Breadcrumb">
+        <Setter Property="Separator" Value="/"></Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Breadcrumb">
                 <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
@@ -15,8 +25,8 @@
             <ControlTemplate TargetType="u:BreadcrumbItem">
                 <Border BorderBrush="Red" BorderThickness="2" Margin="4">
                     <StackPanel Orientation="Horizontal">
-                        <ContentPresenter Content="{TemplateBinding Icon}" />
-                        <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}"/>
+                        <ContentPresenter Content="{TemplateBinding Icon}" ContentTemplate="{TemplateBinding IconTemplate}" />
+                        <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
                         <ContentPresenter Name="Separator" Content="{TemplateBinding Separator}"></ContentPresenter>
                     </StackPanel>
                 </Border>
