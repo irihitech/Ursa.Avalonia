@@ -10,11 +10,11 @@
     <!-- Add Styles Here -->
     <Style Selector="u|Breadcrumb.Small u|BreadcrumbItem /template/ ContentPresenter">
         <Setter Property="FontSize" Value="12"></Setter>
-    </Style>
-    <Style Selector="u|Breadcrumb.Small u|BreadcrumbItem /template/ ContentPresenter#PART_IconPresenter">
-        <Setter Property="Margin" Value="0 0 2 0"></Setter>
-    </Style>
-    <Style Selector="u|Breadcrumb.Small u|BreadcrumbItem /template/ ContentPresenter#Separator">
-        <Setter Property="Margin" Value="2 0 0 0"></Setter>
+        <Style Selector="^#PART_IconPresenter">
+            <Setter Property="Margin" Value="0 0 2 0"></Setter>
+        </Style>
+        <Style Selector="^#Separator">
+            <Setter Property="Margin" Value="2 0"></Setter>
+        </Style>
     </Style>
 </Styles>
