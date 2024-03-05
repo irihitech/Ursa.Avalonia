@@ -18,15 +18,16 @@ public class BreadcrumbDemoViewModel: ObservableObject
             new BreadcrumbDemoItem() { Section = "Page 1", Icon = "Page" },
             new BreadcrumbDemoItem() { Section = "Page 2", Icon = "Page" },
             new BreadcrumbDemoItem() { Section = "Page 3", Icon = "Page" },
-            new BreadcrumbDemoItem() { Section = "Page 4", Icon = "Page" },
+            new BreadcrumbDemoItem() { Section = "Page 4", Icon = "Page", IsReadOnly = true},
         };
     }
 }
 
-public class BreadcrumbDemoItem: ObservableObject
+public partial class BreadcrumbDemoItem: ObservableObject
 {
     public string Section { get; set; }
     public string Icon { get; set; }
+    [ObservableProperty] private bool _isReadOnly;
     
     public ICommand Command { get; set; }
 

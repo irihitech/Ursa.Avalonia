@@ -56,15 +56,6 @@ public class Breadcrumb: ItemsControl
         get => GetValue(IconTemplateProperty);
         set => SetValue(IconTemplateProperty, value);
     }
-
-    public static readonly StyledProperty<bool> IsReadOnlyProperty = AvaloniaProperty.Register<Breadcrumb, bool>(
-        nameof(IsReadOnly));
-
-    public bool IsReadOnly
-    {
-        get => GetValue(IsReadOnlyProperty);
-        set => SetValue(IsReadOnlyProperty, value);
-    }
     
     static Breadcrumb()
     {

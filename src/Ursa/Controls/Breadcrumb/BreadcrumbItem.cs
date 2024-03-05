@@ -49,11 +49,19 @@ public class BreadcrumbItem: ContentControl
         set => SetValue(IconTemplateProperty, value);
     }
 
+    public static readonly StyledProperty<bool> IsReadOnlyProperty = AvaloniaProperty.Register<BreadcrumbItem, bool>(
+        nameof(IsReadOnly));
+
+    public bool IsReadOnly
+    {
+        get => GetValue(IsReadOnlyProperty);
+        set => SetValue(IsReadOnlyProperty, value);
+    }
+
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
         base.OnPointerPressed(e);
-        var parent = this.FindLogicalAncestorOfType<Breadcrumb>();
-        if (parent?.IsReadOnly != true)
+        if (!IsReadOnly)
         {
             Command?.Execute(null);
         }

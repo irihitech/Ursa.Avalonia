@@ -19,6 +19,7 @@
         
         <u:Breadcrumb>
             <TextBlock Text="Hello" />
+            <u:BreadcrumbItem Content="World" IsReadOnly="True"></u:BreadcrumbItem>
             <u:BreadcrumbItem Icon="?" Separator="♥" />
             <TextBlock Text="Avalonia" />
             <TextBlock Text="Ursa" />
@@ -29,7 +30,7 @@
             <TextBlock Text="Avalonia" />
             <TextBlock Text="Ursa" />
         </u:Breadcrumb>
-        <u:Breadcrumb IsReadOnly="True">
+        <u:Breadcrumb>
             <TextBlock Text="Hello" />
             <u:BreadcrumbItem Icon="?" Separator="♥" />
             <TextBlock Text="Avalonia" />
@@ -40,6 +41,11 @@
             IconBinding="{Binding Icon}"
             CommandBinding="{Binding Command}"
             ItemsSource="{Binding Items1}">
+            <u:Breadcrumb.Styles>
+                <Style Selector="u|BreadcrumbItem" x:DataType="vm:BreadcrumbDemoItem">
+                    <Setter Property="IsReadOnly" Value="{Binding IsReadOnly}"/>
+                </Style>
+            </u:Breadcrumb.Styles>
             <u:Breadcrumb.IconTemplate>
                 <DataTemplate DataType="x:String">
                     <PathIcon Width="12" Height="12" Data="{Binding Path=., Converter={StaticResource IconConverter}}"></PathIcon>
