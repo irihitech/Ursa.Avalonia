@@ -4,6 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
+using Avalonia.LogicalTree;
 
 namespace Ursa.Controls;
 
@@ -51,6 +52,10 @@ public class BreadcrumbItem: ContentControl
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
         base.OnPointerPressed(e);
-        Command?.Execute(null);
+        var parent = this.FindLogicalAncestorOfType<Breadcrumb>();
+        if (parent?.IsReadOnly != true)
+        {
+            Command?.Execute(null);
+        }
     }
 }

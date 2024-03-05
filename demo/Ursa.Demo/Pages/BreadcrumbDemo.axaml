@@ -23,6 +23,18 @@
             <TextBlock Text="Avalonia" />
             <TextBlock Text="Ursa" />
         </u:Breadcrumb>
+        <u:Breadcrumb Classes="Small">
+            <TextBlock Text="Hello" />
+            <u:BreadcrumbItem Icon="?" Separator="♥" />
+            <TextBlock Text="Avalonia" />
+            <TextBlock Text="Ursa" />
+        </u:Breadcrumb>
+        <u:Breadcrumb IsReadOnly="True">
+            <TextBlock Text="Hello" />
+            <u:BreadcrumbItem Icon="?" Separator="♥" />
+            <TextBlock Text="Avalonia" />
+            <TextBlock Text="Ursa" />
+        </u:Breadcrumb>
         <u:Breadcrumb
             DisplayMemberBinding="{Binding Section}"
             IconBinding="{Binding Icon}"
