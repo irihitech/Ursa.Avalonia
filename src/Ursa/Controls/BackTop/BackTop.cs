@@ -5,7 +5,7 @@ using Avalonia.Media;
 
 namespace Ursa.Controls.BackTop;
 
-public class BackTop: Control
+public class BackTop : Control
 {
     public static readonly AttachedProperty<bool> AttachProperty =
         AvaloniaProperty.RegisterAttached<BackTop, Control, bool>("Attach");
