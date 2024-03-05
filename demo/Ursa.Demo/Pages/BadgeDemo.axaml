@@ -8,7 +8,7 @@
     d:DesignHeight="850"
     d:DesignWidth="850"
     mc:Ignorable="d">
-    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" u:ScrollTo.Direction="Top">
         <StackPanel
             Margin="24"
             HorizontalAlignment="Left"

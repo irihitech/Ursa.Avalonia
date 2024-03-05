@@ -1,0 +1,64 @@
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.Notifications;
+using Avalonia.Controls.Primitives;
+using Avalonia.Layout;
+using Avalonia.LogicalTree;
+using Avalonia.Styling;
+using Ursa.Common;
+
+namespace Ursa.Controls;
+
+public class ScrollTo
+{
+    public static readonly AttachedProperty<Position> DirectionProperty =
+        AvaloniaProperty.RegisterAttached<ScrollTo, Control, Position>("Direction");
+
+    public static void SetDirection(Control obj, Position value) => obj.SetValue(DirectionProperty, value);
+    public static Position GetDirection(Control obj) => obj.GetValue(DirectionProperty);
+
+    public static readonly AttachedProperty<ControlTheme?> ButtonThemeProperty =
+        AvaloniaProperty.RegisterAttached<ScrollTo, Control, ControlTheme?>("ButtonTheme");
+
+    public static void SetButtonTheme(Control obj, ControlTheme? value) => obj.SetValue(ButtonThemeProperty, value);
+    public static ControlTheme? GetButtonTheme(Control obj) => obj.GetValue(ButtonThemeProperty);
+
+    static ScrollTo()
+    {
+        DirectionProperty.Changed.AddClassHandler<Control, Position>(OnDirectionChanged);
+        ButtonThemeProperty.Changed.AddClassHandler<Control, ControlTheme?>(OnButtonThemeChanged);
+    }
+
+    private static void OnButtonThemeChanged(Control arg1, AvaloniaPropertyChangedEventArgs<ControlTheme?> arg2)
+    {
+        var button = EnsureButtonInAdorner(arg1);
+        if (button is null) return;
+        button.SetCurrentValue(StyledElement.ThemeProperty, arg2.NewValue.Value);
+    }
+
+    private static void OnDirectionChanged(Control control, AvaloniaPropertyChangedEventArgs<Position> args)
+    {
+        var button = EnsureButtonInAdorner(control);
+        if (button is null) return;
+        button.SetCurrentValue(ScrollToButton.DirectionProperty, args.NewValue.Value);
+    }
+
+    private static ScrollToButton? EnsureButtonInAdorner(Control control)
+    {
+        var scroll = control.GetSelfAndLogicalDescendants().OfType<ScrollViewer>().FirstOrDefault();
+        if (scroll is null) return null;
+        var adorner = AdornerLayer.GetAdorner(scroll);
+        if (adorner is not ScrollToButton button)
+        {
+            button = new ScrollToButton();
+            AdornerLayer.SetAdorner(control, button);
+        }
+        button.SetCurrentValue(ScrollToButton.TargetProperty, scroll);
+        button.SetCurrentValue(ScrollToButton.DirectionProperty, GetDirection(control));
+        if ( GetButtonTheme(control) is { } theme)
+        {
+            button.SetCurrentValue(StyledElement.ThemeProperty, theme);
+        }
+        return button;
+    }
+}
