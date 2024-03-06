@@ -69,6 +69,7 @@
             Grid.Row="1"
             Grid.Column="4"
             u:ScrollTo.Direction="Top"
+            u:ScrollTo.ButtonTheme="{DynamicResource PrimaryScrollToButton}"
             ItemsSource="{Binding Items}"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Auto" />
