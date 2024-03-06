@@ -14,6 +14,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Controls", IsSeparator = true },
             new() { MenuHeader = "Badge", Key = MenuKeys.MenuKeyBadge, Status = "Updated"},
             new() { MenuHeader = "Banner", Key = MenuKeys.MenuKeyBanner },
+            new() { MenuHeader = "Breadcrumb", Key = MenuKeys.MenuKeyBreadcrumb, Status = "New" },
             new() { MenuHeader = "Button Group", Key = MenuKeys.MenuKeyButtonGroup},
             new() { MenuHeader = "Class Input", Key = MenuKeys.MenuKeyClassInput, Status = "New" },
             new() { MenuHeader = "Dialog", Key = MenuKeys.MenuKeyDialog, Status = "Updated"},
