@@ -7,7 +7,7 @@
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="VerticalAlignment" Value="Bottom" />
         <Setter Property="Cursor" Value="Hand"></Setter>
-        <Setter Property="Margin" Value="0, 0, 32, 32" />
+        <Setter Property="Margin" Value="0, 0, 16, 16" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:ScrollToButton">
                 <Border
@@ -34,6 +34,15 @@
         <Style Selector="^:pressed /template/ Border#PART_Background">
             <Setter Property="BorderBrush" Value="{DynamicResource ButtonDefaultPressedBorderBrush}" />
             <Setter Property="Background" Value="{DynamicResource ButtonDefaultPressedBackground}" />
+        </Style>
+        <Style Selector="^[Direction=Right] /template/ PathIcon#PART_Icon">
+            <Setter Property="RenderTransform" Value="rotate(90deg)"></Setter>
+        </Style>
+        <Style Selector="^[Direction=Bottom] /template/ PathIcon#PART_Icon">
+            <Setter Property="RenderTransform" Value="rotate(180deg)"></Setter>
+        </Style>
+        <Style Selector="^[Direction=Left] /template/ PathIcon#PART_Icon">
+            <Setter Property="RenderTransform" Value="rotate(270deg)"></Setter>
         </Style>
     </ControlTheme>
 </ResourceDictionary>

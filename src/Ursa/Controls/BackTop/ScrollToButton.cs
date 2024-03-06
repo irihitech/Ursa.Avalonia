@@ -1,6 +1,8 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
+using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
 
@@ -46,10 +48,11 @@ public class ScrollToButton: Button
         _disposable?.Dispose();
         if (arg2.NewValue.Value is { } newValue)
         {
-            var scroll = newValue.GetSelfAndLogicalDescendants().OfType<ScrollViewer>().FirstOrDefault();
+            var scroll = newValue.GetSelfAndVisualDescendants().OfType<ScrollViewer>().FirstOrDefault();
             if (_scroll is not null)
             {
                 _disposable?.Dispose();
+                _scroll = null;
             }
             _scroll = scroll;
             _disposable = ScrollViewer.OffsetProperty.Changed.AddClassHandler<ScrollViewer, Vector>(OnScrollChanged);
@@ -69,14 +72,15 @@ public class ScrollToButton: Button
         };
         _scroll?.SetCurrentValue(ScrollViewer.OffsetProperty, vector);
     }
-
-    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+    
+    protected override void OnLoaded(RoutedEventArgs e)
     {
-        base.OnAttachedToVisualTree(e);
-        var scroll = Target.GetSelfAndLogicalDescendants().OfType<ScrollViewer>().FirstOrDefault();
+        base.OnLoaded(e);
+        var scroll = Target.GetSelfAndVisualDescendants().OfType<ScrollViewer>().FirstOrDefault();
         if (_scroll is not null)
         {
             _disposable?.Dispose();
+            _scroll = null;
         }
         _scroll = scroll;
         _disposable = ScrollViewer.OffsetProperty.Changed.AddClassHandler<ScrollViewer, Vector>(OnScrollChanged);
@@ -91,8 +95,8 @@ public class ScrollToButton: Button
 
     private void SetVisibility(Position direction, Vector? vector)
     {
-        if (vector is null) return;
-        if (direction == Position.Bottom && vector.Value.Y < 0)
+        if (vector is null || _scroll is null) return;
+        if (direction == Position.Bottom && vector.Value.Y < _scroll.Extent.Height - _scroll.Bounds.Height)
         {
             IsVisible = true;
         }
@@ -100,11 +104,11 @@ public class ScrollToButton: Button
         {
             IsVisible = true;
         }
-        else if (direction == Position.Left && vector.Value.X < 0)
+        else if (direction == Position.Left && vector.Value.X > 0)
         {
             IsVisible = true;
         }
-        else if (direction == Position.Right && vector.Value.X > 0)
+        else if (direction == Position.Right && vector.Value.X < _scroll.Extent.Width - _scroll.Bounds.Width)
         {
             IsVisible = true;
         }

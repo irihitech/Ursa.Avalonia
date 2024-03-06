@@ -2,20 +2,22 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Notifications;
 using Avalonia.Controls.Primitives;
+using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.LogicalTree;
 using Avalonia.Styling;
+using Avalonia.VisualTree;
 using Ursa.Common;
 
 namespace Ursa.Controls;
 
 public class ScrollTo
 {
-    public static readonly AttachedProperty<Position> DirectionProperty =
-        AvaloniaProperty.RegisterAttached<ScrollTo, Control, Position>("Direction");
+    public static readonly AttachedProperty<Position?> DirectionProperty =
+        AvaloniaProperty.RegisterAttached<ScrollTo, Control, Position?>("Direction");
 
     public static void SetDirection(Control obj, Position value) => obj.SetValue(DirectionProperty, value);
-    public static Position GetDirection(Control obj) => obj.GetValue(DirectionProperty);
+    public static Position? GetDirection(Control obj) => obj.GetValue(DirectionProperty);
 
     public static readonly AttachedProperty<ControlTheme?> ButtonThemeProperty =
         AvaloniaProperty.RegisterAttached<ScrollTo, Control, ControlTheme?>("ButtonTheme");
@@ -25,7 +27,7 @@ public class ScrollTo
 
     static ScrollTo()
     {
-        DirectionProperty.Changed.AddClassHandler<Control, Position>(OnDirectionChanged);
+        DirectionProperty.Changed.AddClassHandler<Control, Position?>(OnDirectionChanged);
         ButtonThemeProperty.Changed.AddClassHandler<Control, ControlTheme?>(OnButtonThemeChanged);
     }
 
@@ -36,8 +38,9 @@ public class ScrollTo
         button.SetCurrentValue(StyledElement.ThemeProperty, arg2.NewValue.Value);
     }
 
-    private static void OnDirectionChanged(Control control, AvaloniaPropertyChangedEventArgs<Position> args)
+    private static void OnDirectionChanged(Control control, AvaloniaPropertyChangedEventArgs<Position?> args)
     {
+        if (args.NewValue.Value is null) return;
         var button = EnsureButtonInAdorner(control);
         if (button is null) return;
         button.SetCurrentValue(ScrollToButton.DirectionProperty, args.NewValue.Value);
@@ -45,15 +48,13 @@ public class ScrollTo
 
     private static ScrollToButton? EnsureButtonInAdorner(Control control)
     {
-        var scroll = control.GetSelfAndLogicalDescendants().OfType<ScrollViewer>().FirstOrDefault();
-        if (scroll is null) return null;
-        var adorner = AdornerLayer.GetAdorner(scroll);
+        var adorner = AdornerLayer.GetAdorner(control);
         if (adorner is not ScrollToButton button)
         {
             button = new ScrollToButton();
             AdornerLayer.SetAdorner(control, button);
         }
-        button.SetCurrentValue(ScrollToButton.TargetProperty, scroll);
+        button.SetCurrentValue(ScrollToButton.TargetProperty, control);
         button.SetCurrentValue(ScrollToButton.DirectionProperty, GetDirection(control));
         if ( GetButtonTheme(control) is { } theme)
         {
