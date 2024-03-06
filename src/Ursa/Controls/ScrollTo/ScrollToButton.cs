@@ -1,7 +1,10 @@
 using Avalonia;
+using Avalonia.Animation;
+using Avalonia.Animation.Easings;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
+using Avalonia.Styling;
 using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
@@ -55,13 +58,15 @@ public class ScrollToButton: Button
                 _scroll = null;
             }
             _scroll = scroll;
+
             _disposable = ScrollViewer.OffsetProperty.Changed.AddClassHandler<ScrollViewer, Vector>(OnScrollChanged);
             SetVisibility(Direction, _scroll?.Offset);
         }
     }
 
-    protected override void OnClick()
+    protected override async void OnClick()
     {
+        if (_scroll is null) return;
         var vector = Direction switch
         {
             Position.Top => new Vector(0, double.NegativeInfinity),
@@ -70,7 +75,7 @@ public class ScrollToButton: Button
             Position.Right => new Vector(double.PositiveInfinity, 0),
             _ => new Vector(0, 0)
         };
-        _scroll?.SetCurrentValue(ScrollViewer.OffsetProperty, vector);
+        _scroll.SetCurrentValue(ScrollViewer.OffsetProperty, vector);
     }
     
     protected override void OnLoaded(RoutedEventArgs e)
