@@ -17,8 +17,8 @@
                     <PathIcon
                         Name="PART_Icon"
                         Margin="8"
-                        Width="16"
-                        Height="16"
+                        Width="12"
+                        Height="12"
                         Data="{DynamicResource ScrollToButtonIconGlyph}"
                         Foreground="{DynamicResource ButtonDefaultPrimaryForeground}" />
                 </Border>
