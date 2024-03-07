@@ -38,6 +38,7 @@
             Theme="{DynamicResource CardBorder}">
             <u:NavMenu
                 Name="menu"
+                ExpandWidth="400"
                 HeaderBinding="{Binding Header}"
                 IconBinding="{Binding IconIndex}"
                 IsHorizontalCollapsed="{Binding #collapse.IsChecked, Mode=OneWay}"

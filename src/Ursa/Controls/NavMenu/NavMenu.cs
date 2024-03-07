@@ -129,6 +129,24 @@ public class NavMenu: ItemsControl
         set => SetValue(FooterProperty, value);
     }
 
+    public static readonly StyledProperty<double> ExpandWidthProperty = AvaloniaProperty.Register<NavMenu, double>(
+        nameof(ExpandWidth), double.NaN);
+
+    public double ExpandWidth
+    {
+        get => GetValue(ExpandWidthProperty);
+        set => SetValue(ExpandWidthProperty, value);
+    }
+
+    public static readonly StyledProperty<double> CollapseWidthProperty = AvaloniaProperty.Register<NavMenu, double>(
+        nameof(CollapseWidth), double.NaN);
+
+    public double CollapseWidth
+    {
+        get => GetValue(CollapseWidthProperty);
+        set => SetValue(CollapseWidthProperty, value);
+    }
+
     public static readonly AttachedProperty<bool> CanToggleProperty =
         AvaloniaProperty.RegisterAttached<NavMenu, InputElement, bool>("CanToggle");
 

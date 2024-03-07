@@ -16,10 +16,10 @@
                     <ContentPresenter Content="{TemplateBinding Header}" DockPanel.Dock="Top" />
                     <ContentPresenter Content="{TemplateBinding Footer}" DockPanel.Dock="Bottom" />
                     <ScrollViewer
-                        HorizontalAlignment="Center"
+                        HorizontalAlignment="Stretch"
                         HorizontalScrollBarVisibility="Disabled"
                         AllowAutoHide="True"
-                        Theme="{DynamicResource StaticScrollViewer}"
+                        
                         VerticalScrollBarVisibility="Auto">
                         <ScrollViewer.Styles>
                             <Style Selector="ScrollViewer /template/ ScrollBar">
@@ -39,9 +39,12 @@
                 </DockPanel>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:not(:horizontal-collapsed)">
+            <Setter Property="Width" Value="{Binding $self.ExpandWidth}"></Setter>
+        </Style>
         <Style Selector="^:horizontal-collapsed">
-            <Setter Property="Width" Value="{x:Static x:Double.NaN}" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Width" Value="{Binding $self.CollapseWidth}" />
+            <Setter Property="Grid.IsSharedSizeScope" Value="False"></Setter>
         </Style>
     </ControlTheme>
 
@@ -51,6 +54,7 @@
                 Name="PART_Border"
                 Grid.Row="0"
                 MinHeight="32"
+                HorizontalAlignment="Stretch"
                 Background="{TemplateBinding u:NavMenuItem.Background}"
                 CornerRadius="4"
                 Cursor="Hand">
@@ -164,7 +168,7 @@
             <Setter Property="Background" Value="{DynamicResource NavigationMenuItemPointeroverBackground}" />
         </Style>
         <Style Selector="^:horizontal-collapsed:first-level">
-            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Style Selector="^ /template/ Border#PART_Border">
                 <Setter Property="ToolTip.Tip" >
                     <Template>
@@ -172,7 +176,7 @@
                     </Template>
                 </Setter>
                 <Setter Property="ToolTip.ShowDelay" Value="0" />
-                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
             </Style>
             <Style Selector="^ /template/ Border#PART_Border:pointerover">
                 <Setter Property="Background" Value="{DynamicResource NavigationMenuItemPointeroverBackground}" />
@@ -191,15 +195,14 @@
             <Style Selector="^ /template/ ItemsPresenter#PART_ItemsPresenter">
                 <Setter Property="IsVisible" Value="False" />
             </Style>
-            <Style Selector="^ /template/ Grid#PART_RootGrid">
-                <Setter Property="HorizontalAlignment" Value="Left" />
-            </Style>
-
         </Style>
         <Style Selector="^:horizontal-collapsed:not(:first-level)">
             <Style Selector="^ /template/ PathIcon#PART_ExpanderIcon">
                 <Setter Property="RenderTransform" Value="rotate(-90deg)" />
             </Style>
+        </Style>
+        <Style Selector="^:horizontal-collapsed:first-level">
+            <Setter Property="Grid.IsSharedSizeScope" Value="True"></Setter>
         </Style>
         <Style Selector="^[IsSeparator=True]">
             <Setter Property="Template">

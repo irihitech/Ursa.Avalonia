@@ -35,6 +35,7 @@
                 VerticalAlignment="Stretch"
                 Theme="{DynamicResource CardBorder}">
                 <u:NavMenu Name="menu" ItemsSource="{Binding Menus.MenuItems}"
+                           ExpandWidth="300"
                            CommandBinding="{Binding ActivateCommand}"
                            HeaderBinding="{Binding}"
                            IconBinding="{Binding MenuHeader}">
@@ -58,7 +59,7 @@
                     </u:NavMenu.IconTemplate>
                     <u:NavMenu.HeaderTemplate>
                         <DataTemplate x:DataType="vm:MenuItemViewModel">
-                            <StackPanel Orientation="Horizontal" MinWidth="240">
+                            <StackPanel Orientation="Horizontal">
                                 <TextBlock HorizontalAlignment="Left" Text="{Binding MenuHeader}" />
                                 <u:Badge
                                     Margin="8,0,0,0"
