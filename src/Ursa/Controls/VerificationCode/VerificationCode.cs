@@ -28,13 +28,13 @@ public class VerificationCode: TemplatedControl
         set => SetValue(CompleteCommandProperty, value);
     }
 
-    public static readonly StyledProperty<int> CountOfDigitProperty = AvaloniaProperty.Register<VerificationCode, int>(
-        nameof(CountOfDigit));
+    public static readonly StyledProperty<int> CountProperty = AvaloniaProperty.Register<VerificationCode, int>(
+        nameof(Count));
 
-    public int CountOfDigit
+    public int Count
     {
-        get => GetValue(CountOfDigitProperty);
-        set => SetValue(CountOfDigitProperty, value);
+        get => GetValue(CountProperty);
+        set => SetValue(CountProperty, value);
     }
 
     public static readonly StyledProperty<char> PasswordCharProperty =
@@ -47,19 +47,29 @@ public class VerificationCode: TemplatedControl
         set => SetValue(PasswordCharProperty, value);
     }
 
-    public static readonly DirectProperty<VerificationCode, AvaloniaList<string>> DigitsProperty = AvaloniaProperty.RegisterDirect<VerificationCode, AvaloniaList<string>>(
+    public static readonly DirectProperty<VerificationCode, IList<string>> DigitsProperty = AvaloniaProperty.RegisterDirect<VerificationCode, IList<string>>(
         nameof(Digits), o => o.Digits, (o, v) => o.Digits = v);
     
-    private AvaloniaList<string> _digits = [];
-    internal AvaloniaList<string> Digits
+    private IList<string> _digits = [];
+    internal IList<string> Digits
     {
         get => _digits;
         set => SetAndRaise(DigitsProperty, ref _digits, value);
     }
+    
+    public static readonly RoutedEvent<VerificationCodeCompleteEventArgs> CompleteEvent =
+        RoutedEvent.Register<VerificationCode, VerificationCodeCompleteEventArgs>(
+            nameof(Complete), RoutingStrategies.Bubble);
+    
+    public event EventHandler<VerificationCodeCompleteEventArgs> Complete
+    {
+        add => AddHandler(CompleteEvent, value);
+        remove => RemoveHandler(CompleteEvent, value);
+    }
 
     static VerificationCode()
     {
-        CountOfDigitProperty.Changed.AddClassHandler<VerificationCode, int>((code, args) => code.OnCountOfDigitChanged(args));
+        CountProperty.Changed.AddClassHandler<VerificationCode, int>((code, args) => code.OnCountOfDigitChanged(args));
         FocusableProperty.OverrideDefaultValue<VerificationCode>(true);
     }
 
@@ -73,9 +83,8 @@ public class VerificationCode: TemplatedControl
         var newValue = args.NewValue.Value;
         if (newValue > 0)
         {
-            Digits = new AvaloniaList<string>(Enumerable.Repeat(string.Empty, newValue));
+            Digits = new List<string>(Enumerable.Repeat(string.Empty, newValue));
         }
-        
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -89,29 +98,48 @@ public class VerificationCode: TemplatedControl
     {
         if (e.Source is Control t)
         {
-            var text = t.FindLogicalAncestorOfType<TextBox>();
+            var text = t.FindLogicalAncestorOfType<VerificationCodeItem>();
             if (text != null)
             {
+                text.Focus();
                 _currentIndex = _itemsControl?.IndexFromContainer(text) ?? 0;
             }
         }
+        e.Handled = true;
     }
 
     protected override void OnTextInput(TextInputEventArgs e)
     {
         base.OnTextInput(e);
-        if (e.Text?.Length == 1 && _currentIndex < CountOfDigit)
+        if (e.Text?.Length == 1 && _currentIndex < Count)
         {
-            Digits[_currentIndex] = e.Text;
-            var presenter = _itemsControl?.ContainerFromIndex(_currentIndex) as TextBox;
+            
+            var presenter = _itemsControl?.ContainerFromIndex(_currentIndex) as VerificationCodeItem;
             if (presenter is null) return;
-            _currentIndex++;
-            var newPresenter = _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
             presenter.Text = e.Text;
-            if (_currentIndex == CountOfDigit)
+            Digits[_currentIndex] = e.Text;
+            _currentIndex++;
+            _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
+            if (_currentIndex == Count)
             {
                 CompleteCommand?.Execute(Digits);
+                RaiseEvent(new VerificationCodeCompleteEventArgs(Digits, CompleteEvent));
             }
+        }
+    }
+
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        base.OnKeyDown(e);
+        if (e.Key == Key.Back && _currentIndex >= 0)
+        {
+            var presenter = _itemsControl?.ContainerFromIndex(_currentIndex) as VerificationCodeItem;
+            if (presenter is null) return;
+            Digits[_currentIndex] = string.Empty;
+            presenter.Text = string.Empty;
+            if (_currentIndex == 0) return;
+            _currentIndex--;
+            _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
         }
     }
 }
