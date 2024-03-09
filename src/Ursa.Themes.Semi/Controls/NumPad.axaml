@@ -9,73 +9,85 @@
                 <Border>
                     <Border.Styles>
                         <Style Selector="RepeatButton">
-                            <Setter Property="Command" Value="{Binding $parent[u:NumPad].InputNumber}" />
+                            <Setter Property="Command" Value="{Binding $parent[u:NumPad].ProcessClick}" />
                             <Setter Property="CommandParameter" Value="{Binding $self.Content}" />
-                            <Setter Property="Width" Value="48"/>
-                            <Setter Property="Height" Value="48"/>
+                            <Setter Property="Width" Value="48" />
+                            <Setter Property="Height" Value="48" />
+                        </Style>
+                        <Style Selector="u|NumPadButton">
+                            <Setter Property="NumMode" Value="{Binding $parent[u:NumPad].NumMode}" />
+                            <Setter Property="Command" Value="{Binding $parent[u:NumPad].ProcessClick}" />
+                            <Setter Property="Focusable" Value="False"></Setter>
+                            <Setter Property="CommandParameter" Value="{Binding $self}" />
+                            <Setter Property="Width" Value="54" />
+                            <Setter Property="Height" Value="54" />
                         </Style>
                     </Border.Styles>
-                    <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*">
-                        <RepeatButton
+                    <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*,*">
+                        <ToggleButton
                             Grid.Row="0"
                             Grid.Column="0"
-                            Content="7"
-                            Focusable="False" />
-                        <RepeatButton
+                            Width="54"
+                            Focusable="False"
+                            Height="54"
+                            Padding="0"
+                            IsChecked="{TemplateBinding NumMode,
+                                                        Mode=TwoWay}">
+                            <TextBlock>
+                                <Run Text="Num" />
+                                <LineBreak />
+                                <Run Text="Lock" />
+                            </TextBlock>
+                        </ToggleButton>
+                        <u:NumPadButton
                             Grid.Row="0"
                             Grid.Column="1"
-                            Content="8"
-                            Focusable="False" />
-                        <RepeatButton
-                            Grid.Row="0"
-                            Grid.Column="2"
-                            Content="9"
-                            Focusable="False" />
-                        <RepeatButton
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Content="4"
-                            Focusable="False" />
-                        <RepeatButton
+                            FunctionContent="/"
+                            NumContent="/"
+                            NumKey="OemQuestion" />
+                        <u:NumPadButton
                             Grid.Row="1"
                             Grid.Column="1"
-                            Content="5"
-                            Focusable="False" />
-                        <RepeatButton
-                            Grid.Row="1"
-                            Grid.Column="2"
-                            Content="6"
-                            Focusable="False" />
-                        <RepeatButton
-                            Grid.Row="2"
-                            Grid.Column="0"
-                            Content="1"
-                            Focusable="False" />
-                        <RepeatButton
-                            Grid.Row="2"
-                            Grid.Column="1"
-                            Content="2"
-                            Focusable="False" />
-                        <RepeatButton
-                            Grid.Row="2"
-                            Grid.Column="2"
-                            Content="3"
-                            Focusable="False" />
-                        <RepeatButton
-                            Grid.Row="3"
-                            Grid.ColumnSpan="2"
-                            Grid.Column="0"
-                            Content="0"
-                            Focusable="False" />
-                        <RepeatButton
-                            Grid.Row="3"
-                            Grid.Column="2"
-                            Content="."
-                            Focusable="False" />
+                            FunctionContent="Home"
+                            FunctionKey="Home"
+                            NumContent="7"
+                            NumKey="NumPad7" />
                     </Grid>
-
                 </Border>
             </ControlTemplate>
         </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:NumPadButton}" TargetType="u:NumPadButton">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Background" Value="{DynamicResource ButtonDefaultBackground}" />
+        <Setter Property="CornerRadius" Value="3"/>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:NumPadButton">
+                <Border Name="PART_Background" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}">
+                    <Panel>
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{TemplateBinding NumContent}"
+                            IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=NumMode}" />
+                        <ContentPresenter
+                            Name="PART_FunctionContentPresenter"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{TemplateBinding FunctionContent}"
+                            IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=!NumMode}" />
+                    </Panel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:pointerover /template/ Border#PART_Background">
+            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPointeroverBackground}"></Setter>
+        </Style>
+        <Style Selector="^:pressed /template/ Border#PART_Background">
+            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPressedBackground}"></Setter>
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

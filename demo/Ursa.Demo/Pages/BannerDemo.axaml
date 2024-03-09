@@ -47,10 +47,5 @@
                 </Grid>
             </Border>
         </Grid>
-        <TextBox u:NumPad.Attach="True" Width="100" Watermark="Invoke NumPad"></TextBox>
-        <TextBox u:NumPad.Attach="True" Width="100" Watermark="Invoke NumPad"></TextBox>
-        <TextBox u:NumPad.Attach="True" Width="100" Watermark="Invoke NumPad"></TextBox>
-        <u:IPv4Box u:NumPad.Attach="True" Width="200" ></u:IPv4Box>
-        <u:NumericIntUpDown u:NumPad.Attach="True" Width="100" Watermark="Invoke NumPad"></u:NumericIntUpDown>
     </StackPanel>
 </UserControl>

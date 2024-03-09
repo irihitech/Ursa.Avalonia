@@ -33,6 +33,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Nav Menu", Key = MenuKeys.MenuKeyNavMenu, Status = "New"},
             // new() { MenuHeader = "Number Displayer", Key = MenuKeys.MenuKeyNumberDisplayer, Status = "New" }, 
             new() { MenuHeader = "Numeric UpDown", Key = MenuKeys.MenuKeyNumericUpDown },
+            new() { MenuHeader = "NumPad", Key = MenuKeys.MenuKeyNumPad, Status = "New" },
             new() { MenuHeader = "Pagination", Key = MenuKeys.MenuKeyPagination },
             new() { MenuHeader = "RangeSlider", Key = MenuKeys.MenuKeyRangeSlider },
             new() { MenuHeader = "Scroll To", Key = MenuKeys.MenuKeyScrollToButton, Status = "New" },
@@ -71,6 +72,7 @@ public static class MenuKeys
     public const string MenuKeyNavMenu = "NavMenu";
     public const string MenuKeyNumberDisplayer = "NumberDisplayer";
     public const string MenuKeyNumericUpDown = "NumericUpDown";
+    public const string MenuKeyNumPad = "NumPad";
     public const string MenuKeyPagination = "Pagination";
     public const string MenuKeyRangeSlider = "RangeSlider";
     public const string MenuKeyScrollToButton = "ScrollToButton";

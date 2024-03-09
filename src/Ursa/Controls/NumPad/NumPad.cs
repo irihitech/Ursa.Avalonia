@@ -10,7 +10,6 @@ namespace Ursa.Controls;
 
 public class NumPad: TemplatedControl
 {
-    private Button? _sevenButton;
     public static readonly StyledProperty<InputElement?> TargetProperty = AvaloniaProperty.Register<NumPad, InputElement?>(
         nameof(Target));
 
@@ -18,6 +17,15 @@ public class NumPad: TemplatedControl
     {
         get => GetValue(TargetProperty);
         set => SetValue(TargetProperty, value);
+    }
+
+    public static readonly StyledProperty<bool> NumModeProperty = AvaloniaProperty.Register<NumPad, bool>(
+        nameof(NumMode), defaultValue: true);
+
+    public bool NumMode
+    {
+        get => GetValue(NumModeProperty);
+        set => SetValue(NumModeProperty, value);
     }
 
     public static readonly AttachedProperty<bool> AttachProperty =
@@ -28,8 +36,7 @@ public class NumPad: TemplatedControl
 
     static NumPad()
     {
-        TargetProperty.Changed.AddClassHandler<NumPad, InputElement?>((n, args) => n.OnTargetChanged(args));
-        AttachProperty.Changed.AddClassHandler<InputElement, bool>((input, args)=> OnAttachNumPad(input, args));
+        AttachProperty.Changed.AddClassHandler<InputElement, bool>(OnAttachNumPad);
     }
 
     private static void OnAttachNumPad(InputElement input, AvaloniaPropertyChangedEventArgs<bool> args)
@@ -42,12 +49,6 @@ public class NumPad: TemplatedControl
         {
             GotFocusEvent.RemoveHandler(OnTargetGotFocus, input);
         }
-    }
-
-    private void OnTargetChanged(AvaloniaPropertyChangedEventArgs<InputElement?> args)
-    {
-        //GotFocusEvent.RemoveHandler(OnTargetGotFocus, args.OldValue.Value);
-        //GotFocusEvent.AddHandler(OnTargetGotFocus, args.NewValue.Value);
     }
     
     private static void OnTargetGotFocus(object sender, GotFocusEventArgs e)
@@ -63,23 +64,54 @@ public class NumPad: TemplatedControl
         OverlayDialog.Show(numPad, new object(), options: new OverlayDialogOptions() { Buttons = DialogButton.None });
     }
 
-    private void OnSevenButtonClick(object sender, RoutedEventArgs e)
+    private Dictionary<Key, string> _keyInputMapping = new()
     {
-        Target?.RaiseEvent(new TextInputEventArgs()
-        {
-            Source = this,
-            RoutedEvent = TextInputEvent,
-            Text = "7",
-        });
-    }
+        [Key.NumPad0] = "0",
+        [Key.NumPad1] = "1",
+        [Key.NumPad2] = "2",
+        [Key.NumPad3] = "3",
+        [Key.NumPad4] = "4",
+        [Key.NumPad5] = "5",
+        [Key.NumPad6] = "6",
+        [Key.NumPad7] = "7",
+        [Key.NumPad8] = "8",
+        [Key.NumPad9] = "9",
+        [Key.OemPlus] = "+",
+        [Key.OemMinus] = "-",
+    };
 
-    public void InputNumber(object o)
+    public void ProcessClick(object o)
     {
-        Target?.RaiseEvent(new TextInputEventArgs()
+        if (o is NumPadButton b)
         {
-            Source = this,
-            RoutedEvent = TextInputEvent,
-            Text = o.ToString(),
-        });
+            if (b is { NumMode: true, NumKey: not null })
+            {
+                Target?.RaiseEvent(new TextInputEventArgs()
+                {
+                    Source = this,
+                    RoutedEvent = TextInputEvent,
+                    Text = _keyInputMapping.TryGetValue(b.NumKey.Value, out var text)? text:string.Empty,
+                });
+            }
+            else if (b is { NumMode: false, FunctionKey: null, NumKey: not null })
+            {
+                Target?.RaiseEvent(new TextInputEventArgs()
+                {
+                    Source = this,
+                    RoutedEvent = TextInputEvent,
+                    Text = _keyInputMapping.TryGetValue(b.NumKey.Value, out var text)? text:string.Empty,
+                });
+            }
+            else
+            {
+                Target?.RaiseEvent(new KeyEventArgs()
+                {
+                    Source = this,
+                    RoutedEvent = KeyDownEvent,
+                    Key = b.FunctionKey ?? Key.None,
+                });
+            }
+        }
+        
     }
 }
