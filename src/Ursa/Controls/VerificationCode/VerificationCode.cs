@@ -165,5 +165,15 @@ public class VerificationCode: TemplatedControl
             _currentIndex--;
             _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
         }
+        else if(e.Key == Key.Left && _currentIndex > 0)
+        {
+            _currentIndex--;
+            _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
+        }
+        else if(e.Key == Key.Right && _currentIndex < Count)
+        {
+            _currentIndex++;
+            _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
+        }
     }
 }
