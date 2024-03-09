@@ -47,6 +47,16 @@ public class VerificationCode: TemplatedControl
         set => SetValue(PasswordCharProperty, value);
     }
 
+    public static readonly StyledProperty<VerificationCodeMode> ModeProperty =
+        AvaloniaProperty.Register<VerificationCode, VerificationCodeMode>(
+            nameof(Mode), defaultValue: VerificationCodeMode.Digit | VerificationCodeMode.Letter);
+
+    public VerificationCodeMode Mode
+    {
+        get => GetValue(ModeProperty);
+        set => SetValue(ModeProperty, value);
+    }
+
     public static readonly DirectProperty<VerificationCode, IList<string>> DigitsProperty = AvaloniaProperty.RegisterDirect<VerificationCode, IList<string>>(
         nameof(Digits), o => o.Digits, (o, v) => o.Digits = v);
     
@@ -113,9 +123,10 @@ public class VerificationCode: TemplatedControl
         base.OnTextInput(e);
         if (e.Text?.Length == 1 && _currentIndex < Count)
         {
-            
             var presenter = _itemsControl?.ContainerFromIndex(_currentIndex) as VerificationCodeItem;
             if (presenter is null) return;
+            char c = e.Text[0];
+            if (!Valid(c, this.Mode)) return;
             presenter.Text = e.Text;
             Digits[_currentIndex] = e.Text;
             _currentIndex++;
@@ -126,6 +137,19 @@ public class VerificationCode: TemplatedControl
                 RaiseEvent(new VerificationCodeCompleteEventArgs(Digits, CompleteEvent));
             }
         }
+    }
+
+    private bool Valid(char c, VerificationCodeMode mode)
+    {
+        bool isDigit = char.IsDigit(c);
+        bool isLetter = char.IsLetter(c);
+        return mode switch
+        {
+            VerificationCodeMode.Digit => isDigit,
+            VerificationCodeMode.Letter => isLetter,
+            VerificationCodeMode.Digit | VerificationCodeMode.Letter => isDigit || isLetter,
+            _ => true
+        };
     }
 
     protected override void OnKeyDown(KeyEventArgs e)

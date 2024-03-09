@@ -10,7 +10,7 @@
              x:Class="Ursa.Demo.Pages.VerificationCodeDemo">
     <StackPanel>
         <u:VerificationCode Count="4" Name="v4" CompleteCommand="{Binding CompleteCommand}"/>
-        <ListBox ItemsSource="{Binding #v4.Digits}"></ListBox>
+        <u:VerificationCode Count="4" Mode="Digit"/>
         <u:VerificationCode Count="6" PasswordChar="•" Complete="VerificationCode_OnComplete" />
     </StackPanel>
 </UserControl>
