@@ -211,6 +211,12 @@ public static class OverlayDialog
         control.CanLightDismiss = options.CanLightDismiss;
         control.CanDragMove = options.CanDragMove;
     }
-    
-    
+
+    internal static T? Recall<T>(string? hostId) where T: Control
+    {
+        var host = OverlayDialogManager.GetHost(hostId);
+        if (host is null) return null;
+        var item = host.Recall<T>();
+        return item;
+    }
 }

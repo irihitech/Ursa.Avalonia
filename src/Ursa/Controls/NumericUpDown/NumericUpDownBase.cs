@@ -215,7 +215,12 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
         }
         
     }
-    
+
+    protected override void OnTextInput(TextInputEventArgs e)
+    {
+        _textBox?.RaiseEvent(e);
+    }
+
     private void OnDragPanelPointerReleased(object sender, PointerReleasedEventArgs e)
     {
         _point = null;

@@ -54,6 +54,13 @@ public class NumPad: TemplatedControl
     
     private static void OnTargetGotFocus(object sender, GotFocusEventArgs e)
     {
+        if (sender is not InputElement) return;
+        var existing = OverlayDialog.Recall<NumPad>(null);
+        if (existing is not null)
+        {
+            existing.Target = sender as InputElement;
+            return;
+        }
         var numPad = new NumPad() { Target = sender as InputElement };
         OverlayDialog.ShowCustom(numPad, new object());
     }

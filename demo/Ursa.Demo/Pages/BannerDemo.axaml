@@ -48,5 +48,8 @@
             </Border>
         </Grid>
         <TextBox u:NumPad.Attach="True" Width="100" Watermark="Invoke NumPad"></TextBox>
+        <TextBox u:NumPad.Attach="True" Width="100" Watermark="Invoke NumPad"></TextBox>
+        <TextBox u:NumPad.Attach="True" Width="100" Watermark="Invoke NumPad"></TextBox>
+        <u:NumericIntUpDown u:NumPad.Attach="True" Width="100" Watermark="Invoke NumPad"></u:NumericIntUpDown>
     </StackPanel>
 </UserControl>
