@@ -11,6 +11,7 @@
     <StackPanel>
         <u:VerificationCode Count="4" Name="v4" CompleteCommand="{Binding CompleteCommand}"/>
         <u:VerificationCode Count="4" Mode="Digit"/>
+        <u:VerificationCode Count="4" Mode="Letter"/>
         <u:VerificationCode Count="6" PasswordChar="•" Complete="VerificationCode_OnComplete" />
     </StackPanel>
 </UserControl>
