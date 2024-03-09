@@ -6,66 +6,68 @@
     <ControlTheme x:Key="{x:Type u:NumPad}" TargetType="{x:Type u:NumPad}">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:NumPad">
-                <Border Padding="48">
+                <Border>
                     <Border.Styles>
-                        <Style Selector="Button">
+                        <Style Selector="RepeatButton">
                             <Setter Property="Command" Value="{Binding $parent[u:NumPad].InputNumber}" />
                             <Setter Property="CommandParameter" Value="{Binding $self.Content}" />
+                            <Setter Property="Width" Value="48"/>
+                            <Setter Property="Height" Value="48"/>
                         </Style>
                     </Border.Styles>
                     <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*">
-                        <Button
+                        <RepeatButton
                             Grid.Row="0"
                             Grid.Column="0"
                             Content="7"
                             Focusable="False" />
-                        <Button
+                        <RepeatButton
                             Grid.Row="0"
                             Grid.Column="1"
                             Content="8"
                             Focusable="False" />
-                        <Button
+                        <RepeatButton
                             Grid.Row="0"
                             Grid.Column="2"
                             Content="9"
                             Focusable="False" />
-                        <Button
+                        <RepeatButton
                             Grid.Row="1"
                             Grid.Column="0"
                             Content="4"
                             Focusable="False" />
-                        <Button
+                        <RepeatButton
                             Grid.Row="1"
                             Grid.Column="1"
                             Content="5"
                             Focusable="False" />
-                        <Button
+                        <RepeatButton
                             Grid.Row="1"
                             Grid.Column="2"
                             Content="6"
                             Focusable="False" />
-                        <Button
+                        <RepeatButton
                             Grid.Row="2"
                             Grid.Column="0"
                             Content="1"
                             Focusable="False" />
-                        <Button
+                        <RepeatButton
                             Grid.Row="2"
                             Grid.Column="1"
                             Content="2"
                             Focusable="False" />
-                        <Button
+                        <RepeatButton
                             Grid.Row="2"
                             Grid.Column="2"
                             Content="3"
                             Focusable="False" />
-                        <Button
+                        <RepeatButton
                             Grid.Row="3"
                             Grid.ColumnSpan="2"
                             Grid.Column="0"
                             Content="0"
                             Focusable="False" />
-                        <Button
+                        <RepeatButton
                             Grid.Row="3"
                             Grid.Column="2"
                             Content="."

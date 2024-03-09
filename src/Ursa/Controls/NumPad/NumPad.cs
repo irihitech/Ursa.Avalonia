@@ -60,12 +60,7 @@ public class NumPad: TemplatedControl
             return;
         }
         var numPad = new NumPad() { Target = sender as InputElement };
-        OverlayDialog.ShowCustom(numPad, new object());
-    }
-
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
-    {
-        base.OnApplyTemplate(e);
+        OverlayDialog.Show(numPad, new object(), options: new OverlayDialogOptions() { Buttons = DialogButton.None });
     }
 
     private void OnSevenButtonClick(object sender, RoutedEventArgs e)
