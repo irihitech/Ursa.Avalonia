@@ -8,10 +8,8 @@ using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-[TemplatePart(NumPad.PART_Seven, typeof(Button))]
 public class NumPad: TemplatedControl
 {
-    public const string PART_Seven = "PART_Seven";
     private Button? _sevenButton;
     public static readonly StyledProperty<InputElement?> TargetProperty = AvaloniaProperty.Register<NumPad, InputElement?>(
         nameof(Target));
@@ -68,9 +66,6 @@ public class NumPad: TemplatedControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        Button.ClickEvent.RemoveHandler(OnSevenButtonClick, _sevenButton);
-        _sevenButton = e.NameScope.Find<Button>(PART_Seven);
-        Button.ClickEvent.AddHandler(OnSevenButtonClick, _sevenButton);
     }
 
     private void OnSevenButtonClick(object sender, RoutedEventArgs e)
@@ -80,6 +75,16 @@ public class NumPad: TemplatedControl
             Source = this,
             RoutedEvent = TextInputEvent,
             Text = "7",
+        });
+    }
+
+    public void InputNumber(object o)
+    {
+        Target?.RaiseEvent(new TextInputEventArgs()
+        {
+            Source = this,
+            RoutedEvent = TextInputEvent,
+            Text = o.ToString(),
         });
     }
 }

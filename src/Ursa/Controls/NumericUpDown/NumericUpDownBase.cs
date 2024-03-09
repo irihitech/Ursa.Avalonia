@@ -213,7 +213,6 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
             _textBox?.Focus();
             _textBox!.IsReadOnly = true;
         }
-        
     }
 
     protected override void OnTextInput(TextInputEventArgs e)
