@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa">
+    <!-- Add Resources Here -->
+    <ControlTheme TargetType="u:VerificationCode" x:Key="{x:Type u:VerificationCode}">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:VerificationCode">
+                <u:VerificationCodeCollection Name="{x:Static u:VerificationCode.PART_ItemsControl}" ItemsSource="{TemplateBinding Digits}">
+                    <u:VerificationCodeCollection.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="{TemplateBinding CountOfDigit}" Rows="1"></UniformGrid>
+                        </ItemsPanelTemplate>
+                    </u:VerificationCodeCollection.ItemsPanel>
+                    <u:VerificationCodeCollection.ItemContainerTheme>
+                        <ControlTheme TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                            <Setter Property="IsReadOnly" Value="True"></Setter>
+                            <Setter Property="Focusable" Value="False"></Setter>
+                            <Setter Property="Margin" Value="8"></Setter>
+                            <Setter Property="PasswordChar" Value="{Binding $parent[u:VerificationCode].PasswordChar}"></Setter>
+                        </ControlTheme>
+                    </u:VerificationCodeCollection.ItemContainerTheme>
+                </u:VerificationCodeCollection>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+    
+    <ControlTheme TargetType="u:VerificationCodeCollection" x:Key="{x:Type u:VerificationCodeCollection}">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:VerificationCodeCollection">
+                <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"></ItemsPresenter>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

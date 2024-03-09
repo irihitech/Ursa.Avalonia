@@ -33,5 +33,6 @@
         <ResourceInclude Source="Skeleton.axaml" />
         <ResourceInclude Source="TwoTonePathIcon.axaml" />
         <ResourceInclude Source="ToolBar.axaml" />
+        <ResourceInclude Source="VerificationCode.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

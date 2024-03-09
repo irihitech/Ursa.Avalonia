@@ -42,7 +42,8 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Theme Toggler", Key = MenuKeys.MenuKeyThemeToggler, Status = "New" },
             new() { MenuHeader = "Timeline", Key = MenuKeys.MenuKeyTimeline, Status = "WIP" },
             new() { MenuHeader = "TwoTonePathIcon", Key = MenuKeys.MenuKeyTwoTonePathIcon},
-            new() { MenuHeader = "ToolBar", Key = MenuKeys.MenuKeyToolBar, Status = "New" }
+            new() { MenuHeader = "ToolBar", Key = MenuKeys.MenuKeyToolBar, Status = "New" },
+            new() { MenuHeader = "Verification Code", Key = MenuKeys.MenuKeyVerificationCode, Status = "New" },
         };
     }
 }
@@ -81,5 +82,6 @@ public static class MenuKeys
     public const string MenuKeyTwoTonePathIcon = "TwoTonePathIcon";
     public const string MenuKeyThemeToggler = "ThemeToggler";
     public const string MenuKeyToolBar = "ToolBar";
+    public const string MenuKeyVerificationCode = "VerificationCode";
 
 }
