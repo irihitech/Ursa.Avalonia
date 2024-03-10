@@ -30,7 +30,6 @@ public abstract class DialogControlBase : OverlayFeedbackElement
     internal double? HorizontalOffsetRatio { get; set; }
     internal double? VerticalOffsetRatio { get; set; }
     internal bool CanLightDismiss { get; set; }
-    internal bool CanDragMove { get; set; }
 
     protected internal Button? _closeButton;
     private Panel? _titleArea;
@@ -143,7 +142,7 @@ public abstract class DialogControlBase : OverlayFeedbackElement
     {
         base.OnApplyTemplate(e);
         _titleArea = e.NameScope.Find<Panel>(PART_TitleArea);
-        if (CanDragMove)
+        if (GetCanDragMove(this))
         {
             _titleArea?.RemoveHandler(PointerMovedEvent, OnTitlePointerMove);
             _titleArea?.RemoveHandler(PointerPressedEvent, OnTitlePointerPressed);

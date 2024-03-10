@@ -191,7 +191,7 @@ public static class OverlayDialog
             options.VerticalAnchor == VerticalPosition.Center ? null : options.VerticalOffset;
         control.IsCloseButtonVisible = options.ShowCloseButton;
         control.CanLightDismiss = options.CanLightDismiss;
-        control.CanDragMove = options.CanDragMove;
+        DialogControlBase.SetCanDragMove(control, options.CanDragMove);
     }
     
     private static void ConfigureDefaultDialogControl(DefaultDialogControl control, OverlayDialogOptions? options)
@@ -209,7 +209,7 @@ public static class OverlayDialog
         control.Buttons = options.Buttons;
         control.Title = options.Title;
         control.CanLightDismiss = options.CanLightDismiss;
-        control.CanDragMove = options.CanDragMove;
+        DialogControlBase.SetCanDragMove(control, options.CanDragMove);
     }
 
     internal static T? Recall<T>(string? hostId) where T: Control

@@ -150,6 +150,7 @@
     <ControlTheme x:Key="{x:Type u:MessageBoxControl}" TargetType="u:MessageBoxControl">
         <Setter Property="CornerRadius" Value="12" />
         <Setter Property="Padding" Value="48 24" />
+        <Setter Property="u:DialogControlBase.CanDragMove" Value="True"></Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:MessageBoxControl">
                 <Border
