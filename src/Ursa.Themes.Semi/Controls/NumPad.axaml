@@ -46,18 +46,21 @@
                             Grid.Row="0"
                             Grid.Column="1"
                             FunctionContent="/"
+                            FunctionKey="Divide"
                             NumContent="/"
                             NumKey="Divide" />
                         <u:NumPadButton
                             Grid.Row="0"
                             Grid.Column="2"
                             FunctionContent="*"
+                            FunctionKey="Multiply"
                             NumContent="*"
                             NumKey="Multiply" />
                         <u:NumPadButton
                             Grid.Row="0"
                             Grid.Column="3"
                             FunctionContent="-"
+                            FunctionKey="Subtract"
                             NumContent="-"
                             NumKey="Subtract" />
                         <u:NumPadButton
@@ -92,6 +95,7 @@
                             VerticalAlignment="Stretch"
                             FunctionContent="+"
                             NumContent="+"
+                            FunctionKey="Add"
                             NumKey="Add" />
                         <u:NumPadButton
                             Grid.Row="2"

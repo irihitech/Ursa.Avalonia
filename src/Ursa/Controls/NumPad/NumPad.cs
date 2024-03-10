@@ -64,7 +64,7 @@ public class NumPad: TemplatedControl
         OverlayDialog.Show(numPad, new object(), options: new OverlayDialogOptions() { Buttons = DialogButton.None });
     }
 
-    private Dictionary<Key, string> _keyInputMapping = new()
+    private static readonly Dictionary<Key, string> KeyInputMapping = new()
     {
         [Key.NumPad0] = "0",
         [Key.NumPad1] = "1",
@@ -85,45 +85,25 @@ public class NumPad: TemplatedControl
 
     public void ProcessClick(object o)
     {
-        if (o is NumPadButton b)
+        if (Target is null || o is not NumPadButton b) return;
+        var key = (b.NumMode ? b.NumKey : b.FunctionKey)?? Key.None;
+        if (KeyInputMapping.TryGetValue(key, out string s))
         {
-            if (b.NumKey is null)
+            Target.RaiseEvent(new TextInputEventArgs()
             {
-                Target?.RaiseEvent(new KeyEventArgs()
-                {
-                    Source = this,
-                    RoutedEvent = KeyDownEvent,
-                    Key = b.FunctionKey ?? Key.None,
-                });
-            }
-            if (b is { NumMode: true, NumKey: not null })
-            {
-                Target?.RaiseEvent(new TextInputEventArgs()
-                {
-                    Source = this,
-                    RoutedEvent = TextInputEvent,
-                    Text = _keyInputMapping.TryGetValue(b.NumKey.Value, out var text)? text:string.Empty,
-                });
-            }
-            else if (b is { NumMode: false, FunctionKey: null, NumKey: not null })
-            {
-                Target?.RaiseEvent(new TextInputEventArgs()
-                {
-                    Source = this,
-                    RoutedEvent = TextInputEvent,
-                    Text = _keyInputMapping.TryGetValue(b.NumKey.Value, out var text)? text:string.Empty,
-                });
-            }
-            else
-            {
-                Target?.RaiseEvent(new KeyEventArgs()
-                {
-                    Source = this,
-                    RoutedEvent = KeyDownEvent,
-                    Key = b.FunctionKey ?? Key.None,
-                });
-            }
+                Source = this,
+                RoutedEvent = TextInputEvent,
+                Text = s,
+            });
         }
-        
+        else
+        {
+            Target.RaiseEvent(new KeyEventArgs()
+            {
+                Source = this,
+                RoutedEvent = KeyDownEvent,
+                Key = key,
+            });
+        }
     }
 }
