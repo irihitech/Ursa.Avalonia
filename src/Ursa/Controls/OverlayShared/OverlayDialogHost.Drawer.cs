@@ -48,6 +48,8 @@ public partial class OverlayDialogHost
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetDrawerPosition(control);
+        _modalCount++;
+        HasModal = _modalCount > 0;
         control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDrawerControlClosing);
         var animation = CreateAnimation(control.Bounds.Size, control.Position);
         await Task.WhenAll(animation.RunAsync(control), _maskAppearAnimation.RunAsync(mask));
@@ -145,10 +147,13 @@ public partial class OverlayDialogHost
             control.RemoveHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged); 
             if (layer.Mask is not null)
             {
+                _modalCount--;
+                HasModal = _modalCount > 0;
                 layer.Mask.RemoveHandler(PointerPressedEvent, ClickMaskToCloseDialog);
                 var disappearAnimation = CreateAnimation(control.Bounds.Size, control.Position, false);
                 await Task.WhenAll(disappearAnimation.RunAsync(control), _maskDisappearAnimation.RunAsync(layer.Mask));
                 Children.Remove(layer.Mask);
+                
             }
             else
             {

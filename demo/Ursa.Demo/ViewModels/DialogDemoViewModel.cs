@@ -11,85 +11,27 @@ using Ursa.Demo.Pages;
 
 namespace Ursa.Demo.ViewModels;
 
-public class DialogDemoViewModel: ObservableObject
+public partial class DialogDemoViewModel: ObservableObject
 {
     public ICommand ShowDialogCommand { get; set; }
     public ICommand ShowCustomDialogCommand { get; set; }
 
-    private DialogMode _selectedMode;
-    public DialogMode SelectedMode
-    {
-        get => _selectedMode;
-        set => SetProperty(ref _selectedMode, value);
-    }
-    
-    public ObservableCollection<DialogMode> Modes { get; set; }
-    
-    private DialogButton _selectedButton;
-    public DialogButton SelectedButton
-    {
-        get => _selectedButton;
-        set => SetProperty(ref _selectedButton, value);
-    }
-    
-    public ObservableCollection<DialogButton> Buttons { get; set; }
-
-    private bool _isWindow;
-    public bool IsWindow
-    {
-        get => _isWindow;
-        set => SetProperty(ref _isWindow, value);
-    }
-    
-    private bool _isGlobal;
-    public bool IsGlobal
-    {
-        get => _isGlobal;
-        set => SetProperty(ref _isGlobal, value);
-    }
-
-    private bool _isModal;
-    public bool IsModal
-    {
-        get => _isModal;
-        set => SetProperty(ref _isModal, value);
-    }
-    
-    private bool _canLightDismiss;
-    public bool CanLightDismiss
-    {
-        get => _canLightDismiss;
-        set => SetProperty(ref _canLightDismiss, value);
-    }
-
-    private DialogResult? _defaultResult;
-    public DialogResult? DefaultResult
-    {
-        get => _defaultResult;
-        set => SetProperty(ref _defaultResult, value);
-    }
-
-    private bool _result;
-    public bool Result
-    {
-        get => _result;
-        set => SetProperty(ref _result, value);
-    }
-
-    private DateTime? _date;
-    public DateTime? Date
-    {
-        get => _date;
-        set => SetProperty(ref _date, value);
-    }
-    
+    [ObservableProperty] private DialogMode _selectedMode;
+    [ObservableProperty] private DialogButton _selectedButton;
+    [ObservableProperty] private bool _isWindow;
+    [ObservableProperty] private bool _isGlobal;
+    [ObservableProperty] private bool _isModal;
+    [ObservableProperty] private bool _canLightDismiss;
+    [ObservableProperty] private DialogResult? _defaultResult;
+    [ObservableProperty] private bool _result;
+    [ObservableProperty] private DateTime? _date;
     
     public DialogDemoViewModel()
     {
         ShowDialogCommand = new AsyncRelayCommand(ShowDialog);
         ShowCustomDialogCommand = new AsyncRelayCommand(ShowCustomDialog);
-        Modes = new ObservableCollection<DialogMode>(Enum.GetValues<DialogMode>());
-        Buttons = new ObservableCollection<DialogButton>(Enum.GetValues<DialogButton>());
+        IsModal = true;
+        IsGlobal = true;
     }
     
     private async Task ShowDialog()
@@ -149,7 +91,6 @@ public class DialogDemoViewModel: ObservableObject
         var vm = new DialogWithActionViewModel();
         if (IsWindow)
         {
-
             if (IsModal)
             {
                 Result = await Dialog.ShowCustomModal<DialogWithAction, DialogWithActionViewModel, bool>(
@@ -161,7 +102,6 @@ public class DialogDemoViewModel: ObservableObject
                 Dialog.ShowCustom<DialogWithAction, DialogWithActionViewModel>(
                     vm);
             }
-            
         }
         else
         {
