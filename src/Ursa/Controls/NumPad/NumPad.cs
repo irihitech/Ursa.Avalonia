@@ -76,14 +76,30 @@ public class NumPad: TemplatedControl
         [Key.NumPad7] = "7",
         [Key.NumPad8] = "8",
         [Key.NumPad9] = "9",
-        [Key.OemPlus] = "+",
-        [Key.OemMinus] = "-",
+        [Key.Add] = "+",
+        [Key.Subtract] = "-",
+        [Key.Multiply] = "*",
+        [Key.Divide] = "/",
+        [Key.Decimal] = ".",
     };
 
     public void ProcessClick(object o)
     {
+        if (Target?.IsFocused != true)
+        {
+            return;
+        }
         if (o is NumPadButton b)
         {
+            if (b.NumKey is null)
+            {
+                Target?.RaiseEvent(new KeyEventArgs()
+                {
+                    Source = this,
+                    RoutedEvent = KeyDownEvent,
+                    Key = b.FunctionKey ?? Key.None,
+                });
+            }
             if (b is { NumMode: true, NumKey: not null })
             {
                 Target?.RaiseEvent(new TextInputEventArgs()
