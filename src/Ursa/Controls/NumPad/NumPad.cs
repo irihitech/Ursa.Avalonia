@@ -85,10 +85,6 @@ public class NumPad: TemplatedControl
 
     public void ProcessClick(object o)
     {
-        if (Target?.IsFocused != true)
-        {
-            return;
-        }
         if (o is NumPadButton b)
         {
             if (b.NumKey is null)
