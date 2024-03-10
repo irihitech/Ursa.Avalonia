@@ -193,7 +193,7 @@
                                     Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
                                     Grid.Column="2"
                                     Margin="0,24,24,0"
-                                    Theme="{DynamicResource CloseButton}" />
+                                    Theme="{DynamicResource OverlayCloseButton}" />
                             </Grid>
                             <Grid
                                 Grid.Row="1"

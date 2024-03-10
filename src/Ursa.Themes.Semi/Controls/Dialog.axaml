@@ -45,7 +45,7 @@
                                     Grid.Column="1"
                                     Margin="0,24,24,0"
                                     DockPanel.Dock="Right"
-                                    Theme="{DynamicResource CloseButton}" />
+                                    Theme="{DynamicResource OverlayCloseButton}" />
                             </Grid>
                         </Grid>
                     </Border>
@@ -192,7 +192,7 @@
                                     Grid.Column="2"
                                     Margin="0,24,24,0"
                                     DockPanel.Dock="Right"
-                                    Theme="{DynamicResource CloseButton}" />
+                                    Theme="{DynamicResource OverlayCloseButton}" />
                             </Grid>
                             <StackPanel
                                 Grid.Row="2"
