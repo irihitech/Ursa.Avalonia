@@ -8,6 +8,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
+using Avalonia.Utilities;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
@@ -108,12 +109,16 @@ public class VerificationCode: TemplatedControl
     {
         if (e.Source is Control t)
         {
-            var text = t.FindLogicalAncestorOfType<VerificationCodeItem>();
-            if (text != null)
+            /*
+            var item = t.FindLogicalAncestorOfType<VerificationCodeItem>();
+            if (item != null)
             {
-                text.Focus();
-                _currentIndex = _itemsControl?.IndexFromContainer(text) ?? 0;
+                item.Focus();
+                _currentIndex = _itemsControl?.IndexFromContainer(item) ?? 0;
             }
+            */
+            _currentIndex = MathUtilities.Clamp(_currentIndex, 0, Count - 1);
+            _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
         }
         e.Handled = true;
     }
@@ -157,22 +162,13 @@ public class VerificationCode: TemplatedControl
         base.OnKeyDown(e);
         if (e.Key == Key.Back && _currentIndex >= 0)
         {
+            _currentIndex = MathUtilities.Clamp(_currentIndex, 0, Count - 1);
             var presenter = _itemsControl?.ContainerFromIndex(_currentIndex) as VerificationCodeItem;
             if (presenter is null) return;
             Digits[_currentIndex] = string.Empty;
             presenter.Text = string.Empty;
             if (_currentIndex == 0) return;
             _currentIndex--;
-            _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
-        }
-        else if(e.Key == Key.Left && _currentIndex > 0)
-        {
-            _currentIndex--;
-            _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
-        }
-        else if(e.Key == Key.Right && _currentIndex < Count)
-        {
-            _currentIndex++;
             _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
         }
     }

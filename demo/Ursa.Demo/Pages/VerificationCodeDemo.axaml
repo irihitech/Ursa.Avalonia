@@ -4,13 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:u="https://irihi.tech/ursa"
              xmlns:vm="using:Ursa.Demo.ViewModels"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
              x:DataType="vm:VerificationCodeDemoViewModel"
              x:CompileBindings="True"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.VerificationCodeDemo">
     <StackPanel>
         <u:VerificationCode Count="4" Name="v4" CompleteCommand="{Binding CompleteCommand}"/>
-        <u:VerificationCode Count="4" Mode="Digit"/>
+        <u:VerificationCode Count="4" Mode="Digit" DataValidationErrors.Errors="{Binding Error}"/>
         <u:VerificationCode Count="4" Mode="Letter"/>
         <u:VerificationCode Count="6" PasswordChar="•" Complete="VerificationCode_OnComplete" />
     </StackPanel>

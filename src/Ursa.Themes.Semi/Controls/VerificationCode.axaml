@@ -10,16 +10,19 @@
         <Setter Property="Margin" Value="8" />
         <Setter Property="FontSize" Value="20" />
         <Setter Property="Focusable" Value="True" />
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Height" Value="48" />
+        <Setter Property="Width" Value="48" />
+        <Setter Property="CornerRadius" Value="3" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border
                     Name="PART_Background"
-                    Width="32"
-                    Height="32"
-                    BorderThickness="{TemplateBinding BorderThickness}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
                     Background="{DynamicResource TextBoxDefaultBackground}"
-                    CornerRadius="3">
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
                     <TextPresenter
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
@@ -30,14 +33,20 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover /template/ Border#PART_Background">
-            <Setter Property="Background" Value="{DynamicResource TextBoxPointeroverBackground}"></Setter>
+            <Setter Property="Background" Value="{DynamicResource TextBoxPointeroverBackground}" />
         </Style>
         <Style Selector="^:focus /template/ Border#PART_Background">
-            <Setter Property="Background" Value="{DynamicResource TextBoxPointeroverBackground}"></Setter>
-            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}"></Setter>
+            <Setter Property="Background" Value="{DynamicResource TextBoxPointeroverBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
+        </Style>
+        <Style Selector="^:error /template/ Border#PART_Background">
+            <Setter Property="Background" Value="{DynamicResource DataValidationErrorsSelectedBackground}" />
+        </Style>
+        <Style Selector="^:focus:error /template/ Border#PART_Background">
+            <Setter Property="BorderBrush" Value="{DynamicResource DataValidationErrorsSelectedBorderBrush}" />
         </Style>
     </ControlTheme>
-    
+
     <ControlTheme x:Key="{x:Type u:VerificationCodeCollection}" TargetType="u:VerificationCodeCollection">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:VerificationCodeCollection">
@@ -47,21 +56,24 @@
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:VerificationCode}" TargetType="u:VerificationCode">
-        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:VerificationCode">
-                <u:VerificationCodeCollection Name="{x:Static u:VerificationCode.PART_ItemsControl}" ItemsSource="{TemplateBinding Digits}">
-                    <u:VerificationCodeCollection.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <UniformGrid Columns="{TemplateBinding Count}" Rows="1" />
-                        </ItemsPanelTemplate>
-                    </u:VerificationCodeCollection.ItemsPanel>
-                    <u:VerificationCodeCollection.ItemContainerTheme>
-                        <ControlTheme BasedOn="{StaticResource {x:Type u:VerificationCodeItem}}" TargetType="u:VerificationCodeItem">
-                            <Setter Property="PasswordChar" Value="{Binding $parent[u:VerificationCode].PasswordChar}" />
-                        </ControlTheme>
-                    </u:VerificationCodeCollection.ItemContainerTheme>
-                </u:VerificationCodeCollection>
+                <DataValidationErrors>
+                    <u:VerificationCodeCollection HorizontalAlignment="Left" Name="{x:Static u:VerificationCode.PART_ItemsControl}" ItemsSource="{TemplateBinding Digits}">
+                        <u:VerificationCodeCollection.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="{TemplateBinding Count}" Rows="1" />
+                            </ItemsPanelTemplate>
+                        </u:VerificationCodeCollection.ItemsPanel>
+                        <u:VerificationCodeCollection.ItemContainerTheme>
+                            <ControlTheme BasedOn="{StaticResource {x:Type u:VerificationCodeItem}}" TargetType="u:VerificationCodeItem">
+                                <Setter Property="PasswordChar" Value="{Binding $parent[u:VerificationCode].PasswordChar}" />
+                                <Setter Property="DataValidationErrors.Errors" Value="{Binding $parent[u:VerificationCode].(DataValidationErrors.Errors)}" />
+                            </ControlTheme>
+                        </u:VerificationCodeCollection.ItemContainerTheme>
+                    </u:VerificationCodeCollection>
+                </DataValidationErrors>
             </ControlTemplate>
         </Setter>
     </ControlTheme>

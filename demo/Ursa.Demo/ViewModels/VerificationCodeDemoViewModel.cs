@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia.Collections;
@@ -8,13 +9,15 @@ using Ursa.Controls;
 
 namespace Ursa.Demo.ViewModels;
 
-public class VerificationCodeDemoViewModel: ObservableObject
+public partial class VerificationCodeDemoViewModel: ObservableObject
 {
     public ICommand CompleteCommand { get; set; }
+    [ObservableProperty] private List<Exception>? _error;
 
     public VerificationCodeDemoViewModel()
     {
         CompleteCommand = new AsyncRelayCommand<IList<string>>(OnComplete);
+        Error = [new Exception("Invalid verification code")];
     }
 
     private async Task OnComplete(IList<string>? obj)
