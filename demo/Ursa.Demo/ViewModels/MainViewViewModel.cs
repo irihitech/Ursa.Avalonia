@@ -56,6 +56,7 @@ public class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyTwoTonePathIcon => new TwoTonePathIconDemoViewModel(),
             MenuKeys.MenuKeyThemeToggler => new ThemeTogglerDemoViewModel(),
             MenuKeys.MenuKeyToolBar => new ToolBarDemoViewModel(),
+            MenuKeys.MenuKeyVerificationCode => new VerificationCodeDemoViewModel(),
         };
     }
 }
