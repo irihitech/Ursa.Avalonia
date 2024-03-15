@@ -13,7 +13,7 @@ namespace Ursa.Demo.Converters;
 public class IconNameConverter: IValueConverter
 {
     [Content]
-    public Dictionary<string, PathGeometry> Paths { get; set; } = new();
+    public Dictionary<string, StreamGeometry> Paths { get; set; } = new();
 
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
