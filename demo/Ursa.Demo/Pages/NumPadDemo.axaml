@@ -1,0 +1,36 @@
+﻿<UserControl
+    x:Class="Ursa.Demo.Pages.NumPadDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel HorizontalAlignment="Left">
+        <TextBox
+            HorizontalAlignment="Stretch"
+            u:NumPad.Attach="True"
+            Watermark="Invoke NumPad" />
+        <TextBox
+            HorizontalAlignment="Stretch"
+            u:NumPad.Attach="True"
+            Watermark="Invoke NumPad" />
+        <TextBox
+            HorizontalAlignment="Stretch"
+            u:NumPad.Attach="True"
+            Watermark="Invoke NumPad" />
+        <u:IPv4Box Width="200" u:NumPad.Attach="True" />
+        <u:NumericIntUpDown
+            HorizontalAlignment="Stretch"
+            u:NumPad.Attach="True"
+            Watermark="Invoke NumPad" />
+        <Border Theme="{DynamicResource CardBorder}">
+            <StackPanel>
+                <TextBox Name="text" Width="200" />
+                <u:NumPad Target="{Binding #text}" />
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</UserControl>

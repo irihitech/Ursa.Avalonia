@@ -189,4 +189,10 @@ public partial class OverlayDialogHost: Canvas
         }
         return result;
     }
+
+    internal T? Recall<T>()
+    {
+        var element = _layers.LastOrDefault(a => a.Element.Content?.GetType() == typeof(T));
+        return element?.Element.Content is T t ? t : default;
+    }
 }

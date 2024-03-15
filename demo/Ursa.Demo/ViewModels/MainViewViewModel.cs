@@ -46,6 +46,7 @@ public class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyNavMenu => new NavMenuDemoViewModel(),
             MenuKeys.MenuKeyNumberDisplayer => new NumberDisplayerDemoViewModel(),
             MenuKeys.MenuKeyNumericUpDown => new NumericUpDownDemoViewModel(),
+            MenuKeys.MenuKeyNumPad => new NumPadDemoViewModel(),
             MenuKeys.MenuKeyPagination => new PaginationDemoViewModel(),
             MenuKeys.MenuKeyRangeSlider => new RangeSliderDemoViewModel(),
             MenuKeys.MenuKeyScrollToButton => new ScrollToButtonDemoViewModel(),
