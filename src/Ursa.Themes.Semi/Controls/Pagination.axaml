@@ -27,8 +27,18 @@
                             Data="{DynamicResource PaginationForwardGlyph}"
                             Foreground="{DynamicResource PaginationButtonIconForeground}" />
                     </u:PaginationButton>
+                    <StackPanel Orientation="Horizontal" IsVisible="{TemplateBinding ShowQuickJump}">
+                        <TextBlock
+                            Margin="4 0"
+                            VerticalAlignment="Center"
+                            Text="{DynamicResource STRING_PAGINATION_JUMP_TO}" />
+                        <u:NumericIntUpDown x:Name="{x:Static u:Pagination.PART_QuickJumpInput}" ShowButtonSpinner="False" Width="50"></u:NumericIntUpDown>
+                        <TextBlock
+                            Margin="4 0"
+                            VerticalAlignment="Center"
+                            Text="{DynamicResource STRING_PAGINATION_PAGE}" />
+                    </StackPanel>
                     <ComboBox
-                        Name="{x:Static u:Pagination.PART_SizeChangerComboBox}"
                         IsVisible="{TemplateBinding ShowPageSizeSelector}"
                         ItemsSource="{TemplateBinding PageSizeOptions}"
                         SelectedItem="{TemplateBinding PageSize,

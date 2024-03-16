@@ -3,9 +3,9 @@ using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Styling;
-using Avalonia.Utilities;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
@@ -18,18 +18,18 @@ namespace Ursa.Controls;
 [TemplatePart(PART_PreviousButton, typeof(PaginationButton))]
 [TemplatePart(PART_NextButton, typeof(PaginationButton))]
 [TemplatePart(PART_ButtonPanel, typeof(StackPanel))]
-[TemplatePart(PART_SizeChangerComboBox, typeof(ComboBox))]
+[TemplatePart(PART_QuickJumpInput, typeof(NumericIntUpDown))]
 public class Pagination: TemplatedControl
 {
     public const string PART_PreviousButton = "PART_PreviousButton";
     public const string PART_NextButton = "PART_NextButton";
     public const string PART_ButtonPanel = "PART_ButtonPanel";
-    public const string PART_SizeChangerComboBox = "PART_SizeChangerComboBox";
+    public const string PART_QuickJumpInput = "PART_QuickJumpInput";
     private PaginationButton? _previousButton;
     private PaginationButton? _nextButton;
     private StackPanel? _buttonPanel;
     private readonly PaginationButton[] _buttons = new PaginationButton[7];
-    private ComboBox? _sizeChangerComboBox;
+    private NumericIntUpDown? _quickJumpInput;
     
     public static readonly StyledProperty<int?> CurrentPageProperty = AvaloniaProperty.Register<Pagination, int?>(
         nameof(CurrentPage));
@@ -107,10 +107,7 @@ public class Pagination: TemplatedControl
 
     public static readonly StyledProperty<bool> ShowQuickJumpProperty = AvaloniaProperty.Register<Pagination, bool>(
         nameof(ShowQuickJump));
-
-    /// <summary>
-    /// This feature is not implemented yet. 
-    /// </summary>
+    
     public bool ShowQuickJump
     {
         get => GetValue(ShowQuickJumpProperty);
@@ -145,14 +142,44 @@ public class Pagination: TemplatedControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
+        
         Button.ClickEvent.AddHandler(OnButtonClick, _previousButton, _nextButton);
         _previousButton = e.NameScope.Find<PaginationButton>(PART_PreviousButton);
         _nextButton = e.NameScope.Find<PaginationButton>(PART_NextButton);
         _buttonPanel = e.NameScope.Find<StackPanel>(PART_ButtonPanel);
-        _sizeChangerComboBox = e.NameScope.Find<ComboBox>(PART_SizeChangerComboBox);
         Button.ClickEvent.AddHandler(OnButtonClick, _previousButton, _nextButton);
+        
+        KeyDownEvent.RemoveHandler(OnQuickJumpInputKeyDown, _quickJumpInput);
+        LostFocusEvent.RemoveHandler(OnQuickJumpInputLostFocus, _quickJumpInput);
+        _quickJumpInput = e.NameScope.Find<NumericIntUpDown>(PART_QuickJumpInput);
+        KeyDownEvent.AddHandler(OnQuickJumpInputKeyDown, _quickJumpInput);
+        LostFocusEvent.AddHandler(OnQuickJumpInputLostFocus, _quickJumpInput);
+        
         InitializePanelButtons();
         UpdateButtonsByCurrentPage(0);
+    }
+
+    private void OnQuickJumpInputKeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key is Key.Enter or Key.Return)
+        {
+            SyncQuickJumperValue();
+        }
+    }
+    
+    private void OnQuickJumpInputLostFocus(object sender, RoutedEventArgs e)
+    {
+        SyncQuickJumperValue();
+    }
+    
+    private void SyncQuickJumperValue()
+    {
+        if (_quickJumpInput is null) return;
+        var value = _quickJumpInput?.Value;
+        if (value is null) return;
+        value = Clamp(value.Value, 1, PageCount);
+        SetCurrentValue(CurrentPageProperty, value);
+        _quickJumpInput?.SetCurrentValue(NumericIntUpDown.ValueProperty, null);
     }
 
     private void OnButtonClick(object? sender, RoutedEventArgs e)
