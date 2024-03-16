@@ -100,16 +100,13 @@ public class ToolBarPanel: StackPanel
 
     protected override Size ArrangeOverride(Size finalSize)
     {
-        //Children.Clear();
-        //OverflowPanel?.Children.Clear();
         var logicalChildren = _parent?.GetLogicalChildren().OfType<Control>().ToList();
-        List<Control> thisPanel = new List<Control>();
-        List<Control> thatPanel = new List<Control>();
         if(logicalChildren is null) return finalSize;
         bool overflow = false;
         for (int i = 0; i < logicalChildren.Count; i++)
         {
             var child = logicalChildren[i];
+            if(child is ToolBarSeparator s) s.IsVisible = true;
             var isItemOverflow = ToolBar.GetIsOverflowItem(child);
             if(isItemOverflow) overflow = true;
             if (Children?.Contains(child) == true)
