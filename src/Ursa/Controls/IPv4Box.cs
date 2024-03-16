@@ -136,7 +136,7 @@ public class IPv4Box: TemplatedControl
         if (_currentActivePresenter is null) return;
         var keymap = TopLevel.GetTopLevel(this)?.PlatformSettings?.HotkeyConfiguration;
         bool Match(List<KeyGesture> gestures) => gestures.Any(g => g.Matches(e));
-        if (e.Key == Key.Enter)
+        if (e.Key is Key.Enter or Key.Return)
         {
             ParseBytes(ShowLeadingZero);
             SetIPAddressInternal();
@@ -170,25 +170,6 @@ public class IPv4Box: TemplatedControl
             _currentActivePresenter?.ShowCaret();
             e.Handled = true;
         }
-        else if (e.Key == Key.OemPeriod || e.Key == Key.Decimal)
-        {
-            if (string.IsNullOrEmpty(_currentActivePresenter.Text))
-            {
-                base.OnKeyDown(e);
-                return;
-            }
-            _currentActivePresenter?.HideCaret();
-            _currentActivePresenter.ClearSelection();
-            if (Equals(_currentActivePresenter, _fourthText))
-            {
-                base.OnKeyDown(e);
-                return;
-            }
-            MoveToNextPresenter(_currentActivePresenter, false);
-            _currentActivePresenter?.ShowCaret();
-            _currentActivePresenter.MoveCaretToStart();
-            e.Handled = true;
-        }
         else if (e.Key == Key.Back)
         {
             DeleteImplementation(_currentActivePresenter);
@@ -212,6 +193,16 @@ public class IPv4Box: TemplatedControl
         if (e.Handled) return;
         string? s = e.Text;
         if (string.IsNullOrEmpty(s)) return;
+        if (s == ".")
+        {
+            _currentActivePresenter?.HideCaret();
+            _currentActivePresenter.ClearSelection();
+            MoveToNextPresenter(_currentActivePresenter, false);
+            _currentActivePresenter?.ShowCaret();
+            _currentActivePresenter.MoveCaretToStart();
+            e.Handled = false;
+            return;
+        }
         if (!char.IsNumber(s![0])) return;
         if (_currentActivePresenter != null)
         {
