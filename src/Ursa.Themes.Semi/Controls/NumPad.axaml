@@ -4,7 +4,7 @@
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
     <Design.PreviewWith>
-        <u:NumPad></u:NumPad>
+        <u:NumPad />
     </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:NumPad}" TargetType="{x:Type u:NumPad}">
         <Setter Property="Template">
@@ -18,22 +18,26 @@
                             <Setter Property="CommandParameter" Value="{Binding $self}" />
                             <Setter Property="Width" Value="54" />
                             <Setter Property="Height" Value="54" />
-                            <Setter Property="UseLayoutRounding" Value="False"></Setter>
-                            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
-                            <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+                            <Setter Property="UseLayoutRounding" Value="False" />
+                            <Setter Property="HorizontalAlignment" Value="Stretch" />
+                            <Setter Property="VerticalAlignment" Value="Stretch" />
                             <Setter Property="Margin" Value="1" />
                         </Style>
                     </Border.Styles>
-                    <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*,*" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Grid
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        ColumnDefinitions="*,*,*,*"
+                        RowDefinitions="*,*,*,*,*">
                         <ToggleButton
                             Grid.Row="0"
                             Grid.Column="0"
                             MinWidth="54"
                             MinHeight="54"
+                            Margin="1"
                             Padding="0"
                             Focusable="False"
                             FontWeight="Regular"
-                            Margin="1"
                             IsChecked="{TemplateBinding NumMode,
                                                         Mode=TwoWay}">
                             <TextBlock>
@@ -84,7 +88,7 @@
                             NumContent="9"
                             NumKey="NumPad9">
                             <u:NumPadButton.FunctionContent>
-                                <TextBlock><Run Text="Page"/><LineBreak/><Run Text="Up"/></TextBlock>
+                                <TextBlock><Run Text="Page" /><LineBreak /><Run Text="Up" /></TextBlock>
                             </u:NumPadButton.FunctionContent>
                         </u:NumPadButton>
                         <u:NumPadButton
@@ -94,8 +98,8 @@
                             Height="{x:Static x:Double.NaN}"
                             VerticalAlignment="Stretch"
                             FunctionContent="+"
-                            NumContent="+"
                             FunctionKey="Add"
+                            NumContent="+"
                             NumKey="Add" />
                         <u:NumPadButton
                             Grid.Row="2"
@@ -139,7 +143,7 @@
                             NumContent="3"
                             NumKey="NumPad3">
                             <u:NumPadButton.FunctionContent>
-                                <TextBlock><Run Text="Page"/><LineBreak/><Run Text="Down"/></TextBlock>
+                                <TextBlock><Run Text="Page" /><LineBreak /><Run Text="Down" /></TextBlock>
                             </u:NumPadButton.FunctionContent>
                         </u:NumPadButton>
                         <u:NumPadButton
@@ -150,15 +154,16 @@
                             VerticalAlignment="Stretch"
                             FunctionContent="Enter"
                             FunctionKey="Enter"
-                            NumContent="Enter" />
+                            NumContent="Enter"
+                            NumKey="Enter" />
                         <u:NumPadButton
                             Grid.Row="4"
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
+                            Width="{x:Static x:Double.NaN}"
                             FunctionContent="Insert"
                             FunctionKey="Insert"
                             NumContent="0"
-                            Width="{x:Static x:Double.NaN}"
                             NumKey="NumPad0" />
                         <u:NumPadButton
                             Grid.Row="4"
@@ -166,7 +171,7 @@
                             FunctionContent="Delete"
                             FunctionKey="Delete"
                             NumContent="."
-                            NumKey="Decimal"/>
+                            NumKey="Decimal" />
                     </Grid>
                 </Border>
             </ControlTemplate>
