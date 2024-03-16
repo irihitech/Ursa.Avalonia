@@ -1,21 +1,23 @@
 ﻿using System.Globalization;
-using System.Runtime.CompilerServices;
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using Avalonia.Markup.Xaml.Styling;
-using Avalonia.Platform;
 using Avalonia.Styling;
 
 namespace Ursa.Themes.Semi;
 
+/// <summary>
+/// Notice: Don't set Locale if your app is in InvariantGlobalization mode.
+/// </summary>
 public class SemiTheme: Styles
 {
-    private static readonly Dictionary<CultureInfo, string> _localeToResource = new()
-    {
-        { new CultureInfo("zh-CN"), "avares://Ursa.Themes.Semi/Locale/zh-CN.axaml" },
-        { new CultureInfo("en-US"), "avares://Ursa.Themes.Semi/Locale/en-US.axaml" },
-    };
+    private static readonly Lazy<Dictionary<CultureInfo, string>> _localeToResource = new Lazy<Dictionary<CultureInfo, string>>(
+        () => new Dictionary<CultureInfo, string>
+        {
+            { new CultureInfo("zh-CN"), "avares://Ursa.Themes.Semi/Locale/zh-CN.axaml" },
+            { new CultureInfo("en-US"), "avares://Ursa.Themes.Semi/Locale/en-US.axaml" },
+        });
+    
+    private static readonly string _defaultResource = "avares://Ursa.Themes.Semi/Locale/zh-CN.axaml";
     
     private readonly IServiceProvider? sp;
     public SemiTheme(IServiceProvider? provider = null)
@@ -29,29 +31,40 @@ public class SemiTheme: Styles
     {
         get => _locale;
         set
-        { 
-            _locale = value;
-            var resource = TryGetLocaleResource(value);
-            var d = AvaloniaXamlLoader.Load(sp, new Uri(resource)) as ResourceDictionary;
-            if (d is null) return;
-            foreach (var kv in d)
+        {
+            try
             {
-                this.Resources.Add(kv);
+                _locale = value;
+                var resource = TryGetLocaleResource(value);
+                var d = AvaloniaXamlLoader.Load(sp, new Uri(resource)) as ResourceDictionary;
+                if (d is null) return;
+                foreach (var kv in d)
+                {
+                    this.Resources.Add(kv);
+                }
             }
+            catch
+            {
+                _locale = CultureInfo.InvariantCulture;
+            }
+            
         }
     }
     
     private static string TryGetLocaleResource(CultureInfo? locale)
     {
+        if (Equals(locale, CultureInfo.InvariantCulture))
+        {
+            return _defaultResource;
+        }
         if (locale is null)
         {
-            return _localeToResource[new CultureInfo("zh-CN")];
+            return _localeToResource.Value[new CultureInfo("zh-CN")];
         }
-
-        if (_localeToResource.TryGetValue(locale, out var resource))
+        if (_localeToResource.Value.TryGetValue(locale, out var resource))
         {
             return resource;
         }
-        return _localeToResource[new CultureInfo("zh-CN")];
+        return _localeToResource.Value[new CultureInfo("zh-CN")];
     }
 }
