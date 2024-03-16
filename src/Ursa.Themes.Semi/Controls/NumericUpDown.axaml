@@ -35,6 +35,7 @@
                         MinWidth="0"
                         HorizontalContentAlignment="Stretch"
                         VerticalContentAlignment="Stretch"
+                        ShowButtonSpinner="{TemplateBinding ShowButtonSpinner}"
                         AllowSpin="{TemplateBinding AllowSpin}"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"

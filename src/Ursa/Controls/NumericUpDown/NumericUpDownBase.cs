@@ -110,6 +110,15 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
         set => SetValue(AllowSpinProperty, value);
     }
 
+    public static readonly StyledProperty<bool> ShowButtonSpinnerProperty =
+        ButtonSpinner.ShowButtonSpinnerProperty.AddOwner<NumericUpDown>();
+
+    public bool ShowButtonSpinner
+    {
+        get => GetValue(ShowButtonSpinnerProperty);
+        set => SetValue(ShowButtonSpinnerProperty, value);
+    }
+
     public event EventHandler<SpinEventArgs>? Spinned;
     
     static NumericUpDown()
