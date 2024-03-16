@@ -157,6 +157,10 @@ public class IPv4Box: TemplatedControl
         {
             Paste();
         }
+        else if (keymap is not null && Match(keymap.Cut))
+        {
+            Cut();
+        }
         if (e.Key == Key.Tab)
         {
             _currentActivePresenter?.HideCaret();
