@@ -26,6 +26,11 @@
             Orientation="{Binding #Orientation.Value}">
             <Button u:ToolBar.OverflowMode="Never" Content="Button 1" />
             <u:ToolBarSeparator />
+            <TextBox Width="100" VerticalAlignment="Center"></TextBox>
+            <StackPanel Orientation="Horizontal">
+                <RadioButton Content="A" VerticalAlignment="Center"></RadioButton>
+                <RadioButton Content="B" VerticalAlignment="Center"></RadioButton>
+            </StackPanel>
             <Button u:ToolBar.OverflowMode="AsNeeded" Content="Button 2" />
             <Button u:ToolBar.OverflowMode="AsNeeded" Content="Button 3" />
             <ToggleButton Content="Toggle" />
