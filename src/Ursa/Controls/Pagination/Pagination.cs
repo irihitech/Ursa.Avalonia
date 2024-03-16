@@ -5,6 +5,8 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Styling;
+using Avalonia.Utilities;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -28,27 +30,11 @@ public class Pagination: TemplatedControl
     private StackPanel? _buttonPanel;
     private readonly PaginationButton[] _buttons = new PaginationButton[7];
     private ComboBox? _sizeChangerComboBox;
-
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
-    {
-        base.OnApplyTemplate(e);
-        if (_previousButton != null) _previousButton.Click -= OnButtonClick;
-        if (_nextButton != null) _nextButton.Click -= OnButtonClick;
-        _previousButton = e.NameScope.Find<PaginationButton>(PART_PreviousButton);
-        _nextButton = e.NameScope.Find<PaginationButton>(PART_NextButton);
-        _buttonPanel = e.NameScope.Find<StackPanel>(PART_ButtonPanel);
-        _sizeChangerComboBox = e.NameScope.Find<ComboBox>(PART_SizeChangerComboBox);
-        if (_previousButton != null) _previousButton.Click += OnButtonClick;
-        if (_nextButton != null) _nextButton.Click += OnButtonClick;
-        InitializePanelButtons();
-        UpdateButtons(0);
-
-    }
     
-    public static readonly StyledProperty<int> CurrentPageProperty = AvaloniaProperty.Register<Pagination, int>(
+    public static readonly StyledProperty<int?> CurrentPageProperty = AvaloniaProperty.Register<Pagination, int?>(
         nameof(CurrentPage));
     
-    public int CurrentPage
+    public int? CurrentPage
     {
         get => GetValue(CurrentPageProperty);
         set => SetValue(CurrentPageProperty, value);
@@ -122,39 +108,57 @@ public class Pagination: TemplatedControl
     public static readonly StyledProperty<bool> ShowQuickJumpProperty = AvaloniaProperty.Register<Pagination, bool>(
         nameof(ShowQuickJump));
 
+    /// <summary>
+    /// This feature is not implemented yet. 
+    /// </summary>
     public bool ShowQuickJump
     {
         get => GetValue(ShowQuickJumpProperty);
         set => SetValue(ShowQuickJumpProperty, value);
     }
 
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    static Pagination()
     {
-        base.OnPropertyChanged(change);
-        // When page size is updated, the selected current page must be updated. 
-        if (change.Property == PageSizeProperty)
+        PageSizeProperty.Changed.AddClassHandler<Pagination, int>((pagination, args)=>pagination.OnPageSizeChanged(args));
+        CurrentPageProperty.Changed.AddClassHandler<Pagination, int?>((pagination, args) =>
+            pagination.UpdateButtonsByCurrentPage(args.NewValue.Value));
+        TotalCountProperty.Changed.AddClassHandler<Pagination, int>((pagination, args) =>
+            pagination.UpdateButtonsByCurrentPage(pagination.CurrentPage));
+    }
+
+    private void OnPageSizeChanged(AvaloniaPropertyChangedEventArgs<int> args)
+    {
+        int pageCount = TotalCount / args.NewValue.Value;
+        int residue = TotalCount % args.NewValue.Value;
+        if (residue > 0)
         {
-            int oldPageSize = change.GetOldValue<int>();
-            int index = oldPageSize * CurrentPage;
-            UpdateButtons(index);
+            pageCount++;
         }
-        else if (change.Property == TotalCountProperty || change.Property == CurrentPageProperty)
+        PageCount = pageCount;
+        if (CurrentPage > PageCount)
         {
-            int index = PageSize * CurrentPage;
-            UpdateButtons(index);
+            CurrentPage = null;
         }
+        UpdateButtonsByCurrentPage(CurrentPage);
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        Button.ClickEvent.AddHandler(OnButtonClick, _previousButton, _nextButton);
+        _previousButton = e.NameScope.Find<PaginationButton>(PART_PreviousButton);
+        _nextButton = e.NameScope.Find<PaginationButton>(PART_NextButton);
+        _buttonPanel = e.NameScope.Find<StackPanel>(PART_ButtonPanel);
+        _sizeChangerComboBox = e.NameScope.Find<ComboBox>(PART_SizeChangerComboBox);
+        Button.ClickEvent.AddHandler(OnButtonClick, _previousButton, _nextButton);
+        InitializePanelButtons();
+        UpdateButtonsByCurrentPage(0);
     }
 
     private void OnButtonClick(object? sender, RoutedEventArgs e)
     {
-        if (Equals(sender, _previousButton))
-        {
-            AddCurrentPage(-1);
-        }
-        else
-        {
-            AddCurrentPage(1);
-        }
+        var diff = Equals(sender, _previousButton) ? -1 : 1;
+        AddCurrentPage(diff);
     }
 
     private void InitializePanelButtons()
@@ -166,7 +170,7 @@ public class Pagination: TemplatedControl
             var button = new PaginationButton() { Page = i, IsVisible = true };
             _buttonPanel.Children.Add(button);
             _buttons![i - 1] = button;
-            button.Click+= OnPageButtonClick;
+            Button.ClickEvent.AddHandler(OnPageButtonClick, button);
         }
     }
 
@@ -191,30 +195,32 @@ public class Pagination: TemplatedControl
 
     private void AddCurrentPage(int pageChange)
     {
-        int newValue = CurrentPage + pageChange;
-        if (newValue <= 0) newValue = 1;
-        else if(newValue>=PageCount) newValue = PageCount;
-        CurrentPage = newValue;
+        int newValue = (CurrentPage ?? 0) + pageChange;
+        newValue = Clamp(newValue, 1, PageCount);
+        ; SetCurrentValue(CurrentPageProperty, newValue);
     }
-
-    private void UpdateButtons(int index)
+    
+    private int Clamp(int value, int min, int max)
+    {
+        return value < min ? min : value > max ? max : value;
+    }
+    
+    /// <summary>
+    /// Update Button Content and Visibility by current page.
+    /// </summary>
+    /// <param name="page"></param>
+    private void UpdateButtonsByCurrentPage(int? page)
     {
         if (_buttonPanel is null) return;
         if (PageSize == 0) return;
 
-        int currentIndex = index;
-        
+        int? currentPage = CurrentPage;
         int pageCount = TotalCount / PageSize;
         int residue = TotalCount % PageSize;
         if (residue > 0)
         {
             pageCount++;
         }
-        
-        PageCount = pageCount;
-        
-        int currentPage = currentIndex/ PageSize;
-        if (currentPage == 0) currentPage++;
 
         if (pageCount <= 7)
         {
@@ -237,9 +243,8 @@ public class Pagination: TemplatedControl
             {
                 _buttons[i].IsVisible = true;
             }
-            int mid = currentPage;
-            if (mid < 4) mid = 4;
-            else if (mid > pageCount - 3) mid = pageCount - 3;
+            int mid = currentPage ?? 0;
+            mid = Clamp(mid, 4, pageCount - 3);
             _buttons[3].Page = mid;
             _buttons[2].Page = mid - 1;
             _buttons[4].Page = mid + 1;
@@ -247,7 +252,7 @@ public class Pagination: TemplatedControl
             _buttons[6].Page = pageCount;
             if(mid>4)
             {
-                _buttons[1].SetStatus(0, false, true, false);
+                _buttons[1].SetStatus(-1, false, true, false);
             }
             else
             {
@@ -255,7 +260,7 @@ public class Pagination: TemplatedControl
             }
             if(mid<pageCount-3)
             {
-                _buttons[5].SetStatus(0, false, false, true);
+                _buttons[5].SetStatus(-1, false, false, true);
             }
             else
             {
@@ -275,8 +280,9 @@ public class Pagination: TemplatedControl
             }
         }
 
-        CurrentPage = currentPage;
-        if (_previousButton != null) _previousButton.IsEnabled = CurrentPage > 1;
-        if( _nextButton!=null) _nextButton.IsEnabled = CurrentPage < PageCount;
+        PageCount = pageCount;
+        SetCurrentValue(CurrentPageProperty, currentPage);
+        if (_previousButton != null) _previousButton.IsEnabled = (CurrentPage??int.MaxValue) > 1;
+        if (_nextButton != null) _nextButton.IsEnabled = (CurrentPage ?? 0) < PageCount;
     }
 }
