@@ -100,37 +100,50 @@ public class ToolBarPanel: StackPanel
 
     protected override Size ArrangeOverride(Size finalSize)
     {
-        Children.Clear();
-        OverflowPanel?.Children.Clear();
         var logicalChildren = _parent?.GetLogicalChildren().OfType<Control>().ToList();
         if(logicalChildren is null) return finalSize;
         bool overflow = false;
-        foreach (var child in logicalChildren)
+        for (int i = 0; i < logicalChildren.Count; i++)
         {
-            if (ToolBar.GetIsOverflowItem(child))
+            var child = logicalChildren[i];
+            if(child is ToolBarSeparator s) s.IsVisible = true;
+            var isItemOverflow = ToolBar.GetIsOverflowItem(child);
+            if(isItemOverflow) overflow = true;
+            if (Children?.Contains(child) == true)
             {
-                OverflowPanel?.Children.Add(child);
-                overflow = true;
+                if (isItemOverflow)
+                {
+                    Children.Remove(child);
+                    var overflowIndex = -1;
+                    if (i > 1)
+                    {
+                        var last = logicalChildren[i - 1];
+                        overflowIndex = OverflowPanel?.Children?.IndexOf(last) ?? -1;
+                    }
+                    OverflowPanel?.Children?.Insert(overflowIndex + 1, child);
+                }
             }
-            else
+            else if (OverflowPanel?.Children?.Contains(child) == true)
             {
-                Children.Add(child);
-            }
-
-            if (child is ToolBarSeparator s)
-            {
-                s.IsVisible = true;
+                if (!isItemOverflow)
+                {
+                    OverflowPanel.Children.Remove(child);
+                    var index = -1;
+                    if (i > 1)
+                    {
+                        var last = logicalChildren[i - 1];
+                        index = Children?.IndexOf(last) ?? -1;
+                    }
+                    Children?.Insert(index + 1, child);
+                }
             }
         }
-
-        var thisLast = this.Children.LastOrDefault();
-        if (thisLast is ToolBarSeparator s2)
+        
+        if (this.Children?.LastOrDefault() is ToolBarSeparator s2)
         {
             s2.IsVisible = false;
         }
-
-        var thatFirst = OverflowPanel?.Children.FirstOrDefault();
-        if (thatFirst is ToolBarSeparator s3)
+        if (OverflowPanel?.Children?.FirstOrDefault() is ToolBarSeparator s3)
         {
             s3.IsVisible = false;
         }
