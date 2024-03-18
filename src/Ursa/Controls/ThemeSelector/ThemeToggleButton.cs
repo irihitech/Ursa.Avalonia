@@ -90,6 +90,9 @@ public class ThemeToggleButton: ThemeSelectorBase
             PseudoClasses.Set(PC_Light, theme == ThemeVariant.Light);
             PseudoClasses.Set(PC_Dark, theme == ThemeVariant.Dark);
             PseudoClasses.Set(PC_Default, theme == null || SelectedTheme == ThemeVariant.Default);
+            if (theme == ThemeVariant.Dark) _state = false;
+            else if (theme == ThemeVariant.Light) _state = true;
+            else _state = null;
         }
     }
 }
