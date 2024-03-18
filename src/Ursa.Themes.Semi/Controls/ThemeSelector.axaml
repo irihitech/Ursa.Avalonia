@@ -5,26 +5,26 @@
     <ControlTheme TargetType="u:ThemeToggleButton" x:Key="{x:Type u:ThemeToggleButton}">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:ThemeToggleButton">
-                <ToggleSwitch
-                    Padding="4"
-                    Name="{x:Static u:ThemeToggleButton.PART_ThemeToggleButton}"
-                    Theme="{DynamicResource ButtonToggleSwitch}">
-                    <ToggleSwitch.OnContent>
-                        <PathIcon
-                            Width="16"
-                            Height="16"
-                            Data="{DynamicResource ThemeSelectorButtonLightGlyph}"
-                            Foreground="{DynamicResource ButtonDefaultTertiaryForeground}" />
-                    </ToggleSwitch.OnContent>
-                    <ToggleSwitch.OffContent>
-                        <PathIcon
-                            Width="16"
-                            Height="16"
-                            Data="{DynamicResource ThemeSelectorButtonDarkGlyph}"
-                            Foreground="{DynamicResource ButtonDefaultTertiaryForeground}" />
-                    </ToggleSwitch.OffContent>
-                </ToggleSwitch>
+                <Button
+                    Padding="8"
+                    Name="{x:Static u:ThemeToggleButton.PART_ThemeButton}"
+                    Theme="{DynamicResource BorderlessButton}">
+                    <PathIcon
+                        Name="PART_Icon"
+                        Width="16"
+                        Height="16"
+                        Foreground="{DynamicResource ButtonDefaultTertiaryForeground}" />
+                </Button>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:dark /template/ PathIcon#PART_Icon">
+            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonDarkGlyph}"></Setter>
+        </Style>
+        <Style Selector="^:light /template/ PathIcon#PART_Icon">
+            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonLightGlyph}"></Setter>
+        </Style>
+        <Style Selector="^ /template/ PathIcon#PART_Icon">
+            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonDefaultGlyph}"></Setter>
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

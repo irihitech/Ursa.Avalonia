@@ -10,6 +10,8 @@
         <StackPanel Grid.Column="0">
             <TextBlock Text="Global"></TextBlock>
             <u:ThemeToggleButton/>
+            <TextBlock Text="Global Indicator"></TextBlock>
+            <u:ThemeToggleButton Mode="Indicator"/>
             <TextBlock Text="Target To Scope"></TextBlock>
             <u:ThemeToggleButton TargetScope="{Binding #scope}"></u:ThemeToggleButton>
         </StackPanel>
