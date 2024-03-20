@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
-    
+
     <ControlTheme x:Key="InputClearButton" TargetType="Button">
         <Setter Property="Button.Foreground" Value="{DynamicResource TextBoxButtonDefaultForeground}" />
         <Setter Property="Button.Cursor" Value="Hand" />
@@ -23,7 +23,7 @@
             <Setter Property="Foreground" Value="{DynamicResource TextBoxButtonPointeroverForeground}" />
         </Style>
     </ControlTheme>
-    
+
     <ControlTheme x:Key="{x:Type u:NumericUpDown}" TargetType="{x:Type u:NumericUpDown}">
         <Setter Property="NumericUpDown.VerticalContentAlignment" Value="Center" />
         <Setter Property="NumericUpDown.CornerRadius" Value="{DynamicResource NumericUpDownCornerRadius}" />
@@ -50,6 +50,7 @@
                                 DataValidationErrors.Errors="{ReflectionBinding $parent[NumericUpDown].(DataValidationErrors.Errors)}"
                                 FontSize="{TemplateBinding FontSize}"
                                 Foreground="{TemplateBinding Foreground}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 IsReadOnly="{TemplateBinding IsReadOnly}"
                                 TextWrapping="NoWrap"
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
@@ -75,7 +76,7 @@
                 </DataValidationErrors>
             </ControlTemplate>
         </Setter>
-        
+
         <Style Selector="^.clearButton, ^.ClearButton">
             <Style Selector="^[IsReadOnly=False]:focus /template/ Button#PART_ClearButton">
                 <Setter Property="IsVisible" Value="True" />
