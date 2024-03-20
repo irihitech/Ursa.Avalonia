@@ -38,7 +38,7 @@ public class NumericUIntUpDown : NumericUpDownBase<uint>
     {
         MaximumProperty.OverrideDefaultValue<NumericUIntUpDown>(uint.MaxValue);
         MinimumProperty.OverrideDefaultValue<NumericUIntUpDown>(uint.MinValue);
-        StepProperty.OverrideDefaultValue<NumericUIntUpDown>(0);
+        StepProperty.OverrideDefaultValue<NumericUIntUpDown>(1);
     }
 
     protected override bool ParseText(string? text, out uint number)

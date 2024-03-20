@@ -35,22 +35,24 @@
                         MinWidth="0"
                         HorizontalContentAlignment="Stretch"
                         VerticalContentAlignment="Stretch"
-                        ShowButtonSpinner="{TemplateBinding ShowButtonSpinner}"
                         AllowSpin="{TemplateBinding AllowSpin}"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        ShowButtonSpinner="{TemplateBinding ShowButtonSpinner}">
                         <Panel>
                             <TextBox
                                 Name="PART_TextBox"
                                 Height="{TemplateBinding Height}"
                                 MinHeight="{DynamicResource NumericUpDownWrapperDefaultHeight}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 AcceptsReturn="False"
+                                Background="Transparent"
                                 CornerRadius="{TemplateBinding CornerRadius}"
                                 DataValidationErrors.Errors="{ReflectionBinding $parent[NumericUpDown].(DataValidationErrors.Errors)}"
                                 FontSize="{TemplateBinding FontSize}"
                                 Foreground="{TemplateBinding Foreground}"
-                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                InnerLeftContent="{TemplateBinding InnerLeftContent}"
                                 IsReadOnly="{TemplateBinding IsReadOnly}"
                                 TextWrapping="NoWrap"
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
@@ -65,11 +67,11 @@
                                 IsVisible="{TemplateBinding AllowDrag}" />
                             <Button
                                 Name="PART_ClearButton"
-                                Command="{Binding $parent[u:NumericUpDown].Clear}"
+                                Margin="0,0,8,0"
                                 HorizontalAlignment="Right"
-                                Margin="0 0 8 0"
-                                IsVisible="False"
+                                Command="{Binding $parent[u:NumericUpDown].Clear}"
                                 Focusable="False"
+                                IsVisible="False"
                                 Theme="{StaticResource InputClearButton}" />
                         </Panel>
                     </ButtonSpinner>
