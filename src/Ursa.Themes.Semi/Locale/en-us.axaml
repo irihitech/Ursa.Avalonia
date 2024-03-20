@@ -12,4 +12,7 @@
     <x:String x:Key="STRING_MENU_DIALOG_CLOSE">Close</x:String>
     <x:String x:Key="STRING_PAGINATION_JUMP_TO">Jump to page</x:String>
     <x:String x:Key="STRING_PAGINATION_PAGE"> </x:String>
+    <x:String x:Key="STRING_THEME_TOGGLE_DARK">Dark</x:String>
+    <x:String x:Key="STRING_THEME_TOGGLE_LIGHT">Light</x:String>
+    <x:String x:Key="STRING_THEME_TOGGLE_SYSTEM">System</x:String>
 </ResourceDictionary>
