@@ -55,7 +55,6 @@
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
                                 IsReadOnly="{TemplateBinding IsReadOnly}"
                                 TextWrapping="NoWrap"
-                                InnerLeftContent="{TemplateBinding InnerLeftContent}"
                                 Theme="{DynamicResource NonErrorTextBox}"
                                 Watermark="{TemplateBinding Watermark}" />
                             <Panel
