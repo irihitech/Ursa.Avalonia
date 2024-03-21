@@ -336,7 +336,6 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
 
         if ((numberStyles & NumberStyles.AllowHexSpecifier) != 0)
         {
-
             if (text.StartsWith("0X") || text.StartsWith("0x")) // support 0x hex while user input
             {
                 text = text.Substring(2);

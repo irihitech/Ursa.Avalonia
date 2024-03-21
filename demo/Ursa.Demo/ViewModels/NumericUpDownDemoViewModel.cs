@@ -39,7 +39,7 @@ public partial class NumericUpDownDemoViewModel : ObservableObject
         Array_ParsingNumberStyle = Enum.GetValues(typeof(NumberStyles));
         NumericUIntUpDown numericUIntUpDown;
         TextBox textBox;
-        
+
     }
 
     partial void OnValueChanging(uint oldValue, uint newValue)
