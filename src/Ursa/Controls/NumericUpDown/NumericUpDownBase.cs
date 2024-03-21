@@ -9,6 +9,7 @@ using Avalonia.Data;
 using Avalonia.Data.Converters;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Layout;
 using Irihi.Avalonia.Shared.Contracts;
 
 namespace Ursa.Controls;
@@ -21,14 +22,20 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
     public const string PART_Spinner = "PART_Spinner";
     public const string PART_TextBox = "PART_TextBox";
     public const string PART_DragPanel = "PART_DragPanel";
-    
+
     protected internal ButtonSpinner? _spinner;
     protected internal TextBox? _textBox;
     protected internal Panel? _dragPanel;
 
     private Point? _point;
     protected internal bool _updateFromTextInput;
-    
+
+
+    protected internal bool _canIncrease = true;
+
+    protected internal bool _canDecrease = true;
+
+
     public static readonly StyledProperty<bool> AllowDragProperty = AvaloniaProperty.Register<NumericUpDown, bool>(
         nameof(AllowDrag), defaultValue: false);
 
@@ -45,6 +52,14 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
     {
         get => GetValue(IsReadOnlyProperty);
         set => SetValue(IsReadOnlyProperty, value);
+    }
+
+    public static readonly StyledProperty<HorizontalAlignment> HorizontalContentAlignmentProperty =
+       ContentControl.HorizontalContentAlignmentProperty.AddOwner<NumericUpDown>();
+    public HorizontalAlignment HorizontalContentAlignment
+    {
+        get => GetValue(HorizontalContentAlignmentProperty);
+        set => SetValue(HorizontalContentAlignmentProperty, value);
     }
 
     public static readonly StyledProperty<object?> InnerLeftContentProperty = AvaloniaProperty.Register<NumericUpDown, object?>(
@@ -120,12 +135,12 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
     }
 
     public event EventHandler<SpinEventArgs>? Spinned;
-    
+
     static NumericUpDown()
     {
         NumberFormatProperty.Changed.AddClassHandler<NumericUpDown>((o, e) => o.OnFormatChange(e));
         FormatStringProperty.Changed.AddClassHandler<NumericUpDown>((o, e) => o.OnFormatChange(e));
-        IsReadOnlyProperty.Changed.AddClassHandler<NumericUpDown>((o,e)=>o.ChangeToSetSpinDirection(e));
+        IsReadOnlyProperty.Changed.AddClassHandler<NumericUpDown>((o, e) => o.ChangeToSetSpinDirection(e));
         TextConverterProperty.Changed.AddClassHandler<NumericUpDown>((o, e) => o.OnFormatChange(e));
     }
 
@@ -155,7 +170,7 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        if(_spinner is not null)
+        if (_spinner is not null)
         {
             _spinner.Spin -= OnSpin;
         }
@@ -174,18 +189,18 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
         }
         if (_dragPanel is not null)
         {
-            _dragPanel.PointerPressed+= OnDragPanelPointerPressed;
+            _dragPanel.PointerPressed += OnDragPanelPointerPressed;
             _dragPanel.PointerMoved += OnDragPanelPointerMoved;
             _dragPanel.PointerReleased += OnDragPanelPointerReleased;
         }
-        
+
     }
 
     protected override void OnLostFocus(RoutedEventArgs e)
     {
         CommitInput(true);
         base.OnLostFocus(e);
-        if(AllowDrag && _dragPanel is not null)
+        if (AllowDrag && _dragPanel is not null)
         {
             _dragPanel.IsVisible = true;
         }
@@ -233,11 +248,11 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
     {
         _point = null;
     }
-    
+
     private void OnDragPanelPointerMoved(object sender, PointerEventArgs e)
     {
         if (!AllowDrag || IsReadOnly) return;
-        if(!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
+        if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
         var point = e.GetPosition(this);
         var delta = point - _point;
         if (delta is null)
@@ -245,13 +260,15 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
             return;
         }
         int d = GetDelta(delta.Value);
-        if(d > 0)
+        if (d > 0)
         {
-            Increase();
+            if (_canIncrease)
+                Increase();
         }
         else if (d < 0)
         {
-            Decrease();
+            if (_canDecrease)
+                Decrease();
         }
         _point = point;
     }
@@ -267,7 +284,7 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
             _ => 0
         };
     }
-    
+
     private void OnSpin(object sender, SpinEventArgs e)
     {
         if (AllowSpin && !IsReadOnly)
@@ -307,8 +324,35 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
     public abstract void Clear();
 }
 
-public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComparable<T>
+public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, IComparable<T>
 {
+    protected static string TrimString(string? text, NumberStyles numberStyles)
+    {
+        text = text!.Trim();
+        if (text.Contains("_")) // support _ like 0x1024_1024(hex), 10_24 (normal)
+        {
+            text = text.Replace("_", "");
+        }
+
+        if ((numberStyles & NumberStyles.AllowHexSpecifier) != 0)
+        {
+            if (text.StartsWith("0X") || text.StartsWith("0x")) // support 0x hex while user input
+            {
+                text = text.Substring(2);
+            }
+            else if (text.StartsWith("h") || text.StartsWith("H")) // support  hex while user input
+            {
+                text = text.Substring(1);
+            }
+            else if (text.StartsWith("h'") || text.StartsWith("H'")) // support  hex while user input
+            {
+                text = text.Substring(2);
+            }
+        }
+
+        return text;
+    }
+
     public static readonly StyledProperty<T?> ValueProperty = AvaloniaProperty.Register<NumericUpDownBase<T>, T?>(
         nameof(Value), defaultBindingMode: BindingMode.TwoWay);
 
@@ -319,8 +363,8 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
     }
 
     public static readonly StyledProperty<T> MaximumProperty = AvaloniaProperty.Register<NumericUpDownBase<T>, T>(
-        nameof(Maximum), defaultBindingMode:BindingMode.TwoWay, coerce: CoerceMaximum);
-    
+        nameof(Maximum), defaultBindingMode: BindingMode.TwoWay, coerce: CoerceMaximum);
+
     public T Maximum
     {
         get => GetValue(MaximumProperty);
@@ -328,14 +372,14 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
     }
 
     public static readonly StyledProperty<T> MinimumProperty = AvaloniaProperty.Register<NumericUpDownBase<T>, T>(
-        nameof(Minimum), defaultBindingMode:BindingMode.TwoWay, coerce: CoerceMinimum);
+        nameof(Minimum), defaultBindingMode: BindingMode.TwoWay, coerce: CoerceMinimum);
 
     public T Minimum
     {
         get => GetValue(MinimumProperty);
         set => SetValue(MinimumProperty, value);
     }
-    
+
     #region Max and Min Coerce
     private static T CoerceMaximum(AvaloniaObject instance, T value)
     {
@@ -345,9 +389,9 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
         }
 
         return value;
-    } 
-    
-    private T CoerceMaximum(T value) 
+    }
+
+    private T CoerceMaximum(T value)
     {
         if (value.CompareTo(Minimum) < 0)
         {
@@ -355,7 +399,7 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
         }
         return value;
     }
-    
+
     private static T CoerceMinimum(AvaloniaObject instance, T value)
     {
         if (instance is NumericUpDownBase<T> n)
@@ -365,8 +409,8 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
 
         return value;
     }
-    
-    private T CoerceMinimum(T value) 
+
+    private T CoerceMinimum(T value)
     {
         if (value.CompareTo(Maximum) > 0)
         {
@@ -374,7 +418,7 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
         }
         return value;
     }
-    
+
     #endregion
 
     public static readonly StyledProperty<T> StepProperty = AvaloniaProperty.Register<NumericUpDownBase<T>, T>(
@@ -395,7 +439,7 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
         get => GetValue(EmptyInputValueProperty);
         set => SetValue(EmptyInputValueProperty, value);
     }
-    
+
     /// <summary>
     /// Defines the <see cref="ValueChanged"/> event.
     /// </summary>
@@ -416,9 +460,9 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
         StepProperty.Changed.AddClassHandler<NumericUpDownBase<T>>((o, e) => o.ChangeToSetSpinDirection(e));
         MaximumProperty.Changed.AddClassHandler<NumericUpDownBase<T>>((o, e) => o.OnConstraintChanged(e));
         MinimumProperty.Changed.AddClassHandler<NumericUpDownBase<T>>((o, e) => o.OnConstraintChanged(e));
-        ValueProperty.Changed.AddClassHandler<NumericUpDownBase<T>>((o, e) => o.OnValueChanged(e) );
+        ValueProperty.Changed.AddClassHandler<NumericUpDownBase<T>>((o, e) => o.OnValueChanged(e));
     }
-    
+
     private void OnConstraintChanged(AvaloniaPropertyChangedEventArgs avaloniaPropertyChangedEventArgs)
     {
         if (IsInitialized)
@@ -430,7 +474,7 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
             SetCurrentValue(ValueProperty, Clamp(Value, Maximum, Minimum));
         }
     }
-    
+
     private void OnValueChanged(AvaloniaPropertyChangedEventArgs args)
     {
         if (IsInitialized)
@@ -470,10 +514,12 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
         }
         return value;
     }
-    
+
     protected override void SetValidSpinDirection()
     {
         var validDirection = ValidSpinDirections.None;
+        _canIncrease = false;
+        _canDecrease = false;
         if (!IsReadOnly)
         {
             if (Value is null)
@@ -483,11 +529,13 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
             if (Value.HasValue && Value.Value.CompareTo(Maximum) < 0)
             {
                 validDirection |= ValidSpinDirections.Increase;
+                _canIncrease = true;
             }
 
             if (Value.HasValue && Value.Value.CompareTo(Minimum) > 0)
             {
                 validDirection |= ValidSpinDirections.Decrease;
+                _canDecrease = true;
             }
         }
         if (_spinner != null)
@@ -497,7 +545,7 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
     }
 
     private bool _isSyncingTextAndValue;
-    
+
     protected override bool SyncTextAndValue(bool fromTextToValue = false, string? text = null, bool forceTextUpdate = false)
     {
         if (_isSyncingTextAndValue) return true;
@@ -516,7 +564,14 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
                     }
                     if (!Equals(newValue, Value))
                     {
-                        SetCurrentValue(ValueProperty, newValue);
+                        if (Equals(Clamp(newValue, Maximum, Minimum), newValue))
+                        {
+                            SetCurrentValue(ValueProperty, newValue);
+                        }
+                        else
+                        {
+                            parsedTextIsValid = false;
+                        }
                     }
                 }
                 catch
@@ -530,7 +585,7 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
                 if (forceTextUpdate)
                 {
                     var newText = ConvertValueToText(Value);
-                    if (_textBox!= null && !Equals(_textBox.Text, newText))
+                    if (_textBox != null && !Equals(_textBox.Text, newText))
                     {
                         _textBox.Text = newText;
                         _textBox.CaretIndex = newText?.Length ?? 0;
@@ -568,6 +623,7 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
         }
         else
         {
+            text = TrimString(text, ParsingNumberStyle);
             if (!ParseText(text, out var outputValue))
             {
                 throw new InvalidDataException("Input string was not in a correct format.");
@@ -592,7 +648,7 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
 
         return ValueToString(Value);
     }
-    
+
     protected override void Increase()
     {
         T? value;
@@ -621,7 +677,7 @@ public abstract class NumericUpDownBase<T>: NumericUpDown where T: struct, IComp
 
         SetCurrentValue(ValueProperty, Clamp(value, Maximum, Minimum));
     }
-    
+
     protected abstract bool ParseText(string? text, out T number);
     protected abstract string? ValueToString(T? value);
     protected abstract T Zero { get; }

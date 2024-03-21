@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
@@ -18,7 +18,7 @@
         <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
         <PackageReference Include="Semi.Avalonia" Version="11.0.7" />
     </ItemGroup>
 

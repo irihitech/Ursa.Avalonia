@@ -18,13 +18,44 @@ public class NumericIntUpDown : NumericUpDownBase<int>
     protected override bool ParseText(string? text, out int number) =>
         int.TryParse(text, ParsingNumberStyle, NumberFormat, out number);
 
-    protected override string? ValueToString(int? value) => value?.ToString(FormatString, NumberFormat);
+    protected override string? ValueToString(int? value)
+    {
+        return value?.ToString(FormatString, NumberFormat);
+    }
 
     protected override int Zero => 0;
 
     protected override int? Add(int? a, int? b) => a + b;
 
     protected override int? Minus(int? a, int? b) => a - b;
+}
+
+public class NumericUIntUpDown : NumericUpDownBase<uint>
+{
+    protected override Type StyleKeyOverride { get; } = typeof(NumericUpDown);
+
+    static NumericUIntUpDown()
+    {
+        MaximumProperty.OverrideDefaultValue<NumericUIntUpDown>(uint.MaxValue);
+        MinimumProperty.OverrideDefaultValue<NumericUIntUpDown>(uint.MinValue);
+        StepProperty.OverrideDefaultValue<NumericUIntUpDown>(1);
+    }
+
+    protected override bool ParseText(string? text, out uint number)
+    {
+        return uint.TryParse(text, ParsingNumberStyle, NumberFormat, out number);
+    }
+
+    protected override string? ValueToString(uint? value)
+    {
+        return value?.ToString(FormatString, NumberFormat);
+    }
+
+    protected override uint Zero => 0;
+
+    protected override uint? Add(uint? a, uint? b) => a + b;
+
+    protected override uint? Minus(uint? a, uint? b) => a - b;
 }
 
 public class NumericDoubleUpDown : NumericUpDownBase<double>
@@ -68,9 +99,9 @@ public class NumericByteUpDown : NumericUpDownBase<byte>
 
     protected override byte Zero => 0;
 
-    protected override byte? Add(byte? a, byte? b) => (byte?) (a + b);
+    protected override byte? Add(byte? a, byte? b) => (byte?)(a + b);
 
-    protected override byte? Minus(byte? a, byte? b) => (byte?) (a - b);
+    protected override byte? Minus(byte? a, byte? b) => (byte?)(a - b);
 }
 
 public class NumericSByteUpDown : NumericUpDownBase<sbyte>
@@ -91,9 +122,9 @@ public class NumericSByteUpDown : NumericUpDownBase<sbyte>
 
     protected override sbyte Zero => 0;
 
-    protected override sbyte? Add(sbyte? a, sbyte? b) => (sbyte?) (a + b);
+    protected override sbyte? Add(sbyte? a, sbyte? b) => (sbyte?)(a + b);
 
-    protected override sbyte? Minus(sbyte? a, sbyte? b) => (sbyte?) (a - b);
+    protected override sbyte? Minus(sbyte? a, sbyte? b) => (sbyte?)(a - b);
 }
 
 public class NumericShortUpDown : NumericUpDownBase<short>
@@ -114,9 +145,9 @@ public class NumericShortUpDown : NumericUpDownBase<short>
 
     protected override short Zero => 0;
 
-    protected override short? Add(short? a, short? b) => (short?) (a + b);
+    protected override short? Add(short? a, short? b) => (short?)(a + b);
 
-    protected override short? Minus(short? a, short? b) => (short?) (a - b);
+    protected override short? Minus(short? a, short? b) => (short?)(a - b);
 }
 
 public class NumericUShortUpDown : NumericUpDownBase<ushort>
@@ -137,9 +168,9 @@ public class NumericUShortUpDown : NumericUpDownBase<ushort>
 
     protected override ushort Zero => 0;
 
-    protected override ushort? Add(ushort? a, ushort? b) => (ushort?) (a + b);
+    protected override ushort? Add(ushort? a, ushort? b) => (ushort?)(a + b);
 
-    protected override ushort? Minus(ushort? a, ushort? b) => (ushort?) (a - b);
+    protected override ushort? Minus(ushort? a, ushort? b) => (ushort?)(a - b);
 }
 
 public class NumericLongUpDown : NumericUpDownBase<long>
@@ -233,4 +264,3 @@ public class NumericDecimalUpDown : NumericUpDownBase<decimal>
 
     protected override decimal? Minus(decimal? a, decimal? b) => a - b;
 }
-
