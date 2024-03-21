@@ -52,7 +52,6 @@
                                 FontSize="{TemplateBinding FontSize}"
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
-                                IsReadOnly="{TemplateBinding IsReadOnly}"
                                 TextWrapping="NoWrap"
                                 Theme="{DynamicResource NonErrorTextBox}"
                                 Watermark="{TemplateBinding Watermark}" />
@@ -61,8 +60,7 @@
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
                                 Background="Transparent"
-                                Cursor="SizeAll"
-                                IsVisible="{TemplateBinding AllowDrag}" />
+                                Cursor="SizeAll"/>
                             <Button
                                 Name="PART_ClearButton"
                                 Margin="0,0,8,0"

@@ -11,6 +11,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Irihi.Avalonia.Shared.Contracts;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -37,7 +38,7 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
 
 
     public static readonly StyledProperty<bool> AllowDragProperty = AvaloniaProperty.Register<NumericUpDown, bool>(
-        nameof(AllowDrag), defaultValue: false);
+        nameof(AllowDrag), defaultBindingMode: BindingMode.TwoWay);
 
     public bool AllowDrag
     {
@@ -46,7 +47,7 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
     }
 
     public static readonly StyledProperty<bool> IsReadOnlyProperty = AvaloniaProperty.Register<NumericUpDown, bool>(
-        nameof(IsReadOnly));
+        nameof(IsReadOnly), defaultBindingMode: BindingMode.TwoWay);
 
     public bool IsReadOnly
     {
@@ -140,11 +141,23 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
     {
         NumberFormatProperty.Changed.AddClassHandler<NumericUpDown>((o, e) => o.OnFormatChange(e));
         FormatStringProperty.Changed.AddClassHandler<NumericUpDown>((o, e) => o.OnFormatChange(e));
-        IsReadOnlyProperty.Changed.AddClassHandler<NumericUpDown>((o, e) => o.ChangeToSetSpinDirection(e));
+        IsReadOnlyProperty.Changed.AddClassHandler<NumericUpDown, bool>((o, args) => o.OnIsReadOnlyChanged(args));
         TextConverterProperty.Changed.AddClassHandler<NumericUpDown>((o, e) => o.OnFormatChange(e));
+        AllowDragProperty.Changed.AddClassHandler<NumericUpDown, bool>((o, e) => o.OnAllowDragChange(e));
     }
 
-    protected void ChangeToSetSpinDirection(AvaloniaPropertyChangedEventArgs avaloniaPropertyChangedEventArgs, bool afterInitialization = false)
+    private void OnAllowDragChange(AvaloniaPropertyChangedEventArgs<bool> args)
+    {
+        IsVisibleProperty.SetValue(args.NewValue.Value, _dragPanel);
+    }
+
+    private void OnIsReadOnlyChanged(AvaloniaPropertyChangedEventArgs<bool> args)
+    {
+        ChangeToSetSpinDirection(args, false);
+        TextBox.IsReadOnlyProperty.SetValue(args.NewValue.Value, _textBox);
+    }
+
+    protected void ChangeToSetSpinDirection(AvaloniaPropertyChangedEventArgs e, bool afterInitialization = false)
     {
         if (afterInitialization)
         {
@@ -170,30 +183,19 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        if (_spinner is not null)
-        {
-            _spinner.Spin -= OnSpin;
-        }
-        if (_dragPanel is not null)
-        {
-            _dragPanel.PointerPressed -= OnDragPanelPointerPressed;
-            _dragPanel.PointerMoved -= OnDragPanelPointerMoved;
-            _dragPanel.PointerReleased -= OnDragPanelPointerReleased;
-        }
+        Spinner.SpinEvent.RemoveHandler(OnSpin, _spinner);
+        PointerPressedEvent.RemoveHandler(OnDragPanelPointerPressed, _dragPanel);
+        PointerMovedEvent.RemoveHandler(OnDragPanelPointerMoved, _dragPanel);
+        PointerReleasedEvent.RemoveHandler(OnDragPanelPointerReleased, _dragPanel);
         _spinner = e.NameScope.Find<ButtonSpinner>(PART_Spinner);
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
         _dragPanel = e.NameScope.Find<Panel>(PART_DragPanel);
-        if (_spinner is not null)
-        {
-            _spinner.Spin += OnSpin;
-        }
-        if (_dragPanel is not null)
-        {
-            _dragPanel.PointerPressed += OnDragPanelPointerPressed;
-            _dragPanel.PointerMoved += OnDragPanelPointerMoved;
-            _dragPanel.PointerReleased += OnDragPanelPointerReleased;
-        }
-
+        IsVisibleProperty.SetValue(AllowDrag, _dragPanel);
+        TextBox.IsReadOnlyProperty.SetValue(IsReadOnly, _textBox);
+        Spinner.SpinEvent.AddHandler(OnSpin, _spinner);
+        PointerPressedEvent.AddHandler(OnDragPanelPointerPressed, _dragPanel);
+        PointerMovedEvent.AddHandler(OnDragPanelPointerMoved, _dragPanel);
+        PointerReleasedEvent.AddHandler(OnDragPanelPointerReleased, _dragPanel);
     }
 
     protected override void OnLostFocus(RoutedEventArgs e)
@@ -219,7 +221,9 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
             if (AllowDrag && _dragPanel is not null)
             {
                 _dragPanel.IsVisible = true;
-                _dragPanel.Focus();
+                // _dragPanel.Focus();
+                _textBox?.ClearSelection();
+                _spinner?.Focus();
             }
         }
     }
@@ -229,18 +233,20 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
         _point = e.GetPosition(this);
         if (e.ClickCount == 2 && _dragPanel is not null && AllowDrag)
         {
-            _dragPanel.IsVisible = false;
-            _textBox.IsReadOnly = false;
+            IsVisibleProperty.SetValue(false, _dragPanel);
+            _textBox?.Focus();
+            TextBox.IsReadOnlyProperty.SetValue(IsReadOnly, _textBox);
         }
         else
         {
             _textBox?.Focus();
-            _textBox!.IsReadOnly = true;
+            TextBox.IsReadOnlyProperty.SetValue(true, _textBox);
         }
     }
 
     protected override void OnTextInput(TextInputEventArgs e)
     {
+        if (IsReadOnly) return;
         _textBox?.RaiseEvent(e);
     }
 
@@ -328,7 +334,8 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
 {
     protected static string TrimString(string? text, NumberStyles numberStyles)
     {
-        text = text!.Trim();
+        if (text is null) return string.Empty;
+        text = text.Trim();
         if (text.Contains("_")) // support _ like 0x1024_1024(hex), 10_24 (normal)
         {
             text = text.Replace("_", "");
