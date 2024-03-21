@@ -565,7 +565,14 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
                     }
                     if (!Equals(newValue, Value))
                     {
-                        SetCurrentValue(ValueProperty, newValue);
+                        if (Equals(Clamp(newValue, Maximum, Minimum), newValue))
+                        {
+                            SetCurrentValue(ValueProperty, newValue);
+                        }
+                        else
+                        {
+                            parsedTextIsValid = false;
+                        }
                     }
                 }
                 catch
