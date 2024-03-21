@@ -16,90 +16,107 @@
             <Setter Property="HorizontalContentAlignment" Value="Left" />
         </Style>
     </UserControl.Styles>
-    <Grid ColumnDefinitions="*,*,*">
-        <StackPanel Grid.Column="0" HorizontalAlignment="Left">
-            <u:NumericIntUpDown
-                Name="input"
-                Classes="ClearButton"
-                InnerLeftContent="Age"
-                Step="1"
-                Watermark="Input Value"
-                Value="2" />
-            <TextBlock Text="{Binding #input.Value}" />
-            <u:NumericDoubleUpDown
-                Name="inputDouble"
-                EmptyInputValue="1"
-                Step="0.5"
-                Value="3.1" />
-            <TextBlock Text="{Binding #inputDouble.Value}" />
-            <u:NumericByteUpDown
-                Name="inputByte"
-                EmptyInputValue="1"
-                Step="1"
-                Value="3" />
-            <TextBlock Text="{Binding #inputByte.Value}" />
-            <TextBlock Text="Drag" />
-            <u:NumericIntUpDown
-                AllowDrag="True"
-                Step="1"
-                Watermark="Input Value"
-                Value="2" />
 
-            <u:NumericIntUpDown
-                AllowDrag="True"
-                InnerLeftContent="Drag"
-                Step="1"
-                Watermark="Input Value"
-                Value="2" />
+    <Grid ColumnDefinitions="*,*">
+        <Grid
+            Grid.Column="0"
+            HorizontalAlignment="Left"
+            RowDefinitions="200,*">
+            <StackPanel>
+                <u:Divider Content="Change Right ->" />
+                <u:NumericUIntUpDown
+                    Name="numd"
+                    HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
+                    AllowDrag="{Binding AllowDrag}"
+                    AllowSpin="{Binding AllowSpin}"
+                    FontFamily="{Binding FontFamily, Mode=OneWay}"
+                    FormatString="{Binding FormatString}"
+                    InnerLeftContent="{Binding InnerLeftContent}"
+                    IsEnabled="{Binding IsEnable}"
+                    IsReadOnly="{Binding IsReadOnly}"
+                    Maximum="{Binding Maximum}"
+                    Minimum="{Binding Minimum}"
+                    ParsingNumberStyle="{Binding ParsingNumberStyle}"
+                    ShowButtonSpinner="{Binding ShowButtonSpinner}"
+                    Step="{Binding Step}"
+                    Watermark="{Binding Watermark}"
+                    Value="{Binding Value}" />
+                <u:Divider Content="Demo" />
+            </StackPanel>
 
-            <!--  hex demo  -->
+            <StackPanel Grid.Row="1">
+                <u:Divider Content="{Binding #input.Value, StringFormat='Int = {0}'}" />
+                <u:NumericIntUpDown
+                    Name="input"
+                    Classes="ClearButton"
+                    InnerLeftContent="Age"
+                    Step="1"
+                    Watermark="Input Value"
+                    Value="2" />
+                <u:Divider Content="{Binding #inputDouble.Value, StringFormat='Double = {0}'}" />
+                <u:NumericDoubleUpDown
+                    Name="inputDouble"
+                    EmptyInputValue="1"
+                    Step="0.5"
+                    Value="3.1" />
+                <u:Divider Content="{Binding #inputByte.Value, StringFormat='Byte = {0}'}" />
+                <u:NumericByteUpDown
+                    Name="inputByte"
+                    EmptyInputValue="1"
+                    Step="1"
+                    Value="3" />
+                <u:Divider Content="{Binding #Drag_Int.Value, StringFormat='Drag Int = {0}'}" />
+                <u:NumericIntUpDown
+                    Name="Drag_Int"
+                    AllowDrag="True"
+                    InnerLeftContent="Drag"
+                    Step="1"
+                    Watermark="Input Value"
+                    Value="2" />
 
-            <!--  =================this is error usage  -->
-            <!--  HorizontalContentAlignment="Right"  -->
-            <u:NumericUIntUpDown
-                AllowDrag="False"
-                FormatString="{}{0:x8}"
-                InnerLeftContent="HexNumber"
-                ParsingNumberStyle="HexNumber"
-                Step="1"
-                Watermark="Input Value"
-                Value="2" />
+                <!--  hex demo  -->
 
-            <!--  =================we should use AllowHexSpecifier  -->
-            <u:NumericUIntUpDown
-                HorizontalContentAlignment="Right"
-                AllowDrag="False"
-                FontFamily="Consolas"
-                FormatString="{}{0:x8}"
-                InnerLeftContent="AllowHexSpecifier"
-                ParsingNumberStyle="AllowHexSpecifier"
-                Step="1"
-                Watermark="AllowHexSpecifier"
-                Value="2" />
+                <u:Divider Content="{Binding #uint_HexNumber.Value, StringFormat='Don‘t Use = {0}, hex={0:X}'}" />
+                <!--  =================this is error usage  -->
+                <u:NumericUIntUpDown
+                    Name="uint_HexNumber"
+                    AllowDrag="False"
+                    FormatString="{}{0:X8}"
+                    InnerLeftContent="HexNumber"
+                    ParsingNumberStyle="HexNumber"
+                    Step="1"
+                    Watermark="Input Value"
+                    Value="2" />
 
-            <u:NumericUIntUpDown
-                HorizontalContentAlignment="Right"
-                AllowDrag="False"
-                FontFamily="Consolas"
-                FormatString="x8"
-                InnerLeftContent="0x"
-                ParsingNumberStyle="AllowHexSpecifier"
-                Step="1"
-                Watermark="AllowHexSpecifier"
-                Value="2" />
-            <u:NumericUIntUpDown
-                HorizontalContentAlignment="Left"
-                AllowDrag="False"
-                FontFamily="Consolas"
-                FormatString="x8"
-                InnerLeftContent="0"
-                ParsingNumberStyle="AllowHexSpecifier"
-                Step="1"
-                Watermark="AllowHexSpecifier"
-                Value="2" />
-        </StackPanel>
-        <StackPanel Grid.Column="2" HorizontalAlignment="Left">
+                <!--  =================we should use AllowHexSpecifier  -->
+                <u:Divider Content="{Binding #uint_AllowHexSpecifier.Value, StringFormat='uint = {0}, hex={0:X}'}" />
+                <u:NumericUIntUpDown
+                    Name="uint_AllowHexSpecifier"
+                    HorizontalContentAlignment="Right"
+                    AllowDrag="False"
+                    FontFamily="Consolas"
+                    FormatString="{}{0:X8}"
+                    InnerLeftContent="AllowHexSpecifier"
+                    ParsingNumberStyle="AllowHexSpecifier"
+                    Step="1"
+                    Watermark="AllowHexSpecifier"
+                    Value="2" />
 
+                <u:Divider Content="{Binding #Consolas_uint.Value, StringFormat='Font=Consolas {0}, hex={0:X}'}" />
+                <u:NumericUIntUpDown
+                    Name="Consolas_uint"
+                    HorizontalContentAlignment="Right"
+                    AllowDrag="False"
+                    FontFamily="Consolas"
+                    FormatString="X8"
+                    InnerLeftContent="0x"
+                    ParsingNumberStyle="AllowHexSpecifier"
+                    Step="1"
+                    Watermark="AllowHexSpecifier"
+                    Value="2" />
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Column="1" HorizontalAlignment="Left">
 
             <Label Content="FontFamily" />
             <TextBox Text="{Binding FontFamily}" />
@@ -155,26 +172,6 @@
             <Label Content="IsEnable" />
             <CheckBox IsChecked="{Binding IsEnable}" />
 
-        </StackPanel>
-        <StackPanel Grid.Column="1" HorizontalAlignment="Left">
-            <u:Divider Content="Display" />
-            <u:NumericUIntUpDown
-                Name="numd"
-                HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
-                AllowDrag="{Binding AllowDrag}"
-                AllowSpin="{Binding AllowSpin}"
-                FontFamily="{Binding FontFamily}"
-                FormatString="{Binding FormatString}"
-                InnerLeftContent="{Binding InnerLeftContent}"
-                IsEnabled="{Binding IsEnable}"
-                IsReadOnly="{Binding IsReadOnly}"
-                Maximum="{Binding Maximum}"
-                Minimum="{Binding Minimum}"
-                ParsingNumberStyle="{Binding ParsingNumberStyle}"
-                ShowButtonSpinner="{Binding ShowButtonSpinner}"
-                Step="{Binding Step}"
-                Watermark="{Binding Watermark}"
-                Value="{Binding Value}" />
         </StackPanel>
     </Grid>
 </UserControl>
