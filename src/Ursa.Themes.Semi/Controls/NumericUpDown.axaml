@@ -47,7 +47,6 @@
                                 MinHeight="{DynamicResource NumericUpDownWrapperDefaultHeight}"
                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 AcceptsReturn="False"
-                                Background="Transparent"
                                 CornerRadius="{TemplateBinding CornerRadius}"
                                 DataValidationErrors.Errors="{ReflectionBinding $parent[NumericUpDown].(DataValidationErrors.Errors)}"
                                 FontSize="{TemplateBinding FontSize}"
