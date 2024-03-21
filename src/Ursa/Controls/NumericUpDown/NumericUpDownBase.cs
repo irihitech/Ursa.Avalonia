@@ -30,6 +30,12 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
     private Point? _point;
     protected internal bool _updateFromTextInput;
 
+
+    protected internal bool _canIncrease = true;
+
+    protected internal bool _canDecrease = true;
+
+
     public static readonly StyledProperty<bool> AllowDragProperty = AvaloniaProperty.Register<NumericUpDown, bool>(
         nameof(AllowDrag), defaultValue: false);
 
@@ -256,11 +262,13 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
         int d = GetDelta(delta.Value);
         if (d > 0)
         {
-            Increase();
+            if (_canIncrease)
+                Increase();
         }
         else if (d < 0)
         {
-            Decrease();
+            if (_canDecrease)
+                Decrease();
         }
         _point = point;
     }
@@ -511,6 +519,8 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
     protected override void SetValidSpinDirection()
     {
         var validDirection = ValidSpinDirections.None;
+        _canIncrease = false;
+        _canDecrease = false;
         if (!IsReadOnly)
         {
             if (Value is null)
@@ -520,11 +530,13 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
             if (Value.HasValue && Value.Value.CompareTo(Maximum) < 0)
             {
                 validDirection |= ValidSpinDirections.Increase;
+                _canIncrease = true;
             }
 
             if (Value.HasValue && Value.Value.CompareTo(Minimum) > 0)
             {
                 validDirection |= ValidSpinDirections.Decrease;
+                _canDecrease = true;
             }
         }
         if (_spinner != null)
