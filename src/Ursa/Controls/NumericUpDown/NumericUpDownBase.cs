@@ -48,9 +48,8 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
         set => SetValue(IsReadOnlyProperty, value);
     }
 
-    public static readonly StyledProperty<HorizontalAlignment> HorizontalContentAlignmentProperty = AvaloniaProperty.Register<NumericUpDown, HorizontalAlignment>(
-        nameof(HorizontalContentAlignment), HorizontalAlignment.Left);
-
+    public static readonly StyledProperty<HorizontalAlignment> HorizontalContentAlignmentProperty =
+       ContentControl.HorizontalContentAlignmentProperty.AddOwner<NumericUpDown>();
     public HorizontalAlignment HorizontalContentAlignment
     {
         get => GetValue(HorizontalContentAlignmentProperty);
