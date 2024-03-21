@@ -318,6 +318,34 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
 
 public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, IComparable<T>
 {
+    protected static string TrimString(string? text, NumberStyles numberStyles)
+    {
+        text = text!.Trim();
+        if (text.Contains("_")) // support _ like 0x1024_1024(hex), 10_24 (normal)
+        {
+            text = text.Replace("_", "");
+        }
+
+        if ((numberStyles & NumberStyles.AllowHexSpecifier) != 0)
+        {
+
+            if (text.StartsWith("0X") || text.StartsWith("0x")) // support 0x hex while user input
+            {
+                text = text.Substring(2);
+            }
+            else if (text.StartsWith("h") || text.StartsWith("H")) // support  hex while user input
+            {
+                text = text.Substring(1);
+            }
+            else if (text.StartsWith("h'") || text.StartsWith("H'")) // support  hex while user input
+            {
+                text = text.Substring(2);
+            }
+        }
+
+        return text;
+    }
+
     public static readonly StyledProperty<T?> ValueProperty = AvaloniaProperty.Register<NumericUpDownBase<T>, T?>(
         nameof(Value), defaultBindingMode: BindingMode.TwoWay);
 
@@ -577,6 +605,7 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
         }
         else
         {
+            text = TrimString(text, ParsingNumberStyle);
             if (!ParseText(text, out var outputValue))
             {
                 throw new InvalidDataException("Input string was not in a correct format.");
