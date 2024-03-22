@@ -23,6 +23,15 @@ public abstract class ThemeSelectorBase: TemplatedControl
         set => SetValue(SelectedThemeProperty, value);
     }
 
+    public static readonly StyledProperty<ThemeSelectorMode> ModeProperty = AvaloniaProperty.Register<ThemeSelectorBase, ThemeSelectorMode>(
+        nameof(Mode));
+
+    public ThemeSelectorMode Mode
+    {
+        get => GetValue(ModeProperty);
+        set => SetValue(ModeProperty, value);
+    }
+
     public static readonly StyledProperty<ThemeVariantScope?> TargetScopeProperty =
         AvaloniaProperty.Register<ThemeSelectorBase, ThemeVariantScope?>(
             nameof(TargetScope));
@@ -57,15 +66,21 @@ public abstract class ThemeSelectorBase: TemplatedControl
         _syncFromScope = true;
         if (this.TargetScope is { } target)
         {
-            SyncThemeFromScope(target.ActualThemeVariant);
+            SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
+                ? target.RequestedThemeVariant
+                : target.ActualThemeVariant);
         }
         else if (this._scope is { } scope)
         {
-            SyncThemeFromScope(scope.ActualThemeVariant);
+            SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
+                ? scope.RequestedThemeVariant
+                : scope.ActualThemeVariant);
         }
         else if (_application is { } app)
         {
-            SyncThemeFromScope(app.ActualThemeVariant);
+            SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
+                ? app.RequestedThemeVariant
+                : app.ActualThemeVariant);
         }
         _syncFromScope = false;
     }
@@ -79,21 +94,29 @@ public abstract class ThemeSelectorBase: TemplatedControl
     {
         base.OnAttachedToVisualTree(e);
         _application = Application.Current;
+        _syncFromScope = true;
         if (_application is not null)
         {
             _application.ActualThemeVariantChanged += OnScopeThemeChanged;
-            SyncThemeFromScope(_application.ActualThemeVariant);
+            SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
+                ? _application.RequestedThemeVariant
+                : _application.ActualThemeVariant);
         }
         _scope = this.GetLogicalAncestors().FirstOrDefault(a => a is ThemeVariantScope) as ThemeVariantScope;
         if (_scope is not null)
         {
             _scope.ActualThemeVariantChanged += OnScopeThemeChanged;
-            SyncThemeFromScope(_scope.ActualThemeVariant);
+            SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
+                ? _scope.RequestedThemeVariant
+                : _scope.ActualThemeVariant);
         }
         if (TargetScope is not null)
         {
-            SyncThemeFromScope(TargetScope.ActualThemeVariant);
+            SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
+                ? TargetScope.RequestedThemeVariant
+                : TargetScope.ActualThemeVariant);
         }
+        _syncFromScope = false;
     }
 
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
@@ -113,7 +136,6 @@ public abstract class ThemeSelectorBase: TemplatedControl
     {
         if (_syncFromScope) return;
         ThemeVariant? newTheme = args.NewValue.Value;
-        if (newTheme is null) return;
         if (TargetScope is not null)
         {
             TargetScope.RequestedThemeVariant = newTheme;

@@ -92,6 +92,8 @@
             <u:ThemeToggleButton
                 Grid.Row="0"
                 Grid.Column="1"
+                IsThreeState="True"
+                Mode="Controller"
                 HorizontalAlignment="Right" />
             <ContentControl
                 Grid.Row="1"
