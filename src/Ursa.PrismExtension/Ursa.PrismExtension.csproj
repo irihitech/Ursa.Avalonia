@@ -8,14 +8,16 @@
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
         <PackageId>Irihi.Ursa.PrismExtension</PackageId>
+        <PackageIcon>irihi.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Ursa\Ursa.csproj" />
+        <ProjectReference Include="..\Ursa\Ursa.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Prism.Core" Version="8.1.97" />
+        <PackageReference Include="Prism.Core" Version="8.1.97"/>
+        <None Include="irihi.png" Pack="true" PackagePath=""/>
     </ItemGroup>
 
 </Project>
