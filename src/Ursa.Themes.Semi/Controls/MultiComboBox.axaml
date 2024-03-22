@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa">
+    <!-- Add Resources Here -->
+    <ControlTheme TargetType="u:MultiComboBox" x:Key="{x:Type u:MultiComboBox}">
+        <Setter Property="Focusable" Value="True"></Setter>
+    </ControlTheme>
+    
+    <ControlTheme TargetType="u:MultiComboBoxItem" x:Key="{x:Type u:MultiComboBoxItem}">
+        <Setter Property="Focusable" Value="True"></Setter>
+    </ControlTheme>
+</ResourceDictionary>
