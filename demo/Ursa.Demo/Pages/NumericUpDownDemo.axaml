@@ -26,7 +26,7 @@
             <u:NumericUIntUpDown
                 Name="numd"
                 Width="{Binding Width}"
-                HorizontalAlignment="Stretch"
+                HorizontalAlignment="{Binding HorizontalAlignment}"
                 HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
                 AllowDrag="{Binding AllowDrag}"
                 AllowSpin="{Binding AllowSpin}"
@@ -141,6 +141,8 @@
 
             <CheckBox Content="IsReadOnly" IsChecked="{Binding IsReadOnly}" />
 
+            <Label Content="HorizontalAlignment" />
+            <ComboBox ItemsSource="{Binding Array_HorizontalAlignment}" SelectedItem="{Binding HorizontalAlignment}" />
             <Label Content="HorizontalContentAlignment" />
             <ComboBox ItemsSource="{Binding Array_HorizontalContentAlignment}" SelectedItem="{Binding HorizontalContentAlignment}" />
 
