@@ -11,6 +11,10 @@ namespace Ursa.Demo.ViewModels;
 public partial class NumericUpDownDemoViewModel : ObservableObject
 {
 
+
+    private double _oldWidth=300;
+    [ObservableProperty] private bool _AutoWidth = true;
+    [ObservableProperty] private double _Width = Double.NaN;
     [ObservableProperty] private uint _Value;
     [ObservableProperty] private string _FontFamily = "Consolas";
     [ObservableProperty] private bool _AllowDrag = false;
@@ -40,6 +44,19 @@ public partial class NumericUpDownDemoViewModel : ObservableObject
         NumericUIntUpDown numericUIntUpDown;
         TextBox textBox;
 
+    }
+
+    partial void OnAutoWidthChanged(bool value)
+    {
+        if (value)
+        {
+            _oldWidth = Width;
+            Width = double.NaN;
+        }
+        else
+        {
+            Width = _oldWidth;
+        }
     }
 
     partial void OnValueChanging(uint oldValue, uint newValue)
