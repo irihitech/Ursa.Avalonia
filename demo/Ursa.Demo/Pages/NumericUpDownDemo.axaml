@@ -6,10 +6,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="using:Ursa.Demo.ViewModels"
-    x:DataType="vm:NumericUpDownDemoViewModel"
-    x:CompileBindings="True"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:NumericUpDownDemoViewModel"
     mc:Ignorable="d">
 
     <UserControl.Styles>
@@ -20,33 +20,35 @@
         </Style>
     </UserControl.Styles>
 
-    <Grid ColumnDefinitions="*,*">
-        <Grid
-            Grid.Column="0"
-            HorizontalAlignment="Left"
-            RowDefinitions="200,*">
-            <StackPanel>
-                <u:Divider Content="Change Right ->" />
-                <u:NumericUIntUpDown
-                    Name="numd"
-                    HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
-                    AllowDrag="{Binding AllowDrag}"
-                    AllowSpin="{Binding AllowSpin}"
-                    FontFamily="{Binding FontFamily, Mode=OneWay}"
-                    FormatString="{Binding FormatString}"
-                    InnerLeftContent="{Binding InnerLeftContent}"
-                    IsEnabled="{Binding IsEnable}"
-                    IsReadOnly="{Binding IsReadOnly}"
-                    Maximum="{Binding Maximum}"
-                    Minimum="{Binding Minimum}"
-                    ParsingNumberStyle="{Binding ParsingNumberStyle}"
-                    ShowButtonSpinner="{Binding ShowButtonSpinner}"
-                    Step="{Binding Step}"
-                    Watermark="{Binding Watermark}"
-                    Value="{Binding Value}" />
-                <u:Divider Content="Demo" />
-            </StackPanel>
+    <Grid ColumnDefinitions="*,*" RowDefinitions="100,*">
+        <StackPanel Grid.ColumnSpan="2">
+            <u:Divider Content="Change Right -&gt;" />
+            <u:NumericUIntUpDown
+                Name="numd"
+                Width="{Binding Width}"
+                HorizontalAlignment="{Binding HorizontalAlignment}"
+                HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
+                AllowDrag="{Binding AllowDrag}"
+                AllowSpin="{Binding AllowSpin}"
+                FontFamily="{Binding FontFamily, Mode=OneWay}"
+                FormatString="{Binding FormatString}"
+                InnerLeftContent="{Binding InnerLeftContent}"
+                IsEnabled="{Binding IsEnable}"
+                IsReadOnly="{Binding IsReadOnly}"
+                Maximum="{Binding Maximum}"
+                Minimum="{Binding Minimum}"
+                ParsingNumberStyle="{Binding ParsingNumberStyle}"
+                ShowButtonSpinner="{Binding ShowButtonSpinner}"
+                Step="{Binding Step}"
+                Watermark="{Binding Watermark}"
+                Value="{Binding Value}" />
+            <u:Divider Content="Demo" />
+        </StackPanel>
 
+        <Grid
+            Grid.Row="1"
+            Grid.Column="0"
+            HorizontalAlignment="Left">
             <StackPanel Grid.Row="1">
                 <u:Divider Content="{Binding #input.Value, StringFormat='Int = {0}'}" />
                 <u:NumericIntUpDown
@@ -119,43 +121,50 @@
                     Value="2" />
             </StackPanel>
         </Grid>
-        <StackPanel Grid.Column="1" HorizontalAlignment="Left">
 
-            <Label Content="FontFamily" />
-            <TextBox Text="{Binding FontFamily}" />
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="1"
+            HorizontalAlignment="Left"
+            Orientation="Vertical">
 
-            <Label Content="AllowDrag" />
-            <CheckBox IsChecked="{Binding AllowDrag}" />
+            <CheckBox Content="AutoWidth" IsChecked="{Binding AutoWidth}" />
+            <u:NumericDoubleUpDown
+                AllowDrag="True"
+                InnerLeftContent="Width"
+                IsEnabled="{Binding !AutoWidth}"
+                Value="{Binding Width}" />
 
-            <Label Content="IsReadOnly" />
-            <CheckBox IsChecked="{Binding IsReadOnly}" />
+            <TextBox InnerLeftContent="FontFamily" Text="{Binding FontFamily}" />
 
+            <CheckBox Content="AllowDrag" IsChecked="{Binding AllowDrag}" />
+
+            <CheckBox Content="IsReadOnly" IsChecked="{Binding IsReadOnly}" />
+
+            <Label Content="HorizontalAlignment" />
+            <ComboBox ItemsSource="{Binding Array_HorizontalAlignment}" SelectedItem="{Binding HorizontalAlignment}" />
             <Label Content="HorizontalContentAlignment" />
             <ComboBox ItemsSource="{Binding Array_HorizontalContentAlignment}" SelectedItem="{Binding HorizontalContentAlignment}" />
 
-            <Label Content="InnerLeftContent" />
-            <TextBox Text="{Binding InnerLeftContent}" />
+            <TextBox
+                InnerLeftContent="InnerLeftContent"
+                InnerRightContent="obj"
+                Text="{Binding InnerLeftContent}" />
 
+            <TextBox InnerLeftContent="Watermark" Text="{Binding Watermark}" />
 
-            <Label Content="Watermark" />
-            <TextBox Text="{Binding Watermark}" />
-
-
-            <Label Content="FormatString" />
             <TextBox
                 MinWidth="100"
+                InnerLeftContent="FormatString"
                 MaxLength="100"
                 Text="{Binding FormatString}" />
 
             <Label Content="ParsingNumberStyle" />
             <ComboBox ItemsSource="{Binding Array_ParsingNumberStyle}" SelectedItem="{Binding ParsingNumberStyle}" />
 
+            <CheckBox Content="AllowSpin" IsChecked="{Binding AllowSpin}" />
 
-            <Label Content="AllowSpin" />
-            <CheckBox IsChecked="{Binding AllowSpin}" />
-
-            <Label Content="ShowButtonSpinner" />
-            <CheckBox IsChecked="{Binding ShowButtonSpinner}" />
+            <CheckBox Content="ShowButtonSpinner" IsChecked="{Binding ShowButtonSpinner}" />
 
             <u:NumericUIntUpDown
                 Name="nudV"
@@ -169,11 +178,13 @@
 
             <u:NumericUIntUpDown InnerLeftContent="Min" Value="{Binding Minimum}" />
 
-            <Label Content="Step" />
-            <Slider Minimum="1" Value="{Binding Step}" />
+            <Label Content="{Binding Step, StringFormat='Step {0}'}" />
+            <Slider
+                Minimum="1"
+                ToolTip.Tip="{Binding Step}"
+                Value="{Binding Step}" />
 
-            <Label Content="IsEnable" />
-            <CheckBox IsChecked="{Binding IsEnable}" />
+            <CheckBox Content="IsEnable" IsChecked="{Binding IsEnable}" />
 
         </StackPanel>
     </Grid>

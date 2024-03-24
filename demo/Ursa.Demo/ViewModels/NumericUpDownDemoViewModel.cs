@@ -11,10 +11,17 @@ namespace Ursa.Demo.ViewModels;
 public partial class NumericUpDownDemoViewModel : ObservableObject
 {
 
+
+    private double _oldWidth = 300;
+    [ObservableProperty] private bool _AutoWidth = true;
+    [ObservableProperty] private double _Width = Double.NaN;
     [ObservableProperty] private uint _Value;
     [ObservableProperty] private string _FontFamily = "Consolas";
     [ObservableProperty] private bool _AllowDrag = false;
     [ObservableProperty] private bool _IsReadOnly = false;
+
+    [ObservableProperty] private Array _Array_HorizontalAlignment;
+    [ObservableProperty] private HorizontalAlignment _HorizontalAlignment = HorizontalAlignment.Center;
 
     [ObservableProperty] private Array _Array_HorizontalContentAlignment;
     [ObservableProperty] private HorizontalAlignment _HorizontalContentAlignment = HorizontalAlignment.Center;
@@ -36,10 +43,24 @@ public partial class NumericUpDownDemoViewModel : ObservableObject
     public NumericUpDownDemoViewModel()
     {
         Array_HorizontalContentAlignment = Enum.GetValues(typeof(HorizontalAlignment));
+        Array_HorizontalAlignment = Enum.GetValues(typeof(HorizontalAlignment));
         Array_ParsingNumberStyle = Enum.GetValues(typeof(NumberStyles));
         NumericUIntUpDown numericUIntUpDown;
         TextBox textBox;
 
+    }
+
+    partial void OnAutoWidthChanged(bool value)
+    {
+        if (value)
+        {
+            _oldWidth = Width;
+            Width = double.NaN;
+        }
+        else
+        {
+            Width = _oldWidth;
+        }
     }
 
     partial void OnValueChanging(uint oldValue, uint newValue)

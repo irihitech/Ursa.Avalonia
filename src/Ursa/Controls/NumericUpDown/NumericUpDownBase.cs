@@ -176,7 +176,7 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
     {
         if (IsInitialized)
         {
-            SyncTextAndValue(false, null);
+            SyncTextAndValue(false, null, true);//sync text update while OnFormatChange
         }
     }
 
@@ -343,7 +343,11 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
 
         if ((numberStyles & NumberStyles.AllowHexSpecifier) != 0)
         {
-            if (text.StartsWith("0X") || text.StartsWith("0x")) // support 0x hex while user input
+            if (text.StartsWith("0x") || text.StartsWith("0X")) // support 0x hex while user input
+            {
+                text = text.Substring(2);
+            }
+            else if (text.StartsWith("h'") || text.StartsWith("H'")) // support verilog hex while user input
             {
                 text = text.Substring(2);
             }
@@ -351,12 +355,25 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
             {
                 text = text.Substring(1);
             }
-            else if (text.StartsWith("h'") || text.StartsWith("H'")) // support  hex while user input
+        }
+#if NET8_0_OR_GREATER
+        else if ((numberStyles & NumberStyles.AllowBinarySpecifier) != 0)
+        {
+            if (text.StartsWith("0b") || text.StartsWith("0B")) // support 0b bin while user input
             {
                 text = text.Substring(2);
             }
+            else if (text.StartsWith("b'") || text.StartsWith("B'")) // support verilog bin while user input
+            {
+                text = text.Substring(2);
+            }
+            else if (text.StartsWith("b") || text.StartsWith("B")) // support bin while user input
+            {
+                text = text.Substring(1);
+            }
         }
 
+#endif
         return text;
     }
 
