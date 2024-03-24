@@ -17,7 +17,7 @@
                         </ItemsControl>
                     </ToggleButton>
                     <Popup PlacementTarget="button" IsOpen="{Binding #button.IsChecked}">
-                        <ListBox SelectionMode="Multiple"  ItemsSource="{TemplateBinding ItemsSource}" SelectedItems="{TemplateBinding SelectedItems}">
+                        <ListBox Name="{x:Static u:MultiComboBox.PART_ListBox}" SelectionMode="Multiple"  ItemsSource="{TemplateBinding ItemsSource}" SelectedItems="{TemplateBinding SelectedItems}">
                             
                         </ListBox>
                     </Popup>
