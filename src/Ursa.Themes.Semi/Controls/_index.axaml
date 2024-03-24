@@ -20,6 +20,7 @@
         <ResourceInclude Source="KeyGestureInput.axaml" />
         <ResourceInclude Source="Loading.axaml" />
         <ResourceInclude Source="MessageBox.axaml" />
+        <ResourceInclude Source="MultiComboBox.axaml" />
         <ResourceInclude Source="NavMenu.axaml" />
         <ResourceInclude Source="NumericUpDown.axaml" />
         <ResourceInclude Source="NumPad.axaml" />

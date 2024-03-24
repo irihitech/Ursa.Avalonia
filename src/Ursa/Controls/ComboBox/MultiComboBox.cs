@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
@@ -8,8 +10,6 @@ namespace Ursa.Controls;
 
 public class MultiComboBox: SelectingItemsControl
 {
-    private ComboBox _box;
-
     private static ITemplate<Panel?> _defaultPanel = new FuncTemplate<Panel?>(() => new VirtualizingStackPanel());
 
     public static readonly StyledProperty<bool> IsDropDownOpenProperty =

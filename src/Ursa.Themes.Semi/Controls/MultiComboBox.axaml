@@ -4,6 +4,26 @@
     <!-- Add Resources Here -->
     <ControlTheme TargetType="u:MultiComboBox" x:Key="{x:Type u:MultiComboBox}">
         <Setter Property="Focusable" Value="True"></Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:MultiComboBox">
+                <Panel>
+                    <ToggleButton Name="button">
+                        <ItemsControl ItemsSource="{TemplateBinding SelectedItems}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </ToggleButton>
+                    <Popup PlacementTarget="button" IsOpen="{Binding #button.IsChecked}">
+                        <ListBox SelectionMode="Multiple"  ItemsSource="{TemplateBinding ItemsSource}" SelectedItems="{TemplateBinding SelectedItems}">
+                            
+                        </ListBox>
+                    </Popup>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
     </ControlTheme>
     
     <ControlTheme TargetType="u:MultiComboBoxItem" x:Key="{x:Type u:MultiComboBoxItem}">
