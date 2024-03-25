@@ -5,27 +5,59 @@
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:MultiComboBox}" TargetType="u:MultiComboBox">
         <Setter Property="Focusable" Value="True" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Width" Value="300" />
         <Setter Property="MaxDropdownHeight" Value="300" />
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="Padding" Value="12 4" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:MultiComboBox">
                 <Panel>
-                    <ToggleButton Name="button" IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsDropDownOpen, Mode=TwoWay}">
-                        <ItemsControl ItemsSource="{TemplateBinding SelectedItems}">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel Orientation="Horizontal" />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                        </ItemsControl>
-                    </ToggleButton>
+                    <Border
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="Transparent"
+                        BorderBrush="{DynamicResource SemiGrey2}"
+                        BorderThickness="1">
+                        <Grid Name="PART_RootGrid" ColumnDefinitions="*, Auto, 32">
+                            <Border
+                                Name="{x:Static u:MultiComboBox.PART_BackgroundBorder}"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                Background="Transparent" />
+                            <u:MultiComboBoxSelectedItemList
+                                Grid.Column="0"
+                                ItemsSource="{TemplateBinding SelectedItems}"
+                                RemoveCommand="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Remove}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </u:MultiComboBoxSelectedItemList>
+                            <PathIcon
+                                x:Name="DropDownGlyph"
+                                Grid.Column="2"
+                                Width="12"
+                                Height="12"
+                                Margin="0,0,10,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Data="{DynamicResource ComboBoxIcon}"
+                                Foreground="{DynamicResource ComboBoxIconDefaultForeground}"
+                                IsHitTestVisible="False"
+                                UseLayoutRounding="False" />
+                        </Grid>
+                    </Border>
                     <Popup
+                        Width="{Binding #PART_RootGrid.Bounds.Width}"
                         MaxHeight="{TemplateBinding MaxDropdownHeight}"
-                        IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsDropDownOpen, Mode=TwoWay}"
                         IsLightDismissEnabled="True"
-                        PlacementTarget="button">
+                        IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsDropDownOpen, Mode=TwoWay}"
+                        PlacementTarget="PART_RootGrid">
                         <Border Theme="{DynamicResource CardBorder}">
                             <ScrollViewer>
-                                <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                                <ItemsPresenter HorizontalAlignment="Stretch" ItemsPanel="{TemplateBinding ItemsPanel}" />
                             </ScrollViewer>
                         </Border>
                     </Popup>
@@ -36,7 +68,7 @@
 
     <ControlTheme x:Key="{x:Type u:MultiComboBoxItem}" TargetType="u:MultiComboBoxItem">
         <Setter Property="Padding" Value="8,0,0,0" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -45,7 +77,7 @@
         <Setter Property="CornerRadius" Value="{DynamicResource ListBoxItemCheckBoxCornerRadius}" />
         <Setter Property="MinHeight" Value="32" />
         <Setter Property="Foreground" Value="{DynamicResource ListBoxItemCheckForeground}" />
-        <Setter Property="Background" Value="{DynamicResource ListBoxItemCheckDefaultBackground}" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="{DynamicResource ListBoxItemCheckDefaultBorderBrush}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:MultiComboBoxItem">
@@ -83,7 +115,8 @@
                             VerticalAlignment="Center"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}"
-                            IsVisible="{TemplateBinding Content,Converter={x:Static ObjectConverters.IsNotNull}}"
+                            IsVisible="{TemplateBinding Content,
+                                                        Converter={x:Static ObjectConverters.IsNotNull}}"
                             RecognizesAccessKey="True"
                             TextWrapping="Wrap" />
                     </Grid>
@@ -132,10 +165,8 @@
             <!--  Checked Pointerover State  -->
             <Style Selector="^:pointerover">
                 <Style Selector="^ /template/ Border#NormalRectangle">
-                    <Setter Property="BorderBrush"
-                            Value="{DynamicResource ListBoxItemCheckCheckedPointeroverBorderBrush}" />
-                    <Setter Property="Background"
-                            Value="{DynamicResource ListBoxItemCheckCheckedPointeroverBackground}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ListBoxItemCheckCheckedPointeroverBorderBrush}" />
+                    <Setter Property="Background" Value="{DynamicResource ListBoxItemCheckCheckedPointeroverBackground}" />
                 </Style>
             </Style>
 
@@ -162,5 +193,13 @@
                 </Style>
             </Style>
         </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:MultiComboBoxSelectedItemList}" TargetType="u:MultiComboBoxSelectedItemList">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:MultiComboBoxSelectedItemList">
+                <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+            </ControlTemplate>
+        </Setter>
     </ControlTheme>
 </ResourceDictionary>

@@ -7,13 +7,18 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
+[TemplatePart(PART_BackgroundBorder, typeof(Border))]
 public class MultiComboBox: SelectingItemsControl
 {
+    public const string PART_BackgroundBorder = "PART_BackgroundBorder";
+    private Border? _rootBorder;
+    
     private static ITemplate<Panel?> _defaultPanel = new FuncTemplate<Panel?>(() => new VirtualizingStackPanel());
 
     public static readonly StyledProperty<bool> IsDropDownOpenProperty =
@@ -60,9 +65,18 @@ public class MultiComboBox: SelectingItemsControl
         return new MultiComboBoxItem();
     }
 
-    protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
-        base.PrepareContainerForItemOverride(container, item, index);
+        base.OnApplyTemplate(e);
+        PointerPressedEvent.RemoveHandler(OnBackgroundPointerPressed, _rootBorder);
+        _rootBorder = e.NameScope.Find<Border>(PART_BackgroundBorder);
+        PointerPressedEvent.AddHandler(OnBackgroundPointerPressed, _rootBorder);
+        
+    }
+
+    private void OnBackgroundPointerPressed(object sender, PointerPressedEventArgs e)
+    {
+        SetCurrentValue(IsDropDownOpenProperty, !IsDropDownOpen);
     }
 
     internal void ItemFocused(MultiComboBoxItem dropDownItem)
@@ -71,5 +85,24 @@ public class MultiComboBox: SelectingItemsControl
         {
             dropDownItem.BringIntoView();
         }
+    }
+
+    public void Remove(object? o)
+    {
+        if (o is StyledElement s)
+        {
+            var data = s.DataContext;
+            this.SelectedItems?.Remove(data);
+            var item = this.Items.FirstOrDefault(a => ReferenceEquals(a, data));
+            if (item is not null)
+            {
+                var container = ContainerFromItem(item);
+                if (container is MultiComboBoxItem t)
+                {
+                    t.IsSelected = false;
+                }
+            }
+        }
+        
     }
 }
