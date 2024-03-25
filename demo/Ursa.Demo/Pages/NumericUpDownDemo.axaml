@@ -25,6 +25,7 @@
             <u:Divider Content="Change Right -&gt;" />
             <u:NumericUIntUpDown
                 Name="numd"
+                Command="{Binding TrythisCommand}"
                 Width="{Binding Width}"
                 HorizontalAlignment="{Binding HorizontalAlignment}"
                 HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
