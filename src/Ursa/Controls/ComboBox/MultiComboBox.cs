@@ -7,6 +7,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
@@ -59,35 +60,9 @@ public class MultiComboBox: SelectingItemsControl
         return new MultiComboBoxItem();
     }
 
-    private Dictionary<int, IDisposable?> _disposables = new Dictionary<int, IDisposable?>();
-
     protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
     {
         base.PrepareContainerForItemOverride(container, item, index);
-        if(_disposables.TryGetValue(index, out var d))
-        {
-            d?.Dispose();
-            _disposables.Remove(index);
-        }
-        if (container is MultiComboBoxItem comboBoxItem)
-        {
-            comboBoxItem.IsSelected = SelectedItems?.Contains(item) ?? false;
-            var disposable = MultiComboBoxItem.IsSelectedProperty.Changed.Subscribe(a =>
-            {
-                if (a.Sender == comboBoxItem)
-                {
-                    if (comboBoxItem.IsSelected)
-                    {
-                        SelectedItems?.Add(item);
-                    }
-                    else
-                    {
-                        SelectedItems?.Remove(item);
-                    }
-                }
-            });
-            _disposables[index] = disposable;
-        }
     }
 
     internal void ItemFocused(MultiComboBoxItem dropDownItem)
@@ -97,5 +72,4 @@ public class MultiComboBox: SelectingItemsControl
             dropDownItem.BringIntoView();
         }
     }
-    
 }
