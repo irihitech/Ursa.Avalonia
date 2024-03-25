@@ -1,32 +1,166 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:u="https://irihi.tech/ursa">
-    <!-- Add Resources Here -->
-    <ControlTheme TargetType="u:MultiComboBox" x:Key="{x:Type u:MultiComboBox}">
-        <Setter Property="Focusable" Value="True"></Setter>
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:MultiComboBox}" TargetType="u:MultiComboBox">
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="MaxDropdownHeight" Value="300" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:MultiComboBox">
                 <Panel>
-                    <ToggleButton Name="button">
+                    <ToggleButton Name="button" IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsDropDownOpen, Mode=TwoWay}">
                         <ItemsControl ItemsSource="{TemplateBinding SelectedItems}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <WrapPanel Orientation="Horizontal"/>
+                                    <WrapPanel Orientation="Horizontal" />
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>
                     </ToggleButton>
-                    <Popup PlacementTarget="button" IsOpen="{Binding #button.IsChecked}">
-                        <ListBox Name="{x:Static u:MultiComboBox.PART_ListBox}" SelectionMode="Multiple"  ItemsSource="{TemplateBinding ItemsSource}" SelectedItems="{TemplateBinding SelectedItems}">
-                            
-                        </ListBox>
+                    <Popup
+                        MaxHeight="{TemplateBinding MaxDropdownHeight}"
+                        IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsDropDownOpen, Mode=TwoWay}"
+                        IsLightDismissEnabled="True"
+                        PlacementTarget="button">
+                        <Border Theme="{DynamicResource CardBorder}">
+                            <ScrollViewer>
+                                <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                            </ScrollViewer>
+                        </Border>
                     </Popup>
                 </Panel>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
-    
-    <ControlTheme TargetType="u:MultiComboBoxItem" x:Key="{x:Type u:MultiComboBoxItem}">
-        <Setter Property="Focusable" Value="True"></Setter>
+
+    <ControlTheme x:Key="{x:Type u:MultiComboBoxItem}" TargetType="u:MultiComboBoxItem">
+        <Setter Property="Padding" Value="8,0,0,0" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="{DynamicResource ListBoxItemCheckFontSize}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource ListBoxItemCheckBoxCornerRadius}" />
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="Foreground" Value="{DynamicResource ListBoxItemCheckForeground}" />
+        <Setter Property="Background" Value="{DynamicResource ListBoxItemCheckDefaultBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ListBoxItemCheckDefaultBorderBrush}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:MultiComboBoxItem">
+                <Border
+                    x:Name="RootBorder"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <Grid x:Name="RootGrid" ColumnDefinitions="Auto,*">
+                        <Grid
+                            Grid.Column="0"
+                            Margin="0,0,0,0"
+                            VerticalAlignment="Center">
+                            <Border
+                                x:Name="NormalRectangle"
+                                Width="{DynamicResource ListBoxItemCheckBoxWidth}"
+                                Height="{DynamicResource ListBoxItemCheckBoxHeight}"
+                                Background="{DynamicResource ListBoxItemCheckDefaultBackground}"
+                                BorderBrush="{DynamicResource ListBoxItemCheckDefaultBorderBrush}"
+                                BorderThickness="{DynamicResource ListBoxItemCheckBoxBorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                UseLayoutRounding="False" />
+                            <PathIcon
+                                Name="CheckGlyph"
+                                Width="{DynamicResource ListBoxItemCheckBoxGlyphWidth}"
+                                Height="{DynamicResource ListBoxItemCheckBoxGlyphHeight}"
+                                Foreground="{DynamicResource ListBoxItemCheckGlyphFill}" />
+                        </Grid>
+                        <ContentPresenter
+                            x:Name="ContentPresenter"
+                            Grid.Column="1"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="Center"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            IsVisible="{TemplateBinding Content,Converter={x:Static ObjectConverters.IsNotNull}}"
+                            RecognizesAccessKey="True"
+                            TextWrapping="Wrap" />
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+
+        <!--  Unchecked Pointerover State  -->
+        <Style Selector="^:pointerover">
+            <Style Selector="^ /template/ Border#NormalRectangle">
+                <Setter Property="BorderBrush" Value="{DynamicResource ListBoxItemCheckPointeroverBorderBrush}" />
+                <Setter Property="Background" Value="{DynamicResource ListBoxItemCheckPointeroverBackground}" />
+            </Style>
+        </Style>
+
+        <!--  Unchecked Pressed State  -->
+        <Style Selector="^:pressed">
+            <Style Selector="^ /template/ Border#NormalRectangle">
+                <Setter Property="BorderBrush" Value="{DynamicResource ListBoxItemCheckPressedBorderBrush}" />
+                <Setter Property="Background" Value="{DynamicResource ListBoxItemCheckPressedBackground}" />
+            </Style>
+        </Style>
+
+        <!--  Unchecked Disabled state  -->
+        <Style Selector="^:disabled">
+            <Style Selector="^ /template/ ContentPresenter#ContentPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource ListBoxItemCheckDisabledForeground}" />
+            </Style>
+            <Style Selector="^ /template/ Border#NormalRectangle">
+                <Setter Property="BorderBrush" Value="{DynamicResource ListBoxItemCheckDefaultDisabledBorderBrush}" />
+                <Setter Property="Background" Value="{DynamicResource ListBoxItemCheckDefaultDisabledBackground}" />
+            </Style>
+        </Style>
+
+        <Style Selector="^:selected">
+            <Style Selector="^ /template/ Border#NormalRectangle">
+                <Setter Property="BorderBrush" Value="{DynamicResource ListBoxItemCheckCheckedDefaultBorderBrush}" />
+                <Setter Property="Background" Value="{DynamicResource ListBoxItemCheckCheckedDefaultBackground}" />
+            </Style>
+
+            <Style Selector="^ /template/ PathIcon#CheckGlyph">
+                <Setter Property="Data" Value="{DynamicResource ListBoxItemCheckCheckGlyph}" />
+                <Setter Property="Opacity" Value="1" />
+            </Style>
+
+            <!--  Checked Pointerover State  -->
+            <Style Selector="^:pointerover">
+                <Style Selector="^ /template/ Border#NormalRectangle">
+                    <Setter Property="BorderBrush"
+                            Value="{DynamicResource ListBoxItemCheckCheckedPointeroverBorderBrush}" />
+                    <Setter Property="Background"
+                            Value="{DynamicResource ListBoxItemCheckCheckedPointeroverBackground}" />
+                </Style>
+            </Style>
+
+            <!--  Checked Pressed State  -->
+            <Style Selector="^:pressed">
+                <Style Selector="^ /template/ Border#NormalRectangle">
+                    <Setter Property="BorderBrush" Value="{DynamicResource ListBoxItemCheckCheckedPressedBorderBrush}" />
+                    <Setter Property="Background" Value="{DynamicResource ListBoxItemCheckCheckedPressedBackground}" />
+                </Style>
+            </Style>
+
+            <!--  Checked Disabled State  -->
+            <Style Selector="^:disabled">
+                <Style Selector="^ /template/ ContentPresenter#ContentPresenter">
+                    <Setter Property="Foreground" Value="{DynamicResource ListBoxItemCheckDisabledForeground}" />
+                </Style>
+                <Style Selector="^ /template/ Border#NormalRectangle">
+                    <Setter Property="BorderBrush" Value="{DynamicResource ListBoxItemCheckCheckedDisabledBorderBrush}" />
+                    <Setter Property="Background" Value="{DynamicResource ListBoxItemCheckCheckedDisabledBackground}" />
+                </Style>
+
+                <Style Selector="^ /template/ Path#CheckGlyph">
+                    <Setter Property="Fill" Value="{DynamicResource ListBoxItemCheckGlyphDisabledFill}" />
+                </Style>
+            </Style>
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

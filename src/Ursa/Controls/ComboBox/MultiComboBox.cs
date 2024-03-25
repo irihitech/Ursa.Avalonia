@@ -2,19 +2,17 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Avalonia;
+using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-[TemplatePart( PART_ListBox, typeof(ListBox))]
 public class MultiComboBox: SelectingItemsControl
 {
-    public const string PART_ListBox  = "PART_ListBox";
-    private ListBox? _listBox;
-    
     private static ITemplate<Panel?> _defaultPanel = new FuncTemplate<Panel?>(() => new VirtualizingStackPanel());
 
     public static readonly StyledProperty<bool> IsDropDownOpenProperty =
@@ -26,8 +24,17 @@ public class MultiComboBox: SelectingItemsControl
         set => SetValue(IsDropDownOpenProperty, value);
     }
 
+    public static readonly StyledProperty<double> MaxDropdownHeightProperty = AvaloniaProperty.Register<MultiComboBox, double>(
+        nameof(MaxDropdownHeight));
+
+    public double MaxDropdownHeight
+    {
+        get => GetValue(MaxDropdownHeightProperty);
+        set => SetValue(MaxDropdownHeightProperty, value);
+    }
+
     public new static readonly StyledProperty<IList?> SelectedItemsProperty = AvaloniaProperty.Register<MultiComboBox, IList?>(
-        nameof(SelectedItems));
+        nameof(SelectedItems), new AvaloniaList<object>());
 
     public new IList? SelectedItems
     {
@@ -43,14 +50,46 @@ public class MultiComboBox: SelectingItemsControl
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
-        return NeedsContainer<MultiComboBoxItem>(item, out recycleKey);
+        recycleKey = item;
+        return item is not MultiComboBoxItem;
     }
 
     protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey)
     {
         return new MultiComboBoxItem();
     }
-    
+
+    private Dictionary<int, IDisposable?> _disposables = new Dictionary<int, IDisposable?>();
+
+    protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
+    {
+        base.PrepareContainerForItemOverride(container, item, index);
+        if(_disposables.TryGetValue(index, out var d))
+        {
+            d?.Dispose();
+            _disposables.Remove(index);
+        }
+        if (container is MultiComboBoxItem comboBoxItem)
+        {
+            comboBoxItem.IsSelected = SelectedItems?.Contains(item) ?? false;
+            var disposable = MultiComboBoxItem.IsSelectedProperty.Changed.Subscribe(a =>
+            {
+                if (a.Sender == comboBoxItem)
+                {
+                    if (comboBoxItem.IsSelected)
+                    {
+                        SelectedItems?.Add(item);
+                    }
+                    else
+                    {
+                        SelectedItems?.Remove(item);
+                    }
+                }
+            });
+            _disposables[index] = disposable;
+        }
+    }
+
     internal void ItemFocused(MultiComboBoxItem dropDownItem)
     {
         if (IsDropDownOpen && dropDownItem.IsFocused && dropDownItem.IsArrangeValid)
@@ -58,22 +97,5 @@ public class MultiComboBox: SelectingItemsControl
             dropDownItem.BringIntoView();
         }
     }
-
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
-    {
-        base.OnApplyTemplate(e);
-        _listBox = e.NameScope.Find<ListBox>(PART_ListBox);
-        if (_listBox != null)
-        {
-            _listBox.SelectionChanged += ListBox_SelectionChanged;
-        }
-    }
-
-    private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (sender == _listBox)
-        {
-            this.SelectedItems = _listBox.SelectedItems;
-        }
-    }
+    
 }
