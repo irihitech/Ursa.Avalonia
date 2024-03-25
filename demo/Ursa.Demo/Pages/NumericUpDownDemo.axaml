@@ -22,7 +22,7 @@
 
     <Grid ColumnDefinitions="*,*" RowDefinitions="100,*">
         <StackPanel Grid.ColumnSpan="2">
-            <u:Divider Content="Change Right -&gt;" />
+            <u:Divider Content="Demo"/>
             <u:NumericUIntUpDown
                 Name="numd"
                 Width="{Binding Width}"
