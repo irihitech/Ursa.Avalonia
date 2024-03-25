@@ -25,12 +25,12 @@
             <u:Divider Content="Change Right -&gt;" />
             <u:NumericUIntUpDown
                 Name="numd"
-                Command="{Binding TrythisCommand}"
                 Width="{Binding Width}"
                 HorizontalAlignment="{Binding HorizontalAlignment}"
                 HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
                 AllowDrag="{Binding AllowDrag}"
                 AllowSpin="{Binding AllowSpin}"
+                Command="{Binding TrythisCommand}"
                 FontFamily="{Binding FontFamily, Mode=OneWay}"
                 FormatString="{Binding FormatString}"
                 InnerLeftContent="{Binding InnerLeftContent}"
@@ -43,6 +43,11 @@
                 Step="{Binding Step}"
                 Watermark="{Binding Watermark}"
                 Value="{Binding Value}" />
+            <TextBox
+                Width="NaN"
+                HorizontalAlignment="Center"
+                IsReadOnly="true"
+                Text="{Binding CommandUpdateText}" />
             <u:Divider Content="Demo" />
         </StackPanel>
 

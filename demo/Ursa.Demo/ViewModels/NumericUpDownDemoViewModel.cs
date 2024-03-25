@@ -40,13 +40,15 @@ public partial class NumericUpDownDemoViewModel : ObservableObject
 
     [ObservableProperty] private bool _IsEnable = true;
 
+    [ObservableProperty] private string _CommandUpdateText = "Command not Execute";
+
     uint v = 0;
     [RelayCommand]
     // void Trythis()
     void Trythis(uint v)
     // void Trythis(object v)
     {
-        System.Diagnostics.Trace.WriteLine(v);
+        CommandUpdateText = $"Command Exe,CommandParameter={v}";
     }
 
 
