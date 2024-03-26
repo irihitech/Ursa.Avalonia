@@ -8,7 +8,8 @@
              x:DataType="vm:MultiComboBoxDemoViewModel"
              x:CompileBindings="True"
              x:Class="Ursa.Demo.Pages.MultiComboBoxDemo">
-    <StackPanel>
-        <u:MultiComboBox ItemsSource="{Binding Items}"/>
+    <StackPanel Orientation="Horizontal">
+        <u:MultiComboBox Classes="ClearButton" Name="combo" ItemsSource="{Binding Items}"/>
+        <ListBox ItemsSource="{Binding #combo.SelectedItems}"/>
     </StackPanel>
 </UserControl>
