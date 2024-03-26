@@ -1,6 +1,7 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Layout;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Globalization;
 using Ursa.Controls;
@@ -39,6 +40,17 @@ public partial class NumericUpDownDemoViewModel : ObservableObject
 
     [ObservableProperty] private bool _IsEnable = true;
 
+    [ObservableProperty] private string _CommandUpdateText = "Command not Execute";
+
+    uint v = 0;
+    [RelayCommand]
+    // void Trythis()
+    void Trythis(uint v)
+    // void Trythis(object v)
+    {
+        CommandUpdateText = $"Command Exe,CommandParameter={v}";
+    }
+
 
     public NumericUpDownDemoViewModel()
     {
@@ -65,7 +77,7 @@ public partial class NumericUpDownDemoViewModel : ObservableObject
 
     partial void OnValueChanging(uint oldValue, uint newValue)
     {
-        Console.WriteLine(oldValue);
+        // Console.WriteLine(oldValue);
     }
 
 }

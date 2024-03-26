@@ -22,7 +22,7 @@
 
     <Grid ColumnDefinitions="*,*" RowDefinitions="100,*">
         <StackPanel Grid.ColumnSpan="2">
-            <u:Divider Content="Change Right -&gt;" />
+            <u:Divider Content="Demo"/>
             <u:NumericUIntUpDown
                 Name="numd"
                 Width="{Binding Width}"
@@ -30,6 +30,7 @@
                 HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
                 AllowDrag="{Binding AllowDrag}"
                 AllowSpin="{Binding AllowSpin}"
+                Command="{Binding TrythisCommand}"
                 FontFamily="{Binding FontFamily, Mode=OneWay}"
                 FormatString="{Binding FormatString}"
                 InnerLeftContent="{Binding InnerLeftContent}"
@@ -42,6 +43,11 @@
                 Step="{Binding Step}"
                 Watermark="{Binding Watermark}"
                 Value="{Binding Value}" />
+            <TextBox
+                Width="NaN"
+                HorizontalAlignment="Center"
+                IsReadOnly="true"
+                Text="{Binding CommandUpdateText}" />
             <u:Divider Content="Demo" />
         </StackPanel>
 

@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Globalization;
 using System.Net.Mime;
+using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -464,6 +465,33 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
         set => SetValue(EmptyInputValueProperty, value);
     }
 
+
+    public static readonly StyledProperty<ICommand?> CommandProperty = AvaloniaProperty.Register<Pagination, ICommand?>(
+        nameof(Command));
+
+    public ICommand? Command
+    {
+        get => GetValue(CommandProperty);
+        set => SetValue(CommandProperty, value);
+    }
+
+    public static readonly StyledProperty<object?> CommandParameterProperty =
+        AvaloniaProperty.Register<Pagination, object?>(nameof(CommandParameter));
+
+    public object? CommandParameter
+    {
+        get => this.GetValue(CommandParameterProperty);
+        set => this.SetValue(CommandParameterProperty, value);
+    }
+
+    private void InvokeCommand(object? cp)
+    {
+        if (this.Command != null && this.Command.CanExecute(cp))
+        {
+            this.Command.Execute(cp);
+        }
+    }
+
     /// <summary>
     /// Defines the <see cref="ValueChanged"/> event.
     /// </summary>
@@ -504,11 +532,17 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
         if (IsInitialized)
         {
             SyncTextAndValue(false, null, true);
+            SetValidSpinDirection();
+            T? oldValue = args.GetOldValue<T?>();
+            T? newValue = args.GetNewValue<T?>();
+            var e = new ValueChangedEventArgs<T>(ValueChangedEvent, oldValue, newValue);
+            RaiseEventCommand(e);
         }
-        SetValidSpinDirection();
-        T? oldValue = args.GetOldValue<T?>();
-        T? newValue = args.GetNewValue<T?>();
-        var e = new ValueChangedEventArgs<T>(ValueChangedEvent, oldValue, newValue);
+    }
+
+    private void RaiseEventCommand(ValueChangedEventArgs<T> e)
+    {
+        InvokeCommand(this.CommandParameter ?? e.NewValue);
         RaiseEvent(e);
     }
 
