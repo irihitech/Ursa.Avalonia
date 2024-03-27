@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Layout;
 using Ursa.Common;
 
 namespace Ursa.Controls;
@@ -181,6 +182,12 @@ public static class OverlayDialog
     private static void ConfigureCustomDialogControl(CustomDialogControl control, OverlayDialogOptions? options)
     {
         options ??= OverlayDialogOptions.Default;
+        control.IsFullScreen = options.FullScreen;
+        if (options.FullScreen)
+        {
+            control.HorizontalAlignment = HorizontalAlignment.Stretch;
+            control.VerticalAlignment = VerticalAlignment.Stretch;
+        }
         control.HorizontalAnchor = options.HorizontalAnchor;
         control.VerticalAnchor = options.VerticalAnchor;
         control.ActualHorizontalAnchor = options.HorizontalAnchor;
@@ -191,12 +198,18 @@ public static class OverlayDialog
             options.VerticalAnchor == VerticalPosition.Center ? null : options.VerticalOffset;
         control.IsCloseButtonVisible = options.ShowCloseButton;
         control.CanLightDismiss = options.CanLightDismiss;
-        control.CanDragMove = options.CanDragMove;
+        DialogControlBase.SetCanDragMove(control, options.CanDragMove);
     }
     
     private static void ConfigureDefaultDialogControl(DefaultDialogControl control, OverlayDialogOptions? options)
     {
         if (options is null) options = new OverlayDialogOptions();
+        control.IsFullScreen = options.FullScreen;
+        if (options.FullScreen)
+        {
+            control.HorizontalAlignment = HorizontalAlignment.Stretch;
+            control.VerticalAlignment = VerticalAlignment.Stretch;
+        }
         control.HorizontalAnchor = options.HorizontalAnchor;
         control.VerticalAnchor = options.VerticalAnchor;
         control.ActualHorizontalAnchor = options.HorizontalAnchor;
@@ -209,7 +222,7 @@ public static class OverlayDialog
         control.Buttons = options.Buttons;
         control.Title = options.Title;
         control.CanLightDismiss = options.CanLightDismiss;
-        control.CanDragMove = options.CanDragMove;
+        DialogControlBase.SetCanDragMove(control, options.CanDragMove);
     }
 
     internal static T? Recall<T>(string? hostId) where T: Control

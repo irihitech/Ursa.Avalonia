@@ -28,13 +28,20 @@ public partial class OverlayDialogHost
         SetDrawerPosition(control);
         control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDrawerControlClosing);
         var animation = CreateAnimation(control.Bounds.Size, control.Position, true);
-        if (mask is null)
+        if (IsAnimationDisabled)
         {
-            await animation.RunAsync(control);
+            ResetDrawerPosition(control, this.Bounds.Size);
         }
         else
         {
-            await Task.WhenAll(animation.RunAsync(control), _maskAppearAnimation.RunAsync(mask));
+            if (mask is null)
+            {
+                await animation.RunAsync(control);
+            }
+            else
+            {
+                await Task.WhenAll(animation.RunAsync(control), _maskAppearAnimation.RunAsync(mask));
+            }
         }
     }
     
@@ -48,9 +55,18 @@ public partial class OverlayDialogHost
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetDrawerPosition(control);
+        _modalCount++;
+        HasModal = _modalCount > 0;
         control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDrawerControlClosing);
         var animation = CreateAnimation(control.Bounds.Size, control.Position);
-        await Task.WhenAll(animation.RunAsync(control), _maskAppearAnimation.RunAsync(mask));
+        if (IsAnimationDisabled)
+        {
+            ResetDrawerPosition(control, this.Bounds.Size);
+        }
+        else
+        {
+            await Task.WhenAll(animation.RunAsync(control), _maskAppearAnimation.RunAsync(mask));
+        }
     }
 
     private void SetDrawerPosition(DrawerControlBase control)
@@ -145,15 +161,23 @@ public partial class OverlayDialogHost
             control.RemoveHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged); 
             if (layer.Mask is not null)
             {
+                _modalCount--;
+                HasModal = _modalCount > 0;
                 layer.Mask.RemoveHandler(PointerPressedEvent, ClickMaskToCloseDialog);
-                var disappearAnimation = CreateAnimation(control.Bounds.Size, control.Position, false);
-                await Task.WhenAll(disappearAnimation.RunAsync(control), _maskDisappearAnimation.RunAsync(layer.Mask));
+                if (!IsAnimationDisabled)
+                {
+                    var disappearAnimation = CreateAnimation(control.Bounds.Size, control.Position, false);
+                    await Task.WhenAll(disappearAnimation.RunAsync(control), _maskDisappearAnimation.RunAsync(layer.Mask));
+                }
                 Children.Remove(layer.Mask);
             }
             else
             {
-                var disappearAnimation = CreateAnimation(control.Bounds.Size, control.Position, false);
-                await disappearAnimation.RunAsync(control);
+                if (!IsAnimationDisabled)
+                {
+                    var disappearAnimation = CreateAnimation(control.Bounds.Size, control.Position, false);
+                    await disappearAnimation.RunAsync(control);
+                }
             }
             Children.Remove(control);
             ResetZIndices();

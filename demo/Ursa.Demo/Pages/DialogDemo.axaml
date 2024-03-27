@@ -39,22 +39,27 @@
                         IsChecked="{Binding CanLightDismiss}"
                         OffContent="No"
                         OnContent="Yes" />
+                    <ToggleSwitch
+                        Content="FullScreen"
+                        IsChecked="{Binding FullScreen}"
+                        OffContent="No"
+                        OnContent="Yes" />
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Buttons" />
-                        <ComboBox ItemsSource="{Binding Buttons}" SelectedItem="{Binding SelectedButton}" />
+                        <TextBlock VerticalAlignment="Center" Text="Buttons" />
+                        <u:EnumSelector EnumType="{x:Type u:DialogButton}" Value="{Binding SelectedButton}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Mode" />
-                        <ComboBox ItemsSource="{Binding Modes}" SelectedItem="{Binding SelectedMode}" />
+                        <TextBlock VerticalAlignment="Center" Text="Mode" />
+                        <u:EnumSelector EnumType="{x:Type u:DialogMode}" Value="{Binding SelectedMode}" />
                     </StackPanel>
                     <Button Command="{Binding ShowDialogCommand}" Content="Show Dialog" />
                     <TextBlock>
                         <Run Text="Default Result: " />
-                        <Run Text="{Binding DefaultResult}" />
+                        <Run Text="{Binding DefaultResult, FallbackValue=''}" />
                     </TextBlock>
                     <TextBlock>
                         <Run Text="Dialog Date: " />
-                        <Run Text="{Binding Date}" />
+                        <Run Text="{Binding Date, FallbackValue=''}" />
                     </TextBlock>
                 </StackPanel>
             </TabItem>
@@ -73,14 +78,19 @@
                         OffContent="Local"
                         OnContent="Global" />
                     <ToggleSwitch
-                        Content="Modal/Regular"
                         Name="modal"
+                        Content="Modal/Regular"
                         IsChecked="{Binding IsModal}"
                         OffContent="Regular"
                         OnContent="Modal" />
                     <ToggleSwitch
                         Content="ClickOnMaskToClose"
                         IsChecked="{Binding CanLightDismiss}"
+                        OffContent="No"
+                        OnContent="Yes" />
+                    <ToggleSwitch
+                        Content="FullScreen"
+                        IsChecked="{Binding FullScreen}"
                         OffContent="No"
                         OnContent="Yes" />
                     <Button Command="{Binding ShowCustomDialogCommand}" Content="Show Dialog" />

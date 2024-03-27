@@ -31,6 +31,9 @@ public partial class DrawerDemoViewModel: ObservableObject
     {
         ShowDialogCommand = new AsyncRelayCommand(ShowDefaultDialog);
         ShowCustomDialogCommand = new AsyncRelayCommand(ShowCustomDrawer);
+        SelectedPosition = Position.Right;
+        IsGlobal = true;
+        IsModal = true;
     }
     
     private async Task ShowDefaultDialog()

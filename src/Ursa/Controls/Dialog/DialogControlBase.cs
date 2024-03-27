@@ -14,12 +14,13 @@ namespace Ursa.Controls;
 
 [TemplatePart(PART_CloseButton, typeof(Button))]
 [TemplatePart(PART_TitleArea, typeof(Panel))]
-[PseudoClasses(PC_Modal)]
+[PseudoClasses(PC_Modal, PC_FullScreen)]
 public abstract class DialogControlBase : OverlayFeedbackElement
 {
     public const string PART_CloseButton = "PART_CloseButton";
     public const string PART_TitleArea = "PART_TitleArea";
     public const string PC_Modal = ":modal";
+    public const string PC_FullScreen = ":full-screen";
 
     internal HorizontalPosition HorizontalAnchor { get; set; } = HorizontalPosition.Center;
     internal VerticalPosition VerticalAnchor { get; set; } = VerticalPosition.Center;
@@ -30,7 +31,17 @@ public abstract class DialogControlBase : OverlayFeedbackElement
     internal double? HorizontalOffsetRatio { get; set; }
     internal double? VerticalOffsetRatio { get; set; }
     internal bool CanLightDismiss { get; set; }
-    internal bool CanDragMove { get; set; }
+
+    private bool _isFullScreen;
+
+    public static readonly DirectProperty<DialogControlBase, bool> IsFullScreenProperty = AvaloniaProperty.RegisterDirect<DialogControlBase, bool>(
+        nameof(IsFullScreen), o => o.IsFullScreen, (o, v) => o.IsFullScreen = v);
+
+    public bool IsFullScreen
+    {
+        get => _isFullScreen;
+        set => SetAndRaise(IsFullScreenProperty, ref _isFullScreen, value);
+    }
 
     protected internal Button? _closeButton;
     private Panel? _titleArea;
@@ -134,6 +145,7 @@ public abstract class DialogControlBase : OverlayFeedbackElement
     {
         CanDragMoveProperty.Changed.AddClassHandler<InputElement, bool>(OnCanDragMoveChanged);
         CanCloseProperty.Changed.AddClassHandler<InputElement, bool>(OnCanCloseChanged);
+        IsFullScreenProperty.AffectsPseudoClass<DialogControlBase>(PC_FullScreen);
     }
 
 
@@ -143,7 +155,7 @@ public abstract class DialogControlBase : OverlayFeedbackElement
     {
         base.OnApplyTemplate(e);
         _titleArea = e.NameScope.Find<Panel>(PART_TitleArea);
-        if (CanDragMove)
+        if (GetCanDragMove(this))
         {
             _titleArea?.RemoveHandler(PointerMovedEvent, OnTitlePointerMove);
             _titleArea?.RemoveHandler(PointerPressedEvent, OnTitlePointerPressed);

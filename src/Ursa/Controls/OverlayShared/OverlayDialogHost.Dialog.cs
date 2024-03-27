@@ -14,6 +14,14 @@ public partial class OverlayDialogHost
     
     private static void ResetDialogPosition(DialogControlBase control, Size newSize)
     {
+        if (control.IsFullScreen)
+        {
+            control.Width = newSize.Width;
+            control.Height = newSize.Height;
+            SetLeft(control, 0);
+            SetTop(control, 0);
+            return;
+        }
         var width = newSize.Width - control.Bounds.Width;
         var height = newSize.Height - control.Bounds.Height;
         var newLeft = width * control.HorizontalOffsetRatio??0;
@@ -84,6 +92,11 @@ public partial class OverlayDialogHost
         }
         this.Children.Add(control);
         _layers.Add(new DialogPair(mask, control, false));
+        if (control.IsFullScreen)
+        {
+            control.Width = Bounds.Width;
+            control.Height = Bounds.Height;
+        }
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetToPosition(control);
@@ -113,7 +126,10 @@ public partial class OverlayDialogHost
                 {
                     _modalCount--;
                     HasModal = _modalCount > 0;
-                    await _maskDisappearAnimation.RunAsync(layer.Mask);
+                    if (!IsAnimationDisabled)
+                    {
+                        await _maskDisappearAnimation.RunAsync(layer.Mask);
+                    }
                 }
             }
             
@@ -133,12 +149,20 @@ public partial class OverlayDialogHost
         ResetZIndices();
         this.Children.Add(mask);
         this.Children.Add(control);
+        if (control.IsFullScreen)
+        {
+            control.Width = Bounds.Width;
+            control.Height = Bounds.Height;
+        }
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetToPosition(control);
         control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDialogControlClosing);
         control.AddHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged);
-        _maskAppearAnimation.RunAsync(mask);
+        if (!IsAnimationDisabled)
+        {
+            _maskAppearAnimation.RunAsync(mask);
+        }
         _modalCount++;
         HasModal = _modalCount > 0;
         control.IsClosed = false;
