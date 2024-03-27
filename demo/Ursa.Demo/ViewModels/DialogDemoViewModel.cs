@@ -25,6 +25,7 @@ public partial class DialogDemoViewModel: ObservableObject
     [ObservableProperty] private DialogResult? _defaultResult;
     [ObservableProperty] private bool _result;
     [ObservableProperty] private DateTime? _date;
+    [ObservableProperty] private bool _fullScreen;
     
     public DialogDemoViewModel()
     {
@@ -65,6 +66,7 @@ public partial class DialogDemoViewModel: ObservableObject
                         HorizontalOffset = 50,
                         VerticalAnchor = VerticalPosition.Top,
                         VerticalOffset = 50,
+                        FullScreen = FullScreen,
                     }
                 );
                 Date = vm.Date;
@@ -80,6 +82,7 @@ public partial class DialogDemoViewModel: ObservableObject
                         Mode = SelectedMode,
                         Buttons = SelectedButton,
                         CanLightDismiss = CanLightDismiss,
+                        FullScreen = FullScreen,
                     });
             }
         }
@@ -111,6 +114,7 @@ public partial class DialogDemoViewModel: ObservableObject
                     vm, IsGlobal ? null : "LocalHost", options: new OverlayDialogOptions()
                     {
                         CanLightDismiss = CanLightDismiss,
+                        FullScreen = FullScreen,
                     });
                 Date = vm.Date;
             }
@@ -118,7 +122,7 @@ public partial class DialogDemoViewModel: ObservableObject
             {
                 OverlayDialog.ShowCustom<DialogWithAction, DialogWithActionViewModel>(new DialogWithActionViewModel(),
                     IsGlobal ? null : "LocalHost",
-                    options: new OverlayDialogOptions{ CanLightDismiss = CanLightDismiss });
+                    options: new OverlayDialogOptions{ CanLightDismiss = CanLightDismiss, FullScreen = FullScreen});
             }
         }
         

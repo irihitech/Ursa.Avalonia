@@ -39,12 +39,17 @@
                         IsChecked="{Binding CanLightDismiss}"
                         OffContent="No"
                         OnContent="Yes" />
+                    <ToggleSwitch
+                        Content="FullScreen"
+                        IsChecked="{Binding FullScreen}"
+                        OffContent="No"
+                        OnContent="Yes" />
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Buttons" VerticalAlignment="Center" />
+                        <TextBlock VerticalAlignment="Center" Text="Buttons" />
                         <u:EnumSelector EnumType="{x:Type u:DialogButton}" Value="{Binding SelectedButton}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Mode" VerticalAlignment="Center" />
+                        <TextBlock VerticalAlignment="Center" Text="Mode" />
                         <u:EnumSelector EnumType="{x:Type u:DialogMode}" Value="{Binding SelectedMode}" />
                     </StackPanel>
                     <Button Command="{Binding ShowDialogCommand}" Content="Show Dialog" />
@@ -81,6 +86,11 @@
                     <ToggleSwitch
                         Content="ClickOnMaskToClose"
                         IsChecked="{Binding CanLightDismiss}"
+                        OffContent="No"
+                        OnContent="Yes" />
+                    <ToggleSwitch
+                        Content="FullScreen"
+                        IsChecked="{Binding FullScreen}"
                         OffContent="No"
                         OnContent="Yes" />
                     <Button Command="{Binding ShowCustomDialogCommand}" Content="Show Dialog" />

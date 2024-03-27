@@ -133,6 +133,11 @@ public partial class OverlayDialogHost
         ResetZIndices();
         this.Children.Add(mask);
         this.Children.Add(control);
+        if (control.IsFullScreen)
+        {
+            control.Width = Bounds.Width;
+            control.Height = Bounds.Height;
+        }
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetToPosition(control);
