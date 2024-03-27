@@ -178,16 +178,7 @@ public class MultiComboBox: SelectingItemsControl, IInnerContentControl
             }
         }
     }
-
-    public void SelectAll()
-    {
-        this.SelectedItems?.Clear();
-        foreach (var item in Items)
-        {
-            this.SelectedItems?.Add(item);
-        }
-    }
-
+    
     protected override void OnUnloaded(RoutedEventArgs e)
     {
         base.OnUnloaded(e);

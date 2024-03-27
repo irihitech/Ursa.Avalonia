@@ -11,6 +11,8 @@ namespace Ursa.Controls;
 public class MultiComboBoxItem: ContentControl
 {
     private MultiComboBox? _parent;
+    private static readonly Point s_invalidPoint = new (double.NaN, double.NaN);
+    private Point _pointerDownPoint = s_invalidPoint;
     
     public static readonly StyledProperty<bool> IsSelectedProperty = AvaloniaProperty.Register<MultiComboBoxItem, bool>(
         nameof(IsSelected));
@@ -43,16 +45,6 @@ public class MultiComboBoxItem: ContentControl
         }
     }
 
-    public MultiComboBoxItem()
-    {
-        this.GetObservable(IsFocusedProperty).Subscribe(a=> {
-            if (a)
-            {
-                (Parent as MultiComboBox)?.ItemFocused(this);
-            }
-        });
-    }
-
     protected override void OnAttachedToLogicalTree(LogicalTreeAttachmentEventArgs e)
     {
         base.OnAttachedToLogicalTree(e);
@@ -64,14 +56,42 @@ public class MultiComboBoxItem: ContentControl
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
         base.OnPointerPressed(e);
+        _pointerDownPoint = e.GetPosition(this);
         if (e.Handled)
         {
             return;
         }
         if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
         {
-            this.IsSelected = !this.IsSelected;
-            e.Handled = true;
+            var p = e.GetCurrentPoint(this);
+            if (p.Properties.PointerUpdateKind is PointerUpdateKind.LeftButtonPressed
+                or PointerUpdateKind.RightButtonPressed)
+            {
+                if (p.Pointer.Type == PointerType.Mouse)
+                {
+                    this.IsSelected = !this.IsSelected;
+                    e.Handled = true;
+                }
+                else
+                {
+                    _pointerDownPoint = p.Position;
+                }
+            }
+        }
+    }
+
+    protected override void OnPointerReleased(PointerReleasedEventArgs e)
+    {
+        base.OnPointerReleased(e);
+        if (!e.Handled && !double.IsNaN(_pointerDownPoint.X) &&
+            e.InitialPressMouseButton is MouseButton.Left or MouseButton.Right)
+        {
+            var point = e.GetCurrentPoint(this);
+            if (new Rect(Bounds.Size).ContainsExclusive(point.Position))
+            {
+                this.IsSelected = !this.IsSelected;
+                e.Handled = true;
+            }
         }
     }
 }
