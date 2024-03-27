@@ -50,6 +50,7 @@
                                     HorizontalScrollBarVisibility="Disabled">
                                     <u:MultiComboBoxSelectedItemList
                                         VerticalAlignment="Center"
+                                        ItemTemplate="{TemplateBinding SelectedItemTemplate}"
                                         ItemsSource="{TemplateBinding SelectedItems}"
                                         RemoveCommand="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Remove}">
                                         <ItemsControl.ItemsPanel>

@@ -79,6 +79,15 @@ public class MultiComboBox: SelectingItemsControl, IInnerContentControl
         get => GetValue(InnerRightContentProperty);
         set => SetValue(InnerRightContentProperty, value);
     }
+
+    public static readonly StyledProperty<IDataTemplate?> SelectedItemTemplateProperty = AvaloniaProperty.Register<MultiComboBox, IDataTemplate?>(
+        nameof(SelectedItemTemplate));
+
+    public IDataTemplate? SelectedItemTemplate
+    {
+        get => GetValue(SelectedItemTemplateProperty);
+        set => SetValue(SelectedItemTemplateProperty, value);
+    }
     
     static MultiComboBox()
     {
