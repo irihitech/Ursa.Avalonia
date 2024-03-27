@@ -15,7 +15,7 @@ public partial class OverlayDialogHost: Canvas
     private static readonly Animation _maskAppearAnimation;
     private static readonly Animation _maskDisappearAnimation;
 
-    private readonly List<DialogPair> _layers = new List<DialogPair>();
+    private readonly List<DialogPair> _layers = new List<DialogPair>(10);
     
     private class DialogPair
     {
@@ -43,6 +43,8 @@ public partial class OverlayDialogHost: Canvas
         get => _hasModal;
         private set => SetAndRaise(HasModalProperty, ref _hasModal, value);
     }
+
+    public bool IsAnimationDisabled { get; set; }
     
     static OverlayDialogHost()
     {

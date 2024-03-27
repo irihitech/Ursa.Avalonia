@@ -126,7 +126,10 @@ public partial class OverlayDialogHost
                 {
                     _modalCount--;
                     HasModal = _modalCount > 0;
-                    await _maskDisappearAnimation.RunAsync(layer.Mask);
+                    if (!IsAnimationDisabled)
+                    {
+                        await _maskDisappearAnimation.RunAsync(layer.Mask);
+                    }
                 }
             }
             
@@ -156,7 +159,10 @@ public partial class OverlayDialogHost
         SetToPosition(control);
         control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDialogControlClosing);
         control.AddHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged);
-        _maskAppearAnimation.RunAsync(mask);
+        if (!IsAnimationDisabled)
+        {
+            _maskAppearAnimation.RunAsync(mask);
+        }
         _modalCount++;
         HasModal = _modalCount > 0;
         control.IsClosed = false;
