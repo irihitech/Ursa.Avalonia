@@ -30,47 +30,63 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:NumericUpDown">
                 <DataValidationErrors>
-                    <ButtonSpinner
-                        Name="PART_Spinner"
-                        MinWidth="0"
-                        HorizontalContentAlignment="Stretch"
-                        VerticalContentAlignment="Stretch"
-                        AllowSpin="{TemplateBinding AllowSpin}"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        ShowButtonSpinner="{TemplateBinding ShowButtonSpinner}">
-                        <Panel>
-                            <TextBox
-                                Name="PART_TextBox"
-                                Height="{TemplateBinding Height}"
-                                MinHeight="{DynamicResource NumericUpDownWrapperDefaultHeight}"
-                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                AcceptsReturn="False"
-                                CornerRadius="{TemplateBinding CornerRadius}"
-                                DataValidationErrors.Errors="{ReflectionBinding $parent[NumericUpDown].(DataValidationErrors.Errors)}"
-                                FontSize="{TemplateBinding FontSize}"
-                                Foreground="{TemplateBinding Foreground}"
-                                InnerLeftContent="{TemplateBinding InnerLeftContent}"
-                                TextWrapping="NoWrap"
-                                Theme="{DynamicResource NonErrorTextBox}"
-                                Watermark="{TemplateBinding Watermark}" />
-                            <Panel
-                                Name="PART_DragPanel"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch"
-                                Background="Transparent"
-                                Cursor="SizeAll"/>
-                            <Button
-                                Name="PART_ClearButton"
-                                Margin="0,0,8,0"
-                                HorizontalAlignment="Right"
-                                Command="{Binding $parent[u:NumericUpDown].Clear}"
-                                Focusable="False"
-                                IsVisible="False"
-                                Theme="{StaticResource InputClearButton}" />
-                        </Panel>
-                    </ButtonSpinner>
+                    <Grid ColumnDefinitions="*,auto,auto">
+                        <ButtonSpinner
+                            Name="PART_Spinner"
+                            MinWidth="0"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            AllowSpin="{TemplateBinding AllowSpin}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            ShowButtonSpinner="{TemplateBinding ShowButtonSpinner}">
+                            <Panel>
+                                <TextBox
+                                    Name="PART_TextBox"
+                                    Height="{TemplateBinding Height}"
+                                    MinHeight="{DynamicResource NumericUpDownWrapperDefaultHeight}"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    AcceptsReturn="False"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    DataValidationErrors.Errors="{ReflectionBinding $parent[NumericUpDown].(DataValidationErrors.Errors)}"
+                                    FontSize="{TemplateBinding FontSize}"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    InnerLeftContent="{TemplateBinding InnerLeftContent}"
+                                    TextWrapping="NoWrap"
+                                    Theme="{DynamicResource NonErrorTextBox}"
+                                    Watermark="{TemplateBinding Watermark}" />
+                                <Panel
+                                    Name="PART_DragPanel"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Background="Transparent"
+                                    Cursor="SizeAll" />
+                                <Button
+                                    Name="PART_ClearButton"
+                                    Margin="0,0,8,0"
+                                    HorizontalAlignment="Right"
+                                    Command="{Binding $parent[u:NumericUpDown].Clear}"
+                                    Focusable="False"
+                                    IsVisible="False"
+                                    Theme="{StaticResource InputClearButton}" />
+                            </Panel>
+                        </ButtonSpinner>
+                        <RepeatButton
+                            Name="PART_RepeatRead"
+                            Grid.Column="1"
+                            Width="20"
+                            MinWidth="0"
+                            Margin="0"
+                            Content="R" />
+                        <RepeatButton
+                            Name="PART_RepeatWrite"
+                            Grid.Column="2"
+                            Width="15"
+                            MinWidth="0"
+                            Margin="0"
+                            Content="W" />
+                    </Grid>
                 </DataValidationErrors>
             </ControlTemplate>
         </Setter>
