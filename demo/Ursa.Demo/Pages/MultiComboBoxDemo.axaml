@@ -17,7 +17,8 @@
             InnerLeftContent="Left"
             InnerRightContent="Right"
             Classes="ClearButton"
-            ItemsSource="{Binding Items}" />
+            ItemsSource="{Binding Items}" >
+        </u:MultiComboBox>
         <ListBox ItemsSource="{Binding #combo.SelectedItems}" />
     </StackPanel>
 </UserControl>

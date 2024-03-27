@@ -121,11 +121,12 @@
                             Data="{DynamicResource ClosableTagCloseIconGlyph}"
                             DockPanel.Dock="Right"
                             Foreground="{TemplateBinding Foreground}" />
-                        <TextBlock
+                        <ContentPresenter
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             FontSize="12"
                             Foreground="{TemplateBinding Foreground}"
-                            Text="{TemplateBinding Content}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
                             TextTrimming="CharacterEllipsis" />
                     </DockPanel>
                 </Border>

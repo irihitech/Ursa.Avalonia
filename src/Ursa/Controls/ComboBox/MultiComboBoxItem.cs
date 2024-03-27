@@ -87,7 +87,7 @@ public class MultiComboBoxItem: ContentControl
             e.InitialPressMouseButton is MouseButton.Left or MouseButton.Right)
         {
             var point = e.GetCurrentPoint(this);
-            if (new Rect(Bounds.Size).ContainsExclusive(point.Position))
+            if (new Rect(Bounds.Size).ContainsExclusive(point.Position) && e.Pointer.Type == PointerType.Touch)
             {
                 this.IsSelected = !this.IsSelected;
                 e.Handled = true;
