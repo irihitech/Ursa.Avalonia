@@ -31,6 +31,9 @@ public class NavMenuItem: HeaderedItemsControl
     private Popup? _popup;
     private Panel? _overflowPanel;
     
+    private static readonly Point s_invalidPoint = new (double.NaN, double.NaN);
+    private Point _pointerDownPoint = s_invalidPoint;
+    
     public static readonly StyledProperty<object?> IconProperty = AvaloniaProperty.Register<NavMenuItem, object?>(
         nameof(Icon));
 
@@ -224,20 +227,29 @@ public class NavMenuItem: HeaderedItemsControl
             return;
         }
         base.OnPointerPressed(e);
-        if (this.ItemCount == 0)
+        if (e.Handled) return;
+
+        var p = e.GetCurrentPoint(this);
+        if (p.Properties.PointerUpdateKind is not (PointerUpdateKind.LeftButtonPressed
+            or PointerUpdateKind.RightButtonPressed)) return;
+        if (p.Pointer.Type == PointerType.Mouse)
         {
-            SelectItem(this);
-        }
-        else
-        {
-            if (!IsHorizontalCollapsed) 
+            if (this.ItemCount == 0)
             {
-                SetCurrentValue(IsVerticalCollapsedProperty, !IsVerticalCollapsed);
+                SelectItem(this);
+                Command?.Execute(CommandParameter);
+                e.Handled = true;
             }
             else
             {
-                if (_popup is not null)
+                if (!IsHorizontalCollapsed) 
                 {
+                    SetCurrentValue(IsVerticalCollapsedProperty, !IsVerticalCollapsed);
+                    e.Handled = true;
+                }
+                else
+                {
+                    if (_popup is null || e.Source is not Visual v || _popup.IsInsidePopup(v)) return;
                     if (_popup.IsOpen)
                     {
                         _popup.Close();
@@ -249,10 +261,49 @@ public class NavMenuItem: HeaderedItemsControl
                 }
             }
         }
-        Command?.Execute(CommandParameter);
-        e.Handled = true;
+        else
+        {
+            _pointerDownPoint = p.Position;
+        }
     }
-    
+
+    protected override void OnPointerReleased(PointerReleasedEventArgs e)
+    {
+        base.OnPointerReleased(e);
+        if (!e.Handled && !double.IsNaN(_pointerDownPoint.X) &&
+            e.InitialPressMouseButton is MouseButton.Left or MouseButton.Right)
+        {
+            var point = e.GetCurrentPoint(this);
+            if (!new Rect(Bounds.Size).ContainsExclusive(point.Position) || e.Pointer.Type != PointerType.Touch) return;
+            if (this.ItemCount == 0)
+            {
+                SelectItem(this);
+                Command?.Execute(CommandParameter);
+                e.Handled = true;
+            }
+            else
+            {
+                if (!IsHorizontalCollapsed) 
+                {
+                    SetCurrentValue(IsVerticalCollapsedProperty, !IsVerticalCollapsed);
+                    e.Handled = true;
+                }
+                else
+                {
+                    if (_popup is null || e.Source is not Visual v || _popup.IsInsidePopup(v)) return;
+                    if (_popup.IsOpen)
+                    {
+                        _popup.Close();
+                    }
+                    else
+                    {
+                        _popup.Open();
+                    }
+                }
+            }
+        }
+    }
+
     internal void SelectItem(NavMenuItem item)
     {
         if (item == this)
@@ -280,6 +331,10 @@ public class NavMenuItem: HeaderedItemsControl
         else if (this.Parent is NavMenu menu)
         {
             menu.SelectItem(item, this);
+        }
+        if(_popup is not null)
+        {
+            _popup.Close();
         }
     }
 
