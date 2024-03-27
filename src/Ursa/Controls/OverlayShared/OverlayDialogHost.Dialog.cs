@@ -14,6 +14,14 @@ public partial class OverlayDialogHost
     
     private static void ResetDialogPosition(DialogControlBase control, Size newSize)
     {
+        if (control.IsFullScreen)
+        {
+            control.Width = newSize.Width;
+            control.Height = newSize.Height;
+            SetLeft(control, 0);
+            SetTop(control, 0);
+            return;
+        }
         var width = newSize.Width - control.Bounds.Width;
         var height = newSize.Height - control.Bounds.Height;
         var newLeft = width * control.HorizontalOffsetRatio??0;
