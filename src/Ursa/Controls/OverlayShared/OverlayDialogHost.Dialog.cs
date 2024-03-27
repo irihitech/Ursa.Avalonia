@@ -84,6 +84,11 @@ public partial class OverlayDialogHost
         }
         this.Children.Add(control);
         _layers.Add(new DialogPair(mask, control, false));
+        if (control.IsFullScreen)
+        {
+            control.Width = Bounds.Width;
+            control.Height = Bounds.Height;
+        }
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetToPosition(control);
