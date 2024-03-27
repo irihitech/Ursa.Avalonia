@@ -10,12 +10,13 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 using Irihi.Avalonia.Shared.Helpers;
+using Irihi.Avalonia.Shared.Contracts;
 
 namespace Ursa.Controls;
 
 [TemplatePart(PART_BackgroundBorder, typeof(Border))]
 [PseudoClasses(PC_DropDownOpen, PC_Empty)]
-public class MultiComboBox: SelectingItemsControl
+public class MultiComboBox: SelectingItemsControl, IInnerContentControl
 {
     public const string PART_BackgroundBorder = "PART_BackgroundBorder";
     public const string PC_DropDownOpen = ":dropdownopen";
@@ -43,6 +44,15 @@ public class MultiComboBox: SelectingItemsControl
         set => SetValue(MaxDropdownHeightProperty, value);
     }
 
+    public static readonly StyledProperty<double> MaxSelectionBoxHeightProperty = AvaloniaProperty.Register<MultiComboBox, double>(
+        nameof(MaxSelectionBoxHeight));
+
+    public double MaxSelectionBoxHeight
+    {
+        get => GetValue(MaxSelectionBoxHeightProperty);
+        set => SetValue(MaxSelectionBoxHeightProperty, value);
+    }
+
     public new static readonly StyledProperty<IList?> SelectedItemsProperty = AvaloniaProperty.Register<MultiComboBox, IList?>(
         nameof(SelectedItems), new AvaloniaList<object>());
 
@@ -50,6 +60,24 @@ public class MultiComboBox: SelectingItemsControl
     {
         get => GetValue(SelectedItemsProperty);
         set => SetValue(SelectedItemsProperty, value);
+    }
+
+    public static readonly StyledProperty<object?> InnerLeftContentProperty = AvaloniaProperty.Register<MultiComboBox, object?>(
+        nameof(InnerLeftContent));
+
+    public object? InnerLeftContent
+    {
+        get => GetValue(InnerLeftContentProperty);
+        set => SetValue(InnerLeftContentProperty, value);
+    }
+
+    public static readonly StyledProperty<object?> InnerRightContentProperty = AvaloniaProperty.Register<MultiComboBox, object?>(
+        nameof(InnerRightContent));
+
+    public object? InnerRightContent
+    {
+        get => GetValue(InnerRightContentProperty);
+        set => SetValue(InnerRightContentProperty, value);
     }
     
     static MultiComboBox()
@@ -139,7 +167,7 @@ public class MultiComboBox: SelectingItemsControl
 
     public void Clear()
     {
-        this.SelectedItems?.Clear();
+        // this.SelectedItems?.Clear();
         var containers = Presenter?.Panel?.Children;
         if(containers is null) return;
         foreach (var container in containers)
@@ -148,6 +176,15 @@ public class MultiComboBox: SelectingItemsControl
             {
                 t.IsSelected = false;
             }
+        }
+    }
+
+    public void SelectAll()
+    {
+        this.SelectedItems?.Clear();
+        foreach (var item in Items)
+        {
+            this.SelectedItems?.Add(item);
         }
     }
 

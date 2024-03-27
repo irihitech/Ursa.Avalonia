@@ -1,15 +1,23 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             xmlns:vm="using:Ursa.Demo.ViewModels"
-             xmlns:u="https://irihi.tech/ursa"
-             x:DataType="vm:MultiComboBoxDemoViewModel"
-             x:CompileBindings="True"
-             x:Class="Ursa.Demo.Pages.MultiComboBoxDemo">
+﻿<UserControl
+    x:Class="Ursa.Demo.Pages.MultiComboBoxDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:MultiComboBoxDemoViewModel"
+    mc:Ignorable="d">
     <StackPanel Orientation="Horizontal">
-        <u:MultiComboBox Classes="ClearButton" Name="combo" ItemsSource="{Binding Items}"/>
-        <ListBox ItemsSource="{Binding #combo.SelectedItems}"/>
+        <u:MultiComboBox
+            Name="combo"
+            InnerLeftContent="Left"
+            InnerRightContent="Right"
+            Classes="ClearButton"
+            ItemsSource="{Binding Items}" />
+        <ListBox ItemsSource="{Binding #combo.SelectedItems}" />
     </StackPanel>
 </UserControl>
