@@ -11,8 +11,6 @@ namespace Ursa.Demo.ViewModels;
 
 public partial class NumericUpDownDemoViewModel : ObservableObject
 {
-
-
     private double _oldWidth = 300;
     [ObservableProperty] private bool _AutoWidth = true;
     [ObservableProperty] private double _Width = Double.NaN;
@@ -51,6 +49,9 @@ public partial class NumericUpDownDemoViewModel : ObservableObject
         CommandUpdateText = $"Command Exe,CommandParameter={v}";
     }
 
+    [ObservableProperty] private bool _ShowReadButton = true;
+
+    [ObservableProperty] private bool _ShowWriteButton = true;
 
     public NumericUpDownDemoViewModel()
     {
@@ -59,7 +60,6 @@ public partial class NumericUpDownDemoViewModel : ObservableObject
         Array_ParsingNumberStyle = Enum.GetValues(typeof(NumberStyles));
         NumericUIntUpDown numericUIntUpDown;
         TextBox textBox;
-
     }
 
     partial void OnAutoWidthChanged(bool value)

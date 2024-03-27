@@ -31,6 +31,8 @@
                 AllowDrag="{Binding AllowDrag}"
                 AllowSpin="{Binding AllowSpin}"
                 Command="{Binding TrythisCommand}"
+                ShowReadButton="{Binding ShowReadButton}"
+                ShowWriteButton="{Binding ShowWriteButton}"
                 FontFamily="{Binding FontFamily, Mode=OneWay}"
                 FormatString="{Binding FormatString}"
                 InnerLeftContent="{Binding InnerLeftContent}"
@@ -125,6 +127,49 @@
                     Step="1"
                     Watermark="AllowHexSpecifier"
                     Value="2" />
+
+                <u:Divider Content="{Binding #Read_uint.Value, StringFormat='ShowReadButton {0}, hex={0:X}'}" />
+                <u:NumericUIntUpDown
+                    Name="Read_uint"
+                    HorizontalContentAlignment="Right"
+                    AllowDrag="False"
+                    FontFamily="Consolas"
+                    FormatString="X8"
+                    InnerLeftContent="0x"
+                    ShowReadButton="True"
+                    ParsingNumberStyle="AllowHexSpecifier"
+                    Step="1"
+                    Watermark="AllowHexSpecifier"
+                    Value="2" />
+
+                <u:Divider Content="{Binding #Write_uint.Value, StringFormat='ShowWriteButton {0}, hex={0:X}'}" />
+                <u:NumericUIntUpDown
+                    Name="Write_uint"
+                    HorizontalContentAlignment="Right"
+                    AllowDrag="False"
+                    FontFamily="Consolas"
+                    FormatString="X8"
+                    InnerLeftContent="0x"
+                    ShowWriteButton="True"
+                    ParsingNumberStyle="AllowHexSpecifier"
+                    Step="1"
+                    Watermark="AllowHexSpecifier"
+                    Value="2" />
+
+                <u:Divider Content="{Binding #RW_uint.Value, StringFormat='R W Button {0}, hex={0:X}'}" />
+                <u:NumericUIntUpDown
+                    Name="RW_uint"
+                    HorizontalContentAlignment="Right"
+                    AllowDrag="False"
+                    FontFamily="Consolas"
+                    FormatString="X8"
+                    InnerLeftContent="0x"
+                    ShowReadButton="True"
+                    ShowWriteButton="True"
+                    ParsingNumberStyle="AllowHexSpecifier"
+                    Step="1"
+                    Watermark="AllowHexSpecifier"
+                    Value="2" />
             </StackPanel>
         </Grid>
 
@@ -146,6 +191,8 @@
             <CheckBox Content="AllowDrag" IsChecked="{Binding AllowDrag}" />
 
             <CheckBox Content="IsReadOnly" IsChecked="{Binding IsReadOnly}" />
+            <CheckBox Content="ShowReadButton" IsChecked="{Binding ShowReadButton}" />
+            <CheckBox Content="ShowWriteButton" IsChecked="{Binding ShowWriteButton}" />
 
             <Label Content="HorizontalAlignment" />
             <ComboBox ItemsSource="{Binding Array_HorizontalAlignment}" SelectedItem="{Binding HorizontalAlignment}" />
