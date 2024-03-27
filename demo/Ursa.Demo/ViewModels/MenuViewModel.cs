@@ -30,6 +30,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "KeyGestureInput", Key = MenuKeys.MenuKeyKeyGestureInput },
             new() { MenuHeader = "Loading", Key = MenuKeys.MenuKeyLoading },
             new() { MenuHeader = "Message Box", Key = MenuKeys.MenuKeyMessageBox },
+            new() { MenuHeader = "MultiComboBox", Key = MenuKeys.MenuKeyMultiComboBox, Status = "New" },
             new() { MenuHeader = "Nav Menu", Key = MenuKeys.MenuKeyNavMenu, Status = "Updated" },
             // new() { MenuHeader = "Number Displayer", Key = MenuKeys.MenuKeyNumberDisplayer, Status = "New" }, 
             new() { MenuHeader = "Numeric UpDown", Key = MenuKeys.MenuKeyNumericUpDown },
@@ -70,6 +71,7 @@ public static class MenuKeys
     public const string MenuKeyKeyGestureInput = "KeyGestureInput";
     public const string MenuKeyLoading = "Loading";
     public const string MenuKeyMessageBox = "MessageBox";
+    public const string MenuKeyMultiComboBox = "MultiComboBox";
     public const string MenuKeyNavMenu = "NavMenu";
     public const string MenuKeyNumberDisplayer = "NumberDisplayer";
     public const string MenuKeyNumericUpDown = "NumericUpDown";
