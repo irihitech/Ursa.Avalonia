@@ -20,6 +20,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ursa.PrismExtension", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ursa.PrismDialogDemo", "demo\Ursa.PrismDialogDemo\Ursa.PrismDialogDemo.csproj", "{F99B3D07-4560-4B05-892C-0FF2757FEF2E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{9D34CC2C-9BFA-4138-BA5A-CD3744F9B589}"
+	ProjectSection(SolutionItems) = preProject
+		src\Package.props = src\Package.props
+		demo\Directory.Build.props = demo\Directory.Build.props
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
