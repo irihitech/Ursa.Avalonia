@@ -19,6 +19,8 @@ namespace Ursa.Controls;
 [TemplatePart(PART_Spinner, typeof(ButtonSpinner))]
 [TemplatePart(PART_TextBox, typeof(TextBox))]
 [TemplatePart(PART_DragPanel, typeof(Panel))]
+[TemplatePart(PART_RepeatRead, typeof(RepeatButton))]
+[TemplatePart(PART_RepeatWrite, typeof(RepeatButton))]
 public abstract class NumericUpDown : TemplatedControl, IClearControl
 {
     public const string PART_Spinner = "PART_Spinner";
@@ -28,6 +30,13 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
     protected internal ButtonSpinner? _spinner;
     protected internal TextBox? _textBox;
     protected internal Panel? _dragPanel;
+
+    public const string PART_RepeatRead = "PART_RepeatRead";
+    public const string PART_RepeatWrite = "PART_RepeatWrite";
+
+    protected RepeatButton? _repeatReadButton;
+    protected RepeatButton? _repeatWriteButton;
+
 
     private Point? _point;
     protected internal bool _updateFromTextInput;
@@ -197,7 +206,25 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
         PointerPressedEvent.AddHandler(OnDragPanelPointerPressed, _dragPanel);
         PointerMovedEvent.AddHandler(OnDragPanelPointerMoved, _dragPanel);
         PointerReleasedEvent.AddHandler(OnDragPanelPointerReleased, _dragPanel);
+        OnApplyTemplateReadWrite(e);
     }
+    protected void OnApplyTemplateReadWrite(TemplateAppliedEventArgs e)
+    {
+
+        RepeatButton.ClickEvent.RemoveHandler(OnRead, _repeatReadButton);
+        RepeatButton.ClickEvent.RemoveHandler(OnWrite, _repeatWriteButton);
+
+        _repeatReadButton = e.NameScope.Find<RepeatButton>(PART_RepeatRead);
+        _repeatWriteButton = e.NameScope.Find<RepeatButton>(PART_RepeatWrite);
+
+        RepeatButton.ClickEvent.AddHandler(OnRead, _repeatReadButton);
+        RepeatButton.ClickEvent.AddHandler(OnWrite, _repeatWriteButton);
+
+    }
+
+    protected abstract void OnWrite(object sender, RoutedEventArgs e);
+
+    protected abstract void OnRead(object sender, RoutedEventArgs e);
 
     protected override void OnLostFocus(RoutedEventArgs e)
     {
@@ -735,6 +762,17 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
 
         SetCurrentValue(ValueProperty, Clamp(value, Maximum, Minimum));
     }
+
+    protected override void OnRead(object sender, RoutedEventArgs e)
+    {
+        Trace.WriteLine("OnRead");
+    }
+
+    protected override void OnWrite(object sender, RoutedEventArgs e)
+    {
+        Trace.WriteLine("OnWrite");
+    }
+
 
     protected abstract bool ParseText(string? text, out T number);
     protected abstract string? ValueToString(T? value);
