@@ -145,6 +145,24 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
         set => SetValue(ShowButtonSpinnerProperty, value);
     }
 
+    public static readonly StyledProperty<bool> ShowReadButtonProperty =
+        AvaloniaProperty.Register<NumericUpDown, bool>(nameof(ShowReadButton), false);
+
+    public bool ShowReadButton
+    {
+        get => GetValue(ShowReadButtonProperty);
+        set => SetValue(ShowReadButtonProperty, value);
+    }
+
+    public static readonly StyledProperty<bool> ShowWriteButtonProperty =
+        AvaloniaProperty.Register<NumericUpDown, bool>(nameof(ShowWriteButton), false);
+
+    public bool ShowWriteButton
+    {
+        get => GetValue(ShowWriteButtonProperty);
+        set => SetValue(ShowWriteButtonProperty, value);
+    }
+
     public event EventHandler<SpinEventArgs>? Spinned;
 
     static NumericUpDown()
@@ -208,9 +226,9 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
         PointerReleasedEvent.AddHandler(OnDragPanelPointerReleased, _dragPanel);
         OnApplyTemplateReadWrite(e);
     }
+
     protected void OnApplyTemplateReadWrite(TemplateAppliedEventArgs e)
     {
-
         RepeatButton.ClickEvent.RemoveHandler(OnRead, _repeatReadButton);
         RepeatButton.ClickEvent.RemoveHandler(OnWrite, _repeatWriteButton);
 

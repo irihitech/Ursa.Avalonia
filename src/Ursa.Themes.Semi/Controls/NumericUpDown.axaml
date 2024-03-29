@@ -76,12 +76,14 @@
                             Name="PART_RepeatRead"
                             Grid.Column="1"
                             Width="20"
+                            IsVisible="{TemplateBinding ShowReadButton}"
                             MinWidth="0"
                             Margin="0"
                             Content="R" />
                         <RepeatButton
                             Name="PART_RepeatWrite"
                             Grid.Column="2"
+                            IsVisible="{TemplateBinding ShowWriteButton}"
                             Width="15"
                             MinWidth="0"
                             Margin="0"
