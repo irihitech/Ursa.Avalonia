@@ -41,6 +41,11 @@ public partial class NumericUpDownDemoViewModel : ObservableObject
     [ObservableProperty] private string _CommandUpdateText = "Command not Execute";
     [ObservableProperty] private string _ValueChangedUpdateText = "ValueChanged not Execute";
 
+
+    [ObservableProperty] private bool _ShowReadButton = false;
+
+    [ObservableProperty] private bool _ShowWriteButton = false;
+
     [ObservableProperty] private string _ReadCommandUpdateText = "ReadCommand not Execute";
     [ObservableProperty] private string _ReadRequestedUpdateText = "ReadRequested not Execute";
 
@@ -61,11 +66,6 @@ public partial class NumericUpDownDemoViewModel : ObservableObject
     {
         ReadCommandUpdateText = $"ReadCommand, Parameter={v}";
     }
-
-
-    [ObservableProperty] private bool _ShowReadButton = true;
-
-    [ObservableProperty] private bool _ShowWriteButton = true;    
 
     public NumericUpDownDemoViewModel()
     {
