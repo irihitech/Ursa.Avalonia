@@ -20,9 +20,12 @@
         </Style>
     </UserControl.Styles>
 
-    <Grid ColumnDefinitions="*,*" RowDefinitions="100,*">
-        <StackPanel Grid.ColumnSpan="2">
-            <u:Divider Content="Demo"/>
+    <Grid ColumnDefinitions="300,auto,*" RowDefinitions="auto,*">
+        <StackPanel
+            Grid.ColumnSpan="1"
+            Margin="10"
+            HorizontalAlignment="Stretch">
+            <u:Divider Content="Demo" />
             <u:NumericUIntUpDown
                 Name="numd"
                 Width="{Binding Width}"
@@ -31,8 +34,6 @@
                 AllowDrag="{Binding AllowDrag}"
                 AllowSpin="{Binding AllowSpin}"
                 Command="{Binding TrythisCommand}"
-                ShowReadButton="{Binding ShowReadButton}"
-                ShowWriteButton="{Binding ShowWriteButton}"
                 FontFamily="{Binding FontFamily, Mode=OneWay}"
                 FormatString="{Binding FormatString}"
                 InnerLeftContent="{Binding InnerLeftContent}"
@@ -41,21 +42,42 @@
                 Maximum="{Binding Maximum}"
                 Minimum="{Binding Minimum}"
                 ParsingNumberStyle="{Binding ParsingNumberStyle}"
+                ReadCommand="{Binding TrythisReadCommand}"
                 ShowButtonSpinner="{Binding ShowButtonSpinner}"
+                ShowReadButton="{Binding ShowReadButton}"
+                ShowWriteButton="{Binding ShowWriteButton}"
                 Step="{Binding Step}"
                 Watermark="{Binding Watermark}"
                 Value="{Binding Value}" />
+            <u:Divider Content="ValueChange(Write)" />
             <TextBox
                 Width="NaN"
                 HorizontalAlignment="Center"
                 IsReadOnly="true"
                 Text="{Binding CommandUpdateText}" />
+            <TextBox
+                Width="NaN"
+                HorizontalAlignment="Center"
+                IsReadOnly="true"
+                Text="{Binding ValueChangedUpdateText}" />
+            <u:Divider Content="Read" />
+            <TextBox
+                Width="NaN"
+                HorizontalAlignment="Center"
+                IsReadOnly="true"
+                Text="{Binding ReadCommandUpdateText}" />
+            <TextBox
+                Width="NaN"
+                HorizontalAlignment="Center"
+                IsReadOnly="true"
+                Text="{Binding ReadRequestedUpdateText}" />
             <u:Divider Content="Demo" />
         </StackPanel>
 
         <Grid
             Grid.Row="1"
             Grid.Column="0"
+            Margin="10"
             HorizontalAlignment="Left">
             <StackPanel Grid.Row="1">
                 <u:Divider Content="{Binding #input.Value, StringFormat='Int = {0}'}" />
@@ -136,8 +158,8 @@
                     FontFamily="Consolas"
                     FormatString="X8"
                     InnerLeftContent="0x"
-                    ShowReadButton="True"
                     ParsingNumberStyle="AllowHexSpecifier"
+                    ShowReadButton="True"
                     Step="1"
                     Watermark="AllowHexSpecifier"
                     Value="2" />
@@ -150,8 +172,8 @@
                     FontFamily="Consolas"
                     FormatString="X8"
                     InnerLeftContent="0x"
-                    ShowWriteButton="True"
                     ParsingNumberStyle="AllowHexSpecifier"
+                    ShowWriteButton="True"
                     Step="1"
                     Watermark="AllowHexSpecifier"
                     Value="2" />
@@ -164,18 +186,20 @@
                     FontFamily="Consolas"
                     FormatString="X8"
                     InnerLeftContent="0x"
+                    ParsingNumberStyle="AllowHexSpecifier"
                     ShowReadButton="True"
                     ShowWriteButton="True"
-                    ParsingNumberStyle="AllowHexSpecifier"
                     Step="1"
                     Watermark="AllowHexSpecifier"
                     Value="2" />
             </StackPanel>
         </Grid>
 
-        <StackPanel
-            Grid.Row="1"
+        <WrapPanel
+            Grid.Row="0"
+            Grid.RowSpan="2"
             Grid.Column="1"
+            Margin="10"
             HorizontalAlignment="Left"
             Orientation="Vertical">
 
@@ -191,8 +215,6 @@
             <CheckBox Content="AllowDrag" IsChecked="{Binding AllowDrag}" />
 
             <CheckBox Content="IsReadOnly" IsChecked="{Binding IsReadOnly}" />
-            <CheckBox Content="ShowReadButton" IsChecked="{Binding ShowReadButton}" />
-            <CheckBox Content="ShowWriteButton" IsChecked="{Binding ShowWriteButton}" />
 
             <Label Content="HorizontalAlignment" />
             <ComboBox ItemsSource="{Binding Array_HorizontalAlignment}" SelectedItem="{Binding HorizontalAlignment}" />
@@ -238,7 +260,10 @@
                 Value="{Binding Step}" />
 
             <CheckBox Content="IsEnable" IsChecked="{Binding IsEnable}" />
+            <CheckBox Content="ShowReadButton" IsChecked="{Binding ShowReadButton}" />
+            <CheckBox Content="ShowWriteButton" IsChecked="{Binding ShowWriteButton}" />
 
-        </StackPanel>
+        </WrapPanel>
+
     </Grid>
 </UserControl>
