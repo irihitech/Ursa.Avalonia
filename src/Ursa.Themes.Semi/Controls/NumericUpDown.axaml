@@ -75,19 +75,23 @@
                         <RepeatButton
                             Name="PART_RepeatRead"
                             Grid.Column="1"
-                            Width="20"
-                            IsVisible="{TemplateBinding ShowReadButton}"
+                            Width="16"
                             MinWidth="0"
                             Margin="0"
-                            Content="R" />
+                            Padding="0"
+                            HorizontalContentAlignment="Center"
+                            Content="❰"
+                            IsVisible="{TemplateBinding ShowReadButton}" />
                         <RepeatButton
                             Name="PART_RepeatWrite"
                             Grid.Column="2"
-                            IsVisible="{TemplateBinding ShowWriteButton}"
-                            Width="15"
+                            Width="16"
                             MinWidth="0"
                             Margin="0"
-                            Content="W" />
+                            Padding="0"
+                            HorizontalContentAlignment="Center"
+                            Content="❱"
+                            IsVisible="{TemplateBinding ShowWriteButton}" />
                     </Grid>
                 </DataValidationErrors>
             </ControlTemplate>
