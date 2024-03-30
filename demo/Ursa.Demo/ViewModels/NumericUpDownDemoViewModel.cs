@@ -39,19 +39,33 @@ public partial class NumericUpDownDemoViewModel : ObservableObject
     [ObservableProperty] private bool _IsEnable = true;
 
     [ObservableProperty] private string _CommandUpdateText = "Command not Execute";
+    [ObservableProperty] private string _ValueChangedUpdateText = "ValueChanged not Execute";
+
+    [ObservableProperty] private string _ReadCommandUpdateText = "ReadCommand not Execute";
+    [ObservableProperty] private string _ReadRequestedUpdateText = "ReadRequested not Execute";
 
     uint v = 0;
     [RelayCommand]
     // void Trythis()
-    void Trythis(uint v)
     // void Trythis(object v)
+    void Trythis(uint v)
     {
-        CommandUpdateText = $"Command Exe,CommandParameter={v}";
+        CommandUpdateText = $"Command, Parameter={v}";
     }
+
+
+    [RelayCommand]
+    // void TrythisRead()
+    // void TrythisRead(object v)
+    void TrythisRead(uint v)
+    {
+        ReadCommandUpdateText = $"ReadCommand, Parameter={v}";
+    }
+
 
     [ObservableProperty] private bool _ShowReadButton = true;
 
-    [ObservableProperty] private bool _ShowWriteButton = true;
+    [ObservableProperty] private bool _ShowWriteButton = true;    
 
     public NumericUpDownDemoViewModel()
     {
