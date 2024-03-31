@@ -41,6 +41,7 @@ public partial class NumericUpDownDemoViewModel : ObservableObject
     [ObservableProperty] private bool _IsEnable = true;
 
     [ObservableProperty] private string _CommandUpdateText = "Command not Execute";
+    [ObservableProperty] private string _ValueChangedUpdateText = "Command not Execute";
 
     [ObservableProperty] private bool _IsUpdateValueWhenLostFocus = false;
 
@@ -50,7 +51,7 @@ public partial class NumericUpDownDemoViewModel : ObservableObject
     void Trythis(uint v)
     // void Trythis(object v)
     {
-        CommandUpdateText = $"Command Exe,CommandParameter={v}";
+        CommandUpdateText = $"Command Exe,Parameter={v}";
     }
 
 

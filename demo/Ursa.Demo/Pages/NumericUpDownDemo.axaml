@@ -145,8 +145,9 @@
             </StackPanel>
         </Grid>
 
-        <StackPanel
-            Grid.Row="1"
+        <WrapPanel
+            Grid.Row="0"
+            Grid.RowSpan="2"
             Grid.Column="1"
             HorizontalAlignment="Left"
             Orientation="Vertical">
@@ -159,10 +160,6 @@
                 Value="{Binding Width}" />
 
             <TextBox InnerLeftContent="FontFamily" Text="{Binding FontFamily}" />
-
-            <CheckBox Content="AllowDrag" IsChecked="{Binding AllowDrag}" />
-
-            <CheckBox Content="IsReadOnly" IsChecked="{Binding IsReadOnly}" />
 
             <Label Content="HorizontalAlignment" />
             <ComboBox ItemsSource="{Binding Array_HorizontalAlignment}" SelectedItem="{Binding HorizontalAlignment}" />
@@ -185,10 +182,6 @@
             <Label Content="ParsingNumberStyle" />
             <ComboBox ItemsSource="{Binding Array_ParsingNumberStyle}" SelectedItem="{Binding ParsingNumberStyle}" />
 
-            <CheckBox Content="AllowSpin" IsChecked="{Binding AllowSpin}" />
-
-            <CheckBox Content="ShowButtonSpinner" IsChecked="{Binding ShowButtonSpinner}" />
-
             <u:NumericUIntUpDown
                 Name="nudV"
                 AllowSpin="True"
@@ -208,8 +201,13 @@
                 Value="{Binding Step}" />
 
             <CheckBox Content="IsEnable" IsChecked="{Binding IsEnable}" />
+            <CheckBox Content="AllowSpin" IsChecked="{Binding AllowSpin}" />
+            <CheckBox Content="AllowDrag" IsChecked="{Binding AllowDrag}" />
+            <CheckBox Content="ShowButtonSpinner" IsChecked="{Binding ShowButtonSpinner}" />
+
+            <CheckBox Content="IsReadOnly" IsChecked="{Binding IsReadOnly}" />
             <CheckBox Content="IsUpdateValueWhenLostFocus" IsChecked="{Binding IsUpdateValueWhenLostFocus}" />
 
-        </StackPanel>
+        </WrapPanel>
     </Grid>
 </UserControl>
