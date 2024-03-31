@@ -81,7 +81,7 @@
                             Padding="0"
                             HorizontalContentAlignment="Center"
                             Content="❰"
-                            IsVisible="{TemplateBinding ShowReadButton}" />
+                            IsVisible="{TemplateBinding IsShowReadButton}" />
                         <RepeatButton
                             Name="PART_RepeatWrite"
                             Grid.Column="2"
@@ -91,7 +91,7 @@
                             Padding="0"
                             HorizontalContentAlignment="Center"
                             Content="❱"
-                            IsVisible="{TemplateBinding ShowWriteButton}" />
+                            IsVisible="{TemplateBinding IsShowWriteButton}" />
                     </Grid>
                 </DataValidationErrors>
             </ControlTemplate>

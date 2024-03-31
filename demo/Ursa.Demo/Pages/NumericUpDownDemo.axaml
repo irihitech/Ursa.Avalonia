@@ -39,13 +39,13 @@
                 InnerLeftContent="{Binding InnerLeftContent}"
                 IsEnabled="{Binding IsEnable}"
                 IsReadOnly="{Binding IsReadOnly}"
+                IsShowReadButton="{Binding IsShowReadButton}"
+                IsShowWriteButton="{Binding IsShowWriteButton}"
                 Maximum="{Binding Maximum}"
                 Minimum="{Binding Minimum}"
                 ParsingNumberStyle="{Binding ParsingNumberStyle}"
                 ReadCommand="{Binding TrythisReadCommand}"
                 ShowButtonSpinner="{Binding ShowButtonSpinner}"
-                ShowReadButton="{Binding ShowReadButton}"
-                ShowWriteButton="{Binding ShowWriteButton}"
                 Step="{Binding Step}"
                 Watermark="{Binding Watermark}"
                 Value="{Binding Value}" />
@@ -150,7 +150,7 @@
                     Watermark="AllowHexSpecifier"
                     Value="2" />
 
-                <u:Divider Content="{Binding #Read_uint.Value, StringFormat='ShowReadButton {0}, hex={0:X}'}" />
+                <u:Divider Content="{Binding #Read_uint.Value, StringFormat='IsShowReadButton {0}, hex={0:X}'}" />
                 <u:NumericUIntUpDown
                     Name="Read_uint"
                     HorizontalContentAlignment="Right"
@@ -158,13 +158,13 @@
                     FontFamily="Consolas"
                     FormatString="X8"
                     InnerLeftContent="0x"
+                    IsShowReadButton="True"
                     ParsingNumberStyle="AllowHexSpecifier"
-                    ShowReadButton="True"
                     Step="1"
                     Watermark="AllowHexSpecifier"
                     Value="2" />
 
-                <u:Divider Content="{Binding #Write_uint.Value, StringFormat='ShowWriteButton {0}, hex={0:X}'}" />
+                <u:Divider Content="{Binding #Write_uint.Value, StringFormat='IsShowWriteButton {0}, hex={0:X}'}" />
                 <u:NumericUIntUpDown
                     Name="Write_uint"
                     HorizontalContentAlignment="Right"
@@ -172,8 +172,8 @@
                     FontFamily="Consolas"
                     FormatString="X8"
                     InnerLeftContent="0x"
+                    IsShowWriteButton="True"
                     ParsingNumberStyle="AllowHexSpecifier"
-                    ShowWriteButton="True"
                     Step="1"
                     Watermark="AllowHexSpecifier"
                     Value="2" />
@@ -186,9 +186,9 @@
                     FontFamily="Consolas"
                     FormatString="X8"
                     InnerLeftContent="0x"
+                    IsShowReadButton="True"
+                    IsShowWriteButton="True"
                     ParsingNumberStyle="AllowHexSpecifier"
-                    ShowReadButton="True"
-                    ShowWriteButton="True"
                     Step="1"
                     Watermark="AllowHexSpecifier"
                     Value="2" />
@@ -260,10 +260,9 @@
                 Value="{Binding Step}" />
 
             <CheckBox Content="IsEnable" IsChecked="{Binding IsEnable}" />
-            <CheckBox Content="ShowReadButton" IsChecked="{Binding ShowReadButton}" />
-            <CheckBox Content="ShowWriteButton" IsChecked="{Binding ShowWriteButton}" />
+            <CheckBox Content="IsShowReadButton" IsChecked="{Binding IsShowReadButton}" />
+            <CheckBox Content="IsShowWriteButton" IsChecked="{Binding IsShowWriteButton}" />
 
         </WrapPanel>
-
     </Grid>
 </UserControl>

@@ -145,22 +145,22 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
         set => SetValue(ShowButtonSpinnerProperty, value);
     }
 
-    public static readonly StyledProperty<bool> ShowReadButtonProperty =
-        AvaloniaProperty.Register<NumericUpDown, bool>(nameof(ShowReadButton), false);
+    public static readonly StyledProperty<bool> IsShowReadButtonProperty =
+        AvaloniaProperty.Register<NumericUpDown, bool>(nameof(IsShowReadButton), false);
 
-    public bool ShowReadButton
+    public bool IsShowReadButton
     {
-        get => GetValue(ShowReadButtonProperty);
-        set => SetValue(ShowReadButtonProperty, value);
+        get => GetValue(IsShowReadButtonProperty);
+        set => SetValue(IsShowReadButtonProperty, value);
     }
 
-    public static readonly StyledProperty<bool> ShowWriteButtonProperty =
-        AvaloniaProperty.Register<NumericUpDown, bool>(nameof(ShowWriteButton), false);
+    public static readonly StyledProperty<bool> IsShowWriteButtonProperty =
+        AvaloniaProperty.Register<NumericUpDown, bool>(nameof(IsShowWriteButton), false);
 
-    public bool ShowWriteButton
+    public bool IsShowWriteButton
     {
-        get => GetValue(ShowWriteButtonProperty);
-        set => SetValue(ShowWriteButtonProperty, value);
+        get => GetValue(IsShowWriteButtonProperty);
+        set => SetValue(IsShowWriteButtonProperty, value);
     }
 
     public event EventHandler<SpinEventArgs>? Spinned;
@@ -574,7 +574,7 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
 
     /// <summary>
     /// Raised when the Read required, like Read Button Click.
-    /// <br/> 
+    /// <br/>
     /// [!!!] If you update the <see cref="Value"/> int the <see cref="ReadRequested"/>, <see cref="ValueChanged"/> Will not Raise
     /// </summary>
     public event EventHandler<RoutedEventArgs>? ReadRequested
