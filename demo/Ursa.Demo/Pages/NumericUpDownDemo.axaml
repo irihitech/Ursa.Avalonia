@@ -20,37 +20,53 @@
         </Style>
     </UserControl.Styles>
 
-    <Grid ColumnDefinitions="*,*" RowDefinitions="100,*">
-        <StackPanel Grid.ColumnSpan="2">
-            <u:Divider Content="Demo"/>
-            <u:NumericUIntUpDown
-                Name="numd"
-                Width="{Binding Width}"
-                HorizontalAlignment="{Binding HorizontalAlignment}"
-                HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
-                AllowDrag="{Binding AllowDrag}"
-                AllowSpin="{Binding AllowSpin}"
-                Command="{Binding TrythisCommand}"
-                FontFamily="{Binding FontFamily, Mode=OneWay}"
-                FormatString="{Binding FormatString}"
-                InnerLeftContent="{Binding InnerLeftContent}"
-                IsEnabled="{Binding IsEnable}"
-                IsReadOnly="{Binding IsReadOnly}"
-                Maximum="{Binding Maximum}"
-                Minimum="{Binding Minimum}"
-                ParsingNumberStyle="{Binding ParsingNumberStyle}"
-                ShowButtonSpinner="{Binding ShowButtonSpinner}"
-                Step="{Binding Step}"
-                Watermark="{Binding Watermark}"
-                Value="{Binding Value}" />
-            <TextBox
-                Width="NaN"
-                HorizontalAlignment="Center"
-                IsReadOnly="true"
-                Text="{Binding CommandUpdateText}" />
-            <u:Divider Content="Demo" />
-        </StackPanel>
+    <Grid ColumnDefinitions="300,auto,*" RowDefinitions="auto,*">
+        <Expander
+            Margin="2"
+            BorderBrush="AliceBlue"
+            BorderThickness="2"
+            Header="Demo"
+            IsExpanded="True">
 
+            <StackPanel
+                Grid.ColumnSpan="1"
+                Margin="10"
+                HorizontalAlignment="Stretch">
+                <u:NumericUIntUpDown
+                    Name="numd"
+                    Width="{Binding Width}"
+                    HorizontalAlignment="{Binding HorizontalAlignment}"
+                    HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
+                    AllowDrag="{Binding AllowDrag}"
+                    AllowSpin="{Binding AllowSpin}"
+                    Command="{Binding TrythisCommand}"
+                    FontFamily="{Binding FontFamily, Mode=OneWay}"
+                    FormatString="{Binding FormatString}"
+                    InnerLeftContent="{Binding InnerLeftContent}"
+                    IsEnabled="{Binding IsEnable}"
+                    IsReadOnly="{Binding IsReadOnly}"
+                    Maximum="{Binding Maximum}"
+                    Minimum="{Binding Minimum}"
+                    ParsingNumberStyle="{Binding ParsingNumberStyle}"
+                    ShowButtonSpinner="{Binding ShowButtonSpinner}"
+                    Step="{Binding Step}"
+                    Watermark="{Binding Watermark}"
+                    Value="{Binding Value}" />
+                <u:Divider Content="ValueChange(Write)" />
+                <TextBox
+                    Width="NaN"
+                    HorizontalAlignment="Center"
+                    IsReadOnly="true"
+                    Text="{Binding CommandUpdateText}" />
+                <TextBox
+                    Width="NaN"
+                    HorizontalAlignment="Center"
+                    IsReadOnly="true"
+                    Text="{Binding ValueChangedUpdateText}" />
+                <u:Divider Content="Demo" />
+            </StackPanel>
+
+        </Expander>
         <Grid
             Grid.Row="1"
             Grid.Column="0"
