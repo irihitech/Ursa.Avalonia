@@ -42,6 +42,8 @@ public partial class NumericUpDownDemoViewModel : ObservableObject
 
     [ObservableProperty] private string _CommandUpdateText = "Command not Execute";
 
+    [ObservableProperty] private bool _IsUpdateValueWhenLostFocus = false;
+
     uint v = 0;
     [RelayCommand]
     // void Trythis()

@@ -45,6 +45,7 @@
                     InnerLeftContent="{Binding InnerLeftContent}"
                     IsEnabled="{Binding IsEnable}"
                     IsReadOnly="{Binding IsReadOnly}"
+                    IsUpdateValueWhenLostFocus="{Binding IsUpdateValueWhenLostFocus}"
                     Maximum="{Binding Maximum}"
                     Minimum="{Binding Minimum}"
                     ParsingNumberStyle="{Binding ParsingNumberStyle}"
@@ -207,6 +208,7 @@
                 Value="{Binding Step}" />
 
             <CheckBox Content="IsEnable" IsChecked="{Binding IsEnable}" />
+            <CheckBox Content="IsUpdateValueWhenLostFocus" IsChecked="{Binding IsUpdateValueWhenLostFocus}" />
 
         </StackPanel>
     </Grid>
