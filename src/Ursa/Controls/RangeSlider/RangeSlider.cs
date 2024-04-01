@@ -217,11 +217,12 @@ public class RangeSlider: TemplatedControl
         if (thumb is null) return;
         if (thumb == _track.LowerThumb)
         {
+            if (UpperValue < value) SetCurrentValue(UpperValueProperty, IsSnapToTick ? SnapToTick(value) : value);
             SetCurrentValue(LowerValueProperty, IsSnapToTick ? SnapToTick(value) : value);
         }
         else
         {
-            if (LowerValue >= value) SetCurrentValue(LowerValueProperty, IsSnapToTick ? SnapToTick(value) : value);
+            if (LowerValue > value) SetCurrentValue(LowerValueProperty, IsSnapToTick ? SnapToTick(value) : value);
             SetCurrentValue(UpperValueProperty, IsSnapToTick ? SnapToTick(value) : value);
         }
     }
