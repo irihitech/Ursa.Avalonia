@@ -212,7 +212,7 @@ public class RangeSlider: TemplatedControl
     {
         if (_track is null) return;
         var value = GetValueByPoint(posOnTrack);
-        var thumb = GetThumbByPoint(posOnTrack);
+        var thumb = _isDragging ? _currentThumb : GetThumbByPoint(posOnTrack);
         if (_currentThumb !=null && _currentThumb != thumb) return;
         if (thumb is null) return;
         if (thumb == _track.LowerThumb)
@@ -221,6 +221,7 @@ public class RangeSlider: TemplatedControl
         }
         else
         {
+            if (LowerValue >= value) SetCurrentValue(LowerValueProperty, IsSnapToTick ? SnapToTick(value) : value);
             SetCurrentValue(UpperValueProperty, IsSnapToTick ? SnapToTick(value) : value);
         }
     }
