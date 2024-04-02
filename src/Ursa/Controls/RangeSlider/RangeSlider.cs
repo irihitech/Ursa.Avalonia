@@ -212,15 +212,17 @@ public class RangeSlider: TemplatedControl
     {
         if (_track is null) return;
         var value = GetValueByPoint(posOnTrack);
-        var thumb = GetThumbByPoint(posOnTrack);
+        var thumb = _isDragging ? _currentThumb : GetThumbByPoint(posOnTrack);
         if (_currentThumb !=null && _currentThumb != thumb) return;
         if (thumb is null) return;
         if (thumb == _track.LowerThumb)
         {
+            if (UpperValue < value) SetCurrentValue(UpperValueProperty, IsSnapToTick ? SnapToTick(value) : value);
             SetCurrentValue(LowerValueProperty, IsSnapToTick ? SnapToTick(value) : value);
         }
         else
         {
+            if (LowerValue > value) SetCurrentValue(LowerValueProperty, IsSnapToTick ? SnapToTick(value) : value);
             SetCurrentValue(UpperValueProperty, IsSnapToTick ? SnapToTick(value) : value);
         }
     }
@@ -269,6 +271,7 @@ public class RangeSlider: TemplatedControl
         var isHorizontal = Orientation == Orientation.Horizontal;
         var lowerThumbPosition = isHorizontal? _track?.LowerThumb?.Bounds.Center.X : _track?.LowerThumb?.Bounds.Center.Y;
         var upperThumbPosition = isHorizontal? _track?.UpperThumb?.Bounds.Center.X : _track?.UpperThumb?.Bounds.Center.Y;
+        var mid = isHorizontal? _track?.Bounds.Center.X : _track?.Bounds.Center.Y;
         var pointerPosition = isHorizontal? point.Position.X : point.Position.Y;
 
         var lowerDistance = Math.Abs((lowerThumbPosition ?? 0) - pointerPosition);
@@ -278,10 +281,12 @@ public class RangeSlider: TemplatedControl
         {
             return _track?.LowerThumb;
         }
-        else
+        if(lowerDistance>upperDistance)
         {
             return _track?.UpperThumb;
         }
+        if (IsDirectionReversed) return pointerPosition < mid ? _track?.LowerThumb : _track?.UpperThumb;
+        return pointerPosition > mid ? _track?.LowerThumb : _track?.UpperThumb;
     }
     
     private double GetValueByPoint(PointerPoint point)
