@@ -148,24 +148,6 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
         set => SetValue(IsUpdateValueWhenLostFocusProperty, value);
     }
 
-    public static readonly StyledProperty<bool> IsShowReadButtonProperty =
-    AvaloniaProperty.Register<NumericUpDown, bool>(nameof(IsShowReadButton), false);
-
-    public bool IsShowReadButton
-    {
-        get => GetValue(IsShowReadButtonProperty);
-        set => SetValue(IsShowReadButtonProperty, value);
-    }
-
-    public static readonly StyledProperty<bool> IsShowWriteButtonProperty =
-        AvaloniaProperty.Register<NumericUpDown, bool>(nameof(IsShowWriteButton), false);
-
-    public bool IsShowWriteButton
-    {
-        get => GetValue(IsShowWriteButtonProperty);
-        set => SetValue(IsShowWriteButtonProperty, value);
-    }
-
     public event EventHandler<SpinEventArgs>? Spinned;
 
     static NumericUpDown()
