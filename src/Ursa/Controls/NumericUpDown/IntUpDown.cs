@@ -25,9 +25,17 @@ public class NumericIntUpDown : NumericUpDownBase<int>
 
     protected override int Zero => 0;
 
-    protected override int? Add(int? a, int? b) => a + b;
+    protected override int? Add(int? a, int? b)
+    {
+        var result = a + b;
+        return result < Value ? Maximum : result;
+    }
 
-    protected override int? Minus(int? a, int? b) => a - b;
+    protected override int? Minus(int? a, int? b)
+    {
+        var result = a - b;
+        return result > Value ? Minimum : result;
+    }
 }
 
 public class NumericUIntUpDown : NumericUpDownBase<uint>
@@ -53,9 +61,17 @@ public class NumericUIntUpDown : NumericUpDownBase<uint>
 
     protected override uint Zero => 0;
 
-    protected override uint? Add(uint? a, uint? b) => a + b;
+    protected override uint? Add(uint? a, uint? b)
+    {
+        var result = a + b;
+        return result < Value ? Maximum : result;
+    }
 
-    protected override uint? Minus(uint? a, uint? b) => a - b;
+    protected override uint? Minus(uint? a, uint? b)
+    {
+        var result = a - b;
+        return result > Value ? Minimum : result;
+    }
 }
 
 public class NumericDoubleUpDown : NumericUpDownBase<double>
@@ -99,9 +115,17 @@ public class NumericByteUpDown : NumericUpDownBase<byte>
 
     protected override byte Zero => 0;
 
-    protected override byte? Add(byte? a, byte? b) => (byte?)(a + b);
+    protected override byte? Add(byte? a, byte? b)
+    {
+        var result = a + b;
+        return (byte?)(result < Value ? Maximum : result);
+    }
 
-    protected override byte? Minus(byte? a, byte? b) => (byte?)(a - b);
+    protected override byte? Minus(byte? a, byte? b)
+    {
+        var result = a - b;
+        return (byte?)(result > Value ? Minimum : result);
+    }
 }
 
 public class NumericSByteUpDown : NumericUpDownBase<sbyte>
@@ -122,9 +146,17 @@ public class NumericSByteUpDown : NumericUpDownBase<sbyte>
 
     protected override sbyte Zero => 0;
 
-    protected override sbyte? Add(sbyte? a, sbyte? b) => (sbyte?)(a + b);
+    protected override sbyte? Add(sbyte? a, sbyte? b)
+    {
+        var result = a + b;
+        return (sbyte?)(result < Value ? Maximum : result);
+    }
 
-    protected override sbyte? Minus(sbyte? a, sbyte? b) => (sbyte?)(a - b);
+    protected override sbyte? Minus(sbyte? a, sbyte? b)
+    {
+        var result = a - b;
+        return (sbyte?)(result > Value ? Minimum : result);
+    }
 }
 
 public class NumericShortUpDown : NumericUpDownBase<short>
@@ -145,9 +177,17 @@ public class NumericShortUpDown : NumericUpDownBase<short>
 
     protected override short Zero => 0;
 
-    protected override short? Add(short? a, short? b) => (short?)(a + b);
+    protected override short? Add(short? a, short? b)
+    {
+        var result = a + b;
+        return (short?)(result < Value ? Maximum : result);
+    }
 
-    protected override short? Minus(short? a, short? b) => (short?)(a - b);
+    protected override short? Minus(short? a, short? b)
+    {
+        var result = a - b;
+        return (short?)(result > Value ? Minimum : result);
+    }
 }
 
 public class NumericUShortUpDown : NumericUpDownBase<ushort>
@@ -168,9 +208,17 @@ public class NumericUShortUpDown : NumericUpDownBase<ushort>
 
     protected override ushort Zero => 0;
 
-    protected override ushort? Add(ushort? a, ushort? b) => (ushort?)(a + b);
+    protected override ushort? Add(ushort? a, ushort? b)
+    {
+        var result = a + b;
+        return (ushort?)(result < Value ? Maximum : result);
+    }
 
-    protected override ushort? Minus(ushort? a, ushort? b) => (ushort?)(a - b);
+    protected override ushort? Minus(ushort? a, ushort? b)
+    {
+        var result = a - b;
+        return (ushort?)(result > Value ? Minimum : result);
+    }
 }
 
 public class NumericLongUpDown : NumericUpDownBase<long>
@@ -191,9 +239,17 @@ public class NumericLongUpDown : NumericUpDownBase<long>
 
     protected override long Zero => 0;
 
-    protected override long? Add(long? a, long? b) => a + b;
+    protected override long? Add(long? a, long? b)
+    {
+        var result = a + b;
+        return result < Value ? Maximum : result;
+    }
 
-    protected override long? Minus(long? a, long? b) => a - b;
+    protected override long? Minus(long? a, long? b)
+    {
+        var result = a - b;
+        return result > Value ? Minimum : result;
+    }
 }
 
 public class NumericULongUpDown : NumericUpDownBase<ulong>
