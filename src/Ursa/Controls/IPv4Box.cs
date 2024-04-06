@@ -210,7 +210,7 @@ public class IPv4Box: TemplatedControl
         if (!char.IsNumber(s![0])) return;
         if (_currentActivePresenter != null)
         {
-            int index = _currentActivePresenter.CaretIndex;
+            int index = Math.Min(_currentActivePresenter.CaretIndex, _currentActivePresenter.Text.Length);
             string? oldText = _currentActivePresenter.Text;
             if (oldText is null)
             {
