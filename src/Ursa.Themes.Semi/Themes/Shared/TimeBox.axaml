@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--  Add Resources Here  -->
+    <x:Double x:Key="TimeBoxDefaultMinHeight">32</x:Double>
+    <x:Double x:Key="TimeBoxSmallMinHeight">24</x:Double>
+    <x:Double x:Key="TimeBoxLargeMinHeight">40</x:Double>
+    <Thickness x:Key="TimeBoxBorderThickness">1</Thickness>
+    <CornerRadius x:Key="TimeBoxCornerRadius">3</CornerRadius>
+</ResourceDictionary>

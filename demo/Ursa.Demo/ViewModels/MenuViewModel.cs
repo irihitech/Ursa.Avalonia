@@ -45,6 +45,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Timeline", Key = MenuKeys.MenuKeyTimeline },
             new() { MenuHeader = "TwoTonePathIcon", Key = MenuKeys.MenuKeyTwoTonePathIcon},
             new() { MenuHeader = "ToolBar", Key = MenuKeys.MenuKeyToolBar },
+            new() { MenuHeader = "Time Box", Key = MenuKeys.MenuKeyTimeBox, Status = "New" },
             new() { MenuHeader = "Verification Code", Key = MenuKeys.MenuKeyVerificationCode, Status = "New" },
         };
     }
@@ -87,5 +88,6 @@ public static class MenuKeys
     public const string MenuKeyThemeToggler = "ThemeToggler";
     public const string MenuKeyToolBar = "ToolBar";
     public const string MenuKeyVerificationCode = "VerificationCode";
+    public const string MenuKeyTimeBox = "TimeBox";
 
 }
