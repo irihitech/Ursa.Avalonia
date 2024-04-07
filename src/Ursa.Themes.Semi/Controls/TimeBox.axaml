@@ -46,8 +46,7 @@
                                 <Panel Name="{x:Static u:TimeBox.PART_HourDragPanel}"
                                        HorizontalAlignment="Stretch"
                                        VerticalAlignment="Stretch"
-                                       Background="Transparent"
-                                       Cursor="SizeWestEast"/>
+                                       Background="Transparent"/>
                             </Grid>
                         </Border>
                         <TextBlock
@@ -74,8 +73,7 @@
                                 <Panel Name="{x:Static u:TimeBox.PART_MinuteDragPanel}"
                                        HorizontalAlignment="Stretch"
                                        VerticalAlignment="Stretch"
-                                       Background="Transparent"
-                                       Cursor="SizeWestEast"/>
+                                       Background="Transparent"/>
                             </Grid>
                         </Border>
                         <TextBlock
@@ -102,8 +100,7 @@
                                 <Panel Name="{x:Static u:TimeBox.PART_SecondDragPanel}"
                                        HorizontalAlignment="Stretch"
                                        VerticalAlignment="Stretch"
-                                       Background="Transparent"
-                                       Cursor="SizeWestEast"/>
+                                       Background="Transparent"/>
                             </Grid>
                         </Border>
                         <TextBlock
@@ -130,8 +127,7 @@
                                 <Panel Name="{x:Static u:TimeBox.PART_MilliSecondDragPanel}"
                                        HorizontalAlignment="Stretch"
                                        VerticalAlignment="Stretch"
-                                       Background="Transparent"
-                                       Cursor="SizeWestEast"/>
+                                       Background="Transparent"/>
                             </Grid>
                         </Border>
                     </Grid>
@@ -144,6 +140,16 @@
         <Style Selector="^:disabled">
             <Setter Property="Background" Value="{DynamicResource TimeBoxDisabledBackground}" />
             <Setter Property="Foreground" Value="{DynamicResource SemiColorDisabledText}" />
+        </Style>
+        <Style Selector="^[DragOrientation=Horizontal]">
+            <Style Selector="^/template/ Panel">
+                <Setter Property="Cursor" Value="SizeWestEast"/>
+            </Style>
+        </Style>
+        <Style Selector="^[DragOrientation=Vertical]">
+            <Style Selector="^/template/ Panel">
+                <Setter Property="Cursor" Value="SizeNorthSouth"/>
+            </Style>
         </Style>
     </ControlTheme>
 </ResourceDictionary>

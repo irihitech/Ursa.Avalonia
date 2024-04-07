@@ -42,6 +42,15 @@
             AllowDrag="{Binding #allowDrag.IsChecked}"
             IsTimeLoop="{Binding #isTimeLoop.IsChecked}"/>
 
+        <TextBlock Classes="" Text="Drag Vertical" />
+        <u:TimeBox
+            Width="200"
+            InputMode="Fast"
+            ShowLeadingZero="{Binding #format.IsChecked}"
+            AllowDrag="{Binding #allowDrag.IsChecked}"
+            IsTimeLoop="{Binding #isTimeLoop.IsChecked}"
+            DragOrientation="Vertical"/>
+        
         <TextBlock Classes="" Text="Binding From Source" />
         <RepeatButton Command="{Binding ChangeRandomTimeCommand}" Content="Random" />
         <u:TimeBox

@@ -22,6 +22,12 @@ public enum TimeBoxInputMode
     Fast,
 }
 
+public enum TimeBoxDragOrientation
+{
+    Horizontal,
+    Vertical,
+}
+
 [TemplatePart(PART_HoursTextPresenter, typeof(TextPresenter))]
 [TemplatePart(PART_MinuteTextPresenter, typeof(TextPresenter))]
 [TemplatePart(PART_SecondTextPresenter, typeof(TextPresenter))]
@@ -143,15 +149,15 @@ public class TimeBox : TemplatedControl
         set => SetValue(AllowDragProperty, value);
     }
 
-    public static readonly StyledProperty<bool> IsReadOnlyProperty = AvaloniaProperty.Register<TimeBox, bool>(
-        nameof(IsReadOnly), defaultValue: false, defaultBindingMode: BindingMode.TwoWay);
+    public static readonly StyledProperty<TimeBoxDragOrientation> DragOrientationProperty
+        = AvaloniaProperty.Register<TimeBox, TimeBoxDragOrientation>(nameof(DragOrientation), defaultValue: TimeBoxDragOrientation.Horizontal);
 
-    public bool IsReadOnly
+    public TimeBoxDragOrientation DragOrientation
     {
-        get => GetValue(IsReadOnlyProperty);
-        set => SetValue(IsReadOnlyProperty, value);
+        get => GetValue(DragOrientationProperty);
+        set => SetValue(DragOrientationProperty, value);
     }
-
+    
     public static readonly StyledProperty<bool> IsTimeLoopProperty = AvaloniaProperty.Register<TimeBox, bool>(
         nameof(IsTimeLoop), defaultBindingMode: BindingMode.TwoWay);
 
@@ -166,11 +172,6 @@ public class TimeBox : TemplatedControl
         ShowLeadingZeroProperty.Changed.AddClassHandler<TimeBox>((o, e) => o.OnFormatChange(e));
         TimeProperty.Changed.AddClassHandler<TimeBox>((o, e) => o.OnTimeChanged(e));
         AllowDragProperty.Changed.AddClassHandler<TimeBox, bool>((o, e) => o.OnAllowDragChange(e));
-    }
-
-    private void OnAllowDragChange(AvaloniaPropertyChangedEventArgs<bool> args)
-    {
-        IsVisibleProperty.SetValue(args.NewValue.Value, _dragPanels);
     }
 
     #region Overrides
@@ -288,8 +289,6 @@ public class TimeBox : TemplatedControl
                 }
 
                 _presenters[_currentActiveSectionIndex.Value].Text = newText;
-                Console.WriteLine(
-                    $"OnTextInput @ _secondText HashCode: {_presenters[_currentActiveSectionIndex.Value]?.GetHashCode()}");
                 _presenters[_currentActiveSectionIndex.Value].MoveCaretHorizontal();
                 if (_presenters[_currentActiveSectionIndex.Value].CaretIndex == 2 && InputMode == TimeBoxInputMode.Fast)
                 {
@@ -341,10 +340,6 @@ public class TimeBox : TemplatedControl
         SetTimeSpanInternal();
     }
 
-    protected override void OnGotFocus(GotFocusEventArgs e)
-    {
-    }
-
     #endregion
 
     private void OnFormatChange(AvaloniaPropertyChangedEventArgs arg)
@@ -353,6 +348,11 @@ public class TimeBox : TemplatedControl
         ParseTimeSpan(showLeadingZero);
     }
 
+    private void OnAllowDragChange(AvaloniaPropertyChangedEventArgs<bool> args)
+    {
+        IsVisibleProperty.SetValue(args.NewValue.Value, _dragPanels);
+    }
+    
     private void OnTimeChanged(AvaloniaPropertyChangedEventArgs arg)
     {
         TimeSpan? timeSpan = arg.GetNewValue<TimeSpan?>();
@@ -369,7 +369,7 @@ public class TimeBox : TemplatedControl
             if (_hourText != null) _hourText.Text = timeSpan.Value.Hours.ToString();
             if (_minuteText != null) _minuteText.Text = timeSpan.Value.Minutes.ToString();
             if (_secondText != null) _secondText.Text = timeSpan.Value.Seconds.ToString();
-            if (_milliSecondText != null) _milliSecondText.Text = (timeSpan.Value.Milliseconds / 10).ToString();
+            if (_milliSecondText != null) _milliSecondText.Text = ClampMilliSecond(timeSpan.Value.Milliseconds).ToString();
             ParseTimeSpan(ShowLeadingZero);
         }
     }
@@ -377,7 +377,6 @@ public class TimeBox : TemplatedControl
     private void ParseTimeSpan(bool showLeadingZero, bool skipParseFromText = false)
     {
         string format = showLeadingZero ? "D2" : "";
-        Console.WriteLine($"ParseTimeSpan @ _secondText HashCode: {_secondText?.GetHashCode()}");
         if (_hourText is null || _minuteText is null || _secondText is null || _milliSecondText is null)
         {
             _values[0] = 0;
@@ -404,7 +403,7 @@ public class TimeBox : TemplatedControl
     }
     private void OnDragPanelPointerMoved(object sender, PointerEventArgs e)
     {
-        if (!AllowDrag || IsReadOnly) return;
+        if (!AllowDrag) return;
         if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
         var point = e.GetPosition(this);
         var delta = point - _lastDragPoint;
@@ -430,12 +429,24 @@ public class TimeBox : TemplatedControl
 
     private int GetDelta(Point point)
     {
-        return point.X switch
+        switch (DragOrientation)
         {
-            > 0 => 1,
-            < 0 => -1,
-            _ => 0
-        };
+            case TimeBoxDragOrientation.Horizontal:
+                return point.X switch
+                {
+                    > 0 => 1,
+                    < 0 => -1,
+                    _ => 0
+                };
+            case TimeBoxDragOrientation.Vertical:
+                return point.Y switch
+                {
+                    > 0 => -1,
+                    < 0 => 1,
+                    _ => 0
+                };
+        }
+        return 0;
     }
 
     private void EnterSection(int index)
@@ -627,7 +638,7 @@ public class TimeBox : TemplatedControl
         else if(_currentActiveSectionIndex.Value == 3)
             _values[3] += 1;
         ParseTimeSpan(ShowLeadingZero, true);
-        SetTimeSpanInternal();
+        //SetTimeSpanInternal();
     }
     
     private void Decrease()
@@ -642,7 +653,7 @@ public class TimeBox : TemplatedControl
         else if(_currentActiveSectionIndex.Value == 3)
             _values[3] -= 1;
         ParseTimeSpan(ShowLeadingZero, true);
-        SetTimeSpanInternal();
+        //SetTimeSpanInternal();
     }
     
     private int ClampMilliSecond(int milliSecond)
