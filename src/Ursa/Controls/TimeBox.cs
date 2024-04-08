@@ -66,12 +66,12 @@ public class TimeBox : TemplatedControl
     private Panel? _minuteDragPanel;
     private Panel? _secondDragPanel;
     private Panel? _milliSecondDragPanel;
-    private readonly TextPresenter?[] _presenters = new TextPresenter?[4];
-    private readonly Border?[] _borders = new Border?[4];
-    private readonly Panel?[] _dragPanels = new Panel?[4];
+    private readonly TextPresenter[] _presenters = new TextPresenter[4];
+    private readonly Border[] _borders = new Border[4];
+    private readonly Panel[] _dragPanels = new Panel[4];
     private readonly int[] _limits = new[] { 24, 60, 60, 100 };
-    private int[] _values = new int[4];
-    private bool[] _isShowedCaret = new bool[4];
+    private int[] _values = new[] { 0, 0, 0, 0 };
+    private bool[] _isShowedCaret = new[] { false, false, false, false };
     private int? _currentActiveSectionIndex;
     private bool _isAlreadyDrag = false;
     private Point _pressedPosition = new Point();
@@ -96,7 +96,7 @@ public class TimeBox : TemplatedControl
     }
 
     public static readonly StyledProperty<IBrush?> SelectionBrushProperty =
-        TextBox.SelectionBrushProperty.AddOwner<IPv4Box>();
+        TextBox.SelectionBrushProperty.AddOwner<TimeBox>();
 
     public IBrush? SelectionBrush
     {
@@ -105,7 +105,7 @@ public class TimeBox : TemplatedControl
     }
 
     public static readonly StyledProperty<IBrush?> SelectionForegroundBrushProperty =
-        TextBox.SelectionForegroundBrushProperty.AddOwner<IPv4Box>();
+        TextBox.SelectionForegroundBrushProperty.AddOwner<TimeBox>();
 
     public IBrush? SelectionForegroundBrush
     {
@@ -113,7 +113,7 @@ public class TimeBox : TemplatedControl
         set => SetValue(SelectionForegroundBrushProperty, value);
     }
 
-    public static readonly StyledProperty<IBrush?> CaretBrushProperty = TextBox.CaretBrushProperty.AddOwner<IPv4Box>();
+    public static readonly StyledProperty<IBrush?> CaretBrushProperty = TextBox.CaretBrushProperty.AddOwner<TimeBox>();
 
     public IBrush? CaretBrush
     {
@@ -150,14 +150,15 @@ public class TimeBox : TemplatedControl
     }
 
     public static readonly StyledProperty<TimeBoxDragOrientation> DragOrientationProperty
-        = AvaloniaProperty.Register<TimeBox, TimeBoxDragOrientation>(nameof(DragOrientation), defaultValue: TimeBoxDragOrientation.Horizontal);
+        = AvaloniaProperty.Register<TimeBox, TimeBoxDragOrientation>(nameof(DragOrientation),
+            defaultValue: TimeBoxDragOrientation.Horizontal);
 
     public TimeBoxDragOrientation DragOrientation
     {
         get => GetValue(DragOrientationProperty);
         set => SetValue(DragOrientationProperty, value);
     }
-    
+
     public static readonly StyledProperty<bool> IsTimeLoopProperty = AvaloniaProperty.Register<TimeBox, bool>(
         nameof(IsTimeLoop), defaultBindingMode: BindingMode.TwoWay);
 
@@ -166,7 +167,7 @@ public class TimeBox : TemplatedControl
         get => GetValue(IsTimeLoopProperty);
         set => SetValue(IsTimeLoopProperty, value);
     }
-    
+
     static TimeBox()
     {
         ShowLeadingZeroProperty.Changed.AddClassHandler<TimeBox>((o, e) => o.OnFormatChange(e));
@@ -179,18 +180,19 @@ public class TimeBox : TemplatedControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        _hourText = e.NameScope.Find<TextPresenter>(PART_HoursTextPresenter);
-        _minuteText = e.NameScope.Find<TextPresenter>(PART_MinuteTextPresenter);
-        _secondText = e.NameScope.Find<TextPresenter>(PART_SecondTextPresenter);
-        _milliSecondText = e.NameScope.Find<TextPresenter>(PART_MillisecondTextPresenter);
-        _hourBorder = e.NameScope.Find<Border>(PART_HourBorder);
-        _minuteBorder = e.NameScope.Find<Border>(PART_MinuteBorder);
-        _secondBorder = e.NameScope.Find<Border>(PART_SecondBorder);
-        _milliSecondBorder = e.NameScope.Find<Border>(PART_MilliSecondBorder);
-        _hourDragPanel = e.NameScope.Find<Panel>(PART_HourDragPanel);
-        _minuteDragPanel = e.NameScope.Find<Panel>(PART_MinuteDragPanel);
-        _secondDragPanel = e.NameScope.Find<Panel>(PART_SecondDragPanel);
-        _milliSecondDragPanel = e.NameScope.Find<Panel>(PART_MilliSecondDragPanel);
+        _hourText = e.NameScope.Get<TextPresenter>(PART_HoursTextPresenter);
+        _minuteText = e.NameScope.Get<TextPresenter>(PART_MinuteTextPresenter);
+        _secondText = e.NameScope.Get<TextPresenter>(PART_SecondTextPresenter);
+        _milliSecondText = e.NameScope.Get<TextPresenter>(PART_MillisecondTextPresenter);
+        _hourBorder = e.NameScope.Get<Border>(PART_HourBorder);
+        _minuteBorder = e.NameScope.Get<Border>(PART_MinuteBorder);
+        _secondBorder = e.NameScope.Get<Border>(PART_SecondBorder);
+        _milliSecondBorder = e.NameScope.Get<Border>(PART_MilliSecondBorder);
+        _hourDragPanel = e.NameScope.Get<Panel>(PART_HourDragPanel);
+        _minuteDragPanel = e.NameScope.Get<Panel>(PART_MinuteDragPanel);
+        _secondDragPanel = e.NameScope.Get<Panel>(PART_SecondDragPanel);
+        _milliSecondDragPanel = e.NameScope.Get<Panel>(PART_MilliSecondDragPanel);
+
         _presenters[0] = _hourText;
         _presenters[1] = _minuteText;
         _presenters[2] = _secondText;
@@ -205,12 +207,10 @@ public class TimeBox : TemplatedControl
         _dragPanels[3] = _milliSecondDragPanel;
         IsVisibleProperty.SetValue(AllowDrag, _dragPanels);
 
-
-        if (_hourText != null) _hourText.Text = Time != null ? Time.Value.Hours.ToString() : "0";
-        if (_minuteText != null) _minuteText.Text = Time != null ? Time.Value.Minutes.ToString() : "0";
-        if (_secondText != null) _secondText.Text = Time != null ? Time.Value.Seconds.ToString() : "0";
-        if (_milliSecondText != null)
-            _milliSecondText.Text = Time != null ? ClampMilliSecond(Time.Value.Milliseconds).ToString() : "0";
+        _hourText.Text = Time != null ? Time.Value.Hours.ToString() : "0";
+        _minuteText.Text = Time != null ? Time.Value.Minutes.ToString() : "0";
+        _secondText.Text = Time != null ? Time.Value.Seconds.ToString() : "0";
+        _milliSecondText.Text = Time != null ? ClampMilliSecond(Time.Value.Milliseconds).ToString() : "0";
         ParseTimeSpan(ShowLeadingZero);
 
         PointerMovedEvent.AddHandler(OnDragPanelPointerMoved, _dragPanels);
@@ -264,36 +264,36 @@ public class TimeBox : TemplatedControl
         string? s = e.Text;
         if (string.IsNullOrEmpty(s)) return;
         if (!char.IsNumber(s![0])) return;
-        if (_currentActiveSectionIndex.HasValue && _presenters[_currentActiveSectionIndex.Value] != null)
+        if (_currentActiveSectionIndex is null) return;
+
+        int caretIndex = Math.Min(_presenters[_currentActiveSectionIndex.Value].CaretIndex
+            , _presenters[_currentActiveSectionIndex.Value].Text.Length);
+
+        if (_presenters[_currentActiveSectionIndex.Value].Text is null)
         {
-            int caretIndex = Math.Min(_presenters[_currentActiveSectionIndex.Value].CaretIndex
-                                        , _presenters[_currentActiveSectionIndex.Value].Text.Length);
-            string? oldText = _presenters[_currentActiveSectionIndex.Value].Text;
-            if (oldText is null)
+            _presenters[_currentActiveSectionIndex.Value].Text = s;
+            _presenters[_currentActiveSectionIndex.Value].MoveCaretHorizontal();
+        }
+        else
+        {
+            _presenters[_currentActiveSectionIndex.Value].DeleteSelection();
+            _presenters[_currentActiveSectionIndex.Value].ClearSelection();
+            string oldText = _presenters[_currentActiveSectionIndex.Value].Text;
+            string newText = oldText.Length == 0
+                ? s
+                : oldText.Substring(0, caretIndex) + s + oldText.Substring(Math.Min(caretIndex, oldText.Length));
+
+            // Limit the maximum number of input digits
+            if (newText.Length > 2)
             {
-                _presenters[_currentActiveSectionIndex.Value].Text = s;
-                _presenters[_currentActiveSectionIndex.Value].MoveCaretHorizontal();
+                newText = newText.Substring(0, 2);
             }
-            else
+
+            _presenters[_currentActiveSectionIndex.Value].Text = newText;
+            _presenters[_currentActiveSectionIndex.Value].MoveCaretHorizontal();
+            if (_presenters[_currentActiveSectionIndex.Value].CaretIndex == 2 && InputMode == TimeBoxInputMode.Fast)
             {
-                _presenters[_currentActiveSectionIndex.Value].DeleteSelection();
-                _presenters[_currentActiveSectionIndex.Value].ClearSelection();
-                oldText = _presenters[_currentActiveSectionIndex.Value].Text;
-
-                string newText = string.IsNullOrEmpty(oldText)
-                    ? s
-                    : oldText?.Substring(0, caretIndex) + s + oldText?.Substring(Math.Min(caretIndex, oldText.Length));
-                if (newText.Length > 2)
-                {
-                    newText = newText.Substring(0, 2);
-                }
-
-                _presenters[_currentActiveSectionIndex.Value].Text = newText;
-                _presenters[_currentActiveSectionIndex.Value].MoveCaretHorizontal();
-                if (_presenters[_currentActiveSectionIndex.Value].CaretIndex == 2 && InputMode == TimeBoxInputMode.Fast)
-                {
-                    MoveToNextSection(_currentActiveSectionIndex.Value);
-                }
+                MoveToNextSection(_currentActiveSectionIndex.Value);
             }
         }
     }
@@ -304,7 +304,7 @@ public class TimeBox : TemplatedControl
         _lastDragPoint = _pressedPosition;
         for (int i = 0; i < 4; ++i)
         {
-            if (_borders[i]?.Bounds.Contains(_pressedPosition) ?? false)
+            if (_borders[i].Bounds.Contains(_pressedPosition))
             {
                 _currentActiveSectionIndex = i;
             }
@@ -326,6 +326,8 @@ public class TimeBox : TemplatedControl
         {
             EnterSection(_currentActiveSectionIndex.Value);
         }
+
+        _lastDragPoint = null;
     }
 
     protected override void OnLostFocus(RoutedEventArgs e)
@@ -344,6 +346,10 @@ public class TimeBox : TemplatedControl
 
     private void OnFormatChange(AvaloniaPropertyChangedEventArgs arg)
     {
+        // this function will be call ahead of OnApplyTemplate() if Set ShowLeadingZero in axaml, so that _xxxText could be null
+        if (_hourText is null || _minuteText is null || _secondText is null || _milliSecondText is null)
+            return;
+
         bool showLeadingZero = arg.GetNewValue<bool>();
         ParseTimeSpan(showLeadingZero);
     }
@@ -352,24 +358,28 @@ public class TimeBox : TemplatedControl
     {
         IsVisibleProperty.SetValue(args.NewValue.Value, _dragPanels);
     }
-    
+
     private void OnTimeChanged(AvaloniaPropertyChangedEventArgs arg)
     {
+        // this function will be call ahead of OnApplyTemplate() if bind Time in axaml, so that _xxxText could be null
+        if (_hourText is null || _minuteText is null || _secondText is null || _milliSecondText is null)
+            return;
+
         TimeSpan? timeSpan = arg.GetNewValue<TimeSpan?>();
         if (timeSpan is null)
         {
-            if (_hourText != null) _hourText.Text = String.Empty;
-            if (_minuteText != null) _minuteText.Text = String.Empty;
-            if (_secondText != null) _secondText.Text = String.Empty;
-            if (_milliSecondText != null) _milliSecondText.Text = String.Empty;
+            _hourText.Text = String.Empty;
+            _minuteText.Text = String.Empty;
+            _secondText.Text = String.Empty;
+            _milliSecondText.Text = String.Empty;
             ParseTimeSpan(ShowLeadingZero);
         }
         else
         {
-            if (_hourText != null) _hourText.Text = timeSpan.Value.Hours.ToString();
-            if (_minuteText != null) _minuteText.Text = timeSpan.Value.Minutes.ToString();
-            if (_secondText != null) _secondText.Text = timeSpan.Value.Seconds.ToString();
-            if (_milliSecondText != null) _milliSecondText.Text = ClampMilliSecond(timeSpan.Value.Milliseconds).ToString();
+            _hourText.Text = timeSpan.Value.Hours.ToString();
+            _minuteText.Text = timeSpan.Value.Minutes.ToString();
+            _secondText.Text = timeSpan.Value.Seconds.ToString();
+            _milliSecondText.Text = ClampMilliSecond(timeSpan.Value.Milliseconds).ToString();
             ParseTimeSpan(ShowLeadingZero);
         }
     }
@@ -377,14 +387,6 @@ public class TimeBox : TemplatedControl
     private void ParseTimeSpan(bool showLeadingZero, bool skipParseFromText = false)
     {
         string format = showLeadingZero ? "D2" : "";
-        if (_hourText is null || _minuteText is null || _secondText is null || _milliSecondText is null)
-        {
-            _values[0] = 0;
-            _values[1] = 0;
-            _values[2] = 0;
-            _values[3] = 0;
-            return;
-        }
 
         if (!skipParseFromText)
         {
@@ -401,17 +403,14 @@ public class TimeBox : TemplatedControl
         _secondText.Text = _values[2].ToString(format);
         _milliSecondText.Text = _values[3].ToString(format);
     }
+
     private void OnDragPanelPointerMoved(object sender, PointerEventArgs e)
     {
         if (!AllowDrag) return;
         if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
         var point = e.GetPosition(this);
         var delta = point - _lastDragPoint;
-        if (delta is null)
-        {
-            return;
-        }
-
+        if (delta is null) return;
         int d = GetDelta(delta.Value);
         if (d > 0)
         {
@@ -446,11 +445,13 @@ public class TimeBox : TemplatedControl
                     _ => 0
                 };
         }
+
         return 0;
     }
 
     private void EnterSection(int index)
     {
+        if(index < 0 || index > 3) return;
         if (!_isShowedCaret[index])
         {
             if (AllowDrag && _dragPanels[index] != null)
@@ -470,7 +471,7 @@ public class TimeBox : TemplatedControl
 
     private void LeaveSection(int index)
     {
-        if (_presenters[index] is null) return;
+        if(index < 0 || index > 3) return;
         _presenters[index].ClearSelection();
         if (_isShowedCaret[index])
         {
@@ -484,8 +485,7 @@ public class TimeBox : TemplatedControl
 
     private bool MoveToNextSection(int index)
     {
-        if (_presenters[index] is null) return false;
-        if (index == 3) return false;
+        if(index < 0 || index >= 3) return false;
         LeaveSection(index);
         _currentActiveSectionIndex = index + 1;
         EnterSection(_currentActiveSectionIndex.Value);
@@ -494,8 +494,7 @@ public class TimeBox : TemplatedControl
 
     private bool MoveToPreviousSection(int index)
     {
-        if (_presenters[index] is null) return false;
-        if (index == 0) return false;
+        if(index <= 0 || index > 3) return false;
         LeaveSection(index);
         _currentActiveSectionIndex = index - 1;
         EnterSection(_currentActiveSectionIndex.Value);
@@ -562,7 +561,7 @@ public class TimeBox : TemplatedControl
 
     private void DeleteImplementation(int index)
     {
-        if (_presenters[index] is null) return;
+        if(index < 0 || index > 3) return;
         var oldText = _presenters[index].Text;
         if (_presenters[index].SelectionStart != _presenters[index].SelectionEnd)
         {
@@ -582,7 +581,7 @@ public class TimeBox : TemplatedControl
             _presenters[index].Text = newText;
         }
     }
-    
+
     private bool HandlingCarry(int index, int lowerCarry = 0)
     {
         if (index < 0)
@@ -615,9 +614,10 @@ public class TimeBox : TemplatedControl
                 _values[index] = 0;
             }
         }
+
         return success;
     }
-    
+
     private void VerifyTimeValue()
     {
         for (int i = 3; i >= 0; --i)
@@ -625,37 +625,37 @@ public class TimeBox : TemplatedControl
             HandlingCarry(i);
         }
     }
-    
+
     private void Increase()
     {
-        if(_currentActiveSectionIndex is null)return;
-        if(_currentActiveSectionIndex.Value == 0)
+        if (_currentActiveSectionIndex is null) return;
+        if (_currentActiveSectionIndex.Value == 0)
             _values[0] += 1;
-        else if(_currentActiveSectionIndex.Value == 1)
+        else if (_currentActiveSectionIndex.Value == 1)
             _values[1] += 1;
-        else if(_currentActiveSectionIndex.Value == 2)
+        else if (_currentActiveSectionIndex.Value == 2)
             _values[2] += 1;
-        else if(_currentActiveSectionIndex.Value == 3)
+        else if (_currentActiveSectionIndex.Value == 3)
             _values[3] += 1;
         ParseTimeSpan(ShowLeadingZero, true);
         //SetTimeSpanInternal();
     }
-    
+
     private void Decrease()
     {
-        if(_currentActiveSectionIndex is null)return;
-        if(_currentActiveSectionIndex.Value == 0)
+        if (_currentActiveSectionIndex is null) return;
+        if (_currentActiveSectionIndex.Value == 0)
             _values[0] -= 1;
-        else if(_currentActiveSectionIndex.Value == 1)
+        else if (_currentActiveSectionIndex.Value == 1)
             _values[1] -= 1;
-        else if(_currentActiveSectionIndex.Value == 2)
+        else if (_currentActiveSectionIndex.Value == 2)
             _values[2] -= 1;
-        else if(_currentActiveSectionIndex.Value == 3)
+        else if (_currentActiveSectionIndex.Value == 3)
             _values[3] -= 1;
         ParseTimeSpan(ShowLeadingZero, true);
         //SetTimeSpanInternal();
     }
-    
+
     private int ClampMilliSecond(int milliSecond)
     {
         while (milliSecond % 100 != milliSecond)
