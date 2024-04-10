@@ -56,3 +56,9 @@ Include Styles in application:
         <u-semi:SemiTheme Locale="zh-CN"/>
     </Application.Styles>
 ```
+
+## Support
+
+We offer limited free community support for Semi Avalonia and Ursa. Please join our group via FeiShu(Lark)
+
+![Support](./assets/community-support.png)
