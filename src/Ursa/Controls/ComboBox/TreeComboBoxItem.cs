@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 using Avalonia.Media;
 using Avalonia.Media.TextFormatting;
@@ -47,9 +48,9 @@ public class TreeComboBoxItem: HeaderedItemsControl, ISelectable
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        DoubleTappedEvent.RemoveHandler(OnDoubleTapped, _header);
+        DoubleTappedEvent.RemoveHandler(OnDoubleTapped, this);
         _header = e.NameScope.Find<Control>(PartNames.PART_Header);
-        DoubleTappedEvent.AddHandler(OnDoubleTapped, _header);
+        DoubleTappedEvent.AddHandler(OnDoubleTapped, RoutingStrategies.Tunnel, true, this);
     }
 
     protected override void OnAttachedToLogicalTree(LogicalTreeAttachmentEventArgs e)

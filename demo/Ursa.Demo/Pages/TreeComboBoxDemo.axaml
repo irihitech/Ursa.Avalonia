@@ -9,7 +9,11 @@
     <StackPanel>
         <u:TreeComboBox>
             <u:TreeComboBoxItem Header="Hello">
-                <u:TreeComboBoxItem Header="Hello World"/>
+                <u:TreeComboBoxItem Header="Hello World">
+                    <u:TreeComboBoxItem Header="Hello World 1"/>
+                    <u:TreeComboBoxItem Header="Hello World 2"/>
+                    <u:TreeComboBoxItem Header="Hello World 3"/>
+                </u:TreeComboBoxItem>
                 <u:TreeComboBoxItem Header="Hello Avalonia"/>
                 <u:TreeComboBoxItem Header="Hello Another"/>
             </u:TreeComboBoxItem>

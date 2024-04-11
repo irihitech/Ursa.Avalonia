@@ -1,17 +1,19 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:u="https://irihi.tech/ursa"
-                    xmlns:iri="https://irihi.tech/shared">
+                    xmlns:iri="https://irihi.tech/shared"
+                    xmlns:converters="clr-namespace:Avalonia.Controls.Converters;assembly=Avalonia.Controls">
     <!-- Add Resources Here -->
+    
+    <converters:MarginMultiplierConverter x:Key="LeftMarginConverter" Indent="20" Left="True"/>
     
     <ControlTheme x:Key="{x:Type u:TreeComboBox}" TargetType="u:TreeComboBox">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:TreeComboBox">
-                <Grid ColumnDefinitions="*, Auto, 32">
-                    <Border Grid.Column="0" Grid.ColumnSpan="3" Background="Red"></Border>
+                <Grid ColumnDefinitions="*, Auto, 32" Background="Transparent">
+                    <Border Grid.Column="0" Grid.ColumnSpan="3" Background="Transparent" BorderBrush="Blue" BorderThickness="1" CornerRadius="3"/>
                     <ContentPresenter Grid.Column="0" MinHeight="32" Content="{TemplateBinding SelectionBoxItem}"/>
-                    
-                    <Popup Grid.Column="0" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}">
+                    <Popup Name="{x:Static iri:PartNames.PART_Popup}" Grid.Column="0" IsLightDismissEnabled="True" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}">
                         <Border Background="{DynamicResource ComboBoxPopupBackground}">
                             <ScrollViewer>
                                 <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"/>
@@ -28,12 +30,15 @@
             <ControlTemplate TargetType="u:TreeComboBoxItem">
                 <StackPanel>
                     <Border Name="PART_LayoutRoot" MinHeight="{TemplateBinding MinHeight}" TemplatedControl.IsTemplateFocusTarget="True">
-                        <Grid Name="{x:Static iri:PartNames.PART_Header}" Margin="10" ColumnDefinitions="Auto, *">
-                            <ToggleButton Name="PART_ExpandCollapseChevron" Grid.Column="0" Focusable="False"></ToggleButton>
+                        <Grid
+                            Name="{x:Static iri:PartNames.PART_Header}"
+                            Margin="{TemplateBinding Level, Mode=OneWay, Converter={StaticResource LeftMarginConverter}}" 
+                              ColumnDefinitions="Auto, *">
+                            <ToggleButton IsChecked="{TemplateBinding IsExpanded, Mode=TwoWay}" Theme="{DynamicResource ToggleButtonTreeViewItemIconButton}" Name="PART_ExpandCollapseChevron" Grid.Column="0" Focusable="False"></ToggleButton>
                             <ContentPresenter Grid.Column="1" Name="{x:Static iri:PartNames.PART_HeaderPresenter}" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" Focusable="False"/>
                         </Grid>
                     </Border>
-                    <ItemsPresenter Name="{x:Static iri:PartNames.PART_ItemsPresenter}" ItemsPanel="{TemplateBinding ItemsPanel}"/>
+                    <ItemsPresenter IsVisible="{TemplateBinding IsExpanded}" Name="{x:Static iri:PartNames.PART_ItemsPresenter}" ItemsPanel="{TemplateBinding ItemsPanel}"/>
                 </StackPanel>
             </ControlTemplate>
         </Setter>

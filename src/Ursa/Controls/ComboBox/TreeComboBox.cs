@@ -15,6 +15,8 @@ namespace Ursa.Controls;
 [TemplatePart(PartNames.PART_Popup, typeof(Popup))]
 public class TreeComboBox: SelectingItemsControl
 {
+    private Popup? _popup;
+    
     private static readonly FuncTemplate<Panel?> DefaultPanel =
         new FuncTemplate<Panel?>(() => new VirtualizingStackPanel());
 
@@ -87,6 +89,12 @@ public class TreeComboBox: SelectingItemsControl
         FocusableProperty.OverrideDefaultValue<TreeComboBox>(true);
     }
 
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        _popup = e.NameScope.Find<Popup>(PartNames.PART_Popup);
+    }
+
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
         return NeedsContainer<TreeComboBoxItem>(item, out recycleKey);
@@ -122,7 +130,16 @@ public class TreeComboBox: SelectingItemsControl
         base.OnPointerReleased(e);
         if (e.InitialPressMouseButton == MouseButton.Left)
         {
-            IsDropDownOpen = !IsDropDownOpen;
+            if (_popup is not null && _popup.IsOpen && e.Source is TextBlock v && _popup.IsInsidePopup(v))
+            {
+                SelectionBoxItem = v.Text;
+                SetCurrentValue(IsDropDownOpenProperty, false);
+            }
+            else
+            {
+                IsDropDownOpen = !IsDropDownOpen;
+            }
+            
         }
     }
 } 
