@@ -13,6 +13,9 @@ public class PaginationDemoViewModel : ViewModelBase
     public AvaloniaList<int> PageSizes { get; set; } = new() { 10, 20, 50, 100 };
 
     public ICommand LoadPageCommand { get; }
+
+    public int? CurrentPage { set; get; }
+
     public PaginationDemoViewModel()
     {
         this.LoadPageCommand = new RelayCommand<int?>(LoadPage);

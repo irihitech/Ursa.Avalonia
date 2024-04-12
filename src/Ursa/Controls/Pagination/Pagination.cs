@@ -20,7 +20,7 @@ namespace Ursa.Controls;
 [TemplatePart(PART_NextButton, typeof(PaginationButton))]
 [TemplatePart(PART_ButtonPanel, typeof(StackPanel))]
 [TemplatePart(PART_QuickJumpInput, typeof(NumericIntUpDown))]
-public class Pagination: TemplatedControl
+public class Pagination : TemplatedControl
 {
     public const string PART_PreviousButton = "PART_PreviousButton";
     public const string PART_NextButton = "PART_NextButton";
@@ -32,19 +32,19 @@ public class Pagination: TemplatedControl
     private readonly PaginationButton[] _buttons = new PaginationButton[7];
     private NumericIntUpDown? _quickJumpInput;
 
-    public static readonly StyledProperty<int?> CurrentPageProperty = AvaloniaProperty.Register<Pagination, int?>(
+    public static readonly StyledProperty<int> CurrentPageProperty = AvaloniaProperty.Register<Pagination, int>(
         nameof(CurrentPage));
 
-    public int? CurrentPage
+    public int CurrentPage
     {
         get => GetValue(CurrentPageProperty);
         set => SetValue(CurrentPageProperty, value);
     }
 
-    private void OnCurrentPageChanged(AvaloniaPropertyChangedEventArgs<int?> args)
+    private void OnCurrentPageChanged(AvaloniaPropertyChangedEventArgs<int> args)
     {
-        int? oldValue = args.GetOldValue<int?>();
-        int? newValue = args.GetNewValue<int?>();
+        var oldValue = args.GetOldValue<int>();
+        var newValue = args.GetNewValue<int>();
         var e = new ValueChangedEventArgs<int>(CurrentPageChangedEvent, oldValue, newValue);
         RaiseEvent(e);
     }
@@ -155,9 +155,9 @@ public class Pagination: TemplatedControl
     static Pagination()
     {
         PageSizeProperty.Changed.AddClassHandler<Pagination, int>((pagination, args) => pagination.OnPageSizeChanged(args));
-        CurrentPageProperty.Changed.AddClassHandler<Pagination, int?>((pagination, args) =>
+        CurrentPageProperty.Changed.AddClassHandler<Pagination, int>((pagination, args) =>
             pagination.UpdateButtonsByCurrentPage(args.NewValue.Value));
-        CurrentPageProperty.Changed.AddClassHandler<Pagination, int?>((pagination, args) =>
+        CurrentPageProperty.Changed.AddClassHandler<Pagination, int>((pagination, args) =>
             pagination.OnCurrentPageChanged(args));
         TotalCountProperty.Changed.AddClassHandler<Pagination, int>((pagination, args) =>
             pagination.UpdateButtonsByCurrentPage(pagination.CurrentPage));
@@ -174,7 +174,7 @@ public class Pagination: TemplatedControl
         PageCount = pageCount;
         if (CurrentPage > PageCount)
         {
-            CurrentPage = null;
+            CurrentPage = 0;
         }
         UpdateButtonsByCurrentPage(CurrentPage);
     }
@@ -265,7 +265,7 @@ public class Pagination: TemplatedControl
 
     private void AddCurrentPage(int pageChange)
     {
-        int newValue = (CurrentPage ?? 0) + pageChange;
+        int newValue = CurrentPage + pageChange;
         newValue = Clamp(newValue, 1, PageCount);
         SetCurrentValue(CurrentPageProperty, newValue);
     }
@@ -284,7 +284,7 @@ public class Pagination: TemplatedControl
         if (_buttonPanel is null) return;
         if (PageSize == 0) return;
 
-        int? currentPage = CurrentPage;
+        var currentPage = CurrentPage;
         int pageCount = TotalCount / PageSize;
         int residue = TotalCount % PageSize;
         if (residue > 0)
@@ -313,7 +313,7 @@ public class Pagination: TemplatedControl
             {
                 _buttons[i].IsVisible = true;
             }
-            int mid = currentPage ?? 0;
+            int mid = currentPage;
             mid = Clamp(mid, 4, pageCount - 3);
             _buttons[3].Page = mid;
             _buttons[2].Page = mid - 1;
@@ -352,8 +352,8 @@ public class Pagination: TemplatedControl
 
         PageCount = pageCount;
         SetCurrentValue(CurrentPageProperty, currentPage);
-        if (_previousButton != null) _previousButton.IsEnabled = (CurrentPage ?? int.MaxValue) > 1;
-        if (_nextButton != null) _nextButton.IsEnabled = (CurrentPage ?? 0) < PageCount;
+        if (_previousButton != null) _previousButton.IsEnabled = CurrentPage > 1;
+        if (_nextButton != null) _nextButton.IsEnabled = CurrentPage < PageCount;
     }
     private void InvokeCommand()
     {
