@@ -5,11 +5,9 @@ using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Input;
-using Avalonia.Input.Raw;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Media.TextFormatting;
-using Avalonia.Metadata;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
@@ -70,11 +68,11 @@ public class TimeBox : TemplatedControl
     private readonly Border[] _borders = new Border[4];
     private readonly Panel[] _dragPanels = new Panel[4];
     private readonly int[] _limits = new[] { 24, 60, 60, 100 };
-    private int[] _values = new[] { 0, 0, 0, 0 };
-    private bool[] _isShowedCaret = new[] { false, false, false, false };
+    private readonly int[] _values = new[] { 0, 0, 0, 0 };
+    private readonly bool[] _isShowedCaret = new[] { false, false, false, false };
     private int? _currentActiveSectionIndex;
-    private bool _isAlreadyDrag = false;
-    private Point _pressedPosition = new Point();
+    private bool _isAlreadyDrag;
+    private Point _pressedPosition;
     private Point? _lastDragPoint;
 
     public static readonly StyledProperty<TimeSpan?> TimeProperty = AvaloniaProperty.Register<TimeBox, TimeSpan?>(
@@ -172,7 +170,7 @@ public class TimeBox : TemplatedControl
     {
         ShowLeadingZeroProperty.Changed.AddClassHandler<TimeBox>((o, e) => o.OnFormatChange(e));
         TimeProperty.Changed.AddClassHandler<TimeBox>((o, e) => o.OnTimeChanged(e));
-        AllowDragProperty.Changed.AddClassHandler<TimeBox, bool>((o, e) => o.OnAllowDragChange(e));
+        AllowDragProperty.Changed.AddClassHandler<TimeBox, bool>((o, e) => o.OnAllowDragChanged(e));
     }
 
     #region Overrides
@@ -205,7 +203,7 @@ public class TimeBox : TemplatedControl
         _dragPanels[1] = _minuteDragPanel;
         _dragPanels[2] = _secondDragPanel;
         _dragPanels[3] = _milliSecondDragPanel;
-        IsVisibleProperty.SetValue(AllowDrag, _dragPanels);
+        IsVisibleProperty.SetValue(AllowDrag, _dragPanels[0], _dragPanels[1], _dragPanels[2], _dragPanels[3]);
 
         _hourText.Text = Time != null ? Time.Value.Hours.ToString() : "0";
         _minuteText.Text = Time != null ? Time.Value.Minutes.ToString() : "0";
@@ -213,7 +211,7 @@ public class TimeBox : TemplatedControl
         _milliSecondText.Text = Time != null ? ClampMilliSecond(Time.Value.Milliseconds).ToString() : "0";
         ParseTimeSpan(ShowLeadingZero);
 
-        PointerMovedEvent.AddHandler(OnDragPanelPointerMoved, _dragPanels);
+        PointerMovedEvent.AddHandler(OnDragPanelPointerMoved, _dragPanels[0], _dragPanels[1], _dragPanels[2], _dragPanels[3]);
     }
 
     protected override void OnKeyDown(KeyEventArgs e)
@@ -267,7 +265,7 @@ public class TimeBox : TemplatedControl
         if (_currentActiveSectionIndex is null) return;
 
         int caretIndex = Math.Min(_presenters[_currentActiveSectionIndex.Value].CaretIndex
-            , _presenters[_currentActiveSectionIndex.Value].Text.Length);
+            , _presenters[_currentActiveSectionIndex.Value].Text?.Length ?? 0);
 
         if (_presenters[_currentActiveSectionIndex.Value].Text is null)
         {
@@ -278,7 +276,7 @@ public class TimeBox : TemplatedControl
         {
             _presenters[_currentActiveSectionIndex.Value].DeleteSelection();
             _presenters[_currentActiveSectionIndex.Value].ClearSelection();
-            string oldText = _presenters[_currentActiveSectionIndex.Value].Text;
+            string oldText = _presenters[_currentActiveSectionIndex.Value].Text ?? string.Empty;
             string newText = oldText.Length == 0
                 ? s
                 : oldText.Substring(0, caretIndex) + s + oldText.Substring(Math.Min(caretIndex, oldText.Length));
@@ -354,9 +352,9 @@ public class TimeBox : TemplatedControl
         ParseTimeSpan(showLeadingZero);
     }
 
-    private void OnAllowDragChange(AvaloniaPropertyChangedEventArgs<bool> args)
+    private void OnAllowDragChanged(AvaloniaPropertyChangedEventArgs<bool> args)
     {
-        IsVisibleProperty.SetValue(args.NewValue.Value, _dragPanels);
+        IsVisibleProperty.SetValue(args.NewValue.Value, _dragPanels[0], _dragPanels[1], _dragPanels[2], _dragPanels[3]);
     }
 
     private void OnTimeChanged(AvaloniaPropertyChangedEventArgs arg)
@@ -390,18 +388,18 @@ public class TimeBox : TemplatedControl
 
         if (!skipParseFromText)
         {
-            _values[0] = int.TryParse(_hourText.Text, out int hour) ? hour : 0;
-            _values[1] = int.TryParse(_minuteText.Text, out int minute) ? minute : 0;
-            _values[2] = int.TryParse(_secondText.Text, out int second) ? second : 0;
-            _values[3] = int.TryParse(_milliSecondText.Text, out int millisecond) ? millisecond : 0;
+            _values[0] = int.TryParse(_hourText?.Text, out int hour) ? hour : 0;
+            _values[1] = int.TryParse(_minuteText?.Text, out int minute) ? minute : 0;
+            _values[2] = int.TryParse(_secondText?.Text, out int second) ? second : 0;
+            _values[3] = int.TryParse(_milliSecondText?.Text, out int millisecond) ? millisecond : 0;
         }
 
         VerifyTimeValue();
 
-        _hourText.Text = _values[0].ToString(format);
-        _minuteText.Text = _values[1].ToString(format);
-        _secondText.Text = _values[2].ToString(format);
-        _milliSecondText.Text = _values[3].ToString(format);
+        _hourText?.SetValue(TextPresenter.TextProperty,_values[0].ToString(format));
+        _minuteText?.SetValue(TextPresenter.TextProperty,_values[1].ToString(format));
+        _secondText?.SetValue(TextPresenter.TextProperty,_values[2].ToString(format));
+        _milliSecondText?.SetValue(TextPresenter.TextProperty,_values[3].ToString(format));
     }
 
     private void OnDragPanelPointerMoved(object sender, PointerEventArgs e)
@@ -454,7 +452,7 @@ public class TimeBox : TemplatedControl
         if(index < 0 || index > 3) return;
         if (!_isShowedCaret[index])
         {
-            if (AllowDrag && _dragPanels[index] != null)
+            if (AllowDrag)
                 _dragPanels[index].IsVisible = false;
             _presenters[index].ShowCaret();
             _isShowedCaret[index] = true;
@@ -479,7 +477,7 @@ public class TimeBox : TemplatedControl
             _isShowedCaret[index] = false;
         }
 
-        if (AllowDrag && _dragPanels[index] != null)
+        if (AllowDrag)
             _dragPanels[index].IsVisible = true;
     }
 
