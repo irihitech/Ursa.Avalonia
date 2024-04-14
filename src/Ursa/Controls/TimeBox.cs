@@ -67,8 +67,9 @@ public class TimeBox : TemplatedControl
     private readonly TextPresenter[] _presenters = new TextPresenter[4];
     private readonly Border[] _borders = new Border[4];
     private readonly Panel[] _dragPanels = new Panel[4];
-    private readonly int[] _limits = new[] { 24, 60, 60, 100 };
+    private readonly int[] _limits = new[] { 24, 60, 60, 1000 };
     private readonly int[] _values = new[] { 0, 0, 0, 0 };
+    private readonly int[] _sectionLength = new[] { 2, 2, 2, 3 };
     private readonly bool[] _isShowedCaret = new[] { false, false, false, false };
     private int? _currentActiveSectionIndex;
     private bool _isAlreadyDrag;
@@ -208,7 +209,8 @@ public class TimeBox : TemplatedControl
         _hourText.Text = Time != null ? Time.Value.Hours.ToString() : "0";
         _minuteText.Text = Time != null ? Time.Value.Minutes.ToString() : "0";
         _secondText.Text = Time != null ? Time.Value.Seconds.ToString() : "0";
-        _milliSecondText.Text = Time != null ? ClampMilliSecond(Time.Value.Milliseconds).ToString() : "0";
+        //_milliSecondText.Text = Time != null ? ClampMilliSecond(Time.Value.Milliseconds).ToString() : "0";
+        _milliSecondText.Text = Time != null ? Time.Value.Milliseconds.ToString() : "0";
         ParseTimeSpan(ShowLeadingZero);
 
         PointerMovedEvent.AddHandler(OnDragPanelPointerMoved, _dragPanels[0], _dragPanels[1], _dragPanels[2], _dragPanels[3]);
@@ -282,9 +284,9 @@ public class TimeBox : TemplatedControl
                 : oldText.Substring(0, caretIndex) + s + oldText.Substring(Math.Min(caretIndex, oldText.Length));
 
             // Limit the maximum number of input digits
-            if (newText.Length > 2)
+            if (newText.Length > _sectionLength[_currentActiveSectionIndex.Value])
             {
-                newText = newText.Substring(0, 2);
+                newText = newText.Substring(0, _sectionLength[_currentActiveSectionIndex.Value]);
             }
 
             _presenters[_currentActiveSectionIndex.Value].Text = newText;
@@ -377,7 +379,8 @@ public class TimeBox : TemplatedControl
             _hourText.Text = timeSpan.Value.Hours.ToString();
             _minuteText.Text = timeSpan.Value.Minutes.ToString();
             _secondText.Text = timeSpan.Value.Seconds.ToString();
-            _milliSecondText.Text = ClampMilliSecond(timeSpan.Value.Milliseconds).ToString();
+            //_milliSecondText.Text = ClampMilliSecond(timeSpan.Value.Milliseconds).ToString();
+            _milliSecondText.Text = timeSpan.Value.Milliseconds.ToString();
             ParseTimeSpan(ShowLeadingZero);
         }
     }
@@ -385,6 +388,7 @@ public class TimeBox : TemplatedControl
     private void ParseTimeSpan(bool showLeadingZero, bool skipParseFromText = false)
     {
         string format = showLeadingZero ? "D2" : "";
+        string millisecondformat = showLeadingZero ? "D3" : "";
 
         if (!skipParseFromText)
         {
@@ -399,7 +403,7 @@ public class TimeBox : TemplatedControl
         _hourText?.SetValue(TextPresenter.TextProperty,_values[0].ToString(format));
         _minuteText?.SetValue(TextPresenter.TextProperty,_values[1].ToString(format));
         _secondText?.SetValue(TextPresenter.TextProperty,_values[2].ToString(format));
-        _milliSecondText?.SetValue(TextPresenter.TextProperty,_values[3].ToString(format));
+        _milliSecondText?.SetValue(TextPresenter.TextProperty,_values[3].ToString(millisecondformat));
     }
 
     private void OnDragPanelPointerMoved(object sender, PointerEventArgs e)
@@ -549,7 +553,8 @@ public class TimeBox : TemplatedControl
     {
         try
         {
-            Time = new TimeSpan(0, _values[0], _values[1], _values[2], _values[3] * 10);
+            //Time = new TimeSpan(0, _values[0], _values[1], _values[2], _values[3] * 10);
+            Time = new TimeSpan(0, _values[0], _values[1], _values[2], _values[3]);
         }
         catch
         {
