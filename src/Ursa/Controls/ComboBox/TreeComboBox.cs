@@ -6,6 +6,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Layout;
+using Avalonia.LogicalTree;
 using Avalonia.OpenGL.Controls;
 using Irihi.Avalonia.Shared.Common;
 
@@ -115,24 +116,31 @@ public class TreeComboBox: SelectingItemsControl
         return CreateContainerForItemOverride(item, index, recycleKey);
     }
 
-    protected override void ContainerForItemPreparedOverride(Control container, object? item, int index)
-    {
-        base.ContainerForItemPreparedOverride(container, item, index);
-    }
-
     internal void ContainerForItemPreparedInternal(Control container, object? item, int index)
     {
         ContainerForItemPreparedOverride(container, item, index);
     }
-
+    
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
     {
         base.OnPointerReleased(e);
         if (e.InitialPressMouseButton == MouseButton.Left)
         {
-            if (_popup is not null && _popup.IsOpen && e.Source is TextBlock v && _popup.IsInsidePopup(v))
+            if (_popup is not null && _popup.IsOpen && e.Source is Visual v && _popup.IsInsidePopup(v))
             {
-                SelectionBoxItem = v.Text;
+                var container = v.FindLogicalAncestorOfType<TreeComboBoxItem>();
+                container?.SetValue(IsSelectedProperty, true);
+                if (container?.Header is Control control)
+                {
+                    SelectionBoxItem = control.DataContext ?? control.ToString();
+                    // UpdateSelectionFromEventSource(e.Source);
+                    
+                }
+                else
+                {
+                    SelectionBoxItem = container?.Header; 
+                    // UpdateSelectionFromEventSource(e.Source);
+                }
                 SetCurrentValue(IsDropDownOpenProperty, false);
             }
             else

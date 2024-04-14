@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
+using Avalonia.Controls.Mixins;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
@@ -45,6 +46,13 @@ public class TreeComboBoxItem: HeaderedItemsControl, ISelectable
         protected set => SetAndRaise(LevelProperty, ref _level, value);
     }
 
+    static TreeComboBoxItem()
+    {
+        IsSelectedProperty.AffectsPseudoClass<TreeComboBoxItem>(PseudoClassName.PC_Selected,
+            SelectingItemsControl.IsSelectedChangedEvent);
+        PressedMixin.Attach<TreeComboBoxItem>();
+    }
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
@@ -57,14 +65,15 @@ public class TreeComboBoxItem: HeaderedItemsControl, ISelectable
     {
         base.OnAttachedToLogicalTree(e);
         _treeComboBox = this.FindLogicalAncestorOfType<TreeComboBox>();
-        Level = CalculateDistanceFromLogicalParent<TreeComboBox>(this);
+        Level = CalculateDistanceFromLogicalParent<TreeComboBox>(this) - 1;
         if (this.ItemTemplate is null && this._treeComboBox?.ItemTemplate is not null)
         {
             SetCurrentValue(ItemTemplateProperty, this._treeComboBox.ItemTemplate);
         }
-        
-        
-        
+        if(this.ItemContainerTheme is null && this._treeComboBox?.ItemContainerTheme is not null)
+        {
+            SetCurrentValue(ItemContainerThemeProperty, this._treeComboBox.ItemContainerTheme);
+        }
     }
 
     private void OnDoubleTapped(object sender, TappedEventArgs e)
@@ -76,6 +85,8 @@ public class TreeComboBoxItem: HeaderedItemsControl, ISelectable
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
+        TreeViewItem t = new TreeViewItem();
+        ComboBox c = new ComboBox();
         return EnsureParent().NeedsContainerInternal(item, index, out recycleKey);
     }
 
