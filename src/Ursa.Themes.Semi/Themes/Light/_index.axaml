@@ -15,5 +15,6 @@
         <MergeResourceInclude Source="TagInput.axaml" />
         <MergeResourceInclude Source="Timeline.axaml" />
         <MergeResourceInclude Source="Skeleton.axaml" />
+        <MergeResourceInclude Source="TimeBox.axaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

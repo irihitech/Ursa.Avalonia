@@ -18,5 +18,6 @@
         <MergeResourceInclude Source="Skeleton.axaml" />
         <MergeResourceInclude Source="ThemeSelector.axaml" />
         <MergeResourceInclude Source="ToolBar.axaml" />
+        <MergeResourceInclude Source="TimeBox.axaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
