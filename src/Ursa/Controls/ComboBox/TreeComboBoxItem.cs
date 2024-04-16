@@ -18,6 +18,7 @@ public class TreeComboBoxItem: HeaderedItemsControl, ISelectable
 {
     private Control? _header;
     private TreeComboBox? _treeComboBox;
+    public TreeComboBox? Owner => _treeComboBox;
     
     public static readonly StyledProperty<bool> IsSelectedProperty = TreeViewItem.IsSelectedProperty.AddOwner<TreeComboBoxItem>();
 

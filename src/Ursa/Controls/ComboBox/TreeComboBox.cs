@@ -1,17 +1,16 @@
-using System.Collections;
-using System.Collections.Specialized;
-using System.Data;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
-using Avalonia.Controls.Selection;
+using Avalonia.Controls.Shapes;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.LogicalTree;
-using Avalonia.OpenGL.Controls;
+using Avalonia.Media;
+using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Common;
+using Size = Avalonia.Size;
 
 
 namespace Ursa.Controls;
@@ -86,34 +85,40 @@ public class TreeComboBox: ItemsControl
         get => _selectionBoxItem;
         protected set => SetAndRaise(SelectionBoxItemProperty, ref _selectionBoxItem, value);
     }
+
+    private object? _selectedItem;
+
+    public static readonly DirectProperty<TreeComboBox, object?> SelectedItemProperty = AvaloniaProperty.RegisterDirect<TreeComboBox, object?>(
+        nameof(SelectedItem), o => o.SelectedItem, (o, v) => o.SelectedItem = v);
+
+    public object? SelectedItem
+    {
+        get
+        {
+            return _selectedItem;
+        }
+        set
+        {
+            SetAndRaise(SelectedItemProperty, ref _selectedItem, value);
+            
+        }
+    }
     
     static TreeComboBox()
     {
         ItemsPanelProperty.OverrideDefaultValue<TreeComboBox>(DefaultPanel);
         FocusableProperty.OverrideDefaultValue<TreeComboBox>(true);
+        SelectedItemProperty.Changed.AddClassHandler<TreeComboBox, object?>((box, args) => box.OnSelectedItemChanged(args));
     }
-    
-    private Control? TreeContainerFromItem(object item)
-    {
-        return TreeContainerFromItemInternal(this, item);
 
-        static Control? TreeContainerFromItemInternal(ItemsControl itemsControl, object item)
+    private void OnSelectedItemChanged(AvaloniaPropertyChangedEventArgs<object?> args)
+    {
+        if (args.NewValue.Value is not null)
         {
-            Control? control = itemsControl.ContainerFromItem(item);
-            if(control is not null) return control;
-            foreach (var child in itemsControl.GetRealizedContainers())
-            {
-                if (child is ItemsControl childItemsControl)
-                {
-                    control = TreeContainerFromItemInternal(childItemsControl, item);
-                    if (control is not null) return control;
-                }
-            }
-            return null;
+            UpdateSelectionBoxItem(args.NewValue.Value);
         }
     }
-
-
+    
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
@@ -148,12 +153,25 @@ public class TreeComboBox: ItemsControl
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
     {
         base.OnPointerReleased(e);
-        if (e.InitialPressMouseButton == MouseButton.Left)
+        if (e is { InitialPressMouseButton: MouseButton.Left, Source: Visual source })
         {
-            if (_popup is not null && _popup.IsOpen && e.Source is Visual v && _popup.IsInsidePopup(v))
+            if (_popup is not null && _popup.IsOpen && _popup.IsInsidePopup(source))
             {
-                var container = v.FindLogicalAncestorOfType<TreeComboBoxItem>();
-                
+                var container = GetContainerFromEventSource(source);
+                if (container is null) return;
+                var item = TreeItemFromContainer(container);
+                if (item is null) return;
+                if (SelectedItem is not null)
+                {
+                    var selectedContainer = TreeContainerFromItem(SelectedItem);
+                    if(selectedContainer is TreeComboBoxItem selectedTreeComboBoxItem)
+                    {
+                        selectedTreeComboBoxItem.IsSelected = false;
+                    }
+                }
+                this.SelectedItem = item;
+                container.IsSelected = true;
+                IsDropDownOpen = false;
             }
             else
             {
@@ -161,5 +179,105 @@ public class TreeComboBox: ItemsControl
             }
             
         }
+    }
+
+    private void UpdateSelectionBoxItem(object? item)
+    {
+        if (item is ContentControl contentControl)
+        {
+            item = contentControl.Content;
+        }
+        else if(item is HeaderedItemsControl headeredItemsControl)
+        {
+            item = headeredItemsControl.Header;
+        }
+
+        if (item is Control control)
+        {
+            if (VisualRoot == null) return;
+            control.Measure(Size.Infinity);
+            SelectionBoxItem = new Rectangle
+            {
+                Width = control.DesiredSize.Width,
+                Height = control.DesiredSize.Height,
+                Fill = new VisualBrush
+                {
+                    Visual = control,
+                    Stretch = Stretch.None,
+                    AlignmentX = AlignmentX.Left,
+                }
+            };
+            // TODO: Implement flow direction udpate
+        }
+        else
+        {
+            if (ItemTemplate is null && DisplayMemberBinding is { } binding)
+            {
+                var template = new FuncDataTemplate<object?>((a,_) => new TextBlock
+                {
+                    [DataContextProperty] = a,
+                    [!TextBlock.TextProperty] = binding,
+                });
+                var textBlock = template.Build(item);
+                SelectionBoxItem = textBlock;
+            }
+            else
+            {
+                SelectionBoxItem = item;
+            }
+        }
+    }
+
+    private TreeComboBoxItem? GetContainerFromEventSource(object eventSource)
+    {
+        if (eventSource is Visual visual)
+        {
+            var item = visual.GetSelfAndVisualAncestors().OfType<TreeComboBoxItem>().FirstOrDefault();
+            return item?.Owner == this ? item : null!;
+        }
+
+        return null;
+    }
+
+    private object? TreeItemFromContainer(Control container)
+    {
+        return TreeItemFromContainer(this, container);
+    }
+    
+    private Control? TreeContainerFromItem(object item)
+    {
+        return TreeContainerFromItem(this, item);
+    }
+    
+    private static Control? TreeContainerFromItem(ItemsControl itemsControl, object item)
+    {
+        if (itemsControl.ContainerFromItem(item) is { } container)
+        {
+            return container;
+        }
+        foreach (var child in itemsControl.GetRealizedContainers())
+        {
+            if(child is ItemsControl childItemsControl && TreeContainerFromItem(childItemsControl, item) is { } childContainer)
+            {
+                return childContainer;
+            }
+        }
+        return null;
+    }
+    
+    private static object? TreeItemFromContainer(ItemsControl itemsControl, Control container)
+    {
+        if (itemsControl.ItemFromContainer(container) is { } item)
+        {
+            return item;
+        }
+        foreach (var child in itemsControl.GetRealizedContainers())
+        {
+            if(child is ItemsControl childItemsControl && TreeItemFromContainer(childItemsControl, container) is { } childItem)
+            {
+                return childItem;
+            }
+        }
+        return null;
     }
 } 
