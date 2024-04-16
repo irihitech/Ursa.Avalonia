@@ -212,7 +212,7 @@ public class TimeBox : TemplatedControl
         //_milliSecondText.Text = Time != null ? ClampMilliSecond(Time.Value.Milliseconds).ToString() : "0";
         _milliSecondText.Text = Time != null ? Time.Value.Milliseconds.ToString() : "0";
         ParseTimeSpan(ShowLeadingZero);
-
+        
         PointerMovedEvent.AddHandler(OnDragPanelPointerMoved, _dragPanels[0], _dragPanels[1], _dragPanels[2], _dragPanels[3]);
     }
 
@@ -221,6 +221,13 @@ public class TimeBox : TemplatedControl
         if (_currentActiveSectionIndex is null) return;
         var keymap = TopLevel.GetTopLevel(this)?.PlatformSettings?.HotkeyConfiguration;
         bool Match(List<KeyGesture> gestures) => gestures.Any(g => g.Matches(e));
+        if (keymap is not null && Match(keymap.SelectAll))
+        {
+            _presenters[_currentActiveSectionIndex.Value].SelectionStart = 0;
+            _presenters[_currentActiveSectionIndex.Value].SelectionEnd = _presenters[_currentActiveSectionIndex.Value].Text?.Length ?? 0;
+            return;
+        }
+        
         if (e.Key is Key.Enter or Key.Return)
         {
             ParseTimeSpan(ShowLeadingZero);
@@ -405,7 +412,7 @@ public class TimeBox : TemplatedControl
         _secondText?.SetValue(TextPresenter.TextProperty,_values[2].ToString(format));
         _milliSecondText?.SetValue(TextPresenter.TextProperty,_values[3].ToString(millisecondformat));
     }
-
+    
     private void OnDragPanelPointerMoved(object sender, PointerEventArgs e)
     {
         if (!AllowDrag) return;
@@ -427,7 +434,7 @@ public class TimeBox : TemplatedControl
 
         _lastDragPoint = point;
     }
-
+    
     private int GetDelta(Point point)
     {
         switch (DragOrientation)
