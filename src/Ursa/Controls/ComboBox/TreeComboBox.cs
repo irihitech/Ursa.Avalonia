@@ -1,8 +1,11 @@
+using System.Collections;
+using System.Collections.Specialized;
 using System.Data;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Controls.Selection;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Layout;
@@ -14,7 +17,7 @@ using Irihi.Avalonia.Shared.Common;
 namespace Ursa.Controls;
 
 [TemplatePart(PartNames.PART_Popup, typeof(Popup))]
-public class TreeComboBox: SelectingItemsControl
+public class TreeComboBox: ItemsControl
 {
     private Popup? _popup;
     
@@ -89,6 +92,27 @@ public class TreeComboBox: SelectingItemsControl
         ItemsPanelProperty.OverrideDefaultValue<TreeComboBox>(DefaultPanel);
         FocusableProperty.OverrideDefaultValue<TreeComboBox>(true);
     }
+    
+    private Control? TreeContainerFromItem(object item)
+    {
+        return TreeContainerFromItemInternal(this, item);
+
+        static Control? TreeContainerFromItemInternal(ItemsControl itemsControl, object item)
+        {
+            Control? control = itemsControl.ContainerFromItem(item);
+            if(control is not null) return control;
+            foreach (var child in itemsControl.GetRealizedContainers())
+            {
+                if (child is ItemsControl childItemsControl)
+                {
+                    control = TreeContainerFromItemInternal(childItemsControl, item);
+                    if (control is not null) return control;
+                }
+            }
+            return null;
+        }
+    }
+
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -129,19 +153,7 @@ public class TreeComboBox: SelectingItemsControl
             if (_popup is not null && _popup.IsOpen && e.Source is Visual v && _popup.IsInsidePopup(v))
             {
                 var container = v.FindLogicalAncestorOfType<TreeComboBoxItem>();
-                container?.SetValue(IsSelectedProperty, true);
-                if (container?.Header is Control control)
-                {
-                    SelectionBoxItem = control.DataContext ?? control.ToString();
-                    // UpdateSelectionFromEventSource(e.Source);
-                    
-                }
-                else
-                {
-                    SelectionBoxItem = container?.Header; 
-                    // UpdateSelectionFromEventSource(e.Source);
-                }
-                SetCurrentValue(IsDropDownOpenProperty, false);
+                
             }
             else
             {
