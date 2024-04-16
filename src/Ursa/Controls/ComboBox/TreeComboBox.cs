@@ -93,15 +93,8 @@ public class TreeComboBox: ItemsControl
 
     public object? SelectedItem
     {
-        get
-        {
-            return _selectedItem;
-        }
-        set
-        {
-            SetAndRaise(SelectedItemProperty, ref _selectedItem, value);
-            
-        }
+        get => _selectedItem;
+        set => SetAndRaise(SelectedItemProperty, ref _selectedItem, value);
     }
     
     static TreeComboBox()
@@ -113,10 +106,9 @@ public class TreeComboBox: ItemsControl
 
     private void OnSelectedItemChanged(AvaloniaPropertyChangedEventArgs<object?> args)
     {
-        if (args.NewValue.Value is not null)
-        {
-            UpdateSelectionBoxItem(args.NewValue.Value);
-        }
+        MarkContainerSelection(args.OldValue.Value, false);
+        MarkContainerSelection(args.NewValue.Value, true);
+        UpdateSelectionBoxItem(args.NewValue.Value);
     }
     
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -183,6 +175,7 @@ public class TreeComboBox: ItemsControl
 
     private void UpdateSelectionBoxItem(object? item)
     {
+        if(item is null) SelectionBoxItem = null;
         if (item is ContentControl contentControl)
         {
             item = contentControl.Content;
@@ -279,5 +272,15 @@ public class TreeComboBox: ItemsControl
             }
         }
         return null;
+    }
+
+    private void MarkContainerSelection(object? item, bool selected)
+    {
+        if (item is null) return;
+        var container = TreeContainerFromItem(item);
+        if (container is TreeComboBoxItem treeComboBoxItem)
+        {
+            treeComboBoxItem.IsSelected = selected;
+        }
     }
 } 
