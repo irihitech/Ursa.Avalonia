@@ -31,17 +31,22 @@
         <u:TreeComboBox
             Width="300"
             HorizontalAlignment="Left"
+            SelectedItem="{Binding SelectedItem}"
             ItemsSource="{Binding Items}">
             <u:TreeComboBox.ItemTemplate>
                 <TreeDataTemplate ItemsSource="{Binding Children}">
                     <TextBlock Text="{Binding ItemName}" />
                 </TreeDataTemplate>
             </u:TreeComboBox.ItemTemplate>
-            <u:TreeComboBox.SelectedItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding ItemName}" />
-                </DataTemplate>
-            </u:TreeComboBox.SelectedItemTemplate>
         </u:TreeComboBox>
+        
+        <ContentControl Content="{Binding SelectedItem}">
+            <ContentControl.ContentTemplate>
+                <DataTemplate DataType="vm:TreeComboBoxItemViewModel">
+                    <TextBlock Text="{Binding ItemName}"></TextBlock>
+                </DataTemplate>
+            </ContentControl.ContentTemplate>
+        </ContentControl>
+        
     </StackPanel>
 </UserControl>

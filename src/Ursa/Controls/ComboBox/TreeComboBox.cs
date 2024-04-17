@@ -4,19 +4,21 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Shapes;
 using Avalonia.Controls.Templates;
+using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Metadata;
 using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Common;
+using Irihi.Avalonia.Shared.Contracts;
 using Size = Avalonia.Size;
 
 
 namespace Ursa.Controls;
 
 [TemplatePart(PartNames.PART_Popup, typeof(Popup))]
-public class TreeComboBox: ItemsControl
+public class TreeComboBox: ItemsControl, IClearControl
 {
     private Popup? _popup;
     
@@ -89,8 +91,10 @@ public class TreeComboBox: ItemsControl
 
     private object? _selectedItem;
 
-    public static readonly DirectProperty<TreeComboBox, object?> SelectedItemProperty = AvaloniaProperty.RegisterDirect<TreeComboBox, object?>(
-        nameof(SelectedItem), o => o.SelectedItem, (o, v) => o.SelectedItem = v);
+    public static readonly DirectProperty<TreeComboBox, object?> SelectedItemProperty =
+        AvaloniaProperty.RegisterDirect<TreeComboBox, object?>(
+            nameof(SelectedItem), o => o.SelectedItem, (o, v) => o.SelectedItem = v,
+            defaultBindingMode: BindingMode.TwoWay);
 
     public object? SelectedItem
     {
@@ -283,5 +287,10 @@ public class TreeComboBox: ItemsControl
         {
             treeComboBoxItem.IsSelected = selected;
         }
+    }
+
+    public void Clear()
+    {
+        SelectedItem = null;
     }
 } 

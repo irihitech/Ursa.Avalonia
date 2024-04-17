@@ -3,8 +3,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Ursa.Demo.ViewModels;
 
-public class TreeComboBoxDemoViewModel: ObservableObject
+public partial class TreeComboBoxDemoViewModel: ObservableObject
 {
+    [ObservableProperty] private TreeComboBoxItemViewModel? _selectedItem;
     public List<TreeComboBoxItemViewModel> Items { get; set; }
 
     public TreeComboBoxDemoViewModel()
