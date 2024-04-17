@@ -6,8 +6,8 @@ using Avalonia.Controls.Shapes;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Layout;
-using Avalonia.LogicalTree;
 using Avalonia.Media;
+using Avalonia.Metadata;
 using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Common;
 using Size = Avalonia.Size;
@@ -71,6 +71,7 @@ public class TreeComboBox: ItemsControl
     public static readonly StyledProperty<IDataTemplate?> SelectedItemTemplateProperty =
         AvaloniaProperty.Register<TreeComboBox, IDataTemplate?>(nameof(SelectedItemTemplate));
 
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
     public IDataTemplate? SelectedItemTemplate
     {
         get => GetValue(SelectedItemTemplateProperty);

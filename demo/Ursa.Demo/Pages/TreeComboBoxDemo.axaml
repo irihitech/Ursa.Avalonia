@@ -1,27 +1,47 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:u="https://irihi.tech/ursa"
-             mc:Ignorable="d" d:DesignWidth="800"
-             d:DesignHeight="450"
-             x:Class="Ursa.Demo.Pages.TreeComboBoxDemo">
+<UserControl
+    x:Class="Ursa.Demo.Pages.TreeComboBoxDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:TreeComboBoxDemoViewModel"
+    mc:Ignorable="d">
     <StackPanel>
-        <u:TreeComboBox>
+        <u:TreeComboBox Width="300" HorizontalAlignment="Left">
             <u:TreeComboBoxItem Header="Hello">
                 <u:TreeComboBoxItem Header="Hello World">
-                    <u:TreeComboBoxItem Header="Hello World 1"/>
-                    <u:TreeComboBoxItem Header="Hello World 2"/>
-                    <u:TreeComboBoxItem Header="Hello World 3"/>
+                    <u:TreeComboBoxItem Header="Hello World 1" />
+                    <u:TreeComboBoxItem Header="Hello World 2" />
+                    <u:TreeComboBoxItem Header="Hello World 3" />
                 </u:TreeComboBoxItem>
-                <u:TreeComboBoxItem Header="Hello Avalonia"/>
-                <u:TreeComboBoxItem Header="Hello Another"/>
+                <u:TreeComboBoxItem Header="Hello Avalonia" />
+                <u:TreeComboBoxItem Header="Hello Another" />
             </u:TreeComboBoxItem>
             <u:TreeComboBoxItem Header="World">
-                <u:TreeComboBoxItem Header="World Hello"/>
-                <u:TreeComboBoxItem Header="World Avalonia"/>
-                <u:TreeComboBoxItem Header="World Another"/>
+                <u:TreeComboBoxItem Header="World Hello" />
+                <u:TreeComboBoxItem Header="World Avalonia" />
+                <u:TreeComboBoxItem Header="World Another" />
             </u:TreeComboBoxItem>
+        </u:TreeComboBox>
+        <u:TreeComboBox
+            Width="300"
+            HorizontalAlignment="Left"
+            ItemsSource="{Binding Items}">
+            <u:TreeComboBox.ItemTemplate>
+                <TreeDataTemplate ItemsSource="{Binding Children}">
+                    <TextBlock Text="{Binding ItemName}" />
+                </TreeDataTemplate>
+            </u:TreeComboBox.ItemTemplate>
+            <u:TreeComboBox.SelectedItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding ItemName}" />
+                </DataTemplate>
+            </u:TreeComboBox.SelectedItemTemplate>
         </u:TreeComboBox>
     </StackPanel>
 </UserControl>
