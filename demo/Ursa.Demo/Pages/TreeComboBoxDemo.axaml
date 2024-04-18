@@ -30,6 +30,7 @@
         </u:TreeComboBox>
         <u:TreeComboBox
             Width="300"
+            Watermark="Please select an item. "
             HorizontalAlignment="Left"
             SelectedItem="{Binding SelectedItem}"
             ItemsSource="{Binding Items}">

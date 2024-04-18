@@ -18,7 +18,7 @@ using Size = Avalonia.Size;
 namespace Ursa.Controls;
 
 [TemplatePart(PartNames.PART_Popup, typeof(Popup))]
-public class TreeComboBox: ItemsControl, IClearControl
+public class TreeComboBox: ItemsControl, IClearControl, IInnerContentControl, IPopupInnerContent
 {
     private Popup? _popup;
     
@@ -293,4 +293,9 @@ public class TreeComboBox: ItemsControl, IClearControl
     {
         SelectedItem = null;
     }
+
+    public object? InnerLeftContent { get; set; }
+    public object? InnerRightContent { get; set; }
+    public object? PopupInnerTopContent { get; set; }
+    public object? PopupInnerBottomContent { get; set; }
 } 
