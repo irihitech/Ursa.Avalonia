@@ -72,7 +72,7 @@ public class TimeBox : TemplatedControl
     private readonly int[] _sectionLength = new[] { 2, 2, 2, 3 };
     private readonly bool[] _isShowedCaret = new[] { false, false, false, false };
     private int? _currentActiveSectionIndex;
-    private bool _isAlreadyDrag;
+    private bool _isDragging;
     private Point _pressedPosition;
     private Point? _lastDragPoint;
 
@@ -213,7 +213,8 @@ public class TimeBox : TemplatedControl
         _milliSecondText.Text = Time != null ? Time.Value.Milliseconds.ToString() : "0";
         ParseTimeSpan(ShowLeadingZero);
         
-        PointerMovedEvent.AddHandler(OnDragPanelPointerMoved, _dragPanels[0], _dragPanels[1], _dragPanels[2], _dragPanels[3]);
+        PointerMovedEvent.AddHandler(OnDragPanelPointerMoved, _dragPanels[0], _dragPanels[1], _dragPanels[2],
+            _dragPanels[3]);
     }
 
     protected override void OnKeyDown(KeyEventArgs e)
@@ -224,10 +225,11 @@ public class TimeBox : TemplatedControl
         if (keymap is not null && Match(keymap.SelectAll))
         {
             _presenters[_currentActiveSectionIndex.Value].SelectionStart = 0;
-            _presenters[_currentActiveSectionIndex.Value].SelectionEnd = _presenters[_currentActiveSectionIndex.Value].Text?.Length ?? 0;
+            _presenters[_currentActiveSectionIndex.Value].SelectionEnd =
+                _presenters[_currentActiveSectionIndex.Value].Text?.Length ?? 0;
             return;
         }
-        
+
         if (e.Key is Key.Enter or Key.Return)
         {
             ParseTimeSpan(ShowLeadingZero);
@@ -311,13 +313,23 @@ public class TimeBox : TemplatedControl
         _lastDragPoint = _pressedPosition;
         for (int i = 0; i < 4; ++i)
         {
-            if (_borders[i].Bounds.Contains(_pressedPosition))
-            {
-                _currentActiveSectionIndex = i;
-            }
-            else
+            if (!_borders[i].Bounds.Contains(_pressedPosition))
             {
                 LeaveSection(i);
+                continue;
+            }
+            
+            _currentActiveSectionIndex = i;
+
+            if (e.ClickCount == 2)
+            {
+                EnterSection(_currentActiveSectionIndex.Value);
+                continue;
+            }
+
+            if (!_dragPanels[_currentActiveSectionIndex.Value].IsVisible)
+            {
+                MoveCaret(_currentActiveSectionIndex.Value);
             }
         }
     }
@@ -325,16 +337,16 @@ public class TimeBox : TemplatedControl
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
     {
         if (_currentActiveSectionIndex is null) return;
-        if (_isAlreadyDrag)
+        if (_isDragging)
         {
-            _isAlreadyDrag = false;
+            _isDragging = false;
+            _lastDragPoint = null;
+            return;
         }
-        else
+        if(_dragPanels[_currentActiveSectionIndex.Value].IsVisible)
         {
             EnterSection(_currentActiveSectionIndex.Value);
         }
-
-        _lastDragPoint = null;
     }
 
     protected override void OnLostFocus(RoutedEventArgs e)
@@ -407,12 +419,12 @@ public class TimeBox : TemplatedControl
 
         VerifyTimeValue();
 
-        _hourText?.SetValue(TextPresenter.TextProperty,_values[0].ToString(format));
-        _minuteText?.SetValue(TextPresenter.TextProperty,_values[1].ToString(format));
-        _secondText?.SetValue(TextPresenter.TextProperty,_values[2].ToString(format));
-        _milliSecondText?.SetValue(TextPresenter.TextProperty,_values[3].ToString(millisecondformat));
+        _hourText?.SetValue(TextPresenter.TextProperty, _values[0].ToString(format));
+        _minuteText?.SetValue(TextPresenter.TextProperty, _values[1].ToString(format));
+        _secondText?.SetValue(TextPresenter.TextProperty, _values[2].ToString(format));
+        _milliSecondText?.SetValue(TextPresenter.TextProperty, _values[3].ToString(millisecondformat));
     }
-    
+
     private void OnDragPanelPointerMoved(object sender, PointerEventArgs e)
     {
         if (!AllowDrag) return;
@@ -424,17 +436,17 @@ public class TimeBox : TemplatedControl
         if (d > 0)
         {
             Increase();
-            _isAlreadyDrag = true;
+            _isDragging = true;
         }
         else if (d < 0)
         {
             Decrease();
-            _isAlreadyDrag = true;
+            _isDragging = true;
         }
 
         _lastDragPoint = point;
     }
-    
+
     private int GetDelta(Point point)
     {
         switch (DragOrientation)
@@ -458,29 +470,36 @@ public class TimeBox : TemplatedControl
         return 0;
     }
 
+    /// <summary>
+    /// Set dragPanel IsVisible to false if AllowDrag is true, and select all text in the section
+    /// </summary>
+    /// <param name="index">The index of section that will be enter</param>
     private void EnterSection(int index)
     {
-        if(index < 0 || index > 3) return;
-        if (!_isShowedCaret[index])
-        {
-            if (AllowDrag)
-                _dragPanels[index].IsVisible = false;
-            _presenters[index].ShowCaret();
-            _isShowedCaret[index] = true;
-            _presenters[index].SelectAll();
-        }
-        else
-        {
-            _presenters[index].ClearSelection();
-            var caretPosition =
-                _pressedPosition.WithX(_pressedPosition.X - _borders[index].Bounds.X);
-            _presenters[index].MoveCaretToPoint(caretPosition);
-        }
+        if (index < 0 || index > 3) return;
+
+        if (AllowDrag)
+            _dragPanels[index].IsVisible = false;
+        _presenters[index].ShowCaret();
+        _isShowedCaret[index] = true;
+        _presenters[index].SelectAll();
     }
 
+    private void MoveCaret(int index)
+    {
+        _presenters[index].ClearSelection();
+        var caretPosition =
+            _pressedPosition.WithX(_pressedPosition.X - _borders[index].Bounds.X);
+        _presenters[index].MoveCaretToPoint(caretPosition);
+    }
+    
+    /// <summary>
+    /// Set dragPanel IsVisible to true if AllowDrag is true, and clear selection in the section
+    /// </summary>
+    /// <param name="index">The index of section that will be leave</param>
     private void LeaveSection(int index)
     {
-        if(index < 0 || index > 3) return;
+        if (index < 0 || index > 3) return;
         _presenters[index].ClearSelection();
         if (_isShowedCaret[index])
         {
@@ -494,7 +513,7 @@ public class TimeBox : TemplatedControl
 
     private bool MoveToNextSection(int index)
     {
-        if(index < 0 || index >= 3) return false;
+        if (index < 0 || index >= 3) return false;
         LeaveSection(index);
         _currentActiveSectionIndex = index + 1;
         EnterSection(_currentActiveSectionIndex.Value);
@@ -503,7 +522,7 @@ public class TimeBox : TemplatedControl
 
     private bool MoveToPreviousSection(int index)
     {
-        if(index <= 0 || index > 3) return false;
+        if (index <= 0 || index > 3) return false;
         LeaveSection(index);
         _currentActiveSectionIndex = index - 1;
         EnterSection(_currentActiveSectionIndex.Value);
@@ -571,7 +590,7 @@ public class TimeBox : TemplatedControl
 
     private void DeleteImplementation(int index)
     {
-        if(index < 0 || index > 3) return;
+        if (index < 0 || index > 3) return;
         var oldText = _presenters[index].Text;
         if (_presenters[index].SelectionStart != _presenters[index].SelectionEnd)
         {
