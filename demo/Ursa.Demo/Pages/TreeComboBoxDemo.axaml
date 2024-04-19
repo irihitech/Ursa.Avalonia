@@ -41,13 +41,22 @@
             </u:TreeComboBox.ItemTemplate>
         </u:TreeComboBox>
         
-        <ContentControl Content="{Binding SelectedItem}">
-            <ContentControl.ContentTemplate>
-                <DataTemplate DataType="vm:TreeComboBoxItemViewModel">
-                    <TextBlock Text="{Binding ItemName}"></TextBlock>
-                </DataTemplate>
-            </ContentControl.ContentTemplate>
-        </ContentControl>
-        
+        <u:TreeComboBox
+            Classes="clearButton"
+            Width="300"
+            Watermark="Please select an item. "
+            HorizontalAlignment="Left"
+            SelectedItem="{Binding SelectedItem}"
+            InnerRightContent="Right"
+            InnerLeftContent="Left"
+            PopupInnerTopContent="Top"
+            PopupInnerBottomContent="Bottom"
+            ItemsSource="{Binding Items}">
+            <u:TreeComboBox.ItemTemplate>
+                <TreeDataTemplate ItemsSource="{Binding Children}">
+                    <TextBlock Text="{Binding ItemName}" />
+                </TreeDataTemplate>
+            </u:TreeComboBox.ItemTemplate>
+        </u:TreeComboBox>
     </StackPanel>
 </UserControl>

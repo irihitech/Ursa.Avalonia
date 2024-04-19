@@ -12,14 +12,18 @@ using Avalonia.Metadata;
 using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
+using Irihi.Avalonia.Shared.Helpers;
 using Size = Avalonia.Size;
 
 
 namespace Ursa.Controls;
 
 [TemplatePart(PartNames.PART_Popup, typeof(Popup))]
+[PseudoClasses(PC_DropdownOpen)]
 public class TreeComboBox: ItemsControl, IClearControl, IInnerContentControl, IPopupInnerContent
 {
+    public const string PC_DropdownOpen = ":dropdownopen";
+    
     private Popup? _popup;
     
     private static readonly FuncTemplate<Panel?> DefaultPanel =
@@ -101,12 +105,49 @@ public class TreeComboBox: ItemsControl, IClearControl, IInnerContentControl, IP
         get => _selectedItem;
         set => SetAndRaise(SelectedItemProperty, ref _selectedItem, value);
     }
+
+    public static readonly StyledProperty<object?> InnerLeftContentProperty = AvaloniaProperty.Register<TreeComboBox, object?>(
+        nameof(InnerLeftContent));
+
+    public object? InnerLeftContent
+    {
+        get => GetValue(InnerLeftContentProperty);
+        set => SetValue(InnerLeftContentProperty, value);
+    }
+
+    public static readonly StyledProperty<object?> InnerRightContentProperty = AvaloniaProperty.Register<TreeComboBox, object?>(
+        nameof(InnerRightContent));
+
+    public object? InnerRightContent
+    {
+        get => GetValue(InnerRightContentProperty);
+        set => SetValue(InnerRightContentProperty, value);
+    }
+
+    public static readonly StyledProperty<object?> PopupInnerTopContentProperty = AvaloniaProperty.Register<TreeComboBox, object?>(
+        nameof(PopupInnerTopContent));
+
+    public object? PopupInnerTopContent
+    {
+        get => GetValue(PopupInnerTopContentProperty);
+        set => SetValue(PopupInnerTopContentProperty, value);
+    }
+
+    public static readonly StyledProperty<object?> PopupInnerBottomContentProperty = AvaloniaProperty.Register<TreeComboBox, object?>(
+        nameof(PopupInnerBottomContent));
+
+    public object? PopupInnerBottomContent
+    {
+        get => GetValue(PopupInnerBottomContentProperty);
+        set => SetValue(PopupInnerBottomContentProperty, value);
+    }
     
     static TreeComboBox()
     {
         ItemsPanelProperty.OverrideDefaultValue<TreeComboBox>(DefaultPanel);
         FocusableProperty.OverrideDefaultValue<TreeComboBox>(true);
         SelectedItemProperty.Changed.AddClassHandler<TreeComboBox, object?>((box, args) => box.OnSelectedItemChanged(args));
+        IsDropDownOpenProperty.AffectsPseudoClass<TreeComboBox>(PC_DropdownOpen);
     }
 
     private void OnSelectedItemChanged(AvaloniaPropertyChangedEventArgs<object?> args)
@@ -293,9 +334,4 @@ public class TreeComboBox: ItemsControl, IClearControl, IInnerContentControl, IP
     {
         SelectedItem = null;
     }
-
-    public object? InnerLeftContent { get; set; }
-    public object? InnerRightContent { get; set; }
-    public object? PopupInnerTopContent { get; set; }
-    public object? PopupInnerBottomContent { get; set; }
 } 

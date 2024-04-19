@@ -6,11 +6,14 @@ namespace Ursa.Converters;
 
 public class SelectionBoxTemplateConverter: IMultiValueConverter
 {
+    public static SelectionBoxTemplateConverter Instance { get; } = new();
+    
     public object? Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
     {
-        var selectedItemTemplate = values.Count > 0 ? values[0] as IDataTemplate : null;
-        if (selectedItemTemplate is not null) return selectedItemTemplate;
-        var itemTemplate = values.Count > 1 ? values[1] as IDataTemplate : null;
-        return itemTemplate;
+        for (int i = 0; i < values.Count; i++)
+        {
+            if (values[i] is IDataTemplate template) return template;
+        }
+        return null;
     }
 }
