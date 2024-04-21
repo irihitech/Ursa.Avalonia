@@ -5,15 +5,55 @@
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:Clock}" TargetType="u:Clock">
+        <Setter Property="HandBrush" Value="{DynamicResource SemiGrey6}"/>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Clock">
                 <Grid>
-                    <u:ClockTicks HorizontalAlignment="{TemplateBinding HorizontalAlignment}" HourTickForeground="{DynamicResource SemiGrey6}" MinuteTickForeground="{DynamicResource SemiGrey4}" />
-                    <Rectangle Width="8" Height="100" Fill="White" />
-                    <Rectangle Width="4" />
-                    <iri:PureCircle
-                        Diameter="16"
-                        Background="Red" />
+                    <u:ClockTicks
+                        ShowHourTicks="{TemplateBinding ShowHourTicks}"
+                        ShowMinuteTicks="{TemplateBinding ShowMinuteTicks}"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                        HourTickForeground="{DynamicResource SemiGrey6}"
+                        MinuteTickForeground="{DynamicResource SemiGrey4}" />
+                    <UniformGrid Rows="2" IsVisible="{TemplateBinding ShowHourHand}">
+                        <Border
+                            Width="16"
+                            Margin="0,16,0,0"
+                            VerticalAlignment="Stretch"
+                            Background="{TemplateBinding HandBrush}"
+                            CornerRadius="8" />
+                        <UniformGrid.RenderTransform>
+                            <RotateTransform Angle="{Binding HourAngle, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </UniformGrid.RenderTransform>
+                    </UniformGrid>
+                    <UniformGrid Rows="2" IsVisible="{TemplateBinding ShowMinuteHand}">
+                        <Border
+                            Width="8"
+                            Margin="0,8,0,0"
+                            VerticalAlignment="Stretch"
+                            Background="{TemplateBinding HandBrush}"
+                            CornerRadius="4" />
+                        <UniformGrid.RenderTransform>
+                            <RotateTransform Angle="{Binding MinuteAngle, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </UniformGrid.RenderTransform>
+                    </UniformGrid>
+                    <UniformGrid Rows="2" IsVisible="{TemplateBinding ShowSecondHand}">
+                        <Border
+                            Width="4"
+                            Margin="0,4,0,0"
+                            VerticalAlignment="Stretch"
+                            Background="{TemplateBinding HandBrush}"
+                            CornerRadius="4" />
+                        <UniformGrid.RenderTransform>
+                            <RotateTransform Angle="{Binding SecondAngle, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </UniformGrid.RenderTransform>
+                    </UniformGrid>
+                    <Ellipse
+                        Width="20"
+                        Height="20"
+                        Fill="White"
+                        Stroke="{DynamicResource SemiBlue5}"
+                        StrokeThickness="3" />
                 </Grid>
             </ControlTemplate>
         </Setter>

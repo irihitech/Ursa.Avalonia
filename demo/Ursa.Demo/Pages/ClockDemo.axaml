@@ -5,10 +5,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
+    x:DataType="vm:ClockDemoViewModel"
+    x:CompileBindings="True"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    
     mc:Ignorable="d">
     <Grid>
-        <u:Clock HorizontalAlignment="Left"></u:Clock>
+        <u:Clock HorizontalAlignment="Left" Time="{Binding Time}"></u:Clock>
     </Grid>
 </UserControl>
