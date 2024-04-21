@@ -9,12 +9,6 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
-        <u:ClockTicks
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            HourTickWidth="4"
-            MinuteTickWidth="1"
-            HourTickForeground="Black"
-            MinuteTickForeground="Red" />
+        <u:Clock HorizontalAlignment="Left"></u:Clock>
     </Grid>
 </UserControl>

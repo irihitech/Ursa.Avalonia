@@ -86,6 +86,18 @@ public class ClockTicks: Control
         AffectsRender<ClockTicks>(ShowHourTicksProperty);
     }
 
+    protected override Size MeasureOverride(Size availableSize)
+    {
+        double minSize= Math.Min(availableSize.Width, availableSize.Height);
+        return new Size(minSize, minSize);
+    }
+
+    protected override Size ArrangeOverride(Size finalSize)
+    {
+        var minSize = Math.Min(finalSize.Width, finalSize.Height);
+        return new Size(minSize, minSize);
+    }
+
     public override void Render(DrawingContext context)
     {
         base.Render(context);

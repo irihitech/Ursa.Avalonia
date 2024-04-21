@@ -35,5 +35,38 @@ public class Clock: TemplatedControl
         get => GetValue(ShowMinuteTicksProperty);
         set => SetValue(ShowMinuteTicksProperty, value);
     }
+
+    public static readonly StyledProperty<double> HourHandMarginProperty = AvaloniaProperty.Register<Clock, double>(
+        nameof(HourHandMargin));
+
+    public double HourHandMargin
+    {
+        get => GetValue(HourHandMarginProperty);
+        set => SetValue(HourHandMarginProperty, value);
+    }
     
+    public static readonly StyledProperty<double> MinuteHandMarginProperty = AvaloniaProperty.Register<Clock, double>(
+        nameof(MinuteHandMargin));
+    
+    public double MinuteHandMargin
+    {
+        get => GetValue(MinuteHandMarginProperty);
+        set => SetValue(MinuteHandMarginProperty, value);
+    }
+
+    protected override Size MeasureOverride(Size availableSize)
+    {
+        double min = Math.Min(availableSize.Height, availableSize.Width);
+        var newSize = new Size(min, min);
+        var size = base.MeasureOverride(newSize);
+        return size;
+    }
+
+    protected override Size ArrangeOverride(Size finalSize)
+    {
+        double min = Math.Min(finalSize.Height, finalSize.Width);
+        var newSize = new Size(min, min);
+        var size = base.ArrangeOverride(newSize);
+        return size;
+    }
 }
