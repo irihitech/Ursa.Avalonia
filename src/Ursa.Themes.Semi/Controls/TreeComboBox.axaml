@@ -112,6 +112,7 @@
                         <Border
                             Name="PopupBorder"
                             Margin="0,4"
+                            BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
                             Background="{DynamicResource ComboBoxPopupBackground}"
                             BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"
                             BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
@@ -121,14 +122,18 @@
                                 <ContentPresenter
                                     Name="PART_PopupHeader"
                                     Margin="8,8 8 0"
+                                    IsVisible="{TemplateBinding PopupInnerTopContent,
+                                                                Converter={x:Static ObjectConverters.IsNotNull}}"
                                     Content="{TemplateBinding PopupInnerTopContent}"
                                     DockPanel.Dock="Top" />
                                 <ContentPresenter
                                     Name="PART_PopupFooter"
                                     Margin="8 0 8 8"
+                                    IsVisible="{TemplateBinding PopupInnerBottomContent,
+                                                                Converter={x:Static ObjectConverters.IsNotNull}}"
                                     Content="{TemplateBinding PopupInnerBottomContent}"
                                     DockPanel.Dock="Bottom" />
-                                <ScrollViewer>
+                                <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}">
                                     <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
                                 </ScrollViewer>
                             </DockPanel>
