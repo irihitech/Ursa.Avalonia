@@ -50,11 +50,20 @@ public class TagInput : TemplatedControl
     {
         _textBox = new TextBox();
         _textBox.AddHandler(KeyDownEvent, OnTextBoxKeyDown, RoutingStrategies.Tunnel);
+        _textBox.AddHandler(LostFocusEvent, OnTextBox_LostFocus, RoutingStrategies.Bubble);
         Items = new AvaloniaList<object>
         {
             _textBox
         };
         Tags = new ObservableCollection<string>();
+    }
+
+    private void OnTextBox_LostFocus(object? sender, RoutedEventArgs e)
+    {
+        if(CleanLostFocus)
+        {
+            _textBox.Text = "";
+        }
     }
 
     public static readonly StyledProperty<ControlTheme> InputThemeProperty =
@@ -85,6 +94,16 @@ public class TagInput : TemplatedControl
         get => GetValue(SeparatorProperty);
         set => SetValue(SeparatorProperty, value);
     }
+
+    public static readonly StyledProperty<bool> CleanLostFocusProperty = AvaloniaProperty.Register<TagInput, bool>(
+        nameof(CleanLostFocus), defaultValue: false);
+
+    public bool CleanLostFocus
+    {
+        get => GetValue(CleanLostFocusProperty);
+        set => SetValue(CleanLostFocusProperty, value);
+    }
+
 
     public static readonly StyledProperty<bool> AllowDuplicatesProperty = AvaloniaProperty.Register<TagInput, bool>(
         nameof(AllowDuplicates), defaultValue: true);
