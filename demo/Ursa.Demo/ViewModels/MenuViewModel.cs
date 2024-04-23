@@ -44,6 +44,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "TagInput", Key = MenuKeys.MenuKeyTagInput },
             new() { MenuHeader = "Theme Toggler", Key = MenuKeys.MenuKeyThemeToggler },
             new() { MenuHeader = "Timeline", Key = MenuKeys.MenuKeyTimeline },
+            new() { MenuHeader = "TreeComboBox", Key = MenuKeys.MenuKeyTreeComboBox },
             new() { MenuHeader = "TwoTonePathIcon", Key = MenuKeys.MenuKeyTwoTonePathIcon},
             new() { MenuHeader = "ToolBar", Key = MenuKeys.MenuKeyToolBar },
             new() { MenuHeader = "Time Box", Key = MenuKeys.MenuKeyTimeBox, Status = "New" },
@@ -88,6 +89,7 @@ public static class MenuKeys
     public const string MenuKeyTimeline = "Timeline";
     public const string MenuKeyTwoTonePathIcon = "TwoTonePathIcon";
     public const string MenuKeyThemeToggler = "ThemeToggler";
+    public const string MenuKeyTreeComboBox = "TreeComboBox";
     public const string MenuKeyToolBar = "ToolBar";
     public const string MenuKeyVerificationCode = "VerificationCode";
     public const string MenuKeyTimeBox = "TimeBox";
