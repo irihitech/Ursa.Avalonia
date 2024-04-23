@@ -60,9 +60,14 @@ public class TagInput : TemplatedControl
 
     private void OnTextBox_LostFocus(object? sender, RoutedEventArgs e)
     {
-        if(CleanLostFocus)
+        switch (LostFocusBehavior)
         {
-            _textBox.Text = "";
+            case LostFocusBehavior.Add:
+                AddTags();
+                break;
+            case LostFocusBehavior.Clear:
+                _textBox.Text = "";
+                break;
         }
     }
 
@@ -95,13 +100,13 @@ public class TagInput : TemplatedControl
         set => SetValue(SeparatorProperty, value);
     }
 
-    public static readonly StyledProperty<bool> CleanLostFocusProperty = AvaloniaProperty.Register<TagInput, bool>(
-        nameof(CleanLostFocus), defaultValue: false);
+    public static readonly StyledProperty<LostFocusBehavior> LostFocusBehaviorProperty = AvaloniaProperty.Register<TagInput, LostFocusBehavior>(
+        nameof(LostFocusBehavior));
 
-    public bool CleanLostFocus
+    public LostFocusBehavior LostFocusBehavior
     {
-        get => GetValue(CleanLostFocusProperty);
-        set => SetValue(CleanLostFocusProperty, value);
+        get => GetValue(LostFocusBehaviorProperty);
+        set => SetValue(LostFocusBehaviorProperty, value);
     }
 
 
@@ -222,31 +227,7 @@ public class TagInput : TemplatedControl
     {
         if (args.Key == Key.Enter)
         {
-            if (_textBox.Text?.Length > 0)
-            {
-                string[] values;
-                if (!string.IsNullOrEmpty(Separator))
-                {
-                    values = _textBox.Text.Split(new string[] { Separator },
-                        StringSplitOptions.RemoveEmptyEntries);
-                }
-                else
-                {
-                    values = new[] { _textBox.Text };
-                }
-
-                if (!AllowDuplicates && Tags != null)
-                    values = values.Distinct().Except(Tags).ToArray();
-
-                for (int i = 0; i < values.Length; i++)
-                {
-                    int index = Items.Count - 1;
-                    // Items.Insert(index, values[i]);
-                    Tags?.Insert(index, values[i]);
-                }
-
-                _textBox.Text = "";
-            }
+            AddTags();
         }
         else if (args.Key == Key.Delete || args.Key == Key.Back)
         { 
@@ -261,6 +242,33 @@ public class TagInput : TemplatedControl
                 Tags.RemoveAt(index);
             }
         }
+    }
+    
+    private void AddTags()
+    {
+        if (!(_textBox.Text?.Length > 0)) return;
+        string[] values;
+        if (!string.IsNullOrEmpty(Separator))
+        {
+            values = _textBox.Text.Split(new string[] { Separator },
+                StringSplitOptions.RemoveEmptyEntries);
+        }
+        else
+        {
+            values = new[] { _textBox.Text };
+        }
+
+        if (!AllowDuplicates && Tags != null)
+            values = values.Distinct().Except(Tags).ToArray();
+
+        for (int i = 0; i < values.Length; i++)
+        {
+            int index = Items.Count - 1;
+            // Items.Insert(index, values[i]);
+            Tags?.Insert(index, values[i]);
+        }
+
+        _textBox.Text = "";
     }
 
     public void Close(object o)
