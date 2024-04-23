@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
+using Avalonia.Controls.Mixins;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Shapes;
 using Avalonia.Controls.Templates;
@@ -148,6 +149,7 @@ public class TreeComboBox: ItemsControl, IClearControl, IInnerContentControl, IP
         FocusableProperty.OverrideDefaultValue<TreeComboBox>(true);
         SelectedItemProperty.Changed.AddClassHandler<TreeComboBox, object?>((box, args) => box.OnSelectedItemChanged(args));
         IsDropDownOpenProperty.AffectsPseudoClass<TreeComboBox>(PC_DropdownOpen);
+        PressedMixin.Attach<TreeComboBox>();
     }
 
     private void OnSelectedItemChanged(AvaloniaPropertyChangedEventArgs<object?> args)
