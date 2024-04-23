@@ -102,7 +102,7 @@
                         Name="{x:Static iri:PartNames.PART_Popup}"
                         Grid.Column="0"
                         MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
-                        MinHeight="{TemplateBinding MaxDropDownHeight}"
+                        MaxHeight="{TemplateBinding MaxDropDownHeight}"
                         ClipToBounds="False"
                         InheritsTransform="True"
                         IsLightDismissEnabled="True"
