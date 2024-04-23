@@ -21,6 +21,7 @@
         <u:TagInput
             Margin="20"
             AllowDuplicates="False"
+            LostFocusBehavior="Clear"
             Separator="-"
             Tags="{Binding DistinctTags}" />
         <ListBox ItemsSource="{Binding DistinctTags}" />
