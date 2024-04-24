@@ -21,7 +21,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Controls\Panels\"/>
         <None Include="irihi.png" Pack="true" PackagePath=""/>
     </ItemGroup>
 

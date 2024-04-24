@@ -32,4 +32,13 @@ public class TimePicker: TemplatedControl
         get => GetValue(SelectedTimeProperty);
         set => SetValue(SelectedTimeProperty, value);
     }
+    
+    public static readonly StyledProperty<bool> NeedConfirmProperty = AvaloniaProperty.Register<TimePicker, bool>(
+        nameof(NeedConfirm));
+
+    public bool NeedConfirm
+    {
+        get => GetValue(NeedConfirmProperty);
+        set => SetValue(NeedConfirmProperty, value);
+    }
 }
