@@ -24,4 +24,8 @@
         <None Include="irihi.png" Pack="true" PackagePath=""/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Controls\Panels\" />
+    </ItemGroup>
+
 </Project>
