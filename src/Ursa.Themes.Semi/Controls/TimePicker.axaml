@@ -4,7 +4,7 @@
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
     <Design.PreviewWith>
-        <u:TimePickerPresenter Width="600" Height="300" />
+        <u:TimePickerPresenter Width="300" Height="300" />
     </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:TimePickerPresenter}" TargetType="u:TimePickerPresenter">
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -14,20 +14,19 @@
             <ControlTemplate TargetType="u:TimePickerPresenter">
                 <Grid
                     Name="{x:Static u:TimePickerPresenter.PART_PickerContainer}"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    ColumnDefinitions="*, *, *, *">
+                    ColumnDefinitions="*, *, *, *, Auto">
                     <Grid.Styles>
-                        <Style Selector="DateTimePickerPanel > ListBoxItem">
+                        <Style Selector="u|UrsaDateTimeScrollPanel > ListBoxItem">
                             <Setter Property="Theme" Value="{DynamicResource DateTimePickerItem}"/>
                         </Style>
                     </Grid.Styles>
                     <ScrollViewer
                         Grid.Column="0"
+                        HorizontalContentAlignment="Left"
                         HorizontalAlignment="Left"
                         HorizontalScrollBarVisibility="Disabled"
                         VerticalScrollBarVisibility="Hidden">
-                        <DateTimePickerPanel
+                        <u:UrsaDateTimeScrollPanel
                             Name="{x:Static u:TimePickerPresenter.PART_HourSelector}"
                             HorizontalAlignment="Left"
                             MinWidth="64"
@@ -37,10 +36,11 @@
                     </ScrollViewer>
                     <ScrollViewer
                         Grid.Column="1"
+                        HorizontalContentAlignment="Left"
                         HorizontalAlignment="Left"
                         HorizontalScrollBarVisibility="Disabled"
                         VerticalScrollBarVisibility="Hidden">
-                        <DateTimePickerPanel
+                        <u:UrsaDateTimeScrollPanel
                             Name="{x:Static u:TimePickerPresenter.PART_MinuteSelector}"
                             MinWidth="64"
                             ItemHeight="32"
@@ -50,9 +50,10 @@
                     <ScrollViewer
                         Grid.Column="2"
                         HorizontalAlignment="Left"
+                        HorizontalContentAlignment="Left"
                         HorizontalScrollBarVisibility="Disabled"
                         VerticalScrollBarVisibility="Hidden">
-                        <DateTimePickerPanel
+                        <u:UrsaDateTimeScrollPanel
                             Name="{x:Static u:TimePickerPresenter.PART_SecondSelector}"
                             MinWidth="64"
                             ItemHeight="32"
@@ -62,9 +63,10 @@
                     <ScrollViewer
                         Grid.Column="3"
                         HorizontalAlignment="Left"
+                        HorizontalContentAlignment="Left"
                         HorizontalScrollBarVisibility="Disabled"
                         VerticalScrollBarVisibility="Hidden">
-                        <DateTimePickerPanel
+                        <u:UrsaDateTimeScrollPanel
                             Name="{x:Static u:TimePickerPresenter.PART_AmPmSelector}"
                             MinWidth="64"
                             ItemHeight="32"
