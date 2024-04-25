@@ -55,6 +55,7 @@ public class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeySelectionList => new SelectionListDemoViewModel(),
             MenuKeys.MenuKeySkeleton => new SkeletonDemoViewModel(),
             MenuKeys.MenuKeyTagInput => new TagInputDemoViewModel(),
+            MenuKeys.MenuKeyTimePicker => new TimePickerDemoViewModel(),
             MenuKeys.MenuKeyTimeline => new TimelineDemoViewModel(),
             MenuKeys.MenuKeyTreeComboBox => new TreeComboBoxDemoViewModel(),
             MenuKeys.MenuKeyTwoTonePathIcon => new TwoTonePathIconDemoViewModel(),

@@ -1,0 +1,77 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <Design.PreviewWith>
+        <u:TimePickerPresenter Width="600" Height="300" />
+    </Design.PreviewWith>
+    <ControlTheme x:Key="{x:Type u:TimePickerPresenter}" TargetType="u:TimePickerPresenter">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="MaxHeight" Value="300" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:TimePickerPresenter">
+                <Grid
+                    Name="{x:Static u:TimePickerPresenter.PART_PickerContainer}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    ColumnDefinitions="*, *, *, *">
+                    <Grid.Styles>
+                        <Style Selector="DateTimePickerPanel > ListBoxItem">
+                            <Setter Property="Theme" Value="{DynamicResource DateTimePickerItem}"/>
+                        </Style>
+                    </Grid.Styles>
+                    <ScrollViewer
+                        Grid.Column="0"
+                        HorizontalAlignment="Left"
+                        HorizontalScrollBarVisibility="Disabled"
+                        VerticalScrollBarVisibility="Hidden">
+                        <DateTimePickerPanel
+                            Name="{x:Static u:TimePickerPresenter.PART_HourSelector}"
+                            HorizontalAlignment="Left"
+                            MinWidth="64"
+                            ItemHeight="32"
+                            PanelType="Hour"
+                            ShouldLoop="True" />
+                    </ScrollViewer>
+                    <ScrollViewer
+                        Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        HorizontalScrollBarVisibility="Disabled"
+                        VerticalScrollBarVisibility="Hidden">
+                        <DateTimePickerPanel
+                            Name="{x:Static u:TimePickerPresenter.PART_MinuteSelector}"
+                            MinWidth="64"
+                            ItemHeight="32"
+                            PanelType="Minute"
+                            ShouldLoop="True" />
+                    </ScrollViewer>
+                    <ScrollViewer
+                        Grid.Column="2"
+                        HorizontalAlignment="Left"
+                        HorizontalScrollBarVisibility="Disabled"
+                        VerticalScrollBarVisibility="Hidden">
+                        <DateTimePickerPanel
+                            Name="{x:Static u:TimePickerPresenter.PART_SecondSelector}"
+                            MinWidth="64"
+                            ItemHeight="32"
+                            PanelType="Minute"
+                            ShouldLoop="True" />
+                    </ScrollViewer>
+                    <ScrollViewer
+                        Grid.Column="3"
+                        HorizontalAlignment="Left"
+                        HorizontalScrollBarVisibility="Disabled"
+                        VerticalScrollBarVisibility="Hidden">
+                        <DateTimePickerPanel
+                            Name="{x:Static u:TimePickerPresenter.PART_AmPmSelector}"
+                            MinWidth="64"
+                            ItemHeight="32"
+                            PanelType="TimePeriod" />
+                    </ScrollViewer>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>
