@@ -171,7 +171,7 @@ public class TimePickerPresenter: TemplatedControl
                 2 => _thirdSeparator,
                 _ => null,
             };
-            IsVisibleProperty.SetValue(true, separator);
+            if (i != panels.Count - 1) IsVisibleProperty.SetValue(true, separator);
         }
     }
 

@@ -14,11 +14,13 @@ namespace Ursa.Controls;
 [TemplatePart(PART_TextBox, typeof(TextBox))]
 [TemplatePart(PART_Popup, typeof(Popup))]
 [TemplatePart(PART_Presenter, typeof(TimePickerPresenter))]
+[TemplatePart(PART_Button, typeof(Button))]
 public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl, IPopupInnerContent
 {
     public const string PART_TextBox = "PART_TextBox";
     public const string PART_Popup = "PART_Popup";
     public const string PART_Presenter = "PART_Presenter";
+    public const string PART_Button = "PART_Button";
 
     public static readonly StyledProperty<string?> DisplayFormatProperty =
         AvaloniaProperty.Register<TimePicker, string?>(
@@ -57,12 +59,21 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
     public static readonly StyledProperty<bool> IsDropdownOpenProperty = AvaloniaProperty.Register<TimePicker, bool>(
         nameof(IsDropdownOpen), defaultBindingMode: BindingMode.TwoWay);
 
+    public static readonly StyledProperty<bool> IsReadonlyProperty = AvaloniaProperty.Register<TimePicker, bool>(
+        nameof(IsReadonly));
+
+    public bool IsReadonly
+    {
+        get => GetValue(IsReadonlyProperty);
+        set => SetValue(IsReadonlyProperty, value);
+    }
+
     private Popup? _popup;
     private TimePickerPresenter? _presenter;
 
     private TextBox? _textBox;
-
-    private bool _updateFromText;
+    private Button? _button;
+    
 
     static TimePicker()
     {
@@ -139,30 +150,43 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
+        
+        GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _textBox);
+        TextBox.TextChangedEvent.RemoveHandler(OnTextChanged, _textBox);
+        PointerPressedEvent.RemoveHandler(OnTextBoxPointerPressed, _textBox);
+        Button.ClickEvent.RemoveHandler(OnButtonClick, _button);
 
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
         _popup = e.NameScope.Find<Popup>(PART_Popup);
         _presenter = e.NameScope.Find<TimePickerPresenter>(PART_Presenter);
+        _button = e.NameScope.Find<Button>(PART_Button);
+        
         GotFocusEvent.AddHandler(OnTextBoxGetFocus, _textBox);
-        TextBox.TextChangedEvent.AddDisposableHandler(OnTextChanged, _textBox);
+        TextBox.TextChangedEvent.AddHandler(OnTextChanged, _textBox);
         PointerPressedEvent.AddHandler(OnTextBoxPointerPressed, RoutingStrategies.Tunnel, false, _textBox);
+        Button.ClickEvent.AddHandler(OnButtonClick, _button);
+        
         SetCurrentValue(SelectedTimeProperty, DateTime.Now.TimeOfDay);
     }
 
-    private void OnTextBoxPointerPressed(object sender, PointerPressedEventArgs e)
+    private void OnButtonClick(object? sender, RoutedEventArgs e)
+    {
+        SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
+    }
+
+    private void OnTextBoxPointerPressed(object? sender, PointerPressedEventArgs e)
     {
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
 
-    private void OnTextBoxGetFocus(object sender, GotFocusEventArgs e)
+    private void OnTextBoxGetFocus(object? sender, GotFocusEventArgs e)
     {
         IsDropdownOpen = true;
     }
 
 
-    private void OnTextChanged(object sender, TextChangedEventArgs e)
+    private void OnTextChanged(object? sender, TextChangedEventArgs e)
     {
-        _updateFromText = true;
         if (DisplayFormat is null || DisplayFormat.Length == 0)
         {
             if (TimeSpan.TryParse(_textBox?.Text, out var defaultTime))
@@ -173,7 +197,6 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
             if (DateTime.TryParseExact(_textBox?.Text, DisplayFormat, CultureInfo.CurrentUICulture, DateTimeStyles.None,
                     out var time)) TimePickerPresenter.TimeProperty.SetValue(time.TimeOfDay, _presenter);
         }
-        _updateFromText = false;
     }
 
     private void OnSelectionChanged(AvaloniaPropertyChangedEventArgs<TimeSpan?> args)
