@@ -8,5 +8,7 @@
     <StackPanel HorizontalAlignment="Left">
         <u:TimePickerPresenter Name="presenter" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock Text="{Binding #presenter.Time}"/>
+        
+        <u:TimePicker Width="200" NeedConfirmation="False"></u:TimePicker>
     </StackPanel>
 </UserControl>

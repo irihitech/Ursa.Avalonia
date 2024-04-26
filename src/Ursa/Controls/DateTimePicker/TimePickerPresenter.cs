@@ -70,6 +70,15 @@ public class TimePickerPresenter: TemplatedControl
         set => SetValue(MinuteIncrementProperty, value);
     }
 
+    public static readonly StyledProperty<int> SecondIncrementProperty = AvaloniaProperty.Register<TimePickerPresenter, int>(
+        nameof(SecondIncrement));
+
+    public int SecondIncrement
+    {
+        get => GetValue(SecondIncrementProperty);
+        set => SetValue(SecondIncrementProperty, value);
+    }
+
     public static readonly StyledProperty<TimeSpan?> TimeProperty = AvaloniaProperty.Register<TimePickerPresenter, TimeSpan?>(
         nameof(Time));
 
@@ -88,6 +97,8 @@ public class TimePickerPresenter: TemplatedControl
         set => SetValue(PanelFormatProperty, value);
     }
 
+    public event EventHandler<TimePickerSelectedValueChangedEventArgs>? SelectedTimeChanged; 
+
     static TimePickerPresenter()
     {
         PanelFormatProperty.Changed.AddClassHandler<TimePickerPresenter, string>((presenter, args) => presenter.OnPanelFormatChanged(args));
@@ -99,6 +110,8 @@ public class TimePickerPresenter: TemplatedControl
         _updateFromTimeChange = true;
         UpdatePanelsFromSelectedTime();
         _updateFromTimeChange = false;
+        SelectedTimeChanged?.Invoke(this,
+            new TimePickerSelectedValueChangedEventArgs(args.OldValue.Value, args.NewValue.Value));
     }
 
     private void OnPanelFormatChanged(AvaloniaPropertyChangedEventArgs<string> args)
@@ -110,7 +123,7 @@ public class TimePickerPresenter: TemplatedControl
 
     private void UpdatePanelLayout(string panelFormat)
     {
-        var parts = panelFormat.Split(' ', '-', ':');
+        var parts = panelFormat.Split(new[] { ' ', '-', ':' }, StringSplitOptions.RemoveEmptyEntries);
         var panels = new List<Control?>();
         foreach (var part in parts)
         {
@@ -303,6 +316,14 @@ public class TimePickerPresenter: TemplatedControl
             _ampmSelector.ItemFormat = "t";
             _ampmSelector.MaximumValue = 1;
             _ampmSelector.MinimumValue = 0;
+        }
+    }
+
+    public void Confirm()
+    {
+        if (NeedsConfirmation)
+        {
+            SetCurrentValue(TimeProperty, _timeHolder);
         }
     }
 }

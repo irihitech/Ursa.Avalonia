@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Ursa.Converters;assembly=Ursa"
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
     <Design.PreviewWith>
@@ -34,12 +35,12 @@
                             ShouldLoop="True" />
                     </ScrollViewer>
                     <Rectangle
-                        Grid.Column="1"
                         Name="{x:Static u:TimePickerPresenter.PART_FirstSeparator}"
+                        Grid.Column="1"
                         Width="1"
                         Margin="0,4"
-                        Fill="{DynamicResource DateTimePickerSeparatorBackground}"
-                        VerticalAlignment="Stretch" />
+                        VerticalAlignment="Stretch"
+                        Fill="{DynamicResource DateTimePickerSeparatorBackground}" />
                     <ScrollViewer
                         Name="{x:Static u:TimePickerPresenter.PART_MinuteScrollPanel}"
                         Grid.Column="2"
@@ -55,12 +56,12 @@
                             ShouldLoop="True" />
                     </ScrollViewer>
                     <Rectangle
-                        Grid.Column="3"
                         Name="{x:Static u:TimePickerPresenter.PART_SecondSeparator}"
+                        Grid.Column="3"
                         Width="1"
                         Margin="0,4"
-                        Fill="{DynamicResource DateTimePickerSeparatorBackground}"
-                        VerticalAlignment="Stretch" />
+                        VerticalAlignment="Stretch"
+                        Fill="{DynamicResource DateTimePickerSeparatorBackground}" />
                     <ScrollViewer
                         Name="{x:Static u:TimePickerPresenter.PART_SecondScrollPanel}"
                         Grid.Column="4"
@@ -76,12 +77,12 @@
                             ShouldLoop="True" />
                     </ScrollViewer>
                     <Rectangle
-                        Grid.Column="5"
                         Name="{x:Static u:TimePickerPresenter.PART_ThirdSeparator}"
+                        Grid.Column="5"
                         Width="1"
                         Margin="0,4"
-                        Fill="{DynamicResource DateTimePickerSeparatorBackground}"
-                        VerticalAlignment="Stretch" />
+                        VerticalAlignment="Stretch"
+                        Fill="{DynamicResource DateTimePickerSeparatorBackground}" />
                     <ScrollViewer
                         Name="{x:Static u:TimePickerPresenter.PART_AmPmScrollPanel}"
                         Grid.Column="6"
@@ -96,6 +97,71 @@
                             PanelType="TimePeriod" />
                     </ScrollViewer>
                 </Grid>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:TimePicker}" TargetType="u:TimePicker">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:TimePicker">
+                <DataValidationErrors>
+                    <Panel
+                        x:Name="LayoutRoot"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <Border
+                            x:Name="Background"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}" />
+                        <Grid ColumnDefinitions="Auto, *, Auto, Auto, Auto">
+                            <!--  InnerLeftContent, Text and Watermark, ClearButton, InnerRightContent, Icon  -->
+                            <ContentPresenter
+                                Grid.Column="0"
+                                Padding="{TemplateBinding Padding,
+                                                          Converter={x:Static converters:ThicknessIncludeConverter.Right}}"
+                                VerticalAlignment="Stretch"
+                                VerticalContentAlignment="Center"
+                                Content="{TemplateBinding InnerLeftContent}"
+                                DockPanel.Dock="Left"
+                                Foreground="{DynamicResource TextBoxInnerForeground}"
+                                IsVisible="{Binding Path=InnerLeftContent, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                            <ContentPresenter
+                                Grid.Column="3"
+                                Padding="{TemplateBinding Padding,
+                                                          Converter={x:Static converters:ThicknessIncludeConverter.Left}}"
+                                VerticalAlignment="Stretch"
+                                VerticalContentAlignment="Center"
+                                Content="{TemplateBinding InnerRightContent}"
+                                DockPanel.Dock="Right"
+                                Foreground="{DynamicResource TextBoxInnerForeground}"
+                                IsVisible="{Binding Path=InnerRightContent, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                            <TextBlock Grid.Column="1" Text="{TemplateBinding Watermark}" />
+                            <TextBox
+                                Name="{x:Static u:TimePicker.PART_TextBox}"
+                                Grid.Column="1"
+                                VerticalAlignment="Stretch"
+                                BorderThickness="0" />
+                            <Popup
+                                Name="{x:Static u:TimePicker.PART_Popup}"
+                                Grid.Column="0"
+                                IsLightDismissEnabled="True"
+                                IsOpen="{TemplateBinding IsDropdownOpen,
+                                                         Mode=TwoWay}"
+                                Placement="BottomEdgeAlignedLeft"
+                                PlacementTarget="Background">
+                                <Border Theme="{DynamicResource CardBorder}">
+                                    <u:TimePickerPresenter
+                                        Name="{x:Static u:TimePicker.PART_Presenter}"
+                                        NeedsConfirmation="{TemplateBinding NeedConfirmation}"
+                                        PanelFormat="{TemplateBinding PanelFormat}"
+                                        Time="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedTime, Mode=OneWayToSource}" />
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </Panel>
+                </DataValidationErrors>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
