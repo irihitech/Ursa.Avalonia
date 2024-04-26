@@ -6,9 +6,8 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.TimePickerDemo">
     <StackPanel HorizontalAlignment="Left">
-        <u:TimePickerPresenter Name="presenter" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBlock Text="{Binding #presenter.Time}"/>
-        
-        <u:TimePicker Width="200" NeedConfirmation="False"></u:TimePicker>
+        <ToggleSwitch Content="Need Confirm" Name="needConfirm"></ToggleSwitch>
+        <TextBlock Text="{Binding #picker.SelectedTime}" ></TextBlock>
+        <u:TimePicker Name="picker" Width="200" NeedConfirmation="{Binding #needConfirm.IsChecked}" PanelFormat="hh mm tt"></u:TimePicker>
     </StackPanel>
 </UserControl>

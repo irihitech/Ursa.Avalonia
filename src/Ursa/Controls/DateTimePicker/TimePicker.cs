@@ -11,23 +11,18 @@ using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-[TemplatePart( PART_TextBox, typeof(TextBox))]
-[TemplatePart( PART_Popup, typeof(Popup))]
-[TemplatePart( PART_Presenter, typeof(TimePickerPresenter))]
+[TemplatePart(PART_TextBox, typeof(TextBox))]
+[TemplatePart(PART_Popup, typeof(Popup))]
+[TemplatePart(PART_Presenter, typeof(TimePickerPresenter))]
 public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl, IPopupInnerContent
 {
     public const string PART_TextBox = "PART_TextBox";
     public const string PART_Popup = "PART_Popup";
     public const string PART_Presenter = "PART_Presenter";
-    
-    private TextBox? _textBox;
-    private Popup? _popup;
-    private TimePickerPresenter? _presenter;
 
-    private bool _updateFromPresenter;
-    
-    public static readonly StyledProperty<string?> DisplayFormatProperty = AvaloniaProperty.Register<TimePicker, string?>(
-        nameof(DisplayFormat), "HH:mm:ss");
+    public static readonly StyledProperty<string?> DisplayFormatProperty =
+        AvaloniaProperty.Register<TimePicker, string?>(
+            nameof(DisplayFormat), "HH:mm:ss");
 
     public static readonly StyledProperty<string> PanelFormatProperty = AvaloniaProperty.Register<TimePicker, string>(
         nameof(PanelFormat), "HH mm ss");
@@ -62,6 +57,19 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
     public static readonly StyledProperty<bool> IsDropdownOpenProperty = AvaloniaProperty.Register<TimePicker, bool>(
         nameof(IsDropdownOpen), defaultBindingMode: BindingMode.TwoWay);
 
+    private Popup? _popup;
+    private TimePickerPresenter? _presenter;
+
+    private TextBox? _textBox;
+
+    private bool _updateFromText;
+
+    static TimePicker()
+    {
+        SelectedTimeProperty.Changed.AddClassHandler<TimePicker, TimeSpan?>((picker, args) =>
+            picker.OnSelectionChanged(args));
+    }
+
     public bool IsDropdownOpen
     {
         get => GetValue(IsDropdownOpenProperty);
@@ -72,16 +80,6 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
     {
         get => GetValue(WatermarkProperty);
         set => SetValue(WatermarkProperty, value);
-    }
-
-    private TimeSpan? _selectedTimeHolder;
-
-    static TimePicker()
-    {
-        PanelFormatProperty.Changed.AddClassHandler<TimePicker, string>((picker, args) =>
-            picker.OnPanelFormatChanged(args));
-        SelectedTimeProperty.Changed.AddClassHandler<TimePicker, TimeSpan?>((picker, args) =>
-            picker.OnSelectionChanged(args));
     }
 
     public string? DisplayFormat
@@ -137,23 +135,18 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
         set => SetValue(PopupInnerBottomContentProperty, value);
     }
 
-    private void OnPanelFormatChanged(AvaloniaPropertyChangedEventArgs<string> args)
-    {
-        var format = args.NewValue.Value;
-        var parts = format.Split(' ', '-', ':');
-    }
-
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        
+
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
         _popup = e.NameScope.Find<Popup>(PART_Popup);
         _presenter = e.NameScope.Find<TimePickerPresenter>(PART_Presenter);
-        TextBox.GotFocusEvent.AddHandler(OnTextBoxGetFocus, _textBox);
+        GotFocusEvent.AddHandler(OnTextBoxGetFocus, _textBox);
         TextBox.TextChangedEvent.AddDisposableHandler(OnTextChanged, _textBox);
-        TextBox.PointerPressedEvent.AddHandler(OnTextBoxPointerPressed, RoutingStrategies.Tunnel, false, _textBox);
+        PointerPressedEvent.AddHandler(OnTextBoxPointerPressed, RoutingStrategies.Tunnel, false, _textBox);
+        SetCurrentValue(SelectedTimeProperty, DateTime.Now.TimeOfDay);
     }
 
     private void OnTextBoxPointerPressed(object sender, PointerPressedEventArgs e)
@@ -169,35 +162,38 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
 
     private void OnTextChanged(object sender, TextChangedEventArgs e)
     {
+        _updateFromText = true;
         if (DisplayFormat is null || DisplayFormat.Length == 0)
         {
             if (TimeSpan.TryParse(_textBox?.Text, out var defaultTime))
-            {
                 TimePickerPresenter.TimeProperty.SetValue(defaultTime, _presenter);
-            }
         }
         else
         {
-            if(DateTime.TryParseExact(_textBox?.Text, DisplayFormat, CultureInfo.CurrentUICulture, DateTimeStyles.None, out var time))
-            {
-                TimePickerPresenter.TimeProperty.SetValue(time.TimeOfDay, _presenter);
-            }
+            if (DateTime.TryParseExact(_textBox?.Text, DisplayFormat, CultureInfo.CurrentUICulture, DateTimeStyles.None,
+                    out var time)) TimePickerPresenter.TimeProperty.SetValue(time.TimeOfDay, _presenter);
         }
+        _updateFromText = false;
     }
 
     private void OnSelectionChanged(AvaloniaPropertyChangedEventArgs<TimeSpan?> args)
     {
         if (_textBox is null) return;
         var time = args.NewValue.Value;
-        var text = new DateTime(1,1,1, time?.Hours ?? 0, time?.Minutes ?? 0, time?.Seconds ?? 0).ToString(DisplayFormat);
+        DateTime date = new DateTime(1, 1, 1, time?.Hours ?? 0, time?.Minutes ?? 0, time?.Seconds ?? 0);
+        var text = date.ToString(DisplayFormat);
         _textBox.Text = text;
     }
 
     public void Confirm()
     {
-        if (NeedConfirmation)
-            // TODO: close popup. 
-            SetCurrentValue(SelectedTimeProperty, _selectedTimeHolder);
+        _presenter?.Confirm();
+        SetCurrentValue(IsDropdownOpenProperty, false);
+    }
+
+    public void Dismiss()
+    {
+        SetCurrentValue(IsDropdownOpenProperty, false);
     }
 
     protected override void UpdateDataValidation(AvaloniaProperty property, BindingValueType state, Exception? error)

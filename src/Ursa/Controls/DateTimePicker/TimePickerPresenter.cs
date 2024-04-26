@@ -266,7 +266,9 @@ public class TimePickerPresenter: TemplatedControl
         var time = Time ?? DateTime.Now.TimeOfDay;
         if (_hourSelector is not null)
         {
-            _hourSelector.SelectedValue = _use12Clock ? time.Hours % 12 : time.Hours;
+            var index = _use12Clock ? time.Hours % 12 : time.Hours;
+            if (index == 0) index = 12;
+            _hourSelector.SelectedValue = index;
         }
         if (_minuteSelector is not null)
         {

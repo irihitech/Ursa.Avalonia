@@ -152,11 +152,16 @@
                                 Placement="BottomEdgeAlignedLeft"
                                 PlacementTarget="Background">
                                 <Border Theme="{DynamicResource CardBorder}">
-                                    <u:TimePickerPresenter
-                                        Name="{x:Static u:TimePicker.PART_Presenter}"
-                                        NeedsConfirmation="{TemplateBinding NeedConfirmation}"
-                                        PanelFormat="{TemplateBinding PanelFormat}"
-                                        Time="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedTime, Mode=OneWayToSource}" />
+                                    <DockPanel>
+                                        <StackPanel DockPanel.Dock="Bottom" IsVisible="{TemplateBinding NeedConfirmation}">
+                                            <Button Content="Confirm" Command="{Binding $parent[u:TimePicker].Confirm}"></Button>
+                                        </StackPanel>
+                                        <u:TimePickerPresenter
+                                            Name="{x:Static u:TimePicker.PART_Presenter}"
+                                            NeedsConfirmation="{TemplateBinding NeedConfirmation}"
+                                            PanelFormat="{TemplateBinding PanelFormat}"
+                                            Time="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedTime, Mode=OneWayToSource}" />
+                                    </DockPanel>
                                 </Border>
                             </Popup>
                         </Grid>
