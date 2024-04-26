@@ -4,7 +4,7 @@
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
     <Design.PreviewWith>
-        <u:TimePickerPresenter Width="300" Height="300" />
+        <u:TimePickerPresenter Height="300" />
     </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:TimePickerPresenter}" TargetType="u:TimePickerPresenter">
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -12,32 +12,39 @@
         <Setter Property="MaxHeight" Value="300" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:TimePickerPresenter">
-                <Grid
-                    Name="{x:Static u:TimePickerPresenter.PART_PickerContainer}"
-                    ColumnDefinitions="*, *, *, *, Auto">
+                <Grid Name="{x:Static u:TimePickerPresenter.PART_PickerContainer}" ColumnDefinitions="*, Auto, *, Auto, *, Auto, *">
                     <Grid.Styles>
-                        <Style Selector="u|UrsaDateTimeScrollPanel > ListBoxItem">
-                            <Setter Property="Theme" Value="{DynamicResource DateTimePickerItem}"/>
+                        <Style Selector="u|UrsaDateTimeScrollPanel &gt; ListBoxItem">
+                            <Setter Property="Theme" Value="{DynamicResource DateTimePickerItem}" />
                         </Style>
                     </Grid.Styles>
                     <ScrollViewer
+                        Name="{x:Static u:TimePickerPresenter.PART_HourScrollPanel}"
                         Grid.Column="0"
-                        HorizontalContentAlignment="Left"
                         HorizontalAlignment="Left"
+                        HorizontalContentAlignment="Left"
                         HorizontalScrollBarVisibility="Disabled"
                         VerticalScrollBarVisibility="Hidden">
                         <u:UrsaDateTimeScrollPanel
                             Name="{x:Static u:TimePickerPresenter.PART_HourSelector}"
-                            HorizontalAlignment="Left"
                             MinWidth="64"
+                            HorizontalAlignment="Left"
                             ItemHeight="32"
                             PanelType="Hour"
                             ShouldLoop="True" />
                     </ScrollViewer>
-                    <ScrollViewer
+                    <Rectangle
                         Grid.Column="1"
-                        HorizontalContentAlignment="Left"
+                        Name="{x:Static u:TimePickerPresenter.PART_FirstSeparator}"
+                        Width="1"
+                        Margin="0,4"
+                        Fill="{DynamicResource DateTimePickerSeparatorBackground}"
+                        VerticalAlignment="Stretch" />
+                    <ScrollViewer
+                        Name="{x:Static u:TimePickerPresenter.PART_MinuteScrollPanel}"
+                        Grid.Column="2"
                         HorizontalAlignment="Left"
+                        HorizontalContentAlignment="Left"
                         HorizontalScrollBarVisibility="Disabled"
                         VerticalScrollBarVisibility="Hidden">
                         <u:UrsaDateTimeScrollPanel
@@ -47,8 +54,16 @@
                             PanelType="Minute"
                             ShouldLoop="True" />
                     </ScrollViewer>
+                    <Rectangle
+                        Grid.Column="3"
+                        Name="{x:Static u:TimePickerPresenter.PART_SecondSeparator}"
+                        Width="1"
+                        Margin="0,4"
+                        Fill="{DynamicResource DateTimePickerSeparatorBackground}"
+                        VerticalAlignment="Stretch" />
                     <ScrollViewer
-                        Grid.Column="2"
+                        Name="{x:Static u:TimePickerPresenter.PART_SecondScrollPanel}"
+                        Grid.Column="4"
                         HorizontalAlignment="Left"
                         HorizontalContentAlignment="Left"
                         HorizontalScrollBarVisibility="Disabled"
@@ -60,8 +75,16 @@
                             PanelType="Minute"
                             ShouldLoop="True" />
                     </ScrollViewer>
+                    <Rectangle
+                        Grid.Column="5"
+                        Name="{x:Static u:TimePickerPresenter.PART_ThirdSeparator}"
+                        Width="1"
+                        Margin="0,4"
+                        Fill="{DynamicResource DateTimePickerSeparatorBackground}"
+                        VerticalAlignment="Stretch" />
                     <ScrollViewer
-                        Grid.Column="3"
+                        Name="{x:Static u:TimePickerPresenter.PART_AmPmScrollPanel}"
+                        Grid.Column="6"
                         HorizontalAlignment="Left"
                         HorizontalContentAlignment="Left"
                         HorizontalScrollBarVisibility="Disabled"

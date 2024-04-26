@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -10,6 +11,13 @@ namespace Ursa.Controls;
 [TemplatePart(PART_MinuteSelector, typeof(DateTimePickerPanel))]
 [TemplatePart(PART_SecondSelector, typeof(DateTimePickerPanel))]
 [TemplatePart(PART_AmPmSelector, typeof(DateTimePickerPanel))]
+[TemplatePart(PART_HourScrollPanel, typeof(Control))]
+[TemplatePart(PART_MinuteScrollPanel, typeof(Control))]
+[TemplatePart(PART_SecondScrollPanel, typeof(Control))]
+[TemplatePart(PART_AmPmScrollPanel, typeof(Control))]
+[TemplatePart(PART_FirstSeparator, typeof(Control))]
+[TemplatePart(PART_SecondSeparator, typeof(Control))]
+[TemplatePart(PART_ThirdSeparator, typeof(Control))]
 public class TimePickerPresenter: TemplatedControl
 {
     public const string PART_HourSelector = "PART_HourSelector";
@@ -18,11 +26,29 @@ public class TimePickerPresenter: TemplatedControl
     public const string PART_AmPmSelector = "PART_AmPmSelector";
     public const string PART_PickerContainer = "PART_PickerContainer";
     
+    public const string PART_HourScrollPanel = "PART_HourScrollPanel";
+    public const string PART_MinuteScrollPanel = "PART_MinuteScrollPanel";
+    public const string PART_SecondScrollPanel = "PART_SecondScrollPanel";
+    public const string PART_AmPmScrollPanel = "PART_AmPmScrollPanel";
+    
+    public const string PART_FirstSeparator = "PART_FirstSeparator";
+    public const string PART_SecondSeparator = "PART_SecondSeparator";
+    public const string PART_ThirdSeparator = "PART_ThirdSeparator";
+    
     private DateTimePickerPanel? _hourSelector;
     private DateTimePickerPanel? _minuteSelector;
     private DateTimePickerPanel? _secondSelector;
     private DateTimePickerPanel? _ampmSelector;
     private Grid? _pickerContainer;
+    private Control? _hourScrollPanel;
+    private Control? _minuteScrollPanel;
+    private Control? _secondScrollPanel;
+    private Control? _ampmScrollPanel;
+    private Control? _firstSeparator;
+    private Control? _secondSeparator;
+    private Control? _thirdSeparator;
+    private bool _use12Clock;
+    
     
     public static readonly StyledProperty<bool> NeedsConfirmationProperty = AvaloniaProperty.Register<TimePickerPresenter, bool>(
         nameof(NeedsConfirmation));
@@ -51,22 +77,79 @@ public class TimePickerPresenter: TemplatedControl
         set => SetValue(TimeProperty, value);
     }
 
-    public static readonly StyledProperty<bool> Use12HoursProperty = AvaloniaProperty.Register<TimePickerPresenter, bool>(
-        nameof(Use12Hours));
-
-    public bool Use12Hours
-    {
-        get => GetValue(Use12HoursProperty);
-        set => SetValue(Use12HoursProperty, value);
-    }
-
     public static readonly StyledProperty<string> PanelFormatProperty = AvaloniaProperty.Register<TimePickerPresenter, string>(
-        nameof(PanelFormat));
+        nameof(PanelFormat), defaultValue: "hh mm ss t");
 
     public string PanelFormat
     {
         get => GetValue(PanelFormatProperty);
         set => SetValue(PanelFormatProperty, value);
+    }
+
+    static TimePickerPresenter()
+    {
+        PanelFormatProperty.Changed.AddClassHandler<TimePickerPresenter, string>((presenter, args) => presenter.OnPanelFormatChanged(args));
+    }
+
+    private void OnPanelFormatChanged(AvaloniaPropertyChangedEventArgs<string> args)
+    {
+        var format = args.NewValue.Value;
+        
+        UpdatePanelLayout(format);
+    }
+
+    private void UpdatePanelLayout(string panelFormat)
+    {
+        var parts = panelFormat.Split(' ', '-', ':');
+        var panels = new List<Control?>();
+        foreach (var part in parts)
+        {
+            if (part.Length < 1) continue;
+            if ((part.Contains('h') || part.Contains('H')) && !panels.Contains(_hourScrollPanel))
+            {
+                panels.Add(_hourScrollPanel);
+                _use12Clock = part.Contains('h');
+                _hourSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty, part.ToLower());
+                if (_hourSelector is not null)
+                {
+                    _hourSelector.MaximumValue = _use12Clock ? 12 : 23;
+                    _hourSelector.MinimumValue = _use12Clock ? 1 : 0;
+                }
+            }
+            else if (part[0] == 'm' && !panels.Contains(_minuteSelector))
+            {
+                panels.Add(_minuteScrollPanel);
+                _minuteSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty, part);
+            }
+            else if (part[0] == 's' && !panels.Contains(_secondScrollPanel))
+            {
+                panels.Add(_secondScrollPanel);
+                _secondSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty, part.Replace('s', 'm'));
+            }
+            else if (part[0] == 't' && !panels.Contains(_ampmScrollPanel))
+            {
+                panels.Add(_ampmScrollPanel);
+                _ampmSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty, part);
+            }
+        }
+        if (panels.Count < 1) return;
+        IsVisibleProperty.SetValue(false, _hourScrollPanel, _minuteScrollPanel, _secondScrollPanel, _ampmScrollPanel,
+            _firstSeparator, _secondSeparator, _thirdSeparator);
+        for(var i = 0; i< panels.Count; i++)
+        {
+            var panel = panels[i];
+            if (panel is null) continue;
+            panel.IsVisible = true;
+            Grid.SetColumn(panel, 2 * i);
+            var separator = i switch
+            {
+                0 => _firstSeparator,
+                1 => _secondSeparator,
+                2 => _thirdSeparator,
+                _ => null,
+            };
+            IsVisibleProperty.SetValue(true, separator);
+        }
     }
 
     public TimePickerPresenter()
@@ -82,48 +165,74 @@ public class TimePickerPresenter: TemplatedControl
         _secondSelector = e.NameScope.Find<DateTimePickerPanel>(PART_SecondSelector);
         _ampmSelector = e.NameScope.Find<DateTimePickerPanel>(PART_AmPmSelector);
         _pickerContainer = e.NameScope.Find<Grid>(PART_PickerContainer);
+        _hourScrollPanel = e.NameScope.Find<Control>(PART_HourScrollPanel);
+        _minuteScrollPanel = e.NameScope.Find<Control>(PART_MinuteScrollPanel);
+        _secondScrollPanel = e.NameScope.Find<Control>(PART_SecondScrollPanel);
+        _ampmScrollPanel = e.NameScope.Find<Control>(PART_AmPmScrollPanel);
+        _firstSeparator = e.NameScope.Find<Control>(PART_FirstSeparator);
+        _secondSeparator = e.NameScope.Find<Control>(PART_SecondSeparator);
+        _thirdSeparator = e.NameScope.Find<Control>(PART_ThirdSeparator);
         Initialize();
+        UpdatePanelLayout(PanelFormat);
+        UpdatePanelsFromSelectedTime();
+    }
+
+    private void UpdatePanelsFromSelectedTime()
+    {
+        if (Time is null) return;
+        var time = Time ?? DateTime.Now.TimeOfDay;
+        if (_hourSelector is not null)
+        {
+            _hourSelector.SelectedValue = _use12Clock ? time.Hours % 12 : time.Hours;
+        }
+        if (_minuteSelector is not null)
+        {
+            _minuteSelector.SelectedValue = time.Minutes;
+        }
+        if (_secondSelector is not null)
+        {
+            _secondSelector.SelectedValue = time.Seconds;
+        }
+        if (_ampmSelector is not null)
+        {
+            _ampmSelector.SelectedValue = time.Hours switch
+            {
+                >= 12 => 1,
+                _ => 0
+            };
+        }
     }
 
     private void Initialize()
     {
         if (_pickerContainer is null) return;
-        var use12Clock = Use12Hours;
         if (_hourSelector is not null)
         {
-            _hourSelector.MaximumValue = use12Clock ? 12 : 23;
-            _hourSelector.MinimumValue = use12Clock ? 1 : 0;
             _hourSelector.ItemFormat = "%h";
-            var hour = Time?.Hours;
-            _hourSelector.SelectedValue = hour ?? 0;
+            _hourSelector.MaximumValue = _use12Clock ? 12 : 23;
+            _hourSelector.MinimumValue = _use12Clock ? 1 : 0;
+            
         }
         if(_minuteSelector is not null)
         {
+            _minuteSelector.ItemFormat = "mm";
             _minuteSelector.MaximumValue = 59;
             _minuteSelector.MinimumValue = 0;
-            _minuteSelector.ItemFormat = "mm";
-            var minute = Time?.Minutes;
-            _minuteSelector.SelectedValue = minute ?? 0;
+            
         }
         if(_secondSelector is not null)
         {
+            _secondSelector.ItemFormat = "mm";
             _secondSelector.MaximumValue = 59;
             _secondSelector.MinimumValue = 0;
-            _secondSelector.ItemFormat = "mm";
-            var second = Time?.Seconds;
-            _secondSelector.SelectedValue = second ?? 0;
+            
         }
         if(_ampmSelector is not null)
         {
+            _ampmSelector.ItemFormat = "t";
             _ampmSelector.MaximumValue = 1;
             _ampmSelector.MinimumValue = 0;
-            _ampmSelector.ItemFormat = "%t";
-            var ampm = Time?.Hours switch
-            {
-                >= 12 => 1,
-                _ => 0
-            };
-            _ampmSelector.SelectedValue = ampm;
+            
         }
     }
 }
