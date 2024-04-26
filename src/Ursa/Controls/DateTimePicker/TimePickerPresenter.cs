@@ -48,6 +48,8 @@ public class TimePickerPresenter: TemplatedControl
     private Control? _secondSeparator;
     private Control? _thirdSeparator;
     private bool _use12Clock;
+    private bool _updateFromTimeChange;
+    internal TimeSpan _timeHolder;
     
     
     public static readonly StyledProperty<bool> NeedsConfirmationProperty = AvaloniaProperty.Register<TimePickerPresenter, bool>(
@@ -78,7 +80,7 @@ public class TimePickerPresenter: TemplatedControl
     }
 
     public static readonly StyledProperty<string> PanelFormatProperty = AvaloniaProperty.Register<TimePickerPresenter, string>(
-        nameof(PanelFormat), defaultValue: "hh mm ss t");
+        nameof(PanelFormat), defaultValue: "HH mm ss t");
 
     public string PanelFormat
     {
@@ -89,6 +91,14 @@ public class TimePickerPresenter: TemplatedControl
     static TimePickerPresenter()
     {
         PanelFormatProperty.Changed.AddClassHandler<TimePickerPresenter, string>((presenter, args) => presenter.OnPanelFormatChanged(args));
+        TimeProperty.Changed.AddClassHandler<TimePickerPresenter, TimeSpan?>((presenter, args) => presenter.OnTimeChanged(args));
+    }
+
+    private void OnTimeChanged(AvaloniaPropertyChangedEventArgs<TimeSpan?> args)
+    {
+        _updateFromTimeChange = true;
+        UpdatePanelsFromSelectedTime();
+        _updateFromTimeChange = false;
     }
 
     private void OnPanelFormatChanged(AvaloniaPropertyChangedEventArgs<string> args)
@@ -160,10 +170,42 @@ public class TimePickerPresenter: TemplatedControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
+        if (_hourSelector is not null)
+        {
+            _hourSelector.SelectionChanged -= OnPanelSelectionChanged;
+        }
+        if (_minuteSelector is not null)
+        {
+            _minuteSelector.SelectionChanged -= OnPanelSelectionChanged;
+        }
+        if (_secondSelector is not null)
+        {
+            _secondSelector.SelectionChanged -= OnPanelSelectionChanged;
+        }
+        if (_ampmSelector is not null)
+        {
+            _ampmSelector.SelectionChanged -= OnPanelSelectionChanged;
+        }
         _hourSelector = e.NameScope.Find<DateTimePickerPanel>(PART_HourSelector);
         _minuteSelector = e.NameScope.Find<DateTimePickerPanel>(PART_MinuteSelector);
         _secondSelector = e.NameScope.Find<DateTimePickerPanel>(PART_SecondSelector);
         _ampmSelector = e.NameScope.Find<DateTimePickerPanel>(PART_AmPmSelector);
+        if(_hourSelector is not null)
+        {
+            _hourSelector.SelectionChanged += OnPanelSelectionChanged;
+        }
+        if(_minuteSelector is not null)
+        {
+            _minuteSelector.SelectionChanged += OnPanelSelectionChanged;
+        }
+        if(_secondSelector is not null)
+        {
+            _secondSelector.SelectionChanged += OnPanelSelectionChanged;
+        }
+        if(_ampmSelector is not null)
+        {
+            _ampmSelector.SelectionChanged += OnPanelSelectionChanged;
+        }
         _pickerContainer = e.NameScope.Find<Grid>(PART_PickerContainer);
         _hourScrollPanel = e.NameScope.Find<Control>(PART_HourScrollPanel);
         _minuteScrollPanel = e.NameScope.Find<Control>(PART_MinuteScrollPanel);
@@ -175,6 +217,34 @@ public class TimePickerPresenter: TemplatedControl
         Initialize();
         UpdatePanelLayout(PanelFormat);
         UpdatePanelsFromSelectedTime();
+    }
+
+    private void OnPanelSelectionChanged(object sender, System.EventArgs e)
+    {
+        if (_updateFromTimeChange) return;
+        TimeSpan time = NeedsConfirmation ? _timeHolder : Time ?? DateTime.Now.TimeOfDay;
+        int hour = _hourSelector?.SelectedValue ?? time.Hours;
+        int minute = _minuteSelector?.SelectedValue ?? time.Minutes;
+        int second = _secondSelector?.SelectedValue ?? time.Seconds;
+        int ampm = _ampmSelector?.SelectedValue ?? (time.Hours >= 12 ? 1 : 0);
+        if (_use12Clock)
+        {
+            hour = ampm switch
+            {
+                0 when hour == 12 => 0,
+                1 when hour < 12 => hour + 12,
+                _ => hour
+            };
+        }
+        var newTime = new TimeSpan(hour, minute, second);
+        if (NeedsConfirmation)
+        {
+            _timeHolder = newTime;
+        }
+        else
+        {
+            SetCurrentValue(TimeProperty, newTime);
+        }
     }
 
     private void UpdatePanelsFromSelectedTime()
@@ -200,6 +270,7 @@ public class TimePickerPresenter: TemplatedControl
                 >= 12 => 1,
                 _ => 0
             };
+            _ampmSelector.IsEnabled = _use12Clock;
         }
     }
 
@@ -208,7 +279,7 @@ public class TimePickerPresenter: TemplatedControl
         if (_pickerContainer is null) return;
         if (_hourSelector is not null)
         {
-            _hourSelector.ItemFormat = "%h";
+            _hourSelector.ItemFormat = "hh";
             _hourSelector.MaximumValue = _use12Clock ? 12 : 23;
             _hourSelector.MinimumValue = _use12Clock ? 1 : 0;
             
@@ -232,7 +303,6 @@ public class TimePickerPresenter: TemplatedControl
             _ampmSelector.ItemFormat = "t";
             _ampmSelector.MaximumValue = 1;
             _ampmSelector.MinimumValue = 0;
-            
         }
     }
 }

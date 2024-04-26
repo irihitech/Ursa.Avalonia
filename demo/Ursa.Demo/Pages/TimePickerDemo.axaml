@@ -6,6 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.TimePickerDemo">
     <StackPanel HorizontalAlignment="Left">
-        <u:TimePickerPresenter HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <u:TimePickerPresenter Name="presenter" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock Text="{Binding #presenter.Time}"/>
     </StackPanel>
 </UserControl>
