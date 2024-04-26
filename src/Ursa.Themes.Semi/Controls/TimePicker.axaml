@@ -108,6 +108,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
         <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
+        <Setter Property="MinHeight" Value="32"/>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:TimePicker">
                 <DataValidationErrors>
@@ -117,12 +118,12 @@
                         VerticalAlignment="Stretch">
                         <Border
                             x:Name="Background"
+                            HorizontalAlignment="Stretch"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}" />
                         <Grid ColumnDefinitions="*, Auto, Auto">
-                            <!--  InnerLeftContent, Text and Watermark, ClearButton, InnerRightContent, Icon  -->
                             <TextBox
                                 Name="{x:Static u:TimePicker.PART_TextBox}"
                                 Grid.Column="0"
@@ -196,10 +197,25 @@
                                     <DockPanel>
                                         <StackPanel DockPanel.Dock="Bottom" IsVisible="{TemplateBinding NeedConfirmation}">
                                             <Button
+                                                Margin="8"
                                                 HorizontalAlignment="Right"
                                                 Command="{Binding $parent[u:TimePicker].Confirm}"
                                                 Content="Confirm" />
                                         </StackPanel>
+                                        <ContentPresenter
+                                            Name="PART_PopupHeader"
+                                            Margin="8,8,8,0"
+                                            Content="{TemplateBinding PopupInnerTopContent}"
+                                            DockPanel.Dock="Top"
+                                            IsVisible="{TemplateBinding PopupInnerTopContent,
+                                                                        Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                        <ContentPresenter
+                                            Name="PART_PopupFooter"
+                                            Margin="8,0,8,8"
+                                            Content="{TemplateBinding PopupInnerBottomContent}"
+                                            DockPanel.Dock="Bottom"
+                                            IsVisible="{TemplateBinding PopupInnerBottomContent,
+                                                                        Converter={x:Static ObjectConverters.IsNotNull}}" />
                                         <u:TimePickerPresenter
                                             Name="{x:Static u:TimePicker.PART_Presenter}"
                                             NeedsConfirmation="{TemplateBinding NeedConfirmation}"

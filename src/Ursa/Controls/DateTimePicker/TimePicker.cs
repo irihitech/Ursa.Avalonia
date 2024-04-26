@@ -62,23 +62,24 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
     public static readonly StyledProperty<bool> IsReadonlyProperty = AvaloniaProperty.Register<TimePicker, bool>(
         nameof(IsReadonly));
 
-    public bool IsReadonly
-    {
-        get => GetValue(IsReadonlyProperty);
-        set => SetValue(IsReadonlyProperty, value);
-    }
+    private Button? _button;
 
     private Popup? _popup;
     private TimePickerPresenter? _presenter;
 
     private TextBox? _textBox;
-    private Button? _button;
-    
+
 
     static TimePicker()
     {
         SelectedTimeProperty.Changed.AddClassHandler<TimePicker, TimeSpan?>((picker, args) =>
             picker.OnSelectionChanged(args));
+    }
+
+    public bool IsReadonly
+    {
+        get => GetValue(IsReadonlyProperty);
+        set => SetValue(IsReadonlyProperty, value);
     }
 
     public bool IsDropdownOpen
@@ -150,7 +151,7 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        
+
         GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _textBox);
         TextBox.TextChangedEvent.RemoveHandler(OnTextChanged, _textBox);
         PointerPressedEvent.RemoveHandler(OnTextBoxPointerPressed, _textBox);
@@ -160,12 +161,12 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
         _popup = e.NameScope.Find<Popup>(PART_Popup);
         _presenter = e.NameScope.Find<TimePickerPresenter>(PART_Presenter);
         _button = e.NameScope.Find<Button>(PART_Button);
-        
+
         GotFocusEvent.AddHandler(OnTextBoxGetFocus, _textBox);
         TextBox.TextChangedEvent.AddHandler(OnTextChanged, _textBox);
         PointerPressedEvent.AddHandler(OnTextBoxPointerPressed, RoutingStrategies.Tunnel, false, _textBox);
         Button.ClickEvent.AddHandler(OnButtonClick, _button);
-        
+
         SetCurrentValue(SelectedTimeProperty, DateTime.Now.TimeOfDay);
     }
 
@@ -187,7 +188,11 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
 
     private void OnTextChanged(object? sender, TextChangedEventArgs e)
     {
-        if (DisplayFormat is null || DisplayFormat.Length == 0)
+        if (string.IsNullOrEmpty(_textBox?.Text))
+        {
+            TimePickerPresenter.TimeProperty.SetValue(null, _presenter);
+        }
+        else if (DisplayFormat is null || DisplayFormat.Length == 0)
         {
             if (TimeSpan.TryParse(_textBox?.Text, out var defaultTime))
                 TimePickerPresenter.TimeProperty.SetValue(defaultTime, _presenter);
@@ -203,7 +208,13 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
     {
         if (_textBox is null) return;
         var time = args.NewValue.Value;
-        DateTime date = new DateTime(1, 1, 1, time?.Hours ?? 0, time?.Minutes ?? 0, time?.Seconds ?? 0);
+        if (time is null)
+        {
+            _textBox.Text = null;
+            return;
+        }
+
+        var date = new DateTime(1, 1, 1, time.Value.Hours, time.Value.Minutes, time.Value.Seconds);
         var text = date.ToString(DisplayFormat);
         _textBox.Text = text;
     }
@@ -212,11 +223,13 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
     {
         _presenter?.Confirm();
         SetCurrentValue(IsDropdownOpenProperty, false);
+        Focus();
     }
 
     public void Dismiss()
     {
         SetCurrentValue(IsDropdownOpenProperty, false);
+        Focus();
     }
 
     protected override void UpdateDataValidation(AvaloniaProperty property, BindingValueType state, Exception? error)
