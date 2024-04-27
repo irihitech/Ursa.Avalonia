@@ -260,6 +260,9 @@
         </Style>
 
         <!--  Focused State  -->
+        <Style Selector="^:focus /template/ Border#Background">
+            <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
+        </Style>
         <Style Selector="^:focus-within /template/ Border#Background">
             <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
         </Style>

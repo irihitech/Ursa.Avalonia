@@ -148,8 +148,8 @@ public class TimePickerPresenter : TemplatedControl
                 _hourSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty, part.ToLower());
                 if (_hourSelector is not null)
                 {
-                    _hourSelector.MaximumValue = _use12Clock ? 12 : 23;
-                    _hourSelector.MinimumValue = _use12Clock ? 1 : 0;
+                    _hourSelector.MaximumValue = _use12Clock ? 11 : 23;
+                    _hourSelector.MinimumValue = 0;
                 }
             }
             else if (part[0] == 'm' && !panels.Contains(_minuteSelector))
@@ -245,7 +245,7 @@ public class TimePickerPresenter : TemplatedControl
         if (_hourSelector is not null)
         {
             var index = _use12Clock ? time.Value.Hours % 12 : time.Value.Hours;
-            if (index == 0) index = 12;
+            if (_use12Clock && index == 12) index = 0;
             _hourSelector.SelectedValue = index;
         }
 
@@ -269,7 +269,7 @@ public class TimePickerPresenter : TemplatedControl
         {
             _hourSelector.ItemFormat = "hh";
             _hourSelector.MaximumValue = _use12Clock ? 12 : 23;
-            _hourSelector.MinimumValue = _use12Clock ? 1 : 0;
+            _hourSelector.MinimumValue = 0;
         }
 
         if (_minuteSelector is not null)

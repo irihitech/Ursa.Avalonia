@@ -118,6 +118,7 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
 
     public void Clear()
     {
+        Focus(NavigationMethod.Pointer);
         _presenter?.SetValue(TimePickerPresenter.TimeProperty, null);
     }
 
@@ -170,6 +171,7 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
 
     private void OnButtonClick(object? sender, RoutedEventArgs e)
     {
+        Focus(NavigationMethod.Pointer);
         SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
     }
 
@@ -244,6 +246,7 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
     {
         _presenter?.Confirm();
         SetCurrentValue(IsDropdownOpenProperty, false);
+        TopLevel.GetTopLevel(this);
         Focus();
     }
 
