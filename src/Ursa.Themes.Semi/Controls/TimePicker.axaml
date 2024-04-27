@@ -199,7 +199,7 @@
                                                 Margin="8"
                                                 HorizontalAlignment="Right"
                                                 Command="{Binding $parent[u:TimePicker].Confirm}"
-                                                Content="Confirm" />
+                                                Content="{DynamicResource STRING_DATE_TIME_CONFIRM}" />
                                         </StackPanel>
                                         <ContentPresenter
                                             Name="PART_PopupHeader"

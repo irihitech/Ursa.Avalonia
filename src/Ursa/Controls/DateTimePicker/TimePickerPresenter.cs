@@ -220,6 +220,7 @@ public class TimePickerPresenter : TemplatedControl
     private void OnPanelSelectionChanged(object sender, System.EventArgs e)
     {
         if (_updateFromTimeChange) return;
+        if (!_use12Clock && sender == _ampmSelector) return;
         var time = NeedsConfirmation ? _timeHolder : Time ?? DateTime.Now.TimeOfDay;
         var hour = _hourSelector?.SelectedValue ?? time.Hours;
         var minute = _minuteSelector?.SelectedValue ?? time.Minutes;
@@ -232,6 +233,15 @@ public class TimePickerPresenter : TemplatedControl
                 1 when hour < 12 => hour + 12,
                 _ => hour
             };
+        else
+        {
+            ampm = hour switch
+            {
+                >= 12 => 1,
+                _ => 0
+            };
+            _ampmSelector.SelectedValue = ampm;
+        }
         var newTime = new TimeSpan(hour, minute, second);
         if (NeedsConfirmation)
             _timeHolder = newTime;

@@ -21,8 +21,9 @@
             Width="300"
             Classes="ClearButton"
             DisplayFormat="HH 时 mm 分 ss 秒"
-            PanelFormat="HH mm ss tt"
+            PanelFormat="tt HH mm ss"
             HorizontalAlignment="Left"
+            NeedConfirmation="True"
             InnerLeftContent="时刻"
             InnerRightContent="截止" />
     </StackPanel>

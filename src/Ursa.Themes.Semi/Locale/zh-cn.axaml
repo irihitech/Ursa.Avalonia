@@ -15,4 +15,5 @@
     <x:String x:Key="STRING_THEME_TOGGLE_DARK">暗色</x:String>
     <x:String x:Key="STRING_THEME_TOGGLE_LIGHT">亮色</x:String>
     <x:String x:Key="STRING_THEME_TOGGLE_SYSTEM">跟随系统</x:String>
+    <x:String x:Key="STRING_DATE_TIME_CONFIRM">确认</x:String>   
 </ResourceDictionary>
