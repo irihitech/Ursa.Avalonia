@@ -63,10 +63,8 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
         nameof(IsReadonly));
 
     private Button? _button;
-
     private Popup? _popup;
     private TimePickerPresenter? _presenter;
-
     private TextBox? _textBox;
 
 
@@ -183,6 +181,29 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
     private void OnTextBoxGetFocus(object? sender, GotFocusEventArgs e)
     {
         IsDropdownOpen = true;
+    }
+
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        if (e.Key == Key.Escape)
+        {
+            SetCurrentValue(IsDropdownOpenProperty, false);
+            e.Handled = true;
+            return;
+        }
+        if (e.Key == Key.Down)
+        {
+            SetCurrentValue(IsDropdownOpenProperty, true);
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.Tab)
+        {
+            SetCurrentValue(IsDropdownOpenProperty, false);
+            return;
+        }
+        base.OnKeyDown(e);
     }
 
 
