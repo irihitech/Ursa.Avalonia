@@ -240,7 +240,7 @@ public class TimePickerPresenter : TemplatedControl
                 >= 12 => 1,
                 _ => 0
             };
-            _ampmSelector.SelectedValue = ampm;
+            SetIfChanged(_ampmSelector, ampm);
         }
         var newTime = new TimeSpan(hour, minute, second);
         if (NeedsConfirmation)
@@ -256,18 +256,19 @@ public class TimePickerPresenter : TemplatedControl
         {
             var index = _use12Clock ? time.Value.Hours % 12 : time.Value.Hours;
             if (_use12Clock && index == 0) index = 12;
-            _hourSelector.SelectedValue = index;
+            SetIfChanged(_hourSelector, index);
         }
-
-        if (_minuteSelector is not null) _minuteSelector.SelectedValue = time.Value.Minutes;
-        if (_secondSelector is not null) _secondSelector.SelectedValue = time.Value.Seconds;
+        SetIfChanged(_minuteSelector, time.Value.Minutes);
+        SetIfChanged(_secondSelector, time.Value.Seconds);
+        var ampm = time.Value.Hours switch
+        {
+            >= 12 => 1,
+            _ => 0
+        };
+        
+        SetIfChanged(_ampmSelector, ampm);
         if (_ampmSelector is not null)
         {
-            _ampmSelector.SelectedValue = time.Value.Hours switch
-            {
-                >= 12 => 1,
-                _ => 0
-            };
             _ampmSelector.IsEnabled = _use12Clock;
         }
     }
@@ -307,5 +308,11 @@ public class TimePickerPresenter : TemplatedControl
     public void Confirm()
     {
         if (NeedsConfirmation) SetCurrentValue(TimeProperty, _timeHolder);
+    }
+
+    private void SetIfChanged(DateTimePickerPanel? panel, int index)
+    {
+        if (panel is null) return;
+        if (panel.SelectedValue != index) panel.SelectedValue = index;
     }
 }
