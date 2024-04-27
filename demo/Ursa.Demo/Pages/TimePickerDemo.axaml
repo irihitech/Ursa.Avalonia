@@ -19,6 +19,7 @@
             PanelFormat="hh mm tt" />
         <u:TimePicker
             Width="300"
+            Classes="ClearButton"
             DisplayFormat="HH 时 mm 分 ss 秒"
             PanelFormat="HH mm ss tt"
             HorizontalAlignment="Left"

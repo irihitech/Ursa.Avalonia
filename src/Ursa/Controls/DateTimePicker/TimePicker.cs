@@ -118,7 +118,7 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
 
     public void Clear()
     {
-        SetCurrentValue(SelectedTimeProperty, null);
+        _presenter?.SetValue(TimePickerPresenter.TimeProperty, null);
     }
 
     public object? InnerLeftContent

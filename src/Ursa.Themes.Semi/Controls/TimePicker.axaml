@@ -123,11 +123,10 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}" />
-                        <Grid ColumnDefinitions="*, Auto, Auto">
+                        <Grid ColumnDefinitions="*, Auto">
                             <TextBox
                                 Name="{x:Static u:TimePicker.PART_TextBox}"
                                 Grid.Column="0"
-                                Grid.ColumnSpan="2"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
                                 Background="Transparent"
@@ -172,7 +171,7 @@
                                 Theme="{DynamicResource InnerIconButton}" />
                             <Button
                                 Name="{x:Static u:TimePicker.PART_Button}"
-                                Grid.Column="2"
+                                Grid.Column="1"
                                 Padding="0,0,8,0"
                                 Content="{DynamicResource TimePickerIconGlyph}"
                                 Focusable="False"
@@ -233,6 +232,9 @@
         <Style Selector="^.clearButton, ^.ClearButton">
             <Style Selector="^:pointerover /template/ Button#ClearButton">
                 <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNotNull}}" />
+            </Style>
+            <Style Selector="^:pointerover /template/ Button#PART_Button">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNull}}"/>
             </Style>
         </Style>
 
