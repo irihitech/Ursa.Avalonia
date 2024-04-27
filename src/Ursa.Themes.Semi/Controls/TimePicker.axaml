@@ -153,7 +153,7 @@
                                 Focusable="False"
                                 Theme="{DynamicResource InnerIconButton}" />
                             <Popup
-                                Name="{x:Static u:TimePicker.PART_Popup}"
+                                Name="{x:Static iri:PartNames.PART_Popup}"
                                 Grid.Column="0"
                                 IsLightDismissEnabled="True"
                                 IsOpen="{TemplateBinding IsDropdownOpen,

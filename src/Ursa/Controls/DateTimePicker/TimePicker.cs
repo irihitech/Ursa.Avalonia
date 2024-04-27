@@ -6,19 +6,19 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
 [TemplatePart(PART_TextBox, typeof(TextBox))]
-[TemplatePart(PART_Popup, typeof(Popup))]
+[TemplatePart(PartNames.PART_Popup, typeof(Popup))]
 [TemplatePart(PART_Presenter, typeof(TimePickerPresenter))]
 [TemplatePart(PART_Button, typeof(Button))]
 public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl, IPopupInnerContent
 {
     public const string PART_TextBox = "PART_TextBox";
-    public const string PART_Popup = "PART_Popup";
     public const string PART_Presenter = "PART_Presenter";
     public const string PART_Button = "PART_Button";
 
@@ -157,7 +157,7 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
         Button.ClickEvent.RemoveHandler(OnButtonClick, _button);
 
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
-        _popup = e.NameScope.Find<Popup>(PART_Popup);
+        _popup = e.NameScope.Find<Popup>(PartNames.PART_Popup);
         _presenter = e.NameScope.Find<TimePickerPresenter>(PART_Presenter);
         _button = e.NameScope.Find<Button>(PART_Button);
 
