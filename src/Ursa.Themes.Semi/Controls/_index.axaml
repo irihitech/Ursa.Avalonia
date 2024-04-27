@@ -31,6 +31,7 @@
         <ResourceInclude Source="ScrollToButton.axaml" />
         <ResourceInclude Source="SelectionList.axaml" />
         <ResourceInclude Source="TagInput.axaml" />
+        <ResourceInclude Source="TextBox.axaml" />
         <ResourceInclude Source="ThemeSelector.axaml" />
         <ResourceInclude Source="TimePicker.axaml" />
         <ResourceInclude Source="Timeline.axaml" />
