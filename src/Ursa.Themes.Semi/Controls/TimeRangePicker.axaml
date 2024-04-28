@@ -117,14 +117,14 @@
                                             Margin="0,16"
                                             HorizontalAlignment="Center"
                                             FontWeight="Bold"
-                                            Text="Start Time" />
+                                            Text="{DynamicResource STRING_DATE_TIME_START_TIME}" />
                                         <TextBlock
                                             Grid.Row="0"
                                             Grid.Column="2"
                                             Margin="0,16"
                                             HorizontalAlignment="Center"
                                             FontWeight="Bold"
-                                            Text="End Time" />
+                                            Text="{DynamicResource STRING_DATE_TIME_END_TIME}" />
                                         <Rectangle
                                             Grid.Row="1"
                                             Grid.Column="0"
