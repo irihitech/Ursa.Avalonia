@@ -26,5 +26,6 @@
             NeedConfirmation="True"
             InnerLeftContent="时刻"
             InnerRightContent="截止" />
+        <u:TimeRangePicker Width="300"></u:TimeRangePicker>
     </StackPanel>
 </UserControl>

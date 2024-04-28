@@ -38,8 +38,8 @@
                     <Rectangle
                         Name="{x:Static u:TimePickerPresenter.PART_FirstSeparator}"
                         Grid.Column="1"
-                        Width="1"
-                        Margin="0,4"
+                        Width="0.5"
+                        Margin="0,8"
                         VerticalAlignment="Stretch"
                         Fill="{DynamicResource DateTimePickerSeparatorBackground}" />
                     <ScrollViewer
@@ -59,8 +59,8 @@
                     <Rectangle
                         Name="{x:Static u:TimePickerPresenter.PART_SecondSeparator}"
                         Grid.Column="3"
-                        Width="1"
-                        Margin="0,4"
+                        Width="0.5"
+                        Margin="0,8"
                         VerticalAlignment="Stretch"
                         Fill="{DynamicResource DateTimePickerSeparatorBackground}" />
                     <ScrollViewer
@@ -80,8 +80,8 @@
                     <Rectangle
                         Name="{x:Static u:TimePickerPresenter.PART_ThirdSeparator}"
                         Grid.Column="5"
-                        Width="1"
-                        Margin="0,4"
+                        Width="0.5"
+                        Margin="0,8"
                         VerticalAlignment="Stretch"
                         Fill="{DynamicResource DateTimePickerSeparatorBackground}" />
                     <ScrollViewer
@@ -129,36 +129,12 @@
                                 Grid.Column="0"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
-                                Background="Transparent"
-                                BorderBrush="Transparent"
-                                BorderThickness="0"
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
                                 InnerRightContent="{TemplateBinding InnerRightContent}"
                                 IsReadOnly="{TemplateBinding IsReadonly}"
-                                Theme="{DynamicResource NoErrorTextBox}"
+                                Theme="{DynamicResource LooklessTextBox}"
                                 Watermark="{TemplateBinding Watermark}">
-                                <TextBox.Styles>
-                                    <Style Selector="TextBox#PART_TextBox:pointerover /template/ Border#PART_ContentPresenterBorder">
-                                        <!--  By default the TextBox has its own focused state, override this to disable it here  -->
-                                        <Setter Property="Background" Value="Transparent" />
-                                        <Setter Property="BorderBrush" Value="Transparent" />
-                                        <Setter Property="BorderThickness" Value="0" />
-                                    </Style>
-                                    <Style Selector="TextBox#PART_TextBox:focus /template/ Border#PART_ContentPresenterBorder">
-                                        <!--  By default the TextBox has its own focused state, override this to disable it here  -->
-                                        <Setter Property="Background" Value="Transparent" />
-                                        <Setter Property="BorderBrush" Value="Transparent" />
-                                        <Setter Property="BorderThickness" Value="0" />
-                                    </Style>
-                                    <Style Selector="TextBox#PART_TextBox:disabled">
-                                        <Style Selector="^ /template/ Border#PART_ContentPresenterBorder">
-                                            <!--  By default the TextBox has its own disabled state, override this to make the border background show through  -->
-                                            <Setter Property="Background" Value="Transparent" />
-                                            <Setter Property="BorderBrush" Value="Transparent" />
-                                        </Style>
-                                    </Style>
-                                </TextBox.Styles>
                             </TextBox>
                             <Button
                                 Name="ClearButton"
@@ -177,7 +153,7 @@
                                 Focusable="False"
                                 Theme="{DynamicResource InnerIconButton}" />
                             <Popup
-                                Name="{x:Static u:TimePicker.PART_Popup}"
+                                Name="{x:Static iri:PartNames.PART_Popup}"
                                 Grid.Column="0"
                                 IsLightDismissEnabled="True"
                                 IsOpen="{TemplateBinding IsDropdownOpen,

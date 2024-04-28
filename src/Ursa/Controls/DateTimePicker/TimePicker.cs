@@ -6,61 +6,28 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
 [TemplatePart(PART_TextBox, typeof(TextBox))]
-[TemplatePart(PART_Popup, typeof(Popup))]
+[TemplatePart(PartNames.PART_Popup, typeof(Popup))]
 [TemplatePart(PART_Presenter, typeof(TimePickerPresenter))]
 [TemplatePart(PART_Button, typeof(Button))]
-public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl, IPopupInnerContent
+public class TimePicker : TimePickerBase, IClearControl
 {
     public const string PART_TextBox = "PART_TextBox";
-    public const string PART_Popup = "PART_Popup";
     public const string PART_Presenter = "PART_Presenter";
     public const string PART_Button = "PART_Button";
 
-    public static readonly StyledProperty<string?> DisplayFormatProperty =
-        AvaloniaProperty.Register<TimePicker, string?>(
-            nameof(DisplayFormat), "HH:mm:ss");
-
-    public static readonly StyledProperty<string> PanelFormatProperty = AvaloniaProperty.Register<TimePicker, string>(
-        nameof(PanelFormat), "HH mm ss");
-
     public static readonly StyledProperty<TimeSpan?> SelectedTimeProperty =
         AvaloniaProperty.Register<TimePicker, TimeSpan?>(
-            nameof(SelectedTime));
-
-    public static readonly StyledProperty<bool> NeedConfirmationProperty = AvaloniaProperty.Register<TimePicker, bool>(
-        nameof(NeedConfirmation));
-
-    public static readonly StyledProperty<object?> InnerLeftContentProperty =
-        AvaloniaProperty.Register<TimePicker, object?>(
-            nameof(InnerLeftContent));
-
-    public static readonly StyledProperty<object?> InnerRightContentProperty =
-        AvaloniaProperty.Register<TimePicker, object?>(
-            nameof(InnerRightContent));
-
-
-    public static readonly StyledProperty<object?> PopupInnerTopContentProperty =
-        AvaloniaProperty.Register<TimePicker, object?>(
-            nameof(PopupInnerTopContent));
-
-    public static readonly StyledProperty<object?> PopupInnerBottomContentProperty =
-        AvaloniaProperty.Register<TimePicker, object?>(
-            nameof(PopupInnerBottomContent));
+            nameof(SelectedTime), defaultBindingMode: BindingMode.TwoWay);
 
     public static readonly StyledProperty<string?> WatermarkProperty = AvaloniaProperty.Register<TimePicker, string?>(
         nameof(Watermark));
-
-    public static readonly StyledProperty<bool> IsDropdownOpenProperty = AvaloniaProperty.Register<TimePicker, bool>(
-        nameof(IsDropdownOpen), defaultBindingMode: BindingMode.TwoWay);
-
-    public static readonly StyledProperty<bool> IsReadonlyProperty = AvaloniaProperty.Register<TimePicker, bool>(
-        nameof(IsReadonly));
 
     private Button? _button;
     private Popup? _popup;
@@ -74,34 +41,10 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
             picker.OnSelectionChanged(args));
     }
 
-    public bool IsReadonly
-    {
-        get => GetValue(IsReadonlyProperty);
-        set => SetValue(IsReadonlyProperty, value);
-    }
-
-    public bool IsDropdownOpen
-    {
-        get => GetValue(IsDropdownOpenProperty);
-        set => SetValue(IsDropdownOpenProperty, value);
-    }
-
     public string? Watermark
     {
         get => GetValue(WatermarkProperty);
         set => SetValue(WatermarkProperty, value);
-    }
-
-    public string? DisplayFormat
-    {
-        get => GetValue(DisplayFormatProperty);
-        set => SetValue(DisplayFormatProperty, value);
-    }
-
-    public string PanelFormat
-    {
-        get => GetValue(PanelFormatProperty);
-        set => SetValue(PanelFormatProperty, value);
     }
 
     public TimeSpan? SelectedTime
@@ -110,42 +53,11 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
         set => SetValue(SelectedTimeProperty, value);
     }
 
-    public bool NeedConfirmation
-    {
-        get => GetValue(NeedConfirmationProperty);
-        set => SetValue(NeedConfirmationProperty, value);
-    }
-
     public void Clear()
     {
         Focus(NavigationMethod.Pointer);
         _presenter?.SetValue(TimePickerPresenter.TimeProperty, null);
     }
-
-    public object? InnerLeftContent
-    {
-        get => GetValue(InnerLeftContentProperty);
-        set => SetValue(InnerLeftContentProperty, value);
-    }
-
-    public object? InnerRightContent
-    {
-        get => GetValue(InnerRightContentProperty);
-        set => SetValue(InnerRightContentProperty, value);
-    }
-
-    public object? PopupInnerTopContent
-    {
-        get => GetValue(PopupInnerTopContentProperty);
-        set => SetValue(PopupInnerTopContentProperty, value);
-    }
-
-    public object? PopupInnerBottomContent
-    {
-        get => GetValue(PopupInnerBottomContentProperty);
-        set => SetValue(PopupInnerBottomContentProperty, value);
-    }
-
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -157,7 +69,7 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
         Button.ClickEvent.RemoveHandler(OnButtonClick, _button);
 
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
-        _popup = e.NameScope.Find<Popup>(PART_Popup);
+        _popup = e.NameScope.Find<Popup>(PartNames.PART_Popup);
         _presenter = e.NameScope.Find<TimePickerPresenter>(PART_Presenter);
         _button = e.NameScope.Find<Button>(PART_Button);
 
@@ -182,7 +94,7 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
 
     private void OnTextBoxGetFocus(object? sender, GotFocusEventArgs e)
     {
-        IsDropdownOpen = true;
+        SetCurrentValue(IsDropdownOpenProperty, true);
     }
 
     protected override void OnKeyDown(KeyEventArgs e)
@@ -193,6 +105,7 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
             e.Handled = true;
             return;
         }
+
         if (e.Key == Key.Down)
         {
             SetCurrentValue(IsDropdownOpenProperty, true);
@@ -205,6 +118,7 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
             SetCurrentValue(IsDropdownOpenProperty, false);
             return;
         }
+
         base.OnKeyDown(e);
     }
 
@@ -246,7 +160,6 @@ public class TimePicker : TemplatedControl, IClearControl, IInnerContentControl,
     {
         _presenter?.Confirm();
         SetCurrentValue(IsDropdownOpenProperty, false);
-        TopLevel.GetTopLevel(this);
         Focus();
     }
 
