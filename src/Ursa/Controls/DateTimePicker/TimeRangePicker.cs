@@ -2,7 +2,11 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Input;
+using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Common;
+using Irihi.Avalonia.Shared.Contracts;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -12,7 +16,7 @@ namespace Ursa.Controls;
 [TemplatePart(PART_StartPresenter, typeof(TimePickerPresenter))]
 [TemplatePart(PART_EndPresenter, typeof(TimePickerPresenter))]
 [TemplatePart(PART_Button, typeof(Button))]
-public class TimeRangePicker: TemplatedControl
+public class TimeRangePicker : TimePickerBase, IClearControl
 {
     public const string PART_StartTextBox = "PART_StartTextBox";
     public const string PART_EndTextBox = "PART_EndTextBox";
@@ -20,8 +24,46 @@ public class TimeRangePicker: TemplatedControl
     public const string PART_EndPresenter = "PART_EndPresenter";
     public const string PART_Button = "PART_Button";
 
-    public static readonly StyledProperty<TimeSpan?> StartTimeProperty = AvaloniaProperty.Register<TimeRangePicker, TimeSpan?>(
-        nameof(StartTime));
+
+    public static readonly StyledProperty<TimeSpan?> StartTimeProperty =
+        AvaloniaProperty.Register<TimeRangePicker, TimeSpan?>(
+            nameof(StartTime));
+
+    public static readonly StyledProperty<TimeSpan?> EndTimeProperty =
+        AvaloniaProperty.Register<TimeRangePicker, TimeSpan?>(
+            nameof(EndTime));
+
+    public static readonly StyledProperty<string?> StartWatermarkProperty =
+        AvaloniaProperty.Register<TimeRangePicker, string?>(
+            nameof(StartWatermark));
+
+    public static readonly StyledProperty<string?> EndWatermarkProperty = AvaloniaProperty.Register<TimeRangePicker, string?>(
+        nameof(EndWatermark));
+
+    public string? EndWatermark
+    {
+        get => GetValue(EndWatermarkProperty);
+        set => SetValue(EndWatermarkProperty, value);
+    }
+
+    private Button? _button;
+    private TimePickerPresenter? _endPresenter;
+    private TextBox? _endTextBox;
+    private Popup? _popup;
+    private TimePickerPresenter? _startPresenter;
+
+    private TextBox? _startTextBox;
+
+
+    static TimeRangePicker()
+    {
+    }
+
+    public string? StartWatermark
+    {
+        get => GetValue(StartWatermarkProperty);
+        set => SetValue(StartWatermarkProperty, value);
+    }
 
     public TimeSpan? StartTime
     {
@@ -29,12 +71,70 @@ public class TimeRangePicker: TemplatedControl
         set => SetValue(StartTimeProperty, value);
     }
 
-    public static readonly StyledProperty<TimeSpan?> EndTimeProperty = AvaloniaProperty.Register<TimeRangePicker, TimeSpan?>(
-        nameof(EndTime));
-
     public TimeSpan? EndTime
     {
         get => GetValue(EndTimeProperty);
         set => SetValue(EndTimeProperty, value);
+    }
+
+    public void Clear()
+    {
+        Focus(NavigationMethod.Pointer);
+        _startPresenter?.SetValue(TimePickerPresenter.TimeProperty, null);
+        _endPresenter?.SetValue(TimePickerPresenter.TimeProperty, null);
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        
+        GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _startTextBox, _endTextBox);
+        
+        _popup = e.NameScope.Find<Popup>(PartNames.PART_Popup);
+        _startTextBox = e.NameScope.Find<TextBox>(PART_StartTextBox);
+        _endTextBox = e.NameScope.Find<TextBox>(PART_EndTextBox);
+        _startPresenter = e.NameScope.Find<TimePickerPresenter>(PART_StartPresenter);
+        _endPresenter = e.NameScope.Find<TimePickerPresenter>(PART_EndPresenter);
+        _button = e.NameScope.Find<Button>(PART_Button);
+        
+        GotFocusEvent.AddHandler(OnTextBoxGetFocus, _startTextBox, _endTextBox);
+    }
+
+    private void OnTextBoxGetFocus(object sender, GotFocusEventArgs e)
+    {
+        SetCurrentValue(IsDropdownOpenProperty, true);
+    }
+
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        if (e.Key == Key.Escape)
+        {
+            SetCurrentValue(IsDropdownOpenProperty, false);
+            e.Handled = true;
+            return;
+        }
+        if (e.Key == Key.Down)
+        {
+            SetCurrentValue(IsDropdownOpenProperty, true);
+            e.Handled = true;
+            return;
+        }
+        if (e.Key == Key.Tab)
+        {
+            if (e.Source == _endTextBox)
+            {
+                SetCurrentValue(IsDropdownOpenProperty, false);
+            }
+            return;
+        }
+        base.OnKeyDown(e);
+    }
+
+    public void Confirm()
+    {
+        _startPresenter?.Confirm();
+        _endPresenter?.Confirm();
+        SetCurrentValue(IsDropdownOpenProperty, false);
+        Focus();
     }
 }
