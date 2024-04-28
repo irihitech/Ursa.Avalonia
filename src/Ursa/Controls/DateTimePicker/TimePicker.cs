@@ -24,7 +24,7 @@ public class TimePicker : TimePickerBase, IClearControl
 
     public static readonly StyledProperty<TimeSpan?> SelectedTimeProperty =
         AvaloniaProperty.Register<TimePicker, TimeSpan?>(
-            nameof(SelectedTime));
+            nameof(SelectedTime), defaultBindingMode: BindingMode.TwoWay);
 
     public static readonly StyledProperty<string?> WatermarkProperty = AvaloniaProperty.Register<TimePicker, string?>(
         nameof(Watermark));

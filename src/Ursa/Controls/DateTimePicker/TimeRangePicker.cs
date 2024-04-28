@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Common;
@@ -27,11 +28,11 @@ public class TimeRangePicker : TimePickerBase, IClearControl
 
     public static readonly StyledProperty<TimeSpan?> StartTimeProperty =
         AvaloniaProperty.Register<TimeRangePicker, TimeSpan?>(
-            nameof(StartTime));
+            nameof(StartTime), defaultBindingMode: BindingMode.TwoWay);
 
     public static readonly StyledProperty<TimeSpan?> EndTimeProperty =
         AvaloniaProperty.Register<TimeRangePicker, TimeSpan?>(
-            nameof(EndTime));
+            nameof(EndTime), defaultBindingMode: BindingMode.TwoWay);
 
     public static readonly StyledProperty<string?> StartWatermarkProperty =
         AvaloniaProperty.Register<TimeRangePicker, string?>(
