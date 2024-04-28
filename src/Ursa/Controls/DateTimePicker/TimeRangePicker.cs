@@ -57,6 +57,25 @@ public class TimeRangePicker : TimePickerBase, IClearControl
 
     static TimeRangePicker()
     {
+        StartTimeProperty.Changed.AddClassHandler<TimeRangePicker, TimeSpan?>((picker, args) =>
+            picker.OnSelectionChanged(args, true));
+        EndTimeProperty.Changed.AddClassHandler<TimeRangePicker, TimeSpan?>((picker, args) =>
+            picker.OnSelectionChanged(args, false));
+    }
+
+    private void OnSelectionChanged(AvaloniaPropertyChangedEventArgs<TimeSpan?> args, bool start = true)
+    {
+        var textBox = start ? _startTextBox : _endTextBox;
+        if (textBox is null) return;
+        var time = args.NewValue.Value;
+        if (time is null)
+        {
+            textBox.Text = null;
+            return;
+        }
+        var date = new DateTime(1, 1, 1, time.Value.Hours, time.Value.Minutes, time.Value.Seconds);
+        var text = date.ToString(DisplayFormat);
+        textBox.Text = text;
     }
 
     public string? StartWatermark
@@ -89,6 +108,7 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         base.OnApplyTemplate(e);
         
         GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _startTextBox, _endTextBox);
+        PointerPressedEvent.RemoveHandler(OnTextBoxPointerPressed, _startTextBox, _endTextBox);
         
         _popup = e.NameScope.Find<Popup>(PartNames.PART_Popup);
         _startTextBox = e.NameScope.Find<TextBox>(PART_StartTextBox);
@@ -98,6 +118,12 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         _button = e.NameScope.Find<Button>(PART_Button);
         
         GotFocusEvent.AddHandler(OnTextBoxGetFocus, _startTextBox, _endTextBox);
+        PointerPressedEvent.AddHandler(OnTextBoxPointerPressed, RoutingStrategies.Tunnel, false, _startTextBox, _endTextBox);
+    }
+
+    private void OnTextBoxPointerPressed(object sender, PointerPressedEventArgs e)
+    {
+        SetCurrentValue(IsDropdownOpenProperty, true);
     }
 
     private void OnTextBoxGetFocus(object sender, GotFocusEventArgs e)

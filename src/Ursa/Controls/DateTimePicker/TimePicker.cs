@@ -94,13 +94,7 @@ public class TimePicker : TimePickerBase, IClearControl
 
     private void OnTextBoxGetFocus(object? sender, GotFocusEventArgs e)
     {
-        IsDropdownOpen = true;
-    }
-
-    protected override void OnLostFocus(RoutedEventArgs e)
-    {
-        base.OnLostFocus(e);
-        SetCurrentValue(IsDropdownOpenProperty, IsPointerOver);
+        SetCurrentValue(IsDropdownOpenProperty, true);
     }
 
     protected override void OnKeyDown(KeyEventArgs e)

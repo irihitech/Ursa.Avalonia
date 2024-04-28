@@ -38,8 +38,8 @@
                     <Rectangle
                         Name="{x:Static u:TimePickerPresenter.PART_FirstSeparator}"
                         Grid.Column="1"
-                        Width="1"
-                        Margin="0,4"
+                        Width="0.5"
+                        Margin="0,8"
                         VerticalAlignment="Stretch"
                         Fill="{DynamicResource DateTimePickerSeparatorBackground}" />
                     <ScrollViewer
@@ -59,8 +59,8 @@
                     <Rectangle
                         Name="{x:Static u:TimePickerPresenter.PART_SecondSeparator}"
                         Grid.Column="3"
-                        Width="1"
-                        Margin="0,4"
+                        Width="0.5"
+                        Margin="0,8"
                         VerticalAlignment="Stretch"
                         Fill="{DynamicResource DateTimePickerSeparatorBackground}" />
                     <ScrollViewer
@@ -80,8 +80,8 @@
                     <Rectangle
                         Name="{x:Static u:TimePickerPresenter.PART_ThirdSeparator}"
                         Grid.Column="5"
-                        Width="1"
-                        Margin="0,4"
+                        Width="0.5"
+                        Margin="0,8"
                         VerticalAlignment="Stretch"
                         Fill="{DynamicResource DateTimePickerSeparatorBackground}" />
                     <ScrollViewer
