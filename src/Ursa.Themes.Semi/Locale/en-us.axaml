@@ -15,4 +15,5 @@
     <x:String x:Key="STRING_THEME_TOGGLE_DARK">Dark</x:String>
     <x:String x:Key="STRING_THEME_TOGGLE_LIGHT">Light</x:String>
     <x:String x:Key="STRING_THEME_TOGGLE_SYSTEM">System</x:String>
+    <x:String x:Key="STRING_DATE_TIME_CONFIRM">Confirm</x:String>   
 </ResourceDictionary>

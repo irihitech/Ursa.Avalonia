@@ -1,0 +1,270 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Ursa.Converters;assembly=Ursa"
+    xmlns:iri="https://irihi.tech/shared"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <Design.PreviewWith>
+        <u:TimePickerPresenter Height="300" />
+    </Design.PreviewWith>
+    <ControlTheme x:Key="{x:Type u:TimePickerPresenter}" TargetType="u:TimePickerPresenter">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="MaxHeight" Value="300" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:TimePickerPresenter">
+                <Grid Name="{x:Static u:TimePickerPresenter.PART_PickerContainer}" ColumnDefinitions="*, Auto, *, Auto, *, Auto, *">
+                    <Grid.Styles>
+                        <Style Selector="u|UrsaDateTimeScrollPanel &gt; ListBoxItem">
+                            <Setter Property="Theme" Value="{DynamicResource DateTimePickerItem}" />
+                        </Style>
+                    </Grid.Styles>
+                    <ScrollViewer
+                        Name="{x:Static u:TimePickerPresenter.PART_HourScrollPanel}"
+                        Grid.Column="0"
+                        HorizontalAlignment="Left"
+                        HorizontalContentAlignment="Left"
+                        HorizontalScrollBarVisibility="Disabled"
+                        VerticalScrollBarVisibility="Hidden">
+                        <u:UrsaDateTimeScrollPanel
+                            Name="{x:Static u:TimePickerPresenter.PART_HourSelector}"
+                            MinWidth="64"
+                            HorizontalAlignment="Left"
+                            ItemHeight="32"
+                            PanelType="Hour"
+                            ShouldLoop="True" />
+                    </ScrollViewer>
+                    <Rectangle
+                        Name="{x:Static u:TimePickerPresenter.PART_FirstSeparator}"
+                        Grid.Column="1"
+                        Width="1"
+                        Margin="0,4"
+                        VerticalAlignment="Stretch"
+                        Fill="{DynamicResource DateTimePickerSeparatorBackground}" />
+                    <ScrollViewer
+                        Name="{x:Static u:TimePickerPresenter.PART_MinuteScrollPanel}"
+                        Grid.Column="2"
+                        HorizontalAlignment="Left"
+                        HorizontalContentAlignment="Left"
+                        HorizontalScrollBarVisibility="Disabled"
+                        VerticalScrollBarVisibility="Hidden">
+                        <u:UrsaDateTimeScrollPanel
+                            Name="{x:Static u:TimePickerPresenter.PART_MinuteSelector}"
+                            MinWidth="64"
+                            ItemHeight="32"
+                            PanelType="Minute"
+                            ShouldLoop="True" />
+                    </ScrollViewer>
+                    <Rectangle
+                        Name="{x:Static u:TimePickerPresenter.PART_SecondSeparator}"
+                        Grid.Column="3"
+                        Width="1"
+                        Margin="0,4"
+                        VerticalAlignment="Stretch"
+                        Fill="{DynamicResource DateTimePickerSeparatorBackground}" />
+                    <ScrollViewer
+                        Name="{x:Static u:TimePickerPresenter.PART_SecondScrollPanel}"
+                        Grid.Column="4"
+                        HorizontalAlignment="Left"
+                        HorizontalContentAlignment="Left"
+                        HorizontalScrollBarVisibility="Disabled"
+                        VerticalScrollBarVisibility="Hidden">
+                        <u:UrsaDateTimeScrollPanel
+                            Name="{x:Static u:TimePickerPresenter.PART_SecondSelector}"
+                            MinWidth="64"
+                            ItemHeight="32"
+                            PanelType="Minute"
+                            ShouldLoop="True" />
+                    </ScrollViewer>
+                    <Rectangle
+                        Name="{x:Static u:TimePickerPresenter.PART_ThirdSeparator}"
+                        Grid.Column="5"
+                        Width="1"
+                        Margin="0,4"
+                        VerticalAlignment="Stretch"
+                        Fill="{DynamicResource DateTimePickerSeparatorBackground}" />
+                    <ScrollViewer
+                        Name="{x:Static u:TimePickerPresenter.PART_AmPmScrollPanel}"
+                        Grid.Column="6"
+                        HorizontalAlignment="Left"
+                        HorizontalContentAlignment="Left"
+                        HorizontalScrollBarVisibility="Disabled"
+                        VerticalScrollBarVisibility="Hidden">
+                        <u:UrsaDateTimeScrollPanel
+                            Name="{x:Static u:TimePickerPresenter.PART_AmPmSelector}"
+                            MinWidth="64"
+                            ItemHeight="32"
+                            PanelType="TimePeriod" />
+                    </ScrollViewer>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:TimePicker}" TargetType="u:TimePicker">
+        <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
+        <Setter Property="MinHeight" Value="32"/>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:TimePicker">
+                <DataValidationErrors>
+                    <Panel
+                        x:Name="LayoutRoot"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <Border
+                            x:Name="Background"
+                            HorizontalAlignment="Stretch"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}" />
+                        <Grid ColumnDefinitions="*, Auto">
+                            <TextBox
+                                Name="{x:Static u:TimePicker.PART_TextBox}"
+                                Grid.Column="0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                Foreground="{TemplateBinding Foreground}"
+                                InnerLeftContent="{TemplateBinding InnerLeftContent}"
+                                InnerRightContent="{TemplateBinding InnerRightContent}"
+                                IsReadOnly="{TemplateBinding IsReadonly}"
+                                Theme="{DynamicResource NoErrorTextBox}"
+                                Watermark="{TemplateBinding Watermark}">
+                                <TextBox.Styles>
+                                    <Style Selector="TextBox#PART_TextBox:pointerover /template/ Border#PART_ContentPresenterBorder">
+                                        <!--  By default the TextBox has its own focused state, override this to disable it here  -->
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="BorderBrush" Value="Transparent" />
+                                        <Setter Property="BorderThickness" Value="0" />
+                                    </Style>
+                                    <Style Selector="TextBox#PART_TextBox:focus /template/ Border#PART_ContentPresenterBorder">
+                                        <!--  By default the TextBox has its own focused state, override this to disable it here  -->
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="BorderBrush" Value="Transparent" />
+                                        <Setter Property="BorderThickness" Value="0" />
+                                    </Style>
+                                    <Style Selector="TextBox#PART_TextBox:disabled">
+                                        <Style Selector="^ /template/ Border#PART_ContentPresenterBorder">
+                                            <!--  By default the TextBox has its own disabled state, override this to make the border background show through  -->
+                                            <Setter Property="Background" Value="Transparent" />
+                                            <Setter Property="BorderBrush" Value="Transparent" />
+                                        </Style>
+                                    </Style>
+                                </TextBox.Styles>
+                            </TextBox>
+                            <Button
+                                Name="ClearButton"
+                                Grid.Column="1"
+                                Padding="0,0,8,0"
+                                Command="{Binding $parent[iri:IClearControl].Clear}"
+                                Content="{DynamicResource IconButtonClearData}"
+                                Focusable="False"
+                                IsVisible="False"
+                                Theme="{DynamicResource InnerIconButton}" />
+                            <Button
+                                Name="{x:Static u:TimePicker.PART_Button}"
+                                Grid.Column="1"
+                                Padding="0,0,8,0"
+                                Content="{DynamicResource TimePickerIconGlyph}"
+                                Focusable="False"
+                                Theme="{DynamicResource InnerIconButton}" />
+                            <Popup
+                                Name="{x:Static u:TimePicker.PART_Popup}"
+                                Grid.Column="0"
+                                IsLightDismissEnabled="True"
+                                IsOpen="{TemplateBinding IsDropdownOpen,
+                                                         Mode=TwoWay}"
+                                Placement="BottomEdgeAlignedLeft"
+                                PlacementTarget="Background">
+                                <Border
+                                    Margin="0,4"
+                                    HorizontalAlignment="Stretch"
+                                    Background="{DynamicResource ComboBoxPopupBackground}"
+                                    BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"
+                                    BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
+                                    BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
+                                    ClipToBounds="True"
+                                    CornerRadius="6">
+                                    <DockPanel>
+                                        <StackPanel DockPanel.Dock="Bottom" IsVisible="{TemplateBinding NeedConfirmation}">
+                                            <Button
+                                                Margin="8"
+                                                HorizontalAlignment="Right"
+                                                Command="{Binding $parent[u:TimePicker].Confirm}"
+                                                Content="{DynamicResource STRING_DATE_TIME_CONFIRM}" />
+                                        </StackPanel>
+                                        <ContentPresenter
+                                            Name="PART_PopupHeader"
+                                            Margin="8,8,8,0"
+                                            Content="{TemplateBinding PopupInnerTopContent}"
+                                            DockPanel.Dock="Top"
+                                            IsVisible="{TemplateBinding PopupInnerTopContent,
+                                                                        Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                        <ContentPresenter
+                                            Name="PART_PopupFooter"
+                                            Margin="8,0,8,8"
+                                            Content="{TemplateBinding PopupInnerBottomContent}"
+                                            DockPanel.Dock="Bottom"
+                                            IsVisible="{TemplateBinding PopupInnerBottomContent,
+                                                                        Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                        <u:TimePickerPresenter
+                                            Name="{x:Static u:TimePicker.PART_Presenter}"
+                                            NeedsConfirmation="{TemplateBinding NeedConfirmation}"
+                                            PanelFormat="{TemplateBinding PanelFormat}"
+                                            Time="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedTime, Mode=OneWayToSource}" />
+                                    </DockPanel>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </Panel>
+                </DataValidationErrors>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^.clearButton, ^.ClearButton">
+            <Style Selector="^:pointerover /template/ Button#ClearButton">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNotNull}}" />
+            </Style>
+            <Style Selector="^:pointerover /template/ Button#PART_Button">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNull}}"/>
+            </Style>
+        </Style>
+
+        <Style Selector="^:pointerover">
+            <Style Selector="^ /template/ Border#Background">
+                <Setter Property="Background" Value="{DynamicResource CalendarDatePickerPointeroverBackground}" />
+            </Style>
+        </Style>
+
+        <!--  Disabled State  -->
+        <Style Selector="^:disabled">
+            <Style Selector="^ /template/ Border#Background">
+                <Setter Property="Background" Value="{DynamicResource CalendarDatePickerDisabledBackground}" />
+            </Style>
+
+            <Style Selector="^ /template/ Button#PART_Button">
+                <Setter Property="Foreground" Value="{DynamicResource CalendarDatePickerDisabledIconForeground}" />
+            </Style>
+            <Style Selector="^ /template/ TextBox#PART_TextBox">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </Style>
+        </Style>
+
+        <!--  Focused State  -->
+        <Style Selector="^:focus /template/ Border#Background">
+            <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
+        </Style>
+        <Style Selector="^:focus-within /template/ Border#Background">
+            <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>
