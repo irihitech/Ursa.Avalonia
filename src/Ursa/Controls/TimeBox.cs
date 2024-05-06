@@ -332,6 +332,8 @@ public class TimeBox : TemplatedControl
                 MoveCaret(_currentActiveSectionIndex.Value);
             }
         }
+
+        e.Handled = true;
     }
 
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
