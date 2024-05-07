@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using Avalonia.Collections;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 
@@ -12,8 +13,10 @@ public class Calendar: TemplatedControl
         get => GetValue(SelectedDateProperty);
         set => SetValue(SelectedDateProperty, value);
     }
-    
-    public static readonly StyledProperty<DayOfWeek> FirstDayOfWeekProperty = AvaloniaProperty.Register<Calendar, DayOfWeek>(nameof(FirstDayOfWeek), DayOfWeek.Sunday);
+
+    public static readonly StyledProperty<DayOfWeek> FirstDayOfWeekProperty =
+        AvaloniaProperty.Register<Calendar, DayOfWeek>(nameof(FirstDayOfWeek),
+            defaultValue: DateTimeHelper.GetCurrentDateTimeFormatInfo().FirstDayOfWeek);
     public DayOfWeek FirstDayOfWeek
     {
         get => GetValue(FirstDayOfWeekProperty);
@@ -25,5 +28,24 @@ public class Calendar: TemplatedControl
     {
         get => GetValue(IsTodayHighlightedProperty);
         set => SetValue(IsTodayHighlightedProperty, value);
+    }
+
+    public static readonly StyledProperty<AvaloniaList<DateRange>?> DisabledDatesProperty =
+        AvaloniaProperty.Register<Calendar, AvaloniaList<DateRange>?>(
+            nameof(DisabledDates));
+
+    public AvaloniaList<DateRange>? DisabledDates
+    {
+        get => GetValue(DisabledDatesProperty);
+        set => SetValue(DisabledDatesProperty, value);
+    }
+
+    public static readonly StyledProperty<IDateSelector?> DisabledDateRuleProperty = AvaloniaProperty.Register<Calendar, IDateSelector?>(
+        nameof(DisabledDateRule));
+
+    public IDateSelector? DisabledDateRule
+    {
+        get => GetValue(DisabledDateRuleProperty);
+        set => SetValue(DisabledDateRuleProperty, value);
     }
 }
