@@ -31,6 +31,7 @@ public class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyBreadcrumb => new BreadcrumbDemoViewModel(),
             MenuKeys.MenuKeyClassInput => new ClassInputDemoViewModel(),
             MenuKeys.MenuKeyClock => new ClockDemoViewModel(),
+            MenuKeys.MenuKeyDatePicker => new DatePickerDemoViewModel(),
             MenuKeys.MenuKeyDialog => new DialogDemoViewModel(),
             MenuKeys.MenuKeyDivider => new DividerDemoViewModel(),
             MenuKeys.MenuKeyDisableContainer => new DisableContainerDemoViewModel(),

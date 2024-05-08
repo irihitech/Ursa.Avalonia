@@ -5,6 +5,7 @@
         <ResourceInclude Source="Banner.axaml" />
         <ResourceInclude Source="ButtonGroup.axaml" />
         <ResourceInclude Source="Breadcrumb.axaml" />
+        <ResourceInclude Source="Calendar.axaml" />
         <ResourceInclude Source="ControlClassesInput.axaml" />
         <ResourceInclude Source="Clock.axaml" />
         <ResourceInclude Source="Dialog.axaml" />

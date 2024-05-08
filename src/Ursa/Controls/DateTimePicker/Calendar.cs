@@ -30,22 +30,22 @@ public class Calendar: TemplatedControl
         set => SetValue(IsTodayHighlightedProperty, value);
     }
 
-    public static readonly StyledProperty<AvaloniaList<DateRange>?> DisabledDatesProperty =
+    public static readonly StyledProperty<AvaloniaList<DateRange>?> BlackoutDatesProperty =
         AvaloniaProperty.Register<Calendar, AvaloniaList<DateRange>?>(
-            nameof(DisabledDates));
+            nameof(BlackoutDates));
 
-    public AvaloniaList<DateRange>? DisabledDates
+    public AvaloniaList<DateRange>? BlackoutDates
     {
-        get => GetValue(DisabledDatesProperty);
-        set => SetValue(DisabledDatesProperty, value);
+        get => GetValue(BlackoutDatesProperty);
+        set => SetValue(BlackoutDatesProperty, value);
     }
 
-    public static readonly StyledProperty<IDateSelector?> DisabledDateRuleProperty = AvaloniaProperty.Register<Calendar, IDateSelector?>(
-        nameof(DisabledDateRule));
+    public static readonly StyledProperty<IDateSelector?> BlackoutDateRuleProperty = AvaloniaProperty.Register<Calendar, IDateSelector?>(
+        nameof(BlackoutDateRule));
 
-    public IDateSelector? DisabledDateRule
+    public IDateSelector? BlackoutDateRule
     {
-        get => GetValue(DisabledDateRuleProperty);
-        set => SetValue(DisabledDateRuleProperty, value);
+        get => GetValue(BlackoutDateRuleProperty);
+        set => SetValue(BlackoutDateRuleProperty, value);
     }
 }

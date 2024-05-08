@@ -18,6 +18,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Button Group", Key = MenuKeys.MenuKeyButtonGroup },
             new() { MenuHeader = "Class Input", Key = MenuKeys.MenuKeyClassInput },
             new() { MenuHeader = "Clock", Key = MenuKeys.MenuKeyClock, Status = "New" },
+            new() { MenuHeader = "Date Picker", Key = MenuKeys.MenuKeyDatePicker },
             new() { MenuHeader = "Dialog", Key = MenuKeys.MenuKeyDialog },
             new() { MenuHeader = "Disable Container", Key = MenuKeys.MenuKeyDisableContainer },
             new() { MenuHeader = "Divider", Key = MenuKeys.MenuKeyDivider },
@@ -63,6 +64,7 @@ public static class MenuKeys
     public const string MenuKeyBreadcrumb= "Breadcrumb";
     public const string MenuKeyClassInput = "Class Input";
     public const string MenuKeyClock = "Clock";
+    public const string MenuKeyDatePicker = "DatePicker";
     public const string MenuKeyDialog = "Dialog";
     public const string MenuKeyDivider = "Divider";
     public const string MenuKeyDisableContainer = "DisableContainer";

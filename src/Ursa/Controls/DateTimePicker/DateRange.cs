@@ -34,3 +34,12 @@ public sealed record DateRange
         return date >= Start && date <= End;
     }
 }
+
+internal static class DateRangeExtension
+{
+    public static bool Contains(this IEnumerable<DateRange>? ranges, DateTime? date)
+    {
+        if (date is null || ranges is null) return false;
+        return ranges.Any(range => range.Contains(date));
+    }
+}

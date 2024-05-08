@@ -1,0 +1,134 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <Design.PreviewWith>
+        <StackPanel Margin="20" Spacing="5">
+            <u:CalendarDayButton />
+            <u:CalendarDayButton IsSelected="True" />
+            <u:CalendarDayButton IsBlackout="True" />
+            <StackPanel Orientation="Horizontal">
+                <u:CalendarDayButton IsStartDate="True" />
+                <u:CalendarDayButton IsInRange="True" />
+                <u:CalendarDayButton IsInRange="True" />
+                <u:CalendarDayButton IsInRange="True" />
+                <u:CalendarDayButton IsEndDate="True" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <u:CalendarDayButton IsPreviewStartDate="True" />
+                <u:CalendarDayButton IsInRange="True" />
+                <u:CalendarDayButton IsInRange="True" />
+                <u:CalendarDayButton IsInRange="True" />
+                <u:CalendarDayButton IsPreviewEndDate="True" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <u:CalendarDayButton IsInRange="True" />
+                <u:CalendarDayButton IsInRange="True" IsStartDate="True" />
+                <u:CalendarDayButton IsInRange="True" />
+                <u:CalendarDayButton IsEndDate="True" IsInRange="True" />
+                <u:CalendarDayButton IsInRange="True" />
+            </StackPanel>
+        </StackPanel>
+    </Design.PreviewWith>
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:CalendarDayButton}" TargetType="u:CalendarDayButton">
+        <Setter Property="Width" Value="32" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Margin" Value="0 2"></Setter>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="3"/>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:CalendarDayButton">
+                <Panel>
+                    <Border
+                        Name="PART_Background"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="{TemplateBinding Foreground}"
+                            Content="1" />
+                    </Border>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:in-range">
+            <Setter Property="Background" Value="{DynamicResource SemiBlue1}" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        
+        <Style Selector="^:pointerover">
+            <Setter Property="Background" Value="{DynamicResource SemiGrey1}"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        
+        <Style Selector="^:selected">
+            <Setter Property="Background" Value="{DynamicResource SemiBlue5}" />
+            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Foreground" Value="White"/>
+            <Style Selector="^:pointerover">
+                <Setter Property="Background" Value="{DynamicResource SemiBlue6}"/>
+            </Style>
+        </Style>
+
+
+        <Style Selector="^:start-date">
+            <Setter Property="CornerRadius" Value="3 0 0 3" />
+            <Setter Property="Background" Value="{DynamicResource SemiBlue5}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiBlue5}" />
+            <Setter Property="Foreground" Value="White" />
+            <Style Selector="^:pointerover">
+                <Setter Property="Background" Value="{DynamicResource SemiBlue6}"/>
+            </Style>
+        </Style>
+        <Style Selector="^:start-date:in-range">
+            <Setter Property="CornerRadius" Value="3 0 0 3" />
+            <Setter Property="Background" Value="{DynamicResource SemiBlue5}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiGrey5}" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+
+        <Style Selector="^:end-date">
+            <Setter Property="CornerRadius" Value="0 3 3 0" />
+            <Setter Property="Background" Value="{DynamicResource SemiBlue5}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiBlue5}" />
+            <Setter Property="Foreground" Value="White" />
+            <Style Selector="^:pointerover">
+                <Setter Property="Background" Value="{DynamicResource SemiBlue6}"/>
+            </Style>
+        </Style>
+
+        <Style Selector="^:end-date:in-range">
+            <Setter Property="CornerRadius" Value="0 3 3 0" />
+            <Setter Property="Background" Value="{DynamicResource SemiBlue5}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiGrey5}" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        
+        <Style Selector="^:preview-start-date">
+            <Setter Property="CornerRadius" Value="3 0 0 3" />
+            <Setter Property="Background" Value="{DynamicResource SemiBlue2}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiBlue2}" />
+        </Style>
+        
+        <Style Selector="^:preview-end-date">
+            <Setter Property="CornerRadius" Value="0 3 3 0" />
+            <Setter Property="Background" Value="{DynamicResource SemiBlue2}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiBlue2}" />
+        </Style>
+        
+        <Style Selector="^:blackout">
+            <Setter Property="Foreground" Value="{DynamicResource SemiGrey3}"/>
+            <Setter Property="Cursor" Value="No"/>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>
