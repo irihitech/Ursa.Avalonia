@@ -99,6 +99,9 @@ public class CalendarDayButton: ContentControl
     }
     
     private bool _isBlackout;
+    /// <summary>
+    /// Notice: IsBlackout is not equivalent to not IsEnabled. Blackout dates still react to pointerover actions. 
+    /// </summary>
     public bool IsBlackout
     {
         get => _isBlackout;
@@ -117,7 +120,6 @@ public class CalendarDayButton: ContentControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        PseudoClasses.Set(PseudoClassName.PC_Disabled, IsEnabled);
         PseudoClasses.Set(PC_Today, IsToday);
         PseudoClasses.Set(PC_StartDate, IsStartDate);
         PseudoClasses.Set(PC_EndDate, IsEndDate);

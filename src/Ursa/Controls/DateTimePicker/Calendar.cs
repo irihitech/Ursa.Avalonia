@@ -1,12 +1,32 @@
 ﻿using Avalonia;
 using Avalonia.Collections;
+using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 
 namespace Ursa.Controls;
 
+[TemplatePart(PART_NextYearButton, typeof(Button))]
+[TemplatePart(PART_PreviousYearButton, typeof(Button))]
+[TemplatePart(PART_NextButton, typeof(Button))]
+[TemplatePart(PART_PreviousButton, typeof(Button))]
+[TemplatePart(PART_HeaderButton, typeof(Button))]
+[TemplatePart(PART_BackButton, typeof(Button))]
+[TemplatePart(PART_MonthView, typeof(Panel))]
+[TemplatePart(PART_YearView, typeof(Panel))]
 public class Calendar: TemplatedControl
 {
+    public const string PART_NextYearButton = "PART_NextYearButton";
+    public const string PART_PreviousYearButton = "PART_PreviousYearButton";
+    public const string PART_NextButton = "PART_NextButton";
+    public const string PART_PreviousButton = "PART_PreviousButton";
+    public const string PART_HeaderButton = "PART_HeaderButton";
+    public const string PART_BackButton = "PART_BackButton";
+    public const string PART_MonthView = "PART_MonthView";
+    public const string PART_YearView = "PART_YearView";
+    
+    
     public static readonly StyledProperty<DateTime> SelectedDateProperty = AvaloniaProperty.Register<Calendar, DateTime>(nameof(SelectedDate), DateTime.Now);
     public DateTime SelectedDate
     {

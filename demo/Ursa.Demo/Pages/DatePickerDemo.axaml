@@ -5,7 +5,7 @@
              xmlns:u="https://irihi.tech/ursa"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.DatePickerDemo">
-    <StackPanel Margin="20" Spacing="5">
+    <StackPanel Margin="20" HorizontalAlignment="Left">
         <u:CalendarDayButton />
         <u:CalendarDayButton IsSelected="True" />
         <u:CalendarDayButton IsBlackout="True" />
@@ -30,5 +30,6 @@
             <u:CalendarDayButton IsEndDate="True" IsInRange="True" />
             <u:CalendarDayButton IsInRange="True" />
         </StackPanel>
+        <u:Calendar/>
     </StackPanel>
 </UserControl>

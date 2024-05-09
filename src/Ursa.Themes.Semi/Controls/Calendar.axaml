@@ -28,17 +28,19 @@
                 <u:CalendarDayButton IsEndDate="True" IsInRange="True" />
                 <u:CalendarDayButton IsInRange="True" />
             </StackPanel>
+
+            <u:Calendar />
         </StackPanel>
     </Design.PreviewWith>
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:CalendarDayButton}" TargetType="u:CalendarDayButton">
         <Setter Property="Width" Value="32" />
         <Setter Property="Height" Value="32" />
-        <Setter Property="Margin" Value="0 2"></Setter>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="CornerRadius" Value="3"/>
+        <Setter Property="Margin" Value="0 2" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="3" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:CalendarDayButton">
                 <Panel>
@@ -52,8 +54,8 @@
                             Name="PART_ContentPresenter"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Foreground="{TemplateBinding Foreground}"
-                            Content="1" />
+                            Content="{TemplateBinding Content}"
+                            Foreground="{TemplateBinding Foreground}" />
                     </Border>
                 </Panel>
             </ControlTemplate>
@@ -64,19 +66,19 @@
             <Setter Property="CornerRadius" Value="0" />
             <Setter Property="BorderThickness" Value="0" />
         </Style>
-        
+
         <Style Selector="^:pointerover">
-            <Setter Property="Background" Value="{DynamicResource SemiGrey1}"/>
-            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background" Value="{DynamicResource SemiGrey1}" />
+            <Setter Property="Cursor" Value="Hand" />
         </Style>
-        
+
         <Style Selector="^:selected">
             <Setter Property="Background" Value="{DynamicResource SemiBlue5}" />
             <Setter Property="CornerRadius" Value="3" />
             <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="White" />
             <Style Selector="^:pointerover">
-                <Setter Property="Background" Value="{DynamicResource SemiBlue6}"/>
+                <Setter Property="Background" Value="{DynamicResource SemiBlue6}" />
             </Style>
         </Style>
 
@@ -87,7 +89,7 @@
             <Setter Property="BorderBrush" Value="{DynamicResource SemiBlue5}" />
             <Setter Property="Foreground" Value="White" />
             <Style Selector="^:pointerover">
-                <Setter Property="Background" Value="{DynamicResource SemiBlue6}"/>
+                <Setter Property="Background" Value="{DynamicResource SemiBlue6}" />
             </Style>
         </Style>
         <Style Selector="^:start-date:in-range">
@@ -103,7 +105,7 @@
             <Setter Property="BorderBrush" Value="{DynamicResource SemiBlue5}" />
             <Setter Property="Foreground" Value="White" />
             <Style Selector="^:pointerover">
-                <Setter Property="Background" Value="{DynamicResource SemiBlue6}"/>
+                <Setter Property="Background" Value="{DynamicResource SemiBlue6}" />
             </Style>
         </Style>
 
@@ -113,22 +115,148 @@
             <Setter Property="BorderBrush" Value="{DynamicResource SemiGrey5}" />
             <Setter Property="BorderThickness" Value="1" />
         </Style>
-        
+
         <Style Selector="^:preview-start-date">
             <Setter Property="CornerRadius" Value="3 0 0 3" />
             <Setter Property="Background" Value="{DynamicResource SemiBlue2}" />
             <Setter Property="BorderBrush" Value="{DynamicResource SemiBlue2}" />
         </Style>
-        
+
         <Style Selector="^:preview-end-date">
             <Setter Property="CornerRadius" Value="0 3 3 0" />
             <Setter Property="Background" Value="{DynamicResource SemiBlue2}" />
             <Setter Property="BorderBrush" Value="{DynamicResource SemiBlue2}" />
         </Style>
-        
+
         <Style Selector="^:blackout">
-            <Setter Property="Foreground" Value="{DynamicResource SemiGrey3}"/>
-            <Setter Property="Cursor" Value="No"/>
+            <Setter Property="Foreground" Value="{DynamicResource SemiGrey3}" />
+            <Setter Property="Cursor" Value="No" />
         </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:Calendar}" TargetType="u:Calendar">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:Calendar">
+                <Panel>
+                    <Grid Name="{x:Static u:Calendar.PART_MonthView}" RowDefinitions="Auto, *">
+                        <Grid Grid.Row="0" ColumnDefinitions="Auto, Auto,*, Auto, Auto">
+                            <Button
+                                Name="{x:Static u:Calendar.PART_PreviousYearButton}"
+                                Grid.Column="0"
+                                HorizontalContentAlignment="Left"
+                                Foreground="{TemplateBinding Foreground}"
+                                Theme="{DynamicResource BorderlessButton}">
+                                <PathIcon
+                                    Width="12"
+                                    Height="12"
+                                    Data="{DynamicResource CalendarItemPreviousIconGlyph}"
+                                    Foreground="{DynamicResource CalendarItemIconForeground}" />
+                            </Button>
+
+                            <Button
+                                Name="{x:Static u:Calendar.PART_PreviousButton}"
+                                Grid.Column="1"
+                                HorizontalContentAlignment="Left"
+                                Foreground="{TemplateBinding Foreground}"
+                                Theme="{DynamicResource BorderlessButton}">
+                                <PathIcon
+                                    Width="12"
+                                    Height="12"
+                                    Data="{DynamicResource CalendarItemPreviousIconGlyph}"
+                                    Foreground="{DynamicResource CalendarItemIconForeground}" />
+                            </Button>
+
+                            <Button
+                                Name="PART_HeaderButton"
+                                Grid.Column="2"
+                                HorizontalContentAlignment="Center"
+                                Content="Apr 2024"
+                                Foreground="{TemplateBinding Foreground}"
+                                Theme="{DynamicResource BorderlessButton}" />
+
+                            <Button
+                                Name="{x:Static u:Calendar.PART_NextButton}"
+                                Grid.Column="3"
+                                HorizontalContentAlignment="Left"
+                                Foreground="{TemplateBinding Foreground}"
+                                Theme="{DynamicResource BorderlessButton}">
+                                <PathIcon
+                                    Width="12"
+                                    Height="12"
+                                    Data="{DynamicResource CalendarItemNextIconGlyph}"
+                                    Foreground="{DynamicResource CalendarItemIconForeground}" />
+                            </Button>
+                            <Button
+                                Name="{x:Static u:Calendar.PART_NextYearButton}"
+                                Grid.Column="4"
+                                HorizontalContentAlignment="Left"
+                                Foreground="{TemplateBinding Foreground}"
+                                Theme="{DynamicResource BorderlessButton}">
+                                <PathIcon
+                                    Width="12"
+                                    Height="12"
+                                    Data="{DynamicResource CalendarItemNextIconGlyph}"
+                                    Foreground="{DynamicResource CalendarItemIconForeground}" />
+                            </Button>
+                        </Grid>
+                        <Grid Grid.Row="1" ColumnDefinitions="*, *, *, *, *, *, *">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" MinHeight="24" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                Text="M" />
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                Text="T" />
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                Text="W" />
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="3"
+                                HorizontalAlignment="Center"
+                                Text="T" />
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="4"
+                                HorizontalAlignment="Center"
+                                Text="F" />
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="5"
+                                HorizontalAlignment="Center"
+                                Text="S" />
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="6"
+                                HorizontalAlignment="Center"
+                                Text="S" />
+                            <Rectangle
+                                Grid.Column="0"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="7"
+                                Height="1"
+                                HorizontalAlignment="Stretch"
+                                Fill="{DynamicResource SemiGrey2}" />
+                            
+                        </Grid>
+                    </Grid>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
     </ControlTheme>
 </ResourceDictionary>
