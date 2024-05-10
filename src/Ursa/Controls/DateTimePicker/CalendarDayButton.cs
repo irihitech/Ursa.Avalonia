@@ -10,7 +10,7 @@ using Irihi.Avalonia.Shared.Helpers;
 namespace Ursa.Controls;
 
 [PseudoClasses(PseudoClassName.PC_Pressed, PseudoClassName.PC_Selected, 
-    PC_StartDate, PC_EndDate, PC_PreviewStartDate, PC_PreviewEndDate, PC_InRange, PC_Today, PC_Blackout)]
+    PC_StartDate, PC_EndDate, PC_PreviewStartDate, PC_PreviewEndDate, PC_InRange, PC_Today, PC_Blackout, PC_NotCurrentMonth)]
 public class CalendarDayButton: ContentControl
 {
     public const string PC_StartDate = ":start-date";
@@ -19,7 +19,10 @@ public class CalendarDayButton: ContentControl
     public const string PC_PreviewEndDate = ":preview-end-date";
     public const string PC_InRange = ":in-range";
     public const string PC_Today = ":today";
+    public const string PC_NotCurrentMonth = ":not-current-month";
     public const string PC_Blackout = ":blackout";
+    
+    internal Calendar? Owner { get; set; }
 
     private bool _isToday;
     public bool IsToday
@@ -111,6 +114,20 @@ public class CalendarDayButton: ContentControl
             PseudoClasses.Set(PC_Blackout, value);
         }
     }
+    
+    private bool _isNotCurrentMonth;
+    /// <summary>
+    /// Notice: IsNotCurrentMonth is not equivalent to not IsEnabled. Not current month dates still react to pointerover and press action. 
+    /// </summary>
+    public bool IsNotCurrentMonth
+    {
+        get => _isNotCurrentMonth;
+        set
+        {
+            _isNotCurrentMonth = value;
+            PseudoClasses.Set(PC_NotCurrentMonth, value);
+        }
+    }
 
     static CalendarDayButton()
     {
@@ -127,6 +144,5 @@ public class CalendarDayButton: ContentControl
         PseudoClasses.Set(PC_PreviewEndDate, IsPreviewEndDate);
         PseudoClasses.Set(PC_InRange, IsInRange);
         PseudoClasses.Set(PseudoClassName.PC_Selected, IsSelected);
-        
     }
 }

@@ -4,38 +4,14 @@
     xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
         <StackPanel Margin="20" Spacing="5">
-            <u:CalendarDayButton />
-            <u:CalendarDayButton IsSelected="True" />
-            <u:CalendarDayButton IsBlackout="True" />
-            <StackPanel Orientation="Horizontal">
-                <u:CalendarDayButton IsStartDate="True" />
-                <u:CalendarDayButton IsInRange="True" />
-                <u:CalendarDayButton IsInRange="True" />
-                <u:CalendarDayButton IsInRange="True" />
-                <u:CalendarDayButton IsEndDate="True" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <u:CalendarDayButton IsPreviewStartDate="True" />
-                <u:CalendarDayButton IsInRange="True" />
-                <u:CalendarDayButton IsInRange="True" />
-                <u:CalendarDayButton IsInRange="True" />
-                <u:CalendarDayButton IsPreviewEndDate="True" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <u:CalendarDayButton IsInRange="True" />
-                <u:CalendarDayButton IsInRange="True" IsStartDate="True" />
-                <u:CalendarDayButton IsInRange="True" />
-                <u:CalendarDayButton IsEndDate="True" IsInRange="True" />
-                <u:CalendarDayButton IsInRange="True" />
-            </StackPanel>
-
+            <u:CalendarMonthView/>
             <u:Calendar />
         </StackPanel>
     </Design.PreviewWith>
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:CalendarDayButton}" TargetType="u:CalendarDayButton">
-        <Setter Property="Width" Value="32" />
-        <Setter Property="Height" Value="32" />
+        <Setter Property="MinWidth" Value="32" />
+        <Setter Property="MinHeight" Value="32" />
         <Setter Property="Margin" Value="0 2" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
@@ -65,6 +41,16 @@
             <Setter Property="Background" Value="{DynamicResource SemiBlue1}" />
             <Setter Property="CornerRadius" Value="0" />
             <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        
+        <Style Selector="^:today">
+            <Setter Property="Background" Value="{DynamicResource SemiGrey1}" />
+            <Setter Property="Foreground" Value="{DynamicResource SemiBlue5}" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        
+        <Style Selector="^:not-current-month">
+            <Setter Property="Foreground" Value="{DynamicResource SemiGrey3}" />
         </Style>
 
         <Style Selector="^:pointerover">
@@ -199,63 +185,27 @@
                                     Foreground="{DynamicResource CalendarItemIconForeground}" />
                             </Button>
                         </Grid>
-                        <Grid Grid.Row="1" ColumnDefinitions="*, *, *, *, *, *, *">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" MinHeight="24" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <TextBlock
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                HorizontalAlignment="Center"
-                                Text="M" />
-                            <TextBlock
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                HorizontalAlignment="Center"
-                                Text="T" />
-                            <TextBlock
-                                Grid.Row="0"
-                                Grid.Column="2"
-                                HorizontalAlignment="Center"
-                                Text="W" />
-                            <TextBlock
-                                Grid.Row="0"
-                                Grid.Column="3"
-                                HorizontalAlignment="Center"
-                                Text="T" />
-                            <TextBlock
-                                Grid.Row="0"
-                                Grid.Column="4"
-                                HorizontalAlignment="Center"
-                                Text="F" />
-                            <TextBlock
-                                Grid.Row="0"
-                                Grid.Column="5"
-                                HorizontalAlignment="Center"
-                                Text="S" />
-                            <TextBlock
-                                Grid.Row="0"
-                                Grid.Column="6"
-                                HorizontalAlignment="Center"
-                                Text="S" />
-                            <Rectangle
-                                Grid.Column="0"
-                                Grid.Row="1"
-                                Grid.ColumnSpan="7"
-                                Height="1"
-                                HorizontalAlignment="Stretch"
-                                Fill="{DynamicResource SemiGrey2}" />
-                            
-                        </Grid>
+                        <u:CalendarMonthView Grid.Row="1"></u:CalendarMonthView>
                     </Grid>
+                    
                 </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+    
+    <ControlTheme TargetType="u:CalendarMonthView" x:Key="{x:Type u:CalendarMonthView}">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid Name="{x:Static u:CalendarMonthView.PART_Grid}" ColumnDefinitions="*, *, *, *, *, *, *" RowDefinitions="*, Auto, *, *, *, *, *, *">
+                    <Rectangle
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="7"
+                        Height="1"
+                        Margin="8 8 8 0"
+                        HorizontalAlignment="Stretch"
+                        Fill="{DynamicResource SemiGrey2}" />
+                </Grid>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
