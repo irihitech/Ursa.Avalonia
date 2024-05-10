@@ -13,8 +13,8 @@ namespace Ursa.Controls;
 [TemplatePart(PART_PreviousButton, typeof(Button))]
 [TemplatePart(PART_HeaderButton, typeof(Button))]
 [TemplatePart(PART_BackButton, typeof(Button))]
-[TemplatePart(PART_MonthView, typeof(Panel))]
-[TemplatePart(PART_YearView, typeof(Panel))]
+[TemplatePart(PART_MonthView, typeof(CalendarMonthView))]
+[TemplatePart(PART_YearView, typeof(CalendarYearView))]
 public class Calendar: TemplatedControl
 {
     public const string PART_NextYearButton = "PART_NextYearButton";
@@ -25,6 +25,8 @@ public class Calendar: TemplatedControl
     public const string PART_BackButton = "PART_BackButton";
     public const string PART_MonthView = "PART_MonthView";
     public const string PART_YearView = "PART_YearView";
+
+    private Grid? _monthGrid;
     
     
     public static readonly StyledProperty<DateTime> SelectedDateProperty = AvaloniaProperty.Register<Calendar, DateTime>(nameof(SelectedDate), DateTime.Now);
@@ -67,5 +69,19 @@ public class Calendar: TemplatedControl
     {
         get => GetValue(BlackoutDateRuleProperty);
         set => SetValue(BlackoutDateRuleProperty, value);
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        _monthGrid = e.NameScope.Find<Grid>(PART_MonthView);
+    }
+
+    private void InitializeGrid()
+    {
+        if (_monthGrid is not null)
+        {
+            
+        }
     }
 }
