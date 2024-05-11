@@ -89,7 +89,6 @@ public class CalendarMonthView: TemplatedControl
                 cell.SetValue(Grid.RowProperty, i);
                 cell.SetValue(Grid.ColumnProperty, j);
                 cell.PointerPressed += OnDayButtonPressed;
-                cell.PointerReleased += OnDayButtonReleased;
                 cell.PointerEntered += OnDayButtonPointerEnter;
                 children.Add(cell);
             }
@@ -120,25 +119,17 @@ public class CalendarMonthView: TemplatedControl
     
     private void OnDayButtonPressed(object sender, PointerPressedEventArgs e)
     {
-        if (sender is CalendarDayButton button)
+        if (sender is CalendarDayButton { DataContext: DateTime d })
         {
-            // button.IsSelected = true;
-        }
-    }
-    
-    private void OnDayButtonReleased(object sender, PointerReleasedEventArgs e)
-    {
-        if (sender is CalendarDayButton button)
-        {
-            // button.IsSelected = false;
+            OnCalendarDayButtonPressed?.Invoke(this, new CalendarDayButtonEventArgs(d));
         }
     }
     
     private void OnDayButtonPointerEnter(object sender, PointerEventArgs e)
     {
-        if(sender is CalendarDayButton button)
+        if(sender is CalendarDayButton {DataContext: DateTime d})
         {
-            // button.IsPreviewStartDate = true;
+            OnCalendarDayButtonPointerEnter?.Invoke(this, new CalendarDayButtonEventArgs(d));
         }
     }
     
@@ -151,17 +142,47 @@ public class CalendarMonthView: TemplatedControl
         return i == 0 ? DateTimeHelper.NumberOfDaysPerWeek : i;
     }
     
+    /// <summary>
+    /// Make days out of current month fade out. These buttons are not disabled. They are just visually faded out. 
+    /// </summary>
     private void FadeOutDayButtons()
     {
         if (_grid is null) return;
         var children = _grid.Children;
         for (var i = 8; i < children.Count; i++)
         {
-            if (children[i] is CalendarDayButton button && button.DataContext is DateTime d && d.Month != _contextDate.Month)
+            if (children[i] is CalendarDayButton { DataContext: DateTime d } button && d.Month != _contextDate.Month)
             {
                 button.IsNotCurrentMonth = true;
             }
         }
     }
-    
+
+
+    public event EventHandler<CalendarDayButtonEventArgs>? OnCalendarDayButtonPressed;
+    public event EventHandler<CalendarDayButtonEventArgs>? OnCalendarDayButtonPointerEnter;
+
+    public void MarkSelection(DateTime start, DateTime end)
+    {
+        if(_grid?.Children is null) return;
+        foreach (var child in _grid.Children)
+        {
+            if (child is CalendarDayButton { DataContext: DateTime d } button)
+            {
+                if (d == start)
+                {
+                    button.IsStartDate = true;
+                }
+                else if (d == end)
+                {
+                    button.IsEndDate = true;
+                }
+                else if (d > start && d < end)
+                {
+                    button.IsInRange = true;
+                }
+            }
+        }
+    }
+
 }
