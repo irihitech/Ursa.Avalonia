@@ -124,7 +124,7 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Calendar">
                 <Panel>
-                    <Grid Name="{x:Static u:Calendar.PART_MonthView}" RowDefinitions="Auto, *">
+                    <Grid RowDefinitions="Auto, *">
                         <Grid Grid.Row="0" ColumnDefinitions="Auto, Auto,*, Auto, Auto">
                             <Button
                                 Name="{x:Static u:Calendar.PART_PreviousYearButton}"
@@ -185,7 +185,7 @@
                                     Foreground="{DynamicResource CalendarItemIconForeground}" />
                             </Button>
                         </Grid>
-                        <u:CalendarMonthView Grid.Row="1"></u:CalendarMonthView>
+                        <u:CalendarMonthView Grid.Row="1" Name="{x:Static u:Calendar.PART_MonthView}"></u:CalendarMonthView>
                     </Grid>
                     
                 </Panel>

@@ -26,7 +26,8 @@ public class Calendar: TemplatedControl
     public const string PART_MonthView = "PART_MonthView";
     public const string PART_YearView = "PART_YearView";
 
-    private Grid? _monthGrid;
+    private CalendarMonthView? _monthGrid;
+    private DatePickerState _state = DatePickerState.None;
     
     
     public static readonly StyledProperty<DateTime> SelectedDateProperty = AvaloniaProperty.Register<Calendar, DateTime>(nameof(SelectedDate), DateTime.Now);
@@ -71,17 +72,68 @@ public class Calendar: TemplatedControl
         set => SetValue(BlackoutDateRuleProperty, value);
     }
 
+    internal DateTime? StartDate;
+    internal DateTime? EndDate;
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        _monthGrid = e.NameScope.Find<Grid>(PART_MonthView);
-    }
-
-    private void InitializeGrid()
-    {
         if (_monthGrid is not null)
         {
-            
+            _monthGrid.OnCalendarDayButtonPressed -= OnCalendarDayButtonPressed;
+            _monthGrid.OnCalendarDayButtonPointerEnter -= OnCalendarDayButtonPointerEnter;
+        }
+        _monthGrid = e.NameScope.Find<CalendarMonthView>(PART_MonthView);
+        if(_monthGrid is not null)
+        {
+            _monthGrid.OnCalendarDayButtonPressed += OnCalendarDayButtonPressed;
+            _monthGrid.OnCalendarDayButtonPointerEnter += OnCalendarDayButtonPointerEnter;
+        }
+    }
+
+    private void OnCalendarDayButtonPointerEnter(object sender, CalendarDayButtonEventArgs e)
+    {
+        if(_monthGrid is null)
+        {
+            return;
+        }
+        var date = e.Date;
+        if (_state is DatePickerState.None) return;
+        if (_state == DatePickerState.PreviewStart)
+        {
+            _monthGrid.MarkPreview(date, EndDate);
+        }
+        else if (_state == DatePickerState.PreviewEnd)
+        {
+            _monthGrid.MarkPreview(StartDate, date);
+        }
+    }
+
+    private void OnCalendarDayButtonPressed(object sender, CalendarDayButtonEventArgs e)
+    {
+        if(_monthGrid is null)
+        {
+            return;
+        }
+        var date = e.Date;
+        if (_state == DatePickerState.None)
+        {
+            _monthGrid.ClearSelection();
+            _monthGrid.MarkSelection(date, null);
+            _state = DatePickerState.PreviewEnd;
+            StartDate = date;
+        }
+        else if (_state == DatePickerState.PreviewStart)
+        {
+            _monthGrid.MarkSelection(date, EndDate);
+            _state = DatePickerState.SelectStart;
+            StartDate = date;
+        }
+        else if (_state == DatePickerState.PreviewEnd)
+        {
+            _monthGrid.MarkSelection(StartDate, date);
+            _state = DatePickerState.None;
+            EndDate = date;
         }
     }
 }
