@@ -119,6 +119,7 @@ public class Calendar: TemplatedControl
         if (_state == DatePickerState.None)
         {
             _monthGrid.ClearSelection();
+            _monthGrid.ClearPreview();
             _monthGrid.MarkSelection(date, null);
             _state = DatePickerState.PreviewEnd;
             StartDate = date;
