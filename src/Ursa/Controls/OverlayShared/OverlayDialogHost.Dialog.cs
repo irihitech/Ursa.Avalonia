@@ -22,6 +22,8 @@ public partial class OverlayDialogHost
             SetTop(control, 0);
             return;
         }
+        control.MaxWidth = newSize.Width;
+        control.MaxHeight = newSize.Height;
         var width = newSize.Width - control.Bounds.Width;
         var height = newSize.Height - control.Bounds.Height;
         var newLeft = width * control.HorizontalOffsetRatio??0;
@@ -97,6 +99,8 @@ public partial class OverlayDialogHost
             control.Width = Bounds.Width;
             control.Height = Bounds.Height;
         }
+        control.MaxWidth = Bounds.Width;
+        control.MaxHeight = Bounds.Height;
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetToPosition(control);
@@ -154,6 +158,8 @@ public partial class OverlayDialogHost
             control.Width = Bounds.Width;
             control.Height = Bounds.Height;
         }
+        control.MaxWidth = Bounds.Width;
+        control.MaxHeight = Bounds.Height;
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
         SetToPosition(control);
