@@ -9,5 +9,6 @@
              x:Class="Ursa.Demo.Dialogs.PlainDialog">
     <StackPanel>
         <Calendar SelectedDate="{Binding Date}" ></Calendar>
+        <TextBlock TextWrapping="Wrap" Text="{Binding Text}"></TextBlock>
     </StackPanel>
 </UserControl>
