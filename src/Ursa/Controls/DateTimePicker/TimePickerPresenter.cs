@@ -130,12 +130,12 @@ public class TimePickerPresenter : TemplatedControl
     private void OnPanelFormatChanged(AvaloniaPropertyChangedEventArgs<string> args)
     {
         var format = args.NewValue.Value;
-
         UpdatePanelLayout(format);
     }
 
-    private void UpdatePanelLayout(string panelFormat)
+    private void UpdatePanelLayout(string? panelFormat)
     {
+        if (panelFormat is null) return;
         var parts = panelFormat.Split(new[] { ' ', '-', ':' }, StringSplitOptions.RemoveEmptyEntries);
         var panels = new List<Control?>();
         foreach (var part in parts)
