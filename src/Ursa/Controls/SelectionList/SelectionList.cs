@@ -7,6 +7,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Selection;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Rendering.Composition;
 using Avalonia.Rendering.Composition.Animations;
 using Irihi.Avalonia.Shared.Helpers;
@@ -93,6 +94,18 @@ public class SelectionList: SelectingItemsControl
         base.OnApplyTemplate(e);
         _indicator= e.NameScope.Find<ContentPresenter>(PART_Indicator);
         EnsureIndicatorAnimation();
+    }
+
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        if(_indicator is not null && SelectedItem is not null)
+        {
+            var container = ContainerFromItem(SelectedItem);
+            if (container is null) return;
+            _indicator.Opacity = 1;
+            _indicator.Arrange(container.Bounds);
+        }
     }
 
     private void EnsureIndicatorAnimation()
