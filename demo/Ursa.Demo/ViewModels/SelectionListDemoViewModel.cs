@@ -14,6 +14,7 @@ public partial class SelectionListDemoViewModel: ObservableObject
         {
             "Ding", "Otter", "Husky", "Mr. 17", "Cass"
         };
+        SelectedItem = Items[0];
     }
 
     public void Clear()
