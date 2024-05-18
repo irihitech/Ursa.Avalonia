@@ -130,42 +130,49 @@ public class TimePickerPresenter : TemplatedControl
     private void OnPanelFormatChanged(AvaloniaPropertyChangedEventArgs<string> args)
     {
         var format = args.NewValue.Value;
-
         UpdatePanelLayout(format);
     }
 
-    private void UpdatePanelLayout(string panelFormat)
+    private void UpdatePanelLayout(string? panelFormat)
     {
+        if (panelFormat is null) return;
         var parts = panelFormat.Split(new[] { ' ', '-', ':' }, StringSplitOptions.RemoveEmptyEntries);
         var panels = new List<Control?>();
         foreach (var part in parts)
         {
             if (part.Length < 1) continue;
-            if ((part.Contains('h') || part.Contains('H')) && !panels.Contains(_hourScrollPanel))
+            try
             {
-                panels.Add(_hourScrollPanel);
-                _use12Clock = part.Contains('h');
-                _hourSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty, part.ToLower());
-                if (_hourSelector is not null)
+                if ((part.Contains('h') || part.Contains('H')) && !panels.Contains(_hourScrollPanel))
                 {
-                    _hourSelector.MaximumValue = _use12Clock ? 12 : 23;
-                    _hourSelector.MinimumValue = _use12Clock ? 1: 0;
+                    panels.Add(_hourScrollPanel);
+                    _use12Clock = part.Contains('h');
+                    _hourSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty, part.ToLower());
+                    if (_hourSelector is not null)
+                    {
+                        _hourSelector.MaximumValue = _use12Clock ? 12 : 23;
+                        _hourSelector.MinimumValue = _use12Clock ? 1 : 0;
+                    }
+                }
+                else if (part[0] == 'm' && !panels.Contains(_minuteSelector))
+                {
+                    panels.Add(_minuteScrollPanel);
+                    _minuteSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty, part);
+                }
+                else if (part[0] == 's' && !panels.Contains(_secondScrollPanel))
+                {
+                    panels.Add(_secondScrollPanel);
+                    _secondSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty, part.Replace('s', 'm'));
+                }
+                else if (part[0] == 't' && !panels.Contains(_ampmScrollPanel))
+                {
+                    panels.Add(_ampmScrollPanel);
+                    _ampmSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty, part);
                 }
             }
-            else if (part[0] == 'm' && !panels.Contains(_minuteSelector))
+            catch
             {
-                panels.Add(_minuteScrollPanel);
-                _minuteSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty, part);
-            }
-            else if (part[0] == 's' && !panels.Contains(_secondScrollPanel))
-            {
-                panels.Add(_secondScrollPanel);
-                _secondSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty, part.Replace('s', 'm'));
-            }
-            else if (part[0] == 't' && !panels.Contains(_ampmScrollPanel))
-            {
-                panels.Add(_ampmScrollPanel);
-                _ampmSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty, part);
+                
             }
         }
 

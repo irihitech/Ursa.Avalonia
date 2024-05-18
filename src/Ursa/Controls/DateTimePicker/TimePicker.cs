@@ -39,6 +39,16 @@ public class TimePicker : TimePickerBase, IClearControl
     {
         SelectedTimeProperty.Changed.AddClassHandler<TimePicker, TimeSpan?>((picker, args) =>
             picker.OnSelectionChanged(args));
+        DisplayFormatProperty.Changed.AddClassHandler<TimePicker, string?>((picker, args) => picker.OnDisplayFormatChanged(args));
+    }
+
+    private void OnDisplayFormatChanged(AvaloniaPropertyChangedEventArgs<string?> args)
+    {
+        if (_textBox is null) return;
+        var time = SelectedTime;
+        var date = new DateTime( 1, 1, 1, time.Value.Hours, time.Value.Minutes, time.Value.Seconds);
+        var text = date.ToString(DisplayFormat);
+        _textBox.Text = text;
     }
 
     public string? Watermark

@@ -11,21 +11,36 @@
     <StackPanel HorizontalAlignment="Left">
         <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
         <TextBlock Text="{Binding #picker.SelectedTime}" />
+        <TextBox
+            Name="displayFormat"
+            Width="300"
+            InnerLeftContent="Display Format"
+            Text="HH 时 mm 分 ss 秒" />
+        <TextBox
+            Name="panelFormat"
+            Width="300"
+            InnerLeftContent="Panel Format"
+            Text="tt HH mm ss" />
         <u:TimePicker
             Name="picker"
             Width="200"
             HorizontalAlignment="Left"
+            DisplayFormat="{Binding #displayFormat.Text}"
             NeedConfirmation="{Binding #needConfirm.IsChecked}"
-            PanelFormat="hh mm tt" />
+            PanelFormat="{Binding #panelFormat.Text}" />
+
         <u:TimePicker
             Width="300"
-            Classes="ClearButton"
-            DisplayFormat="HH 时 mm 分 ss 秒"
-            PanelFormat="tt HH mm ss"
             HorizontalAlignment="Left"
-            NeedConfirmation="True"
+            Classes="ClearButton"
+            DisplayFormat="{Binding #displayFormat.Text}"
             InnerLeftContent="时刻"
-            InnerRightContent="截止" />
-        <u:TimeRangePicker Width="300"></u:TimeRangePicker>
+            InnerRightContent="截止"
+            NeedConfirmation="True"
+            PanelFormat="{Binding #panelFormat.Text}" />
+        <u:TimeRangePicker
+            Width="300"
+            DisplayFormat="{Binding #displayFormat.Text}"
+            PanelFormat="{Binding #panelFormat.Text}" />
     </StackPanel>
 </UserControl>
