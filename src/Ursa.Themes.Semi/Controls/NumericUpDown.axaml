@@ -48,7 +48,7 @@
                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 AcceptsReturn="False"
                                 CornerRadius="{TemplateBinding CornerRadius}"
-                                DataValidationErrors.Errors="{ReflectionBinding $parent[NumericUpDown].(DataValidationErrors.Errors)}"
+                                DataValidationErrors.Errors="{ReflectionBinding $parent[u:NumericUpDown].(DataValidationErrors.Errors)}"
                                 FontSize="{TemplateBinding FontSize}"
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
