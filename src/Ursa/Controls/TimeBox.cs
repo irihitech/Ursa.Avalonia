@@ -320,7 +320,7 @@ public class TimeBox : TemplatedControl
             }
             
             _currentActiveSectionIndex = i;
-
+            
             if (e.ClickCount == 2)
             {
                 EnterSection(_currentActiveSectionIndex.Value);
@@ -332,6 +332,8 @@ public class TimeBox : TemplatedControl
                 MoveCaret(_currentActiveSectionIndex.Value);
             }
         }
+        e.Pointer.Capture(_presenters[_currentActiveSectionIndex.Value]);
+        e.Handled = true;
     }
 
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
@@ -480,13 +482,16 @@ public class TimeBox : TemplatedControl
 
         if (AllowDrag)
             _dragPanels[index].IsVisible = false;
-        _presenters[index].ShowCaret();
-        _isShowedCaret[index] = true;
+        ShowCaretInteral(index);
         _presenters[index].SelectAll();
     }
 
     private void MoveCaret(int index)
     {
+        if (!_isShowedCaret[index])
+        {
+            ShowCaretInteral(index);
+        }
         _presenters[index].ClearSelection();
         var caretPosition =
             _pressedPosition.WithX(_pressedPosition.X - _borders[index].Bounds.X);
@@ -503,8 +508,7 @@ public class TimeBox : TemplatedControl
         _presenters[index].ClearSelection();
         if (_isShowedCaret[index])
         {
-            _presenters[index].HideCaret();
-            _isShowedCaret[index] = false;
+           HideCaretInteral(index);
         }
 
         if (AllowDrag)
@@ -693,5 +697,17 @@ public class TimeBox : TemplatedControl
         }
 
         return milliSecond;
+    }
+
+    private void ShowCaretInteral(int index)
+    {
+        _presenters[index].ShowCaret();
+        _isShowedCaret[index] = true;
+    }
+    
+    private void HideCaretInteral(int index)
+    {
+        _presenters[index].HideCaret();
+        _isShowedCaret[index] = false;
     }
 }
