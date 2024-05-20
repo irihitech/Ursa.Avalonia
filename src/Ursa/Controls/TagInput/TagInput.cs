@@ -165,10 +165,17 @@ public class TagInput : TemplatedControl
     {
         var newTags = args.GetNewValue<IList<string>>();
         var oldTags = args.GetOldValue<IList<string>>();
-        for (int i = 0; i < Items.Count - 1; i++)
+        
+        if (Items is AvaloniaList<object> avaloniaList)
         {
-            Items.RemoveAt(Items.Count - 1);
+            avaloniaList.RemoveRange(0, avaloniaList.Count - 1);
         }
+        else if (Items.Count != 0)
+        {
+            Items.Clear();
+            Items.Add(_textBox);
+        }
+        
         if (newTags != null)
         {
             for (int i = 0; i < newTags.Count; i++)
