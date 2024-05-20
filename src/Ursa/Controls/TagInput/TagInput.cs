@@ -165,10 +165,14 @@ public class TagInput : TemplatedControl
     {
         var newTags = args.GetNewValue<IList<string>>();
         var oldTags = args.GetOldValue<IList<string>>();
-        for (int i = 0; i < Items.Count - 1; i++)
+        
+        // remove all tags except the textbox
+        int count = Items.Count;
+        for (int i = 0; i < count - 1; i++)
         {
-            Items.RemoveAt(Items.Count - 1);
+            Items.RemoveAt(0);
         }
+        
         if (newTags != null)
         {
             for (int i = 0; i < newTags.Count; i++)
