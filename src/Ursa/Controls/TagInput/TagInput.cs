@@ -166,11 +166,14 @@ public class TagInput : TemplatedControl
         var newTags = args.GetNewValue<IList<string>>();
         var oldTags = args.GetOldValue<IList<string>>();
         
-        // remove all tags except the textbox
-        int count = Items.Count;
-        for (int i = 0; i < count - 1; i++)
+        if (Items is AvaloniaList<object> avaloniaList)
         {
-            Items.RemoveAt(0);
+            avaloniaList.RemoveRange(0, avaloniaList.Count - 1);
+        }
+        else if (Items.Count != 0)
+        {
+            Items.Clear();
+            Items.Add(_textBox);
         }
         
         if (newTags != null)
