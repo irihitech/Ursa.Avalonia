@@ -21,7 +21,7 @@
             Name="viewer"
             Width="600"
             Height="300"
-            Source="../Assets/WORLD.png">
+            Source="../Assets/3x.png">
             <u:ImageViewer.Overlayer>
                 <Grid
                     HorizontalAlignment="Stretch"

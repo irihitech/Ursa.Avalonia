@@ -101,6 +101,8 @@ public class ImageViewer: TemplatedControl
         set => SetValue(StretchProperty, value);
     }
 
+    private double _minScale = 0.1;
+
     static ImageViewer()
     {
         FocusableProperty.OverrideDefaultValue<ImageViewer>(true);
@@ -161,12 +163,21 @@ public class ImageViewer: TemplatedControl
             _image.Height = size.Height;
         }
         Scale = GetScaleRatio(width/size.Width, height/size.Height, this.Stretch);
+        _minScale = Math.Min(width * 0.1 / size.Width, height * 0.1 / size.Height);
     }
 
     private void OnStretchChanged(AvaloniaPropertyChangedEventArgs args)
     {
         var stretch = args.GetNewValue<Stretch>();
         Scale = GetScaleRatio(Width / _image!.Width, Height / _image!.Height, stretch);
+        if(_image is { })
+        {
+            _minScale = Math.Min(Width * 0.1 / _image.Width, Height * 0.1 / _image.Height);
+        }
+        else
+        {
+            _minScale = 0.1;
+        }
     }
     
     private double GetScaleRatio(double widthRatio, double heightRatio, Stretch stretch)
@@ -203,6 +214,11 @@ public class ImageViewer: TemplatedControl
             _image.Width = size.Width;
             _image.Height = size.Height;
             Scale = GetScaleRatio(width/size.Width, height/size.Height, this.Stretch);
+            _minScale = Math.Min(width * 0.1 / size.Width, height * 0.1 / size.Height);
+        }
+        else
+        {
+            _minScale = 0.1;
         }
     }
 
@@ -218,7 +234,7 @@ public class ImageViewer: TemplatedControl
         {
             var scale = Scale;
             scale /= 1.1;
-            if (scale < 0.1) scale = 0.1;
+            if (scale < _minScale) scale = _minScale;
             Scale = scale;
         }
     }
