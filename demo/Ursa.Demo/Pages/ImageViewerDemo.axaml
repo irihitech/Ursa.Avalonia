@@ -20,7 +20,8 @@
         <u:ImageViewer
             Name="viewer"
             Width="600"
-            Height="300"
+            Height="300" 
+            MinScale="0.5"
             Source="../Assets/3x.png">
             <u:ImageViewer.Overlayer>
                 <Grid
