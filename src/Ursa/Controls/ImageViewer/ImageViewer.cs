@@ -193,11 +193,6 @@ public class ImageViewer: TemplatedControl
 
     private void OnMinScaleChanged(AvaloniaPropertyChangedEventArgs args)
     {
-        var newMinScale = args.GetNewValue<double>();
-        if (newMinScale > Scale)
-        {
-            Scale = newMinScale;
-        }
         if (_image is { })
         {
             _sourceMinScale = Math.Min(Width * MinScale / _image.Width, Height * MinScale / _image.Height);
@@ -205,6 +200,11 @@ public class ImageViewer: TemplatedControl
         else
         {
             _sourceMinScale = MinScale;
+        }
+
+        if (_sourceMinScale > Scale)
+        {
+            Scale = _sourceMinScale;
         }
     }
 
