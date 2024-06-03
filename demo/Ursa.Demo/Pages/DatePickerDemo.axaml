@@ -7,30 +7,6 @@
              x:Class="Ursa.Demo.Pages.DatePickerDemo">
     <StackPanel Margin="20" HorizontalAlignment="Left">
         <u:CalendarMonthView />
-        <u:CalendarDayButton />
-        <u:CalendarDayButton IsSelected="True" />
-        <u:CalendarDayButton IsBlackout="True" />
-        <StackPanel Orientation="Horizontal">
-            <u:CalendarDayButton IsStartDate="True" />
-            <u:CalendarDayButton IsInRange="True" />
-            <u:CalendarDayButton IsInRange="True" />
-            <u:CalendarDayButton IsInRange="True" />
-            <u:CalendarDayButton IsEndDate="True" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" DataValidationErrors.Errors="{Binding items}">
-            <u:CalendarDayButton IsPreviewStartDate="True" />
-            <u:CalendarDayButton IsInRange="True" />
-            <u:CalendarDayButton IsInRange="True" />
-            <u:CalendarDayButton IsInRange="True" />
-            <u:CalendarDayButton IsPreviewEndDate="True" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <u:CalendarDayButton IsInRange="True" />
-            <u:CalendarDayButton IsInRange="True" IsStartDate="True" />
-            <u:CalendarDayButton IsInRange="True" />
-            <u:CalendarDayButton IsEndDate="True" IsInRange="True" />
-            <u:CalendarDayButton IsInRange="True" />
-        </StackPanel>
         <u:Calendar/>
     </StackPanel>
 </UserControl>

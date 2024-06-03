@@ -88,13 +88,25 @@ public class CalendarMonthView : TemplatedControl
             var cell = new CalendarDayButton();
             cell.SetValue(Grid.RowProperty, i);
             cell.SetValue(Grid.ColumnProperty, j);
-            cell.PointerPressed += OnDayButtonPressed;
-            cell.PointerEntered += OnDayButtonPointerEnter;
+            cell.AddHandler(CalendarDayButton.DateSelectedEvent, OnCellDateSelected);
+            cell.AddHandler(CalendarDayButton.DatePreviewedEvent, OnCellDatePreviewed);
             children.Add(cell);
         }
 
         _grid?.Children.AddRange(children);
     }
+
+    private void OnCellDatePreviewed(object sender, CalendarDayButtonEventArgs e)
+    {
+        OnDatePreviewed?.Invoke(sender, e);
+    }
+
+    private void OnCellDateSelected(object sender, CalendarDayButtonEventArgs e)
+    {
+        OnDateSelected?.Invoke(sender, e);
+    }
+    
+    
 
     private void SetDayButtons(DateTime date)
     {
@@ -115,18 +127,6 @@ public class CalendarMonthView : TemplatedControl
         }
 
         FadeOutDayButtons();
-    }
-
-    private void OnDayButtonPressed(object sender, PointerPressedEventArgs e)
-    {
-        if (sender is CalendarDayButton { DataContext: DateTime d })
-            OnCalendarDayButtonPressed?.Invoke(this, new CalendarDayButtonEventArgs(d));
-    }
-
-    private void OnDayButtonPointerEnter(object sender, PointerEventArgs e)
-    {
-        if (sender is CalendarDayButton { DataContext: DateTime d })
-            OnCalendarDayButtonPointerEnter?.Invoke(this, new CalendarDayButtonEventArgs(d));
     }
 
     private int PreviousMonthDays(DateTime date)
@@ -151,8 +151,8 @@ public class CalendarMonthView : TemplatedControl
     }
 
 
-    public event EventHandler<CalendarDayButtonEventArgs>? OnCalendarDayButtonPressed;
-    public event EventHandler<CalendarDayButtonEventArgs>? OnCalendarDayButtonPointerEnter;
+    public event EventHandler<CalendarDayButtonEventArgs>? OnDateSelected;
+    public event EventHandler<CalendarDayButtonEventArgs>? OnDatePreviewed;
 
     public void MarkSelection(DateTime? start, DateTime? end)
     {
@@ -164,12 +164,14 @@ public class CalendarMonthView : TemplatedControl
                 if (d == start)
                 {
                     button.IsStartDate = true;
+                    button.IsPreviewStartDate = false;
                     button.IsEndDate = false;
                     button.IsInRange = false;
                 }
                 else if (d == end)
                 {
                     button.IsEndDate = true;
+                    button.IsPreviewEndDate = false;
                     button.IsStartDate = false;
                     button.IsInRange = false;
                 }

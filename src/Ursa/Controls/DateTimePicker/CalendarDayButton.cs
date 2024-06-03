@@ -4,8 +4,10 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Mixins;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Helpers;
+using Ursa.EventArgs;
 
 namespace Ursa.Controls;
 
@@ -128,6 +130,24 @@ public class CalendarDayButton: ContentControl
             PseudoClasses.Set(PC_NotCurrentMonth, value);
         }
     }
+    
+    public static readonly RoutedEvent<CalendarDayButtonEventArgs> DateSelectedEvent = RoutedEvent.Register<CalendarDayButton, CalendarDayButtonEventArgs>(
+        nameof(DateSelected), RoutingStrategies.Bubble);
+    
+    public event EventHandler<CalendarDayButtonEventArgs> DateSelected
+    {
+        add => AddHandler(DateSelectedEvent, value);
+        remove => RemoveHandler(DateSelectedEvent, value);
+    }
+    
+    public static readonly RoutedEvent<CalendarDayButtonEventArgs> DatePreviewedEvent = RoutedEvent.Register<CalendarDayButton, CalendarDayButtonEventArgs>(
+        nameof(DatePreviewed), RoutingStrategies.Bubble);
+    
+    public event EventHandler<CalendarDayButtonEventArgs> DatePreviewed
+    {
+        add => AddHandler(DateSelectedEvent, value);
+        remove => RemoveHandler(DateSelectedEvent, value); 
+    }
 
     static CalendarDayButton()
     {
@@ -144,5 +164,23 @@ public class CalendarDayButton: ContentControl
         PseudoClasses.Set(PC_PreviewEndDate, IsPreviewEndDate);
         PseudoClasses.Set(PC_InRange, IsInRange);
         PseudoClasses.Set(PseudoClassName.PC_Selected, IsSelected);
+    }
+    
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    {
+        base.OnPointerPressed(e);
+        if (this.DataContext is DateTime d)
+        {
+            RaiseEvent(new CalendarDayButtonEventArgs(d) { RoutedEvent = DateSelectedEvent, Source = this });
+        }
+    }
+
+    protected override void OnPointerEntered(PointerEventArgs e)
+    {
+        base.OnPointerEntered(e);
+        if (this.DataContext is DateTime d)
+        {
+            RaiseEvent(new CalendarDayButtonEventArgs(d) { RoutedEvent = DateSelectedEvent, Source = this });
+        }
     }
 }
