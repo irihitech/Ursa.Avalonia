@@ -8,18 +8,10 @@ namespace Ursa.Controls;
 
 [PseudoClasses(PC_Selected)]
 [TemplatePart(PART_IconGlyph, typeof(PathIcon))]
-public class RatingCharacter : ContentControl
+public class RatingCharacter : TemplatedControl
 {
     public const string PART_IconGlyph = "PART_IconGlyph";
     protected const string PC_Selected = ":selected";
-
-    private PathIcon? _icon;
-
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
-    {
-        base.OnApplyTemplate(e);
-        _icon = e.NameScope.Find<PathIcon>(PART_IconGlyph);
-    }
 
     protected override void OnPointerEntered(PointerEventArgs e)
     {

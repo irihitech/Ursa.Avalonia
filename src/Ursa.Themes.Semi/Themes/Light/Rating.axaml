@@ -1,4 +1,4 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="RatingCharacterDefaultForeground" Color="#FAC800" />
-    <SolidColorBrush x:Key="RatingCharacterDefaultBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="RatingCharacterUnSelectedForeground" Opacity="0.05" Color="#2E3238" />
+    <SolidColorBrush x:Key="RatingCharacterSelectedForeground" Color="#FAC800" />
 </ResourceDictionary>
