@@ -6,6 +6,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Interactivity;
 using Avalonia.Metadata;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -57,16 +58,9 @@ public class Banner: HeaderedContentControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        if (_closeButton != null)
-        {
-            _closeButton.Click -= OnCloseClick;
-        }
+        Button.ClickEvent.RemoveHandler(OnCloseClick, _closeButton);
         _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
-        if (_closeButton != null)
-        {
-            _closeButton.Click += OnCloseClick;
-        }
-        
+        Button.ClickEvent.AddHandler(OnCloseClick, _closeButton);
     }
 
     private void OnCloseClick(object sender, RoutedEventArgs args)
