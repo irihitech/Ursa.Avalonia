@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="Ursa.Demo.Pages.RatingDemo"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
+             xmlns:u="https://irihi.tech/ursa"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             x:CompileBindings="True"
+             x:DataType="vm:RatingDemoViewModel"
+             mc:Ignorable="d">
+    <StackPanel Spacing="20">
+        <Grid ColumnDefinitions="*, 300">
+            <Grid Grid.Column="0">
+                <StackPanel>
+                    <u:RatingCharacter />
+                    <u:Rating
+                        AllowClear="{Binding AllowClear }"
+                        AllowHalf="{Binding AllowHalf }"
+                        AllowFocus="{Binding AllowFocus }"
+                        IsEnabled="{Binding IsEnabled}"
+                        Value="{Binding Value}"
+                        Count="{Binding Count}"
+                        DefaultValue="{Binding DefaultValue }"
+                        Tooltips="{Binding Tooltips }" />
+                </StackPanel>
+            </Grid>
+            <Border Grid.Column="1" VerticalAlignment="Top">
+                <Grid ColumnDefinitions="*, Auto" RowDefinitions="*,*,*,*,*,*,*">
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Content="AllowClear" />
+                    <ToggleSwitch
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        MinWidth="200"
+                        IsChecked="{Binding AllowClear}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Content="AllowHalf" />
+                    <ToggleSwitch
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        IsChecked="{Binding AllowHalf}" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Content="AllowFocus" />
+                    <ToggleSwitch
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        IsChecked="{Binding AllowFocus}" />
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Content="IsEnabled" />
+                    <ToggleSwitch
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        IsChecked="{Binding IsEnabled}" />
+                    <Label
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Content="Value" />
+                    <NumericUpDown
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Maximum="100"
+                        Minimum="-1"
+                        Increment="0.1"
+                        VerticalAlignment="Center"
+                        Value="{Binding Value}" />
+                    <Label
+                        Grid.Row="5"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Content="Count" />
+                    <NumericUpDown
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        Maximum="100"
+                        Minimum="-1"
+                        Increment="1"
+                        VerticalAlignment="Center"
+                        Value="{Binding Count}" />
+                    <Label
+                        Grid.Row="6"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Content="DefaultValue" />
+                    <NumericUpDown
+                        Grid.Row="6"
+                        Grid.Column="1"
+                        Maximum="100"
+                        Minimum="-1"
+                        Increment="0.1"
+                        VerticalAlignment="Center"
+                        Value="{Binding DefaultValue}" />
+                </Grid>
+            </Border>
+        </Grid>
+    </StackPanel>
+</UserControl>

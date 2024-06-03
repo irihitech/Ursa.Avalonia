@@ -38,6 +38,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "NumPad", Key = MenuKeys.MenuKeyNumPad },
             new() { MenuHeader = "Pagination", Key = MenuKeys.MenuKeyPagination },
             new() { MenuHeader = "RangeSlider", Key = MenuKeys.MenuKeyRangeSlider },
+            new() { MenuHeader = "Rating", Key = MenuKeys.MenuKeyRating },
             new() { MenuHeader = "Scroll To", Key = MenuKeys.MenuKeyScrollToButton },
             new() { MenuHeader = "Selection List", Key = MenuKeys.MenuKeySelectionList },
             new() { MenuHeader = "Skeleton", Key = MenuKeys.MenuKeySkeleton },
@@ -83,6 +84,7 @@ public static class MenuKeys
     public const string MenuKeyNumPad = "NumPad";
     public const string MenuKeyPagination = "Pagination";
     public const string MenuKeyRangeSlider = "RangeSlider";
+    public const string MenuKeyRating = "Rating";
     public const string MenuKeyScrollToButton = "ScrollToButton";
     public const string MenuKeySelectionList = "SelectionList";
     public const string MenuKeyTagInput = "TagInput";

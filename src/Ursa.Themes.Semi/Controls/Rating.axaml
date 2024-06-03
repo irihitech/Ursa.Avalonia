@@ -1,0 +1,65 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa">
+    <ControlTheme x:Key="{x:Type u:RatingCharacter}" TargetType="u:RatingCharacter">
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Foreground" Value="{DynamicResource RatingCharacterDefaultForeground}" />
+        <Setter Property="Background" Value="{DynamicResource RatingCharacterDefaultBackground}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:RatingCharacter">
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    <PathIcon Name="{x:Static u:RatingCharacter.PART_IconGlyph}"
+                              Width="16"
+                              Height="16"
+                              Margin="4,0"
+                              Data="{DynamicResource RatingStarUnSelectedIconGlyph}"
+                              Foreground="{TemplateBinding Foreground}" />
+                    <ToolTip.Tip>
+                        <TextBlock Text="{Binding $parent[u:Rating].SelectedTooltip}" />
+                    </ToolTip.Tip>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:selected /template/ PathIcon#PART_IconGlyph">
+            <Setter Property="Data" Value="{DynamicResource RatingStarSelectedIconGlyph}" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:Rating}" TargetType="u:Rating">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="ItemTemplate">
+            <DataTemplate>
+                <u:RatingCharacter Content="{Binding}" />
+            </DataTemplate>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:Rating">
+                <Border Name="PART_RootBorder"
+                        MinHeight="30"
+                        Padding="8,4"
+                        VerticalAlignment="Stretch"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                    <Panel HorizontalAlignment="Stretch">
+                        <ItemsControl Name="{x:Static u:Rating.PART_ItemsControl}"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Top"
+                                      ItemTemplate="{TemplateBinding ItemTemplate}"
+                                      ItemsSource="{TemplateBinding Items}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </Panel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>
