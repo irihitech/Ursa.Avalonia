@@ -10,6 +10,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 using Avalonia.VisualTree;
+using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
@@ -146,7 +147,7 @@ public class NavMenuItem: HeaderedItemsControl
         IsHighlightedProperty.AffectsPseudoClass<NavMenuItem>(PC_Highlighted);
         IsHorizontalCollapsedProperty.AffectsPseudoClass<NavMenuItem>(PC_HorizontalCollapsed);
         IsVerticalCollapsedProperty.AffectsPseudoClass<NavMenuItem>(PC_VerticalCollapsed);
-        IsSelectedProperty.AffectsPseudoClass<NavMenuItem>(":selected", IsSelectedChangedEvent);
+        IsSelectedProperty.AffectsPseudoClass<NavMenuItem>(PseudoClassName.PC_Selected, IsSelectedChangedEvent);
         IsHorizontalCollapsedProperty.Changed.AddClassHandler<NavMenuItem, bool>((item, args) =>
             item.OnIsHorizontalCollapsedChanged(args));
     }
