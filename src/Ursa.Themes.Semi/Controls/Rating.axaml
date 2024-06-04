@@ -3,16 +3,29 @@
                     xmlns:u="https://irihi.tech/ursa">
     <ControlTheme x:Key="{x:Type u:RatingCharacter}" TargetType="u:RatingCharacter">
         <Setter Property="Foreground" Value="{DynamicResource RatingCharacterUnSelectedForeground}" />
+        <Setter Property="Background" Value="{DynamicResource RatingCharacterUnSelectedForeground}" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:RatingCharacter">
-                <PathIcon Name="{x:Static u:RatingCharacter.PART_IconGlyph}"
-                          Width="24"
-                          Height="24"
-                          Margin="0 0 6 0"
-                          Data="{DynamicResource RatingStarIconGlyph}"
-                          Foreground="{TemplateBinding Foreground}" />
+                <!-- <Border Margin="0 0 6 0"> -->
+                    <Canvas Width="24" Height="24">
+                        <Path Width="24"
+                              Height="24"
+                              Data="{DynamicResource RatingStarIconGlyph}"
+                              Fill="{TemplateBinding Background}" />
+                        <Border Name="{x:Static u:RatingCharacter.PART_IconGlyph}"
+                                IsVisible="True"
+                                ClipToBounds="True">
+                            <Path Width="24"
+                                  Height="24"
+                                  HorizontalAlignment="Left"
+                                  Data="{DynamicResource RatingStarIconGlyph}"
+                                  Fill="{TemplateBinding Foreground}" />
+                        </Border>
+                    </Canvas>
+                <!-- </Border> -->
+
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover">
@@ -20,6 +33,14 @@
         </Style>
         <Style Selector="^:selected">
             <Setter Property="Foreground" Value="{DynamicResource RatingCharacterSelectedForeground}" />
+        </Style>
+        <Style Selector="^:half">
+            <!-- <Setter Property="Foreground"> -->
+            <!--     <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%"> -->
+            <!--         <GradientStop Color="#6b4c1b" Offset="0" /> -->
+            <!--         <GradientStop Color="#291e10" Offset="1" /> -->
+            <!--     </LinearGradientBrush> -->
+            <!-- </Setter> -->
         </Style>
     </ControlTheme>
 

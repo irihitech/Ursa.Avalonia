@@ -19,6 +19,7 @@ public class Rating : TemplatedControl
     protected const string PC_Selected = ":selected";
 
     private ItemsControl? _itemsControl;
+    private const double Tolerance = 0.0001;
 
     public static readonly StyledProperty<double> ValueProperty =
         AvaloniaProperty.Register<Rating, double>(nameof(Value), defaultBindingMode: BindingMode.TwoWay);
@@ -217,7 +218,13 @@ public class Rating : TemplatedControl
     public void Select(RatingCharacter o)
     {
         var index = Items.IndexOf(o);
-        if (AllowClear && index == (int)Value - 1)
+        double newValue = index + 1;
+        if (o.IsHalf)
+        {
+            newValue = index + 0.5;
+        }
+
+        if (AllowClear && Math.Abs(Value - newValue) < Tolerance)
         {
             UpdateItems(-1);
             SetCurrentValue(ValueProperty, 0);
@@ -225,7 +232,7 @@ public class Rating : TemplatedControl
         else
         {
             UpdateItems(index);
-            SetCurrentValue(ValueProperty, index + 1);
+            SetCurrentValue(ValueProperty, newValue);
         }
     }
 
