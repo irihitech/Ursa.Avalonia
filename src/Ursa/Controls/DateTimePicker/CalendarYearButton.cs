@@ -1,17 +1,25 @@
 using System.Diagnostics;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Mixins;
+using Avalonia.Input;
+using Avalonia.Interactivity;
+using Irihi.Avalonia.Shared.Common;
+
 namespace Ursa.Controls;
 
 internal enum CalendarYearViewMode
 {
     Month,
     Year,
-    // The button represents ten year, with one year before and one year after, 12 in total. 
+    // The button represents 10 years. 
     YearRange,
 } 
+
+[PseudoClasses(PC_Range, PseudoClassName.PC_Selected)]
 public class CalendarYearButton: ContentControl
 {
+    public const string PC_Range = ":range";
     static CalendarYearButton()
     {
         PressedMixin.Attach<CalendarYearButton>();
@@ -26,6 +34,15 @@ public class CalendarYearButton: ContentControl
     internal int EndYear { get; private set; }
     
     internal CalendarYearViewMode Mode { get; private set; }
+    
+    public static readonly RoutedEvent<CalendarYearButtonEventArgs> ItemSelectedEvent = RoutedEvent.Register<CalendarYearButton, CalendarYearButtonEventArgs>(
+        nameof(ItemSelected), RoutingStrategies.Bubble);
+    
+    public event EventHandler<CalendarDayButtonEventArgs> ItemSelected
+    {
+        add => AddHandler(ItemSelectedEvent, value);
+        remove => RemoveHandler(ItemSelectedEvent, value);
+    }
 
     internal void SetValues(CalendarYearViewMode mode, DateTime contextDate, int? month = null, int? year = null, int? startYear = null, int? endYear = null)
     {
@@ -42,5 +59,13 @@ public class CalendarYearButton: ContentControl
             CalendarYearViewMode.YearRange => StartYear + "-" + EndYear,
             _ => Content
         };
+    }
+
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    {
+        base.OnPointerPressed(e);
+        RaiseEvent(new CalendarYearButtonEventArgs(Mode, Year, Month, StartYear, EndYear)
+            { RoutedEvent = ItemSelectedEvent, Source = this });
+
     }
 }

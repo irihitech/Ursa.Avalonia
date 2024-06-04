@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Documents;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -15,36 +16,21 @@ namespace Ursa.Controls;
 public class CalendarYearView: TemplatedControl
 {
     public const string PART_Grid = "PART_Grid";
-    
-    private CalendarYearViewMode _mode = CalendarYearViewMode.Month;
+    private readonly CalendarYearButton[] _buttons = new CalendarYearButton[12];
 
-    internal CalendarYearViewMode Mode
-    {
-        get => _mode;
-        set
-        {
-            _mode = value;
-            RefreshButtons();
-        }
-    }
+    public event EventHandler<CalendarYearButtonEventArgs>? OnMonthSelected; 
 
-    private DateTime _contextDate = DateTime.Today;
-    internal DateTime ContextDate
-    {
-        get => _contextDate;
-        set
-        {
-            _contextDate = value;
-            RefreshButtons();
-        }
-    }
+    internal CalendarYearViewMode Mode { get; set; } = CalendarYearViewMode.Month;
+    internal DateTime ContextDate { get; set; } = DateTime.Today;
 
     private Grid? _grid;
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
+        ContextDate = DateTime.Today;
         base.OnApplyTemplate(e);
         _grid = e.NameScope.Find<Grid>(PART_Grid);
         GenerateGridElements();
+        RefreshButtons();
     }
     
     public void GenerateGridElements()
@@ -59,7 +45,43 @@ public class CalendarYearView: TemplatedControl
             var button = new CalendarYearButton();
             Grid.SetRow(button, i / 3);
             Grid.SetColumn(button, i % 3);
+            button.AddHandler(CalendarYearButton.ItemSelectedEvent, OnItemSelected);
             _grid.Children.Add(button);
+            _buttons[i] = button;
+        }
+    }
+    
+    private void OnItemSelected(object sender, CalendarYearButtonEventArgs e)
+    {
+        if (_grid is null) return;
+        var buttons = _grid.Children.OfType<CalendarYearButton>().ToList();
+        if (e.Mode == CalendarYearViewMode.Month)
+        {
+            if (e.Month is null) return;
+            var day = MathHelpers.SafeClamp(e.Month.Value, 0, DateTime.DaysInMonth(ContextDate.Year, e.Month.Value+1));
+            ContextDate = new DateTime(ContextDate.Year, e.Month.Value+1, day+1);
+            OnMonthSelected?.Invoke(this, e);
+        }
+        else if (e.Mode == CalendarYearViewMode.Year)
+        {
+            // Set CalendarYearView to Month mode
+            for (var i = 0; i < 12; i++)
+            {
+                buttons[i].SetValues(CalendarYearViewMode.Month, ContextDate, month: i);
+            }
+            ContextDate = new DateTime(e.Year!.Value, ContextDate.Month, 1);
+            Mode = CalendarYearViewMode.Month;
+        }
+        else if (e.Mode == CalendarYearViewMode.YearRange)
+        {
+            // Set CalendarYearView to Year mode
+            for (var i = 0; i < 12; i++)
+            {
+                if (e.StartYear is null || e.EndYear is null) continue;
+                var year = e.StartYear.Value - 1 + i;
+                buttons[i].SetValues(CalendarYearViewMode.Year, ContextDate, year: year);
+            }
+            Mode = CalendarYearViewMode.Year;
         }
     }
 
@@ -89,4 +111,11 @@ public class CalendarYearView: TemplatedControl
         }
     }
     
+    public void ShiftMode()
+    {
+        if (Mode == CalendarYearViewMode.Month)
+        {
+            
+        }
+    }
 }

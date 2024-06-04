@@ -107,7 +107,10 @@ public class CalendarMonthView : TemplatedControl
     }
     
     
-
+    /// <summary>
+    /// Set day buttons according to context date. 
+    /// </summary>
+    /// <param name="date"></param>
     private void SetDayButtons(DateTime date)
     {
         if (_grid is null) return;
@@ -149,8 +152,7 @@ public class CalendarMonthView : TemplatedControl
             if (children[i] is CalendarDayButton { DataContext: DateTime d } button && d.Month != _contextDate.Month)
                 button.IsNotCurrentMonth = true;
     }
-
-
+    
     public event EventHandler<CalendarDayButtonEventArgs>? OnDateSelected;
     public event EventHandler<CalendarDayButtonEventArgs>? OnDatePreviewed;
 
