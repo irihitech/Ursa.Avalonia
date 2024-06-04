@@ -121,7 +121,7 @@
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:Calendar}" TargetType="u:Calendar">
-        <Setter Property="MinHeight" Value="300"></Setter>
+        <Setter Property="MinHeight" Value="300" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Calendar">
                 <Panel>
@@ -153,19 +153,31 @@
                                     Foreground="{DynamicResource CalendarItemIconForeground}" />
                             </Button>
 
-                            <Grid ColumnDefinitions="*, *" Grid.Column="2">
-                                <Button Grid.Column="0"
+                            <Grid Grid.Column="2" ColumnDefinitions="*, *">
+                                <Button
                                     Name="{x:Static u:Calendar.PART_YearButton}"
+                                    Grid.Column="0"
                                     HorizontalContentAlignment="Center"
                                     Content="2024"
                                     Foreground="{TemplateBinding Foreground}"
+                                    IsVisible="{TemplateBinding IsMonthMode}"
                                     Theme="{DynamicResource BorderlessButton}" />
-                                <Button Grid.Column="1"
+                                <Button
                                     Name="{x:Static u:Calendar.PART_MonthButton}"
+                                    Grid.Column="1"
                                     HorizontalContentAlignment="Center"
                                     Content="Apr"
                                     Foreground="{TemplateBinding Foreground}"
+                                    IsVisible="{TemplateBinding IsMonthMode}"
                                     Theme="{DynamicResource BorderlessButton}" />
+                                <Button
+                                    Name="{x:Static u:Calendar.PART_HeaderButton}"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    IsVisible="{TemplateBinding IsMonthMode, Converter={x:Static BoolConverters.Not}}"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Center"
+                                    Content="2020-2030" />
                             </Grid>
 
                             <Button
@@ -201,6 +213,8 @@
                         <u:CalendarYearView
                             Name="{x:Static u:Calendar.PART_YearView}"
                             Grid.Row="1"
+                            Width="{Binding #PART_MonthView.Bounds.Width}"
+                            Height="{Binding #PART_MonthView.Bounds.Height}"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
                             IsVisible="{TemplateBinding IsMonthMode,

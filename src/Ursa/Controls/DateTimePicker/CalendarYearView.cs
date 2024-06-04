@@ -110,12 +110,10 @@ public class CalendarYearView: TemplatedControl
             }
         }
     }
-    
-    public void ShiftMode()
+
+    internal void UpdateMode(CalendarYearViewMode mode)
     {
-        if (Mode == CalendarYearViewMode.Month)
-        {
-            
-        }
+        Mode = mode;
+        RefreshButtons();
     }
 }

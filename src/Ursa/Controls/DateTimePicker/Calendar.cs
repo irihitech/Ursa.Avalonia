@@ -108,11 +108,12 @@ public class Calendar: TemplatedControl
         }
         Button.ClickEvent.RemoveHandler(OnYearButtonClick, _yearButton);
         Button.ClickEvent.RemoveHandler(OnMonthButtonClick, _monthButton);
+        Button.ClickEvent.RemoveHandler(OnHeaderButtonClick, _headerButton);
         _monthView = e.NameScope.Find<CalendarMonthView>(PART_MonthView);
         _yearView = e.NameScope.Find<CalendarYearView>(PART_YearView);
         _yearButton = e.NameScope.Find<Button>(PART_YearButton);
         _monthButton = e.NameScope.Find<Button>(PART_MonthButton);
-        
+        _headerButton = e.NameScope.Find<Button>(PART_HeaderButton);
         if(_monthView is not null)
         {
             _monthView.OnDateSelected += OnDateSelected;
@@ -125,6 +126,22 @@ public class Calendar: TemplatedControl
         }
         Button.ClickEvent.AddHandler(OnYearButtonClick, _yearButton);
         Button.ClickEvent.AddHandler(OnMonthButtonClick, _monthButton);
+        Button.ClickEvent.AddHandler(OnHeaderButtonClick, _headerButton);
+    }
+
+    private void OnHeaderButtonClick(object sender, RoutedEventArgs e)
+    {
+        if (_yearView?.Mode == CalendarYearViewMode.Month)
+        {
+            _headerButton?.SetValue(ContentControl.ContentProperty, _yearView.ContextDate.Year);
+            _yearView?.UpdateMode(CalendarYearViewMode.Year);
+        }
+        else if (_yearView?.Mode == CalendarYearViewMode.Year)
+        {
+            _headerButton?.SetCurrentValue(ContentControl.ContentProperty,
+                _yearView.ContextDate.Year + "-" + (_yearView.ContextDate.Year + 100));
+            _yearView?.UpdateMode(CalendarYearViewMode.YearRange);
+        }
     }
 
     private void OnMonthSelected(object sender, CalendarYearButtonEventArgs e)
@@ -136,13 +153,16 @@ public class Calendar: TemplatedControl
     {
         SetCurrentValue(IsMonthModeProperty, false);
         if (_yearView is null) return;
-        _yearView.Mode = CalendarYearViewMode.Month;
+        _headerButton?.SetValue(Button.ContentProperty, _yearView.ContextDate.Year);
+        _yearView?.UpdateMode(CalendarYearViewMode.Month);
     }
 
     private void OnYearButtonClick(object sender, RoutedEventArgs e)
     {
         if (_yearView is null) return;
-        _yearView.Mode = CalendarYearViewMode.Year;
+        _headerButton?.SetValue(Button.ContentProperty,
+            _yearView?.ContextDate.Year + "-" + (_yearView?.ContextDate.Year + 10));
+        _yearView?.UpdateMode(CalendarYearViewMode.Year);
         SetCurrentValue(IsMonthModeProperty, false);
         
     }
