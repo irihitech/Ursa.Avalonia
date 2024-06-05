@@ -8,6 +8,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 
 namespace Ursa.Controls;
 
@@ -190,6 +191,12 @@ public class Rating : TemplatedControl
         {
             SetCurrentValue(ValueProperty, DefaultValue);
         }
+    }
+
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        AdjustWidth(Value);
     }
 
     public void Preview(RatingCharacter o)
