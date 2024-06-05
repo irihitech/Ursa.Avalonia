@@ -14,7 +14,6 @@
         <Grid ColumnDefinitions="*, 300">
             <Grid Grid.Column="0">
                 <StackPanel>
-                    <u:RatingCharacter />
                     <u:Rating
                         AllowClear="{Binding AllowClear }"
                         AllowHalf="{Binding AllowHalf }"

@@ -137,7 +137,11 @@ public class Rating : TemplatedControl
 
     private void OnValueChanged(AvaloniaPropertyChangedEventArgs e)
     {
-        UpdateItems((int)Value - 1);
+        if (e.NewValue is double newValue)
+        {
+            UpdateItemsByValue(newValue);
+            AdjustWidth(newValue);
+        }
     }
 
     private void OnCountChanged(AvaloniaPropertyChangedEventArgs e)
@@ -164,10 +168,8 @@ public class Rating : TemplatedControl
             }
         }
 
-        if (Value > newCount)
-        {
-            SetCurrentValue(ValueProperty, Math.Max(newCount, 0));
-        }
+        UpdateItemsByValue(Value);
+        AdjustWidth(Value);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -180,7 +182,6 @@ public class Rating : TemplatedControl
             Items.Add(new RatingCharacter());
         }
 
-        UpdateItems((int)DefaultValue - 1);
         if (DefaultValue > Count)
         {
             SetCurrentValue(ValueProperty, Math.Max(Count, 0));
@@ -207,15 +208,15 @@ public class Rating : TemplatedControl
             }
         }
 
-        UpdateItems(index);
+        UpdateItemsByIndex(index);
     }
 
     protected override void OnPointerExited(PointerEventArgs e)
     {
-        UpdateItems((int)Value - 1);
+        UpdateItemsByValue(Value);
     }
 
-    public void Select(RatingCharacter o)
+    public void PointerReleasedHandler(RatingCharacter o)
     {
         var index = Items.IndexOf(o);
         double newValue = index + 1;
@@ -226,23 +227,25 @@ public class Rating : TemplatedControl
 
         if (AllowClear && Math.Abs(Value - newValue) < Tolerance)
         {
-            UpdateItems(-1);
+            UpdateItemsByValue(-1);
             SetCurrentValue(ValueProperty, 0);
         }
         else
         {
-            UpdateItems(index);
+            UpdateItemsByValue(newValue);
             SetCurrentValue(ValueProperty, newValue);
         }
     }
 
-    private void UpdateItems(int index)
+    private void UpdateItemsByIndex(int index)
     {
+        var isInt = Math.Abs(Value - Math.Floor(Value)) < Tolerance;
         for (var i = 0; i <= index && i < Items.Count; i++)
         {
             if (Items[i] is RatingCharacter item)
             {
                 item.Select(true);
+                item.IsHalf = !isInt && i == index;
             }
         }
 
@@ -251,6 +254,34 @@ public class Rating : TemplatedControl
             if (Items[i] is RatingCharacter item)
             {
                 item.Select(false);
+                item.IsHalf = false;
+            }
+        }
+    }
+
+    private void UpdateItemsByValue(double newValue)
+    {
+        var index = (int)Math.Ceiling(newValue - 1);
+        UpdateItemsByIndex(index);
+    }
+
+    private void AdjustWidth(double newValue)
+    {
+        var ratio = Math.Abs(newValue - Math.Floor(newValue));
+        foreach (var character in Items)
+        {
+            if (character is RatingCharacter item)
+            {
+                if (item.IsHalf)
+                {
+                    item.Ratio = ratio;
+                }
+                else
+                {
+                    item.Ratio = 1;
+                }
+
+                item.AdjustWidth();
             }
         }
     }

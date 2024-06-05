@@ -6,13 +6,12 @@ using Avalonia.LogicalTree;
 
 namespace Ursa.Controls;
 
-[PseudoClasses(PC_Selected, PC_Half)]
+[PseudoClasses(PC_Selected)]
 [TemplatePart(PART_IconGlyph, typeof(Control))]
 public class RatingCharacter : TemplatedControl
 {
     public const string PART_IconGlyph = "PART_IconGlyph";
     protected const string PC_Selected = ":selected";
-    protected const string PC_Half = ":half";
 
     private Control? _icon;
 
@@ -23,12 +22,13 @@ public class RatingCharacter : TemplatedControl
         get => _isHalf;
         set
         {
-            if (_isHalf == value) return;
             _isHalf = value;
             if (_icon is null) return;
-            _icon.Width = value ? Bounds.Width / 2 : Bounds.Width;
+            _icon.Width = value ? Bounds.Width * 0.5 : Bounds.Width;
         }
     }
+
+    internal double Ratio { get; set; }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -45,32 +45,25 @@ public class RatingCharacter : TemplatedControl
     protected override void OnPointerMoved(PointerEventArgs e)
     {
         var p = e.GetPosition(this);
-        var flag = p.X < Bounds.Width / 2;
-        PseudoClasses.Set(PC_Half, flag);
-        IsHalf = flag;
-        // if (flag)
-        // {
-        //     _icon.Width = Bounds.Width / 2;
-        // }
-        // else
-        // {
-        //     _icon.Width = Bounds.Width;
-        // }
+        IsHalf = p.X < Bounds.Width * 0.5;
     }
-
-    // protected override void OnPointerExited(PointerEventArgs e)
-    // {
-    //     // _icon.Width = Bounds.Width;
-    // }
 
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
     {
         var parent = this.GetLogicalAncestors().OfType<Rating>().FirstOrDefault();
-        parent?.Select(this);
+        parent?.PointerReleasedHandler(this);
     }
 
     public void Select(bool value)
     {
         PseudoClasses.Set(PC_Selected, value);
+    }
+
+    public void AdjustWidth()
+    {
+        if (_icon is not null)
+        {
+            _icon.Width = Bounds.Width * Ratio;
+        }
     }
 }
