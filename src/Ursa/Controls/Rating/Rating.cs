@@ -179,14 +179,11 @@ public class Rating : TemplatedControl
             Items.Add(new RatingCharacter());
         }
 
+        foreach (var item in Items)
+        {
+            item.AllowHalf = AllowHalf;
+        }
         SetCurrentValue(ValueProperty, DefaultValue);
-    }
-
-    protected override void OnLoaded(RoutedEventArgs e)
-    {
-        base.OnLoaded(e);
-        UpdateItemsByValue(Value);
-        AdjustWidth(Value);
     }
 
     public void Preview(RatingCharacter o)

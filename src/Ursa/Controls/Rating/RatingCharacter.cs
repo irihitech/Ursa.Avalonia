@@ -17,9 +17,7 @@ public class RatingCharacter : TemplatedControl
 
     private Control? _icon;
 
-    public static readonly StyledProperty<bool> AllowHalfProperty = AvaloniaProperty.Register<RatingCharacter, bool>(
-        nameof(AllowHalf));
-
+    public static readonly StyledProperty<bool> AllowHalfProperty = Rating.AllowHalfProperty.AddOwner<RatingCharacter>();
 
     public bool AllowHalf
     {
