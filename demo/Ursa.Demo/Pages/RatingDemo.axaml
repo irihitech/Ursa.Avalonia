@@ -21,8 +21,7 @@
                         IsEnabled="{Binding IsEnabled}"
                         Value="{Binding Value}"
                         Count="{Binding Count}"
-                        DefaultValue="{Binding DefaultValue }"
-                        Tooltips="{Binding Tooltips }" />
+                        DefaultValue="{Binding DefaultValue }" />
                 </StackPanel>
             </Grid>
             <Border Grid.Column="1" VerticalAlignment="Top">
@@ -71,41 +70,40 @@
                         Grid.Row="4"
                         Grid.Column="0"
                         VerticalAlignment="Center"
-                        Content="Value" />
-                    <NumericUpDown
+                        Content="DefaultValue" />
+                    <Label
                         Grid.Row="4"
                         Grid.Column="1"
+                        Theme="{StaticResource TagLabel}"
+                        Classes="Large"
+                        VerticalAlignment="Center"
+                        Content="{Binding DefaultValue}" />
+                    <Label
+                        Grid.Row="5"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Content="Value" />
+                    <NumericUpDown
+                        Grid.Row="5"
+                        Grid.Column="1"
                         Maximum="100"
-                        Minimum="-1"
+                        Minimum="-10"
                         Increment="0.1"
                         VerticalAlignment="Center"
                         Value="{Binding Value}" />
                     <Label
-                        Grid.Row="5"
+                        Grid.Row="6"
                         Grid.Column="0"
                         VerticalAlignment="Center"
                         Content="Count" />
                     <NumericUpDown
-                        Grid.Row="5"
+                        Grid.Row="6"
                         Grid.Column="1"
                         Maximum="100"
-                        Minimum="-1"
+                        Minimum="-10"
                         Increment="1"
                         VerticalAlignment="Center"
                         Value="{Binding Count}" />
-                    <Label
-                        Grid.Row="6"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="DefaultValue" />
-                    <NumericUpDown
-                        Grid.Row="6"
-                        Grid.Column="1"
-                        Maximum="100"
-                        Minimum="-1"
-                        Increment="0.1"
-                        VerticalAlignment="Center"
-                        Value="{Binding DefaultValue}" />
                 </Grid>
             </Border>
         </Grid>

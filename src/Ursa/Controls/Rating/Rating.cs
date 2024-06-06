@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.ObjectModel;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
-using Avalonia.Input;
 using Avalonia.Interactivity;
 
 namespace Ursa.Controls;
@@ -20,7 +17,7 @@ public class Rating : TemplatedControl
     protected const string PC_Selected = ":selected";
 
     private ItemsControl? _itemsControl;
-    private const double Tolerance = 0.0001;
+    private const double Tolerance = 0.00000001;
 
     public static readonly StyledProperty<double> ValueProperty =
         AvaloniaProperty.Register<Rating, double>(nameof(Value), defaultBindingMode: BindingMode.TwoWay);
@@ -42,18 +39,6 @@ public class Rating : TemplatedControl
 
     public static readonly StyledProperty<double> DefaultValueProperty =
         AvaloniaProperty.Register<Rating, double>(nameof(DefaultValue));
-
-    public static readonly StyledProperty<IList<string>> TooltipsProperty =
-        AvaloniaProperty.Register<Rating, IList<string>>(nameof(Tooltips));
-
-    public static readonly StyledProperty<string> SelectedTooltipProperty =
-        AvaloniaProperty.Register<Rating, string>(nameof(SelectedTooltip));
-
-    public string SelectedTooltip
-    {
-        get => GetValue(SelectedTooltipProperty);
-        set => SetValue(SelectedTooltipProperty, value);
-    }
 
     public static readonly StyledProperty<IDataTemplate?> ItemTemplateProperty =
         AvaloniaProperty.Register<Rating, IDataTemplate?>(nameof(ItemTemplate));
@@ -100,25 +85,19 @@ public class Rating : TemplatedControl
         set => SetValue(DefaultValueProperty, value);
     }
 
-    public IList<string> Tooltips
-    {
-        get => GetValue(TooltipsProperty);
-        set => SetValue(TooltipsProperty, value);
-    }
-
     public IDataTemplate? ItemTemplate
     {
         get => GetValue(ItemTemplateProperty);
         set => SetValue(ItemTemplateProperty, value);
     }
 
-    public static readonly DirectProperty<Rating, IList> ItemsProperty =
-        AvaloniaProperty.RegisterDirect<Rating, IList>(
+    public static readonly DirectProperty<Rating, AvaloniaList<RatingCharacter>> ItemsProperty =
+        AvaloniaProperty.RegisterDirect<Rating, AvaloniaList<RatingCharacter>>(
             nameof(Items), o => o.Items);
 
-    private IList _items;
+    private AvaloniaList<RatingCharacter> _items;
 
-    public IList Items
+    public AvaloniaList<RatingCharacter> Items
     {
         get => _items;
         private set => SetAndRaise(ItemsProperty, ref _items, value);
@@ -126,14 +105,14 @@ public class Rating : TemplatedControl
 
     public Rating()
     {
-        Items = new AvaloniaList<object>();
-        Tooltips = new ObservableCollection<string>();
+        Items = [];
     }
 
     static Rating()
     {
         ValueProperty.Changed.AddClassHandler<Rating>((s, e) => s.OnValueChanged(e));
         CountProperty.Changed.AddClassHandler<Rating>((s, e) => s.OnCountChanged(e));
+        AllowHalfProperty.Changed.AddClassHandler<Rating>((s, e) => s.OnAllowHalfChanged(e));
     }
 
     private void OnValueChanged(AvaloniaPropertyChangedEventArgs e)
@@ -170,6 +149,23 @@ public class Rating : TemplatedControl
         }
 
         UpdateItemsByValue(Value);
+        foreach (var item in Items)
+        {
+            item.AllowHalf = AllowHalf;
+        }
+
+        AdjustWidth(Value);
+    }
+
+    private void OnAllowHalfChanged(AvaloniaPropertyChangedEventArgs e)
+    {
+        if (e.NewValue is not bool newValue) return;
+        foreach (var item in Items)
+        {
+            item.AllowHalf = newValue;
+        }
+
+        UpdateItemsByValue(Value);
         AdjustWidth(Value);
     }
 
@@ -183,113 +179,77 @@ public class Rating : TemplatedControl
             Items.Add(new RatingCharacter());
         }
 
-        if (DefaultValue > Count)
-        {
-            SetCurrentValue(ValueProperty, Math.Max(Count, 0));
-        }
-        else
-        {
-            SetCurrentValue(ValueProperty, DefaultValue);
-        }
+        SetCurrentValue(ValueProperty, DefaultValue);
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
     {
         base.OnLoaded(e);
+        UpdateItemsByValue(Value);
         AdjustWidth(Value);
     }
 
     public void Preview(RatingCharacter o)
     {
         var index = Items.IndexOf(o);
-        var tooltipsCount = Tooltips.Count;
-        if (tooltipsCount > 0)
-        {
-            if (index < tooltipsCount)
-            {
-                SetCurrentValue(SelectedTooltipProperty, Tooltips[index]);
-            }
-            else
-            {
-                SetCurrentValue(SelectedTooltipProperty, string.Empty);
-            }
-        }
-
         UpdateItemsByIndex(index);
     }
 
-    protected override void OnPointerExited(PointerEventArgs e)
-    {
-        UpdateItemsByValue(Value);
-    }
-
-    public void PointerReleasedHandler(RatingCharacter o)
+    internal void PointerReleasedHandler(RatingCharacter o)
     {
         var index = Items.IndexOf(o);
         double newValue = index + 1;
-        if (o.IsHalf)
+        if (AllowHalf && o.IsHalf)
         {
             newValue = index + 0.5;
         }
 
         if (AllowClear && Math.Abs(Value - newValue) < Tolerance)
         {
-            UpdateItemsByValue(-1);
             SetCurrentValue(ValueProperty, 0);
         }
         else
         {
-            UpdateItemsByValue(newValue);
             SetCurrentValue(ValueProperty, newValue);
         }
     }
 
-    private void UpdateItemsByIndex(int index)
-    {
-        var isInt = Math.Abs(Value - Math.Floor(Value)) < Tolerance;
-        for (var i = 0; i <= index && i < Items.Count; i++)
-        {
-            if (Items[i] is RatingCharacter item)
-            {
-                item.Select(true);
-                item.IsHalf = !isInt && i == index;
-            }
-        }
-
-        for (var i = index + 1; i >= 0 && i < Items.Count; i++)
-        {
-            if (Items[i] is RatingCharacter item)
-            {
-                item.Select(false);
-                item.IsHalf = false;
-            }
-        }
-    }
-
-    private void UpdateItemsByValue(double newValue)
+    internal void UpdateItemsByValue(double newValue)
     {
         var index = (int)Math.Ceiling(newValue - 1);
         UpdateItemsByIndex(index);
     }
 
-    private void AdjustWidth(double newValue)
+    private void UpdateItemsByIndex(int index)
+    {
+        for (var i = 0; i < Items.Count; i++)
+        {
+            if (i == index) continue;
+            Items[i].Select(i < index);
+            Items[i].IsLast = false;
+            Items[i].IsHalf = false;
+            Items[i].Ratio = 1;
+        }
+
+        if (index >= Items.Count || index < 0) return;
+        var ratio = Math.Abs(Value - Math.Floor(Value));
+        var isInt = ratio < Tolerance;
+        Items[index].Select(true);
+        Items[index].IsLast = true;
+        Items[index].IsHalf = AllowHalf && !isInt;
+        Items[index].Ratio = AllowHalf ? ratio : 1;
+    }
+
+
+    internal void AdjustWidth(double newValue)
     {
         var ratio = Math.Abs(newValue - Math.Floor(newValue));
-        foreach (var character in Items)
+        var isInt = ratio < Tolerance;
+        ratio = AllowHalf && !isInt ? ratio : 1;
+        foreach (var item in Items)
         {
-            if (character is RatingCharacter item)
-            {
-                if (item.IsHalf)
-                {
-                    item.Ratio = ratio;
-                }
-                else
-                {
-                    item.Ratio = 1;
-                }
-
-                item.AdjustWidth();
-            }
+            item.Ratio = item.IsLast ? ratio : 1;
+            item.AdjustWidth();
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 
 namespace Ursa.Controls;
@@ -15,6 +17,18 @@ public class RatingCharacter : TemplatedControl
 
     private Control? _icon;
 
+    public static readonly StyledProperty<bool> AllowHalfProperty = AvaloniaProperty.Register<RatingCharacter, bool>(
+        nameof(AllowHalf));
+
+
+    public bool AllowHalf
+    {
+        get => GetValue(AllowHalfProperty);
+        set => SetValue(AllowHalfProperty, value);
+    }
+
+    internal bool IsLast { get; set; }
+
     private bool _isHalf;
 
     internal bool IsHalf
@@ -22,6 +36,7 @@ public class RatingCharacter : TemplatedControl
         get => _isHalf;
         set
         {
+            if (!AllowHalf) return;
             _isHalf = value;
             if (_icon is null) return;
             _icon.Width = value ? Bounds.Width * 0.5 : Bounds.Width;
@@ -29,6 +44,12 @@ public class RatingCharacter : TemplatedControl
     }
 
     internal double Ratio { get; set; }
+
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        AdjustWidth();
+    }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -44,8 +65,16 @@ public class RatingCharacter : TemplatedControl
 
     protected override void OnPointerMoved(PointerEventArgs e)
     {
+        if (!AllowHalf) return;
         var p = e.GetPosition(this);
         IsHalf = p.X < Bounds.Width * 0.5;
+    }
+
+    protected override void OnPointerExited(PointerEventArgs e)
+    {
+        var parent = this.GetLogicalAncestors().OfType<Rating>().FirstOrDefault();
+        parent?.UpdateItemsByValue(parent.Value);
+        parent?.AdjustWidth(parent.Value);
     }
 
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
@@ -54,12 +83,12 @@ public class RatingCharacter : TemplatedControl
         parent?.PointerReleasedHandler(this);
     }
 
-    public void Select(bool value)
+    internal void Select(bool value)
     {
         PseudoClasses.Set(PC_Selected, value);
     }
 
-    public void AdjustWidth()
+    internal void AdjustWidth()
     {
         if (_icon is not null)
         {
