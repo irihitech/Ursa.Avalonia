@@ -5,7 +5,6 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
-using Avalonia.Interactivity;
 
 namespace Ursa.Controls;
 
@@ -17,7 +16,6 @@ public class Rating : TemplatedControl
     protected const string PC_Selected = ":selected";
 
     private ItemsControl? _itemsControl;
-    private const double Tolerance = 0.00000001;
 
     public static readonly StyledProperty<double> ValueProperty =
         AvaloniaProperty.Register<Rating, double>(nameof(Value), defaultBindingMode: BindingMode.TwoWay);
@@ -120,7 +118,6 @@ public class Rating : TemplatedControl
         if (e.NewValue is double newValue)
         {
             UpdateItemsByValue(newValue);
-            AdjustWidth(newValue);
         }
     }
 
@@ -148,13 +145,12 @@ public class Rating : TemplatedControl
             }
         }
 
-        UpdateItemsByValue(Value);
         foreach (var item in Items)
         {
             item.AllowHalf = AllowHalf;
         }
 
-        AdjustWidth(Value);
+        UpdateItemsByValue(Value);
     }
 
     private void OnAllowHalfChanged(AvaloniaPropertyChangedEventArgs e)
@@ -166,7 +162,6 @@ public class Rating : TemplatedControl
         }
 
         UpdateItemsByValue(Value);
-        AdjustWidth(Value);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -183,12 +178,19 @@ public class Rating : TemplatedControl
         {
             item.AllowHalf = AllowHalf;
         }
+
         SetCurrentValue(ValueProperty, DefaultValue);
     }
 
-    public void Preview(RatingCharacter o)
+    internal void PointerEnteredHandler(RatingCharacter o)
     {
         var index = Items.IndexOf(o);
+        var item = Items.FirstOrDefault(item => item.IsLast);
+        if (item is not null)
+        {
+            item.IsHalf = false;
+        }
+
         UpdateItemsByIndex(index);
     }
 
@@ -201,7 +203,7 @@ public class Rating : TemplatedControl
             newValue = index + 0.5;
         }
 
-        if (AllowClear && Math.Abs(Value - newValue) < Tolerance)
+        if (AllowClear && Math.Abs(Value - newValue) < double.Epsilon)
         {
             SetCurrentValue(ValueProperty, 0);
         }
@@ -213,40 +215,43 @@ public class Rating : TemplatedControl
 
     internal void UpdateItemsByValue(double newValue)
     {
+        RestorePreviousLastItem();
         var index = (int)Math.Ceiling(newValue - 1);
         UpdateItemsByIndex(index);
+        UpdateChosenItem(newValue);
+    }
+
+    private void RestorePreviousLastItem()
+    {
+        if (!AllowHalf) return;
+        var item = Items.FirstOrDefault(item => item.IsLast);
+        if (item is null) return;
+        item.Ratio = 1;
+        item.ApplyRatio();
     }
 
     private void UpdateItemsByIndex(int index)
     {
         for (var i = 0; i < Items.Count; i++)
         {
-            if (i == index) continue;
-            Items[i].Select(i < index);
-            Items[i].IsLast = false;
-            Items[i].IsHalf = false;
-            Items[i].Ratio = 1;
+            Items[i].SetSelectedState(i <= index);
+            Items[i].IsLast = i == index;
         }
-
-        if (index >= Items.Count || index < 0) return;
-        var ratio = Math.Abs(Value - Math.Floor(Value));
-        var isInt = ratio < Tolerance;
-        Items[index].Select(true);
-        Items[index].IsLast = true;
-        Items[index].IsHalf = AllowHalf && !isInt;
-        Items[index].Ratio = AllowHalf ? ratio : 1;
     }
 
-
-    internal void AdjustWidth(double newValue)
+    private void UpdateChosenItem(double newValue)
     {
-        var ratio = Math.Abs(newValue - Math.Floor(newValue));
-        var isInt = ratio < Tolerance;
-        ratio = AllowHalf && !isInt ? ratio : 1;
-        foreach (var item in Items)
+        var ratio = newValue - Math.Floor(newValue);
+        var isFraction = ratio >= double.Epsilon;
+        ratio = AllowHalf && isFraction ? ratio : 1;
+        var item = Items.FirstOrDefault(item => item.IsLast);
+        if (item is null) return;
+        if (!AllowHalf && isFraction)
         {
-            item.Ratio = item.IsLast ? ratio : 1;
-            item.AdjustWidth();
+            item.SetSelectedState(false);
         }
+
+        item.Ratio = ratio;
+        item.ApplyRatio();
     }
 }

@@ -15,6 +15,7 @@
             <Grid Grid.Column="0">
                 <StackPanel>
                     <u:Rating
+                        HorizontalAlignment="Center"
                         AllowClear="{Binding AllowClear }"
                         AllowHalf="{Binding AllowHalf }"
                         AllowFocus="{Binding AllowFocus }"

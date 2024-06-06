@@ -17,7 +17,8 @@ public class RatingCharacter : TemplatedControl
 
     private Control? _icon;
 
-    public static readonly StyledProperty<bool> AllowHalfProperty = Rating.AllowHalfProperty.AddOwner<RatingCharacter>();
+    public static readonly StyledProperty<bool> AllowHalfProperty =
+        Rating.AllowHalfProperty.AddOwner<RatingCharacter>();
 
     public bool AllowHalf
     {
@@ -41,12 +42,12 @@ public class RatingCharacter : TemplatedControl
         }
     }
 
-    internal double Ratio { get; set; }
+    internal double Ratio { get; set; } = 1;
 
     protected override void OnLoaded(RoutedEventArgs e)
     {
         base.OnLoaded(e);
-        AdjustWidth();
+        ApplyRatio();
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -58,7 +59,7 @@ public class RatingCharacter : TemplatedControl
     protected override void OnPointerEntered(PointerEventArgs e)
     {
         var parent = this.GetLogicalAncestors().OfType<Rating>().FirstOrDefault();
-        parent?.Preview(this);
+        parent?.PointerEnteredHandler(this);
     }
 
     protected override void OnPointerMoved(PointerEventArgs e)
@@ -72,7 +73,6 @@ public class RatingCharacter : TemplatedControl
     {
         var parent = this.GetLogicalAncestors().OfType<Rating>().FirstOrDefault();
         parent?.UpdateItemsByValue(parent.Value);
-        parent?.AdjustWidth(parent.Value);
     }
 
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
@@ -81,12 +81,12 @@ public class RatingCharacter : TemplatedControl
         parent?.PointerReleasedHandler(this);
     }
 
-    internal void Select(bool value)
+    internal void SetSelectedState(bool value)
     {
         PseudoClasses.Set(PC_Selected, value);
     }
 
-    internal void AdjustWidth()
+    internal void ApplyRatio()
     {
         if (_icon is not null)
         {
