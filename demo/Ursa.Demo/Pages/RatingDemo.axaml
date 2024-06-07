@@ -35,6 +35,7 @@
                         Value="{Binding Value}"
                         Count="{Binding Count}"
                         DefaultValue="{Binding DefaultValue}"
+                        Foreground="{StaticResource SemiRed5}"
                         Character="{StaticResource LoveHeartGeometry}" />
                 </StackPanel>
             </Grid>

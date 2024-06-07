@@ -15,6 +15,7 @@
                               Data="{TemplateBinding Character}"
                               Fill="{TemplateBinding Background}" />
                         <Border Name="{x:Static u:RatingCharacter.PART_IconGlyph}"
+                                IsVisible="False"
                                 ClipToBounds="True">
                             <Path Width="24"
                                   Height="24"
@@ -30,15 +31,14 @@
         <Style Selector="^:pointerover">
             <Setter Property="RenderTransform" Value="scale(1.1)" />
         </Style>
-        <Style Selector="^:selected">
-            <Setter Property="Foreground" Value="{DynamicResource RatingCharacterForeground}" />
+        <Style Selector="^:selected /template/ Border#PART_IconGlyph">
+            <Setter Property="IsVisible" Value="True" />
         </Style>
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:Rating}" TargetType="u:Rating">
-        <Setter Property="Foreground" Value="{DynamicResource RatingCharacterUnSelectedForeground}" />
+        <Setter Property="Foreground" Value="{DynamicResource RatingCharacterForeground}" />
         <Setter Property="Character" Value="{DynamicResource RatingStarIconGlyph}" />
-        <Setter Property="Background" Value="Transparent" />
         <Setter Property="ItemTemplate">
             <DataTemplate>
                 <u:RatingCharacter />
