@@ -20,10 +20,19 @@ public class RatingCharacter : TemplatedControl
     public static readonly StyledProperty<bool> AllowHalfProperty =
         Rating.AllowHalfProperty.AddOwner<RatingCharacter>();
 
+    public static readonly StyledProperty<object> CharacterProperty =
+        Rating.CharacterProperty.AddOwner<RatingCharacter>();
+
     public bool AllowHalf
     {
         get => GetValue(AllowHalfProperty);
         set => SetValue(AllowHalfProperty, value);
+    }
+
+    public object Character
+    {
+        get => GetValue(CharacterProperty);
+        set => SetValue(CharacterProperty, value);
     }
 
     internal bool IsLast { get; set; }

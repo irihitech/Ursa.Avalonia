@@ -10,19 +10,32 @@
              x:CompileBindings="True"
              x:DataType="vm:RatingDemoViewModel"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <StreamGeometry x:Key="LoveHeartGeometry">
+            M12 5.99999C10.5 2.12432 5.75193 2.0557 3.40383 4.4038C0.865423 6.94221 0.999999 10.5 3.50001 14C5.52139 16.8299 9.83088 20.3136 11.4069 21.5438C11.7573 21.8172 12.2427 21.8172 12.5931 21.5438C14.1691 20.3136 18.4786 16.8299 20.5 14C23 10.5 23.1346 6.94221 20.5962 4.4038C18.2481 2.0557 14.5 2.12432 12 5.99999Z
+        </StreamGeometry>
+    </UserControl.Resources>
     <StackPanel Spacing="20">
         <Grid ColumnDefinitions="*, 300">
             <Grid Grid.Column="0">
-                <StackPanel>
+                <StackPanel HorizontalAlignment="Center">
                     <u:Rating
-                        HorizontalAlignment="Center"
-                        AllowClear="{Binding AllowClear }"
-                        AllowHalf="{Binding AllowHalf }"
-                        AllowFocus="{Binding AllowFocus }"
+                        AllowClear="{Binding AllowClear}"
+                        AllowHalf="{Binding AllowHalf}"
+                        AllowFocus="{Binding AllowFocus}"
                         IsEnabled="{Binding IsEnabled}"
                         Value="{Binding Value}"
                         Count="{Binding Count}"
-                        DefaultValue="{Binding DefaultValue }" />
+                        DefaultValue="{Binding DefaultValue}" />
+                    <u:Rating
+                        AllowClear="{Binding AllowClear}"
+                        AllowHalf="{Binding AllowHalf}"
+                        AllowFocus="{Binding AllowFocus}"
+                        IsEnabled="{Binding IsEnabled}"
+                        Value="{Binding Value}"
+                        Count="{Binding Count}"
+                        DefaultValue="{Binding DefaultValue}"
+                        Character="{StaticResource LoveHeartGeometry}" />
                 </StackPanel>
             </Grid>
             <Border Grid.Column="1" VerticalAlignment="Top">

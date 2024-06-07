@@ -115,6 +115,7 @@ public class Rating : TemplatedControl
 
     private void OnValueChanged(AvaloniaPropertyChangedEventArgs e)
     {
+        if (!IsLoaded) return;
         if (e.NewValue is double newValue)
         {
             UpdateItemsByValue(newValue);
@@ -133,7 +134,11 @@ public class Rating : TemplatedControl
             var itemsToAdd = newCount - currentCount;
             for (var i = 0; i < itemsToAdd; i++)
             {
-                Items.Add(new RatingCharacter());
+                Items.Add(new RatingCharacter
+                {
+                    Character = Character,
+                    AllowHalf = AllowHalf
+                });
             }
         }
         else if (currentCount > newCount)
@@ -143,11 +148,6 @@ public class Rating : TemplatedControl
             {
                 Items.RemoveAt(currentCount - i - 1);
             }
-        }
-
-        foreach (var item in Items)
-        {
-            item.AllowHalf = AllowHalf;
         }
 
         UpdateItemsByValue(Value);
@@ -171,26 +171,27 @@ public class Rating : TemplatedControl
         _itemsControl = e.NameScope.Find<ItemsControl>(PART_ItemsControl);
         for (var i = 0; i < Count; i++)
         {
-            Items.Add(new RatingCharacter());
-        }
-
-        foreach (var item in Items)
-        {
-            item.AllowHalf = AllowHalf;
+            Items.Add(new RatingCharacter
+                {
+                    Character = Character,
+                    AllowHalf = AllowHalf
+                }
+            );
         }
 
         SetCurrentValue(ValueProperty, DefaultValue);
+        UpdateItemsByValue(DefaultValue);
     }
 
     internal void PointerEnteredHandler(RatingCharacter o)
     {
-        var index = Items.IndexOf(o);
         var item = Items.FirstOrDefault(item => item.IsLast);
         if (item is not null)
         {
             item.IsHalf = false;
         }
 
+        var index = Items.IndexOf(o);
         UpdateItemsByIndex(index);
     }
 
