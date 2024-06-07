@@ -5,27 +5,27 @@
         <Setter Property="Character" Value="{DynamicResource RatingStarIconGlyph}" />
         <Setter Property="Background" Value="{DynamicResource RatingCharacterBackground}" />
         <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Margin" Value="3,4" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:RatingCharacter">
-                <!-- <Border Margin="0 0 6 0"> -->
-                    <Canvas Width="24" Height="24">
-                        <Path Width="24"
-                              Height="24"
+                <Canvas Name="PART_Root" Width="24" Height="24">
+                    <Path Width="{Binding #PART_Root.Width}"
+                          Height="{Binding #PART_Root.Height}"
+                          Stretch="Uniform"
+                          Data="{TemplateBinding Character}"
+                          Fill="{TemplateBinding Background}" />
+                    <Border Name="{x:Static u:RatingCharacter.PART_IconGlyph}"
+                            IsVisible="False"
+                            ClipToBounds="True">
+                        <Path Width="{Binding #PART_Root.Width}"
+                              Height="{Binding #PART_Root.Height}"
+                              HorizontalAlignment="Left"
+                              Stretch="Uniform"
                               Data="{TemplateBinding Character}"
-                              Fill="{TemplateBinding Background}" />
-                        <Border Name="{x:Static u:RatingCharacter.PART_IconGlyph}"
-                                IsVisible="False"
-                                ClipToBounds="True">
-                            <Path Width="24"
-                                  Height="24"
-                                  HorizontalAlignment="Left"
-                                  Data="{TemplateBinding Character}"
-                                  Fill="{TemplateBinding Foreground}" />
-                        </Border>
-                    </Canvas>
-                <!-- </Border> -->
-
+                              Fill="{TemplateBinding Foreground}" />
+                    </Border>
+                </Canvas>
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover">
