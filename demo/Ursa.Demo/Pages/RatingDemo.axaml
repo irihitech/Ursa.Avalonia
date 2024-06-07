@@ -28,6 +28,16 @@
                         Count="{Binding Count}"
                         DefaultValue="{Binding DefaultValue}" />
                     <u:Rating
+                        Classes="Small"
+                        AllowClear="{Binding AllowClear}"
+                        AllowHalf="{Binding AllowHalf}"
+                        AllowFocus="{Binding AllowFocus}"
+                        IsEnabled="{Binding IsEnabled}"
+                        Value="{Binding Value}"
+                        Count="{Binding Count}"
+                        DefaultValue="{Binding DefaultValue}" />
+                    <u:Rating
+                        Size="48"
                         AllowClear="{Binding AllowClear}"
                         AllowHalf="{Binding AllowHalf}"
                         AllowFocus="{Binding AllowFocus}"
@@ -40,7 +50,7 @@
                 </StackPanel>
             </Grid>
             <Border Grid.Column="1" VerticalAlignment="Top">
-                <Grid ColumnDefinitions="*, Auto" RowDefinitions="*,*,*,*,*,*,*">
+                <Grid ColumnDefinitions="*, Auto" RowDefinitions="*,*,*,*,*,*,*,*">
                     <Label
                         Grid.Row="0"
                         Grid.Column="0"

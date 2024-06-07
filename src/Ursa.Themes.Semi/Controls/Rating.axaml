@@ -5,11 +5,13 @@
         <Setter Property="Character" Value="{DynamicResource RatingStarIconGlyph}" />
         <Setter Property="Background" Value="{DynamicResource RatingCharacterBackground}" />
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Margin" Value="3,4" />
+        <Setter Property="Margin" Value="{DynamicResource RatingCharacterMargin}" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:RatingCharacter">
-                <Canvas Name="PART_Root" Width="24" Height="24">
+                <Canvas Name="PART_Root"
+                        Width="{TemplateBinding Size}"
+                        Height="{TemplateBinding Size}">
                     <Path Width="{Binding #PART_Root.Width}"
                           Height="{Binding #PART_Root.Height}"
                           Stretch="Uniform"
@@ -39,6 +41,7 @@
     <ControlTheme x:Key="{x:Type u:Rating}" TargetType="u:Rating">
         <Setter Property="Foreground" Value="{DynamicResource RatingCharacterForeground}" />
         <Setter Property="Character" Value="{DynamicResource RatingStarIconGlyph}" />
+        <Setter Property="Size" Value="{DynamicResource RatingDefaultSize}" />
         <Setter Property="ItemTemplate">
             <DataTemplate>
                 <u:RatingCharacter />
@@ -68,5 +71,8 @@
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^.Small">
+            <Setter Property="Size" Value="{DynamicResource RatingSmallSize}" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

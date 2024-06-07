@@ -38,6 +38,9 @@ public class Rating : TemplatedControl
     public static readonly StyledProperty<double> DefaultValueProperty =
         AvaloniaProperty.Register<Rating, double>(nameof(DefaultValue));
 
+    public static readonly StyledProperty<double> SizeProperty =
+        AvaloniaProperty.Register<RatingCharacter, double>(nameof(Size));
+
     public static readonly StyledProperty<IDataTemplate?> ItemTemplateProperty =
         AvaloniaProperty.Register<Rating, IDataTemplate?>(nameof(ItemTemplate));
 
@@ -81,6 +84,12 @@ public class Rating : TemplatedControl
     {
         get => GetValue(DefaultValueProperty);
         set => SetValue(DefaultValueProperty, value);
+    }
+
+    public double Size
+    {
+        get => GetValue(SizeProperty);
+        set => SetValue(SizeProperty, value);
     }
 
     public IDataTemplate? ItemTemplate
@@ -137,7 +146,8 @@ public class Rating : TemplatedControl
                 Items.Add(new RatingCharacter
                 {
                     Character = Character,
-                    AllowHalf = AllowHalf
+                    AllowHalf = AllowHalf,
+                    Size = Size,
                 });
             }
         }
@@ -174,7 +184,8 @@ public class Rating : TemplatedControl
             Items.Add(new RatingCharacter
                 {
                     Character = Character,
-                    AllowHalf = AllowHalf
+                    AllowHalf = AllowHalf,
+                    Size = Size,
                 }
             );
         }

@@ -23,6 +23,9 @@ public class RatingCharacter : TemplatedControl
     public static readonly StyledProperty<object> CharacterProperty =
         Rating.CharacterProperty.AddOwner<RatingCharacter>();
 
+    public static readonly StyledProperty<double> SizeProperty =
+        Rating.SizeProperty.AddOwner<RatingCharacter>();
+
     public bool AllowHalf
     {
         get => GetValue(AllowHalfProperty);
@@ -33,6 +36,12 @@ public class RatingCharacter : TemplatedControl
     {
         get => GetValue(CharacterProperty);
         set => SetValue(CharacterProperty, value);
+    }
+
+    public double Size
+    {
+        get => GetValue(SizeProperty);
+        set => SetValue(SizeProperty, value);
     }
 
     internal bool IsLast { get; set; }

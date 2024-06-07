@@ -12,9 +12,9 @@ public partial class RatingDemoViewModel : ViewModelBase
 
     [ObservableProperty] private double _value;
 
-    // [ObservableProperty] private object _character;
-    [ObservableProperty] private int _count = 5;
     [ObservableProperty] private double _defaultValue = 2.3;
+    [ObservableProperty] private int _count = 5;
+    // [ObservableProperty] private object _character;
 
     public ObservableCollection<string> Tooltips { get; set; } = ["1", "2", "3", "4", "5"];
 }
