@@ -17,7 +17,7 @@
                           Stretch="Uniform"
                           Data="{TemplateBinding Character}"
                           Fill="{TemplateBinding Background}" />
-                    <Border Name="{x:Static u:RatingCharacter.PART_IconGlyph}"
+                    <Border Name="{x:Static u:RatingCharacter.PART_IconBorder}"
                             IsVisible="False"
                             ClipToBounds="True">
                         <Path Width="{Binding #PART_Root.Width}"
@@ -33,7 +33,7 @@
         <Style Selector="^:pointerover">
             <Setter Property="RenderTransform" Value="scale(1.1)" />
         </Style>
-        <Style Selector="^:selected /template/ Border#PART_IconGlyph">
+        <Style Selector="^:selected /template/ Border#PART_IconBorder">
             <Setter Property="IsVisible" Value="True" />
         </Style>
     </ControlTheme>

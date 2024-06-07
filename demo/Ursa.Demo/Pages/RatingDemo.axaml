@@ -22,7 +22,6 @@
                     <u:Rating
                         AllowClear="{Binding AllowClear}"
                         AllowHalf="{Binding AllowHalf}"
-                        AllowFocus="{Binding AllowFocus}"
                         IsEnabled="{Binding IsEnabled}"
                         Value="{Binding Value}"
                         Count="{Binding Count}"
@@ -31,7 +30,6 @@
                         Classes="Small"
                         AllowClear="{Binding AllowClear}"
                         AllowHalf="{Binding AllowHalf}"
-                        AllowFocus="{Binding AllowFocus}"
                         IsEnabled="{Binding IsEnabled}"
                         Value="{Binding Value}"
                         Count="{Binding Count}"
@@ -40,7 +38,6 @@
                         Size="48"
                         AllowClear="{Binding AllowClear}"
                         AllowHalf="{Binding AllowHalf}"
-                        AllowFocus="{Binding AllowFocus}"
                         IsEnabled="{Binding IsEnabled}"
                         Value="{Binding Value}"
                         Count="{Binding Count}"
@@ -71,16 +68,6 @@
                         Grid.Column="1"
                         VerticalAlignment="Center"
                         IsChecked="{Binding AllowHalf}" />
-                    <Label
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="AllowFocus" />
-                    <ToggleSwitch
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        IsChecked="{Binding AllowFocus}" />
                     <Label
                         Grid.Row="3"
                         Grid.Column="0"

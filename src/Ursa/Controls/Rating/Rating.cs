@@ -15,8 +15,6 @@ public class Rating : TemplatedControl
     public const string PART_ItemsControl = "PART_ItemsControl";
     protected const string PC_Selected = ":selected";
 
-    private ItemsControl? _itemsControl;
-
     public static readonly StyledProperty<double> ValueProperty =
         AvaloniaProperty.Register<Rating, double>(nameof(Value), defaultBindingMode: BindingMode.TwoWay);
 
@@ -25,9 +23,6 @@ public class Rating : TemplatedControl
 
     public static readonly StyledProperty<bool> AllowHalfProperty =
         AvaloniaProperty.Register<Rating, bool>(nameof(AllowHalf));
-
-    public static readonly StyledProperty<bool> AllowFocusProperty =
-        AvaloniaProperty.Register<Rating, bool>(nameof(AllowFocus));
 
     public static readonly StyledProperty<object> CharacterProperty =
         AvaloniaProperty.Register<Rating, object>(nameof(Character));
@@ -60,12 +55,6 @@ public class Rating : TemplatedControl
     {
         get => GetValue(AllowHalfProperty);
         set => SetValue(AllowHalfProperty, value);
-    }
-
-    public bool AllowFocus
-    {
-        get => GetValue(AllowFocusProperty);
-        set => SetValue(AllowFocusProperty, value);
     }
 
     public object Character
@@ -177,8 +166,6 @@ public class Rating : TemplatedControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-
-        _itemsControl = e.NameScope.Find<ItemsControl>(PART_ItemsControl);
         for (var i = 0; i < Count; i++)
         {
             Items.Add(new RatingCharacter

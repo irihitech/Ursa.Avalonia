@@ -9,13 +9,13 @@ using Avalonia.LogicalTree;
 namespace Ursa.Controls;
 
 [PseudoClasses(PC_Selected)]
-[TemplatePart(PART_IconGlyph, typeof(Control))]
+[TemplatePart(PART_IconBorder, typeof(Border))]
 public class RatingCharacter : TemplatedControl
 {
-    public const string PART_IconGlyph = "PART_IconGlyph";
+    public const string PART_IconBorder = "PART_IconBorder";
     protected const string PC_Selected = ":selected";
 
-    private Control? _icon;
+    private Border? _icon;
 
     public static readonly StyledProperty<bool> AllowHalfProperty =
         Rating.AllowHalfProperty.AddOwner<RatingCharacter>();
@@ -71,7 +71,7 @@ public class RatingCharacter : TemplatedControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        _icon = e.NameScope.Find<Control>(PART_IconGlyph);
+        _icon = e.NameScope.Find<Border>(PART_IconBorder);
     }
 
     protected override void OnPointerEntered(PointerEventArgs e)
