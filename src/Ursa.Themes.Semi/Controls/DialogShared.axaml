@@ -1,0 +1,71 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="CloseButton" TargetType="Button">
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Margin" Value="0, 4" />
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Height" Value="28" />
+        <Setter Property="Width" Value="28" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="Button">
+                <Border
+                    Name="PART_Border"
+                    Padding="{TemplateBinding Padding}"
+                    Background="Transparent"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <PathIcon
+                        Width="12"
+                        Height="12"
+                        Data="{DynamicResource WindowCloseIconGlyph}"/>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:pointerover /template/ Border">
+            <Setter Property="Background" Value="{DynamicResource CaptionButtonClosePointeroverBackground}" />
+        </Style>
+        <Style Selector="^:pointerover /template/ PathIcon">
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+
+        <Style Selector="^:pressed /template/ Border">
+            <Setter Property="Background" Value="{DynamicResource CaptionButtonClosePressedBackground}" />
+        </Style>
+        <Style Selector="^:pressed /template/ PathIcon">
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+    </ControlTheme>
+    
+    <ControlTheme x:Key="OverlayCloseButton" TargetType="Button">
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Margin" Value="0, 4" />
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Height" Value="28" />
+        <Setter Property="Width" Value="28" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="Button">
+                <Border
+                    Name="PART_Border"
+                    Padding="{TemplateBinding Padding}"
+                    Background="Transparent"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <PathIcon
+                        Width="12"
+                        Height="12"
+                        Data="{DynamicResource WindowCloseIconGlyph}"/>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:pointerover /template/ Border">
+            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPointeroverBackground}" />
+        </Style>
+        <Style Selector="^:pressed /template/ Border">
+            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPressedBackground}" />
+        </Style>
+    </ControlTheme>
+    
+</ResourceDictionary>

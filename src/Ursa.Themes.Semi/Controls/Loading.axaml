@@ -2,7 +2,8 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters"
-    xmlns:u="clr-namespace:Ursa.Controls;assembly=Ursa">
+    xmlns:u="clr-namespace:Ursa.Controls;assembly=Ursa"
+    xmlns:iri="https://irihi.tech/shared">
     <!--  Add Resources Here  -->
     <converters:BrushToColorConverter x:Key="BrushToColorConverter" />
     <ControlTheme x:Key="{x:Type u:LoadingIcon}" TargetType="u:LoadingIcon">
@@ -12,6 +13,7 @@
                 <Arc
                     Name="PART_Arc"
                     Width="20"
+                    IsVisible="{TemplateBinding IsVisible}"
                     Height="20"
                     StartAngle="0"
                     StrokeJoin="Round"
@@ -28,7 +30,7 @@
                         </ConicGradientBrush>
                     </Arc.Stroke>
                     <Arc.Styles>
-                        <Style Selector="Arc">
+                        <Style Selector="Arc[IsVisible=True]">
                             <Style.Animations>
                                 <Animation IterationCount="Infinite" Duration="0:0:0.5">
                                     <KeyFrame Cue="0%">
@@ -66,9 +68,10 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Loading">
                 <Panel IsVisible="{TemplateBinding IsLoading}">
-                    <Border
+                    <iri:PureRectangle
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
+                        IsHitTestVisible="True"
                         Background="{TemplateBinding Background}" />
                     <Grid
                         HorizontalAlignment="Center"

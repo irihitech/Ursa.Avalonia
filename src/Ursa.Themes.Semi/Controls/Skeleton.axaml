@@ -1,0 +1,47 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:iri="https://irihi.tech/shared">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!--  Add Controls for Previewer Here  -->
+        </Border>
+    </Design.PreviewWith>
+    <ControlTheme x:Key="{x:Type u:Skeleton}" TargetType="u:Skeleton">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:Skeleton">
+                <Border
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    ClipToBounds="{TemplateBinding ClipToBounds}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <Panel>
+                        <ContentPresenter
+                            x:Name="PART_ContentPresenter"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <iri:PureRectangle
+                            x:Name="PART_LoadingBorder"
+                            Classes.Active="{Binding Path= IsActive, RelativeSource={RelativeSource TemplatedParent}}"
+                            IsHitTestVisible="{TemplateBinding IsLoading}"
+                            Background="{DynamicResource SkeletonDefaultBackground}"
+                            IsVisible="{TemplateBinding IsLoading}">
+                        </iri:PureRectangle>
+                        <iri:PureRectangle
+                            x:Name="PART_ActiveBorder"
+                            IsHitTestVisible="{TemplateBinding IsLoading}"
+                            IsVisible="{TemplateBinding IsLoading}"
+                            >
+                        </iri:PureRectangle>
+                    </Panel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+    <!--  Add Styles Here  -->
+</ResourceDictionary>

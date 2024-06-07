@@ -1,0 +1,167 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa">
+    <ControlTheme TargetType="u:CustomDrawerControl" x:Key="{x:Type u:CustomDrawerControl}">
+        <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:CustomDrawerControl">
+                <Border Name="PART_Root" 
+                        Margin="8 -1 -1 -1"
+                        Padding="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Classes="Shadow"
+                        ClipToBounds="False"
+                        CornerRadius="12 0 0 12"
+                        BorderThickness="1 0 0 0"
+                        IsHitTestVisible="True"
+                        Theme="{DynamicResource CardBorder}">
+                    <Border ClipToBounds="True" CornerRadius="{Binding #PART_Root.CornerRadius}">
+                        <Grid RowDefinitions="Auto, *">
+                            <ContentPresenter
+                                Name="PART_ContentPresenter"
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Content="{TemplateBinding Content}" />
+                            <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
+                                <Panel
+                                    Name="{x:Static u:DialogControlBase.PART_TitleArea}"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Background="Transparent" />
+                                <Button
+                                    Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
+                                    Grid.Column="1"
+                                    Margin="0,24,24,0"
+                                    DockPanel.Dock="Right"
+                                    Theme="{DynamicResource OverlayCloseButton}" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^[Position=Right] /template/ Border#PART_Root">
+            <Setter Property="Margin" Value="8 0 0 0" />
+            <Setter Property="CornerRadius" Value="12 0 0  12" />
+            <Setter Property="BorderThickness" Value="1 0 0 0" />
+        </Style>
+        <Style Selector="^[Position=Left] /template/ Border#PART_Root">
+            <Setter Property="Margin" Value="0 0 8 0" />
+            <Setter Property="CornerRadius" Value="0 12 12 0" />
+            <Setter Property="BorderThickness" Value="0 0 1 0" />
+        </Style>
+        <Style Selector="^[Position=Top] /template/ Border#PART_Root">
+            <Setter Property="Margin" Value="0 0 0 8" />
+            <Setter Property="CornerRadius" Value="0 0 12 12" />
+            <Setter Property="BorderThickness" Value="0 0 0 1" />
+        </Style>
+        <Style Selector="^[Position=Bottom] /template/ Border#PART_Root">
+            <Setter Property="Margin" Value="0 8 0 0" />
+            <Setter Property="CornerRadius" Value="12 12 0 0" />
+            <Setter Property="BorderThickness" Value="0 1 0 0" />
+        </Style>
+    </ControlTheme>
+    
+    <ControlTheme x:Key="{x:Type u:DefaultDrawerControl}" TargetType="u:DefaultDrawerControl">
+        <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:DefaultDrawerControl">
+                <Border Name="PART_Root" 
+                        Margin="8 -1 -1 -1"
+                        Padding="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Classes="Shadow"
+                        ClipToBounds="False"
+                        CornerRadius="12 0 0 12"
+                        BorderThickness="1 0 0 0"
+                        IsHitTestVisible="True"
+                        Theme="{DynamicResource CardBorder}">
+                    <Border ClipToBounds="True" CornerRadius="{Binding #PART_Root.CornerRadius}">
+                        <Grid RowDefinitions="Auto, *, Auto">
+                            <ScrollViewer Grid.Row="1">
+                                <ContentPresenter
+                                    Name="PART_ContentPresenter"
+                                    Grid.Row="1"
+                                    Margin="24,8"
+                                    Content="{TemplateBinding Content}" />
+                            </ScrollViewer>
+                            <Grid Grid.Row="0" ColumnDefinitions=" *, Auto">
+                                <TextBlock
+                                    Name="PART_Title"
+                                    Grid.Column="0"
+                                    Margin="24,24,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    FontWeight="Bold"
+                                    IsHitTestVisible="False"
+                                    IsVisible="{TemplateBinding Title,
+                                                                Converter={x:Static ObjectConverters.IsNotNull}}"
+                                    Text="{TemplateBinding Title}"
+                                    TextWrapping="Wrap" />
+                                <Button
+                                    Name="{x:Static u:DrawerControlBase.PART_CloseButton}"
+                                    Grid.Column="1"
+                                    Margin="0,24,24,0"
+                                    DockPanel.Dock="Right"
+                                    Theme="{DynamicResource OverlayCloseButton}" />
+                            </Grid>
+                            <StackPanel
+                                Grid.Row="2"
+                                Margin="24,0,24,24"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+                                <Button
+                                    Name="{x:Static u:DefaultDialogControl.PART_CancelButton}"
+                                    Margin="8,0,0,0"
+                                    Classes="Tertiary"
+                                    Content="{DynamicResource STRING_MENU_DIALOG_CANCEL}" />
+                                <Button
+                                    Name="{x:Static u:DefaultDialogControl.PART_NoButton}"
+                                    Margin="8,0,0,0"
+                                    Classes="Danger"
+                                    Content="{DynamicResource STRING_MENU_DIALOG_NO}"
+                                    Theme="{DynamicResource SolidButton}" />
+                                <Button
+                                    Name="{x:Static u:DefaultDialogControl.PART_YesButton}"
+                                    Margin="8,0,0,0"
+                                    Classes="Primary"
+                                    Content="{DynamicResource STRING_MENU_DIALOG_YES}"
+                                    Theme="{DynamicResource SolidButton}" />
+                                <Button
+                                    Name="{x:Static u:DefaultDialogControl.PART_OKButton}"
+                                    Margin="8,0,0,0"
+                                    Classes="Primary"
+                                    Content="{DynamicResource STRING_MENU_DIALOG_OK}"
+                                    Theme="{DynamicResource SolidButton}" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^[Position=Right] /template/ Border#PART_Root">
+            <Setter Property="Margin" Value="8 0 0 0" />
+            <Setter Property="CornerRadius" Value="12 0 0  12" />
+            <Setter Property="BorderThickness" Value="1 0 0 0" />
+        </Style>
+        <Style Selector="^[Position=Left] /template/ Border#PART_Root">
+            <Setter Property="Margin" Value="0 0 8 0" />
+            <Setter Property="CornerRadius" Value="0 12 12 0" />
+            <Setter Property="BorderThickness" Value="0 0 1 0" />
+        </Style>
+        <Style Selector="^[Position=Top] /template/ Border#PART_Root">
+            <Setter Property="Margin" Value="0 0 0 8" />
+            <Setter Property="CornerRadius" Value="0 0 12 12" />
+            <Setter Property="BorderThickness" Value="0 0 0 1" />
+        </Style>
+        <Style Selector="^[Position=Bottom] /template/ Border#PART_Root">
+            <Setter Property="Margin" Value="0 8 0 0" />
+            <Setter Property="CornerRadius" Value="12 12 0 0" />
+            <Setter Property="BorderThickness" Value="0 1 0 0" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

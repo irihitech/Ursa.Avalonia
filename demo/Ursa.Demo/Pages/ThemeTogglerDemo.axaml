@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             mc:Ignorable="d" d:DesignWidth="800"
+             d:DesignHeight="450"
+             x:Class="Ursa.Demo.Pages.ThemeTogglerDemo">
+    <Grid ColumnDefinitions="Auto, *">
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="Global"></TextBlock>
+            <u:ThemeToggleButton/>
+            <TextBlock Text="Global Indicator"></TextBlock>
+            <u:ThemeToggleButton Mode="Indicator"/>
+            <TextBlock Text="Target To Scope"></TextBlock>
+            <u:ThemeToggleButton TargetScope="{Binding #scope}"></u:ThemeToggleButton>
+        </StackPanel>
+        <ThemeVariantScope Grid.Column="1" Name="scope" RequestedThemeVariant="Dark">
+            <Border Theme="{DynamicResource CardBorder}">
+                <StackPanel>
+                    <Button Content="Hello World"></Button>
+                    <Calendar></Calendar>
+                    <u:ThemeToggleButton></u:ThemeToggleButton>
+                </StackPanel>
+            </Border>
+        </ThemeVariantScope>
+    </Grid>
+</UserControl>

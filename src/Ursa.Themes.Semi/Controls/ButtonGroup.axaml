@@ -63,6 +63,7 @@
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
                             FontWeight="{TemplateBinding FontWeight}"
                             Foreground="{TemplateBinding Foreground}" />
                     </Border>

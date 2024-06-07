@@ -1,0 +1,67 @@
+﻿<UserControl
+    x:Class="Ursa.Demo.Pages.TimeBoxDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="clr-namespace:Ursa.Demo.ViewModels;assembly=Ursa.Demo"
+    x:DataType="vm:TimeBoxDemoViewModel"
+    x:CompileBindings="True"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel HorizontalAlignment="Left">
+        <ToggleButton
+            Name="format"
+            Margin="0,0,0,10"
+            Content="Show Leading Zeroes" />
+        <ToggleButton
+            Name="allowDrag"
+            Margin="0,0,0,10"
+            Content="Allow Drag" />
+        <ToggleButton
+            Name="isTimeLoop"
+            Margin="0,0,0,50"
+            Content="Is Time Loop" />
+        <TextBlock Classes="" Text="Normal" />
+        <u:TimeBox
+            Name="box"
+            Width="200"
+            ShowLeadingZero="{Binding #format.IsChecked}"
+            AllowDrag="{Binding #allowDrag.IsChecked}"
+            IsTimeLoop="{Binding #isTimeLoop.IsChecked}"/>
+
+        <TextBlock Text="Time: " />
+        <TextBlock Text="{Binding #box.Time}" />
+        <TextBlock Classes="" Text="Fast input" />
+        <u:TimeBox
+            Width="200"
+            InputMode="Fast"
+            ShowLeadingZero="{Binding #format.IsChecked}"
+            AllowDrag="{Binding #allowDrag.IsChecked}"
+            IsTimeLoop="{Binding #isTimeLoop.IsChecked}"/>
+
+        <TextBlock Classes="" Text="Drag Vertical" />
+        <u:TimeBox
+            Width="200"
+            InputMode="Fast"
+            ShowLeadingZero="{Binding #format.IsChecked}"
+            AllowDrag="{Binding #allowDrag.IsChecked}"
+            IsTimeLoop="{Binding #isTimeLoop.IsChecked}"
+            DragOrientation="Vertical"/>
+        
+        <TextBlock Classes="" Text="Binding From Source" />
+        <RepeatButton Command="{Binding ChangeRandomTimeCommand}" Content="Random" />
+        <u:TimeBox
+            Width="200"
+            Time="{Binding TimeSpan}"
+            ShowLeadingZero="{Binding #format.IsChecked}"
+            AllowDrag="{Binding #allowDrag.IsChecked}"
+            IsTimeLoop="{Binding #isTimeLoop.IsChecked}"/>
+        <TextBlock Classes="" Text="Disabled" />
+        <u:TimeBox Width="200" IsEnabled="False" Time="{Binding TimeSpan}"
+                   AllowDrag="{Binding #allowDrag.IsChecked}"
+                   IsTimeLoop="{Binding #isTimeLoop.IsChecked}"/>
+    </StackPanel>
+</UserControl>

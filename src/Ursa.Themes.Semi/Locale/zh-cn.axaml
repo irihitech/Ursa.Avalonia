@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Add Resources Here -->
+    <x:String x:Key="STRING_MENU_BRING_TO_FRONT">置于顶层</x:String>
+    <x:String x:Key="STRING_MENU_BRING_FORWARD">上移一层</x:String>
+    <x:String x:Key="STRING_MENU_SEND_BACKWARD">下移一层</x:String>
+    <x:String x:Key="STRING_MENU_SEND_TO_BACK">置于底层</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_OK">确认</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_CANCEL">取消</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_YES">是</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_NO">否</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_CLOSE">关闭</x:String>
+    <x:String x:Key="STRING_PAGINATION_JUMP_TO">跳至</x:String>
+    <x:String x:Key="STRING_PAGINATION_PAGE">页</x:String>
+    <x:String x:Key="STRING_THEME_TOGGLE_DARK">暗色</x:String>
+    <x:String x:Key="STRING_THEME_TOGGLE_LIGHT">亮色</x:String>
+    <x:String x:Key="STRING_THEME_TOGGLE_SYSTEM">跟随系统</x:String>
+    <x:String x:Key="STRING_DATE_TIME_CONFIRM">确认</x:String>
+    <x:String x:Key="STRING_DATE_TIME_START_TIME">开始时间</x:String>
+    <x:String x:Key="STRING_DATE_TIME_END_TIME">结束时间</x:String>
+</ResourceDictionary>

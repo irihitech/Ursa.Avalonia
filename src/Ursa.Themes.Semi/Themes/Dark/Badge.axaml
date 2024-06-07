@@ -1,10 +1,34 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!--  Add Resources Here  -->
-    <SolidColorBrush x:Key="BadgeBorderBrush" Opacity="0.08" Color="White" />
-    <SolidColorBrush x:Key="BadgeForeground" Color="White" />
+    <SolidColorBrush x:Key="BadgeBorderBrush" Color="#1C1F23" />
+    <SolidColorBrush x:Key="BadgeForeground" Color="#1C1F23" />
+    <SolidColorBrush x:Key="BadgeContentForeground" Color="White" />
+    <!-- Solid -->
     <SolidColorBrush x:Key="BadgePrimaryBadgeBackground" Color="#FF54A9FF" />
     <SolidColorBrush x:Key="BadgeSecondaryBadgeBackground" Color="#FF40B4F3" />
     <SolidColorBrush x:Key="BadgeTertiaryBadgeBackground" Color="#FF888D92" />
+    <SolidColorBrush x:Key="BadgeSuccessBadgeBackground" Color="#FF5DC264" />
     <SolidColorBrush x:Key="BadgeWarningBadgeBackground" Color="#FFFFAE43" />
     <SolidColorBrush x:Key="BadgeDangerBadgeBackground" Color="#FFFC725A" />
+    <!-- Light -->
+    <SolidColorBrush x:Key="BadgeLightPrimaryBadgeForeground" Color="#FF54A9FF" />
+    <SolidColorBrush x:Key="BadgeLightPrimaryBadgeBackground" Color="#FF003D8F" />
+    <SolidColorBrush x:Key="BadgeLightSecondaryBadgeForeground" Color="#FF40B4F3" />
+    <SolidColorBrush x:Key="BadgeLightSecondaryBadgeBackground" Color="#FF004B83" />
+    <SolidColorBrush x:Key="BadgeLightTertiaryBadgeForeground" Color="#FF888D92" />
+    <SolidColorBrush x:Key="BadgeLightTertiaryBadgeBackground" Color="#FF2E3238" />
+    <SolidColorBrush x:Key="BadgeLightSuccessBadgeForeground" Color="#FF5DC264" />
+    <SolidColorBrush x:Key="BadgeLightSuccessBadgeBackground" Color="#FF1B5924" />
+    <SolidColorBrush x:Key="BadgeLightWarningBadgeForeground" Color="#FFFFAE43" />
+    <SolidColorBrush x:Key="BadgeLightWarningBadgeBackground" Color="#FF7E3100" />
+    <SolidColorBrush x:Key="BadgeLightDangerBadgeForeground" Color="#FFFC725A" />
+    <SolidColorBrush x:Key="BadgeLightDangerBadgeBackground" Color="#FF8E0805" />
+    <!-- Inverted -->
+    <SolidColorBrush x:Key="BadgeInvertedBadgeBackground" Color="#1C1F23" />
+
+    <SolidColorBrush x:Key="BadgeInvertedPrimaryBadgeForeground" Color="#FF54A9FF" />
+    <SolidColorBrush x:Key="BadgeInvertedSecondaryBadgeForeground" Color="#FF40B4F3" />
+    <SolidColorBrush x:Key="BadgeInvertedTertiaryBadgeForeground" Color="#FF888D92" />
+    <SolidColorBrush x:Key="BadgeInvertedSuccessBadgeForeground" Color="#FF5DC264" />
+    <SolidColorBrush x:Key="BadgeInvertedWarningBadgeForeground" Color="#FFFFAE43" />
+    <SolidColorBrush x:Key="BadgeInvertedDangerBadgeForeground" Color="#FFFC725A" />
 </ResourceDictionary>

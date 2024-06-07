@@ -1,0 +1,199 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:iri="https://irihi.tech/shared"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:TimeRangePicker}" TargetType="u:TimeRangePicker">
+        <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:TimeRangePicker">
+                <DataValidationErrors>
+                    <Panel
+                        x:Name="LayoutRoot"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <Border
+                            x:Name="Background"
+                            HorizontalAlignment="Stretch"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}" />
+                        <Grid ColumnDefinitions="*, Auto, * Auto" Name="PART_Grid">
+                            <TextBox
+                                Name="{x:Static u:TimeRangePicker.PART_StartTextBox}"
+                                Grid.Column="0"
+                                MinHeight="{TemplateBinding MinHeight}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="Transparent"
+                                BorderThickness="1"
+                                CornerRadius="3 0 0 3"
+                                Foreground="{TemplateBinding Foreground}"
+                                InnerLeftContent="{TemplateBinding InnerLeftContent}"
+                                IsReadOnly="{TemplateBinding IsReadonly}"
+                                Watermark="{TemplateBinding StartWatermark}" />
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Text="~" />
+                            <TextBox
+                                Name="{x:Static u:TimeRangePicker.PART_EndTextBox}"
+                                Grid.Column="2"
+                                MinHeight="{TemplateBinding MinHeight}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="Transparent"
+                                CornerRadius="0"
+                                Foreground="{TemplateBinding Foreground}"
+                                InnerRightContent="{TemplateBinding InnerRightContent}"
+                                IsReadOnly="{TemplateBinding IsReadonly}"
+                                Watermark="{TemplateBinding EndWatermark}" />
+                            <Button
+                                Name="ClearButton"
+                                Grid.Column="3"
+                                Padding="8,0"
+                                Command="{Binding $parent[iri:IClearControl].Clear}"
+                                Content="{DynamicResource IconButtonClearData}"
+                                Focusable="False"
+                                IsVisible="False"
+                                Theme="{DynamicResource InnerIconButton}" />
+                            <Button
+                                Name="{x:Static u:TimePicker.PART_Button}"
+                                Grid.Column="3"
+                                Padding="8,0"
+                                Content="{DynamicResource TimePickerIconGlyph}"
+                                Focusable="False"
+                                Theme="{DynamicResource InnerIconButton}" />
+                        </Grid>
+                        <Popup
+                            Name="{x:Static iri:PartNames.PART_Popup}"
+                            IsLightDismissEnabled="True"
+                            OverlayDismissEventPassThrough="True"
+                            OverlayInputPassThroughElement="{Binding ElementName=PART_Grid}"
+                            IsOpen="{TemplateBinding IsDropdownOpen,
+                                                     Mode=TwoWay}"
+                            Placement="BottomEdgeAlignedLeft"
+                            PlacementTarget="Background">
+                            <Border
+                                Margin="0,4"
+                                HorizontalAlignment="Stretch"
+                                Background="{DynamicResource ComboBoxPopupBackground}"
+                                BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"
+                                BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
+                                BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
+                                ClipToBounds="True"
+                                CornerRadius="6">
+                                <DockPanel>
+                                    <StackPanel DockPanel.Dock="Bottom" IsVisible="{TemplateBinding NeedConfirmation}">
+                                        <Button
+                                            Margin="8"
+                                            HorizontalAlignment="Right"
+                                            Command="{Binding $parent[u:TimeRangePicker].Confirm}"
+                                            Content="{DynamicResource STRING_DATE_TIME_CONFIRM}" />
+                                    </StackPanel>
+                                    <ContentPresenter
+                                        Name="PART_PopupHeader"
+                                        Margin="8,8,8,0"
+                                        Content="{TemplateBinding PopupInnerTopContent}"
+                                        DockPanel.Dock="Top"
+                                        IsVisible="{TemplateBinding PopupInnerTopContent,
+                                                                    Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                    <ContentPresenter
+                                        Name="PART_PopupFooter"
+                                        Margin="8,0,8,8"
+                                        Content="{TemplateBinding PopupInnerBottomContent}"
+                                        DockPanel.Dock="Bottom"
+                                        IsVisible="{TemplateBinding PopupInnerBottomContent,
+                                                                    Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                    <Grid ColumnDefinitions="*, Auto, *" RowDefinitions="Auto, Auto, *">
+                                        <TextBlock
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Margin="0,16"
+                                            HorizontalAlignment="Center"
+                                            FontWeight="Bold"
+                                            Text="{DynamicResource STRING_DATE_TIME_START_TIME}" />
+                                        <TextBlock
+                                            Grid.Row="0"
+                                            Grid.Column="2"
+                                            Margin="0,16"
+                                            HorizontalAlignment="Center"
+                                            FontWeight="Bold"
+                                            Text="{DynamicResource STRING_DATE_TIME_END_TIME}" />
+                                        <Rectangle
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="3"
+                                            Fill="{DynamicResource DateTimePickerSeparatorBackground}"
+                                            Margin="8 0"
+                                            Height="1" />
+                                        <u:TimePickerPresenter
+                                            Name="{x:Static u:TimeRangePicker.PART_StartPresenter}"
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            NeedsConfirmation="{TemplateBinding NeedConfirmation}"
+                                            PanelFormat="{TemplateBinding PanelFormat}"
+                                            Time="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=StartTime, Mode=OneWayToSource}" />
+                                        <Rectangle
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            Width="1"
+                                            Margin="0,4"
+                                            VerticalAlignment="Stretch"
+                                            Fill="{DynamicResource DateTimePickerSeparatorBackground}" />
+                                        <u:TimePickerPresenter
+                                            Name="{x:Static u:TimeRangePicker.PART_EndPresenter}"
+                                            Grid.Row="2"
+                                            Grid.Column="2"
+                                            NeedsConfirmation="{TemplateBinding NeedConfirmation}"
+                                            PanelFormat="{TemplateBinding PanelFormat}"
+                                            Time="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=EndTime, Mode=OneWayToSource}" />
+                                    </Grid>
+                                </DockPanel>
+                            </Border>
+                        </Popup>
+                    </Panel>
+                </DataValidationErrors>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^.clearButton, ^.ClearButton">
+            <Style Selector="^:pointerover /template/ Button#ClearButton">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNotNull}}" />
+            </Style>
+            <Style Selector="^:pointerover /template/ Button#PART_Button">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNull}}" />
+            </Style>
+        </Style>
+
+        <!--  Disabled State  -->
+        <Style Selector="^:disabled">
+            <Style Selector="^ /template/ Border#Background">
+                <Setter Property="Background" Value="{DynamicResource CalendarDatePickerDisabledBackground}" />
+            </Style>
+
+            <Style Selector="^ /template/ Button#PART_Button">
+                <Setter Property="Foreground" Value="{DynamicResource CalendarDatePickerDisabledIconForeground}" />
+            </Style>
+            <Style Selector="^ /template/ TextBox#PART_TextBox">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </Style>
+        </Style>
+
+        <!--  Focused State  -->
+        <Style Selector="^ /template/ Border#Background:focus">
+            <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
+        </Style>
+        <Style Selector="^ /template/ Border#Background:focus-within">
+            <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

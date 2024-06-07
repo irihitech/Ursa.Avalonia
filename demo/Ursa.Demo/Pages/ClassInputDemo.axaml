@@ -1,0 +1,16 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Ursa.Demo.Pages.ClassInputDemo">
+    <StackPanel HorizontalAlignment="Left" Spacing="20">
+        <u:ControlClassesInput Name="input" Separator=" " />
+        <Button u:ControlClassesInput.Source="{Binding #input}" Content="Hello Panda" />
+        <Button u:ControlClassesInput.Source="{Binding #input}" Content="Hello Panda" />
+        <Button u:ControlClassesInput.Source="{Binding #input}" Content="Hello Panda" />
+        <TextBox u:ControlClassesInput.Source="{Binding #input}" Width="100" Text="100"></TextBox>
+        <ProgressBar u:ControlClassesInput.Source="{Binding #input}" Width="200" Value="20" ShowProgressText="True"></ProgressBar>
+    </StackPanel>
+</UserControl>

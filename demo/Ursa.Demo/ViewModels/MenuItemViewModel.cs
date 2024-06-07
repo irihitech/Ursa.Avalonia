@@ -5,11 +5,19 @@ using CommunityToolkit.Mvvm.Messaging;
 
 namespace Ursa.Demo.ViewModels;
 
+public enum ControlStatus
+{
+    New,
+    Beta,
+    Stable,
+}
+
 public class MenuItemViewModel: ViewModelBase
 {
     public string MenuHeader { get; set; }
     public string MenuIconName { get; set; }
     public string Key { get; set; }
+    public string Status { get; set; }
     
     public bool IsSeparator { get; set; }
     public ObservableCollection<MenuItemViewModel> Children { get; set; } = new();

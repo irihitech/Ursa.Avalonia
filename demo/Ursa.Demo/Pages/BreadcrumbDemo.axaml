@@ -1,0 +1,56 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.BreadcrumbDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Ursa.Demo.ViewModels"
+    xmlns:converters="clr-namespace:Ursa.Demo.Converters"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:BreadcrumbDemoViewModel"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:IconNameToPathConverter x:Key="IconConverter" />
+    </UserControl.Resources>
+    <StackPanel>
+        
+        <u:Breadcrumb>
+            <TextBlock Text="Hello" />
+            <u:BreadcrumbItem Content="World" IsReadOnly="True"></u:BreadcrumbItem>
+            <u:BreadcrumbItem Icon="?" Separator="♥" />
+            <TextBlock Text="Avalonia" />
+            <TextBlock Text="Ursa" />
+        </u:Breadcrumb>
+        <u:Breadcrumb Classes="Small">
+            <TextBlock Text="Hello" />
+            <u:BreadcrumbItem Icon="?" Separator="♥" />
+            <TextBlock Text="Avalonia" />
+            <TextBlock Text="Ursa" />
+        </u:Breadcrumb>
+        <u:Breadcrumb>
+            <TextBlock Text="Hello" />
+            <u:BreadcrumbItem Icon="?" Separator="♥" />
+            <TextBlock Text="Avalonia" />
+            <TextBlock Text="Ursa" />
+        </u:Breadcrumb>
+        <u:Breadcrumb
+            DisplayMemberBinding="{Binding Section}"
+            IconBinding="{Binding Icon}"
+            CommandBinding="{Binding Command}"
+            ItemsSource="{Binding Items1}">
+            <u:Breadcrumb.Styles>
+                <Style Selector="u|BreadcrumbItem" x:DataType="vm:BreadcrumbDemoItem">
+                    <Setter Property="IsReadOnly" Value="{Binding IsReadOnly}"/>
+                </Style>
+            </u:Breadcrumb.Styles>
+            <u:Breadcrumb.IconTemplate>
+                <DataTemplate DataType="x:String">
+                    <PathIcon Width="12" Height="12" Data="{Binding Path=., Converter={StaticResource IconConverter}}"></PathIcon>
+                </DataTemplate>
+            </u:Breadcrumb.IconTemplate>
+        </u:Breadcrumb>
+    </StackPanel>
+</UserControl>

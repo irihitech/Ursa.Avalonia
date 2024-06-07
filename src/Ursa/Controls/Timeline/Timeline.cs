@@ -1,56 +1,220 @@
 using System.Collections.Specialized;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.ComTypes;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Generators;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Avalonia.Data;
+using Avalonia.Layout;
+using Avalonia.Metadata;
 
 namespace Ursa.Controls;
 
 public class Timeline: ItemsControl
 {
+    private static readonly FuncTemplate<Panel?> DefaultPanel = new((Func<Panel>)(() => new TimelinePanel()));
     
-    public static readonly StyledProperty<IDataTemplate?> ItemDescriptionTemplateProperty = AvaloniaProperty.Register<Timeline, IDataTemplate?>(
-        nameof(ItemDescriptionTemplate));
+    public static readonly StyledProperty<IBinding?> IconMemberBindingProperty = AvaloniaProperty.Register<Timeline, IBinding?>(
+        nameof(IconMemberBinding));
 
-    public IDataTemplate? ItemDescriptionTemplate
+    [AssignBinding]
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public IBinding? IconMemberBinding
     {
-        get => GetValue(ItemDescriptionTemplateProperty);
-        set => SetValue(ItemDescriptionTemplateProperty, value);
+        get => GetValue(IconMemberBindingProperty);
+        set => SetValue(IconMemberBindingProperty, value);
     }
 
-    public Timeline()
+    public static readonly StyledProperty<IBinding?> HeaderMemberBindingProperty = AvaloniaProperty.Register<Timeline, IBinding?>(
+        nameof(HeaderMemberBinding));
+
+    [AssignBinding]
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public IBinding? HeaderMemberBinding
     {
-        ItemsView.CollectionChanged+=ItemsViewOnCollectionChanged;
+        get => GetValue(HeaderMemberBindingProperty);
+        set => SetValue(HeaderMemberBindingProperty, value);
     }
 
-    private void ItemsViewOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    public static readonly StyledProperty<IBinding?> ContentMemberBindingProperty = AvaloniaProperty.Register<Timeline, IBinding?>(
+        nameof(ContentMemberBinding));
+    
+    [AssignBinding]
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public IBinding? ContentMemberBinding
     {
-        RefreshTimelineItems();
+        get => GetValue(ContentMemberBindingProperty);
+        set => SetValue(ContentMemberBindingProperty, value);
+    }
+    
+
+    public static readonly StyledProperty<IDataTemplate?> IconTemplateProperty = AvaloniaProperty.Register<Timeline, IDataTemplate?>(
+        nameof(IconTemplate));
+
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public IDataTemplate? IconTemplate
+    {
+        get => GetValue(IconTemplateProperty);
+        set => SetValue(IconTemplateProperty, value);
     }
 
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    public static readonly StyledProperty<IDataTemplate?> DescriptionTemplateProperty = AvaloniaProperty.Register<Timeline, IDataTemplate?>(
+        nameof(DescriptionTemplate));
+
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public IDataTemplate? DescriptionTemplate
     {
-        base.OnPropertyChanged(change);
-        RefreshTimelineItems();
+        get => GetValue(DescriptionTemplateProperty);
+        set => SetValue(DescriptionTemplateProperty, value);
     }
 
-    private void RefreshTimelineItems()
+    public static readonly StyledProperty<IBinding?> TimeMemberBindingProperty = AvaloniaProperty.Register<Timeline, IBinding?>(
+        nameof(TimeMemberBinding));
+
+    [AssignBinding]
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public IBinding? TimeMemberBinding
     {
-        for (int i = 0; i < this.LogicalChildren.Count; i++)
+        get => GetValue(TimeMemberBindingProperty);
+        set => SetValue(TimeMemberBindingProperty, value);
+    }
+
+    public static readonly StyledProperty<string?> TimeFormatProperty = AvaloniaProperty.Register<Timeline, string?>(
+        nameof(TimeFormat), defaultValue:"yyyy-MM-dd HH:mm:ss");
+
+    public string? TimeFormat
+    {
+        get => GetValue(TimeFormatProperty);
+        set => SetValue(TimeFormatProperty, value);
+    }
+    
+
+    public static readonly StyledProperty<TimelineDisplayMode> ModeProperty = AvaloniaProperty.Register<Timeline, TimelineDisplayMode>(
+        nameof(Mode));
+
+    public TimelineDisplayMode Mode
+    {
+        get => GetValue(ModeProperty);
+        set => SetValue(ModeProperty, value);
+    }
+
+    static Timeline()
+    {
+        ItemsPanelProperty.OverrideDefaultValue<Timeline>(DefaultPanel);
+        ModeProperty.Changed.AddClassHandler<Timeline, TimelineDisplayMode>((t, e) => { t.OnDisplayModeChanged(e); });
+    }
+
+    private void OnDisplayModeChanged(AvaloniaPropertyChangedEventArgs<TimelineDisplayMode> e)
+    {
+        if (this.ItemsPanelRoot is TimelinePanel panel)
         {
-            if (this.LogicalChildren[i] is TimelineItem t)
+            panel.Mode = e.NewValue.Value;
+            SetItemMode();
+        }
+    }
+
+    protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
+    {
+        recycleKey = null;
+        return item is not TimelineItem;
+    }
+
+    protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey)
+    {
+        if (item is TimelineItem t) return t;
+        return new TimelineItem();
+    }
+
+    protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
+    {
+        base.PrepareContainerForItemOverride(container, item, index);
+        if (container is TimelineItem t)
+        {
+            bool start = index == 0;
+            bool end = index == ItemCount - 1;
+            t.SetEnd(start, end);
+            if (IconMemberBinding is not null)
             {
-                t.SetIndex(i == 0, i == this.LogicalChildren.Count - 1);
+                t.Bind(TimelineItem.IconProperty, IconMemberBinding);
             }
-            else if (this.LogicalChildren[i] is ContentPresenter { Child: TimelineItem t2 })
+            if (HeaderMemberBinding != null)
             {
-                t2.SetIndex(i == 0, i == this.LogicalChildren.Count - 1);
+                t.Bind(HeaderedContentControl.HeaderProperty, HeaderMemberBinding);
+            }
+            if (ContentMemberBinding != null)
+            {
+                t.Bind(ContentControl.ContentProperty, ContentMemberBinding);
+            }
+            if (TimeMemberBinding != null)
+            {
+                t.Bind(TimelineItem.TimeProperty, TimeMemberBinding);
+            }
+
+            t.SetIfUnset(TimelineItem.TimeFormatProperty, TimeFormat);
+            t.SetIfUnset(TimelineItem.IconTemplateProperty, IconTemplate);
+            t.SetIfUnset(HeaderedContentControl.HeaderTemplateProperty, ItemTemplate);
+            t.SetIfUnset(ContentControl.ContentTemplateProperty, DescriptionTemplate);
+        }
+
+    }
+
+    protected override Size ArrangeOverride(Size finalSize)
+    {
+        var panel = this.ItemsPanelRoot as TimelinePanel;
+        panel.Mode = this.Mode;
+        SetItemMode();
+        return base.ArrangeOverride(finalSize);
+    }
+
+    private void SetItemMode()
+    {
+        if (ItemsPanelRoot is TimelinePanel panel)
+        {
+            var items = panel.Children.OfType<TimelineItem>();
+            if (Mode == TimelineDisplayMode.Left)
+            {
+                foreach (var item in items)
+                {
+                    SetIfUnset(item, TimelineItem.PositionProperty, TimelineItemPosition.Left);
+                }
+            }
+            else if (Mode == TimelineDisplayMode.Right)
+            {
+                foreach (var item in items)
+                {
+                    SetIfUnset(item, TimelineItem.PositionProperty, TimelineItemPosition.Right);
+                }
+            }
+            else if (Mode == TimelineDisplayMode.Center)
+            {
+                foreach (var item in items)
+                {
+                    SetIfUnset(item, TimelineItem.PositionProperty, TimelineItemPosition.Separate);
+                }
+            }
+            else if (Mode == TimelineDisplayMode.Alternate)
+            {
+                bool left = false;
+                foreach (var item in items)
+                {
+                    if (left)
+                    {
+                        SetIfUnset(item, TimelineItem.PositionProperty, TimelineItemPosition.Left);
+                    }
+                    else
+                    {
+                        SetIfUnset(item, TimelineItem.PositionProperty, TimelineItemPosition.Right);
+                    }
+                    left = !left;
+                }
             }
         }
     }
     
+    private void SetIfUnset<T>(AvaloniaObject target, StyledProperty<T> property, T value)
+    {
+        if (!target.IsSet(property))
+            target.SetCurrentValue(property, value);
+    }
 }

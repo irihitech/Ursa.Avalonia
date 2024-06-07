@@ -42,10 +42,10 @@
                 </Border>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^:pointerover /template/ Border#PART_RootBorder">
+        <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder">
             <Setter Property="Border.Background" Value="{DynamicResource TextBoxPointeroverBackground}" />
         </Style>
-        <Style Selector="^:focus-within /template/ Border#PART_RootBorder">
+        <Style Selector="^:focus-within /template/ Border#PART_BackgroundBorder">
             <Setter Property="Border.BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
         </Style>
     </ControlTheme>
@@ -121,11 +121,12 @@
                             Data="{DynamicResource ClosableTagCloseIconGlyph}"
                             DockPanel.Dock="Right"
                             Foreground="{TemplateBinding Foreground}" />
-                        <TextBlock
+                        <ContentPresenter
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             FontSize="12"
                             Foreground="{TemplateBinding Foreground}"
-                            Text="{TemplateBinding Content}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
                             TextTrimming="CharacterEllipsis" />
                     </DockPanel>
                 </Border>

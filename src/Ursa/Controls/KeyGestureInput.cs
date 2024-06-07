@@ -1,23 +1,29 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Converters;
+using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Layout;
+using Irihi.Avalonia.Shared.Contracts;
 
 namespace Ursa.Controls;
 
-public class KeyGestureInput: TemplatedControl
+[PseudoClasses(PC_Empty)]
+public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentControl
 {
+    public const string PC_Empty = ":empty";
     static KeyGestureInput()
     {
-        InputElement.FocusableProperty.OverrideDefaultValue<KeyGestureInput>(true);
+        FocusableProperty.OverrideDefaultValue<KeyGestureInput>(true);
+        GestureProperty.Changed.AddClassHandler<KeyGestureInput, KeyGesture?>((x, e) =>
+            x.PseudoClasses.Set(PC_Empty, e.NewValue.Value is null));
     }
     
-    public static readonly StyledProperty<KeyGesture> GestureProperty = AvaloniaProperty.Register<KeyGestureInput, KeyGesture>(
+    public static readonly StyledProperty<KeyGesture?> GestureProperty = AvaloniaProperty.Register<KeyGestureInput, KeyGesture?>(
         nameof(Gesture));
 
-    public KeyGesture Gesture
+    public KeyGesture? Gesture
     {
         get => GetValue(GestureProperty);
         set => SetValue(GestureProperty, value);
@@ -60,7 +66,30 @@ public class KeyGestureInput: TemplatedControl
         get => GetValue(VerticalContentAlignmentProperty);
         set => SetValue(VerticalContentAlignmentProperty, value);
     }
-    
+
+    public static readonly StyledProperty<object?> InnerLeftContentProperty = AvaloniaProperty.Register<KeyGestureInput, object?>(
+        nameof(InnerLeftContent));
+
+    public object? InnerLeftContent
+    {
+        get => GetValue(InnerLeftContentProperty);
+        set => SetValue(InnerLeftContentProperty, value);
+    }
+
+    public static readonly StyledProperty<object?> InnerRightContentProperty = AvaloniaProperty.Register<KeyGestureInput, object?>(
+        nameof(InnerRightContent));
+
+    public object? InnerRightContent
+    {
+        get => GetValue(InnerRightContentProperty);
+        set => SetValue(InnerRightContentProperty, value);
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        PseudoClasses.Set(PC_Empty, Gesture is null);
+    }
 
     protected override void OnKeyDown(KeyEventArgs e)
     {
@@ -93,5 +122,10 @@ public class KeyGestureInput: TemplatedControl
         }
         Gesture = gesture;
         e.Handled = true;
+    }
+
+    public void Clear()
+    {
+        SetCurrentValue(GestureProperty, null);
     }
 }

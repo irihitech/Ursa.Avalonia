@@ -1,0 +1,262 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.IntroductionDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Ursa.Demo.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Ursa.Demo.ViewModels"
+    d:DesignHeight="800"
+    d:DesignWidth="1600"
+    mc:Ignorable="d">
+    <Design.DataContext>
+        <vm:IntroductionDemoViewModel />
+    </Design.DataContext>
+    <UserControl.Resources>
+        <StreamGeometry x:Key="InfoPath">M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7ZM9 10.75C9 10.3358 9.33579 10 9.75 10H12.5C13.0523 10 13.5 10.4477 13.5 11V16.5H14.25C14.6642 16.5 15 16.8358 15 17.25C15 17.6642 14.6642 18 14.25 18H9.75C9.33579 18 9 17.6642 9 17.25C9 16.8358 9.33579 16.5 9.75 16.5H10.5V11.5H9.75C9.33579 11.5 9 11.1642 9 10.75Z</StreamGeometry>
+        <SolidColorBrush x:Key="MaskBackground" Opacity="0.2" Color="{DynamicResource SemiBlue3Color}" />
+        <SolidColorBrush x:Key="MaskBorderBrush" Color="{DynamicResource SemiBlue5Color}" />
+    </UserControl.Resources>
+    <UserControl.Styles>
+        <Style Selector="u|Badge">
+            <Setter Property="Margin" Value="10" />
+            <Style Selector="^ > Border">
+                <Setter Property="Theme" Value="{DynamicResource CardBorder}" />
+                <Setter Property="Width" Value="100" />
+                <Setter Property="Height" Value="60" />
+            </Style>
+        </Style>
+        <Style Selector="u|DualBadge">
+            <Setter Property="Margin" Value="4" />
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+            <Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, Auto, Auto">
+                <u:Banner
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="0"
+                    Classes="Bordered"
+                    Content="Aesthetic revolution of productivity. "
+                    Header="Welcome to IRIHI Technology!"
+                    Type="Information" />
+                <StackPanel Grid.Column="1" Grid.Row="1" Spacing="20" Margin="8">
+                    <u:ImageViewer
+                        Name="viewer"
+                        Width="600"
+                        Height="300"
+                        Scale="0.2"
+                        Background="{DynamicResource SemiGrey1Color}"
+                        Source="../Assets/IRIHI.png">
+                        <u:ImageViewer.Overlayer>
+                            <Grid
+                                HorizontalAlignment="Stretch"
+                                ColumnDefinitions="*, Auto, *"
+                                IsVisible="{Binding #maskSwitch.IsChecked}">
+                                <Border
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Background="{DynamicResource MaskBackground}"
+                                    BorderBrush="{DynamicResource MaskBorderBrush}"
+                                    BorderThickness="0,0,1,0"
+                                    IsHitTestVisible="False" />
+                                <Rectangle
+                                    Grid.Column="1"
+                                    Width="150"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Fill="Transparent"
+                                    IsHitTestVisible="False" />
+                                <Border
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Background="{DynamicResource MaskBackground}"
+                                    BorderBrush="{DynamicResource MaskBorderBrush}"
+                                    BorderThickness="1,0,0,0"
+                                    IsHitTestVisible="False" />
+                            </Grid>
+                        </u:ImageViewer.Overlayer>
+                    </u:ImageViewer>
+                    <u:Divider>
+                        <ToggleSwitch
+                            Name="maskSwitch"
+                            IsChecked="True"
+                            OnContent="Show Mask"
+                            OffContent="Show Mask" />
+                    </u:Divider>
+                    <Grid ColumnDefinitions="*,Auto,*">
+                        <StackPanel Grid.Column="0" Spacing="20">
+                            <u:IPv4Box HorizontalAlignment="Stretch" />
+                            <u:IPv4Box HorizontalAlignment="Stretch" InputMode="Fast" />
+                            <RepeatButton Command="{Binding ChangeAddress}" Content="Random" />
+                            <u:IPv4Box HorizontalAlignment="Stretch"
+                                       ShowLeadingZero="True"
+                                       IPAddress="{Binding Address}" />
+                            <u:IPv4Box HorizontalAlignment="Stretch" IsEnabled="False" />
+                        </StackPanel>
+                        <u:Timeline Grid.Column="1" HorizontalAlignment="Left" Mode="Alternate">
+                            <u:TimelineItem
+                                Content="Step 1"
+                                Header="ToDo"
+                                Type="Default"
+                                Time="2023-01-14 09:24:05"/>
+                            <u:TimelineItem
+                                Content="Step 2"
+                                Header="Start"
+                                Position="Right"
+                                Type="Ongoing"
+                                Time="2024-01-04 22:32:58"/>
+                            <u:TimelineItem
+                                Content="Step 3"
+                                Header="In Between"
+                                Type="Warning"
+                                Time="2024-01-05 00:08:29"/>
+                            <u:TimelineItem
+                                Content="Step 4"
+                                Header="Finished"
+                                Position="Right"
+                                Type="Success" 
+                                Time="2024-01-05 00:27:44"/>
+                        </u:Timeline>
+                        <StackPanel Grid.Column="2" Spacing="20">
+                            <u:ButtonGroup Classes="Primary Solid" ItemsSource="{Binding ButtonGroupItems}" />
+                            <u:ButtonGroup Classes="Primary" ItemsSource="{Binding ButtonGroupItems}" />
+                            <u:ButtonGroup Classes="Primary Borderless" ItemsSource="{Binding ButtonGroupItems}" />
+                            <u:ButtonGroup Classes="Primary Large" ItemsSource="{Binding ButtonGroupItems}" />
+                            <u:ButtonGroup Classes="Primary Small" ItemsSource="{Binding ButtonGroupItems}" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Grid.Row="1" Spacing="20" Margin="8">
+                    <u:Divider HorizontalContentAlignment="Right">Badge</u:Divider>
+                    <WrapPanel Orientation="Horizontal">
+                        <u:Badge Header="Ursa" CornerPosition="TopRight">
+                            <Border Classes="Hover">
+                                <TextBlock Text="Pyro"/>
+                            </Border>
+                        </u:Badge>
+                        <u:Badge
+                            HorizontalAlignment="Center"
+                            CornerPosition="TopRight"
+                            Header="500"
+                            OverflowCount="99">
+                            <Border Classes="Hover">
+                                <TextBlock Text="Hydro"/>
+                            </Border>
+                        </u:Badge>
+                        <u:Badge
+                            Header="Ursa"
+                            CornerPosition="TopRight"
+                            Dot="True">
+                            <Border Classes="Hover">
+                                <TextBlock Text="Ameno"/>
+                            </Border>
+                        </u:Badge>
+
+                        <u:Badge Header="Ursa" />
+                        <u:Badge Header="Ursa" Dot="True" />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <u:Badge Header="Ursa" Classes="Secondary">
+                            <Border Classes="Hover">
+                                <TextBlock Text="Electro"/>
+                            </Border>
+                        </u:Badge>
+                        <u:Badge Header="Ursa" Classes="Tertiary" CornerPosition="BottomLeft">
+                            <Border Classes="Hover">
+                                <TextBlock Text="Dendro"/>
+                            </Border>
+                        </u:Badge>
+                        <u:Badge Header="Ursa" Classes="Warning" CornerPosition="BottomRight">
+                            <Border Classes="Hover">
+                                <TextBlock Text="Cryo"/>
+                            </Border>
+                        </u:Badge>
+                        <u:Badge Header="Ursa" Classes="Danger" CornerPosition="TopRight">
+                            <Border Classes="Hover">
+                                <TextBlock Text="Geo"/>
+                            </Border>
+                        </u:Badge>
+                    </WrapPanel>
+
+                    <u:Divider>DualBadge</u:Divider>
+                    <WrapPanel Orientation="Horizontal">
+                        <u:DualBadge Header="downloads">
+                            <u:DualBadge.Icon>
+                                <PathIcon
+                                    Width="14"
+                                    Height="14"
+                                    Data="{StaticResource InfoPath}" />
+                            </u:DualBadge.Icon>
+                            2.4k
+                        </u:DualBadge>
+                        <u:DualBadge Classes="FlatSquare" Header="downloads">
+                            <u:DualBadge.Icon>
+                                <PathIcon
+                                    Width="14"
+                                    Height="14"
+                                    Data="{StaticResource InfoPath}" />
+                            </u:DualBadge.Icon>
+                            2.4k
+                        </u:DualBadge>
+                        <u:DualBadge Classes="Plastic" Header="downloads">
+                            <u:DualBadge.Icon>
+                                <PathIcon
+                                    Width="12"
+                                    Height="12"
+                                    Data="{StaticResource InfoPath}" />
+                            </u:DualBadge.Icon>
+                            2.4k
+                        </u:DualBadge>
+                        <u:DualBadge Classes="ForTheBadge" Header="downloads">
+                            <u:DualBadge.Icon>
+                                <PathIcon
+                                    Width="12"
+                                    Height="12"
+                                    Data="{StaticResource InfoPath}" />
+                            </u:DualBadge.Icon>
+                            2.4k
+                        </u:DualBadge>
+                    </WrapPanel>
+
+                    <u:Divider HorizontalContentAlignment="Left">
+                        <ToggleSwitch
+                            Name="s"
+                            OffContent="Divider"
+                            OnContent="Divider"
+                            IsChecked="True" />
+                    </u:Divider>
+                    <u:LoadingContainer
+                        IsLoading="{Binding #s.IsChecked}"
+                        HorizontalContentAlignment="Stretch"
+                        LoadingMessage="Loading...">
+                        <StackPanel Spacing="20">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Windows" />
+                                <u:Divider Margin="12,0" Orientation="Vertical" />
+                                <TextBlock Text="macOS" />
+                                <u:Divider Orientation="Vertical" />
+                                <TextBlock Text="Linux" />
+                            </StackPanel>
+                            <Grid Height="100" Background="{DynamicResource MaskBackground}">
+                                <u:Divider HorizontalContentAlignment="Stretch">Stretch</u:Divider>
+                            </Grid>
+                        </StackPanel>
+                    </u:LoadingContainer>
+                    <u:TagInput HorizontalAlignment="Left" Width="550" />
+                    <u:Pagination
+                        PageSizeOptions="10, 20, 50, 100"
+                        ShowPageSizeSelector="True"
+                        TotalCount="600" />
+                </StackPanel>
+
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

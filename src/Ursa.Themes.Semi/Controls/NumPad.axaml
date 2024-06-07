@@ -1,0 +1,216 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <Design.PreviewWith>
+        <u:NumPad />
+    </Design.PreviewWith>
+    <ControlTheme x:Key="{x:Type u:NumPad}" TargetType="{x:Type u:NumPad}">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:NumPad">
+                <Border>
+                    <Border.Styles>
+                        <Style Selector="u|NumPadButton">
+                            <Setter Property="NumMode" Value="{Binding $parent[u:NumPad].NumMode}" />
+                            <Setter Property="Command" Value="{Binding $parent[u:NumPad].ProcessClick}" />
+                            <Setter Property="Focusable" Value="False" />
+                            <Setter Property="CommandParameter" Value="{Binding $self}" />
+                            <Setter Property="Width" Value="54" />
+                            <Setter Property="Height" Value="54" />
+                            <Setter Property="UseLayoutRounding" Value="False" />
+                            <Setter Property="HorizontalAlignment" Value="Stretch" />
+                            <Setter Property="VerticalAlignment" Value="Stretch" />
+                            <Setter Property="Margin" Value="1" />
+                        </Style>
+                    </Border.Styles>
+                    <Grid
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        ColumnDefinitions="*,*,*,*"
+                        RowDefinitions="*,*,*,*,*">
+                        <ToggleButton
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            MinWidth="54"
+                            MinHeight="54"
+                            Margin="1"
+                            Padding="0"
+                            Focusable="False"
+                            FontWeight="Regular"
+                            IsChecked="{TemplateBinding NumMode,
+                                                        Mode=TwoWay}">
+                            <TextBlock>
+                                <Run Text="Num" />
+                                <LineBreak />
+                                <Run Text="Lock" />
+                            </TextBlock>
+                        </ToggleButton>
+                        <u:NumPadButton
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            FunctionContent="/"
+                            FunctionKey="Divide"
+                            NumContent="/"
+                            NumKey="Divide" />
+                        <u:NumPadButton
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            FunctionContent="*"
+                            FunctionKey="Multiply"
+                            NumContent="*"
+                            NumKey="Multiply" />
+                        <u:NumPadButton
+                            Grid.Row="0"
+                            Grid.Column="3"
+                            FunctionContent="-"
+                            FunctionKey="Subtract"
+                            NumContent="-"
+                            NumKey="Subtract" />
+                        <u:NumPadButton
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            FunctionContent="Home"
+                            FunctionKey="Home"
+                            NumContent="7"
+                            NumKey="NumPad7" />
+                        <u:NumPadButton
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            FunctionContent="Up"
+                            FunctionKey="Up"
+                            NumContent="8"
+                            NumKey="NumPad8" />
+                        <u:NumPadButton
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            FunctionKey="PageUp"
+                            NumContent="9"
+                            NumKey="NumPad9">
+                            <u:NumPadButton.FunctionContent>
+                                <TextBlock><Run Text="Page" /><LineBreak /><Run Text="Up" /></TextBlock>
+                            </u:NumPadButton.FunctionContent>
+                        </u:NumPadButton>
+                        <u:NumPadButton
+                            Grid.Row="1"
+                            Grid.RowSpan="2"
+                            Grid.Column="3"
+                            Height="{x:Static x:Double.NaN}"
+                            VerticalAlignment="Stretch"
+                            FunctionContent="+"
+                            FunctionKey="Add"
+                            NumContent="+"
+                            NumKey="Add" />
+                        <u:NumPadButton
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            FunctionContent="Left"
+                            FunctionKey="Left"
+                            NumContent="4"
+                            NumKey="NumPad4" />
+                        <u:NumPadButton
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            FunctionContent=" "
+                            FunctionKey="None"
+                            NumContent="5"
+                            NumKey="NumPad5" />
+                        <u:NumPadButton
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            FunctionContent="Right"
+                            FunctionKey="Right"
+                            NumContent="6"
+                            NumKey="NumPad6" />
+                        <u:NumPadButton
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            FunctionContent="End"
+                            FunctionKey="End"
+                            NumContent="1"
+                            NumKey="NumPad1" />
+                        <u:NumPadButton
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            FunctionContent="Down"
+                            FunctionKey="Down"
+                            NumContent="2"
+                            NumKey="NumPad2" />
+                        <u:NumPadButton
+                            Grid.Row="3"
+                            Grid.Column="2"
+                            FunctionKey="PageDown"
+                            NumContent="3"
+                            NumKey="NumPad3">
+                            <u:NumPadButton.FunctionContent>
+                                <TextBlock><Run Text="Page" /><LineBreak /><Run Text="Down" /></TextBlock>
+                            </u:NumPadButton.FunctionContent>
+                        </u:NumPadButton>
+                        <u:NumPadButton
+                            Grid.Row="3"
+                            Grid.RowSpan="2"
+                            Grid.Column="3"
+                            Height="{x:Static x:Double.NaN}"
+                            VerticalAlignment="Stretch"
+                            FunctionContent="Enter"
+                            FunctionKey="Enter"
+                            NumContent="Enter"
+                            NumKey="Enter" />
+                        <u:NumPadButton
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Width="{x:Static x:Double.NaN}"
+                            FunctionContent="Insert"
+                            FunctionKey="Insert"
+                            NumContent="0"
+                            NumKey="NumPad0" />
+                        <u:NumPadButton
+                            Grid.Row="4"
+                            Grid.Column="2"
+                            FunctionContent="Delete"
+                            FunctionKey="Delete"
+                            NumContent="."
+                            NumKey="Decimal" />
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:NumPadButton}" TargetType="u:NumPadButton">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Background" Value="{DynamicResource ButtonDefaultBackground}" />
+        <Setter Property="CornerRadius" Value="3" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:NumPadButton">
+                <Border
+                    Name="PART_Background"
+                    Background="{TemplateBinding Background}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <Panel>
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{TemplateBinding NumContent}"
+                            IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=NumMode}" />
+                        <ContentPresenter
+                            Name="PART_FunctionContentPresenter"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{TemplateBinding FunctionContent}"
+                            IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=!NumMode}" />
+                    </Panel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:pointerover /template/ Border#PART_Background">
+            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPointeroverBackground}" />
+        </Style>
+        <Style Selector="^:pressed /template/ Border#PART_Background">
+            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPressedBackground}" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

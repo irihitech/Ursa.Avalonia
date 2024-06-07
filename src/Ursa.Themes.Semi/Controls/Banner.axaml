@@ -80,6 +80,19 @@
                 <Setter Property="PathIcon.Foreground" Value="{DynamicResource BannerInformationBorderBrush}" />
             </Style>
         </Style>
+        <Style Selector="^[Type=Success]">
+            <Style Selector="^.Bordered /template/ Border#PART_Container">
+                <Setter Property="Border.CornerRadius" Value="{DynamicResource BannerCornerRadius}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource BannerSuccessBorderBrush}" />
+            </Style>
+            <Style Selector="^ /template/ Border#PART_Container">
+                <Setter Property="Background" Value="{DynamicResource BannerSuccessBackground}" />
+            </Style>
+            <Style Selector="^ /template/ PathIcon#PART_BuildInIcon">
+                <Setter Property="PathIcon.Data" Value="{DynamicResource BannerSuccessIconGeometry}" />
+                <Setter Property="PathIcon.Foreground" Value="{DynamicResource BannerSuccessBorderBrush}" />
+            </Style>
+        </Style>
         <Style Selector="^[Type=Warning]">
             <Style Selector="^.Bordered /template/ Border#PART_Container">
                 <Setter Property="Border.CornerRadius" Value="{DynamicResource BannerCornerRadius}" />
@@ -104,19 +117,6 @@
             <Style Selector="^ /template/ PathIcon#PART_BuildInIcon">
                 <Setter Property="PathIcon.Data" Value="{DynamicResource BannerErrorIconGeometry}" />
                 <Setter Property="PathIcon.Foreground" Value="{DynamicResource BannerErrorBorderBrush}" />
-            </Style>
-        </Style>
-        <Style Selector="^[Type=Success]">
-            <Style Selector="^.Bordered /template/ Border#PART_Container">
-                <Setter Property="Border.CornerRadius" Value="{DynamicResource BannerCornerRadius}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource BannerSuccessBorderBrush}" />
-            </Style>
-            <Style Selector="^ /template/ Border#PART_Container">
-                <Setter Property="Background" Value="{DynamicResource BannerSuccessBackground}" />
-            </Style>
-            <Style Selector="^ /template/ PathIcon#PART_BuildInIcon">
-                <Setter Property="PathIcon.Data" Value="{DynamicResource BannerSuccessIconGeometry}" />
-                <Setter Property="PathIcon.Foreground" Value="{DynamicResource BannerSuccessBorderBrush}" />
             </Style>
         </Style>
     </ControlTheme>

@@ -1,5 +1,7 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--  Add Resources Here  -->
+    
+    <SolidColorBrush x:Key="ButtonGroupSeparatorForeground" Opacity="0.08" Color="White" />
     <!--  Light  -->
     <SolidColorBrush x:Key="ButtonGroupDefaultPrimaryForeground" Color="#54A9FF" />
     <SolidColorBrush x:Key="ButtonGroupDefaultSecondaryForeground" Color="#40B4F3" />

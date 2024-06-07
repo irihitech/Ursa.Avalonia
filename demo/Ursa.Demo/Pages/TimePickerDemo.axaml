@@ -1,0 +1,46 @@
+﻿<UserControl
+    x:Class="Ursa.Demo.Pages.TimePickerDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel HorizontalAlignment="Left">
+        <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
+        <TextBlock Text="{Binding #picker.SelectedTime}" />
+        <TextBox
+            Name="displayFormat"
+            Width="300"
+            InnerLeftContent="Display Format"
+            Text="HH 时 mm 分 ss 秒" />
+        <TextBox
+            Name="panelFormat"
+            Width="300"
+            InnerLeftContent="Panel Format"
+            Text="tt HH mm ss" />
+        <u:TimePicker
+            Name="picker"
+            Width="200"
+            HorizontalAlignment="Left"
+            DisplayFormat="{Binding #displayFormat.Text}"
+            NeedConfirmation="{Binding #needConfirm.IsChecked}"
+            PanelFormat="{Binding #panelFormat.Text}" />
+
+        <u:TimePicker
+            Width="300"
+            HorizontalAlignment="Left"
+            Classes="ClearButton"
+            DisplayFormat="{Binding #displayFormat.Text}"
+            InnerLeftContent="时刻"
+            InnerRightContent="截止"
+            NeedConfirmation="True"
+            PanelFormat="{Binding #panelFormat.Text}" />
+        <u:TimeRangePicker
+            Width="300"
+            DisplayFormat="{Binding #displayFormat.Text}"
+            PanelFormat="{Binding #panelFormat.Text}" />
+    </StackPanel>
+</UserControl>

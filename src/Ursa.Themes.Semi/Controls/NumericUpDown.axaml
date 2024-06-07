@@ -1,0 +1,87 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+
+    <ControlTheme x:Key="InputClearButton" TargetType="Button">
+        <Setter Property="Button.Foreground" Value="{DynamicResource TextBoxButtonDefaultForeground}" />
+        <Setter Property="Button.Cursor" Value="Hand" />
+        <Setter Property="Button.Template">
+            <ControlTemplate TargetType="Button">
+                <!--  Background must be transparent or hit test will fail  -->
+                <ContentControl Background="Transparent">
+                    <PathIcon
+                        Width="16"
+                        Height="16"
+                        Data="{DynamicResource TextBoxClearButtonData}"
+                        Foreground="{TemplateBinding Foreground}" />
+                </ContentControl>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:pointerover">
+            <Setter Property="Foreground" Value="{DynamicResource TextBoxButtonPointeroverForeground}" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:NumericUpDown}" TargetType="{x:Type u:NumericUpDown}">
+        <Setter Property="NumericUpDown.VerticalContentAlignment" Value="Center" />
+        <Setter Property="NumericUpDown.CornerRadius" Value="{DynamicResource NumericUpDownCornerRadius}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:NumericUpDown">
+                <DataValidationErrors>
+                    <ButtonSpinner
+                        Name="PART_Spinner"
+                        MinWidth="0"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        AllowSpin="{TemplateBinding AllowSpin}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        ShowButtonSpinner="{TemplateBinding ShowButtonSpinner}">
+                        <Panel>
+                            <TextBox
+                                Name="PART_TextBox"
+                                Height="{TemplateBinding Height}"
+                                MinHeight="{DynamicResource NumericUpDownWrapperDefaultHeight}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                AcceptsReturn="False"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                DataValidationErrors.Errors="{ReflectionBinding $parent[u:NumericUpDown].(DataValidationErrors.Errors)}"
+                                FontSize="{TemplateBinding FontSize}"
+                                Foreground="{TemplateBinding Foreground}"
+                                InnerLeftContent="{TemplateBinding InnerLeftContent}"
+                                TextWrapping="NoWrap"
+                                Theme="{DynamicResource NonErrorTextBox}"
+                                Watermark="{TemplateBinding Watermark}" />
+                            <Panel
+                                Name="PART_DragPanel"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="Transparent"
+                                Cursor="SizeAll"/>
+                            <Button
+                                Name="PART_ClearButton"
+                                Margin="0,0,8,0"
+                                HorizontalAlignment="Right"
+                                Command="{Binding $parent[u:NumericUpDown].Clear}"
+                                Focusable="False"
+                                IsVisible="False"
+                                Theme="{StaticResource InputClearButton}" />
+                        </Panel>
+                    </ButtonSpinner>
+                </DataValidationErrors>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^.clearButton, ^.ClearButton">
+            <Style Selector="^[IsReadOnly=False]:focus /template/ Button#PART_ClearButton">
+                <Setter Property="IsVisible" Value="True" />
+            </Style>
+            <Style Selector="^[IsReadOnly=False]:pointerover /template/ Button#PART_ClearButton">
+                <Setter Property="IsVisible" Value="True" />
+            </Style>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

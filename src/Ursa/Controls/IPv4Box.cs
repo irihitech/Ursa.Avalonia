@@ -5,6 +5,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
+using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Input.Platform;
 using Avalonia.Interactivity;
@@ -43,7 +44,7 @@ public class IPv4Box: TemplatedControl
     private TextPresenter? _currentActivePresenter;
     
     public static readonly StyledProperty<IPAddress?> IPAddressProperty = AvaloniaProperty.Register<IPv4Box, IPAddress?>(
-        nameof(IPAddress));
+        nameof(IPAddress), defaultBindingMode: BindingMode.TwoWay);
     public IPAddress? IPAddress
     {
         get => GetValue(IPAddressProperty);
@@ -115,6 +116,19 @@ public class IPv4Box: TemplatedControl
         _presenters[1] = _secondText;
         _presenters[2] = _thirdText;
         _presenters[3] = _fourthText;
+        if (this.IPAddress != null)
+        {
+            var sections = IPAddress.ToString().Split('.');
+            for (int i = 0; i < 4; i++)
+            {
+                var presenter = _presenters[i];
+                if (presenter != null)
+                {
+                    presenter.Text = sections[i];
+                }
+            }
+            ParseBytes(ShowLeadingZero);
+        }
     }
     
     protected override void OnKeyDown(KeyEventArgs e)
@@ -122,7 +136,7 @@ public class IPv4Box: TemplatedControl
         if (_currentActivePresenter is null) return;
         var keymap = TopLevel.GetTopLevel(this)?.PlatformSettings?.HotkeyConfiguration;
         bool Match(List<KeyGesture> gestures) => gestures.Any(g => g.Matches(e));
-        if (e.Key == Key.Enter)
+        if (e.Key is Key.Enter or Key.Return)
         {
             ParseBytes(ShowLeadingZero);
             SetIPAddressInternal();
@@ -143,6 +157,10 @@ public class IPv4Box: TemplatedControl
         {
             Paste();
         }
+        else if (keymap is not null && Match(keymap.Cut))
+        {
+            Cut();
+        }
         if (e.Key == Key.Tab)
         {
             _currentActivePresenter?.HideCaret();
@@ -154,25 +172,6 @@ public class IPv4Box: TemplatedControl
             }
             MoveToNextPresenter(_currentActivePresenter, true);
             _currentActivePresenter?.ShowCaret();
-            e.Handled = true;
-        }
-        else if (e.Key == Key.OemPeriod || e.Key == Key.Decimal)
-        {
-            if (string.IsNullOrEmpty(_currentActivePresenter.Text))
-            {
-                base.OnKeyDown(e);
-                return;
-            }
-            _currentActivePresenter?.HideCaret();
-            _currentActivePresenter.ClearSelection();
-            if (Equals(_currentActivePresenter, _fourthText))
-            {
-                base.OnKeyDown(e);
-                return;
-            }
-            MoveToNextPresenter(_currentActivePresenter, false);
-            _currentActivePresenter?.ShowCaret();
-            _currentActivePresenter.MoveCaretToStart();
             e.Handled = true;
         }
         else if (e.Key == Key.Back)
@@ -198,10 +197,20 @@ public class IPv4Box: TemplatedControl
         if (e.Handled) return;
         string? s = e.Text;
         if (string.IsNullOrEmpty(s)) return;
+        if (s == ".")
+        {
+            _currentActivePresenter?.HideCaret();
+            _currentActivePresenter.ClearSelection();
+            MoveToNextPresenter(_currentActivePresenter, false);
+            _currentActivePresenter?.ShowCaret();
+            _currentActivePresenter.MoveCaretToStart();
+            e.Handled = false;
+            return;
+        }
         if (!char.IsNumber(s![0])) return;
         if (_currentActivePresenter != null)
         {
-            int index = _currentActivePresenter.CaretIndex;
+            int index = Math.Min(_currentActivePresenter.CaretIndex, _currentActivePresenter.Text.Length);
             string? oldText = _currentActivePresenter.Text;
             if (oldText is null)
             {

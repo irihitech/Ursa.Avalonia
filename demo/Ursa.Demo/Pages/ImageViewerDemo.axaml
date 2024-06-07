@@ -1,0 +1,122 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.ImageViewerDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="MaskBackground" Opacity="0.2" Color="Red" />
+        <SolidColorBrush x:Key="MaskBorder" Color="Red" />
+    </UserControl.Resources>
+    <StackPanel>
+        <u:Banner
+            Content="Setting the Scale before loading has no effect."
+            Header="Notice"
+            Type="Warning" />
+        <u:ImageViewer
+            Name="viewer"
+            Width="600"
+            Height="300" 
+            MinScale="0.5"
+            Source="../Assets/3x.png">
+            <u:ImageViewer.Overlayer>
+                <Grid
+                    HorizontalAlignment="Stretch"
+                    ColumnDefinitions="*, Auto, *"
+                    IsVisible="{Binding #maskSwitch.IsChecked}">
+                    <Border
+                        Grid.Column="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="{StaticResource MaskBackground}"
+                        BorderBrush="{StaticResource MaskBorder}"
+                        BorderThickness="0,0,1,0"
+                        IsHitTestVisible="False" />
+                    <Rectangle
+                        Grid.Column="1"
+                        Width="150"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Fill="Transparent"
+                        IsHitTestVisible="False" />
+                    <Border
+                        Grid.Column="2"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="{StaticResource MaskBackground}"
+                        BorderBrush="{StaticResource MaskBorder}"
+                        BorderThickness="1,0,0,0"
+                        IsHitTestVisible="False" />
+                </Grid>
+            </u:ImageViewer.Overlayer>
+        </u:ImageViewer>
+
+        <Grid ColumnDefinitions="Auto, Auto, *" RowDefinitions="Auto, Auto, Auto, Auto">
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="Scale" />
+            <Slider
+                Grid.Row="0"
+                Grid.Column="1"
+                Width="200"
+                Maximum="10"
+                Minimum="0.1"
+                Value="{Binding #viewer.Scale}" />
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="2"
+                Text="{Binding #viewer.Scale, StringFormat=\{0:0.00000\}}" />
+
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
+                Text="TranslateX" />
+            <Slider
+                Grid.Row="1"
+                Grid.Column="1"
+                Width="200"
+                IsSnapToTickEnabled="True"
+                Maximum="300"
+                Minimum="-300"
+                TickFrequency="0.1"
+                Value="{Binding #viewer.TranslateX}" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="2"
+                Text="{Binding #viewer.TranslateX, StringFormat=\{0:0.0\}}" />
+
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="0"
+                Text="TranslateY" />
+            <Slider
+                Grid.Row="2"
+                Grid.Column="1"
+                Width="200"
+                IsSnapToTickEnabled="True"
+                Maximum="300"
+                Minimum="-300"
+                TickFrequency="0.1"
+                Value="{Binding #viewer.TranslateY}" />
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="2"
+                Text="{Binding #viewer.TranslateY, StringFormat=\{0:0.0\}}" />
+
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="0"
+                Text="Show Mask" />
+            <ToggleSwitch
+                Name="maskSwitch"
+                Grid.Row="3"
+                Grid.Column="1"
+                Theme="{DynamicResource SimpleToggleSwitch}" />
+        </Grid>
+    </StackPanel>
+</UserControl>

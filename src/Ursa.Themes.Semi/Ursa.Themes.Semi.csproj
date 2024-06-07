@@ -1,23 +1,34 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="../Package.props" />
+    <Import Project="../Package.props"/>
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <LangVersion>11</LangVersion>
-        <Version>0.1.0-beta20230702</Version>
+        <LangVersion>latest</LangVersion>
+        <Version>0.3.0-beta20240518</Version>
         <Authors>IRIHI Technology Co., Ltd.</Authors>
         <PackageId>Irihi.Ursa.Themes.Semi</PackageId>
+        <PackageIcon>irihi.png</PackageIcon>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/irihitech/Ursa.Avalonia</PackageProjectUrl>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+        <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Ursa\Ursa.csproj" />
+        <ProjectReference Include="..\Ursa\Ursa.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <UpToDateCheckInput Remove="Controls\Skeleton.axaml"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="irihi.png" Pack="true" PackagePath=""/>
     </ItemGroup>
 
 </Project>

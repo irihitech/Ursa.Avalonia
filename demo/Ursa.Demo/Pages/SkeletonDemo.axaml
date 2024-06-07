@@ -1,0 +1,62 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.SkeletonDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Design.DataContext>
+        <vm:SkeletonDemoViewModel />
+    </Design.DataContext>
+    <StackPanel>
+        <ToggleSwitch Name="loading" Content="Loading" />
+        <ToggleSwitch Name="active" Content="Active" />
+        <Grid
+            MinWidth="400"
+            HorizontalAlignment="Left"
+            ColumnDefinitions="auto,*">
+            <u:Skeleton
+                Width="100"
+                Height="100"
+                VerticalAlignment="Center"
+                CornerRadius="2"
+                IsActive="{Binding #active.IsChecked}"
+                IsLoading="{Binding #loading.IsChecked}">
+                <Image RenderOptions.BitmapInterpolationMode="HighQuality" Source="../Assets/Ursa.ico" />
+            </u:Skeleton>
+            <UniformGrid
+                Grid.Column="1"
+                Margin="5,0"
+                Columns="1"
+                Rows="3">
+                <u:Skeleton
+                    Margin="0,0,200,0"
+                    VerticalAlignment="Top"
+                    CornerRadius="2"
+                    IsActive="{Binding #active.IsChecked}"
+                    IsLoading="{Binding #loading.IsChecked}">
+                    <SelectableTextBlock Margin="0,2" Text="是先有鸡还是先有蛋" />
+                </u:Skeleton>
+                <u:Skeleton
+                    Margin="0,0,100,0"
+                    VerticalAlignment="Center"
+                    CornerRadius="2"
+                    IsActive="{Binding #active.IsChecked}"
+                    IsLoading="{Binding #loading.IsChecked}">
+                    <SelectableTextBlock Margin="0,2" Text="什么是工匠精神" />
+                </u:Skeleton>
+                <u:Skeleton
+                    VerticalAlignment="Bottom"
+                    CornerRadius="2"
+                    IsActive="{Binding #active.IsChecked}"
+                    IsLoading="{Binding #loading.IsChecked}">
+                    <SelectableTextBlock Margin="0,2" Text="看山不是山，看水不是水，看山还是山，看水还是水" />
+                </u:Skeleton>
+            </UniformGrid>
+        </Grid>
+    </StackPanel>
+</UserControl>

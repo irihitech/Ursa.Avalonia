@@ -4,6 +4,7 @@
         <MergeResourceInclude Source="Badge.axaml" />
         <MergeResourceInclude Source="Banner.axaml" />
         <MergeResourceInclude Source="ButtonGroup.axaml" />
+        <MergeResourceInclude Source="Dialog.axaml" />
         <MergeResourceInclude Source="Divider.axaml" />
         <MergeResourceInclude Source="DualBadge.axaml" />
         <MergeResourceInclude Source="IPv4Box.axaml" />
@@ -13,5 +14,7 @@
         <MergeResourceInclude Source="Pagination.axaml" />
         <MergeResourceInclude Source="TagInput.axaml" />
         <MergeResourceInclude Source="Timeline.axaml" />
+        <MergeResourceInclude Source="Skeleton.axaml" />
+        <MergeResourceInclude Source="TimeBox.axaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

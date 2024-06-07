@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--  Add Resources Here  -->
+    <SolidColorBrush x:Key="TimeBoxBackground" Opacity="0.05" Color="#FF2E3238" />
+    <SolidColorBrush x:Key="TimeBoxPointeroverBackground" Opacity="0.09" Color="#FF2E3238" />
+    <SolidColorBrush x:Key="TimeBoxPressedBackground" Opacity="0.13" Color="#FF2E3238" />
+    <SolidColorBrush x:Key="TimeBoxBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="TimeBoxDisabledBackground" Opacity="0.02" Color="#2E3238" />
+    <SolidColorBrush x:Key="TimeBoxFocusBorderBrush" Color="#FF0077FA" />
+    <SolidColorBrush x:Key="TimeBoxSelectionBrush" Color="#FF0077FA" />
+    <SolidColorBrush x:Key="TimeBoxSelectionForeground" Color="White" />
+    <SolidColorBrush x:Key="TimeBoxCaretBrush" Color="Black" />
+</ResourceDictionary>

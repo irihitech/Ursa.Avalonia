@@ -9,33 +9,35 @@
 
     <ControlTheme x:Key="{x:Type u:Badge}" TargetType="{x:Type u:Badge}">
         <!--  Set a very large corner radius to achieve pill look.  -->
-        <Setter Property="u:Badge.CornerRadius" Value="100" />
-        <Setter Property="u:Badge.FontSize" Value="14" />
-        <Setter Property="u:Badge.Background" Value="{DynamicResource BadgePrimaryBadgeBackground}" />
-        <Setter Property="u:Badge.ClipToBounds" Value="False" />
-        <Setter Property="u:Badge.HorizontalAlignment" Value="Center" />
-        <Setter Property="u:Badge.VerticalAlignment" Value="Center" />
-        <Setter Property="u:Badge.BorderThickness" Value="{DynamicResource BadgeBorderThickness}" />
-        <Setter Property="u:Badge.UseLayoutRounding" Value="False" />
-        <Setter Property="u:Badge.BorderBrush" Value="{DynamicResource BadgeBorderBrush}" />
-        <Setter Property="u:Badge.Template">
+        <Setter Property="CornerRadius" Value="{DynamicResource BadgeCornerRadius}" />
+        <Setter Property="BadgeFontSize" Value="{DynamicResource BadgeFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource BadgeForeground}" />
+        <Setter Property="Background" Value="{DynamicResource BadgePrimaryBadgeBackground}" />
+        <Setter Property="ClipToBounds" Value="False" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="{DynamicResource BadgeBorderThickness}" />
+        <Setter Property="UseLayoutRounding" Value="False" />
+        <Setter Property="BorderBrush" Value="{DynamicResource BadgeBorderBrush}" />
+        <Setter Property="CornerPosition" Value="{DynamicResource BadgeCornerPosition}" />
+        <Setter Property="Template">
             <ControlTemplate TargetType="{x:Type u:Badge}">
                 <Grid
                     HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                     VerticalAlignment="{TemplateBinding VerticalAlignment}"
                     ClipToBounds="False">
-
                     <ContentPresenter
                         Name="{x:Static u:Badge.PART_ContentPresenter}"
                         Margin="{TemplateBinding Padding}"
                         HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                         VerticalAlignment="{TemplateBinding VerticalAlignment}"
                         Content="{TemplateBinding Content}"
-                        ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        Foreground="{DynamicResource BadgeContentForeground}" />
                     <Border
                         Name="{x:Static u:Badge.PART_BadgeContainer}"
-                        MinWidth="{DynamicResource BadgeHeight}"
-                        MinHeight="{DynamicResource BadgeHeight}"
+                        MinWidth="{DynamicResource BadgeMinWidth}"
+                        MinHeight="{DynamicResource BadgeMinHeight}"
                         Padding="{DynamicResource BadgePadding}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
@@ -43,21 +45,21 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}"
-                        IsVisible="{Binding !!BadgeContent, RelativeSource={RelativeSource TemplatedParent}}"
+                        IsVisible="{Binding !!Header, RelativeSource={RelativeSource TemplatedParent}}"
                         RenderTransformOrigin=".5,.5"
                         Theme="{TemplateBinding BadgeTheme}"
                         UseLayoutRounding="False">
                         <ContentPresenter
-                            Name="{x:Static u:Badge.PART_BadgeContentPresenter}"
+                            Name="{x:Static u:Badge.PART_HeaderPresenter}"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Focusable="False"
                             IsTabStop="False"
-                            TextElement.FontSize="{TemplateBinding FontSize}"
-                            TextElement.Foreground="{DynamicResource BadgeForeground}">
+                            TextElement.FontSize="{TemplateBinding BadgeFontSize}"
+                            TextElement.Foreground="{TemplateBinding Foreground}">
                             <ContentPresenter.Content>
                                 <MultiBinding Converter="{StaticResource BadgeContentConverter}">
-                                    <Binding Path="BadgeContent" RelativeSource="{RelativeSource TemplatedParent}" />
+                                    <Binding Path="Header" RelativeSource="{RelativeSource TemplatedParent}" />
                                     <Binding Path="OverflowCount" RelativeSource="{RelativeSource TemplatedParent}" />
                                 </MultiBinding>
                             </ContentPresenter.Content>
@@ -80,10 +82,11 @@
                             HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalAlignment}"
                             Content="{TemplateBinding Content}"
-                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            Foreground="{DynamicResource BadgeContentForeground}" />
                         <Border
                             Name="{x:Static u:Badge.PART_BadgeContainer}"
-                            Width="{DynamicResource BadgeDotHeight}"
+                            Width="{DynamicResource BadgeDotWidth}"
                             Height="{DynamicResource BadgeDotHeight}"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
@@ -91,7 +94,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}"
-                            IsVisible="{Binding !!BadgeContent, RelativeSource={RelativeSource TemplatedParent}}"
+                            IsVisible="{Binding !!Header, RelativeSource={RelativeSource TemplatedParent}}"
                             RenderTransformOrigin=".5,.5" />
                     </Grid>
                 </ControlTemplate>
@@ -99,36 +102,113 @@
         </Style>
 
         <Style Selector="^[CornerPosition=TopLeft] /template/ Border#PART_BadgeContainer">
-            <Setter Property="u:Badge.HorizontalAlignment" Value="Left" />
-            <Setter Property="u:Badge.VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
         <Style Selector="^[CornerPosition=TopRight] /template/ Border#PART_BadgeContainer">
-            <Setter Property="u:Badge.HorizontalAlignment" Value="Right" />
-            <Setter Property="u:Badge.VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
         <Style Selector="^[CornerPosition=BottomLeft] /template/ Border#PART_BadgeContainer">
-            <Setter Property="u:Badge.HorizontalAlignment" Value="Left" />
-            <Setter Property="u:Badge.VerticalAlignment" Value="Bottom" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
         </Style>
         <Style Selector="^[CornerPosition=BottomRight] /template/ Border#PART_BadgeContainer">
-            <Setter Property="u:Badge.HorizontalAlignment" Value="Right" />
-            <Setter Property="u:Badge.VerticalAlignment" Value="Bottom" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
         </Style>
 
-        <Style Selector="^.Primary">
-            <Setter Property="u:Badge.Background" Value="{DynamicResource BadgePrimaryBadgeBackground}" />
+        <Style Selector="^.Primary /template/ Border#PART_BadgeContainer">
+            <Setter Property="Background" Value="{DynamicResource BadgePrimaryBadgeBackground}" />
         </Style>
-        <Style Selector="^.Secondary">
-            <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeSecondaryBadgeBackground}" />
+        <Style Selector="^.Secondary /template/ Border#PART_BadgeContainer">
+            <Setter Property="Background" Value="{DynamicResource BadgeSecondaryBadgeBackground}" />
         </Style>
-        <Style Selector="^.Tertiary">
-            <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeTertiaryBadgeBackground}" />
+        <Style Selector="^.Tertiary /template/ Border#PART_BadgeContainer">
+            <Setter Property="Background" Value="{DynamicResource BadgeTertiaryBadgeBackground}" />
         </Style>
-        <Style Selector="^.Warning">
-            <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeWarningBadgeBackground}" />
+        <Style Selector="^.Success /template/ Border#PART_BadgeContainer">
+            <Setter Property="Background" Value="{DynamicResource BadgeSuccessBadgeBackground}" />
         </Style>
-        <Style Selector="^.Danger">
-            <Setter Property="u:Badge.Background" Value="{DynamicResource BadgeDangerBadgeBackground}" />
+        <Style Selector="^.Warning /template/ Border#PART_BadgeContainer">
+            <Setter Property="Background" Value="{DynamicResource BadgeWarningBadgeBackground}" />
+        </Style>
+        <Style Selector="^.Danger /template/ Border#PART_BadgeContainer">
+            <Setter Property="Background" Value="{DynamicResource BadgeDangerBadgeBackground}" />
+        </Style>
+
+        <Style Selector="^.Light">
+            <Style Selector="^.Primary">
+                <Style Selector="^/template/ ContentPresenter#PART_HeaderPresenter">
+                    <Setter Property="Foreground" Value="{DynamicResource BadgeLightPrimaryBadgeForeground}" />
+                </Style>
+                <Style Selector="^/template/ Border#PART_BadgeContainer">
+                    <Setter Property="Background" Value="{DynamicResource BadgeLightPrimaryBadgeBackground}" />
+                </Style>
+            </Style>
+            <Style Selector="^.Secondary">
+                <Style Selector="^/template/ ContentPresenter#PART_HeaderPresenter">
+                    <Setter Property="Foreground" Value="{DynamicResource BadgeLightSecondaryBadgeForeground}" />
+                </Style>
+                <Style Selector="^/template/ Border#PART_BadgeContainer">
+                    <Setter Property="Background" Value="{DynamicResource BadgeLightSecondaryBadgeBackground}" />
+                </Style>
+            </Style>
+            <Style Selector="^.Tertiary">
+                <Style Selector="^/template/ ContentPresenter#PART_HeaderPresenter">
+                    <Setter Property="Foreground" Value="{DynamicResource BadgeLightTertiaryBadgeForeground}" />
+                </Style>
+                <Style Selector="^/template/ Border#PART_BadgeContainer">
+                    <Setter Property="Background" Value="{DynamicResource BadgeLightTertiaryBadgeBackground}" />
+                </Style>
+            </Style>
+            <Style Selector="^.Success">
+                <Style Selector="^/template/ ContentPresenter#PART_HeaderPresenter">
+                    <Setter Property="Foreground" Value="{DynamicResource BadgeLightSuccessBadgeForeground}" />
+                </Style>
+                <Style Selector="^/template/ Border#PART_BadgeContainer">
+                    <Setter Property="Background" Value="{DynamicResource BadgeLightSuccessBadgeBackground}" />
+                </Style>
+            </Style>
+            <Style Selector="^.Warning">
+                <Style Selector="^/template/ ContentPresenter#PART_HeaderPresenter">
+                    <Setter Property="Foreground" Value="{DynamicResource BadgeLightWarningBadgeForeground}" />
+                </Style>
+                <Style Selector="^/template/ Border#PART_BadgeContainer">
+                    <Setter Property="Background" Value="{DynamicResource BadgeLightWarningBadgeBackground}" />
+                </Style>
+            </Style>
+            <Style Selector="^.Danger">
+                <Style Selector="^/template/ ContentPresenter#PART_HeaderPresenter">
+                    <Setter Property="Foreground" Value="{DynamicResource BadgeLightDangerBadgeForeground}" />
+                </Style>
+                <Style Selector="^/template/ Border#PART_BadgeContainer">
+                    <Setter Property="Background" Value="{DynamicResource BadgeLightDangerBadgeBackground}" />
+                </Style>
+            </Style>
+        </Style>
+        <Style Selector="^.Inverted">
+            <Style Selector="^/template/ Border#PART_BadgeContainer">
+                <Setter Property="Background" Value="{DynamicResource BadgeInvertedBadgeBackground}" />
+            </Style>
+            <Style Selector="^.Primary /template/ ContentPresenter#PART_HeaderPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource BadgeInvertedPrimaryBadgeForeground}" />
+            </Style>
+            <Style Selector="^.Secondary /template/ ContentPresenter#PART_HeaderPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource BadgeInvertedSecondaryBadgeForeground}" />
+            </Style>
+            <Style Selector="^.Tertiary /template/ ContentPresenter#PART_HeaderPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource BadgeInvertedTertiaryBadgeForeground}" />
+            </Style>
+            <Style Selector="^.Success /template/ ContentPresenter#PART_HeaderPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource BadgeInvertedSuccessBadgeForeground}" />
+            </Style>
+            <Style Selector="^.Warning /template/ ContentPresenter#PART_HeaderPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource BadgeInvertedWarningBadgeForeground}" />
+            </Style>
+            <Style Selector="^.Danger /template/ ContentPresenter#PART_HeaderPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource BadgeInvertedDangerBadgeForeground}" />
+            </Style>
         </Style>
     </ControlTheme>
 </ResourceDictionary>

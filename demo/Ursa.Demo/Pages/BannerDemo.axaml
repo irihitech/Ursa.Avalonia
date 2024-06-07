@@ -47,6 +47,5 @@
                 </Grid>
             </Border>
         </Grid>
-
     </StackPanel>
 </UserControl>

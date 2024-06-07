@@ -1,0 +1,124 @@
+﻿<UserControl
+    x:Class="Ursa.Demo.Pages.NavMenuDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Ursa.Demo.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:NavMenuDemoViewModel"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:IconNameToPathConverter x:Key="IconConverter" />
+    </UserControl.Resources>
+    <Grid
+        HorizontalAlignment="Left"
+        ColumnDefinitions="Auto, Auto"
+        RowDefinitions="Auto, Auto, *">
+        <ToggleButton
+            Name="collapse"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2">
+            Collapse
+        </ToggleButton>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock Text="{Binding SelectedMenuItem.Header}" />
+            <Button Command="{Binding RandomCommand}">Random a selection</Button>
+        </StackPanel>
+        <Border
+            Grid.Row="2"
+            Grid.Column="0"
+            Padding="0"
+            HorizontalAlignment="Left"
+            Theme="{DynamicResource CardBorder}">
+            <u:NavMenu
+                Name="menu"
+                ExpandWidth="400"
+                HeaderBinding="{Binding Header}"
+                IconBinding="{Binding IconIndex}"
+                IsHorizontalCollapsed="{Binding #collapse.IsChecked, Mode=OneWay}"
+                ItemsSource="{Binding MenuItems}"
+                SelectedItem="{Binding SelectedMenuItem}"
+                SubMenuBinding="{Binding Children}">
+                <u:NavMenu.Styles>
+                    <Style x:DataType="vm:MenuItem" Selector="u|NavMenuItem">
+                        <Setter Property="IsSeparator" Value="{Binding IsSeparator}" />
+                    </Style>
+                </u:NavMenu.Styles>
+                <u:NavMenu.IconTemplate>
+                    <DataTemplate DataType="{x:Type x:Int32}">
+                        <u:TwoTonePathIcon
+                            Width="16"
+                            Height="16"
+                            ActiveForeground="{DynamicResource SemiBlue5}"
+                            ActiveStrokeBrush="{DynamicResource SemiBlue5}"
+                            Data="{Binding Converter={StaticResource IconConverter}}"
+                            Foreground="{DynamicResource SemiGrey5}"
+                            IsActive="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=u:NavMenuItem}, Path=IsHighlighted, Mode=TwoWay}"
+                            StrokeBrush="{DynamicResource SemiGrey5}" />
+                    </DataTemplate>
+                </u:NavMenu.IconTemplate>
+                <u:NavMenu.Header>
+                    <Grid HorizontalAlignment="Center" ColumnDefinitions="Auto, Auto">
+                        <Image
+                            Width="48"
+                            Height="48"
+                            Margin="4,12"
+                            u:NavMenu.CanToggle="True"
+                            RenderOptions.BitmapInterpolationMode="HighQuality"
+                            Source="../Assets/Ursa.ico" />
+                        <TextBlock
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            Classes="H5"
+                            IsVisible="{Binding !#menu.IsHorizontalCollapsed}"
+                            Text="Ursa Avalonia"
+                            Theme="{DynamicResource TitleTextBlock}" />
+                    </Grid>
+                </u:NavMenu.Header>
+            </u:NavMenu>
+        </Border>
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="1"
+            Text="{ReflectionBinding #menu2.SelectedItem.Header}" />
+        <u:NavMenu
+            Name="menu2"
+            Grid.Row="2"
+            Grid.Column="1"
+            IsHorizontalCollapsed="{Binding #collapse.IsChecked}">
+            <u:NavMenuItem Header="Menu 1">
+                <u:NavMenuItem.Icon>
+                    <Rectangle
+                        Width="10"
+                        Height="10"
+                        Fill="Red" />
+                </u:NavMenuItem.Icon>
+                <u:NavMenuItem Header="Sub Menu 1" />
+                <u:NavMenuItem Header="Sub Menu 2" />
+                <u:NavMenuItem Header="Sub Menu 3" />
+            </u:NavMenuItem>
+            <u:NavMenuItem Header="Menu 2">
+                <u:NavMenuItem.Icon>
+                    <Rectangle
+                        Width="10"
+                        Height="10"
+                        Fill="Red" />
+                </u:NavMenuItem.Icon>
+            </u:NavMenuItem>
+            <u:NavMenuItem Header="Menu 3">
+                <u:NavMenuItem.Icon>
+                    <Rectangle
+                        Width="10"
+                        Height="10"
+                        Fill="Red" />
+                </u:NavMenuItem.Icon>
+            </u:NavMenuItem>
+        </u:NavMenu>
+    </Grid>
+</UserControl>
