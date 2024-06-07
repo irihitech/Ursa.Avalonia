@@ -5,6 +5,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
+using Avalonia.Interactivity;
 
 namespace Ursa.Controls;
 
@@ -123,7 +124,6 @@ public class Rating : TemplatedControl
     private void OnCountChanged(AvaloniaPropertyChangedEventArgs e)
     {
         if (!IsLoaded) return;
-
         var currentCount = Items.Count;
         var newCount = e.GetNewValue<int>();
 
@@ -154,6 +154,7 @@ public class Rating : TemplatedControl
 
     private void OnAllowHalfChanged(AvaloniaPropertyChangedEventArgs e)
     {
+        if (!IsLoaded) return;
         if (e.NewValue is not bool newValue) return;
         foreach (var item in Items)
         {
@@ -178,6 +179,11 @@ public class Rating : TemplatedControl
         }
 
         SetCurrentValue(ValueProperty, DefaultValue);
+    }
+
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
         UpdateItemsByValue(DefaultValue);
     }
 
@@ -240,17 +246,12 @@ public class Rating : TemplatedControl
 
     private void UpdateChosenItem(double newValue)
     {
-        var ratio = newValue - Math.Floor(newValue);
-        var isFraction = ratio >= double.Epsilon;
-        ratio = AllowHalf && isFraction ? ratio : 1;
         var item = Items.FirstOrDefault(item => item.IsLast);
         if (item is null) return;
-        if (!AllowHalf && isFraction)
-        {
-            item.SetSelectedState(false);
-        }
-
-        item.Ratio = ratio;
+        var ratio = newValue - Math.Floor(newValue);
+        var isFraction = ratio >= double.Epsilon;
+        item.SetSelectedState(AllowHalf || !isFraction);
+        item.Ratio = AllowHalf && isFraction ? ratio : 1;
         item.ApplyRatio();
     }
 }
