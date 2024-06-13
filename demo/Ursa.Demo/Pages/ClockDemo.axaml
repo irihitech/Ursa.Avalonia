@@ -10,9 +10,9 @@
     x:CompileBindings="True"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    
     mc:Ignorable="d">
-    <Grid>
-        <u:Clock HorizontalAlignment="Left" Time="{Binding Time}"></u:Clock>
+    <Grid RowDefinitions="Auto, *">
+        <ToggleSwitch Content="Smooth" Name="smooth"></ToggleSwitch>
+        <u:Clock Grid.Row="1" HorizontalAlignment="Left" IsSmooth="{Binding #smooth.IsChecked}" Time="{Binding Time}"></u:Clock>
     </Grid>
 </UserControl>
