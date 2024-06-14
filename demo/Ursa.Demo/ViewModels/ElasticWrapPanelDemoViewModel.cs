@@ -7,63 +7,79 @@ namespace Ursa.Demo.ViewModels;
 
 public partial class ElasticWrapPanelDemoViewModel : ObservableObject
 {
-    [ObservableProperty] private Orientation _selectedOrientation;
-    [ObservableProperty] private ScrollBarVisibility _horizontalVisibility;
-    [ObservableProperty] private ScrollBarVisibility _verticalVisibility;
-    [ObservableProperty] private ObservableCollection<Orientation> _orientations = null!;
-    [ObservableProperty] private ObservableCollection<ScrollBarVisibility> _hScrollBarVisibilities = null!;
-    [ObservableProperty] private ObservableCollection<ScrollBarVisibility> _vScrollBarVisibilities = null!;
+    [ObservableProperty]
+    private ObservableCollection<Orientation> _orientations = [Orientation.Horizontal, Orientation.Vertical];
 
-    [ObservableProperty] private bool _isFillHorizontal;
-    [ObservableProperty] private bool _isFillVertical;
-    [ObservableProperty] private double? _itemWidth;
-    [ObservableProperty] private double? _itemHeight;
+    [ObservableProperty] private Orientation _selectedOrientation = Orientation.Horizontal;
 
-    [ObservableProperty] private double? _itemSelfWidth;
-    [ObservableProperty] private double? _itemSelfHeight;
+    [ObservableProperty] private ObservableCollection<ScrollBarVisibility> _hScrollBarVisibilities =
+    [
+        ScrollBarVisibility.Disabled, ScrollBarVisibility.Auto, ScrollBarVisibility.Hidden, ScrollBarVisibility.Visible
+    ];
 
-    [ObservableProperty] private HorizontalAlignment _cmbHAlign;
-    [ObservableProperty] private VerticalAlignment _cmbVAlign;
-    [ObservableProperty] private ObservableCollection<HorizontalAlignment> _cmbHAligns = null!;
-    [ObservableProperty] private ObservableCollection<VerticalAlignment> _cmbVAligns = null!;
+    [ObservableProperty] private ObservableCollection<ScrollBarVisibility> _vScrollBarVisibilities =
+    [
+        ScrollBarVisibility.Disabled, ScrollBarVisibility.Auto, ScrollBarVisibility.Hidden, ScrollBarVisibility.Visible
+    ];
 
-    public ElasticWrapPanelDemoViewModel()
+    [ObservableProperty] private ScrollBarVisibility _horizontalVisibility = ScrollBarVisibility.Auto;
+    [ObservableProperty] private ScrollBarVisibility _verticalVisibility = ScrollBarVisibility.Auto;
+
+    [ObservableProperty] private bool _isFillHorizontal = true;
+    [ObservableProperty] private bool _isFillVertical = false;
+    [ObservableProperty] private double _itemWidth = 40d;
+    [ObservableProperty] private double _itemHeight = 40d;
+
+    [ObservableProperty] private bool _autoWidth;
+    [ObservableProperty] private bool _autoHeight;
+    [ObservableProperty] private double _itemSelfWidth = double.NaN;
+    [ObservableProperty] private double _itemSelfHeight = double.NaN;
+
+    [ObservableProperty] private ObservableCollection<HorizontalAlignment> _cmbHAligns =
+    [
+        HorizontalAlignment.Stretch,
+        HorizontalAlignment.Left,
+        HorizontalAlignment.Center,
+        HorizontalAlignment.Right
+    ];
+
+    [ObservableProperty] private ObservableCollection<VerticalAlignment> _cmbVAligns =
+    [
+        VerticalAlignment.Stretch,
+        VerticalAlignment.Top,
+        VerticalAlignment.Center,
+        VerticalAlignment.Bottom
+    ];
+
+    [ObservableProperty] private HorizontalAlignment _cmbHAlign = HorizontalAlignment.Stretch;
+    [ObservableProperty] private VerticalAlignment _cmbVAlign = VerticalAlignment.Stretch;
+
+    private double _oldItemSelfWidth;
+    private double _oldItemSelfHeight;
+
+    partial void OnAutoWidthChanged(bool value)
     {
-        SelectedOrientation = Orientation.Horizontal;
-        HorizontalVisibility = VerticalVisibility = ScrollBarVisibility.Auto;
-        Orientations = new ObservableCollection<Orientation>() { Orientation.Horizontal, Orientation.Vertical };
-        HScrollBarVisibilities = new ObservableCollection<ScrollBarVisibility>()
+        if (value)
         {
-            ScrollBarVisibility.Disabled,
-            ScrollBarVisibility.Auto,
-            ScrollBarVisibility.Hidden,
-            ScrollBarVisibility.Visible
-        };
-        VScrollBarVisibilities = new ObservableCollection<ScrollBarVisibility>(HScrollBarVisibilities);
-
-        IsFillHorizontal = true;
-        IsFillVertical = false;
-        ItemWidth = 40d;
-        ItemHeight = 40d;
-
-        ItemSelfWidth = double.NaN;
-        ItemSelfHeight = double.NaN;
-
-        CmbHAligns = new ObservableCollection<HorizontalAlignment>()
+            _oldItemSelfWidth = ItemSelfWidth;
+            ItemSelfWidth = double.NaN;
+        }
+        else
         {
-            HorizontalAlignment.Stretch,
-            HorizontalAlignment.Left,
-            HorizontalAlignment.Center,
-            HorizontalAlignment.Right
-        };
-        CmbVAligns = new ObservableCollection<VerticalAlignment>()
+            ItemSelfWidth = _oldItemSelfWidth;
+        }
+    }
+
+    partial void OnAutoHeightChanged(bool value)
+    {
+        if (value)
         {
-            VerticalAlignment.Stretch,
-            VerticalAlignment.Top,
-            VerticalAlignment.Center,
-            VerticalAlignment.Bottom
-        };
-        CmbHAlign = HorizontalAlignment.Stretch;
-        CmbVAlign = VerticalAlignment.Stretch;
+            _oldItemSelfHeight = ItemSelfHeight;
+            ItemSelfHeight = double.NaN;
+        }
+        else
+        {
+            ItemSelfHeight = _oldItemSelfHeight;
+        }
     }
 }
