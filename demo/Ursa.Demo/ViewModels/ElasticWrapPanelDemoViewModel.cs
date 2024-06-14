@@ -20,7 +20,7 @@ public partial class ElasticWrapPanelDemoViewModel : ObservableObject
     [ObservableProperty] private double _itemSelfWidth = double.NaN;
     [ObservableProperty] private double _itemSelfHeight = double.NaN;
 
-    [ObservableProperty] private HorizontalAlignment _cmbHAlign = HorizontalAlignment.Stretch;
+    [ObservableProperty] private HorizontalAlignment _cmbHAlign = HorizontalAlignment.Left;
     [ObservableProperty] private VerticalAlignment _cmbVAlign = VerticalAlignment.Stretch;
 
     private double _oldItemSelfWidth;
