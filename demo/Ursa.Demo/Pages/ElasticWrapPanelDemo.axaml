@@ -22,15 +22,13 @@
                 LabelWidth="*">
             <u:FormGroup>
                 <u:FormItem Label="Orientation">
-                    <ComboBox ItemsSource="{Binding Orientations}" SelectedItem="{Binding SelectedOrientation}" />
+                    <u:EnumSelector EnumType="Orientation" Value="{Binding SelectedOrientation}" />
                 </u:FormItem>
                 <u:FormItem Label="HorizontalScrollBar">
-                    <ComboBox ItemsSource="{Binding HScrollBarVisibilities}"
-                              SelectedItem="{Binding HorizontalVisibility}" />
+                    <u:EnumSelector EnumType="ScrollBarVisibility" Value="{Binding HorizontalVisibility}" />
                 </u:FormItem>
                 <u:FormItem Label="VerticalScrollBar">
-                    <ComboBox ItemsSource="{Binding VScrollBarVisibilities}"
-                              SelectedIndex="{Binding VerticalVisibility}" />
+                    <u:EnumSelector EnumType="ScrollBarVisibility" Value="{Binding VerticalVisibility}" />
                 </u:FormItem>
                 <u:FormItem>
                     <u:FormItem.Label>
@@ -80,11 +78,11 @@
                         IsEnabled="{Binding !AutoHeight}"
                         Value="{Binding ItemSelfHeight}" />
                 </u:FormItem>
-                <u:FormItem Label="Horizontal Alignment">
-                    <ComboBox ItemsSource="{Binding CmbHAligns}" SelectedItem="{Binding CmbHAlign}" />
+                <u:FormItem Label="HorizontalAlignment">
+                    <u:EnumSelector EnumType="HorizontalAlignment" Value="{Binding CmbHAlign}" />
                 </u:FormItem>
-                <u:FormItem Label="Vertical Alignment">
-                    <ComboBox ItemsSource="{Binding CmbVAligns}" SelectedItem="{Binding CmbVAlign}" />
+                <u:FormItem Label="VerticalAlignment">
+                    <u:EnumSelector EnumType="VerticalAlignment" Value="{Binding CmbVAlign}" />
                 </u:FormItem>
             </u:FormGroup>
         </u:Form>
