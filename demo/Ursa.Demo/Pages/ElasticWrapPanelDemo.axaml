@@ -38,8 +38,9 @@
                     <u:FormItem.Label>
                         <CheckBox Content="IsFillHorizontal" IsChecked="{Binding IsFillHorizontal}" />
                     </u:FormItem.Label>
+                </u:FormItem>
+                <u:FormItem Label="ItemWidth">
                     <u:NumericDoubleUpDown
-                        InnerLeftContent="ItemWidth"
                         Step="1"
                         AllowDrag="True"
                         Maximum="1000"
@@ -50,8 +51,9 @@
                     <u:FormItem.Label>
                         <CheckBox Content="IsFillVertical" IsChecked="{Binding IsFillVertical}" />
                     </u:FormItem.Label>
+                </u:FormItem>
+                <u:FormItem Label="ItemHeight">
                     <u:NumericDoubleUpDown
-                        InnerLeftContent="ItemHeight"
                         AllowDrag="True"
                         Step="1"
                         Maximum="1000"
@@ -64,6 +66,8 @@
                     <u:FormItem.Label>
                         <CheckBox Content="AutoWidth" IsChecked="{Binding AutoWidth}" />
                     </u:FormItem.Label>
+                </u:FormItem>
+                <u:FormItem Label="ItemSelfWidth">
                     <u:NumericDoubleUpDown
                         AllowDrag="True"
                         Maximum="1000"
@@ -75,6 +79,8 @@
                     <u:FormItem.Label>
                         <CheckBox Content="AutoHeight" IsChecked="{Binding AutoHeight}" />
                     </u:FormItem.Label>
+                </u:FormItem>
+                <u:FormItem Label="ItemSelfHeight">
                     <u:NumericDoubleUpDown
                         AllowDrag="True"
                         Maximum="1000"
