@@ -1,0 +1,78 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa">
+    <ControlTheme x:Key="{x:Type u:RatingCharacter}" TargetType="u:RatingCharacter">
+        <Setter Property="Character" Value="{DynamicResource RatingStarIconGlyph}" />
+        <Setter Property="Background" Value="{DynamicResource RatingCharacterBackground}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Margin" Value="{DynamicResource RatingCharacterMargin}" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:RatingCharacter">
+                <Canvas Name="PART_Root"
+                        Width="{TemplateBinding Size}"
+                        Height="{TemplateBinding Size}">
+                    <Path Width="{Binding #PART_Root.Width}"
+                          Height="{Binding #PART_Root.Height}"
+                          Stretch="Uniform"
+                          Data="{TemplateBinding Character}"
+                          Fill="{TemplateBinding Background}" />
+                    <Border Name="{x:Static u:RatingCharacter.PART_IconBorder}"
+                            IsVisible="False"
+                            ClipToBounds="True">
+                        <Path Width="{Binding #PART_Root.Width}"
+                              Height="{Binding #PART_Root.Height}"
+                              HorizontalAlignment="Left"
+                              Stretch="Uniform"
+                              Data="{TemplateBinding Character}"
+                              Fill="{TemplateBinding Foreground}" />
+                    </Border>
+                </Canvas>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:pointerover">
+            <Setter Property="RenderTransform" Value="scale(1.1)" />
+        </Style>
+        <Style Selector="^:selected /template/ Border#PART_IconBorder">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:Rating}" TargetType="u:Rating">
+        <Setter Property="Foreground" Value="{DynamicResource RatingCharacterForeground}" />
+        <Setter Property="Character" Value="{DynamicResource RatingStarIconGlyph}" />
+        <Setter Property="Size" Value="{DynamicResource RatingDefaultSize}" />
+        <Setter Property="ItemTemplate">
+            <DataTemplate>
+                <u:RatingCharacter />
+            </DataTemplate>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:Rating">
+                <Border Name="PART_RootBorder"
+                        VerticalAlignment="Stretch"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                    <Panel HorizontalAlignment="Stretch">
+                        <ItemsControl Name="{x:Static u:Rating.PART_ItemsControl}"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Top"
+                                      ItemTemplate="{TemplateBinding ItemTemplate}"
+                                      ItemsSource="{TemplateBinding Items}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </Panel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^.Small">
+            <Setter Property="Size" Value="{DynamicResource RatingSmallSize}" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>
