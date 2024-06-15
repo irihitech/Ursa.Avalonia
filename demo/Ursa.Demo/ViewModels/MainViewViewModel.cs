@@ -25,6 +25,7 @@ public class MainViewViewModel : ViewModelBase
         Content = s switch
         {
             MenuKeys.MenuKeyIntroduction => new IntroductionDemoViewModel(),
+            MenuKeys.MenuKeyAvatar => new AvatarDemoViewModel(),
             MenuKeys.MenuKeyBadge => new BadgeDemoViewModel(),
             MenuKeys.MenuKeyBanner => new BannerDemoViewModel(),
             MenuKeys.MenuKeyButtonGroup => new ButtonGroupDemoViewModel(),
