@@ -1,0 +1,319 @@
+﻿<UserControl x:Class="Ursa.Demo.Pages.ElasticWrapPanelDemo"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+             d:DesignHeight="800"
+             d:DesignWidth="800"
+             x:CompileBindings="True"
+             x:DataType="viewModels:ElasticWrapPanelDemoViewModel"
+             mc:Ignorable="d">
+    <UserControl.Styles>
+        <Style Selector="u|FormItem">
+            <Setter Property="Width" Value="320" />
+        </Style>
+        <Style Selector="TabItem#FixToRBTabItem WrapPanel > Border, u|ElasticWrapPanel > Border">
+            <Setter Property="Width" Value="{Binding ItemSelfWidth}" />
+            <Setter Property="Height" Value="{Binding ItemSelfHeight}" />
+        </Style>
+    </UserControl.Styles>
+    <DockPanel>
+        <u:Form DockPanel.Dock="Left"
+                LabelAlignment="Left"
+                LabelPosition="Left"
+                LabelWidth="*">
+            <u:FormGroup>
+                <u:FormItem Label="Orientation">
+                    <u:EnumSelector EnumType="Orientation" Value="{Binding SelectedOrientation}" />
+                </u:FormItem>
+                <u:FormItem Label="HorizontalScrollBar">
+                    <u:EnumSelector EnumType="ScrollBarVisibility" Value="{Binding HorizontalVisibility}" />
+                </u:FormItem>
+                <u:FormItem Label="VerticalScrollBar">
+                    <u:EnumSelector EnumType="ScrollBarVisibility" Value="{Binding VerticalVisibility}" />
+                </u:FormItem>
+                <u:FormItem>
+                    <u:FormItem.Label>
+                        <CheckBox Content="IsFillHorizontal" IsChecked="{Binding IsFillHorizontal}" />
+                    </u:FormItem.Label>
+                </u:FormItem>
+                <u:FormItem Label="ItemWidth">
+                    <u:NumericDoubleUpDown
+                        Step="1"
+                        AllowDrag="True"
+                        Maximum="1000"
+                        Minimum="0"
+                        Value="{Binding ItemWidth}" />
+                </u:FormItem>
+                <u:FormItem>
+                    <u:FormItem.Label>
+                        <CheckBox Content="IsFillVertical" IsChecked="{Binding IsFillVertical}" />
+                    </u:FormItem.Label>
+                </u:FormItem>
+                <u:FormItem Label="ItemHeight">
+                    <u:NumericDoubleUpDown
+                        AllowDrag="True"
+                        Step="1"
+                        Maximum="1000"
+                        Minimum="0"
+                        Value="{Binding ItemHeight}" />
+                </u:FormItem>
+            </u:FormGroup>
+            <u:FormGroup Header="FixToRB Extension" IsEnabled="{Binding #FixToRBTabItem.IsSelected}">
+                <u:FormItem>
+                    <u:FormItem.Label>
+                        <CheckBox Content="AutoWidth" IsChecked="{Binding AutoWidth}" />
+                    </u:FormItem.Label>
+                </u:FormItem>
+                <u:FormItem Label="ItemSelfWidth">
+                    <u:NumericDoubleUpDown
+                        AllowDrag="True"
+                        Maximum="1000"
+                        Minimum="0"
+                        IsEnabled="{Binding !AutoWidth}"
+                        Value="{Binding ItemSelfWidth}" />
+                </u:FormItem>
+                <u:FormItem>
+                    <u:FormItem.Label>
+                        <CheckBox Content="AutoHeight" IsChecked="{Binding AutoHeight}" />
+                    </u:FormItem.Label>
+                </u:FormItem>
+                <u:FormItem Label="ItemSelfHeight">
+                    <u:NumericDoubleUpDown
+                        AllowDrag="True"
+                        Maximum="1000"
+                        Minimum="0"
+                        IsEnabled="{Binding !AutoHeight}"
+                        Value="{Binding ItemSelfHeight}" />
+                </u:FormItem>
+                <u:FormItem Label="HorizontalAlignment">
+                    <u:EnumSelector EnumType="HorizontalAlignment" Value="{Binding CmbHAlign}" />
+                </u:FormItem>
+                <u:FormItem Label="VerticalAlignment">
+                    <u:EnumSelector EnumType="VerticalAlignment" Value="{Binding CmbVAlign}" />
+                </u:FormItem>
+            </u:FormGroup>
+        </u:Form>
+        <TabControl>
+            <TabItem Header="Flat">
+                <TabControl>
+                    <TabItem Header="Common">
+                        <u:ElasticWrapPanel IsFillHorizontal="{Binding IsFillHorizontal}"
+                                            IsFillVertical="{Binding IsFillVertical}"
+                                            ItemHeight="{Binding ItemHeight}"
+                                            ItemWidth="{Binding ItemWidth}"
+                                            Orientation="{Binding SelectedOrientation}">
+                            <Border Background="{DynamicResource SemiRed5Color}" />
+                            <Border Background="{DynamicResource SemiPink5Color}" />
+                            <Border Background="{DynamicResource SemiPurple5Color}" />
+                            <Border Background="{DynamicResource SemiViolet5Color}" />
+                            <Border Background="{DynamicResource SemiIndigo5Color}" />
+                            <Border Background="{DynamicResource SemiBlue5Color}" />
+                            <Border Background="{DynamicResource SemiLightBlue5Color}" />
+                            <Border Background="{DynamicResource SemiCyan5Color}" />
+                            <Border Background="{DynamicResource SemiTeal5Color}" />
+                            <Border Background="{DynamicResource SemiGreen5Color}" />
+                            <Border Background="{DynamicResource SemiLightGreen5Color}" />
+                            <Border Background="{DynamicResource SemiLime5Color}" />
+                            <Border Background="{DynamicResource SemiYellow5Color}" />
+                            <Border Background="{DynamicResource SemiAmber5Color}" />
+                            <Border Background="{DynamicResource SemiOrange5Color}" />
+                            <Border Background="{DynamicResource SemiGrey5Color}" />
+                        </u:ElasticWrapPanel>
+                    </TabItem>
+                    <TabItem Header="Grid Auto">
+                        <Grid RowDefinitions="auto,*">
+                            <u:ElasticWrapPanel Grid.Row="0"
+                                                IsFillHorizontal="{Binding IsFillHorizontal}"
+                                                IsFillVertical="{Binding IsFillVertical}"
+                                                ItemHeight="{Binding ItemHeight}"
+                                                ItemWidth="{Binding ItemWidth}"
+                                                Orientation="{Binding SelectedOrientation}">
+                                <Border Background="{DynamicResource SemiRed5Color}" />
+                                <Border Background="{DynamicResource SemiPink5Color}" />
+                                <Border Background="{DynamicResource SemiPurple5Color}" />
+                                <Border Background="{DynamicResource SemiViolet5Color}" />
+                                <Border Background="{DynamicResource SemiIndigo5Color}" />
+                                <Border Background="{DynamicResource SemiBlue5Color}" />
+                                <Border Background="{DynamicResource SemiLightBlue5Color}" />
+                                <Border Background="{DynamicResource SemiCyan5Color}" />
+                                <Border Background="{DynamicResource SemiTeal5Color}" />
+                                <Border Background="{DynamicResource SemiGreen5Color}" />
+                                <Border Background="{DynamicResource SemiLightGreen5Color}" />
+                                <Border Background="{DynamicResource SemiLime5Color}" />
+                                <Border Background="{DynamicResource SemiYellow5Color}" />
+                                <Border Background="{DynamicResource SemiAmber5Color}" />
+                                <Border Background="{DynamicResource SemiOrange5Color}" />
+                                <Border Background="{DynamicResource SemiGrey5Color}" />
+                            </u:ElasticWrapPanel>
+                            <Border Grid.Row="1" Margin="0,4" Theme="{StaticResource CardBorder}">
+                                <TextBlock Text="This is blank" />
+                            </Border>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="ScrollViewer">
+                        <Border Margin="0,4">
+                            <ScrollViewer HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
+                                          VerticalScrollBarVisibility="{Binding VerticalVisibility}">
+                                <u:ElasticWrapPanel IsFillHorizontal="{Binding IsFillHorizontal}"
+                                                    IsFillVertical="{Binding IsFillVertical}"
+                                                    ItemHeight="{Binding ItemHeight}"
+                                                    ItemWidth="{Binding ItemWidth}"
+                                                    Orientation="{Binding SelectedOrientation}">
+                                    <Border Background="{DynamicResource SemiRed5Color}" />
+                                    <Border Background="{DynamicResource SemiPink5Color}" />
+                                    <Border Background="{DynamicResource SemiPurple5Color}" />
+                                    <Border Background="{DynamicResource SemiViolet5Color}" />
+                                    <Border Background="{DynamicResource SemiIndigo5Color}" />
+                                    <Border Background="{DynamicResource SemiBlue5Color}" />
+                                    <Border Background="{DynamicResource SemiLightBlue5Color}" />
+                                    <Border Background="{DynamicResource SemiCyan5Color}" />
+                                    <Border Background="{DynamicResource SemiTeal5Color}" />
+                                    <Border Background="{DynamicResource SemiGreen5Color}" />
+                                    <Border Background="{DynamicResource SemiLightGreen5Color}" />
+                                    <Border Background="{DynamicResource SemiLime5Color}" />
+                                    <Border Background="{DynamicResource SemiYellow5Color}" />
+                                    <Border Background="{DynamicResource SemiAmber5Color}" />
+                                    <Border Background="{DynamicResource SemiOrange5Color}" />
+                                    <Border Background="{DynamicResource SemiGrey5Color}" />
+                                </u:ElasticWrapPanel>
+                            </ScrollViewer>
+                        </Border>
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+
+            <TabItem Header="FixToRB" Name="FixToRBTabItem">
+                <DockPanel>
+                    <TabControl>
+                        <TabItem Header="Single">
+                            <StackPanel>
+                                <ScrollViewer HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
+                                              VerticalScrollBarVisibility="{Binding VerticalVisibility}">
+                                    <StackPanel>
+                                        <u:Divider HorizontalContentAlignment="Left" Content="WrapPanel" />
+                                        <WrapPanel ItemHeight="{Binding ItemHeight}"
+                                                   ItemWidth="{Binding ItemWidth}"
+                                                   Orientation="{Binding SelectedOrientation}">
+                                            <Border Background="{DynamicResource SemiRed5Color}" />
+                                            <Border Background="{DynamicResource SemiPink5Color}" />
+                                            <Border Background="{DynamicResource SemiPurple5Color}" />
+                                            <Border Background="{DynamicResource SemiViolet5Color}" />
+                                            <UniformGrid MinWidth="200"
+                                                         HorizontalAlignment="{Binding CmbHAlign}"
+                                                         VerticalAlignment="{Binding CmbVAlign}"
+                                                         Rows="1">
+                                                <Button Content="Search" />
+                                                <Button Content="Export" />
+                                            </UniformGrid>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                                <ScrollViewer HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
+                                              VerticalScrollBarVisibility="{Binding VerticalVisibility}">
+                                    <StackPanel>
+                                        <u:Divider HorizontalContentAlignment="Left" Content="ElasticWrapPanel" />
+                                        <u:ElasticWrapPanel IsFillHorizontal="{Binding IsFillHorizontal}"
+                                                            IsFillVertical="{Binding IsFillVertical}"
+                                                            ItemHeight="{Binding ItemHeight}"
+                                                            ItemWidth="{Binding ItemWidth}"
+                                                            Orientation="{Binding SelectedOrientation}">
+                                            <Border Background="{DynamicResource SemiRed5Color}" />
+                                            <Border Background="{DynamicResource SemiPink5Color}" />
+                                            <Border Background="{DynamicResource SemiPurple5Color}" />
+                                            <Border Background="{DynamicResource SemiViolet5Color}" />
+                                            <UniformGrid MinWidth="200"
+                                                         HorizontalAlignment="{Binding CmbHAlign}"
+                                                         VerticalAlignment="{Binding CmbVAlign}"
+                                                         u:ElasticWrapPanel.FixToRB="True"
+                                                         Rows="1">
+                                                <Button Content="Search" />
+                                                <Button Content="Export" />
+                                            </UniformGrid>
+                                        </u:ElasticWrapPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem Header="Multiply">
+                            <StackPanel>
+                                <ScrollViewer HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
+                                              VerticalScrollBarVisibility="{Binding VerticalVisibility}">
+                                    <StackPanel>
+                                        <u:Divider HorizontalContentAlignment="Left" Content="WrapPanel" />
+                                        <WrapPanel ItemHeight="{Binding ItemHeight}"
+                                                   ItemWidth="{Binding ItemWidth}"
+                                                   Orientation="{Binding SelectedOrientation}">
+                                            <Border Background="{DynamicResource SemiRed5Color}" />
+                                            <Border Background="{DynamicResource SemiPink5Color}" />
+                                            <Border Background="{DynamicResource SemiPurple5Color}" />
+                                            <Border Background="{DynamicResource SemiViolet5Color}" />
+                                            <UniformGrid MinWidth="200"
+                                                         HorizontalAlignment="{Binding CmbHAlign}"
+                                                         VerticalAlignment="{Binding CmbVAlign}"
+                                                         u:ElasticWrapPanel.FixToRB="True"
+                                                         Rows="1">
+                                                <Button Content="Search" />
+                                                <Button Content="Export" />
+                                            </UniformGrid>
+                                            <Border Background="{DynamicResource SemiIndigo5Color}" />
+                                            <Border Background="{DynamicResource SemiBlue5Color}" />
+                                            <Border Background="{DynamicResource SemiLightBlue5Color}" />
+                                            <Border Background="{DynamicResource SemiCyan5Color}" />
+                                            <UniformGrid MinWidth="200"
+                                                         HorizontalAlignment="{Binding CmbHAlign}"
+                                                         VerticalAlignment="{Binding CmbVAlign}"
+                                                         u:ElasticWrapPanel.FixToRB="True"
+                                                         Rows="1">
+                                                <Button Content="Search" />
+                                                <Button Content="Export" />
+                                            </UniformGrid>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                                <ScrollViewer HorizontalScrollBarVisibility="{Binding HorizontalVisibility}"
+                                              VerticalScrollBarVisibility="{Binding VerticalVisibility}">
+                                    <StackPanel>
+                                        <u:Divider HorizontalContentAlignment="Left" Content="ElasticWrapPanel" />
+                                        <u:ElasticWrapPanel IsFillHorizontal="{Binding IsFillHorizontal}"
+                                                            IsFillVertical="{Binding IsFillVertical}"
+                                                            ItemHeight="{Binding ItemHeight}"
+                                                            ItemWidth="{Binding ItemWidth}"
+                                                            Orientation="{Binding SelectedOrientation}">
+                                            <Border Background="{DynamicResource SemiRed5Color}" />
+                                            <Border Background="{DynamicResource SemiPink5Color}" />
+                                            <Border Background="{DynamicResource SemiPurple5Color}" />
+                                            <Border Background="{DynamicResource SemiViolet5Color}" />
+                                            <UniformGrid MinWidth="200"
+                                                         HorizontalAlignment="{Binding CmbHAlign}"
+                                                         VerticalAlignment="{Binding CmbVAlign}"
+                                                         u:ElasticWrapPanel.FixToRB="True"
+                                                         Rows="1">
+                                                <Button Content="Search" />
+                                                <Button Content="Export" />
+                                            </UniformGrid>
+                                            <Border Background="{DynamicResource SemiIndigo5Color}" />
+                                            <Border Background="{DynamicResource SemiBlue5Color}" />
+                                            <Border Background="{DynamicResource SemiLightBlue5Color}" />
+                                            <Border Background="{DynamicResource SemiCyan5Color}" />
+                                            <UniformGrid MinWidth="200"
+                                                         HorizontalAlignment="{Binding CmbHAlign}"
+                                                         VerticalAlignment="{Binding CmbVAlign}"
+                                                         u:ElasticWrapPanel.FixToRB="True"
+                                                         Rows="1">
+                                                <Button Content="Search" />
+                                                <Button Content="Export" />
+                                            </UniformGrid>
+                                        </u:ElasticWrapPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </StackPanel>
+                        </TabItem>
+                    </TabControl>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</UserControl>

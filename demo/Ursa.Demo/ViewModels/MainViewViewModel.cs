@@ -36,6 +36,7 @@ public class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyDisableContainer => new DisableContainerDemoViewModel(),
             MenuKeys.MenuKeyDrawer => new DrawerDemoViewModel(),
             MenuKeys.MenuKeyDualBadge => new DualBadgeDemoViewModel(),
+            MenuKeys.MenuKeyElasticWrapPanel => new ElasticWrapPanelDemoViewModel(),
             MenuKeys.MenuKeyEnumSelector => new EnumSelectorDemoViewModel(),
             MenuKeys.MenuKeyForm => new FormDemoViewModel(),
             MenuKeys.MenuKeyImageViewer => new ImageViewerDemoViewModel(),

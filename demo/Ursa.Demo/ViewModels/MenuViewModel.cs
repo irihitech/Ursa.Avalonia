@@ -23,6 +23,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Divider", Key = MenuKeys.MenuKeyDivider },
             new() { MenuHeader = "Drawer", Key = MenuKeys.MenuKeyDrawer },
             new() { MenuHeader = "DualBadge", Key = MenuKeys.MenuKeyDualBadge },
+            new() { MenuHeader = "ElasticWrapPanel", Key = MenuKeys.MenuKeyElasticWrapPanel },
             new() { MenuHeader = "Enum Selector", Key = MenuKeys.MenuKeyEnumSelector },
             new() { MenuHeader = "Form", Key = MenuKeys.MenuKeyForm },
             new() { MenuHeader = "Icon Button", Key = MenuKeys.MenuKeyIconButton },
@@ -69,6 +70,7 @@ public static class MenuKeys
     public const string MenuKeyDisableContainer = "DisableContainer";
     public const string MenuKeyDrawer = "Drawer";
     public const string MenuKeyDualBadge = "DualBadge";
+    public const string MenuKeyElasticWrapPanel = "ElasticWrapPanel";
     public const string MenuKeyEnumSelector = "EnumSelector";
     public const string MenuKeyForm = "Form";
     public const string MenuKeyImageViewer = "ImageViewer";
