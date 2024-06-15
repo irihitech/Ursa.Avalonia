@@ -92,7 +92,7 @@ public class Rating : TemplatedControl
         AvaloniaProperty.RegisterDirect<Rating, AvaloniaList<RatingCharacter>>(
             nameof(Items), o => o.Items);
 
-    private AvaloniaList<RatingCharacter> _items;
+    private AvaloniaList<RatingCharacter> _items = null!;
 
     public AvaloniaList<RatingCharacter> Items
     {
