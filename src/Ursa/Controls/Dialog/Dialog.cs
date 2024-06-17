@@ -83,7 +83,6 @@ public static class Dialog
         };
         ConfigureDefaultDialogWindow(window, options);
         owner ??= GetMainWindow();
-        window.Icon = owner!.Icon;
         if (owner is null)
         {
             window.Show();
