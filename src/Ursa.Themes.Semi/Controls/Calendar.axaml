@@ -5,7 +5,7 @@
     <Design.PreviewWith>
         <StackPanel Margin="20" Spacing="5">
             <u:CalendarMonthView />
-            <u:Calendar />
+            <u:CalendarDisplayControl />
         </StackPanel>
     </Design.PreviewWith>
     <!--  Add Resources Here  -->
@@ -120,15 +120,15 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type u:Calendar}" TargetType="u:Calendar">
+    <ControlTheme x:Key="{x:Type u:CalendarDisplayControl}" TargetType="u:CalendarDisplayControl">
         <Setter Property="MinHeight" Value="300" />
         <Setter Property="Template">
-            <ControlTemplate TargetType="u:Calendar">
+            <ControlTemplate TargetType="u:CalendarDisplayControl">
                 <Panel>
                     <Grid RowDefinitions="Auto, *">
                         <Grid Grid.Row="0" ColumnDefinitions="Auto, Auto,*, Auto, Auto">
                             <Button
-                                Name="{x:Static u:Calendar.PART_PreviousYearButton}"
+                                Name="{x:Static u:CalendarDisplayControl.PART_PreviousYearButton}"
                                 Grid.Column="0"
                                 HorizontalContentAlignment="Left"
                                 Foreground="{TemplateBinding Foreground}"
@@ -141,7 +141,7 @@
                             </Button>
 
                             <Button
-                                Name="{x:Static u:Calendar.PART_PreviousButton}"
+                                Name="{x:Static u:CalendarDisplayControl.PART_PreviousButton}"
                                 Grid.Column="1"
                                 HorizontalContentAlignment="Left"
                                 Foreground="{TemplateBinding Foreground}"
@@ -155,7 +155,7 @@
 
                             <Grid Grid.Column="2" ColumnDefinitions="*, *">
                                 <Button
-                                    Name="{x:Static u:Calendar.PART_YearButton}"
+                                    Name="{x:Static u:CalendarDisplayControl.PART_YearButton}"
                                     Grid.Column="0"
                                     HorizontalContentAlignment="Center"
                                     Content="2024"
@@ -163,7 +163,7 @@
                                     IsVisible="{TemplateBinding IsMonthMode}"
                                     Theme="{DynamicResource BorderlessButton}" />
                                 <Button
-                                    Name="{x:Static u:Calendar.PART_MonthButton}"
+                                    Name="{x:Static u:CalendarDisplayControl.PART_MonthButton}"
                                     Grid.Column="1"
                                     HorizontalContentAlignment="Center"
                                     Content="Apr"
@@ -171,7 +171,7 @@
                                     IsVisible="{TemplateBinding IsMonthMode}"
                                     Theme="{DynamicResource BorderlessButton}" />
                                 <Button
-                                    Name="{x:Static u:Calendar.PART_HeaderButton}"
+                                    Name="{x:Static u:CalendarDisplayControl.PART_HeaderButton}"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"
                                     IsVisible="{TemplateBinding IsMonthMode, Converter={x:Static BoolConverters.Not}}"
@@ -181,7 +181,7 @@
                             </Grid>
 
                             <Button
-                                Name="{x:Static u:Calendar.PART_NextButton}"
+                                Name="{x:Static u:CalendarDisplayControl.PART_NextButton}"
                                 Grid.Column="3"
                                 HorizontalContentAlignment="Left"
                                 Foreground="{TemplateBinding Foreground}"
@@ -193,7 +193,7 @@
                                     Foreground="{DynamicResource CalendarItemIconForeground}" />
                             </Button>
                             <Button
-                                Name="{x:Static u:Calendar.PART_NextYearButton}"
+                                Name="{x:Static u:CalendarDisplayControl.PART_NextYearButton}"
                                 Grid.Column="4"
                                 HorizontalContentAlignment="Left"
                                 Foreground="{TemplateBinding Foreground}"
@@ -206,12 +206,12 @@
                             </Button>
                         </Grid>
                         <u:CalendarMonthView
-                            Name="{x:Static u:Calendar.PART_MonthView}"
+                            Name="{x:Static u:CalendarDisplayControl.PART_MonthView}"
                             Grid.Row="1"
                             VerticalAlignment="Top"
                             IsVisible="{TemplateBinding IsMonthMode}" />
                         <u:CalendarYearView
-                            Name="{x:Static u:Calendar.PART_YearView}"
+                            Name="{x:Static u:CalendarDisplayControl.PART_YearView}"
                             Grid.Row="1"
                             Width="{Binding #PART_MonthView.Bounds.Width}"
                             Height="{Binding #PART_MonthView.Bounds.Height}"

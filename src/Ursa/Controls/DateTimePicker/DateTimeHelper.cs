@@ -32,5 +32,14 @@ internal static class DateTimeHelper
     {
         return (dt1.Year - dt2.Year) * 12 + dt1.Month - dt2.Month;
     }
-    
+
+    public static DateTime Min(DateTime d1, DateTime d2)
+    {
+        return d1.Ticks > d2.Ticks ? d2 : d1;
+    }
+
+    public static DateTime Max(DateTime d1, DateTime d2)
+    {
+        return d1.Ticks < d2.Ticks ? d2 : d1;
+    }
 }

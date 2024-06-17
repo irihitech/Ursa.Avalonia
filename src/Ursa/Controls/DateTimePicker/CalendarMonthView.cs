@@ -9,7 +9,8 @@ using Avalonia.Layout;
 namespace Ursa.Controls;
 
 /// <summary>
-///     Show days in a month.
+/// Show days in a month. CalendarMonthView itself doesn't handle any date range selection logic.
+/// it provides a method to mark preview range and selection range. The range limit may out of current displayed month. 
 /// </summary>
 [TemplatePart(PART_Grid, typeof(Grid))]
 public class CalendarMonthView : TemplatedControl
@@ -32,7 +33,7 @@ public class CalendarMonthView : TemplatedControl
             view.OnDayOfWeekChanged(args));
     }
 
-    internal Calendar? Owner { get; set; }
+    internal CalendarDisplayControl? Owner { get; set; }
 
     /// <summary>
     ///     The DateTime used to generate the month view. This date will be within the month.
@@ -156,6 +157,30 @@ public class CalendarMonthView : TemplatedControl
     public event EventHandler<CalendarDayButtonEventArgs>? OnDateSelected;
     public event EventHandler<CalendarDayButtonEventArgs>? OnDatePreviewed;
 
+    public void MarkDates(DateTime? startDate = null, DateTime? endDate = null, DateTime? previewStartDate = null, DateTime? previewEndDate = null)
+    {
+        if (_grid?.Children is null) return;
+        DateTime start = startDate ?? DateTime.MaxValue;
+        DateTime end = endDate ?? DateTime.MinValue;
+        DateTime previewStart = previewStartDate ?? DateTime.MaxValue;
+        DateTime previewEnd = previewEndDate ?? DateTime.MinValue;
+        DateTime rangeStart = DateTimeHelper.Min(start, previewStart);
+        DateTime rangeEnd = DateTimeHelper.Max(end, previewEnd);
+        foreach (var child in _grid.Children)
+        {
+            if (child is not CalendarDayButton { DataContext: DateTime d } button) continue;
+            if(d.Month != _contextDate.Month) continue;
+            button.ResetSelection();
+            if (d < rangeEnd && d > rangeStart) button.IsInRange = true;
+            if (d == previewStart) button.IsPreviewStartDate = true;
+            if (d == previewEnd) button.IsPreviewEndDate = true;
+            if (d == startDate) button.IsStartDate = true;
+            if (d == endDate) button.IsEndDate = true;
+            if (d == startDate && d == endDate) button.IsSelected = true;
+        }
+    }
+    
+    [Obsolete]
     public void MarkSelection(DateTime? start, DateTime? end)
     {
         if (_grid?.Children is null) return;

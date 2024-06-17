@@ -1,19 +1,17 @@
-﻿using Avalonia;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Mixins;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Common;
-using Irihi.Avalonia.Shared.Helpers;
-using Ursa.EventArgs;
 
 namespace Ursa.Controls;
 
-[PseudoClasses(PseudoClassName.PC_Pressed, PseudoClassName.PC_Selected, 
-    PC_StartDate, PC_EndDate, PC_PreviewStartDate, PC_PreviewEndDate, PC_InRange, PC_Today, PC_Blackout, PC_NotCurrentMonth)]
-public class CalendarDayButton: ContentControl
+[PseudoClasses(PseudoClassName.PC_Pressed, PseudoClassName.PC_Selected,
+    PC_StartDate, PC_EndDate, PC_PreviewStartDate, PC_PreviewEndDate, PC_InRange, PC_Today, PC_Blackout,
+    PC_NotCurrentMonth)]
+public class CalendarDayButton : ContentControl
 {
     public const string PC_StartDate = ":start-date";
     public const string PC_EndDate = ":end-date";
@@ -23,10 +21,46 @@ public class CalendarDayButton: ContentControl
     public const string PC_Today = ":today";
     public const string PC_NotCurrentMonth = ":not-current-month";
     public const string PC_Blackout = ":blackout";
-    
-    internal Calendar? Owner { get; set; }
+
+    private static HashSet<string> _pseudoClasses =
+    [
+        PseudoClassName.PC_Selected, PC_EndDate, PC_PreviewStartDate, 
+        PC_PreviewEndDate, PseudoClassName.PC_Selected, PC_InRange
+    ];
+
+    public static readonly RoutedEvent<CalendarDayButtonEventArgs> DateSelectedEvent =
+        RoutedEvent.Register<CalendarDayButton, CalendarDayButtonEventArgs>(
+            nameof(DateSelected), RoutingStrategies.Bubble);
+
+    public static readonly RoutedEvent<CalendarDayButtonEventArgs> DatePreviewedEvent =
+        RoutedEvent.Register<CalendarDayButton, CalendarDayButtonEventArgs>(
+            nameof(DatePreviewed), RoutingStrategies.Bubble);
+
+    private bool _isBlackout;
+
+    private bool _isEndDate;
+
+    private bool _isInRange;
+
+    private bool _isNotCurrentMonth;
+
+    private bool _isPreviewEndDate;
+
+    private bool _isPreviewStartDate;
+
+    private bool _isSelected;
+
+    private bool _isStartDate;
 
     private bool _isToday;
+
+    static CalendarDayButton()
+    {
+        PressedMixin.Attach<CalendarDayButton>();
+    }
+
+    // internal CalendarDisplayControl? Owner { get; set; }
+
     public bool IsToday
     {
         get => _isToday;
@@ -36,30 +70,27 @@ public class CalendarDayButton: ContentControl
             PseudoClasses.Set(PC_Today, value);
         }
     }
-    
-    private bool _isStartDate;
+
     public bool IsStartDate
     {
         get => _isStartDate;
         set
         {
             _isStartDate = value;
-            PseudoClasses.Set(PC_StartDate, value);
+            SetPseudoClass(PC_StartDate);
         }
     }
-    
-    private bool _isEndDate;
+
     public bool IsEndDate
     {
         get => _isEndDate;
         set
         {
             _isEndDate = value;
-            PseudoClasses.Set(PC_EndDate, value);
+            SetPseudoClass(PC_EndDate);
         }
     }
-    
-    private bool _isPreviewStartDate;
+
     public bool IsPreviewStartDate
     {
         get => _isPreviewStartDate;
@@ -69,8 +100,7 @@ public class CalendarDayButton: ContentControl
             PseudoClasses.Set(PC_PreviewStartDate, value);
         }
     }
-    
-    private bool _isPreviewEndDate;
+
     public bool IsPreviewEndDate
     {
         get => _isPreviewEndDate;
@@ -80,8 +110,7 @@ public class CalendarDayButton: ContentControl
             PseudoClasses.Set(PC_PreviewEndDate, value);
         }
     }
-    
-    private bool _isInRange;
+
     public bool IsInRange
     {
         get => _isInRange;
@@ -92,7 +121,6 @@ public class CalendarDayButton: ContentControl
         }
     }
 
-    private bool _isSelected;
     public bool IsSelected
     {
         get => _isSelected;
@@ -102,10 +130,9 @@ public class CalendarDayButton: ContentControl
             PseudoClasses.Set(PseudoClassName.PC_Selected, value);
         }
     }
-    
-    private bool _isBlackout;
+
     /// <summary>
-    /// Notice: IsBlackout is not equivalent to not IsEnabled. Blackout dates still react to pointerover actions. 
+    ///     Notice: IsBlackout is not equivalent to not IsEnabled. Blackout dates still react to pointerover actions.
     /// </summary>
     public bool IsBlackout
     {
@@ -116,10 +143,10 @@ public class CalendarDayButton: ContentControl
             PseudoClasses.Set(PC_Blackout, value);
         }
     }
-    
-    private bool _isNotCurrentMonth;
+
     /// <summary>
-    /// Notice: IsNotCurrentMonth is not equivalent to not IsEnabled. Not current month dates still react to pointerover and press action. 
+    ///     Notice: IsNotCurrentMonth is not equivalent to not IsEnabled. Not current month dates still react to pointerover
+    ///     and press action.
     /// </summary>
     public bool IsNotCurrentMonth
     {
@@ -130,33 +157,23 @@ public class CalendarDayButton: ContentControl
             PseudoClasses.Set(PC_NotCurrentMonth, value);
         }
     }
-    
-    public static readonly RoutedEvent<CalendarDayButtonEventArgs> DateSelectedEvent = RoutedEvent.Register<CalendarDayButton, CalendarDayButtonEventArgs>(
-        nameof(DateSelected), RoutingStrategies.Bubble);
-    
+
     public event EventHandler<CalendarDayButtonEventArgs> DateSelected
     {
         add => AddHandler(DateSelectedEvent, value);
         remove => RemoveHandler(DateSelectedEvent, value);
     }
-    
-    public static readonly RoutedEvent<CalendarDayButtonEventArgs> DatePreviewedEvent = RoutedEvent.Register<CalendarDayButton, CalendarDayButtonEventArgs>(
-        nameof(DatePreviewed), RoutingStrategies.Bubble);
-    
+
     public event EventHandler<CalendarDayButtonEventArgs> DatePreviewed
     {
         add => AddHandler(DateSelectedEvent, value);
-        remove => RemoveHandler(DateSelectedEvent, value); 
-    }
-
-    static CalendarDayButton()
-    {
-        PressedMixin.Attach<CalendarDayButton>();
+        remove => RemoveHandler(DateSelectedEvent, value);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
+        /*
         PseudoClasses.Set(PC_Today, IsToday);
         PseudoClasses.Set(PC_StartDate, IsStartDate);
         PseudoClasses.Set(PC_EndDate, IsEndDate);
@@ -164,23 +181,40 @@ public class CalendarDayButton: ContentControl
         PseudoClasses.Set(PC_PreviewEndDate, IsPreviewEndDate);
         PseudoClasses.Set(PC_InRange, IsInRange);
         PseudoClasses.Set(PseudoClassName.PC_Selected, IsSelected);
+        */
     }
-    
+
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
         base.OnPointerPressed(e);
-        if (this.DataContext is DateTime d)
-        {
+        if (DataContext is DateTime d)
             RaiseEvent(new CalendarDayButtonEventArgs(d) { RoutedEvent = DateSelectedEvent, Source = this });
-        }
     }
 
     protected override void OnPointerEntered(PointerEventArgs e)
     {
         base.OnPointerEntered(e);
-        if (this.DataContext is DateTime d)
-        {
+        if (DataContext is DateTime d)
             RaiseEvent(new CalendarDayButtonEventArgs(d) { RoutedEvent = DateSelectedEvent, Source = this });
+    }
+
+    internal void ResetSelection()
+    {
+        foreach (var pc in _pseudoClasses)
+        {
+            PseudoClasses.Set(pc, false);
         }
+    }
+
+    private void SetPseudoClass(string s)
+    {
+        if (_pseudoClasses.Contains(s))
+        {
+            foreach (var pc in _pseudoClasses)
+            {
+                PseudoClasses.Set(pc, false);
+            }
+        }
+        PseudoClasses.Set(s, true);
     }
 }

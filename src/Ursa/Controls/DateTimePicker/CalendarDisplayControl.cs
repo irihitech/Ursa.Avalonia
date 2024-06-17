@@ -17,7 +17,7 @@ namespace Ursa.Controls;
 [TemplatePart(PART_HeaderButton, typeof(Button))]
 [TemplatePart(PART_MonthView, typeof(CalendarMonthView))]
 [TemplatePart(PART_YearView, typeof(CalendarYearView))]
-public class Calendar: TemplatedControl
+public class CalendarDisplayControl: TemplatedControl
 {
     public const string PART_NextYearButton = "PART_NextYearButton";
     public const string PART_PreviousYearButton = "PART_PreviousYearButton";
@@ -37,7 +37,7 @@ public class Calendar: TemplatedControl
     private Button? _headerButton;
     
     
-    public static readonly StyledProperty<DateTime> SelectedDateProperty = AvaloniaProperty.Register<Calendar, DateTime>(nameof(SelectedDate), DateTime.Now);
+    public static readonly StyledProperty<DateTime> SelectedDateProperty = AvaloniaProperty.Register<CalendarDisplayControl, DateTime>(nameof(SelectedDate), DateTime.Now);
     public DateTime SelectedDate
     {
         get => GetValue(SelectedDateProperty);
@@ -45,7 +45,7 @@ public class Calendar: TemplatedControl
     }
 
     public static readonly StyledProperty<DayOfWeek> FirstDayOfWeekProperty =
-        AvaloniaProperty.Register<Calendar, DayOfWeek>(nameof(FirstDayOfWeek),
+        AvaloniaProperty.Register<CalendarDisplayControl, DayOfWeek>(nameof(FirstDayOfWeek),
             defaultValue: DateTimeHelper.GetCurrentDateTimeFormatInfo().FirstDayOfWeek);
     public DayOfWeek FirstDayOfWeek
     {
@@ -53,7 +53,7 @@ public class Calendar: TemplatedControl
         set => SetValue(FirstDayOfWeekProperty, value);
     }
 
-    public static readonly StyledProperty<bool> IsTodayHighlightedProperty = AvaloniaProperty.Register<Calendar, bool>(nameof(IsTodayHighlighted), true);
+    public static readonly StyledProperty<bool> IsTodayHighlightedProperty = AvaloniaProperty.Register<CalendarDisplayControl, bool>(nameof(IsTodayHighlighted), true);
     public bool IsTodayHighlighted
     {
         get => GetValue(IsTodayHighlightedProperty);
@@ -61,7 +61,7 @@ public class Calendar: TemplatedControl
     }
 
     public static readonly StyledProperty<AvaloniaList<DateRange>?> BlackoutDatesProperty =
-        AvaloniaProperty.Register<Calendar, AvaloniaList<DateRange>?>(
+        AvaloniaProperty.Register<CalendarDisplayControl, AvaloniaList<DateRange>?>(
             nameof(BlackoutDates));
 
     public AvaloniaList<DateRange>? BlackoutDates
@@ -70,7 +70,7 @@ public class Calendar: TemplatedControl
         set => SetValue(BlackoutDatesProperty, value);
     }
 
-    public static readonly StyledProperty<IDateSelector?> BlackoutDateRuleProperty = AvaloniaProperty.Register<Calendar, IDateSelector?>(
+    public static readonly StyledProperty<IDateSelector?> BlackoutDateRuleProperty = AvaloniaProperty.Register<CalendarDisplayControl, IDateSelector?>(
         nameof(BlackoutDateRule));
 
     public IDateSelector? BlackoutDateRule
@@ -81,7 +81,7 @@ public class Calendar: TemplatedControl
 
     private bool _isMonthMode = true;
 
-    public static readonly DirectProperty<Calendar, bool> IsMonthModeProperty = AvaloniaProperty.RegisterDirect<Calendar, bool>(
+    public static readonly DirectProperty<CalendarDisplayControl, bool> IsMonthModeProperty = AvaloniaProperty.RegisterDirect<CalendarDisplayControl, bool>(
         nameof(IsMonthMode), o => o.IsMonthMode, (o, v) => o.IsMonthMode = v);
 
     public bool IsMonthMode
@@ -153,14 +153,14 @@ public class Calendar: TemplatedControl
     {
         SetCurrentValue(IsMonthModeProperty, false);
         if (_yearView is null) return;
-        _headerButton?.SetValue(Button.ContentProperty, _yearView.ContextDate.Year);
+        _headerButton?.SetValue(ContentControl.ContentProperty, _yearView.ContextDate.Year);
         _yearView?.UpdateMode(CalendarYearViewMode.Month);
     }
 
     private void OnYearButtonClick(object sender, RoutedEventArgs e)
     {
         if (_yearView is null) return;
-        _headerButton?.SetValue(Button.ContentProperty,
+        _headerButton?.SetValue(ContentControl.ContentProperty,
             _yearView?.ContextDate.Year + "-" + (_yearView?.ContextDate.Year + 10));
         _yearView?.UpdateMode(CalendarYearViewMode.Year);
         SetCurrentValue(IsMonthModeProperty, false);

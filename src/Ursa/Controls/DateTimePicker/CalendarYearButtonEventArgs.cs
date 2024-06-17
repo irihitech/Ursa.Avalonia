@@ -4,12 +4,14 @@ namespace Ursa.Controls;
 
 public class CalendarYearButtonEventArgs: RoutedEventArgs
 {
-    internal int? Year { get; }
-    internal int? Month { get; }
-    internal int? StartYear { get; }
-    internal int? EndYear { get; }
+    public int? Year { get; }
+    public int? Month { get; }
+    public int? StartYear { get; }
+    public int? EndYear { get; }
     internal CalendarYearViewMode Mode { get; }
-    internal CalendarYearButtonEventArgs( CalendarYearViewMode mode, int? year, int? month, int? startYear, int? endYear )
+
+    /// <inheritdoc />
+    internal CalendarYearButtonEventArgs(CalendarYearViewMode mode, int? year, int? month, int? startYear, int? endYear )
     {
         Year = year;
         Month = month;
