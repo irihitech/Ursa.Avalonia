@@ -179,43 +179,6 @@ public class CalendarMonthView : TemplatedControl
             if (d == startDate && d == endDate) button.IsSelected = true;
         }
     }
-    
-    [Obsolete]
-    public void MarkSelection(DateTime? start, DateTime? end)
-    {
-        if (_grid?.Children is null) return;
-        foreach (var child in _grid.Children)
-            if (child is CalendarDayButton { DataContext: DateTime d } button)
-            {
-                if (d.Month != _contextDate.Month) continue;
-                if (d == start)
-                {
-                    button.IsStartDate = true;
-                    button.IsPreviewStartDate = false;
-                    button.IsEndDate = false;
-                    button.IsInRange = false;
-                }
-                else if (d == end)
-                {
-                    button.IsEndDate = true;
-                    button.IsPreviewEndDate = false;
-                    button.IsStartDate = false;
-                    button.IsInRange = false;
-                }
-                else if (d > start && d < end)
-                {
-                    button.IsInRange = true;
-                    button.IsStartDate = false;
-                    button.IsEndDate = false;
-                }
-                else
-                {
-                    button.IsStartDate = false;
-                    button.IsEndDate = false;
-                    button.IsInRange = false;
-                }
-            }
-    }
 
     public void MarkPreview(DateTime? start, DateTime? end)
     {
@@ -271,20 +234,6 @@ public class CalendarMonthView : TemplatedControl
             button.IsPreviewStartDate = false;
             button.IsPreviewEndDate = false;
             button.IsInRange = false;
-        }
-    }
-
-    public void MarkSelection(DateTime date)
-    {
-        if (_grid?.Children is null) return;
-        foreach (var child in _grid.Children)
-        {
-            if (child is not CalendarDayButton { DataContext: DateTime d } button) continue;
-            button.IsStartDate = false;
-            button.IsEndDate = false;
-            button.IsInRange = false;
-            if (d.Month != _contextDate.Month) continue;
-            button.IsSelected = d == date;
         }
     }
 }

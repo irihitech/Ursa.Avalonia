@@ -31,10 +31,12 @@ public class CalendarDisplayControl: TemplatedControl
 
     private CalendarMonthView? _monthView;
     private CalendarYearView? _yearView;
-    private DatePickerState _state = DatePickerState.None;
     private Button? _yearButton;
     private Button? _monthButton;
     private Button? _headerButton;
+    
+    public event EventHandler<CalendarDayButtonEventArgs>? OnDateSelected;
+    public event EventHandler<CalendarDayButtonEventArgs>? OnDatePreviewed;
     
     
     public static readonly StyledProperty<DateTime> SelectedDateProperty = AvaloniaProperty.Register<CalendarDisplayControl, DateTime>(nameof(SelectedDate), DateTime.Now);
@@ -164,53 +166,15 @@ public class CalendarDisplayControl: TemplatedControl
             _yearView?.ContextDate.Year + "-" + (_yearView?.ContextDate.Year + 10));
         _yearView?.UpdateMode(CalendarYearViewMode.Year);
         SetCurrentValue(IsMonthModeProperty, false);
-        
     }
 
-    private void OnDatePreviewed(object sender, CalendarDayButtonEventArgs e)
+    private void OnMonthViewDatePreviewed(object sender, CalendarDayButtonEventArgs e)
     {
-        if(_monthView is null)
-        {
-            return;
-        }
-        var date = e.Date;
-        if (_state is DatePickerState.None) return;
-        if (_state == DatePickerState.PreviewStart)
-        {
-            _monthView.MarkPreview(date, EndDate);
-        }
-        else if (_state == DatePickerState.PreviewEnd)
-        {
-            _monthView.MarkPreview(StartDate, date);
-        }
+        OnDatePreviewed?.Invoke(sender, e);
     }
 
-    private void OnDateSelected(object sender, CalendarDayButtonEventArgs e)
+    private void OnMonthViewDateSelected(object sender, CalendarDayButtonEventArgs e)
     {
-        if(_monthView is null)
-        {
-            return;
-        }
-        var date = e.Date;
-        if (_state == DatePickerState.None)
-        {
-            _monthView.ClearSelection();
-            _monthView.ClearPreview();
-            _monthView.MarkSelection(date, null);
-            _state = DatePickerState.PreviewEnd;
-            StartDate = date;
-        }
-        else if (_state == DatePickerState.PreviewStart)
-        {
-            _monthView.MarkSelection(date, EndDate);
-            _state = DatePickerState.SelectStart;
-            StartDate = date;
-        }
-        else if (_state == DatePickerState.PreviewEnd)
-        {
-            _monthView.MarkSelection(StartDate, date);
-            _state = DatePickerState.None;
-            EndDate = date;
-        }
+        OnDateSelected?.Invoke(sender, e);
     }
 }
