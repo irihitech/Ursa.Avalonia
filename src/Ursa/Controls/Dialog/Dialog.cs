@@ -1,9 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Controls.Shapes;
-using Avalonia.Media;
-using Ursa.Common;
 
 namespace Ursa.Controls;
 
@@ -34,6 +31,7 @@ public static class Dialog
         }
         else
         {
+            window.Icon = owner.Icon;
             window.Show(owner);
         }
     }
@@ -60,6 +58,7 @@ public static class Dialog
         }
         else
         {
+            window.Icon = owner.Icon;
             window.Show(owner);
         }
     }
@@ -89,6 +88,10 @@ public static class Dialog
             window.Show();
             return Task.FromResult(DialogResult.None);
         }
+        else
+        {
+            window.Icon = owner.Icon;
+        }
         return window.ShowDialog<DialogResult>(owner);
     }
     
@@ -113,6 +116,10 @@ public static class Dialog
         {
             window.Show();
             return Task.FromResult(DialogResult.None);
+        }
+        else
+        {
+            window.Icon = owner.Icon;
         }
         return window.ShowDialog<DialogResult>(owner);
     }
@@ -143,6 +150,10 @@ public static class Dialog
             window.Show();
             return Task.FromResult(default(TResult));
         }
+        else
+        {
+            window.Icon = owner.Icon;
+        }
         return window.ShowDialog<TResult?>(owner);
     }
 
@@ -169,6 +180,11 @@ public static class Dialog
         {
             window.Show();
             return Task.FromResult(default(TResult));
+        }
+        else
+        {
+
+            window.Icon = owner.Icon;
         }
         return window.ShowDialog<TResult?>(owner);
     }
@@ -197,6 +213,7 @@ public static class Dialog
         window.WindowStartupLocation = options.StartupLocation;
         window.Title = options.Title;
         window.IsCloseButtonVisible = options.IsCloseButtonVisible;
+        window.ShowInTaskbar = options.ShowInTaskBar;
         if (options.StartupLocation == WindowStartupLocation.Manual)
         {
             if (options.Position is not null)
@@ -222,6 +239,7 @@ public static class Dialog
         window.Title = options.Title;
         window.Buttons = options.Button;
         window.Mode = options.Mode;
+        window.ShowInTaskbar = options.ShowInTaskBar;
         if (options.StartupLocation == WindowStartupLocation.Manual)
         {
             if (options.Position is not null)

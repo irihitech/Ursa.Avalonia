@@ -34,6 +34,12 @@
                         IsVisible="{Binding !#overlay.IsChecked}"
                         OffContent="Regular"
                         OnContent="Modal" />
+					<ToggleSwitch
+	                    Content="HideInTaskBar/ShowInTaskBar"
+	                    IsChecked="{Binding ShowInTaskBar}"
+	                    IsVisible="{Binding #overlay.IsChecked}"
+	                    OffContent="HideInTaskBar"
+	                    OnContent="ShowInTaskBar" />
                     <ToggleSwitch
                         Content="ClickOnMaskToClose"
                         IsChecked="{Binding CanLightDismiss}"
@@ -77,6 +83,12 @@
                         IsVisible="{Binding !#overlay2.IsChecked}"
                         OffContent="Local"
                         OnContent="Global" />
+					<ToggleSwitch
+	                    Content="HideInTaskBar/ShowInTaskBar"
+	                    IsChecked="{Binding ShowInTaskBar}"
+	                    IsVisible="{Binding #overlay2.IsChecked}"
+	                    OffContent="HideInTaskBar"
+	                    OnContent="ShowInTaskBar" />
                     <ToggleSwitch
                         Name="modal"
                         Content="Modal/Regular"

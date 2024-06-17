@@ -26,6 +26,7 @@ public partial class DialogDemoViewModel: ObservableObject
     [ObservableProperty] private bool _result;
     [ObservableProperty] private DateTime? _date;
     [ObservableProperty] private bool _fullScreen;
+    [ObservableProperty] private bool _showInTaskBar;
     
     public DialogDemoViewModel()
     {
@@ -33,6 +34,7 @@ public partial class DialogDemoViewModel: ObservableObject
         ShowCustomDialogCommand = new AsyncRelayCommand(ShowCustomDialog);
         IsModal = true;
         IsGlobal = true;
+        ShowInTaskBar = false;
     }
     
     private async Task ShowDialog()
@@ -45,7 +47,8 @@ public partial class DialogDemoViewModel: ObservableObject
                 {
                     Title = "Please select a date",
                     Mode = SelectedMode,
-                    Button = SelectedButton
+                    Button = SelectedButton,
+                    ShowInTaskBar = ShowInTaskBar,
                 });
             Date = vm.Date;
         }
@@ -97,13 +100,21 @@ public partial class DialogDemoViewModel: ObservableObject
             if (IsModal)
             {
                 Result = await Dialog.ShowCustomModal<DialogWithAction, DialogWithActionViewModel, bool>(
-                    vm);
+                    vm,
+                    options: new DialogOptions
+                    {
+                        ShowInTaskBar = ShowInTaskBar
+                    });
                 Date = vm.Date;
             }
             else
             {
                 Dialog.ShowCustom<DialogWithAction, DialogWithActionViewModel>(
-                    vm);
+                    vm,
+                    options: new DialogOptions
+                    {
+                        ShowInTaskBar = ShowInTaskBar
+                    });
             }
         }
         else

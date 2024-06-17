@@ -26,4 +26,6 @@ public class DialogOptions
     public DialogButton Button { get; set; } = DialogButton.OKCancel;
 
     public bool IsCloseButtonVisible { get; set; } = true;
+
+    public bool ShowInTaskBar { get; set; } = true;
 }
