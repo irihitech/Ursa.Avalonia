@@ -1,8 +1,12 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
+using Avalonia.Controls.Presenters;
+using Avalonia.Media;
 
 namespace Ursa.Controls;
 
+[TemplatePart(PART_HoverMask, typeof(ContentPresenter))]
 public class Avatar : Button
 {
     public const string PART_TopPresenter = "PART_TopPresenter";
@@ -15,8 +19,11 @@ public class Avatar : Button
     public static readonly StyledProperty<double> GapProperty = AvaloniaProperty.Register<Avatar, double>(
         nameof(Gap));
 
-    public static readonly StyledProperty<string> SourceProperty = AvaloniaProperty.Register<Avatar, string>(
+    public static readonly StyledProperty<IImage?> SourceProperty = AvaloniaProperty.Register<Avatar, IImage?>(
         nameof(Source));
+
+    public static readonly StyledProperty<object?> HoverMaskProperty = AvaloniaProperty.Register<Avatar, object?>(
+        nameof(HoverMask));
 
     public bool ContentMotion
     {
@@ -30,9 +37,15 @@ public class Avatar : Button
         set => SetValue(GapProperty, value);
     }
 
-    public string Source
+    public IImage? Source
     {
         get => GetValue(SourceProperty);
         set => SetValue(SourceProperty, value);
+    }
+
+    public object? HoverMask
+    {
+        get => GetValue(HoverMaskProperty);
+        set => SetValue(HoverMaskProperty, value);
     }
 }
