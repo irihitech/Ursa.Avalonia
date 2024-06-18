@@ -2,6 +2,30 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
-    <ControlTheme x:Key="{x:Type u:Avatar}" TargetType="{x:Type u:Avatar}" />
+    <ControlTheme x:Key="{x:Type u:Avatar}" TargetType="{x:Type u:Avatar}">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="{DynamicResource SemiGrey3Color}" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Height" Value="48" />
+        <Setter Property="Width" Value="48" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="{x:Type u:Avatar}">
+                <Panel>
+                    <Ellipse Fill="{TemplateBinding Background}" />
+                    <ContentPresenter
+                        Name="PART_ContentPresenter"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Content="{TemplateBinding Content}"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center" />
+                    <DockPanel>
+                        <ContentPresenter DockPanel.Dock="Top" />
+                        <ContentPresenter DockPanel.Dock="Bottom" />
+                    </DockPanel>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
     <ControlTheme x:Key="{x:Type u:AvatarGroup}" TargetType="{x:Type u:AvatarGroup}" />
 </ResourceDictionary>
