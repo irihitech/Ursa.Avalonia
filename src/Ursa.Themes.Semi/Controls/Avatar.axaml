@@ -4,10 +4,11 @@
     xmlns:u="https://irihi.tech/ursa">
     <ControlTheme x:Key="{x:Type u:Avatar}" TargetType="{x:Type u:Avatar}">
         <Setter Property="Foreground" Value="White" />
-        <Setter Property="Background" Value="{DynamicResource SemiGrey3Color}" />
+        <Setter Property="Background" Value="{DynamicResource SemiGrey3}" />
         <Setter Property="FontSize" Value="20" />
-        <Setter Property="Height" Value="48" />
+        <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Width" Value="48" />
+        <Setter Property="Height" Value="{Binding $self.Width}" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <ControlTemplate TargetType="{x:Type u:Avatar}">
@@ -38,7 +39,85 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover /template/ ContentPresenter#PART_HoverMask">
-            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="IsVisible"
+                    Value="{Binding HoverMask,RelativeSource={RelativeSource TemplatedParent},
+                        Converter={x:Static ObjectConverters.IsNotNull}}" />
+        </Style>
+        <Style Selector="^.Red">
+            <Setter Property="Background" Value="{DynamicResource SemiRed3}" />
+        </Style>
+        <Style Selector="^.Pink">
+            <Setter Property="Background" Value="{DynamicResource SemiPink3}" />
+        </Style>
+        <Style Selector="^.Purple">
+            <Setter Property="Background" Value="{DynamicResource SemiPurple3}" />
+        </Style>
+        <Style Selector="^.Violet">
+            <Setter Property="Background" Value="{DynamicResource SemiViolet3}" />
+        </Style>
+        <Style Selector="^.Indigo">
+            <Setter Property="Background" Value="{DynamicResource SemiIndigo3}" />
+        </Style>
+        <Style Selector="^.Blue">
+            <Setter Property="Background" Value="{DynamicResource SemiBlue3}" />
+        </Style>
+        <Style Selector="^.LightBlue">
+            <Setter Property="Background" Value="{DynamicResource SemiLightBlue3}" />
+        </Style>
+        <Style Selector="^.Cyan">
+            <Setter Property="Background" Value="{DynamicResource SemiCyan3}" />
+        </Style>
+        <Style Selector="^.Teal">
+            <Setter Property="Background" Value="{DynamicResource SemiTeal3}" />
+        </Style>
+        <Style Selector="^.Green">
+            <Setter Property="Background" Value="{DynamicResource SemiGreen3}" />
+        </Style>
+        <Style Selector="^.LightGreen">
+            <Setter Property="Background" Value="{DynamicResource SemiLightGreen3}" />
+        </Style>
+        <Style Selector="^.Lime">
+            <Setter Property="Background" Value="{DynamicResource SemiLime3}" />
+        </Style>
+        <Style Selector="^.Yellow">
+            <Setter Property="Background" Value="{DynamicResource SemiYellow3}" />
+        </Style>
+        <Style Selector="^.Amber">
+            <Setter Property="Background" Value="{DynamicResource SemiAmber3}" />
+        </Style>
+        <Style Selector="^.Orange">
+            <Setter Property="Background" Value="{DynamicResource SemiOrange3}" />
+        </Style>
+        <Style Selector="^.Grey">
+            <Setter Property="Background" Value="{DynamicResource SemiGrey3}" />
+        </Style>
+        <Style Selector="^.ExtraExtraSmall">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="FontSize" Value="10" />
+        </Style>
+        <Style Selector="^.ExtraSmall">
+            <Setter Property="Width" Value="24" />
+            <Setter Property="FontSize" Value="10" />
+        </Style>
+        <Style Selector="^.Small">
+            <Setter Property="Width" Value="32" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style Selector="^.Default">
+            <Setter Property="Width" Value="40" />
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+        <Style Selector="^.Medium">
+            <Setter Property="Width" Value="48" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+        <Style Selector="^.Large">
+            <Setter Property="Width" Value="72" />
+            <Setter Property="FontSize" Value="32" />
+        </Style>
+        <Style Selector="^.ExtraLarge">
+            <Setter Property="Width" Value="128" />
+            <Setter Property="FontSize" Value="64" />
         </Style>
     </ControlTheme>
     <ControlTheme x:Key="{x:Type u:AvatarGroup}" TargetType="{x:Type u:AvatarGroup}" />

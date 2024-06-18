@@ -12,24 +12,55 @@
     <UserControl.Resources>
         <StreamGeometry x:Key="IconCamera">M7.44721 3.10557C7.786 2.428 8.47852 2 9.23607 2H14.7639C15.5215 2 16.214 2.428 16.5528 3.10557L17.5 5H20C21.6569 5 23 6.34315 23 8V18C23 19.6569 21.6569 21 20 21H4C2.34315 21 1 19.6569 1 18V8C1 6.34315 2.34315 5 4 5H6.5L7.44721 3.10557ZM9 13C9 11.3431 10.3431 10 12 10C13.6569 10 15 11.3431 15 13C15 14.6569 13.6569 16 12 16C10.3431 16 9 14.6569 9 13ZM12 8C9.23858 8 7 10.2386 7 13C7 15.7614 9.23858 18 12 18C14.7614 18 17 15.7614 17 13C17 10.2386 14.7614 8 12 8Z</StreamGeometry>
     </UserControl.Resources>
-    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-        <u:Avatar Content="{Binding Content}"
-                  Command="{Binding ClickCommand}" />
-        <u:Avatar Content="{Binding Content}"
-                  Command="{Binding ClickCommand}">
-            <u:Avatar.HoverMask>
-                <Border Opacity="0.6">
-                    <Panel>
-                        <Ellipse Fill="#16161A"
-                                 Width="{Binding $parent[u:Avatar].Width}"
-                                 Height="{Binding $parent[u:Avatar].Height}" />
-                        <PathIcon Width="16" Height="16" Data="{StaticResource IconCamera}" />
-                    </Panel>
-                </Border>
-            </u:Avatar.HoverMask>
-        </u:Avatar>
-        <u:Avatar Content="{Binding Content}"
-                  Command="{Binding ClickCommand}"
-                  Source="../Assets/Ursa.ico" />
+    <UserControl.Styles>
+        <Style Selector="u|Avatar">
+            <Setter Property="Content" Value="{Binding Content}" />
+            <Setter Property="Command" Value="{Binding ClickCommand}" />
+        </Style>
+    </UserControl.Styles>
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <u:Avatar />
+            <u:Avatar Classes="Red">
+                <u:Avatar.HoverMask>
+                    <Border Opacity="0.6">
+                        <Panel>
+                            <Ellipse Fill="#16161A"
+                                     Width="{Binding $parent[u:Avatar].Width}"
+                                     Height="{Binding $parent[u:Avatar].Height}" />
+                            <PathIcon Width="16" Height="16" Data="{StaticResource IconCamera}" />
+                        </Panel>
+                    </Border>
+                </u:Avatar.HoverMask>
+            </u:Avatar>
+            <u:Avatar Source="../Assets/Ursa.ico" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <u:Avatar Classes="Red" />
+            <u:Avatar Classes="Pink" />
+            <u:Avatar Classes="Purple" />
+            <u:Avatar Classes="Violet" />
+            <u:Avatar Classes="Indigo" />
+            <u:Avatar Classes="Blue" />
+            <u:Avatar Classes="LightBlue" />
+            <u:Avatar Classes="Cyan" />
+            <u:Avatar Classes="Teal" />
+            <u:Avatar Classes="Green" />
+            <u:Avatar Classes="LightGreen" />
+            <u:Avatar Classes="Lime" />
+            <u:Avatar Classes="Yellow" />
+            <u:Avatar Classes="Amber" />
+            <u:Avatar Classes="Orange" />
+            <u:Avatar Classes="Grey" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <u:Avatar Classes="ExtraExtraSmall" />
+            <u:Avatar Classes="ExtraSmall" />
+            <u:Avatar Classes="Small" />
+            <u:Avatar Classes="Default" />
+            <u:Avatar Classes="Medium" />
+            <u:Avatar Classes="Large" />
+            <u:Avatar Classes="ExtraLarge" />
+        </StackPanel>
     </StackPanel>
 </UserControl>
