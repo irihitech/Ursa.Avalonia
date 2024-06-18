@@ -100,11 +100,11 @@ public class CalendarYearView: TemplatedControl
                     child.SetValues(CalendarYearViewMode.Month, contextDate, month: i);
                     break;
                 case CalendarYearViewMode.Year:
-                    child.SetValues(CalendarYearViewMode.Year, contextDate, year: ContextDate.Year + i);
+                    child.SetValues(CalendarYearViewMode.Year, contextDate, year: ContextDate.Year / 10 * 10 + i - 1);
                     break;
                 case CalendarYearViewMode.YearRange:
-                    var startYear = ContextDate.Year - 1;
-                    var endYear = ContextDate.Year + 10;
+                    var startYear = (ContextDate.Year / 10 + i - 1) * 10;
+                    var endYear = (ContextDate.Year / 10 + i - 1) * 10 + 10;
                     child.SetValues(CalendarYearViewMode.YearRange, contextDate, startYear: startYear, endYear: endYear);
                     break;
             }

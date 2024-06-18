@@ -2,7 +2,7 @@
 
 namespace Ursa.Controls;
 
-public class DatePicker: TemplatedControl
+public class DatePicker: DatePickerBase
 {
     
 }

@@ -31,54 +31,31 @@ public class CalendarDisplayControl: TemplatedControl
 
     private CalendarMonthView? _monthView;
     private CalendarYearView? _yearView;
+    // Year button only shows the year in month mode.
     private Button? _yearButton;
+    // Month button only shows the month in month mode.
     private Button? _monthButton;
+    // Header button shows year in year mode, and year range in higher mode. 
     private Button? _headerButton;
     
     public event EventHandler<CalendarDayButtonEventArgs>? OnDateSelected;
     public event EventHandler<CalendarDayButtonEventArgs>? OnDatePreviewed;
-    
-    
-    public static readonly StyledProperty<DateTime> SelectedDateProperty = AvaloniaProperty.Register<CalendarDisplayControl, DateTime>(nameof(SelectedDate), DateTime.Now);
-    public DateTime SelectedDate
-    {
-        get => GetValue(SelectedDateProperty);
-        set => SetValue(SelectedDateProperty, value);
-    }
 
-    public static readonly StyledProperty<DayOfWeek> FirstDayOfWeekProperty =
-        AvaloniaProperty.Register<CalendarDisplayControl, DayOfWeek>(nameof(FirstDayOfWeek),
-            defaultValue: DateTimeHelper.GetCurrentDateTimeFormatInfo().FirstDayOfWeek);
-    public DayOfWeek FirstDayOfWeek
-    {
-        get => GetValue(FirstDayOfWeekProperty);
-        set => SetValue(FirstDayOfWeekProperty, value);
-    }
-
-    public static readonly StyledProperty<bool> IsTodayHighlightedProperty = AvaloniaProperty.Register<CalendarDisplayControl, bool>(nameof(IsTodayHighlighted), true);
+    public static readonly StyledProperty<bool> IsTodayHighlightedProperty =
+        DatePickerBase.IsTodayHighlightedProperty.AddOwner<CalendarDisplayControl>();
     public bool IsTodayHighlighted
     {
         get => GetValue(IsTodayHighlightedProperty);
         set => SetValue(IsTodayHighlightedProperty, value);
     }
 
-    public static readonly StyledProperty<AvaloniaList<DateRange>?> BlackoutDatesProperty =
-        AvaloniaProperty.Register<CalendarDisplayControl, AvaloniaList<DateRange>?>(
-            nameof(BlackoutDates));
-
-    public AvaloniaList<DateRange>? BlackoutDates
+    public static readonly StyledProperty<DayOfWeek> FirstDayOfWeekProperty =
+        DatePickerBase.FirstDayOfWeekProperty.AddOwner<CalendarDisplayControl>();
+    
+    public DayOfWeek FirstDayOfWeek
     {
-        get => GetValue(BlackoutDatesProperty);
-        set => SetValue(BlackoutDatesProperty, value);
-    }
-
-    public static readonly StyledProperty<IDateSelector?> BlackoutDateRuleProperty = AvaloniaProperty.Register<CalendarDisplayControl, IDateSelector?>(
-        nameof(BlackoutDateRule));
-
-    public IDateSelector? BlackoutDateRule
-    {
-        get => GetValue(BlackoutDateRuleProperty);
-        set => SetValue(BlackoutDateRuleProperty, value);
+        get => GetValue(FirstDayOfWeekProperty);
+        set => SetValue(FirstDayOfWeekProperty, value);
     }
 
     private bool _isMonthMode = true;
@@ -92,16 +69,13 @@ public class CalendarDisplayControl: TemplatedControl
         set => SetAndRaise(IsMonthModeProperty, ref _isMonthMode, value);
     }
 
-    internal DateTime? StartDate;
-    internal DateTime? EndDate;
-
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
         if (_monthView is not null)
         {
-            _monthView.OnDateSelected -= OnDateSelected;
-            _monthView.OnDatePreviewed -= OnDatePreviewed;
+            _monthView.OnDateSelected -= OnMonthViewDateSelected;
+            _monthView.OnDatePreviewed -= OnMonthViewDatePreviewed;
         }
 
         if (_yearView is not null)
@@ -118,8 +92,8 @@ public class CalendarDisplayControl: TemplatedControl
         _headerButton = e.NameScope.Find<Button>(PART_HeaderButton);
         if(_monthView is not null)
         {
-            _monthView.OnDateSelected += OnDateSelected;
-            _monthView.OnDatePreviewed += OnDatePreviewed;
+            _monthView.OnDateSelected += OnMonthViewDateSelected;
+            _monthView.OnDatePreviewed += OnMonthViewDatePreviewed;
         }
 
         if (_yearView is not null)
@@ -131,6 +105,11 @@ public class CalendarDisplayControl: TemplatedControl
         Button.ClickEvent.AddHandler(OnHeaderButtonClick, _headerButton);
     }
 
+    /// <summary>
+    /// Rule: 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void OnHeaderButtonClick(object sender, RoutedEventArgs e)
     {
         if (_yearView?.Mode == CalendarYearViewMode.Month)

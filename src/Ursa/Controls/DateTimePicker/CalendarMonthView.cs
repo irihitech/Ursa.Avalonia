@@ -16,10 +16,10 @@ namespace Ursa.Controls;
 public class CalendarMonthView : TemplatedControl
 {
     public const string PART_Grid = "PART_Grid";
+    private const string ShortestDayName = "ShortestDayName";
 
     public static readonly StyledProperty<DayOfWeek> FirstDayOfWeekProperty =
-        AvaloniaProperty.Register<CalendarMonthView, DayOfWeek>(
-            nameof(FirstDayOfWeek));
+        DatePickerBase.FirstDayOfWeekProperty.AddOwner<CalendarMonthView>();
 
     private readonly System.Globalization.Calendar _calendar = new GregorianCalendar();
 
@@ -56,12 +56,14 @@ public class CalendarMonthView : TemplatedControl
         base.OnApplyTemplate(e);
         _grid = e.NameScope.Find<Grid>(PART_Grid);
         GenerateGridElements();
-        SetDayButtons(DateTime.Today);
+        SetDayButtons(ContextDate);
     }
 
     private void OnDayOfWeekChanged(AvaloniaPropertyChangedEventArgs<DayOfWeek> args)
     {
         // throw new NotImplementedException();
+        UpdateGridElements();
+        SetDayButtons(ContextDate);
     }
 
 
@@ -75,7 +77,7 @@ public class CalendarMonthView : TemplatedControl
         for (var i = 0; i < 7; i++)
         {
             var d = (dayOfWeek + i) % DateTimeHelper.NumberOfDaysPerWeek;
-            var cell = new TextBlock { Text = info.ShortestDayNames[d] };
+            var cell = new TextBlock { Text = info.ShortestDayNames[d], Tag = ShortestDayName };
             cell.SetValue(HorizontalAlignmentProperty, HorizontalAlignment.Center);
             cell.SetValue(Grid.RowProperty, 0);
             cell.SetValue(Grid.ColumnProperty, i);
@@ -95,6 +97,27 @@ public class CalendarMonthView : TemplatedControl
         }
 
         _grid?.Children.AddRange(children);
+    }
+
+    private void UpdateGridElements()
+    {
+        var count = 7 + 7 * 7;
+        // var children = new List<Control>(count);
+        var dayOfWeek = (int)FirstDayOfWeek;
+        var info = DateTimeHelper.GetCurrentDateTimeFormatInfo();
+        var textblocks = _grid?.Children.Where(a => a is TextBlock { Tag: ShortestDayName }).ToList();
+        if (textblocks is not null)
+        {
+            for (var i = 0; i < 7; i++)
+            {
+                var d = (dayOfWeek + i) % DateTimeHelper.NumberOfDaysPerWeek;
+                textblocks[i].SetValue(TextBlock.TextProperty, info.ShortestDayNames[d]);
+                textblocks[i].SetValue(HorizontalAlignmentProperty, HorizontalAlignment.Center);
+                textblocks[i].SetValue(Grid.RowProperty, 0);
+                textblocks[i].SetValue(Grid.ColumnProperty, i);
+            }
+        }
+        SetDayButtons(ContextDate);
     }
 
     private void OnCellDatePreviewed(object sender, CalendarDayButtonEventArgs e)
@@ -179,40 +202,7 @@ public class CalendarMonthView : TemplatedControl
             if (d == startDate && d == endDate) button.IsSelected = true;
         }
     }
-
-    public void MarkPreview(DateTime? start, DateTime? end)
-    {
-        if (_grid?.Children is null) return;
-        foreach (var child in _grid.Children)
-        {
-            if (child is not CalendarDayButton { DataContext: DateTime d } button) continue;
-            if (d == start)
-            {
-                button.IsPreviewStartDate = true;
-                button.IsPreviewEndDate = false;
-                button.IsInRange = false;
-            }
-            else if (d == end)
-            {
-                button.IsPreviewEndDate = true;
-                button.IsPreviewStartDate = false;
-                button.IsInRange = false;
-            }
-            else if (d > start && d < end)
-            {
-                button.IsInRange = true;
-                button.IsPreviewStartDate = false;
-                button.IsPreviewEndDate = false;
-            }
-            else
-            {
-                button.IsPreviewStartDate = false;
-                button.IsPreviewEndDate = false;
-                button.IsInRange = false;
-            }
-        }
-    }
-
+    
     public void ClearSelection()
     {
         if (_grid?.Children is null) return;
