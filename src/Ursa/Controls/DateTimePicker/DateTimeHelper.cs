@@ -42,4 +42,16 @@ internal static class DateTimeHelper
     {
         return d1.Ticks < d2.Ticks ? d2 : d1;
     }
+    
+    public static (int start, int end) GetDecadeViewRangeByYear(int year)
+    {
+        int start = year / 10 * 10;
+        return new ValueTuple<int, int>(start, start + 10);
+    }
+    
+    public static (int start, int end) GetCenturyViewRangeByYear(int year)
+    {
+        int start = year / 100 * 100;
+        return new ValueTuple<int, int>(start, start + 100);
+    }
 }

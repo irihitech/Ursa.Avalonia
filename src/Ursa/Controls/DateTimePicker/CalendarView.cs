@@ -69,7 +69,6 @@ public class CalendarView : TemplatedControl
         ModeProperty.Changed.AddClassHandler<CalendarView, CalendarViewMode>((view, args) =>
         {
             view.PseudoClasses.Set(PC_Month, args.NewValue.Value == CalendarViewMode.Month);
-            Debug.WriteLine(args.NewValue.Value);
         });
     }
 
@@ -79,7 +78,7 @@ public class CalendarView : TemplatedControl
         set => SetAndRaise(ModeProperty, ref _mode, value);
     }
 
-    public DateContext ContextDate { get; set; } = new();
+    public CalendarContext ContextCalendar { get; set; } = new();
 
     public bool IsTodayHighlighted
     {
@@ -99,7 +98,7 @@ public class CalendarView : TemplatedControl
     private void OnFirstDayOfWeekChanged(AvaloniaPropertyChangedEventArgs<DayOfWeek> args)
     {
         UpdateMonthViewHeader(args.NewValue.Value);
-        RefreshDayButtons();
+        UpdateDayButtons();
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -120,11 +119,12 @@ public class CalendarView : TemplatedControl
         Button.ClickEvent.AddHandler(OnHeaderMonthButtonClick, _monthButton);
         Button.ClickEvent.AddHandler(OnHeaderButtonClick, _headerButton);
         
-        ContextDate = new DateContext(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
+        ContextCalendar = new CalendarContext(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
         PseudoClasses.Set(PC_Month, Mode == CalendarViewMode.Month);
-        GenerateGridElements();
-        RefreshDayButtons();
-        RefreshYearButtons();
+        InitializeGridButtons();
+        UpdateDayButtons();
+        UpdateYearButtons();
+        UpdateHeaderButtons();
     }
 
     /// <summary>
@@ -139,23 +139,32 @@ public class CalendarView : TemplatedControl
         if (Mode == CalendarViewMode.Year)
         {
             Mode = CalendarViewMode.Decade;
-            RefreshYearButtons();
+            var range = DateTimeHelper.GetDecadeViewRangeByYear(ContextCalendar.Year!.Value);
+            ContextCalendar.StartYear = range.start;
+            ContextCalendar.EndYear = range.end;
+            UpdateHeaderButtons();
+            UpdateYearButtons();
             return; 
         }
         if(Mode == CalendarViewMode.Decade)
         {
             Mode = CalendarViewMode.Century;
-            RefreshYearButtons();
+            var range = DateTimeHelper.GetCenturyViewRangeByYear(ContextCalendar.StartYear!.Value);
+            ContextCalendar.StartYear = range.start;
+            ContextCalendar.EndYear = range.end;
+            UpdateHeaderButtons();
+            UpdateYearButtons();
             return;
         }
         if (Mode == CalendarViewMode.Century) return;
     }
 
     /// <summary>
-    ///     Generate Buttons and labels for MonthView.
-    ///     Generate Buttons for YearView.
+    /// Generate Buttons and labels for MonthView.
+    /// Generate Buttons for YearView.
+    /// This method should be called only once. 
     /// </summary>
-    private void GenerateGridElements()
+    private void InitializeGridButtons()
     {
         // Generate Day titles (Sun, Mon, Tue, Wed, Thu, Fri, Sat) based on FirstDayOfWeek and culture.
         var count = 7 + 7 * 7;
@@ -197,14 +206,13 @@ public class CalendarView : TemplatedControl
         }
     }
 
-    private void RefreshDayButtons()
+    private void UpdateDayButtons()
     {
         if (_monthGrid is null) return;
         var children = _monthGrid.Children;
         var info = DateTimeHelper.GetCurrentDateTimeFormatInfo();
-        var date = new DateTime(ContextDate.Year.Value, ContextDate.Month.Value, ContextDate.Day.Value);
-        var dayBefore =
-            PreviousMonthDays(date);
+        var date = new DateTime(ContextCalendar.Year.Value, ContextCalendar.Month.Value, ContextCalendar.Day.Value);
+        var dayBefore = PreviousMonthDays(date);
         var dateToSet = date.GetFirstDayOfMonth().AddDays(-dayBefore);
         for (var i = 7; i < children.Count; i++)
         {
@@ -216,32 +224,44 @@ public class CalendarView : TemplatedControl
             cell.Content = day.Day.ToString(info);
             dateToSet = dateToSet.AddDays(1);
         }
-
         FadeOutDayButtons();
     }
 
-    private void RefreshYearButtons()
+    private void UpdateYearButtons()
     {
         if (_yearGrid is null) return;
         var mode = Mode;
-        var contextDate = ContextDate;
-        for (var i = 0; i < 12; i++)
+        var contextDate = ContextCalendar;
+        if (mode == CalendarViewMode.Century && contextDate.StartYear.HasValue)
         {
-            var child = _yearGrid.Children[i] as CalendarYearButton;
-            if (child is null) continue;
-            switch (mode)
+            var range = DateTimeHelper.GetCenturyViewRangeByYear(contextDate.StartYear.Value);
+            int start = range.start-10;
+            for (int i = 0; i < 12; i++)
             {
-                case CalendarViewMode.Month:
-                    child.SetValues(CalendarViewMode.Year, i);
-                    break;
-                case CalendarViewMode.Year:
-                    child.SetValues(CalendarViewMode.Decade, year: ContextDate.Year / 10 * 10 + i - 1);
-                    break;
-                case CalendarViewMode.Decade:
-                    var startYear = (ContextDate.Year / 10 + i - 1) * 10;
-                    var endYear = (ContextDate.Year / 10 + i - 1) * 10 + 10;
-                    child.SetValues(CalendarViewMode.Century, startYear: startYear, endYear: endYear);
-                    break;
+                var child = _yearGrid.Children[i] as CalendarYearButton;
+                child?.SetContext(CalendarViewMode.Century,
+                    new CalendarContext() { StartYear = start, EndYear = start + 10 });
+                start+= 10;
+            }
+        }
+        else if(mode == CalendarViewMode.Decade && contextDate.StartYear.HasValue)
+        {
+            var range = DateTimeHelper.GetDecadeViewRangeByYear(contextDate.StartYear.Value);
+            int year = range.start - 1;
+            for (int i = 0; i < 12; i++)
+            {
+                var child = _yearGrid.Children[i] as CalendarYearButton;
+                child?.SetContext(CalendarViewMode.Decade,
+                    new CalendarContext() { Year = year});
+                year++;
+            }
+        }
+        else if (mode == CalendarViewMode.Year)
+        {
+            for (var i = 0; i < 12; i++)
+            {
+                var child = _yearGrid.Children[i] as CalendarYearButton;
+                child?.SetContext(CalendarViewMode.Year, new CalendarContext() { Month = i });
             }
         }
     }
@@ -251,7 +271,7 @@ public class CalendarView : TemplatedControl
         if (_monthGrid is null) return;
         var children = _monthGrid.Children;
         for (var i = 7; i < children.Count; i++)
-            if (children[i] is CalendarDayButton { DataContext: DateTime d } button && d.Month != ContextDate.Month)
+            if (children[i] is CalendarDayButton { DataContext: DateTime d } button && d.Month != ContextCalendar.Month)
                 button.IsNotCurrentMonth = true;
     }
 
@@ -297,8 +317,9 @@ public class CalendarView : TemplatedControl
     /// <param name="e"></param>
     private void OnHeaderMonthButtonClick(object sender, RoutedEventArgs e)
     {
-        _headerButton?.SetValue(ContentControl.ContentProperty, ContextDate.Year);
         SetCurrentValue(ModeProperty, CalendarViewMode.Year);
+        UpdateHeaderButtons();
+        UpdateYearButtons();
     }
 
     /// <summary>
@@ -309,9 +330,12 @@ public class CalendarView : TemplatedControl
     private void OnHeaderYearButtonClick(object sender, RoutedEventArgs e)
     {
         if (_yearGrid is null) return;
-        var decadeStart = ContextDate.Year / 10 * 10;
-        _headerButton?.SetValue(ContentControl.ContentProperty, decadeStart + "-" + (decadeStart + 10));
         SetCurrentValue(ModeProperty, CalendarViewMode.Decade);
+        var range = DateTimeHelper.GetDecadeViewRangeByYear(ContextCalendar.Year!.Value);
+        ContextCalendar.StartYear = range.start;
+        ContextCalendar.EndYear = range.end;
+        UpdateHeaderButtons();
+        UpdateYearButtons();
     }
 
     /// <summary>
@@ -328,31 +352,66 @@ public class CalendarView : TemplatedControl
     {
         if (_yearGrid is null) return;
         var buttons = _yearGrid.Children.OfType<CalendarYearButton>().ToList();
-        if (Mode == CalendarViewMode.Year)
-        {
-            Mode = CalendarViewMode.Month;
-            if (e.Month is null) return;
-            var day = MathHelpers.SafeClamp(e.Month.Value, 0,
-                DateTime.DaysInMonth(ContextDate.Year!.Value, e.Month.Value + 1));
-            ContextDate = new DateContext { Year = ContextDate.Year, Month = e.Month + 1, Day = day };
-        }
-        else if (Mode == CalendarViewMode.Decade)
-        {
-            Mode = CalendarViewMode.Year;
-            for (var i = 0; i < 12; i++) buttons[i].SetValues(CalendarViewMode.Year, i);
-            ContextDate = new DateContext { Year = e.Year!.Value, Month = null, Day = null };
-        }
-        else if (Mode == CalendarViewMode.Century)
+        if (Mode == CalendarViewMode.Century)
         {
             Mode = CalendarViewMode.Decade;
-            for (var i = 0; i < 12; i++)
-            {
-                if (e.StartYear is null || e.EndYear is null) continue;
-                var year = e.StartYear.Value - 1 + i;
-                buttons[i].SetValues(CalendarViewMode.Decade, year: year);
-            }
+            ContextCalendar.Year = null;
+            ContextCalendar.StartYear = e.Context.StartYear;
+            ContextCalendar.EndYear = e.Context.EndYear;
         }
+        else if(Mode == CalendarViewMode.Decade)
+        {
+            Mode = CalendarViewMode.Year;
+            ContextCalendar.Year = e.Context.Year;
+            ContextCalendar.StartYear = e.Context.StartYear;
+            ContextCalendar.EndYear = e.Context.EndYear;
+        }
+        else if (Mode == CalendarViewMode.Year)
+        {
+            Mode = CalendarViewMode.Month;
+            ContextCalendar.StartYear = null;
+            ContextCalendar.EndYear = null;
+            // ContextCalendar.Year = e.Context.Year;
+            ContextCalendar.Month = e.Context.Month;
+            UpdateDayButtons();
+        }
+        else if (Mode == CalendarViewMode.Month)
+        {
+            throw new NotImplementedException();
+        }
+        UpdateHeaderButtons();
+        UpdateYearButtons();
+    }
 
-        RefreshYearButtons();
+    private void UpdateHeaderButtons()
+    {
+        if (this.Mode == CalendarViewMode.Century)
+        {
+            IsVisibleProperty.SetValue(true, _headerButton, _yearGrid);
+            IsVisibleProperty.SetValue(false, _yearButton, _monthButton, _monthGrid);
+            _headerButton?.SetValue(ContentControl.ContentProperty, ContextCalendar.StartYear + "-" + ContextCalendar.EndYear);
+        }
+        else if (this.Mode == CalendarViewMode.Decade)
+        {
+            IsVisibleProperty.SetValue(true, _headerButton, _yearGrid);
+            IsVisibleProperty.SetValue(false, _yearButton, _monthButton, _monthGrid);
+            _headerButton?.SetValue(ContentControl.ContentProperty, ContextCalendar.StartYear + "-" + ContextCalendar.EndYear);
+        }
+        else if (this.Mode == CalendarViewMode.Year)
+        {
+            IsVisibleProperty.SetValue(true, _headerButton, _yearGrid);
+            IsVisibleProperty.SetValue(false, _yearButton, _monthButton, _monthGrid);
+            _headerButton?.SetValue(ContentControl.ContentProperty, ContextCalendar.Year);
+        }
+        else if (this.Mode == CalendarViewMode.Month)
+        {
+            IsVisibleProperty.SetValue(false, _headerButton, _yearGrid);
+            IsVisibleProperty.SetValue(true, _yearButton, _monthButton, _monthGrid);
+            // _headerButton?.SetValue(ContentControl.ContentProperty, ContextCalendar.Year);
+            _yearButton?.SetValue(ContentControl.ContentProperty, ContextCalendar.Year);
+            _monthButton?.SetValue(ContentControl.ContentProperty,
+                DateTimeHelper.GetCurrentDateTimeFormatInfo().AbbreviatedMonthNames[ContextCalendar.Month ?? 0]);
+        }
+        
     }
 }

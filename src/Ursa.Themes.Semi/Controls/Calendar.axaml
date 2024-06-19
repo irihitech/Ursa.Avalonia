@@ -161,6 +161,7 @@
     </ControlTheme>
     <ControlTheme x:Key="{x:Type u:CalendarView}" TargetType="u:CalendarView">
         <Setter Property="MinHeight" Value="300" />
+        <Setter Property="MinWidth" Value="300" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:CalendarView">
                 <Panel>
@@ -256,22 +257,6 @@
                 </Panel>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^:month">
-            <Style Selector="^ /template/ Button#PART_YearButton, ^ /template/ Button#PART_MonthButton,^ /template/ Grid#PART_MonthGrid">
-                <Setter Property="Control.IsVisible" Value="True" />
-            </Style>
-            <Style Selector="^ /template/ Button#PART_HeaderButton, ^ /template/ Grid#PART_YearGrid">
-                <Setter Property="Control.IsVisible" Value="False" />
-            </Style>
-        </Style>
-        <Style Selector="^:not(:month)">
-            <Style Selector="^ /template/ Button#PART_YearButton, ^ /template/ Button#PART_MonthButton,^ /template/ Grid#PART_MonthGrid">
-                <Setter Property="Control.IsVisible" Value="False" />
-            </Style>
-            <Style Selector="^ /template/ Button#PART_HeaderButton, ^ /template/ Grid#PART_YearGrid">
-                <Setter Property="Control.IsVisible" Value="True" />
-            </Style>
-        </Style>
     </ControlTheme>
 
 </ResourceDictionary>

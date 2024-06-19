@@ -22,13 +22,7 @@ public class CalendarYearButton : ContentControl
         PressedMixin.Attach<CalendarYearButton>();
     }
 
-    internal int? Year { get; private set; }
-
-    internal int? Month { get; private set; }
-
-    internal int? StartYear { get; private set; }
-
-    internal int? EndYear { get; private set; }
+    internal CalendarContext CalendarContext { get; set; } = new ();
 
     internal CalendarViewMode Mode { get; private set; }
 
@@ -37,30 +31,30 @@ public class CalendarYearButton : ContentControl
         add => AddHandler(ItemSelectedEvent, value);
         remove => RemoveHandler(ItemSelectedEvent, value);
     }
-
-    internal void SetValues(CalendarViewMode mode, int? month = null, int? year = null,
-        int? startYear = null, int? endYear = null)
+    
+    internal void SetContext(CalendarViewMode mode, CalendarContext context)
     {
-        Debug.Assert(!(month is null && year is null && startYear is null && endYear is null));
-        Mode = mode;
-        Month = month ?? 0;
-        Year = year ?? 0;
-        StartYear = startYear ?? 0;
-        EndYear = endYear ?? 0;
+        CalendarContext = context.Clone();
+        CalendarContext.Month = context.Month;
+        CalendarContext.Year = context.Year;
+        CalendarContext.StartYear = context.StartYear;
+        CalendarContext.EndYear = context.EndYear;
+        this.Mode = mode;
         Content = Mode switch
         {
-            CalendarViewMode.Month => DateTimeHelper.GetCurrentDateTimeFormatInfo().AbbreviatedMonthNames[Month.Value],
-            CalendarViewMode.Year => Year.ToString(),
-            CalendarViewMode.Decade => StartYear + "-" + EndYear,
-            CalendarViewMode.Century => StartYear + "-" + EndYear,
+            CalendarViewMode.Year => DateTimeHelper.GetCurrentDateTimeFormatInfo().AbbreviatedMonthNames[ CalendarContext.Month ?? 0 ],
+            CalendarViewMode.Decade => CalendarContext.Year?.ToString(),
+            CalendarViewMode.Century => CalendarContext.StartYear + "-" + CalendarContext.EndYear,
+            // CalendarViewMode.Century => CalendarContext.StartYear + "-" + CalendarContext.EndYear,
             _ => Content
         };
+        IsEnabled = Content != null;
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
         base.OnPointerPressed(e);
-        RaiseEvent(new CalendarYearButtonEventArgs(Mode, Year, Month, StartYear, EndYear)
+        RaiseEvent(new CalendarYearButtonEventArgs(Mode, this.CalendarContext.Clone())
             { RoutedEvent = ItemSelectedEvent, Source = this });
     }
 }
