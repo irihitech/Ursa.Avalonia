@@ -1,7 +1,9 @@
 ﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:u="https://irihi.tech/ursa">
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:converters="clr-namespace:Ursa.Converters;assembly=Ursa">
+    <converters:DivideByTwoConverter x:Key="DivideByTwoConverter" />
     <ControlTheme x:Key="{x:Type u:Avatar}" TargetType="{x:Type u:Avatar}">
         <Setter Property="Foreground" Value="White" />
         <Setter Property="Background" Value="{DynamicResource SemiGrey3}" />
@@ -13,12 +15,21 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="{x:Type u:Avatar}">
                 <Panel>
+                    <Panel.Clip>
+                        <EllipseGeometry
+                            Center="{Binding #PART_Ellipse.Bounds.Center}"
+                            RadiusX="{Binding #PART_Ellipse.Bounds.Width, Converter={StaticResource DivideByTwoConverter}}"
+                            RadiusY="{Binding #PART_Ellipse.Bounds.Height, Converter={StaticResource DivideByTwoConverter}}" />
+                    </Panel.Clip>
+                    <Ellipse
+                        Name="PART_Ellipse"
+                        Fill="Transparent"/>
                     <Ellipse
                         Fill="{TemplateBinding Background}"
-                        IsVisible="{TemplateBinding Source,Converter={x:Static ObjectConverters.IsNull}}" />
+                        IsVisible="{TemplateBinding Source, Converter={x:Static ObjectConverters.IsNull}}" />
                     <ContentPresenter
                         Name="PART_ContentPresenter"
-                        IsVisible="{TemplateBinding Source,Converter={x:Static ObjectConverters.IsNull}}"
+                        IsVisible="{TemplateBinding Source, Converter={x:Static ObjectConverters.IsNull}}"
                         CornerRadius="{TemplateBinding CornerRadius}"
                         Content="{TemplateBinding Content}"
                         HorizontalContentAlignment="Center"

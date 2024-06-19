@@ -34,6 +34,8 @@
                 </u:Avatar.HoverMask>
             </u:Avatar>
             <u:Avatar Source="../Assets/Ursa.ico" />
+            <u:Avatar Source="../Assets/IRIHI.png" />
+            <u:Avatar Source="../Assets/WORLD.png" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <u:Avatar Classes="Red" />
