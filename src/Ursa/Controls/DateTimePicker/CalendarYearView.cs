@@ -6,6 +6,7 @@ using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
+/*
 /// <summary>
 /// Three modes:
 /// 1. show 12 months in a year
@@ -117,3 +118,4 @@ public class CalendarYearView: TemplatedControl
         RefreshButtons();
     }
 }
+*/

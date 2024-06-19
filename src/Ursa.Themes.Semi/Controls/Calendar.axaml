@@ -4,7 +4,6 @@
     xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
         <StackPanel Margin="20" Spacing="5">
-            <u:CalendarMonthView />
             <u:CalendarView />
         </StackPanel>
     </Design.PreviewWith>
@@ -119,144 +118,6 @@
             <Setter Property="Cursor" Value="No" />
         </Style>
     </ControlTheme>
-
-    <ControlTheme x:Key="{x:Type u:CalendarView}" TargetType="u:CalendarView">
-        <Setter Property="MinHeight" Value="300" />
-        <Setter Property="Template">
-            <ControlTemplate TargetType="u:CalendarView">
-                <Panel>
-                    <Grid RowDefinitions="Auto, *">
-                        <Grid Grid.Row="0" ColumnDefinitions="Auto, Auto,*, Auto, Auto">
-                            <Button
-                                Name="{x:Static u:CalendarView.PART_PreviousYearButton}"
-                                Grid.Column="0"
-                                HorizontalContentAlignment="Left"
-                                Foreground="{TemplateBinding Foreground}"
-                                Theme="{DynamicResource BorderlessButton}">
-                                <PathIcon
-                                    Width="12"
-                                    Height="12"
-                                    Data="{DynamicResource CalendarItemPreviousIconGlyph}"
-                                    Foreground="{DynamicResource CalendarItemIconForeground}" />
-                            </Button>
-
-                            <Button
-                                Name="{x:Static u:CalendarView.PART_PreviousButton}"
-                                Grid.Column="1"
-                                HorizontalContentAlignment="Left"
-                                Foreground="{TemplateBinding Foreground}"
-                                Theme="{DynamicResource BorderlessButton}">
-                                <PathIcon
-                                    Width="12"
-                                    Height="12"
-                                    Data="{DynamicResource CalendarItemPreviousIconGlyph}"
-                                    Foreground="{DynamicResource CalendarItemIconForeground}" />
-                            </Button>
-
-                            <Grid Grid.Column="2" ColumnDefinitions="*, *">
-                                <Button
-                                    Name="{x:Static u:CalendarView.PART_YearButton}"
-                                    Grid.Column="0"
-                                    HorizontalContentAlignment="Center"
-                                    Content="2024"
-                                    Foreground="{TemplateBinding Foreground}"
-                                    IsVisible="{TemplateBinding IsMonthMode}"
-                                    Theme="{DynamicResource BorderlessButton}" />
-                                <Button
-                                    Name="{x:Static u:CalendarView.PART_MonthButton}"
-                                    Grid.Column="1"
-                                    HorizontalContentAlignment="Center"
-                                    Content="Apr"
-                                    Foreground="{TemplateBinding Foreground}"
-                                    IsVisible="{TemplateBinding IsMonthMode}"
-                                    Theme="{DynamicResource BorderlessButton}" />
-                                <Button
-                                    Name="{x:Static u:CalendarView.PART_HeaderButton}"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="2"
-                                    IsVisible="{TemplateBinding IsMonthMode, Converter={x:Static BoolConverters.Not}}"
-                                    HorizontalAlignment="Stretch"
-                                    HorizontalContentAlignment="Center"
-                                    Content="2020-2030" />
-                            </Grid>
-
-                            <Button
-                                Name="{x:Static u:CalendarView.PART_NextButton}"
-                                Grid.Column="3"
-                                HorizontalContentAlignment="Left"
-                                Foreground="{TemplateBinding Foreground}"
-                                Theme="{DynamicResource BorderlessButton}">
-                                <PathIcon
-                                    Width="12"
-                                    Height="12"
-                                    Data="{DynamicResource CalendarItemNextIconGlyph}"
-                                    Foreground="{DynamicResource CalendarItemIconForeground}" />
-                            </Button>
-                            <Button
-                                Name="{x:Static u:CalendarView.PART_NextYearButton}"
-                                Grid.Column="4"
-                                HorizontalContentAlignment="Left"
-                                Foreground="{TemplateBinding Foreground}"
-                                Theme="{DynamicResource BorderlessButton}">
-                                <PathIcon
-                                    Width="12"
-                                    Height="12"
-                                    Data="{DynamicResource CalendarItemNextIconGlyph}"
-                                    Foreground="{DynamicResource CalendarItemIconForeground}" />
-                            </Button>
-                        </Grid>
-                        <u:CalendarMonthView
-                            Name="{x:Static u:CalendarView.PART_MonthView}"
-                            Grid.Row="1"
-                            VerticalAlignment="Top"
-                            IsVisible="{TemplateBinding IsMonthMode}" />
-                        <u:CalendarYearView
-                            Name="{x:Static u:CalendarView.PART_YearView}"
-                            Grid.Row="1"
-                            Width="{Binding #PART_MonthView.Bounds.Width}"
-                            Height="{Binding #PART_MonthView.Bounds.Height}"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            IsVisible="{TemplateBinding IsMonthMode,
-                                                        Converter={x:Static BoolConverters.Not}}" />
-                    </Grid>
-
-                </Panel>
-            </ControlTemplate>
-        </Setter>
-    </ControlTheme>
-
-    <ControlTheme x:Key="{x:Type u:CalendarMonthView}" TargetType="u:CalendarMonthView">
-        <Setter Property="Template">
-            <ControlTemplate>
-                <Grid
-                    Name="{x:Static u:CalendarMonthView.PART_Grid}"
-                    ColumnDefinitions="*, *, *, *, *, *, *"
-                    RowDefinitions="*, Auto, *, *, *, *, *, *">
-                    <Rectangle
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="7"
-                        Height="1"
-                        Margin="8,8,8,0"
-                        HorizontalAlignment="Stretch"
-                        Fill="{DynamicResource SemiGrey2}" />
-                </Grid>
-            </ControlTemplate>
-        </Setter>
-    </ControlTheme>
-
-    <ControlTheme x:Key="{x:Type u:CalendarYearView}" TargetType="u:CalendarYearView">
-        <Setter Property="Template">
-            <ControlTemplate>
-                <Grid
-                    Name="{x:Static u:CalendarYearView.PART_Grid}"
-                    ColumnDefinitions="*, *, *"
-                    RowDefinitions="*, *, *, *" />
-            </ControlTemplate>
-        </Setter>
-    </ControlTheme>
-
     <ControlTheme x:Key="{x:Type u:CalendarYearButton}" TargetType="u:CalendarYearButton">
         <Setter Property="MinWidth" Value="32" />
         <Setter Property="MinHeight" Value="32" />
@@ -298,4 +159,119 @@
             </Style>
         </Style>
     </ControlTheme>
+    <ControlTheme x:Key="{x:Type u:CalendarView}" TargetType="u:CalendarView">
+        <Setter Property="MinHeight" Value="300" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:CalendarView">
+                <Panel>
+                    <Grid RowDefinitions="Auto, *">
+                        <Grid Grid.Row="0" ColumnDefinitions="Auto, Auto,*, Auto, Auto">
+                            <Button
+                                Name="{x:Static u:CalendarView.PART_PreviousYearButton}"
+                                Grid.Column="0"
+                                HorizontalContentAlignment="Left"
+                                Foreground="{TemplateBinding Foreground}"
+                                Theme="{DynamicResource BorderlessButton}">
+                                <PathIcon
+                                    Width="12"
+                                    Height="12"
+                                    Data="{DynamicResource CalendarItemPreviousIconGlyph}"
+                                    Foreground="{DynamicResource CalendarItemIconForeground}" />
+                            </Button>
+
+                            <Button
+                                Name="{x:Static u:CalendarView.PART_PreviousButton}"
+                                Grid.Column="1"
+                                HorizontalContentAlignment="Left"
+                                Foreground="{TemplateBinding Foreground}"
+                                Theme="{DynamicResource BorderlessButton}">
+                                <PathIcon
+                                    Width="12"
+                                    Height="12"
+                                    Data="{DynamicResource CalendarItemPreviousIconGlyph}"
+                                    Foreground="{DynamicResource CalendarItemIconForeground}" />
+                            </Button>
+
+                            <Grid Grid.Column="2" ColumnDefinitions="*, *">
+                                <Button
+                                    Name="{x:Static u:CalendarView.PART_YearButton}"
+                                    Grid.Column="0"
+                                    HorizontalContentAlignment="Center"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    Theme="{DynamicResource BorderlessButton}" />
+                                <Button
+                                    Name="{x:Static u:CalendarView.PART_MonthButton}"
+                                    Grid.Column="1"
+                                    HorizontalContentAlignment="Center"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    Theme="{DynamicResource BorderlessButton}" />
+                                <Button
+                                    Name="{x:Static u:CalendarView.PART_HeaderButton}"
+                                    Grid.Column="0"
+                                    IsVisible="True"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Center" />
+                            </Grid>
+                            <Button
+                                Name="{x:Static u:CalendarView.PART_NextButton}"
+                                Grid.Column="3"
+                                HorizontalContentAlignment="Left"
+                                Foreground="{TemplateBinding Foreground}"
+                                Theme="{DynamicResource BorderlessButton}">
+                                <PathIcon
+                                    Width="12"
+                                    Height="12"
+                                    Data="{DynamicResource CalendarItemNextIconGlyph}"
+                                    Foreground="{DynamicResource CalendarItemIconForeground}" />
+                            </Button>
+                            <Button
+                                Name="{x:Static u:CalendarView.PART_NextYearButton}"
+                                Grid.Column="4"
+                                HorizontalContentAlignment="Left"
+                                Foreground="{TemplateBinding Foreground}"
+                                Theme="{DynamicResource BorderlessButton}">
+                                <PathIcon
+                                    Width="12"
+                                    Height="12"
+                                    Data="{DynamicResource CalendarItemNextIconGlyph}"
+                                    Foreground="{DynamicResource CalendarItemIconForeground}" />
+                            </Button>
+                        </Grid>
+                        <Grid
+                            Name="{x:Static u:CalendarView.PART_MonthGrid}"
+                            Grid.Row="1"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            ColumnDefinitions="*, *, *, *, *, *, *"
+                            RowDefinitions="*, Auto, *, *, *, *, *, *" />
+                        <Grid
+                            Name="{x:Static u:CalendarView.PART_YearGrid}"
+                            Grid.Row="1"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            ColumnDefinitions="*, *, *"
+                            RowDefinitions="*, *, *, *" />
+                    </Grid>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:month">
+            <Style Selector="^ /template/ Button#PART_YearButton, ^ /template/ Button#PART_MonthButton,^ /template/ Grid#PART_MonthGrid">
+                <Setter Property="Control.IsVisible" Value="True" />
+            </Style>
+            <Style Selector="^ /template/ Button#PART_HeaderButton, ^ /template/ Grid#PART_YearGrid">
+                <Setter Property="Control.IsVisible" Value="False" />
+            </Style>
+        </Style>
+        <Style Selector="^:not(:month)">
+            <Style Selector="^ /template/ Button#PART_YearButton, ^ /template/ Button#PART_MonthButton,^ /template/ Grid#PART_MonthGrid">
+                <Setter Property="Control.IsVisible" Value="False" />
+            </Style>
+            <Style Selector="^ /template/ Button#PART_HeaderButton, ^ /template/ Grid#PART_YearGrid">
+                <Setter Property="Control.IsVisible" Value="True" />
+            </Style>
+        </Style>
+    </ControlTheme>
+
 </ResourceDictionary>
