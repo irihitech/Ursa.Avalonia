@@ -33,7 +33,7 @@ public class CalendarMonthView : TemplatedControl
             view.OnDayOfWeekChanged(args));
     }
 
-    internal CalendarDisplayControl? Owner { get; set; }
+    internal CalendarView? Owner { get; set; }
 
     /// <summary>
     ///     The DateTime used to generate the month view. This date will be within the month.

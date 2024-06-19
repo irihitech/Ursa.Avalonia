@@ -20,7 +20,7 @@ public class CalendarYearView: TemplatedControl
 
     public event EventHandler<CalendarYearButtonEventArgs>? OnMonthSelected; 
 
-    internal CalendarYearViewMode Mode { get; set; } = CalendarYearViewMode.Month;
+    internal CalendarViewMode Mode { get; set; } = CalendarViewMode.Month;
     internal DateTime ContextDate { get; set; } = DateTime.Today;
 
     private Grid? _grid;
@@ -55,33 +55,33 @@ public class CalendarYearView: TemplatedControl
     {
         if (_grid is null) return;
         var buttons = _grid.Children.OfType<CalendarYearButton>().ToList();
-        if (e.Mode == CalendarYearViewMode.Month)
+        if (e.Mode == CalendarViewMode.Month)
         {
             if (e.Month is null) return;
             var day = MathHelpers.SafeClamp(e.Month.Value, 0, DateTime.DaysInMonth(ContextDate.Year, e.Month.Value+1));
             ContextDate = new DateTime(ContextDate.Year, e.Month.Value+1, day+1);
             OnMonthSelected?.Invoke(this, e);
         }
-        else if (e.Mode == CalendarYearViewMode.Year)
+        else if (e.Mode == CalendarViewMode.Year)
         {
             // Set CalendarYearView to Month mode
             for (var i = 0; i < 12; i++)
             {
-                buttons[i].SetValues(CalendarYearViewMode.Month, ContextDate, month: i);
+                buttons[i].SetValues(CalendarViewMode.Month, month: i);
             }
             ContextDate = new DateTime(e.Year!.Value, ContextDate.Month, 1);
-            Mode = CalendarYearViewMode.Month;
+            Mode = CalendarViewMode.Month;
         }
-        else if (e.Mode == CalendarYearViewMode.YearRange)
+        else if (e.Mode == CalendarViewMode.Decade)
         {
             // Set CalendarYearView to Year mode
             for (var i = 0; i < 12; i++)
             {
                 if (e.StartYear is null || e.EndYear is null) continue;
                 var year = e.StartYear.Value - 1 + i;
-                buttons[i].SetValues(CalendarYearViewMode.Year, ContextDate, year: year);
+                buttons[i].SetValues(CalendarViewMode.Year, year: year);
             }
-            Mode = CalendarYearViewMode.Year;
+            Mode = CalendarViewMode.Year;
         }
     }
 
@@ -96,22 +96,22 @@ public class CalendarYearView: TemplatedControl
             if (child is null) continue;
             switch (mode)
             {
-                case CalendarYearViewMode.Month:
-                    child.SetValues(CalendarYearViewMode.Month, contextDate, month: i);
+                case CalendarViewMode.Month:
+                    child.SetValues(CalendarViewMode.Month, month: i);
                     break;
-                case CalendarYearViewMode.Year:
-                    child.SetValues(CalendarYearViewMode.Year, contextDate, year: ContextDate.Year / 10 * 10 + i - 1);
+                case CalendarViewMode.Year:
+                    child.SetValues(CalendarViewMode.Year, year: ContextDate.Year / 10 * 10 + i - 1);
                     break;
-                case CalendarYearViewMode.YearRange:
+                case CalendarViewMode.Decade:
                     var startYear = (ContextDate.Year / 10 + i - 1) * 10;
                     var endYear = (ContextDate.Year / 10 + i - 1) * 10 + 10;
-                    child.SetValues(CalendarYearViewMode.YearRange, contextDate, startYear: startYear, endYear: endYear);
+                    child.SetValues(CalendarViewMode.Decade, startYear: startYear, endYear: endYear);
                     break;
             }
         }
     }
 
-    internal void UpdateMode(CalendarYearViewMode mode)
+    internal void UpdateMode(CalendarViewMode mode)
     {
         Mode = mode;
         RefreshButtons();

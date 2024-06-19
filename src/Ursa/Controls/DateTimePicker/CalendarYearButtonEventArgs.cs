@@ -8,10 +8,10 @@ public class CalendarYearButtonEventArgs: RoutedEventArgs
     public int? Month { get; }
     public int? StartYear { get; }
     public int? EndYear { get; }
-    internal CalendarYearViewMode Mode { get; }
+    internal CalendarViewMode Mode { get; }
 
     /// <inheritdoc />
-    internal CalendarYearButtonEventArgs(CalendarYearViewMode mode, int? year, int? month, int? startYear, int? endYear )
+    internal CalendarYearButtonEventArgs(CalendarViewMode mode, int? year, int? month, int? startYear, int? endYear )
     {
         Year = year;
         Month = month;

@@ -8,15 +8,6 @@ using Irihi.Avalonia.Shared.Common;
 
 namespace Ursa.Controls;
 
-internal enum CalendarYearViewMode
-{
-    Month,
-    Year,
-
-    // The button represents 10 years. 
-    YearRange
-}
-
 [PseudoClasses(PC_Range, PseudoClassName.PC_Selected)]
 public class CalendarYearButton : ContentControl
 {
@@ -31,15 +22,15 @@ public class CalendarYearButton : ContentControl
         PressedMixin.Attach<CalendarYearButton>();
     }
 
-    internal int Year { get; private set; }
+    internal int? Year { get; private set; }
 
-    internal int Month { get; private set; }
+    internal int? Month { get; private set; }
 
-    internal int StartYear { get; private set; }
+    internal int? StartYear { get; private set; }
 
-    internal int EndYear { get; private set; }
+    internal int? EndYear { get; private set; }
 
-    internal CalendarYearViewMode Mode { get; private set; }
+    internal CalendarViewMode Mode { get; private set; }
 
     public event EventHandler<CalendarDayButtonEventArgs> ItemSelected
     {
@@ -47,7 +38,7 @@ public class CalendarYearButton : ContentControl
         remove => RemoveHandler(ItemSelectedEvent, value);
     }
 
-    internal void SetValues(CalendarYearViewMode mode, DateTime contextDate, int? month = null, int? year = null,
+    internal void SetValues(CalendarViewMode mode, int? month = null, int? year = null,
         int? startYear = null, int? endYear = null)
     {
         Debug.Assert(!(month is null && year is null && startYear is null && endYear is null));
@@ -58,9 +49,10 @@ public class CalendarYearButton : ContentControl
         EndYear = endYear ?? 0;
         Content = Mode switch
         {
-            CalendarYearViewMode.Month => DateTimeHelper.GetCurrentDateTimeFormatInfo().AbbreviatedMonthNames[Month],
-            CalendarYearViewMode.Year => Year.ToString(),
-            CalendarYearViewMode.YearRange => StartYear + "-" + EndYear,
+            CalendarViewMode.Month => DateTimeHelper.GetCurrentDateTimeFormatInfo().AbbreviatedMonthNames[Month.Value],
+            CalendarViewMode.Year => Year.ToString(),
+            CalendarViewMode.Decade => StartYear + "-" + EndYear,
+            CalendarViewMode.Century => StartYear + "-" + EndYear,
             _ => Content
         };
     }

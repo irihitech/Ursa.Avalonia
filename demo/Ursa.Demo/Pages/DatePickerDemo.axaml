@@ -8,6 +8,6 @@
     <StackPanel Margin="20" HorizontalAlignment="Left">
         <u:CalendarMonthView />
         <u:CalendarYearView />
-        <u:CalendarDisplayControl/>
+        <u:CalendarView/>
     </StackPanel>
 </UserControl>
