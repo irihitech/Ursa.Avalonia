@@ -6,6 +6,6 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.DatePickerDemo">
     <StackPanel Margin="20" HorizontalAlignment="Left">
-        <u:CalendarView/>
+        <u:CalendarView OnDateSelected="CalendarView_OnOnDateSelected" OnDatePreviewed="CalendarView_OnOnDatePreviewed"/>
     </StackPanel>
 </UserControl>
