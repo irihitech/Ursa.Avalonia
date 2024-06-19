@@ -195,7 +195,7 @@ public class CalendarDayButton : ContentControl
     {
         base.OnPointerEntered(e);
         if (DataContext is DateTime d)
-            RaiseEvent(new CalendarDayButtonEventArgs(d) { RoutedEvent = DateSelectedEvent, Source = this });
+            RaiseEvent(new CalendarDayButtonEventArgs(d) { RoutedEvent = DatePreviewedEvent, Source = this });
     }
 
     internal void ResetSelection()

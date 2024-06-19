@@ -168,7 +168,7 @@
                     <Grid RowDefinitions="Auto, *">
                         <Grid Grid.Row="0" ColumnDefinitions="Auto, Auto,*, Auto, Auto">
                             <Button
-                                Name="{x:Static u:CalendarView.PART_PreviousYearButton}"
+                                Name="{x:Static u:CalendarView.PART_FastPreviousButton}"
                                 Grid.Column="0"
                                 HorizontalContentAlignment="Left"
                                 Foreground="{TemplateBinding Foreground}"
@@ -227,7 +227,7 @@
                                     Foreground="{DynamicResource CalendarItemIconForeground}" />
                             </Button>
                             <Button
-                                Name="{x:Static u:CalendarView.PART_NextYearButton}"
+                                Name="{x:Static u:CalendarView.PART_FastNextButton}"
                                 Grid.Column="4"
                                 HorizontalContentAlignment="Left"
                                 Foreground="{TemplateBinding Foreground}"
