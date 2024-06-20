@@ -21,9 +21,7 @@
                             RadiusX="{Binding #PART_Ellipse.Bounds.Width, Converter={StaticResource DivideByTwoConverter}}"
                             RadiusY="{Binding #PART_Ellipse.Bounds.Height, Converter={StaticResource DivideByTwoConverter}}" />
                     </Panel.Clip>
-                    <Ellipse
-                        Name="PART_Ellipse"
-                        Fill="Transparent"/>
+                    <Ellipse Name="PART_Ellipse" />
                     <Ellipse
                         Fill="{TemplateBinding Background}"
                         IsVisible="{TemplateBinding Source, Converter={x:Static ObjectConverters.IsNull}}" />
@@ -131,5 +129,12 @@
             <Setter Property="FontSize" Value="64" />
         </Style>
     </ControlTheme>
-    <ControlTheme x:Key="{x:Type u:AvatarGroup}" TargetType="{x:Type u:AvatarGroup}" />
+
+    <ControlTheme x:Key="{x:Type u:AvatarGroup}" TargetType="{x:Type u:AvatarGroup}">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:AvatarGroup">
+                <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
 </ResourceDictionary>

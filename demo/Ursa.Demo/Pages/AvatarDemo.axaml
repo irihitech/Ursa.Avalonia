@@ -64,5 +64,14 @@
             <u:Avatar Classes="Large" />
             <u:Avatar Classes="ExtraLarge" />
         </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <u:AvatarGroup>
+                <u:Avatar Classes="Red" Content="LL" />
+                <u:Avatar Classes="" Content="CX" />
+                <u:Avatar Classes="Amber" Content="RM" />
+                <u:Avatar Background="#FDE3CF" Foreground="#F56A00" Content="ZL" />
+                <u:Avatar Background="#87D068" Classes="" Content="YZ" />
+            </u:AvatarGroup>
+        </StackPanel>
     </StackPanel>
 </UserControl>
