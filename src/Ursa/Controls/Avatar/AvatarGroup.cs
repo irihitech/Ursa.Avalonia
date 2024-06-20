@@ -8,8 +8,7 @@ public class AvatarGroup : ItemsControl
 {
     public const string PART_RenderMore = "PART_RenderMore";
 
-    private static readonly FuncTemplate<Panel?> DefaultPanel =
-        new(() => new AvatarGroupPanel());
+    private static readonly FuncTemplate<Panel?> DefaultPanel = new(() => new AvatarGroupPanel());
 
     public static readonly StyledProperty<int> MaxCountProperty = AvaloniaProperty.Register<AvatarGroup, int>(
         nameof(MaxCount));

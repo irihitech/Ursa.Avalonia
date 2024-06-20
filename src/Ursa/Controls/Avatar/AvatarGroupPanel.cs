@@ -11,12 +11,13 @@ public class AvatarGroupPanel : Panel
         Size size = new Size();
         availableSize = availableSize.WithWidth(double.PositiveInfinity);
         var children = Children;
-        foreach (var child in children)
+        if (children.Count > 0)
         {
-            child.Measure(availableSize);
-            Size desiredSize = child.DesiredSize;
-            size = size.WithWidth(size.Width + desiredSize.Width);
-            size = size.WithHeight(Math.Max(size.Height, desiredSize.Height));
+            children[0].Measure(availableSize);
+            Size first = children[0].DesiredSize;
+            var width = first.Width + first.Width * (children.Count - 1) * 0.75;
+            size = size.WithWidth(width);
+            size = size.WithHeight(first.Height);
         }
 
         size = size.WithWidth(size.Width);
@@ -30,17 +31,17 @@ public class AvatarGroupPanel : Panel
         var children = Children;
         foreach (var child in children)
         {
+            child.Measure(finalSize);
             Size desiredSize = child.DesiredSize;
             double width = desiredSize.Width;
             double height = Math.Max(desiredSize.Height, finalSize.Height);
             rect = rect.WithX(rect.X + num);
             rect = rect.WithWidth(width);
             rect = rect.WithHeight(height);
-            num = width;
+            num = width * 0.75;
             child.Arrange(rect);
         }
 
-        RaiseEvent(new RoutedEventArgs(StackPanel.HorizontalSnapPointsChangedEvent));
         return finalSize;
     }
 }

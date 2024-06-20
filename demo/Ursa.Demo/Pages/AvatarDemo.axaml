@@ -72,6 +72,7 @@
                 <u:Avatar Background="#FDE3CF" Foreground="#F56A00" Content="ZL" />
                 <u:Avatar Background="#87D068" Classes="" Content="YZ" />
             </u:AvatarGroup>
+            <u:Avatar />
         </StackPanel>
     </StackPanel>
 </UserControl>
