@@ -529,5 +529,10 @@ public class CalendarView : TemplatedControl
             _monthButton?.SetValue(ContentControl.ContentProperty,
                 DateTimeHelper.GetCurrentDateTimeFormatInfo().AbbreviatedMonthNames[ContextCalendar.Month-1 ?? 0]);
         }
+
+        bool canForward = !(ContextCalendar.EndYear <= 0) && !(ContextCalendar.Year <= 0);
+        bool canNext = !(ContextCalendar.StartYear > 9999) && !(ContextCalendar.EndYear > 9999);
+        IsEnabledProperty.SetValue(canForward, _previousButton, _fastPreviousButton);
+        IsEnabledProperty.SetValue(canNext, _nextButton, _fastNextButton);
     }
 }

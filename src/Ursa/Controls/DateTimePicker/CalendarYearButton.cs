@@ -39,15 +39,27 @@ public class CalendarYearButton : ContentControl
         CalendarContext.Year = context.Year;
         CalendarContext.StartYear = context.StartYear;
         CalendarContext.EndYear = context.EndYear;
-        this.Mode = mode;
-        Content = Mode switch
+        Mode = mode;
+        switch (Mode)
         {
-            CalendarViewMode.Year => DateTimeHelper.GetCurrentDateTimeFormatInfo().AbbreviatedMonthNames[ CalendarContext.Month ?? 0 ],
-            CalendarViewMode.Decade => CalendarContext.Year?.ToString(),
-            CalendarViewMode.Century => CalendarContext.StartYear + "-" + CalendarContext.EndYear,
-            // CalendarViewMode.Century => CalendarContext.StartYear + "-" + CalendarContext.EndYear,
-            _ => Content
-        };
+            case CalendarViewMode.Year:
+                Content = DateTimeHelper.GetCurrentDateTimeFormatInfo()
+                    .AbbreviatedMonthNames[CalendarContext.Month ?? 0];
+                break;
+            case CalendarViewMode.Decade:
+                Content = CalendarContext.Year <= 0 || CalendarContext.Year > 9999
+                    ? null
+                    : CalendarContext.Year?.ToString();
+                break;
+            case CalendarViewMode.Century:
+                Content = CalendarContext.EndYear <= 0 || CalendarContext.StartYear > 9999
+                    ? null
+                    : CalendarContext.StartYear + "-" + CalendarContext.EndYear;
+                break;
+            default:
+                Content = null;
+                break;
+        }
         IsEnabled = Content != null;
     }
 

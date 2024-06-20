@@ -160,13 +160,16 @@
         </Style>
     </ControlTheme>
     <ControlTheme x:Key="{x:Type u:CalendarView}" TargetType="u:CalendarView">
-        <Setter Property="MinHeight" Value="300" />
-        <Setter Property="MinWidth" Value="300" />
+        <Setter Property="MinHeight" Value="260" />
+        <Setter Property="MinWidth" Value="260" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:CalendarView">
                 <Panel>
                     <Grid RowDefinitions="Auto, *">
-                        <Grid Grid.Row="0" ColumnDefinitions="Auto, Auto,*, Auto, Auto">
+                        <Grid
+                            Grid.Row="0"
+                            Margin="0,0,0,16"
+                            ColumnDefinitions="Auto, Auto,*, Auto, Auto">
                             <Button
                                 Name="{x:Static u:CalendarView.PART_FastPreviousButton}"
                                 Grid.Column="0"
@@ -176,7 +179,7 @@
                                 <PathIcon
                                     Width="12"
                                     Height="12"
-                                    Data="{DynamicResource CalendarItemPreviousIconGlyph}"
+                                    Data="{DynamicResource CalendarViewFastForwardGlyph}"
                                     Foreground="{DynamicResource CalendarItemIconForeground}" />
                             </Button>
 
@@ -209,10 +212,10 @@
                                 <Button
                                     Name="{x:Static u:CalendarView.PART_HeaderButton}"
                                     Grid.Column="0"
-                                    IsVisible="True"
                                     Grid.ColumnSpan="2"
                                     HorizontalAlignment="Stretch"
-                                    HorizontalContentAlignment="Center" />
+                                    HorizontalContentAlignment="Center"
+                                    IsVisible="True" />
                             </Grid>
                             <Button
                                 Name="{x:Static u:CalendarView.PART_NextButton}"
@@ -235,7 +238,7 @@
                                 <PathIcon
                                     Width="12"
                                     Height="12"
-                                    Data="{DynamicResource CalendarItemNextIconGlyph}"
+                                    Data="{DynamicResource CalendarViewFastBackwardGlyph}"
                                     Foreground="{DynamicResource CalendarItemIconForeground}" />
                             </Button>
                         </Grid>

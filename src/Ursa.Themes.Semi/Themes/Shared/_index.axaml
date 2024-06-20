@@ -4,6 +4,7 @@
         <MergeResourceInclude Source="Badge.axaml" />
         <MergeResourceInclude Source="Banner.axaml" />
         <MergeResourceInclude Source="ButtonGroup.axaml" />
+        <MergeResourceInclude Source="DatePicker.axaml" />
         <MergeResourceInclude Source="Dialog.axaml" />
         <MergeResourceInclude Source="DialogShared.axaml" />
         <MergeResourceInclude Source="Divider.axaml" />
