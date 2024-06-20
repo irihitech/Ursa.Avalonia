@@ -9,6 +9,6 @@
         <u:CalendarView OnDateSelected="CalendarView_OnOnDateSelected" OnDatePreviewed="CalendarView_OnOnDatePreviewed"/>
         <TextBlock Text="{Binding #singlePicker.SelectedDate}" ></TextBlock>
         <u:DatePicker Name="singlePicker" Width="200"  />
-        
+        <u:DateRangePicker Width="300" DisplayFormat="yyyyMMdd" />
     </StackPanel>
 </UserControl>

@@ -9,6 +9,7 @@
         <ResourceInclude Source="ControlClassesInput.axaml" />
         <ResourceInclude Source="Clock.axaml" />
         <ResourceInclude Source="DatePicker.axaml" />
+        <ResourceInclude Source="DateRangePicker.axaml" />
         <ResourceInclude Source="Dialog.axaml" />
         <ResourceInclude Source="DialogShared.axaml" />
         <ResourceInclude Source="DisableContainer.axaml" />

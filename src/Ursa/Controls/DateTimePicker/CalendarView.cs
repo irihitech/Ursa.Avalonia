@@ -140,7 +140,6 @@ public class CalendarView : TemplatedControl
         InitializeGridButtons();
         UpdateDayButtons();
         UpdateYearButtons();
-        UpdateHeaderButtons();
     }
 
     private void OnFastNext(object sender, RoutedEventArgs e)
@@ -150,8 +149,6 @@ public class CalendarView : TemplatedControl
             ContextCalendar.Year += 1;
             UpdateDayButtons();
         }
-
-        UpdateHeaderButtons();
     }
 
     private void OnNext(object sender, RoutedEventArgs e)
@@ -184,8 +181,6 @@ public class CalendarView : TemplatedControl
             ContextCalendar.EndYear += 100;
             UpdateYearButtons();
         }
-
-        UpdateHeaderButtons();
     }
 
     private void OnPrevious(object sender, RoutedEventArgs e)
@@ -218,8 +213,6 @@ public class CalendarView : TemplatedControl
             ContextCalendar.EndYear -= 100;
             UpdateYearButtons();
         }
-
-        UpdateHeaderButtons();
     }
 
     private void OnFastPrevious(object sender, RoutedEventArgs e)
@@ -229,8 +222,6 @@ public class CalendarView : TemplatedControl
             ContextCalendar.Year -= 1;
             UpdateDayButtons();
         }
-
-        UpdateHeaderButtons();
     }
 
     /// <summary>
@@ -248,7 +239,6 @@ public class CalendarView : TemplatedControl
             var range = DateTimeHelper.GetDecadeViewRangeByYear(ContextCalendar.Year!.Value);
             ContextCalendar.StartYear = range.start;
             ContextCalendar.EndYear = range.end;
-            UpdateHeaderButtons();
             UpdateYearButtons();
             return;
         }
@@ -259,7 +249,6 @@ public class CalendarView : TemplatedControl
             var range = DateTimeHelper.GetCenturyViewRangeByYear(ContextCalendar.StartYear!.Value);
             ContextCalendar.StartYear = range.start;
             ContextCalendar.EndYear = range.end;
-            UpdateHeaderButtons();
             UpdateYearButtons();
             return;
         }
@@ -314,7 +303,7 @@ public class CalendarView : TemplatedControl
         }
     }
 
-    private void UpdateDayButtons()
+    internal void UpdateDayButtons()
     {
         if (_monthGrid is null || Mode != CalendarViewMode.Month) return;
         var children = _monthGrid.Children;
@@ -335,6 +324,7 @@ public class CalendarView : TemplatedControl
 
         FadeOutDayButtons();
         MarkDates(_start, _end, _previewStart, _previewEnd);
+        UpdateHeaderButtons();
     }
 
     private void UpdateYearButtons()
@@ -374,6 +364,7 @@ public class CalendarView : TemplatedControl
                 child?.SetContext(CalendarViewMode.Year, new CalendarContext { Month = i });
             }
         }
+        UpdateHeaderButtons();
     }
 
     private void FadeOutDayButtons()
@@ -412,7 +403,7 @@ public class CalendarView : TemplatedControl
 
     private void OnCellDatePreviewed(object sender, CalendarDayButtonEventArgs e)
     {
-        OnDatePreviewed?.Invoke(sender, e);
+        OnDatePreviewed?.Invoke(this, e);
     }
 
     private void OnCellDateSelected(object sender, CalendarDayButtonEventArgs e)
@@ -423,10 +414,9 @@ public class CalendarView : TemplatedControl
             ContextCalendar.Year = e.Date.Year;
             ContextCalendar.Day = 1;
             UpdateDayButtons();
-            UpdateHeaderButtons();
         }
 
-        OnDateSelected?.Invoke(sender, e);
+        OnDateSelected?.Invoke(this, e);
     }
 
     /// <summary>
@@ -437,7 +427,6 @@ public class CalendarView : TemplatedControl
     private void OnHeaderMonthButtonClick(object sender, RoutedEventArgs e)
     {
         SetCurrentValue(ModeProperty, CalendarViewMode.Year);
-        UpdateHeaderButtons();
         UpdateYearButtons();
     }
 
@@ -453,7 +442,6 @@ public class CalendarView : TemplatedControl
         var range = DateTimeHelper.GetDecadeViewRangeByYear(ContextCalendar.Year!.Value);
         ContextCalendar.StartYear = range.start;
         ContextCalendar.EndYear = range.end;
-        UpdateHeaderButtons();
         UpdateYearButtons();
     }
 

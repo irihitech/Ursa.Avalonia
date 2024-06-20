@@ -34,6 +34,15 @@ public class DatePicker: DatePickerBase, IClearControl
         set => SetValue(SelectedDateProperty, value);
     }
 
+    public static readonly StyledProperty<string?> WatermarkProperty = AvaloniaProperty.Register<DatePicker, string?>(
+        nameof(Watermark));
+
+    public string? Watermark
+    {
+        get => GetValue(WatermarkProperty);
+        set => SetValue(WatermarkProperty, value);
+    }
+
     static DatePicker()
     {
         SelectedDateProperty.Changed.AddClassHandler<DatePicker, DateTime?>((picker, args) =>
@@ -86,6 +95,7 @@ public class DatePicker: DatePickerBase, IClearControl
     private void OnDateSelected(object sender, CalendarDayButtonEventArgs e)
     {
         SetCurrentValue(SelectedDateProperty, e.Date);
+        SetCurrentValue(IsDropdownOpenProperty, false);
     }
 
     private void OnButtonClick(object sender, RoutedEventArgs e)
@@ -96,6 +106,12 @@ public class DatePicker: DatePickerBase, IClearControl
 
     private void OnTextBoxPointerPressed(object sender, PointerPressedEventArgs e)
     {
+        if (_calendar is not null)
+        {
+            var date = SelectedDate ?? DateTime.Today;
+            _calendar.ContextCalendar = new CalendarContext(date.Year, date.Month, 1);
+            _calendar.UpdateDayButtons();
+        }
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
 
@@ -120,6 +136,12 @@ public class DatePicker: DatePickerBase, IClearControl
                     out var date))
             {
                 SetCurrentValue(SelectedDateProperty, date);
+                if (_calendar is not null)
+                {
+                    var d = SelectedDate ?? DateTime.Today;
+                    _calendar.ContextCalendar = new CalendarContext(date.Year, date.Month, 1);
+                    _calendar.UpdateDayButtons();
+                }
                 _calendar?.MarkDates(startDate: date, endDate: date);
             }
         }
@@ -127,7 +149,13 @@ public class DatePicker: DatePickerBase, IClearControl
 
     private void OnTextBoxGetFocus(object sender, GotFocusEventArgs e)
     {
-        SetCurrentValue(IsDropdownOpenProperty, true); 
+        if (_calendar is not null)
+        {
+            var date = SelectedDate ?? DateTime.Today;
+            _calendar.ContextCalendar = new CalendarContext(date.Year, date.Month, 1);
+            _calendar.UpdateDayButtons();
+        }
+        SetCurrentValue(IsDropdownOpenProperty, true);
     }
     
     protected override void OnKeyDown(KeyEventArgs e)
