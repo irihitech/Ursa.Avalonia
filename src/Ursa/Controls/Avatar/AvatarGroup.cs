@@ -1,7 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using Avalonia.Layout;
 
 namespace Ursa.Controls;
 
@@ -10,7 +9,7 @@ public class AvatarGroup : ItemsControl
     public const string PART_RenderMore = "PART_RenderMore";
 
     private static readonly FuncTemplate<Panel?> DefaultPanel =
-        new(() => new StackPanel { Orientation = Orientation.Horizontal });
+        new(() => new AvatarGroupPanel());
 
     public static readonly StyledProperty<int> MaxCountProperty = AvaloniaProperty.Register<AvatarGroup, int>(
         nameof(MaxCount));
