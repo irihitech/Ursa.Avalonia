@@ -362,7 +362,7 @@ public class CalendarView : TemplatedControl
             for (var i = 0; i < 12; i++)
             {
                 var child = _yearGrid.Children[i] as CalendarYearButton;
-                child?.SetContext(CalendarViewMode.Year, new CalendarContext { Month = i });
+                child?.SetContext(CalendarViewMode.Year, new CalendarContext { Month = i+1 });
             }
         }
         UpdateHeaderButtons();

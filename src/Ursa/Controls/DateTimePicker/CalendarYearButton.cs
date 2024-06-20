@@ -44,7 +44,7 @@ public class CalendarYearButton : ContentControl
         {
             case CalendarViewMode.Year:
                 Content = DateTimeHelper.GetCurrentDateTimeFormatInfo()
-                    .AbbreviatedMonthNames[CalendarContext.Month ?? 0];
+                    .AbbreviatedMonthNames[(CalendarContext.Month - 1) ?? 0];
                 break;
             case CalendarViewMode.Decade:
                 Content = CalendarContext.Year <= 0 || CalendarContext.Year > 9999
