@@ -1,6 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Interactivity;
+using Avalonia.LogicalTree;
 
 namespace Ursa.Controls;
 
@@ -28,18 +28,25 @@ public class AvatarGroupPanel : Panel
     {
         Rect rect = new Rect(finalSize);
         double num = 0d;
+        var group = this.GetLogicalAncestors().OfType<AvatarGroup>().FirstOrDefault();
+        var overlapFrom = group?.OverlapFrom;
         var children = Children;
-        foreach (var child in children)
+        for (var i = 0; i < children.Count; i++)
         {
-            child.Measure(finalSize);
-            Size desiredSize = child.DesiredSize;
+            if (overlapFrom is OverlapFromType.Start)
+            {
+                children[i].ZIndex = children.Count - i;
+            }
+
+            children[i].Measure(finalSize);
+            Size desiredSize = children[i].DesiredSize;
             double width = desiredSize.Width;
             double height = Math.Max(desiredSize.Height, finalSize.Height);
             rect = rect.WithX(rect.X + num);
             rect = rect.WithWidth(width);
             rect = rect.WithHeight(height);
             num = width * 0.75;
-            child.Arrange(rect);
+            children[i].Arrange(rect);
         }
 
         return finalSize;

@@ -15,7 +15,7 @@ public class AvatarGroup : ItemsControl
 
     public static readonly StyledProperty<OverlapFromType> OverlapFromProperty =
         AvaloniaProperty.Register<AvatarGroup, OverlapFromType>(
-            nameof(OverlapFrom));
+            nameof(OverlapFrom), defaultValue: OverlapFromType.Start);
 
     public int MaxCount
     {
