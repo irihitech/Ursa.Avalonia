@@ -4,6 +4,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Irihi.Avalonia.Shared.Helpers;
@@ -408,10 +409,10 @@ public class CalendarView : TemplatedControl
 
     private void OnCellDateSelected(object sender, CalendarDayButtonEventArgs e)
     {
-        if (e.Date.Month != ContextCalendar.Month)
+        if (e.Date.HasValue && e.Date.Value.Month != ContextCalendar.Month)
         {
-            ContextCalendar.Month = e.Date.Month;
-            ContextCalendar.Year = e.Date.Year;
+            ContextCalendar.Month = e.Date.Value.Month;
+            ContextCalendar.Year = e.Date.Value.Year;
             ContextCalendar.Day = 1;
             UpdateDayButtons();
         }
@@ -574,5 +575,11 @@ public class CalendarView : TemplatedControl
             button.IsEndDate = false;
             button.IsInRange = false;
         }
+    }
+
+    protected override void OnPointerExited(PointerEventArgs e)
+    {
+        base.OnPointerExited(e);
+        OnDatePreviewed?.Invoke(this, new CalendarDayButtonEventArgs(null));
     }
 }

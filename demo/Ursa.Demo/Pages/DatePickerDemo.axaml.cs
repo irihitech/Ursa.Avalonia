@@ -15,11 +15,11 @@ public partial class DatePickerDemo : UserControl
 
     private void CalendarView_OnOnDateSelected(object? sender, CalendarDayButtonEventArgs e)
     {
-        Debug.WriteLine("Pressed: "+ e.Date.ToLongDateString());
+        Debug.WriteLine("Pressed: "+ e.Date?.ToLongDateString());
     }
 
     private void CalendarView_OnOnDatePreviewed(object? sender, CalendarDayButtonEventArgs e)
     {
-        Debug.WriteLine("Hovered: "+e.Date.ToLongDateString());
+        Debug.WriteLine("Hovered: "+e.Date?.ToLongDateString());
     }
 }

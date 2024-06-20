@@ -2,7 +2,7 @@
 
 namespace Ursa.Controls;
 
-public class CalendarDayButtonEventArgs(DateTime date) : RoutedEventArgs
+public class CalendarDayButtonEventArgs(DateTime? date) : RoutedEventArgs
 {
-    public DateTime Date { get; private set; } = date;
+    public DateTime? Date { get; private set; } = date;
 }

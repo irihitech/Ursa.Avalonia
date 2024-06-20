@@ -1,3 +1,4 @@
+using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -158,14 +159,10 @@ public class DateRangePicker : DatePickerBase
         {
             if (SelectedEndDate < e.Date)
             {
-                // Select a start date that is out of current range, so clear selection.
-                // _startCalendar?.ClearSelection();
-                // _endCalendar?.ClearSelection();
-                SelectedStartDate = null;
                 SelectedEndDate = null;
             }
             SetCurrentValue(SelectedStartDateProperty, e.Date);
-            _startTextBox?.SetValue(TextBox.TextProperty, e.Date.ToString(DisplayFormat ?? "yyyy-MM-dd"));
+            _startTextBox?.SetValue(TextBox.TextProperty, e.Date?.ToString(DisplayFormat ?? "yyyy-MM-dd"));
             _start = false;
             _previewStart = null;
             _previewEnd = null;
@@ -177,20 +174,24 @@ public class DateRangePicker : DatePickerBase
         {
             if (SelectedStartDate > e.Date)
             {
-                // Select a start date that is out of current range, so clear selection.
-                // _startCalendar?.ClearSelection();
-                // _endCalendar?.ClearSelection();
                 SelectedStartDate = null;
-                SelectedEndDate = null;
             }
             SetCurrentValue(SelectedEndDateProperty, e.Date);
-            _endTextBox?.SetValue(TextBox.TextProperty, e.Date.ToString(DisplayFormat ?? "yyyy-MM-dd"));
+            _endTextBox?.SetValue(TextBox.TextProperty, e.Date?.ToString(DisplayFormat ?? "yyyy-MM-dd"));
             _start = null;
             _previewStart = null;
             _previewEnd = null;
             _startCalendar?.MarkDates(SelectedStartDate, SelectedEndDate, _previewStart, _previewEnd);
             _endCalendar?.MarkDates(SelectedStartDate, SelectedEndDate, _previewStart, _previewEnd);
-            SetCurrentValue(IsDropdownOpenProperty, false);
+            if (SelectedStartDate is null)
+            {
+                _start = true;
+                _startTextBox?.Focus();
+            }
+            else
+            {
+                SetCurrentValue(IsDropdownOpenProperty, false);
+            }
         }
         
     }
@@ -216,8 +217,7 @@ public class DateRangePicker : DatePickerBase
 
             if (_endCalendar is not null)
             {
-                var date2 = SelectedStartDate ?? SelectedEndDate ?? DateTime.Today;
-                date2 = SelectedStartDate is null ? date2 : date2.AddMonths(1);
+                var date2 = SelectedEndDate ?? SelectedStartDate ?? DateTime.Today;
                 _endCalendar.ContextCalendar = new CalendarContext(date2.Year, date2.Month, 1);
                 _endCalendar.UpdateDayButtons();
             }
@@ -227,8 +227,7 @@ public class DateRangePicker : DatePickerBase
             _start = false;
             if (_startCalendar is not null)
             {
-                var date2 = SelectedEndDate ?? DateTime.Today;
-                date2 = date2.AddMonths(-1);
+                var date2 = SelectedStartDate ?? SelectedEndDate ?? DateTime.Today;
                 _startCalendar.ContextCalendar = new CalendarContext(date2.Year, date2.Month, 1);
                 _startCalendar.UpdateDayButtons();
             }
@@ -244,7 +243,55 @@ public class DateRangePicker : DatePickerBase
 
     private void OnTextChanged(object sender, TextChangedEventArgs e)
     {
-        //throw new NotImplementedException();
+        if (sender == _startTextBox)
+        {
+            OnTextChangedInternal(_startTextBox, SelectedStartDateProperty);
+        }
+        else if (sender == _endTextBox)
+        {
+            OnTextChangedInternal(_endTextBox, SelectedEndDateProperty);
+        }
+    }
+
+    private void OnTextChangedInternal(TextBox? textBox, AvaloniaProperty property)
+    {
+        if (string.IsNullOrEmpty(textBox?.Text))
+        {
+            SetCurrentValue(property, null);
+            _startCalendar?.ClearSelection();
+            _endCalendar?.ClearSelection();
+        }
+        else if (DisplayFormat is null || DisplayFormat.Length == 0)
+        {
+            if (DateTime.TryParse(textBox?.Text, out var defaultTime))
+            {
+                SetCurrentValue(property, defaultTime);
+                _startCalendar?.MarkDates(startDate: defaultTime, endDate: defaultTime);
+                _endCalendar?.MarkDates(startDate: defaultTime, endDate: defaultTime);
+            }
+        }
+        else
+        {
+            if (DateTime.TryParseExact(textBox?.Text, DisplayFormat, CultureInfo.CurrentUICulture, DateTimeStyles.None,
+                    out var date))
+            {
+                SetCurrentValue(property, date);
+                if (_startCalendar is not null)
+                {
+                    var date1 = SelectedStartDate ?? DateTime.Today;
+                    _startCalendar.ContextCalendar = new CalendarContext(date1.Year, date.Month, 1);
+                    _startCalendar.UpdateDayButtons();
+                    _startCalendar?.MarkDates(SelectedStartDate, SelectedEndDate, _previewStart, _previewEnd);
+                }
+                if (_endCalendar is not null)
+                {
+                    var date2 = SelectedEndDate ?? DateTime.Today;
+                    _endCalendar.ContextCalendar = new CalendarContext(date2.Year, date2.Month, 1);
+                    _endCalendar.UpdateDayButtons();
+                    _endCalendar?.MarkDates(SelectedStartDate, SelectedEndDate, _previewStart, _previewEnd);
+                }
+            }
+        }
     }
 
     private void OnTextBoxGetFocus(object sender, GotFocusEventArgs e)
