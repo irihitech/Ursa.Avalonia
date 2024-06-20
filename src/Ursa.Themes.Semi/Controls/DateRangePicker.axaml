@@ -66,7 +66,7 @@
                                 Name="{x:Static u:DateRangePicker.PART_Button}"
                                 Grid.Column="3"
                                 Padding="8,0"
-                                Content="{DynamicResource TimePickerIconGlyph}"
+                                Content="{DynamicResource CalendarDatePickerIconGlyph}"
                                 Focusable="False"
                                 Theme="{DynamicResource InnerIconButton}" />
                         </Grid>
@@ -87,24 +87,49 @@
                                 BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
                                 ClipToBounds="True"
                                 CornerRadius="6">
-                                <Grid ColumnDefinitions="*, *">
-                                    <u:CalendarView
-                                        Name="{x:Static u:DateRangePicker.PART_StartCalendar}"
-                                        Grid.Column="0"
-                                        Margin="8"
-                                        BorderThickness="0"
-                                        CornerRadius="{Binding $parent[Border].CornerRadius}"
-                                        FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
-                                        IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
-                                    <u:CalendarView
-                                        Name="{x:Static u:DateRangePicker.PART_EndCalendar}"
-                                        Grid.Column="1"
-                                        Margin="8"
-                                        BorderThickness="0"
-                                        CornerRadius="{Binding $parent[Border].CornerRadius}"
-                                        FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
-                                        IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
-                                </Grid>
+                                <DockPanel>
+                                    <!--
+                                    <StackPanel DockPanel.Dock="Bottom" IsVisible="{TemplateBinding NeedConfirmation}">
+                                        <Button
+                                            Margin="8"
+                                            HorizontalAlignment="Right"
+                                            Command="{Binding $parent[u:TimeRangePicker].Confirm}"
+                                            Content="{DynamicResource STRING_DATE_TIME_CONFIRM}" />
+                                    </StackPanel>
+                                    -->
+                                    <ContentPresenter
+                                        Name="PART_PopupHeader"
+                                        Margin="8,8,8,0"
+                                        Content="{TemplateBinding PopupInnerTopContent}"
+                                        DockPanel.Dock="Top"
+                                        IsVisible="{TemplateBinding PopupInnerTopContent,
+                                                                    Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                    <ContentPresenter
+                                        Name="PART_PopupFooter"
+                                        Margin="8,0,8,8"
+                                        Content="{TemplateBinding PopupInnerBottomContent}"
+                                        DockPanel.Dock="Bottom"
+                                        IsVisible="{TemplateBinding PopupInnerBottomContent,
+                                                                    Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                    <Grid ColumnDefinitions="*, *">
+                                        <u:CalendarView
+                                            Name="{x:Static u:DateRangePicker.PART_StartCalendar}"
+                                            Grid.Column="0"
+                                            Margin="8"
+                                            BorderThickness="0"
+                                            CornerRadius="{Binding $parent[Border].CornerRadius}"
+                                            FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
+                                            IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
+                                        <u:CalendarView
+                                            Name="{x:Static u:DateRangePicker.PART_EndCalendar}"
+                                            Grid.Column="1"
+                                            Margin="8"
+                                            BorderThickness="0"
+                                            CornerRadius="{Binding $parent[Border].CornerRadius}"
+                                            FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
+                                            IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
+                                    </Grid>
+                                </DockPanel>
                             </Border>
                         </Popup>
                     </Panel>

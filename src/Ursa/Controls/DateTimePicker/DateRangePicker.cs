@@ -217,26 +217,37 @@ public class DateRangePicker : DatePickerBase
 
             if (_endCalendar is not null)
             {
-                var date2 = SelectedEndDate ?? SelectedStartDate ?? DateTime.Today;
-                _endCalendar.ContextCalendar = new CalendarContext(date2.Year, date2.Month, 1);
+                var date2 = SelectedEndDate;
+                if (date2 is null || (date2.Value.Year==SelectedStartDate?.Year && date2.Value.Month == SelectedStartDate?.Month))
+                {
+                    date2 = SelectedStartDate ?? DateTime.Today;
+                    date2 = date2.Value.AddMonths(1);
+                }
+                _endCalendar.ContextCalendar = new CalendarContext(date2?.Year, date2?.Month, 1);
                 _endCalendar.UpdateDayButtons();
             }
         }
         else if (sender == _endTextBox)
         {
             _start = false;
-            if (_startCalendar is not null)
-            {
-                var date2 = SelectedStartDate ?? SelectedEndDate ?? DateTime.Today;
-                _startCalendar.ContextCalendar = new CalendarContext(date2.Year, date2.Month, 1);
-                _startCalendar.UpdateDayButtons();
-            }
             if (_endCalendar is not null)
             {
                 var date = SelectedEndDate ?? DateTime.Today;
                 _endCalendar.ContextCalendar = new CalendarContext(date.Year, date.Month, 1);
                 _endCalendar.UpdateDayButtons();
             }
+            if (_startCalendar is not null)
+            {
+                var date2 = SelectedStartDate;
+                if (date2 is null || (date2.Value.Year==SelectedEndDate?.Year && date2.Value.Month == SelectedEndDate?.Month))
+                {
+                    date2 = SelectedStartDate ?? DateTime.Today;
+                    date2 = date2.Value.AddMonths(-1);
+                }
+                _startCalendar.ContextCalendar = new CalendarContext(date2?.Year, date2?.Month, 1);
+                _startCalendar.UpdateDayButtons();
+            }
+            
         }
         SetCurrentValue(IsDropdownOpenProperty, true);
     }

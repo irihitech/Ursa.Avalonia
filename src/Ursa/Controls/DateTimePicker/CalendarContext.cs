@@ -13,4 +13,9 @@ public class CalendarContext(int? year = null, int? month = null, int? day = nul
     {
         return new CalendarContext(Year, Month, Day) { StartYear = StartYear, EndYear = EndYear };
     }
+
+    public static CalendarContext Today()
+    {
+        return new CalendarContext(DateTime.Today.Year, DateTime.Today.Month, 1);
+    }
 }
