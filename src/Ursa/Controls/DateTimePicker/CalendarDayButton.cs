@@ -24,8 +24,7 @@ public class CalendarDayButton : ContentControl
 
     private static HashSet<string> _pseudoClasses =
     [
-        PseudoClassName.PC_Selected, PC_EndDate, PC_PreviewStartDate, 
-        PC_PreviewEndDate, PseudoClassName.PC_Selected, PC_InRange
+        PseudoClassName.PC_Selected, PC_StartDate, PC_EndDate, PC_PreviewStartDate,  PC_PreviewEndDate, PC_InRange
     ];
 
     public static readonly RoutedEvent<CalendarDayButtonEventArgs> DateSelectedEvent =
@@ -127,7 +126,7 @@ public class CalendarDayButton : ContentControl
         set
         {
             _isSelected = value;
-            PseudoClasses.Set(PseudoClassName.PC_Selected, value);
+            SetPseudoClass(PseudoClassName.PC_Selected);
         }
     }
 
@@ -168,20 +167,6 @@ public class CalendarDayButton : ContentControl
     {
         add => AddHandler(DateSelectedEvent, value);
         remove => RemoveHandler(DateSelectedEvent, value);
-    }
-
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
-    {
-        base.OnApplyTemplate(e);
-        /*
-        PseudoClasses.Set(PC_Today, IsToday);
-        PseudoClasses.Set(PC_StartDate, IsStartDate);
-        PseudoClasses.Set(PC_EndDate, IsEndDate);
-        PseudoClasses.Set(PC_PreviewStartDate, IsPreviewStartDate);
-        PseudoClasses.Set(PC_PreviewEndDate, IsPreviewEndDate);
-        PseudoClasses.Set(PC_InRange, IsInRange);
-        PseudoClasses.Set(PseudoClassName.PC_Selected, IsSelected);
-        */
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)

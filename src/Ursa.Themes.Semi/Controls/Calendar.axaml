@@ -15,6 +15,7 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="CornerRadius" Value="3" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:CalendarDayButton">
@@ -118,6 +119,7 @@
             <Setter Property="Cursor" Value="No" />
         </Style>
     </ControlTheme>
+    
     <ControlTheme x:Key="{x:Type u:CalendarYearButton}" TargetType="u:CalendarYearButton">
         <Setter Property="MinWidth" Value="32" />
         <Setter Property="MinHeight" Value="32" />
@@ -159,6 +161,7 @@
             </Style>
         </Style>
     </ControlTheme>
+    
     <ControlTheme x:Key="{x:Type u:CalendarView}" TargetType="u:CalendarView">
         <Setter Property="MinHeight" Value="260" />
         <Setter Property="MinWidth" Value="260" />

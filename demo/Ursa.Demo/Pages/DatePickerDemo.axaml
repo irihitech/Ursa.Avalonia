@@ -7,5 +7,8 @@
              x:Class="Ursa.Demo.Pages.DatePickerDemo">
     <StackPanel Margin="20" HorizontalAlignment="Left">
         <u:CalendarView OnDateSelected="CalendarView_OnOnDateSelected" OnDatePreviewed="CalendarView_OnOnDatePreviewed"/>
+        <TextBlock Text="{Binding #singlePicker.SelectedDate}" ></TextBlock>
+        <u:DatePicker Name="singlePicker" Width="200"  />
+        
     </StackPanel>
 </UserControl>

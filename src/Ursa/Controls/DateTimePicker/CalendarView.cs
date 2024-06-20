@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -60,6 +61,10 @@ public class CalendarView : TemplatedControl
     private Button? _yearButton;
     private Grid? _yearGrid;
 
+    private DateTime? _start;
+    private DateTime? _end;
+    private DateTime? _previewStart;
+    private DateTime? _previewEnd;
 
     static CalendarView()
     {
@@ -329,6 +334,7 @@ public class CalendarView : TemplatedControl
         }
 
         FadeOutDayButtons();
+        MarkDates(_start, _end, _previewStart, _previewEnd);
     }
 
     private void UpdateYearButtons()
@@ -414,7 +420,10 @@ public class CalendarView : TemplatedControl
         if (e.Date.Month != ContextCalendar.Month)
         {
             ContextCalendar.Month = e.Date.Month;
+            ContextCalendar.Year = e.Date.Year;
+            ContextCalendar.Day = 1;
             UpdateDayButtons();
+            UpdateHeaderButtons();
         }
 
         OnDateSelected?.Invoke(sender, e);
@@ -534,5 +543,48 @@ public class CalendarView : TemplatedControl
         bool canNext = !(ContextCalendar.StartYear > 9999) && !(ContextCalendar.EndYear > 9999);
         IsEnabledProperty.SetValue(canForward, _previousButton, _fastPreviousButton);
         IsEnabledProperty.SetValue(canNext, _nextButton, _fastNextButton);
+    }
+    
+    public void MarkDates(DateTime? startDate = null, DateTime? endDate = null, DateTime? previewStartDate = null, DateTime? previewEndDate = null)
+    {
+        _start = startDate;
+        _end = endDate;
+        _previewStart = previewStartDate;
+        _previewEnd = previewEndDate;
+        if (_monthGrid?.Children is null) return;
+        DateTime start = startDate ?? DateTime.MaxValue;
+        DateTime end = endDate ?? DateTime.MinValue;
+        DateTime previewStart = previewStartDate ?? DateTime.MaxValue;
+        DateTime previewEnd = previewEndDate ?? DateTime.MinValue;
+        DateTime rangeStart = DateTimeHelper.Min(start, previewStart);
+        DateTime rangeEnd = DateTimeHelper.Max(end, previewEnd);
+        foreach (var child in _monthGrid.Children)
+        {
+            if (child is not CalendarDayButton { DataContext: DateTime d } button) continue;
+            button.ResetSelection();
+            if(d.Month != ContextCalendar.Month) continue;
+            if (d < rangeEnd && d > rangeStart) button.IsInRange = true;
+            if (d == previewStart) button.IsPreviewStartDate = true;
+            if (d == previewEnd) button.IsPreviewEndDate = true;
+            if (d == startDate) button.IsStartDate = true;
+            if (d == endDate) button.IsEndDate = true;
+            if (d == startDate && d == endDate) button.IsSelected = true;
+        }
+    }
+    
+    public void ClearSelection()
+    {
+        _start = null;
+        _end = null;
+        _previewStart = null;
+        _previewEnd = null;
+        if (_monthGrid?.Children is null) return;
+        foreach (var child in _monthGrid.Children)
+        {
+            if (child is not CalendarDayButton button) continue;
+            button.IsStartDate = false;
+            button.IsEndDate = false;
+            button.IsInRange = false;
+        }
     }
 }
