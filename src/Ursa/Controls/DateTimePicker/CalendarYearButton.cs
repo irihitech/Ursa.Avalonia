@@ -35,10 +35,6 @@ public class CalendarYearButton : ContentControl
     internal void SetContext(CalendarViewMode mode, CalendarContext context)
     {
         CalendarContext = context.Clone();
-        CalendarContext.Month = context.Month;
-        CalendarContext.Year = context.Year;
-        CalendarContext.StartYear = context.StartYear;
-        CalendarContext.EndYear = context.EndYear;
         Mode = mode;
         switch (Mode)
         {

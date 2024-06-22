@@ -6,7 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.DatePickerDemo">
     <StackPanel Margin="20" HorizontalAlignment="Left">
-        <u:CalendarView OnDateSelected="CalendarView_OnOnDateSelected" OnDatePreviewed="CalendarView_OnOnDatePreviewed"/>
+        <u:CalendarView DateSelected="CalendarView_OnOnDateSelected" DatePreviewed="CalendarView_OnOnDatePreviewed"/>
         <TextBlock Text="{Binding #singlePicker.SelectedDate}" ></TextBlock>
         <u:DatePicker Name="singlePicker" Width="200"  />
         <u:DateRangePicker Width="300" DisplayFormat="yyyyMMdd" />

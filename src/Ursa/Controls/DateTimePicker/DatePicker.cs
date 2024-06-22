@@ -73,7 +73,7 @@ public class DatePicker: DatePickerBase, IClearControl
         Button.ClickEvent.RemoveHandler(OnButtonClick, _button);
         if (_calendar != null)
         {
-            _calendar.OnDateSelected -= OnDateSelected;
+            _calendar.DateSelected -= OnDateSelected;
         }
         
         _button = e.NameScope.Find<Button>(PART_Button);
@@ -88,7 +88,7 @@ public class DatePicker: DatePickerBase, IClearControl
         
         if (_calendar != null)
         {
-            _calendar.OnDateSelected += OnDateSelected;
+            _calendar.DateSelected += OnDateSelected;
         }
     }
 
@@ -109,7 +109,7 @@ public class DatePicker: DatePickerBase, IClearControl
         if (_calendar is not null)
         {
             var date = SelectedDate ?? DateTime.Today;
-            _calendar.ContextCalendar = new CalendarContext(date.Year, date.Month, 1);
+            _calendar.ContextDate = new CalendarContext(date.Year, date.Month);
             _calendar.UpdateDayButtons();
         }
         SetCurrentValue(IsDropdownOpenProperty, true);
@@ -139,7 +139,7 @@ public class DatePicker: DatePickerBase, IClearControl
                 if (_calendar is not null)
                 {
                     var d = SelectedDate ?? DateTime.Today;
-                    _calendar.ContextCalendar = new CalendarContext(date.Year, date.Month, 1);
+                    _calendar.ContextDate = new CalendarContext(date.Year, date.Month);
                     _calendar.UpdateDayButtons();
                 }
                 _calendar?.MarkDates(startDate: date, endDate: date);
@@ -152,7 +152,7 @@ public class DatePicker: DatePickerBase, IClearControl
         if (_calendar is not null)
         {
             var date = SelectedDate ?? DateTime.Today;
-            _calendar.ContextCalendar = new CalendarContext(date.Year, date.Month, 1);
+            _calendar.ContextDate = new CalendarContext(date.Year, date.Month);
             _calendar.UpdateDayButtons();
         }
         SetCurrentValue(IsDropdownOpenProperty, true);

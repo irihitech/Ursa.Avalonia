@@ -6,8 +6,8 @@ internal enum CalendarViewMode
     Month,
     // Show Months in current year.
     Year,
-    // The button represents 10(12) years. 
+    // The button represents 1 years. 
     Decade,
-    // The button represents 100(120) years.
+    // The button represents 10 years.
     Century,
 }

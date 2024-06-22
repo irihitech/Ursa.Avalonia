@@ -101,13 +101,13 @@ public class DateRangePicker : DatePickerBase
         Button.ClickEvent.RemoveHandler(OnButtonClick, _button);
         if (_startCalendar != null)
         {
-            _startCalendar.OnDateSelected -= OnDateSelected;
-            _startCalendar.OnDatePreviewed -= OnDatePreviewed;
+            _startCalendar.DateSelected -= OnDateSelected;
+            _startCalendar.DatePreviewed -= OnDatePreviewed;
         }
         if (_endCalendar != null)
         {
-            _endCalendar.OnDateSelected -= OnDateSelected;
-            _endCalendar.OnDatePreviewed -= OnDatePreviewed;
+            _endCalendar.DateSelected -= OnDateSelected;
+            _endCalendar.DatePreviewed -= OnDatePreviewed;
         }
         _button = e.NameScope.Find<Button>(PART_Button);
         _popup = e.NameScope.Find<Popup>(PART_Popup);
@@ -123,13 +123,13 @@ public class DateRangePicker : DatePickerBase
         
         if (_startCalendar != null)
         {
-            _startCalendar.OnDateSelected += OnDateSelected;
-            _startCalendar.OnDatePreviewed += OnDatePreviewed;
+            _startCalendar.DateSelected += OnDateSelected;
+            _startCalendar.DatePreviewed += OnDatePreviewed;
         }
         if (_endCalendar != null)
         {
-            _endCalendar.OnDateSelected += OnDateSelected;
-            _endCalendar.OnDatePreviewed += OnDatePreviewed;
+            _endCalendar.DateSelected += OnDateSelected;
+            _endCalendar.DatePreviewed += OnDatePreviewed;
         }
     }
 
@@ -211,7 +211,7 @@ public class DateRangePicker : DatePickerBase
             if (_startCalendar is not null)
             {
                 var date = SelectedStartDate ?? DateTime.Today;
-                _startCalendar.ContextCalendar = new CalendarContext(date.Year, date.Month, 1);
+                _startCalendar.ContextDate = new CalendarContext(date.Year, date.Month);
                 _startCalendar.UpdateDayButtons();
             }
 
@@ -223,7 +223,7 @@ public class DateRangePicker : DatePickerBase
                     date2 = SelectedStartDate ?? DateTime.Today;
                     date2 = date2.Value.AddMonths(1);
                 }
-                _endCalendar.ContextCalendar = new CalendarContext(date2?.Year, date2?.Month, 1);
+                _endCalendar.ContextDate = new CalendarContext(date2?.Year, date2?.Month);
                 _endCalendar.UpdateDayButtons();
             }
         }
@@ -233,7 +233,7 @@ public class DateRangePicker : DatePickerBase
             if (_endCalendar is not null)
             {
                 var date = SelectedEndDate ?? DateTime.Today;
-                _endCalendar.ContextCalendar = new CalendarContext(date.Year, date.Month, 1);
+                _endCalendar.ContextDate = new CalendarContext(date.Year, date.Month);
                 _endCalendar.UpdateDayButtons();
             }
             if (_startCalendar is not null)
@@ -244,7 +244,7 @@ public class DateRangePicker : DatePickerBase
                     date2 = SelectedStartDate ?? DateTime.Today;
                     date2 = date2.Value.AddMonths(-1);
                 }
-                _startCalendar.ContextCalendar = new CalendarContext(date2?.Year, date2?.Month, 1);
+                _startCalendar.ContextDate = new CalendarContext(date2?.Year, date2?.Month);
                 _startCalendar.UpdateDayButtons();
             }
             
@@ -290,14 +290,14 @@ public class DateRangePicker : DatePickerBase
                 if (_startCalendar is not null)
                 {
                     var date1 = SelectedStartDate ?? DateTime.Today;
-                    _startCalendar.ContextCalendar = new CalendarContext(date1.Year, date.Month, 1);
+                    _startCalendar.ContextDate = new CalendarContext(date1.Year, date.Month);
                     _startCalendar.UpdateDayButtons();
                     _startCalendar?.MarkDates(SelectedStartDate, SelectedEndDate, _previewStart, _previewEnd);
                 }
                 if (_endCalendar is not null)
                 {
                     var date2 = SelectedEndDate ?? DateTime.Today;
-                    _endCalendar.ContextCalendar = new CalendarContext(date2.Year, date2.Month, 1);
+                    _endCalendar.ContextDate = new CalendarContext(date2.Year, date2.Month);
                     _endCalendar.UpdateDayButtons();
                     _endCalendar?.MarkDates(SelectedStartDate, SelectedEndDate, _previewStart, _previewEnd);
                 }
@@ -310,16 +310,16 @@ public class DateRangePicker : DatePickerBase
         if (_startCalendar is not null)
         {
             var date = SelectedStartDate ?? DateTime.Today;
-            _startCalendar.ContextCalendar = new CalendarContext(date.Year, date.Month, 1);
-            _startCalendar.UpdateDayButtons();
+            _startCalendar.ContextDate = new CalendarContext(date.Year, date.Month);
+            // _startCalendar.UpdateDayButtons();
         }
 
         if (_endCalendar is not null)
         {
             var date2 = SelectedStartDate ?? DateTime.Today;
             date2 = date2.AddMonths(1);
-            _endCalendar.ContextCalendar = new CalendarContext(date2.Year, date2.Month, 1);
-            _endCalendar.UpdateDayButtons();
+            _endCalendar.ContextDate = new CalendarContext(date2.Year, date2.Month);
+            // _endCalendar.UpdateDayButtons();
         }
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
