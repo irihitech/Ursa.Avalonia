@@ -81,7 +81,10 @@ public class CalendarView : TemplatedControl
 
     private void OnContextDateChanged(AvaloniaPropertyChangedEventArgs<CalendarContext> args)
     {
-        ContextDateChanged?.Invoke(this, args.NewValue.Value);
+        if (!_dateContextSyncing)
+        {
+            ContextDateChanged?.Invoke(this, args.NewValue.Value);
+        }
         //UpdateDayButtons();
         //UpdateYearButtons();
     }
@@ -570,5 +573,20 @@ public class CalendarView : TemplatedControl
     {
         base.OnPointerExited(e);
         DatePreviewed?.Invoke(this, new CalendarDayButtonEventArgs(null));
+    }
+
+    private bool _dateContextSyncing = false;
+    /// <summary>
+    /// Used for syncing the context date for DateRangePicker. mark a flag to avoid infinitely loop. 
+    /// </summary>
+    /// <param name="context"></param>
+    internal void SyncContextDate(CalendarContext? context)
+    {
+        if (context is null) return;
+        _dateContextSyncing = true;
+        ContextDate = context;
+        _dateContextSyncing = false;
+        UpdateDayButtons();
+        UpdateYearButtons();
     }
 }

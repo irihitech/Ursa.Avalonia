@@ -1,6 +1,6 @@
 namespace Ursa.Controls;
 
-public sealed class CalendarContext(int? year = null, int? month = null, int? startYear = null, int? endYear = null)
+public sealed class CalendarContext(int? year = null, int? month = null, int? startYear = null, int? endYear = null): IComparable<CalendarContext>
 {
     public int? Year { get; } = year;
     public int? Month { get; } = month;
@@ -63,5 +63,14 @@ public sealed class CalendarContext(int? year = null, int? month = null, int? st
     public CalendarContext PreviousYear()
     {
         return new CalendarContext(Year - 1, Month, StartYear, EndYear);
+    }
+
+    public int CompareTo(CalendarContext? other)
+    {
+        if (ReferenceEquals(this, other)) return 0;
+        if (ReferenceEquals(null, other)) return 1;
+        var yearComparison = Nullable.Compare(Year, other.Year);
+        if (yearComparison != 0) return yearComparison;
+        return Nullable.Compare(Month, other.Month);
     }
 }

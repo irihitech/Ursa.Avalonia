@@ -139,7 +139,7 @@ public class DatePicker: DatePickerBase, IClearControl
                 if (_calendar is not null)
                 {
                     var d = SelectedDate ?? DateTime.Today;
-                    _calendar.ContextDate = new CalendarContext(date.Year, date.Month);
+                    _calendar.ContextDate = _calendar.ContextDate.With(year: date.Year, month: date.Month);
                     _calendar.UpdateDayButtons();
                 }
                 _calendar?.MarkDates(startDate: date, endDate: date);
@@ -152,7 +152,7 @@ public class DatePicker: DatePickerBase, IClearControl
         if (_calendar is not null)
         {
             var date = SelectedDate ?? DateTime.Today;
-            _calendar.ContextDate = new CalendarContext(date.Year, date.Month);
+            _calendar.ContextDate = _calendar.ContextDate.With(year: date.Year, month: date.Month);
             _calendar.UpdateDayButtons();
         }
         SetCurrentValue(IsDropdownOpenProperty, true);

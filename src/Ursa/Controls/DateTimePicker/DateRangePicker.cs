@@ -32,6 +32,15 @@ public class DateRangePicker : DatePickerBase
         AvaloniaProperty.Register<DateRangePicker, DateTime?>(
             nameof(SelectedEndDate));
 
+    public static readonly StyledProperty<bool> EnableMonthSyncProperty = AvaloniaProperty.Register<DateRangePicker, bool>(
+        nameof(EnableMonthSync));
+
+    public bool EnableMonthSync
+    {
+        get => GetValue(EnableMonthSyncProperty);
+        set => SetValue(EnableMonthSyncProperty, value);
+    }
+
     private Button? _button;
     private CalendarView? _endCalendar;
     private TextBox? _endTextBox;
@@ -103,11 +112,13 @@ public class DateRangePicker : DatePickerBase
         {
             _startCalendar.DateSelected -= OnDateSelected;
             _startCalendar.DatePreviewed -= OnDatePreviewed;
+            _startCalendar.ContextDateChanged -= OnContextDateChanged;
         }
         if (_endCalendar != null)
         {
             _endCalendar.DateSelected -= OnDateSelected;
             _endCalendar.DatePreviewed -= OnDatePreviewed;
+            _endCalendar.ContextDateChanged -= OnContextDateChanged;
         }
         _button = e.NameScope.Find<Button>(PART_Button);
         _popup = e.NameScope.Find<Popup>(PART_Popup);
@@ -125,11 +136,33 @@ public class DateRangePicker : DatePickerBase
         {
             _startCalendar.DateSelected += OnDateSelected;
             _startCalendar.DatePreviewed += OnDatePreviewed;
+            _startCalendar.ContextDateChanged += OnContextDateChanged;
         }
         if (_endCalendar != null)
         {
             _endCalendar.DateSelected += OnDateSelected;
             _endCalendar.DatePreviewed += OnDatePreviewed;
+            _endCalendar.ContextDateChanged += OnContextDateChanged;
+        }
+    }
+
+    private void OnContextDateChanged(object sender, CalendarContext e)
+    {
+        if(sender == _startCalendar)
+        {
+            bool needsUpdate = EnableMonthSync || _startCalendar?.ContextDate.CompareTo(_endCalendar?.ContextDate) >= 0;
+            if (needsUpdate)
+            {
+                _endCalendar?.SyncContextDate(_startCalendar?.ContextDate.NextMonth());
+            }
+        }
+        else if(sender == _endCalendar)
+        {
+            bool needsUpdate = EnableMonthSync || _endCalendar?.ContextDate.CompareTo(_startCalendar?.ContextDate) <= 0;
+            if (needsUpdate)
+            {
+                _startCalendar?.SyncContextDate(_endCalendar?.ContextDate.PreviousMonth());
+            }
         }
     }
 
@@ -296,7 +329,8 @@ public class DateRangePicker : DatePickerBase
                 }
                 if (_endCalendar is not null)
                 {
-                    var date2 = SelectedEndDate ?? DateTime.Today;
+                    var date2 = SelectedEndDate ?? SelectedStartDate ?? DateTime.Today;
+                    if (SelectedEndDate is null) date2 = date2.AddMonths(1);
                     _endCalendar.ContextDate = new CalendarContext(date2.Year, date2.Month);
                     _endCalendar.UpdateDayButtons();
                     _endCalendar?.MarkDates(SelectedStartDate, SelectedEndDate, _previewStart, _previewEnd);
@@ -311,7 +345,7 @@ public class DateRangePicker : DatePickerBase
         {
             var date = SelectedStartDate ?? DateTime.Today;
             _startCalendar.ContextDate = new CalendarContext(date.Year, date.Month);
-            // _startCalendar.UpdateDayButtons();
+            _startCalendar.UpdateDayButtons();
         }
 
         if (_endCalendar is not null)
@@ -319,7 +353,7 @@ public class DateRangePicker : DatePickerBase
             var date2 = SelectedStartDate ?? DateTime.Today;
             date2 = date2.AddMonths(1);
             _endCalendar.ContextDate = new CalendarContext(date2.Year, date2.Month);
-            // _endCalendar.UpdateDayButtons();
+            _endCalendar.UpdateDayButtons();
         }
         SetCurrentValue(IsDropdownOpenProperty, true);
     }

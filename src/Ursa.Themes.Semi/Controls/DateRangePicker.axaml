@@ -72,21 +72,21 @@
                         </Grid>
                         <Popup
                             Name="{x:Static contracts:PartNames.PART_Popup}"
+                            HorizontalOffset="-4"
                             IsLightDismissEnabled="True"
                             IsOpen="{TemplateBinding IsDropdownOpen,
                                                      Mode=TwoWay}"
                             Placement="BottomEdgeAlignedLeft"
                             PlacementTarget="Background">
                             <Border
-                                Margin="0,4"
+                                Margin="8"
                                 Padding="8"
                                 HorizontalAlignment="Stretch"
                                 Background="{DynamicResource ComboBoxPopupBackground}"
                                 BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"
                                 BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
                                 BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
-                                ClipToBounds="True"
-                                CornerRadius="6">
+                                CornerRadius="{DynamicResource CalendarCornerRadius}">
                                 <DockPanel>
                                     <!--
                                     <StackPanel DockPanel.Dock="Bottom" IsVisible="{TemplateBinding NeedConfirmation}">
