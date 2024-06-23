@@ -4,6 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Mixins;
 using Avalonia.Input;
 using Avalonia.LogicalTree;
+using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
@@ -26,7 +27,7 @@ public class MultiComboBoxItem: ContentControl
     
     static MultiComboBoxItem()
     {
-        IsSelectedProperty.AffectsPseudoClass<MultiComboBoxItem>(":selected");
+        IsSelectedProperty.AffectsPseudoClass<MultiComboBoxItem>(PseudoClassName.PC_Selected);
         PressedMixin.Attach<MultiComboBoxItem>();
         FocusableProperty.OverrideDefaultValue<MultiComboBoxItem>(true);
         IsSelectedProperty.Changed.AddClassHandler<MultiComboBoxItem, bool>((item, args) =>
