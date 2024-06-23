@@ -11,16 +11,19 @@ public class AvatarGroupPanel : Panel
         Size size = new Size();
         availableSize = availableSize.WithWidth(double.PositiveInfinity);
         var children = Children;
-        if (children.Count > 0)
+        if (children.Count <= 0) return size;
+        children[0].Measure(availableSize);
+        Size first = children[0].DesiredSize;
+        var group = this.GetLogicalAncestors().OfType<AvatarGroup>().FirstOrDefault();
+        var count = children.Count;
+        if (group?.MaxCount is not null && group.MaxCount >= 0)
         {
-            children[0].Measure(availableSize);
-            Size first = children[0].DesiredSize;
-            var width = first.Width + first.Width * (children.Count - 1) * 0.75;
-            size = size.WithWidth(width);
-            size = size.WithHeight(first.Height);
+            count = group.MaxCount.Value + 1;
         }
 
-        size = size.WithWidth(size.Width);
+        var width = first.Width + first.Width * (count - 1) * 0.75;
+        size = size.WithWidth(width);
+        size = size.WithHeight(first.Height);
         return size;
     }
 
@@ -28,10 +31,18 @@ public class AvatarGroupPanel : Panel
     {
         Rect rect = new Rect(finalSize);
         double num = 0d;
+        var children = Children;
         var group = this.GetLogicalAncestors().OfType<AvatarGroup>().FirstOrDefault();
         var overlapFrom = group?.OverlapFrom;
-        var children = Children;
-        for (var i = 0; i < children.Count; i++)
+        int? maxCount = null;
+        var count = children.Count;
+        if (group?.MaxCount is not null && group.MaxCount >= 0)
+        {
+            maxCount = group.MaxCount;
+            count = maxCount.Value + 1;
+        }
+
+        for (var i = 0; i < count; i++)
         {
             if (overlapFrom is OverlapFromType.Start)
             {
@@ -47,6 +58,14 @@ public class AvatarGroupPanel : Panel
             rect = rect.WithHeight(height);
             num = width * 0.75;
             children[i].Arrange(rect);
+        }
+
+        if (maxCount is not null && children.Count > 0)
+        {
+            if (children[maxCount.Value] is Avatar avatar)
+            {
+                avatar.Content = $"+{children.Count - maxCount}";
+            }
         }
 
         return finalSize;

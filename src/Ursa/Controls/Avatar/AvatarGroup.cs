@@ -10,14 +10,14 @@ public class AvatarGroup : ItemsControl
 
     private static readonly FuncTemplate<Panel?> DefaultPanel = new(() => new AvatarGroupPanel());
 
-    public static readonly StyledProperty<int> MaxCountProperty = AvaloniaProperty.Register<AvatarGroup, int>(
+    public static readonly StyledProperty<int?> MaxCountProperty = AvaloniaProperty.Register<AvatarGroup, int?>(
         nameof(MaxCount));
 
     public static readonly StyledProperty<OverlapFromType> OverlapFromProperty =
         AvaloniaProperty.Register<AvatarGroup, OverlapFromType>(
             nameof(OverlapFrom), defaultValue: OverlapFromType.Start);
 
-    public int MaxCount
+    public int? MaxCount
     {
         get => GetValue(MaxCountProperty);
         set => SetValue(MaxCountProperty, value);

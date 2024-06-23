@@ -65,7 +65,7 @@
             <u:Avatar Classes="ExtraLarge" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <u:AvatarGroup>
+            <u:AvatarGroup MaxCount="3">
                 <u:Avatar Classes="Red" Content="LL" />
                 <u:Avatar Classes="" Content="CX" />
                 <u:Avatar Classes="Amber" Content="RM" />
