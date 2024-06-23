@@ -17,6 +17,7 @@
             Margin="20"
             AllowDuplicates="True"
             Separator="-"
+            Watermark="Hello world"
             Tags="{Binding Tags}" />
         <u:TagInput
             Margin="20"

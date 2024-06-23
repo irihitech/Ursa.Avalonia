@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using Avalonia;
 using Avalonia.Collections;
 using Avalonia.Controls;
@@ -8,30 +9,54 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Avalonia.Data;
+using Avalonia.Data.Converters;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Styling;
+using Irihi.Avalonia.Shared.Common;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
 [TemplatePart(PART_ItemsControl, typeof(ItemsControl))]
+[TemplatePart(PART_Watermark, typeof(Visual))]
+[PseudoClasses(PseudoClassName.PC_Empty)]
 public class TagInput : TemplatedControl
 {
     public const string PART_ItemsControl = "PART_ItemsControl";
+    public const string PART_Watermark = "PART_Watermark";
 
     private readonly TextBox _textBox;
     private ItemsControl? _itemsControl;
-
+    private Visual? _watermark;
 
     public static readonly StyledProperty<IList<string>> TagsProperty =
         AvaloniaProperty.Register<TagInput, IList<string>>(
             nameof(Tags));
 
+    public static readonly StyledProperty<string?> WatermarkProperty = TextBox.WatermarkProperty.AddOwner<TagInput>();
+
+    public string? Watermark
+    {
+        get => GetValue(WatermarkProperty);
+        set => SetValue(WatermarkProperty, value);
+    }
+
     public IList<string> Tags
     {
         get => GetValue(TagsProperty);
         set => SetValue(TagsProperty, value);
+    }
+
+    public static readonly StyledProperty<int> MaxCountProperty = AvaloniaProperty.Register<TagInput, int>(
+        nameof(MaxCount), int.MaxValue);
+
+    public int MaxCount
+    {
+        get => GetValue(MaxCountProperty);
+        set => SetValue(MaxCountProperty, value);
     }
 
     public static readonly DirectProperty<TagInput, IList> ItemsProperty =
@@ -150,6 +175,21 @@ public class TagInput : TemplatedControl
     {
         base.OnApplyTemplate(e);
         _itemsControl = e.NameScope.Find<ItemsControl>(PART_ItemsControl);
+        _watermark = e.NameScope.Find<Visual>(PART_Watermark);
+    }
+
+    private TextPresenter? _presenter;
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        if (_watermark is null) return;
+        _presenter = _textBox.GetTemplateChildren().OfType<TextPresenter>().FirstOrDefault();
+        _presenter?.GetObservable(TextPresenter.PreeditTextProperty).Subscribe(a => CheckEmpty());
+        _textBox.GetObservable(TextBox.TextProperty).Subscribe(a => CheckEmpty());
+        if (Tags is INotifyCollectionChanged incc)
+        {
+            incc.GetWeakCollectionChangedObservable().Subscribe(a => this.CheckEmpty());
+        }
     }
 
     private void OnInputThemePropertyChanged(AvaloniaPropertyChangedEventArgs args)
@@ -158,6 +198,18 @@ public class TagInput : TemplatedControl
         if (newTheme?.TargetType == typeof(TextBox))
         {
             _textBox.Theme = newTheme;
+        }
+    }
+    
+    private void CheckEmpty()
+    {
+        if(string.IsNullOrWhiteSpace(_presenter?.PreeditText) && string.IsNullOrEmpty(_textBox?.Text) && (Tags.Count==0))
+        {
+            PseudoClasses.Set(PseudoClassName.PC_Empty, true);
+        }
+        else
+        {
+            PseudoClasses.Set(PseudoClassName.PC_Empty, false);
         }
     }
 
