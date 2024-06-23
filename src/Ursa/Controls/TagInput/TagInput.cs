@@ -30,6 +30,16 @@ public class TagInput : TemplatedControl
 
     public static readonly StyledProperty<string?> WatermarkProperty = TextBox.WatermarkProperty.AddOwner<TagInput>();
 
+
+    public static readonly StyledProperty<bool> AcceptsReturnProperty =
+        TextBox.AcceptsReturnProperty.AddOwner<TagInput>();
+
+    public bool AcceptsReturn
+    {
+        get => GetValue(AcceptsReturnProperty);
+        set => SetValue(AcceptsReturnProperty, value);
+    }
+
     public static readonly StyledProperty<int> MaxCountProperty = AvaloniaProperty.Register<TagInput, int>(
         nameof(MaxCount), int.MaxValue);
 
@@ -82,6 +92,7 @@ public class TagInput : TemplatedControl
     public TagInput()
     {
         _textBox = new TextBox();
+        _textBox[!AcceptsReturnProperty] = this.GetObservable(AcceptsReturnProperty).ToBinding();
         _textBox.AddHandler(KeyDownEvent, OnTextBoxKeyDown, RoutingStrategies.Tunnel);
         _textBox.AddHandler(LostFocusEvent, OnTextBox_LostFocus, RoutingStrategies.Bubble);
         Items = new AvaloniaList<object>
@@ -162,7 +173,7 @@ public class TagInput : TemplatedControl
         switch (LostFocusBehavior)
         {
             case LostFocusBehavior.Add:
-                AddTags();
+                AddTags(_textBox.Text);
                 break;
             case LostFocusBehavior.Clear:
                 _textBox.Text = "";
@@ -257,8 +268,20 @@ public class TagInput : TemplatedControl
 
     private void OnTextBoxKeyDown(object? sender, KeyEventArgs args)
     {
-        if (args.Key == Key.Enter)
-            AddTags();
+        if (!AcceptsReturn && args.Key == Key.Enter)
+        {
+            AddTags(_textBox.Text);
+        }
+        else if (AcceptsReturn && args.Key==Key.Enter)
+        {
+            var texts = _textBox.Text?.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries) ??
+                        [];
+            foreach (var text in texts)
+            {
+                AddTags(text);
+            }
+            args.Handled = true;
+        }
         else if (args.Key == Key.Delete || args.Key == Key.Back)
             if (string.IsNullOrEmpty(_textBox.Text) || _textBox.Text?.Length == 0)
             {
@@ -269,13 +292,13 @@ public class TagInput : TemplatedControl
             }
     }
 
-    private void AddTags()
+    private void AddTags(string? text)
     {
-        if (!(_textBox.Text?.Length > 0)) return;
+        if (!(text?.Length > 0)) return;
         if (Tags.Count >= MaxCount) return;
         string[] values;
         if (!string.IsNullOrEmpty(Separator))
-            values = _textBox.Text.Split(new[] { Separator },
+            values = text.Split(new[] { Separator },
                 StringSplitOptions.RemoveEmptyEntries);
         else
             values = new[] { _textBox.Text };
@@ -290,7 +313,7 @@ public class TagInput : TemplatedControl
             Tags?.Insert(index, values[i]);
         }
 
-        _textBox.Text = "";
+        _textBox.Clear();
     }
 
     public void Close(object o)

@@ -29,6 +29,7 @@
                             Name="{x:Static u:TagInput.PART_Watermark}"
                             Opacity="0.5"
                             IsVisible="False"
+                            VerticalAlignment="Center"
                             Text="{TemplateBinding Watermark}" />
                         <ItemsControl
                             Name="PART_ItemsControl"
