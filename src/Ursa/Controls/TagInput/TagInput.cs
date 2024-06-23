@@ -272,6 +272,7 @@ public class TagInput : TemplatedControl
     private void AddTags()
     {
         if (!(_textBox.Text?.Length > 0)) return;
+        if (Tags.Count >= MaxCount) return;
         string[] values;
         if (!string.IsNullOrEmpty(Separator))
             values = _textBox.Text.Split(new[] { Separator },
