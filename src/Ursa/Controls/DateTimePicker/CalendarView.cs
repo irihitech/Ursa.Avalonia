@@ -552,21 +552,38 @@ public class CalendarView : TemplatedControl
             if (d == startDate && d == endDate) button.IsSelected = true;
         }
     }
-    
-    public void ClearSelection()
+
+    public void ClearSelection(bool start = true, bool end = true)
     {
-        _start = null;
-        _end = null;
-        _previewStart = null;
-        _previewEnd = null;
+        if (start)
+        {
+            _previewStart = null;
+            _start = null;
+        }
+
+        if (end)
+        {
+            _previewEnd = null;
+            _end = null;
+        }
+        
         if (_monthGrid?.Children is null) return;
         foreach (var child in _monthGrid.Children)
         {
             if (child is not CalendarDayButton button) continue;
-            button.IsStartDate = false;
-            button.IsEndDate = false;
-            button.IsInRange = false;
+            if (start)
+            {
+                button.IsPreviewStartDate = false;
+                button.IsStartDate = false;
+            }
+            if (end)
+            {
+                button.IsEndDate = false;
+                button.IsInRange = false;
+            }
+            button.IsPreviewEndDate = false;
         }
+        UpdateDayButtons();
     }
 
     protected override void OnPointerExited(PointerEventArgs e)

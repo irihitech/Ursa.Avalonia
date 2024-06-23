@@ -76,7 +76,7 @@ public class CalendarDayButton : ContentControl
         set
         {
             _isStartDate = value;
-            SetPseudoClass(PC_StartDate);
+            SetPseudoClass(PC_StartDate, value);
         }
     }
 
@@ -86,7 +86,7 @@ public class CalendarDayButton : ContentControl
         set
         {
             _isEndDate = value;
-            SetPseudoClass(PC_EndDate);
+            SetPseudoClass(PC_EndDate, value);
         }
     }
 
@@ -96,7 +96,7 @@ public class CalendarDayButton : ContentControl
         set
         {
             _isPreviewStartDate = value;
-            PseudoClasses.Set(PC_PreviewStartDate, value);
+            SetPseudoClass(PC_PreviewStartDate, value);
         }
     }
 
@@ -106,7 +106,7 @@ public class CalendarDayButton : ContentControl
         set
         {
             _isPreviewEndDate = value;
-            PseudoClasses.Set(PC_PreviewEndDate, value);
+            SetPseudoClass(PC_PreviewEndDate, value);
         }
     }
 
@@ -116,7 +116,7 @@ public class CalendarDayButton : ContentControl
         set
         {
             _isInRange = value;
-            PseudoClasses.Set(PC_InRange, value);
+            SetPseudoClass(PC_InRange, value);
         }
     }
 
@@ -126,7 +126,7 @@ public class CalendarDayButton : ContentControl
         set
         {
             _isSelected = value;
-            SetPseudoClass(PseudoClassName.PC_Selected);
+            SetPseudoClass(PseudoClassName.PC_Selected, value);
         }
     }
 
@@ -191,15 +191,15 @@ public class CalendarDayButton : ContentControl
         }
     }
 
-    private void SetPseudoClass(string s)
+    private void SetPseudoClass(string s, bool value)
     {
-        if (_pseudoClasses.Contains(s))
+        if (_pseudoClasses.Contains(s) && value)
         {
             foreach (var pc in _pseudoClasses)
             {
                 PseudoClasses.Set(pc, false);
             }
         }
-        PseudoClasses.Set(s, true);
+        PseudoClasses.Set(s, value);
     }
 }

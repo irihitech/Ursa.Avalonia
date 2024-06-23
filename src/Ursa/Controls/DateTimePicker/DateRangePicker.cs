@@ -302,8 +302,8 @@ public class DateRangePicker : DatePickerBase
         if (string.IsNullOrEmpty(textBox?.Text))
         {
             SetCurrentValue(property, null);
-            _startCalendar?.ClearSelection();
-            _endCalendar?.ClearSelection();
+            _startCalendar?.ClearSelection(start: true);
+            _endCalendar?.ClearSelection(end: true);
         }
         else if (DisplayFormat is null || DisplayFormat.Length == 0)
         {

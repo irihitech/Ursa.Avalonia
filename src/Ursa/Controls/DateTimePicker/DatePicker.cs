@@ -114,7 +114,7 @@ public class DatePicker: DatePickerBase, IClearControl
         }
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
-
+    
     private void OnTextChanged(object sender, TextChangedEventArgs e)
     {
         if (string.IsNullOrEmpty(_textBox?.Text))
