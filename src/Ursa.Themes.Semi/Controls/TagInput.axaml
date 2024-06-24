@@ -25,6 +25,12 @@
                     BorderThickness="1"
                     CornerRadius="3">
                     <Panel HorizontalAlignment="Stretch">
+                        <TextBlock
+                            Name="{x:Static u:TagInput.PART_Watermark}"
+                            Opacity="0.5"
+                            IsVisible="False"
+                            VerticalAlignment="Center"
+                            Text="{TemplateBinding Watermark}" />
                         <ItemsControl
                             Name="PART_ItemsControl"
                             HorizontalAlignment="Stretch"
@@ -42,6 +48,9 @@
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:empty /template/ TextBlock#PART_Watermark">
+            <Setter Property="IsVisible" Value="True"></Setter>
+        </Style>
         <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder">
             <Setter Property="Border.Background" Value="{DynamicResource TextBoxPointeroverBackground}" />
         </Style>
@@ -123,10 +132,10 @@
                             Foreground="{TemplateBinding Foreground}" />
                         <ContentPresenter
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            FontSize="12"
-                            Foreground="{TemplateBinding Foreground}"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}"
+                            FontSize="12"
+                            Foreground="{TemplateBinding Foreground}"
                             TextTrimming="CharacterEllipsis" />
                     </DockPanel>
                 </Border>
