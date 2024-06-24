@@ -17,6 +17,7 @@
             InnerLeftContent="Left"
             InnerRightContent="Right"
             Classes="ClearButton"
+            MaxHeight="200"
             ItemsSource="{Binding Items}" >
         </u:MultiComboBox>
         <ListBox ItemsSource="{Binding #combo.SelectedItems}" />

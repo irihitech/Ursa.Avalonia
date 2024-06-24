@@ -6,6 +6,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Avalonia.Data.Converters;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
@@ -54,7 +55,7 @@ public class MultiComboBox: SelectingItemsControl, IInnerContentControl
     }
 
     public new static readonly StyledProperty<IList?> SelectedItemsProperty = AvaloniaProperty.Register<MultiComboBox, IList?>(
-        nameof(SelectedItems), new AvaloniaList<object>());
+        nameof(SelectedItems));
 
     public new IList? SelectedItems
     {
@@ -99,10 +100,12 @@ public class MultiComboBox: SelectingItemsControl, IInnerContentControl
 
     public MultiComboBox()
     {
+        SelectedItems = new AvaloniaList<object>();
         if (SelectedItems is INotifyCollectionChanged c)
         {
-            c.CollectionChanged+=OnSelectedItemsCollectionChanged;
+            c.CollectionChanged+= OnSelectedItemsCollectionChanged;
         }
+        
     }
 
     private void OnSelectedItemsChanged(AvaloniaPropertyChangedEventArgs<IList?> args)
@@ -117,7 +120,7 @@ public class MultiComboBox: SelectingItemsControl, IInnerContentControl
         }
     }
 
-    private void OnSelectedItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    private void OnSelectedItemsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         PseudoClasses.Set(PC_Empty, SelectedItems?.Count == 0);
     }

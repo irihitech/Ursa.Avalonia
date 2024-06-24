@@ -4,6 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Mixins;
 using Avalonia.Input;
 using Avalonia.LogicalTree;
+using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
@@ -13,6 +14,7 @@ public class MultiComboBoxItem: ContentControl
     private MultiComboBox? _parent;
     private static readonly Point s_invalidPoint = new (double.NaN, double.NaN);
     private Point _pointerDownPoint = s_invalidPoint;
+    private bool _updateInternal;
     
     public static readonly StyledProperty<bool> IsSelectedProperty = AvaloniaProperty.Register<MultiComboBoxItem, bool>(
         nameof(IsSelected));
@@ -25,7 +27,7 @@ public class MultiComboBoxItem: ContentControl
     
     static MultiComboBoxItem()
     {
-        IsSelectedProperty.AffectsPseudoClass<MultiComboBoxItem>(":selected");
+        IsSelectedProperty.AffectsPseudoClass<MultiComboBoxItem>(PseudoClassName.PC_Selected);
         PressedMixin.Attach<MultiComboBoxItem>();
         FocusableProperty.OverrideDefaultValue<MultiComboBoxItem>(true);
         IsSelectedProperty.Changed.AddClassHandler<MultiComboBoxItem, bool>((item, args) =>
@@ -34,6 +36,7 @@ public class MultiComboBoxItem: ContentControl
 
     private void OnSelectionChanged(AvaloniaPropertyChangedEventArgs<bool> args)
     {
+        if (_updateInternal) return;
         var parent = this.FindLogicalAncestorOfType<MultiComboBox>();
         if (args.NewValue.Value)
         {
@@ -93,5 +96,16 @@ public class MultiComboBoxItem: ContentControl
                 e.Handled = true;
             }
         }
+    }
+
+    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnAttachedToVisualTree(e);
+        _updateInternal = true;
+        if (_parent?.ItemsPanelRoot is VirtualizingPanel)
+        {
+            IsSelected =  _parent?.SelectedItems?.Contains(DataContext) ?? false;
+        }
+        _updateInternal = false;
     }
 }

@@ -60,13 +60,6 @@
                                         </ItemsControl.ItemsPanel>
                                     </u:MultiComboBoxSelectedItemList>
                                 </ScrollViewer>
-                                <Button
-                                    Name="ClearButton"
-                                    Grid.Column="2"
-                                    Command="{Binding $parent[u:MultiComboBox].Clear}"
-                                    Content="{DynamicResource IconButtonClearData}"
-                                    IsVisible="False"
-                                    Theme="{DynamicResource InnerIconButton}" />
                                 <ContentPresenter
                                     Grid.Column="3"
                                     Margin="8,0"
@@ -84,10 +77,18 @@
                                     Margin="0,0,10,0"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
+                                    IsVisible="{Binding #ClearButton.IsVisible, Converter={x:Static BoolConverters.Not}}"
                                     Data="{DynamicResource ComboBoxIcon}"
                                     Foreground="{DynamicResource ComboBoxIconDefaultForeground}"
                                     IsHitTestVisible="False"
                                     UseLayoutRounding="False" />
+                                <Button
+                                    Name="ClearButton"
+                                    Grid.Column="4"
+                                    Command="{Binding $parent[u:MultiComboBox].Clear}"
+                                    Content="{DynamicResource IconButtonClearData}"
+                                    IsVisible="False"
+                                    Theme="{DynamicResource InnerIconButton}" />
                             </Grid>
                         </Border>
                         <Popup
