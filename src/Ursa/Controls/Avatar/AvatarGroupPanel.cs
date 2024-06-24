@@ -8,23 +8,22 @@ public class AvatarGroupPanel : Panel
 {
     protected override Size MeasureOverride(Size availableSize)
     {
-        Size size = new Size();
-        availableSize = availableSize.WithWidth(double.PositiveInfinity);
         var children = Children;
-        if (children.Count <= 0) return size;
+        if (children.Count <= 0) return new Size();
+
+        availableSize = availableSize.WithWidth(double.PositiveInfinity);
         children[0].Measure(availableSize);
         Size first = children[0].DesiredSize;
         var group = this.GetLogicalAncestors().OfType<AvatarGroup>().FirstOrDefault();
+        var maxCount = group?.MaxCount;
         var count = children.Count;
-        if (group?.MaxCount is not null && group.MaxCount >= 0)
+        if (maxCount >= 0 && maxCount < count)
         {
-            count = group.MaxCount.Value + 1;
+            count = maxCount.Value + 1;
         }
 
         var width = first.Width + first.Width * (count - 1) * 0.75;
-        size = size.WithWidth(width);
-        size = size.WithHeight(first.Height);
-        return size;
+        return new Size(width, first.Height);
     }
 
     protected override Size ArrangeOverride(Size finalSize)
@@ -34,19 +33,14 @@ public class AvatarGroupPanel : Panel
         var children = Children;
         var group = this.GetLogicalAncestors().OfType<AvatarGroup>().FirstOrDefault();
         var overlapFrom = group?.OverlapFrom;
-        int? maxCount = null;
-        var count = children.Count;
-        if (group?.MaxCount is not null && group.MaxCount >= 0)
-        {
-            maxCount = group.MaxCount;
-            count = maxCount.Value + 1;
-        }
-
+        var maxCount = group?.MaxCount;
+        var childrenCount = children.Count;
+        var count = maxCount < childrenCount ? maxCount.Value : childrenCount;
         for (var i = 0; i < count; i++)
         {
             if (overlapFrom is OverlapFromType.Start)
             {
-                children[i].ZIndex = children.Count - i;
+                children[i].ZIndex = childrenCount - i;
             }
 
             children[i].Measure(finalSize);
@@ -60,12 +54,9 @@ public class AvatarGroupPanel : Panel
             children[i].Arrange(rect);
         }
 
-        if (maxCount is not null && children.Count > 0)
+        if (maxCount is not null)
         {
-            if (children[maxCount.Value] is Avatar avatar)
-            {
-                avatar.Content = $"+{children.Count - maxCount}";
-            }
+            //TODO: RenderMore
         }
 
         return finalSize;
