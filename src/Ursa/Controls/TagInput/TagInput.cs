@@ -274,8 +274,7 @@ public class TagInput : TemplatedControl
         }
         else if (AcceptsReturn && args.Key==Key.Enter)
         {
-            var texts = _textBox.Text?.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries) ??
-                        [];
+            var texts = _textBox.Text?.Split(["\r", "\n"], StringSplitOptions.RemoveEmptyEntries) ?? [];
             foreach (var text in texts)
             {
                 AddTags(text);
