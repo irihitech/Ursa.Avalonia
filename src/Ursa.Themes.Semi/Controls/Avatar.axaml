@@ -12,39 +12,40 @@
         <Setter Property="Width" Value="48" />
         <Setter Property="Height" Value="{Binding $self.Width}" />
         <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="CornerRadius" Value="100" />
         <Setter Property="Template">
             <ControlTemplate TargetType="{x:Type u:Avatar}">
-                <Panel>
-                    <Panel.Clip>
-                        <EllipseGeometry
-                            Center="{Binding #PART_Ellipse.Bounds.Center}"
-                            RadiusX="{Binding #PART_Ellipse.Bounds.Width, Converter={StaticResource DivideByTwoConverter}}"
-                            RadiusY="{Binding #PART_Ellipse.Bounds.Height, Converter={StaticResource DivideByTwoConverter}}" />
-                    </Panel.Clip>
-                    <Ellipse Name="PART_Ellipse" />
-                    <Ellipse
-                        Fill="{TemplateBinding Background}"
-                        IsVisible="{TemplateBinding Source, Converter={x:Static ObjectConverters.IsNull}}" />
-                    <ContentPresenter
-                        Name="PART_ContentPresenter"
-                        IsVisible="{TemplateBinding Source, Converter={x:Static ObjectConverters.IsNull}}"
-                        CornerRadius="{TemplateBinding CornerRadius}"
-                        Content="{TemplateBinding Content}"
-                        HorizontalContentAlignment="Center"
-                        VerticalContentAlignment="Center" />
-                    <ContentPresenter
-                        Name="{x:Static u:Avatar.PART_HoverMask}"
-                        IsVisible="False"
-                        Content="{TemplateBinding HoverMask}"
-                        CornerRadius="{TemplateBinding CornerRadius}"
-                        HorizontalContentAlignment="Center"
-                        VerticalContentAlignment="Center" />
-                    <Image Source="{TemplateBinding Source}" />
-                    <DockPanel>
-                        <ContentPresenter DockPanel.Dock="Top" />
-                        <ContentPresenter DockPanel.Dock="Bottom" />
-                    </DockPanel>
-                </Panel>
+                <Border
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    ClipToBounds="True">
+                    <Panel>
+                        <Border
+                            IsVisible="{TemplateBinding Source, Converter={x:Static ObjectConverters.IsNull}}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Background="{TemplateBinding Background}" />
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            IsVisible="{TemplateBinding Source, Converter={x:Static ObjectConverters.IsNull}}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Content="{TemplateBinding Content}"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center" />
+                        <ContentPresenter
+                            Name="{x:Static u:Avatar.PART_HoverMask}"
+                            IsVisible="False"
+                            Content="{TemplateBinding HoverMask}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center" />
+                        <Image Source="{TemplateBinding Source}" />
+                        <DockPanel>
+                            <ContentPresenter DockPanel.Dock="Top" />
+                            <ContentPresenter DockPanel.Dock="Bottom" />
+                        </DockPanel>
+                    </Panel>
+                </Border>
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover /template/ ContentPresenter#PART_HoverMask">
@@ -100,6 +101,11 @@
         <Style Selector="^.Grey">
             <Setter Property="Background" Value="{DynamicResource SemiGrey3}" />
         </Style>
+
+        <Style Selector="^.Square">
+            <Setter Property="CornerRadius" Value="3" />
+        </Style>
+
         <Style Selector="^.ExtraExtraSmall">
             <Setter Property="Width" Value="20" />
             <Setter Property="FontSize" Value="10" />
@@ -123,10 +129,16 @@
         <Style Selector="^.Large">
             <Setter Property="Width" Value="72" />
             <Setter Property="FontSize" Value="32" />
+            <Style Selector="^.Square">
+                <Setter Property="CornerRadius" Value="6" />
+            </Style>
         </Style>
         <Style Selector="^.ExtraLarge">
             <Setter Property="Width" Value="128" />
             <Setter Property="FontSize" Value="64" />
+            <Style Selector="^.Square">
+                <Setter Property="CornerRadius" Value="12" />
+            </Style>
         </Style>
     </ControlTheme>
 

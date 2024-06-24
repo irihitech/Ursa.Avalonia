@@ -65,6 +65,15 @@
             <u:Avatar Classes="ExtraLarge" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
+            <u:Avatar Classes="Square ExtraExtraSmall Green" />
+            <u:Avatar Classes="Square ExtraSmall Green" />
+            <u:Avatar Classes="Square Small Green" />
+            <u:Avatar Classes="Square Default Green" />
+            <u:Avatar Classes="Square Medium Green" />
+            <u:Avatar Classes="Square Large Green" />
+            <u:Avatar Classes="Square ExtraLarge Green" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
             <u:AvatarGroup MaxCount="3">
                 <u:Avatar Classes="Red" Content="LL" />
                 <u:Avatar Classes="" Content="CX" />
