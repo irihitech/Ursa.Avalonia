@@ -18,12 +18,16 @@
             <Setter Property="Width" Value="{Binding ItemSelfWidth}" />
             <Setter Property="Height" Value="{Binding ItemSelfHeight}" />
         </Style>
+        <Style Selector="u|EnumSelector">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
     </UserControl.Styles>
     <DockPanel>
         <u:Form DockPanel.Dock="Left"
                 LabelAlignment="Left"
                 LabelPosition="Left"
-                LabelWidth="*">
+                LabelWidth="*"
+                Margin="4 0">
             <u:FormGroup>
                 <u:FormItem Label="Orientation">
                     <u:EnumSelector EnumType="Orientation" Value="{Binding SelectedOrientation}" />
