@@ -36,6 +36,11 @@ public sealed class CalendarContext(int? year = null, int? month = null, int? st
         {
             month++;
         }
+
+        if (month is null)
+        {
+            month = 1;
+        }
         return new CalendarContext(year, month, StartYear, EndYear);
     }
 
@@ -51,6 +56,10 @@ public sealed class CalendarContext(int? year = null, int? month = null, int? st
         else
         {
             month--;
+        }
+        if (month is null)
+        {
+            month = 1;
         }
         return new CalendarContext(year, month, StartYear, EndYear);
     }

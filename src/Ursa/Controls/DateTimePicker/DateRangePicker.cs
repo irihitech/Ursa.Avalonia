@@ -341,14 +341,14 @@ public class DateRangePicker : DatePickerBase
 
     private void OnTextBoxGetFocus(object sender, GotFocusEventArgs e)
     {
-        if (_startCalendar is not null)
+        if (_startCalendar is not null && _startCalendar?.Mode == CalendarViewMode.Month)
         {
             var date = SelectedStartDate ?? DateTime.Today;
             _startCalendar.ContextDate = new CalendarContext(date.Year, date.Month);
             _startCalendar.UpdateDayButtons();
         }
 
-        if (_endCalendar is not null)
+        if (_endCalendar is not null && _endCalendar?.Mode == CalendarViewMode.Month)
         {
             var date2 = SelectedStartDate ?? DateTime.Today;
             date2 = date2.AddMonths(1);

@@ -244,7 +244,9 @@ public class CalendarView : TemplatedControl
         {
             Mode = CalendarViewMode.Decade;
             var range = DateTimeHelper.GetDecadeViewRangeByYear(ContextDate.Year!.Value);
+            _dateContextSyncing = true;
             ContextDate =  ContextDate.With(startYear: range.start, endYear: range.end);
+            _dateContextSyncing = false;
             UpdateYearButtons();
             return;
         }
@@ -253,7 +255,9 @@ public class CalendarView : TemplatedControl
         {
             Mode = CalendarViewMode.Century;
             var range = DateTimeHelper.GetCenturyViewRangeByYear(ContextDate.StartYear!.Value);
+            _dateContextSyncing = true;
             ContextDate = ContextDate.With(startYear: range.start, endYear: range.end);
+            _dateContextSyncing = false;
             UpdateYearButtons();
             return;
         }
@@ -442,7 +446,9 @@ public class CalendarView : TemplatedControl
         if (_yearGrid is null) return;
         SetCurrentValue(ModeProperty, CalendarViewMode.Decade);
         var range = DateTimeHelper.GetDecadeViewRangeByYear(ContextDate.Year!.Value);
+        _dateContextSyncing = true;
         ContextDate = ContextDate.With(startYear: range.start, endYear: range.end);
+        _dateContextSyncing = false;
         UpdateYearButtons();
     }
 
