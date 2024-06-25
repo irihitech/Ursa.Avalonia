@@ -148,7 +148,7 @@ public class DateRangePicker : DatePickerBase
 
     private void OnContextDateChanged(object sender, CalendarContext e)
     {
-        if(sender == _startCalendar)
+        if(sender == _startCalendar && _startCalendar?.Mode == CalendarViewMode.Month)
         {
             bool needsUpdate = EnableMonthSync || _startCalendar?.ContextDate.CompareTo(_endCalendar?.ContextDate) >= 0;
             if (needsUpdate)
@@ -156,7 +156,7 @@ public class DateRangePicker : DatePickerBase
                 _endCalendar?.SyncContextDate(_startCalendar?.ContextDate.NextMonth());
             }
         }
-        else if(sender == _endCalendar)
+        else if(sender == _endCalendar && _endCalendar?.Mode == CalendarViewMode.Month)
         {
             bool needsUpdate = EnableMonthSync || _endCalendar?.ContextDate.CompareTo(_startCalendar?.ContextDate) <= 0;
             if (needsUpdate)
@@ -324,6 +324,7 @@ public class DateRangePicker : DatePickerBase
                 {
                     var date1 = SelectedStartDate ?? DateTime.Today;
                     _startCalendar.ContextDate = new CalendarContext(date1.Year, date.Month);
+                    //_startCalendar.SyncContextDate(new CalendarContext(date1.Year, date1.Month));
                     _startCalendar.UpdateDayButtons();
                     _startCalendar?.MarkDates(SelectedStartDate, SelectedEndDate, _previewStart, _previewEnd);
                 }
@@ -332,6 +333,7 @@ public class DateRangePicker : DatePickerBase
                     var date2 = SelectedEndDate ?? SelectedStartDate ?? DateTime.Today;
                     if (SelectedEndDate is null) date2 = date2.AddMonths(1);
                     _endCalendar.ContextDate = new CalendarContext(date2.Year, date2.Month);
+                    //_endCalendar.SyncContextDate(new CalendarContext(date2.Year, date2.Month));
                     _endCalendar.UpdateDayButtons();
                     _endCalendar?.MarkDates(SelectedStartDate, SelectedEndDate, _previewStart, _previewEnd);
                 }
@@ -344,16 +346,16 @@ public class DateRangePicker : DatePickerBase
         if (_startCalendar is not null && _startCalendar?.Mode == CalendarViewMode.Month)
         {
             var date = SelectedStartDate ?? DateTime.Today;
-            _startCalendar.ContextDate = new CalendarContext(date.Year, date.Month);
-            _startCalendar.UpdateDayButtons();
+            //_startCalendar.ContextDate = new CalendarContext(date.Year, date.Month);
+            //_startCalendar.UpdateDayButtons();
         }
 
         if (_endCalendar is not null && _endCalendar?.Mode == CalendarViewMode.Month)
         {
             var date2 = SelectedStartDate ?? DateTime.Today;
             date2 = date2.AddMonths(1);
-            _endCalendar.ContextDate = new CalendarContext(date2.Year, date2.Month);
-            _endCalendar.UpdateDayButtons();
+            //_endCalendar.ContextDate = new CalendarContext(date2.Year, date2.Month);
+            //_endCalendar.UpdateDayButtons();
         }
         SetCurrentValue(IsDropdownOpenProperty, true);
     }

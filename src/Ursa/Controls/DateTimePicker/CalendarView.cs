@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Controls;
@@ -81,6 +82,7 @@ public class CalendarView : TemplatedControl
 
     private void OnContextDateChanged(AvaloniaPropertyChangedEventArgs<CalendarContext> args)
     {
+        Debug.WriteLine(this.Name + " " + args.NewValue.Value);
         if (!_dateContextSyncing)
         {
             ContextDateChanged?.Invoke(this, args.NewValue.Value);
@@ -317,7 +319,7 @@ public class CalendarView : TemplatedControl
         if (_monthGrid is null || Mode != CalendarViewMode.Month) return;
         var children = _monthGrid.Children;
         var info = DateTimeHelper.GetCurrentDateTimeFormatInfo();
-        var date = new DateTime(ContextDate.Year.Value, ContextDate.Month.Value, 1);
+        var date = new DateTime(ContextDate.Year ?? ContextDate.StartYear.Value, ContextDate.Month.Value, 1);
         var dayBefore = PreviousMonthDays(date);
         var dateToSet = date.GetFirstDayOfMonth().AddDays(-dayBefore);
         for (var i = 7; i < children.Count; i++)

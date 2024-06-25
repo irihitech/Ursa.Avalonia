@@ -82,4 +82,10 @@ public sealed class CalendarContext(int? year = null, int? month = null, int? st
         if (yearComparison != 0) return yearComparison;
         return Nullable.Compare(Month, other.Month);
     }
+
+    public override string ToString()
+    {
+        return
+            $"Start: {StartYear?.ToString() ?? "null"}, End: {EndYear?.ToString() ?? "null"}, Year: {Year?.ToString() ?? "null"}, Month: {Month?.ToString() ?? "null"}";
+    }
 }
