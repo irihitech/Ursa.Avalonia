@@ -1,5 +1,7 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--CalenderDayButton-->
+    <SolidColorBrush x:Key="DatePickerDayBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="DatePickerDayBorderBrush" Color="Transparent" />
     <SolidColorBrush x:Key="DatePickerDayInRangeBackground" Opacity="0.2" Color="#54A9FF" />
     <SolidColorBrush x:Key="DatePickerDayTodayBackground" Opacity="0.12" Color="White" />
     <SolidColorBrush x:Key="DatePickerDayTodayForeground" Color="#54A9FF" />
@@ -8,6 +10,7 @@
     <SolidColorBrush x:Key="DatePickerDayPressedBackground" Opacity="0.16" Color="White" />
 
     <SolidColorBrush x:Key="DatePickerDaySelectedBackground" Color="#54A9FF" />
+    <SolidColorBrush x:Key="DatePickerDaySelectedForeground" Color="White" />
     <SolidColorBrush x:Key="DatePickerDaySelectedPointeroverBackground" Color="#7FC1FF" />
     <SolidColorBrush x:Key="DatePickerDaySelectedPressedBackground" Color="#A9D7FF" />
 
@@ -25,8 +28,14 @@
     <SolidColorBrush x:Key="DatePickerDayBlackoutTodayBackground" Color="#135CB8" />
 
     <!--CalenderYearButton-->
+    <SolidColorBrush x:Key="DatePickerYearBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="DatePickerYearBorderBrush" Color="Transparent" />
     <SolidColorBrush x:Key="DatePickerYearPointeroverBackground" Opacity="0.12" Color="White" />
     <SolidColorBrush x:Key="DatePickerYearPressedBackground" Opacity="0.16" Color="White" />
     <SolidColorBrush x:Key="DatePickerYearSelectedBackground" Color="#54A9FF" />
+    <SolidColorBrush x:Key="DatePickerYearSelectedForeground" Color="White" />
     <SolidColorBrush x:Key="DatePickerYearSelectedPointeroverBackground" Color="#7FC1FF" />
+
+    <!--CalenderView-->
+    <SolidColorBrush x:Key="DatePickerViewBackground" Color="Transparent" />
 </ResourceDictionary>

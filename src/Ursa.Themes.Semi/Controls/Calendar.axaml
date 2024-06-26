@@ -14,8 +14,8 @@
         <Setter Property="MinWidth" Value="32" />
         <Setter Property="MinHeight" Value="32" />
         <Setter Property="Margin" Value="0 2" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Background" Value="{DynamicResource DatePickerDayBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource DatePickerDayBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="CornerRadius" Value="3" />
@@ -71,7 +71,7 @@
             <Setter Property="Background" Value="{DynamicResource DatePickerDaySelectedBackground}" />
             <Setter Property="CornerRadius" Value="3" />
             <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{DynamicResource DatePickerDaySelectedForeground}" />
             <Style Selector="^:pointerover">
                 <Setter Property="Background" Value="{DynamicResource DatePickerDaySelectedPointeroverBackground}" />
             </Style>
@@ -85,7 +85,7 @@
             <Setter Property="CornerRadius" Value="3 0 0 3" />
             <Setter Property="Background" Value="{DynamicResource DatePickerDayStartEndDateBackground}" />
             <Setter Property="BorderBrush" Value="{DynamicResource DatePickerDayStartEndDateBorderBrush}" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{DynamicResource DatePickerDaySelectedForeground}" />
             <Style Selector="^:pointerover">
                 <Setter Property="Background" Value="{DynamicResource DatePickerDayStartEndDatePointeroverBackground}" />
             </Style>
@@ -102,7 +102,7 @@
             <Setter Property="CornerRadius" Value="0 3 3 0" />
             <Setter Property="Background" Value="{DynamicResource DatePickerDayStartEndDateBackground}" />
             <Setter Property="BorderBrush" Value="{DynamicResource DatePickerDayStartEndDateBorderBrush}" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{DynamicResource DatePickerDaySelectedForeground}" />
             <Style Selector="^:pointerover">
                 <Setter Property="Background" Value="{DynamicResource DatePickerDayStartEndDatePointeroverBackground}" />
             </Style>
@@ -145,8 +145,8 @@
         <Setter Property="MinWidth" Value="32" />
         <Setter Property="MinHeight" Value="32" />
         <Setter Property="Margin" Value="0 2" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Background" Value="{DynamicResource DatePickerYearBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource DatePickerYearBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="3" />
         <Setter Property="Template">
@@ -179,7 +179,7 @@
             <Setter Property="Background" Value="{DynamicResource DatePickerYearSelectedBackground}" />
             <Setter Property="CornerRadius" Value="3" />
             <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{DynamicResource DatePickerYearSelectedForeground}" />
             <Style Selector="^:pointerover">
                 <Setter Property="Background" Value="{DynamicResource DatePickerYearSelectedPointeroverBackground}" />
             </Style>
@@ -189,7 +189,7 @@
     <ControlTheme x:Key="{x:Type u:CalendarView}" TargetType="u:CalendarView">
         <Setter Property="MinHeight" Value="260" />
         <Setter Property="MinWidth" Value="260" />
-        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Background" Value="{DynamicResource DatePickerViewBackground}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:CalendarView">
                 <Grid Background="{TemplateBinding Background}" RowDefinitions="Auto, *">
