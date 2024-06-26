@@ -59,9 +59,9 @@ public class CalendarYearButton : ContentControl
         IsEnabled = Content != null;
     }
 
-    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    protected override void OnPointerReleased(PointerReleasedEventArgs e)
     {
-        base.OnPointerPressed(e);
+        base.OnPointerReleased(e);
         RaiseEvent(new CalendarYearButtonEventArgs(Mode, this.CalendarContext.Clone())
             { RoutedEvent = ItemSelectedEvent, Source = this });
     }
