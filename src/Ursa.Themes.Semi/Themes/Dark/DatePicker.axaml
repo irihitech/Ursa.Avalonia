@@ -1,32 +1,32 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--CalenderDayButton-->
-    <StaticResource x:Key="DatePickerDayInRangeBackground" ResourceKey="SemiColorPrimaryLight" />
-    <StaticResource x:Key="DatePickerDayTodayBackground" ResourceKey="SemiColorFill0" />
-    <StaticResource x:Key="DatePickerDayTodayForeground" ResourceKey="SemiColorPrimary" />
-    <StaticResource x:Key="DatePickerDayNotCurrentMonthForeground" ResourceKey="SemiGrey3" />
-    <StaticResource x:Key="DatePickerDayPointeroverBackground" ResourceKey="SemiColorFill0" />
-    <StaticResource x:Key="DatePickerDayPressedBackground" ResourceKey="SemiColorFill1" />
+    <SolidColorBrush x:Key="DatePickerDayInRangeBackground" Opacity="0.2" Color="#54A9FF" />
+    <SolidColorBrush x:Key="DatePickerDayTodayBackground" Opacity="0.12" Color="White" />
+    <SolidColorBrush x:Key="DatePickerDayTodayForeground" Color="#54A9FF" />
+    <SolidColorBrush x:Key="DatePickerDayNotCurrentMonthForeground" Color="#555B61" />
+    <SolidColorBrush x:Key="DatePickerDayPointeroverBackground" Opacity="0.12" Color="White" />
+    <SolidColorBrush x:Key="DatePickerDayPressedBackground" Opacity="0.16" Color="White" />
 
-    <StaticResource x:Key="DatePickerDaySelectedBackground" ResourceKey="SemiColorPrimary" />
-    <StaticResource x:Key="DatePickerDaySelectedPointeroverBackground" ResourceKey="SemiColorPrimaryPointerover" />
-    <StaticResource x:Key="DatePickerDaySelectedPressedBackground" ResourceKey="SemiColorPrimaryPressed" />
+    <SolidColorBrush x:Key="DatePickerDaySelectedBackground" Color="#54A9FF" />
+    <SolidColorBrush x:Key="DatePickerDaySelectedPointeroverBackground" Color="#7FC1FF" />
+    <SolidColorBrush x:Key="DatePickerDaySelectedPressedBackground" Color="#A9D7FF" />
 
-    <StaticResource x:Key="DatePickerDayStartEndDateBackground" ResourceKey="SemiColorPrimary" />
-    <StaticResource x:Key="DatePickerDayStartEndDateBorderBrush" ResourceKey="SemiColorPrimary" />
-    <StaticResource x:Key="DatePickerDayStartEndDatePointeroverBackground" ResourceKey="SemiColorPrimaryPointerover" />
-    <StaticResource x:Key="DatePickerDayStartEndDatePressedBackground" ResourceKey="SemiColorPrimaryPressed" />
-    <StaticResource x:Key="DatePickerDayStartEndDateInRangeBackground" ResourceKey="SemiColorPrimaryPressed" />
+    <SolidColorBrush x:Key="DatePickerDayStartEndDateBackground" Color="#54A9FF" />
+    <SolidColorBrush x:Key="DatePickerDayStartEndDateBorderBrush" Color="#54A9FF" />
+    <SolidColorBrush x:Key="DatePickerDayStartEndDatePointeroverBackground" Color="#7FC1FF" />
+    <SolidColorBrush x:Key="DatePickerDayStartEndDatePressedBackground" Color="#A9D7FF" />
+    <SolidColorBrush x:Key="DatePickerDayStartEndDateInRangeBackground" Color="#A9D7FF" />
 
-    <StaticResource x:Key="DatePickerDayPreviewStartEndDateBackground" ResourceKey="SemiColorPrimaryLightPointerover" />
-    <StaticResource x:Key="DatePickerDayPreviewStartEndDatePressedBackground" ResourceKey="SemiColorPrimaryLightActive" />
+    <SolidColorBrush x:Key="DatePickerDayPreviewStartEndDateBackground" Opacity="0.3" Color="#54A9FF" />
+    <SolidColorBrush x:Key="DatePickerDayPreviewStartEndDatePressedBackground" Opacity="0.4" Color="#54A9FF" />
 
-    <StaticResource x:Key="DatePickerDayBlackoutForeground" ResourceKey="SemiColorDisabledText" />
-    <StaticResource x:Key="DatePickerDayBlackoutBackground" ResourceKey="SemiColorDisabledFill" />
-    <StaticResource x:Key="DatePickerDayBlackoutTodayBackground" ResourceKey="SemiColorPrimaryDisabled" />
+    <SolidColorBrush x:Key="DatePickerDayBlackoutForeground" Opacity="0.35" Color="#F9F9F9" />
+    <SolidColorBrush x:Key="DatePickerDayBlackoutBackground" Opacity="0.04" Color="#E6E8EA" />
+    <SolidColorBrush x:Key="DatePickerDayBlackoutTodayBackground" Color="#135CB8" />
 
     <!--CalenderYearButton-->
-    <StaticResource x:Key="DatePickerYearPointeroverBackground" ResourceKey="SemiColorFill0" />
-    <StaticResource x:Key="DatePickerYearPressedBackground" ResourceKey="SemiColorFill1" />
-    <StaticResource x:Key="DatePickerYearSelectedBackground" ResourceKey="SemiColorPrimary" />
-    <StaticResource x:Key="DatePickerYearSelectedPointeroverBackground" ResourceKey="SemiColorPrimaryPointerover" />
+    <SolidColorBrush x:Key="DatePickerYearPointeroverBackground" Opacity="0.12" Color="White" />
+    <SolidColorBrush x:Key="DatePickerYearPressedBackground" Opacity="0.16" Color="White" />
+    <SolidColorBrush x:Key="DatePickerYearSelectedBackground" Color="#54A9FF" />
+    <SolidColorBrush x:Key="DatePickerYearSelectedPointeroverBackground" Color="#7FC1FF" />
 </ResourceDictionary>
