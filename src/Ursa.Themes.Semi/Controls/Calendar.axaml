@@ -3,11 +3,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
-        <StackPanel Margin="20" Spacing="5">
-            <u:CalendarView />
-        </StackPanel>
+        <ThemeVariantScope RequestedThemeVariant="Dark">
+            <StackPanel Width="600" Height="400">
+                <u:DatePicker HorizontalAlignment="Stretch" />
+                <u:DateRangePicker />
+            </StackPanel>
+        </ThemeVariantScope>
     </Design.PreviewWith>
-    <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:CalendarDayButton}" TargetType="u:CalendarDayButton">
         <Setter Property="MinWidth" Value="32" />
         <Setter Property="MinHeight" Value="32" />
@@ -38,15 +40,18 @@
         </Setter>
 
         <Style Selector="^:in-range">
-            <Setter Property="Background" Value="{DynamicResource SemiBlue1}" />
+            <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryLight}" />
             <Setter Property="CornerRadius" Value="0" />
             <Setter Property="BorderThickness" Value="0" />
         </Style>
 
         <Style Selector="^:today">
-            <Setter Property="Background" Value="{DynamicResource SemiGrey1}" />
-            <Setter Property="Foreground" Value="{DynamicResource SemiBlue5}" />
+            <Setter Property="Background" Value="{DynamicResource SemiColorFill0}" />
+            <Setter Property="Foreground" Value="{DynamicResource SemiColorPrimary}" />
             <Setter Property="Cursor" Value="Hand" />
+            <Style Selector="^:in-range">
+                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryLight}" />
+            </Style>
         </Style>
 
         <Style Selector="^:not-current-month">
@@ -54,69 +59,85 @@
         </Style>
 
         <Style Selector="^:pointerover">
-            <Setter Property="Background" Value="{DynamicResource SemiGrey1}" />
+            <Setter Property="Background" Value="{DynamicResource SemiColorFill0}" />
             <Setter Property="Cursor" Value="Hand" />
         </Style>
 
+        <Style Selector="^:pressed">
+            <Setter Property="Background" Value="{DynamicResource SemiColorFill1}" />
+        </Style>
+
         <Style Selector="^:selected">
-            <Setter Property="Background" Value="{DynamicResource SemiBlue5}" />
+            <Setter Property="Background" Value="{DynamicResource SemiColorPrimary}" />
             <Setter Property="CornerRadius" Value="3" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Foreground" Value="White" />
             <Style Selector="^:pointerover">
-                <Setter Property="Background" Value="{DynamicResource SemiBlue6}" />
+                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryPointerover}" />
+            </Style>
+            <Style Selector="^:pressed">
+                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryPressed}" />
             </Style>
         </Style>
 
 
         <Style Selector="^:start-date">
             <Setter Property="CornerRadius" Value="3 0 0 3" />
-            <Setter Property="Background" Value="{DynamicResource SemiBlue5}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource SemiBlue5}" />
+            <Setter Property="Background" Value="{DynamicResource SemiColorPrimary}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorPrimary}" />
             <Setter Property="Foreground" Value="White" />
             <Style Selector="^:pointerover">
-                <Setter Property="Background" Value="{DynamicResource SemiBlue6}" />
+                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryPointerover}" />
             </Style>
-        </Style>
-        <Style Selector="^:start-date:in-range">
-            <Setter Property="CornerRadius" Value="3 0 0 3" />
-            <Setter Property="Background" Value="{DynamicResource SemiBlue5}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource SemiGrey5}" />
-            <Setter Property="BorderThickness" Value="1" />
+            <Style Selector="^:pressed">
+                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryPressed}" />
+            </Style>
+            <Style Selector="^:in-range">
+                <Setter Property="BorderBrush" Value="{DynamicResource SemiColorPrimaryPressed}" />
+                <Setter Property="BorderThickness" Value="1" />
+            </Style>
         </Style>
 
         <Style Selector="^:end-date">
             <Setter Property="CornerRadius" Value="0 3 3 0" />
-            <Setter Property="Background" Value="{DynamicResource SemiBlue5}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource SemiBlue5}" />
+            <Setter Property="Background" Value="{DynamicResource SemiColorPrimary}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorPrimary}" />
             <Setter Property="Foreground" Value="White" />
             <Style Selector="^:pointerover">
-                <Setter Property="Background" Value="{DynamicResource SemiBlue6}" />
+                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryPointerover}" />
             </Style>
-        </Style>
-
-        <Style Selector="^:end-date:in-range">
-            <Setter Property="CornerRadius" Value="0 3 3 0" />
-            <Setter Property="Background" Value="{DynamicResource SemiBlue5}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource SemiGrey5}" />
-            <Setter Property="BorderThickness" Value="1" />
+            <Style Selector="^:pressed">
+                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryPressed}" />
+            </Style>
+            <Style Selector="^:in-range">
+                <Setter Property="BorderBrush" Value="{DynamicResource SemiColorPrimaryPressed}" />
+                <Setter Property="BorderThickness" Value="1" />
+            </Style>
         </Style>
 
         <Style Selector="^:preview-start-date">
             <Setter Property="CornerRadius" Value="3 0 0 3" />
-            <Setter Property="Background" Value="{DynamicResource SemiBlue2}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource SemiBlue2}" />
+            <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryLightPointerover}" />
+            <Style Selector="^:pressed">
+                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryLightActive}" />
+            </Style>
         </Style>
 
         <Style Selector="^:preview-end-date">
             <Setter Property="CornerRadius" Value="0 3 3 0" />
-            <Setter Property="Background" Value="{DynamicResource SemiBlue2}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource SemiBlue2}" />
+            <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryLightPointerover}" />
+            <Style Selector="^:pressed">
+                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryLightActive}" />
+            </Style>
         </Style>
 
         <Style Selector="^:blackout">
-            <Setter Property="Foreground" Value="{DynamicResource SemiGrey3}" />
+            <Setter Property="Foreground" Value="{DynamicResource SemiColorDisabledText}" />
+            <Setter Property="Background" Value="{DynamicResource SemiColorDisabledFill}" />
             <Setter Property="Cursor" Value="No" />
+            <Style Selector="^:today">
+                <Setter Property="Foreground" Value="{DynamicResource SemiColorPrimaryDisabled}" />
+            </Style>
         </Style>
     </ControlTheme>
 
@@ -148,16 +169,19 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover">
-            <Setter Property="Background" Value="{DynamicResource SemiGrey1}" />
+            <Setter Property="Background" Value="{DynamicResource SemiColorFill0}" />
             <Setter Property="Cursor" Value="Hand" />
         </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="Background" Value="{DynamicResource SemiColorFill1}" />
+        </Style>
         <Style Selector="^:selected">
-            <Setter Property="Background" Value="{DynamicResource SemiBlue5}" />
+            <Setter Property="Background" Value="{DynamicResource SemiColorPrimary}" />
             <Setter Property="CornerRadius" Value="3" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Foreground" Value="White" />
             <Style Selector="^:pointerover">
-                <Setter Property="Background" Value="{DynamicResource SemiBlue6}" />
+                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryPointerover}" />
             </Style>
         </Style>
     </ControlTheme>
