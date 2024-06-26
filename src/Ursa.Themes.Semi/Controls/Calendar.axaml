@@ -40,103 +40,103 @@
         </Setter>
 
         <Style Selector="^:in-range">
-            <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryLight}" />
+            <Setter Property="Background" Value="{DynamicResource DatePickerDayInRangeBackground}" />
             <Setter Property="CornerRadius" Value="0" />
             <Setter Property="BorderThickness" Value="0" />
         </Style>
 
         <Style Selector="^:today">
-            <Setter Property="Background" Value="{DynamicResource SemiColorFill0}" />
-            <Setter Property="Foreground" Value="{DynamicResource SemiColorPrimary}" />
+            <Setter Property="Background" Value="{DynamicResource DatePickerDayTodayBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource DatePickerDayTodayForeground}" />
             <Setter Property="Cursor" Value="Hand" />
             <Style Selector="^:in-range">
-                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryLight}" />
+                <Setter Property="Background" Value="{DynamicResource DatePickerDayInRangeBackground}" />
             </Style>
         </Style>
 
         <Style Selector="^:not-current-month">
-            <Setter Property="Foreground" Value="{DynamicResource SemiGrey3}" />
+            <Setter Property="Foreground" Value="{DynamicResource DatePickerDayNotCurrentMonthForeground}" />
         </Style>
 
         <Style Selector="^:pointerover">
-            <Setter Property="Background" Value="{DynamicResource SemiColorFill0}" />
+            <Setter Property="Background" Value="{DynamicResource DatePickerDayPointeroverBackground}" />
             <Setter Property="Cursor" Value="Hand" />
         </Style>
 
         <Style Selector="^:pressed">
-            <Setter Property="Background" Value="{DynamicResource SemiColorFill1}" />
+            <Setter Property="Background" Value="{DynamicResource DatePickerDayPressedBackground}" />
         </Style>
 
         <Style Selector="^:selected">
-            <Setter Property="Background" Value="{DynamicResource SemiColorPrimary}" />
+            <Setter Property="Background" Value="{DynamicResource DatePickerDaySelectedBackground}" />
             <Setter Property="CornerRadius" Value="3" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Foreground" Value="White" />
             <Style Selector="^:pointerover">
-                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryPointerover}" />
+                <Setter Property="Background" Value="{DynamicResource DatePickerDaySelectedPointeroverBackground}" />
             </Style>
             <Style Selector="^:pressed">
-                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryPressed}" />
+                <Setter Property="Background" Value="{DynamicResource DatePickerDaySelectedPressedBackground}" />
             </Style>
         </Style>
 
 
         <Style Selector="^:start-date">
             <Setter Property="CornerRadius" Value="3 0 0 3" />
-            <Setter Property="Background" Value="{DynamicResource SemiColorPrimary}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorPrimary}" />
+            <Setter Property="Background" Value="{DynamicResource DatePickerDayStartEndDateBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource DatePickerDayStartEndDateBorderBrush}" />
             <Setter Property="Foreground" Value="White" />
             <Style Selector="^:pointerover">
-                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryPointerover}" />
+                <Setter Property="Background" Value="{DynamicResource DatePickerDayStartEndDatePointeroverBackground}" />
             </Style>
             <Style Selector="^:pressed">
-                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryPressed}" />
+                <Setter Property="Background" Value="{DynamicResource DatePickerDayStartEndDatePressedBackground}" />
             </Style>
             <Style Selector="^:in-range">
-                <Setter Property="BorderBrush" Value="{DynamicResource SemiColorPrimaryPressed}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource DatePickerDayStartEndDateInRangeBackground}" />
                 <Setter Property="BorderThickness" Value="1" />
             </Style>
         </Style>
 
         <Style Selector="^:end-date">
             <Setter Property="CornerRadius" Value="0 3 3 0" />
-            <Setter Property="Background" Value="{DynamicResource SemiColorPrimary}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorPrimary}" />
+            <Setter Property="Background" Value="{DynamicResource DatePickerDayStartEndDateBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource DatePickerDayStartEndDateBorderBrush}" />
             <Setter Property="Foreground" Value="White" />
             <Style Selector="^:pointerover">
-                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryPointerover}" />
+                <Setter Property="Background" Value="{DynamicResource DatePickerDayStartEndDatePointeroverBackground}" />
             </Style>
             <Style Selector="^:pressed">
-                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryPressed}" />
+                <Setter Property="Background" Value="{DynamicResource DatePickerDayStartEndDatePressedBackground}" />
             </Style>
             <Style Selector="^:in-range">
-                <Setter Property="BorderBrush" Value="{DynamicResource SemiColorPrimaryPressed}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource DatePickerDayStartEndDateInRangeBackground}" />
                 <Setter Property="BorderThickness" Value="1" />
             </Style>
         </Style>
 
         <Style Selector="^:preview-start-date">
             <Setter Property="CornerRadius" Value="3 0 0 3" />
-            <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryLightPointerover}" />
+            <Setter Property="Background" Value="{DynamicResource DatePickerDayPreviewStartEndDateBackground}" />
             <Style Selector="^:pressed">
-                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryLightActive}" />
+                <Setter Property="Background" Value="{DynamicResource DatePickerDayPreviewStartEndDatePressedBackground}" />
             </Style>
         </Style>
 
         <Style Selector="^:preview-end-date">
             <Setter Property="CornerRadius" Value="0 3 3 0" />
-            <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryLightPointerover}" />
+            <Setter Property="Background" Value="{DynamicResource DatePickerDayPreviewStartEndDateBackground}" />
             <Style Selector="^:pressed">
-                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryLightActive}" />
+                <Setter Property="Background" Value="{DynamicResource DatePickerDayPreviewStartEndDatePressedBackground}" />
             </Style>
         </Style>
 
         <Style Selector="^:blackout">
-            <Setter Property="Foreground" Value="{DynamicResource SemiColorDisabledText}" />
-            <Setter Property="Background" Value="{DynamicResource SemiColorDisabledFill}" />
+            <Setter Property="Foreground" Value="{DynamicResource DatePickerDayBlackoutForeground}" />
+            <Setter Property="Background" Value="{DynamicResource DatePickerDayBlackoutBackground}" />
             <Setter Property="Cursor" Value="No" />
             <Style Selector="^:today">
-                <Setter Property="Foreground" Value="{DynamicResource SemiColorPrimaryDisabled}" />
+                <Setter Property="Foreground" Value="{DynamicResource DatePickerDayBlackoutTodayBackground}" />
             </Style>
         </Style>
     </ControlTheme>
@@ -169,19 +169,19 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover">
-            <Setter Property="Background" Value="{DynamicResource SemiColorFill0}" />
+            <Setter Property="Background" Value="{DynamicResource DatePickerYearPointeroverBackground}" />
             <Setter Property="Cursor" Value="Hand" />
         </Style>
         <Style Selector="^:pressed">
-            <Setter Property="Background" Value="{DynamicResource SemiColorFill1}" />
+            <Setter Property="Background" Value="{DynamicResource DatePickerYearPressedBackground}" />
         </Style>
         <Style Selector="^:selected">
-            <Setter Property="Background" Value="{DynamicResource SemiColorPrimary}" />
+            <Setter Property="Background" Value="{DynamicResource DatePickerYearSelectedBackground}" />
             <Setter Property="CornerRadius" Value="3" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Foreground" Value="White" />
             <Style Selector="^:pointerover">
-                <Setter Property="Background" Value="{DynamicResource SemiColorPrimaryPointerover}" />
+                <Setter Property="Background" Value="{DynamicResource DatePickerYearSelectedPointeroverBackground}" />
             </Style>
         </Style>
     </ControlTheme>

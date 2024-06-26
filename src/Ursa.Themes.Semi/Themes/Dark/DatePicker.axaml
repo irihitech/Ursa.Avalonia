@@ -1,2 +1,32 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--CalenderDayButton-->
+    <StaticResource x:Key="DatePickerDayInRangeBackground" ResourceKey="SemiColorPrimaryLight" />
+    <StaticResource x:Key="DatePickerDayTodayBackground" ResourceKey="SemiColorFill0" />
+    <StaticResource x:Key="DatePickerDayTodayForeground" ResourceKey="SemiColorPrimary" />
+    <StaticResource x:Key="DatePickerDayNotCurrentMonthForeground" ResourceKey="SemiGrey3" />
+    <StaticResource x:Key="DatePickerDayPointeroverBackground" ResourceKey="SemiColorFill0" />
+    <StaticResource x:Key="DatePickerDayPressedBackground" ResourceKey="SemiColorFill1" />
+
+    <StaticResource x:Key="DatePickerDaySelectedBackground" ResourceKey="SemiColorPrimary" />
+    <StaticResource x:Key="DatePickerDaySelectedPointeroverBackground" ResourceKey="SemiColorPrimaryPointerover" />
+    <StaticResource x:Key="DatePickerDaySelectedPressedBackground" ResourceKey="SemiColorPrimaryPressed" />
+
+    <StaticResource x:Key="DatePickerDayStartEndDateBackground" ResourceKey="SemiColorPrimary" />
+    <StaticResource x:Key="DatePickerDayStartEndDateBorderBrush" ResourceKey="SemiColorPrimary" />
+    <StaticResource x:Key="DatePickerDayStartEndDatePointeroverBackground" ResourceKey="SemiColorPrimaryPointerover" />
+    <StaticResource x:Key="DatePickerDayStartEndDatePressedBackground" ResourceKey="SemiColorPrimaryPressed" />
+    <StaticResource x:Key="DatePickerDayStartEndDateInRangeBackground" ResourceKey="SemiColorPrimaryPressed" />
+
+    <StaticResource x:Key="DatePickerDayPreviewStartEndDateBackground" ResourceKey="SemiColorPrimaryLightPointerover" />
+    <StaticResource x:Key="DatePickerDayPreviewStartEndDatePressedBackground" ResourceKey="SemiColorPrimaryLightActive" />
+
+    <StaticResource x:Key="DatePickerDayBlackoutForeground" ResourceKey="SemiColorDisabledText" />
+    <StaticResource x:Key="DatePickerDayBlackoutBackground" ResourceKey="SemiColorDisabledFill" />
+    <StaticResource x:Key="DatePickerDayBlackoutTodayBackground" ResourceKey="SemiColorPrimaryDisabled" />
+
+    <!--CalenderYearButton-->
+    <StaticResource x:Key="DatePickerYearPointeroverBackground" ResourceKey="SemiColorFill0" />
+    <StaticResource x:Key="DatePickerYearPressedBackground" ResourceKey="SemiColorFill1" />
+    <StaticResource x:Key="DatePickerYearSelectedBackground" ResourceKey="SemiColorPrimary" />
+    <StaticResource x:Key="DatePickerYearSelectedPointeroverBackground" ResourceKey="SemiColorPrimaryPointerover" />
 </ResourceDictionary>
