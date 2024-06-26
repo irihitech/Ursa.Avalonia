@@ -21,13 +21,7 @@
     </UserControl.Resources>
     <Panel>
         <Grid
-            Classes.Blur="{Binding #host.HasModal}"
             ColumnDefinitions="Auto, *" >
-            <Grid.Styles>
-                <Style Selector="Grid.Blur">
-                    <Setter Property="Effect" Value="blur(20)" />
-                </Style>
-            </Grid.Styles>
             <Border
                 Padding="8 4"
                 VerticalAlignment="Stretch"
@@ -96,6 +90,5 @@
                 </ContentControl.ContentTemplate>
             </ContentControl>
         </Grid>
-        <u:OverlayDialogHost Name="host" SnapThickness="20" />
     </Panel>
 </UserControl>
