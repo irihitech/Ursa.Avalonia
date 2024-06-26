@@ -1,8 +1,138 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:u="https://irihi.tech/ursa">
-    <!-- Add Resources Here -->
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:UrsaWindow}" TargetType="u:UrsaWindow">
-        
+        <Setter Property="Background" Value="{DynamicResource WindowDefaultBackground}" />
+        <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
+        <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
+        <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="0" />
+        <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
+        <Setter Property="SystemDecorations" Value="BorderOnly" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:UrsaWindow">
+                <Panel>
+                    <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
+                    <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
+                    <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
+                    <VisualLayerManager>
+                        <VisualLayerManager.ChromeOverlayLayer>
+                            <u:TitleBar
+                                Content="{Binding $parent[u:UrsaWindow].TitleBarContent}"
+                                Margin="{Binding $parent[u:UrsaWindow].TitleBarMargin}"
+                                LeftContent="{Binding $parent[u:UrsaWindow].LeftContent}"
+                                RightContent="{Binding $parent[u:UrsaWindow].RightContent}" />
+                        </VisualLayerManager.ChromeOverlayLayer>
+                        <Panel>
+                            <ContentPresenter
+                                Name="PART_ContentPresenter"
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        </Panel>
+                    </VisualLayerManager>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:TitleBar}" TargetType="u:TitleBar">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:TitleBar">
+                <Panel Background="Transparent">
+                    <Panel>
+                        <Border
+                            Name="PART_Background"
+                            Background="{TemplateBinding Background}"
+                            IsHitTestVisible="True" />
+                        <Grid ColumnDefinitions="Auto, *, Auto, Auto" HorizontalAlignment="Stretch">
+                            <ContentPresenter
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding LeftContent}" />
+                            <ContentPresenter
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}" />
+                            <ContentPresenter
+                                Grid.Column="2"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding RightContent}" />
+                            <u:CaptionButtons
+                                x:Name="PART_CaptionButtons"
+                                Grid.Column="3"
+                                Margin="8 0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                DockPanel.Dock="Right"
+                                Foreground="{TemplateBinding Foreground}" />
+                        </Grid>
+                    </Panel>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:CaptionButtons}" TargetType="u:CaptionButtons">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:CaptionButtons">
+                <StackPanel
+                    VerticalAlignment="Stretch"
+                    Orientation="Horizontal"
+                    Spacing="2"
+                    TextElement.FontSize="10">
+                    <Button x:Name="PART_FullScreenButton" Theme="{DynamicResource CaptionButton}">
+                        <PathIcon
+                            Name="PART_FullScreenButtonIcon"
+                            Width="12"
+                            Height="12"
+                            Data="{DynamicResource WindowExpandGlyph}"
+                            Foreground="{Binding $parent[Button].Foreground}" />
+                    </Button>
+                    <Button x:Name="PART_MinimizeButton" Theme="{DynamicResource CaptionButton}">
+                        <PathIcon
+                            Width="12"
+                            Height="12"
+                            Data="{DynamicResource WindowMinimizeGlyph}"
+                            Foreground="{Binding $parent[Button].Foreground}" />
+                    </Button>
+                    <Button x:Name="PART_RestoreButton" Theme="{DynamicResource CaptionButton}" >
+                        <PathIcon
+                            Name="PART_RestoreButtonIcon"
+                            Width="12"
+                            Height="12"
+                            Data="{DynamicResource WindowMaximizeGlyph}"
+                            Foreground="{Binding $parent[Button].Foreground}" />
+                    </Button>
+                    <Button
+                        x:Name="PART_CloseButton"
+                        Background="{DynamicResource CaptionButtonClosePointeroverBackground}"
+                        BorderBrush="{DynamicResource CaptionButtonClosePressedBackground}"
+                        Theme="{DynamicResource CaptionButton}">
+                        <Button.Styles>
+                            <Style Selector="Button:pointerover">
+                                <Setter Property="Foreground" Value="White" />
+                            </Style>
+                            <Style Selector="Button:pressed">
+                                <Setter Property="Foreground" Value="White" />
+                            </Style>
+                        </Button.Styles>
+                        <PathIcon
+                            Width="12"
+                            Height="12"
+                            Data="{DynamicResource WindowCloseIconGlyph}"
+                            Foreground="{Binding $parent[Button].Foreground}" />
+                    </Button>
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
     </ControlTheme>
 </ResourceDictionary>

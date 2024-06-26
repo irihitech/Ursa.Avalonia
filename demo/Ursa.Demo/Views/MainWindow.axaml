@@ -11,8 +11,14 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:CompileBindings="True"
+    IsFullScreenButtonVisible="True"
     x:DataType="viewModels:MainWindowViewModel"
     Icon="/Assets/Ursa.ico"
     mc:Ignorable="d">
+    <u:UrsaWindow.RightContent>
+        <u:ThemeToggleButton
+            IsThreeState="True"
+            Mode="Controller" />
+    </u:UrsaWindow.RightContent>
     <views:MainView />
 </u:UrsaWindow>

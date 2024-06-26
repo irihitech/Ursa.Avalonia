@@ -9,42 +9,88 @@ namespace Ursa.Controls;
 /// </summary>
 public class UrsaWindow: Window
 {
-    public static readonly StyledProperty<bool> ShowFullScreenButtonProperty = AvaloniaProperty.Register<UrsaWindow, bool>(
-        nameof(ShowFullScreenButton), false);
+    protected override Type StyleKeyOverride => typeof(UrsaWindow);
 
-    public bool ShowFullScreenButton
+    public static readonly StyledProperty<bool> IsFullScreenButtonVisibleProperty = AvaloniaProperty.Register<UrsaWindow, bool>(
+        nameof(IsFullScreenButtonVisible));
+
+    public bool IsFullScreenButtonVisible
     {
-        get => GetValue(ShowFullScreenButtonProperty);
-        set => SetValue(ShowFullScreenButtonProperty, value);
+        get => GetValue(IsFullScreenButtonVisibleProperty);
+        set => SetValue(IsFullScreenButtonVisibleProperty, value);
+    }
+    
+    public static readonly StyledProperty<bool> IsMinimizeButtonVisibleProperty = AvaloniaProperty.Register<UrsaWindow, bool>(
+        nameof(IsMinimizeButtonVisible), true);
+    
+    public bool IsMinimizeButtonVisible
+    {
+        get => GetValue(IsMinimizeButtonVisibleProperty);
+        set => SetValue(IsMinimizeButtonVisibleProperty, value);
     }
 
-    public static readonly StyledProperty<bool> ShowMaximumButtonProperty = AvaloniaProperty.Register<UrsaWindow, bool>(
-        nameof(ShowMaximumButton));
+    public static readonly StyledProperty<bool> IsRestoreButtonVisibleProperty = AvaloniaProperty.Register<UrsaWindow, bool>(
+        nameof(IsRestoreButtonVisible), true);
 
-    public bool ShowMaximumButton
+    public bool IsRestoreButtonVisible
     {
-        get => GetValue(ShowMaximumButtonProperty);
-        set => SetValue(ShowMaximumButtonProperty, value);
+        get => GetValue(IsRestoreButtonVisibleProperty);
+        set => SetValue(IsRestoreButtonVisibleProperty, value);
     }
     
-    public static readonly StyledProperty<bool> ShowMinimumButtonProperty = AvaloniaProperty.Register<UrsaWindow, bool>(
-        nameof(ShowMinimumButton));
+    public static readonly StyledProperty<bool> IsCloseButtonVisibleProperty = AvaloniaProperty.Register<UrsaWindow, bool>(
+        nameof(IsCloseButtonVisible), true);
     
-    public bool ShowMinimumButton
+    public bool IsCloseButtonVisible
     {
-        get => GetValue(ShowMinimumButtonProperty);
-        set => SetValue(ShowMinimumButtonProperty, value);
+        get => GetValue(IsCloseButtonVisibleProperty);
+        set => SetValue(IsCloseButtonVisibleProperty, value);
     }
     
-    public static readonly StyledProperty<bool> ShowCloseButtonProperty = AvaloniaProperty.Register<UrsaWindow, bool>(
-        nameof(ShowCloseButton));
+    public static readonly StyledProperty<bool> IsTitleBarVisibleProperty = AvaloniaProperty.Register<UrsaWindow, bool>(
+        nameof(IsTitleBarVisible));
     
-    public bool ShowCloseButton
+    public bool IsTitleBarVisible
     {
-        get => GetValue(ShowCloseButtonProperty);
-        set => SetValue(ShowCloseButtonProperty, value);
+        get => GetValue(IsTitleBarVisibleProperty);
+        set => SetValue(IsTitleBarVisibleProperty, value);
     }
     
+    public static readonly StyledProperty<object?> TitleBarContentProperty = AvaloniaProperty.Register<UrsaWindow, object?>(
+        nameof(TitleBarContent));
+    
+    public object? TitleBarContent
+    {
+        get => GetValue(TitleBarContentProperty);
+        set => SetValue(TitleBarContentProperty, value);
+    }
+    
+    public static readonly StyledProperty<object?> LeftContentProperty = AvaloniaProperty.Register<UrsaWindow, object?>(
+        nameof(LeftContent));
+    
+    public object? LeftContent
+    {
+        get => GetValue(LeftContentProperty);
+        set => SetValue(LeftContentProperty, value);
+    }
+    
+    public static readonly StyledProperty<object?> RightContentProperty = AvaloniaProperty.Register<UrsaWindow, object?>(
+        nameof(RightContent));
+    
+    public object? RightContent
+    {
+        get => GetValue(RightContentProperty);
+        set => SetValue(RightContentProperty, value);
+    }
+
+    public static readonly StyledProperty<Thickness> TitleBarMarginProperty = AvaloniaProperty.Register<UrsaWindow, Thickness>(
+        nameof(TitleBarMargin));
+
+    public Thickness TitleBarMargin
+    {
+        get => GetValue(TitleBarMarginProperty);
+        set => SetValue(TitleBarMarginProperty, value);
+    }
     
     
 }
