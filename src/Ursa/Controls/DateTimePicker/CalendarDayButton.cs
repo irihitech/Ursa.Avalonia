@@ -169,9 +169,9 @@ public class CalendarDayButton : ContentControl
         remove => RemoveHandler(DateSelectedEvent, value);
     }
 
-    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    protected override void OnPointerReleased(PointerReleasedEventArgs e)
     {
-        base.OnPointerPressed(e);
+        base.OnPointerReleased(e);
         if (DataContext is DateTime d)
             RaiseEvent(new CalendarDayButtonEventArgs(d) { RoutedEvent = DateSelectedEvent, Source = this });
     }
