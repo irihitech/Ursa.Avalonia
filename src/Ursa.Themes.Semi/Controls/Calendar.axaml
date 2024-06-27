@@ -11,14 +11,14 @@
         </ThemeVariantScope>
     </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:CalendarDayButton}" TargetType="u:CalendarDayButton">
-        <Setter Property="MinWidth" Value="32" />
-        <Setter Property="MinHeight" Value="32" />
-        <Setter Property="Margin" Value="0 2" />
+        <Setter Property="MinWidth" Value="{DynamicResource CalenderDayMinWidth}" />
+        <Setter Property="MinHeight" Value="{DynamicResource CalenderDayMinHeight}" />
+        <Setter Property="Margin" Value="{DynamicResource CalenderDayMargin}" />
         <Setter Property="Background" Value="{DynamicResource CalenderDayBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource CalenderDayBorderBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderThickness" Value="{DynamicResource CalenderDayBorderThickness}" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="CornerRadius" Value="3" />
+        <Setter Property="CornerRadius" Value="{DynamicResource CalenderDayCornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:CalendarDayButton">
                 <Panel>
@@ -41,8 +41,8 @@
 
         <Style Selector="^:in-range">
             <Setter Property="Background" Value="{DynamicResource CalenderDayInRangeBackground}" />
-            <Setter Property="CornerRadius" Value="0" />
-            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="{DynamicResource CalenderDayInRangeCornerRadius}" />
+            <Setter Property="BorderThickness" Value="{DynamicResource CalenderDayNoBorderThickness}" />
         </Style>
 
         <Style Selector="^:today">
@@ -69,8 +69,8 @@
 
         <Style Selector="^:selected">
             <Setter Property="Background" Value="{DynamicResource CalenderDaySelectedBackground}" />
-            <Setter Property="CornerRadius" Value="3" />
-            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="{DynamicResource CalenderDayCornerRadius}" />
+            <Setter Property="BorderThickness" Value="{DynamicResource CalenderDayNoBorderThickness}" />
             <Setter Property="Foreground" Value="{DynamicResource CalenderDaySelectedForeground}" />
             <Style Selector="^:pointerover">
                 <Setter Property="Background" Value="{DynamicResource CalenderDaySelectedPointeroverBackground}" />
@@ -82,7 +82,7 @@
 
 
         <Style Selector="^:start-date">
-            <Setter Property="CornerRadius" Value="3 0 0 3" />
+            <Setter Property="CornerRadius" Value="{DynamicResource CalenderDayStartDateCornerRadius}" />
             <Setter Property="Background" Value="{DynamicResource CalenderDayStartEndDateBackground}" />
             <Setter Property="BorderBrush" Value="{DynamicResource CalenderDayStartEndDateBorderBrush}" />
             <Setter Property="Foreground" Value="{DynamicResource CalenderDaySelectedForeground}" />
@@ -94,12 +94,12 @@
             </Style>
             <Style Selector="^:in-range">
                 <Setter Property="BorderBrush" Value="{DynamicResource CalenderDayStartEndDateInRangeBackground}" />
-                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderThickness" Value="{DynamicResource CalenderDayBorderThickness}" />
             </Style>
         </Style>
 
         <Style Selector="^:end-date">
-            <Setter Property="CornerRadius" Value="0 3 3 0" />
+            <Setter Property="CornerRadius" Value="{DynamicResource CalenderDayEndDateCornerRadius}" />
             <Setter Property="Background" Value="{DynamicResource CalenderDayStartEndDateBackground}" />
             <Setter Property="BorderBrush" Value="{DynamicResource CalenderDayStartEndDateBorderBrush}" />
             <Setter Property="Foreground" Value="{DynamicResource CalenderDaySelectedForeground}" />
@@ -111,12 +111,12 @@
             </Style>
             <Style Selector="^:in-range">
                 <Setter Property="BorderBrush" Value="{DynamicResource CalenderDayStartEndDateInRangeBackground}" />
-                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderThickness" Value="{DynamicResource CalenderDayBorderThickness}" />
             </Style>
         </Style>
 
         <Style Selector="^:preview-start-date">
-            <Setter Property="CornerRadius" Value="3 0 0 3" />
+            <Setter Property="CornerRadius" Value="{DynamicResource CalenderDayStartDateCornerRadius}" />
             <Setter Property="Background" Value="{DynamicResource CalenderDayPreviewStartEndDateBackground}" />
             <Style Selector="^:pressed">
                 <Setter Property="Background" Value="{DynamicResource CalenderDayPreviewStartEndDatePressedBackground}" />
@@ -124,7 +124,7 @@
         </Style>
 
         <Style Selector="^:preview-end-date">
-            <Setter Property="CornerRadius" Value="0 3 3 0" />
+            <Setter Property="CornerRadius" Value="{DynamicResource CalenderDayEndDateCornerRadius}" />
             <Setter Property="Background" Value="{DynamicResource CalenderDayPreviewStartEndDateBackground}" />
             <Style Selector="^:pressed">
                 <Setter Property="Background" Value="{DynamicResource CalenderDayPreviewStartEndDatePressedBackground}" />
@@ -142,13 +142,13 @@
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:CalendarYearButton}" TargetType="u:CalendarYearButton">
-        <Setter Property="MinWidth" Value="32" />
-        <Setter Property="MinHeight" Value="32" />
-        <Setter Property="Margin" Value="0 2" />
+        <Setter Property="MinWidth" Value="{DynamicResource CalenderYearMinWidth}" />
+        <Setter Property="MinHeight" Value="{DynamicResource CalenderYearMinHeight }" />
+        <Setter Property="Margin" Value="{DynamicResource CalenderYearMargin}" />
         <Setter Property="Background" Value="{DynamicResource CalenderYearBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource CalenderYearBorderBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="CornerRadius" Value="3" />
+        <Setter Property="BorderThickness" Value="{DynamicResource CalenderYearBorderThickness}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource CalenderYearCornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:CalendarDayButton">
                 <Panel>
@@ -177,8 +177,8 @@
         </Style>
         <Style Selector="^:selected">
             <Setter Property="Background" Value="{DynamicResource CalenderYearSelectedBackground}" />
-            <Setter Property="CornerRadius" Value="3" />
-            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="{DynamicResource CalenderYearCornerRadius}" />
+            <Setter Property="BorderThickness" Value="{DynamicResource CalenderYearSelectedBorderThickness}" />
             <Setter Property="Foreground" Value="{DynamicResource CalenderYearSelectedForeground}" />
             <Style Selector="^:pointerover">
                 <Setter Property="Background" Value="{DynamicResource CalenderYearSelectedPointeroverBackground}" />
@@ -187,8 +187,8 @@
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:CalendarView}" TargetType="u:CalendarView">
-        <Setter Property="MinHeight" Value="260" />
-        <Setter Property="MinWidth" Value="260" />
+        <Setter Property="MinHeight" Value="{DynamicResource CalenderViewMinWidth}" />
+        <Setter Property="MinWidth" Value="{DynamicResource CalenderViewMinHeight}" />
         <Setter Property="Background" Value="{DynamicResource DatePickerViewBackground}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:CalendarView">
@@ -204,8 +204,8 @@
                             Foreground="{TemplateBinding Foreground}"
                             Theme="{DynamicResource BorderlessButton}">
                             <PathIcon
-                                Width="12"
-                                Height="12"
+                                Width="{DynamicResource CalenderViewPathIconWidth}"
+                                Height="{DynamicResource CalenderViewPathIconHeight}"
                                 Data="{DynamicResource CalendarViewFastForwardGlyph}"
                                 Foreground="{DynamicResource CalendarItemIconForeground}" />
                         </Button>
@@ -217,8 +217,8 @@
                             Foreground="{TemplateBinding Foreground}"
                             Theme="{DynamicResource BorderlessButton}">
                             <PathIcon
-                                Width="12"
-                                Height="12"
+                                Width="{DynamicResource CalenderViewPathIconWidth}"
+                                Height="{DynamicResource CalenderViewPathIconHeight}"
                                 Data="{DynamicResource CalendarItemPreviousIconGlyph}"
                                 Foreground="{DynamicResource CalendarItemIconForeground}" />
                         </Button>
@@ -251,8 +251,8 @@
                             Foreground="{TemplateBinding Foreground}"
                             Theme="{DynamicResource BorderlessButton}">
                             <PathIcon
-                                Width="12"
-                                Height="12"
+                                Width="{DynamicResource CalenderViewPathIconWidth}"
+                                Height="{DynamicResource CalenderViewPathIconHeight}"
                                 Data="{DynamicResource CalendarItemNextIconGlyph}"
                                 Foreground="{DynamicResource CalendarItemIconForeground}" />
                         </Button>
@@ -263,8 +263,8 @@
                             Foreground="{TemplateBinding Foreground}"
                             Theme="{DynamicResource BorderlessButton}">
                             <PathIcon
-                                Width="12"
-                                Height="12"
+                                Width="{DynamicResource CalenderViewPathIconWidth}"
+                                Height="{DynamicResource CalenderViewPathIconHeight}"
                                 Data="{DynamicResource CalendarViewFastBackwardGlyph}"
                                 Foreground="{DynamicResource CalendarItemIconForeground}" />
                         </Button>
