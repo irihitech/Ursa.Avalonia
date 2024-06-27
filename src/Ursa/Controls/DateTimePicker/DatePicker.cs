@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Contracts;
@@ -26,7 +27,7 @@ public class DatePicker: DatePickerBase, IClearControl
     private CalendarView? _calendar;
 
     public static readonly StyledProperty<DateTime?> SelectedDateProperty = AvaloniaProperty.Register<DatePicker, DateTime?>(
-        nameof(SelectedDate));
+        nameof(SelectedDate), defaultBindingMode: BindingMode.TwoWay);
 
     public DateTime? SelectedDate
     {

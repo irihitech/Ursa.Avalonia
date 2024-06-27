@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Helpers;
@@ -26,11 +27,11 @@ public class DateRangePicker : DatePickerBase
 
     public static readonly StyledProperty<DateTime?> SelectedStartDateProperty =
         AvaloniaProperty.Register<DateRangePicker, DateTime?>(
-            nameof(SelectedStartDate));
+            nameof(SelectedStartDate), defaultBindingMode: BindingMode.TwoWay);
 
     public static readonly StyledProperty<DateTime?> SelectedEndDateProperty =
         AvaloniaProperty.Register<DateRangePicker, DateTime?>(
-            nameof(SelectedEndDate));
+            nameof(SelectedEndDate), defaultBindingMode: BindingMode.TwoWay);
 
     public static readonly StyledProperty<bool> EnableMonthSyncProperty = AvaloniaProperty.Register<DateRangePicker, bool>(
         nameof(EnableMonthSync));
