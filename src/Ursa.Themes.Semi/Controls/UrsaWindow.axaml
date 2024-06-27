@@ -9,9 +9,9 @@
         <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
-        <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="0" />
+        <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="-1" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
-        <Setter Property="SystemDecorations" Value="BorderOnly" />
+        <Setter Property="SystemDecorations" Value="Full" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:UrsaWindow">
                 <Panel>
