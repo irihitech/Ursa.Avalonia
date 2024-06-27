@@ -1,41 +1,41 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--CalenderDayButton-->
-    <SolidColorBrush x:Key="DatePickerDayBackground" Color="Transparent" />
-    <SolidColorBrush x:Key="DatePickerDayBorderBrush" Color="Transparent" />
-    <SolidColorBrush x:Key="DatePickerDayInRangeBackground" Color="#EAF5FF" />
-    <SolidColorBrush x:Key="DatePickerDayTodayBackground" Opacity="0.05" Color="#2E3238" />
-    <SolidColorBrush x:Key="DatePickerDayTodayForeground" Color="#0077FA" />
-    <SolidColorBrush x:Key="DatePickerDayNotCurrentMonthForeground" Color="#A7ABB0" />
-    <SolidColorBrush x:Key="DatePickerDayPointeroverBackground" Opacity="0.05" Color="#2E3238" />
-    <SolidColorBrush x:Key="DatePickerDayPressedBackground" Opacity="0.09" Color="#2E3238" />
+    <SolidColorBrush x:Key="CalenderDayBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="CalenderDayBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="CalenderDayInRangeBackground" Color="#EAF5FF" />
+    <SolidColorBrush x:Key="CalenderDayTodayBackground" Opacity="0.05" Color="#2E3238" />
+    <SolidColorBrush x:Key="CalenderDayTodayForeground" Color="#0077FA" />
+    <SolidColorBrush x:Key="CalenderDayNotCurrentMonthForeground" Color="#A7ABB0" />
+    <SolidColorBrush x:Key="CalenderDayPointeroverBackground" Opacity="0.05" Color="#2E3238" />
+    <SolidColorBrush x:Key="CalenderDayPressedBackground" Opacity="0.09" Color="#2E3238" />
 
-    <SolidColorBrush x:Key="DatePickerDaySelectedBackground" Color="#0077FA" />
-    <SolidColorBrush x:Key="DatePickerDaySelectedForeground" Color="White" />
-    <SolidColorBrush x:Key="DatePickerDaySelectedPointeroverBackground" Color="#0062D6" />
-    <SolidColorBrush x:Key="DatePickerDaySelectedPressedBackground" Color="#004FB3" />
+    <SolidColorBrush x:Key="CalenderDaySelectedBackground" Color="#0077FA" />
+    <SolidColorBrush x:Key="CalenderDaySelectedForeground" Color="White" />
+    <SolidColorBrush x:Key="CalenderDaySelectedPointeroverBackground" Color="#0062D6" />
+    <SolidColorBrush x:Key="CalenderDaySelectedPressedBackground" Color="#004FB3" />
 
-    <SolidColorBrush x:Key="DatePickerDayStartEndDateBackground" Color="#0077FA" />
-    <SolidColorBrush x:Key="DatePickerDayStartEndDateBorderBrush" Color="#0077FA" />
-    <SolidColorBrush x:Key="DatePickerDayStartEndDatePointeroverBackground" Color="#0062D6" />
-    <SolidColorBrush x:Key="DatePickerDayStartEndDatePressedBackground" Color="#004FB3" />
-    <SolidColorBrush x:Key="DatePickerDayStartEndDateInRangeBackground" Color="#004FB3" />
+    <SolidColorBrush x:Key="CalenderDayStartEndDateBackground" Color="#0077FA" />
+    <SolidColorBrush x:Key="CalenderDayStartEndDateBorderBrush" Color="#0077FA" />
+    <SolidColorBrush x:Key="CalenderDayStartEndDatePointeroverBackground" Color="#0062D6" />
+    <SolidColorBrush x:Key="CalenderDayStartEndDatePressedBackground" Color="#004FB3" />
+    <SolidColorBrush x:Key="CalenderDayStartEndDateInRangeBackground" Color="#004FB3" />
 
-    <SolidColorBrush x:Key="DatePickerDayPreviewStartEndDateBackground" Color="#CBE7FE" />
-    <SolidColorBrush x:Key="DatePickerDayPreviewStartEndDatePressedBackground" Color="#98CDFD" />
+    <SolidColorBrush x:Key="CalenderDayPreviewStartEndDateBackground" Color="#CBE7FE" />
+    <SolidColorBrush x:Key="CalenderDayPreviewStartEndDatePressedBackground" Color="#98CDFD" />
 
-    <SolidColorBrush x:Key="DatePickerDayBlackoutForeground" Opacity="0.35" Color="#1C1F23" />
-    <SolidColorBrush x:Key="DatePickerDayBlackoutBackground" Opacity="0.02" Color="#2E3238" />
-    <SolidColorBrush x:Key="DatePickerDayBlackoutTodayBackground" Color="#98CDFD" />
+    <SolidColorBrush x:Key="CalenderDayBlackoutForeground" Opacity="0.35" Color="#1C1F23" />
+    <SolidColorBrush x:Key="CalenderDayBlackoutBackground" Opacity="0.02" Color="#2E3238" />
+    <SolidColorBrush x:Key="CalenderDayBlackoutTodayBackground" Color="#98CDFD" />
 
     <!--CalenderYearButton-->
-    <SolidColorBrush x:Key="DatePickerYearBackground" Color="Transparent" />
-    <SolidColorBrush x:Key="DatePickerYearBorderBrush" Color="Transparent" />
-    <SolidColorBrush x:Key="DatePickerYearPointeroverBackground" Opacity="0.05" Color="#2E3238" />
-    <SolidColorBrush x:Key="DatePickerYearPressedBackground" Opacity="0.09" Color="#2E3238" />
-    <SolidColorBrush x:Key="DatePickerYearSelectedBackground" Color="#0077FA" />
-    <SolidColorBrush x:Key="DatePickerYearSelectedForeground" Color="White" />
-    <SolidColorBrush x:Key="DatePickerYearSelectedPointeroverBackground" Color="#0062D6" />
+    <SolidColorBrush x:Key="CalenderYearBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="CalenderYearBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="CalenderYearPointeroverBackground" Opacity="0.05" Color="#2E3238" />
+    <SolidColorBrush x:Key="CalenderYearPressedBackground" Opacity="0.09" Color="#2E3238" />
+    <SolidColorBrush x:Key="CalenderYearSelectedBackground" Color="#0077FA" />
+    <SolidColorBrush x:Key="CalenderYearSelectedForeground" Color="White" />
+    <SolidColorBrush x:Key="CalenderYearSelectedPointeroverBackground" Color="#0062D6" />
 
     <!--CalenderView-->
-    <SolidColorBrush x:Key="DatePickerViewBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="CalenderViewBackground" Color="Transparent" />
 </ResourceDictionary>

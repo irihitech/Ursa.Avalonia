@@ -14,8 +14,8 @@
         <Setter Property="MinWidth" Value="32" />
         <Setter Property="MinHeight" Value="32" />
         <Setter Property="Margin" Value="0 2" />
-        <Setter Property="Background" Value="{DynamicResource DatePickerDayBackground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource DatePickerDayBorderBrush}" />
+        <Setter Property="Background" Value="{DynamicResource CalenderDayBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource CalenderDayBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="CornerRadius" Value="3" />
@@ -40,103 +40,103 @@
         </Setter>
 
         <Style Selector="^:in-range">
-            <Setter Property="Background" Value="{DynamicResource DatePickerDayInRangeBackground}" />
+            <Setter Property="Background" Value="{DynamicResource CalenderDayInRangeBackground}" />
             <Setter Property="CornerRadius" Value="0" />
             <Setter Property="BorderThickness" Value="0" />
         </Style>
 
         <Style Selector="^:today">
-            <Setter Property="Background" Value="{DynamicResource DatePickerDayTodayBackground}" />
-            <Setter Property="Foreground" Value="{DynamicResource DatePickerDayTodayForeground}" />
+            <Setter Property="Background" Value="{DynamicResource CalenderDayTodayBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource CalenderDayTodayForeground}" />
             <Setter Property="Cursor" Value="Hand" />
             <Style Selector="^:in-range">
-                <Setter Property="Background" Value="{DynamicResource DatePickerDayInRangeBackground}" />
+                <Setter Property="Background" Value="{DynamicResource CalenderDayInRangeBackground}" />
             </Style>
         </Style>
 
         <Style Selector="^:not-current-month">
-            <Setter Property="Foreground" Value="{DynamicResource DatePickerDayNotCurrentMonthForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource CalenderDayNotCurrentMonthForeground}" />
         </Style>
 
         <Style Selector="^:pointerover">
-            <Setter Property="Background" Value="{DynamicResource DatePickerDayPointeroverBackground}" />
+            <Setter Property="Background" Value="{DynamicResource CalenderDayPointeroverBackground}" />
             <Setter Property="Cursor" Value="Hand" />
         </Style>
 
         <Style Selector="^:pressed">
-            <Setter Property="Background" Value="{DynamicResource DatePickerDayPressedBackground}" />
+            <Setter Property="Background" Value="{DynamicResource CalenderDayPressedBackground}" />
         </Style>
 
         <Style Selector="^:selected">
-            <Setter Property="Background" Value="{DynamicResource DatePickerDaySelectedBackground}" />
+            <Setter Property="Background" Value="{DynamicResource CalenderDaySelectedBackground}" />
             <Setter Property="CornerRadius" Value="3" />
             <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Foreground" Value="{DynamicResource DatePickerDaySelectedForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource CalenderDaySelectedForeground}" />
             <Style Selector="^:pointerover">
-                <Setter Property="Background" Value="{DynamicResource DatePickerDaySelectedPointeroverBackground}" />
+                <Setter Property="Background" Value="{DynamicResource CalenderDaySelectedPointeroverBackground}" />
             </Style>
             <Style Selector="^:pressed">
-                <Setter Property="Background" Value="{DynamicResource DatePickerDaySelectedPressedBackground}" />
+                <Setter Property="Background" Value="{DynamicResource CalenderDaySelectedPressedBackground}" />
             </Style>
         </Style>
 
 
         <Style Selector="^:start-date">
             <Setter Property="CornerRadius" Value="3 0 0 3" />
-            <Setter Property="Background" Value="{DynamicResource DatePickerDayStartEndDateBackground}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource DatePickerDayStartEndDateBorderBrush}" />
-            <Setter Property="Foreground" Value="{DynamicResource DatePickerDaySelectedForeground}" />
+            <Setter Property="Background" Value="{DynamicResource CalenderDayStartEndDateBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource CalenderDayStartEndDateBorderBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource CalenderDaySelectedForeground}" />
             <Style Selector="^:pointerover">
-                <Setter Property="Background" Value="{DynamicResource DatePickerDayStartEndDatePointeroverBackground}" />
+                <Setter Property="Background" Value="{DynamicResource CalenderDayStartEndDatePointeroverBackground}" />
             </Style>
             <Style Selector="^:pressed">
-                <Setter Property="Background" Value="{DynamicResource DatePickerDayStartEndDatePressedBackground}" />
+                <Setter Property="Background" Value="{DynamicResource CalenderDayStartEndDatePressedBackground}" />
             </Style>
             <Style Selector="^:in-range">
-                <Setter Property="BorderBrush" Value="{DynamicResource DatePickerDayStartEndDateInRangeBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource CalenderDayStartEndDateInRangeBackground}" />
                 <Setter Property="BorderThickness" Value="1" />
             </Style>
         </Style>
 
         <Style Selector="^:end-date">
             <Setter Property="CornerRadius" Value="0 3 3 0" />
-            <Setter Property="Background" Value="{DynamicResource DatePickerDayStartEndDateBackground}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource DatePickerDayStartEndDateBorderBrush}" />
-            <Setter Property="Foreground" Value="{DynamicResource DatePickerDaySelectedForeground}" />
+            <Setter Property="Background" Value="{DynamicResource CalenderDayStartEndDateBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource CalenderDayStartEndDateBorderBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource CalenderDaySelectedForeground}" />
             <Style Selector="^:pointerover">
-                <Setter Property="Background" Value="{DynamicResource DatePickerDayStartEndDatePointeroverBackground}" />
+                <Setter Property="Background" Value="{DynamicResource CalenderDayStartEndDatePointeroverBackground}" />
             </Style>
             <Style Selector="^:pressed">
-                <Setter Property="Background" Value="{DynamicResource DatePickerDayStartEndDatePressedBackground}" />
+                <Setter Property="Background" Value="{DynamicResource CalenderDayStartEndDatePressedBackground}" />
             </Style>
             <Style Selector="^:in-range">
-                <Setter Property="BorderBrush" Value="{DynamicResource DatePickerDayStartEndDateInRangeBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource CalenderDayStartEndDateInRangeBackground}" />
                 <Setter Property="BorderThickness" Value="1" />
             </Style>
         </Style>
 
         <Style Selector="^:preview-start-date">
             <Setter Property="CornerRadius" Value="3 0 0 3" />
-            <Setter Property="Background" Value="{DynamicResource DatePickerDayPreviewStartEndDateBackground}" />
+            <Setter Property="Background" Value="{DynamicResource CalenderDayPreviewStartEndDateBackground}" />
             <Style Selector="^:pressed">
-                <Setter Property="Background" Value="{DynamicResource DatePickerDayPreviewStartEndDatePressedBackground}" />
+                <Setter Property="Background" Value="{DynamicResource CalenderDayPreviewStartEndDatePressedBackground}" />
             </Style>
         </Style>
 
         <Style Selector="^:preview-end-date">
             <Setter Property="CornerRadius" Value="0 3 3 0" />
-            <Setter Property="Background" Value="{DynamicResource DatePickerDayPreviewStartEndDateBackground}" />
+            <Setter Property="Background" Value="{DynamicResource CalenderDayPreviewStartEndDateBackground}" />
             <Style Selector="^:pressed">
-                <Setter Property="Background" Value="{DynamicResource DatePickerDayPreviewStartEndDatePressedBackground}" />
+                <Setter Property="Background" Value="{DynamicResource CalenderDayPreviewStartEndDatePressedBackground}" />
             </Style>
         </Style>
 
         <Style Selector="^:blackout">
-            <Setter Property="Foreground" Value="{DynamicResource DatePickerDayBlackoutForeground}" />
-            <Setter Property="Background" Value="{DynamicResource DatePickerDayBlackoutBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource CalenderDayBlackoutForeground}" />
+            <Setter Property="Background" Value="{DynamicResource CalenderDayBlackoutBackground}" />
             <Setter Property="Cursor" Value="No" />
             <Style Selector="^:today">
-                <Setter Property="Foreground" Value="{DynamicResource DatePickerDayBlackoutTodayBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource CalenderDayBlackoutTodayBackground}" />
             </Style>
         </Style>
     </ControlTheme>
@@ -145,8 +145,8 @@
         <Setter Property="MinWidth" Value="32" />
         <Setter Property="MinHeight" Value="32" />
         <Setter Property="Margin" Value="0 2" />
-        <Setter Property="Background" Value="{DynamicResource DatePickerYearBackground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource DatePickerYearBorderBrush}" />
+        <Setter Property="Background" Value="{DynamicResource CalenderYearBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource CalenderYearBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="3" />
         <Setter Property="Template">
@@ -169,19 +169,19 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover">
-            <Setter Property="Background" Value="{DynamicResource DatePickerYearPointeroverBackground}" />
+            <Setter Property="Background" Value="{DynamicResource CalenderYearPointeroverBackground}" />
             <Setter Property="Cursor" Value="Hand" />
         </Style>
         <Style Selector="^:pressed">
-            <Setter Property="Background" Value="{DynamicResource DatePickerYearPressedBackground}" />
+            <Setter Property="Background" Value="{DynamicResource CalenderYearPressedBackground}" />
         </Style>
         <Style Selector="^:selected">
-            <Setter Property="Background" Value="{DynamicResource DatePickerYearSelectedBackground}" />
+            <Setter Property="Background" Value="{DynamicResource CalenderYearSelectedBackground}" />
             <Setter Property="CornerRadius" Value="3" />
             <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Foreground" Value="{DynamicResource DatePickerYearSelectedForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource CalenderYearSelectedForeground}" />
             <Style Selector="^:pointerover">
-                <Setter Property="Background" Value="{DynamicResource DatePickerYearSelectedPointeroverBackground}" />
+                <Setter Property="Background" Value="{DynamicResource CalenderYearSelectedPointeroverBackground}" />
             </Style>
         </Style>
     </ControlTheme>
