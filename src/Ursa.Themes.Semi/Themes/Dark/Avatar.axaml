@@ -1,2 +1,19 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="AvatarForeground" Color="White" />
+    <SolidColorBrush x:Key="AvatarRedBackground" Color="#D73324" />
+    <SolidColorBrush x:Key="AvatarPinkBackground" Color="#C72261" />
+    <SolidColorBrush x:Key="AvatarPurpleBackground" Color="#89289F" />
+    <SolidColorBrush x:Key="AvatarVioletBackground" Color="#6439B5" />
+    <SolidColorBrush x:Key="AvatarIndigoBackground" Color="#3444A3" />
+    <SolidColorBrush x:Key="AvatarBlueBackground" Color="#1D75DB" />
+    <SolidColorBrush x:Key="AvatarLightBlueBackground" Color="#0A81CC" />
+    <SolidColorBrush x:Key="AvatarCyanBackground" Color="#0E8999" />
+    <SolidColorBrush x:Key="AvatarTealBackground" Color="#0A9588" />
+    <SolidColorBrush x:Key="AvatarGreenBackground" Color="#32953D" />
+    <SolidColorBrush x:Key="AvatarLightGreenBackground" Color="#679934" />
+    <SolidColorBrush x:Key="AvatarLimeBackground" Color="#84B00C" />
+    <SolidColorBrush x:Key="AvatarYellowBackground" Color="#D2AF0F" />
+    <SolidColorBrush x:Key="AvatarAmberBackground" Color="#CA8F1E" />
+    <SolidColorBrush x:Key="AvatarOrangeBackground" Color="#D56F0F" />
+    <SolidColorBrush x:Key="AvatarGreyBackground" Color="#555B61" />
 </ResourceDictionary>

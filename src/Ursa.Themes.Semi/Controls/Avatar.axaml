@@ -5,8 +5,8 @@
     xmlns:converters="clr-namespace:Ursa.Converters;assembly=Ursa">
     <converters:DivideByTwoConverter x:Key="DivideByTwoConverter" />
     <ControlTheme x:Key="{x:Type u:Avatar}" TargetType="{x:Type u:Avatar}">
-        <Setter Property="Foreground" Value="White" />
-        <Setter Property="Background" Value="{DynamicResource SemiGrey3}" />
+        <Setter Property="Foreground" Value="{DynamicResource AvatarForeground}" />
+        <Setter Property="Background" Value="{DynamicResource AvatarGreyBackground}" />
         <Setter Property="FontSize" Value="20" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Width" Value="48" />
@@ -50,52 +50,52 @@
                         Converter={x:Static ObjectConverters.IsNotNull}}" />
         </Style>
         <Style Selector="^.Red">
-            <Setter Property="Background" Value="{DynamicResource SemiRed3}" />
+            <Setter Property="Background" Value="{DynamicResource AvatarRedBackground}" />
         </Style>
         <Style Selector="^.Pink">
-            <Setter Property="Background" Value="{DynamicResource SemiPink3}" />
+            <Setter Property="Background" Value="{DynamicResource AvatarPinkBackground}" />
         </Style>
         <Style Selector="^.Purple">
-            <Setter Property="Background" Value="{DynamicResource SemiPurple3}" />
+            <Setter Property="Background" Value="{DynamicResource AvatarPurpleBackground}" />
         </Style>
         <Style Selector="^.Violet">
-            <Setter Property="Background" Value="{DynamicResource SemiViolet3}" />
+            <Setter Property="Background" Value="{DynamicResource AvatarVioletBackground}" />
         </Style>
         <Style Selector="^.Indigo">
-            <Setter Property="Background" Value="{DynamicResource SemiIndigo3}" />
+            <Setter Property="Background" Value="{DynamicResource AvatarIndigoBackground}" />
         </Style>
         <Style Selector="^.Blue">
-            <Setter Property="Background" Value="{DynamicResource SemiBlue3}" />
+            <Setter Property="Background" Value="{DynamicResource AvatarBlueBackground}" />
         </Style>
         <Style Selector="^.LightBlue">
-            <Setter Property="Background" Value="{DynamicResource SemiLightBlue3}" />
+            <Setter Property="Background" Value="{DynamicResource AvatarLightBlueBackground}" />
         </Style>
         <Style Selector="^.Cyan">
-            <Setter Property="Background" Value="{DynamicResource SemiCyan3}" />
+            <Setter Property="Background" Value="{DynamicResource AvatarCyanBackground}" />
         </Style>
         <Style Selector="^.Teal">
-            <Setter Property="Background" Value="{DynamicResource SemiTeal3}" />
+            <Setter Property="Background" Value="{DynamicResource AvatarTealBackground}" />
         </Style>
         <Style Selector="^.Green">
-            <Setter Property="Background" Value="{DynamicResource SemiGreen3}" />
+            <Setter Property="Background" Value="{DynamicResource AvatarGreenBackground}" />
         </Style>
         <Style Selector="^.LightGreen">
-            <Setter Property="Background" Value="{DynamicResource SemiLightGreen3}" />
+            <Setter Property="Background" Value="{DynamicResource AvatarLightGreenBackground}" />
         </Style>
         <Style Selector="^.Lime">
-            <Setter Property="Background" Value="{DynamicResource SemiLime3}" />
+            <Setter Property="Background" Value="{DynamicResource AvatarLimeBackground}" />
         </Style>
         <Style Selector="^.Yellow">
-            <Setter Property="Background" Value="{DynamicResource SemiYellow3}" />
+            <Setter Property="Background" Value="{DynamicResource AvatarYellowBackground}" />
         </Style>
         <Style Selector="^.Amber">
-            <Setter Property="Background" Value="{DynamicResource SemiAmber3}" />
+            <Setter Property="Background" Value="{DynamicResource AvatarAmberBackground}" />
         </Style>
         <Style Selector="^.Orange">
-            <Setter Property="Background" Value="{DynamicResource SemiOrange3}" />
+            <Setter Property="Background" Value="{DynamicResource AvatarOrangeBackground}" />
         </Style>
         <Style Selector="^.Grey">
-            <Setter Property="Background" Value="{DynamicResource SemiGrey3}" />
+            <Setter Property="Background" Value="{DynamicResource AvatarGreyBackground}" />
         </Style>
 
         <Style Selector="^.Square">
