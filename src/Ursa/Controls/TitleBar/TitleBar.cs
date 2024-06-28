@@ -51,7 +51,10 @@ public class TitleBar: ContentControl
     {
         if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
         {
-            _visualRoot?.BeginMoveDrag(e);
+            if (e.ClickCount < 2) 
+            {
+                _visualRoot?.BeginMoveDrag(e);
+            }
         }
     }
 

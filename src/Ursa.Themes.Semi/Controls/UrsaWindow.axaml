@@ -11,7 +11,22 @@
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="-1" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
-        <Setter Property="SystemDecorations" Value="Full" />
+        <Setter Property="SystemDecorations">
+            <OnPlatform>
+                <OnPlatform.Default>
+                    <SystemDecorations>Full</SystemDecorations>
+                </OnPlatform.Default>
+                <OnPlatform.macOS>
+                    <SystemDecorations>Full</SystemDecorations>
+                </OnPlatform.macOS>
+                <OnPlatform.Linux>
+                    <SystemDecorations>None</SystemDecorations>
+                </OnPlatform.Linux>
+                <OnPlatform.Windows>
+                    <SystemDecorations>Full</SystemDecorations>
+                </OnPlatform.Windows>
+            </OnPlatform>
+        </Setter> 
         <Setter Property="Template">
             <ControlTemplate TargetType="u:UrsaWindow">
                 <Panel>
