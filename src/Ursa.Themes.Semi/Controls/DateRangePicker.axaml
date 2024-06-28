@@ -1,0 +1,172 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:contracts="https://irihi.tech/shared"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:DateRangePicker}" TargetType="u:DateRangePicker">
+        <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:DateRangePicker">
+                <DataValidationErrors>
+                    <Panel
+                        Name="LayoutRoot"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <Border
+                            Name="Background"
+                            HorizontalAlignment="Stretch"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}" />
+                        <Grid ColumnDefinitions="*, Auto, * Auto">
+                            <TextBox
+                                Name="{x:Static u:DateRangePicker.PART_StartTextBox}"
+                                Grid.Column="0"
+                                MinHeight="{TemplateBinding MinHeight}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="Transparent"
+                                BorderThickness="1"
+                                CornerRadius="3 0 0 3"
+                                Foreground="{TemplateBinding Foreground}"
+                                InnerLeftContent="{TemplateBinding InnerLeftContent}"
+                                IsReadOnly="{TemplateBinding IsReadonly}" />
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Text="~" />
+                            <TextBox
+                                Name="{x:Static u:DateRangePicker.PART_EndTextBox}"
+                                Grid.Column="2"
+                                MinHeight="{TemplateBinding MinHeight}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="Transparent"
+                                CornerRadius="0"
+                                Foreground="{TemplateBinding Foreground}"
+                                InnerRightContent="{TemplateBinding InnerRightContent}"
+                                IsReadOnly="{TemplateBinding IsReadonly}" />
+                            <Button
+                                Name="ClearButton"
+                                Grid.Column="3"
+                                Padding="8,0"
+                                Command="{Binding $parent[contracts:IClearControl].Clear}"
+                                Content="{DynamicResource IconButtonClearData}"
+                                Focusable="False"
+                                IsVisible="False"
+                                Theme="{DynamicResource InnerIconButton}" />
+                            <Button
+                                Name="{x:Static u:DateRangePicker.PART_Button}"
+                                Grid.Column="3"
+                                Padding="8,0"
+                                Content="{DynamicResource CalendarDatePickerIconGlyph}"
+                                Focusable="False"
+                                Theme="{DynamicResource InnerIconButton}" />
+                        </Grid>
+                        <Popup
+                            Name="{x:Static contracts:PartNames.PART_Popup}"
+                            HorizontalOffset="-4"
+                            IsLightDismissEnabled="True"
+                            IsOpen="{TemplateBinding IsDropdownOpen,
+                                                     Mode=TwoWay}"
+                            Placement="BottomEdgeAlignedLeft"
+                            PlacementTarget="Background">
+                            <Border
+                                Margin="8"
+                                Padding="8"
+                                HorizontalAlignment="Stretch"
+                                Background="{DynamicResource ComboBoxPopupBackground}"
+                                BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"
+                                BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
+                                BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
+                                CornerRadius="{DynamicResource CalendarCornerRadius}">
+                                <DockPanel>
+                                    <!--
+                                    <StackPanel DockPanel.Dock="Bottom" IsVisible="{TemplateBinding NeedConfirmation}">
+                                        <Button
+                                            Margin="8"
+                                            HorizontalAlignment="Right"
+                                            Command="{Binding $parent[u:TimeRangePicker].Confirm}"
+                                            Content="{DynamicResource STRING_DATE_TIME_CONFIRM}" />
+                                    </StackPanel>
+                                    -->
+                                    <ContentPresenter
+                                        Name="PART_PopupHeader"
+                                        Margin="8,8,8,0"
+                                        Content="{TemplateBinding PopupInnerTopContent}"
+                                        DockPanel.Dock="Top"
+                                        IsVisible="{TemplateBinding PopupInnerTopContent,
+                                                                    Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                    <ContentPresenter
+                                        Name="PART_PopupFooter"
+                                        Margin="8,0,8,8"
+                                        Content="{TemplateBinding PopupInnerBottomContent}"
+                                        DockPanel.Dock="Bottom"
+                                        IsVisible="{TemplateBinding PopupInnerBottomContent,
+                                                                    Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                    <Grid ColumnDefinitions="*, *">
+                                        <u:CalendarView
+                                            Name="{x:Static u:DateRangePicker.PART_StartCalendar}"
+                                            Grid.Column="0"
+                                            Margin="8"
+                                            BorderThickness="0"
+                                            CornerRadius="{Binding $parent[Border].CornerRadius}"
+                                            FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
+                                            IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
+                                        <u:CalendarView
+                                            Name="{x:Static u:DateRangePicker.PART_EndCalendar}"
+                                            Grid.Column="1"
+                                            Margin="8"
+                                            BorderThickness="0"
+                                            CornerRadius="{Binding $parent[Border].CornerRadius}"
+                                            FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
+                                            IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
+                                    </Grid>
+                                </DockPanel>
+                            </Border>
+                        </Popup>
+                    </Panel>
+                </DataValidationErrors>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^.clearButton, ^.ClearButton">
+            <Style Selector="^:pointerover /template/ Button#ClearButton">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNotNull}}" />
+            </Style>
+            <Style Selector="^:pointerover /template/ Button#PART_Button">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNull}}" />
+            </Style>
+        </Style>
+
+        <!--  Disabled State  -->
+        <Style Selector="^:disabled">
+            <Style Selector="^ /template/ Border#Background">
+                <Setter Property="Background" Value="{DynamicResource CalendarDatePickerDisabledBackground}" />
+            </Style>
+
+            <Style Selector="^ /template/ Button#PART_Button">
+                <Setter Property="Foreground" Value="{DynamicResource CalendarDatePickerDisabledIconForeground}" />
+            </Style>
+            <Style Selector="^ /template/ TextBox#PART_TextBox">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </Style>
+        </Style>
+
+        <!--  Focused State  -->
+        <Style Selector="^ /template/ Border#Background:focus">
+            <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
+        </Style>
+        <Style Selector="^ /template/ Border#Background:focus-within">
+            <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>
