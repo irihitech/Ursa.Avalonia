@@ -7,12 +7,12 @@
     <ControlTheme x:Key="{x:Type u:Avatar}" TargetType="{x:Type u:Avatar}">
         <Setter Property="Foreground" Value="{DynamicResource AvatarForeground}" />
         <Setter Property="Background" Value="{DynamicResource AvatarGreyBackground}" />
-        <Setter Property="FontSize" Value="20" />
-        <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="Width" Value="48" />
+        <Setter Property="FontSize" Value="{DynamicResource AvatarMediumFontSize}" />
+        <Setter Property="FontWeight" Value="{DynamicResource AvatarFontWeight}" />
+        <Setter Property="Width" Value="{DynamicResource AvatarMediumWidth}" />
         <Setter Property="Height" Value="{Binding $self.Width}" />
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="CornerRadius" Value="100" />
+        <Setter Property="CornerRadius" Value="{DynamicResource AvatarCircleCornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="{x:Type u:Avatar}">
                 <Border
@@ -99,41 +99,41 @@
         </Style>
 
         <Style Selector="^.Square">
-            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="CornerRadius" Value="{DynamicResource AvatarSquareCornerRadius}" />
         </Style>
 
         <Style Selector="^.ExtraExtraSmall">
-            <Setter Property="Width" Value="20" />
-            <Setter Property="FontSize" Value="10" />
+            <Setter Property="Width" Value="{DynamicResource AvatarExtraExtraSmallWidth}" />
+            <Setter Property="FontSize" Value="{DynamicResource AvatarExtraExtraSmallFontSize}" />
         </Style>
         <Style Selector="^.ExtraSmall">
-            <Setter Property="Width" Value="24" />
-            <Setter Property="FontSize" Value="10" />
+            <Setter Property="Width" Value="{DynamicResource AvatarExtraSmallWidth}" />
+            <Setter Property="FontSize" Value="{DynamicResource AvatarExtraSmallFontSize}" />
         </Style>
         <Style Selector="^.Small">
-            <Setter Property="Width" Value="32" />
-            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Width" Value="{DynamicResource AvatarSmallWidth}" />
+            <Setter Property="FontSize" Value="{DynamicResource AvatarSmallFontSize}" />
         </Style>
         <Style Selector="^.Default">
-            <Setter Property="Width" Value="40" />
-            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Width" Value="{DynamicResource AvatarDefaultWidth}" />
+            <Setter Property="FontSize" Value="{DynamicResource AvatarDefaultFontSize}" />
         </Style>
         <Style Selector="^.Medium">
-            <Setter Property="Width" Value="48" />
-            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Width" Value="{DynamicResource AvatarMediumWidth}" />
+            <Setter Property="FontSize" Value="{DynamicResource AvatarMediumFontSize}" />
         </Style>
         <Style Selector="^.Large">
-            <Setter Property="Width" Value="72" />
-            <Setter Property="FontSize" Value="32" />
+            <Setter Property="Width" Value="{DynamicResource AvatarLargeWidth}" />
+            <Setter Property="FontSize" Value="{DynamicResource AvatarLargeFontSize}" />
             <Style Selector="^.Square">
-                <Setter Property="CornerRadius" Value="6" />
+                <Setter Property="CornerRadius" Value="{DynamicResource AvatarLargeSquareCornerRadius}" />
             </Style>
         </Style>
         <Style Selector="^.ExtraLarge">
-            <Setter Property="Width" Value="128" />
-            <Setter Property="FontSize" Value="64" />
+            <Setter Property="Width" Value="{DynamicResource AvatarExtraLargeWidth}" />
+            <Setter Property="FontSize" Value="{DynamicResource AvatarExtraLargeFontSize}" />
             <Style Selector="^.Square">
-                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="CornerRadius" Value="{DynamicResource AvatarExtraLargeSquareCornerRadius}" />
             </Style>
         </Style>
     </ControlTheme>
