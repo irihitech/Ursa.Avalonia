@@ -33,17 +33,13 @@
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center" />
                         <ContentPresenter
-                            Name="{x:Static u:Avatar.PART_HoverMask}"
+                            Name="PART_HoverMask"
                             IsVisible="False"
                             Content="{TemplateBinding HoverMask}"
                             CornerRadius="{TemplateBinding CornerRadius}"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center" />
                         <Image Source="{TemplateBinding Source}" />
-                        <DockPanel>
-                            <ContentPresenter DockPanel.Dock="Top" />
-                            <ContentPresenter DockPanel.Dock="Bottom" />
-                        </DockPanel>
                     </Panel>
                 </Border>
             </ControlTemplate>
@@ -140,13 +136,5 @@
                 <Setter Property="CornerRadius" Value="12" />
             </Style>
         </Style>
-    </ControlTheme>
-
-    <ControlTheme x:Key="{x:Type u:AvatarGroup}" TargetType="{x:Type u:AvatarGroup}">
-        <Setter Property="Template">
-            <ControlTemplate TargetType="u:AvatarGroup">
-                <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
-            </ControlTemplate>
-        </Setter>
     </ControlTheme>
 </ResourceDictionary>

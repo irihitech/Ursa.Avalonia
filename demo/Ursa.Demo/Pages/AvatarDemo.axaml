@@ -73,15 +73,5 @@
             <u:Avatar Classes="Square Large Green" />
             <u:Avatar Classes="Square ExtraLarge Green" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <u:AvatarGroup MaxCount="3">
-                <u:Avatar Classes="Red" Content="LL" />
-                <u:Avatar Classes="" Content="CX" />
-                <u:Avatar Classes="Amber" Content="RM" />
-                <u:Avatar Background="#FDE3CF" Foreground="#F56A00" Content="ZL" />
-                <u:Avatar Background="#87D068" Classes="" Content="YZ" />
-            </u:AvatarGroup>
-            <u:Avatar />
-        </StackPanel>
     </StackPanel>
 </UserControl>
