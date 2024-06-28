@@ -21,17 +21,9 @@
     </UserControl.Resources>
     <Panel>
         <Grid
-            Classes.Blur="{Binding #host.HasModal}"
-            ColumnDefinitions="Auto, *"
-            RowDefinitions="Auto, *">
-            <Grid.Styles>
-                <Style Selector="Grid.Blur">
-                    <Setter Property="Effect" Value="blur(20)" />
-                </Style>
-            </Grid.Styles>
+            ColumnDefinitions="Auto, *" >
             <Border
                 Padding="8 4"
-                Grid.RowSpan="2"
                 VerticalAlignment="Stretch"
                 Theme="{DynamicResource CardBorder}">
                 <u:NavMenu Name="menu" ItemsSource="{Binding Menus.MenuItems}"
@@ -89,22 +81,14 @@
                     </u:NavMenu.Header>
                 </u:NavMenu>
             </Border>
-            <u:ThemeToggleButton
-                Grid.Row="0"
-                Grid.Column="1"
-                IsThreeState="True"
-                Mode="Controller"
-                HorizontalAlignment="Right" />
             <ContentControl
-                Grid.Row="1"
                 Grid.Column="1"
-                Margin="12"
+                Margin="12 36 12 12"
                 Content="{Binding Content}">
                 <ContentControl.ContentTemplate>
                     <converters:ViewLocator />
                 </ContentControl.ContentTemplate>
             </ContentControl>
         </Grid>
-        <u:OverlayDialogHost Name="host" SnapThickness="20" />
     </Panel>
 </UserControl>
