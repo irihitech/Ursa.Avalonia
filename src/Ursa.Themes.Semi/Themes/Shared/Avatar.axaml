@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <FontWeight x:Key="AvatarFontWeight">600</FontWeight>
+    <CornerRadius x:Key="AvatarCircleCornerRadius">100</CornerRadius>
+
+    <CornerRadius x:Key="AvatarSquareCornerRadius">3</CornerRadius>
+
+    <x:Double x:Key="AvatarExtraExtraSmallWidth">20</x:Double>
+    <x:Double x:Key="AvatarExtraExtraSmallFontSize">10</x:Double>
+
+    <x:Double x:Key="AvatarExtraSmallWidth">24</x:Double>
+    <x:Double x:Key="AvatarExtraSmallFontSize">10</x:Double>
+
+    <x:Double x:Key="AvatarSmallWidth">32</x:Double>
+    <x:Double x:Key="AvatarSmallFontSize">12</x:Double>
+
+    <x:Double x:Key="AvatarDefaultWidth">40</x:Double>
+    <x:Double x:Key="AvatarDefaultFontSize">18</x:Double>
+
+    <x:Double x:Key="AvatarMediumWidth">48</x:Double>
+    <x:Double x:Key="AvatarMediumFontSize">20</x:Double>
+
+    <x:Double x:Key="AvatarLargeWidth">72</x:Double>
+    <x:Double x:Key="AvatarLargeFontSize">32</x:Double>
+    <CornerRadius x:Key="AvatarLargeSquareCornerRadius">6</CornerRadius>
+
+    <x:Double x:Key="AvatarExtraLargeWidth">128</x:Double>
+    <x:Double x:Key="AvatarExtraLargeFontSize">64</x:Double>
+    <CornerRadius x:Key="AvatarExtraLargeSquareCornerRadius">12</CornerRadius>
+</ResourceDictionary>
