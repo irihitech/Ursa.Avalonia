@@ -28,12 +28,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Pages\SkeletonDemo.axaml.cs">
-        <DependentUpon>SkeletonDemo.axaml</DependentUpon>
-      </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
       <Folder Include="Models\" />
     </ItemGroup>
 </Project>

@@ -7,7 +7,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
-        <Version>0.3.0-beta20240615</Version>
+        <Version>0.3.0-beta20240628</Version>
         <Authors>IRIHI Technology Co., Ltd.</Authors>
         <PackageId>Irihi.Ursa.Themes.Semi</PackageId>
         <PackageIcon>irihi.png</PackageIcon>
