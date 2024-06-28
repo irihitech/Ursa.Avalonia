@@ -25,10 +25,14 @@
                 <u:Avatar.HoverMask>
                     <Border Opacity="0.6">
                         <Panel>
-                            <Ellipse Fill="#16161A"
-                                     Width="{Binding $parent[u:Avatar].Width}"
-                                     Height="{Binding $parent[u:Avatar].Height}" />
-                            <PathIcon Width="16" Height="16" Data="{StaticResource IconCamera}" />
+                            <Border
+                                Background="#16161A"
+                                Width="{Binding $parent[u:Avatar].Width}"
+                                Height="{Binding $parent[u:Avatar].Height}" />
+                            <PathIcon
+                                Data="{StaticResource IconCamera}"
+                                Width="{Binding $parent[u:Avatar].FontSize}"
+                                Height="{Binding $parent[u:Avatar].FontSize}" />
                         </Panel>
                     </Border>
                 </u:Avatar.HoverMask>
@@ -71,7 +75,22 @@
             <u:Avatar Classes="Square Default Green" />
             <u:Avatar Classes="Square Medium Green" />
             <u:Avatar Classes="Square Large Green" />
-            <u:Avatar Classes="Square ExtraLarge Green" />
+            <u:Avatar Classes="Square ExtraLarge Green" Source="../Assets/Ursa.ico">
+                <u:Avatar.HoverMask>
+                    <Border Opacity="0.6">
+                        <Panel>
+                            <Border
+                                Background="#16161A"
+                                Width="{Binding $parent[u:Avatar].Width}"
+                                Height="{Binding $parent[u:Avatar].Height}" />
+                            <PathIcon
+                                Data="{StaticResource IconCamera}"
+                                Width="{Binding $parent[u:Avatar].FontSize}"
+                                Height="{Binding $parent[u:Avatar].FontSize}" />
+                        </Panel>
+                    </Border>
+                </u:Avatar.HoverMask>
+            </u:Avatar>
         </StackPanel>
     </StackPanel>
 </UserControl>

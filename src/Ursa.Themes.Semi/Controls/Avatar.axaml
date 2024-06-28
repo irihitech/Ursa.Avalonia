@@ -32,6 +32,7 @@
                             Content="{TemplateBinding Content}"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center" />
+                        <Image Source="{TemplateBinding Source}" />
                         <ContentPresenter
                             Name="PART_HoverMask"
                             IsVisible="False"
@@ -39,7 +40,6 @@
                             CornerRadius="{TemplateBinding CornerRadius}"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center" />
-                        <Image Source="{TemplateBinding Source}" />
                     </Panel>
                 </Border>
             </ControlTemplate>
