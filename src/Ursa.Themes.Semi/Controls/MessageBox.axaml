@@ -71,10 +71,10 @@
                                 MaxHeight="300"
                                 HorizontalScrollBarVisibility="Disabled"
                                 VerticalScrollBarVisibility="Auto">
-                                <TextBlock
+                                <ContentPresenter
                                     Name="PART_ContentPresenter"
                                     VerticalAlignment="Center"
-                                    Text="{TemplateBinding Content}"
+                                    Content="{TemplateBinding Content}"
                                     TextAlignment="Left"
                                     TextWrapping="Wrap" />
                             </ScrollViewer>
@@ -203,10 +203,10 @@
                                     MaxHeight="300"
                                     HorizontalScrollBarVisibility="Disabled"
                                     VerticalScrollBarVisibility="Auto">
-                                    <TextBlock
+                                    <ContentPresenter
                                         Name="PART_ContentPresenter"
                                         VerticalAlignment="Center"
-                                        Text="{TemplateBinding Content}"
+                                        Content="{TemplateBinding Content}"
                                         TextAlignment="Left"
                                         TextWrapping="Wrap" />
                                 </ScrollViewer>
