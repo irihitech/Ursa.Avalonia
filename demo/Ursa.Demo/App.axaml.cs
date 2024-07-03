@@ -24,7 +24,7 @@ public partial class App : Application
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleView)
         {
-            singleView.MainView = new MainView()
+            singleView.MainView = new SingleView()
             {
                 DataContext = new MainViewViewModel(),
             };
