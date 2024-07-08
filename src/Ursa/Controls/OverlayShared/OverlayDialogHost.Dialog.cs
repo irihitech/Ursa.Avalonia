@@ -129,7 +129,7 @@ public partial class OverlayDialogHost
                 if (layer.Modal)
                 {
                     _modalCount--;
-                    HasModal = _modalCount > 0;
+                    IsInModalStatus = _modalCount > 0;
                     if (!IsAnimationDisabled)
                     {
                         await _maskDisappearAnimation.RunAsync(layer.Mask);
@@ -170,7 +170,7 @@ public partial class OverlayDialogHost
             _maskAppearAnimation.RunAsync(mask);
         }
         _modalCount++;
-        HasModal = _modalCount > 0;
+        IsInModalStatus = _modalCount > 0;
         control.IsClosed = false;
     }
 

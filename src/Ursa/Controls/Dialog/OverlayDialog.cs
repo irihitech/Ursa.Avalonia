@@ -11,7 +11,7 @@ public static class OverlayDialog
         OverlayDialogOptions? options = null)
         where TView : Control, new()
     {
-        var host = OverlayDialogManager.GetHost(hostId);
+        var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
         var t = new DefaultDialogControl()
         {
@@ -25,7 +25,7 @@ public static class OverlayDialog
     public static void Show(Control control, object? vm, string? hostId = null,
         OverlayDialogOptions? options = null)
     {
-        var host = OverlayDialogManager.GetHost(hostId);
+        var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
         var t = new DefaultDialogControl()
         {
@@ -39,7 +39,7 @@ public static class OverlayDialog
     
     public static void Show(object? vm, string? hostId = null, OverlayDialogOptions? options = null)
     {
-        var host = OverlayDialogManager.GetHost(hostId);
+        var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
         var view = host.GetDataTemplate(vm)?.Build(vm);
         if (view is null) view = new ContentControl();
@@ -57,7 +57,7 @@ public static class OverlayDialog
         OverlayDialogOptions? options = null)
         where TView: Control, new()
     {
-        var host = OverlayDialogManager.GetHost(hostId);
+        var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
         var t = new CustomDialogControl()
         {
@@ -71,7 +71,7 @@ public static class OverlayDialog
     public static void ShowCustom(Control control, object? vm, string? hostId = null,
         OverlayDialogOptions? options = null)
     {
-        var host = OverlayDialogManager.GetHost(hostId);
+        var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
         var t = new CustomDialogControl()
         {
@@ -85,7 +85,7 @@ public static class OverlayDialog
     public static void ShowCustom(object? vm, string? hostId = null,
         OverlayDialogOptions? options = null)
     {
-        var host = OverlayDialogManager.GetHost(hostId);
+        var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
         var view = host.GetDataTemplate(vm)?.Build(vm);
         if (view is null) view = new ContentControl() { Padding = new Thickness(24) };
@@ -103,7 +103,7 @@ public static class OverlayDialog
         OverlayDialogOptions? options = null, CancellationToken? token = default)
         where TView: Control, new()
     {
-        var host = OverlayDialogManager.GetHost(hostId);
+        var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return Task.FromResult(DialogResult.None);
         var t = new DefaultDialogControl()
         {
@@ -118,7 +118,7 @@ public static class OverlayDialog
     public static Task<DialogResult> ShowModal(Control control, object? vm, string? hostId = null,
         OverlayDialogOptions? options = null, CancellationToken? token = default)
     {
-        var host = OverlayDialogManager.GetHost(hostId);
+        var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return Task.FromResult(DialogResult.None);
         var t = new DefaultDialogControl()
         {
@@ -134,7 +134,7 @@ public static class OverlayDialog
         OverlayDialogOptions? options = null, CancellationToken? token = default)
         where TView: Control, new()
     {
-        var host = OverlayDialogManager.GetHost(hostId);
+        var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return Task.FromResult(default(TResult));
         var t = new CustomDialogControl()
         {
@@ -149,7 +149,7 @@ public static class OverlayDialog
     public static Task<TResult?> ShowCustomModal<TResult>(Control control, object? vm, string? hostId = null,
         OverlayDialogOptions? options = null, CancellationToken? token = default)
     {
-        var host = OverlayDialogManager.GetHost(hostId);
+        var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return Task.FromResult(default(TResult));
         var t = new CustomDialogControl()
         {
@@ -164,7 +164,7 @@ public static class OverlayDialog
     public static Task<TResult?> ShowCustomModal<TResult>(object? vm, string? hostId = null,
         OverlayDialogOptions? options = null, CancellationToken? token = default)
     {
-        var host = OverlayDialogManager.GetHost(hostId);
+        var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return Task.FromResult(default(TResult));
         var view = host.GetDataTemplate(vm)?.Build(vm);
         if (view is null) view = new ContentControl() { Padding = new Thickness(24) };
@@ -227,7 +227,7 @@ public static class OverlayDialog
 
     internal static T? Recall<T>(string? hostId) where T: Control
     {
-        var host = OverlayDialogManager.GetHost(hostId);
+        var host = OverlayDialogManager.GetHost(hostId, null);
         if (host is null) return null;
         var item = host.Recall<T>();
         return item;

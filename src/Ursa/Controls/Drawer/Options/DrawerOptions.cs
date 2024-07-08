@@ -15,4 +15,8 @@ public class DrawerOptions
     public DialogButton Buttons { get; set; } = DialogButton.OKCancel;
     public string? Title { get; set; }
     public bool ShowCloseButton { get; set; } = true;
+    /// <summary>
+    /// The hash code of the top level dialog host. This is used to identify the dialog host if there are multiple dialog hosts with the same id. If this is not provided, the dialog will be added to the first dialog host with the same id.
+    /// </summary>
+    public int? TopLevelHashCode { get; set; }
 }

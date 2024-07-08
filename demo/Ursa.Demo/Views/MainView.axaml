@@ -20,7 +20,13 @@
         <converters:IconNameToPathConverter x:Key="IconConverter" />
     </UserControl.Resources>
     <Panel>
+        <Panel.Styles>
+            <Style Selector="Grid.Blur">
+                <Setter Property="Effect" Value="blur(10)"></Setter>
+            </Style>
+        </Panel.Styles>
         <Grid
+            Classes.Blur="{Binding $parent[u:UrsaWindow].(u:OverlayDialogHost.IsInModalStatus)}"
             ColumnDefinitions="Auto, *" >
             <Border
                 Padding="8 4"

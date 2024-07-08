@@ -1,15 +1,13 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Controls.Notifications;
-using Avalonia.Styling;
 
 namespace Ursa.Controls;
 
 public static class MessageBox
 {
     public static async Task<MessageBoxResult> ShowAsync(
-        string message, 
+        string message,
         string? title = null,
         MessageBoxIcon icon = MessageBoxIcon.None,
         MessageBoxButton button = MessageBoxButton.OKCancel)
@@ -18,33 +16,25 @@ public static class MessageBox
         {
             Content = message,
             Title = title,
-            MessageIcon = icon,
+            MessageIcon = icon
         };
         var lifetime = Application.Current?.ApplicationLifetime;
-        if (lifetime is IClassicDesktopStyleApplicationLifetime classLifetime)
+        if (lifetime is not IClassicDesktopStyleApplicationLifetime classLifetime) return MessageBoxResult.None;
+        var main = classLifetime.MainWindow;
+        if (main is null)
         {
-            var main = classLifetime.MainWindow;
-            if (main is null)
-            {
-                messageWindow.Show();
-                return MessageBoxResult.None;
-            }
-            else
-            {
-                var result = await messageWindow.ShowDialog<MessageBoxResult>(main);
-                return result;
-            }
-        }
-        else
-        {
+            messageWindow.Show();
             return MessageBoxResult.None;
         }
+
+        var result = await messageWindow.ShowDialog<MessageBoxResult>(main);
+        return result;
     }
-    
+
     public static async Task<MessageBoxResult> ShowAsync(
         Window owner,
-        string message, 
-        string title, 
+        string message,
+        string title,
         MessageBoxIcon icon = MessageBoxIcon.None,
         MessageBoxButton button = MessageBoxButton.OKCancel)
     {
@@ -52,7 +42,7 @@ public static class MessageBox
         {
             Content = message,
             Title = title,
-            MessageIcon = icon,
+            MessageIcon = icon
         };
         var result = await messageWindow.ShowDialog<MessageBoxResult>(owner);
         return result;
@@ -63,16 +53,17 @@ public static class MessageBox
         string? title = null,
         string? hostId = null,
         MessageBoxIcon icon = MessageBoxIcon.None,
-        MessageBoxButton button = MessageBoxButton.OKCancel)
+        MessageBoxButton button = MessageBoxButton.OKCancel,
+        int? toplevelHashCode = null)
     {
-        var host = OverlayDialogManager.GetHost(hostId);
+        var host = OverlayDialogManager.GetHost(hostId, toplevelHashCode);
         if (host is null) return MessageBoxResult.None;
-        var messageControl = new MessageBoxControl()
+        var messageControl = new MessageBoxControl
         {
             Content = message,
             Title = title,
             Buttons = button,
-            MessageIcon = icon,
+            MessageIcon = icon
         };
         host.AddModalDialog(messageControl);
         var result = await messageControl.ShowAsync<MessageBoxResult>();

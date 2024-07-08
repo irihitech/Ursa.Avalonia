@@ -2,41 +2,27 @@ using System.Collections.Concurrent;
 
 namespace Ursa.Controls;
 
+internal record struct HostKey(string? Id, int? Hash);
+
 internal static class OverlayDialogManager
 {
-    private static OverlayDialogHost? _defaultHost;
-    private static readonly ConcurrentDictionary<string, OverlayDialogHost> Hosts = new();
+    private static readonly ConcurrentDictionary<HostKey, OverlayDialogHost> Hosts = new();
     
-    public static void RegisterHost(OverlayDialogHost host, string? id)
+    public static void RegisterHost(OverlayDialogHost host, string? id, int? hash)
     {
-        if (id == null)
-        {
-            if (_defaultHost != null)
-            {
-                throw new InvalidOperationException("Cannot register multiple OverlayDialogHost with empty HostId");
-            }
-            _defaultHost = host;
-            return;
-        }
-        Hosts.TryAdd(id, host);
+        Hosts.TryAdd(new HostKey(id, hash), host);
     }
     
-    public static void UnregisterHost(string? id)
+    public static void UnregisterHost(string? id, int? hash)
     {
-        if (id is null)
-        {
-            _defaultHost = null;
-            return;
-        }
-        Hosts.TryRemove(id, out _);
+        Hosts.TryRemove(new HostKey(id, hash), out _);
     }
     
-    public static OverlayDialogHost? GetHost(string? id)
+    public static OverlayDialogHost? GetHost(string? id, int? hash)
     {
-        if (id is null)
-        {
-            return _defaultHost;
-        }
-        return Hosts.TryGetValue(id, out var host) ? host : null;
+        HostKey? key = hash is null ? Hosts.Keys.Where(k => k.Id == id).ToArray().FirstOrDefault() : Hosts.Keys.FirstOrDefault(k => k.Id == id && k.Hash == hash);
+        if (key is null) return null;
+        return Hosts.TryGetValue(key.Value, out var host) ? host : null;
     }
 }
+

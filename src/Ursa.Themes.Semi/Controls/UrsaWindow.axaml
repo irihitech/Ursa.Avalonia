@@ -11,6 +11,7 @@
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="-1" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
+        <Setter Property="u:OverlayDialogHost.IsModalStatusScope" Value="True"/>
         <Setter Property="SystemDecorations">
             <OnPlatform>
                 <OnPlatform.Default>
