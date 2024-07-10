@@ -11,4 +11,8 @@
     <ItemGroup>
         <ProjectReference Include="..\Ursa.Demo\Ursa.Demo.csproj"/>
     </ItemGroup>
+
+    <ItemGroup>
+        <TrimmerRootDescriptor Include="linker.xml"/>
+    </ItemGroup>
 </Project>

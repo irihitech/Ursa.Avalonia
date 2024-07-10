@@ -13,8 +13,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.1
 
-      - name: Nuget
+      - name: Nuget Ursa
         run: dotnet pack ./src/Ursa -o ./nugets
+
+      - name: Nuget Ursa.Themes.Semi
+        run: dotnet pack ./src/Ursa.Themes.Semi -o ./nugets
 
       - name: Desktop
         run: dotnet publish ./demo/Ursa.Demo.Desktop -r win-x64 -c Release /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true --self-contained true

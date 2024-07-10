@@ -1,0 +1,5 @@
+<linker>
+    <assembly fullname="Semi.Avalonia, Version=11.1.0.0, Culture=neutral, PublicKeyToken=null"/>
+    <assembly fullname="Ursa, Version=0.3.0.0, Culture=neutral, PublicKeyToken=null"/>
+    <assembly fullname="Ursa.Themes.Semi, Version=0.3.0.0, Culture=neutral, PublicKeyToken=null"/>
+</linker>
