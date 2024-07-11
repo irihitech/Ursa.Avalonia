@@ -5,14 +5,15 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <TrimmerRootDescriptor Include="Roots.xml"/>
+        <AvaloniaResource Include="Assets\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Avalonia.Browser" Version="$(AvaloniaVersion)"/>
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\Ursa.Demo\Ursa.Demo.csproj"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <TrimmerRootDescriptor Include="linker.xml"/>
     </ItemGroup>
 </Project>
