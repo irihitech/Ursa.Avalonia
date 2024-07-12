@@ -40,11 +40,21 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
         Button.ClickEvent.AddHandler((o, args) => OnRestore(), _restoreButton);
         Button.ClickEvent.AddHandler((o, args) => OnMinimize(), _minimizeButton);
         Button.ClickEvent.AddHandler((o, args) => OnToggleFullScreen(), _fullScreenButton);
+
+        Window.WindowStateProperty.Changed.Subscribe(WindowStateChanged);
         if (this.HostWindow is not null && !HostWindow.CanResize)
         {
             _restoreButton.IsEnabled = false;
         }
         UpdateVisibility();
+    }
+
+    private void WindowStateChanged(AvaloniaPropertyChangedEventArgs<WindowState> e)
+    {
+        if (e.NewValue.Value == WindowState.FullScreen)
+        {
+            _oldWindowState = e.OldValue.Value;
+        }
     }
 
     protected override void OnToggleFullScreen()
@@ -53,7 +63,6 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
         {
             if (HostWindow.WindowState != WindowState.FullScreen)
             {
-                _oldWindowState = HostWindow.WindowState;
                 HostWindow.WindowState = WindowState.FullScreen;
             }
             else
