@@ -1,4 +1,4 @@
-using Avalonia;
+ï»¿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
@@ -27,7 +27,7 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
     private IDisposable? _visibilityDisposable;
 
     /// <summary>
-    /// ÇĞ»»½øÈëÈ«ÆÁÇ° ´°¿ÚµÄ×´Ì¬
+    /// åˆ‡æ¢è¿›å…¥å…¨å±å‰ çª—å£çš„çŠ¶æ€
     /// </summary>
     private WindowState? _oldWindowState;
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
