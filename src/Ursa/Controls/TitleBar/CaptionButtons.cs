@@ -25,7 +25,11 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
     private Button? _fullScreenButton;
     
     private IDisposable? _visibilityDisposable;
-    
+
+    /// <summary>
+    /// 切换进入全屏前 窗口的状态
+    /// </summary>
+    private WindowState? _oldWindowState;
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         _closeButton = e.NameScope.Get<Button>(PART_CloseButton);
@@ -43,6 +47,21 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
         UpdateVisibility();
     }
 
+    protected override void OnToggleFullScreen()
+    {
+        if (HostWindow != null)
+        {
+            if (HostWindow.WindowState != WindowState.FullScreen)
+            {
+                _oldWindowState = HostWindow.WindowState;
+                HostWindow.WindowState = WindowState.FullScreen;
+            }
+            else
+            {
+                HostWindow.WindowState = _oldWindowState.HasValue ? _oldWindowState.Value : WindowState.Normal;
+            }
+        }
+    }
     public override void Attach(Window hostWindow)
     {
         base.Attach(hostWindow);
