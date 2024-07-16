@@ -1,4 +1,4 @@
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
@@ -25,7 +25,11 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
     private Button? _fullScreenButton;
     
     private IDisposable? _visibilityDisposable;
-    
+
+    /// <summary>
+    /// 切换进入全屏前 窗口的状态
+    /// </summary>
+    private WindowState? _oldWindowState;
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         _closeButton = e.NameScope.Get<Button>(PART_CloseButton);
@@ -36,6 +40,8 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
         Button.ClickEvent.AddHandler((o, args) => OnRestore(), _restoreButton);
         Button.ClickEvent.AddHandler((o, args) => OnMinimize(), _minimizeButton);
         Button.ClickEvent.AddHandler((o, args) => OnToggleFullScreen(), _fullScreenButton);
+
+        Window.WindowStateProperty.Changed.AddClassHandler<Window, WindowState>(WindowStateChanged);
         if (this.HostWindow is not null && !HostWindow.CanResize)
         {
             _restoreButton.IsEnabled = false;
@@ -43,6 +49,29 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
         UpdateVisibility();
     }
 
+    private void WindowStateChanged(Window window, AvaloniaPropertyChangedEventArgs<WindowState> e)
+    {
+        if (window != HostWindow) return;
+        if (e.NewValue.Value == WindowState.FullScreen)
+        {
+            _oldWindowState = e.OldValue.Value;
+        }
+    }
+
+    protected override void OnToggleFullScreen()
+    {
+        if (HostWindow != null)
+        {
+            if (HostWindow.WindowState != WindowState.FullScreen)
+            {
+                HostWindow.WindowState = WindowState.FullScreen;
+            }
+            else
+            {
+                HostWindow.WindowState = _oldWindowState.HasValue ? _oldWindowState.Value : WindowState.Normal;
+            }
+        }
+    }
     public override void Attach(Window hostWindow)
     {
         base.Attach(hostWindow);
