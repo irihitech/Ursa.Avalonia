@@ -265,6 +265,7 @@ public class ImageViewer: TemplatedControl
             if (scale < _sourceMinScale) scale = _sourceMinScale;
             Scale = scale;
         }
+        e.Handled = true;
     }
 
     protected override void OnPointerMoved(PointerEventArgs e)
