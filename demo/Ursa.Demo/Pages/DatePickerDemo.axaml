@@ -8,7 +8,7 @@
     <StackPanel Margin="20" HorizontalAlignment="Left">
         <u:CalendarView DateSelected="CalendarView_OnOnDateSelected" DatePreviewed="CalendarView_OnOnDatePreviewed"/>
         <TextBlock Text="{Binding #singlePicker.SelectedDate}" ></TextBlock>
-        <u:DatePicker Name="singlePicker" Width="200" />
-        <u:DateRangePicker Width="300" DisplayFormat="yyyyMMdd" />
+        <u:DatePicker Name="singlePicker" Width="200" Classes="ClearButton" />
+        <u:DateRangePicker Width="300" DisplayFormat="yyyyMMdd" Classes="ClearButton" />
     </StackPanel>
 </UserControl>
