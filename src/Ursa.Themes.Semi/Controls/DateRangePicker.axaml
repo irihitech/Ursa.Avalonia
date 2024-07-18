@@ -35,6 +35,7 @@
                                 Background="Transparent"
                                 BorderThickness="1"
                                 CornerRadius="3 0 0 3"
+                                FontSize="{TemplateBinding FontSize}"
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
                                 IsReadOnly="{TemplateBinding IsReadonly}" />
@@ -50,6 +51,7 @@
                                 VerticalAlignment="Stretch"
                                 Background="Transparent"
                                 CornerRadius="0"
+                                FontSize="{TemplateBinding FontSize}"
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerRightContent="{TemplateBinding InnerRightContent}"
                                 IsReadOnly="{TemplateBinding IsReadonly}" />
