@@ -165,8 +165,8 @@ public class CalendarDayButton : ContentControl
 
     public event EventHandler<CalendarDayButtonEventArgs> DatePreviewed
     {
-        add => AddHandler(DateSelectedEvent, value);
-        remove => RemoveHandler(DateSelectedEvent, value);
+        add => AddHandler(DatePreviewedEvent, value);
+        remove => RemoveHandler(DatePreviewedEvent, value);
     }
 
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
