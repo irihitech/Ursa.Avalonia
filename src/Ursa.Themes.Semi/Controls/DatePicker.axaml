@@ -83,6 +83,7 @@
                                     <u:CalendarView
                                         Name="PART_Calendar"
                                         BorderThickness="0"
+                                        FontSize="{DynamicResource DefaultFontSize}"
                                         CornerRadius="{Binding $parent[Border].CornerRadius}"
                                         FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
                                         IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />

@@ -119,6 +119,7 @@
                                             Grid.Column="0"
                                             Margin="8"
                                             BorderThickness="0"
+                                            FontSize="{DynamicResource DefaultFontSize}"
                                             CornerRadius="{Binding $parent[Border].CornerRadius}"
                                             FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
                                             IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
@@ -127,6 +128,7 @@
                                             Grid.Column="1"
                                             Margin="8"
                                             BorderThickness="0"
+                                            FontSize="{DynamicResource DefaultFontSize}"
                                             CornerRadius="{Binding $parent[Border].CornerRadius}"
                                             FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
                                             IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
