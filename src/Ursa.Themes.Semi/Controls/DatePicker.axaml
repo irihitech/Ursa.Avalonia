@@ -42,6 +42,7 @@
                                 BorderBrush="Transparent"
                                 BorderThickness="0"
                                 CornerRadius="{TemplateBinding CornerRadius}"
+                                FontSize="{TemplateBinding FontSize}"
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
                                 InnerRightContent="{TemplateBinding InnerRightContent}"
@@ -76,12 +77,13 @@
                                     Padding="8"
                                     Background="{DynamicResource ComboBoxPopupBackground}"
                                     BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"
-                                    BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
                                     BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
+                                    BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
                                     CornerRadius="{DynamicResource CalendarCornerRadius}">
                                     <u:CalendarView
                                         Name="PART_Calendar"
                                         BorderThickness="0"
+                                        FontSize="{DynamicResource DefaultFontSize}"
                                         CornerRadius="{Binding $parent[Border].CornerRadius}"
                                         FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
                                         IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />

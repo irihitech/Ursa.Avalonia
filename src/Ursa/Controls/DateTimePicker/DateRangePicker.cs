@@ -128,7 +128,7 @@ public class DateRangePicker : DatePickerBase
         _startTextBox = e.NameScope.Find<TextBox>(PART_StartTextBox);
         _endTextBox = e.NameScope.Find<TextBox>(PART_EndTextBox);
         
-        Button.ClickEvent.AddHandler(OnButtonClick, RoutingStrategies.Tunnel, true, _button);
+        Button.ClickEvent.AddHandler(OnButtonClick, RoutingStrategies.Bubble, true, _button);
         GotFocusEvent.AddHandler(OnTextBoxGetFocus, _startTextBox, _endTextBox);
         TextBox.TextChangedEvent.AddHandler(OnTextChanged, _startTextBox, _endTextBox);
         PointerPressedEvent.AddHandler(OnTextBoxPointerPressed, RoutingStrategies.Tunnel, false, _startTextBox, _endTextBox);

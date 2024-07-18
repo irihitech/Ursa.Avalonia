@@ -82,7 +82,7 @@ public class DatePicker: DatePickerBase, IClearControl
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
         _calendar = e.NameScope.Find<CalendarView>(PART_Calendar);
         
-        Button.ClickEvent.AddHandler(OnButtonClick, RoutingStrategies.Tunnel, true, _button);
+        Button.ClickEvent.AddHandler(OnButtonClick, RoutingStrategies.Bubble, true, _button);
         GotFocusEvent.AddHandler(OnTextBoxGetFocus, _textBox);
         TextBox.TextChangedEvent.AddHandler(OnTextChanged, _textBox);
         PointerPressedEvent.AddHandler(OnTextBoxPointerPressed, RoutingStrategies.Tunnel, false, _textBox);
