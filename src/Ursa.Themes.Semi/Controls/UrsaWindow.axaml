@@ -2,7 +2,6 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
-    <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:UrsaWindow}" TargetType="u:UrsaWindow">
         <Setter Property="Background" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
@@ -11,23 +10,47 @@
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="-1" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
-        <Setter Property="u:OverlayDialogHost.IsModalStatusScope" Value="True"/>
+        <Setter Property="u:OverlayDialogHost.IsModalStatusScope" Value="True" />
+        <Setter Property="IsMinimizeButtonVisible">
+            <OnPlatform>
+                <On Options="Default, Windows, Linux">
+                    <x:Boolean>True</x:Boolean>
+                </On>
+                <On Options="macOS">
+                    <x:Boolean>False</x:Boolean>
+                </On>
+            </OnPlatform>
+        </Setter>
+        <Setter Property="IsRestoreButtonVisible">
+            <OnPlatform>
+                <On Options="Default, Windows, Linux">
+                    <x:Boolean>True</x:Boolean>
+                </On>
+                <On Options="macOS">
+                    <x:Boolean>False</x:Boolean>
+                </On>
+            </OnPlatform>
+        </Setter>
+        <Setter Property="IsCloseButtonVisible">
+            <OnPlatform>
+                <On Options="Default, Windows, Linux">
+                    <x:Boolean>True</x:Boolean>
+                </On>
+                <On Options="macOS">
+                    <x:Boolean>False</x:Boolean>
+                </On>
+            </OnPlatform>
+        </Setter>
         <Setter Property="SystemDecorations">
             <OnPlatform>
-                <OnPlatform.Default>
+                <On Options="Default, Windows, macOS">
                     <SystemDecorations>Full</SystemDecorations>
-                </OnPlatform.Default>
-                <OnPlatform.macOS>
-                    <SystemDecorations>Full</SystemDecorations>
-                </OnPlatform.macOS>
-                <OnPlatform.Linux>
+                </On>
+                <On Options="Linux">
                     <SystemDecorations>None</SystemDecorations>
-                </OnPlatform.Linux>
-                <OnPlatform.Windows>
-                    <SystemDecorations>Full</SystemDecorations>
-                </OnPlatform.Windows>
+                </On>
             </OnPlatform>
-        </Setter> 
+        </Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:UrsaWindow">
                 <Panel>
@@ -41,7 +64,7 @@
                                 Margin="{Binding $parent[u:UrsaWindow].TitleBarMargin}"
                                 LeftContent="{Binding $parent[u:UrsaWindow].LeftContent}"
                                 RightContent="{Binding $parent[u:UrsaWindow].RightContent}" />
-                            <u:OverlayDialogHost/>
+                            <u:OverlayDialogHost />
                         </VisualLayerManager.ChromeOverlayLayer>
                         <Panel>
                             <ContentPresenter
@@ -121,7 +144,7 @@
                             Data="{DynamicResource WindowMinimizeGlyph}"
                             Foreground="{Binding $parent[Button].Foreground}" />
                     </Button>
-                    <Button x:Name="PART_RestoreButton" Theme="{DynamicResource CaptionButton}" >
+                    <Button x:Name="PART_RestoreButton" Theme="{DynamicResource CaptionButton}">
                         <PathIcon
                             Name="PART_RestoreButtonIcon"
                             Width="12"
