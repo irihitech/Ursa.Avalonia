@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel>
             <Button Click="DialogButton_OnClick">Show Dialog</Button>
-            <Button Click="DrawerButton_OnClick"></Button>
+            <Button Click="DrawerButton_OnClick">Show Drawer</Button>
         </StackPanel>
         <u:OverlayDialogHost/>
     </Grid>
