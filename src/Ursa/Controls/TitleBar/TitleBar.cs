@@ -49,6 +49,11 @@ public class TitleBar: ContentControl
 
     private void OnPointerPressed(object sender, PointerPressedEventArgs e)
     {
+        if(_visualRoot is not null
+            && _visualRoot.WindowState == WindowState.FullScreen)
+        {
+            return;
+        }
         if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
         {
             if (e.ClickCount < 2) 
@@ -62,6 +67,11 @@ public class TitleBar: ContentControl
     {
         if (_visualRoot is not null)
         {
+            if ( _visualRoot.WindowState == WindowState.FullScreen)
+            {
+                return;
+            }
+
             if (_visualRoot.WindowState == WindowState.Maximized)
             {
                 _visualRoot.WindowState = WindowState.Normal;
