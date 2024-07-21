@@ -67,8 +67,12 @@ public class TitleBar: ContentControl
     {
         if (_visualRoot is not null)
         {
-            if (_visualRoot.WindowState == WindowState.Maximized
-                || _visualRoot.WindowState == WindowState.FullScreen)
+            if ( _visualRoot.WindowState == WindowState.FullScreen)
+            {
+                return;
+            }
+
+            if (_visualRoot.WindowState == WindowState.Maximized)
             {
                 _visualRoot.WindowState = WindowState.Normal;
             }
