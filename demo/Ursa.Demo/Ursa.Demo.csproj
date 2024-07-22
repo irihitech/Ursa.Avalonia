@@ -12,7 +12,6 @@
 
     <ItemGroup>
         <TrimmerRootDescriptor Include="Roots.xml" />
-        <TrimmerRootAssembly Include="Ursa.Thems.Semi" />
     </ItemGroup>
 
     <ItemGroup>

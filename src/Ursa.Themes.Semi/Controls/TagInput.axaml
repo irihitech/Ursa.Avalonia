@@ -10,7 +10,7 @@
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="ItemTemplate">
             <DataTemplate>
-                <u:ClosableTag Command="{Binding $parent[u:TagInput].Close}" Content="{Binding}" />
+                <u:ClosableTag Command="{Binding $parent[u:TagInput].Close}" Content="{ReflectionBinding}" />
             </DataTemplate>
         </Setter>
         <Setter Property="Template">
