@@ -69,7 +69,7 @@
                     <Button
                         Name="PART_ClearButton"
                         Grid.Column="2"
-                        Command="{Binding $parent[iri:IClearControl].Clear}"
+                        Command="{Binding $parent[u:TreeComboBox].Clear}"
                         IsVisible="False"
                         Theme="{DynamicResource InnerIconButton}"
                         Content="{DynamicResource IconButtonClearData}" />

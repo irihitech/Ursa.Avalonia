@@ -39,7 +39,7 @@ public class ControlClassesInput: TemplatedControl
     internal static readonly DirectProperty<ControlClassesInput, ObservableCollection<string>> TargetClassesProperty = AvaloniaProperty.RegisterDirect<ControlClassesInput, ObservableCollection<string>>(
         nameof(TargetClasses), o => o.TargetClasses, (o, v) => o.TargetClasses = v);
 
-    internal ObservableCollection<string> TargetClasses
+    public ObservableCollection<string> TargetClasses
     {
         get => _targetClasses;
         set => SetAndRaise(TargetClassesProperty, ref _targetClasses, value);

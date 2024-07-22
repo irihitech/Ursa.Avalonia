@@ -12,7 +12,7 @@ public abstract class NumberDisplayerBase : TemplatedControl
         nameof(InternalText), o => o.InternalText, (o, v) => o.InternalText = v);
     private string _internalText;
     
-    internal string InternalText
+    public string InternalText
     {
         get => _internalText;
         set => SetAndRaise(InternalTextProperty, ref _internalText, value);

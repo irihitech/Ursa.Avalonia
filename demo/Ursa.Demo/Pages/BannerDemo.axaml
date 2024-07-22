@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:pages="clr-namespace:Ursa.Demo.Pages"
     xmlns:u="https://irihi.tech/ursa"
+    x:DataType="pages:BannerDemoViewModel"
     mc:Ignorable="d">
     <Design.DataContext>
         <pages:BannerDemoViewModel />

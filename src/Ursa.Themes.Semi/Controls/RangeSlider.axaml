@@ -18,7 +18,7 @@
                             RowDefinitions="Auto,Auto,Auto">
                             <Grid.Styles>
                                 <Style Selector="TickBar">
-                                    <Setter Property="ReservedSpace" Value="{Binding #PART_Track.LowerThumb.Bounds}" />
+                                    <Setter Property="ReservedSpace" Value="{ReflectionBinding #PART_Track.LowerThumb.Bounds}" />
                                 </Style>
                             </Grid.Styles>
                             <TickBar
@@ -50,7 +50,7 @@
                                 TickFrequency="{TemplateBinding u:RangeSlider.TickFrequency}"
                                 Ticks="{TemplateBinding Ticks}" />
                             <u:RangeTrack
-                                Name="{x:Static u:RangeSlider.PART_Track}"
+                                Name="PART_Track"
                                 Grid.Row="1"
                                 Cursor="Hand"
                                 HorizontalAlignment="Stretch"
@@ -110,7 +110,7 @@
                             ColumnDefinitions="Auto,Auto,Auto">
                             <Grid.Styles>
                                 <Style Selector="TickBar">
-                                    <Setter Property="ReservedSpace" Value="{Binding #PART_Track.LowerThumb.Bounds}" />
+                                    <Setter Property="ReservedSpace" Value="{ReflectionBinding #PART_Track.LowerThumb.Bounds}" />
                                 </Style>
                             </Grid.Styles>
                             <TickBar
@@ -142,7 +142,7 @@
                                 TickFrequency="{TemplateBinding u:RangeSlider.TickFrequency}"
                                 Ticks="{TemplateBinding Ticks}" />
                             <u:RangeTrack
-                                Name="{x:Static u:RangeSlider.PART_Track}"
+                                Name="PART_Track"
                                 Cursor="Hand"
                                 Grid.Column="1"
                                 HorizontalAlignment="Stretch"

@@ -248,7 +248,7 @@
         <Style Selector="^ /template/ Panel#PART_TitleArea">
             <Setter Property="ContextFlyout">
                 <MenuFlyout>
-                    <MenuItem Command="{Binding $parent[u:CustomDialogControl].CloseDialog}" Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
+                    <MenuItem Command="{Binding $parent[u:CustomDialogControl].Close}" Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
                         <MenuItem.Icon>
                             <PathIcon
                                 Width="12"

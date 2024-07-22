@@ -140,7 +140,7 @@
                                 Name="ClearButton"
                                 Grid.Column="1"
                                 Padding="0,0,8,0"
-                                Command="{Binding $parent[iri:IClearControl].Clear}"
+                                Command="{Binding $parent[u:TimePicker].Clear}"
                                 Content="{DynamicResource IconButtonClearData}"
                                 Focusable="False"
                                 IsVisible="False"

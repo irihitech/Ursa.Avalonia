@@ -2,7 +2,8 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:contracts="https://irihi.tech/shared"
-    xmlns:u="https://irihi.tech/ursa">
+    xmlns:u="https://irihi.tech/ursa"
+    x:CompileBindings="True">
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:DateRangePicker}" TargetType="u:DateRangePicker">
         <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
@@ -59,7 +60,7 @@
                                 Name="ClearButton"
                                 Grid.Column="3"
                                 Padding="8,0"
-                                Command="{Binding $parent[contracts:IClearControl].Clear}"
+                                Command="{Binding $parent[u:DateRangePicker].Clear}"
                                 Content="{DynamicResource IconButtonClearData}"
                                 Focusable="False"
                                 IsVisible="False"
@@ -68,9 +69,9 @@
                                 Name="{x:Static u:DateRangePicker.PART_Button}"
                                 Grid.Column="3"
                                 Padding="8,0"
-                                IsVisible="{Binding !#ClearButton.IsVisible}"
                                 Content="{DynamicResource CalendarDatePickerIconGlyph}"
                                 Focusable="False"
+                                IsVisible="{Binding !#ClearButton.IsVisible}"
                                 Theme="{DynamicResource InnerIconButton}" />
                         </Grid>
                         <Popup
@@ -120,18 +121,18 @@
                                             Grid.Column="0"
                                             Margin="8"
                                             BorderThickness="0"
-                                            FontSize="{DynamicResource DefaultFontSize}"
                                             CornerRadius="{Binding $parent[Border].CornerRadius}"
                                             FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
+                                            FontSize="{DynamicResource DefaultFontSize}"
                                             IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
                                         <u:CalendarView
                                             Name="{x:Static u:DateRangePicker.PART_EndCalendar}"
                                             Grid.Column="1"
                                             Margin="8"
                                             BorderThickness="0"
-                                            FontSize="{DynamicResource DefaultFontSize}"
                                             CornerRadius="{Binding $parent[Border].CornerRadius}"
                                             FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
+                                            FontSize="{DynamicResource DefaultFontSize}"
                                             IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
                                     </Grid>
                                 </DockPanel>
@@ -144,7 +145,7 @@
 
         <Style Selector="^.clearButton, ^.ClearButton">
             <Style Selector="^:not(:empty):pointerover /template/ Button#ClearButton">
-                <Setter Property="IsVisible" Value="{Binding $parent[u:DatePicker].start, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                <Setter Property="IsVisible" Value="True" />
             </Style>
         </Style>
 

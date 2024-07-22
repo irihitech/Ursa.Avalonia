@@ -124,7 +124,7 @@ public class NavMenuItem: HeaderedItemsControl
     internal static readonly DirectProperty<NavMenuItem, int> LevelProperty = AvaloniaProperty.RegisterDirect<NavMenuItem, int>(
         nameof(Level), o => o.Level, (o, v) => o.Level = v);
     private int _level;
-    internal int Level
+    public int Level
     {
         get => _level;
         set => SetAndRaise(LevelProperty, ref _level, value);

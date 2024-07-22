@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="using:Ursa.Demo.ViewModels"
+    x:DataType="vm:IntroductionDemoViewModel"
     d:DesignHeight="800"
     d:DesignWidth="1600"
     mc:Ignorable="d">
