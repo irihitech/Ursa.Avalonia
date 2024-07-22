@@ -9,7 +9,7 @@
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    x:CompileBindings="True"
+    x:CompileBindings="False"
     x:DataType="viewModels:TimelineDemoViewModel"
     mc:Ignorable="d">
     <UserControl.Resources>
@@ -27,33 +27,33 @@
         <u:Timeline
             Mode="Alternate"
             HorizontalAlignment="Left"
-            ContentMemberBinding="{ReflectionBinding Description}"
-            HeaderMemberBinding="{ReflectionBinding Header}"
-            IconMemberBinding="{ReflectionBinding ItemType}"
+            ContentMemberBinding="{Binding Description}"
+            HeaderMemberBinding="{Binding Header}"
+            IconMemberBinding="{Binding ItemType}"
             IconTemplate="{StaticResource IconSelector}"
             ItemsSource="{Binding Items}"
-            TimeMemberBinding="{ReflectionBinding Time}" >
+            TimeMemberBinding="{Binding Time}" >
                 
         </u:Timeline>
         <u:Timeline
             Mode="Left"
             HorizontalAlignment="Left"
-            ContentMemberBinding="{ReflectionBinding Description}"
-            HeaderMemberBinding="{ReflectionBinding Header}"
-            IconMemberBinding="{ReflectionBinding ItemType}"
+            ContentMemberBinding="{Binding Description}"
+            HeaderMemberBinding="{Binding Header}"
+            IconMemberBinding="{Binding ItemType}"
             IconTemplate="{StaticResource IconSelector}"
             ItemsSource="{Binding Items}"
-            TimeMemberBinding="{ReflectionBinding Time}" >
+            TimeMemberBinding="{Binding Time}" >
         </u:Timeline>
         <u:Timeline
             Mode="Right"
             HorizontalAlignment="Left"
-            ContentMemberBinding="{ReflectionBinding Description}"
-            HeaderMemberBinding="{ReflectionBinding Header}"
-            IconMemberBinding="{ReflectionBinding ItemType}"
+            ContentMemberBinding="{Binding Description}"
+            HeaderMemberBinding="{Binding Header}"
+            IconMemberBinding="{Binding ItemType}"
             IconTemplate="{StaticResource IconSelector}"
             ItemsSource="{Binding Items}"
-            TimeMemberBinding="{ReflectionBinding Time}" >
+            TimeMemberBinding="{Binding Time}" >
         </u:Timeline>
         <u:Timeline HorizontalAlignment="Left" Mode="Alternate">
             <u:TimelineItem
