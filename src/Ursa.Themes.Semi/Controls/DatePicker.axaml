@@ -1,6 +1,7 @@
 <ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:contracts="https://irihi.tech/shared"
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:DatePicker}" TargetType="u:DatePicker">
@@ -30,7 +31,7 @@
                         <Grid
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
-                            ColumnDefinitions="*, Auto, Auto">
+                            ColumnDefinitions="*, Auto">
                             <TextBox
                                 Name="PART_TextBox"
                                 Grid.Column="0"
@@ -59,8 +60,9 @@
                                 Theme="{DynamicResource InnerIconButton}" />
                             <Button
                                 Name="PART_Button"
-                                Grid.Column="2"
+                                Grid.Column="1"
                                 Padding="0,0,8,0"
+                                IsVisible="{Binding !#ClearButton.IsVisible}"
                                 Content="{DynamicResource CalendarDatePickerIconGlyph}"
                                 Focusable="False"
                                 Theme="{DynamicResource InnerIconButton}" />
@@ -83,9 +85,9 @@
                                     <u:CalendarView
                                         Name="PART_Calendar"
                                         BorderThickness="0"
-                                        FontSize="{DynamicResource DefaultFontSize}"
                                         CornerRadius="{Binding $parent[Border].CornerRadius}"
                                         FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
+                                        FontSize="{DynamicResource DefaultFontSize}"
                                         IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
                                 </Border>
                             </Popup>
@@ -95,6 +97,12 @@
                 </DataValidationErrors>
             </ControlTemplate>
         </Setter>
+        
+        <Style Selector="^.clearButton, ^.ClearButton">
+            <Style Selector="^:pointerover /template/ Button#ClearButton">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:DatePicker].SelectedDate, Converter={x:Static ObjectConverters.IsNotNull}}" />
+            </Style>
+        </Style>
 
         <Style Selector="^:pointerover">
             <Style Selector="^ /template/ Border#Background">

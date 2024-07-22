@@ -68,6 +68,7 @@
                                 Name="{x:Static u:DateRangePicker.PART_Button}"
                                 Grid.Column="3"
                                 Padding="8,0"
+                                IsVisible="{Binding !#ClearButton.IsVisible}"
                                 Content="{DynamicResource CalendarDatePickerIconGlyph}"
                                 Focusable="False"
                                 Theme="{DynamicResource InnerIconButton}" />
@@ -142,11 +143,8 @@
         </Setter>
 
         <Style Selector="^.clearButton, ^.ClearButton">
-            <Style Selector="^:pointerover /template/ Button#ClearButton">
-                <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNotNull}}" />
-            </Style>
-            <Style Selector="^:pointerover /template/ Button#PART_Button">
-                <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNull}}" />
+            <Style Selector="^:not(:empty):pointerover /template/ Button#ClearButton">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:DatePicker].start, Converter={x:Static ObjectConverters.IsNotNull}}" />
             </Style>
         </Style>
 

@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -116,7 +117,13 @@ public class DatePicker: DatePickerBase, IClearControl
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
     
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        SetSelectedDate(true);
+    }
+
+    private void SetSelectedDate(bool fromText = false)
     {
         if (string.IsNullOrEmpty(_textBox?.Text))
         {
@@ -145,6 +152,15 @@ public class DatePicker: DatePickerBase, IClearControl
                 }
                 _calendar?.MarkDates(startDate: date, endDate: date);
             }
+            else
+            {
+                SetCurrentValue(SelectedDateProperty, null);
+                if (!fromText)
+                {
+                    _textBox?.SetValue(TextBox.TextProperty, null);
+                }
+                _calendar?.ClearSelection();
+            }
         }
     }
 
@@ -158,7 +174,14 @@ public class DatePicker: DatePickerBase, IClearControl
         }
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
-    
+
+    protected override void OnLostFocus(RoutedEventArgs e)
+    {
+        base.OnLostFocus(e);
+        SetCurrentValue(IsDropdownOpenProperty, false);
+        SetSelectedDate();
+    }
+
     protected override void OnKeyDown(KeyEventArgs e)
     {
         if (e.Key == Key.Escape)
@@ -186,6 +209,6 @@ public class DatePicker: DatePickerBase, IClearControl
 
     public void Clear()
     {
-        
+        SetCurrentValue(SelectedDateProperty, null);
     }
 }
