@@ -64,7 +64,7 @@ public class EnumSelector: TemplatedControl
         nameof(Values), o => o.Values);
     
     private IList<EnumItemTuple>? _values;
-    internal IList<EnumItemTuple>? Values
+    public IList<EnumItemTuple>? Values
     {
         get => _values;
         private set => SetAndRaise(ValuesProperty, ref _values, value);

@@ -59,13 +59,13 @@ public class VerificationCode: TemplatedControl
     }
 
     public static readonly DirectProperty<VerificationCode, IList<string>> DigitsProperty = AvaloniaProperty.RegisterDirect<VerificationCode, IList<string>>(
-        nameof(Digits), o => o.Digits, (o, v) => o.Digits = v);
+        nameof(Digits), o => o.Digits);
     
     private IList<string> _digits = [];
-    internal IList<string> Digits
+    public IList<string> Digits
     {
         get => _digits;
-        set => SetAndRaise(DigitsProperty, ref _digits, value);
+        private set => SetAndRaise(DigitsProperty, ref _digits, value);
     }
     
     public static readonly RoutedEvent<VerificationCodeCompleteEventArgs> CompleteEvent =

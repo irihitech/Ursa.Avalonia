@@ -25,8 +25,8 @@
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:NumericUpDown}" TargetType="{x:Type u:NumericUpDown}">
-        <Setter Property="NumericUpDown.VerticalContentAlignment" Value="Center" />
-        <Setter Property="NumericUpDown.CornerRadius" Value="{DynamicResource NumericUpDownCornerRadius}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource NumericUpDownCornerRadius}" />
+        <Setter Property="MinHeight" Value="{DynamicResource NumericUpDownDefaultHeight}"></Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:NumericUpDown">
                 <DataValidationErrors>
@@ -44,7 +44,7 @@
                             <TextBox
                                 Name="PART_TextBox"
                                 Height="{TemplateBinding Height}"
-                                MinHeight="{DynamicResource NumericUpDownWrapperDefaultHeight}"
+                                MinHeight="{TemplateBinding MinHeight}"
                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 AcceptsReturn="False"
                                 CornerRadius="{TemplateBinding CornerRadius}"
