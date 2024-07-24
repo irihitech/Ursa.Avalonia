@@ -190,7 +190,7 @@
                                     Margin="0,24,0,0"
                                     VerticalAlignment="Center"
                                     FontSize="16"
-                                    FontWeight="Bold"
+                                    FontWeight="{DynamicResource TextBlockTitleFontWeight}"
                                     IsHitTestVisible="False"
                                     IsVisible="{TemplateBinding Title,
                                                                 Converter={x:Static ObjectConverters.IsNotNull}}"
@@ -490,7 +490,7 @@
                                     Grid.Column="0"
                                     Margin="24,24,0,0"
                                     FontSize="14"
-                                    FontWeight="Bold"
+                                    FontWeight="{DynamicResource TextBlockTitleFontWeight}"
                                     Text="{TemplateBinding Title}"
                                     TextTrimming="CharacterEllipsis"
                                     TextWrapping="NoWrap" />
@@ -563,7 +563,7 @@
                                     Margin="0,24,0,0"
                                     VerticalAlignment="Center"
                                     FontSize="16"
-                                    FontWeight="Bold"
+                                    FontWeight="{DynamicResource TextBlockTitleFontWeight}"
                                     IsHitTestVisible="False"
                                     IsVisible="{TemplateBinding Title,
                                                                 Converter={x:Static ObjectConverters.IsNotNull}}"

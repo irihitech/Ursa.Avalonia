@@ -126,7 +126,7 @@
         <Style Selector="^:selected">
             <Setter Property="Background" Value="{DynamicResource PaginationButtonSelectedBackground}" />
             <Setter Property="Foreground" Value="{DynamicResource PaginationButtonSelectedForeground}" />
-            <Setter Property="FontWeight" Value="600" />
+            <Setter Property="FontWeight" Value="{DynamicResource TextBlockTitleFontWeight}" />
         </Style>
     </ControlTheme>
 

@@ -96,7 +96,7 @@
                                     Margin="24,24,0,0"
                                     VerticalAlignment="Center"
                                     FontSize="16"
-                                    FontWeight="Bold"
+                                    FontWeight="{DynamicResource TextBlockTitleFontWeight}"
                                     IsHitTestVisible="False"
                                     IsVisible="{TemplateBinding Title,
                                                                 Converter={x:Static ObjectConverters.IsNotNull}}"
