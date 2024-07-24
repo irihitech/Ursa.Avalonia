@@ -35,16 +35,6 @@ public partial class OverlayDialogHost: Canvas
 
     private int _modalCount = 0;
 
-    public static readonly DirectProperty<OverlayDialogHost, bool> HasModalProperty = AvaloniaProperty.RegisterDirect<OverlayDialogHost, bool>(
-        nameof(HasModal), o => o.HasModal);
-    private bool _hasModal;
-    [Obsolete("Use IsInModalStatus")]
-    public bool HasModal
-    {
-        get => _hasModal;
-        private set => SetAndRaise(HasModalProperty, ref _hasModal, value);
-    }
-
     public static readonly AttachedProperty<bool> IsModalStatusScopeProperty =
         AvaloniaProperty.RegisterAttached<OverlayDialogHost, Control, bool>("IsModalStatusScope");
 
@@ -56,6 +46,15 @@ public partial class OverlayDialogHost: Canvas
 
     internal static void SetIsInModalStatus(Control obj, bool value) => obj.SetValue(IsInModalStatusProperty, value);
     public static bool GetIsInModalStatus(Control obj) => obj.GetValue(IsInModalStatusProperty);
+
+    public static readonly StyledProperty<bool> IsModalStatusReporterProperty = AvaloniaProperty.Register<OverlayDialogHost, bool>(
+        nameof(IsModalStatusReporter));
+
+    public bool IsModalStatusReporter
+    {
+        get => GetValue(IsModalStatusReporterProperty);
+        set => SetValue(IsModalStatusReporterProperty, value);
+    }
 
     public bool IsInModalStatus
     {
@@ -70,11 +69,6 @@ public partial class OverlayDialogHost: Canvas
         ClipToBoundsProperty.OverrideDefaultValue<OverlayDialogHost>(true);
         _maskAppearAnimation = CreateOpacityAnimation(true);
         _maskDisappearAnimation = CreateOpacityAnimation(false);
-        // This is only a temporary solution, will be removed in release candidate mode. 
-        IsInModalStatusProperty.Changed.AddClassHandler<OverlayDialogHost, bool>((host, args) =>
-        {
-            host.HasModal = args.NewValue.Value;
-        });
     }
     
     private static Animation CreateOpacityAnimation(bool appear)
@@ -141,17 +135,24 @@ public partial class OverlayDialogHost: Canvas
         }
     }
     private IDisposable? _modalStatusSubscription;
+    private int? _toplevelHash;
     protected sealed override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
-        var hash = TopLevel.GetTopLevel(this)?.GetHashCode();
+        _toplevelHash = TopLevel.GetTopLevel(this)?.GetHashCode();
         var modalHost = this.GetVisualAncestors().OfType<Control>().FirstOrDefault(GetIsModalStatusScope);
         if (modalHost is not null)
         {
             _modalStatusSubscription = this.GetObservable(IsInModalStatusProperty)
-                .Subscribe(a => OverlayDialogHost.SetIsInModalStatus(modalHost, a));
+                .Subscribe(a =>
+                {
+                    if (IsModalStatusReporter)
+                    {
+                        SetIsInModalStatus(modalHost, a);
+                    }
+                });
         }
-        OverlayDialogManager.RegisterHost(this, HostId, hash);
+        OverlayDialogManager.RegisterHost(this, HostId, _toplevelHash);
     }
     
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
@@ -161,8 +162,7 @@ public partial class OverlayDialogHost: Canvas
             _layers[0].Element.Close();
         }
         _modalStatusSubscription?.Dispose();
-        var hash = TopLevel.GetTopLevel(this)?.GetHashCode();
-        OverlayDialogManager.UnregisterHost(HostId, hash);
+        OverlayDialogManager.UnregisterHost(HostId, _toplevelHash);
         base.OnDetachedFromVisualTree(e);
     }
     
