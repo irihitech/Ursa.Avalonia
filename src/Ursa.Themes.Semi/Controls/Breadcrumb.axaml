@@ -70,7 +70,7 @@
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                 <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
-                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="FontWeight" Value="{DynamicResource TextBlockTitleFontWeight}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#Separator">
                 <Setter Property="IsVisible" Value="False" />

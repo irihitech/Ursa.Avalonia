@@ -43,7 +43,7 @@
                                 ContentTemplate="{TemplateBinding HeaderTemplate}"
                                 IsVisible="{TemplateBinding Header,
                                                             Converter={x:Static ObjectConverters.IsNotNull}}"
-                                TextElement.FontWeight="600" />
+                                TextElement.FontWeight="{DynamicResource TextBlockTitleFontWeight}" />
                             <ContentPresenter
                                 Grid.Row="1"
                                 Grid.Column="1"

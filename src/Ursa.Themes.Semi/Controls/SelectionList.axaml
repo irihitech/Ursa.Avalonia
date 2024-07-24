@@ -55,7 +55,7 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:selected">
-            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontWeight" Value="{DynamicResource TextBlockTitleFontWeight}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
