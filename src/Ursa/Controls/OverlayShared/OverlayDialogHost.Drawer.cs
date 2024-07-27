@@ -67,6 +67,8 @@ public partial class OverlayDialogHost
         {
             await Task.WhenAll(animation.RunAsync(control), _maskAppearAnimation.RunAsync(mask));
         }
+
+        control.Focus();
     }
 
     private void SetDrawerPosition(DrawerControlBase control)

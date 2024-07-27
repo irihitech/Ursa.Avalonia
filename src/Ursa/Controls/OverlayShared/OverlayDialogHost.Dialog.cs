@@ -173,6 +173,7 @@ public partial class OverlayDialogHost
         _modalCount++;
         IsInModalStatus = _modalCount > 0;
         control.IsClosed = false;
+        control.Focus();
     }
 
     // Handle dialog layer change event
