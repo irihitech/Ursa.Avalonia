@@ -8,7 +8,8 @@
         Title="Ursa.PrismDialogDemo">
     <Grid>
         <StackPanel>
-            <Button Click="DialogButton_OnClick">Show Dialog</Button>
+            <Button Click="OverlayDialogButton_OnClick">Show Overlay Dialog</Button>
+            <Button Click="AloneDialogButton_OnClick">Show Alone Dialog</Button>
             <Button Click="DrawerButton_OnClick">Show Drawer</Button>
         </StackPanel>
         <u:OverlayDialogHost/>
