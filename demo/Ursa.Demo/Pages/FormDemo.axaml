@@ -41,6 +41,7 @@
                         Width="300"
                         u:FormItem.Label="Email"
                         Text="{Binding Email}" />
+                    <u:NumericDoubleUpDown Value="{Binding Number}" u:FormItem.Label="Number" Width="300"/>
                 </u:FormGroup>
                 <u:FormItem Label="Please select a Date">
                     <CalendarDatePicker SelectedDate="{Binding Date}" />

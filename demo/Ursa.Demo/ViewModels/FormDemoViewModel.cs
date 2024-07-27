@@ -24,6 +24,14 @@ public partial class DataModel : ObservableObject
         get=>_name;
         set => SetProperty(ref _name, value);
     }
+
+    private double _number;
+    [Range(0.0, 10.0)]
+    public double Number
+    {
+        get => _number;
+        set => SetProperty(ref _number, value);
+    }
     
     private string _email;
     
