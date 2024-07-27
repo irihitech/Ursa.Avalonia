@@ -133,7 +133,11 @@ public class IPv4Box: TemplatedControl
     
     protected override void OnKeyDown(KeyEventArgs e)
     {
-        if (_currentActivePresenter is null) return;
+        if (_currentActivePresenter is null)
+        {
+            _currentActivePresenter = _presenters[0];
+        }
+        
         var keymap = TopLevel.GetTopLevel(this)?.PlatformSettings?.HotkeyConfiguration;
         bool Match(List<KeyGesture> gestures) => gestures.Any(g => g.Matches(e));
         if (e.Key is Key.Enter or Key.Return)
@@ -141,25 +145,36 @@ public class IPv4Box: TemplatedControl
             ParseBytes(ShowLeadingZero);
             SetIPAddressInternal();
             base.OnKeyDown(e);
+            e.Handled = true;
             return;
         }
         if (keymap is not null && Match(keymap.SelectAll))
         {
             _currentActivePresenter.SelectionStart = 0;
             _currentActivePresenter.SelectionEnd = _currentActivePresenter.Text?.Length ?? 0;
+            e.Handled = true;
             return;
         }
-        else if (keymap is not null && Match(keymap.Copy))
+
+        if (keymap is not null && Match(keymap.Copy))
         {
             Copy();
+            e.Handled = true;
+            return;
         }
-        else if (keymap is not null && Match(keymap.Paste))
+
+        if (keymap is not null && Match(keymap.Paste))
         {
             Paste();
+            e.Handled = true;
+            return;
         }
-        else if (keymap is not null && Match(keymap.Cut))
+
+        if (keymap is not null && Match(keymap.Cut))
         {
             Cut();
+            e.Handled = true;
+            return;
         }
         if (e.Key == Key.Tab)
         {
@@ -173,23 +188,30 @@ public class IPv4Box: TemplatedControl
             MoveToNextPresenter(_currentActivePresenter, true);
             _currentActivePresenter?.ShowCaret();
             e.Handled = true;
+            return;
         }
-        else if (e.Key == Key.Back)
+
+        if (e.Key == Key.Back)
         {
             DeleteImplementation(_currentActivePresenter);
+            e.Handled = true;
+            return;
         }
-        else if (e.Key == Key.Right )
+
+        if (e.Key == Key.Right )
         {
             OnPressRightKey();
+            e.Handled = true;
+            return;
         }
-        else if (e.Key == Key.Left)
+
+        if (e.Key == Key.Left)
         {
             OnPressLeftKey();
+            e.Handled = true;
+            return;
         }
-        else
-        {
-            base.OnKeyDown(e);
-        }
+        base.OnKeyDown(e);
     }
     
     protected override void OnTextInput(TextInputEventArgs e)
@@ -201,9 +223,11 @@ public class IPv4Box: TemplatedControl
         {
             _currentActivePresenter?.HideCaret();
             _currentActivePresenter.ClearSelection();
-            MoveToNextPresenter(_currentActivePresenter, false);
-            _currentActivePresenter?.ShowCaret();
-            _currentActivePresenter.MoveCaretToStart();
+            if (MoveToNextPresenter(_currentActivePresenter, false))
+            {
+                _currentActivePresenter?.ShowCaret();
+                _currentActivePresenter.MoveCaretToStart();
+            }
             e.Handled = false;
             return;
         }
@@ -274,6 +298,7 @@ public class IPv4Box: TemplatedControl
             }
         }
         base.OnPointerPressed(e);
+        e.Handled = true;
     }
 
     protected override void OnLostFocus(RoutedEventArgs e)
