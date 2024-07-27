@@ -57,7 +57,7 @@
                     <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
                     <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
-                    <VisualLayerManager>
+                    <VisualLayerManager Padding="{TemplateBinding OffScreenMargin, Mode=OneWay}">
                         <VisualLayerManager.ChromeOverlayLayer>
                             <u:TitleBar
                                 Content="{Binding $parent[u:UrsaWindow].TitleBarContent}"
