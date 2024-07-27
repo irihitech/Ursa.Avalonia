@@ -42,6 +42,7 @@
         <Setter Property="u:IPv4Box.SelectionForegroundBrush" Value="{DynamicResource IPv4BoxSelectionForeground}" />
         <Setter Property="u:IPv4Box.CaretBrush" Value="{DynamicResource IPv4BoxCaretBrush}" />
         <Setter Property="u:IPv4Box.ContextFlyout" Value="{DynamicResource IPv4BoxMenuFlyout}" />
+        <Setter Property="FocusAdorner" Value="{x:Null}"></Setter>
         <Setter Property="u:IPv4Box.Template">
             <ControlTemplate TargetType="u:IPv4Box">
                 <Border

@@ -1,0 +1,19 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Sandbox.App"
+             xmlns:local="using:Sandbox"
+             xmlns:semi="https://irihi.tech/semi"
+             xmlns:u-semi="https://irihi.tech/ursa/themes/semi"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <semi:SemiTheme Locale="zh-cn" />
+        <StyleInclude Source="avares://Semi.Avalonia.DataGrid/Index.axaml" />
+        <u-semi:SemiTheme Locale="zh-cn" />
+    </Application.Styles>
+</Application>
