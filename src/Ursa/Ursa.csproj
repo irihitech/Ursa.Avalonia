@@ -7,7 +7,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
-        <Version>1.0.0-rc1</Version>
+        <Version>1.0.0-rc2</Version>
         <Authors>IRIHI Technology Co., Ltd.</Authors>
         <PackageId>Irihi.Ursa</PackageId>
         <PackageIcon>irihi.png</PackageIcon>
