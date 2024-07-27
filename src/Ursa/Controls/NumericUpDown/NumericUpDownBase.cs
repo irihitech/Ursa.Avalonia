@@ -380,7 +380,7 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
     }
 
     public static readonly StyledProperty<T?> ValueProperty = AvaloniaProperty.Register<NumericUpDownBase<T>, T?>(
-        nameof(Value), defaultBindingMode: BindingMode.TwoWay);
+        nameof(Value), defaultBindingMode: BindingMode.TwoWay, enableDataValidation: true);
 
     public T? Value
     {
@@ -483,6 +483,15 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
     {
         get => this.GetValue(CommandParameterProperty);
         set => this.SetValue(CommandParameterProperty, value);
+    }
+
+    protected override void UpdateDataValidation(AvaloniaProperty property, BindingValueType state, Exception? error)
+    {
+        if (property == ValueProperty)
+        {
+            DataValidationErrors.SetError(this, error);
+        }
+        
     }
 
     private void InvokeCommand(object? cp)
