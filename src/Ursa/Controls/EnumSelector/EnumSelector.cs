@@ -92,7 +92,10 @@ public class EnumSelector: TemplatedControl
         var newValue = args.NewValue.Value;
         if (newValue is null)
         {
-            SetCurrentValue(SelectedValueProperty, null);
+            if (Values?.Any() == true)
+            {
+                SetCurrentValue(SelectedValueProperty, null);
+            }
         }
         else
         {
