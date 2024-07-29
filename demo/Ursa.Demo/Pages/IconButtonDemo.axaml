@@ -2,10 +2,11 @@
     x:Class="Ursa.Demo.Pages.IconButtonDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:common="clr-namespace:Ursa.Common;assembly=Ursa"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
+    x:DataType="vm:IconButtonDemoViewModel"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -14,14 +15,16 @@
     </UserControl.Resources>
     <StackPanel HorizontalAlignment="Left" Spacing="16">
         <ToggleSwitch Name="loading" Content="Toggle Loading" />
-        <u:EnumSelector Name="placement" EnumType="{x:Type common:Position}" />
+        <ComboBox Name="placement"
+                  ItemsSource="{Binding Positions}"
+                  SelectedValue="{Binding SelectedPosition}" />
         <u:IconButton
             Content="Hello World"
-            IconPlacement="{Binding #placement.Value}"
+            IconPlacement="{Binding #placement.SelectedValue}"
             IsLoading="{Binding #loading.IsChecked}" />
         <u:IconButton
             Content="Hello Panda"
-            IconPlacement="{Binding #placement.Value}"
+            IconPlacement="{Binding #placement.SelectedValue}"
             IsLoading="{Binding #loading.IsChecked}">
             <u:IconButton.Icon>
                 <TextBlock
@@ -32,7 +35,7 @@
         </u:IconButton>
         <u:IconButton
             Content="GitHub"
-            IconPlacement="{Binding #placement.Value}"
+            IconPlacement="{Binding #placement.SelectedValue}"
             IsLoading="{Binding #loading.IsChecked}">
             <u:IconButton.Icon>
                 <PathIcon
@@ -44,7 +47,7 @@
         <u:IconButton
             Width="150"
             Content="GitHub"
-            IconPlacement="{Binding #placement.Value}"
+            IconPlacement="{Binding #placement.SelectedValue}"
             IsLoading="{Binding #loading.IsChecked}">
             <u:IconButton.Icon>
                 <PathIcon
@@ -57,7 +60,7 @@
             Width="150"
             Classes="Warning"
             Content="GitHub"
-            IconPlacement="{Binding #placement.Value}"
+            IconPlacement="{Binding #placement.SelectedValue}"
             IsLoading="{Binding #loading.IsChecked}">
             <u:IconButton.Icon>
                 <PathIcon
@@ -69,7 +72,7 @@
         <u:IconButton
             Width="150"
             Content="GitHub"
-            IconPlacement="{Binding #placement.Value}"
+            IconPlacement="{Binding #placement.SelectedValue}"
             IsLoading="{Binding #loading.IsChecked}"
             Theme="{DynamicResource SolidIconButton}">
             <u:IconButton.Icon>
@@ -83,7 +86,7 @@
             Width="150"
             Classes="Warning"
             Content="GitHub"
-            IconPlacement="{Binding #placement.Value}"
+            IconPlacement="{Binding #placement.SelectedValue}"
             IsLoading="{Binding #loading.IsChecked}"
             Theme="{DynamicResource SolidIconButton}">
             <u:IconButton.Icon>

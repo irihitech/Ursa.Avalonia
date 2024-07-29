@@ -16,7 +16,7 @@
         <TabControl Grid.Column="0" Width="300">
             <TabItem Header="Default">
                 <StackPanel>
-                    <u:EnumSelector EnumType="common:Position" Value="{Binding SelectedPosition}" />
+                    <ComboBox ItemsSource="{Binding Positions}" SelectedValue="{Binding SelectedPosition}" />
                     <ToggleSwitch
                         Content="Global/Local"
                         IsChecked="{Binding IsGlobal}"
@@ -34,7 +34,7 @@
                         OnContent="Yes" />
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Buttons" />
-                        <u:EnumSelector EnumType="{x:Type u:DialogButton}" Value="{Binding SelectedButton}" />
+                        <ComboBox ItemsSource="{Binding DialogButtons}" SelectedValue="{Binding SelectedButton}" />
                     </StackPanel>
                     <Button Command="{Binding ShowDialogCommand}" Content="Show Default Drawer" />
                     <TextBlock>
@@ -49,7 +49,7 @@
             </TabItem>
             <TabItem Header="Custom">
                 <StackPanel>
-                    <u:EnumSelector EnumType="common:Position" Value="{Binding SelectedPosition}" />
+                    <ComboBox ItemsSource="{Binding Positions}" SelectedValue="{Binding SelectedPosition}" />
                     <ToggleSwitch
                         Content="Global/Local"
                         IsChecked="{Binding IsGlobal}"
