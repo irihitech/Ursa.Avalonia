@@ -271,7 +271,7 @@ public class TimeBox : TemplatedControl
     {
         if (e.Handled) return;
         string? s = e.Text;
-        if (string.IsNullOrEmpty(s)) return;
+        if (s is null || string.IsNullOrEmpty(s)) return;
         if (!char.IsNumber(s[0])) return;
         if (_currentActiveSectionIndex is null) return;
 
@@ -413,7 +413,7 @@ public class TimeBox : TemplatedControl
     private void ParseTimeSpan(bool showLeadingZero, bool skipParseFromText = false)
     {
         string format = showLeadingZero ? "D2" : "";
-        string millisecondformat = showLeadingZero ? "D3" : "";
+        string millisecondFormat = showLeadingZero ? "D3" : "";
 
         if (!skipParseFromText)
         {
@@ -428,7 +428,7 @@ public class TimeBox : TemplatedControl
         _hourText?.SetValue(TextPresenter.TextProperty, _values[0].ToString(format));
         _minuteText?.SetValue(TextPresenter.TextProperty, _values[1].ToString(format));
         _secondText?.SetValue(TextPresenter.TextProperty, _values[2].ToString(format));
-        _milliSecondText?.SetValue(TextPresenter.TextProperty, _values[3].ToString(millisecondformat));
+        _milliSecondText?.SetValue(TextPresenter.TextProperty, _values[3].ToString(millisecondFormat));
     }
 
     private void OnDragPanelPointerMoved(object? sender, PointerEventArgs e)
@@ -479,14 +479,14 @@ public class TimeBox : TemplatedControl
     /// <summary>
     /// Set dragPanel IsVisible to false if AllowDrag is true, and select all text in the section
     /// </summary>
-    /// <param name="index">The index of section that will be enter</param>
+    /// <param name="index">The index of section that will be entered</param>
     private void EnterSection(int index)
     {
         if (index < 0 || index > 3) return;
 
         if (AllowDrag)
             _dragPanels[index].IsVisible = false;
-        ShowCaretInteral(index);
+        ShowCaretInternal(index);
         _presenters[index].SelectAll();
     }
 
@@ -494,7 +494,7 @@ public class TimeBox : TemplatedControl
     {
         if (!_isShowedCaret[index])
         {
-            ShowCaretInteral(index);
+            ShowCaretInternal(index);
         }
         _presenters[index].ClearSelection();
         var caretPosition =
@@ -512,7 +512,7 @@ public class TimeBox : TemplatedControl
         _presenters[index].ClearSelection();
         if (_isShowedCaret[index])
         {
-           HideCaretInteral(index);
+           HideCaretInternal(index);
         }
 
         if (AllowDrag)
@@ -703,13 +703,13 @@ public class TimeBox : TemplatedControl
         return milliSecond;
     }
 
-    private void ShowCaretInteral(int index)
+    private void ShowCaretInternal(int index)
     {
         _presenters[index].ShowCaret();
         _isShowedCaret[index] = true;
     }
     
-    private void HideCaretInteral(int index)
+    private void HideCaretInternal(int index)
     {
         _presenters[index].HideCaret();
         _isShowedCaret[index] = false;

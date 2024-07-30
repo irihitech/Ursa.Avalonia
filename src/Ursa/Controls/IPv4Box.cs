@@ -132,11 +132,7 @@ public class IPv4Box: TemplatedControl
     
     protected override void OnKeyDown(KeyEventArgs e)
     {
-        if (_currentActivePresenter is null)
-        {
-            _currentActivePresenter = _presenters[0];
-        }
-        
+        _currentActivePresenter ??= _presenters[0];
         var keymap = TopLevel.GetTopLevel(this)?.PlatformSettings?.HotkeyConfiguration;
         bool Match(List<KeyGesture> gestures) => gestures.Any(g => g.Matches(e));
         if (e.Key is Key.Enter or Key.Return)
@@ -220,7 +216,7 @@ public class IPv4Box: TemplatedControl
     {
         if (e.Handled) return;
         var s = e.Text;
-        if (string.IsNullOrEmpty(s)) return;
+        if (s is null || string.IsNullOrEmpty(s)) return;
         if (s == ".")
         {
             _currentActivePresenter?.HideCaret();
@@ -446,7 +442,7 @@ public class IPv4Box: TemplatedControl
     private void DeleteImplementation(TextPresenter? presenter)
     {
         if(presenter is null) return;
-        var oldText = presenter.Text;
+        var oldText = presenter.Text ?? string.Empty;
         if (presenter.SelectionStart != presenter.SelectionEnd)
         {
             presenter.DeleteSelection();

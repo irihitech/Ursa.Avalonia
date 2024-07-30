@@ -139,11 +139,12 @@ public class ControlClassesInput: TemplatedControl
     public void UnDo()
     {
         var node = _history.Last;
+        if (node is null) return;
         _history.RemoveLast();
-        _undoHistory.AddFirst(node);
+        _undoHistory.AddFirst(node.Value);
         _disableHistory = true;
         TargetClasses?.Clear();
-        foreach (var value in _history.Last.Value)
+        foreach (var value in node.Value)
         {
             TargetClasses?.Add(value);
         }
@@ -154,11 +155,12 @@ public class ControlClassesInput: TemplatedControl
     public void Redo()
     {
         var node = _undoHistory.First;
+        if (node is null) return;
         _undoHistory.RemoveFirst();
         _history.AddLast(node);
         _disableHistory = true;
         TargetClasses?.Clear();
-        foreach (var value in _history.Last.Value)
+        foreach (var value in node.Value)
         {
             TargetClasses?.Add(value);
         }
@@ -168,6 +170,6 @@ public class ControlClassesInput: TemplatedControl
 
     public void Clear()
     {
-        SaveHistory(new List<string>(), false);
+        SaveHistory([], false);
     }
 }

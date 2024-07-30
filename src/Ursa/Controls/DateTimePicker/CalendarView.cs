@@ -260,10 +260,7 @@ public class CalendarView : TemplatedControl
             ContextDate = ContextDate.With(startYear: range.start, endYear: range.end);
             _dateContextSyncing = false;
             UpdateYearButtons();
-            return;
         }
-
-        if (Mode == CalendarViewMode.Century) return;
     }
 
     /// <summary>

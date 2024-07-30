@@ -310,7 +310,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
 
     private void OnTextChangedInternal(TextBox? textBox, AvaloniaProperty property, bool fromText = false)
     {
-        if (string.IsNullOrEmpty(textBox?.Text))
+        if (textBox?.Text is null || string.IsNullOrEmpty(textBox.Text))
         {
             SetCurrentValue(property, null);
             _startCalendar?.ClearSelection();
