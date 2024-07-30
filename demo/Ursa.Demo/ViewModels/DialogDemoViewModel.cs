@@ -4,10 +4,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Ursa.Common;
 using Ursa.Controls;
 using Ursa.Demo.Dialogs;
-using Ursa.Demo.Pages;
 
 namespace Ursa.Demo.ViewModels;
 

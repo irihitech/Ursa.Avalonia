@@ -5,7 +5,6 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Styling;
 using Irihi.Avalonia.Shared.Helpers;
-using Ursa.Common;
 
 namespace Ursa.Controls;
 
@@ -40,7 +39,7 @@ public class ThemeToggleButton: ThemeSelectorBase
         // ToggleButton.IsCheckedProperty.SetValue(_currentTheme == ThemeVariant.Light, _button);
     }
 
-    private void OnButtonClicked(object sender, RoutedEventArgs e)
+    private void OnButtonClicked(object? sender, RoutedEventArgs e)
     {
         bool? currentState = _state;
         if (IsThreeState)

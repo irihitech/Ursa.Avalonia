@@ -66,9 +66,9 @@ public class DualBadge : HeaderedContentControl
 
     static DualBadge()
     {
-        IconProperty.Changed.AddClassHandler<DualBadge>((o, args) => o.OnIconChanged());
-        HeaderProperty.Changed.AddClassHandler<DualBadge>((o, args) => o.OnHeaderChanged());
-        ContentProperty.Changed.AddClassHandler<DualBadge>((o, args) => o.OnContentChanged());
+        IconProperty.Changed.AddClassHandler<DualBadge>((o, _) => o.OnIconChanged());
+        HeaderProperty.Changed.AddClassHandler<DualBadge>((o, _) => o.OnHeaderChanged());
+        ContentProperty.Changed.AddClassHandler<DualBadge>((o, _) => o.OnContentChanged());
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)

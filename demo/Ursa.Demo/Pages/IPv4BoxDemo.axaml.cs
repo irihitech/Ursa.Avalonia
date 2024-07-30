@@ -1,9 +1,4 @@
-using System;
-using System.Net;
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
-using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Ursa.Demo.Pages;
 

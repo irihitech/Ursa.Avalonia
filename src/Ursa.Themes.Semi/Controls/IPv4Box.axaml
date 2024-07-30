@@ -113,10 +113,10 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover /template/ Border#PART_Border">
-            <Setter Property="Border.Background" Value="{DynamicResource IPv4BoxPointeroverBackground}" />
+            <Setter Property="Background" Value="{DynamicResource IPv4BoxPointeroverBackground}" />
         </Style>
         <Style Selector="^:pressed /template/ Border#PART_Border">
-            <Setter Property="Border.Background" Value="{DynamicResource IPv4BoxPressedBackground}" />
+            <Setter Property="Background" Value="{DynamicResource IPv4BoxPressedBackground}" />
         </Style>
         <Style Selector="^:focus-within">
             <Setter Property="Border.BorderBrush" Value="{DynamicResource IPv4BoxFocusBorderBrush}" />

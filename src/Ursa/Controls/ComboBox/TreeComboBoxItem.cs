@@ -6,8 +6,6 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
-using Avalonia.Media;
-using Avalonia.Media.TextFormatting;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Helpers;
 
@@ -16,7 +14,6 @@ namespace Ursa.Controls;
 [TemplatePart(PartNames.PART_Header, typeof(Control))]
 public class TreeComboBoxItem: HeaderedItemsControl, ISelectable
 {
-    private Control? _header;
     private TreeComboBox? _treeComboBox;
     public TreeComboBox? Owner => _treeComboBox;
     
@@ -58,7 +55,7 @@ public class TreeComboBoxItem: HeaderedItemsControl, ISelectable
     {
         base.OnApplyTemplate(e);
         DoubleTappedEvent.RemoveHandler(OnDoubleTapped, this);
-        _header = e.NameScope.Find<Control>(PartNames.PART_Header);
+        e.NameScope.Find<Control>(PartNames.PART_Header);
         DoubleTappedEvent.AddHandler(OnDoubleTapped, RoutingStrategies.Tunnel, true, this);
     }
 
@@ -77,7 +74,7 @@ public class TreeComboBoxItem: HeaderedItemsControl, ISelectable
         }
     }
 
-    private void OnDoubleTapped(object sender, TappedEventArgs e)
+    private void OnDoubleTapped(object? sender, TappedEventArgs e)
     {
         if (this.ItemCount <= 0) return;
         this.SetCurrentValue(IsExpandedProperty, !IsExpanded);
@@ -86,8 +83,6 @@ public class TreeComboBoxItem: HeaderedItemsControl, ISelectable
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
-        TreeViewItem t = new TreeViewItem();
-        ComboBox c = new ComboBox();
         return EnsureParent().NeedsContainerInternal(item, index, out recycleKey);
     }
 

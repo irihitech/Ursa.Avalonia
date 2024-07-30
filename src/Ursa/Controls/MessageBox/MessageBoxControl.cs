@@ -2,12 +2,8 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
-using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.Media;
-using Avalonia.Styling;
 using Irihi.Avalonia.Shared.Helpers;
-using Ursa.Common;
 
 namespace Ursa.Controls;
 
@@ -41,7 +37,7 @@ public class MessageBoxControl: DialogControlBase
     }
 
     public static readonly StyledProperty<MessageBoxButton> ButtonsProperty = AvaloniaProperty.Register<MessageBoxControl, MessageBoxButton>(
-        nameof(Buttons), MessageBoxButton.OK);
+        nameof(Buttons));
 
     public MessageBoxButton Buttons
     {
@@ -60,7 +56,7 @@ public class MessageBoxControl: DialogControlBase
     
     static MessageBoxControl()
     {
-        ButtonsProperty.Changed.AddClassHandler<MessageBoxControl>((o, e) => { o.SetButtonVisibility(); });
+        ButtonsProperty.Changed.AddClassHandler<MessageBoxControl>((o, _) => { o.SetButtonVisibility(); });
     }
     
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -75,7 +71,7 @@ public class MessageBoxControl: DialogControlBase
         SetButtonVisibility();
     }
 
-    private void DefaultButtonsClose(object sender, RoutedEventArgs e)
+    private void DefaultButtonsClose(object? sender, RoutedEventArgs e)
     {
         if (sender is Button button)
         {

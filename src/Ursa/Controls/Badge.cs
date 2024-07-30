@@ -61,7 +61,7 @@ public class Badge: HeaderedContentControl
 
     static Badge()
     {
-        HeaderProperty.Changed.AddClassHandler<Badge>((badge, args) => badge.UpdateBadgePosition());
+        HeaderProperty.Changed.AddClassHandler<Badge>((badge, _) => badge.UpdateBadgePosition());
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -86,7 +86,7 @@ public class Badge: HeaderedContentControl
     {
         var vertical = CornerPosition is CornerPosition.BottomLeft or CornerPosition.BottomRight ? 1 : -1;
         var horizontal = CornerPosition is CornerPosition.TopRight or CornerPosition.BottomRight ? 1 : -1;
-        if (_badgeContainer is not null && base.Presenter?.Child is not null)
+        if (_badgeContainer is not null && Presenter?.Child is not null)
         {
             _badgeContainer.RenderTransform = new TransformGroup()
             {

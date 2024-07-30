@@ -1,9 +1,6 @@
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;
 using Avalonia.Collections;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace Ursa.Demo.ViewModels;

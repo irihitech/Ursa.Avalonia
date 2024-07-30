@@ -4,7 +4,6 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
-using Avalonia.LogicalTree;
 
 namespace Ursa.Controls;
 

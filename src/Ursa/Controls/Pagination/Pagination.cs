@@ -159,7 +159,7 @@ public class Pagination: TemplatedControl
             pagination.UpdateButtonsByCurrentPage(args.NewValue.Value));
         CurrentPageProperty.Changed.AddClassHandler<Pagination, int?>((pagination, args) =>
             pagination.OnCurrentPageChanged(args));
-        TotalCountProperty.Changed.AddClassHandler<Pagination, int>((pagination, args) =>
+        TotalCountProperty.Changed.AddClassHandler<Pagination, int>((pagination, _) =>
             pagination.UpdateButtonsByCurrentPage(pagination.CurrentPage));
     }
 
@@ -199,7 +199,7 @@ public class Pagination: TemplatedControl
         UpdateButtonsByCurrentPage(0);
     }
 
-    private void OnQuickJumpInputKeyDown(object sender, KeyEventArgs e)
+    private void OnQuickJumpInputKeyDown(object? sender, KeyEventArgs e)
     {
         if (e.Key is Key.Enter or Key.Return)
         {
@@ -207,7 +207,7 @@ public class Pagination: TemplatedControl
         }
     }
 
-    private void OnQuickJumpInputLostFocus(object sender, RoutedEventArgs e)
+    private void OnQuickJumpInputLostFocus(object? sender, RoutedEventArgs e)
     {
         SyncQuickJumperValue();
     }
@@ -238,12 +238,12 @@ public class Pagination: TemplatedControl
         {
             var button = new PaginationButton() { Page = i, IsVisible = true };
             _buttonPanel.Children.Add(button);
-            _buttons![i - 1] = button;
+            _buttons[i - 1] = button;
             Button.ClickEvent.AddHandler(OnPageButtonClick, button);
         }
     }
 
-    private void OnPageButtonClick(object sender, RoutedEventArgs args)
+    private void OnPageButtonClick(object? sender, RoutedEventArgs args)
     {
         if (sender is PaginationButton pageButton)
         {

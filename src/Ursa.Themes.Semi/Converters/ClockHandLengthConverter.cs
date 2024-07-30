@@ -8,8 +8,6 @@ public class ClockHandLengthConverter(double ratio) : IValueConverter
     public static ClockHandLengthConverter Hour { get; } = new(1-0.618);
     public static ClockHandLengthConverter Minute { get; } = new(0.618);
     public static ClockHandLengthConverter Second { get; } = new(1);
-    
-    private double _ratio = ratio;
 
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
@@ -20,7 +18,7 @@ public class ClockHandLengthConverter(double ratio) : IValueConverter
         return 0.0;
     }
 
-    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         throw new NotImplementedException();
     }

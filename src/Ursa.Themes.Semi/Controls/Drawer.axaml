@@ -85,7 +85,6 @@
                             <ScrollViewer Grid.Row="1">
                                 <ContentPresenter
                                     Name="PART_ContentPresenter"
-                                    Grid.Row="1"
                                     Margin="24,8"
                                     Content="{TemplateBinding Content}" />
                             </ScrollViewer>

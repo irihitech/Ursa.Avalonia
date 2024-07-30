@@ -3,7 +3,6 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Irihi.Avalonia.Shared.Helpers;
-using Irihi.Avalonia.Shared.Reactive;
 
 namespace Ursa.Controls;
 
@@ -36,10 +35,10 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
         _restoreButton = e.NameScope.Get<Button>(PART_RestoreButton);
         _minimizeButton = e.NameScope.Get<Button>(PART_MinimizeButton);
         _fullScreenButton = e.NameScope.Get<Button>(PART_FullScreenButton);
-        Button.ClickEvent.AddHandler((o, args) => OnClose(), _closeButton);
-        Button.ClickEvent.AddHandler((o, args) => OnRestore(), _restoreButton);
-        Button.ClickEvent.AddHandler((o, args) => OnMinimize(), _minimizeButton);
-        Button.ClickEvent.AddHandler((o, args) => OnToggleFullScreen(), _fullScreenButton);
+        Button.ClickEvent.AddHandler((_, _) => OnClose(), _closeButton);
+        Button.ClickEvent.AddHandler((_, _) => OnRestore(), _restoreButton);
+        Button.ClickEvent.AddHandler((_, _) => OnMinimize(), _minimizeButton);
+        Button.ClickEvent.AddHandler((_, _) => OnToggleFullScreen(), _fullScreenButton);
 
         Window.WindowStateProperty.Changed.AddClassHandler<Window, WindowState>(WindowStateChanged);
         if (this.HostWindow is not null && !HostWindow.CanResize)
@@ -75,7 +74,7 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
     public override void Attach(Window hostWindow)
     {
         base.Attach(hostWindow);
-        _visibilityDisposable = HostWindow?.GetObservable(Window.WindowStateProperty).Subscribe((a) =>
+        _visibilityDisposable = HostWindow?.GetObservable(Window.WindowStateProperty).Subscribe((_) =>
         {
             UpdateVisibility();
         });

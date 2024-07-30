@@ -29,7 +29,6 @@ public class ScrollTo
     private static void OnButtonThemeChanged(Control arg1, AvaloniaPropertyChangedEventArgs<ControlTheme?> arg2)
     {
         var button = EnsureButtonInAdorner(arg1);
-        if (button is null) return;
         button.SetCurrentValue(StyledElement.ThemeProperty, arg2.NewValue.Value);
     }
 
@@ -37,11 +36,10 @@ public class ScrollTo
     {
         if (args.NewValue.Value is null) return;
         var button = EnsureButtonInAdorner(control);
-        if (button is null) return;
         button.SetCurrentValue(ScrollToButton.DirectionProperty, args.NewValue.Value);
     }
 
-    private static ScrollToButton? EnsureButtonInAdorner(Control control)
+    private static ScrollToButton EnsureButtonInAdorner(Control control)
     {
         var adorner = AdornerLayer.GetAdorner(control);
         if (adorner is not ScrollToButton button)

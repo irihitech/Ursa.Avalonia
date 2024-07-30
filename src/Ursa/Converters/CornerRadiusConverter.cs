@@ -17,7 +17,7 @@ public enum CornerRadiusPosition
     Bottom = 12,
 }
 
-public class CornerRadiusIncludeConverter: IValueConverter
+public class CornerRadiusIncludeConverter(CornerRadiusPosition position) : IValueConverter
 {
     public static CornerRadiusIncludeConverter TopLeft { get; } = new( CornerRadiusPosition.TopLeft );
     public static CornerRadiusIncludeConverter TopRight { get; } = new( CornerRadiusPosition.TopRight );
@@ -27,27 +27,21 @@ public class CornerRadiusIncludeConverter: IValueConverter
     public static CornerRadiusIncludeConverter Left { get; } = new( CornerRadiusPosition.Left );
     public static CornerRadiusIncludeConverter Right { get; } = new( CornerRadiusPosition.Right );
     public static CornerRadiusIncludeConverter Bottom { get; } = new( CornerRadiusPosition.Bottom );
-    
-    private readonly CornerRadiusPosition _position;
-    
-    public CornerRadiusIncludeConverter(CornerRadiusPosition position)
-    {
-        _position = position;
-    }
-    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is CornerRadius r)
         {
-            double topLeft = _position.HasFlag(CornerRadiusPosition.TopLeft) ? r.TopLeft : 0;
-            double topRight = _position.HasFlag(CornerRadiusPosition.TopRight) ? r.TopRight : 0;
-            double bottomLeft = _position.HasFlag(CornerRadiusPosition.BottomLeft) ? r.BottomLeft : 0;
-            double bottomRight = _position.HasFlag(CornerRadiusPosition.BottomRight) ? r.BottomRight : 0;
+            double topLeft = position.HasFlag(CornerRadiusPosition.TopLeft) ? r.TopLeft : 0;
+            double topRight = position.HasFlag(CornerRadiusPosition.TopRight) ? r.TopRight : 0;
+            double bottomLeft = position.HasFlag(CornerRadiusPosition.BottomLeft) ? r.BottomLeft : 0;
+            double bottomRight = position.HasFlag(CornerRadiusPosition.BottomRight) ? r.BottomRight : 0;
             return new CornerRadius(topLeft, topRight, bottomRight, bottomLeft);
         }
         return AvaloniaProperty.UnsetValue;
     }
 
-    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         throw new NotImplementedException();
     }
@@ -70,7 +64,7 @@ public class CornerRadiusExcludeConverter : IValueConverter
     {
         _position = position;
     }
-    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is CornerRadius r)
         {
@@ -83,7 +77,7 @@ public class CornerRadiusExcludeConverter : IValueConverter
         return AvaloniaProperty.UnsetValue;
     }
 
-    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         throw new NotImplementedException();
     }

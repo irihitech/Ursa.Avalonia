@@ -110,7 +110,7 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:last /template/ Rectangle.end">
-            <Setter Property="Rectangle.Fill" Value="Transparent" />
+            <Setter Property="Fill" Value="Transparent" />
         </Style>
         <Style Selector="^:empty-icon /template/ Ellipse#PART_DefaultIcon">
             <Setter Property="IsVisible" Value="True"/>

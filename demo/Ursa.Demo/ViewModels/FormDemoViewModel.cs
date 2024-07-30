@@ -37,7 +37,7 @@ public partial class FormDemoViewModel : ObservableObject
 
 public partial class DataModel : ObservableObject
 {
-    private string _name;
+    private string _name = string.Empty;
 
     [MinLength(10)]
     public string Name
@@ -55,7 +55,7 @@ public partial class DataModel : ObservableObject
         set => SetProperty(ref _number, value);
     }
 
-    private string _email;
+    private string _email = string.Empty;
 
     [EmailAddress]
     public string Email

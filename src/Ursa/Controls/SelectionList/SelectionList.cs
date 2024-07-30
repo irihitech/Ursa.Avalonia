@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -37,7 +36,7 @@ public class SelectionList: SelectingItemsControl
         SelectionModeProperty.OverrideMetadata<SelectionList>(
             new StyledPropertyMetadata<SelectionMode>(
             defaultValue: SelectionMode.Single, 
-            coerce: (o, mode) => SelectionMode.Single)
+            coerce: (_, _) => SelectionMode.Single)
             );
         SelectedItemProperty.Changed.AddClassHandler<SelectionList, object?>((list, args) =>
             list.OnSelectedItemChanged(args));

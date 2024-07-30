@@ -1,6 +1,6 @@
 using Avalonia;
 using Avalonia.Input;
-using Avalonia.Utilities;
+using Irihi.Avalonia.Shared.Helpers;
 using Irihi.Avalonia.Shared.Shapes;
 using Ursa.Controls.OverlayShared;
 
@@ -57,8 +57,8 @@ public partial class OverlayDialogHost
                 var p = e.GetPosition(this);
                 var left = p.X - _lastPoint.X;
                 var top = p.Y - _lastPoint.Y;
-                left = MathUtilities.Clamp(left, 0, Bounds.Width - item.Bounds.Width);
-                top = MathUtilities.Clamp(top, 0, Bounds.Height - item.Bounds.Height);
+                left = MathHelpers.SafeClamp(left, 0, Bounds.Width - item.Bounds.Width);
+                top = MathHelpers.SafeClamp(top, 0, Bounds.Height - item.Bounds.Height);
                 SetLeft(item, left);
                 SetTop(item, top);
             }
@@ -109,7 +109,7 @@ public partial class OverlayDialogHost
         ResetZIndices();
     }
     
-    private async void OnDialogControlClosing(object sender, object? e)
+    private async void OnDialogControlClosing(object? sender, object? e)
     {
         if (sender is DialogControlBase control)
         {
@@ -175,7 +175,7 @@ public partial class OverlayDialogHost
     }
 
     // Handle dialog layer change event
-    private void OnDialogLayerChanged(object sender, DialogLayerChangeEventArgs e)
+    private void OnDialogLayerChanged(object? sender, DialogLayerChangeEventArgs e)
     {
         if (sender is not DialogControlBase control)
             return;
@@ -187,10 +187,10 @@ public partial class OverlayDialogHost
         switch (e.ChangeType)
         {
             case DialogLayerChangeType.BringForward:
-                newIndex = MathUtilities.Clamp(index + 1, 0, _layers.Count);
+                newIndex = MathHelpers.SafeClamp(index + 1, 0, _layers.Count);
                 break;
             case DialogLayerChangeType.SendBackward:
-                newIndex = MathUtilities.Clamp(index - 1, 0, _layers.Count);
+                newIndex = MathHelpers.SafeClamp(index - 1, 0, _layers.Count);
                 break;
             case DialogLayerChangeType.BringToFront:
                 newIndex = _layers.Count;
@@ -257,19 +257,17 @@ public partial class OverlayDialogHost
 
     private double GetLeftPosition(DialogControlBase control)
     {
-        double left = 0;
+        double left;
         double offset = Math.Max(0, control.HorizontalOffset ?? 0);
         left = this.Bounds.Width - control.Bounds.Width;
         if (control.HorizontalAnchor == HorizontalPosition.Center)
         {
             left *= 0.5;
-            (double min, double max) = MathUtilities.GetMinMax(0, Bounds.Width * 0.5);
-            left = MathUtilities.Clamp(left, min, max);
+            left = MathHelpers.SafeClamp(left, 0, Bounds.Width * 0.5);
         }
         else if (control.HorizontalAnchor == HorizontalPosition.Left)
         {
-            (double min, double max) = MathUtilities.GetMinMax(0, offset);
-            left = MathUtilities.Clamp(left, min, max);
+            left = MathHelpers.SafeClamp(left, 0, offset);
         }
         else if (control.HorizontalAnchor == HorizontalPosition.Right)
         {
@@ -277,7 +275,7 @@ public partial class OverlayDialogHost
             leftOffset = Math.Max(0, leftOffset);
             if(control.HorizontalOffset.HasValue)
             {
-                left = MathUtilities.Clamp(left, 0, leftOffset);
+                left = MathHelpers.SafeClamp(left, 0, leftOffset);
             }
         }
         return left;
@@ -285,23 +283,21 @@ public partial class OverlayDialogHost
 
     private double GetTopPosition(DialogControlBase control)
     {
-        double top = 0;
         double offset = Math.Max(0, control.VerticalOffset ?? 0);
-        top = this.Bounds.Height - control.Bounds.Height;
+        var top = this.Bounds.Height - control.Bounds.Height;
         if (control.VerticalAnchor == VerticalPosition.Center)
         {
             top *= 0.5;
-            (double min, double max) = MathUtilities.GetMinMax(0, Bounds.Height * 0.5);
-            top = MathUtilities.Clamp(top, min, max);
+            top = MathHelpers.SafeClamp(top, 0, Bounds.Height * 0.5);
         }
         else if (control.VerticalAnchor == VerticalPosition.Top)
         {
-            top = MathUtilities.Clamp(top, 0, offset);
+            top = MathHelpers.SafeClamp(top, 0, offset);
         }
         else if (control.VerticalAnchor == VerticalPosition.Bottom)
         {
             var topOffset = Math.Max(0, Bounds.Height - control.Bounds.Height - offset);
-            top = MathUtilities.Clamp(top, 0, topOffset);
+            top = MathHelpers.SafeClamp(top, 0, topOffset);
         }
         return top;
     }

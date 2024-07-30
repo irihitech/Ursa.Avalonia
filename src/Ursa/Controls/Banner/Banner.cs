@@ -3,9 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Notifications;
 using Avalonia.Controls.Primitives;
-using Avalonia.Controls.Templates;
 using Avalonia.Interactivity;
-using Avalonia.Metadata;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
@@ -63,7 +61,7 @@ public class Banner: HeaderedContentControl
         Button.ClickEvent.AddHandler(OnCloseClick, _closeButton);
     }
 
-    private void OnCloseClick(object sender, RoutedEventArgs args)
+    private void OnCloseClick(object? sender, RoutedEventArgs args)
     {
         IsVisible = false;
     }

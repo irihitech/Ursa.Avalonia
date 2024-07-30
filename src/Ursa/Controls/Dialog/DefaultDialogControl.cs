@@ -2,12 +2,9 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
-using Avalonia.Input;
 using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
-using Ursa.Common;
-using Ursa.EventArgs;
 
 namespace Ursa.Controls;
 
@@ -95,7 +92,7 @@ public class DefaultDialogControl: DialogControlBase
         }
     }
     
-    private void DefaultButtonsClose(object sender, RoutedEventArgs args)
+    private void DefaultButtonsClose(object? sender, RoutedEventArgs args)
     {
         if (sender is Button button)
         {

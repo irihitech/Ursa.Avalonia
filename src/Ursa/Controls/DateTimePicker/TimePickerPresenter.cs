@@ -69,7 +69,7 @@ public class TimePickerPresenter : TemplatedControl
     private DateTimePickerPanel? _secondSelector;
     private Control? _secondSeparator;
     private Control? _thirdSeparator;
-    internal TimeSpan _timeHolder;
+    internal TimeSpan TimeHolder;
     private bool _updateFromTimeChange;
     private bool _use12Clock;
 
@@ -172,7 +172,7 @@ public class TimePickerPresenter : TemplatedControl
             }
             catch
             {
-                
+                // ignored
             }
         }
 
@@ -224,11 +224,11 @@ public class TimePickerPresenter : TemplatedControl
         UpdatePanelsFromSelectedTime(Time);
     }
 
-    private void OnPanelSelectionChanged(object sender, System.EventArgs e)
+    private void OnPanelSelectionChanged(object? sender, System.EventArgs e)
     {
         if (_updateFromTimeChange) return;
-        if (!_use12Clock && sender == _ampmSelector) return;
-        var time = NeedsConfirmation ? _timeHolder : Time ?? DateTime.Now.TimeOfDay;
+        if (!_use12Clock && Equals(sender, _ampmSelector)) return;
+        var time = NeedsConfirmation ? TimeHolder : Time ?? DateTime.Now.TimeOfDay;
         var hour = _hourSelector?.SelectedValue ?? time.Hours;
         var minute = _minuteSelector?.SelectedValue ?? time.Minutes;
         var second = _secondSelector?.SelectedValue ?? time.Seconds;
@@ -251,7 +251,7 @@ public class TimePickerPresenter : TemplatedControl
         }
         var newTime = new TimeSpan(hour, minute, second);
         if (NeedsConfirmation)
-            _timeHolder = newTime;
+            TimeHolder = newTime;
         else
             SetCurrentValue(TimeProperty, newTime);
     }
@@ -314,7 +314,7 @@ public class TimePickerPresenter : TemplatedControl
 
     public void Confirm()
     {
-        if (NeedsConfirmation) SetCurrentValue(TimeProperty, _timeHolder);
+        if (NeedsConfirmation) SetCurrentValue(TimeProperty, TimeHolder);
     }
 
     private void SetIfChanged(DateTimePickerPanel? panel, int index)

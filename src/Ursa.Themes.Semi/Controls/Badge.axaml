@@ -70,7 +70,7 @@
         </Setter>
 
         <Style Selector="^[Dot=True]">
-            <Setter Property="u:Badge.Template">
+            <Setter Property="Template">
                 <ControlTemplate TargetType="{x:Type u:Badge}">
                     <Grid
                         HorizontalAlignment="{TemplateBinding HorizontalAlignment}"

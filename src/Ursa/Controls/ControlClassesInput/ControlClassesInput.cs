@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Avalonia;
-using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 
@@ -9,9 +8,9 @@ namespace Ursa.Controls;
 
 public class ControlClassesInput: TemplatedControl
 {
-    LinkedList<List<string>> _history = new();
-    LinkedList<List<string>> _undoHistory = new();
-    private bool _disableHistory = false;
+    private readonly LinkedList<List<string>> _history = [];
+    private readonly LinkedList<List<string>> _undoHistory = [];
+    private bool _disableHistory;
     
     public int CountOfHistoricalRecord { get; set; } = 10;
     
@@ -34,12 +33,12 @@ public class ControlClassesInput: TemplatedControl
     }
 
 
-    private ObservableCollection<string> _targetClasses;
+    private ObservableCollection<string>? _targetClasses;
 
-    internal static readonly DirectProperty<ControlClassesInput, ObservableCollection<string>> TargetClassesProperty = AvaloniaProperty.RegisterDirect<ControlClassesInput, ObservableCollection<string>>(
+    internal static readonly DirectProperty<ControlClassesInput, ObservableCollection<string>?> TargetClassesProperty = AvaloniaProperty.RegisterDirect<ControlClassesInput, ObservableCollection<string>?>(
         nameof(TargetClasses), o => o.TargetClasses, (o, v) => o.TargetClasses = v);
 
-    public ObservableCollection<string> TargetClasses
+    public ObservableCollection<string>? TargetClasses
     {
         get => _targetClasses;
         set => SetAndRaise(TargetClassesProperty, ref _targetClasses, value);
@@ -53,14 +52,13 @@ public class ControlClassesInput: TemplatedControl
 
     static ControlClassesInput()
     {
-        TargetClassesProperty.Changed.AddClassHandler<ControlClassesInput, ObservableCollection<string>>((o,e)=>o.OnClassesChanged(e));
+        TargetClassesProperty.Changed.AddClassHandler<ControlClassesInput, ObservableCollection<string>?>((o,e)=>o.OnClassesChanged(e));
         SourceProperty.Changed.AddClassHandler<StyledElement, ControlClassesInput?>(HandleSourceChange);
     }
 
     public ControlClassesInput()
     {
         TargetClasses = new ObservableCollection<string>();
-        //TargetClasses.CollectionChanged += InccOnCollectionChanged;
     }
 
     private List<StyledElement> _targets = new();
@@ -83,7 +81,6 @@ public class ControlClassesInput: TemplatedControl
         if (newValue is null)
         {
             SaveHistory(new List<string>(), true);
-            return;
         }
         else
         {
@@ -93,11 +90,10 @@ public class ControlClassesInput: TemplatedControl
             {
                 incc.CollectionChanged+=InccOnCollectionChanged;
             }
-            return;
         }
     }
 
-    private void InccOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    private void InccOnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         if(_disableHistory) return;
         SaveHistory(TargetClasses?.ToList() ?? new List<string>(), true);
@@ -123,7 +119,7 @@ public class ControlClassesInput: TemplatedControl
         }
         else
         {
-            strings = _history.Last.Value;
+            strings = _history.Last?.Value ?? [];
         }
 
         if (!fromInput)
@@ -143,13 +139,14 @@ public class ControlClassesInput: TemplatedControl
     public void UnDo()
     {
         var node = _history.Last;
+        if (node is null) return;
         _history.RemoveLast();
-        _undoHistory.AddFirst(node);
+        _undoHistory.AddFirst(node.Value);
         _disableHistory = true;
-        TargetClasses.Clear();
-        foreach (var value in _history.Last.Value)
+        TargetClasses?.Clear();
+        foreach (var value in node.Value)
         {
-            TargetClasses.Add(value);
+            TargetClasses?.Add(value);
         }
         _disableHistory = false;
         SetClassesToTarget(false);
@@ -158,13 +155,14 @@ public class ControlClassesInput: TemplatedControl
     public void Redo()
     {
         var node = _undoHistory.First;
+        if (node is null) return;
         _undoHistory.RemoveFirst();
         _history.AddLast(node);
         _disableHistory = true;
-        TargetClasses.Clear();
-        foreach (var value in _history.Last.Value)
+        TargetClasses?.Clear();
+        foreach (var value in node.Value)
         {
-            TargetClasses.Add(value);
+            TargetClasses?.Add(value);
         }
         _disableHistory = false;
         SetClassesToTarget(false);
@@ -172,6 +170,6 @@ public class ControlClassesInput: TemplatedControl
 
     public void Clear()
     {
-        SaveHistory(new List<string>(), false);
+        SaveHistory([], false);
     }
 }

@@ -271,8 +271,8 @@ public class TimeBox : TemplatedControl
     {
         if (e.Handled) return;
         string? s = e.Text;
-        if (string.IsNullOrEmpty(s)) return;
-        if (!char.IsNumber(s![0])) return;
+        if (s is null || string.IsNullOrEmpty(s)) return;
+        if (!char.IsNumber(s[0])) return;
         if (_currentActiveSectionIndex is null) return;
 
         int caretIndex = Math.Min(_presenters[_currentActiveSectionIndex.Value].CaretIndex
@@ -332,7 +332,11 @@ public class TimeBox : TemplatedControl
                 MoveCaret(_currentActiveSectionIndex.Value);
             }
         }
-        e.Pointer.Capture(_presenters[_currentActiveSectionIndex.Value]);
+
+        if (_currentActiveSectionIndex is not null)
+        {
+            e.Pointer.Capture(_presenters[_currentActiveSectionIndex.Value]);
+        }
         e.Handled = true;
     }
 
@@ -409,7 +413,7 @@ public class TimeBox : TemplatedControl
     private void ParseTimeSpan(bool showLeadingZero, bool skipParseFromText = false)
     {
         string format = showLeadingZero ? "D2" : "";
-        string millisecondformat = showLeadingZero ? "D3" : "";
+        string millisecondFormat = showLeadingZero ? "D3" : "";
 
         if (!skipParseFromText)
         {
@@ -424,10 +428,10 @@ public class TimeBox : TemplatedControl
         _hourText?.SetValue(TextPresenter.TextProperty, _values[0].ToString(format));
         _minuteText?.SetValue(TextPresenter.TextProperty, _values[1].ToString(format));
         _secondText?.SetValue(TextPresenter.TextProperty, _values[2].ToString(format));
-        _milliSecondText?.SetValue(TextPresenter.TextProperty, _values[3].ToString(millisecondformat));
+        _milliSecondText?.SetValue(TextPresenter.TextProperty, _values[3].ToString(millisecondFormat));
     }
 
-    private void OnDragPanelPointerMoved(object sender, PointerEventArgs e)
+    private void OnDragPanelPointerMoved(object? sender, PointerEventArgs e)
     {
         if (!AllowDrag) return;
         if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
@@ -475,14 +479,14 @@ public class TimeBox : TemplatedControl
     /// <summary>
     /// Set dragPanel IsVisible to false if AllowDrag is true, and select all text in the section
     /// </summary>
-    /// <param name="index">The index of section that will be enter</param>
+    /// <param name="index">The index of section that will be entered</param>
     private void EnterSection(int index)
     {
         if (index < 0 || index > 3) return;
 
         if (AllowDrag)
             _dragPanels[index].IsVisible = false;
-        ShowCaretInteral(index);
+        ShowCaretInternal(index);
         _presenters[index].SelectAll();
     }
 
@@ -490,7 +494,7 @@ public class TimeBox : TemplatedControl
     {
         if (!_isShowedCaret[index])
         {
-            ShowCaretInteral(index);
+            ShowCaretInternal(index);
         }
         _presenters[index].ClearSelection();
         var caretPosition =
@@ -508,7 +512,7 @@ public class TimeBox : TemplatedControl
         _presenters[index].ClearSelection();
         if (_isShowedCaret[index])
         {
-           HideCaretInteral(index);
+           HideCaretInternal(index);
         }
 
         if (AllowDrag)
@@ -595,7 +599,7 @@ public class TimeBox : TemplatedControl
     private void DeleteImplementation(int index)
     {
         if (index < 0 || index > 3) return;
-        var oldText = _presenters[index].Text;
+        var oldText = _presenters[index].Text??string.Empty;
         if (_presenters[index].SelectionStart != _presenters[index].SelectionEnd)
         {
             _presenters[index].DeleteSelection();
@@ -608,8 +612,8 @@ public class TimeBox : TemplatedControl
         else
         {
             int caretIndex = _presenters[index].CaretIndex;
-            string newText = oldText?.Substring(0, caretIndex - 1) +
-                             oldText?.Substring(Math.Min(caretIndex, oldText.Length));
+            string newText = oldText.Substring(0, caretIndex - 1) +
+                             oldText.Substring(Math.Min(caretIndex, oldText.Length));
             _presenters[index].MoveCaretHorizontal(LogicalDirection.Backward);
             _presenters[index].Text = newText;
         }
@@ -622,7 +626,7 @@ public class TimeBox : TemplatedControl
         _values[index] += lowerCarry;
         int carry = _values[index] >= 0 ? _values[index] / _limits[index] : -1 + (_values[index] / _limits[index]);
         if (carry == 0) return true;
-        bool success = false;
+        bool success;
         if (carry > 0)
         {
             success = HandlingCarry(index - 1, carry);
@@ -699,13 +703,13 @@ public class TimeBox : TemplatedControl
         return milliSecond;
     }
 
-    private void ShowCaretInteral(int index)
+    private void ShowCaretInternal(int index)
     {
         _presenters[index].ShowCaret();
         _isShowedCaret[index] = true;
     }
     
-    private void HideCaretInteral(int index)
+    private void HideCaretInternal(int index)
     {
         _presenters[index].HideCaret();
         _isShowedCaret[index] = false;

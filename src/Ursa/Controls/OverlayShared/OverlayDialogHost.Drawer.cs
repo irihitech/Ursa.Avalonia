@@ -27,7 +27,7 @@ public partial class OverlayDialogHost
         control.Arrange(new Rect(control.DesiredSize));
         SetDrawerPosition(control);
         control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDrawerControlClosing);
-        var animation = CreateAnimation(control.Bounds.Size, control.Position, true);
+        var animation = CreateAnimation(control.Bounds.Size, control.Position);
         if (IsAnimationDisabled)
         {
             ResetDrawerPosition(control, this.Bounds.Size);
@@ -47,7 +47,7 @@ public partial class OverlayDialogHost
     
     internal async void AddModalDrawer(DrawerControlBase control)
     {
-        PureRectangle? mask = CreateOverlayMask(true, control.CanLightDismiss);
+        PureRectangle mask = CreateOverlayMask(true, control.CanLightDismiss);
         _layers.Add(new DialogPair(mask, control));
         this.Children.Add(mask);
         this.Children.Add(control);
@@ -135,9 +135,11 @@ public partial class OverlayDialogHost
         }
         
         var targetProperty = position==Position.Left || position==Position.Right ? Canvas.LeftProperty : Canvas.TopProperty;
-        var animation = new Animation();
-        animation.Easing = new CubicEaseOut();
-        animation.FillMode = FillMode.Forward;
+        var animation = new Animation
+        {
+            Easing = new CubicEaseOut(),
+            FillMode = FillMode.Forward
+        };
         var keyFrame1 = new KeyFrame(){ Cue = new Cue(0.0) };
         keyFrame1.Setters.Add(new Setter()
             { Property = targetProperty, Value = source });
@@ -150,7 +152,7 @@ public partial class OverlayDialogHost
         return animation;
     }
     
-    private async void OnDrawerControlClosing(object sender, ResultEventArgs e)
+    private async void OnDrawerControlClosing(object? sender, ResultEventArgs e)
     {
         if (sender is DrawerControlBase control)
         {

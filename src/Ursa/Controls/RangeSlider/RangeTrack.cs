@@ -1,13 +1,11 @@
-using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
-using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
-using Avalonia.Utilities;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -20,8 +18,6 @@ public class RangeTrack: Control
 {
     public const string PC_Horizontal = ":horizontal";
     public const string PC_Vertical = ":vertical";
-    private double _density;
-    private Vector _lastDrag;
 
     private const double Tolerance = 0.0001;
 
@@ -173,7 +169,7 @@ public class RangeTrack: Control
         }
     }
 
-    private void OnMinimumChanged(AvaloniaPropertyChangedEventArgs<double> avaloniaPropertyChangedEventArgs)
+    private void OnMinimumChanged(AvaloniaPropertyChangedEventArgs<double> _)
     {
         if (IsInitialized)
         {
@@ -183,7 +179,7 @@ public class RangeTrack: Control
         }
     }
     
-    private void OnMaximumChanged(AvaloniaPropertyChangedEventArgs<double> avaloniaPropertyChangedEventArgs)
+    private void OnMaximumChanged(AvaloniaPropertyChangedEventArgs<double> _)
     {
         if (IsInitialized)
         {
@@ -247,16 +243,16 @@ public class RangeTrack: Control
     private static double CoerceLowerValue(AvaloniaObject sender, double value)
     {
         if (!ValidateDouble(value)) return sender.GetValue(LowerValueProperty);
-        value = MathUtilities.Clamp(value, sender.GetValue(MinimumProperty), sender.GetValue(MaximumProperty));
-        value = MathUtilities.Clamp(value, sender.GetValue(MinimumProperty), sender.GetValue(UpperValueProperty));
+        value = MathHelpers.SafeClamp(value, sender.GetValue(MinimumProperty), sender.GetValue(MaximumProperty));
+        value = MathHelpers.SafeClamp(value, sender.GetValue(MinimumProperty), sender.GetValue(UpperValueProperty));
         return value;
     }
 
     private static double CoerceUpperValue(AvaloniaObject sender, double value)
     {
         if (!ValidateDouble(value)) return sender.GetValue(UpperValueProperty);
-        value = MathUtilities.Clamp(value, sender.GetValue(MinimumProperty), sender.GetValue(MaximumProperty));
-        value = MathUtilities.Clamp(value, sender.GetValue(LowerValueProperty), sender.GetValue(MaximumProperty));
+        value = MathHelpers.SafeClamp(value, sender.GetValue(MinimumProperty), sender.GetValue(MaximumProperty));
+        value = MathHelpers.SafeClamp(value, sender.GetValue(LowerValueProperty), sender.GetValue(MaximumProperty));
         return value;
     }
 
@@ -292,9 +288,8 @@ public class RangeTrack: Control
     protected override Size ArrangeOverride(Size finalSize)
     {
         var vertical = Orientation == Orientation.Vertical;
-        double lowerButtonLength, innerButtonLength, upperButtonLength, lowerThumbLength, upperThumbLength;
-        ComputeSliderLengths(finalSize, vertical, out lowerButtonLength, out innerButtonLength, out upperButtonLength,
-            out lowerThumbLength, out upperThumbLength);
+        ComputeSliderLengths(finalSize, vertical, out var lowerButtonLength, out var innerButtonLength, out var upperButtonLength,
+            out var lowerThumbLength, out var upperThumbLength);
         var offset = new Point();
         var pieceSize = finalSize;
         if (vertical)
@@ -433,8 +428,6 @@ public class RangeTrack: Control
         lowerButtonLength = remainingLength * lowerOffset / range;
         upperButtonLength = remainingLength * (range-upperOffset) / range;
         innerButtonLength = remainingLength - lowerButtonLength - upperButtonLength;
-
-        _density = range / remainingLength;
     }
 
     private static void CoerceLength(ref double componentLength, double trackLength)

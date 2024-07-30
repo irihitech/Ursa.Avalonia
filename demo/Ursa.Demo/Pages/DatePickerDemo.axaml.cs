@@ -1,7 +1,5 @@
 ﻿using System.Diagnostics;
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 using Ursa.Controls;
 
 namespace Ursa.Demo.Pages;
@@ -13,12 +11,12 @@ public partial class DatePickerDemo : UserControl
         InitializeComponent();
     }
 
-    private void CalendarView_OnOnDateSelected(object? sender, CalendarDayButtonEventArgs e)
+    private void CalendarView_OnOnDateSelected(object? _, CalendarDayButtonEventArgs e)
     {
         Debug.WriteLine("Pressed: "+ e.Date?.ToLongDateString());
     }
 
-    private void CalendarView_OnOnDatePreviewed(object? sender, CalendarDayButtonEventArgs e)
+    private void CalendarView_OnOnDatePreviewed(object? _, CalendarDayButtonEventArgs e)
     {
         Debug.WriteLine("Hovered: "+e.Date?.ToLongDateString());
     }

@@ -1,6 +1,5 @@
 using System.Globalization;
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Data.Converters;
 using Avalonia.Media;
 using Ursa.Controls;
@@ -55,7 +54,7 @@ public class TimelineItemTypeToIconForegroundConverter: AvaloniaObject, IMultiVa
     }
 
 
-    public object? Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
+    public object Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
     {
         if (values[0] is TimelineItemType type)
         {

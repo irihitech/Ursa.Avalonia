@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 
@@ -136,12 +135,12 @@ public class EnumSelector: TemplatedControl
         if (EnumType is null) return new List<EnumItemTuple>();
         var values = Enum.GetValues(EnumType);
         List<EnumItemTuple> list = new();
-        var fields = EnumType.GetFields();
         foreach (var value in values)
         {
             if (value.GetType() == EnumType)
             {
                 var displayName = value.ToString();
+                if(displayName is null) continue;
                 var field = EnumType.GetField(displayName);
                 var description = field?.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault();
                 if (description is not null)

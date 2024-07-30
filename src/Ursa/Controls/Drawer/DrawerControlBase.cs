@@ -3,7 +3,6 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
-using Avalonia.Threading;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
@@ -75,12 +74,12 @@ public abstract class DrawerControlBase: OverlayFeedbackElement
         }
     }
 
-    private void OnContextRequestClose(object sender, object? e)
+    private void OnContextRequestClose(object? sender, object? e)
     {
         RaiseEvent(new ResultEventArgs(ClosedEvent, e));
     }
 
-    private void OnCloseButtonClick(object sender, RoutedEventArgs e) => Close();
+    private void OnCloseButtonClick(object? sender, RoutedEventArgs e) => Close();
 
     public override void Close()
     {

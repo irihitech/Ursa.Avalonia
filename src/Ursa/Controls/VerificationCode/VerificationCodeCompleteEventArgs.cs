@@ -1,4 +1,3 @@
-using Avalonia.Collections;
 using Avalonia.Interactivity;
 
 namespace Ursa.Controls;

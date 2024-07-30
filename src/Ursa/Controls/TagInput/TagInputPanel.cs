@@ -1,6 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Utilities;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -23,7 +23,7 @@ public class TagInputPanel: Panel
             child.Measure(availableSize);
             double deltaX = availableSize.Width - currentLineX;
             // Width is enough to place next child
-            if (MathUtilities.GreaterThan(deltaX, child.DesiredSize.Width))
+            if (MathHelpers.GreaterThan(deltaX, child.DesiredSize.Width))
             {
                 currentLineX+=child.DesiredSize.Width;
                 currentLineHeight = Math.Max(currentLineHeight, child.DesiredSize.Height);
@@ -69,7 +69,7 @@ public class TagInputPanel: Panel
             var child = children[i];
             double deltaX = finalSize.Width - currentLineX;
             // Width is enough to place next child
-            if (MathUtilities.GreaterThan(deltaX, child.DesiredSize.Width))
+            if (MathHelpers.GreaterThan(deltaX, child.DesiredSize.Width))
             {
                 child.Arrange(new Rect(currentLineX, totalHeight, child.DesiredSize.Width, Math.Max(child.DesiredSize.Height, currentLineHeight)));
                 currentLineX += child.DesiredSize.Width;

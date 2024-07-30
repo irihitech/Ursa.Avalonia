@@ -1,5 +1,4 @@
 using System.Collections.ObjectModel;
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Notifications;
 using Avalonia.Markup.Xaml;
@@ -23,9 +22,9 @@ public partial class BannerDemo : UserControl
 
 public class BannerDemoViewModel : ViewModelBase
 {
-    private ObservableCollection<NotificationType> _types;
+    private ObservableCollection<NotificationType>? _types;
 
-    public ObservableCollection<NotificationType> Types
+    public ObservableCollection<NotificationType>? Types
     {
         get => _types;
         set => SetProperty(ref _types, value);
