@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Reflection;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
@@ -245,7 +243,7 @@ public class NavMenu: ItemsControl
         _updateFromUI = true;
         foreach (var child in LogicalChildren)
         {
-            if (child == parent)
+            if (Equals(child, parent))
             {
                 continue;
             }

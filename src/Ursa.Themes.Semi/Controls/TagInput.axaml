@@ -52,10 +52,10 @@
             <Setter Property="IsVisible" Value="True"></Setter>
         </Style>
         <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Border.Background" Value="{DynamicResource TextBoxPointeroverBackground}" />
+            <Setter Property="Background" Value="{DynamicResource TextBoxPointeroverBackground}" />
         </Style>
         <Style Selector="^:focus-within /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Border.BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
         </Style>
     </ControlTheme>
 

@@ -1,6 +1,4 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+﻿using Avalonia.Controls;
 using Ursa.Demo.ViewModels;
 
 namespace Ursa.Demo.Pages;

@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
+﻿using System;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace Ursa.Demo.ViewModels;
 
@@ -67,6 +68,7 @@ public class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyToolBar => new ToolBarDemoViewModel(),
             MenuKeys.MenuKeyTimeBox => new TimeBoxDemoViewModel(),
             MenuKeys.MenuKeyVerificationCode => new VerificationCodeDemoViewModel(),
+            _ => throw new ArgumentOutOfRangeException(nameof(s), s, null)
         };
     }
 }

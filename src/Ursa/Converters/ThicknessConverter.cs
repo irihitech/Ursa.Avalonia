@@ -17,7 +17,7 @@ public enum ThicknessPosition
     BottomRight = 12,
 }
 
-public class ThicknessExcludeConverter: IValueConverter
+public class ThicknessExcludeConverter(ThicknessPosition position) : IValueConverter
 {
     public static ThicknessExcludeConverter Left { get; } = new( ThicknessPosition.Left );
     public static ThicknessExcludeConverter Top { get; } = new( ThicknessPosition.Top );
@@ -28,33 +28,27 @@ public class ThicknessExcludeConverter: IValueConverter
     public static ThicknessExcludeConverter BottomLeft { get; } = new( ThicknessPosition.BottomLeft );
     public static ThicknessExcludeConverter BottomRight { get; } = new( ThicknessPosition.BottomRight );
 
-    private readonly ThicknessPosition _position;
-    public ThicknessExcludeConverter(ThicknessPosition position)
-    {
-        _position = position;
-    }
-    
-    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is Thickness t)
         {
-            double left = _position.HasFlag(ThicknessPosition.Left) ?  0d: t.Left;
-            double top = _position.HasFlag(ThicknessPosition.Top) ? 0d : t.Top;
-            double right = _position.HasFlag(ThicknessPosition.Right) ? 0d : t.Right;
-            double bottom = _position.HasFlag(ThicknessPosition.Bottom) ? 0d : t.Bottom;
+            double left = position.HasFlag(ThicknessPosition.Left) ?  0d: t.Left;
+            double top = position.HasFlag(ThicknessPosition.Top) ? 0d : t.Top;
+            double right = position.HasFlag(ThicknessPosition.Right) ? 0d : t.Right;
+            double bottom = position.HasFlag(ThicknessPosition.Bottom) ? 0d : t.Bottom;
 
             return new Thickness(left, top, right, bottom);
         }
         return AvaloniaProperty.UnsetValue;
     }
 
-    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         throw new NotImplementedException();
     }
 }
 
-public class ThicknessIncludeConverter: IValueConverter
+public class ThicknessIncludeConverter(ThicknessPosition position) : IValueConverter
 {
     public static ThicknessIncludeConverter Left { get; } = new( ThicknessPosition.Left );
     public static ThicknessIncludeConverter Top { get; } = new( ThicknessPosition.Top );
@@ -65,26 +59,20 @@ public class ThicknessIncludeConverter: IValueConverter
     public static ThicknessIncludeConverter BottomLeft { get; } = new( ThicknessPosition.BottomLeft );
     public static ThicknessIncludeConverter BottomRight { get; } = new( ThicknessPosition.BottomRight );
 
-    private readonly ThicknessPosition _position;
-    public ThicknessIncludeConverter(ThicknessPosition position)
-    {
-        _position = position;
-    }
-    
-    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is Thickness t)
         {
-            var left = _position.HasFlag(ThicknessPosition.Left) ? t.Left : 0d;
-            var top = _position.HasFlag(ThicknessPosition.Top) ? t.Top : 0d;
-            var right = _position.HasFlag(ThicknessPosition.Right) ? t.Right : 0d;
-            var bottom = _position.HasFlag(ThicknessPosition.Bottom) ? t.Bottom : 0d;
+            var left = position.HasFlag(ThicknessPosition.Left) ? t.Left : 0d;
+            var top = position.HasFlag(ThicknessPosition.Top) ? t.Top : 0d;
+            var right = position.HasFlag(ThicknessPosition.Right) ? t.Right : 0d;
+            var bottom = position.HasFlag(ThicknessPosition.Bottom) ? t.Bottom : 0d;
             return new Thickness(left, top, right, bottom);
         }
         return AvaloniaProperty.UnsetValue;
     }
 
-    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         throw new NotImplementedException();
     }

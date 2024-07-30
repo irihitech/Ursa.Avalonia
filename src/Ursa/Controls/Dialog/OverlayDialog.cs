@@ -1,7 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Layout;
-using Ursa.Common;
 
 namespace Ursa.Controls;
 

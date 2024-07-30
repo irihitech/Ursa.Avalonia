@@ -14,11 +14,11 @@ public class ToolBarItemTemplateSelector: IDataTemplate
     public Control? Build(object? param)
     {
         if (param is null) return null;
-        if (param is ToolBarSeparatorViewModel sep)
+        if (param is ToolBarSeparatorViewModel)
         {
             return new ToolBarSeparator();
         }
-        if (param is ToolBarButtonItemViewModel vm)
+        if (param is ToolBarButtonItemViewModel)
         {
             return new Button()
             {
@@ -27,7 +27,7 @@ public class ToolBarItemTemplateSelector: IDataTemplate
                 [!ToolBar.OverflowModeProperty] = new Binding(){Path = nameof(ToolBarItemViewModel.OverflowMode)},
             };
         }
-        if (param is ToolBarCheckBoxItemViweModel cb)
+        if (param is ToolBarCheckBoxItemViweModel)
         {
             return new CheckBox()
             {
@@ -36,7 +36,7 @@ public class ToolBarItemTemplateSelector: IDataTemplate
                 [!ToolBar.OverflowModeProperty] = new Binding(){Path = nameof(ToolBarItemViewModel.OverflowMode)},
             };
         }
-        if (param is ToolBarComboBoxItemViewModel combo)
+        if (param is ToolBarComboBoxItemViewModel)
         {
             return new ComboBox()
             {

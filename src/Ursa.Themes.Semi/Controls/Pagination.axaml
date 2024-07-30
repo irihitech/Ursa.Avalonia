@@ -74,13 +74,13 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover">
-            <Setter Property="u:PaginationButton.Background" Value="{DynamicResource PaginationButtonPointeroverBackground}" />
+            <Setter Property="Background" Value="{DynamicResource PaginationButtonPointeroverBackground}" />
         </Style>
         <Style Selector="^:pressed">
-            <Setter Property="u:PaginationButton.Background" Value="{DynamicResource PaginationButtonPressedBackground}" />
+            <Setter Property="Background" Value="{DynamicResource PaginationButtonPressedBackground}" />
         </Style>
         <Style Selector="^:left">
-            <Setter Property="u:PaginationButton.Content">
+            <Setter Property="Content">
                 <Template>
                     <PathIcon
                         Width="12"
@@ -90,7 +90,7 @@
                 </Template>
             </Setter>
             <Style Selector="^:pointerover">
-                <Setter Property="u:PaginationButton.Content">
+                <Setter Property="Content">
                     <Template>
                         <PathIcon
                             Width="12"
@@ -102,7 +102,7 @@
             </Style>
         </Style>
         <Style Selector="^:right">
-            <Setter Property="u:PaginationButton.Content">
+            <Setter Property="Content">
                 <Template>
                     <PathIcon
                         Width="12"
@@ -112,7 +112,7 @@
                 </Template>
             </Setter>
             <Style Selector="^:pointerover">
-                <Setter Property="u:PaginationButton.Content">
+                <Setter Property="Content">
                     <Template>
                         <PathIcon
                             Width="12"

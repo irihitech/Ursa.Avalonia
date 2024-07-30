@@ -165,7 +165,6 @@
                             <ScrollViewer Grid.Row="1">
                                 <ContentPresenter
                                     Name="PART_ContentPresenter"
-                                    Grid.Row="1"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Margin="24,8"

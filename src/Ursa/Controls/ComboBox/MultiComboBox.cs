@@ -6,10 +6,8 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
-using Avalonia.Data.Converters;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.LogicalTree;
 using Irihi.Avalonia.Shared.Helpers;
 using Irihi.Avalonia.Shared.Contracts;
 
@@ -145,7 +143,7 @@ public class MultiComboBox: SelectingItemsControl, IInnerContentControl
         PseudoClasses.Set(PC_Empty, SelectedItems?.Count == 0);
     }
 
-    private void OnBackgroundPointerPressed(object sender, PointerPressedEventArgs e)
+    private void OnBackgroundPointerPressed(object? sender, PointerPressedEventArgs e)
     {
         SetCurrentValue(IsDropDownOpenProperty, !IsDropDownOpen);
     }

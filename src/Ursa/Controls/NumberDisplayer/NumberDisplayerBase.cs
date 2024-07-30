@@ -8,11 +8,11 @@ namespace Ursa.Controls;
 
 public abstract class NumberDisplayerBase : TemplatedControl
 {
-    public static readonly DirectProperty<NumberDisplayerBase, string> InternalTextProperty = AvaloniaProperty.RegisterDirect<NumberDisplayerBase, string>(
+    public static readonly DirectProperty<NumberDisplayerBase, string?> InternalTextProperty = AvaloniaProperty.RegisterDirect<NumberDisplayerBase, string?>(
         nameof(InternalText), o => o.InternalText, (o, v) => o.InternalText = v);
-    private string _internalText;
+    private string? _internalText;
     
-    public string InternalText
+    public string? InternalText
     {
         get => _internalText;
         set => SetAndRaise(InternalTextProperty, ref _internalText, value);
@@ -51,7 +51,9 @@ public abstract class NumberDisplayer<T>: NumberDisplayerBase
     private Animation? _animation;
     private CancellationTokenSource _cts = new ();
     
+#pragma warning disable AVP1002
     public static readonly StyledProperty<T?> ValueProperty = AvaloniaProperty.Register<NumberDisplayer<T>, T?>(
+#pragma warning restore AVP1002
         nameof(Value), defaultBindingMode:BindingMode.TwoWay);
 
     public T? Value
@@ -60,7 +62,9 @@ public abstract class NumberDisplayer<T>: NumberDisplayerBase
         set => SetValue(ValueProperty, value);
     }
 
+#pragma warning disable AVP1002
     private static readonly StyledProperty<T?> InternalValueProperty = AvaloniaProperty.Register<NumberDisplayer<T>, T?>(
+#pragma warning restore AVP1002
         nameof(InternalValue), defaultBindingMode:BindingMode.TwoWay);
 
     private T? InternalValue

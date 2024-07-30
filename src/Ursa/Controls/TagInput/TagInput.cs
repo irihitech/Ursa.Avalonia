@@ -91,8 +91,10 @@ public class TagInput : TemplatedControl
 
     public TagInput()
     {
-        _textBox = new TextBox();
-        _textBox[!AcceptsReturnProperty] = this.GetObservable(AcceptsReturnProperty).ToBinding();
+        _textBox = new TextBox
+        {
+            [!AcceptsReturnProperty] = this.GetObservable(AcceptsReturnProperty).ToBinding()
+        };
         _textBox.AddHandler(KeyDownEvent, OnTextBoxKeyDown, RoutingStrategies.Tunnel);
         _textBox.AddHandler(LostFocusEvent, OnTextBox_LostFocus, RoutingStrategies.Bubble);
         Items = new AvaloniaList<object>
@@ -230,18 +232,20 @@ public class TagInput : TemplatedControl
         }
 
         if (newTags != null)
-            for (var i = 0; i < newTags.Count; i++)
-                Items.Insert(Items.Count - 1, newTags[i]);
+            foreach (var newTag in newTags)
+                Items.Insert(Items.Count - 1, newTag);
+
         if (oldTags is INotifyCollectionChanged inccold) inccold.CollectionChanged -= OnCollectionChanged;
 
         if (Tags is INotifyCollectionChanged incc) incc.CollectionChanged += OnCollectionChanged;
     }
 
-    private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    private void OnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         if (e.Action == NotifyCollectionChangedAction.Add)
         {
             var items = e.NewItems;
+            if (items is null) return;
             var index = e.NewStartingIndex;
             foreach (var item in items)
                 if (item is string s)
@@ -253,6 +257,7 @@ public class TagInput : TemplatedControl
         else if (e.Action == NotifyCollectionChangedAction.Remove)
         {
             var items = e.OldItems;
+            if (items is null) return;
             var index = e.OldStartingIndex;
             foreach (var item in items)
                 if (item is string)
@@ -295,21 +300,21 @@ public class TagInput : TemplatedControl
     {
         if (!(text?.Length > 0)) return;
         if (Tags.Count >= MaxCount) return;
-        string[] values;
+        string[] values = [];
         if (!string.IsNullOrEmpty(Separator))
             values = text.Split(new[] { Separator },
                 StringSplitOptions.RemoveEmptyEntries);
-        else
+        else if(_textBox.Text is not null)
             values = new[] { _textBox.Text };
 
         if (!AllowDuplicates)
             values = values.Distinct().Except(Tags).ToArray();
 
-        for (var i = 0; i < values.Length; i++)
+        foreach (var value in values)
         {
             var index = Items.Count - 1;
             // Items.Insert(index, values[i]);
-            Tags?.Insert(index, values[i]);
+            Tags?.Insert(index, value);
         }
 
         _textBox.Clear();

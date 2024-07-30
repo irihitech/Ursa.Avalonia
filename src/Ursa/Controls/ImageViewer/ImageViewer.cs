@@ -5,7 +5,6 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
-using Avalonia.Media.Imaging;
 
 namespace Ursa.Controls;
 
@@ -18,8 +17,7 @@ public class ImageViewer: TemplatedControl
     public const string PART_Layer = "PART_Layer";
     public const string PC_Moving = ":moving";
     
-    private Image? _image = null!;
-    private VisualLayerManager? _layer;
+    private Image? _image;
     private Point? _lastClickPoint;
     private Point? _lastLocation;
     private bool _moving;
@@ -128,28 +126,14 @@ public class ImageViewer: TemplatedControl
     {
         if (_moving) return;
         var newValue = args.GetNewValue<double>();
-        if (_lastLocation is not null)
-        {
-            _lastLocation = _lastLocation.Value.WithY(newValue);
-        }
-        else
-        {
-            _lastLocation = new Point(0, newValue);
-        }
+        _lastLocation = _lastLocation?.WithY(newValue) ?? new Point(0, newValue);
     }
 
     private void OnTranslateXChanged(AvaloniaPropertyChangedEventArgs args)
     {
         if (_moving) return;
         var newValue = args.GetNewValue<double>();
-        if (_lastLocation is not null)
-        {
-            _lastLocation = _lastLocation.Value.WithX(newValue);
-        }
-        else
-        {
-            _lastLocation = new Point(newValue, 0);
-        }
+        _lastLocation = _lastLocation?.WithX(newValue) ?? new Point(newValue, 0);
     }
 
     private void OnOverlayerChanged(AvaloniaPropertyChangedEventArgs args)
@@ -181,26 +165,12 @@ public class ImageViewer: TemplatedControl
     {
         var stretch = args.GetNewValue<Stretch>();
         Scale = GetScaleRatio(Width / _image!.Width, Height / _image!.Height, stretch);
-        if(_image is { })
-        {
-            _sourceMinScale = Math.Min(Width * MinScale / _image.Width, Height * MinScale / _image.Height);
-        }
-        else
-        {
-            _sourceMinScale = MinScale;
-        }
+        _sourceMinScale = _image is not null ? Math.Min(Width * MinScale / _image.Width, Height * MinScale / _image.Height) : MinScale;
     }
 
-    private void OnMinScaleChanged(AvaloniaPropertyChangedEventArgs args)
+    private void OnMinScaleChanged(AvaloniaPropertyChangedEventArgs _)
     {
-        if (_image is { })
-        {
-            _sourceMinScale = Math.Min(Width * MinScale / _image.Width, Height * MinScale / _image.Height);
-        }
-        else
-        {
-            _sourceMinScale = MinScale;
-        }
+        _sourceMinScale = _image is not null ? Math.Min(Width * MinScale / _image.Width, Height * MinScale / _image.Height) : MinScale;
 
         if (_sourceMinScale > Scale)
         {
@@ -224,7 +194,7 @@ public class ImageViewer: TemplatedControl
     {
         base.OnApplyTemplate(e);
         _image = e.NameScope.Get<Image>(PART_Image);
-        _layer = e.NameScope.Get<VisualLayerManager>(PART_Layer);
+        e.NameScope.Get<VisualLayerManager>(PART_Layer);
         if (Overlayer is { } c)
         {
             AdornerLayer.SetAdorner(this, c);
@@ -271,7 +241,7 @@ public class ImageViewer: TemplatedControl
     protected override void OnPointerMoved(PointerEventArgs e)
     {
         base.OnPointerMoved(e);
-        if (e.Pointer.Captured == this && _lastClickPoint != null)
+        if (Equals(e.Pointer.Captured, this) && _lastClickPoint != null)
         {
             PseudoClasses.Set(PC_Moving, true);
             Point p = e.GetPosition(this);

@@ -4,9 +4,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.Platform;
 using Irihi.Avalonia.Shared.Helpers;
-using Ursa.Common;
 
 namespace Ursa.Controls;
 
@@ -15,15 +13,13 @@ namespace Ursa.Controls;
 [TemplatePart(PART_OKButton, typeof(Button))]
 [TemplatePart(PART_CancelButton, typeof(Button))]
 [TemplatePart(PART_YesButton, typeof(Button))]
-public class MessageBoxWindow : Window
+public class MessageBoxWindow(MessageBoxButton buttons) : Window
 {
     public const string PART_CloseButton = "PART_CloseButton";
     public const string PART_YesButton = "PART_YesButton";
     public const string PART_NoButton = "PART_NoButton";
     public const string PART_OKButton = "PART_OKButton";
     public const string PART_CancelButton = "PART_CancelButton";
-
-    private MessageBoxButton _buttonConfigs;
 
     private Button? _closeButton;
     private Button? _yesButton;
@@ -43,14 +39,8 @@ public class MessageBoxWindow : Window
         set => SetValue(MessageIconProperty, value);
     }
 
-    public MessageBoxWindow()
+    public MessageBoxWindow() : this(MessageBoxButton.OK)
     {
-        _buttonConfigs = MessageBoxButton.OK;
-    }
-
-    public MessageBoxWindow(MessageBoxButton buttons)
-    {
-        _buttonConfigs = buttons;
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -70,7 +60,7 @@ public class MessageBoxWindow : Window
 
     private void SetButtonVisibility()
     {
-        switch (_buttonConfigs)
+        switch (buttons)
         {
             case MessageBoxButton.OK:
                 Button.IsVisibleProperty.SetValue(true, _okButton);
@@ -91,9 +81,9 @@ public class MessageBoxWindow : Window
         }
     }
 
-    private void OnCloseButtonClick(object sender, RoutedEventArgs e)
+    private void OnCloseButtonClick(object? sender, RoutedEventArgs e)
     {
-        if (_buttonConfigs == MessageBoxButton.OK)
+        if (buttons == MessageBoxButton.OK)
         {
             Close(MessageBoxResult.OK);
         }
@@ -101,21 +91,21 @@ public class MessageBoxWindow : Window
         Close(MessageBoxResult.Cancel);
     }
 
-    private void OnDefaultButtonClick(object sender, RoutedEventArgs e)
+    private void OnDefaultButtonClick(object? sender, RoutedEventArgs e)
     {
-        if (sender == _okButton)
+        if (Equals(sender, _okButton))
         {
             Close(MessageBoxResult.OK);
         }
-        else if (sender == _cancelButton)
+        else if (Equals(sender, _cancelButton))
         {
             Close(MessageBoxResult.Cancel);
         }
-        else if (sender == _yesButton)
+        else if (Equals(sender, _yesButton))
         {
             Close(MessageBoxResult.Yes);
         }
-        else if (sender == _noButton)
+        else if (Equals(sender, _noButton))
         {
             Close(MessageBoxResult.No);
         }
@@ -124,7 +114,7 @@ public class MessageBoxWindow : Window
     protected override void OnKeyUp(KeyEventArgs e)
     {
         base.OnKeyUp(e);
-        if (e.Key == Key.Escape && _buttonConfigs == MessageBoxButton.OK)
+        if (e.Key == Key.Escape && buttons == MessageBoxButton.OK)
         {
             Close(MessageBoxResult.OK);
         }

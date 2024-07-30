@@ -6,9 +6,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 using Irihi.Avalonia.Shared.Helpers;
-using Ursa.Common;
 using Ursa.Controls.OverlayShared;
-using Ursa.EventArgs;
 
 namespace Ursa.Controls;
 
@@ -190,7 +188,7 @@ public abstract class DialogControlBase : OverlayFeedbackElement
         e.Source = this;
     }
 
-    private void OnCloseButtonClick(object sender, RoutedEventArgs args) => Close();
+    private void OnCloseButtonClick(object? sender, RoutedEventArgs args) => Close();
 
     internal void SetAsModal(bool modal)
     {

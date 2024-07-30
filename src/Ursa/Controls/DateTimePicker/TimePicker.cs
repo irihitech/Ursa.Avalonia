@@ -30,7 +30,6 @@ public class TimePicker : TimePickerBase, IClearControl
         nameof(Watermark));
 
     private Button? _button;
-    private Popup? _popup;
     private TimePickerPresenter? _presenter;
     private TextBox? _textBox;
 
@@ -42,10 +41,11 @@ public class TimePicker : TimePickerBase, IClearControl
         DisplayFormatProperty.Changed.AddClassHandler<TimePicker, string?>((picker, args) => picker.OnDisplayFormatChanged(args));
     }
 
-    private void OnDisplayFormatChanged(AvaloniaPropertyChangedEventArgs<string?> args)
+    private void OnDisplayFormatChanged(AvaloniaPropertyChangedEventArgs<string?> _)
     {
         if (_textBox is null) return;
         var time = SelectedTime;
+        if (time is null) return;
         var date = new DateTime( 1, 1, 1, time.Value.Hours, time.Value.Minutes, time.Value.Seconds);
         var text = date.ToString(DisplayFormat);
         _textBox.Text = text;
@@ -79,7 +79,7 @@ public class TimePicker : TimePickerBase, IClearControl
         Button.ClickEvent.RemoveHandler(OnButtonClick, _button);
 
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
-        _popup = e.NameScope.Find<Popup>(PartNames.PART_Popup);
+        e.NameScope.Find<Popup>(PartNames.PART_Popup);
         _presenter = e.NameScope.Find<TimePickerPresenter>(PART_Presenter);
         _button = e.NameScope.Find<Button>(PART_Button);
 

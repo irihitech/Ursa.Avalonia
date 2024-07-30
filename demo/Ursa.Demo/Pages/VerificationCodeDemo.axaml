@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:u="https://irihi.tech/ursa"
              xmlns:vm="using:Ursa.Demo.ViewModels"
-             xmlns:system="clr-namespace:System;assembly=System.Runtime"
              x:DataType="vm:VerificationCodeDemoViewModel"
              x:CompileBindings="True"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"

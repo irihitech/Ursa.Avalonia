@@ -28,12 +28,11 @@ public class NavMenuItem: HeaderedItemsControl
     public const string PC_Selector = ":selector";
     
     private NavMenu? _rootMenu;
-    private Panel? _popupPanel;
     private Popup? _popup;
     private Panel? _overflowPanel;
     
-    private static readonly Point s_invalidPoint = new (double.NaN, double.NaN);
-    private Point _pointerDownPoint = s_invalidPoint;
+    private static readonly Point InvalidPoint = new (double.NaN, double.NaN);
+    private Point _pointerDownPoint = InvalidPoint;
     
     public static readonly StyledProperty<object?> IconProperty = AvaloniaProperty.Register<NavMenuItem, object?>(
         nameof(Icon));

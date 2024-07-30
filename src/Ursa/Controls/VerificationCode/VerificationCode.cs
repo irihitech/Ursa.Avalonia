@@ -1,14 +1,10 @@
 ﻿using System.Windows.Input;
 using Avalonia;
-using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
-using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.LogicalTree;
-using Avalonia.Utilities;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
@@ -18,7 +14,7 @@ public class VerificationCode: TemplatedControl
 {
     public const string PART_ItemsControl = "PART_ItemsControl";
     private ItemsControl? _itemsControl;
-    private int _currentIndex = 0;
+    private int _currentIndex;
     
     public static readonly StyledProperty<ICommand?> CompleteCommandProperty = AvaloniaProperty.Register<VerificationCode, ICommand?>(
         nameof(CompleteCommand));
@@ -105,9 +101,9 @@ public class VerificationCode: TemplatedControl
         PointerPressedEvent.AddHandler(OnControlPressed, RoutingStrategies.Tunnel, false, this);
     }
 
-    private void OnControlPressed(object sender, PointerPressedEventArgs e)
+    private void OnControlPressed(object? sender, PointerPressedEventArgs e)
     {
-        if (e.Source is Control t)
+        if (e.Source is Control)
         {
             /*
             var item = t.FindLogicalAncestorOfType<VerificationCodeItem>();
@@ -117,7 +113,7 @@ public class VerificationCode: TemplatedControl
                 _currentIndex = _itemsControl?.IndexFromContainer(item) ?? 0;
             }
             */
-            _currentIndex = MathUtilities.Clamp(_currentIndex, 0, Count - 1);
+            _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);
             _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
         }
         e.Handled = true;
@@ -162,7 +158,7 @@ public class VerificationCode: TemplatedControl
         base.OnKeyDown(e);
         if (e.Key == Key.Back && _currentIndex >= 0)
         {
-            _currentIndex = MathUtilities.Clamp(_currentIndex, 0, Count - 1);
+            _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);
             var presenter = _itemsControl?.ContainerFromIndex(_currentIndex) as VerificationCodeItem;
             if (presenter is null) return;
             Digits[_currentIndex] = string.Empty;

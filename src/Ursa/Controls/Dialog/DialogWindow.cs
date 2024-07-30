@@ -6,7 +6,6 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
-using Ursa.Common;
 
 namespace Ursa.Controls;
 
@@ -59,7 +58,7 @@ public class DialogWindow: Window
         Close(args);
     }
 
-    protected internal virtual void OnCloseButtonClicked(object sender, RoutedEventArgs args)
+    protected virtual void OnCloseButtonClicked(object? sender, RoutedEventArgs args)
     {
         if (DataContext is IDialogContext context)
         {
@@ -71,7 +70,7 @@ public class DialogWindow: Window
         }
     }
     
-    private void OnTitlePointerPressed(object sender, PointerPressedEventArgs e)
+    private void OnTitlePointerPressed(object? sender, PointerPressedEventArgs e)
     {
         this.BeginMoveDrag(e);
     }

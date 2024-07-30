@@ -43,7 +43,6 @@ public class DateRangePicker : DatePickerBase, IClearControl
     private Button? _button;
     private CalendarView? _endCalendar;
     private TextBox? _endTextBox;
-    private Popup? _popup;
     private DateTime? _previewEnd;
 
     private DateTime? _previewStart;
@@ -140,7 +139,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
         }
 
         _button = e.NameScope.Find<Button>(PART_Button);
-        _popup = e.NameScope.Find<Popup>(PART_Popup);
+        e.NameScope.Find<Popup>(PART_Popup);
         _startCalendar = e.NameScope.Find<CalendarView>(PART_StartCalendar);
         _endCalendar = e.NameScope.Find<CalendarView>(PART_EndCalendar);
         _startTextBox = e.NameScope.Find<TextBox>(PART_StartTextBox);
@@ -168,28 +167,28 @@ public class DateRangePicker : DatePickerBase, IClearControl
         }
     }
 
-    private void OnTextBoxLostFocus(object sender, RoutedEventArgs e)
+    private void OnTextBoxLostFocus(object? sender, RoutedEventArgs e)
     {
-        if (sender == _startTextBox)
+        if (Equals(sender, _startTextBox))
             OnTextChangedInternal(_startTextBox, SelectedStartDateProperty);
-        else if (sender == _endTextBox) OnTextChangedInternal(_endTextBox, SelectedEndDateProperty);
+        else if (Equals(sender, _endTextBox)) OnTextChangedInternal(_endTextBox, SelectedEndDateProperty);
     }
 
-    private void OnContextDateChanged(object sender, CalendarContext e)
+    private void OnContextDateChanged(object? sender, CalendarContext e)
     {
-        if (sender == _startCalendar && _startCalendar?.Mode == CalendarViewMode.Month)
+        if (Equals(sender, _startCalendar) && _startCalendar?.Mode == CalendarViewMode.Month)
         {
             var needsUpdate = EnableMonthSync || _startCalendar?.ContextDate.CompareTo(_endCalendar?.ContextDate) >= 0;
             if (needsUpdate) _endCalendar?.SyncContextDate(_startCalendar?.ContextDate.NextMonth());
         }
-        else if (sender == _endCalendar && _endCalendar?.Mode == CalendarViewMode.Month)
+        else if (Equals(sender, _endCalendar) && _endCalendar?.Mode == CalendarViewMode.Month)
         {
             var needsUpdate = EnableMonthSync || _endCalendar?.ContextDate.CompareTo(_startCalendar?.ContextDate) <= 0;
             if (needsUpdate) _startCalendar?.SyncContextDate(_endCalendar?.ContextDate.PreviousMonth());
         }
     }
 
-    private void OnDatePreviewed(object sender, CalendarDayButtonEventArgs e)
+    private void OnDatePreviewed(object? sender, CalendarDayButtonEventArgs e)
     {
         if (_start == true)
         {
@@ -205,7 +204,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
         }
     }
 
-    private void OnDateSelected(object sender, CalendarDayButtonEventArgs e)
+    private void OnDateSelected(object? sender, CalendarDayButtonEventArgs e)
     {
         if (_start == true)
         {
@@ -241,16 +240,16 @@ public class DateRangePicker : DatePickerBase, IClearControl
         }
     }
 
-    private void OnButtonClick(object sender, RoutedEventArgs e)
+    private void OnButtonClick(object? sender, RoutedEventArgs e)
     {
         Focus(NavigationMethod.Pointer);
         SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
         _start = true;
     }
 
-    private void OnTextBoxPointerPressed(object sender, PointerPressedEventArgs e)
+    private void OnTextBoxPointerPressed(object? sender, PointerPressedEventArgs e)
     {
-        if (sender == _startTextBox)
+        if (Equals(sender, _startTextBox))
         {
             _start = true;
             if (_startCalendar is not null)
@@ -270,11 +269,11 @@ public class DateRangePicker : DatePickerBase, IClearControl
                     date2 = date2.Value.AddMonths(1);
                 }
 
-                _endCalendar.ContextDate = new CalendarContext(date2?.Year, date2?.Month);
+                _endCalendar.ContextDate = new CalendarContext(date2.Value.Year, date2.Value.Month);
                 _endCalendar.UpdateDayButtons();
             }
         }
-        else if (sender == _endTextBox)
+        else if (Equals(sender, _endTextBox))
         {
             _start = false;
             if (_endCalendar is not null)
@@ -294,7 +293,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
                     date2 = date2.Value.AddMonths(-1);
                 }
 
-                _startCalendar.ContextDate = new CalendarContext(date2?.Year, date2?.Month);
+                _startCalendar.ContextDate = new CalendarContext(date2.Value.Year, date2.Value.Month);
                 _startCalendar.UpdateDayButtons();
             }
         }
@@ -302,11 +301,11 @@ public class DateRangePicker : DatePickerBase, IClearControl
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
 
-    private void OnTextChanged(object sender, TextChangedEventArgs e)
+    private void OnTextChanged(object? sender, TextChangedEventArgs e)
     {
-        if (sender == _startTextBox)
+        if (Equals(sender, _startTextBox))
             OnTextChangedInternal(_startTextBox, SelectedStartDateProperty, true);
-        else if (sender == _endTextBox) OnTextChangedInternal(_endTextBox, SelectedEndDateProperty, true);
+        else if (Equals(sender, _endTextBox)) OnTextChangedInternal(_endTextBox, SelectedEndDateProperty, true);
     }
 
     private void OnTextChangedInternal(TextBox? textBox, AvaloniaProperty property, bool fromText = false)
@@ -314,12 +313,12 @@ public class DateRangePicker : DatePickerBase, IClearControl
         if (string.IsNullOrEmpty(textBox?.Text))
         {
             SetCurrentValue(property, null);
-            _startCalendar?.ClearSelection(true);
+            _startCalendar?.ClearSelection();
             _endCalendar?.ClearSelection(end: true);
         }
         else if (DisplayFormat is null || DisplayFormat.Length == 0)
         {
-            if (DateTime.TryParse(textBox?.Text, out var defaultTime))
+            if (DateTime.TryParse(textBox.Text, out var defaultTime))
             {
                 SetCurrentValue(property, defaultTime);
                 _startCalendar?.MarkDates(defaultTime, defaultTime);
@@ -328,7 +327,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
         }
         else
         {
-            if (DateTime.TryParseExact(textBox?.Text, DisplayFormat, CultureInfo.CurrentUICulture, DateTimeStyles.None,
+            if (DateTime.TryParseExact(textBox.Text, DisplayFormat, CultureInfo.CurrentUICulture, DateTimeStyles.None,
                     out var date))
             {
                 SetCurrentValue(property, date);
@@ -356,19 +355,18 @@ public class DateRangePicker : DatePickerBase, IClearControl
                 if (!fromText)
                 {
                     SetCurrentValue(property, null);
-                    textBox?.SetValue(TextBox.TextProperty, null);
-                    _startCalendar?.ClearSelection(true);
+                    textBox.SetValue(TextBox.TextProperty, null);
+                    _startCalendar?.ClearSelection();
                     _endCalendar?.ClearSelection(end: true);
                 }
             }
         }
     }
 
-    private void OnTextBoxGetFocus(object sender, GotFocusEventArgs e)
+    private void OnTextBoxGetFocus(object? sender, GotFocusEventArgs e)
     {
         if (_startCalendar is not null && _startCalendar?.Mode == CalendarViewMode.Month)
         {
-            var date = SelectedStartDate ?? DateTime.Today;
             //_startCalendar.ContextDate = new CalendarContext(date.Year, date.Month);
             //_startCalendar.UpdateDayButtons();
         }

@@ -1,8 +1,4 @@
-﻿using System.Globalization;
-using Avalonia.Controls;
-using Avalonia.Utilities;
-
-namespace Ursa.Controls;
+﻿namespace Ursa.Controls;
 
 public class NumericIntUpDown : NumericUpDownBase<int>
 {

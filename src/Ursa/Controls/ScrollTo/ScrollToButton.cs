@@ -1,12 +1,7 @@
 using Avalonia;
-using Avalonia.Animation;
-using Avalonia.Animation.Easings;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.LogicalTree;
-using Avalonia.Styling;
 using Avalonia.VisualTree;
-using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
 
 namespace Ursa.Controls;
@@ -64,7 +59,7 @@ public class ScrollToButton: Button
         }
     }
 
-    protected override async void OnClick()
+    protected override void OnClick()
     {
         if (_scroll is null) return;
         var vector = Direction switch

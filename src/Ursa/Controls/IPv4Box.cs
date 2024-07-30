@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Net;
 using Avalonia;
 using Avalonia.Controls;
@@ -150,8 +149,11 @@ public class IPv4Box: TemplatedControl
         }
         if (keymap is not null && Match(keymap.SelectAll))
         {
-            _currentActivePresenter.SelectionStart = 0;
-            _currentActivePresenter.SelectionEnd = _currentActivePresenter.Text?.Length ?? 0;
+            if (_currentActivePresenter is not null)
+            {
+                _currentActivePresenter.SelectionStart = 0;
+                _currentActivePresenter.SelectionEnd = _currentActivePresenter.Text?.Length ?? 0;
+            }
             e.Handled = true;
             return;
         }
@@ -217,7 +219,7 @@ public class IPv4Box: TemplatedControl
     protected override void OnTextInput(TextInputEventArgs e)
     {
         if (e.Handled) return;
-        string? s = e.Text;
+        var s = e.Text;
         if (string.IsNullOrEmpty(s)) return;
         if (s == ".")
         {
@@ -231,10 +233,10 @@ public class IPv4Box: TemplatedControl
             e.Handled = false;
             return;
         }
-        if (!char.IsNumber(s![0])) return;
+        if (!char.IsNumber(s[0])) return;
         if (_currentActivePresenter != null)
         {
-            int index = Math.Min(_currentActivePresenter.CaretIndex, _currentActivePresenter.Text.Length);
+            int index = Math.Min(_currentActivePresenter.CaretIndex, _currentActivePresenter.Text?.Length ?? 0);
             string? oldText = _currentActivePresenter.Text;
             if (oldText is null)
             {
@@ -245,11 +247,11 @@ public class IPv4Box: TemplatedControl
             {
                 _currentActivePresenter.DeleteSelection();
                 _currentActivePresenter.ClearSelection();
-                oldText = _currentActivePresenter.Text;
+                oldText = _currentActivePresenter.Text??string.Empty;
 
-                string newText = string.IsNullOrEmpty(oldText)
+                var newText = string.IsNullOrEmpty(oldText)
                     ? s
-                    : oldText?.Substring(0, index) + s + oldText?.Substring(Math.Min(index, oldText.Length));
+                    : oldText.Substring(0, index) + s + oldText.Substring(Math.Min(index, oldText.Length));
                 if (newText.Length > 3)
                 {
                     newText = newText.Substring(0, 3);
@@ -463,7 +465,7 @@ public class IPv4Box: TemplatedControl
         else
         {
             int index = presenter.CaretIndex;
-            string newText = oldText?.Substring(0, index - 1) + oldText?.Substring(Math.Min(index, oldText.Length));
+            string newText = oldText.Substring(0, index - 1) + oldText.Substring(Math.Min(index, oldText.Length));
             presenter.MoveCaretHorizontal(LogicalDirection.Backward);
             presenter.Text = newText;
         }
@@ -529,7 +531,8 @@ public class IPv4Box: TemplatedControl
     {
         string s = string.Join(".", _firstText?.Text, _secondText?.Text, _thirdText?.Text, _fourthText?.Text);
         IClipboard? clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
-        clipboard?.SetTextAsync(s);
+        if (clipboard is null) return;
+        await clipboard.SetTextAsync(s);
     }
     
     public static KeyGesture? CopyKeyGesture { get; } = Application.Current?.PlatformSettings?.HotkeyConfiguration.Copy.FirstOrDefault();
@@ -540,7 +543,7 @@ public class IPv4Box: TemplatedControl
     {
         IClipboard? clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
         if (clipboard is null) return;
-        string s = await clipboard.GetTextAsync();
+        var s = await clipboard.GetTextAsync();
         if (IPAddress.TryParse(s, out var address))
         {
             IPAddress = address;

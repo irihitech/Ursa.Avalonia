@@ -1,5 +1,4 @@
 using Avalonia;
-using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Prism.DryIoc;
 using Prism.Ioc;

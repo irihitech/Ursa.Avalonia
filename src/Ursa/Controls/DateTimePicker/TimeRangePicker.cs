@@ -45,7 +45,6 @@ public class TimeRangePicker : TimePickerBase, IClearControl
     private Button? _button;
     private TimePickerPresenter? _endPresenter;
     private TextBox? _endTextBox;
-    private Popup? _popup;
     private TimePickerPresenter? _startPresenter;
 
     private TextBox? _startTextBox;
@@ -114,7 +113,7 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         PointerPressedEvent.RemoveHandler(OnTextBoxPointerPressed, _startTextBox, _endTextBox);
         Button.ClickEvent.RemoveHandler(OnButtonClick, _button);
 
-        _popup = e.NameScope.Find<Popup>(PartNames.PART_Popup);
+        e.NameScope.Find<Popup>(PartNames.PART_Popup);
         _startTextBox = e.NameScope.Find<TextBox>(PART_StartTextBox);
         _endTextBox = e.NameScope.Find<TextBox>(PART_EndTextBox);
         _startPresenter = e.NameScope.Find<TimePickerPresenter>(PART_StartPresenter);
@@ -127,18 +126,18 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         Button.ClickEvent.AddHandler(OnButtonClick, _button);
     }
 
-    private void OnButtonClick(object sender, RoutedEventArgs e)
+    private void OnButtonClick(object? sender, RoutedEventArgs e)
     {
         Focus(NavigationMethod.Pointer);
         SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
     }
 
-    private void OnTextBoxPointerPressed(object sender, PointerPressedEventArgs e)
+    private void OnTextBoxPointerPressed(object? sender, PointerPressedEventArgs e)
     {
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
 
-    private void OnTextBoxGetFocus(object sender, GotFocusEventArgs e)
+    private void OnTextBoxGetFocus(object? sender, GotFocusEventArgs e)
     {
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
@@ -161,7 +160,7 @@ public class TimeRangePicker : TimePickerBase, IClearControl
 
         if (e.Key == Key.Tab)
         {
-            if (e.Source == _endTextBox) SetCurrentValue(IsDropdownOpenProperty, false);
+            if (Equals(e.Source, _endTextBox)) SetCurrentValue(IsDropdownOpenProperty, false);
             return;
         }
 

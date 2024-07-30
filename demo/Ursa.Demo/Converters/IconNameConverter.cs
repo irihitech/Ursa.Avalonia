@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using Avalonia;
-using Avalonia.Controls.Shapes;
 using Avalonia.Data.Converters;
 using Avalonia.Media;
 using Avalonia.Metadata;
@@ -25,7 +23,7 @@ public class IconNameConverter: IValueConverter
         return AvaloniaProperty.UnsetValue;
     }
 
-    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         throw new NotImplementedException();
     }

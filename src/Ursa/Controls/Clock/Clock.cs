@@ -156,7 +156,7 @@ public class Clock : TemplatedControl
 
     private CancellationTokenSource _cts = new CancellationTokenSource();
 
-    private async void OnTimeChanged(AvaloniaPropertyChangedEventArgs<DateTime> args)
+    private void OnTimeChanged(AvaloniaPropertyChangedEventArgs<DateTime> args)
     {
         var oldSeconds = args.OldValue.Value.Second;
         var time = args.NewValue.Value;
@@ -179,8 +179,14 @@ public class Clock : TemplatedControl
             _cts.Cancel();
             _cts.Dispose();
             _cts = new CancellationTokenSource();
-            (_secondsAnimation.Children[0].Setters[0] as Setter).Value = oldSecondAngle;
-            (_secondsAnimation.Children[1].Setters[0] as Setter).Value = secondAngle;
+            if (_secondsAnimation.Children[0].Setters[0] is Setter start)
+            {
+                start.Value = oldSecondAngle;
+            }
+            if (_secondsAnimation.Children[1].Setters[0] is Setter end)
+            {
+                end.Value = secondAngle;
+            }
             _secondsAnimation.RunAsync(this, _cts.Token);
         }
     }

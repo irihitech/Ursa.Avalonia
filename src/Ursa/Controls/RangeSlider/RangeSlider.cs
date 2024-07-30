@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Collections;
 using Avalonia.Controls;
@@ -178,7 +177,7 @@ public class RangeSlider: TemplatedControl
 
     private Thumb? _currentThumb;
     
-    private void PointerPress(object sender, PointerPressedEventArgs e)
+    private void PointerPress(object? sender, PointerPressedEventArgs e)
     {
         if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
         {
@@ -189,7 +188,7 @@ public class RangeSlider: TemplatedControl
         }
     }
     
-    private void PointerMove(object sender, PointerEventArgs args)
+    private void PointerMove(object? sender, PointerEventArgs args)
     {
         if (!IsEnabled)
         {
@@ -202,7 +201,7 @@ public class RangeSlider: TemplatedControl
         }
     }
     
-    private void PointerRelease(object sender, PointerReleasedEventArgs e)
+    private void PointerRelease(object? sender, PointerReleasedEventArgs e)
     {
         _isDragging = false;
         _currentThumb = null;

@@ -1,7 +1,4 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
-using System;
+﻿using Avalonia.Controls;
 using System.Diagnostics;
 using Ursa.Controls;
 using Ursa.Demo.ViewModels;
@@ -19,7 +16,9 @@ public partial class NumericUpDownDemo : UserControl
 
     private void Numd_ValueChanged(object? sender, ValueChangedEventArgs<uint> e)
     {
-        Trace.WriteLine($"{(sender as NumericUIntUpDown).Name} {e.OldValue} {e.NewValue}");
-
+        if (sender is NumericIntUpDown i)
+        {
+            Trace.WriteLine($"{i.Name} {e.OldValue} {e.NewValue}");
+        }
     }
 }

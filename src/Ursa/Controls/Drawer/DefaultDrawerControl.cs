@@ -5,7 +5,6 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
-using Ursa.Common;
 using Ursa.EventArgs;
 
 namespace Ursa.Controls;

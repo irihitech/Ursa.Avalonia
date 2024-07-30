@@ -24,7 +24,7 @@ public abstract class OverlayFeedbackElement: ContentControl
         ClosedEvent.AddClassHandler<OverlayFeedbackElement>((o,e)=>o.OnClosed(e));
     }
 
-    private void OnClosed(ResultEventArgs arg2)
+    private void OnClosed(ResultEventArgs _)
     {
         SetCurrentValue(IsClosedProperty,true);
     }
@@ -50,12 +50,12 @@ public abstract class OverlayFeedbackElement: ContentControl
         }
     }
     
-    protected virtual void OnElementClosing(object sender, object? args)
+    protected virtual void OnElementClosing(object? sender, object? args)
     {
         RaiseEvent(new ResultEventArgs(ClosedEvent, args));
     }
     
-    private void OnContextRequestClose(object sender, object? args)
+    private void OnContextRequestClose(object? sender, object? args)
     {
         RaiseEvent(new ResultEventArgs(ClosedEvent, args));
     }
@@ -68,7 +68,7 @@ public abstract class OverlayFeedbackElement: ContentControl
             Dispatcher.UIThread.Invoke(Close);
         });
         
-        void OnCloseHandler(object sender, ResultEventArgs? args)
+        void OnCloseHandler(object? sender, ResultEventArgs? args)
         {
             if (args?.Result is T result)
             {

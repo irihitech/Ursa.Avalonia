@@ -1,9 +1,6 @@
 using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
-using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
@@ -51,7 +48,7 @@ public class NumPad: TemplatedControl
         }
     }
     
-    private static void OnTargetGotFocus(object sender, GotFocusEventArgs e)
+    private static void OnTargetGotFocus(object? sender, GotFocusEventArgs e)
     {
         if (sender is not InputElement) return;
         var existing = OverlayDialog.Recall<NumPad>(null);
@@ -87,7 +84,7 @@ public class NumPad: TemplatedControl
     {
         if (Target is null || o is not NumPadButton b) return;
         var key = (b.NumMode ? b.NumKey : b.FunctionKey)?? Key.None;
-        if (KeyInputMapping.TryGetValue(key, out string s))
+        if (KeyInputMapping.TryGetValue(key, out var s))
         {
             Target.RaiseEvent(new TextInputEventArgs()
             {

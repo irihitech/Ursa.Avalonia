@@ -14,9 +14,6 @@ public class SelectionListItem: ContentControl, ISelectable
         PressedMixin.Attach<SelectionListItem>();
         FocusableProperty.OverrideDefaultValue<SelectionListItem>(true);
     }
-    
-    private static readonly Point s_invalidPoint = new Point(double.NaN, double.NaN);
-    private Point _pointerDownPoint = s_invalidPoint;
 
     public static readonly StyledProperty<bool> IsSelectedProperty = SelectingItemsControl.IsSelectedProperty.AddOwner<ListBoxItem>();
 
@@ -29,7 +26,7 @@ public class SelectionListItem: ContentControl, ISelectable
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
         base.OnPointerPressed(e);
-        if (ItemsControl.ItemsControlFromItemContaner(this) is SelectionList list)
+        if (ItemsControl.ItemsControlFromItemContainer(this) is SelectionList list)
         {
             int index = list.IndexFromContainer(this);
             list.SelectByIndex(index);

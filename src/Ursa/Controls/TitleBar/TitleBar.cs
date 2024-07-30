@@ -1,9 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
-using Avalonia.Platform;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
@@ -47,7 +45,7 @@ public class TitleBar: ContentControl
         // this.UpdateSize(visualRoot);
     }
 
-    private void OnPointerPressed(object sender, PointerPressedEventArgs e)
+    private void OnPointerPressed(object? sender, PointerPressedEventArgs e)
     {
         if(_visualRoot is not null
             && _visualRoot.WindowState == WindowState.FullScreen)
@@ -63,7 +61,7 @@ public class TitleBar: ContentControl
         }
     }
 
-    private void OnDoubleTapped(object sender, TappedEventArgs e)
+    private void OnDoubleTapped(object? sender, TappedEventArgs e)
     {
         if (_visualRoot is not null)
         {

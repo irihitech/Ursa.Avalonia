@@ -5,7 +5,6 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
-using Ursa.Common;
 
 namespace Ursa.Controls;
 
@@ -57,27 +56,26 @@ public class DefaultDialogWindow: DialogWindow
         SetButtonVisibility();
     }
 
-    private void OnDefaultClose(object sender, RoutedEventArgs e)
+    private void OnDefaultClose(object? sender, RoutedEventArgs e)
     {
-        if (sender == _yesButton)
+        if (Equals(sender, _yesButton))
         {
             Close(DialogResult.Yes);
             return;
         }
-        if(sender == _noButton)
+        if(Equals(sender, _noButton))
         {
             Close(DialogResult.No);
             return;
         }
-        if(sender == _okButton)
+        if(Equals(sender, _okButton))
         {
             Close(DialogResult.OK);
             return;
         }
-        if(sender == _cancelButton)
+        if(Equals(sender, _cancelButton))
         {
             Close(DialogResult.Cancel);
-            return;
         }
     }
 
@@ -125,7 +123,7 @@ public class DefaultDialogWindow: DialogWindow
         if (button is not null) button.IsVisible = visible;
     }
 
-    protected internal override void OnCloseButtonClicked(object sender, RoutedEventArgs args)
+    protected override void OnCloseButtonClicked(object? sender, RoutedEventArgs args)
     {
         if (DataContext is IDialogContext context)
         {

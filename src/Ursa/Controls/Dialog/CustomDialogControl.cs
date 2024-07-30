@@ -1,15 +1,5 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.Metadata;
-using Avalonia.Controls.Primitives;
-using Avalonia.Input;
-using Avalonia.Input.GestureRecognizers;
-using Avalonia.Interactivity;
-using Avalonia.Threading;
+﻿using Avalonia.Controls.Primitives;
 using Irihi.Avalonia.Shared.Contracts;
-using Ursa.Common;
-using Ursa.Controls.OverlayShared;
-using Ursa.EventArgs;
 
 namespace Ursa.Controls;
 

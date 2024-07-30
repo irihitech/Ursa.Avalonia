@@ -1,5 +1,4 @@
-﻿using Avalonia.Controls;
-using Ursa.Controls;
+﻿using Ursa.Controls;
 
 namespace Ursa.PrismExtension;
 

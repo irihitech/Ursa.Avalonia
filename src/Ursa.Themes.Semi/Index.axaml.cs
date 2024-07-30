@@ -20,10 +20,10 @@ public class SemiTheme: Styles
     
     private static readonly ResourceDictionary _defaultResource = new zh_cn();
     
-    private readonly IServiceProvider? sp;
+    private readonly IServiceProvider? _sp;
     public SemiTheme(IServiceProvider? provider = null)
     {
-        sp = provider;
+        _sp = provider;
         AvaloniaXamlLoader.Load(provider, this);
     }
 

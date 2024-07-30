@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Globalization;
-using System.Net.Mime;
+﻿using System.Globalization;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
@@ -25,8 +23,8 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
     public const string PART_TextBox = "PART_TextBox";
     public const string PART_DragPanel = "PART_DragPanel";
 
-    protected internal ButtonSpinner? _spinner;
-    protected internal TextBox? _textBox;
+    protected ButtonSpinner? _spinner;
+    protected TextBox? _textBox;
     protected internal Panel? _dragPanel;
 
     private Point? _point;
@@ -154,7 +152,7 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
 
     private void OnIsReadOnlyChanged(AvaloniaPropertyChangedEventArgs<bool> args)
     {
-        ChangeToSetSpinDirection(args, false);
+        ChangeToSetSpinDirection(args);
         TextBox.IsReadOnlyProperty.SetValue(args.NewValue.Value, _textBox);
     }
 
@@ -229,7 +227,7 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
         }
     }
 
-    private void OnDragPanelPointerPressed(object sender, PointerPressedEventArgs e)
+    private void OnDragPanelPointerPressed(object? sender, PointerPressedEventArgs e)
     {
         _point = e.GetPosition(this);
         if (e.ClickCount == 2 && _dragPanel is not null && AllowDrag)
@@ -251,12 +249,12 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
         _textBox?.RaiseEvent(e);
     }
 
-    private void OnDragPanelPointerReleased(object sender, PointerReleasedEventArgs e)
+    private void OnDragPanelPointerReleased(object? sender, PointerReleasedEventArgs e)
     {
         _point = null;
     }
 
-    private void OnDragPanelPointerMoved(object sender, PointerEventArgs e)
+    private void OnDragPanelPointerMoved(object? sender, PointerEventArgs e)
     {
         if (!AllowDrag || IsReadOnly) return;
         if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
@@ -292,7 +290,7 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
         };
     }
 
-    private void OnSpin(object sender, SpinEventArgs e)
+    private void OnSpin(object? sender, SpinEventArgs e)
     {
         if (AllowSpin && !IsReadOnly)
         {
@@ -379,7 +377,9 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
         return text;
     }
 
+#pragma warning disable AVP1002
     public static readonly StyledProperty<T?> ValueProperty = AvaloniaProperty.Register<NumericUpDownBase<T>, T?>(
+
         nameof(Value), defaultBindingMode: BindingMode.TwoWay, enableDataValidation: true);
 
     public T? Value
@@ -484,7 +484,7 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
         get => this.GetValue(CommandParameterProperty);
         set => this.SetValue(CommandParameterProperty, value);
     }
-
+#pragma warning restore AVP1002
     protected override void UpdateDataValidation(AvaloniaProperty property, BindingValueType state, Exception? error)
     {
         if (property == ValueProperty)
@@ -525,7 +525,7 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
         ValueProperty.Changed.AddClassHandler<NumericUpDownBase<T>>((o, e) => o.OnValueChanged(e));
     }
 
-    private void OnConstraintChanged(AvaloniaPropertyChangedEventArgs avaloniaPropertyChangedEventArgs)
+    private void OnConstraintChanged(AvaloniaPropertyChangedEventArgs _)
     {
         if (IsInitialized)
         {
@@ -755,6 +755,6 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
     public override void Clear()
     {
         SetCurrentValue(ValueProperty, EmptyInputValue);
-        SyncTextAndValue(false, forceTextUpdate: true);
+        SyncTextAndValue(forceTextUpdate: true);
     }
 }

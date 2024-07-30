@@ -1,12 +1,8 @@
-using System.Collections.Specialized;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Generators;
-using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
-using Avalonia.Layout;
 using Avalonia.Metadata;
 
 namespace Ursa.Controls;
@@ -162,7 +158,10 @@ public class Timeline: ItemsControl
     protected override Size ArrangeOverride(Size finalSize)
     {
         var panel = this.ItemsPanelRoot as TimelinePanel;
-        panel.Mode = this.Mode;
+        if (panel is not null)
+        {
+            panel.Mode = this.Mode;
+        }
         SetItemMode();
         return base.ArrangeOverride(finalSize);
     }
@@ -195,17 +194,11 @@ public class Timeline: ItemsControl
             }
             else if (Mode == TimelineDisplayMode.Alternate)
             {
-                bool left = false;
+                var left = false;
                 foreach (var item in items)
                 {
-                    if (left)
-                    {
-                        SetIfUnset(item, TimelineItem.PositionProperty, TimelineItemPosition.Left);
-                    }
-                    else
-                    {
-                        SetIfUnset(item, TimelineItem.PositionProperty, TimelineItemPosition.Right);
-                    }
+                    SetIfUnset(item, TimelineItem.PositionProperty,
+                        left ? TimelineItemPosition.Left : TimelineItemPosition.Right);
                     left = !left;
                 }
             }

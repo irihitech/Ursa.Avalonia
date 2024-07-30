@@ -14,7 +14,7 @@ public class MessageBoxDemoViewModel: ObservableObject
 
     private readonly string _shortMessage = "Welcome to Ursa Avalonia!";
     private string _message;
-    private string _title;
+    private string? _title;
 
     public ICommand DefaultMessageBoxCommand { get; set; }
     public ICommand OkCommand { get; set; }

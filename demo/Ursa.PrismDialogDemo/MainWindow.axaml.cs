@@ -1,6 +1,5 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using DryIoc;
 using Ursa.Controls;
 using Ursa.Controls.Options;
 using Ursa.PrismExtension;
@@ -22,6 +21,7 @@ public partial class MainWindow : Window
         _drawerService = drawerService;
     }
 
+    // ReSharper disable once UnusedParameter.Local
     private void OverlayDialogButton_OnClick(object? sender, RoutedEventArgs e)
     {
         _overlayDialogService.ShowModal("Default", null, null, new OverlayDialogOptions()
@@ -30,6 +30,7 @@ public partial class MainWindow : Window
         });
     }
 
+    // ReSharper disable once UnusedParameter.Local
     private void AloneDialogButton_OnClick(object? sender, RoutedEventArgs e)
     {
         _aloneDialogService.ShowModal("Default", null, null, new DialogOptions()
@@ -38,6 +39,7 @@ public partial class MainWindow : Window
         });
     }
 
+    // ReSharper disable once UnusedParameter.Local
     private void DrawerButton_OnClick(object? sender, RoutedEventArgs e)
     {
         _drawerService.ShowModal("Default", null, null, new DrawerOptions()
