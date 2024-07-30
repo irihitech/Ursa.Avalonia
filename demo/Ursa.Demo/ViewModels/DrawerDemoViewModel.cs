@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Common;
@@ -12,7 +11,7 @@ using Ursa.Demo.Dialogs;
 
 namespace Ursa.Demo.ViewModels;
 
-public partial class DrawerDemoViewModel: ObservableObject
+public partial class DrawerDemoViewModel : ObservableObject
 {
     public ICommand ShowDialogCommand { get; set; }
     public ICommand ShowCustomDialogCommand { get; set; }
@@ -25,8 +24,24 @@ public partial class DrawerDemoViewModel: ObservableObject
     [ObservableProperty] private bool _result;
     [ObservableProperty] private bool _isModal;
     [ObservableProperty] private DateTime? _date;
-    
-    
+
+    public ObservableCollection<Position> Positions =>
+    [
+        Position.Left,
+        Position.Top,
+        Position.Right,
+        Position.Bottom,
+    ];
+
+    public ObservableCollection<DialogButton> DialogButtons =>
+    [
+        DialogButton.None,
+        DialogButton.OK,
+        DialogButton.OKCancel,
+        DialogButton.YesNo,
+        DialogButton.YesNoCancel,
+    ];
+
     public DrawerDemoViewModel()
     {
         ShowDialogCommand = new AsyncRelayCommand(ShowDefaultDialog);
@@ -35,7 +50,7 @@ public partial class DrawerDemoViewModel: ObservableObject
         IsGlobal = true;
         IsModal = true;
     }
-    
+
     private async Task ShowDefaultDialog()
     {
         var vm = new PlainDialogViewModel();
@@ -67,7 +82,7 @@ public partial class DrawerDemoViewModel: ObservableObject
                 });
         }
     }
-    
+
     private async Task ShowCustomDrawer()
     {
         var vm = new DialogWithActionViewModel();

@@ -19,11 +19,13 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid ColumnDefinitions="Auto, Auto, *" RowDefinitions="Auto, Auto, *">
-        <u:EnumSelector Name="Orientation" EnumType="Orientation" />
+        <ComboBox Name="Orientation"
+                  ItemsSource="{Binding Orientations}"
+                  SelectedValue="{Binding SelectedOrientation}"/>
         <u:ToolBar
             DockPanel.Dock="Top"
             Header="Hello World"
-            Orientation="{Binding #Orientation.Value}">
+            Orientation="{Binding #Orientation.SelectedValue}">
             <Button u:ToolBar.OverflowMode="Never" Content="Button 1" />
             <u:ToolBarSeparator />
             <TextBox Width="100" VerticalAlignment="Center"></TextBox>
@@ -52,7 +54,7 @@
         <u:ToolBar
             DockPanel.Dock="Top"
             ItemsSource="{Binding Items}"
-            Orientation="{Binding #Orientation.Value}">
+            Orientation="{Binding #Orientation.SelectedValue}">
             <u:ToolBar.ItemTemplate>
                 <template:ToolBarItemTemplateSelector />
             </u:ToolBar.ItemTemplate>

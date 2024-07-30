@@ -2,7 +2,6 @@
     x:Class="Ursa.Demo.Pages.FormDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:common="clr-namespace:Ursa.Common;assembly=Ursa"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
@@ -15,21 +14,21 @@
     <ScrollViewer>
         <StackPanel>
             <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="Auto, Auto">
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Label Position" VerticalAlignment="Center"></TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="Label Alignment" VerticalAlignment="Center"></TextBlock>
-                <u:EnumSelector Grid.Row="0" Grid.Column="1"
-                    Name="position"
-                    EnumType="common:Position"
-                    Value="{x:Static common:Position.Top}" />
-                <u:EnumSelector Grid.Row="1" Grid.Column="1"
-                    Name="alignment"
-                    EnumType="HorizontalAlignment"
-                    Value="{x:Static HorizontalAlignment.Left}" />
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Label Position" VerticalAlignment="Center" />
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Label Alignment" VerticalAlignment="Center" />
+                <ComboBox Grid.Row="0" Grid.Column="1"
+                          Name="position"
+                          ItemsSource="{Binding Positions}"
+                          SelectedValue="{Binding SelectedPosition}" />
+                <ComboBox Grid.Row="1" Grid.Column="1"
+                          Name="alignment"
+                          ItemsSource="{Binding HorizontalAlignments}"
+                          SelectedValue="{Binding SelectedHorizontalAlignment}" />
             </Grid>
             <u:Form
                 DataContext="{Binding Model}"
-                LabelAlignment="{Binding #alignment.Value}"
-                LabelPosition="{Binding #position.Value}"
+                LabelAlignment="{Binding #alignment.SelectedValue}"
+                LabelPosition="{Binding #position.SelectedValue}"
                 LabelWidth="*">
                 <u:FormGroup Header="Information">
                     <TextBox

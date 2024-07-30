@@ -18,7 +18,7 @@
             <Setter Property="Width" Value="{Binding ItemSelfWidth}" />
             <Setter Property="Height" Value="{Binding ItemSelfHeight}" />
         </Style>
-        <Style Selector="u|EnumSelector">
+        <Style Selector="ComboBox">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
         </Style>
     </UserControl.Styles>
@@ -30,13 +30,13 @@
                 Margin="4 0">
             <u:FormGroup>
                 <u:FormItem Label="Orientation">
-                    <u:EnumSelector EnumType="Orientation" Value="{Binding SelectedOrientation}" />
+                    <ComboBox ItemsSource="{Binding Orientations}" SelectedValue="{Binding SelectedOrientation}"/>
                 </u:FormItem>
                 <u:FormItem Label="HorizontalScrollBar">
-                    <u:EnumSelector EnumType="ScrollBarVisibility" Value="{Binding HorizontalVisibility}" />
+                    <ComboBox ItemsSource="{Binding ScrollBarVisibilities}" SelectedValue="{Binding HorizontalVisibility}"/>
                 </u:FormItem>
                 <u:FormItem Label="VerticalScrollBar">
-                    <u:EnumSelector EnumType="ScrollBarVisibility" Value="{Binding VerticalVisibility}" />
+                    <ComboBox ItemsSource="{Binding ScrollBarVisibilities}" SelectedValue="{Binding VerticalVisibility}"/>
                 </u:FormItem>
                 <u:FormItem>
                     <u:FormItem.Label>
@@ -93,10 +93,10 @@
                         Value="{Binding ItemSelfHeight}" />
                 </u:FormItem>
                 <u:FormItem Label="HorizontalAlignment">
-                    <u:EnumSelector EnumType="HorizontalAlignment" Value="{Binding CmbHAlign}" />
+                    <ComboBox ItemsSource="{Binding HorizontalAlignments}" SelectedValue="{Binding CmbHAlign}"/>
                 </u:FormItem>
                 <u:FormItem Label="VerticalAlignment">
-                    <u:EnumSelector EnumType="VerticalAlignment" Value="{Binding CmbVAlign}" />
+                    <ComboBox ItemsSource="{Binding VerticalAlignments}" SelectedValue="{Binding CmbVAlign}"/>
                 </u:FormItem>
             </u:FormGroup>
         </u:Form>

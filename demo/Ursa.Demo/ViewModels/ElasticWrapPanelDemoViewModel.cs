@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls.Primitives;
+﻿using System.Collections.ObjectModel;
+using Avalonia.Controls.Primitives;
 using Avalonia.Layout;
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -22,6 +23,35 @@ public partial class ElasticWrapPanelDemoViewModel : ObservableObject
 
     [ObservableProperty] private HorizontalAlignment _cmbHAlign = HorizontalAlignment.Left;
     [ObservableProperty] private VerticalAlignment _cmbVAlign = VerticalAlignment.Stretch;
+
+    public ObservableCollection<Orientation> Orientations =>
+    [
+        Orientation.Horizontal,
+        Orientation.Vertical,
+    ];
+
+    public ObservableCollection<ScrollBarVisibility> ScrollBarVisibilities =>
+    [
+        ScrollBarVisibility.Auto,
+        ScrollBarVisibility.Hidden,
+        ScrollBarVisibility.Visible,
+    ];
+
+    public ObservableCollection<HorizontalAlignment> HorizontalAlignments =>
+    [
+        HorizontalAlignment.Left,
+        HorizontalAlignment.Center,
+        HorizontalAlignment.Right,
+        HorizontalAlignment.Stretch,
+    ];
+
+    public ObservableCollection<VerticalAlignment> VerticalAlignments =>
+    [
+        VerticalAlignment.Top,
+        VerticalAlignment.Center,
+        VerticalAlignment.Bottom,
+        VerticalAlignment.Stretch,
+    ];
 
     private double _oldItemSelfWidth;
     private double _oldItemSelfHeight;
