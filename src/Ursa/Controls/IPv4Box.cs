@@ -540,7 +540,7 @@ public class IPv4Box: TemplatedControl
         IClipboard? clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
         if (clipboard is null) return;
         var s = await clipboard.GetTextAsync();
-        if (IPAddress.TryParse(s, out var address))
+        if (s is not null && IPAddress.TryParse(s, out var address))
         {
             IPAddress = address;
         }

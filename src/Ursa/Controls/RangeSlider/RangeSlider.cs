@@ -7,7 +7,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
-using Avalonia.Utilities;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -239,27 +239,27 @@ public class RangeSlider: TemplatedControl
             {
                 foreach (var tick in ticks)
                 {
-                    if (MathUtilities.AreClose(tick, value))
+                    if (MathHelpers.AreClose(tick, value))
                     {
                         return value;
                     }
 
-                    if (MathUtilities.LessThan(tick, value) && MathUtilities.GreaterThan(tick, previous))
+                    if (MathHelpers.LessThan(tick, value) && MathHelpers.GreaterThan(tick, previous))
                     {
                         previous = tick;
                     }
-                    else if (MathUtilities.GreaterThan(tick, value) && MathUtilities.LessThan(tick, next))
+                    else if (MathHelpers.GreaterThan(tick, value) && MathHelpers.LessThan(tick, next))
                     {
                         next = tick;
                     }
                 }
             }
-            else if (MathUtilities.GreaterThan(TickFrequency, 0.0))
+            else if (MathHelpers.GreaterThan(TickFrequency, 0.0))
             {
                 previous = Minimum + Math.Round((value - Minimum) / TickFrequency) * TickFrequency;
                 next = Math.Min(Maximum, previous + TickFrequency);
             }
-            value = MathUtilities.GreaterThanOrClose(value, (previous + next) * 0.5) ? next : previous;
+            value = MathHelpers.GreaterThanOrClose(value, (previous + next) * 0.5) ? next : previous;
         }
 
         return value;

@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Layout;
 using Avalonia.Utilities;
+using Irihi.Avalonia.Shared.Helpers;
 using static System.Math;
 
 namespace Ursa.Controls;
@@ -132,7 +133,7 @@ public class ElasticWrapPanel : WrapPanel
                     sz.V = itemSetSize.V;
                 }
 
-                if (MathUtilities.GreaterThan(curLineSize.U + sz.U, uvConstraint.U))
+                if (MathHelpers.GreaterThan(curLineSize.U + sz.U, uvConstraint.U))
                 {
                     panelSize.U = Max(curLineSize.U, panelSize.U);
                     panelSize.V += curLineSize.V;
@@ -158,13 +159,13 @@ public class ElasticWrapPanel : WrapPanel
                     itemWidthSet ? itemWidth : child.DesiredSize.Width,
                     itemHeightSet ? itemHeight : child.DesiredSize.Height);
 
-                if (MathUtilities.GreaterThan(curLineSize.U + sz.U, uvConstraint.U)) // Need to switch to another line
+                if (MathHelpers.GreaterThan(curLineSize.U + sz.U, uvConstraint.U)) // Need to switch to another line
                 {
                     panelSize.U = Max(curLineSize.U, panelSize.U);
                     panelSize.V += curLineSize.V;
                     curLineSize = sz;
 
-                    if (MathUtilities.GreaterThan(sz.U, uvConstraint.U)) // The element is wider than the constraint - give it a separate line
+                    if (MathHelpers.GreaterThan(sz.U, uvConstraint.U)) // The element is wider than the constraint - give it a separate line
                     {
                         panelSize.U = Max(sz.U, panelSize.U);
                         panelSize.V += sz.V;
@@ -236,7 +237,7 @@ public class ElasticWrapPanel : WrapPanel
                     sz.V = itemSetSize.V;
                 }
 
-                if (MathUtilities.GreaterThan(curLineUIs.TotalU + sz.U, uvFinalSize.U))
+                if (MathHelpers.GreaterThan(curLineUIs.TotalU + sz.U, uvFinalSize.U))
                 {
                     if (curLineUIs.Count > 0)
                     {
@@ -260,7 +261,7 @@ public class ElasticWrapPanel : WrapPanel
                     itemWidthSet ? ItemWidth : child.DesiredSize.Width,
                     itemHeightSet ? ItemHeight : child.DesiredSize.Height);
 
-                if (MathUtilities.GreaterThan(curLineUIs.TotalU + sz.U, uvFinalSize.U)) // Need to switch to another line
+                if (MathHelpers.GreaterThan(curLineUIs.TotalU + sz.U, uvFinalSize.U)) // Need to switch to another line
                 {
                     if (curLineUIs.Count > 0)
                     {
@@ -269,7 +270,7 @@ public class ElasticWrapPanel : WrapPanel
 
                     curLineUIs = new UVCollection(Orientation, itemSetSize);
                     curLineUIs.Add(child, sz);
-                    if (MathUtilities.GreaterThan(sz.U, uvFinalSize.U))
+                    if (MathHelpers.GreaterThan(sz.U, uvFinalSize.U))
                     {
                         lineUVCollection.Add(curLineUIs);
                         curLineUIs = new UVCollection(Orientation, itemSetSize);
