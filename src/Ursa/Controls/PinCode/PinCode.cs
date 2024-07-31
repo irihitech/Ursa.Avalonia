@@ -159,6 +159,15 @@ public class PinCode: TemplatedControl
 
     protected override void OnKeyDown(KeyEventArgs e)
     {
+        if (e.Key == Key.Tab && e.Source is PinCodeItem)
+        {
+            _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);
+            if (e.KeyModifiers == KeyModifiers.Shift)
+                _currentIndex--;
+            else
+                _currentIndex++;
+            _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);
+        }
         base.OnKeyDown(e);
         if (e.Key == Key.Back && _currentIndex >= 0)
         {
