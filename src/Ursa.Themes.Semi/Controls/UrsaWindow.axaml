@@ -174,5 +174,11 @@
                 </StackPanel>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:maximized /template/ PathIcon#PART_RestoreButtonIcon">
+            <Setter Property="Data" Value="{DynamicResource WindowRestoreGlyph}" />
+        </Style>
+        <Style Selector="^:fullscreen /template/ PathIcon#PART_FullScreenButtonIcon">
+            <Setter Property="Data" Value="{DynamicResource WindowCollapseGlyph}" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>
