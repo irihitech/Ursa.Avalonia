@@ -174,5 +174,8 @@
                 </StackPanel>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:maximized /template/ PathIcon#PART_RestoreButtonIcon">
+            <Setter Property="Data" Value="{DynamicResource WindowRestoreGlyph}" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>
