@@ -1,0 +1,25 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:vm="using:Ursa.Demo.ViewModels"
+             x:DataType="vm:PinCodeDemoViewModel"
+             x:CompileBindings="True"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Ursa.Demo.Pages.PinCodeDemo">
+    <StackPanel>
+        <u:Form>
+            <u:PinCode u:FormItem.Label="Regular" Count="4" Name="v4" CompleteCommand="{Binding CompleteCommand}"/>
+            <u:PinCode u:FormItem.Label="Digit Only" Count="4" Mode="Digit" DataValidationErrors.Errors="{Binding Error}"/>
+            <u:PinCode u:FormItem.Label="Letter Only" Count="4" Mode="Letter"/>
+            <u:PinCode u:FormItem.Label="Password Mask" Count="6" PasswordChar="•" Complete="VerificationCode_OnComplete" />
+            <u:FormGroup>
+                <u:PinCode u:FormItem.Label="Size Small" Count="6" Classes="Small" />
+                <u:PinCode u:FormItem.Label="Size Default" Count="6" />
+                <u:PinCode u:FormItem.Label="Size Large" Count="6" Classes="Large"  />
+            </u:FormGroup>
+        </u:Form>
+        
+    </StackPanel>
+</UserControl>

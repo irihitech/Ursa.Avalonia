@@ -67,7 +67,7 @@ public class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyThemeToggler => new ThemeTogglerDemoViewModel(),
             MenuKeys.MenuKeyToolBar => new ToolBarDemoViewModel(),
             MenuKeys.MenuKeyTimeBox => new TimeBoxDemoViewModel(),
-            MenuKeys.MenuKeyVerificationCode => new VerificationCodeDemoViewModel(),
+            MenuKeys.MenuKeyPinCode => new PinCodeDemoViewModel(),
             _ => throw new ArgumentOutOfRangeException(nameof(s), s, null)
         };
     }
