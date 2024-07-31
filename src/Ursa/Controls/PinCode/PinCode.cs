@@ -79,6 +79,7 @@ public class PinCode: TemplatedControl
     {
         CountProperty.Changed.AddClassHandler<PinCode, int>((code, args) => code.OnCountOfDigitChanged(args));
         FocusableProperty.OverrideDefaultValue<PinCode>(true);
+        KeyDownEvent.AddClassHandler<PinCode>((o,e)=>o.OnPreviewKeyDown(e), RoutingStrategies.Tunnel);
     }
 
     public PinCode()
@@ -140,6 +141,7 @@ public class PinCode: TemplatedControl
             {
                 CompleteCommand?.Execute(Digits);
                 RaiseEvent(new PinCodeCompleteEventArgs(Digits, CompleteEvent));
+                _currentIndex--;
             }
         }
     }
@@ -157,7 +159,7 @@ public class PinCode: TemplatedControl
         };
     }
 
-    protected override void OnKeyDown(KeyEventArgs e)
+    protected void OnPreviewKeyDown(KeyEventArgs e)
     {
         if (e.Key == Key.Tab && e.Source is PinCodeItem)
         {
@@ -168,8 +170,7 @@ public class PinCode: TemplatedControl
                 _currentIndex++;
             _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);
         }
-        base.OnKeyDown(e);
-        if (e.Key == Key.Back && _currentIndex >= 0)
+        else if (e.Key == Key.Back && _currentIndex >= 0)
         {
             _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);
             var presenter = _itemsControl?.ContainerFromIndex(_currentIndex) as PinCodeItem;
@@ -179,6 +180,27 @@ public class PinCode: TemplatedControl
             if (_currentIndex == 0) return;
             _currentIndex--;
             _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
+        }
+        else if (e.Key is Key.Left or Key.FnLeftArrow)
+        {
+            _currentIndex--;
+            _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);
+            _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
+        }
+        else if(e.Key is Key.Right or Key.FnRightArrow)
+        {
+            _currentIndex++;
+            _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);
+            _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
+        }
+        else if (e.Key is Key.Enter or Key.Return)
+        {
+            CompleteCommand?.Execute(Digits);
+            RaiseEvent(new PinCodeCompleteEventArgs(Digits, CompleteEvent));
+        }
+        else
+        {
+            base.OnKeyDown(e);
         }
     }
 }
