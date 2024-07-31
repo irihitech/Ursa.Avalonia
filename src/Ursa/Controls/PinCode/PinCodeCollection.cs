@@ -3,16 +3,16 @@ using Avalonia.Input;
 
 namespace Ursa.Controls;
 
-public class VerificationCodeCollection: ItemsControl
+public class PinCodeCollection: ItemsControl
 {
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
-        return NeedsContainer<VerificationCodeItem>(item, out recycleKey);
+        return NeedsContainer<PinCodeItem>(item, out recycleKey);
     }
 
     protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey)
     {
-        return new VerificationCodeItem()
+        return new PinCodeItem()
         {
             [InputMethod.IsInputMethodEnabledProperty] = false,
         };

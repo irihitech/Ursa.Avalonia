@@ -5,18 +5,19 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.LogicalTree;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
 [TemplatePart(PART_ItemsControl, typeof(ItemsControl))]
-public class VerificationCode: TemplatedControl
+public class PinCode: TemplatedControl
 {
     public const string PART_ItemsControl = "PART_ItemsControl";
     private ItemsControl? _itemsControl;
     private int _currentIndex;
     
-    public static readonly StyledProperty<ICommand?> CompleteCommandProperty = AvaloniaProperty.Register<VerificationCode, ICommand?>(
+    public static readonly StyledProperty<ICommand?> CompleteCommandProperty = AvaloniaProperty.Register<PinCode, ICommand?>(
         nameof(CompleteCommand));
 
     public ICommand? CompleteCommand
@@ -25,7 +26,7 @@ public class VerificationCode: TemplatedControl
         set => SetValue(CompleteCommandProperty, value);
     }
 
-    public static readonly StyledProperty<int> CountProperty = AvaloniaProperty.Register<VerificationCode, int>(
+    public static readonly StyledProperty<int> CountProperty = AvaloniaProperty.Register<PinCode, int>(
         nameof(Count));
 
     public int Count
@@ -35,7 +36,7 @@ public class VerificationCode: TemplatedControl
     }
 
     public static readonly StyledProperty<char> PasswordCharProperty =
-        AvaloniaProperty.Register<VerificationCode, char>(
+        AvaloniaProperty.Register<PinCode, char>(
             nameof(PasswordChar));
 
     public char PasswordChar
@@ -44,17 +45,17 @@ public class VerificationCode: TemplatedControl
         set => SetValue(PasswordCharProperty, value);
     }
 
-    public static readonly StyledProperty<VerificationCodeMode> ModeProperty =
-        AvaloniaProperty.Register<VerificationCode, VerificationCodeMode>(
-            nameof(Mode), defaultValue: VerificationCodeMode.Digit | VerificationCodeMode.Letter);
+    public static readonly StyledProperty<PinCodeMode> ModeProperty =
+        AvaloniaProperty.Register<PinCode, PinCodeMode>(
+            nameof(Mode), defaultValue: PinCodeMode.Digit | PinCodeMode.Letter);
 
-    public VerificationCodeMode Mode
+    public PinCodeMode Mode
     {
         get => GetValue(ModeProperty);
         set => SetValue(ModeProperty, value);
     }
 
-    public static readonly DirectProperty<VerificationCode, IList<string>> DigitsProperty = AvaloniaProperty.RegisterDirect<VerificationCode, IList<string>>(
+    public static readonly DirectProperty<PinCode, IList<string>> DigitsProperty = AvaloniaProperty.RegisterDirect<PinCode, IList<string>>(
         nameof(Digits), o => o.Digits);
     
     private IList<string> _digits = [];
@@ -64,23 +65,23 @@ public class VerificationCode: TemplatedControl
         private set => SetAndRaise(DigitsProperty, ref _digits, value);
     }
     
-    public static readonly RoutedEvent<VerificationCodeCompleteEventArgs> CompleteEvent =
-        RoutedEvent.Register<VerificationCode, VerificationCodeCompleteEventArgs>(
+    public static readonly RoutedEvent<PinCodeCompleteEventArgs> CompleteEvent =
+        RoutedEvent.Register<PinCode, PinCodeCompleteEventArgs>(
             nameof(Complete), RoutingStrategies.Bubble);
     
-    public event EventHandler<VerificationCodeCompleteEventArgs> Complete
+    public event EventHandler<PinCodeCompleteEventArgs> Complete
     {
         add => AddHandler(CompleteEvent, value);
         remove => RemoveHandler(CompleteEvent, value);
     }
 
-    static VerificationCode()
+    static PinCode()
     {
-        CountProperty.Changed.AddClassHandler<VerificationCode, int>((code, args) => code.OnCountOfDigitChanged(args));
-        FocusableProperty.OverrideDefaultValue<VerificationCode>(true);
+        CountProperty.Changed.AddClassHandler<PinCode, int>((code, args) => code.OnCountOfDigitChanged(args));
+        FocusableProperty.OverrideDefaultValue<PinCode>(true);
     }
 
-    public VerificationCode()
+    public PinCode()
     {
         InputMethod.SetIsInputMethodEnabled(this, false);
     }
@@ -103,18 +104,21 @@ public class VerificationCode: TemplatedControl
 
     private void OnControlPressed(object? sender, PointerPressedEventArgs e)
     {
-        if (e.Source is Control)
+        if (e.Source is Control t)
         {
-            /*
-            var item = t.FindLogicalAncestorOfType<VerificationCodeItem>();
+
+            var item = t.FindLogicalAncestorOfType<PinCodeItem>();
             if (item != null)
             {
                 item.Focus();
                 _currentIndex = _itemsControl?.IndexFromContainer(item) ?? 0;
             }
-            */
-            _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);
-            _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
+            else
+            {
+                _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);
+                _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
+            }
+            
         }
         e.Handled = true;
     }
@@ -124,7 +128,7 @@ public class VerificationCode: TemplatedControl
         base.OnTextInput(e);
         if (e.Text?.Length == 1 && _currentIndex < Count)
         {
-            var presenter = _itemsControl?.ContainerFromIndex(_currentIndex) as VerificationCodeItem;
+            var presenter = _itemsControl?.ContainerFromIndex(_currentIndex) as PinCodeItem;
             if (presenter is null) return;
             char c = e.Text[0];
             if (!Valid(c, this.Mode)) return;
@@ -135,20 +139,20 @@ public class VerificationCode: TemplatedControl
             if (_currentIndex == Count)
             {
                 CompleteCommand?.Execute(Digits);
-                RaiseEvent(new VerificationCodeCompleteEventArgs(Digits, CompleteEvent));
+                RaiseEvent(new PinCodeCompleteEventArgs(Digits, CompleteEvent));
             }
         }
     }
 
-    private bool Valid(char c, VerificationCodeMode mode)
+    private bool Valid(char c, PinCodeMode mode)
     {
         bool isDigit = char.IsDigit(c);
         bool isLetter = char.IsLetter(c);
         return mode switch
         {
-            VerificationCodeMode.Digit => isDigit,
-            VerificationCodeMode.Letter => isLetter,
-            VerificationCodeMode.Digit | VerificationCodeMode.Letter => isDigit || isLetter,
+            PinCodeMode.Digit => isDigit,
+            PinCodeMode.Letter => isLetter,
+            PinCodeMode.Digit | PinCodeMode.Letter => isDigit || isLetter,
             _ => true
         };
     }
@@ -159,7 +163,7 @@ public class VerificationCode: TemplatedControl
         if (e.Key == Key.Back && _currentIndex >= 0)
         {
             _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);
-            var presenter = _itemsControl?.ContainerFromIndex(_currentIndex) as VerificationCodeItem;
+            var presenter = _itemsControl?.ContainerFromIndex(_currentIndex) as PinCodeItem;
             if (presenter is null) return;
             Digits[_currentIndex] = string.Empty;
             presenter.Text = string.Empty;

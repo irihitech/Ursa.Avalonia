@@ -40,6 +40,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Numeric UpDown", Key = MenuKeys.MenuKeyNumericUpDown },
             new() { MenuHeader = "NumPad", Key = MenuKeys.MenuKeyNumPad },
             new() { MenuHeader = "Pagination", Key = MenuKeys.MenuKeyPagination },
+            new() { MenuHeader = "PinCode", Key = MenuKeys.MenuKeyPinCode},
             new() { MenuHeader = "RangeSlider", Key = MenuKeys.MenuKeyRangeSlider },
             new() { MenuHeader = "Rating", Key = MenuKeys.MenuKeyRating, Status = "New"},
             new() { MenuHeader = "Scroll To", Key = MenuKeys.MenuKeyScrollToButton },
@@ -53,7 +54,6 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "TwoTonePathIcon", Key = MenuKeys.MenuKeyTwoTonePathIcon},
             new() { MenuHeader = "ToolBar", Key = MenuKeys.MenuKeyToolBar },
             new() { MenuHeader = "Time Box", Key = MenuKeys.MenuKeyTimeBox },
-            new() { MenuHeader = "Verification Code", Key = MenuKeys.MenuKeyVerificationCode},
         };
     }
 }
@@ -101,7 +101,7 @@ public static class MenuKeys
     public const string MenuKeyThemeToggler = "ThemeToggler";
     public const string MenuKeyTreeComboBox = "TreeComboBox";
     public const string MenuKeyToolBar = "ToolBar";
-    public const string MenuKeyVerificationCode = "VerificationCode";
+    public const string MenuKeyPinCode = "PinCode";
     public const string MenuKeyTimeBox = "TimeBox";
 
 }

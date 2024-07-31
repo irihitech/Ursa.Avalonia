@@ -3,24 +3,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
-        <u:VerificationCode Count="4" />
+        <u:PinCode Count="4" />
     </Design.PreviewWith>
     <!--  Add Resources Here  -->
-    <ControlTheme x:Key="{x:Type u:VerificationCodeItem}" TargetType="u:VerificationCodeItem">
-        <Setter Property="Margin" Value="8" />
-        <Setter Property="FontSize" Value="20" />
+    <ControlTheme x:Key="{x:Type u:PinCodeItem}" TargetType="u:PinCodeItem">
         <Setter Property="Focusable" Value="True" />
-        <Setter Property="Height" Value="48" />
-        <Setter Property="Width" Value="48" />
-        <Setter Property="CornerRadius" Value="3" />
-        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Height" Value="{DynamicResource TextBoxDefaultHeight}" />
+        <Setter Property="Width" Value="{DynamicResource TextBoxDefaultHeight}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
+        <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}"></Setter>
         <Setter Property="Template">
             <ControlTemplate>
                 <Border
                     Name="PART_Background"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
-                    Background="{DynamicResource TextBoxDefaultBackground}"
+                    Background="{TemplateBinding Background}"
                     BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <TextPresenter
@@ -45,34 +44,43 @@
         <Style Selector="^:focus:error /template/ Border#PART_Background">
             <Setter Property="BorderBrush" Value="{DynamicResource DataValidationErrorsSelectedBorderBrush}" />
         </Style>
+        <Style Selector="^.Large">
+            <Setter Property="Height" Value="{DynamicResource TextBoxLargeHeight}" />
+            <Setter Property="Width" Value="{DynamicResource TextBoxLargeHeight}" />
+        </Style>
+        <Style Selector="^.Small">
+            <Setter Property="Height" Value="{DynamicResource TextBoxSmallHeight}" />
+            <Setter Property="Width" Value="{DynamicResource TextBoxSmallHeight}" />
+        </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type u:VerificationCodeCollection}" TargetType="u:VerificationCodeCollection">
+    <ControlTheme x:Key="{x:Type u:PinCodeCollection}" TargetType="u:PinCodeCollection">
         <Setter Property="Template">
-            <ControlTemplate TargetType="u:VerificationCodeCollection">
+            <ControlTemplate TargetType="u:PinCodeCollection">
                 <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
             </ControlTemplate>
         </Setter>
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type u:VerificationCode}" TargetType="u:VerificationCode">
+    <ControlTheme x:Key="{x:Type u:PinCode}" TargetType="u:PinCode">
         <Setter Property="HorizontalAlignment" Value="Left" />
+        
         <Setter Property="Template">
-            <ControlTemplate TargetType="u:VerificationCode">
+            <ControlTemplate TargetType="u:PinCode">
                 <DataValidationErrors>
-                    <u:VerificationCodeCollection HorizontalAlignment="Left" Name="{x:Static u:VerificationCode.PART_ItemsControl}" ItemsSource="{TemplateBinding Digits}">
-                        <u:VerificationCodeCollection.ItemsPanel>
+                    <u:PinCodeCollection HorizontalAlignment="Left" Name="{x:Static u:PinCode.PART_ItemsControl}" ItemsSource="{TemplateBinding Digits}">
+                        <u:PinCodeCollection.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <UniformGrid Columns="{TemplateBinding Count}" Rows="1" />
+                                <StackPanel Orientation="Horizontal" />
                             </ItemsPanelTemplate>
-                        </u:VerificationCodeCollection.ItemsPanel>
-                        <u:VerificationCodeCollection.ItemContainerTheme>
-                            <ControlTheme BasedOn="{StaticResource {x:Type u:VerificationCodeItem}}" TargetType="u:VerificationCodeItem">
-                                <Setter Property="PasswordChar" Value="{Binding $parent[u:VerificationCode].PasswordChar}" />
-                                <Setter Property="DataValidationErrors.Errors" Value="{Binding $parent[u:VerificationCode].(DataValidationErrors.Errors)}" />
+                        </u:PinCodeCollection.ItemsPanel>
+                        <u:PinCodeCollection.ItemContainerTheme>
+                            <ControlTheme BasedOn="{StaticResource {x:Type u:PinCodeItem}}" TargetType="u:PinCodeItem">
+                                <Setter Property="PasswordChar" Value="{Binding $parent[u:PinCode].PasswordChar}" />
+                                <Setter Property="DataValidationErrors.Errors" Value="{Binding $parent[u:PinCode].(DataValidationErrors.Errors)}" />
                             </ControlTheme>
-                        </u:VerificationCodeCollection.ItemContainerTheme>
-                    </u:VerificationCodeCollection>
+                        </u:PinCodeCollection.ItemContainerTheme>
+                    </u:PinCodeCollection>
                 </DataValidationErrors>
             </ControlTemplate>
         </Setter>
