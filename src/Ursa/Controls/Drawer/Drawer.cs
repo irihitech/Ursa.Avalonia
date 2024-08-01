@@ -196,7 +196,7 @@ public static class Drawer
     {
         options ??= DrawerOptions.Default;
         drawer.Position = options.Position;
-        drawer.IsCloseButtonVisible = options.ShowCloseButton;
+        drawer.IsCloseButtonVisible = options.IsCloseButtonVisible;
         drawer.CanLightDismiss = options.CanLightDismiss;
         if (options.Position == Position.Left || options.Position == Position.Right)
         {
