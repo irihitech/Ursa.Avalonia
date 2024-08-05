@@ -130,6 +130,35 @@ public class EnumSelector: TemplatedControl
         Values = GenerateItemTuple();
     }
 
+    // netstandard 2.0 does not support Enum.GetValuesAsUnderlyingType, which is used for native aot compilation
+#if NET8_0_OR_GREATER
+    private List<EnumItemTuple> GenerateItemTuple()
+    {
+        if (EnumType is null) return new List<EnumItemTuple>();
+        var values = Enum.GetValuesAsUnderlyingType(EnumType);
+        List<EnumItemTuple> list = new();
+        foreach (var value in values)
+        {
+            // value is underlying type like int/byte/short
+            var enumValue = Enum.ToObject(EnumType, value);
+            var displayName = Enum.GetName(EnumType, value);
+            if(displayName is null) continue;
+            var field = EnumType.GetField(displayName);
+            var description = field?.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault();
+            if (description is not null)
+            {
+                displayName = ((DescriptionAttribute) description).Description;
+            }
+            list.Add(new EnumItemTuple()
+            {
+                DisplayName = displayName,
+                Value = enumValue
+            });
+        }
+
+        return list;
+    }
+#else
     private List<EnumItemTuple> GenerateItemTuple()
     {
         if (EnumType is null) return new List<EnumItemTuple>();
@@ -157,4 +186,5 @@ public class EnumSelector: TemplatedControl
 
         return list;
     }
+#endif
 }
