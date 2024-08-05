@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="clr-namespace:Ursa.Demo.ViewModels;assembly=Ursa.Demo"
+    xmlns:common="clr-namespace:Ursa.Common;assembly=Ursa"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:CompileBindings="True"
@@ -15,7 +16,7 @@
         <TabControl Grid.Column="0" Width="300">
             <TabItem Header="Default">
                 <StackPanel>
-                    <ComboBox ItemsSource="{Binding Positions}" SelectedValue="{Binding SelectedPosition}" />
+                    <u:EnumSelector EnumType="common:Position" Value="{Binding SelectedPosition}" />
                     <ToggleSwitch
                         Content="Global/Local"
                         IsChecked="{Binding IsGlobal}"
@@ -33,7 +34,7 @@
                         OnContent="Yes" />
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Buttons" />
-                        <ComboBox ItemsSource="{Binding DialogButtons}" SelectedValue="{Binding SelectedButton}" />
+                        <u:EnumSelector EnumType="{x:Type u:DialogButton}" Value="{Binding SelectedButton}" />
                     </StackPanel>
                     <Button Command="{Binding ShowDialogCommand}" Content="Show Default Drawer" />
                     <TextBlock>
@@ -48,7 +49,7 @@
             </TabItem>
             <TabItem Header="Custom">
                 <StackPanel>
-                    <ComboBox ItemsSource="{Binding Positions}" SelectedValue="{Binding SelectedPosition}" />
+                    <u:EnumSelector EnumType="common:Position" Value="{Binding SelectedPosition}" />
                     <ToggleSwitch
                         Content="Global/Local"
                         IsChecked="{Binding IsGlobal}"

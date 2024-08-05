@@ -1,33 +1,12 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
-using Avalonia.Layout;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Ursa.Common;
 
 namespace Ursa.Demo.ViewModels;
 
 public partial class FormDemoViewModel : ObservableObject
 {
     [ObservableProperty] private DataModel _model;
-    [ObservableProperty] private Position _selectedPosition = Position.Top;
-    [ObservableProperty] private HorizontalAlignment _selectedHorizontalAlignment = HorizontalAlignment.Left;
-
-    public ObservableCollection<Position> Positions =>
-    [
-        Position.Left,
-        Position.Top,
-        Position.Right,
-        Position.Bottom,
-    ];
-
-    public ObservableCollection<HorizontalAlignment> HorizontalAlignments =>
-    [
-        HorizontalAlignment.Stretch,
-        HorizontalAlignment.Left,
-        HorizontalAlignment.Center,
-        HorizontalAlignment.Right,
-    ];
 
     public FormDemoViewModel()
     {

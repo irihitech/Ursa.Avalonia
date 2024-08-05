@@ -52,11 +52,11 @@
                         OnContent="Yes" />
                     <StackPanel Orientation="Horizontal">
                         <TextBlock VerticalAlignment="Center" Text="Buttons" />
-                        <ComboBox ItemsSource="{Binding DialogButtons}" SelectedValue="{Binding SelectedButton}" />
+                        <u:EnumSelector EnumType="{x:Type u:DialogButton}" Value="{Binding SelectedButton}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock VerticalAlignment="Center" Text="Mode" />
-                        <ComboBox ItemsSource="{Binding DialogModes}" SelectedValue="{Binding SelectedMode}" />
+                        <u:EnumSelector EnumType="{x:Type u:DialogMode}" Value="{Binding SelectedMode}" />
                     </StackPanel>
                     <Button Command="{Binding ShowDialogCommand}" Content="Show Dialog" />
                     <TextBlock>

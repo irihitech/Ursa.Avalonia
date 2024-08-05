@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Avalonia.Layout;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
@@ -9,14 +8,6 @@ namespace Ursa.Demo.ViewModels;
 
 public partial class ToolBarDemoViewModel : ObservableObject
 {
-    [ObservableProperty] private Orientation _selectedOrientation;
-
-    public ObservableCollection<Orientation> Orientations =>
-    [
-        Orientation.Horizontal,
-        Orientation.Vertical
-    ];
-
     public ObservableCollection<ToolBarItemViewModel> Items { get; set; }
 
     public ToolBarDemoViewModel()
@@ -76,6 +67,7 @@ public class ToolBarComboBoxItemViewModel : ToolBarItemViewModel
     public ObservableCollection<string>? Items { get; set; }
 
     private string? _selectedItem;
+
     public string? SelectedItem
     {
         get => _selectedItem;

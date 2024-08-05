@@ -18,7 +18,7 @@
             <Setter Property="Width" Value="{Binding ItemSelfWidth}" />
             <Setter Property="Height" Value="{Binding ItemSelfHeight}" />
         </Style>
-        <Style Selector="ComboBox">
+        <Style Selector="u|EnumSelector">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
         </Style>
     </UserControl.Styles>
@@ -30,13 +30,13 @@
                 Margin="4 0">
             <u:FormGroup>
                 <u:FormItem Label="Orientation">
-                    <ComboBox ItemsSource="{Binding Orientations}" SelectedValue="{Binding SelectedOrientation}"/>
+                    <u:EnumSelector EnumType="Orientation" Value="{Binding SelectedOrientation}" />
                 </u:FormItem>
                 <u:FormItem Label="HorizontalScrollBar">
-                    <ComboBox ItemsSource="{Binding ScrollBarVisibilities}" SelectedValue="{Binding HorizontalVisibility}"/>
+                    <u:EnumSelector EnumType="ScrollBarVisibility" Value="{Binding HorizontalVisibility}" />
                 </u:FormItem>
                 <u:FormItem Label="VerticalScrollBar">
-                    <ComboBox ItemsSource="{Binding ScrollBarVisibilities}" SelectedValue="{Binding VerticalVisibility}"/>
+                    <u:EnumSelector EnumType="ScrollBarVisibility" Value="{Binding VerticalVisibility}" />
                 </u:FormItem>
                 <u:FormItem>
                     <u:FormItem.Label>
@@ -93,10 +93,10 @@
                         Value="{Binding ItemSelfHeight}" />
                 </u:FormItem>
                 <u:FormItem Label="HorizontalAlignment">
-                    <ComboBox ItemsSource="{Binding HorizontalAlignments}" SelectedValue="{Binding CmbHAlign}"/>
+                    <u:EnumSelector EnumType="HorizontalAlignment" Value="{Binding CmbHAlign}" />
                 </u:FormItem>
                 <u:FormItem Label="VerticalAlignment">
-                    <ComboBox ItemsSource="{Binding VerticalAlignments}" SelectedValue="{Binding CmbVAlign}"/>
+                    <u:EnumSelector EnumType="VerticalAlignment" Value="{Binding CmbVAlign}" />
                 </u:FormItem>
             </u:FormGroup>
         </u:Form>
