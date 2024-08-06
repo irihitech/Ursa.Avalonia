@@ -25,25 +25,6 @@ public partial class DialogDemoViewModel: ObservableObject
     [ObservableProperty] private DateTime? _date;
     [ObservableProperty] private bool _fullScreen;
     [ObservableProperty] private bool _showInTaskBar;
-
-    public ObservableCollection<DialogButton> DialogButtons =>
-    [
-        DialogButton.None,
-        DialogButton.OK,
-        DialogButton.OKCancel,
-        DialogButton.YesNo,
-        DialogButton.YesNoCancel,
-    ];
-
-    public ObservableCollection<DialogMode> DialogModes =>
-    [
-        DialogMode.Info,
-        DialogMode.Warning,
-        DialogMode.Error,
-        DialogMode.Question,
-        DialogMode.None,
-        DialogMode.Success,
-    ];
     
     public DialogDemoViewModel()
     {

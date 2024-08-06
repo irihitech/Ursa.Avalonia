@@ -1,5 +1,4 @@
 using System;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -24,23 +23,6 @@ public partial class DrawerDemoViewModel : ObservableObject
     [ObservableProperty] private bool _result;
     [ObservableProperty] private bool _isModal;
     [ObservableProperty] private DateTime? _date;
-
-    public ObservableCollection<Position> Positions =>
-    [
-        Position.Left,
-        Position.Top,
-        Position.Right,
-        Position.Bottom,
-    ];
-
-    public ObservableCollection<DialogButton> DialogButtons =>
-    [
-        DialogButton.None,
-        DialogButton.OK,
-        DialogButton.OKCancel,
-        DialogButton.YesNo,
-        DialogButton.YesNoCancel,
-    ];
 
     public DrawerDemoViewModel()
     {

@@ -12,7 +12,6 @@
     x:DataType="vm:EnumSelectorDemoViewModel"
     mc:Ignorable="d">
     <StackPanel>
-        <u:Banner Type="Warning" Header="Native AOT non-compatible" Content="EnumSelector highly relies on reflection, it is not compatible with NativeAOT compilation. " Classes="Warning"></u:Banner>
         <ToggleSwitch Name="description" Content="Show Description" />
         <TextBlock Text="Select Type" />
         <ComboBox

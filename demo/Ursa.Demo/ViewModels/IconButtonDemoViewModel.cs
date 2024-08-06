@@ -1,18 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
-using Ursa.Common;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Ursa.Demo.ViewModels;
 
-public partial class IconButtonDemoViewModel : ObservableObject
+public class IconButtonDemoViewModel : ObservableObject
 {
-    [ObservableProperty] private Position _selectedPosition = Position.Top;
-
-    public ObservableCollection<Position> Positions =>
-    [
-        Position.Left,
-        Position.Top,
-        Position.Right,
-        Position.Bottom,
-    ];
 }
