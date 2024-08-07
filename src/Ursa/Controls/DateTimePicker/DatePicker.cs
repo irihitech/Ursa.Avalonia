@@ -52,16 +52,7 @@ public class DatePicker: DatePickerBase, IClearControl
 
     private void OnSelectionChanged(AvaloniaPropertyChangedEventArgs<DateTime?> args)
     {
-        if (args.NewValue.Value is null)
-        {
-            _calendar?.ClearSelection();
-            _textBox?.Clear();
-        }
-        else
-        {
-            _calendar?.MarkDates(startDate: args.NewValue.Value, endDate: args.NewValue.Value);
-            _textBox?.SetValue(TextBox.TextProperty, args.NewValue.Value.Value.ToString(DisplayFormat ?? "yyyy-MM-dd"));
-        }
+        SyncSelectedDateToText(args.NewValue.Value);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -91,6 +82,7 @@ public class DatePicker: DatePickerBase, IClearControl
         {
             _calendar.DateSelected += OnDateSelected;
         }
+        SyncSelectedDateToText(SelectedDate);
     }
 
     private void OnDateSelected(object? sender, CalendarDayButtonEventArgs e)
@@ -120,6 +112,20 @@ public class DatePicker: DatePickerBase, IClearControl
     private void OnTextChanged(object? sender, TextChangedEventArgs e)
     {
         SetSelectedDate(true);
+    }
+    
+    private void SyncSelectedDateToText(DateTime? date)
+    {
+        if (date is null)
+        {
+            _textBox?.SetValue(TextBox.TextProperty, null);
+            _calendar?.ClearSelection();
+        }
+        else
+        {
+            _textBox?.SetValue(TextBox.TextProperty, date.Value.ToString(DisplayFormat ?? "yyyy-MM-dd"));
+            _calendar?.MarkDates(startDate: date.Value, endDate: date.Value);
+        }
     }
 
     private void SetSelectedDate(bool fromText = false)

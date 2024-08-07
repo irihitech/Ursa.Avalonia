@@ -3,6 +3,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:u="https://irihi.tech/ursa"
+             xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+             x:DataType="viewModels:DatePickerDemoViewModel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.DatePickerDemo">
     <StackPanel Margin="20" HorizontalAlignment="Left">
@@ -10,5 +12,9 @@
         <TextBlock Text="{Binding #singlePicker.SelectedDate}" ></TextBlock>
         <u:DatePicker Name="singlePicker" Width="200" Classes="ClearButton" />
         <u:DateRangePicker Width="300" DisplayFormat="yyyyMMdd" Classes="ClearButton" />
+        
+        <TextBlock Text="Binding"></TextBlock>
+        <u:DatePicker Width="200" SelectedDate="{Binding SelectedDate, Mode=TwoWay}"/>
+        <u:DateRangePicker Width="300" SelectedStartDate="{Binding StartDate}" SelectedEndDate="{Binding EndDate}"/>
     </StackPanel>
 </UserControl>

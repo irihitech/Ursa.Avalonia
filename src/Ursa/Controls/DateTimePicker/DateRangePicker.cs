@@ -165,6 +165,42 @@ public class DateRangePicker : DatePickerBase, IClearControl
             _endCalendar.DatePreviewed += OnDatePreviewed;
             _endCalendar.ContextDateChanged += OnContextDateChanged;
         }
+        SyncDateToText();
+    }
+
+    private void SyncDateToText()
+    {
+        if (SelectedStartDate is not null)
+        {
+            _startTextBox?.SetValue(TextBox.TextProperty, SelectedStartDate.Value.ToString(DisplayFormat ?? "yyyy-MM-dd"));
+        }
+        if (SelectedEndDate is not null)
+        {
+            _endTextBox?.SetValue(TextBox.TextProperty, SelectedEndDate.Value.ToString(DisplayFormat ?? "yyyy-MM-dd"));
+        }
+
+        if (SelectedStartDate is null)
+        {
+            _startCalendar?.ClearSelection();
+        }
+        if(SelectedEndDate is null)
+        {
+            _endCalendar?.ClearSelection();
+        }
+        if(SelectedStartDate is not null && SelectedEndDate is not null)
+        {
+            _startCalendar?.MarkDates(SelectedStartDate, SelectedEndDate);
+            _endCalendar?.MarkDates(SelectedStartDate, SelectedEndDate);
+        }
+        else if(SelectedStartDate is not null)
+        {
+            _startCalendar?.MarkDates(SelectedStartDate, SelectedStartDate);
+        }
+        else if(SelectedEndDate is not null)
+        {
+            _endCalendar?.MarkDates(SelectedEndDate, SelectedEndDate);
+        }
+        PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedStartDate is null && SelectedEndDate is null);
     }
 
     private void OnTextBoxLostFocus(object? sender, RoutedEventArgs e)
@@ -381,4 +417,6 @@ public class DateRangePicker : DatePickerBase, IClearControl
 
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
+    
+    
 }
