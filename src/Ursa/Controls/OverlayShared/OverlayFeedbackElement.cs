@@ -20,6 +20,7 @@ public abstract class OverlayFeedbackElement: ContentControl
     
     static OverlayFeedbackElement()
     {
+        FocusableProperty.OverrideDefaultValue<OverlayFeedbackElement>(true);
         DataContextProperty.Changed.AddClassHandler<OverlayFeedbackElement, object?>((o, e) => o.OnDataContextChange(e));
         ClosedEvent.AddClassHandler<OverlayFeedbackElement>((o,e)=>o.OnClosed(e));
     }
