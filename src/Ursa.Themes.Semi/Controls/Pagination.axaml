@@ -75,11 +75,13 @@
                     </u:PaginationButton>
                     <StackPanel Orientation="Horizontal">
                         <u:NumericIntUpDown
+                            Name="PART_PageInput"
                             Value="{TemplateBinding CurrentPage, Mode=TwoWay}"
                             ShowButtonSpinner="False"
                             HorizontalContentAlignment="Center"
                             MinWidth="{Binding $self.Bounds.Height}"
                             VerticalAlignment="Center" />
+                        <TextBlock Name="PART_PageTextBlock" Text="{TemplateBinding CurrentPage}" VerticalAlignment="Center" IsVisible="False"/>
                         <TextBlock Text="/"
                                    Margin="8 0"
                                    VerticalAlignment="Center" />
@@ -99,6 +101,12 @@
                 </StackPanel>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^.ReadOnly /template/ TextBlock#PART_PageTextBlock">
+            <Setter Property="IsVisible" Value="True"></Setter>
+        </Style>
+        <Style Selector="^.ReadOnly /template/ u|NumericIntUpDown#PART_PageInput">
+            <Setter Property="IsVisible" Value="False"></Setter>
+        </Style>
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:PaginationButton}"
