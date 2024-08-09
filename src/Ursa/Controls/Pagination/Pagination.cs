@@ -33,12 +33,22 @@ public class Pagination: TemplatedControl
     private NumericIntUpDown? _quickJumpInput;
 
     public static readonly StyledProperty<int?> CurrentPageProperty = AvaloniaProperty.Register<Pagination, int?>(
-        nameof(CurrentPage));
-
+        nameof(CurrentPage) , coerce: CoerceCurrentPage);
+    
     public int? CurrentPage
     {
         get => GetValue(CurrentPageProperty);
         set => SetValue(CurrentPageProperty, value);
+    }
+    
+    private static int? CoerceCurrentPage(AvaloniaObject arg1, int? arg2)
+    {
+        if (arg2 is null) return null;
+        if (arg1 is Pagination p)
+        {
+            arg2 = MathHelpers.SafeClamp(arg2.Value, 1, p.PageCount + 1);
+        }
+        return arg2;
     }
 
     private void OnCurrentPageChanged(AvaloniaPropertyChangedEventArgs<int?> args)
