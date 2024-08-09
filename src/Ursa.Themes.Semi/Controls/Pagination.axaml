@@ -8,31 +8,42 @@
         </StackPanel>
     </Design.PreviewWith>
     <!--  Add Resources Here  -->
-    <ControlTheme x:Key="{x:Type u:Pagination}" TargetType="u:Pagination">
+    <ControlTheme x:Key="{x:Type u:Pagination}"
+                  TargetType="u:Pagination">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Pagination">
                 <StackPanel Orientation="Horizontal">
-                    <u:PaginationButton u:DisabledAdorner.IsEnabled="True" Name="{x:Static u:Pagination.PART_PreviousButton}">
+                    <u:PaginationButton
+                        u:DisabledAdorner.IsEnabled="True"
+                        Name="{x:Static u:Pagination.PART_PreviousButton}">
                         <PathIcon
                             Width="12"
                             Height="12"
                             Data="{DynamicResource PaginationBackwardGlyph}"
                             Foreground="{DynamicResource PaginationButtonIconForeground}" />
                     </u:PaginationButton>
-                    <StackPanel Name="{x:Static u:Pagination.PART_ButtonPanel}" Orientation="Horizontal" />
-                    <u:PaginationButton u:DisabledAdorner.IsEnabled="True" Name="{x:Static u:Pagination.PART_NextButton}">
+                    <StackPanel
+                        Name="{x:Static u:Pagination.PART_ButtonPanel}"
+                        Orientation="Horizontal" />
+                    <u:PaginationButton
+                        u:DisabledAdorner.IsEnabled="True"
+                        Name="{x:Static u:Pagination.PART_NextButton}">
                         <PathIcon
                             Width="12"
                             Height="12"
                             Data="{DynamicResource PaginationForwardGlyph}"
                             Foreground="{DynamicResource PaginationButtonIconForeground}" />
                     </u:PaginationButton>
-                    <StackPanel Orientation="Horizontal" IsVisible="{TemplateBinding ShowQuickJump}">
+                    <StackPanel Orientation="Horizontal"
+                                IsVisible="{TemplateBinding ShowQuickJump}">
                         <TextBlock
                             Margin="4 0"
                             VerticalAlignment="Center"
                             Text="{DynamicResource STRING_PAGINATION_JUMP_TO}" />
-                        <u:NumericIntUpDown x:Name="{x:Static u:Pagination.PART_QuickJumpInput}" ShowButtonSpinner="False" Width="50"></u:NumericIntUpDown>
+                        <u:NumericIntUpDown
+                            x:Name="{x:Static u:Pagination.PART_QuickJumpInput}"
+                            ShowButtonSpinner="False"
+                            Width="50" />
                         <TextBlock
                             Margin="4 0"
                             VerticalAlignment="Center"
@@ -48,16 +59,63 @@
         </Setter>
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type u:PaginationButton}" TargetType="u:PaginationButton">
-        <Setter Property="Content" Value="{Binding $self.Page}" />
+    <ControlTheme x:Key="TinyPagination"
+                  TargetType="{x:Type u:Pagination}">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:Pagination">
+                <StackPanel Orientation="Horizontal">
+                    <u:PaginationButton
+                        u:DisabledAdorner.IsEnabled="True"
+                        Name="{x:Static u:Pagination.PART_PreviousButton}">
+                        <PathIcon
+                            Width="12"
+                            Height="12"
+                            Data="{DynamicResource PaginationBackwardGlyph}"
+                            Foreground="{DynamicResource PaginationButtonIconForeground}" />
+                    </u:PaginationButton>
+                    <StackPanel Orientation="Horizontal">
+                        <u:NumericIntUpDown
+                            Value="{TemplateBinding CurrentPage, Mode=TwoWay}"
+                            ShowButtonSpinner="False"
+                            HorizontalContentAlignment="Center"
+                            MinWidth="{Binding $self.Bounds.Height}"
+                            VerticalAlignment="Center" />
+                        <TextBlock Text="/"
+                                   Margin="8 0"
+                                   VerticalAlignment="Center" />
+                        <SelectableTextBlock
+                            Text="{TemplateBinding PageCount}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                    <u:PaginationButton
+                        u:DisabledAdorner.IsEnabled="True"
+                        Name="{x:Static u:Pagination.PART_NextButton}">
+                        <PathIcon
+                            Width="12"
+                            Height="12"
+                            Data="{DynamicResource PaginationForwardGlyph}"
+                            Foreground="{DynamicResource PaginationButtonIconForeground}" />
+                    </u:PaginationButton>
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:PaginationButton}"
+                  TargetType="u:PaginationButton">
+        <Setter Property="Content"
+                Value="{Binding $self.Page}" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="MinWidth" Value="32" />
         <Setter Property="MinHeight" Value="32" />
-        <Setter Property="Background" Value="{DynamicResource PaginationButtonDefaultBackground}" />
-        <Setter Property="Foreground" Value="{DynamicResource PaginationButtonDefaultForeground}" />
+        <Setter Property="Background"
+                Value="{DynamicResource PaginationButtonDefaultBackground}" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource PaginationButtonDefaultForeground}" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
-            <ControlTemplate TargetType="u:PaginationButton">
+            <ControlTemplate
+                TargetType="u:PaginationButton">
                 <Border
                     Padding="4"
                     Background="{TemplateBinding Background}"
@@ -74,10 +132,12 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover">
-            <Setter Property="Background" Value="{DynamicResource PaginationButtonPointeroverBackground}" />
+            <Setter Property="Background"
+                    Value="{DynamicResource PaginationButtonPointeroverBackground}" />
         </Style>
         <Style Selector="^:pressed">
-            <Setter Property="Background" Value="{DynamicResource PaginationButtonPressedBackground}" />
+            <Setter Property="Background"
+                    Value="{DynamicResource PaginationButtonPressedBackground}" />
         </Style>
         <Style Selector="^:left">
             <Setter Property="Content">
@@ -124,9 +184,12 @@
             </Style>
         </Style>
         <Style Selector="^:selected">
-            <Setter Property="Background" Value="{DynamicResource PaginationButtonSelectedBackground}" />
-            <Setter Property="Foreground" Value="{DynamicResource PaginationButtonSelectedForeground}" />
-            <Setter Property="FontWeight" Value="{DynamicResource TextBlockTitleFontWeight}" />
+            <Setter Property="Background"
+                    Value="{DynamicResource PaginationButtonSelectedBackground}" />
+            <Setter Property="Foreground"
+                    Value="{DynamicResource PaginationButtonSelectedForeground}" />
+            <Setter Property="FontWeight"
+                    Value="{DynamicResource TextBlockTitleFontWeight}" />
         </Style>
     </ControlTheme>
 

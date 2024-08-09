@@ -46,7 +46,7 @@ public class Pagination: TemplatedControl
         if (arg2 is null) return null;
         if (arg1 is Pagination p)
         {
-            arg2 = MathHelpers.SafeClamp(arg2.Value, 1, p.PageCount + 1);
+            arg2 = MathHelpers.SafeClamp(arg2.Value, 1, p.PageCount);
         }
         return arg2;
     }

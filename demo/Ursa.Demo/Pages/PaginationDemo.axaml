@@ -28,5 +28,8 @@
 			Command="{Binding LoadPageCommand}"
 			CommandParameter="{Binding $self.CurrentPage}"
             TotalCount="600" />
+        
+        <TextBlock Text="Tiny Pagination"/>
+        <u:Pagination Theme="{DynamicResource TinyPagination}" TotalCount="100" PageSize="1"/>
     </StackPanel>
 </UserControl>
