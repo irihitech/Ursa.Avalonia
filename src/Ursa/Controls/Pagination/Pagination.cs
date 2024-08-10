@@ -114,8 +114,9 @@ public class Pagination: TemplatedControl
 
     private int _pageCount;
 
-    public static readonly DirectProperty<Pagination, int> PageCountProperty = AvaloniaProperty.RegisterDirect<Pagination, int>(
-        nameof(PageCount), o => o.PageCount);
+    public static readonly DirectProperty<Pagination, int> PageCountProperty =
+        AvaloniaProperty.RegisterDirect<Pagination, int>(
+            nameof(PageCount), o => o.PageCount, (o, e) => o.PageCount = e);
 
     /// <summary>
     /// Page count.
@@ -291,11 +292,14 @@ public class Pagination: TemplatedControl
     /// <param name="page"></param>
     private void UpdateButtonsByCurrentPage(int? page)
     {
-        if (_buttonPanel is null) return;
         if (PageSize == 0) return;
-
-        int? currentPage = CurrentPage;
         int pageCount = TotalCount / PageSize;
+        if (_buttonPanel is null)
+        {
+            SetCurrentValue(PageCountProperty, pageCount);
+            return;
+        }
+        int? currentPage = CurrentPage;
         int residue = TotalCount % PageSize;
         if (residue > 0)
         {
@@ -360,7 +364,7 @@ public class Pagination: TemplatedControl
             }
         }
 
-        PageCount = pageCount;
+        SetCurrentValue(PageCountProperty, pageCount);
         SetCurrentValue(CurrentPageProperty, currentPage);
         if (_previousButton != null) _previousButton.IsEnabled = (CurrentPage ?? int.MaxValue) > 1;
         if (_nextButton != null) _nextButton.IsEnabled = (CurrentPage ?? 0) < PageCount;
