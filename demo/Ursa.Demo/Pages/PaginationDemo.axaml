@@ -31,5 +31,6 @@
         
         <TextBlock Text="Tiny Pagination"/>
         <u:Pagination Theme="{DynamicResource TinyPagination}" TotalCount="100" PageSize="1"/>
+        <u:Pagination Classes="ReadOnly" Theme="{DynamicResource TinyPagination}" TotalCount="100" PageSize="1"/>
     </StackPanel>
 </UserControl>
