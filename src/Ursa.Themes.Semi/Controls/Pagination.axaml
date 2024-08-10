@@ -52,6 +52,7 @@
     </ControlTheme>
 
     <ControlTheme x:Key="TinyPagination" TargetType="{x:Type u:Pagination}">
+        <Setter Property="DisplayCurrentPageInQuickJumper" Value="True"></Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Pagination">
                 <StackPanel Orientation="Horizontal">
@@ -64,7 +65,7 @@
                     </u:PaginationButton>
                     <Grid ColumnDefinitions="*, Auto, *">
                         <u:NumericIntUpDown
-                            Name="PART_PageInput"
+                            Name="{x:Static u:Pagination.PART_QuickJumpInput}"
                             Grid.Column="0"
                             MinWidth="{Binding $self.Bounds.Height}"
                             VerticalAlignment="Center"
@@ -102,7 +103,7 @@
         <Style Selector="^.ReadOnly /template/ TextBlock#PART_PageTextBlock">
             <Setter Property="IsVisible" Value="True" />
         </Style>
-        <Style Selector="^.ReadOnly /template/ u|NumericUpDown#PART_PageInput">
+        <Style Selector="^.ReadOnly /template/ u|NumericUpDown#PART_QuickJumpInput">
             <Setter Property="IsVisible" Value="False" />
         </Style>
     </ControlTheme>
