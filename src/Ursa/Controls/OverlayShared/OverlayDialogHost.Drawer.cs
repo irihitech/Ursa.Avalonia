@@ -166,6 +166,7 @@ public partial class OverlayDialogHost
                 _modalCount--;
                 IsInModalStatus = _modalCount > 0;
                 layer.Mask.RemoveHandler(PointerPressedEvent, ClickMaskToCloseDialog);
+                layer.Mask.RemoveHandler(PointerReleasedEvent, DragMaskToMoveWindow);
                 if (!IsAnimationDisabled)
                 {
                     var disappearAnimation = CreateAnimation(control.Bounds.Size, control.Position, false);

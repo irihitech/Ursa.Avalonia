@@ -119,6 +119,7 @@ public partial class OverlayDialogHost
 
             control.RemoveHandler(OverlayFeedbackElement.ClosedEvent, OnDialogControlClosing);
             control.RemoveHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged);
+            control.RemoveHandler(PointerPressedEvent, DragMaskToMoveWindow);
             
             Children.Remove(control);
 
