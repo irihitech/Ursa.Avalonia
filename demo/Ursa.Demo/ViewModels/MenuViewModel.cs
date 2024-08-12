@@ -12,6 +12,7 @@ public class MenuViewModel: ViewModelBase
         {
             new() { MenuHeader = "Introduction", Key = MenuKeys.MenuKeyIntroduction, IsSeparator = false },
             new() { MenuHeader = "Controls", IsSeparator = true },
+            new() { MenuHeader = "AutoCompleteBox", Key = MenuKeys.MenuKeyAutoCompleteBox, Status = "WIP" },
             new() { MenuHeader = "Avatar", Key = MenuKeys.MenuKeyAvatar, Status = "WIP"},
             new() { MenuHeader = "Badge", Key = MenuKeys.MenuKeyBadge },
             new() { MenuHeader = "Banner", Key = MenuKeys.MenuKeyBanner },
@@ -61,6 +62,7 @@ public class MenuViewModel: ViewModelBase
 public static class MenuKeys
 {
     public const string MenuKeyIntroduction = "Introduction";
+    public const string MenuKeyAutoCompleteBox = "AutoCompleteBox";
     public const string MenuKeyAvatar = "Avatar";
     public const string MenuKeyBadge = "Badge";
     public const string MenuKeyBanner = "Banner";

@@ -1,4 +1,5 @@
 ﻿using System;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.Messaging;
 
 namespace Ursa.Demo.ViewModels;
@@ -26,6 +27,7 @@ public class MainViewViewModel : ViewModelBase
         Content = s switch
         {
             MenuKeys.MenuKeyIntroduction => new IntroductionDemoViewModel(),
+            MenuKeys.MenuKeyAutoCompleteBox => new AutoCompleteBoxDemoViewModel(),
             MenuKeys.MenuKeyAvatar => new AvatarDemoViewModel(),
             MenuKeys.MenuKeyBadge => new BadgeDemoViewModel(),
             MenuKeys.MenuKeyBanner => new BannerDemoViewModel(),

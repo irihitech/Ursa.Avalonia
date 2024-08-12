@@ -1,0 +1,48 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+             xmlns:u="https://irihi.tech/ursa"
+             x:DataType="viewModels:AutoCompleteBoxDemoViewModel"
+             mc:Ignorable="d" d:DesignWidth="800"
+             d:DesignHeight="450"
+             x:Class="Ursa.Demo.Pages.AutoCompleteBoxDemo">
+    <StackPanel HorizontalAlignment="Left" Spacing="20">
+        <StackPanel.Styles>
+            <Style Selector="u|AutoCompleteBox">
+                <Setter Property="Width" Value="300" />
+                <Setter Property="ItemsSource">
+                    <Binding Path="States" />
+                </Setter>
+                <Setter Property="ItemTemplate">
+                    <DataTemplate DataType="viewModels:StateData">
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </Setter>
+            </Style>
+        </StackPanel.Styles>
+
+        <u:AutoCompleteBox
+            Watermark="Please select a State"
+            Classes="ClearButton"
+            ValueMemberBinding="{ReflectionBinding Name}" />
+        <u:AutoCompleteBox
+            Classes="Large"
+            ValueMemberBinding="{ReflectionBinding Name}" />
+        <u:AutoCompleteBox
+            Classes="Small"
+            ValueMemberBinding="{ReflectionBinding Name}" />
+        <u:AutoCompleteBox
+            Classes="Bordered"
+            ValueMemberBinding="{ReflectionBinding Name}" />
+        <u:AutoCompleteBox
+            IsEnabled="False"
+            Watermark="Disabled"
+            ValueMemberBinding="{ReflectionBinding Name}" />
+        <u:AutoCompleteBox
+            InnerLeftContent="https://"
+            InnerRightContent=".com"
+            ValueMemberBinding="{ReflectionBinding Name}" />
+    </StackPanel>
+</UserControl>
