@@ -10,7 +10,7 @@
              x:Class="Ursa.Demo.Pages.AutoCompleteBoxDemo">
     <StackPanel HorizontalAlignment="Left" Spacing="20">
         <StackPanel.Styles>
-            <Style Selector="AutoCompleteBox">
+            <Style Selector="u|AutoCompleteBox">
                 <Setter Property="Width" Value="300" />
                 <Setter Property="ItemsSource">
                     <Binding Path="States" />
@@ -25,6 +25,7 @@
 
         <u:AutoCompleteBox
             Watermark="Please select a State"
+            Classes="ClearButton"
             ValueMemberBinding="{ReflectionBinding Name}" />
         <u:AutoCompleteBox
             Classes="Large"
@@ -43,6 +44,5 @@
             InnerLeftContent="https://"
             InnerRightContent=".com"
             ValueMemberBinding="{ReflectionBinding Name}" />
-
     </StackPanel>
 </UserControl>

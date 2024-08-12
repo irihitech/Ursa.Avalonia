@@ -1,12 +1,15 @@
+using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Irihi.Avalonia.Shared.Contracts;
 
 namespace Ursa.Controls;
 
-public class AutoCompleteBox: Avalonia.Controls.AutoCompleteBox
+public class AutoCompleteBox: Avalonia.Controls.AutoCompleteBox, IClearControl
 {
-    protected override Type StyleKeyOverride { get; } = typeof(Avalonia.Controls.AutoCompleteBox);
-
+    // protected override Type StyleKeyOverride { get; } = typeof(Avalonia.Controls.AutoCompleteBox);
+    private TextBox? _text;
     static AutoCompleteBox()
     {
         MinimumPrefixLengthProperty.OverrideDefaultValue<AutoCompleteBox>(0);
@@ -15,6 +18,12 @@ public class AutoCompleteBox: Avalonia.Controls.AutoCompleteBox
     public AutoCompleteBox()
     {
         this.AddHandler(PointerPressedEvent, OnBoxPointerPressed, RoutingStrategies.Tunnel);
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        _text = e.NameScope.Get<TextBox>("PART_TextBox");
     }
 
     private void OnBoxPointerPressed(object? sender, PointerPressedEventArgs e)
@@ -29,5 +38,10 @@ public class AutoCompleteBox: Avalonia.Controls.AutoCompleteBox
     {
         base.OnGotFocus(e);
         SetCurrentValue(IsDropDownOpenProperty, true);
+    }
+
+    public void Clear()
+    {
+        SetCurrentValue(SelectedItemProperty, null);
     }
 }
