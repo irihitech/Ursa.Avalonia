@@ -114,9 +114,29 @@ public partial class OverlayDialogHost: Canvas
         {
             rec.AddHandler(PointerReleasedEvent, ClickMaskToCloseDialog);
         }
+        else
+        {
+            rec.AddHandler(PointerPressedEvent, DragMaskToMoveWindow);
+        }
         return rec;
     }
-    
+
+    private void DragMaskToMoveWindow(object? sender, PointerPressedEventArgs e)
+    {
+        if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
+        {
+            return;
+        }
+        if (sender is PureRectangle mask)
+        {
+            var window = this.GetVisualAncestors().OfType<Window>().FirstOrDefault();
+            if(window is not null)
+            {
+                window.BeginMoveDrag(e);
+            }
+        }
+    }
+
     private void ClickMaskToCloseDialog(object? sender, PointerReleasedEventArgs e)
     {
         if (sender is PureRectangle border)
@@ -126,6 +146,7 @@ public partial class OverlayDialogHost: Canvas
             {
                 layer.Element.Close();
                 border.RemoveHandler(PointerReleasedEvent, ClickMaskToCloseDialog);
+                border.RemoveHandler(PointerPressedEvent, DragMaskToMoveWindow);
             }
         }
     }
