@@ -5,7 +5,7 @@ using Avalonia.Controls.Metadata;
 namespace Ursa.Controls;
 
 [PseudoClasses(PC_Left, PC_Right, PC_Selected)]
-public class PaginationButton: Button
+public class PaginationButton: RepeatButton
 {
     public const string PC_Left = ":left";
     public const string PC_Right = ":right";
