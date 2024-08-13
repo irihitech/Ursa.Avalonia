@@ -10,5 +10,6 @@
     <StyleInclude Source="Skeleton.axaml" />
     <StyleInclude Source="ToolBar.axaml"/>
     <StyleInclude Source="TimeBox.axaml"/>
+    <StyleInclude Source="UrsaView.axaml" />
     <!--  Add Styles Here  -->
 </Styles>

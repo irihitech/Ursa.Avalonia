@@ -20,12 +20,13 @@
                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}" />
-                        <u:TitleBar
+                        <Grid ColumnDefinitions="Auto, *, Auto"
                             VerticalAlignment="Top"
-                            Content="{Binding $parent[u:UrsaWindow].TitleBarContent}"
-                            Margin="{Binding $parent[u:UrsaWindow].TitleBarMargin}"
-                            LeftContent="{Binding $parent[u:UrsaWindow].LeftContent}"
-                            RightContent="{Binding $parent[u:UrsaWindow].RightContent}" />
+                            Margin="{Binding $parent[u:UrsaWindow].TitleBarMargin}">
+                            <ContentPresenter Grid.Column="0" Content="{TemplateBinding LeftContent}" VerticalAlignment="Center"/>
+                            <ContentPresenter Grid.Column="1" Content="{TemplateBinding TitleBarContent}" VerticalAlignment="Center"/>
+                            <ContentPresenter Grid.Column="2" Content="{TemplateBinding RightContent}" VerticalAlignment="Center"/>
+                        </Grid>
                         <u:OverlayDialogHost IsModalStatusReporter="True" />
                     </Panel>
                 </Panel>
