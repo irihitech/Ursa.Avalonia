@@ -48,6 +48,7 @@
         <ResourceInclude Source="TwoTonePathIcon.axaml" />
         <ResourceInclude Source="ToolBar.axaml" />
         <ResourceInclude Source="TimeBox.axaml"/>
+        <ResourceInclude Source="UrsaView.axaml" />
         <ResourceInclude Source="UrsaWindow.axaml"/>
         <ResourceInclude Source="PinCode.axaml" />
     </ResourceDictionary.MergedDictionaries>

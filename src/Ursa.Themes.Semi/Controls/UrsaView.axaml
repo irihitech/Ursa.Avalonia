@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa">
+    <!-- Add Resources Here -->
+    <ControlTheme x:Key="{x:Type u:UrsaView}" TargetType="{x:Type u:UrsaView}">
+        <Setter Property="Background" Value="{DynamicResource WindowDefaultBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
+        <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
+        <Setter Property="u:OverlayDialogHost.IsModalStatusScope" Value="True" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:UrsaView">
+                <Panel>
+                    <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
+                    <Panel>
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <u:TitleBar
+                            VerticalAlignment="Top"
+                            Content="{Binding $parent[u:UrsaWindow].TitleBarContent}"
+                            Margin="{Binding $parent[u:UrsaWindow].TitleBarMargin}"
+                            LeftContent="{Binding $parent[u:UrsaWindow].LeftContent}"
+                            RightContent="{Binding $parent[u:UrsaWindow].RightContent}" />
+                        <u:OverlayDialogHost IsModalStatusReporter="True" />
+                    </Panel>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>
