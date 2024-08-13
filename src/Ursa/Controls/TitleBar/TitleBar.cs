@@ -63,22 +63,10 @@ public class TitleBar: ContentControl
 
     private void OnDoubleTapped(object? sender, TappedEventArgs e)
     {
-        if (_visualRoot is not null)
-        {
-            if ( _visualRoot.WindowState == WindowState.FullScreen)
-            {
-                return;
-            }
-
-            if (_visualRoot.WindowState == WindowState.Maximized)
-            {
-                _visualRoot.WindowState = WindowState.Normal;
-            }
-            else
-            {
-                _visualRoot.WindowState = WindowState.Maximized;
-            }
-        }
+        if (_visualRoot is null) return;
+        if (!_visualRoot.CanResize) return;
+        if ( _visualRoot.WindowState == WindowState.FullScreen) return;
+        _visualRoot.WindowState = _visualRoot.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
     }
 
     private void UpdateSize(Window window)
