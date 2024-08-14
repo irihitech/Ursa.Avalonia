@@ -47,7 +47,7 @@ public class UrsaWindow: Window
     }
     
     public static readonly StyledProperty<bool> IsTitleBarVisibleProperty = AvaloniaProperty.Register<UrsaWindow, bool>(
-        nameof(IsTitleBarVisible));
+        nameof(IsTitleBarVisible), true);
     
     public bool IsTitleBarVisible
     {

@@ -1,7 +1,8 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:u="https://irihi.tech/ursa">
-    <!-- Add Resources Here -->
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:UrsaView}" TargetType="{x:Type u:UrsaView}">
         <Setter Property="Background" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
@@ -20,12 +21,25 @@
                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}" />
-                        <Grid ColumnDefinitions="Auto, *, Auto"
+                        <Grid
+                            Margin="{Binding $parent[u:UrsaWindow].TitleBarMargin}"
                             VerticalAlignment="Top"
-                            Margin="{Binding $parent[u:UrsaWindow].TitleBarMargin}">
-                            <ContentPresenter Grid.Column="0" Content="{TemplateBinding LeftContent}" VerticalAlignment="Center"/>
-                            <ContentPresenter Grid.Column="1" Content="{TemplateBinding TitleBarContent}" VerticalAlignment="Center"/>
-                            <ContentPresenter Grid.Column="2" Content="{TemplateBinding RightContent}" VerticalAlignment="Center"/>
+                            ColumnDefinitions="Auto, *, Auto">
+                            <ContentPresenter
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                IsVisible="{TemplateBinding IsTitleBarVisible}"
+                                Content="{TemplateBinding LeftContent}" />
+                            <ContentPresenter
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                IsVisible="{TemplateBinding IsTitleBarVisible}"
+                                Content="{TemplateBinding TitleBarContent}" />
+                            <ContentPresenter
+                                Grid.Column="2"
+                                VerticalAlignment="Center"
+                                IsVisible="{TemplateBinding IsTitleBarVisible}"
+                                Content="{TemplateBinding RightContent}" />
                         </Grid>
                         <u:OverlayDialogHost IsModalStatusReporter="True" />
                     </Panel>
