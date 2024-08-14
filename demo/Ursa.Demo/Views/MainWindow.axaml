@@ -16,9 +16,7 @@
     Icon="/Assets/Ursa.ico"
     mc:Ignorable="d">
     <u:UrsaWindow.RightContent>
-        <u:ThemeToggleButton
-            IsThreeState="True"
-            Mode="Controller" />
+        <views:TitleBarRightContent/>        
     </u:UrsaWindow.RightContent>
     <views:MainView />
 </u:UrsaWindow>

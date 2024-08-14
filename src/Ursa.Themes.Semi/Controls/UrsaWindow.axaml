@@ -60,6 +60,7 @@
                     <VisualLayerManager Padding="{TemplateBinding OffScreenMargin, Mode=OneWay}">
                         <VisualLayerManager.ChromeOverlayLayer>
                             <u:TitleBar
+                                IsTitleVisible="{Binding $parent[u:UrsaWindow].IsTitleBarVisible}"
                                 Content="{Binding $parent[u:UrsaWindow].TitleBarContent}"
                                 Margin="{Binding $parent[u:UrsaWindow].TitleBarMargin}"
                                 LeftContent="{Binding $parent[u:UrsaWindow].LeftContent}"
@@ -97,14 +98,17 @@
                             <ContentPresenter
                                 Grid.Column="0"
                                 VerticalAlignment="Center"
+                                IsVisible="{TemplateBinding IsTitleVisible}"
                                 Content="{TemplateBinding LeftContent}" />
                             <ContentPresenter
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
+                                IsVisible="{TemplateBinding IsTitleVisible}"
                                 Content="{TemplateBinding Content}" />
                             <ContentPresenter
                                 Grid.Column="2"
                                 VerticalAlignment="Center"
+                                IsVisible="{TemplateBinding IsTitleVisible}"
                                 Content="{TemplateBinding RightContent}" />
                             <u:CaptionButtons
                                 x:Name="PART_CaptionButtons"

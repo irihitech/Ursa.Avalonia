@@ -29,6 +29,15 @@ public class TitleBar: ContentControl
         get => GetValue(RightContentProperty);
         set => SetValue(RightContentProperty, value);
     }
+
+    public static readonly StyledProperty<bool> IsTitleVisibleProperty = AvaloniaProperty.Register<TitleBar, bool>(
+        nameof(IsTitleVisible));
+
+    public bool IsTitleVisible
+    {
+        get => GetValue(IsTitleVisibleProperty);
+        set => SetValue(IsTitleVisibleProperty, value);
+    }
     
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
