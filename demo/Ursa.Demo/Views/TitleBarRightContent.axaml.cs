@@ -18,6 +18,6 @@ public partial class TitleBarRightContent : UserControl
         var top = TopLevel.GetTopLevel(this);
         if (top is null) return;
         var launcher = top.Launcher;
-        await launcher.LaunchUriAsync(new Uri("https://github.com/irihitech/Semi.Avalonia"));
+        await launcher.LaunchUriAsync(new Uri("https://github.com/irihitech/Ursa.Avalonia"));
     }
 }
