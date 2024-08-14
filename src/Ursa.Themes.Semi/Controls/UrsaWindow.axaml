@@ -60,7 +60,7 @@
                     <VisualLayerManager Padding="{TemplateBinding OffScreenMargin, Mode=OneWay}">
                         <VisualLayerManager.ChromeOverlayLayer>
                             <u:TitleBar
-                                IsTitleVisible="{TemplateBinding IsTitleBarVisible}"
+                                IsTitleVisible="{Binding $parent[u:UrsaWindow].IsTitleBarVisible}"
                                 Content="{Binding $parent[u:UrsaWindow].TitleBarContent}"
                                 Margin="{Binding $parent[u:UrsaWindow].TitleBarMargin}"
                                 LeftContent="{Binding $parent[u:UrsaWindow].LeftContent}"
