@@ -42,6 +42,18 @@
                                     Foreground="{DynamicResource TextBoxInnerForeground}"
                                     IsVisible="{TemplateBinding InnerLeftContent,
                                                                 Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                <TextBlock
+                                  x:Name="PlaceholderTextBlock"
+                                  Grid.Column="1"
+                                  Grid.ColumnSpan="2"
+                                  Margin="{TemplateBinding Padding}"
+                                  TextTrimming="CharacterEllipsis"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Center"
+                                  Foreground="{TemplateBinding Foreground}"
+                                  IsVisible="False"
+                                  Opacity="0.3"
+                                  Text="{TemplateBinding Watermark}" />
                                 <ScrollViewer
                                     Grid.Column="1"
                                     Grid.ColumnSpan="2"
@@ -135,6 +147,9 @@
             </Style>
         </Style>
 
+        <Style Selector="^:selection-empty /template/ TextBlock#PlaceholderTextBlock">
+            <Setter Property="IsVisible" Value="{Binding $parent[ComboBox].SelectionBoxItem, Converter={x:Static ObjectConverters.IsNotNull}}" />
+        </Style>
 
         <!--  Pointerover State  -->
         <Style Selector="^:pointerover">

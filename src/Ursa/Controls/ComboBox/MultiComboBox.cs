@@ -87,7 +87,16 @@ public class MultiComboBox: SelectingItemsControl, IInnerContentControl
         get => GetValue(SelectedItemTemplateProperty);
         set => SetValue(SelectedItemTemplateProperty, value);
     }
-    
+
+    public static readonly StyledProperty<string?> WatermarkProperty =
+        TextBox.WatermarkProperty.AddOwner<MultiComboBox>();
+
+    public string? Watermark
+    {
+        get => GetValue(WatermarkProperty);
+        set => SetValue(WatermarkProperty, value);
+    }
+
     static MultiComboBox()
     {
         FocusableProperty.OverrideDefaultValue<MultiComboBox>(true);
