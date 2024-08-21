@@ -14,7 +14,7 @@
     <StackPanel Orientation="Horizontal">
         <u:MultiComboBox
             Name="combo"
-            PlaceholderText="Please Select"
+            Watermark="Please Select"
             InnerLeftContent="Left"
             InnerRightContent="Right"
             Classes="ClearButton"

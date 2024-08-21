@@ -88,13 +88,13 @@ public class MultiComboBox: SelectingItemsControl, IInnerContentControl
         set => SetValue(SelectedItemTemplateProperty, value);
     }
 
-    public static readonly StyledProperty<string?> PlaceholderTextProperty =
-        ComboBox.PlaceholderTextProperty.AddOwner<MultiComboBox>();
+    public static readonly StyledProperty<string?> WatermarkProperty =
+        TextBox.WatermarkProperty.AddOwner<MultiComboBox>();
 
-    public string? PlaceholderText
+    public string? Watermark
     {
-        get => GetValue(PlaceholderTextProperty);
-        set => SetValue(PlaceholderTextProperty, value);
+        get => GetValue(WatermarkProperty);
+        set => SetValue(WatermarkProperty, value);
     }
 
     static MultiComboBox()

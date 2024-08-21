@@ -53,7 +53,7 @@
                                   Foreground="{TemplateBinding Foreground}"
                                   IsVisible="False"
                                   Opacity="0.3"
-                                  Text="{TemplateBinding PlaceholderText}" />
+                                  Text="{TemplateBinding Watermark}" />
                                 <ScrollViewer
                                     Grid.Column="1"
                                     Grid.ColumnSpan="2"
