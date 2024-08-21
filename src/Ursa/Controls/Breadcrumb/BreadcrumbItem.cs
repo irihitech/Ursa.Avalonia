@@ -39,6 +39,15 @@ public class BreadcrumbItem: ContentControl
         set => SetValue(CommandProperty, value);
     }
 
+    public static readonly StyledProperty<object?> CommandParameterProperty = AvaloniaProperty.Register<BreadcrumbItem, object?>(
+        nameof(CommandParameter));
+
+    public object? CommandParameter
+    {
+        get => GetValue(CommandParameterProperty);
+        set => SetValue(CommandParameterProperty, value);
+    }
+
     public static readonly StyledProperty<IDataTemplate?> IconTemplateProperty = AvaloniaProperty.Register<BreadcrumbItem, IDataTemplate?>(
         nameof(IconTemplate));
 
@@ -62,7 +71,7 @@ public class BreadcrumbItem: ContentControl
         base.OnPointerPressed(e);
         if (!IsReadOnly)
         {
-            Command?.Execute(null);
+            Command?.Execute(CommandParameter);
         }
     }
 }

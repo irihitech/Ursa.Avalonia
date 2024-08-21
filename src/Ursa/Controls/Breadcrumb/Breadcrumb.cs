@@ -35,6 +35,17 @@ public class Breadcrumb: ItemsControl
         set => SetValue(CommandBindingProperty, value);
     }
 
+    public static readonly StyledProperty<IBinding?> CommandParameterBindingProperty = AvaloniaProperty.Register<Breadcrumb, IBinding?>(
+        nameof(CommandParameterBinding));
+
+    [AssignBinding]
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public IBinding? CommandParameterBinding
+    {
+        get => GetValue(CommandParameterBindingProperty);
+        set => SetValue(CommandParameterBindingProperty, value);
+    }
+
     public static readonly StyledProperty<object?> SeparatorProperty = AvaloniaProperty.Register<Breadcrumb, object?>(
         nameof(Separator));
 
@@ -111,6 +122,10 @@ public class Breadcrumb: ItemsControl
         if (!breadcrumbItem.IsSet(BreadcrumbItem.CommandProperty) && CommandBinding != null)
         {
             breadcrumbItem[!BreadcrumbItem.CommandProperty] = CommandBinding;
+        }
+        if (!breadcrumbItem.IsSet(BreadcrumbItem.CommandParameterProperty) && CommandParameterBinding != null)
+        {
+            breadcrumbItem[!BreadcrumbItem.CommandParameterProperty] = CommandParameterBinding;
         }
         if (!breadcrumbItem.IsSet(BreadcrumbItem.IconTemplateProperty) && IconTemplate != null)
         {
