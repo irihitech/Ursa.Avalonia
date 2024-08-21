@@ -87,7 +87,16 @@ public class MultiComboBox: SelectingItemsControl, IInnerContentControl
         get => GetValue(SelectedItemTemplateProperty);
         set => SetValue(SelectedItemTemplateProperty, value);
     }
-    
+
+    public static readonly StyledProperty<string?> PlaceholderTextProperty =
+        ComboBox.PlaceholderTextProperty.AddOwner<MultiComboBox>();
+
+    public string? PlaceholderText
+    {
+        get => GetValue(PlaceholderTextProperty);
+        set => SetValue(PlaceholderTextProperty, value);
+    }
+
     static MultiComboBox()
     {
         FocusableProperty.OverrideDefaultValue<MultiComboBox>(true);
