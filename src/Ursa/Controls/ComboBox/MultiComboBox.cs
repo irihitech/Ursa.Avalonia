@@ -13,6 +13,9 @@ using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
+/// <summary>
+/// This control inherits from <see cref="SelectingItemsControl"/>, but it only supports MVVM pattern. 
+/// </summary>
 [TemplatePart(PART_BackgroundBorder, typeof(Border))]
 [PseudoClasses(PC_DropDownOpen, PC_Empty)]
 public class MultiComboBox : SelectingItemsControl, IInnerContentControl, IPopupInnerContent
