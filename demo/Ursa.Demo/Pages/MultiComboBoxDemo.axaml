@@ -13,14 +13,33 @@
     mc:Ignorable="d">
     <StackPanel Orientation="Horizontal">
         <u:MultiComboBox
+            Watermark="Please Select"
+            MaxHeight="200"
+            SelectedItems="{Binding SelectedItems}"
+            ItemsSource="{Binding Items}" >
+        </u:MultiComboBox>
+        <u:MultiComboBox
             Name="combo"
             Watermark="Please Select"
             InnerLeftContent="Left"
             InnerRightContent="Right"
             Classes="ClearButton"
             MaxHeight="200"
+            SelectedItems="{Binding SelectedItems}"
             ItemsSource="{Binding Items}" >
+            <u:MultiComboBox.PopupInnerTopContent>
+                <StackPanel Margin="0" Orientation="Horizontal">
+                    <Button Theme="{DynamicResource BorderlessButton}" Content="Select All" Command="{Binding SelectAllCommand}"/>
+                    <Button Theme="{DynamicResource BorderlessButton}" Content="Unselect All" Command="{Binding ClearAllCommand}"/>
+                    <Button Theme="{DynamicResource BorderlessButton}" Content="Inverse" Command="{Binding InvertSelectionCommand}"/>
+                </StackPanel>
+            </u:MultiComboBox.PopupInnerTopContent>
+            <u:MultiComboBox.ContextFlyout>
+                <MenuFlyout>
+                    <MenuItem Header="Select All" Command="{Binding SelectAllCommand}"/>
+                </MenuFlyout>
+            </u:MultiComboBox.ContextFlyout>
         </u:MultiComboBox>
-        <ListBox ItemsSource="{Binding #combo.SelectedItems}" />
+        <ListBox ItemsSource="{Binding SelectedItems}" />
     </StackPanel>
 </UserControl>
