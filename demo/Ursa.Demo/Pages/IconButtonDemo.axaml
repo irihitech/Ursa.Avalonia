@@ -104,5 +104,19 @@
                     Text="🐼" />
             </u:IconButton.Icon>
         </u:IconButton>
+        
+        <u:IconButton
+            IsLoading="{Binding #loading.IsChecked}"
+            Icon="🐼"
+            Content="Borderless"
+            Theme="{DynamicResource BorderlessIconButton}">
+        </u:IconButton>
+        
+        <u:IconButton
+            IsLoading="{Binding #loading.IsChecked}"
+            Icon="🐼"
+            Content="Outline"
+            Theme="{DynamicResource OutlineIconButton}">
+        </u:IconButton>
     </StackPanel>
 </UserControl>
