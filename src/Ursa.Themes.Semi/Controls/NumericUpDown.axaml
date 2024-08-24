@@ -4,29 +4,9 @@
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
 
-    <ControlTheme x:Key="InputClearButton" TargetType="Button">
-        <Setter Property="Button.Foreground" Value="{DynamicResource TextBoxButtonDefaultForeground}" />
-        <Setter Property="Button.Cursor" Value="Hand" />
-        <Setter Property="Button.Template">
-            <ControlTemplate TargetType="Button">
-                <!--  Background must be transparent or hit test will fail  -->
-                <ContentControl Background="Transparent">
-                    <PathIcon
-                        Width="16"
-                        Height="16"
-                        Data="{DynamicResource TextBoxClearButtonData}"
-                        Foreground="{TemplateBinding Foreground}" />
-                </ContentControl>
-            </ControlTemplate>
-        </Setter>
-        <Style Selector="^:pointerover">
-            <Setter Property="Foreground" Value="{DynamicResource TextBoxButtonPointeroverForeground}" />
-        </Style>
-    </ControlTheme>
-
     <ControlTheme x:Key="{x:Type u:NumericUpDown}" TargetType="{x:Type u:NumericUpDown}">
         <Setter Property="CornerRadius" Value="{DynamicResource NumericUpDownCornerRadius}" />
-        <Setter Property="MinHeight" Value="{DynamicResource NumericUpDownDefaultHeight}"></Setter>
+        <Setter Property="MinHeight" Value="{DynamicResource NumericUpDownDefaultHeight}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:NumericUpDown">
                 <DataValidationErrors>
@@ -52,6 +32,7 @@
                                 FontSize="{TemplateBinding FontSize}"
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
+                                InnerRightContent="{TemplateBinding InnerRightContent}"
                                 TextWrapping="NoWrap"
                                 Theme="{DynamicResource NonErrorTextBox}"
                                 Watermark="{TemplateBinding Watermark}" />
@@ -68,7 +49,8 @@
                                 Command="{Binding $parent[u:NumericUpDown].Clear}"
                                 Focusable="False"
                                 IsVisible="False"
-                                Theme="{StaticResource InputClearButton}" />
+                                Content="{DynamicResource IconButtonClearData}"
+                                Theme="{DynamicResource InnerIconButton}" />
                         </Panel>
                     </ButtonSpinner>
                 </DataValidationErrors>
@@ -82,6 +64,13 @@
             <Style Selector="^[IsReadOnly=False]:pointerover /template/ Button#PART_ClearButton">
                 <Setter Property="IsVisible" Value="True" />
             </Style>
+        </Style>
+        
+        <Style Selector="^.Large">
+            <Setter Property="MinHeight" Value="{DynamicResource NumericUpDownLargeHeight}" />
+        </Style>
+        <Style Selector="^.Small">
+            <Setter Property="MinHeight" Value="{DynamicResource NumericUpDownSmallHeight}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
