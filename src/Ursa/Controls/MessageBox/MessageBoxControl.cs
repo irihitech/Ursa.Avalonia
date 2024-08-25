@@ -8,27 +8,41 @@ using Irihi.Avalonia.Shared.Helpers;
 namespace Ursa.Controls;
 
 /// <summary>
-/// The messageBox used to display in OverlayDialogHost. 
+///     The messageBox used to display in OverlayDialogHost.
 /// </summary>
 [TemplatePart(PART_NoButton, typeof(Button))]
 [TemplatePart(PART_OKButton, typeof(Button))]
 [TemplatePart(PART_CancelButton, typeof(Button))]
 [TemplatePart(PART_YesButton, typeof(Button))]
-public class MessageBoxControl: DialogControlBase
+public class MessageBoxControl : DialogControlBase
 {
     public const string PART_YesButton = "PART_YesButton";
     public const string PART_NoButton = "PART_NoButton";
     public const string PART_OKButton = "PART_OKButton";
     public const string PART_CancelButton = "PART_CancelButton";
-    
-    private Button? _yesButton;
-    private Button? _noButton;
-    private Button? _okButton;
-    private Button? _cancelButton;
-    
+
     public static readonly StyledProperty<MessageBoxIcon> MessageIconProperty =
         AvaloniaProperty.Register<MessageBoxWindow, MessageBoxIcon>(
             nameof(MessageIcon));
+
+    public static readonly StyledProperty<MessageBoxButton> ButtonsProperty =
+        AvaloniaProperty.Register<MessageBoxControl, MessageBoxButton>(
+            nameof(Buttons));
+
+    public static readonly StyledProperty<string?> TitleProperty =
+        AvaloniaProperty.Register<MessageBoxControl, string?>(
+            nameof(Title));
+
+    private Button? _cancelButton;
+    private Button? _noButton;
+    private Button? _okButton;
+
+    private Button? _yesButton;
+
+    static MessageBoxControl()
+    {
+        ButtonsProperty.Changed.AddClassHandler<MessageBoxControl>((o, _) => { o.SetButtonVisibility(); });
+    }
 
     public MessageBoxIcon MessageIcon
     {
@@ -36,29 +50,18 @@ public class MessageBoxControl: DialogControlBase
         set => SetValue(MessageIconProperty, value);
     }
 
-    public static readonly StyledProperty<MessageBoxButton> ButtonsProperty = AvaloniaProperty.Register<MessageBoxControl, MessageBoxButton>(
-        nameof(Buttons));
-
     public MessageBoxButton Buttons
     {
         get => GetValue(ButtonsProperty);
         set => SetValue(ButtonsProperty, value);
     }
 
-    public static readonly StyledProperty<string?> TitleProperty = AvaloniaProperty.Register<MessageBoxControl, string?>(
-        nameof(Title));
-
     public string? Title
     {
         get => GetValue(TitleProperty);
         set => SetValue(TitleProperty, value);
     }
-    
-    static MessageBoxControl()
-    {
-        ButtonsProperty.Changed.AddClassHandler<MessageBoxControl>((o, _) => { o.SetButtonVisibility(); });
-    }
-    
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
@@ -71,55 +74,66 @@ public class MessageBoxControl: DialogControlBase
         SetButtonVisibility();
     }
 
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        var defaultButton = Buttons switch
+        {
+            MessageBoxButton.OK => _okButton,
+            MessageBoxButton.OKCancel => _cancelButton,
+            MessageBoxButton.YesNo => _yesButton,
+            MessageBoxButton.YesNoCancel => _cancelButton,
+            _ => null
+        };
+        defaultButton?.Focus();
+    }
+
     private void DefaultButtonsClose(object? sender, RoutedEventArgs e)
     {
-        if (sender is Button button)
+        if (sender is not Button button) return;
+        var result = button switch
         {
-            if (button == _okButton)
-            {
-                OnElementClosing(this, MessageBoxResult.OK);
-            }
-            else if (button == _cancelButton)
-            {
-                OnElementClosing(this, MessageBoxResult.Cancel);
-            }
-            else if (button == _yesButton)
-            {
-                OnElementClosing(this, MessageBoxResult.Yes);
-            }
-            else if (button == _noButton)
-            {
-                OnElementClosing(this, MessageBoxResult.No);
-            }
-        }
+            _ when button == _okButton => MessageBoxResult.OK,
+            _ when button == _cancelButton => MessageBoxResult.Cancel,
+            _ when button == _yesButton => MessageBoxResult.Yes,
+            _ when button == _noButton => MessageBoxResult.No,
+            _ => MessageBoxResult.None
+        };
+        OnElementClosing(this, result);
     }
-    
+
     private void SetButtonVisibility()
     {
+        var closeButtonVisible = Buttons != MessageBoxButton.YesNo;
+        IsVisibleProperty.SetValue(closeButtonVisible, _closeButton);
         switch (Buttons)
         {
             case MessageBoxButton.OK:
-                Button.IsVisibleProperty.SetValue(true, _okButton);
-                Button.IsVisibleProperty.SetValue(false, _cancelButton, _yesButton, _noButton);
+                IsVisibleProperty.SetValue(true, _okButton);
+                IsVisibleProperty.SetValue(false, _cancelButton, _yesButton, _noButton);
+                Button.IsDefaultProperty.SetValue(true, _okButton);
+                Button.IsDefaultProperty.SetValue(false, _cancelButton, _yesButton, _noButton);
                 break;
             case MessageBoxButton.OKCancel:
-                Button.IsVisibleProperty.SetValue(true, _okButton, _cancelButton);
-                Button.IsVisibleProperty.SetValue(false, _yesButton, _noButton);
+                IsVisibleProperty.SetValue(true, _okButton, _cancelButton);
+                IsVisibleProperty.SetValue(false, _yesButton, _noButton);
+                Button.IsDefaultProperty.SetValue(true, _okButton);
+                Button.IsDefaultProperty.SetValue(false, _cancelButton, _yesButton, _noButton);
                 break;
             case MessageBoxButton.YesNo:
-                Button.IsVisibleProperty.SetValue(false, _okButton, _cancelButton);
-                Button.IsVisibleProperty.SetValue(true, _yesButton, _noButton);
+                IsVisibleProperty.SetValue(false, _okButton, _cancelButton);
+                IsVisibleProperty.SetValue(true, _yesButton, _noButton);
                 break;
             case MessageBoxButton.YesNoCancel:
-                Button.IsVisibleProperty.SetValue(false, _okButton);
-                Button.IsVisibleProperty.SetValue(true, _cancelButton, _yesButton, _noButton);
+                IsVisibleProperty.SetValue(false, _okButton);
+                IsVisibleProperty.SetValue(true, _cancelButton, _yesButton, _noButton);
                 break;
         }
     }
 
     public override void Close()
     {
-        MessageBoxResult result = Buttons switch
+        var result = Buttons switch
         {
             MessageBoxButton.OK => MessageBoxResult.OK,
             MessageBoxButton.OKCancel => MessageBoxResult.Cancel,
