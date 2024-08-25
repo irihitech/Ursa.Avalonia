@@ -5,7 +5,7 @@ using Irihi.Avalonia.Shared.Contracts;
 
 namespace Ursa.Demo.Dialogs;
 
-public partial class DefaultDemoDialogViewModel: ObservableObject, IDialogContext
+public partial class DefaultDemoDialogViewModel: ObservableObject
 {
     public ObservableCollection<string> Cities { get; set; }
     [ObservableProperty] private string? _owner;
@@ -21,11 +21,4 @@ public partial class DefaultDemoDialogViewModel: ObservableObject, IDialogContex
             "Suzhou", "Tianjin", "Xi'an", "Qingdao", "Dalian"
         ];
     }
-    
-    public void Close()
-    {
-        RequestClose?.Invoke(this, null);
-    }
-
-    public event EventHandler<object?>? RequestClose;
 }

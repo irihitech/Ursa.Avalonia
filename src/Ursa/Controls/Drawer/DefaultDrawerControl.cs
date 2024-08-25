@@ -70,9 +70,13 @@ public class DefaultDrawerControl : DrawerControlBase
 
     private void SetButtonVisibility()
     {
-        var isCloseButtonVisible =
+        var closeButtonVisible =
             IsCloseButtonVisible ?? (DataContext is IDialogContext || Buttons != DialogButton.YesNo);
-        IsVisibleProperty.SetValue(isCloseButtonVisible, _closeButton);
+        IsHitTestVisibleProperty.SetValue(closeButtonVisible, _closeButton);
+        if (!closeButtonVisible)
+        {
+            OpacityProperty.SetValue(0, _closeButton);
+        }
         switch (Buttons)
         {
             case DialogButton.None:

@@ -70,7 +70,7 @@ public class DefaultDialogControl : DialogControlBase
 
     private void SetButtonVisibility()
     {
-        var closeButtonVisible =  IsCloseButtonVisible ??DataContext is IDialogContext;
+        var closeButtonVisible =  IsCloseButtonVisible ?? (DataContext is IDialogContext || Buttons != DialogButton.YesNo );
         IsHitTestVisibleProperty.SetValue(closeButtonVisible, _closeButton);
         if (!closeButtonVisible)
         {

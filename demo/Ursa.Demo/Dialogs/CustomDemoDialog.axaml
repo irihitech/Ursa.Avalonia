@@ -12,9 +12,9 @@
     mc:Ignorable="d">
     <UserControl.Background>
         <LinearGradientBrush StartPoint="5%, 5%" EndPoint="80%, 80%">
-            <GradientStop Offset="0.0" Color="{DynamicResource SemiBlue0Color}" />
-            <GradientStop Offset="0.4" Color="{DynamicResource SemiBlue2Color}" />
-            <GradientStop Offset="0.9" Color="{DynamicResource SemiBlue1Color}" />
+            <GradientStop Offset="0.0" Color="{DynamicResource SemiLightBlue0Color}" />
+            <GradientStop Offset="0.4" Color="{DynamicResource SemiLightBlue2Color}" />
+            <GradientStop Offset="0.9" Color="{DynamicResource SemiLightBlue1Color}" />
         </LinearGradientBrush>
     </UserControl.Background>
     <Grid Margin="24" RowDefinitions="Auto, *, Auto" MinWidth="400">
@@ -69,9 +69,9 @@
             HorizontalAlignment="Right"
             Orientation="Horizontal"
             Spacing="8">
-            <Button Command="{Binding DialogCommand}" Content="Dialog" />
-            <Button Command="{Binding OKCommand}" Content="OK" />
-            <Button Command="{Binding CancelCommand}" Content="Cancel" />
+            <Button Command="{Binding DialogCommand}" Content="Dialog" Theme="{DynamicResource SolidButton}" />
+            <Button Command="{Binding OKCommand}" Content="OK" Theme="{DynamicResource SolidButton}" Classes="Tertiary"/>
+            <Button Command="{Binding CancelCommand}" Content="Cancel" Theme="{DynamicResource SolidButton}" Classes="Tertiary"/>
             <ComboBox>
                 <ComboBoxItem>A</ComboBoxItem>
                 <ComboBoxItem>B</ComboBoxItem>

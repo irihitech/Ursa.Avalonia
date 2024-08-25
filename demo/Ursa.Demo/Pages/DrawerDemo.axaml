@@ -13,86 +13,38 @@
     x:DataType="vm:DrawerDemoViewModel"
     mc:Ignorable="d">
     <Grid ColumnDefinitions="Auto, *">
-        <TabControl Grid.Column="0" Width="300">
-            <TabItem Header="Default">
-                <StackPanel>
-                    <u:EnumSelector EnumType="common:Position" Value="{Binding SelectedPosition}" />
-                    <ToggleSwitch
-                        Content="Global/Local"
-                        IsChecked="{Binding IsGlobal}"
-                        OffContent="Local"
-                        OnContent="Global" />
-                    <ToggleSwitch
-                        Content="Modal"
-                        IsChecked="{Binding IsModal}"
-                        OffContent="No"
-                        OnContent="Yes" />
-                    <ToggleSwitch
-                        Content="CanLightDismiss"
-                        IsChecked="{Binding CanLightDismiss}"
-                        OffContent="No"
-                        OnContent="Yes" />
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Buttons" />
-                        <u:EnumSelector EnumType="{x:Type u:DialogButton}" Value="{Binding SelectedButton}" />
-                    </StackPanel>
-                    <Button Command="{Binding ShowDialogCommand}" Content="Show Default Drawer" />
-                    <TextBlock>
-                        <Run Text="Default Result: " />
-                        <Run Text="{Binding DefaultResult}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Dialog Date: " />
-                        <Run Text="{Binding Date}" />
-                    </TextBlock>
-                </StackPanel>
-            </TabItem>
-            <TabItem Header="Custom">
-                <StackPanel>
-                    <u:EnumSelector EnumType="common:Position" Value="{Binding SelectedPosition}" />
-                    <ToggleSwitch
-                        Content="Global/Local"
-                        IsChecked="{Binding IsGlobal}"
-                        OffContent="Local"
-                        OnContent="Global" />
-                    <ToggleSwitch
-                        Content="CanLightDismiss"
-                        IsChecked="{Binding CanLightDismiss}"
-                        OffContent="No"
-                        OnContent="Yes" />
-                    <ToggleSwitch
-                        Content="Modal"
-                        IsChecked="{Binding IsModal}"
-                        OffContent="No"
-                        OnContent="Yes" />
-                    <Button Command="{Binding ShowCustomDialogCommand}" Content="Show Custom Drawer" />
-                    <TextBlock>
-                        <Run Text="Custom Result: " />
-                        <Run Text="{Binding Result}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Dialog Date: " />
-                        <Run Text="{Binding Date}" />
-                    </TextBlock>
-                </StackPanel>
-            </TabItem>
-        </TabControl>
+        <u:Form Width="300" Grid.Column="0" LabelPosition="Top">
+            <TextBox u:FormItem.Label="Title" Text="{Binding Title}"/>
+            <u:EnumSelector
+                u:FormItem.Label="Position"
+                EnumType="common:Position"
+                Value="{Binding Position}"/>
+            <u:EnumSelector
+                u:FormItem.Label="Buttons"
+                EnumType="u:DialogButton"
+                Value="{Binding Buttons}"/>
+            <CheckBox u:FormItem.Label="Can LightDismiss" IsChecked="{Binding CanLightDismiss}"/>
+            <CheckBox u:FormItem.Label="Is Modal" IsChecked="{Binding IsModal}"/>
+            <CheckBox u:FormItem.Label="Is Close Button Visible" IsChecked="{Binding IsCloseButtonVisible}" IsThreeState="True"/>
+            <CheckBox u:FormItem.Label="Custom Dialog" IsChecked="{Binding Custom}"/>
+            <ToggleSwitch
+                u:FormItem.Label="Global/Local OverlayHost"
+                IsChecked="{Binding IsLocal}"
+                OffContent="Global"
+                OnContent="Local" />
+            <Button
+                HorizontalAlignment="Left"
+                u:FormItem.NoLabel="True"
+                Command="{Binding ShowDialogCommand}"
+                Content="Show" />
+        </u:Form>
         <Grid Grid.Column="1" ClipToBounds="True">
             <Border
                 BorderBrush="{DynamicResource SemiGrey1}"
                 BorderThickness="1"
                 ClipToBounds="True"
                 CornerRadius="20">
-                <u:OverlayDialogHost HostId="LocalHost">
-                    <u:OverlayDialogHost.DialogDataTemplates>
-                        <DataTemplate DataType="x:String">
-                            <TextBlock
-                                Margin="24,24,48,24"
-                                Foreground="Red"
-                                Text="{Binding Path=.}" />
-                        </DataTemplate>
-                    </u:OverlayDialogHost.DialogDataTemplates>
-                </u:OverlayDialogHost>
+                <u:OverlayDialogHost HostId="LocalHost"/>
             </Border>
         </Grid>
     </Grid>
