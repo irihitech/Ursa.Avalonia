@@ -10,7 +10,7 @@ public class CustomDrawerControl: DrawerControlBase
         base.OnApplyTemplate(e);
         if (_closeButton is not null)
         {
-            _closeButton.IsVisible = IsCloseButtonVisible;
+            _closeButton.IsVisible = IsCloseButtonVisible ?? true;
         }
     }
 
