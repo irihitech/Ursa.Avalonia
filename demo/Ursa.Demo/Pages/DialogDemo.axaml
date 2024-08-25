@@ -140,16 +140,6 @@
                         HorizontalAlignment="Stretch"
                         u:FormItem.Label="Title"
                         Text="{Binding Title}" />
-                    <u:EnumSelector
-                        HorizontalAlignment="Stretch"
-                        u:FormItem.Label="Dialog Mode"
-                        EnumType="u:DialogMode"
-                        Value="{Binding Mode}" />
-                    <u:EnumSelector
-                        HorizontalAlignment="Stretch"
-                        u:FormItem.Label="Dialog Buttons"
-                        EnumType="u:DialogButton"
-                        Value="{Binding Button}" />
                     <CheckBox
                         u:FormItem.Label="Is Close Button Visible"
                         IsChecked="{Binding IsCloseButtonVisible}"

@@ -57,7 +57,7 @@ public partial class DefaultWindowDialogDemoViewModel: ObservableObject
         {
             options.Position = new PixelPoint(X.Value, Y.Value);
         }
-        await Dialog.ShowModal<PlainDialog, PlainDialogViewModel>(new PlainDialogViewModel(), options: options);
+        await Dialog.ShowModal<DefaultDemoDialog, DefaultDemoDialogViewModel>(new DefaultDemoDialogViewModel(), options: options);
     }
 }
 
@@ -96,12 +96,12 @@ public partial class CustomWindowDialogDemoViewModel: ObservableObject
 
         if (IsModal)
         {
-            await Dialog.ShowCustomModal<DialogWithAction, DialogWithActionViewModel, object>(new DialogWithActionViewModel(),
+            await Dialog.ShowCustomModal<CustomDemoDialog, CustomDemoDialogViewModel, object>(new CustomDemoDialogViewModel(),
                 options: options);
         }
         else
         {
-            Dialog.ShowCustom<DialogWithAction, DialogWithActionViewModel>(new DialogWithActionViewModel(),
+            Dialog.ShowCustom<CustomDemoDialog, CustomDemoDialogViewModel>(new CustomDemoDialogViewModel(),
                 options: options);
         }
     }
@@ -132,6 +132,8 @@ public partial class DefaultOverlayDialogDemoViewModel : ObservableObject
         VerticalAnchor = VerticalPosition.Center;
         CanDragMove = true;
         IsModal = true;
+        IsCloseButtonVisible = true;
+        Button = DialogButton.OKCancel;
     }
 
     private async Task ShowDialog()
@@ -153,11 +155,11 @@ public partial class DefaultOverlayDialogDemoViewModel : ObservableObject
         string? dialogHostId = IsLocal ? DialogDemoViewModel.LocalHost : null;
         if (IsModal)
         {
-            await OverlayDialog.ShowModal<PlainDialog, PlainDialogViewModel>(new PlainDialogViewModel(), dialogHostId, options: options);
+            await OverlayDialog.ShowModal<DefaultDemoDialog, DefaultDemoDialogViewModel>(new DefaultDemoDialogViewModel(), dialogHostId, options: options);
         }
         else
         {
-            OverlayDialog.Show<PlainDialog, PlainDialogViewModel>(new PlainDialogViewModel(), dialogHostId, options: options);
+            OverlayDialog.Show<DefaultDemoDialog, DefaultDemoDialogViewModel>(new DefaultDemoDialogViewModel(), dialogHostId, options: options);
         }
     }
 }
@@ -169,8 +171,6 @@ public partial class CustomOverlayDialogDemoViewModel: ObservableObject
     [ObservableProperty] private double? _horizontalOffset;
     [ObservableProperty] private double? _verticalOffset;
     [ObservableProperty] private bool _fullScreen;
-    [ObservableProperty] private DialogMode _mode;
-    [ObservableProperty] private DialogButton _button;
     [ObservableProperty] private string? _title;
     [ObservableProperty] private bool _canLightDismiss;
     [ObservableProperty] private bool _canDragMove;
@@ -198,8 +198,6 @@ public partial class CustomOverlayDialogDemoViewModel: ObservableObject
             VerticalAnchor = VerticalAnchor,
             HorizontalOffset = HorizontalOffset,
             VerticalOffset = VerticalOffset,
-            Mode = Mode,
-            Buttons = Button,
             Title = Title,
             CanLightDismiss = CanLightDismiss,
             CanDragMove = CanDragMove,
@@ -208,11 +206,11 @@ public partial class CustomOverlayDialogDemoViewModel: ObservableObject
         var dialogHostId = IsLocal ? DialogDemoViewModel.LocalHost : null;
         if (IsModal)
         {
-            await OverlayDialog.ShowCustomModal<DialogWithAction, DialogWithActionViewModel, object>(new DialogWithActionViewModel(), dialogHostId, options: options);
+            await OverlayDialog.ShowCustomModal<CustomDemoDialog, CustomDemoDialogViewModel, object>(new CustomDemoDialogViewModel(), dialogHostId, options: options);
         }
         else
         {
-            OverlayDialog.ShowCustom<DialogWithAction, DialogWithActionViewModel>(new DialogWithActionViewModel(), dialogHostId, options: options);
+            OverlayDialog.ShowCustom<CustomDemoDialog, CustomDemoDialogViewModel>(new CustomDemoDialogViewModel(), dialogHostId, options: options);
         }
     }
 }
