@@ -43,7 +43,7 @@ public class OverlayDialogOptions
     /// <summary>
     /// Only works for CustomDialogControl
     /// </summary>
-    public bool IsCloseButtonVisible { get; set; } = true;
+    public bool? IsCloseButtonVisible { get; set; } = true;
     [Obsolete()]
     public bool ShowCloseButton { get; set; } = true;
     public bool CanLightDismiss { get; set; }

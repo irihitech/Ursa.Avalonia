@@ -11,33 +11,29 @@ namespace Ursa.Controls;
 
 [TemplatePart(PART_CloseButton, typeof(Button))]
 [TemplatePart(PART_TitleArea, typeof(Panel))]
-public class DialogWindow: Window
+public class DialogWindow : Window
 {
     public const string PART_CloseButton = "PART_CloseButton";
     public const string PART_TitleArea = "PART_TitleArea";
-    protected override Type StyleKeyOverride { get; } = typeof(DialogWindow);
 
     protected internal Button? _closeButton;
     private Panel? _titleArea;
-    
-    internal bool IsCloseButtonVisible { get; set; }
 
     static DialogWindow()
     {
-        DataContextProperty.Changed.AddClassHandler<DialogWindow, object?>((o, e) => o.OnDataContextChange(e));
+        DataContextProperty.Changed.AddClassHandler<DialogWindow, object?>((window, e) =>
+            window.OnDataContextChange(e));
     }
-    
+
+    protected override Type StyleKeyOverride { get; } = typeof(DialogWindow);
+
+    internal bool? IsCloseButtonVisible { get; set; }
+
     private void OnDataContextChange(AvaloniaPropertyChangedEventArgs<object?> args)
     {
-        if (args.OldValue.Value is IDialogContext oldContext)
-        {
-            oldContext.RequestClose-= OnContextRequestClose;
-        }
+        if (args.OldValue.Value is IDialogContext oldContext) oldContext.RequestClose -= OnContextRequestClose;
 
-        if (args.NewValue.Value is IDialogContext newContext)
-        {
-            newContext.RequestClose += OnContextRequestClose;
-        }
+        if (args.NewValue.Value is IDialogContext newContext) newContext.RequestClose += OnContextRequestClose;
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -46,11 +42,10 @@ public class DialogWindow: Window
         Button.ClickEvent.RemoveHandler(OnCloseButtonClicked, _closeButton);
         _titleArea?.RemoveHandler(PointerPressedEvent, OnTitlePointerPressed);
         _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
-        Button.IsVisibleProperty.SetValue(IsCloseButtonVisible, _closeButton);
+        IsVisibleProperty.SetValue(IsCloseButtonVisible ?? true, _closeButton);
         Button.ClickEvent.AddHandler(OnCloseButtonClicked, _closeButton);
         _titleArea = e.NameScope.Find<Panel>(PART_TitleArea);
         _titleArea?.AddHandler(PointerPressedEvent, OnTitlePointerPressed, RoutingStrategies.Bubble);
-
     }
 
     private void OnContextRequestClose(object? sender, object? args)
@@ -61,17 +56,13 @@ public class DialogWindow: Window
     protected virtual void OnCloseButtonClicked(object? sender, RoutedEventArgs args)
     {
         if (DataContext is IDialogContext context)
-        {
             context.Close();
-        }
         else
-        {
             Close(null);
-        }
     }
-    
+
     private void OnTitlePointerPressed(object? sender, PointerPressedEventArgs e)
     {
-        this.BeginMoveDrag(e);
+        BeginMoveDrag(e);
     }
 }
