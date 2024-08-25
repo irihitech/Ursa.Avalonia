@@ -7,7 +7,7 @@
              x:DataType="local:PlainDialogViewModel"
              x:CompileBindings="True"
              x:Class="Ursa.Demo.Dialogs.PlainDialog">
-    <StackPanel>
+    <StackPanel HorizontalAlignment="Center">
         <Calendar SelectedDate="{Binding Date}" ></Calendar>
         <TextBlock TextWrapping="Wrap" Text="{Binding Text}"></TextBlock>
     </StackPanel>

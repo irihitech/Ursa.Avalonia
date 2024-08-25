@@ -6,115 +6,169 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="using:Ursa.Demo.ViewModels"
-    d:DesignHeight="450"
+    d:DesignHeight="1200"
     d:DesignWidth="800"
     x:CompileBindings="True"
     x:DataType="vm:DialogDemoViewModel"
     mc:Ignorable="d">
     <Grid ColumnDefinitions="Auto, *">
-        <TabControl Grid.Column="0" Width="300">
-            <TabItem Header="Default">
-                <StackPanel>
-                    <ToggleSwitch
-                        Name="overlay"
-                        Content="Window/Overlay"
-                        IsChecked="{Binding IsWindow}"
-                        OffContent="Overlay"
-                        OnContent="Window" />
-                    <ToggleSwitch
-                        Content="Global/Local"
-                        IsChecked="{Binding IsGlobal}"
-                        IsVisible="{Binding !#overlay.IsChecked}"
-                        OffContent="Local"
-                        OnContent="Global" />
-                    <ToggleSwitch
-                        Name="defaultModal"
-                        Content="Modal/Regular"
-                        IsChecked="{Binding IsModal}"
-                        IsVisible="{Binding !#overlay.IsChecked}"
-                        OffContent="Regular"
-                        OnContent="Modal" />
-					<ToggleSwitch
-	                    Content="HideInTaskBar/ShowInTaskBar"
-	                    IsChecked="{Binding ShowInTaskBar}"
-	                    IsVisible="{Binding #overlay.IsChecked}"
-	                    OffContent="HideInTaskBar"
-	                    OnContent="ShowInTaskBar" />
-                    <ToggleSwitch
-                        Content="ClickOnMaskToClose"
-                        IsChecked="{Binding CanLightDismiss}"
-                        OffContent="No"
-                        OnContent="Yes" />
-                    <ToggleSwitch
-                        Content="FullScreen"
-                        IsChecked="{Binding FullScreen}"
-                        OffContent="No"
-                        OnContent="Yes" />
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock VerticalAlignment="Center" Text="Buttons" />
-                        <u:EnumSelector EnumType="{x:Type u:DialogButton}" Value="{Binding SelectedButton}" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock VerticalAlignment="Center" Text="Mode" />
-                        <u:EnumSelector EnumType="{x:Type u:DialogMode}" Value="{Binding SelectedMode}" />
-                    </StackPanel>
-                    <Button Command="{Binding ShowDialogCommand}" Content="Show Dialog" />
-                    <TextBlock>
-                        <Run Text="Default Result: " />
-                        <Run Text="{Binding DefaultResult, FallbackValue=''}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Dialog Date: " />
-                        <Run Text="{Binding Date, FallbackValue=''}" />
-                    </TextBlock>
-                </StackPanel>
+        <TabControl Grid.Column="0" TabStripPlacement="Left">
+            <TabItem Header="Default Window Dialog">
+                <u:Form
+                    Width="300"
+                    Margin="16,0"
+                    DataContext="{Binding DefaultWindowDialogDemoViewModel}"
+                    LabelPosition="Top">
+                    <TextBox
+                        HorizontalAlignment="Stretch"
+                        u:FormItem.Label="Title"
+                        Text="{Binding Title}" />
+                    <u:EnumSelector
+                        HorizontalAlignment="Stretch"
+                        u:FormItem.Label="Startup Location"
+                        EnumType="WindowStartupLocation"
+                        Value="{Binding Location}" />
+                    <u:FormItem Label="PixelPosition">
+                        <UniformGrid Columns="2" Rows="1">
+                            <u:NumericIntUpDown InnerLeftContent="X" Value="{Binding X}" />
+                            <u:NumericIntUpDown InnerLeftContent="Y" Value="{Binding Y}" />
+                        </UniformGrid>
+                    </u:FormItem>
+                    <u:EnumSelector
+                        HorizontalAlignment="Stretch"
+                        u:FormItem.Label="Dialog Mode"
+                        EnumType="u:DialogMode"
+                        Value="{Binding Mode}" />
+                    <u:EnumSelector
+                        HorizontalAlignment="Stretch"
+                        u:FormItem.Label="Dialog Buttons"
+                        EnumType="u:DialogButton"
+                        Value="{Binding Button}" />
+                    <CheckBox u:FormItem.Label="Show In Taskbar" IsChecked="{Binding ShowInTaskBar}" />
+                    <CheckBox
+                        u:FormItem.Label="Is Close Button Visible"
+                        IsChecked="{Binding IsCloseButtonVisible}"
+                        IsThreeState="True" />
+                    <Button
+                        HorizontalAlignment="Left"
+                        u:FormItem.NoLabel="True"
+                        Command="{Binding ShowDialogCommand}"
+                        Content="Show" />
+                </u:Form>
             </TabItem>
-            <TabItem Header="Custom">
-                <StackPanel>
+            <TabItem Header="Custom Window Dialog">
+                <u:Form
+                    Width="300"
+                    Margin="16,0"
+                    DataContext="{Binding CustomWindowDialogDemoViewModel}"
+                    LabelPosition="Top">
+                    <TextBox
+                        HorizontalAlignment="Stretch"
+                        u:FormItem.Label="Title"
+                        Text="{Binding Title}" />
+                    <u:EnumSelector
+                        HorizontalAlignment="Stretch"
+                        u:FormItem.Label="Startup Location"
+                        EnumType="WindowStartupLocation"
+                        Value="{Binding Location}" />
+                    <u:FormItem Label="PixelPosition">
+                        <UniformGrid Columns="2" Rows="1">
+                            <u:NumericIntUpDown InnerLeftContent="X" Value="{Binding X}" />
+                            <u:NumericIntUpDown InnerLeftContent="Y" Value="{Binding Y}" />
+                        </UniformGrid>
+                    </u:FormItem>
+                    <CheckBox u:FormItem.Label="Show In Taskbar" IsChecked="{Binding ShowInTaskBar}" />
+                    <CheckBox
+                        u:FormItem.Label="Is Close Button Visible"
+                        IsChecked="{Binding IsCloseButtonVisible}"
+                        IsThreeState="True" />
+                    <CheckBox u:FormItem.Label="Modal" IsChecked="{Binding IsModal}" />
+                    <Button
+                        HorizontalAlignment="Left"
+                        u:FormItem.NoLabel="True"
+                        Command="{Binding ShowDialogCommand}"
+                        Content="Show" />
+                </u:Form>
+            </TabItem>
+            <TabItem Header="Default Overlay Dialog">
+                <u:Form
+                    Width="300"
+                    Margin="16,0"
+                    DataContext="{Binding DefaultOverlayDialogDemoViewModel}"
+                    LabelPosition="Top">
+                    <TextBox
+                        HorizontalAlignment="Stretch"
+                        u:FormItem.Label="Title"
+                        Text="{Binding Title}" />
+                    <u:EnumSelector
+                        HorizontalAlignment="Stretch"
+                        u:FormItem.Label="Dialog Mode"
+                        EnumType="u:DialogMode"
+                        Value="{Binding Mode}" />
+                    <u:EnumSelector
+                        HorizontalAlignment="Stretch"
+                        u:FormItem.Label="Dialog Buttons"
+                        EnumType="u:DialogButton"
+                        Value="{Binding Button}" />
+                    <CheckBox
+                        u:FormItem.Label="Is Close Button Visible"
+                        IsChecked="{Binding IsCloseButtonVisible}"
+                        IsThreeState="True" />
+                    <CheckBox u:FormItem.Label="Modal" IsChecked="{Binding IsModal}" />
+                    <CheckBox u:FormItem.Label="Can DragMove" IsChecked="{Binding CanDragMove}" />
+                    <CheckBox u:FormItem.Label="Can LightDismiss" IsChecked="{Binding CanLightDismiss}" />
+                    <CheckBox u:FormItem.Label="FullScreen" IsChecked="{Binding FullScreen}" />
                     <ToggleSwitch
-                        Name="overlay2"
-                        Content="Window/Overlay"
-                        IsChecked="{Binding IsWindow}"
-                        OffContent="Overlay"
-                        OnContent="Window" />
+                        u:FormItem.Label="Global/Local OverlayHost"
+                        IsChecked="{Binding IsLocal}"
+                        OffContent="Global"
+                        OnContent="Local" />
+                    <Button
+                        HorizontalAlignment="Left"
+                        u:FormItem.NoLabel="True"
+                        Command="{Binding ShowDialogCommand}"
+                        Content="Show" />
+                </u:Form>
+            </TabItem>
+            <TabItem Header="Custom Overlay Dialog">
+                <u:Form
+                    Width="300"
+                    Margin="16,0"
+                    DataContext="{Binding CustomOverlayDialogDemoViewModel}"
+                    LabelPosition="Top">
+                    <TextBox
+                        HorizontalAlignment="Stretch"
+                        u:FormItem.Label="Title"
+                        Text="{Binding Title}" />
+                    <u:EnumSelector
+                        HorizontalAlignment="Stretch"
+                        u:FormItem.Label="Dialog Mode"
+                        EnumType="u:DialogMode"
+                        Value="{Binding Mode}" />
+                    <u:EnumSelector
+                        HorizontalAlignment="Stretch"
+                        u:FormItem.Label="Dialog Buttons"
+                        EnumType="u:DialogButton"
+                        Value="{Binding Button}" />
+                    <CheckBox
+                        u:FormItem.Label="Is Close Button Visible"
+                        IsChecked="{Binding IsCloseButtonVisible}"
+                        IsThreeState="True" />
+                    <CheckBox u:FormItem.Label="Modal" IsChecked="{Binding IsModal}" />
+                    <CheckBox u:FormItem.Label="Can DragMove" IsChecked="{Binding CanDragMove}" />
+                    <CheckBox u:FormItem.Label="Can LightDismiss" IsChecked="{Binding CanLightDismiss}" />
+                    <CheckBox u:FormItem.Label="FullScreen" IsChecked="{Binding FullScreen}" />
                     <ToggleSwitch
-                        Content="Global/Local"
-                        IsChecked="{Binding IsGlobal}"
-                        IsVisible="{Binding !#overlay2.IsChecked}"
-                        OffContent="Local"
-                        OnContent="Global" />
-					<ToggleSwitch
-	                    Content="HideInTaskBar/ShowInTaskBar"
-	                    IsChecked="{Binding ShowInTaskBar}"
-	                    IsVisible="{Binding #overlay2.IsChecked}"
-	                    OffContent="HideInTaskBar"
-	                    OnContent="ShowInTaskBar" />
-                    <ToggleSwitch
-                        Name="modal"
-                        Content="Modal/Regular"
-                        IsChecked="{Binding IsModal}"
-                        OffContent="Regular"
-                        OnContent="Modal" />
-                    <ToggleSwitch
-                        Content="ClickOnMaskToClose"
-                        IsChecked="{Binding CanLightDismiss}"
-                        OffContent="No"
-                        OnContent="Yes" />
-                    <ToggleSwitch
-                        Content="FullScreen"
-                        IsChecked="{Binding FullScreen}"
-                        OffContent="No"
-                        OnContent="Yes" />
-                    <Button Command="{Binding ShowCustomDialogCommand}" Content="Show Dialog" />
-                    <TextBlock>
-                        <Run Text="Custom Result: " />
-                        <Run Text="{Binding Result}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Dialog Date: " />
-                        <Run Text="{Binding Date}" />
-                    </TextBlock>
-                </StackPanel>
+                        u:FormItem.Label="Global/Local OverlayHost"
+                        IsChecked="{Binding IsLocal}"
+                        OffContent="Global"
+                        OnContent="Local" />
+                    <Button
+                        HorizontalAlignment="Left"
+                        u:FormItem.NoLabel="True"
+                        Command="{Binding ShowDialogCommand}"
+                        Content="Show" />
+                </u:Form>
             </TabItem>
         </TabControl>
         <Grid Grid.Column="1">
@@ -122,8 +176,8 @@
                 BorderBrush="{DynamicResource SemiGrey1}"
                 BorderThickness="1"
                 ClipToBounds="True"
-                CornerRadius="20">
-                <u:OverlayDialogHost HostId="LocalHost">
+                CornerRadius="12">
+                <u:OverlayDialogHost HostId="{x:Static vm:DialogDemoViewModel.LocalHost}">
                     <u:OverlayDialogHost.DialogDataTemplates>
                         <DataTemplate DataType="x:String">
                             <TextBlock

@@ -240,6 +240,7 @@ public static class Dialog
         window.Buttons = options.Button;
         window.Mode = options.Mode;
         window.ShowInTaskbar = options.ShowInTaskBar;
+        window.IsCloseButtonVisible = options.IsCloseButtonVisible;
         if (options.StartupLocation == WindowStartupLocation.Manual)
         {
             if (options.Position is not null)

@@ -70,9 +70,12 @@ public class DefaultDialogControl : DialogControlBase
 
     private void SetButtonVisibility()
     {
-        var isCloseButtonVisible =
-            IsCloseButtonVisible ?? (DataContext is IDialogContext || Buttons != DialogButton.YesNo);
-        IsVisibleProperty.SetValue(isCloseButtonVisible, _closeButton);
+        var closeButtonVisible =  IsCloseButtonVisible ??DataContext is IDialogContext;
+        IsHitTestVisibleProperty.SetValue(closeButtonVisible, _closeButton);
+        if (!closeButtonVisible)
+        {
+            OpacityProperty.SetValue(0, _closeButton);
+        }
         switch (Buttons)
         {
             case DialogButton.None:

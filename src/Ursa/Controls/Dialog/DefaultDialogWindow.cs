@@ -72,9 +72,15 @@ public class DefaultDialogWindow : DialogWindow
 
     private void SetButtonVisibility()
     {
+        // Close button should be hidden instead if invisible to retain layout. 
+        IsVisibleProperty.SetValue(true, _closeButton);
         var closeButtonVisible =
             IsCloseButtonVisible ?? (DataContext is IDialogContext || Buttons != DialogButton.YesNo);
-        IsVisibleProperty.SetValue(closeButtonVisible, _closeButton);
+        IsHitTestVisibleProperty.SetValue(closeButtonVisible, _closeButton);
+        if (!closeButtonVisible)
+        {
+            OpacityProperty.SetValue(0, _closeButton);
+        }
         switch (Buttons)
         {
             case DialogButton.None:

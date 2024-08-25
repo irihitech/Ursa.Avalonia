@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls.Primitives;
 using Irihi.Avalonia.Shared.Contracts;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -8,7 +9,12 @@ public class CustomDialogControl : DialogControlBase
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        if (_closeButton is not null) _closeButton.IsVisible = IsCloseButtonVisible ?? true;
+        var closeButtonVisible =  IsCloseButtonVisible ??DataContext is IDialogContext;
+        IsHitTestVisibleProperty.SetValue(closeButtonVisible, _closeButton);
+        if (!closeButtonVisible)
+        {
+            OpacityProperty.SetValue(0, _closeButton);
+        }
     }
 
     public override void Close()
