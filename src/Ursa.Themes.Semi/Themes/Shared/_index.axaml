@@ -8,6 +8,7 @@
         <MergeResourceInclude Source="Dialog.axaml" />
         <MergeResourceInclude Source="DialogShared.axaml" />
         <MergeResourceInclude Source="Divider.axaml" />
+        <MergeResourceInclude Source="Drawer.axaml" />
         <MergeResourceInclude Source="DualBadge.axaml" />
         <MergeResourceInclude Source="IPv4Box.axaml" />
         <MergeResourceInclude Source="KeyGestureInput.axaml" />
