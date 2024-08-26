@@ -1,20 +1,24 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:u="https://irihi.tech/ursa">
+                    xmlns:u="https://irihi.tech/ursa"
+                    xmlns:c="clr-namespace:Ursa.Themes.Semi.Converters">
     <ControlTheme TargetType="u:CustomDrawerControl" x:Key="{x:Type u:CustomDrawerControl}">
         <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
         <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Padding" Value="{DynamicResource DrawerMargin}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource DrawerBorderThickness}"/>
+        <Setter Property="CornerRadius" Value="{DynamicResource DrawerCornerRadius}"/>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:CustomDrawerControl">
                 <Border Name="PART_Root" 
-                        Margin="8 -1 -1 -1"
+                        Margin="{TemplateBinding Padding, Converter={x:Static c:ThicknessTakeConverter.Left}}"
                         Padding="0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         Classes="Shadow"
                         ClipToBounds="False"
-                        CornerRadius="12 0 0 12"
-                        BorderThickness="1 0 0 0"
+                        CornerRadius="{TemplateBinding CornerRadius, Converter={x:Static c:CornerRadiusTakeConverter.Left}}"
+                        BorderThickness="{TemplateBinding BorderThickness, Converter={x:Static c:ThicknessTakeConverter.Left}}"
                         IsHitTestVisible="True"
                         Theme="{DynamicResource CardBorder}">
                     <Border ClipToBounds="True" CornerRadius="{Binding #PART_Root.CornerRadius}">
@@ -43,41 +47,44 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^[Position=Right] /template/ Border#PART_Root">
-            <Setter Property="Margin" Value="8 0 0 0" />
-            <Setter Property="CornerRadius" Value="12 0 0  12" />
-            <Setter Property="BorderThickness" Value="1 0 0 0" />
+            <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Left}}" />
+            <Setter Property="CornerRadius" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CornerRadius, Converter={x:Static c:CornerRadiusTakeConverter.Left}}" />
+            <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={x:Static c:ThicknessTakeConverter.Left}}" />
         </Style>
         <Style Selector="^[Position=Left] /template/ Border#PART_Root">
-            <Setter Property="Margin" Value="0 0 8 0" />
-            <Setter Property="CornerRadius" Value="0 12 12 0" />
-            <Setter Property="BorderThickness" Value="0 0 1 0" />
+            <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Right}}" />
+            <Setter Property="CornerRadius" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CornerRadius, Converter={x:Static c:CornerRadiusTakeConverter.Right}}" />
+            <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={x:Static c:ThicknessTakeConverter.Right}}" />
         </Style>
         <Style Selector="^[Position=Top] /template/ Border#PART_Root">
-            <Setter Property="Margin" Value="0 0 0 8" />
-            <Setter Property="CornerRadius" Value="0 0 12 12" />
-            <Setter Property="BorderThickness" Value="0 0 0 1" />
+            <Setter Property="Margin"  Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Bottom}}" />
+            <Setter Property="CornerRadius" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CornerRadius, Converter={x:Static c:CornerRadiusTakeConverter.Bottom}}" />
+            <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={x:Static c:ThicknessTakeConverter.Bottom}}" />
         </Style>
         <Style Selector="^[Position=Bottom] /template/ Border#PART_Root">
-            <Setter Property="Margin" Value="0 8 0 0" />
-            <Setter Property="CornerRadius" Value="12 12 0 0" />
-            <Setter Property="BorderThickness" Value="0 1 0 0" />
+            <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Top}}" />
+            <Setter Property="CornerRadius" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CornerRadius, Converter={x:Static c:CornerRadiusTakeConverter.Top}}" />
+            <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={x:Static c:ThicknessTakeConverter.Top}}" />
         </Style>
     </ControlTheme>
     
     <ControlTheme x:Key="{x:Type u:DefaultDrawerControl}" TargetType="u:DefaultDrawerControl">
         <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
         <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Padding" Value="{DynamicResource DrawerMargin}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource DrawerBorderThickness}"/>
+        <Setter Property="CornerRadius" Value="{DynamicResource DrawerCornerRadius}"/>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:DefaultDrawerControl">
                 <Border Name="PART_Root" 
-                        Margin="8 -1 -1 -1"
+                        Margin="{TemplateBinding Padding, Converter={x:Static c:ThicknessTakeConverter.Left}}"
                         Padding="0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         Classes="Shadow"
                         ClipToBounds="False"
-                        CornerRadius="12 0 0 12"
-                        BorderThickness="1 0 0 0"
+                        CornerRadius="{TemplateBinding CornerRadius, Converter={x:Static c:CornerRadiusTakeConverter.Left}}"
+                        BorderThickness="{TemplateBinding BorderThickness, Converter={x:Static c:ThicknessTakeConverter.Left}}"
                         IsHitTestVisible="True"
                         Theme="{DynamicResource CardBorder}">
                     <Border ClipToBounds="True" CornerRadius="{Binding #PART_Root.CornerRadius}">
@@ -143,24 +150,24 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^[Position=Right] /template/ Border#PART_Root">
-            <Setter Property="Margin" Value="8 0 0 0" />
-            <Setter Property="CornerRadius" Value="12 0 0  12" />
-            <Setter Property="BorderThickness" Value="1 0 0 0" />
+            <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Left}}" />
+            <Setter Property="CornerRadius" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CornerRadius, Converter={x:Static c:CornerRadiusTakeConverter.Left}}" />
+            <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={x:Static c:ThicknessTakeConverter.Left}}" />
         </Style>
         <Style Selector="^[Position=Left] /template/ Border#PART_Root">
-            <Setter Property="Margin" Value="0 0 8 0" />
-            <Setter Property="CornerRadius" Value="0 12 12 0" />
-            <Setter Property="BorderThickness" Value="0 0 1 0" />
+            <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Right}}" />
+            <Setter Property="CornerRadius" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CornerRadius, Converter={x:Static c:CornerRadiusTakeConverter.Right}}" />
+            <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={x:Static c:ThicknessTakeConverter.Right}}" />
         </Style>
         <Style Selector="^[Position=Top] /template/ Border#PART_Root">
-            <Setter Property="Margin" Value="0 0 0 8" />
-            <Setter Property="CornerRadius" Value="0 0 12 12" />
-            <Setter Property="BorderThickness" Value="0 0 0 1" />
+            <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Bottom}}" />
+            <Setter Property="CornerRadius" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CornerRadius, Converter={x:Static c:CornerRadiusTakeConverter.Bottom}}" />
+            <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={x:Static c:ThicknessTakeConverter.Bottom}}" />
         </Style>
         <Style Selector="^[Position=Bottom] /template/ Border#PART_Root">
-            <Setter Property="Margin" Value="0 8 0 0" />
-            <Setter Property="CornerRadius" Value="12 12 0 0" />
-            <Setter Property="BorderThickness" Value="0 1 0 0" />
+            <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Top}}" />
+            <Setter Property="CornerRadius" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CornerRadius, Converter={x:Static c:CornerRadiusTakeConverter.Top}}" />
+            <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={x:Static c:ThicknessTakeConverter.Top}}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

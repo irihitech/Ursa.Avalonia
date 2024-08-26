@@ -5,4 +5,5 @@
     <StreamGeometry x:Key="DialogArrangeBringToFrontGlyph">M2,2H11V6H9V4H4V9H6V11H2V2M22,13V22H13V18H15V20H20V15H18V13H22M8,8H16V16H8V8Z</StreamGeometry>
     <StreamGeometry x:Key="DialogArrangeSendBackwardGlyph">M2,2H16V16H2V2M22,8V22H8V18H18V8H22M4,4V14H14V4H4Z</StreamGeometry>
     <StreamGeometry x:Key="DialogArrangeSendToBackGlyph">M2,2H11V11H2V2M9,4H4V9H9V4M22,13V22H13V13H22M15,20H20V15H15V20M16,8V11H13V8H16M11,16H8V13H11V16Z</StreamGeometry>
+    <CornerRadius x:Key="DialogCornerRadius">12</CornerRadius>
 </ResourceDictionary>

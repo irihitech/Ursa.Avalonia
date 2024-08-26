@@ -8,7 +8,7 @@
         <Setter Property="OverlayMaskBrush" Value="{DynamicResource OverlayDialogMaskBrush}" />
     </ControlTheme>
     <ControlTheme x:Key="{x:Type u:CustomDialogControl}" TargetType="u:CustomDialogControl">
-        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="CornerRadius" Value="{DynamicResource DialogCornerRadius}" />
         <Setter Property="Transitions">
             <Transitions>
                 <TransformOperationsTransition Duration="0.2" Property="RenderTransform"/>
@@ -141,7 +141,7 @@
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:DefaultDialogControl}" TargetType="u:DefaultDialogControl">
-        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="CornerRadius" Value="{DynamicResource DialogCornerRadius}" />
         <Setter Property="Transitions">
             <Transitions>
                 <TransformOperationsTransition Duration="0.2" Property="RenderTransform"/>
