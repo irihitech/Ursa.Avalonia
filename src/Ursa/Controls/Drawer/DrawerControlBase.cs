@@ -37,15 +37,7 @@ public abstract class DrawerControlBase: OverlayFeedbackElement
         set => SetValue(IsOpenProperty, value);
     }
 
-    public static readonly StyledProperty<bool> IsCloseButtonVisibleProperty =
-        AvaloniaProperty.Register<DrawerControlBase, bool>(
-            nameof(IsCloseButtonVisible), defaultValue: true);
-
-    public bool IsCloseButtonVisible
-    {
-        get => GetValue(IsCloseButtonVisibleProperty);
-        set => SetValue(IsCloseButtonVisibleProperty, value);
-    }
+    internal bool? IsCloseButtonVisible { get; set; }
     
     protected internal bool CanLightDismiss { get; set; }
     

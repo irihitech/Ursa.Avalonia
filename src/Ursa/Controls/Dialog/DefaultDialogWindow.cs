@@ -12,22 +12,27 @@ namespace Ursa.Controls;
 [TemplatePart(PART_NoButton, typeof(Button))]
 [TemplatePart(PART_OKButton, typeof(Button))]
 [TemplatePart(PART_CancelButton, typeof(Button))]
-public class DefaultDialogWindow: DialogWindow
+public class DefaultDialogWindow : DialogWindow
 {
-    protected override Type StyleKeyOverride { get; } = typeof(DefaultDialogWindow);
-    
     public const string PART_YesButton = "PART_YesButton";
     public const string PART_NoButton = "PART_NoButton";
     public const string PART_OKButton = "PART_OKButton";
     public const string PART_CancelButton = "PART_CancelButton";
-    
-    private Button? _yesButton;
+
+    public static readonly StyledProperty<DialogButton> ButtonsProperty =
+        AvaloniaProperty.Register<DefaultDialogWindow, DialogButton>(
+            nameof(Buttons));
+
+    public static readonly StyledProperty<DialogMode> ModeProperty =
+        AvaloniaProperty.Register<DefaultDialogWindow, DialogMode>(
+            nameof(Mode));
+
+    private Button? _cancelButton;
     private Button? _noButton;
     private Button? _okButton;
-    private Button? _cancelButton;
 
-    public static readonly StyledProperty<DialogButton> ButtonsProperty = AvaloniaProperty.Register<DefaultDialogWindow, DialogButton>(
-        nameof(Buttons));
+    private Button? _yesButton;
+    protected override Type StyleKeyOverride { get; } = typeof(DefaultDialogWindow);
 
     public DialogButton Buttons
     {
@@ -35,15 +40,12 @@ public class DefaultDialogWindow: DialogWindow
         set => SetValue(ButtonsProperty, value);
     }
 
-    public static readonly StyledProperty<DialogMode> ModeProperty = AvaloniaProperty.Register<DefaultDialogWindow, DialogMode>(
-        nameof(Mode));
-
     public DialogMode Mode
     {
         get => GetValue(ModeProperty);
         set => SetValue(ModeProperty, value);
     }
-    
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
@@ -59,68 +61,48 @@ public class DefaultDialogWindow: DialogWindow
     private void OnDefaultClose(object? sender, RoutedEventArgs e)
     {
         if (Equals(sender, _yesButton))
-        {
             Close(DialogResult.Yes);
-            return;
-        }
-        if(Equals(sender, _noButton))
-        {
+        else if (Equals(sender, _noButton))
             Close(DialogResult.No);
-            return;
-        }
-        if(Equals(sender, _okButton))
-        {
+        else if (Equals(sender, _okButton))
             Close(DialogResult.OK);
-            return;
-        }
-        if(Equals(sender, _cancelButton))
-        {
+        else if (Equals(sender, _cancelButton))
             Close(DialogResult.Cancel);
-        }
     }
 
     private void SetButtonVisibility()
     {
-        bool closeButtonVisible = DataContext is IDialogContext || Buttons != DialogButton.YesNo;
-        SetVisibility(_closeButton, closeButtonVisible);
+        // Close button should be hidden instead if invisible to retain layout. 
+        IsVisibleProperty.SetValue(true, _closeButton);
+        var closeButtonVisible =
+            IsCloseButtonVisible ?? (DataContext is IDialogContext || Buttons != DialogButton.YesNo);
+        IsHitTestVisibleProperty.SetValue(closeButtonVisible, _closeButton);
+        if (!closeButtonVisible)
+        {
+            OpacityProperty.SetValue(0, _closeButton);
+        }
         switch (Buttons)
         {
             case DialogButton.None:
-                SetVisibility(_okButton, false);
-                SetVisibility(_cancelButton, false);
-                SetVisibility(_yesButton, false);
-                SetVisibility(_noButton, false);
+                IsVisibleProperty.SetValue(false, _okButton, _cancelButton, _yesButton, _noButton);
                 break;
             case DialogButton.OK:
-                SetVisibility(_okButton, true);
-                SetVisibility(_cancelButton, false);
-                SetVisibility(_yesButton, false);
-                SetVisibility(_noButton, false);
+                IsVisibleProperty.SetValue(true, _okButton);
+                IsVisibleProperty.SetValue(false, _cancelButton, _yesButton, _noButton);
                 break;
             case DialogButton.OKCancel:
-                SetVisibility(_okButton, true);
-                SetVisibility(_cancelButton, true);
-                SetVisibility(_yesButton, false);
-                SetVisibility(_noButton, false);
+                IsVisibleProperty.SetValue(true, _okButton, _cancelButton);
+                IsVisibleProperty.SetValue(false, _yesButton, _noButton);
                 break;
             case DialogButton.YesNo:
-                SetVisibility(_okButton, false);
-                SetVisibility(_cancelButton, false);
-                SetVisibility(_yesButton, true);
-                SetVisibility(_noButton, true);
+                IsVisibleProperty.SetValue(false, _okButton, _cancelButton);
+                IsVisibleProperty.SetValue(true, _yesButton, _noButton);
                 break;
             case DialogButton.YesNoCancel:
-                SetVisibility(_okButton, false);
-                SetVisibility(_cancelButton, true);
-                SetVisibility(_yesButton, true);
-                SetVisibility(_noButton, true);
+                IsVisibleProperty.SetValue(false, _okButton);
+                IsVisibleProperty.SetValue(true, _cancelButton, _yesButton, _noButton);
                 break;
         }
-    }
-    
-    private void SetVisibility(Button? button, bool visible)
-    {
-        if (button is not null) button.IsVisible = visible;
     }
 
     protected override void OnCloseButtonClicked(object? sender, RoutedEventArgs args)
@@ -131,7 +113,7 @@ public class DefaultDialogWindow: DialogWindow
         }
         else
         {
-            DialogResult result = Buttons switch
+            var result = Buttons switch
             {
                 DialogButton.None => DialogResult.None,
                 DialogButton.OK => DialogResult.OK,

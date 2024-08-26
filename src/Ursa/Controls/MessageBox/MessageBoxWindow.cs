@@ -21,26 +21,27 @@ public class MessageBoxWindow(MessageBoxButton buttons) : Window
     public const string PART_OKButton = "PART_OKButton";
     public const string PART_CancelButton = "PART_CancelButton";
 
-    private Button? _closeButton;
-    private Button? _yesButton;
-    private Button? _noButton;
-    private Button? _okButton;
-    private Button? _cancelButton;
-
-    protected override Type StyleKeyOverride => typeof(MessageBoxWindow);
-
     public static readonly StyledProperty<MessageBoxIcon> MessageIconProperty =
         AvaloniaProperty.Register<MessageBoxWindow, MessageBoxIcon>(
             nameof(MessageIcon));
+
+    private Button? _closeButton;
+    
+    private Button? _cancelButton;
+    private Button? _noButton;
+    private Button? _okButton;
+    private Button? _yesButton;
+
+    public MessageBoxWindow() : this(MessageBoxButton.OK)
+    {
+    }
+
+    protected override Type StyleKeyOverride => typeof(MessageBoxWindow);
 
     public MessageBoxIcon MessageIcon
     {
         get => GetValue(MessageIconProperty);
         set => SetValue(MessageIconProperty, value);
-    }
-
-    public MessageBoxWindow() : this(MessageBoxButton.OK)
-    {
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -60,33 +61,32 @@ public class MessageBoxWindow(MessageBoxButton buttons) : Window
 
     private void SetButtonVisibility()
     {
+        var closeButtonVisible = buttons != MessageBoxButton.YesNo;
+        IsVisibleProperty.SetValue(closeButtonVisible, _closeButton);
         switch (buttons)
         {
             case MessageBoxButton.OK:
-                Button.IsVisibleProperty.SetValue(true, _okButton);
-                Button.IsVisibleProperty.SetValue(false, _cancelButton, _yesButton, _noButton);
+                IsVisibleProperty.SetValue(true, _okButton);
+                IsVisibleProperty.SetValue(false, _cancelButton, _yesButton, _noButton);
                 break;
             case MessageBoxButton.OKCancel:
-                Button.IsVisibleProperty.SetValue(true, _okButton, _cancelButton);
-                Button.IsVisibleProperty.SetValue(false, _yesButton, _noButton);
+                IsVisibleProperty.SetValue(true, _okButton, _cancelButton);
+                IsVisibleProperty.SetValue(false, _yesButton, _noButton);
                 break;
             case MessageBoxButton.YesNo:
-                Button.IsVisibleProperty.SetValue(false, _okButton, _cancelButton);
-                Button.IsVisibleProperty.SetValue(true, _yesButton, _noButton);
+                IsVisibleProperty.SetValue(false, _okButton, _cancelButton);
+                IsVisibleProperty.SetValue(true, _yesButton, _noButton);
                 break;
             case MessageBoxButton.YesNoCancel:
-                Button.IsVisibleProperty.SetValue(false, _okButton);
-                Button.IsVisibleProperty.SetValue(true, _cancelButton, _yesButton, _noButton);
+                IsVisibleProperty.SetValue(false, _okButton);
+                IsVisibleProperty.SetValue(true, _cancelButton, _yesButton, _noButton);
                 break;
         }
     }
 
     private void OnCloseButtonClick(object? sender, RoutedEventArgs e)
     {
-        if (buttons == MessageBoxButton.OK)
-        {
-            Close(MessageBoxResult.OK);
-        }
+        if (buttons == MessageBoxButton.OK) Close(MessageBoxResult.OK);
 
         Close(MessageBoxResult.Cancel);
     }
@@ -94,34 +94,49 @@ public class MessageBoxWindow(MessageBoxButton buttons) : Window
     private void OnDefaultButtonClick(object? sender, RoutedEventArgs e)
     {
         if (Equals(sender, _okButton))
-        {
             Close(MessageBoxResult.OK);
-        }
         else if (Equals(sender, _cancelButton))
-        {
             Close(MessageBoxResult.Cancel);
-        }
         else if (Equals(sender, _yesButton))
-        {
             Close(MessageBoxResult.Yes);
-        }
-        else if (Equals(sender, _noButton))
-        {
-            Close(MessageBoxResult.No);
-        }
+        else if (Equals(sender, _noButton)) Close(MessageBoxResult.No);
     }
 
     protected override void OnKeyUp(KeyEventArgs e)
     {
         base.OnKeyUp(e);
-        if (e.Key == Key.Escape && buttons == MessageBoxButton.OK)
+        if (e.Key != Key.Escape) return;
+        switch (buttons)
         {
-            Close(MessageBoxResult.OK);
+            case MessageBoxButton.OK:
+                Close(MessageBoxResult.OK);
+                break;
+            case MessageBoxButton.OKCancel:
+                Close(MessageBoxResult.Cancel);
+                break;
+            case MessageBoxButton.YesNoCancel:
+                Close(MessageBoxResult.Cancel);
+                break;
         }
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
         BeginMoveDrag(e);
+    }
+
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        var defaultButton = buttons switch
+        {
+            MessageBoxButton.OK => _okButton,
+            MessageBoxButton.OKCancel => _cancelButton,
+            MessageBoxButton.YesNo => _yesButton,
+            MessageBoxButton.YesNoCancel => _cancelButton,
+            _ => null
+        };
+        Button.IsDefaultProperty.SetValue(true, defaultButton);
+        defaultButton?.Focus();
     }
 }

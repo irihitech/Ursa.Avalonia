@@ -1,0 +1,50 @@
+<UserControl
+    x:Class="Ursa.Demo.Dialogs.DefaultDemoDialog"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dialogs="clr-namespace:Ursa.Demo.Dialogs"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    MinWidth="400"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="dialogs:DefaultDemoDialogViewModel"
+    mc:Ignorable="d">
+    <u:Form HorizontalAlignment="Stretch" LabelPosition="Top">
+        <u:Form.ItemsPanel>
+            <ItemsPanelTemplate>
+                <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, *" />
+            </ItemsPanelTemplate>
+        </u:Form.ItemsPanel>
+        <u:FormItem Label="Country/Region">
+            <ComboBox
+                Width="120"
+                ItemsSource="{Binding Cities}"
+                SelectedItem="{Binding City}" />
+        </u:FormItem>
+        <u:FormItem
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="32,8,0,8"
+            Label="Owner">
+            <TextBox u:FormItem.Label="Owner" Text="{Binding Owner}" />
+        </u:FormItem>
+        <u:FormItem
+            Grid.Row="1"
+            Grid.Column="0"
+            Label="Target">
+            <ComboBox
+                Width="120"
+                ItemsSource="{Binding Cities}"
+                SelectedItem="{Binding Target}" />
+        </u:FormItem>
+        <u:FormItem
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="32,8,0,8"
+            Label="Department">
+            <TextBox Text="{Binding Department}" />
+        </u:FormItem>
+    </u:Form>
+</UserControl>

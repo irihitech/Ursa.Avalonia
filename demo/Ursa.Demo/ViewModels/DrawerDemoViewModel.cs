@@ -13,83 +13,61 @@ namespace Ursa.Demo.ViewModels;
 public partial class DrawerDemoViewModel : ObservableObject
 {
     public ICommand ShowDialogCommand { get; set; }
-    public ICommand ShowCustomDialogCommand { get; set; }
 
-    [ObservableProperty] private Position _selectedPosition;
-    [ObservableProperty] private DialogButton _selectedButton;
-    [ObservableProperty] private bool _isGlobal;
+    [ObservableProperty] private Position _position;
+    [ObservableProperty] private DialogButton _buttons;
+
     [ObservableProperty] private bool _canLightDismiss;
-    [ObservableProperty] private DialogResult? _defaultResult;
-    [ObservableProperty] private bool _result;
     [ObservableProperty] private bool _isModal;
-    [ObservableProperty] private DateTime? _date;
+    [ObservableProperty] private bool? _isCloseButtonVisible;
+    [ObservableProperty] private string? _title;
+
+    [ObservableProperty] private bool _custom;
+    [ObservableProperty] private bool _isLocal;
 
     public DrawerDemoViewModel()
     {
         ShowDialogCommand = new AsyncRelayCommand(ShowDefaultDialog);
-        ShowCustomDialogCommand = new AsyncRelayCommand(ShowCustomDrawer);
-        SelectedPosition = Position.Right;
-        IsGlobal = true;
+        Position = Position.Right;
         IsModal = true;
+        Title = "Add New";
     }
 
     private async Task ShowDefaultDialog()
     {
-        var vm = new PlainDialogViewModel();
-        if (IsModal)
+        var options = new DrawerOptions()
         {
-            DefaultResult = await Drawer.ShowModal<PlainDialog, PlainDialogViewModel>(
-                vm,
-                IsGlobal ? null : "LocalHost",
-                new DrawerOptions()
-                {
-                    Title = "Please select a date",
-                    Position = SelectedPosition,
-                    Buttons = SelectedButton,
-                    CanLightDismiss = CanLightDismiss,
-                });
-            Date = vm.Date;
+            Position = Position,
+            Buttons = Buttons,
+            CanLightDismiss = CanLightDismiss,
+            IsCloseButtonVisible = IsCloseButtonVisible,
+            Title = Title,
+        };
+        var hostId = IsLocal ? "LocalHost" : null;
+        if (Custom)
+        {
+            var vm = new CustomDemoDialogViewModel();
+            if (IsModal)
+            {
+                await Drawer.ShowCustomModal<CustomDemoDialog, CustomDemoDialogViewModel, object?>(vm, hostId, options);
+            }
+            else
+            {
+                Drawer.ShowCustom<CustomDemoDialog, CustomDemoDialogViewModel>(vm, hostId, options);
+            }
         }
         else
         {
-            Drawer.Show<PlainDialog, PlainDialogViewModel>(
-                vm,
-                IsGlobal ? null : "LocalHost",
-                new DrawerOptions()
-                {
-                    Title = "Please select a date",
-                    Position = SelectedPosition,
-                    Buttons = SelectedButton,
-                    CanLightDismiss = CanLightDismiss,
-                });
+            var vm = new DefaultDemoDialogViewModel();
+            if (IsModal)
+            {
+                await Drawer.ShowModal<DefaultDemoDialog, DefaultDemoDialogViewModel>(vm, hostId, options);
+            }
+            else
+            {
+                Drawer.Show<DefaultDemoDialog, DefaultDemoDialogViewModel>(vm, hostId, options);
+            }
         }
-    }
-
-    private async Task ShowCustomDrawer()
-    {
-        var vm = new DialogWithActionViewModel();
-        if (IsModal)
-        {
-            Result = await Drawer.ShowCustomModal<DialogWithAction, DialogWithActionViewModel, bool>(
-                vm,
-                IsGlobal ? null : "LocalHost",
-                new DrawerOptions()
-                {
-                    Position = SelectedPosition,
-                    CanLightDismiss = CanLightDismiss,
-                });
-            Date = vm.Date;
-        }
-        else
-        {
-            Drawer.ShowCustom<DialogWithAction, DialogWithActionViewModel>(
-                vm,
-                IsGlobal ? null : "LocalHost",
-                new DrawerOptions()
-                {
-                    Position = SelectedPosition,
-                    CanLightDismiss = CanLightDismiss,
-                });
-        }
+        
     }
 }

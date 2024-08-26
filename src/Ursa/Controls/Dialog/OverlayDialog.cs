@@ -221,6 +221,7 @@ public static class OverlayDialog
         control.Buttons = options.Buttons;
         control.Title = options.Title;
         control.CanLightDismiss = options.CanLightDismiss;
+        control.IsCloseButtonVisible = options.IsCloseButtonVisible;
         DialogControlBase.SetCanDragMove(control, options.CanDragMove);
     }
 
