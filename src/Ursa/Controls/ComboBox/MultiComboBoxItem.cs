@@ -100,6 +100,11 @@ public class MultiComboBoxItem: ContentControl
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
+        UpdateSelection();
+    }
+    
+    internal void UpdateSelection()
+    {
         _updateInternal = true;
         if (_parent?.ItemsPanelRoot is VirtualizingPanel)
         {
