@@ -17,7 +17,7 @@ namespace Ursa.Controls;
 [TemplatePart(PART_Spinner, typeof(ButtonSpinner))]
 [TemplatePart(PART_TextBox, typeof(TextBox))]
 [TemplatePart(PART_DragPanel, typeof(Panel))]
-public abstract class NumericUpDown : TemplatedControl, IClearControl
+public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerContentControl
 {
     public const string PART_Spinner = "PART_Spinner";
     public const string PART_TextBox = "PART_TextBox";
@@ -62,13 +62,24 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl
         set => SetValue(HorizontalContentAlignmentProperty, value);
     }
 
-    public static readonly StyledProperty<object?> InnerLeftContentProperty = AvaloniaProperty.Register<NumericUpDown, object?>(
-        nameof(InnerLeftContent));
+    public static readonly StyledProperty<object?> InnerLeftContentProperty =
+        AvaloniaProperty.Register<NumericUpDown, object?>(
+            nameof(InnerLeftContent));
 
     public object? InnerLeftContent
     {
         get => GetValue(InnerLeftContentProperty);
         set => SetValue(InnerLeftContentProperty, value);
+    }
+
+    public static readonly StyledProperty<object?> InnerRightContentProperty =
+        AvaloniaProperty.Register<NumericUpDown, object?>(
+            nameof(InnerRightContent));
+
+    public object? InnerRightContent
+    {
+        get => GetValue(InnerRightContentProperty);
+        set => SetValue(InnerRightContentProperty, value);
     }
 
     public static readonly StyledProperty<string?> WatermarkProperty = AvaloniaProperty.Register<NumericUpDown, string?>(

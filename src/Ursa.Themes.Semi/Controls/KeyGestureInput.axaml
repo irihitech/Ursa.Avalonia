@@ -57,9 +57,10 @@
                                 Margin="0,0,8,0"
                                 HorizontalAlignment="Right"
                                 Command="{Binding $parent[u:KeyGestureInput].Clear}"
+                                Content="{DynamicResource IconButtonClearData}"
                                 Focusable="False"
                                 IsVisible="False"
-                                Theme="{DynamicResource InputClearButton}" />
+                                Theme="{DynamicResource InnerIconButton}" />
                         </Grid>
                     </Panel>
                 </Border>

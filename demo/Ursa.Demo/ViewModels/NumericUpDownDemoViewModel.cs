@@ -24,6 +24,7 @@ public partial class NumericUpDownDemoViewModel : ObservableObject
     [ObservableProperty] private Array _arrayHorizontalContentAlignment;
     [ObservableProperty] private HorizontalAlignment _horizontalContentAlignment = HorizontalAlignment.Center;
     [ObservableProperty] private object? _innerLeftContent = "obj:0x";
+    [ObservableProperty] private object? _innerRightContent = "%";
     [ObservableProperty] private string _watermark = "Water mark showed";
     [ObservableProperty] private string _formatString = "X8";
     [ObservableProperty] private Array _arrayParsingNumberStyle;

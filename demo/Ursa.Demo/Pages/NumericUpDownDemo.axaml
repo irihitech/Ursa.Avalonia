@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="using:Ursa.Demo.ViewModels"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:CompileBindings="True"
@@ -34,6 +35,7 @@
                 FontFamily="{Binding FontFamily, Mode=OneWay}"
                 FormatString="{Binding FormatString}"
                 InnerLeftContent="{Binding InnerLeftContent}"
+                InnerRightContent="{Binding InnerRightContent}"
                 IsEnabled="{Binding IsEnable}"
                 IsReadOnly="{Binding IsReadOnly}"
                 Maximum="{Binding Maximum}"
@@ -125,6 +127,24 @@
                     Step="1"
                     Watermark="AllowHexSpecifier"
                     Value="2" />
+                <u:Divider Content="Sizes" />
+                <u:NumericUIntUpDown
+                    Classes="Small"
+                    Step="1"
+                    Watermark="Small"/>
+                <u:NumericUIntUpDown
+                    Classes="Large"
+                    Step="1"
+                    Margin="0 8 0 0"
+                    Watermark="Large"/>
+                <u:Divider Content="Error" />
+                <u:NumericUIntUpDown
+                    Step="1"
+                    Watermark="Validation Error">
+                    <DataValidationErrors.Error>
+                        <system:Exception/>
+                    </DataValidationErrors.Error>
+                </u:NumericUIntUpDown>
             </StackPanel>
         </Grid>
 
