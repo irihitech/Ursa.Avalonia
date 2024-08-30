@@ -2,13 +2,15 @@
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
-        <Version>1.0.0-rc1</Version>
+        <Version>1.0.0</Version>
         <ImplicitUsings>enable</ImplicitUsings>
         <Authors>IRIHI Technology Co., Ltd.</Authors>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
         <PackageId>Irihi.Ursa.PrismExtension</PackageId>
         <PackageIcon>irihi.png</PackageIcon>
+        <PackageProjectUrl>https://github.com/irihitech/Ursa.Avalonia</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>
