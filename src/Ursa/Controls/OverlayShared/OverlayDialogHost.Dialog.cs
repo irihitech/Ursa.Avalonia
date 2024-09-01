@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Input;
+using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Helpers;
 using Irihi.Avalonia.Shared.Shapes;
 using Ursa.Controls.OverlayShared;
@@ -170,6 +171,9 @@ public partial class OverlayDialogHost
         {
             _maskAppearAnimation.RunAsync(mask);
         }
+
+        var element = control.GetVisualDescendants().OfType<InputElement>().FirstOrDefault(a => a.Focusable);
+        element?.Focus();
         _modalCount++;
         IsInModalStatus = _modalCount > 0;
         control.IsClosed = false;

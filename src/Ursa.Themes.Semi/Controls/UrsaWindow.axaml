@@ -65,7 +65,9 @@
                                 Margin="{Binding $parent[u:UrsaWindow].TitleBarMargin}"
                                 LeftContent="{Binding $parent[u:UrsaWindow].LeftContent}"
                                 RightContent="{Binding $parent[u:UrsaWindow].RightContent}" />
-                            <u:OverlayDialogHost IsModalStatusReporter="True" />
+                            <VisualLayerManager>
+                                <u:OverlayDialogHost IsModalStatusReporter="True" />
+                            </VisualLayerManager>
                         </VisualLayerManager.ChromeOverlayLayer>
                         <Panel>
                             <ContentPresenter

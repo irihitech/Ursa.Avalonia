@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Layout;
 
 namespace Ursa.Controls;
@@ -93,6 +94,7 @@ public static class OverlayDialog
         {
             Content = view,
             DataContext = vm,
+            [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
         ConfigureCustomDialogControl(t, options);
         host.AddDialog(t);
@@ -108,6 +110,7 @@ public static class OverlayDialog
         {
             Content = new TView(),
             DataContext = vm,
+            [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
         ConfigureDefaultDialogControl(t, options);
         host.AddModalDialog(t);
@@ -123,6 +126,7 @@ public static class OverlayDialog
         {
             Content = control,
             DataContext = vm,
+            [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
         ConfigureDefaultDialogControl(t, options);
         host.AddModalDialog(t);
@@ -139,6 +143,7 @@ public static class OverlayDialog
         {
             Content = new TView(),
             DataContext = vm,
+            [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
         ConfigureCustomDialogControl(t, options);
         host.AddModalDialog(t);
@@ -154,6 +159,7 @@ public static class OverlayDialog
         {
             Content = control,
             DataContext = vm,
+            [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
         ConfigureCustomDialogControl(t, options);
         host.AddModalDialog(t);
@@ -172,6 +178,7 @@ public static class OverlayDialog
         {
             Content = view,
             DataContext = vm,
+            [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
         ConfigureCustomDialogControl(t, options);
         host.AddModalDialog(t);
