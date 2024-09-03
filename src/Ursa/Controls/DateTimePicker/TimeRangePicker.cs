@@ -57,7 +57,21 @@ public class TimeRangePicker : TimePickerBase, IClearControl
             picker.OnSelectionChanged(args));
         EndTimeProperty.Changed.AddClassHandler<TimeRangePicker, TimeSpan?>((picker, args) =>
             picker.OnSelectionChanged(args, false));
+        DisplayFormatProperty.Changed.AddClassHandler<TimeRangePicker, string?>((picker, args) => picker.OnDisplayFormatChanged(args));
     }
+
+    private void OnDisplayFormatChanged(AvaloniaPropertyChangedEventArgs<string?> args)
+    {
+        if (_startTextBox is not null)
+        {
+            SyncTimeToText(StartTime);
+        }
+        if (_endTextBox is not null)
+        {
+            SyncTimeToText(EndTime, false);
+        }
+    }
+
 
     public string? EndWatermark
     {
