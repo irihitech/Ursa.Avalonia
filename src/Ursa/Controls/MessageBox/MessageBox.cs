@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Input;
 
 namespace Ursa.Controls;
 
@@ -63,7 +64,8 @@ public static class MessageBox
             Content = message,
             Title = title,
             Buttons = button,
-            MessageIcon = icon
+            MessageIcon = icon,
+            [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
         host.AddModalDialog(messageControl);
         var result = await messageControl.ShowAsync<MessageBoxResult>();

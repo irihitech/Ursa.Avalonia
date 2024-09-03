@@ -2,7 +2,9 @@ using Avalonia;
 using Avalonia.Animation;
 using Avalonia.Animation.Easings;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Styling;
+using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Shapes;
 using Ursa.Common;
 using Ursa.Controls.OverlayShared;
@@ -67,8 +69,8 @@ public partial class OverlayDialogHost
         {
             await Task.WhenAll(animation.RunAsync(control), _maskAppearAnimation.RunAsync(mask));
         }
-
-        control.Focus();
+        var element = control.GetVisualDescendants().OfType<InputElement>().FirstOrDefault(a => a.Focusable);
+        element?.Focus();
     }
 
     private void SetDrawerPosition(DrawerControlBase control)

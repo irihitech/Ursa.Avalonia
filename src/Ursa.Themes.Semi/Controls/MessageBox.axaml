@@ -33,9 +33,9 @@
                     <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
                     <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
-                    <ChromeOverlayLayer />
-                    <Grid RowDefinitions="Auto, *, Auto">
-                        <Grid
+                    <VisualLayerManager>
+                        <Grid RowDefinitions="Auto, *, Auto">
+                            <Grid
                             Grid.Row="0"
                             Margin="24,24,24,0"
                             ColumnDefinitions="Auto, *, Auto">
@@ -61,7 +61,7 @@
                                 Grid.Column="2"
                                 Theme="{DynamicResource CloseButton}" />
                         </Grid>
-                        <Grid
+                            <Grid
                             Grid.Row="1"
                             MaxWidth="{DynamicResource MessageBoxWindowContentMaxWidth}"
                             Margin="{TemplateBinding Padding}"
@@ -79,7 +79,7 @@
                                     TextWrapping="Wrap" />
                             </ScrollViewer>
                         </Grid>
-                        <StackPanel
+                            <StackPanel
                             Grid.Row="2"
                             Margin="24,0,24,24"
                             HorizontalAlignment="Right"
@@ -109,6 +109,7 @@
                                 Theme="{DynamicResource SolidButton}" />
                         </StackPanel>
                     </Grid>
+                    </VisualLayerManager>
                 </Panel>
             </ControlTemplate>
         </Setter>
@@ -155,6 +156,7 @@
             <ControlTemplate TargetType="u:MessageBoxControl">
                 <Border
                     Padding="0"
+                    Focusable="True"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Classes="Shadow"

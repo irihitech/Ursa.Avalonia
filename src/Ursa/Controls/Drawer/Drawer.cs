@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Ursa.Common;
 using Ursa.Controls.Options;
 
@@ -60,7 +61,8 @@ public static class Drawer
         var drawer = new DefaultDrawerControl
         {
             Content = new TView(),
-            DataContext = vm
+            DataContext = vm,
+            [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
         ConfigureDefaultDrawer(drawer, options);
         host.AddModalDrawer(drawer);
@@ -75,7 +77,8 @@ public static class Drawer
         var drawer = new DefaultDrawerControl
         {
             Content = control,
-            DataContext = vm
+            DataContext = vm,
+            [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
         ConfigureDefaultDrawer(drawer, options);
         host.AddModalDrawer(drawer);
@@ -92,7 +95,8 @@ public static class Drawer
         var drawer = new DefaultDrawerControl
         {
             Content = view,
-            DataContext = vm
+            DataContext = vm,
+            [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
         ConfigureDefaultDrawer(drawer, options);
         host.AddModalDrawer(drawer);
@@ -152,7 +156,8 @@ public static class Drawer
         var dialog = new CustomDrawerControl
         {
             Content = new TView(),
-            DataContext = vm
+            DataContext = vm,
+            [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
         ConfigureCustomDrawer(dialog, options);
         host.AddModalDrawer(dialog);
@@ -167,7 +172,8 @@ public static class Drawer
         var dialog = new CustomDrawerControl
         {
             Content = control,
-            DataContext = vm
+            DataContext = vm,
+            [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
         ConfigureCustomDrawer(dialog, options);
         host.AddModalDrawer(dialog);
@@ -185,7 +191,8 @@ public static class Drawer
         var dialog = new CustomDrawerControl
         {
             Content = view,
-            DataContext = vm
+            DataContext = vm,
+            [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
         ConfigureCustomDrawer(dialog, options);
         host.AddModalDrawer(dialog);
