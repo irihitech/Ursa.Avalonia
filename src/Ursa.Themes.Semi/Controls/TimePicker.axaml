@@ -193,8 +193,7 @@
                                         <u:TimePickerPresenter
                                             Name="{x:Static u:TimePicker.PART_Presenter}"
                                             NeedsConfirmation="{TemplateBinding NeedConfirmation}"
-                                            PanelFormat="{TemplateBinding PanelFormat}"
-                                            Time="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedTime, Mode=OneWayToSource}" />
+                                            PanelFormat="{TemplateBinding PanelFormat}"/>
                                     </DockPanel>
                                 </Border>
                             </Popup>

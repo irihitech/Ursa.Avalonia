@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
@@ -83,7 +84,7 @@ public class TimePickerPresenter : TemplatedControl
 
     public TimePickerPresenter()
     {
-        SetCurrentValue(TimeProperty, DateTime.Now.TimeOfDay);
+        // SetCurrentValue(TimeProperty, DateTime.Now.TimeOfDay);
     }
 
     public bool NeedsConfirmation
@@ -115,16 +116,27 @@ public class TimePickerPresenter : TemplatedControl
         get => GetValue(PanelFormatProperty);
         set => SetValue(PanelFormatProperty, value);
     }
-
-    public event EventHandler<TimePickerSelectedValueChangedEventArgs>? SelectedTimeChanged;
+    
+    public static readonly RoutedEvent<TimeChangedEventArgs> SelectedTimeChangedEvent =
+        RoutedEvent.Register<TimePickerPresenter, TimeChangedEventArgs>(
+            nameof(SelectedTimeChanged), RoutingStrategies.Bubble);
+    
+    public event EventHandler<TimeChangedEventArgs> SelectedTimeChanged
+    {
+        add => AddHandler(SelectedTimeChangedEvent, value);
+        remove => RemoveHandler(SelectedTimeChangedEvent, value);
+    }
 
     private void OnTimeChanged(AvaloniaPropertyChangedEventArgs<TimeSpan?> args)
     {
         _updateFromTimeChange = true;
         UpdatePanelsFromSelectedTime(args.NewValue.Value);
         _updateFromTimeChange = false;
-        SelectedTimeChanged?.Invoke(this,
-            new TimePickerSelectedValueChangedEventArgs(args.OldValue.Value, args.NewValue.Value));
+        if (args.OldValue.Value != args.NewValue.Value)
+        {
+            RaiseEvent(new TimeChangedEventArgs(args.OldValue.Value, args.NewValue.Value)
+                { RoutedEvent = SelectedTimeChangedEvent, Source = this });
+        }
     }
 
     private void OnPanelFormatChanged(AvaloniaPropertyChangedEventArgs<string> args)

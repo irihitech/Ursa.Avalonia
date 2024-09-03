@@ -48,6 +48,7 @@ public class TimeRangePicker : TimePickerBase, IClearControl
     private TimePickerPresenter? _startPresenter;
 
     private TextBox? _startTextBox;
+    private bool _suppressTextPresenterEvent;
 
 
     static TimeRangePicker()
@@ -91,9 +92,16 @@ public class TimeRangePicker : TimePickerBase, IClearControl
 
     private void OnSelectionChanged(AvaloniaPropertyChangedEventArgs<TimeSpan?> args, bool start = true)
     {
+        SyncTimeToText(args.NewValue.Value, start);
+        _suppressTextPresenterEvent = true;
+        TimePickerPresenter.TimeProperty.SetValue(args.NewValue.Value, start ? _startPresenter : _endPresenter);
+        _suppressTextPresenterEvent = false;
+    }
+
+    private void SyncTimeToText(TimeSpan? time, bool start = true)
+    {
         var textBox = start ? _startTextBox : _endTextBox;
         if (textBox is null) return;
-        var time = args.NewValue.Value;
         if (time is null)
         {
             textBox.Text = null;
@@ -112,6 +120,8 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _startTextBox, _endTextBox);
         PointerPressedEvent.RemoveHandler(OnTextBoxPointerPressed, _startTextBox, _endTextBox);
         Button.ClickEvent.RemoveHandler(OnButtonClick, _button);
+        TimePickerPresenter.SelectedTimeChangedEvent.RemoveHandler(OnPresenterTimeChanged, _startPresenter,
+            _endPresenter);
 
         e.NameScope.Find<Popup>(PartNames.PART_Popup);
         _startTextBox = e.NameScope.Find<TextBox>(PART_StartTextBox);
@@ -124,6 +134,18 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         PointerPressedEvent.AddHandler(OnTextBoxPointerPressed, RoutingStrategies.Tunnel, false, _startTextBox,
             _endTextBox);
         Button.ClickEvent.AddHandler(OnButtonClick, _button);
+        TimePickerPresenter.SelectedTimeChangedEvent.AddHandler(OnPresenterTimeChanged, _startPresenter, _endPresenter);
+        
+        _startPresenter?.SetValue(TimePickerPresenter.TimeProperty, StartTime);
+        _endPresenter?.SetValue(TimePickerPresenter.TimeProperty, EndTime);
+        SyncTimeToText(StartTime);
+        SyncTimeToText(EndTime, false);
+    }
+
+    private void OnPresenterTimeChanged(object sender, TimeChangedEventArgs e)
+    {
+        if (_suppressTextPresenterEvent) return;
+        SetCurrentValue(Equals(sender, _startPresenter) ? StartTimeProperty : EndTimeProperty, e.NewTime);
     }
 
     private void OnButtonClick(object? sender, RoutedEventArgs e)
@@ -174,7 +196,7 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         SetCurrentValue(IsDropdownOpenProperty, false);
         Focus();
     }
-    
+
     public void Dismiss()
     {
         SetCurrentValue(IsDropdownOpenProperty, false);

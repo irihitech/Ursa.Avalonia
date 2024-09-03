@@ -5,12 +5,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    x:DataType="viewModels:TimePickerDemoViewModel"
     mc:Ignorable="d">
     <StackPanel HorizontalAlignment="Left">
         <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
+        <!--
         <TextBlock Text="{Binding #picker.SelectedTime}" />
+        -->
         <TextBox
             Name="displayFormat"
             Width="300"
@@ -21,6 +25,7 @@
             Width="300"
             InnerLeftContent="Panel Format"
             Text="tt HH mm ss" />
+        <!--
         <u:TimePicker
             Name="picker"
             Width="200"
@@ -40,6 +45,20 @@
             PanelFormat="{Binding #panelFormat.Text}" />
         <u:TimeRangePicker
             Width="300"
+            DisplayFormat="{Binding #displayFormat.Text}"
+            PanelFormat="{Binding #panelFormat.Text}" />
+        -->
+        <TextBlock Text="Binding"/>
+        <u:TimePicker
+            Width="300"
+            HorizontalAlignment="Left"
+            SelectedTime="{Binding Time}"
+            DisplayFormat="{Binding #displayFormat.Text}"
+            PanelFormat="{Binding #panelFormat.Text}" />
+        <u:TimeRangePicker
+            Width="300"
+            StartTime="{Binding StartTime}"
+            EndTime="{Binding EndTime}"
             DisplayFormat="{Binding #displayFormat.Text}"
             PanelFormat="{Binding #panelFormat.Text}" />
     </StackPanel>
