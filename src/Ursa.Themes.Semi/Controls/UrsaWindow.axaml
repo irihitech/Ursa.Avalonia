@@ -97,17 +97,14 @@
                         <Grid ColumnDefinitions="Auto, *, Auto, Auto" HorizontalAlignment="Stretch">
                             <ContentPresenter
                                 Grid.Column="0"
-                                VerticalAlignment="Center"
                                 IsVisible="{TemplateBinding IsTitleVisible}"
                                 Content="{TemplateBinding LeftContent}" />
                             <ContentPresenter
                                 Grid.Column="1"
-                                VerticalAlignment="Center"
                                 IsVisible="{TemplateBinding IsTitleVisible}"
                                 Content="{TemplateBinding Content}" />
                             <ContentPresenter
                                 Grid.Column="2"
-                                VerticalAlignment="Center"
                                 IsVisible="{TemplateBinding IsTitleVisible}"
                                 Content="{TemplateBinding RightContent}" />
                             <u:CaptionButtons

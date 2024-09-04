@@ -27,17 +27,14 @@
                             ColumnDefinitions="Auto, *, Auto">
                             <ContentPresenter
                                 Grid.Column="0"
-                                VerticalAlignment="Center"
                                 IsVisible="{TemplateBinding IsTitleBarVisible}"
                                 Content="{TemplateBinding LeftContent}" />
                             <ContentPresenter
                                 Grid.Column="1"
-                                VerticalAlignment="Center"
                                 IsVisible="{TemplateBinding IsTitleBarVisible}"
                                 Content="{TemplateBinding TitleBarContent}" />
                             <ContentPresenter
                                 Grid.Column="2"
-                                VerticalAlignment="Center"
                                 IsVisible="{TemplateBinding IsTitleBarVisible}"
                                 Content="{TemplateBinding RightContent}" />
                         </Grid>
