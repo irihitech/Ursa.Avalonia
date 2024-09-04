@@ -3,17 +3,12 @@
                     xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
         <ThemeVariantScope RequestedThemeVariant="Dark">
-            <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <u:ToastCard ShowClose="False" />
                 <u:ToastCard>
                     Hello, Semi.Avalonia!
                 </u:ToastCard>
-                <u:ToastCard NotificationType="Success">
-                    <u:Toast Content="Hello, Semi.Avalonia!" />
-                </u:ToastCard>
-                <u:ToastCard NotificationType="Warning">
-                    <u:Toast Content="Hello, Semi.Avalonia!" />
-                </u:ToastCard>
-                <u:ToastCard NotificationType="Error">
+                <u:ToastCard NotificationType="Success" ShowClose="False">
                     <u:Toast Content="Hello, Semi.Avalonia!" />
                 </u:ToastCard>
             </StackPanel>
@@ -35,7 +30,6 @@
 
     <ControlTheme x:Key="{x:Type u:ToastCard}" TargetType="u:ToastCard">
         <Setter Property="UseLayoutRounding" Value="True" />
-        <Setter Property="MinWidth" Value="{DynamicResource NotificationCardMinWidth}" />
         <Setter Property="RenderTransformOrigin" Value="50%,75%" />
         <Setter Property="BorderThickness" Value="{DynamicResource NotificationCardBorderThickness}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NotificationCardBorderBrush}" />
@@ -53,40 +47,44 @@
                             Padding="{DynamicResource NotificationCardPadding}"
                             BoxShadow="{DynamicResource NotificationCardBoxShadow}"
                             BorderBrush="{TemplateBinding BorderBrush}"
+                            VerticalAlignment="Stretch"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}">
-                            <DockPanel>
+                            <StackPanel Orientation="Horizontal">
                                 <PathIcon
                                     Name="NotificationIcon"
                                     Width="{DynamicResource NotificationCardIconWidth}"
                                     Height="{DynamicResource NotificationCardIconHeight}"
                                     Margin="{DynamicResource NotificationCardIconMargin}"
-                                    VerticalAlignment="Top"
                                     IsVisible="False"
                                     Data="{DynamicResource NotificationCardInformationIconPathData}" />
                                 <ContentControl
                                     Name="PART_Content"
+                                    Margin="12 0"
+                                    VerticalContentAlignment="Center"
                                     Content="{TemplateBinding Content}">
                                     <ContentControl.DataTemplates>
                                         <DataTemplate DataType="u:IToast">
                                             <SelectableTextBlock
-                                                Foreground="{DynamicResource NotificationCardMessageForeground}"
-                                                FontSize="{DynamicResource NotificationCardMessageFontSize}"
-                                                FontWeight="{DynamicResource NotificationCardMessageFontWeight}"
+                                                Foreground="{DynamicResource NotificationCardTitleForeground}"
+                                                FontWeight="{DynamicResource NotificationCardTitleFontWeight}"
                                                 Text="{Binding Content}"
                                                 TextWrapping="Wrap" />
                                         </DataTemplate>
                                         <DataTemplate DataType="x:String">
                                             <SelectableTextBlock
-                                                Foreground="{DynamicResource NotificationCardMessageForeground}"
-                                                FontSize="{DynamicResource NotificationCardMessageFontSize}"
-                                                FontWeight="{DynamicResource NotificationCardMessageFontWeight}"
+                                                Foreground="{DynamicResource NotificationCardTitleForeground}"
+                                                FontWeight="{DynamicResource NotificationCardTitleFontWeight}"
                                                 Text="{Binding}"
                                                 TextWrapping="Wrap" />
                                         </DataTemplate>
                                     </ContentControl.DataTemplates>
                                 </ContentControl>
-                            </DockPanel>
+                                <Button
+                                    Theme="{StaticResource ToastCloseButton}"
+                                    IsVisible="{TemplateBinding ShowClose}"
+                                    u:ToastCard.CloseOnClick="True" />
+                            </StackPanel>
                         </Border>
                     </Border>
                 </LayoutTransformControl>
@@ -191,6 +189,33 @@
                 <Setter Property="BorderBrush" Value="{DynamicResource SemiColorDanger}" />
                 <Setter Property="Background" Value="{DynamicResource SemiColorDangerLight}" />
             </Style>
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="ToastCloseButton" TargetType="Button">
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="Width" Value="24" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="Button">
+                <Border
+                    Name="PART_Border"
+                    Padding="{TemplateBinding Padding}"
+                    Background="Transparent"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <PathIcon
+                        Width="10"
+                        Height="10"
+                        Data="{DynamicResource WindowCloseIconGlyph}" />
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:pointerover /template/ Border">
+            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPointeroverBackground}" />
+        </Style>
+        <Style Selector="^:pressed /template/ Border">
+            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPressedBackground}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

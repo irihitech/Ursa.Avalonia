@@ -21,6 +21,11 @@ public interface IToast
     NotificationType Type { get; }
 
     /// <summary>
+    /// Gets a value indicating whether the toast should show a close button.
+    /// </summary>
+    bool ShowClose { get; }
+
+    /// <summary>
     /// Gets the expiration time of the toast after which it will automatically close.
     /// If the value is <see cref="TimeSpan.Zero"/> then the toast will remain open until the user closes it.
     /// </summary>

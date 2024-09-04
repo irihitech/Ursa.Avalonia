@@ -70,7 +70,7 @@ public class WindowToastManager : TemplatedControl, IManagedToastManager
     /// <inheritdoc/>
     public void Show(IToast content)
     {
-        Show(content, content.Type, content.Expiration, content.OnClick, content.OnClose);
+        Show(content, content.Type, content.Expiration, content.ShowClose, content.OnClick, content.OnClose);
     }
 
     /// <inheritdoc/>
@@ -78,7 +78,7 @@ public class WindowToastManager : TemplatedControl, IManagedToastManager
     {
         if (content is IToast toast)
         {
-            Show(toast, toast.Type, toast.Expiration, toast.OnClick, toast.OnClose);
+            Show(toast, toast.Type, toast.Expiration, toast.ShowClose, toast.OnClick, toast.OnClose);
         }
         else
         {
@@ -92,12 +92,14 @@ public class WindowToastManager : TemplatedControl, IManagedToastManager
     /// <param name="content">the content of the toast</param>
     /// <param name="type">the type of the toast</param>
     /// <param name="expiration">the expiration time of the toast after which it will automatically close. If the value is Zero then the toast will remain open until the user closes it</param>
+    /// <param name="showClose">whether to show the close button</param>
     /// <param name="onClick">an Action to be run when the toast is clicked</param>
     /// <param name="onClose">an Action to be run when the toast is closed</param>
     /// <param name="classes">style classes to apply</param>
     public async void Show(object content,
         NotificationType type,
         TimeSpan? expiration = null,
+        bool showClose = true,
         Action? onClick = null,
         Action? onClose = null,
         string[]? classes = null)
@@ -107,11 +109,12 @@ public class WindowToastManager : TemplatedControl, IManagedToastManager
         var toastControl = new ToastCard
         {
             Content = content,
-            NotificationType = type
+            NotificationType = type,
+            ShowClose = showClose
         };
 
         // Add style classes if any
-        if (classes != null)
+        if (classes is not null)
         {
             foreach (var @class in classes)
             {
@@ -119,19 +122,14 @@ public class WindowToastManager : TemplatedControl, IManagedToastManager
             }
         }
 
-        toastControl.ToastClosed += (sender, args) =>
+        toastControl.ToastClosed += (sender, _) =>
         {
             onClose?.Invoke();
 
             _items?.Remove(sender);
         };
 
-        toastControl.PointerPressed += (sender, args) =>
-        {
-            onClick?.Invoke();
-
-            (sender as ToastCard)?.Close();
-        };
+        toastControl.PointerPressed += (_, _) => { onClick?.Invoke(); };
 
         Dispatcher.UIThread.Post(() =>
         {
@@ -151,11 +149,6 @@ public class WindowToastManager : TemplatedControl, IManagedToastManager
         await Task.Delay(expiration ?? TimeSpan.FromSeconds(5));
 
         toastControl.Close();
-    }
-
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
-    {
-        base.OnPropertyChanged(change);
     }
 
     /// <summary>

@@ -10,6 +10,9 @@ public partial class ToastDemoViewModel : ObservableObject
 {
     public WindowToastManager? ToastManager { get; set; }
 
+    [ObservableProperty]
+    private bool _showClose = true;
+
     [RelayCommand]
     public void ShowNormal(object obj)
     {
@@ -18,6 +21,7 @@ public partial class ToastDemoViewModel : ObservableObject
             Enum.TryParse<NotificationType>(s, out var notificationType);
             ToastManager?.Show(
                 new Toast("This is message"),
+                showClose: ShowClose,
                 type: notificationType);
         }
 
@@ -36,6 +40,7 @@ public partial class ToastDemoViewModel : ObservableObject
             Enum.TryParse<NotificationType>(s, out var notificationType);
             ToastManager?.Show(
                 new Toast("This is message"),
+                showClose: ShowClose,
                 type: notificationType,
                 classes: ["Light"]);
         }

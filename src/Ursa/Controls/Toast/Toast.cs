@@ -22,12 +22,14 @@ public class Toast : IToast, INotifyPropertyChanged
     /// <param name="type">The <see cref="NotificationType"/> of the toast.</param>
     /// <param name="expiration">The expiry time at which the toast will close. 
     /// Use <see cref="TimeSpan.Zero"/> for toasts that will remain open.</param>
+    /// <param name="showClose">A value indicating whether the toast should show a close button.</param>
     /// <param name="onClick">An Action to call when the toast is clicked.</param>
     /// <param name="onClose">An Action to call when the toast is closed.</param>
     public Toast(
         string? content,
         NotificationType type = NotificationType.Information,
         TimeSpan? expiration = null,
+        bool showClose = true,
         Action? onClick = null,
         Action? onClose = null)
     {
@@ -61,6 +63,9 @@ public class Toast : IToast, INotifyPropertyChanged
 
     /// <inheritdoc/>
     public NotificationType Type { get; set; }
+
+    /// <inheritdoc/>
+    public bool ShowClose { get; set; }
 
     /// <inheritdoc/>
     public TimeSpan Expiration { get; set; }

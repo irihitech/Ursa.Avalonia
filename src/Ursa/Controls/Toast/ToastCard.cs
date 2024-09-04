@@ -77,6 +77,14 @@ public class ToastCard : ContentControl
     /// </summary>
     public static readonly StyledProperty<NotificationType> NotificationTypeProperty =
         AvaloniaProperty.Register<ToastCard, NotificationType>(nameof(NotificationType));
+    public bool ShowClose
+    {
+        get => GetValue(ShowCloseProperty);
+        set => SetValue(ShowCloseProperty, value);
+    }
+
+    public static readonly StyledProperty<bool> ShowCloseProperty =
+        AvaloniaProperty.Register<ToastCard, bool>(nameof(ShowClose), true);
 
     /// <summary>
     /// Defines the <see cref="ToastClosed"/> event.

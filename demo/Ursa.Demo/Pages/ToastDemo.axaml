@@ -12,6 +12,7 @@
         <vm:ToastDemoViewModel />
     </Design.DataContext>
     <StackPanel>
+        <ToggleSwitch IsChecked="{Binding ShowClose}" Content="ShowClose"/>
         <StackPanel Orientation="Horizontal" Spacing="20">
             <Button Command="{Binding ShowNormal}" CommandParameter="{Binding $self.Content}" Content="Information" />
             <Button Command="{Binding ShowNormal}" CommandParameter="{Binding $self.Content}" Content="Success" Classes="Success" />
