@@ -53,6 +53,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Timeline", Key = MenuKeys.MenuKeyTimeline },
             new() { MenuHeader = "TreeComboBox", Key = MenuKeys.MenuKeyTreeComboBox },
             new() { MenuHeader = "TwoTonePathIcon", Key = MenuKeys.MenuKeyTwoTonePathIcon},
+            new() { MenuHeader = "Toast", Key = MenuKeys.MenuKeyToast },
             new() { MenuHeader = "ToolBar", Key = MenuKeys.MenuKeyToolBar },
             new() { MenuHeader = "Time Box", Key = MenuKeys.MenuKeyTimeBox },
         };
@@ -102,6 +103,7 @@ public static class MenuKeys
     public const string MenuKeyTwoTonePathIcon = "TwoTonePathIcon";
     public const string MenuKeyThemeToggler = "ThemeToggler";
     public const string MenuKeyTreeComboBox = "TreeComboBox";
+    public const string MenuKeyToast = "Toast";
     public const string MenuKeyToolBar = "ToolBar";
     public const string MenuKeyPinCode = "PinCode";
     public const string MenuKeyTimeBox = "TimeBox";

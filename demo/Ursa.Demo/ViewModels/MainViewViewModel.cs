@@ -67,6 +67,7 @@ public class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyTreeComboBox => new TreeComboBoxDemoViewModel(),
             MenuKeys.MenuKeyTwoTonePathIcon => new TwoTonePathIconDemoViewModel(),
             MenuKeys.MenuKeyThemeToggler => new ThemeTogglerDemoViewModel(),
+            MenuKeys.MenuKeyToast => new ToastDemoViewModel(),
             MenuKeys.MenuKeyToolBar => new ToolBarDemoViewModel(),
             MenuKeys.MenuKeyTimeBox => new TimeBoxDemoViewModel(),
             MenuKeys.MenuKeyPinCode => new PinCodeDemoViewModel(),
