@@ -146,7 +146,7 @@ public class WindowToastManager : TemplatedControl, IManagedToastManager
             return;
         }
 
-        await Task.Delay(expiration ?? TimeSpan.FromSeconds(5));
+        await Task.Delay(expiration ?? TimeSpan.FromSeconds(3));
 
         toastControl.Close();
     }

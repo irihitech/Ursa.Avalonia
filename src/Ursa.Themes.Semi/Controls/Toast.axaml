@@ -99,21 +99,18 @@
             <Animation
                 Easing="QuadraticEaseIn"
                 FillMode="Forward"
-                Duration="0:0:0.45">
+                Duration="0:0:0.3">
                 <KeyFrame Cue="0%">
                     <Setter Property="Opacity" Value="0" />
-                    <Setter Property="TranslateTransform.Y" Value="20" />
-                    <Setter Property="ScaleTransform.ScaleX" Value="0.85" />
-                    <Setter Property="ScaleTransform.ScaleY" Value="0.85" />
-                </KeyFrame>
-                <KeyFrame Cue="30%">
-                    <Setter Property="TranslateTransform.Y" Value="-20" />
                 </KeyFrame>
                 <KeyFrame Cue="100%">
                     <Setter Property="Opacity" Value="1" />
+                </KeyFrame>
+                <KeyFrame KeySpline="0.22,0.57,0.02,1.2" Cue="0%">
+                    <Setter Property="TranslateTransform.Y" Value="-100" />
+                </KeyFrame>
+                <KeyFrame KeySpline="0.22,0.57,0.02,1.2" Cue="100%">
                     <Setter Property="TranslateTransform.Y" Value="0" />
-                    <Setter Property="ScaleTransform.ScaleX" Value="1" />
-                    <Setter Property="ScaleTransform.ScaleY" Value="1" />
                 </KeyFrame>
             </Animation>
         </ControlTheme.Animations>
@@ -124,18 +121,18 @@
                 <Animation
                     Easing="QuadraticEaseOut"
                     FillMode="Forward"
-                    Duration="0:0:0.75">
+                    Duration="0:0:0.3">
                     <KeyFrame Cue="0%">
-                        <Setter Property="TranslateTransform.X" Value="0" />
-                        <Setter Property="ScaleTransform.ScaleY" Value="1" />
-                    </KeyFrame>
-                    <KeyFrame Cue="70%">
-                        <Setter Property="TranslateTransform.X" Value="800" />
-                        <Setter Property="ScaleTransform.ScaleY" Value="1" />
+                        <Setter Property="Opacity" Value="1" />
                     </KeyFrame>
                     <KeyFrame Cue="100%">
-                        <Setter Property="ScaleTransform.ScaleY" Value="0" />
-                        <Setter Property="TranslateTransform.X" Value="800" />
+                        <Setter Property="Opacity" Value="0" />
+                    </KeyFrame>
+                    <KeyFrame KeySpline="0.22,0.57,0.02,1.2" Cue="0%">
+                        <Setter Property="TranslateTransform.Y" Value="0" />
+                    </KeyFrame>
+                    <KeyFrame KeySpline="0.22,0.57,0.02,1.2" Cue="100%">
+                        <Setter Property="TranslateTransform.Y" Value="-100" />
                     </KeyFrame>
                 </Animation>
             </Style.Animations>
@@ -146,7 +143,7 @@
                 <Animation
                     Easing="QuadraticEaseOut"
                     FillMode="Forward"
-                    Duration="0:0:1.25">
+                    Duration="0:0:0.3">
                     <KeyFrame Cue="100%">
                         <Setter Property="IsClosed" Value="True" />
                     </KeyFrame>

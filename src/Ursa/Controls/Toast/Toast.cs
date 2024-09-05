@@ -35,7 +35,8 @@ public class Toast : IToast, INotifyPropertyChanged
     {
         Content = content;
         Type = type;
-        Expiration = expiration ?? TimeSpan.FromSeconds(5);
+        Expiration = expiration ?? TimeSpan.FromSeconds(3);
+        ShowClose = showClose;
         OnClick = onClick;
         OnClose = onClose;
     }
