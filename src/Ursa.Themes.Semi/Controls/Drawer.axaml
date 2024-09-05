@@ -11,6 +11,7 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:CustomDrawerControl">
                 <Border Name="PART_Root" 
+                        Focusable="True"
                         Margin="{TemplateBinding Padding, Converter={x:Static c:ThicknessTakeConverter.Left}}"
                         Padding="0"
                         HorizontalAlignment="Stretch"
@@ -77,6 +78,7 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:DefaultDrawerControl">
                 <Border Name="PART_Root" 
+                        Focusable="True"
                         Margin="{TemplateBinding Padding, Converter={x:Static c:ThicknessTakeConverter.Left}}"
                         Padding="0"
                         HorizontalAlignment="Stretch"
