@@ -141,7 +141,7 @@
                                             Grid.Column="0"
                                             NeedsConfirmation="{TemplateBinding NeedConfirmation}"
                                             PanelFormat="{TemplateBinding PanelFormat}"
-                                            Time="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=StartTime, Mode=OneWayToSource}" />
+                                            />
                                         <Rectangle
                                             Grid.Row="2"
                                             Grid.Column="1"
@@ -155,7 +155,7 @@
                                             Grid.Column="2"
                                             NeedsConfirmation="{TemplateBinding NeedConfirmation}"
                                             PanelFormat="{TemplateBinding PanelFormat}"
-                                            Time="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=EndTime, Mode=OneWayToSource}" />
+                                            />
                                     </Grid>
                                 </DockPanel>
                             </Border>

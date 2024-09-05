@@ -29,6 +29,8 @@ public class TimePicker : TimePickerBase, IClearControl
     public static readonly StyledProperty<string?> WatermarkProperty = AvaloniaProperty.Register<TimePicker, string?>(
         nameof(Watermark));
 
+    private bool _suppressTextPresenterEvent;
+
     private Button? _button;
     private TimePickerPresenter? _presenter;
     private TextBox? _textBox;
@@ -44,11 +46,7 @@ public class TimePicker : TimePickerBase, IClearControl
     private void OnDisplayFormatChanged(AvaloniaPropertyChangedEventArgs<string?> _)
     {
         if (_textBox is null) return;
-        var time = SelectedTime;
-        if (time is null) return;
-        var date = new DateTime( 1, 1, 1, time.Value.Hours, time.Value.Minutes, time.Value.Seconds);
-        var text = date.ToString(DisplayFormat);
-        _textBox.Text = text;
+        SyncTimeToText(SelectedTime);
     }
 
     public string? Watermark
@@ -77,6 +75,7 @@ public class TimePicker : TimePickerBase, IClearControl
         TextBox.TextChangedEvent.RemoveHandler(OnTextChanged, _textBox);
         PointerPressedEvent.RemoveHandler(OnTextBoxPointerPressed, _textBox);
         Button.ClickEvent.RemoveHandler(OnButtonClick, _button);
+        TimePickerPresenter.SelectedTimeChangedEvent.RemoveHandler(OnPresenterTimeChanged, _presenter);
 
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
         e.NameScope.Find<Popup>(PartNames.PART_Popup);
@@ -87,8 +86,17 @@ public class TimePicker : TimePickerBase, IClearControl
         TextBox.TextChangedEvent.AddHandler(OnTextChanged, _textBox);
         PointerPressedEvent.AddHandler(OnTextBoxPointerPressed, RoutingStrategies.Tunnel, false, _textBox);
         Button.ClickEvent.AddHandler(OnButtonClick, _button);
+        TimePickerPresenter.SelectedTimeChangedEvent.AddHandler(OnPresenterTimeChanged, _presenter);
 
-        SetCurrentValue(SelectedTimeProperty, DateTime.Now.TimeOfDay);
+        // SetCurrentValue(SelectedTimeProperty, DateTime.Now.TimeOfDay);
+        _presenter?.SetValue(TimePickerPresenter.TimeProperty, SelectedTime);
+        SyncTimeToText(SelectedTime);
+    }
+
+    private void OnPresenterTimeChanged(object sender, TimeChangedEventArgs e)
+    {
+        if (_suppressTextPresenterEvent) return;
+        SetCurrentValue(SelectedTimeProperty, e.NewTime);
     }
 
     private void OnButtonClick(object? sender, RoutedEventArgs e)
@@ -104,7 +112,7 @@ public class TimePicker : TimePickerBase, IClearControl
 
     private void OnTextBoxGetFocus(object? sender, GotFocusEventArgs e)
     {
-        SetCurrentValue(IsDropdownOpenProperty, true);
+        // SetCurrentValue(IsDropdownOpenProperty, true);
     }
 
     protected override void OnKeyDown(KeyEventArgs e)
@@ -154,13 +162,20 @@ public class TimePicker : TimePickerBase, IClearControl
     private void OnSelectionChanged(AvaloniaPropertyChangedEventArgs<TimeSpan?> args)
     {
         if (_textBox is null) return;
-        var time = args.NewValue.Value;
+        _suppressTextPresenterEvent = true;
+        _presenter?.SetValue(TimePickerPresenter.TimeProperty, args.NewValue.Value);
+        SyncTimeToText(args.NewValue.Value);
+        _suppressTextPresenterEvent = false;
+    }
+
+    private void SyncTimeToText(TimeSpan? time)
+    {
+        if (_textBox is null) return;
         if (time is null)
         {
             _textBox.Text = null;
             return;
         }
-
         var date = new DateTime(1, 1, 1, time.Value.Hours, time.Value.Minutes, time.Value.Seconds);
         var text = date.ToString(DisplayFormat);
         _textBox.Text = text;
