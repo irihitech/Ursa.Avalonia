@@ -7,6 +7,6 @@
              d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.DateTimePickerDemo">
     <StackPanel Margin="20" Spacing="">
-        <u:DateTimePicker Width="300" PanelFormat="hh mm ss tt"/>
+        <u:DateTimePicker Width="300" PanelFormat="hh mm ss tt" Classes="ClearButton"/>
     </StackPanel>
 </UserControl>

@@ -33,7 +33,7 @@
                             <TextBox
                                 Name="PART_TextBox"
                                 Grid.Column="0"
-                                Grid.ColumnSpan="2"
+                                Grid.ColumnSpan="1"
                                 MinHeight="{TemplateBinding MinHeight}"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
@@ -51,7 +51,7 @@
                                 Name="ClearButton"
                                 Grid.Column="1"
                                 Padding="0,0,8,0"
-                                Command="{Binding $parent[u:DatePicker].Clear}"
+                                Command="{Binding $parent[u:DateTimePicker].Clear}"
                                 Content="{DynamicResource IconButtonClearData}"
                                 Focusable="False"
                                 IsVisible="False"
@@ -61,7 +61,7 @@
                                 Grid.Column="1"
                                 Padding="0,0,8,0"
                                 IsVisible="{Binding !#ClearButton.IsVisible}"
-                                Content="{DynamicResource CalendarDatePickerIconGlyph}"
+                                Content="{DynamicResource DateTimePickerGlyph}"
                                 Focusable="False"
                                 Theme="{DynamicResource InnerIconButton}" />
                             <Popup
@@ -105,7 +105,7 @@
         
         <Style Selector="^.clearButton, ^.ClearButton">
             <Style Selector="^:pointerover /template/ Button#ClearButton">
-                <Setter Property="IsVisible" Value="{Binding $parent[u:DatePicker].SelectedDate, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                <Setter Property="IsVisible" Value="{Binding $parent[u:DateTimePicker].SelectedDate, Converter={x:Static ObjectConverters.IsNotNull}}" />
             </Style>
         </Style>
 
