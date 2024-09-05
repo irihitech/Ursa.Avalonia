@@ -118,8 +118,17 @@ public class CalendarView : TemplatedControl
         get => GetValue(FirstDayOfWeekProperty);
         set => SetValue(FirstDayOfWeekProperty, value);
     }
-
-    public event EventHandler<CalendarDayButtonEventArgs>? DateSelected;
+    
+    public static readonly RoutedEvent<CalendarDayButtonEventArgs> DateSelectedEvent =
+        RoutedEvent.Register<TimePickerPresenter, CalendarDayButtonEventArgs>(
+            nameof(DateSelected), RoutingStrategies.Bubble);
+    
+    public event EventHandler<CalendarDayButtonEventArgs> DateSelected
+    {
+        add => AddHandler(DateSelectedEvent, value);
+        remove => RemoveHandler(DateSelectedEvent, value);
+    }
+    
     public event EventHandler<CalendarDayButtonEventArgs>? DatePreviewed;
     internal event EventHandler<CalendarContext>? ContextDateChanged; 
 
@@ -420,7 +429,7 @@ public class CalendarView : TemplatedControl
             ContextDate = ContextDate.With(year: e.Date.Value.Year, month: e.Date.Value.Month);
             UpdateDayButtons();
         }
-        DateSelected?.Invoke(this, e);
+        RaiseEvent(new CalendarDayButtonEventArgs(e.Date) { RoutedEvent = DateSelectedEvent, Source = this });
     }
 
     /// <summary>
@@ -531,6 +540,7 @@ public class CalendarView : TemplatedControl
     
     public void MarkDates(DateTime? startDate = null, DateTime? endDate = null, DateTime? previewStartDate = null, DateTime? previewEndDate = null)
     {
+        Debug.WriteLine( startDate + " " + endDate + " " + previewStartDate + " " + previewEndDate);
         _start = startDate;
         _end = endDate;
         _previewStart = previewStartDate;
