@@ -37,54 +37,58 @@
         <Setter Property="CornerRadius" Value="{DynamicResource NotificationCardCornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:ToastCard">
-                <LayoutTransformControl Name="PART_LayoutTransformControl" UseRenderTransform="True">
+                <LayoutTransformControl x:Name="PART_LayoutTransformControl" UseRenderTransform="True">
                     <Border
-                        Margin="{DynamicResource NotificationCardMargin}"
+                        Margin="{DynamicResource ToastCardMargin}"
                         Background="{TemplateBinding Background}"
                         CornerRadius="{TemplateBinding CornerRadius}">
                         <Border
                             x:Name="PART_RootBorder"
-                            Padding="{DynamicResource NotificationCardPadding}"
-                            BoxShadow="{DynamicResource NotificationCardBoxShadow}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            VerticalAlignment="Stretch"
                             BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            MinHeight="{DynamicResource ToastCardMinHeight}"
+                            Padding="{DynamicResource ToastCardPadding}"
+                            BoxShadow="{DynamicResource NotificationCardBoxShadow}"
                             CornerRadius="{TemplateBinding CornerRadius}">
-                            <StackPanel Orientation="Horizontal">
+                            <Grid ColumnDefinitions="Auto,*,Auto">
                                 <PathIcon
-                                    Name="NotificationIcon"
+                                    x:Name="ToastIcon"
+                                    Grid.Column="0"
                                     Width="{DynamicResource NotificationCardIconWidth}"
                                     Height="{DynamicResource NotificationCardIconHeight}"
-                                    Margin="{DynamicResource NotificationCardIconMargin}"
                                     IsVisible="False"
                                     Data="{DynamicResource NotificationCardInformationIconPathData}" />
                                 <ContentControl
-                                    Name="PART_Content"
-                                    Margin="12 0"
+                                    x:Name="PART_Content"
+                                    Grid.Column="1"
+                                    Margin="{DynamicResource ToastCardContentMargin}"
                                     VerticalContentAlignment="Center"
+                                    MaxWidth="{DynamicResource ToastCardContentMaxWidth}"
                                     Content="{TemplateBinding Content}">
                                     <ContentControl.DataTemplates>
                                         <DataTemplate DataType="u:IToast">
                                             <SelectableTextBlock
                                                 Foreground="{DynamicResource NotificationCardTitleForeground}"
-                                                FontWeight="{DynamicResource NotificationCardTitleFontWeight}"
+                                                FontWeight="{DynamicResource ToastCardContentFontWeight}"
                                                 Text="{Binding Content}"
                                                 TextWrapping="Wrap" />
                                         </DataTemplate>
                                         <DataTemplate DataType="x:String">
                                             <SelectableTextBlock
                                                 Foreground="{DynamicResource NotificationCardTitleForeground}"
-                                                FontWeight="{DynamicResource NotificationCardTitleFontWeight}"
+                                                FontWeight="{DynamicResource ToastCardContentFontWeight}"
                                                 Text="{Binding}"
                                                 TextWrapping="Wrap" />
                                         </DataTemplate>
                                     </ContentControl.DataTemplates>
                                 </ContentControl>
                                 <Button
+                                    x:Name="PART_CloseButton"
+                                    Grid.Column="2"
                                     Theme="{StaticResource ToastCloseButton}"
                                     IsVisible="{TemplateBinding ShowClose}"
                                     u:ToastCard.CloseOnClick="True" />
-                            </StackPanel>
+                            </Grid>
                         </Border>
                     </Border>
                 </LayoutTransformControl>
@@ -150,22 +154,22 @@
             </Style.Animations>
         </Style>
 
-        <Style Selector="^:information /template/ PathIcon#NotificationIcon">
+        <Style Selector="^:information /template/ PathIcon#ToastIcon">
             <Setter Property="IsVisible" Value="True" />
             <Setter Property="Foreground" Value="{DynamicResource NotificationCardInformationIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource NotificationCardInformationIconPathData}" />
         </Style>
-        <Style Selector="^:success /template/ PathIcon#NotificationIcon">
+        <Style Selector="^:success /template/ PathIcon#ToastIcon">
             <Setter Property="IsVisible" Value="True" />
             <Setter Property="Foreground" Value="{DynamicResource NotificationCardSuccessIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource NotificationCardSuccessIconPathData}" />
         </Style>
-        <Style Selector="^:warning /template/ PathIcon#NotificationIcon">
+        <Style Selector="^:warning /template/ PathIcon#ToastIcon">
             <Setter Property="IsVisible" Value="True" />
             <Setter Property="Foreground" Value="{DynamicResource NotificationCardWarningIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource NotificationCardWarningIconPathData}" />
         </Style>
-        <Style Selector="^:error /template/ PathIcon#NotificationIcon">
+        <Style Selector="^:error /template/ PathIcon#ToastIcon">
             <Setter Property="IsVisible" Value="True" />
             <Setter Property="Foreground" Value="{DynamicResource NotificationCardErrorIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource NotificationCardErrorIconPathData}" />

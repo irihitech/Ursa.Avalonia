@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <x:Double x:Key="ToastCardMinHeight">40</x:Double>
+    <Thickness x:Key="ToastCardPadding">12 8</Thickness>
+    <Thickness x:Key="ToastCardMargin">12</Thickness>
+
+    <FontWeight x:Key="ToastCardContentFontWeight">600</FontWeight>
+    <Thickness x:Key="ToastCardContentMargin">12 0</Thickness>
+    <x:Double x:Key="ToastCardContentMaxWidth">450</x:Double>
+</ResourceDictionary>
