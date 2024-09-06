@@ -200,6 +200,12 @@ public class NavMenu : ItemsControl
         nav.IsHorizontalCollapsed = !collapsed;
     }
 
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        TryToSelectItem(SelectedItem);
+    }
+
     /// <summary>
     ///     this implementation only works in the case that only leaf menu item is allowed to select. It will be changed if we
     ///     introduce parent level selection in the future.
@@ -224,18 +230,24 @@ public class NavMenu : ItemsControl
             RaiseEvent(a);
             return;
         }
-
+        var found = TryToSelectItem(newValue);
+        if (!found) ClearAll();
+        RaiseEvent(a);
+    }
+    
+    private bool TryToSelectItem(object? item)
+    {
+        if (item is null) return false;
         var leaves = GetLeafMenus();
         var found = false;
         foreach (var leaf in leaves)
-            if (leaf == newValue || leaf.DataContext == newValue)
+            if (leaf == item || leaf.DataContext == item)
             {
                 leaf.SelectItem(leaf);
                 found = true;
             }
 
-        if (!found) ClearAll();
-        RaiseEvent(a);
+        return found;
     }
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
