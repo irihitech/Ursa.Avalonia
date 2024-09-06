@@ -14,6 +14,7 @@
     <StackPanel Orientation="Horizontal">
         <u:MultiComboBox
             Watermark="Please Select"
+            Width="300"
             MaxHeight="200"
             SelectedItems="{Binding SelectedItems}"
             ItemsSource="{Binding Items}" >
@@ -21,6 +22,7 @@
         <u:MultiComboBox
             Name="combo"
             Watermark="Please Select"
+            Width="300"
             InnerLeftContent="Left"
             InnerRightContent="Right"
             Classes="ClearButton"
