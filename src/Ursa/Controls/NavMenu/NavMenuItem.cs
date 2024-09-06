@@ -142,6 +142,7 @@ public class NavMenuItem: HeaderedItemsControl
     {
         // SelectableMixin.Attach<NavMenuItem>(IsSelectedProperty);
         PressedMixin.Attach<NavMenuItem>();
+        FocusableProperty.OverrideDefaultValue<NavMenuItem>(true);
         LevelProperty.Changed.AddClassHandler<NavMenuItem, int>((item, args) => item.OnLevelChange(args));
         IsHighlightedProperty.AffectsPseudoClass<NavMenuItem>(PC_Highlighted);
         IsHorizontalCollapsedProperty.AffectsPseudoClass<NavMenuItem>(PC_HorizontalCollapsed);
