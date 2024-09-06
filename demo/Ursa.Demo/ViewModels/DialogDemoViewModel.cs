@@ -31,6 +31,7 @@ public partial class DefaultWindowDialogDemoViewModel: ObservableObject
     [ObservableProperty] private DialogButton _button;
     [ObservableProperty] private bool _showInTaskBar;
     [ObservableProperty] private bool? _isCloseButtonVisible;
+    [ObservableProperty] private bool _canDragMove;
 
     public ICommand ShowDialogCommand { get; }
 
@@ -40,6 +41,7 @@ public partial class DefaultWindowDialogDemoViewModel: ObservableObject
         Mode = DialogMode.None;
         Button = DialogButton.OKCancel;
         Location = WindowStartupLocation.CenterScreen;
+        CanDragMove = true;
     }
 
     private async Task ShowDialog()
@@ -52,6 +54,7 @@ public partial class DefaultWindowDialogDemoViewModel: ObservableObject
             ShowInTaskBar = ShowInTaskBar,
             IsCloseButtonVisible = IsCloseButtonVisible,
             StartupLocation = Location,
+            CanDragMove = CanDragMove,
         };
         if (X.HasValue && Y.HasValue)
         {
@@ -70,6 +73,7 @@ public partial class CustomWindowDialogDemoViewModel: ObservableObject
     [ObservableProperty] private bool _showInTaskBar;
     [ObservableProperty] private bool? _isCloseButtonVisible;
     [ObservableProperty] private bool _isModal;
+    [ObservableProperty] private bool _canDragMove;
 
     public ICommand ShowDialogCommand { get; }
 
@@ -78,6 +82,7 @@ public partial class CustomWindowDialogDemoViewModel: ObservableObject
         ShowDialogCommand = new AsyncRelayCommand(ShowDialog);
         Location = WindowStartupLocation.CenterScreen;
         IsModal = true;
+        CanDragMove = true;
     }
 
     private async Task ShowDialog()
@@ -88,6 +93,7 @@ public partial class CustomWindowDialogDemoViewModel: ObservableObject
             ShowInTaskBar = ShowInTaskBar,
             IsCloseButtonVisible = IsCloseButtonVisible,
             StartupLocation = Location,
+            CanDragMove = CanDragMove,
         };
         if (X.HasValue && Y.HasValue)
         {

@@ -7,7 +7,7 @@ namespace Ursa.Controls;
 public static class Dialog
 {
     /// <summary>
-    /// Show a Window Dialog that with all content fully customized. And the owner of the dialog is specified.
+    ///     Show a Window Dialog that with all content fully customized. And the owner of the dialog is specified.
     /// </summary>
     /// <param name="vm">Dialog ViewModel instance</param>
     /// <param name="owner"></param>
@@ -15,40 +15,14 @@ public static class Dialog
     /// <typeparam name="TView"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
     /// <returns></returns>
-    public static void ShowCustom<TView, TViewModel>(TViewModel? vm, Window? owner = null, DialogOptions? options = null) 
-        where TView: Control, new()
+    public static void ShowCustom<TView, TViewModel>(TViewModel? vm, Window? owner = null,
+        DialogOptions? options = null)
+        where TView : Control, new()
     {
         var window = new DialogWindow
         {
             Content = new TView(),
-            DataContext = vm,
-        };
-        ConfigureDialogWindow(window, options);
-        owner ??= GetMainWindow();
-        if (owner is null)
-        {
-            window.Show();
-        }
-        else
-        {
-            window.Icon = owner.Icon;
-            window.Show(owner);
-        }
-    }
-    
-    /// <summary>
-    /// Show a Window Dialog that with all content fully customized. And the owner of the dialog is specified. 
-    /// </summary>
-    /// <param name="view">View to show in Dialog Window</param>
-    /// <param name="vm">ViewModel</param>
-    /// <param name="owner">Owner Window</param>
-    /// <param name="options">Dialog options to configure the window. </param>
-    public static void ShowCustom(Control view, object? vm, Window? owner = null, DialogOptions? options = null)
-    { 
-        var window = new DialogWindow
-        {
-            Content = view,
-            DataContext = vm,
+            DataContext = vm
         };
         ConfigureDialogWindow(window, options);
         owner ??= GetMainWindow();
@@ -64,7 +38,34 @@ public static class Dialog
     }
 
     /// <summary>
-    /// Show a Modal Dialog Window with default style.
+    ///     Show a Window Dialog that with all content fully customized. And the owner of the dialog is specified.
+    /// </summary>
+    /// <param name="view">View to show in Dialog Window</param>
+    /// <param name="vm">ViewModel</param>
+    /// <param name="owner">Owner Window</param>
+    /// <param name="options">Dialog options to configure the window. </param>
+    public static void ShowCustom(Control view, object? vm, Window? owner = null, DialogOptions? options = null)
+    {
+        var window = new DialogWindow
+        {
+            Content = view,
+            DataContext = vm
+        };
+        ConfigureDialogWindow(window, options);
+        owner ??= GetMainWindow();
+        if (owner is null)
+        {
+            window.Show();
+        }
+        else
+        {
+            window.Icon = owner.Icon;
+            window.Show(owner);
+        }
+    }
+
+    /// <summary>
+    ///     Show a Modal Dialog Window with default style.
     /// </summary>
     /// <param name="vm"></param>
     /// <param name="owner"></param>
@@ -74,12 +75,12 @@ public static class Dialog
     /// <returns></returns>
     public static Task<DialogResult> ShowModal<TView, TViewModel>(TViewModel vm, Window? owner = null,
         DialogOptions? options = null)
-        where TView: Control, new()
+        where TView : Control, new()
     {
         var window = new DefaultDialogWindow
         {
             Content = new TView(),
-            DataContext = vm,
+            DataContext = vm
         };
         ConfigureDefaultDialogWindow(window, options);
         owner ??= GetMainWindow();
@@ -88,27 +89,26 @@ public static class Dialog
             window.Show();
             return Task.FromResult(DialogResult.None);
         }
-        else
-        {
-            window.Icon = owner.Icon;
-        }
+
+        window.Icon = owner.Icon;
         return window.ShowDialog<DialogResult>(owner);
     }
-    
+
     /// <summary>
-    /// Show a Modal Dialog Window with default style.
+    ///     Show a Modal Dialog Window with default style.
     /// </summary>
     /// <param name="view"></param>
     /// <param name="vm"></param>
     /// <param name="owner"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static Task<DialogResult> ShowModal(Control view, object? vm, Window? owner = null, DialogOptions? options = null)
+    public static Task<DialogResult> ShowModal(Control view, object? vm, Window? owner = null,
+        DialogOptions? options = null)
     {
         var window = new DefaultDialogWindow
         {
             Content = view,
-            DataContext = vm,
+            DataContext = vm
         };
         ConfigureDefaultDialogWindow(window, options);
         owner ??= GetMainWindow();
@@ -117,15 +117,13 @@ public static class Dialog
             window.Show();
             return Task.FromResult(DialogResult.None);
         }
-        else
-        {
-            window.Icon = owner.Icon;
-        }
+
+        window.Icon = owner.Icon;
         return window.ShowDialog<DialogResult>(owner);
     }
 
     /// <summary>
-    /// Show a Modal Dialog Window with all content fully customized. 
+    ///     Show a Modal Dialog Window with all content fully customized.
     /// </summary>
     /// <param name="vm"></param>
     /// <param name="owner"></param>
@@ -136,12 +134,12 @@ public static class Dialog
     /// <returns></returns>
     public static Task<TResult?> ShowCustomModal<TView, TViewModel, TResult>(TViewModel vm, Window? owner = null,
         DialogOptions? options = null)
-        where TView: Control, new()
+        where TView : Control, new()
     {
         var window = new DialogWindow
         {
             Content = new TView(),
-            DataContext = vm,
+            DataContext = vm
         };
         ConfigureDialogWindow(window, options);
         owner ??= GetMainWindow();
@@ -150,15 +148,13 @@ public static class Dialog
             window.Show();
             return Task.FromResult(default(TResult));
         }
-        else
-        {
-            window.Icon = owner.Icon;
-        }
+
+        window.Icon = owner.Icon;
         return window.ShowDialog<TResult?>(owner);
     }
 
     /// <summary>
-    /// Show a Modal Dialog Window with all content fully customized.
+    ///     Show a Modal Dialog Window with all content fully customized.
     /// </summary>
     /// <param name="view"></param>
     /// <param name="vm"></param>
@@ -172,7 +168,7 @@ public static class Dialog
         var window = new DialogWindow
         {
             Content = view,
-            DataContext = vm,
+            DataContext = vm
         };
         ConfigureDialogWindow(window, options);
         owner ??= GetMainWindow();
@@ -181,16 +177,13 @@ public static class Dialog
             window.Show();
             return Task.FromResult(default(TResult));
         }
-        else
-        {
 
-            window.Icon = owner.Icon;
-        }
+        window.Icon = owner.Icon;
         return window.ShowDialog<TResult?>(owner);
     }
-    
+
     /// <summary>
-    /// Get the main window of the application as default owner of the dialog.
+    ///     Get the main window of the application as default owner of the dialog.
     /// </summary>
     /// <returns></returns>
     private static Window? GetMainWindow()
@@ -200,35 +193,29 @@ public static class Dialog
     }
 
     /// <summary>
-    /// Attach options to dialog window.
+    ///     Attach options to dialog window.
     /// </summary>
     /// <param name="window"></param>
     /// <param name="options"></param>
     private static void ConfigureDialogWindow(DialogWindow window, DialogOptions? options)
     {
-        if (options is null)
-        {
-            options = new DialogOptions();
-        }
+        if (options is null) options = new DialogOptions();
         window.WindowStartupLocation = options.StartupLocation;
         window.Title = options.Title;
         window.IsCloseButtonVisible = options.IsCloseButtonVisible;
         window.ShowInTaskbar = options.ShowInTaskBar;
+        window.CanDragMove = options.CanDragMove;
         if (options.StartupLocation == WindowStartupLocation.Manual)
         {
             if (options.Position is not null)
-            {
                 window.Position = options.Position.Value;
-            }
             else
-            {
                 window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            }
         }
     }
-    
+
     /// <summary>
-    /// Attach options to default dialog window.
+    ///     Attach options to default dialog window.
     /// </summary>
     /// <param name="window"></param>
     /// <param name="options"></param>
@@ -241,16 +228,13 @@ public static class Dialog
         window.Mode = options.Mode;
         window.ShowInTaskbar = options.ShowInTaskBar;
         window.IsCloseButtonVisible = options.IsCloseButtonVisible;
+        window.CanDragMove = options.CanDragMove;
         if (options.StartupLocation == WindowStartupLocation.Manual)
         {
             if (options.Position is not null)
-            {
                 window.Position = options.Position.Value;
-            }
             else
-            {
                 window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            }
         }
     }
 }
