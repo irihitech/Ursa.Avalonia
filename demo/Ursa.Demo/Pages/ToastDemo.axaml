@@ -11,24 +11,34 @@
     <Design.DataContext>
         <vm:ToastDemoViewModel />
     </Design.DataContext>
-    <StackPanel>
-        <ToggleSwitch IsChecked="{Binding ShowClose}" Content="ShowClose"/>
+    <StackPanel Spacing="20">
+        <ToggleSwitch IsChecked="{Binding ShowClose}" Content="ShowClose" />
+
         <StackPanel Orientation="Horizontal" Spacing="20">
-            <Button Command="{Binding ShowNormal}" CommandParameter="{Binding $self.Content}" Content="Information" />
-            <Button Command="{Binding ShowNormal}" CommandParameter="{Binding $self.Content}" Content="Success" Classes="Success" />
-            <Button Command="{Binding ShowNormal}" CommandParameter="{Binding $self.Content}" Content="Warning" Classes="Warning" />
-            <Button Command="{Binding ShowNormal}" CommandParameter="{Binding $self.Content}" Content="Error" Classes="Danger" />
+            <StackPanel.Styles>
+                <Style Selector="Button">
+                    <Setter Property="Command" Value="{Binding ShowNormal}" />
+                    <Setter Property="CommandParameter" Value="{Binding $self.Content}" />
+                </Style>
+            </StackPanel.Styles>
+            <Button Content="Information" />
+            <Button Content="Success" Classes="Success" />
+            <Button Content="Warning" Classes="Warning" />
+            <Button Content="Error" Classes="Danger" />
         </StackPanel>
+
         <StackPanel Orientation="Horizontal" Spacing="20">
             <StackPanel.Styles>
                 <Style Selector="Button">
                     <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
+                    <Setter Property="Command" Value="{Binding ShowLight}" />
+                    <Setter Property="CommandParameter" Value="{Binding $self.Content}" />
                 </Style>
             </StackPanel.Styles>
-            <Button Command="{Binding ShowLight}" CommandParameter="{Binding $self.Content}" Content="Information" />
-            <Button Command="{Binding ShowLight}" CommandParameter="{Binding $self.Content}" Content="Success" Classes="Success" />
-            <Button Command="{Binding ShowLight}" CommandParameter="{Binding $self.Content}" Content="Warning" Classes="Warning" />
-            <Button Command="{Binding ShowLight}" CommandParameter="{Binding $self.Content}" Content="Error" Classes="Danger" />
+            <Button Content="Information" />
+            <Button Content="Success" Classes="Success" />
+            <Button Content="Warning" Classes="Warning" />
+            <Button Content="Error" Classes="Danger" />
         </StackPanel>
     </StackPanel>
 </UserControl>

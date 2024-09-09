@@ -14,6 +14,16 @@ public partial class NotificationDemoViewModel : ObservableObject
     [ObservableProperty] private bool _showClose = true;
 
     [RelayCommand]
+    public void ChangePosition(object obj)
+    {
+        if (obj is string s && NotificationManager is not null)
+        {
+            Enum.TryParse<NotificationPosition>(s, out var notificationPosition);
+            NotificationManager.Position = notificationPosition;
+        }
+    }
+
+    [RelayCommand]
     public void ShowNormal(object obj)
     {
         if (obj is string s)
