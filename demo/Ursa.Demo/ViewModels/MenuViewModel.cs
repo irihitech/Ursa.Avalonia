@@ -37,6 +37,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Message Box", Key = MenuKeys.MenuKeyMessageBox },
             new() { MenuHeader = "MultiComboBox", Key = MenuKeys.MenuKeyMultiComboBox, Status = "Updated" },
             new() { MenuHeader = "Nav Menu", Key = MenuKeys.MenuKeyNavMenu },
+            new() { MenuHeader = "Notification", Key = MenuKeys.MenuKeyNotification },
             new() { MenuHeader = "Number Displayer", Key = MenuKeys.MenuKeyNumberDisplayer, Status = "New" }, 
             new() { MenuHeader = "Numeric UpDown", Key = MenuKeys.MenuKeyNumericUpDown },
             new() { MenuHeader = "NumPad", Key = MenuKeys.MenuKeyNumPad },
@@ -88,6 +89,7 @@ public static class MenuKeys
     public const string MenuKeyMessageBox = "MessageBox";
     public const string MenuKeyMultiComboBox = "MultiComboBox";
     public const string MenuKeyNavMenu = "NavMenu";
+    public const string MenuKeyNotification = "Notification";
     public const string MenuKeyNumberDisplayer = "NumberDisplayer";
     public const string MenuKeyNumericUpDown = "NumericUpDown";
     public const string MenuKeyNumPad = "NumPad";

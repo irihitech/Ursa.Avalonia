@@ -29,6 +29,7 @@
         <ResourceInclude Source="MessageBox.axaml" />
         <ResourceInclude Source="MultiComboBox.axaml" />
         <ResourceInclude Source="NavMenu.axaml" />
+        <ResourceInclude Source="Notification.axaml" />
         <ResourceInclude Source="NumericUpDown.axaml" />
         <ResourceInclude Source="NumPad.axaml" />
         <ResourceInclude Source="NumberDisplayer.axaml" />

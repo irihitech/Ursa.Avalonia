@@ -52,6 +52,7 @@ public class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyMessageBox => new MessageBoxDemoViewModel(),
             MenuKeys.MenuKeyMultiComboBox => new MultiComboBoxDemoViewModel(),
             MenuKeys.MenuKeyNavMenu => new NavMenuDemoViewModel(),
+            MenuKeys.MenuKeyNotification => new NotificationDemoViewModel(),
             MenuKeys.MenuKeyNumberDisplayer => new NumberDisplayerDemoViewModel(),
             MenuKeys.MenuKeyNumericUpDown => new NumericUpDownDemoViewModel(),
             MenuKeys.MenuKeyNumPad => new NumPadDemoViewModel(),

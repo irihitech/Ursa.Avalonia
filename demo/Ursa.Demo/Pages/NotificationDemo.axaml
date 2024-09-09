@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Ursa.Demo.Pages.NotificationDemo"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Ursa.Demo.ViewModels"
+             x:DataType="vm:NotificationDemoViewModel"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+    <Design.DataContext>
+        <vm:NotificationDemoViewModel />
+    </Design.DataContext>
+    <StackPanel>
+        <ToggleSwitch IsChecked="{Binding ShowClose}" Content="ShowClose"/>
+        <StackPanel Orientation="Horizontal" Spacing="20">
+            <Button Command="{Binding ShowNormal}" CommandParameter="{Binding $self.Content}" Content="Information" />
+            <Button Command="{Binding ShowNormal}" CommandParameter="{Binding $self.Content}" Content="Success" Classes="Success" />
+            <Button Command="{Binding ShowNormal}" CommandParameter="{Binding $self.Content}" Content="Warning" Classes="Warning" />
+            <Button Command="{Binding ShowNormal}" CommandParameter="{Binding $self.Content}" Content="Error" Classes="Danger" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="20">
+            <StackPanel.Styles>
+                <Style Selector="Button">
+                    <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
+                </Style>
+            </StackPanel.Styles>
+            <Button Command="{Binding ShowLight}" CommandParameter="{Binding $self.Content}" Content="Information" />
+            <Button Command="{Binding ShowLight}" CommandParameter="{Binding $self.Content}" Content="Success" Classes="Success" />
+            <Button Command="{Binding ShowLight}" CommandParameter="{Binding $self.Content}" Content="Warning" Classes="Warning" />
+            <Button Command="{Binding ShowLight}" CommandParameter="{Binding $self.Content}" Content="Error" Classes="Danger" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>
