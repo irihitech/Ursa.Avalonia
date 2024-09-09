@@ -10,7 +10,6 @@ public abstract class ThemeSelectorBase: TemplatedControl
 {
     private bool _syncFromScope;
     private Application? _application;
-    private ThemeVariantScope? _scope;
     
     public static readonly StyledProperty<ThemeVariant?> SelectedThemeProperty = AvaloniaProperty.Register<ThemeSelectorBase, ThemeVariant?>(
         nameof(SelectedTheme));
@@ -62,17 +61,11 @@ public abstract class ThemeSelectorBase: TemplatedControl
     private void OnScopeThemeChanged(object? sender, System.EventArgs e)
     {
         _syncFromScope = true;
-        if (this.TargetScope is { } target)
+        if (TargetScope is { } target)
         {
             SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
                 ? target.RequestedThemeVariant
                 : target.ActualThemeVariant);
-        }
-        else if (this._scope is { } scope)
-        {
-            SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
-                ? scope.RequestedThemeVariant
-                : scope.ActualThemeVariant);
         }
         else if (_application is { } app)
         {
@@ -85,7 +78,7 @@ public abstract class ThemeSelectorBase: TemplatedControl
 
     protected virtual void SyncThemeFromScope(ThemeVariant? theme)
     {
-        this.SelectedTheme = theme;
+        SelectedTheme = theme;
     }
 
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
@@ -93,27 +86,30 @@ public abstract class ThemeSelectorBase: TemplatedControl
         base.OnAttachedToVisualTree(e);
         _application = Application.Current;
         _syncFromScope = true;
-        if (_application is not null)
+
+        if (TargetScope is not null)
+        {
+            TargetScope.ActualThemeVariantChanged += OnScopeThemeChanged;
+            SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
+                ? TargetScope.RequestedThemeVariant
+                : TargetScope.ActualThemeVariant);
+        }
+        else if (this.GetLogicalAncestors().FirstOrDefault(a => a is ThemeVariantScope) is ThemeVariantScope scope)
+        {
+            TargetScope = scope;
+            TargetScope.ActualThemeVariantChanged += OnScopeThemeChanged;
+            SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
+                ? TargetScope.RequestedThemeVariant
+                : TargetScope.ActualThemeVariant);
+        }
+        else if (_application is not null)
         {
             _application.ActualThemeVariantChanged += OnScopeThemeChanged;
             SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
                 ? _application.RequestedThemeVariant
                 : _application.ActualThemeVariant);
         }
-        _scope = this.GetLogicalAncestors().FirstOrDefault(a => a is ThemeVariantScope) as ThemeVariantScope;
-        if (_scope is not null)
-        {
-            _scope.ActualThemeVariantChanged += OnScopeThemeChanged;
-            SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
-                ? _scope.RequestedThemeVariant
-                : _scope.ActualThemeVariant);
-        }
-        if (TargetScope is not null)
-        {
-            SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
-                ? TargetScope.RequestedThemeVariant
-                : TargetScope.ActualThemeVariant);
-        }
+
         _syncFromScope = false;
     }
 
@@ -124,9 +120,10 @@ public abstract class ThemeSelectorBase: TemplatedControl
         {
             _application.ActualThemeVariantChanged -= OnScopeThemeChanged;
         }
-        if (_scope is not null)
+
+        if (TargetScope is not null)
         {
-            _scope.ActualThemeVariantChanged -= OnScopeThemeChanged;
+            TargetScope.ActualThemeVariantChanged -= OnScopeThemeChanged;
         }
     }
 
@@ -139,11 +136,7 @@ public abstract class ThemeSelectorBase: TemplatedControl
             TargetScope.RequestedThemeVariant = newTheme;
             return;
         }
-        if (_scope is not null)
-        {
-            _scope.RequestedThemeVariant = newTheme;
-            return;
-        }
+
         if (_application is not null)
         {
             _application.RequestedThemeVariant = newTheme;

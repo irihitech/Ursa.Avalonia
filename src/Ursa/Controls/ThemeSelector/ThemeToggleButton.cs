@@ -41,57 +41,50 @@ public class ThemeToggleButton: ThemeSelectorBase
 
     private void OnButtonClicked(object? sender, RoutedEventArgs e)
     {
-        bool? currentState = _state;
-        if (IsThreeState)
+        if (Mode == ThemeSelectorMode.Indicator || !IsThreeState)
         {
-            _state = currentState switch
-            {
-                true => false,
-                false => null,
-                null => true,
-            };
-        }
-        else
-        {
-            _state = currentState switch
+            _state = _state switch
             {
                 true => false,
                 false => true,
-                null => true,
+                null => throw new InvalidOperationException("Invalid state")
             };
-        }
-        if (_state == true)
-        {
-            SelectedTheme = ThemeVariant.Light;
-        }
-        else if (_state == false)
-        {
-            SelectedTheme = ThemeVariant.Dark;
-        }
+        } 
         else
         {
-            SelectedTheme = ThemeVariant.Default;
+            _state = _state switch
+            {
+                true => false,
+                false => null,
+                null => true
+            };
         }
-
-        if (Mode == ThemeSelectorMode.Controller)
+        
+        SelectedTheme = _state switch
         {
-            PseudoClasses.Set(PC_Light, SelectedTheme == ThemeVariant.Light);
-            PseudoClasses.Set(PC_Dark, SelectedTheme == ThemeVariant.Dark);
-            PseudoClasses.Set(PC_Default, SelectedTheme == null || SelectedTheme == ThemeVariant.Default);
-        }
+            true => ThemeVariant.Light,
+            false => ThemeVariant.Dark,
+            null => ThemeVariant.Default
+        };
+        
+        PseudoClasses.Set(PC_Light, SelectedTheme == ThemeVariant.Light);
+        PseudoClasses.Set(PC_Dark, SelectedTheme == ThemeVariant.Dark);
+        PseudoClasses.Set(PC_Default, SelectedTheme == ThemeVariant.Default);
     }
 
     protected override void SyncThemeFromScope(ThemeVariant? theme)
     {
         base.SyncThemeFromScope(theme);
-        if (Mode == ThemeSelectorMode.Indicator)
+        if (!IsThreeState && theme is null)
         {
-            PseudoClasses.Set(PC_Light, theme == ThemeVariant.Light);
-            PseudoClasses.Set(PC_Dark, theme == ThemeVariant.Dark);
-            PseudoClasses.Set(PC_Default, theme == null || SelectedTheme == ThemeVariant.Default);
-            if (theme == ThemeVariant.Dark) _state = false;
-            else if (theme == ThemeVariant.Light) _state = true;
-            else _state = null;
+            theme = ThemeVariant.Light;
         }
+        
+        PseudoClasses.Set(PC_Light, theme == ThemeVariant.Light);
+        PseudoClasses.Set(PC_Dark, theme == ThemeVariant.Dark);
+        PseudoClasses.Set(PC_Default, theme == null || SelectedTheme == ThemeVariant.Default);
+        if (theme == ThemeVariant.Dark) _state = false;
+        else if (theme == ThemeVariant.Light) _state = true;
+        else _state = null;
     }
 }
