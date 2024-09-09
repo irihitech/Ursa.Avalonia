@@ -6,10 +6,10 @@
             <StackPanel Orientation="Horizontal">
                 <u:ToastCard ShowClose="False" />
                 <u:ToastCard>
-                    Hello, Semi.Avalonia!
+                    Hello, Ursa!
                 </u:ToastCard>
                 <u:ToastCard NotificationType="Success" ShowClose="False">
-                    <u:Toast Content="Hello, Semi.Avalonia!" />
+                    <u:Toast Content="Hello, Ursa!" />
                 </u:ToastCard>
             </StackPanel>
         </ThemeVariantScope>
@@ -87,7 +87,7 @@
                                     Grid.Column="2"
                                     Theme="{StaticResource ToastCloseButton}"
                                     IsVisible="{TemplateBinding ShowClose}"
-                                    u:ToastCard.CloseOnClick="True" />
+                                    u:MessageCard.CloseOnClick="True" />
                             </Grid>
                         </Border>
                     </Border>

@@ -1,38 +1,17 @@
-﻿using System.Collections;
-using Avalonia;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Notifications;
 using Avalonia.Controls.Primitives;
 using Avalonia.Layout;
 using Avalonia.Threading;
-using Avalonia.VisualTree;
 
 namespace Ursa.Controls;
 
 /// <summary>
 /// An <see cref="IToastManager"/> that displays toasts in a <see cref="Window"/>.
 /// </summary>
-[TemplatePart("PART_Items", typeof(Panel))]
-public class WindowToastManager : TemplatedControl, IManagedToastManager
+public class WindowToastManager : WindowMessageManager, IToastManager
 {
-    private IList? _items;
-
-    /// <summary>
-    /// Defines the <see cref="MaxItems"/> property.
-    /// </summary>
-    public static readonly StyledProperty<int> MaxItemsProperty =
-        AvaloniaProperty.Register<WindowToastManager, int>(nameof(MaxItems), 5);
-
-    /// <summary>
-    /// Defines the maximum number of toasts visible at once.
-    /// </summary>
-    public int MaxItems
-    {
-        get => GetValue(MaxItemsProperty);
-        set => SetValue(MaxItemsProperty, value);
-    }
-
     /// <summary>
     /// Initializes a new instance of the <see cref="WindowToastManager"/> class.
     /// </summary>
@@ -52,21 +31,6 @@ public class WindowToastManager : TemplatedControl, IManagedToastManager
     {
     }
 
-    static WindowToastManager()
-    {
-        HorizontalAlignmentProperty.OverrideDefaultValue<WindowToastManager>(HorizontalAlignment.Stretch);
-        VerticalAlignmentProperty.OverrideDefaultValue<WindowToastManager>(VerticalAlignment.Stretch);
-    }
-
-    /// <inheritdoc/>
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
-    {
-        base.OnApplyTemplate(e);
-
-        var itemsControl = e.NameScope.Find<Panel>("PART_Items");
-        _items = itemsControl?.Children;
-    }
-
     /// <inheritdoc/>
     public void Show(IToast content)
     {
@@ -74,7 +38,7 @@ public class WindowToastManager : TemplatedControl, IManagedToastManager
     }
 
     /// <inheritdoc/>
-    public void Show(object content)
+    public override void Show(object content)
     {
         if (content is IToast toast)
         {
@@ -96,7 +60,8 @@ public class WindowToastManager : TemplatedControl, IManagedToastManager
     /// <param name="onClick">an Action to be run when the toast is clicked</param>
     /// <param name="onClose">an Action to be run when the toast is closed</param>
     /// <param name="classes">style classes to apply</param>
-    public async void Show(object content,
+    public async void Show(
+        object content,
         NotificationType type,
         TimeSpan? expiration = null,
         bool showClose = true,
@@ -122,7 +87,7 @@ public class WindowToastManager : TemplatedControl, IManagedToastManager
             }
         }
 
-        toastControl.ToastClosed += (sender, _) =>
+        toastControl.MessageClosed += (sender, _) =>
         {
             onClose?.Invoke();
 
@@ -149,33 +114,5 @@ public class WindowToastManager : TemplatedControl, IManagedToastManager
         await Task.Delay(expiration ?? TimeSpan.FromSeconds(3));
 
         toastControl.Close();
-    }
-
-    /// <summary>
-    /// Installs the <see cref="WindowToastManager"/> within the <see cref="AdornerLayer"/>
-    /// </summary>
-    private void InstallFromTopLevel(TopLevel topLevel)
-    {
-        topLevel.TemplateApplied += TopLevelOnTemplateApplied;
-        var adorner = topLevel.FindDescendantOfType<VisualLayerManager>()?.AdornerLayer;
-        if (adorner is not null)
-        {
-            adorner.Children.Add(this);
-            AdornerLayer.SetAdornedElement(this, adorner);
-        }
-    }
-
-    private void TopLevelOnTemplateApplied(object? sender, TemplateAppliedEventArgs e)
-    {
-        if (Parent is AdornerLayer adornerLayer)
-        {
-            adornerLayer.Children.Remove(this);
-            AdornerLayer.SetAdornedElement(this, null);
-        }
-
-        // Reinstall toast manager on template reapplied.
-        var topLevel = (TopLevel)sender!;
-        topLevel.TemplateApplied -= TopLevelOnTemplateApplied;
-        InstallFromTopLevel(topLevel);
     }
 }
