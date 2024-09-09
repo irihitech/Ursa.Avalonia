@@ -18,6 +18,7 @@ public class DialogWindow : Window
 
     protected internal Button? _closeButton;
     private Panel? _titleArea;
+    public bool CanDragMove { get; set; } = true;
 
     static DialogWindow()
     {
@@ -45,6 +46,7 @@ public class DialogWindow : Window
         IsVisibleProperty.SetValue(IsCloseButtonVisible ?? true, _closeButton);
         Button.ClickEvent.AddHandler(OnCloseButtonClicked, _closeButton);
         _titleArea = e.NameScope.Find<Panel>(PART_TitleArea);
+        IsHitTestVisibleProperty.SetValue(CanDragMove, _titleArea);
         _titleArea?.AddHandler(PointerPressedEvent, OnTitlePointerPressed, RoutingStrategies.Bubble);
     }
 
@@ -63,6 +65,7 @@ public class DialogWindow : Window
 
     private void OnTitlePointerPressed(object? sender, PointerPressedEventArgs e)
     {
-        BeginMoveDrag(e);
+        if (CanDragMove)
+            BeginMoveDrag(e);
     }
 }

@@ -28,4 +28,6 @@ public class DialogOptions
     public bool? IsCloseButtonVisible { get; set; } = true;
 
     public bool ShowInTaskBar { get; set; } = true;
+    
+    public bool CanDragMove { get; set; } = true;
 }

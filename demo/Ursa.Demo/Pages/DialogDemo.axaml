@@ -49,6 +49,7 @@
                         u:FormItem.Label="Is Close Button Visible"
                         IsChecked="{Binding IsCloseButtonVisible}"
                         IsThreeState="True" />
+                    <CheckBox u:FormItem.Label="CanDragMove" IsChecked="{Binding CanDragMove}" />
                     <Button
                         HorizontalAlignment="Left"
                         u:FormItem.NoLabel="True"
@@ -83,6 +84,7 @@
                         IsChecked="{Binding IsCloseButtonVisible}"
                         IsThreeState="True" />
                     <CheckBox u:FormItem.Label="Modal" IsChecked="{Binding IsModal}" />
+                    <CheckBox u:FormItem.Label="CanDragMove" IsChecked="{Binding CanDragMove}" />
                     <Button
                         HorizontalAlignment="Left"
                         u:FormItem.NoLabel="True"
