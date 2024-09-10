@@ -2,5 +2,10 @@
     <PropertyGroup>
         <Version>1.2.1-beta1</Version>
         <AvaloniaVersion>11.1.1</AvaloniaVersion>
+        <Authors>IRIHI Technology Co., Ltd.</Authors>
+        <RepositoryUrl>https://github.com/irihitech/Ursa.Avalonia</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <PackageProjectUrl>https://github.com/irihitech/Ursa.Avalonia</PackageProjectUrl>
     </PropertyGroup>
 </Project>
