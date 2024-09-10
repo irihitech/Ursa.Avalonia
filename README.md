@@ -30,11 +30,12 @@ dotnet add package Irihi.Ursa.Themes.Semi
 Include Styles in application:
 ```xaml
 <Application...
+    xmlns:semi="https://irihi.tech/semi"
     xmlns:u-semi="https://irihi.tech/ursa/themes/semi"
     ....>
 
     <Application.Styles>
-        <StyleInclude Source="avares://Semi.Avalonia/Themes/Index.axaml" />
+        <semi:SemiTheme Locale="zh-CN" />
         <u-semi:SemiTheme Locale="zh-CN"/>
     </Application.Styles>
 ```
