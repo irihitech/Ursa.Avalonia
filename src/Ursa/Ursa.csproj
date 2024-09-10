@@ -7,11 +7,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
-        <Authors>IRIHI Technology Co., Ltd.</Authors>
         <PackageId>Irihi.Ursa</PackageId>
         <PackageIcon>irihi.png</PackageIcon>
-        <PackageProjectUrl>https://github.com/irihitech/Ursa.Avalonia</PackageProjectUrl>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>
