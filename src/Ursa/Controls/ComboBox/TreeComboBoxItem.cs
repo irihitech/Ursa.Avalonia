@@ -33,6 +33,15 @@ public class TreeComboBoxItem: HeaderedItemsControl, ISelectable
         set => SetValue(IsExpandedProperty, value);
     }
 
+    public static readonly StyledProperty<bool> IsSelectableProperty = AvaloniaProperty.Register<TreeComboBoxItem, bool>(
+        nameof(IsSelectable), true);
+
+    public bool IsSelectable
+    {
+        get => GetValue(IsSelectableProperty);
+        set => SetValue(IsSelectableProperty, value);
+    }
+
     
 
     public static readonly DirectProperty<TreeComboBoxItem, int> LevelProperty = AvaloniaProperty.RegisterDirect<TreeComboBoxItem, int>(
