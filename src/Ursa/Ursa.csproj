@@ -13,7 +13,6 @@
         <PackageProjectUrl>https://github.com/irihitech/Ursa.Avalonia</PackageProjectUrl>
         <RepositoryUrl>https://github.com/irihitech/Ursa.Avalonia</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageLicenseFile>true</PackageLicenseFile>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
     </PropertyGroup>
 
