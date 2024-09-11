@@ -108,10 +108,9 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
         {
             Content = content,
             NotificationType = type,
-            ShowClose = showClose
+            ShowClose = showClose,
+            [!NotificationCard.PositionProperty] = this[!PositionProperty]
         };
-        // this.Bind(PositionProperty,notificationControl.GetObservable(PositionProperty));
-        this[!PositionProperty] = notificationControl[!NotificationCard.PositionProperty];
 
         // Add style classes if any
         if (classes is not null)
