@@ -3,6 +3,7 @@
     <x:Double x:Key="ToastCardMinHeight">40</x:Double>
     <Thickness x:Key="ToastCardPadding">12 8</Thickness>
     <Thickness x:Key="ToastCardMargin">12</Thickness>
+    <Thickness x:Key="ToastCardIconMargin">0 2 0 0</Thickness>
 
     <FontWeight x:Key="ToastCardContentFontWeight">600</FontWeight>
     <Thickness x:Key="ToastCardContentMargin">12 0</Thickness>

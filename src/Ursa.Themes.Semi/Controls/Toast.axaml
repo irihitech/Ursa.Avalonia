@@ -31,7 +31,6 @@
     <ControlTheme x:Key="{x:Type u:ToastCard}" TargetType="u:ToastCard">
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="BorderThickness" Value="{DynamicResource NotificationCardBorderThickness}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource NotificationCardBorderBrush}" />
         <Setter Property="Background" Value="{DynamicResource NotificationCardBackground}" />
         <Setter Property="CornerRadius" Value="{DynamicResource NotificationCardCornerRadius}" />
         <Setter Property="Template">
@@ -47,6 +46,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             MinHeight="{DynamicResource ToastCardMinHeight}"
                             Padding="{DynamicResource ToastCardPadding}"
+                            VerticalAlignment="Top"
                             BoxShadow="{DynamicResource NotificationCardBoxShadows}"
                             CornerRadius="{TemplateBinding CornerRadius}">
                             <Grid ColumnDefinitions="Auto,*,Auto">
@@ -55,6 +55,8 @@
                                     Grid.Column="0"
                                     Width="{DynamicResource NotificationCardIconWidth}"
                                     Height="{DynamicResource NotificationCardIconHeight}"
+                                    Margin="{DynamicResource ToastCardIconMargin}"
+                                    VerticalAlignment="Top"
                                     IsVisible="False"
                                     Data="{DynamicResource NotificationCardInformationIconPathData}" />
                                 <ContentControl
@@ -85,6 +87,7 @@
                                     x:Name="PART_CloseButton"
                                     Grid.Column="2"
                                     Theme="{StaticResource ToastCloseButton}"
+                                    VerticalAlignment="Top"
                                     IsVisible="{TemplateBinding ShowClose}"
                                     u:MessageCard.CloseOnClick="True" />
                             </Grid>
