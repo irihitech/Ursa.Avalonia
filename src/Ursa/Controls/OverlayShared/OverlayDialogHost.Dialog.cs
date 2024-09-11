@@ -1,4 +1,5 @@
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Helpers;
@@ -15,6 +16,8 @@ public partial class OverlayDialogHost
     
     private static void ResetDialogPosition(DialogControlBase control, Size newSize)
     {
+        control.MaxWidth = newSize.Width;
+        control.MaxHeight = newSize.Height;
         if (control.IsFullScreen)
         {
             control.Width = newSize.Width;
@@ -23,8 +26,6 @@ public partial class OverlayDialogHost
             SetTop(control, 0);
             return;
         }
-        control.MaxWidth = newSize.Width;
-        control.MaxHeight = newSize.Height;
         var width = newSize.Width - control.Bounds.Width;
         var height = newSize.Height - control.Bounds.Height;
         var newLeft = width * control.HorizontalOffsetRatio??0;
@@ -53,6 +54,7 @@ public partial class OverlayDialogHost
     {
         if (e.Source is DialogControlBase item)
         {
+            if (item.IsFullScreen) return;
             if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
             {
                 var p = e.GetPosition(this);
@@ -70,7 +72,18 @@ public partial class OverlayDialogHost
     {
         if (e.Source is DialogControlBase item)
         {
-            _lastPoint = e.GetPosition(item);
+            if (item.IsFullScreen)
+            {
+                var top = TopLevel.GetTopLevel(item);
+                if (top is Window w)
+                {
+                    w.BeginMoveDrag(e);
+                }
+            }
+            else
+            {
+                _lastPoint = e.GetPosition(item);
+            }
         }
     }
 
