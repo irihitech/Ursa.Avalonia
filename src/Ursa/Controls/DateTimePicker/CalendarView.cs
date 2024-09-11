@@ -81,13 +81,10 @@ public class CalendarView : TemplatedControl
 
     private void OnContextDateChanged(AvaloniaPropertyChangedEventArgs<CalendarContext> args)
     {
-        Debug.WriteLine(this.Name + " " + args.NewValue.Value);
         if (!_dateContextSyncing)
         {
             ContextDateChanged?.Invoke(this, args.NewValue.Value);
         }
-        //UpdateDayButtons();
-        //UpdateYearButtons();
     }
 
     internal CalendarViewMode Mode
@@ -540,7 +537,6 @@ public class CalendarView : TemplatedControl
     
     public void MarkDates(DateTime? startDate = null, DateTime? endDate = null, DateTime? previewStartDate = null, DateTime? previewEndDate = null)
     {
-        Debug.WriteLine( startDate + " " + endDate + " " + previewStartDate + " " + previewEndDate);
         _start = startDate;
         _end = endDate;
         _previewStart = previewStartDate;
