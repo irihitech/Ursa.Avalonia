@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:u="https://irihi.tech/ursa">
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters">
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:Form}" TargetType="u:Form">
         <Setter Property="Grid.IsSharedSizeScope" Value="False" />
@@ -32,8 +33,8 @@
                         Height="1"
                         Margin="0,8"
                         HorizontalAlignment="Stretch"
-                        IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Header, Converter={x:Static ObjectConverters.IsNotNull}}" 
-                        Fill="{DynamicResource SemiColorBorder}" />
+                        Fill="{DynamicResource SemiColorBorder}"
+                        IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Header, Converter={x:Static ObjectConverters.IsNotNull}}" />
                     <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
                 </StackPanel>
             </ControlTemplate>
@@ -50,13 +51,16 @@
                         Margin="0,0,0,4"
                         HorizontalAlignment="{TemplateBinding LabelAlignment}"
                         Orientation="Horizontal">
-                        <ContentPresenter Content="{TemplateBinding Label}" FontWeight="{DynamicResource TextBlockTitleFontWeight}" />
+                        <Label
+                            Content="{TemplateBinding Label}"
+                            FontWeight="{DynamicResource TextBlockTitleFontWeight}"
+                            Target="{Binding #PART_ContentPresenter.Content}" />
                         <TextBlock
                             Foreground="{DynamicResource SemiRed6}"
                             IsVisible="{TemplateBinding IsRequired}"
                             Text="*" />
                     </StackPanel>
-                    <ContentPresenter Content="{TemplateBinding Content}" />
+                    <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}" />
                 </StackPanel>
             </ControlTemplate>
         </Setter>
@@ -74,10 +78,15 @@
                             Width="{TemplateBinding LabelWidth}">
                             <StackPanel
                                 Name="PART_LabelPanel"
-                                Margin="8,8,8,0"
+                                Margin="{Binding #PART_Label.Bounds.Height, Converter={x:Static converters:FormContentHeightToMarginConverter.Instance}}"
                                 HorizontalAlignment="{TemplateBinding LabelAlignment}"
+                                VerticalAlignment="{Binding #PART_ContentPresenter.Bounds.Height, Converter={x:Static converters:FormContentHeightToAlignmentConverter.Instance}}"
                                 Orientation="Horizontal">
-                                <ContentPresenter Content="{TemplateBinding Label}" FontWeight="{DynamicResource TextBlockTitleFontWeight}" />
+                                <Label
+                                    Name="PART_Label"
+                                    Content="{TemplateBinding Label}"
+                                    FontWeight="{DynamicResource TextBlockTitleFontWeight}"
+                                    Target="{Binding #PART_ContentPresenter.Content}" />
                                 <TextBlock
                                     Foreground="{DynamicResource SemiRed6}"
                                     IsVisible="{TemplateBinding IsRequired}"
@@ -85,8 +94,11 @@
                             </StackPanel>
                         </Border>
                         <ContentPresenter
+                            Name="PART_ContentPresenter"
                             Grid.Row="0"
                             Grid.Column="1"
+                            VerticalAlignment="Stretch"
+                            VerticalContentAlignment="Center"
                             Content="{TemplateBinding Content}" />
                     </Grid>
                 </ControlTemplate>
