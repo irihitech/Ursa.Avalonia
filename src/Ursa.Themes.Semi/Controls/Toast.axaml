@@ -10,7 +10,9 @@
                     Hello, Ursa!
                 </u:ToastCard>
                 <u:ToastCard NotificationType="Success" Classes="Light">
-                    <u:Toast Content="Hello, Ursa!" />
+                    <u:Toast>
+                        Hello, Ursa!
+                    </u:Toast>
                 </u:ToastCard>
             </ReversibleStackPanel>
         </ThemeVariantScope>

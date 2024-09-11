@@ -16,7 +16,9 @@
                     <u:Notification Content="Hello, Ursa!" />
                 </u:NotificationCard>
                 <u:NotificationCard NotificationType="Error" Classes="Light">
-                    <u:Notification Title="Welcome" Content="Hello, Ursa!" />
+                    <u:Notification Title="Welcome">
+                        Hello, Ursa!
+                    </u:Notification>
                 </u:NotificationCard>
             </ReversibleStackPanel>
         </ThemeVariantScope>

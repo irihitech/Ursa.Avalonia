@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Avalonia.Controls.Notifications;
+using Avalonia.Metadata;
 
 namespace Ursa.Controls;
 
@@ -66,6 +67,7 @@ public class Notification : INotification, INotifyPropertyChanged
     }
 
     /// <inheritdoc/>
+    [Content]
     public string? Content
     {
         get => _content;
