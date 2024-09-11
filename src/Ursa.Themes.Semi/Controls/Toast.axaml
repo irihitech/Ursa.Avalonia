@@ -34,9 +34,9 @@
     <ControlTheme x:Key="{x:Type u:ToastCard}" TargetType="u:ToastCard">
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="BorderThickness" Value="{DynamicResource NotificationCardBorderThickness}" />
-        <Setter Property="Background" Value="{DynamicResource NotificationCardBackground}" />
-        <Setter Property="CornerRadius" Value="{DynamicResource NotificationCardCornerRadius}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource ToastCardBorderThickness}" />
+        <Setter Property="Background" Value="{DynamicResource ToastCardBackground}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource ToastCardCornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:ToastCard">
                 <LayoutTransformControl x:Name="PART_LayoutTransformControl" UseRenderTransform="True">
@@ -56,8 +56,8 @@
                             <DockPanel>
                                 <PathIcon
                                     x:Name="ToastIcon"
-                                    Width="{DynamicResource NotificationCardIconWidth}"
-                                    Height="{DynamicResource NotificationCardIconHeight}"
+                                    Width="{DynamicResource ToastCardIconWidth}"
+                                    Height="{DynamicResource ToastCardIconHeight}"
                                     Margin="{DynamicResource ToastCardIconMargin}"
                                     VerticalAlignment="Top"
                                     IsVisible="{TemplateBinding ShowIcon}"
@@ -71,14 +71,14 @@
                                     <ContentControl.DataTemplates>
                                         <DataTemplate DataType="u:IToast">
                                             <SelectableTextBlock
-                                                Foreground="{DynamicResource NotificationCardTitleForeground}"
+                                                Foreground="{DynamicResource ToastCardContentForeground}"
                                                 FontWeight="{DynamicResource ToastCardContentFontWeight}"
                                                 Text="{Binding Content}"
                                                 TextWrapping="Wrap" />
                                         </DataTemplate>
                                         <DataTemplate DataType="x:String">
                                             <SelectableTextBlock
-                                                Foreground="{DynamicResource NotificationCardTitleForeground}"
+                                                Foreground="{DynamicResource ToastCardContentForeground}"
                                                 FontWeight="{DynamicResource ToastCardContentFontWeight}"
                                                 Text="{Binding}"
                                                 TextWrapping="Wrap" />

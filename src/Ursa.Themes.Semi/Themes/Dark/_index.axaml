@@ -17,6 +17,7 @@
         <MergeResourceInclude Source="Rating.axaml" />
         <MergeResourceInclude Source="TagInput.axaml" />
         <MergeResourceInclude Source="Timeline.axaml" />
+        <MergeResourceInclude Source="Toast.axaml" />
         <MergeResourceInclude Source="Skeleton.axaml" />
         <MergeResourceInclude Source="TimeBox.axaml" />
     </ResourceDictionary.MergedDictionaries>
