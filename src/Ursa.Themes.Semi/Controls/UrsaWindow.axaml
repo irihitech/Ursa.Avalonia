@@ -55,14 +55,19 @@
             <ControlTemplate TargetType="u:UrsaWindow">
                 <Panel>
                     <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
-                    <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BackgroundSizing="InnerBorderEdge"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        IsHitTestVisible="False" />
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
                     <VisualLayerManager Padding="{TemplateBinding OffScreenMargin, Mode=OneWay}">
                         <VisualLayerManager.ChromeOverlayLayer>
                             <u:TitleBar
-                                IsTitleVisible="{Binding $parent[u:UrsaWindow].IsTitleBarVisible}"
-                                Content="{Binding $parent[u:UrsaWindow].TitleBarContent}"
                                 Margin="{Binding $parent[u:UrsaWindow].TitleBarMargin}"
+                                Content="{Binding $parent[u:UrsaWindow].TitleBarContent}"
+                                IsTitleVisible="{Binding $parent[u:UrsaWindow].IsTitleBarVisible}"
                                 LeftContent="{Binding $parent[u:UrsaWindow].LeftContent}"
                                 RightContent="{Binding $parent[u:UrsaWindow].RightContent}" />
                             <VisualLayerManager>
@@ -96,23 +101,23 @@
                             Name="PART_Background"
                             Background="{TemplateBinding Background}"
                             IsHitTestVisible="True" />
-                        <Grid ColumnDefinitions="Auto, *, Auto, Auto" HorizontalAlignment="Stretch">
+                        <Grid HorizontalAlignment="Stretch" ColumnDefinitions="Auto, *, Auto, Auto">
                             <ContentPresenter
                                 Grid.Column="0"
-                                IsVisible="{TemplateBinding IsTitleVisible}"
-                                Content="{TemplateBinding LeftContent}" />
+                                Content="{TemplateBinding LeftContent}"
+                                IsVisible="{TemplateBinding IsTitleVisible}" />
                             <ContentPresenter
                                 Grid.Column="1"
-                                IsVisible="{TemplateBinding IsTitleVisible}"
-                                Content="{TemplateBinding Content}" />
+                                Content="{TemplateBinding Content}"
+                                IsVisible="{TemplateBinding IsTitleVisible}" />
                             <ContentPresenter
                                 Grid.Column="2"
-                                IsVisible="{TemplateBinding IsTitleVisible}"
-                                Content="{TemplateBinding RightContent}" />
+                                Content="{TemplateBinding RightContent}"
+                                IsVisible="{TemplateBinding IsTitleVisible}" />
                             <u:CaptionButtons
                                 x:Name="PART_CaptionButtons"
                                 Grid.Column="3"
-                                Margin="8 0"
+                                Margin="8,0"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
                                 DockPanel.Dock="Right"
