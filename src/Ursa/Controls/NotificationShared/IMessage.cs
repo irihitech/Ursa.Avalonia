@@ -13,6 +13,11 @@ public interface IMessage
     NotificationType Type { get; }
 
     /// <summary>
+    /// Gets a value indicating whether the message should show an icon.
+    /// </summary>
+    bool ShowIcon { get; }
+
+    /// <summary>
     /// Gets a value indicating whether the message should show a close button.
     /// </summary>
     bool ShowClose { get; }

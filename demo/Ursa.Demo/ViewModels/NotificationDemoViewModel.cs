@@ -11,6 +11,7 @@ public partial class NotificationDemoViewModel : ObservableObject
 {
     public WindowNotificationManager? NotificationManager { get; set; }
 
+    [ObservableProperty] private bool _showIcon = true;
     [ObservableProperty] private bool _showClose = true;
 
     [RelayCommand]
@@ -26,27 +27,25 @@ public partial class NotificationDemoViewModel : ObservableObject
     [RelayCommand]
     public void ShowNormal(object obj)
     {
-        if (obj is string s)
-        {
-            Enum.TryParse<NotificationType>(s, out var notificationType);
-            NotificationManager?.Show(
-                new Notification("Welcome", "This is message"),
-                showClose: ShowClose,
-                type: notificationType);
-        }
+        if (obj is not string s) return;
+        Enum.TryParse<NotificationType>(s, out var notificationType);
+        NotificationManager?.Show(
+            new Notification("Welcome", "This is message"),
+            showIcon: ShowIcon,
+            showClose: ShowClose,
+            type: notificationType);
     }
 
     [RelayCommand]
     public void ShowLight(object obj)
     {
-        if (obj is string s)
-        {
-            Enum.TryParse<NotificationType>(s, out var notificationType);
-            NotificationManager?.Show(
-                new Notification("Welcome", "This is message"),
-                showClose: ShowClose,
-                type: notificationType,
-                classes: ["Light"]);
-        }
+        if (obj is not string s) return;
+        Enum.TryParse<NotificationType>(s, out var notificationType);
+        NotificationManager?.Show(
+            new Notification("Welcome", "This is message"),
+            showIcon: ShowIcon,
+            showClose: ShowClose,
+            type: notificationType,
+            classes: ["Light"]);
     }
 }

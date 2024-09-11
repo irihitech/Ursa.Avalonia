@@ -57,7 +57,7 @@
                                     Height="{DynamicResource NotificationCardIconHeight}"
                                     Margin="{DynamicResource ToastCardIconMargin}"
                                     VerticalAlignment="Top"
-                                    IsVisible="False"
+                                    IsVisible="{TemplateBinding ShowIcon}"
                                     Data="{DynamicResource NotificationCardInformationIconPathData}" />
                                 <ContentControl
                                     x:Name="PART_Content"
@@ -154,22 +154,18 @@
         </Style>
 
         <Style Selector="^:information /template/ PathIcon#ToastIcon">
-            <Setter Property="IsVisible" Value="True" />
             <Setter Property="Foreground" Value="{DynamicResource NotificationCardInformationIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource NotificationCardInformationIconPathData}" />
         </Style>
         <Style Selector="^:success /template/ PathIcon#ToastIcon">
-            <Setter Property="IsVisible" Value="True" />
             <Setter Property="Foreground" Value="{DynamicResource NotificationCardSuccessIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource NotificationCardSuccessIconPathData}" />
         </Style>
         <Style Selector="^:warning /template/ PathIcon#ToastIcon">
-            <Setter Property="IsVisible" Value="True" />
             <Setter Property="Foreground" Value="{DynamicResource NotificationCardWarningIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource NotificationCardWarningIconPathData}" />
         </Style>
         <Style Selector="^:error /template/ PathIcon#ToastIcon">
-            <Setter Property="IsVisible" Value="True" />
             <Setter Property="Foreground" Value="{DynamicResource NotificationCardErrorIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource NotificationCardErrorIconPathData}" />
         </Style>

@@ -12,7 +12,10 @@
         <vm:ToastDemoViewModel />
     </Design.DataContext>
     <StackPanel Spacing="20">
-        <ToggleSwitch IsChecked="{Binding ShowClose}" Content="ShowClose" />
+        <StackPanel Orientation="Horizontal">
+            <ToggleSwitch IsChecked="{Binding ShowIcon}" Content="ShowIcon" />
+            <ToggleSwitch IsChecked="{Binding ShowClose}" Content="ShowClose" />
+        </StackPanel>
 
         <StackPanel Orientation="Horizontal" Spacing="20">
             <StackPanel.Styles>

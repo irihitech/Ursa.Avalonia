@@ -66,7 +66,9 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
     /// <inheritdoc/>
     public void Show(INotification content)
     {
-        Show(content, content.Type, content.Expiration, content.ShowClose, content.OnClick, content.OnClose);
+        Show(content, content.Type, content.Expiration,
+            content.ShowIcon, content.ShowClose,
+            content.OnClick, content.OnClose);
     }
 
     /// <inheritdoc/>
@@ -74,8 +76,9 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
     {
         if (content is INotification notification)
         {
-            Show(notification, notification.Type, notification.Expiration, notification.ShowClose, notification.OnClick,
-                notification.OnClose);
+            Show(notification, notification.Type, notification.Expiration,
+                notification.ShowIcon, notification.ShowClose,
+                notification.OnClick, notification.OnClose);
         }
         else
         {
@@ -89,6 +92,7 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
     /// <param name="content">the content of the notification</param>
     /// <param name="type">the type of the notification</param>
     /// <param name="expiration">the expiration time of the notification after which it will automatically close. If the value is Zero then the notification will remain open until the user closes it</param>
+    /// <param name="showIcon">whether to show the icon</param>
     /// <param name="showClose">whether to show the close button</param>
     /// <param name="onClick">an Action to be run when the notification is clicked</param>
     /// <param name="onClose">an Action to be run when the notification is closed</param>
@@ -97,6 +101,7 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
         object content,
         NotificationType type,
         TimeSpan? expiration = null,
+        bool showIcon = true,
         bool showClose = true,
         Action? onClick = null,
         Action? onClose = null,
@@ -108,6 +113,7 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
         {
             Content = content,
             NotificationType = type,
+            ShowIcon = showIcon,
             ShowClose = showClose,
             [!NotificationCard.PositionProperty] = this[!PositionProperty]
         };

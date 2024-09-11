@@ -78,6 +78,15 @@ public abstract class MessageCard : ContentControl
     public static readonly StyledProperty<NotificationType> NotificationTypeProperty =
         AvaloniaProperty.Register<MessageCard, NotificationType>(nameof(NotificationType));
 
+    public bool ShowIcon
+    {
+        get => GetValue(ShowIconProperty);
+        set => SetValue(ShowIconProperty, value);
+    }
+
+    public static readonly StyledProperty<bool> ShowIconProperty =
+        AvaloniaProperty.Register<MessageCard, bool>(nameof(ShowIcon), true);
+
     public bool ShowClose
     {
         get => GetValue(ShowCloseProperty);
@@ -187,19 +196,19 @@ public abstract class MessageCard : ContentControl
     {
         switch (NotificationType)
         {
-            case NotificationType.Error:
+            case Avalonia.Controls.Notifications.NotificationType.Error:
                 PseudoClasses.Add(PC_Error);
                 break;
 
-            case NotificationType.Information:
+            case Avalonia.Controls.Notifications.NotificationType.Information:
                 PseudoClasses.Add(PC_Information);
                 break;
 
-            case NotificationType.Success:
+            case Avalonia.Controls.Notifications.NotificationType.Success:
                 PseudoClasses.Add(PC_Success);
                 break;
 
-            case NotificationType.Warning:
+            case Avalonia.Controls.Notifications.NotificationType.Warning:
                 PseudoClasses.Add(PC_Warning);
                 break;
         }

@@ -1,8 +1,5 @@
 ﻿using Avalonia.Controls;
-using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Notifications;
-using Avalonia.Controls.Primitives;
-using Avalonia.Layout;
 using Avalonia.Threading;
 
 namespace Ursa.Controls;
@@ -34,7 +31,9 @@ public class WindowToastManager : WindowMessageManager, IToastManager
     /// <inheritdoc/>
     public void Show(IToast content)
     {
-        Show(content, content.Type, content.Expiration, content.ShowClose, content.OnClick, content.OnClose);
+        Show(content, content.Type, content.Expiration,
+            content.ShowIcon, content.ShowClose,
+            content.OnClick, content.OnClose);
     }
 
     /// <inheritdoc/>
@@ -42,7 +41,9 @@ public class WindowToastManager : WindowMessageManager, IToastManager
     {
         if (content is IToast toast)
         {
-            Show(toast, toast.Type, toast.Expiration, toast.ShowClose, toast.OnClick, toast.OnClose);
+            Show(toast, toast.Type, toast.Expiration,
+                toast.ShowIcon, toast.ShowClose,
+                toast.OnClick, toast.OnClose);
         }
         else
         {
@@ -56,6 +57,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
     /// <param name="content">the content of the toast</param>
     /// <param name="type">the type of the toast</param>
     /// <param name="expiration">the expiration time of the toast after which it will automatically close. If the value is Zero then the toast will remain open until the user closes it</param>
+    /// <param name="showIcon">whether to show the icon</param>
     /// <param name="showClose">whether to show the close button</param>
     /// <param name="onClick">an Action to be run when the toast is clicked</param>
     /// <param name="onClose">an Action to be run when the toast is closed</param>
@@ -64,6 +66,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
         object content,
         NotificationType type,
         TimeSpan? expiration = null,
+        bool showIcon = true,
         bool showClose = true,
         Action? onClick = null,
         Action? onClose = null,
@@ -75,6 +78,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
         {
             Content = content,
             NotificationType = type,
+            ShowIcon = showIcon,
             ShowClose = showClose
         };
 

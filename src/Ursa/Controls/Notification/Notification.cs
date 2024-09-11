@@ -86,6 +86,9 @@ public class Notification : INotification, INotifyPropertyChanged
     public TimeSpan Expiration { get; set; }
 
     /// <inheritdoc/>
+    public bool ShowIcon { get; set; }
+
+    /// <inheritdoc/>
     public bool ShowClose { get; }
 
     /// <inheritdoc/>

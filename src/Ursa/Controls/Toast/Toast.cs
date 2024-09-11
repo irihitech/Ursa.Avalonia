@@ -66,6 +66,9 @@ public class Toast : IToast, INotifyPropertyChanged
     public NotificationType Type { get; set; }
 
     /// <inheritdoc/>
+    public bool ShowIcon { get; set; }
+
+    /// <inheritdoc/>
     public bool ShowClose { get; set; }
 
     /// <inheritdoc/>
