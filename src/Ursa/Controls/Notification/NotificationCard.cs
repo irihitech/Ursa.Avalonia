@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Notifications;
 using Avalonia.LogicalTree;
 
@@ -8,6 +9,14 @@ namespace Ursa.Controls;
 /// <summary>
 /// Control that represents and displays a notification.
 /// </summary>
+[PseudoClasses(
+    WindowNotificationManager.PC_TopLeft,
+    WindowNotificationManager.PC_TopRight,
+    WindowNotificationManager.PC_BottomLeft,
+    WindowNotificationManager.PC_BottomRight,
+    WindowNotificationManager.PC_TopCenter,
+    WindowNotificationManager.PC_BottomCenter
+)]
 public class NotificationCard : MessageCard
 {
     private NotificationPosition _position;
