@@ -3,9 +3,9 @@
                     xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
         <ThemeVariantScope RequestedThemeVariant="Dark">
-            <StackPanel Orientation="Vertical">
-                <u:NotificationCard ShowClose="False" />
-                <u:NotificationCard />
+            <ReversibleStackPanel Orientation="Vertical">
+                <u:NotificationCard ShowIcon="False" ShowClose="False" />
+                <u:NotificationCard ShowIcon="False" />
                 <u:NotificationCard NotificationType="Information">
                     Hello, Ursa!
                 </u:NotificationCard>
@@ -15,10 +15,10 @@
                 <u:NotificationCard NotificationType="Warning">
                     <u:Notification Content="Hello, Ursa!" />
                 </u:NotificationCard>
-                <u:NotificationCard NotificationType="Error">
+                <u:NotificationCard NotificationType="Error" Classes="Light">
                     <u:Notification Title="Welcome" Content="Hello, Ursa!" />
                 </u:NotificationCard>
-            </StackPanel>
+            </ReversibleStackPanel>
         </ThemeVariantScope>
     </Design.PreviewWith>
 
@@ -26,41 +26,35 @@
         <Setter Property="Margin" Value="0" />
         <Setter Property="Template">
             <ControlTemplate>
-                <ReversibleStackPanel Name="PART_Items" />
+                <ReversibleStackPanel Name="PART_Items" ReverseOrder="True" />
             </ControlTemplate>
         </Setter>
         <Style Selector="^:topleft /template/ ReversibleStackPanel#PART_Items">
-            <Setter Property="ReverseOrder" Value="True" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="HorizontalAlignment" Value="Left" />
         </Style>
 
         <Style Selector="^:topright /template/ ReversibleStackPanel#PART_Items">
-            <Setter Property="ReverseOrder" Value="True" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="HorizontalAlignment" Value="Right" />
         </Style>
 
         <Style Selector="^:topcenter /template/ ReversibleStackPanel#PART_Items">
-            <Setter Property="ReverseOrder" Value="True" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
 
         <Style Selector="^:bottomleft /template/ ReversibleStackPanel#PART_Items">
-            <Setter Property="ReverseOrder" Value="True" />
             <Setter Property="VerticalAlignment" Value="Bottom" />
             <Setter Property="HorizontalAlignment" Value="Left" />
         </Style>
 
         <Style Selector="^:bottomright /template/ ReversibleStackPanel#PART_Items">
-            <Setter Property="ReverseOrder" Value="True" />
             <Setter Property="VerticalAlignment" Value="Bottom" />
             <Setter Property="HorizontalAlignment" Value="Right" />
         </Style>
 
         <Style Selector="^:bottomcenter /template/ ReversibleStackPanel#PART_Items">
-            <Setter Property="ReverseOrder" Value="True" />
             <Setter Property="VerticalAlignment" Value="Bottom" />
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>

@@ -3,15 +3,16 @@
                     xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
         <ThemeVariantScope RequestedThemeVariant="Dark">
-            <StackPanel Orientation="Horizontal">
-                <u:ToastCard ShowClose="False" />
+            <ReversibleStackPanel>
+                <u:ToastCard ShowIcon="False" ShowClose="False" />
+                <u:ToastCard />
                 <u:ToastCard>
                     Hello, Ursa!
                 </u:ToastCard>
-                <u:ToastCard NotificationType="Success" ShowClose="False">
+                <u:ToastCard NotificationType="Success" Classes="Light">
                     <u:Toast Content="Hello, Ursa!" />
                 </u:ToastCard>
-            </StackPanel>
+            </ReversibleStackPanel>
         </ThemeVariantScope>
     </Design.PreviewWith>
 
@@ -30,6 +31,7 @@
 
     <ControlTheme x:Key="{x:Type u:ToastCard}" TargetType="u:ToastCard">
         <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="BorderThickness" Value="{DynamicResource NotificationCardBorderThickness}" />
         <Setter Property="Background" Value="{DynamicResource NotificationCardBackground}" />
         <Setter Property="CornerRadius" Value="{DynamicResource NotificationCardCornerRadius}" />
@@ -49,10 +51,9 @@
                             VerticalAlignment="Top"
                             BoxShadow="{DynamicResource NotificationCardBoxShadows}"
                             CornerRadius="{TemplateBinding CornerRadius}">
-                            <Grid ColumnDefinitions="Auto,*,Auto">
+                            <DockPanel>
                                 <PathIcon
                                     x:Name="ToastIcon"
-                                    Grid.Column="0"
                                     Width="{DynamicResource NotificationCardIconWidth}"
                                     Height="{DynamicResource NotificationCardIconHeight}"
                                     Margin="{DynamicResource ToastCardIconMargin}"
@@ -61,7 +62,6 @@
                                     Data="{DynamicResource NotificationCardInformationIconPathData}" />
                                 <ContentControl
                                     x:Name="PART_Content"
-                                    Grid.Column="1"
                                     Margin="{DynamicResource ToastCardContentMargin}"
                                     VerticalContentAlignment="Center"
                                     MaxWidth="{DynamicResource ToastCardContentMaxWidth}"
@@ -85,12 +85,11 @@
                                 </ContentControl>
                                 <Button
                                     x:Name="PART_CloseButton"
-                                    Grid.Column="2"
                                     Theme="{StaticResource ToastCloseButton}"
                                     VerticalAlignment="Top"
                                     IsVisible="{TemplateBinding ShowClose}"
                                     u:MessageCard.CloseOnClick="True" />
-                            </Grid>
+                            </DockPanel>
                         </Border>
                     </Border>
                 </LayoutTransformControl>
