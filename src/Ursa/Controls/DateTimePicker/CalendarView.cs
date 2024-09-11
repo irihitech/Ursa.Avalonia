@@ -81,13 +81,10 @@ public class CalendarView : TemplatedControl
 
     private void OnContextDateChanged(AvaloniaPropertyChangedEventArgs<CalendarContext> args)
     {
-        Debug.WriteLine(this.Name + " " + args.NewValue.Value);
         if (!_dateContextSyncing)
         {
             ContextDateChanged?.Invoke(this, args.NewValue.Value);
         }
-        //UpdateDayButtons();
-        //UpdateYearButtons();
     }
 
     internal CalendarViewMode Mode
@@ -118,8 +115,17 @@ public class CalendarView : TemplatedControl
         get => GetValue(FirstDayOfWeekProperty);
         set => SetValue(FirstDayOfWeekProperty, value);
     }
-
-    public event EventHandler<CalendarDayButtonEventArgs>? DateSelected;
+    
+    public static readonly RoutedEvent<CalendarDayButtonEventArgs> DateSelectedEvent =
+        RoutedEvent.Register<TimePickerPresenter, CalendarDayButtonEventArgs>(
+            nameof(DateSelected), RoutingStrategies.Bubble);
+    
+    public event EventHandler<CalendarDayButtonEventArgs> DateSelected
+    {
+        add => AddHandler(DateSelectedEvent, value);
+        remove => RemoveHandler(DateSelectedEvent, value);
+    }
+    
     public event EventHandler<CalendarDayButtonEventArgs>? DatePreviewed;
     internal event EventHandler<CalendarContext>? ContextDateChanged; 
 
@@ -420,7 +426,7 @@ public class CalendarView : TemplatedControl
             ContextDate = ContextDate.With(year: e.Date.Value.Year, month: e.Date.Value.Month);
             UpdateDayButtons();
         }
-        DateSelected?.Invoke(this, e);
+        RaiseEvent(new CalendarDayButtonEventArgs(e.Date) { RoutedEvent = DateSelectedEvent, Source = this });
     }
 
     /// <summary>
