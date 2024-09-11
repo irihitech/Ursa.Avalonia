@@ -1,24 +1,30 @@
 ﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:u="https://irihi.tech/ursa">
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters">
     <!--  Add Resources Here  -->
-    <ControlTheme x:Key="{x:Type u:Form}" TargetType="u:Form">
-        <Setter Property="Grid.IsSharedSizeScope" Value="False" />
+    <ControlTheme x:Key="{x:Type u:Form}"
+                  TargetType="u:Form">
+        <Setter Property="Grid.IsSharedSizeScope"
+                Value="False" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Form">
                 <DataValidationErrors>
-                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                    <ItemsPresenter
+                        ItemsPanel="{TemplateBinding ItemsPanel}" />
                 </DataValidationErrors>
             </ControlTemplate>
         </Setter>
         <Style Selector="^:fixed-width">
-            <Setter Property="Grid.IsSharedSizeScope" Value="True" />
+            <Setter Property="Grid.IsSharedSizeScope"
+                    Value="True" />
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type u:FormGroup}" TargetType="u:FormGroup">
+    <ControlTheme x:Key="{x:Type u:FormGroup}"
+                  TargetType="u:FormGroup">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:FormGroup">
                 <StackPanel>
@@ -32,15 +38,17 @@
                         Height="1"
                         Margin="0,8"
                         HorizontalAlignment="Stretch"
-                        IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Header, Converter={x:Static ObjectConverters.IsNotNull}}" 
-                        Fill="{DynamicResource SemiColorBorder}" />
-                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                        Fill="{DynamicResource SemiColorBorder}"
+                        IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Header, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                    <ItemsPresenter
+                        ItemsPanel="{TemplateBinding ItemsPanel}" />
                 </StackPanel>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type u:FormItem}" TargetType="u:FormItem">
+    <ControlTheme x:Key="{x:Type u:FormItem}"
+                  TargetType="u:FormItem">
         <Setter Property="Margin" Value="0 8" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:FormItem">
@@ -50,13 +58,19 @@
                         Margin="0,0,0,4"
                         HorizontalAlignment="{TemplateBinding LabelAlignment}"
                         Orientation="Horizontal">
-                        <ContentPresenter Content="{TemplateBinding Label}" FontWeight="{DynamicResource TextBlockTitleFontWeight}" />
+                        <Label
+                            Content="{TemplateBinding Label}"
+                            Background="Transparent"
+                            FontWeight="{DynamicResource TextBlockTitleFontWeight}"
+                            Target="{Binding #PART_ContentPresenter.Content}" />
                         <TextBlock
                             Foreground="{DynamicResource SemiRed6}"
                             IsVisible="{TemplateBinding IsRequired}"
                             Text="*" />
                     </StackPanel>
-                    <ContentPresenter Content="{TemplateBinding Content}" />
+                    <ContentPresenter
+                        Name="PART_ContentPresenter"
+                        Content="{TemplateBinding Content}" />
                 </StackPanel>
             </ControlTemplate>
         </Setter>
@@ -65,7 +79,8 @@
                 <ControlTemplate TargetType="u:FormItem">
                     <Grid RowDefinitions="*, *">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" SharedSizeGroup="Label" />
+                            <ColumnDefinition Width="Auto"
+                                SharedSizeGroup="Label" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Border
@@ -74,10 +89,16 @@
                             Width="{TemplateBinding LabelWidth}">
                             <StackPanel
                                 Name="PART_LabelPanel"
-                                Margin="8,8,8,0"
+                                Margin="{Binding #PART_Label.Bounds.Height, Converter={x:Static converters:FormContentHeightToMarginConverter.Instance}}"
                                 HorizontalAlignment="{TemplateBinding LabelAlignment}"
+                                VerticalAlignment="{Binding #PART_ContentPresenter.Bounds.Height, Converter={x:Static converters:FormContentHeightToAlignmentConverter.Instance}}"
                                 Orientation="Horizontal">
-                                <ContentPresenter Content="{TemplateBinding Label}" FontWeight="{DynamicResource TextBlockTitleFontWeight}" />
+                                <Label
+                                    Name="PART_Label"
+                                    Content="{TemplateBinding Label}"
+                                    Background="Transparent"
+                                    FontWeight="{DynamicResource TextBlockTitleFontWeight}"
+                                    Target="{Binding #PART_ContentPresenter.Content}" />
                                 <TextBlock
                                     Foreground="{DynamicResource SemiRed6}"
                                     IsVisible="{TemplateBinding IsRequired}"
@@ -85,8 +106,11 @@
                             </StackPanel>
                         </Border>
                         <ContentPresenter
+                            Name="PART_ContentPresenter"
                             Grid.Row="0"
                             Grid.Column="1"
+                            VerticalAlignment="Stretch"
+                            VerticalContentAlignment="Center"
                             Content="{TemplateBinding Content}" />
                     </Grid>
                 </ControlTemplate>
@@ -95,7 +119,8 @@
         <Style Selector="^:no-label">
             <Setter Property="Template">
                 <ControlTemplate TargetType="u:FormItem">
-                    <ContentPresenter Content="{TemplateBinding Content}" />
+                    <ContentPresenter
+                        Content="{TemplateBinding Content}" />
                 </ControlTemplate>
             </Setter>
         </Style>
