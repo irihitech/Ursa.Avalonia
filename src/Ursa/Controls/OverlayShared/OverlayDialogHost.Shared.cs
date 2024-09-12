@@ -56,6 +56,7 @@ public partial class OverlayDialogHost: Canvas
     }
     
     public bool IsAnimationDisabled { get; set; }
+    public bool IsTopLevel { get; set; }
     
     static OverlayDialogHost()
     {
@@ -114,7 +115,7 @@ public partial class OverlayDialogHost: Canvas
         {
             rec.AddHandler(PointerReleasedEvent, ClickMaskToCloseDialog);
         }
-        else
+        else if(IsTopLevel)
         {
             rec.AddHandler(PointerPressedEvent, DragMaskToMoveWindow);
         }
