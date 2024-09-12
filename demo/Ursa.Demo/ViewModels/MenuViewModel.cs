@@ -37,7 +37,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Message Box", Key = MenuKeys.MenuKeyMessageBox },
             new() { MenuHeader = "MultiComboBox", Key = MenuKeys.MenuKeyMultiComboBox, Status = "Updated" },
             new() { MenuHeader = "Nav Menu", Key = MenuKeys.MenuKeyNavMenu },
-            new() { MenuHeader = "Notification", Key = MenuKeys.MenuKeyNotification },
+            new() { MenuHeader = "Notification", Key = MenuKeys.MenuKeyNotification, Status = "New"},
             new() { MenuHeader = "Number Displayer", Key = MenuKeys.MenuKeyNumberDisplayer, Status = "New" }, 
             new() { MenuHeader = "Numeric UpDown", Key = MenuKeys.MenuKeyNumericUpDown },
             new() { MenuHeader = "NumPad", Key = MenuKeys.MenuKeyNumPad },
@@ -54,7 +54,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Timeline", Key = MenuKeys.MenuKeyTimeline },
             new() { MenuHeader = "TreeComboBox", Key = MenuKeys.MenuKeyTreeComboBox },
             new() { MenuHeader = "TwoTonePathIcon", Key = MenuKeys.MenuKeyTwoTonePathIcon},
-            new() { MenuHeader = "Toast", Key = MenuKeys.MenuKeyToast },
+            new() { MenuHeader = "Toast", Key = MenuKeys.MenuKeyToast, Status = "New"},
             new() { MenuHeader = "ToolBar", Key = MenuKeys.MenuKeyToolBar },
             new() { MenuHeader = "Time Box", Key = MenuKeys.MenuKeyTimeBox },
         };

@@ -196,19 +196,19 @@ public abstract class MessageCard : ContentControl
     {
         switch (NotificationType)
         {
-            case Avalonia.Controls.Notifications.NotificationType.Error:
+            case NotificationType.Error:
                 PseudoClasses.Add(PC_Error);
                 break;
 
-            case Avalonia.Controls.Notifications.NotificationType.Information:
+            case NotificationType.Information:
                 PseudoClasses.Add(PC_Information);
                 break;
 
-            case Avalonia.Controls.Notifications.NotificationType.Success:
+            case NotificationType.Success:
                 PseudoClasses.Add(PC_Success);
                 break;
 
-            case Avalonia.Controls.Notifications.NotificationType.Warning:
+            case NotificationType.Warning:
                 PseudoClasses.Add(PC_Warning);
                 break;
         }
