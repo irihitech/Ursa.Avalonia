@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.LogicalTree;
 using Avalonia.VisualTree;
 using Ursa.Controls;
 using Ursa.Demo.ViewModels;
@@ -26,13 +27,9 @@ public partial class NotificationDemo : UserControl
         _viewModel.NotificationManager = new WindowNotificationManager(_topLevel) { MaxItems = 3 };
     }
 
-    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    protected override void OnDetachedFromLogicalTree(LogicalTreeAttachmentEventArgs e)
     {
-        base.OnDetachedFromVisualTree(e);
-        var adorner = _topLevel.FindDescendantOfType<VisualLayerManager>()?.AdornerLayer;
-        if (adorner is not null && _viewModel.NotificationManager is not null)
-        {
-            adorner.Children.Remove(_viewModel.NotificationManager);
-        }
+        base.OnDetachedFromLogicalTree(e);
+        _viewModel.NotificationManager?.Uninstall();
     }
 }

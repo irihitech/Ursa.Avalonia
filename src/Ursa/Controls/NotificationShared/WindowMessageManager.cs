@@ -64,6 +64,15 @@ public abstract class WindowMessageManager : TemplatedControl
         }
     }
 
+    public virtual void Uninstall()
+    {
+        if(Parent is AdornerLayer adornerLayer)
+        {
+            adornerLayer.Children.Remove(this);
+            AdornerLayer.SetAdornedElement(this, null);
+        }
+    }
+
     protected void TopLevelOnTemplateApplied(object? sender, TemplateAppliedEventArgs e)
     {
         if (Parent is AdornerLayer adornerLayer)
