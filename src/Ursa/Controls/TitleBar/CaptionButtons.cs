@@ -23,7 +23,11 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
     private Button? _minimizeButton;
     private Button? _fullScreenButton;
     
-    private IDisposable? _visibilityDisposable;
+    private IDisposable? _windowStateSubscription;
+    private IDisposable? _fullScreenSubscription;
+    private IDisposable? _minimizeSubscription;
+    private IDisposable? _restoreSubscription;
+    private IDisposable? _closeSubscription;
 
     /// <summary>
     /// 切换进入全屏前 窗口的状态
@@ -74,10 +78,15 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
     public override void Attach(Window hostWindow)
     {
         base.Attach(hostWindow);
-        _visibilityDisposable = HostWindow?.GetObservable(Window.WindowStateProperty).Subscribe((_) =>
+        _windowStateSubscription = HostWindow?.GetObservable(Window.WindowStateProperty).Subscribe(_ =>
         {
             UpdateVisibility();
         });
+        Action<bool> a = (_) => UpdateVisibility();
+        _fullScreenSubscription = HostWindow?.GetObservable(UrsaWindow.IsFullScreenButtonVisibleProperty).Subscribe(a);
+        _minimizeSubscription = HostWindow?.GetObservable(UrsaWindow.IsMinimizeButtonVisibleProperty).Subscribe(a);
+        _restoreSubscription = HostWindow?.GetObservable(UrsaWindow.IsRestoreButtonVisibleProperty).Subscribe(a);
+        _closeSubscription = HostWindow?.GetObservable(UrsaWindow.IsCloseButtonVisibleProperty).Subscribe(a);
     }
     
     private void UpdateVisibility()
@@ -98,6 +107,10 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
     public override void Detach()
     {
         base.Detach();
-        _visibilityDisposable?.Dispose();
+        _windowStateSubscription?.Dispose();
+        _fullScreenSubscription?.Dispose();
+        _minimizeSubscription?.Dispose();
+        _restoreSubscription?.Dispose();
+        _closeSubscription?.Dispose();
     }
 }
