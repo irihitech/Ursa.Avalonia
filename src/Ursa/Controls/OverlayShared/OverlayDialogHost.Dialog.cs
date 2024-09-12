@@ -72,7 +72,7 @@ public partial class OverlayDialogHost
     {
         if (e.Source is DialogControlBase item)
         {
-            if (item.IsFullScreen)
+            if (IsTopLevel && item.IsFullScreen)
             {
                 var top = TopLevel.GetTopLevel(item);
                 if (top is Window w)

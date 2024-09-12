@@ -71,7 +71,7 @@
                                 LeftContent="{Binding $parent[u:UrsaWindow].LeftContent}"
                                 RightContent="{Binding $parent[u:UrsaWindow].RightContent}" />
                             <VisualLayerManager>
-                                <u:OverlayDialogHost IsModalStatusReporter="True" />
+                                <u:OverlayDialogHost IsTopLevel="True" IsModalStatusReporter="True" />
                             </VisualLayerManager>
                         </VisualLayerManager.ChromeOverlayLayer>
                         <Panel>
