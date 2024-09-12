@@ -53,7 +53,6 @@ public abstract class DialogControlBase : OverlayFeedbackElement
         set => SetAndRaise(IsFullScreenProperty, ref _isFullScreen, value);
     }
 
-
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
