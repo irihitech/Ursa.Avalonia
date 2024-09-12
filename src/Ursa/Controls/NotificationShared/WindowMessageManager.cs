@@ -66,7 +66,7 @@ public abstract class WindowMessageManager : TemplatedControl
 
     public virtual void Uninstall()
     {
-        if(Parent is AdornerLayer adornerLayer)
+        if (Parent is AdornerLayer adornerLayer)
         {
             adornerLayer.Children.Remove(this);
             AdornerLayer.SetAdornedElement(this, null);
