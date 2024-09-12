@@ -3,7 +3,7 @@
                     xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
         <ThemeVariantScope RequestedThemeVariant="Dark">
-            <ReversibleStackPanel Orientation="Vertical">
+            <ReversibleStackPanel Orientation="Vertical" ReverseOrder="True">
                 <u:NotificationCard ShowIcon="False" ShowClose="False" />
                 <u:NotificationCard ShowIcon="False" />
                 <u:NotificationCard NotificationType="Information">
@@ -136,125 +136,159 @@
             </ControlTemplate>
         </Setter>
 
-        <ControlTheme.Animations>
-            <Animation
-                Easing="QuadraticEaseIn"
-                FillMode="Forward"
-                Duration="0:0:0.3">
-                <KeyFrame Cue="0%">
-                    <Setter Property="Opacity" Value="0" />
-                </KeyFrame>
-                <KeyFrame Cue="100%">
-                    <Setter Property="Opacity" Value="1" />
-                </KeyFrame>
-            </Animation>
-        </ControlTheme.Animations>
+        <Style Selector="^">
+            <Style Selector="^ /template/ LayoutTransformControl#PART_LayoutTransformControl">
+                <Style.Animations>
+                    <Animation
+                        Easing="QuadraticEaseIn"
+                        FillMode="Forward"
+                        Duration="0:0:0.3">
+                        <KeyFrame Cue="0%">
+                            <Setter Property="Opacity" Value="0" />
+                        </KeyFrame>
+                        <KeyFrame Cue="100%">
+                            <Setter Property="Opacity" Value="1" />
+                        </KeyFrame>
+                    </Animation>
+                    <Animation
+                        Easing="QuadraticEaseIn"
+                        FillMode="Forward"
+                        Duration="0:0:0.15">
+                        <KeyFrame Cue="0%">
+                            <Setter Property="ScaleTransform.ScaleY" Value="0" />
+                        </KeyFrame>
+                        <KeyFrame Cue="70%">
+                            <Setter Property="ScaleTransform.ScaleY" Value="0" />
+                        </KeyFrame>
+                        <KeyFrame Cue="100%">
+                            <Setter Property="ScaleTransform.ScaleY" Value="1" />
+                        </KeyFrame>
+                    </Animation>
+                </Style.Animations>
+            </Style>
 
-        <Style Selector="^:topleft">
-            <Style.Animations>
-                <Animation
-                    Easing="QuadraticEaseIn"
-                    FillMode="Forward"
-                    Duration="0:0:0.3">
-                    <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="0%">
-                        <Setter Property="TranslateTransform.X" Value="-500" />
-                    </KeyFrame>
-                    <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="100%">
-                        <Setter Property="TranslateTransform.X" Value="0" />
-                    </KeyFrame>
-                </Animation>
-            </Style.Animations>
-        </Style>
-        <Style Selector="^:topright">
-            <Style.Animations>
-                <Animation
-                    Easing="QuadraticEaseIn"
-                    FillMode="Forward"
-                    Duration="0:0:0.3">
-                    <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="0%">
-                        <Setter Property="TranslateTransform.X" Value="500" />
-                    </KeyFrame>
-                    <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="100%">
-                        <Setter Property="TranslateTransform.X" Value="0" />
-                    </KeyFrame>
-                </Animation>
-            </Style.Animations>
-        </Style>
-        <Style Selector="^:bottomleft">
-            <Style.Animations>
-                <Animation
-                    Easing="QuadraticEaseIn"
-                    FillMode="Forward"
-                    Duration="0:0:0.3">
-                    <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="0%">
-                        <Setter Property="TranslateTransform.X" Value="-500" />
-                    </KeyFrame>
-                    <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="100%">
-                        <Setter Property="TranslateTransform.X" Value="0" />
-                    </KeyFrame>
-                </Animation>
-            </Style.Animations>
-        </Style>
-        <Style Selector="^:bottomright">
-            <Style.Animations>
-                <Animation
-                    Easing="QuadraticEaseIn"
-                    FillMode="Forward"
-                    Duration="0:0:0.3">
-                    <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="0%">
-                        <Setter Property="TranslateTransform.X" Value="500" />
-                    </KeyFrame>
-                    <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="100%">
-                        <Setter Property="TranslateTransform.X" Value="0" />
-                    </KeyFrame>
-                </Animation>
-            </Style.Animations>
-        </Style>
-        <Style Selector="^:topcenter">
-            <Style.Animations>
-                <Animation
-                    Easing="QuadraticEaseIn"
-                    FillMode="Forward"
-                    Duration="0:0:0.3">
-                    <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="0%">
-                        <Setter Property="TranslateTransform.Y" Value="-100" />
-                    </KeyFrame>
-                    <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="100%">
-                        <Setter Property="TranslateTransform.Y" Value="0" />
-                    </KeyFrame>
-                </Animation>
-            </Style.Animations>
-        </Style>
-        <Style Selector="^:bottomcenter">
-            <Style.Animations>
-                <Animation
-                    Easing="QuadraticEaseIn"
-                    FillMode="Forward"
-                    Duration="0:0:0.3">
-                    <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="0%">
-                        <Setter Property="TranslateTransform.Y" Value="100" />
-                    </KeyFrame>
-                    <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="100%">
-                        <Setter Property="TranslateTransform.Y" Value="0" />
-                    </KeyFrame>
-                </Animation>
-            </Style.Animations>
+            <Style Selector="^:topleft">
+                <Style.Animations>
+                    <Animation
+                        Easing="QuadraticEaseIn"
+                        FillMode="Forward"
+                        Duration="0:0:0.3">
+                        <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="0%">
+                            <Setter Property="TranslateTransform.X" Value="-500" />
+                        </KeyFrame>
+                        <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="100%">
+                            <Setter Property="TranslateTransform.X" Value="0" />
+                        </KeyFrame>
+                    </Animation>
+                </Style.Animations>
+            </Style>
+            <Style Selector="^:topright">
+                <Style.Animations>
+                    <Animation
+                        Easing="QuadraticEaseIn"
+                        FillMode="Forward"
+                        Duration="0:0:0.3">
+                        <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="0%">
+                            <Setter Property="TranslateTransform.X" Value="500" />
+                        </KeyFrame>
+                        <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="100%">
+                            <Setter Property="TranslateTransform.X" Value="0" />
+                        </KeyFrame>
+                    </Animation>
+                </Style.Animations>
+            </Style>
+            <Style Selector="^:bottomleft">
+                <Style.Animations>
+                    <Animation
+                        Easing="QuadraticEaseIn"
+                        FillMode="Forward"
+                        Duration="0:0:0.3">
+                        <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="0%">
+                            <Setter Property="TranslateTransform.X" Value="-500" />
+                        </KeyFrame>
+                        <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="100%">
+                            <Setter Property="TranslateTransform.X" Value="0" />
+                        </KeyFrame>
+                    </Animation>
+                </Style.Animations>
+            </Style>
+            <Style Selector="^:bottomright">
+                <Style.Animations>
+                    <Animation
+                        Easing="QuadraticEaseIn"
+                        FillMode="Forward"
+                        Duration="0:0:0.3">
+                        <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="0%">
+                            <Setter Property="TranslateTransform.X" Value="500" />
+                        </KeyFrame>
+                        <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="100%">
+                            <Setter Property="TranslateTransform.X" Value="0" />
+                        </KeyFrame>
+                    </Animation>
+                </Style.Animations>
+            </Style>
+            <Style Selector="^:topcenter">
+                <Style.Animations>
+                    <Animation
+                        Easing="QuadraticEaseIn"
+                        FillMode="Forward"
+                        Duration="0:0:0.3">
+                        <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="0%">
+                            <Setter Property="TranslateTransform.Y" Value="-100" />
+                        </KeyFrame>
+                        <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="100%">
+                            <Setter Property="TranslateTransform.Y" Value="0" />
+                        </KeyFrame>
+                    </Animation>
+                </Style.Animations>
+            </Style>
+            <Style Selector="^:bottomcenter">
+                <Style.Animations>
+                    <Animation
+                        Easing="QuadraticEaseIn"
+                        FillMode="Forward"
+                        Duration="0:0:0.3">
+                        <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="0%">
+                            <Setter Property="TranslateTransform.Y" Value="100" />
+                        </KeyFrame>
+                        <KeyFrame KeySpline="0.62,0.63,0,1.13" Cue="100%">
+                            <Setter Property="TranslateTransform.Y" Value="0" />
+                        </KeyFrame>
+                    </Animation>
+                </Style.Animations>
+            </Style>
         </Style>
 
         <Style Selector="^[IsClosing=true]">
-            <Style.Animations>
-                <Animation
-                    Easing="QuadraticEaseOut"
-                    FillMode="Forward"
-                    Duration="0:0:0.3">
-                    <KeyFrame Cue="0%">
-                        <Setter Property="Opacity" Value="1" />
-                    </KeyFrame>
-                    <KeyFrame Cue="100%">
-                        <Setter Property="Opacity" Value="0" />
-                    </KeyFrame>
-                </Animation>
-            </Style.Animations>
+            <Style Selector="^ /template/ LayoutTransformControl#PART_LayoutTransformControl">
+                <Style.Animations>
+                    <Animation
+                        Easing="QuadraticEaseOut"
+                        FillMode="Forward"
+                        Duration="0:0:0.3">
+                        <KeyFrame Cue="0%">
+                            <Setter Property="Opacity" Value="1" />
+                        </KeyFrame>
+                        <KeyFrame Cue="100%">
+                            <Setter Property="Opacity" Value="0" />
+                        </KeyFrame>
+                    </Animation>
+                    <Animation
+                        Easing="QuadraticEaseOut"
+                        FillMode="Forward"
+                        Duration="0:0:0.15">
+                        <KeyFrame Cue="0%">
+                            <Setter Property="ScaleTransform.ScaleY" Value="1" />
+                        </KeyFrame>
+                        <KeyFrame Cue="70%">
+                            <Setter Property="ScaleTransform.ScaleY" Value="1" />
+                        </KeyFrame>
+                        <KeyFrame Cue="100%">
+                            <Setter Property="ScaleTransform.ScaleY" Value="0" />
+                        </KeyFrame>
+                    </Animation>
+                </Style.Animations>
+            </Style>
 
             <Style Selector="^:topleft">
                 <Style.Animations>

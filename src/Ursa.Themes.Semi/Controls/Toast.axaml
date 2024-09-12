@@ -98,25 +98,41 @@
             </ControlTemplate>
         </Setter>
 
-        <ControlTheme.Animations>
-            <Animation
-                Easing="QuadraticEaseIn"
-                FillMode="Forward"
-                Duration="0:0:0.3">
-                <KeyFrame Cue="0%">
-                    <Setter Property="Opacity" Value="0" />
-                </KeyFrame>
-                <KeyFrame Cue="100%">
-                    <Setter Property="Opacity" Value="1" />
-                </KeyFrame>
-                <KeyFrame KeySpline="0.22,0.57,0.02,1.2" Cue="0%">
-                    <Setter Property="TranslateTransform.Y" Value="-100" />
-                </KeyFrame>
-                <KeyFrame KeySpline="0.22,0.57,0.02,1.2" Cue="100%">
-                    <Setter Property="TranslateTransform.Y" Value="0" />
-                </KeyFrame>
-            </Animation>
-        </ControlTheme.Animations>
+        <Style Selector="^ /template/ LayoutTransformControl#PART_LayoutTransformControl">
+            <Style.Animations>
+                <Animation
+                    Easing="QuadraticEaseIn"
+                    FillMode="Forward"
+                    Duration="0:0:0.3">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="Opacity" Value="0" />
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="Opacity" Value="1" />
+                    </KeyFrame>
+                    <KeyFrame KeySpline="0.22,0.57,0.02,1.2" Cue="0%">
+                        <Setter Property="TranslateTransform.Y" Value="-100" />
+                    </KeyFrame>
+                    <KeyFrame KeySpline="0.22,0.57,0.02,1.2" Cue="100%">
+                        <Setter Property="TranslateTransform.Y" Value="0" />
+                    </KeyFrame>
+                </Animation>
+                <Animation
+                    Easing="QuadraticEaseIn"
+                    FillMode="Forward"
+                    Duration="0:0:0.15">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="ScaleTransform.ScaleY" Value="0" />
+                    </KeyFrame>
+                    <KeyFrame Cue="70%">
+                        <Setter Property="ScaleTransform.ScaleY" Value="0" />
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="ScaleTransform.ScaleY" Value="1" />
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
 
         <Style Selector="^[IsClosing=true] /template/ LayoutTransformControl#PART_LayoutTransformControl">
             <Style.Animations>
@@ -135,6 +151,20 @@
                     </KeyFrame>
                     <KeyFrame KeySpline="0.22,0.57,0.02,1.2" Cue="100%">
                         <Setter Property="TranslateTransform.Y" Value="-100" />
+                    </KeyFrame>
+                </Animation>
+                <Animation
+                    Easing="QuadraticEaseOut"
+                    FillMode="Forward"
+                    Duration="0:0:0.15">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="ScaleTransform.ScaleY" Value="1" />
+                    </KeyFrame>
+                    <KeyFrame Cue="70%">
+                        <Setter Property="ScaleTransform.ScaleY" Value="1" />
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="ScaleTransform.ScaleY" Value="0" />
                     </KeyFrame>
                 </Animation>
             </Style.Animations>
