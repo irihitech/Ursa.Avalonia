@@ -198,7 +198,7 @@ public class TreeComboBox: ItemsControl, IClearControl, IInnerContentControl, IP
             if (_popup is not null && _popup.IsOpen && _popup.IsInsidePopup(source))
             {
                 var container = GetContainerFromEventSource(source);
-                if (container is null) return;
+                if (container is null || !container.IsSelectable) return;
                 var item = TreeItemFromContainer(container);
                 if (item is null) return;
                 if (SelectedItem is not null)

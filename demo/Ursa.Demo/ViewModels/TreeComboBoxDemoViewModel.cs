@@ -19,7 +19,8 @@ public partial class TreeComboBoxDemoViewModel: ObservableObject
                 {
                     new TreeComboBoxItemViewModel()
                     {
-                        ItemName = "Item 1-1",
+                        ItemName = "Item 1-1 (Not selectable)",
+                        IsSelectable = false,
                         Children = new List<TreeComboBoxItemViewModel>()
                         {
                             new TreeComboBoxItemViewModel()
@@ -45,7 +46,8 @@ public partial class TreeComboBoxDemoViewModel: ObservableObject
                 {
                     new TreeComboBoxItemViewModel()
                     {
-                        ItemName = "Item 2-1"
+                        ItemName = "Item 2-1  (Not selectable)",
+                        IsSelectable = false,
                     },
                     new TreeComboBoxItemViewModel()
                     {
@@ -64,5 +66,6 @@ public partial class TreeComboBoxDemoViewModel: ObservableObject
 public partial class TreeComboBoxItemViewModel : ObservableObject
 {
     [ObservableProperty] private string? _itemName;
+    [ObservableProperty] private bool _isSelectable = true;
     public List<TreeComboBoxItemViewModel> Children { get; set; } = new ();
 }

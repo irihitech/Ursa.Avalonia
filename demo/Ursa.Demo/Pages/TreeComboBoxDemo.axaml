@@ -52,6 +52,11 @@
             PopupInnerTopContent="Top"
             PopupInnerBottomContent="Bottom"
             ItemsSource="{Binding Items}">
+            <u:TreeComboBox.Styles>
+                <Style Selector="u|TreeComboBoxItem" x:DataType="vm:TreeComboBoxItemViewModel">
+                    <Setter Property="IsSelectable" Value="{Binding IsSelectable}"/>
+                </Style>
+            </u:TreeComboBox.Styles>
             <u:TreeComboBox.ItemTemplate>
                 <TreeDataTemplate ItemsSource="{Binding Children}">
                     <TextBlock Text="{Binding ItemName}" />
