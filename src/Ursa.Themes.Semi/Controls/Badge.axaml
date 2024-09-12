@@ -45,7 +45,7 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}"
-                        IsVisible="{Binding !!Header, RelativeSource={RelativeSource TemplatedParent}}"
+                        IsVisible="{Binding Header, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}"
                         RenderTransformOrigin=".5,.5"
                         Theme="{TemplateBinding BadgeTheme}"
                         UseLayoutRounding="False">
@@ -94,7 +94,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}"
-                            IsVisible="{Binding !!Header, RelativeSource={RelativeSource TemplatedParent}}"
+                            IsVisible="{Binding Header, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}"
                             RenderTransformOrigin=".5,.5" />
                     </Grid>
                 </ControlTemplate>
