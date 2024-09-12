@@ -12,10 +12,12 @@
         <MergeResourceInclude Source="KeyGestureInput.axaml" />
         <MergeResourceInclude Source="Loading.axaml" />
         <MergeResourceInclude Source="NavigationMenu.axaml" />
+        <MergeResourceInclude Source="NotificationShared.axaml" />
         <MergeResourceInclude Source="Pagination.axaml" />
         <MergeResourceInclude Source="Rating.axaml" />
         <MergeResourceInclude Source="TagInput.axaml" />
         <MergeResourceInclude Source="Timeline.axaml" />
+        <MergeResourceInclude Source="Toast.axaml" />
         <MergeResourceInclude Source="Skeleton.axaml" />
         <MergeResourceInclude Source="TimeBox.axaml" />
     </ResourceDictionary.MergedDictionaries>

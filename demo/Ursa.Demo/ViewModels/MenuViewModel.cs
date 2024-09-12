@@ -38,6 +38,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Message Box", Key = MenuKeys.MenuKeyMessageBox },
             new() { MenuHeader = "MultiComboBox", Key = MenuKeys.MenuKeyMultiComboBox, Status = "Updated" },
             new() { MenuHeader = "Nav Menu", Key = MenuKeys.MenuKeyNavMenu },
+            new() { MenuHeader = "Notification", Key = MenuKeys.MenuKeyNotification, Status = "New"},
             new() { MenuHeader = "Number Displayer", Key = MenuKeys.MenuKeyNumberDisplayer, Status = "New" }, 
             new() { MenuHeader = "Numeric UpDown", Key = MenuKeys.MenuKeyNumericUpDown },
             new() { MenuHeader = "NumPad", Key = MenuKeys.MenuKeyNumPad },
@@ -54,6 +55,7 @@ public class MenuViewModel: ViewModelBase
             new() { MenuHeader = "Timeline", Key = MenuKeys.MenuKeyTimeline },
             new() { MenuHeader = "TreeComboBox", Key = MenuKeys.MenuKeyTreeComboBox },
             new() { MenuHeader = "TwoTonePathIcon", Key = MenuKeys.MenuKeyTwoTonePathIcon},
+            new() { MenuHeader = "Toast", Key = MenuKeys.MenuKeyToast, Status = "New"},
             new() { MenuHeader = "ToolBar", Key = MenuKeys.MenuKeyToolBar },
             new() { MenuHeader = "Time Box", Key = MenuKeys.MenuKeyTimeBox },
         };
@@ -89,6 +91,7 @@ public static class MenuKeys
     public const string MenuKeyMessageBox = "MessageBox";
     public const string MenuKeyMultiComboBox = "MultiComboBox";
     public const string MenuKeyNavMenu = "NavMenu";
+    public const string MenuKeyNotification = "Notification";
     public const string MenuKeyNumberDisplayer = "NumberDisplayer";
     public const string MenuKeyNumericUpDown = "NumericUpDown";
     public const string MenuKeyNumPad = "NumPad";
@@ -104,6 +107,7 @@ public static class MenuKeys
     public const string MenuKeyTwoTonePathIcon = "TwoTonePathIcon";
     public const string MenuKeyThemeToggler = "ThemeToggler";
     public const string MenuKeyTreeComboBox = "TreeComboBox";
+    public const string MenuKeyToast = "Toast";
     public const string MenuKeyToolBar = "ToolBar";
     public const string MenuKeyPinCode = "PinCode";
     public const string MenuKeyTimeBox = "TimeBox";

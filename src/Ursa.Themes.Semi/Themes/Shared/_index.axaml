@@ -15,12 +15,14 @@
         <MergeResourceInclude Source="KeyGestureInput.axaml" />
         <MergeResourceInclude Source="MessageBox.axaml" />
         <MergeResourceInclude Source="NavigationMenu.axaml" />
+        <MergeResourceInclude Source="Notification.axaml" />
         <MergeResourceInclude Source="Pagination.axaml" />
         <MergeResourceInclude Source="Rating.axaml" />
         <MergeResourceInclude Source="ScrollToButton.axaml" />
         <MergeResourceInclude Source="TagInput.axaml" />
         <MergeResourceInclude Source="Skeleton.axaml" />
         <MergeResourceInclude Source="ThemeSelector.axaml" />
+        <MergeResourceInclude Source="Toast.axaml" />
         <MergeResourceInclude Source="ToolBar.axaml" />
         <MergeResourceInclude Source="TimeBox.axaml" />
     </ResourceDictionary.MergedDictionaries>

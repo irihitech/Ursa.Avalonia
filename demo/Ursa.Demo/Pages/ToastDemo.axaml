@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Ursa.Demo.Pages.ToastDemo"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Ursa.Demo.ViewModels"
+             x:DataType="vm:ToastDemoViewModel"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+    <Design.DataContext>
+        <vm:ToastDemoViewModel />
+    </Design.DataContext>
+    <StackPanel Spacing="20">
+        <StackPanel Orientation="Horizontal">
+            <ToggleSwitch IsChecked="{Binding ShowIcon}" Content="ShowIcon" />
+            <ToggleSwitch IsChecked="{Binding ShowClose}" Content="ShowClose" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Spacing="20">
+            <StackPanel.Styles>
+                <Style Selector="Button">
+                    <Setter Property="Command" Value="{Binding ShowNormal}" />
+                    <Setter Property="CommandParameter" Value="{Binding $self.Content}" />
+                </Style>
+            </StackPanel.Styles>
+            <Button Content="Information" />
+            <Button Content="Success" Classes="Success" />
+            <Button Content="Warning" Classes="Warning" />
+            <Button Content="Error" Classes="Danger" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Spacing="20">
+            <StackPanel.Styles>
+                <Style Selector="Button">
+                    <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
+                    <Setter Property="Command" Value="{Binding ShowLight}" />
+                    <Setter Property="CommandParameter" Value="{Binding $self.Content}" />
+                </Style>
+            </StackPanel.Styles>
+            <Button Content="Information" />
+            <Button Content="Success" Classes="Success" />
+            <Button Content="Warning" Classes="Warning" />
+            <Button Content="Error" Classes="Danger" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>
