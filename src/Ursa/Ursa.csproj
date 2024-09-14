@@ -9,6 +9,8 @@
         <LangVersion>latest</LangVersion>
         <PackageId>Irihi.Ursa</PackageId>
         <PackageIcon>irihi.png</PackageIcon>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
 
     <ItemGroup>
