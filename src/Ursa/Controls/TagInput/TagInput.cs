@@ -195,10 +195,10 @@ public class TagInput : TemplatedControl
         base.OnLoaded(e);
         if (_watermark is null) return;
         _presenter = _textBox.GetTemplateChildren().OfType<TextPresenter>().FirstOrDefault();
-        _presenter?.GetObservable(TextPresenter.PreeditTextProperty).Subscribe(_ => CheckEmpty());
-        _textBox.GetObservable(TextBox.TextProperty).Subscribe(_ => CheckEmpty());
+        _presenter?.GetObservable(TextPresenter.PreeditTextProperty).Subscribe(action: _ => CheckEmpty());
+        _textBox.GetObservable(TextBox.TextProperty).Subscribe(action: _ => CheckEmpty());
         if (Tags is INotifyCollectionChanged incc)
-            incc.GetWeakCollectionChangedObservable().Subscribe(_ => CheckEmpty());
+            incc.GetWeakCollectionChangedObservable().Subscribe(action: _ => CheckEmpty());
     }
 
     private void OnInputThemePropertyChanged(AvaloniaPropertyChangedEventArgs args)
