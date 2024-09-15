@@ -160,7 +160,7 @@ public partial class OverlayDialogHost: Canvas
         if (modalHost is not null)
         {
             _modalStatusSubscription = this.GetObservable(IsInModalStatusProperty)
-                .Subscribe(a =>
+                .Subscribe(action: a =>
                 {
                     if (IsModalStatusReporter)
                     {
