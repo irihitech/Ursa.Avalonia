@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="../Package.props" />
+    <Import Project="../Package.props"/>
 
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;net8</TargetFrameworks>
@@ -15,12 +15,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
-        <PackageReference Include="Avalonia.ReactiveUI" Version="11.1.1" />
+        <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)"/>
         <PackageReference Include="Irihi.Avalonia.Shared" Version="0.1.9" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="irihi.png" Pack="true" PackagePath="" />
+        <None Include="irihi.png" Pack="true" PackagePath=""/>
     </ItemGroup>
 </Project>
