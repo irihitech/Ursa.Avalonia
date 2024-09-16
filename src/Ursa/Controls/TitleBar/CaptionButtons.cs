@@ -74,7 +74,7 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
     public override void Attach(Window hostWindow)
     {
         base.Attach(hostWindow);
-        _visibilityDisposable = HostWindow?.GetObservable(Window.WindowStateProperty).Subscribe((_) =>
+        _visibilityDisposable = HostWindow?.GetObservable(Window.WindowStateProperty).Subscribe(action: (_) =>
         {
             UpdateVisibility();
         });
