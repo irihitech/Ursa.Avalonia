@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35209.166
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ursa", "src\Ursa\Ursa.csproj", "{14E5B6D1-E3ED-41D7-9664-37ABE3B22558}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ursa.Demo", "demo\Ursa.Demo\Ursa.Demo.csproj", "{407A91FD-A88B-459B-8DCE-8C6AA98279FE}"
@@ -22,11 +25,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ursa.PrismDialogDemo", "dem
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{9D34CC2C-9BFA-4138-BA5A-CD3744F9B589}"
 	ProjectSection(SolutionItems) = preProject
-		src\Package.props = src\Package.props
 		demo\Directory.Build.props = demo\Directory.Build.props
+		src\Package.props = src\Package.props
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "demo\Sandbox\Sandbox.csproj", "{1E94BAFD-867E-425F-8E12-7F416D523C94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ursa.ReactiveUI", "src\Ursa.ReactiveUI\Ursa.ReactiveUI.csproj", "{DF88E48C-1D6A-4071-8B7F-965E724E0738}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,6 +79,13 @@ Global
 		{1E94BAFD-867E-425F-8E12-7F416D523C94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E94BAFD-867E-425F-8E12-7F416D523C94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E94BAFD-867E-425F-8E12-7F416D523C94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF88E48C-1D6A-4071-8B7F-965E724E0738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF88E48C-1D6A-4071-8B7F-965E724E0738}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF88E48C-1D6A-4071-8B7F-965E724E0738}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF88E48C-1D6A-4071-8B7F-965E724E0738}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{407A91FD-A88B-459B-8DCE-8C6AA98279FE} = {A41BAF0D-DA61-4A63-889A-084BAD36FD66}
@@ -83,5 +95,8 @@ Global
 		{D1942476-8473-4608-BB9F-5AC01083BBDA} = {A41BAF0D-DA61-4A63-889A-084BAD36FD66}
 		{F99B3D07-4560-4B05-892C-0FF2757FEF2E} = {A41BAF0D-DA61-4A63-889A-084BAD36FD66}
 		{1E94BAFD-867E-425F-8E12-7F416D523C94} = {A41BAF0D-DA61-4A63-889A-084BAD36FD66}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A0A77A47-2F1F-4F37-9A51-BE9AEB5D7134}
 	EndGlobalSection
 EndGlobal
