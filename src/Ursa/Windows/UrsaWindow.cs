@@ -54,6 +54,15 @@ public class UrsaWindow: Window
         get => GetValue(IsTitleBarVisibleProperty);
         set => SetValue(IsTitleBarVisibleProperty, value);
     }
+
+    public static readonly StyledProperty<bool> IsManagedResizerVisibleProperty = AvaloniaProperty.Register<UrsaWindow, bool>(
+        nameof(IsManagedResizerVisible));
+
+    public bool IsManagedResizerVisible
+    {
+        get => GetValue(IsManagedResizerVisibleProperty);
+        set => SetValue(IsManagedResizerVisibleProperty, value);
+    }
     
     public static readonly StyledProperty<object?> TitleBarContentProperty = AvaloniaProperty.Register<UrsaWindow, object?>(
         nameof(TitleBarContent));
