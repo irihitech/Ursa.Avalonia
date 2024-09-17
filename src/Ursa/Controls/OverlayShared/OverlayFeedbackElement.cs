@@ -20,7 +20,6 @@ public abstract class OverlayFeedbackElement : ContentControl
             nameof(Closed), RoutingStrategies.Bubble);
 
     private bool _resizeDragging;
-    private bool _moveDragging;
     
     protected Panel? ContainerPanel;
     private Rect _resizeDragStartBounds;
@@ -142,6 +141,7 @@ public abstract class OverlayFeedbackElement : ContentControl
         Canvas.SetTop(this, newBounds.Top);
         SetCurrentValue(WidthProperty, newBounds.Width);
         SetCurrentValue(HeightProperty, newBounds.Height);
+        AnchorAndUpdatePositionInfo();
     }
 
     private Rect CalculateNewBounds(double left, double top, double width, double height, Vector diff, Rect? containerBounds,

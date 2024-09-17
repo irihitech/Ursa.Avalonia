@@ -31,6 +31,9 @@ public abstract class DialogControlBase : OverlayFeedbackElement
 
     private bool _isFullScreen;
     private Panel? _titleArea;
+    private bool _moveDragging;
+    private Point _moveDragStartPoint;
+    
 
     static DialogControlBase()
     {
@@ -88,17 +91,44 @@ public abstract class DialogControlBase : OverlayFeedbackElement
 
     private void OnTitlePointerPressed(InputElement sender, PointerPressedEventArgs e)
     {
-        e.Source = this;
+        //e.Source = this;
+        if (ContainerPanel is OverlayDialogHost h)
+        {
+            if (h.IsTopLevel && this.IsFullScreen)
+            {
+                var top = TopLevel.GetTopLevel(this);
+                if (top is Window w)
+                {
+                    w.BeginMoveDrag(e);
+                    return;
+                }
+            }
+        }
+        if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
+        if (IsFullScreen) return;
+        _moveDragging = true;
+        _moveDragStartPoint = e.GetPosition(this);
     }
 
     private void OnTitlePointerMove(InputElement sender, PointerEventArgs e)
     {
-        e.Source = this;
+        //e.Source = this;
+        if (!_moveDragging) return;
+        if (ContainerPanel is null) return;
+        var p = e.GetPosition(this);
+        var left = Canvas.GetLeft(this) + p.X - _moveDragStartPoint.X;
+        var top = Canvas.GetTop(this) + p.Y - _moveDragStartPoint.Y;
+        left = MathHelpers.SafeClamp(left, 0, ContainerPanel.Bounds.Width - Bounds.Width);
+        top = MathHelpers.SafeClamp(top, 0, ContainerPanel.Bounds.Height - Bounds.Height);
+        Canvas.SetLeft(this, left);
+        Canvas.SetTop(this, top);
     }
 
     private void OnTitlePointerRelease(InputElement sender, PointerReleasedEventArgs e)
     {
-        e.Source = this;
+        // e.Source = this;
+        _moveDragging = false;
+        AnchorAndUpdatePositionInfo();
     }
 
     private void OnCloseButtonClick(object? sender, RoutedEventArgs args)

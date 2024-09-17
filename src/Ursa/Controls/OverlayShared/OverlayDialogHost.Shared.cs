@@ -14,8 +14,8 @@ namespace Ursa.Controls;
 
 public partial class OverlayDialogHost: Canvas
 {
-    private static readonly Animation _maskAppearAnimation;
-    private static readonly Animation _maskDisappearAnimation;
+    private static readonly Animation MaskAppearAnimation;
+    private static readonly Animation MaskDisappearAnimation;
 
     private readonly List<DialogPair> _layers = new List<DialogPair>(10);
     
@@ -61,8 +61,8 @@ public partial class OverlayDialogHost: Canvas
     static OverlayDialogHost()
     {
         ClipToBoundsProperty.OverrideDefaultValue<OverlayDialogHost>(true);
-        _maskAppearAnimation = CreateOpacityAnimation(true);
-        _maskDisappearAnimation = CreateOpacityAnimation(false);
+        MaskAppearAnimation = CreateOpacityAnimation(true);
+        MaskDisappearAnimation = CreateOpacityAnimation(false);
     }
     
     private static Animation CreateOpacityAnimation(bool appear)
@@ -128,28 +128,21 @@ public partial class OverlayDialogHost: Canvas
         {
             return;
         }
-        if (sender is PureRectangle mask)
+        if (sender is not PureRectangle mask) return;
+        if(TopLevel.GetTopLevel(mask) is Window window)
         {
-            var window = this.GetVisualAncestors().OfType<Window>().FirstOrDefault();
-            if(window is not null)
-            {
-                window.BeginMoveDrag(e);
-            }
+            window.BeginMoveDrag(e);
         }
     }
 
     private void ClickMaskToCloseDialog(object? sender, PointerReleasedEventArgs e)
     {
-        if (sender is PureRectangle border)
-        {
-            var layer = _layers.FirstOrDefault(a => a.Mask == border);
-            if (layer is not null)
-            {
-                layer.Element.Close();
-                border.RemoveHandler(PointerReleasedEvent, ClickMaskToCloseDialog);
-                border.RemoveHandler(PointerPressedEvent, DragMaskToMoveWindow);
-            }
-        }
+        if (sender is not PureRectangle border) return;
+        var layer = _layers.FirstOrDefault(a => a.Mask == border);
+        if (layer is null) return;
+        border.RemoveHandler(PointerReleasedEvent, ClickMaskToCloseDialog);
+        border.RemoveHandler(PointerPressedEvent, DragMaskToMoveWindow);
+        layer.Element.Close();
     }
     private IDisposable? _modalStatusSubscription;
     private int? _toplevelHash;

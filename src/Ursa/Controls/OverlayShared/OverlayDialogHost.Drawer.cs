@@ -42,7 +42,7 @@ public partial class OverlayDialogHost
             }
             else
             {
-                await Task.WhenAll(animation.RunAsync(control), _maskAppearAnimation.RunAsync(mask));
+                await Task.WhenAll(animation.RunAsync(control), MaskAppearAnimation.RunAsync(mask));
             }
         }
     }
@@ -67,7 +67,7 @@ public partial class OverlayDialogHost
         }
         else
         {
-            await Task.WhenAll(animation.RunAsync(control), _maskAppearAnimation.RunAsync(mask));
+            await Task.WhenAll(animation.RunAsync(control), MaskAppearAnimation.RunAsync(mask));
         }
         var element = control.GetVisualDescendants().OfType<InputElement>().FirstOrDefault(a => a.Focusable);
         element?.Focus();
@@ -174,7 +174,7 @@ public partial class OverlayDialogHost
                 if (!IsAnimationDisabled)
                 {
                     var disappearAnimation = CreateAnimation(control.Bounds.Size, control.Position, false);
-                    await Task.WhenAll(disappearAnimation.RunAsync(control), _maskDisappearAnimation.RunAsync(layer.Mask));
+                    await Task.WhenAll(disappearAnimation.RunAsync(control), MaskDisappearAnimation.RunAsync(layer.Mask));
                 }
                 Children.Remove(layer.Mask);
             }
