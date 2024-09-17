@@ -28,6 +28,8 @@ public class WindowResizerThumb: Thumb
     {
         base.OnPointerPressed(e);
         if (_window is null || !_window.CanResize) return;
+        // TODO: Support touch screen resizing but we don't know what it should behave. 
+        if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
         var windowEdge = ResizeDirection switch
         {
             ResizeDirection.Top => WindowEdge.North,
