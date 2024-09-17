@@ -13,10 +13,12 @@
     </ControlTheme>
     
     <ControlTheme TargetType="u:DialogResizerThumb" x:Key="{x:Type u:DialogResizerThumb}">
-        <Setter Property="Background" Value="Red" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:DialogResizerThumb">
-                <iri:PureRectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding Background}"/>
+                <Panel>
+                    <iri:PureRectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding Background}"/>
+                </Panel>
             </ControlTemplate>
         </Setter>
     </ControlTheme>

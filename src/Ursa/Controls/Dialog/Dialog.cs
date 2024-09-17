@@ -205,6 +205,8 @@ public static class Dialog
         window.IsCloseButtonVisible = options.IsCloseButtonVisible;
         window.ShowInTaskbar = options.ShowInTaskBar;
         window.CanDragMove = options.CanDragMove;
+        window.CanResize = options.CanResize;
+        window.IsManagedResizerVisible = options.CanResize;
         if (options.StartupLocation == WindowStartupLocation.Manual)
         {
             if (options.Position is not null)
@@ -229,6 +231,8 @@ public static class Dialog
         window.ShowInTaskbar = options.ShowInTaskBar;
         window.IsCloseButtonVisible = options.IsCloseButtonVisible;
         window.CanDragMove = options.CanDragMove;
+        window.IsManagedResizerVisible = options.CanResize;
+        window.CanResize = options.CanResize;
         if (options.StartupLocation == WindowStartupLocation.Manual)
         {
             if (options.Position is not null)

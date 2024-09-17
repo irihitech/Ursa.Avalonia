@@ -30,4 +30,6 @@ public class DialogOptions
     public bool ShowInTaskBar { get; set; } = true;
     
     public bool CanDragMove { get; set; } = true;
+
+    public bool CanResize { get; set; }
 }

@@ -149,10 +149,14 @@ public abstract class OverlayFeedbackElement : ContentControl
     {
         if (containerBounds is not null)
         {
-            var minX = -left;
-            var minY = -top;
-            var maxX = containerBounds.Value.Width - left - width;
-            var maxY = containerBounds.Value.Height - top - height;
+            var minX = windowEdge is WindowEdge.West or WindowEdge.NorthWest or WindowEdge.SouthWest
+                ? -left
+                : double.NegativeInfinity; 
+            var minY = windowEdge is WindowEdge.North or WindowEdge.NorthEast or WindowEdge.NorthWest
+                ? -top
+                : double.NegativeInfinity;
+            var maxX = containerBounds.Value.Width - left - MinWidth;
+            var maxY = containerBounds.Value.Height - top - MinHeight;
             diff = new Point(MathHelpers.SafeClamp(diff.X, minX, maxX), MathHelpers.SafeClamp(diff.Y, minY, maxY));
         }
         switch (windowEdge)

@@ -24,6 +24,9 @@ public abstract class DialogControlBase : OverlayFeedbackElement
         AvaloniaProperty.RegisterDirect<DialogControlBase, bool>(
             nameof(IsFullScreen), o => o.IsFullScreen, (o, v) => o.IsFullScreen = v);
 
+    public static readonly StyledProperty<bool> CanResizeProperty = AvaloniaProperty.Register<DialogControlBase, bool>(
+        nameof(CanResize));
+
     protected internal Button? _closeButton;
 
     private bool _isFullScreen;
@@ -34,6 +37,12 @@ public abstract class DialogControlBase : OverlayFeedbackElement
         CanDragMoveProperty.Changed.AddClassHandler<InputElement, bool>(OnCanDragMoveChanged);
         CanCloseProperty.Changed.AddClassHandler<InputElement, bool>(OnCanCloseChanged);
         IsFullScreenProperty.AffectsPseudoClass<DialogControlBase>(PC_FullScreen);
+    }
+
+    public bool CanResize
+    {
+        get => GetValue(CanResizeProperty);
+        set => SetValue(CanResizeProperty, value);
     }
 
     internal HorizontalPosition HorizontalAnchor { get; set; } = HorizontalPosition.Center;
