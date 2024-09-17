@@ -1,5 +1,6 @@
 namespace Ursa.Controls;
 
+[Flags]
 public enum ResizeDirection
 {
     Top,

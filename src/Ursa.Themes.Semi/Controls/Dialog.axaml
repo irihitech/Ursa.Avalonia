@@ -233,6 +233,7 @@
                                     Content="{DynamicResource STRING_MENU_DIALOG_OK}"
                                     Theme="{DynamicResource SolidButton}" />
                             </StackPanel>
+                            <u:DialogResizer Grid.Row="0" Grid.RowSpan="3"/>
                         </Grid>
                     </Border>
                 </Border>

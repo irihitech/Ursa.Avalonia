@@ -12,6 +12,32 @@
         </Setter>
     </ControlTheme>
     
+    <ControlTheme TargetType="u:DialogResizerThumb" x:Key="{x:Type u:DialogResizerThumb}">
+        <Setter Property="Background" Value="Red" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:DialogResizerThumb">
+                <iri:PureRectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding Background}"/>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+    
+    <ControlTheme TargetType="u:DialogResizer" x:Key="{x:Type u:DialogResizer}">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:WindowResizer">
+                <Grid RowDefinitions="Auto, *, Auto" ColumnDefinitions="Auto, *, Auto" >
+                    <u:DialogResizerThumb Grid.Row="0" Grid.Column="0" ResizeDirection="TopLeft" Cursor="TopLeftCorner" />
+                    <u:DialogResizerThumb Grid.Row="0" Grid.Column="1" ResizeDirection="Top" Cursor="TopSide" Height="{DynamicResource ResizerThumbHeight}" />
+                    <u:DialogResizerThumb Grid.Row="0" Grid.Column="2" ResizeDirection="TopRight" Cursor="TopRightCorner" />
+                    <u:DialogResizerThumb Grid.Row="1" Grid.Column="0" ResizeDirection="Left" Cursor="LeftSide" Width="{DynamicResource ResizerThumbWidth}" />
+                    <u:DialogResizerThumb Grid.Row="1" Grid.Column="2" ResizeDirection="Right" Cursor="RightSide" Width="{DynamicResource ResizerThumbWidth}" />
+                    <u:DialogResizerThumb Grid.Row="2" Grid.Column="0" ResizeDirection="BottomLeft" Cursor="BottomLeftCorner" />
+                    <u:DialogResizerThumb Grid.Row="2" Grid.Column="1" ResizeDirection="Bottom" Cursor="BottomSide" Height="{DynamicResource ResizerThumbHeight}" />
+                    <u:DialogResizerThumb Grid.Row="2" Grid.Column="2" ResizeDirection="BottomRight" Cursor="BottomRightCorner" />
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+    
     <ControlTheme TargetType="u:WindowResizer" x:Key="{x:Type u:WindowResizer}">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:WindowResizer">
