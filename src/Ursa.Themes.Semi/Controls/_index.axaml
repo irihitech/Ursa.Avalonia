@@ -37,6 +37,7 @@
         <ResourceInclude Source="Pagination.axaml" />
         <ResourceInclude Source="RangeSlider.axaml" />
         <ResourceInclude Source="Rating.axaml" />
+        <ResourceInclude Source="Resizer.axaml" />
         <ResourceInclude Source="ScrollToButton.axaml" />
         <ResourceInclude Source="SelectionList.axaml" />
         <ResourceInclude Source="TagInput.axaml" />

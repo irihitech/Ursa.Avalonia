@@ -71,7 +71,13 @@
                                 LeftContent="{Binding $parent[u:UrsaWindow].LeftContent}"
                                 RightContent="{Binding $parent[u:UrsaWindow].RightContent}" />
                             <VisualLayerManager>
-                                <u:OverlayDialogHost IsTopLevel="True" IsModalStatusReporter="True" />
+                                <Panel>
+                                    <u:OverlayDialogHost IsModalStatusReporter="True" IsTopLevel="True" />
+                                    <u:WindowResizer
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        IsVisible="{Binding $parent[u:UrsaWindow].IsManagedResizerVisible}" />
+                                </Panel>
                             </VisualLayerManager>
                         </VisualLayerManager.ChromeOverlayLayer>
                         <Panel>
@@ -82,6 +88,7 @@
                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Content="{TemplateBinding Content}"
                                 ContentTemplate="{TemplateBinding ContentTemplate}" />
+
                         </Panel>
                     </VisualLayerManager>
                 </Panel>

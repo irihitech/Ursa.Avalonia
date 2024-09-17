@@ -1,0 +1,31 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa"
+                    xmlns:iri="https://irihi.tech/shared">
+    <!-- Add Resources Here -->
+    <ControlTheme TargetType="u:WindowResizerThumb" x:Key="{x:Type u:WindowResizerThumb}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:WindowResizerThumb">
+                <iri:PureRectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding Background}"/>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+    
+    <ControlTheme TargetType="u:WindowResizer" x:Key="{x:Type u:WindowResizer}">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:WindowResizer">
+                <Grid RowDefinitions="Auto, *, Auto" ColumnDefinitions="Auto, *, Auto" >
+                    <u:WindowResizerThumb Grid.Row="0" Grid.Column="0" ResizeDirection="TopLeft" Cursor="TopLeftCorner" />
+                    <u:WindowResizerThumb Grid.Row="0" Grid.Column="1" ResizeDirection="Top" Cursor="TopSide" Height="{DynamicResource ResizerThumbHeight}" />
+                    <u:WindowResizerThumb Grid.Row="0" Grid.Column="2" ResizeDirection="TopRight" Cursor="TopRightCorner" />
+                    <u:WindowResizerThumb Grid.Row="1" Grid.Column="0" ResizeDirection="Left" Cursor="LeftSide" Width="{DynamicResource ResizerThumbWidth}" />
+                    <u:WindowResizerThumb Grid.Row="1" Grid.Column="2" ResizeDirection="Right" Cursor="RightSide" Width="{DynamicResource ResizerThumbWidth}" />
+                    <u:WindowResizerThumb Grid.Row="2" Grid.Column="0" ResizeDirection="BottomLeft" Cursor="BottomLeftCorner" />
+                    <u:WindowResizerThumb Grid.Row="2" Grid.Column="1" ResizeDirection="Bottom" Cursor="BottomSide" Height="{DynamicResource ResizerThumbHeight}" />
+                    <u:WindowResizerThumb Grid.Row="2" Grid.Column="2" ResizeDirection="BottomRight" Cursor="BottomRightCorner" />
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>
