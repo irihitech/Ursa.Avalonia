@@ -22,6 +22,15 @@ public abstract class DrawerControlBase: OverlayFeedbackElement
         AvaloniaProperty.Register<DrawerControlBase, Position>(
             nameof(Position), defaultValue: Position.Right);
 
+    public static readonly StyledProperty<bool> CanResizeProperty = AvaloniaProperty.Register<DrawerControlBase, bool>(
+        nameof(CanResize));
+
+    public bool CanResize
+    {
+        get => GetValue(CanResizeProperty);
+        set => SetValue(CanResizeProperty, value);
+    }
+
     public Position Position
     {
         get => GetValue(PositionProperty);

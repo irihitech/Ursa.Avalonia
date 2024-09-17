@@ -205,16 +205,17 @@ public static class Drawer
         drawer.Position = options.Position;
         drawer.IsCloseButtonVisible = options.IsCloseButtonVisible;
         drawer.CanLightDismiss = options.CanLightDismiss;
+        drawer.CanResize = options.CanResize;
         if (options.Position == Position.Left || options.Position == Position.Right)
         {
-            drawer.MinWidth = options.MinWidth ?? 0.0;
-            drawer.MaxWidth = options.MaxWidth ?? double.PositiveInfinity;
+            if(options.MinWidth is not null) drawer.MinWidth = options.MinWidth.Value;
+            if(options.MaxWidth is not null) drawer.MaxWidth = options.MaxWidth.Value;
         }
 
         if (options.Position is Position.Top or Position.Bottom)
         {
-            drawer.MinHeight = options.MinHeight ?? 0.0;
-            drawer.MaxHeight = options.MaxHeight ?? double.PositiveInfinity;
+            if(options.MinHeight is not null) drawer.MinHeight = options.MinHeight.Value;
+            if(options.MaxHeight is not null) drawer.MaxHeight = options.MaxHeight.Value;
         }
     }
 
@@ -226,16 +227,17 @@ public static class Drawer
         drawer.CanLightDismiss = options.CanLightDismiss;
         drawer.Buttons = options.Buttons;
         drawer.Title = options.Title;
+        drawer.CanResize = options.CanResize;
         if (options.Position == Position.Left || options.Position == Position.Right)
         {
-            drawer.MinWidth = options.MinWidth ?? 0.0;
-            drawer.MaxWidth = options.MaxWidth ?? double.PositiveInfinity;
+            if(options.MinWidth is not null) drawer.MinWidth = options.MinWidth.Value;
+            if(options.MaxWidth is not null) drawer.MaxWidth = options.MaxWidth.Value;
         }
 
         if (options.Position is Position.Top or Position.Bottom)
         {
-            drawer.MinHeight = options.MinHeight ?? 0.0;
-            drawer.MaxHeight = options.MaxHeight ?? double.PositiveInfinity;
+            if(options.MinHeight is not null) drawer.MinHeight = options.MinHeight.Value;
+            if(options.MaxHeight is not null) drawer.MaxHeight = options.MaxHeight.Value;
         }
     }
 }

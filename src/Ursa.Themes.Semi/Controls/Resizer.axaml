@@ -1,57 +1,144 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:u="https://irihi.tech/ursa"
-                    xmlns:iri="https://irihi.tech/shared">
-    <!-- Add Resources Here -->
-    <ControlTheme TargetType="u:WindowResizerThumb" x:Key="{x:Type u:WindowResizerThumb}">
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:iri="https://irihi.tech/shared"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:WindowResizerThumb}" TargetType="u:WindowResizerThumb">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:WindowResizerThumb">
-                <iri:PureRectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding Background}"/>
+                <iri:PureRectangle
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="{TemplateBinding Background}" />
             </ControlTemplate>
         </Setter>
     </ControlTheme>
-    
-    <ControlTheme TargetType="u:DialogResizerThumb" x:Key="{x:Type u:DialogResizerThumb}">
+
+    <ControlTheme x:Key="{x:Type u:DialogResizerThumb}" TargetType="u:DialogResizerThumb">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:DialogResizerThumb">
                 <Panel>
-                    <iri:PureRectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding Background}"/>
+                    <iri:PureRectangle
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="{TemplateBinding Background}" />
                 </Panel>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
-    
-    <ControlTheme TargetType="u:DialogResizer" x:Key="{x:Type u:DialogResizer}">
+
+    <ControlTheme x:Key="{x:Type u:DialogResizer}" TargetType="u:DialogResizer">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:WindowResizer">
-                <Grid RowDefinitions="Auto, *, Auto" ColumnDefinitions="Auto, *, Auto" >
-                    <u:DialogResizerThumb Grid.Row="0" Grid.Column="0" ResizeDirection="TopLeft" Cursor="TopLeftCorner" />
-                    <u:DialogResizerThumb Grid.Row="0" Grid.Column="1" ResizeDirection="Top" Cursor="TopSide" Height="{DynamicResource ResizerThumbHeight}" />
-                    <u:DialogResizerThumb Grid.Row="0" Grid.Column="2" ResizeDirection="TopRight" Cursor="TopRightCorner" />
-                    <u:DialogResizerThumb Grid.Row="1" Grid.Column="0" ResizeDirection="Left" Cursor="LeftSide" Width="{DynamicResource ResizerThumbWidth}" />
-                    <u:DialogResizerThumb Grid.Row="1" Grid.Column="2" ResizeDirection="Right" Cursor="RightSide" Width="{DynamicResource ResizerThumbWidth}" />
-                    <u:DialogResizerThumb Grid.Row="2" Grid.Column="0" ResizeDirection="BottomLeft" Cursor="BottomLeftCorner" />
-                    <u:DialogResizerThumb Grid.Row="2" Grid.Column="1" ResizeDirection="Bottom" Cursor="BottomSide" Height="{DynamicResource ResizerThumbHeight}" />
-                    <u:DialogResizerThumb Grid.Row="2" Grid.Column="2" ResizeDirection="BottomRight" Cursor="BottomRightCorner" />
+                <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto, *, Auto">
+                    <u:DialogResizerThumb
+                        Name="{x:Static u:DialogResizer.PART_TopLeft}"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Cursor="TopLeftCorner"
+                        ResizeDirection="TopLeft" />
+                    <u:DialogResizerThumb
+                        Name="{x:Static u:DialogResizer.PART_Top}"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Height="{DynamicResource ResizerThumbHeight}"
+                        Cursor="TopSide"
+                        ResizeDirection="Top" />
+                    <u:DialogResizerThumb
+                        Name="{x:Static u:DialogResizer.PART_TopRight}"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Cursor="TopRightCorner"
+                        ResizeDirection="TopRight" />
+                    <u:DialogResizerThumb
+                        Name="{x:Static u:DialogResizer.PART_Left}"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Width="{DynamicResource ResizerThumbWidth}"
+                        Cursor="LeftSide"
+                        ResizeDirection="Left" />
+                    <u:DialogResizerThumb
+                        Name="{x:Static u:DialogResizer.PART_Right}"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Width="{DynamicResource ResizerThumbWidth}"
+                        Cursor="RightSide"
+                        ResizeDirection="Right" />
+                    <u:DialogResizerThumb
+                        Name="{x:Static u:DialogResizer.PART_BottomLeft}"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Cursor="BottomLeftCorner"
+                        ResizeDirection="BottomLeft" />
+                    <u:DialogResizerThumb
+                        Name="{x:Static u:DialogResizer.PART_Bottom}"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Height="{DynamicResource ResizerThumbHeight}"
+                        Cursor="BottomSide"
+                        ResizeDirection="Bottom" />
+                    <u:DialogResizerThumb
+                        Name="{x:Static u:DialogResizer.PART_BottomRight}"
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Cursor="BottomRightCorner"
+                        ResizeDirection="BottomRight" />
                 </Grid>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
-    
-    <ControlTheme TargetType="u:WindowResizer" x:Key="{x:Type u:WindowResizer}">
+
+    <ControlTheme x:Key="{x:Type u:WindowResizer}" TargetType="u:WindowResizer">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:WindowResizer">
-                <Grid RowDefinitions="Auto, *, Auto" ColumnDefinitions="Auto, *, Auto" >
-                    <u:WindowResizerThumb Grid.Row="0" Grid.Column="0" ResizeDirection="TopLeft" Cursor="TopLeftCorner" />
-                    <u:WindowResizerThumb Grid.Row="0" Grid.Column="1" ResizeDirection="Top" Cursor="TopSide" Height="{DynamicResource ResizerThumbHeight}" />
-                    <u:WindowResizerThumb Grid.Row="0" Grid.Column="2" ResizeDirection="TopRight" Cursor="TopRightCorner" />
-                    <u:WindowResizerThumb Grid.Row="1" Grid.Column="0" ResizeDirection="Left" Cursor="LeftSide" Width="{DynamicResource ResizerThumbWidth}" />
-                    <u:WindowResizerThumb Grid.Row="1" Grid.Column="2" ResizeDirection="Right" Cursor="RightSide" Width="{DynamicResource ResizerThumbWidth}" />
-                    <u:WindowResizerThumb Grid.Row="2" Grid.Column="0" ResizeDirection="BottomLeft" Cursor="BottomLeftCorner" />
-                    <u:WindowResizerThumb Grid.Row="2" Grid.Column="1" ResizeDirection="Bottom" Cursor="BottomSide" Height="{DynamicResource ResizerThumbHeight}" />
-                    <u:WindowResizerThumb Grid.Row="2" Grid.Column="2" ResizeDirection="BottomRight" Cursor="BottomRightCorner" />
+                <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto, *, Auto">
+                    <u:WindowResizerThumb
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Cursor="TopLeftCorner"
+                        ResizeDirection="TopLeft" />
+                    <u:WindowResizerThumb
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Height="{DynamicResource ResizerThumbHeight}"
+                        Cursor="TopSide"
+                        ResizeDirection="Top" />
+                    <u:WindowResizerThumb
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Cursor="TopRightCorner"
+                        ResizeDirection="TopRight" />
+                    <u:WindowResizerThumb
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Width="{DynamicResource ResizerThumbWidth}"
+                        Cursor="LeftSide"
+                        ResizeDirection="Left" />
+                    <u:WindowResizerThumb
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Width="{DynamicResource ResizerThumbWidth}"
+                        Cursor="RightSide"
+                        ResizeDirection="Right" />
+                    <u:WindowResizerThumb
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Cursor="BottomLeftCorner"
+                        ResizeDirection="BottomLeft" />
+                    <u:WindowResizerThumb
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Height="{DynamicResource ResizerThumbHeight}"
+                        Cursor="BottomSide"
+                        ResizeDirection="Bottom" />
+                    <u:WindowResizerThumb
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Cursor="BottomRightCorner"
+                        ResizeDirection="BottomRight" />
                 </Grid>
             </ControlTemplate>
         </Setter>
