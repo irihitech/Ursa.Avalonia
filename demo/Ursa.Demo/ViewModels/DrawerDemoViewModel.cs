@@ -24,6 +24,7 @@ public partial class DrawerDemoViewModel : ObservableObject
 
     [ObservableProperty] private bool _custom;
     [ObservableProperty] private bool _isLocal;
+    [ObservableProperty] private bool _canResize;
 
     public DrawerDemoViewModel()
     {
@@ -42,6 +43,7 @@ public partial class DrawerDemoViewModel : ObservableObject
             CanLightDismiss = CanLightDismiss,
             IsCloseButtonVisible = IsCloseButtonVisible,
             Title = Title,
+            CanResize = CanResize,
         };
         var hostId = IsLocal ? "LocalHost" : null;
         if (Custom)

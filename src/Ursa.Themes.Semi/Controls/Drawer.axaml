@@ -78,15 +78,19 @@
             <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={x:Static c:ThicknessTakeConverter.Top}}" />
         </Style>
         <Style Selector="^[Position=Top] /template/ u|DialogResizer">
+            <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Bottom}}" />
             <Setter Property="ResizeDirection" Value="Bottom"/>
         </Style>
         <Style Selector="^[Position=Bottom] /template/ u|DialogResizer">
+            <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Top}}" />
             <Setter Property="ResizeDirection" Value="Top"/>
         </Style>
         <Style Selector="^[Position=Left] /template/ u|DialogResizer">
+            <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Right}}" />
             <Setter Property="ResizeDirection" Value="Right"/>
         </Style>
         <Style Selector="^[Position=Right] /template/ u|DialogResizer">
+            <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Left}}" />
             <Setter Property="ResizeDirection" Value="Left"/>
         </Style>
     </ControlTheme>
@@ -203,15 +207,19 @@
             <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={x:Static c:ThicknessTakeConverter.Top}}" />
         </Style>
         <Style Selector="^[Position=Top] /template/ u|DialogResizer">
+            <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Bottom}}" />
             <Setter Property="ResizeDirection" Value="Bottom"/>
         </Style>
         <Style Selector="^[Position=Bottom] /template/ u|DialogResizer">
+            <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Top}}" />
             <Setter Property="ResizeDirection" Value="Top"/>
         </Style>
         <Style Selector="^[Position=Left] /template/ u|DialogResizer">
+            <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Right}}" />
             <Setter Property="ResizeDirection" Value="Right"/>
         </Style>
         <Style Selector="^[Position=Right] /template/ u|DialogResizer">
+            <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Left}}" />
             <Setter Property="ResizeDirection" Value="Left"/>
         </Style>
     </ControlTheme>

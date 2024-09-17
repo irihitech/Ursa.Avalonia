@@ -32,6 +32,7 @@ public partial class DefaultWindowDialogDemoViewModel: ObservableObject
     [ObservableProperty] private bool _showInTaskBar;
     [ObservableProperty] private bool? _isCloseButtonVisible;
     [ObservableProperty] private bool _canDragMove;
+    [ObservableProperty] private bool _canResize;
 
     public ICommand ShowDialogCommand { get; }
 
@@ -55,6 +56,7 @@ public partial class DefaultWindowDialogDemoViewModel: ObservableObject
             IsCloseButtonVisible = IsCloseButtonVisible,
             StartupLocation = Location,
             CanDragMove = CanDragMove,
+            CanResize = CanResize,
         };
         if (X.HasValue && Y.HasValue)
         {
@@ -74,6 +76,7 @@ public partial class CustomWindowDialogDemoViewModel: ObservableObject
     [ObservableProperty] private bool? _isCloseButtonVisible;
     [ObservableProperty] private bool _isModal;
     [ObservableProperty] private bool _canDragMove;
+    [ObservableProperty] private bool _canResize;
 
     public ICommand ShowDialogCommand { get; }
 
@@ -94,6 +97,7 @@ public partial class CustomWindowDialogDemoViewModel: ObservableObject
             IsCloseButtonVisible = IsCloseButtonVisible,
             StartupLocation = Location,
             CanDragMove = CanDragMove,
+            CanResize = CanResize,
         };
         if (X.HasValue && Y.HasValue)
         {
@@ -128,6 +132,7 @@ public partial class DefaultOverlayDialogDemoViewModel : ObservableObject
     [ObservableProperty] private bool? _isCloseButtonVisible;
     [ObservableProperty] private bool _isModal;
     [ObservableProperty] private bool _isLocal;
+    [ObservableProperty] private bool _canResize;
 
     public ICommand ShowDialogCommand { get; }
 
@@ -157,6 +162,7 @@ public partial class DefaultOverlayDialogDemoViewModel : ObservableObject
             CanLightDismiss = CanLightDismiss,
             CanDragMove = CanDragMove,
             IsCloseButtonVisible = IsCloseButtonVisible,
+            CanResize = CanResize,
         };
         string? dialogHostId = IsLocal ? DialogDemoViewModel.LocalHost : null;
         if (IsModal)
@@ -183,6 +189,7 @@ public partial class CustomOverlayDialogDemoViewModel: ObservableObject
     [ObservableProperty] private bool? _isCloseButtonVisible;
     [ObservableProperty] private bool _isModal;
     [ObservableProperty] private bool _isLocal;
+    [ObservableProperty] private bool _canResize;
     
     public ICommand ShowDialogCommand { get; }
 
@@ -208,6 +215,7 @@ public partial class CustomOverlayDialogDemoViewModel: ObservableObject
             CanLightDismiss = CanLightDismiss,
             CanDragMove = CanDragMove,
             IsCloseButtonVisible = IsCloseButtonVisible,
+            CanResize = CanResize,
         };
         var dialogHostId = IsLocal ? DialogDemoViewModel.LocalHost : null;
         if (IsModal)
