@@ -55,7 +55,7 @@
                             </Grid>
                         </Border>
                     </Border>
-                    <u:DialogResizer IsVisible="{TemplateBinding CanResize}" />
+                    <u:DialogResizer IsVisible="{TemplateBinding CanResize}" Margin="{Binding #PART_Border.Margin}" />
                 </Panel>
             </ControlTemplate>
         </Setter>
@@ -242,7 +242,7 @@
                             </Grid>
                         </Border>
                     </Border>
-                    <u:DialogResizer IsVisible="{TemplateBinding CanResize}"/>
+                    <u:DialogResizer IsVisible="{TemplateBinding CanResize}" Margin="{Binding #PART_Border.Margin}"/>
                 </Panel>
             </ControlTemplate>
         </Setter>

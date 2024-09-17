@@ -22,7 +22,7 @@ public abstract class OverlayFeedbackElement : ContentControl
     private bool _resizeDragging;
     private bool _moveDragging;
     
-    private Panel? _containerPanel;
+    protected Panel? ContainerPanel;
     private Rect _resizeDragStartBounds;
     private Point _resizeDragStartPoint;
     
@@ -110,7 +110,7 @@ public abstract class OverlayFeedbackElement : ContentControl
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
-        _containerPanel = this.FindAncestorOfType<Panel>();
+        ContainerPanel = this.FindAncestorOfType<Panel>();
     }
 
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
@@ -130,73 +130,72 @@ public abstract class OverlayFeedbackElement : ContentControl
         base.OnPointerMoved(e);
         if (!_resizeDragging || _windowEdge is null) return;
         var point = e.GetPosition(this);
-        var diff = point - _resizeDragStartPoint;
+        Vector diff = point - _resizeDragStartPoint;
         var left = Canvas.GetLeft(this);
         var top = Canvas.GetTop(this);
         var width = _windowEdge is WindowEdge.West or WindowEdge.NorthWest or WindowEdge.SouthWest
             ? Bounds.Width : _resizeDragStartBounds.Width;
         var height = _windowEdge is WindowEdge.North or WindowEdge.NorthEast or WindowEdge.NorthWest
             ? Bounds.Height : _resizeDragStartBounds.Height;
-        var newBounds = CalculateNewBounds(left, top, width, height, diff, _containerPanel?.Bounds, _windowEdge.Value);
+        var newBounds = CalculateNewBounds(left, top, width, height, diff, ContainerPanel?.Bounds, _windowEdge.Value);
         Canvas.SetLeft(this, newBounds.Left);
         Canvas.SetTop(this, newBounds.Top);
         SetCurrentValue(WidthProperty, newBounds.Width);
         SetCurrentValue(HeightProperty, newBounds.Height);
     }
 
-    private Rect CalculateNewBounds(double left, double top, double width, double height, Point diff, Rect? containerBounds,
+    private Rect CalculateNewBounds(double left, double top, double width, double height, Vector diff, Rect? containerBounds,
         WindowEdge windowEdge)
     {
-        if (containerBounds is not null)
-        {
-            var minX = windowEdge is WindowEdge.West or WindowEdge.NorthWest or WindowEdge.SouthWest
-                ? -left
-                : double.NegativeInfinity; 
-            var minY = windowEdge is WindowEdge.North or WindowEdge.NorthEast or WindowEdge.NorthWest
-                ? -top
-                : double.NegativeInfinity;
-            var maxX = containerBounds.Value.Width - left - MinWidth;
-            var maxY = containerBounds.Value.Height - top - MinHeight;
-            diff = new Point(MathHelpers.SafeClamp(diff.X, minX, maxX), MathHelpers.SafeClamp(diff.Y, minY, maxY));
-        }
+        diff = CoerceDelta(left, top, width, height, diff, containerBounds, windowEdge);
         switch (windowEdge)
         {
             case WindowEdge.North:
-                top += diff.Y;
-                height -= diff.Y;
-                top = Math.Max(0, top);
+                top += diff.Y; height -= diff.Y;
                 break;
             case WindowEdge.NorthEast:
-                top += diff.Y;
-                width += diff.X;
-                height -= diff.Y;
+                top += diff.Y; width += diff.X; height -= diff.Y;
                 break;
             case WindowEdge.East:
                 width += diff.X;
                 break;
             case WindowEdge.SouthEast:
-                width += diff.X;
-                height += diff.Y;
+                width += diff.X; height += diff.Y;
                 break;
             case WindowEdge.South:
                 height += diff.Y;
                 break;
             case WindowEdge.SouthWest:
-                left += diff.X;
-                width -= diff.X;
-                height += diff.Y;
+                left += diff.X; width -= diff.X; height += diff.Y;
                 break;
             case WindowEdge.West:
-                left += diff.X;
-                width -= diff.X;
+                left += diff.X; width -= diff.X;
                 break;
             case WindowEdge.NorthWest:
-                left += diff.X;
-                top += diff.Y;
-                width -= diff.X;
-                height -= diff.Y;
+                top += diff.Y; width -= diff.X; height -= diff.Y;
                 break;
         }
         return new Rect(left, top, width, height);
     }
+
+    private Vector CoerceDelta(double left, double top, double width, double height, Vector diff, Rect? containerBounds,
+        WindowEdge windowEdge)
+    {
+        if (containerBounds is null) return diff;
+        var minX = windowEdge is WindowEdge.West or WindowEdge.NorthWest or WindowEdge.SouthWest
+            ? -left
+            : -width; 
+        var minY = windowEdge is WindowEdge.North or WindowEdge.NorthEast or WindowEdge.NorthWest
+            ? -top
+            : -height;
+        var maxX = windowEdge is WindowEdge.West or WindowEdge.NorthWest or WindowEdge.SouthWest
+            ? width-MinWidth
+            : containerBounds.Value.Width - left - width; 
+        var maxY = windowEdge is WindowEdge.North or WindowEdge.NorthEast or WindowEdge.NorthWest
+            ? height-MinWidth
+            : containerBounds.Value.Height - top - height;
+        return new Vector(MathHelpers.SafeClamp(diff.X, minX, maxX), MathHelpers.SafeClamp(diff.Y, minY, maxY));
+    }
+    
+    protected internal abstract void AnchorAndUpdatePositionInfo();
 }

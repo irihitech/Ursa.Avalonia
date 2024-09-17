@@ -204,4 +204,50 @@ public abstract class DialogControlBase : OverlayFeedbackElement
     }
 
     #endregion
+    
+    protected internal override void AnchorAndUpdatePositionInfo()
+    {
+        if (ContainerPanel is null) return;
+        ActualHorizontalAnchor = HorizontalPosition.Center;
+        ActualVerticalAnchor = VerticalPosition.Center;
+        double left = Canvas.GetLeft(this);
+        double top = Canvas.GetTop(this);
+        double right = ContainerPanel.Bounds.Width - left - Bounds.Width;
+        double bottom = ContainerPanel.Bounds.Height - top - Bounds.Height;
+        if (ContainerPanel is OverlayDialogHost h)
+        {
+            var snapThickness = h.SnapThickness;
+            if(top < snapThickness.Top)
+            {
+                Canvas.SetTop(this, 0);
+                ActualVerticalAnchor = VerticalPosition.Top;
+                VerticalOffsetRatio = 0;
+            }
+            if(bottom < snapThickness.Bottom)
+            {
+                Canvas.SetTop(this, ContainerPanel.Bounds.Height - Bounds.Height);
+                ActualVerticalAnchor = VerticalPosition.Bottom;
+                VerticalOffsetRatio = 1;
+            }
+            if(left < snapThickness.Left)
+            {
+                Canvas.SetLeft(this, 0);
+                ActualHorizontalAnchor = HorizontalPosition.Left;
+                HorizontalOffsetRatio = 0;
+            }
+            if(right < snapThickness.Right)
+            {
+                Canvas.SetLeft(this, ContainerPanel.Bounds.Width - this.Bounds.Width);
+                ActualHorizontalAnchor = HorizontalPosition.Right;
+                HorizontalOffsetRatio = 1;
+            }
+        }
+        left = Canvas.GetLeft(this);
+        top = Canvas.GetTop(this);
+        right = ContainerPanel.Bounds.Width - left - Bounds.Width;
+        bottom = ContainerPanel.Bounds.Height - top - Bounds.Height;
+
+        HorizontalOffsetRatio = (left + right) == 0 ? 0 : left / (left + right);
+        VerticalOffsetRatio = (top + bottom) == 0 ? 0 : top / (top + bottom);
+    }
 }

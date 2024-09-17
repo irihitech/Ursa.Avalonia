@@ -28,8 +28,8 @@ public partial class OverlayDialogHost
         }
         var width = newSize.Width - control.Bounds.Width;
         var height = newSize.Height - control.Bounds.Height;
-        var newLeft = width * control.HorizontalOffsetRatio??0;
-        var newTop = height * control.VerticalOffsetRatio??0;
+        var newLeft = width * control.HorizontalOffsetRatio ?? 0;
+        var newTop = height * control.VerticalOffsetRatio ?? 0;
         if(control.ActualHorizontalAnchor == HorizontalPosition.Left)
         {
             newLeft = 0;
@@ -91,7 +91,7 @@ public partial class OverlayDialogHost
     {
         if (e.Source is DialogControlBase item)
         {
-            AnchorAndUpdatePositionInfo(item);
+            item.AnchorAndUpdatePositionInfo();
         }
     }
 
@@ -230,48 +230,7 @@ public partial class OverlayDialogHost
         double top = GetTopPosition(control);
         SetLeft(control, left);
         SetTop(control, top);
-        AnchorAndUpdatePositionInfo(control);
-    }
-    
-    private void AnchorAndUpdatePositionInfo(DialogControlBase control)
-    {
-        control.ActualHorizontalAnchor = HorizontalPosition.Center;
-        control.ActualVerticalAnchor = VerticalPosition.Center;
-        double left = GetLeft(control);
-        double top = GetTop(control);
-        double right = Bounds.Width - left - control.Bounds.Width;
-        double bottom = Bounds.Height - top - control.Bounds.Height;
-        if(top < SnapThickness.Top)
-        {
-            SetTop(control, 0);
-            control.ActualVerticalAnchor = VerticalPosition.Top;
-            control.VerticalOffsetRatio = 0;
-        }
-        if(bottom < SnapThickness.Bottom)
-        {
-            SetTop(control, Bounds.Height - control.Bounds.Height);
-            control.ActualVerticalAnchor = VerticalPosition.Bottom;
-            control.VerticalOffsetRatio = 1;
-        }
-        if(left < SnapThickness.Left)
-        {
-            SetLeft(control, 0);
-            control.ActualHorizontalAnchor = HorizontalPosition.Left;
-            control.HorizontalOffsetRatio = 0;
-        }
-        if(right < SnapThickness.Right)
-        {
-            SetLeft(control, Bounds.Width - control.Bounds.Width);
-            control.ActualHorizontalAnchor = HorizontalPosition.Right;
-            control.HorizontalOffsetRatio = 1;
-        }
-        left = GetLeft(control);
-        top = GetTop(control);
-        right = Bounds.Width - left - control.Bounds.Width;
-        bottom = Bounds.Height - top - control.Bounds.Height;
-
-        control.HorizontalOffsetRatio = (left + right) == 0 ? 0 : left / (left + right);
-        control.VerticalOffsetRatio = (top + bottom) == 0 ? 0 : top / (top + bottom);
+        control.AnchorAndUpdatePositionInfo();
     }
 
     private double GetLeftPosition(DialogControlBase control)
