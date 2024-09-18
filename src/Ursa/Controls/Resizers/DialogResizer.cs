@@ -58,6 +58,7 @@ public class DialogResizer: TemplatedControl
         _topRight = e.NameScope.Find<Thumb>(PART_TopRight);
         _bottomLeft = e.NameScope.Find<Thumb>(PART_BottomLeft);
         _bottomRight = e.NameScope.Find<Thumb>(PART_BottomRight);
+        UpdateThumbVisibility(ResizeDirection);
     }
 
     private void UpdateThumbVisibility(ResizeDirection direction)
