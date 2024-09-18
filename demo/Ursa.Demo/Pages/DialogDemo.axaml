@@ -50,6 +50,7 @@
                         IsChecked="{Binding IsCloseButtonVisible}"
                         IsThreeState="True" />
                     <CheckBox u:FormItem.Label="CanDragMove" IsChecked="{Binding CanDragMove}" />
+                    <CheckBox u:FormItem.Label="CanResize" IsChecked="{Binding CanResize}" />
                     <Button
                         HorizontalAlignment="Left"
                         u:FormItem.NoLabel="True"
@@ -85,6 +86,7 @@
                         IsThreeState="True" />
                     <CheckBox u:FormItem.Label="Modal" IsChecked="{Binding IsModal}" />
                     <CheckBox u:FormItem.Label="CanDragMove" IsChecked="{Binding CanDragMove}" />
+                    <CheckBox u:FormItem.Label="CanResize" IsChecked="{Binding CanResize}" />
                     <Button
                         HorizontalAlignment="Left"
                         u:FormItem.NoLabel="True"
@@ -120,6 +122,7 @@
                     <CheckBox u:FormItem.Label="Can DragMove" IsChecked="{Binding CanDragMove}" />
                     <CheckBox u:FormItem.Label="Can LightDismiss" IsChecked="{Binding CanLightDismiss}" />
                     <CheckBox u:FormItem.Label="FullScreen" IsChecked="{Binding FullScreen}" />
+                    <CheckBox u:FormItem.Label="CanResize" IsChecked="{Binding CanResize}" />
                     <ToggleSwitch
                         u:FormItem.Label="Global/Local OverlayHost"
                         IsChecked="{Binding IsLocal}"
@@ -150,6 +153,7 @@
                     <CheckBox u:FormItem.Label="Can DragMove" IsChecked="{Binding CanDragMove}" />
                     <CheckBox u:FormItem.Label="Can LightDismiss" IsChecked="{Binding CanLightDismiss}" />
                     <CheckBox u:FormItem.Label="FullScreen" IsChecked="{Binding FullScreen}" />
+                    <CheckBox u:FormItem.Label="CanResize" IsChecked="{Binding CanResize}" />
                     <ToggleSwitch
                         u:FormItem.Label="Global/Local OverlayHost"
                         IsChecked="{Binding IsLocal}"

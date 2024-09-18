@@ -25,4 +25,9 @@ public class CustomDrawerControl: DrawerControlBase
             OnElementClosing(this, null);
         }
     }
+
+    protected internal override void AnchorAndUpdatePositionInfo()
+    {
+        // throw new NotImplementedException();
+    }
 }

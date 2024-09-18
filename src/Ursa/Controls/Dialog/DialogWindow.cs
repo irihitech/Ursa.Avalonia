@@ -17,8 +17,17 @@ public class DialogWindow : Window
     public const string PART_TitleArea = "PART_TitleArea";
 
     protected internal Button? _closeButton;
+
     private Panel? _titleArea;
-    public bool CanDragMove { get; set; } = true;
+
+    public static readonly StyledProperty<bool> IsManagedResizerVisibleProperty = AvaloniaProperty.Register<DialogWindow, bool>(
+        nameof(IsManagedResizerVisible));
+
+    public bool IsManagedResizerVisible
+    {
+        get => GetValue(IsManagedResizerVisibleProperty);
+        set => SetValue(IsManagedResizerVisibleProperty, value);
+    }
 
     static DialogWindow()
     {
@@ -26,9 +35,11 @@ public class DialogWindow : Window
             window.OnDataContextChange(e));
     }
 
+    public bool CanDragMove { get; set; } = true;
+    internal bool? IsCloseButtonVisible { get; set; }
+
     protected override Type StyleKeyOverride { get; } = typeof(DialogWindow);
 
-    internal bool? IsCloseButtonVisible { get; set; }
 
     private void OnDataContextChange(AvaloniaPropertyChangedEventArgs<object?> args)
     {

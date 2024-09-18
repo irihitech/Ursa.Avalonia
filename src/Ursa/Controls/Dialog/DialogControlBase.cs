@@ -24,16 +24,28 @@ public abstract class DialogControlBase : OverlayFeedbackElement
         AvaloniaProperty.RegisterDirect<DialogControlBase, bool>(
             nameof(IsFullScreen), o => o.IsFullScreen, (o, v) => o.IsFullScreen = v);
 
+    public static readonly StyledProperty<bool> CanResizeProperty = AvaloniaProperty.Register<DialogControlBase, bool>(
+        nameof(CanResize));
+
     protected internal Button? _closeButton;
 
     private bool _isFullScreen;
     private Panel? _titleArea;
+    private bool _moveDragging;
+    private Point _moveDragStartPoint;
+    
 
     static DialogControlBase()
     {
         CanDragMoveProperty.Changed.AddClassHandler<InputElement, bool>(OnCanDragMoveChanged);
         CanCloseProperty.Changed.AddClassHandler<InputElement, bool>(OnCanCloseChanged);
         IsFullScreenProperty.AffectsPseudoClass<DialogControlBase>(PC_FullScreen);
+    }
+
+    public bool CanResize
+    {
+        get => GetValue(CanResizeProperty);
+        set => SetValue(CanResizeProperty, value);
     }
 
     internal HorizontalPosition HorizontalAnchor { get; set; } = HorizontalPosition.Center;
@@ -79,17 +91,44 @@ public abstract class DialogControlBase : OverlayFeedbackElement
 
     private void OnTitlePointerPressed(InputElement sender, PointerPressedEventArgs e)
     {
-        e.Source = this;
+        //e.Source = this;
+        if (ContainerPanel is OverlayDialogHost h)
+        {
+            if (h.IsTopLevel && this.IsFullScreen)
+            {
+                var top = TopLevel.GetTopLevel(this);
+                if (top is Window w)
+                {
+                    w.BeginMoveDrag(e);
+                    return;
+                }
+            }
+        }
+        if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
+        if (IsFullScreen) return;
+        _moveDragging = true;
+        _moveDragStartPoint = e.GetPosition(this);
     }
 
     private void OnTitlePointerMove(InputElement sender, PointerEventArgs e)
     {
-        e.Source = this;
+        //e.Source = this;
+        if (!_moveDragging) return;
+        if (ContainerPanel is null) return;
+        var p = e.GetPosition(this);
+        var left = Canvas.GetLeft(this) + p.X - _moveDragStartPoint.X;
+        var top = Canvas.GetTop(this) + p.Y - _moveDragStartPoint.Y;
+        left = MathHelpers.SafeClamp(left, 0, ContainerPanel.Bounds.Width - Bounds.Width);
+        top = MathHelpers.SafeClamp(top, 0, ContainerPanel.Bounds.Height - Bounds.Height);
+        Canvas.SetLeft(this, left);
+        Canvas.SetTop(this, top);
     }
 
     private void OnTitlePointerRelease(InputElement sender, PointerReleasedEventArgs e)
     {
-        e.Source = this;
+        // e.Source = this;
+        _moveDragging = false;
+        AnchorAndUpdatePositionInfo();
     }
 
     private void OnCloseButtonClick(object? sender, RoutedEventArgs args)
@@ -195,4 +234,50 @@ public abstract class DialogControlBase : OverlayFeedbackElement
     }
 
     #endregion
+    
+    protected internal override void AnchorAndUpdatePositionInfo()
+    {
+        if (ContainerPanel is null) return;
+        ActualHorizontalAnchor = HorizontalPosition.Center;
+        ActualVerticalAnchor = VerticalPosition.Center;
+        double left = Canvas.GetLeft(this);
+        double top = Canvas.GetTop(this);
+        double right = ContainerPanel.Bounds.Width - left - Bounds.Width;
+        double bottom = ContainerPanel.Bounds.Height - top - Bounds.Height;
+        if (ContainerPanel is OverlayDialogHost h)
+        {
+            var snapThickness = h.SnapThickness;
+            if(top < snapThickness.Top)
+            {
+                Canvas.SetTop(this, 0);
+                ActualVerticalAnchor = VerticalPosition.Top;
+                VerticalOffsetRatio = 0;
+            }
+            if(bottom < snapThickness.Bottom)
+            {
+                Canvas.SetTop(this, ContainerPanel.Bounds.Height - Bounds.Height);
+                ActualVerticalAnchor = VerticalPosition.Bottom;
+                VerticalOffsetRatio = 1;
+            }
+            if(left < snapThickness.Left)
+            {
+                Canvas.SetLeft(this, 0);
+                ActualHorizontalAnchor = HorizontalPosition.Left;
+                HorizontalOffsetRatio = 0;
+            }
+            if(right < snapThickness.Right)
+            {
+                Canvas.SetLeft(this, ContainerPanel.Bounds.Width - this.Bounds.Width);
+                ActualHorizontalAnchor = HorizontalPosition.Right;
+                HorizontalOffsetRatio = 1;
+            }
+        }
+        left = Canvas.GetLeft(this);
+        top = Canvas.GetTop(this);
+        right = ContainerPanel.Bounds.Width - left - Bounds.Width;
+        bottom = ContainerPanel.Bounds.Height - top - Bounds.Height;
+
+        HorizontalOffsetRatio = (left + right) == 0 ? 0 : left / (left + right);
+        VerticalOffsetRatio = (top + bottom) == 0 ? 0 : top / (top + bottom);
+    }
 }

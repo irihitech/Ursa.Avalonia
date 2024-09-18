@@ -11,7 +11,8 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:CompileBindings="True"
-    IsFullScreenButtonVisible="{OnPlatform True,macOS=False}"
+    IsFullScreenButtonVisible="{OnPlatform True, macOS=False}"
+    IsManagedResizerVisible="{OnPlatform False, Linux=True}"
     x:DataType="viewModels:MainWindowViewModel"
     Icon="/Assets/Ursa.ico"
     mc:Ignorable="d">

@@ -135,4 +135,9 @@ public class DefaultDrawerControl : DrawerControlBase
             RaiseEvent(new ResultEventArgs(ClosedEvent, result));
         }
     }
+
+    protected internal override void AnchorAndUpdatePositionInfo()
+    {
+        // throw new NotImplementedException();
+    }
 }

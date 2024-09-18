@@ -27,6 +27,7 @@
             <CheckBox u:FormItem.Label="Is Modal" IsChecked="{Binding IsModal}"/>
             <CheckBox u:FormItem.Label="Is Close Button Visible" IsChecked="{Binding IsCloseButtonVisible}" IsThreeState="True"/>
             <CheckBox u:FormItem.Label="Custom Dialog" IsChecked="{Binding Custom}"/>
+            <CheckBox u:FormItem.Label="CanResize" IsChecked="{Binding CanResize}" />
             <ToggleSwitch
                 u:FormItem.Label="Global/Local OverlayHost"
                 IsChecked="{Binding IsLocal}"
