@@ -9,8 +9,8 @@
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:CustomDialogControl}" TargetType="u:CustomDialogControl">
-        <Setter Property="MinWidth" Value="96" />
-        <Setter Property="MinHeight" Value="96" />
+        <Setter Property="MinWidth" Value="{DynamicResource DialogMinWidth}"/>
+        <Setter Property="MinHeight" Value="{DynamicResource DialogMinHeight}"/>
         <Setter Property="CornerRadius" Value="{DynamicResource DialogCornerRadius}" />
         <Setter Property="Transitions">
             <Transitions>
@@ -144,8 +144,8 @@
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:DefaultDialogControl}" TargetType="u:DefaultDialogControl">
-        <Setter Property="MinWidth" Value="96" />
-        <Setter Property="MinHeight" Value="96" />
+        <Setter Property="MinWidth" Value="{DynamicResource DialogMinWidth}"/>
+        <Setter Property="MinHeight" Value="{DynamicResource DialogMinHeight}"/>
         <Setter Property="CornerRadius" Value="{DynamicResource DialogCornerRadius}" />
         <Setter Property="Transitions">
             <Transitions>
@@ -173,8 +173,6 @@
                                     <ContentPresenter
                                         Name="PART_ContentPresenter"
                                         Margin="24,8"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
                                         Content="{TemplateBinding Content}" />
                                 </ScrollViewer>
                                 <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto">
@@ -464,6 +462,8 @@
         <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="1" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
         <Setter Property="ExtendClientAreaChromeHints" Value="SystemChrome" />
+        <Setter Property="MinWidth" Value="{DynamicResource DialogMinWidth}"/>
+        <Setter Property="MinHeight" Value="{DynamicResource DialogMinHeight}"/>
         <Setter Property="SystemDecorations">
             <OnPlatform>
                 <OnPlatform.Windows>
@@ -512,12 +512,10 @@
                                     Margin="0,24,24,0"
                                     Theme="{DynamicResource CloseButton}" />
                             </Grid>
-                            <u:WindowResizer
-                                Grid.Row="0"
-                                Grid.RowSpan="2"
-                                IsVisible="{TemplateBinding IsManagedResizerVisible}" />
+                            
                         </Grid>
                     </VisualLayerManager>
+                    <u:WindowResizer IsVisible="{TemplateBinding IsManagedResizerVisible}" />
                 </Panel>
             </ControlTemplate>
         </Setter>
@@ -536,6 +534,8 @@
         <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="1" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
         <Setter Property="ExtendClientAreaChromeHints" Value="SystemChrome" />
+        <Setter Property="MinWidth" Value="{DynamicResource DialogMinWidth}"/>
+        <Setter Property="MinHeight" Value="{DynamicResource DialogMinHeight}"/>
         <Setter Property="SystemDecorations">
             <OnPlatform>
                 <OnPlatform.Windows>
@@ -626,12 +626,10 @@
                                     Content="{DynamicResource STRING_MENU_DIALOG_OK}"
                                     Theme="{DynamicResource SolidButton}" />
                             </StackPanel>
-                            <u:WindowResizer
-                                Grid.Row="0"
-                                Grid.RowSpan="3"
-                                IsVisible="{TemplateBinding IsManagedResizerVisible}" />
+                            
                         </Grid>
                     </VisualLayerManager>
+                    <u:WindowResizer IsVisible="{TemplateBinding IsManagedResizerVisible}" />
                 </Panel>
             </ControlTemplate>
         </Setter>
