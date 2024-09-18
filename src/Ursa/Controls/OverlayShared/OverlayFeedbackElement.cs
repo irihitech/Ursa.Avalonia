@@ -172,7 +172,7 @@ public abstract class OverlayFeedbackElement : ContentControl
                 left += diff.X; width -= diff.X;
                 break;
             case WindowEdge.NorthWest:
-                top += diff.Y; width -= diff.X; height -= diff.Y;
+                left += diff.X; top += diff.Y; width -= diff.X; height -= diff.Y;
                 break;
         }
         return new Rect(left, top, width, height);
