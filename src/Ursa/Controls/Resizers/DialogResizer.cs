@@ -26,7 +26,7 @@ public class DialogResizer: TemplatedControl
     private Thumb? _bottomRight;
     
     public static readonly StyledProperty<ResizeDirection> ResizeDirectionProperty = AvaloniaProperty.Register<DialogResizer, ResizeDirection>(
-        nameof(ResizeDirection));
+        nameof(ResizeDirection), ResizeDirection.All);
 
     /// <summary>
     /// Defines what direction the dialog is allowed to be resized.
