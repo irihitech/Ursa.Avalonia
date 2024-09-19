@@ -5,7 +5,7 @@
     <SolidColorBrush x:Key="CalenderDayInRangeBackground" Opacity="0.2" Color="#54A9FF" />
     <SolidColorBrush x:Key="CalenderDayTodayBackground" Opacity="0.12" Color="White" />
     <SolidColorBrush x:Key="CalenderDayTodayForeground" Color="#54A9FF" />
-    <SolidColorBrush x:Key="CalenderDayNotCurrentMonthForeground" Color="#555B61" />
+    <SolidColorBrush x:Key="CalenderDayNotCurrentMonthForeground" Opacity="0.6" Color="#F9F9F9" />
     <SolidColorBrush x:Key="CalenderDayPointeroverBackground" Opacity="0.12" Color="White" />
     <SolidColorBrush x:Key="CalenderDayPressedBackground" Opacity="0.16" Color="White" />
 
