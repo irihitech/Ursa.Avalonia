@@ -14,10 +14,10 @@ public class Loading: ContentControl
         set => SetValue(IndicatorProperty, value);
     }
 
-    public static readonly StyledProperty<object?> IsLoadingProperty = AvaloniaProperty.Register<Loading, object?>(
+    public static readonly StyledProperty<bool> IsLoadingProperty = AvaloniaProperty.Register<Loading, bool>(
         nameof(IsLoading));
 
-    public object? IsLoading
+    public bool IsLoading
     {
         get => GetValue(IsLoadingProperty);
         set => SetValue(IsLoadingProperty, value);
