@@ -8,10 +8,14 @@
              x:Class="Ursa.Demo.Pages.ThemeTogglerDemo">
     <Grid ColumnDefinitions="Auto, *">
         <StackPanel Grid.Column="0">
-            <TextBlock Text="Global"></TextBlock>
-            <u:ThemeToggleButton/>
-            <TextBlock Text="Global Indicator"></TextBlock>
-            <u:ThemeToggleButton Mode="Indicator"/>
+            <TextBlock Text="Global (Controller, TwoState)"></TextBlock>
+            <u:ThemeToggleButton Mode="Controller"/>
+            <TextBlock Text="Global (Controller, ThreeState)"></TextBlock>
+            <u:ThemeToggleButton Mode="Controller" IsThreeState="True"/>
+            <TextBlock Text="Global (Indicator, TwoState)"></TextBlock>
+            <u:ThemeToggleButton Mode="Indicator" />
+            <TextBlock Text="Global (Indicator, ThreeState)"></TextBlock>
+            <u:ThemeToggleButton Mode="Indicator" IsThreeState="True"/>
             <TextBlock Text="Target To Scope"></TextBlock>
             <u:ThemeToggleButton TargetScope="{Binding #scope}"></u:ThemeToggleButton>
         </StackPanel>
