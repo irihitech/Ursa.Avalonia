@@ -3,6 +3,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:u="https://irihi.tech/ursa"
+             xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+             x:DataType="viewModels:ThemeTogglerDemoViewModel"
              mc:Ignorable="d" d:DesignWidth="800"
              d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.ThemeTogglerDemo">
@@ -18,6 +20,7 @@
             <u:ThemeToggleButton Mode="Indicator" IsThreeState="True"/>
             <TextBlock Text="Target To Scope"></TextBlock>
             <u:ThemeToggleButton TargetScope="{Binding #scope}"></u:ThemeToggleButton>
+            <u:ThemeSelector Width="200" ThemeSource="{Binding ThemeSource}"></u:ThemeSelector>
         </StackPanel>
         <ThemeVariantScope Grid.Column="1" Name="scope" RequestedThemeVariant="Dark">
             <Border Theme="{DynamicResource CardBorder}">

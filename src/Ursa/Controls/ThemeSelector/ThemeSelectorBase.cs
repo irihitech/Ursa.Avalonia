@@ -2,6 +2,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Data;
 using Avalonia.LogicalTree;
 using Avalonia.Markup.Xaml.MarkupExtensions;
 using Avalonia.Styling;
@@ -13,7 +14,7 @@ public abstract class ThemeSelectorBase : TemplatedControl
 {
     public static readonly StyledProperty<ThemeVariant?> SelectedThemeProperty =
         AvaloniaProperty.Register<ThemeSelectorBase, ThemeVariant?>(
-            nameof(SelectedTheme));
+            nameof(SelectedTheme), defaultBindingMode: BindingMode.TwoWay);
 
     public static readonly StyledProperty<ThemeSelectorMode> ModeProperty =
         AvaloniaProperty.Register<ThemeSelectorBase, ThemeSelectorMode>(
