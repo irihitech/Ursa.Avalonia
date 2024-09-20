@@ -17,6 +17,8 @@
 		<Version>1.0.1</Version>
 		<Copyright></Copyright>
 		<RepositoryUrl>https://github.com/irihitech/Ursa.Avalonia</RepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
 	<ItemGroup>

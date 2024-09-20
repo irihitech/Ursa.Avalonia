@@ -11,6 +11,8 @@
         <PackageId>Irihi.Ursa.Themes.Semi</PackageId>
         <PackageIcon>irihi.png</PackageIcon>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
 
     <ItemGroup>

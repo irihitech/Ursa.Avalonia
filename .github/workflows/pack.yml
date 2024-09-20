@@ -18,6 +18,12 @@ jobs:
 
       - name: Nuget Ursa.Themes.Semi
         run: dotnet pack ./src/Ursa.Themes.Semi -o ./nugets
+        
+      - name: Nuget Prism Extension
+        run: dotnet pack ./src/Ursa.PrismExtension -o ./nugets
+        
+      - name: Nuget ReactiveUI Extension
+        run: dotnet pack ./src/Ursa.ReactiveUI -o ./nugets
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.3.1
