@@ -107,9 +107,15 @@ public abstract class ThemeSelectorBase : TemplatedControl
         _syncFromScope = false;
     }
 
-    private void SyncCurrentTheme()
+    private void SyncCurrentTheme(ThemeVariant? defaultTheme = null)
     {
-        var theme = ActualThemeScope?.GetValue(ThemeVariantScope.RequestedThemeVariantProperty) ?? ThemeVariant.Default;
+        var theme = defaultTheme;
+        theme ??= Mode switch
+        {
+            ThemeSelectorMode.Controller => ActualThemeScope?.GetValue(ThemeVariantScope.ActualThemeVariantProperty),
+            ThemeSelectorMode.Indicator => ActualThemeScope?.GetValue(ThemeVariantScope.RequestedThemeVariantProperty),
+            _ => null
+        };
         SetValue(SelectedThemeProperty, theme);
         OnTargetThemeChanged(theme);
     }
@@ -129,7 +135,8 @@ public abstract class ThemeSelectorBase : TemplatedControl
         _actualThemeChangedSubscription = ActualThemeScope?
             .GetObservable(ThemeVariantScope.ActualThemeVariantProperty)
             .Subscribe(OnActualThemeChanged);
-        SyncCurrentTheme();
+        SyncCurrentTheme(ActualThemeScope?.GetValue(ThemeVariantScope.RequestedThemeVariantProperty) ??
+                         ThemeVariant.Default);
     }
 
     private AvaloniaObject? GetEffectiveThemeScope()
