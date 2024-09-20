@@ -2,17 +2,38 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.LogicalTree;
+using Avalonia.Markup.Xaml.MarkupExtensions;
 using Avalonia.Styling;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-public abstract class ThemeSelectorBase: TemplatedControl
+public abstract class ThemeSelectorBase : TemplatedControl
 {
+    public static readonly StyledProperty<ThemeVariant?> SelectedThemeProperty =
+        AvaloniaProperty.Register<ThemeSelectorBase, ThemeVariant?>(
+            nameof(SelectedTheme));
+
+    public static readonly StyledProperty<ThemeSelectorMode> ModeProperty =
+        AvaloniaProperty.Register<ThemeSelectorBase, ThemeSelectorMode>(
+            nameof(Mode));
+
+    public static readonly StyledProperty<ThemeVariantScope?> TargetScopeProperty =
+        AvaloniaProperty.Register<ThemeSelectorBase, ThemeVariantScope?>(
+            nameof(TargetScope));
+
+    private IDisposable? _actualThemeChangedSubscription;
+    private IDisposable? _requestedThemeChangedSubscription;
     private bool _syncFromScope;
-    private Application? _application;
-    
-    public static readonly StyledProperty<ThemeVariant?> SelectedThemeProperty = AvaloniaProperty.Register<ThemeSelectorBase, ThemeVariant?>(
-        nameof(SelectedTheme));
+    protected AvaloniaObject? ActualThemeScope;
+
+    static ThemeSelectorBase()
+    {
+        SelectedThemeProperty.Changed.AddClassHandler<ThemeSelectorBase, ThemeVariant?>((selector, args) =>
+            selector.OnSelectedThemeChanged(args));
+        TargetScopeProperty.Changed.AddClassHandler<ThemeSelectorBase, ThemeVariantScope?>((selector, args) =>
+            selector.OnTargetScopeChanged(args));
+    }
 
     public ThemeVariant? SelectedTheme
     {
@@ -20,18 +41,11 @@ public abstract class ThemeSelectorBase: TemplatedControl
         set => SetValue(SelectedThemeProperty, value);
     }
 
-    public static readonly StyledProperty<ThemeSelectorMode> ModeProperty = AvaloniaProperty.Register<ThemeSelectorBase, ThemeSelectorMode>(
-        nameof(Mode));
-
     public ThemeSelectorMode Mode
     {
         get => GetValue(ModeProperty);
         set => SetValue(ModeProperty, value);
     }
-
-    public static readonly StyledProperty<ThemeVariantScope?> TargetScopeProperty =
-        AvaloniaProperty.Register<ThemeSelectorBase, ThemeVariantScope?>(
-            nameof(TargetScope));
 
     public ThemeVariantScope? TargetScope
     {
@@ -39,107 +53,93 @@ public abstract class ThemeSelectorBase: TemplatedControl
         set => SetValue(TargetScopeProperty, value);
     }
 
-    static ThemeSelectorBase()
-    {
-        SelectedThemeProperty.Changed.AddClassHandler<ThemeSelectorBase, ThemeVariant?>((s, e) => s.OnSelectedThemeChanged(e));
-        TargetScopeProperty.Changed.AddClassHandler<ThemeSelectorBase, ThemeVariantScope?>((s, e) => s.OnTargetScopeChanged(e));
-    }
-
     private void OnTargetScopeChanged(AvaloniaPropertyChangedEventArgs<ThemeVariantScope?> args)
     {
-        if (args.OldValue.Value is { } oldTarget)
-        {
-            oldTarget.ActualThemeVariantChanged -= OnScopeThemeChanged;
-        }
-        if (args.NewValue.Value is { } newTarget)
-        {
-            newTarget.ActualThemeVariantChanged += OnScopeThemeChanged;
-            SyncThemeFromScope(newTarget.ActualThemeVariant);
-        }
+        _requestedThemeChangedSubscription?.Dispose();
+        _actualThemeChangedSubscription?.Dispose();
+        GetEffectiveThemeScope();
+        _requestedThemeChangedSubscription = ActualThemeScope
+            .GetObservable(ThemeVariantScope.RequestedThemeVariantProperty)
+            .Subscribe(OnRequestedThemeChanged);
+        _actualThemeChangedSubscription = ActualThemeScope
+            .GetObservable(ThemeVariantScope.ActualThemeVariantProperty)
+            .Subscribe(OnActualThemeChanged);
+        SyncCurrentTheme();
     }
 
-    private void OnScopeThemeChanged(object? sender, System.EventArgs e)
+    /// <summary>
+    ///     For indicator mode, this method is called when the actual theme is changed.
+    /// </summary>
+    /// <param name="theme"></param>
+    private void OnRequestedThemeChanged(ThemeVariant? theme)
     {
+        if (Mode == ThemeSelectorMode.Controller) return;
         _syncFromScope = true;
-        if (TargetScope is { } target)
-        {
-            SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
-                ? target.RequestedThemeVariant
-                : target.ActualThemeVariant);
-        }
-        else if (_application is { } app)
-        {
-            SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
-                ? app.RequestedThemeVariant
-                : app.ActualThemeVariant);
-        }
+        SelectedTheme = theme;
+        SyncCurrentTheme();
         _syncFromScope = false;
     }
 
-    protected virtual void SyncThemeFromScope(ThemeVariant? theme)
+    /// <summary>
+    ///     For controller mode, this method is called when the requested theme is changed.
+    /// </summary>
+    /// <param name="theme"></param>
+    private void OnActualThemeChanged(ThemeVariant? theme)
     {
+        if (Mode == ThemeSelectorMode.Indicator) return;
+        _syncFromScope = true;
         SelectedTheme = theme;
+        SyncCurrentTheme();
+        _syncFromScope = false;
+    }
+
+    private void SyncCurrentTheme()
+    {
+        var theme = Mode == ThemeSelectorMode.Controller
+            ? ActualThemeScope?.GetValue(ThemeVariantScope.RequestedThemeVariantProperty)
+            : ActualThemeScope?.GetValue(ThemeVariantScope.ActualThemeVariantProperty);
+        SetValue(SelectedThemeProperty, theme);
+        OnTargetThemeChanged(theme);
+    }
+
+    protected virtual void OnTargetThemeChanged(ThemeVariant? theme)
+    {
+        
     }
 
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
-        _application = Application.Current;
-        _syncFromScope = true;
+        GetEffectiveThemeScope();
+        _requestedThemeChangedSubscription = ActualThemeScope
+            .GetObservable(ThemeVariantScope.RequestedThemeVariantProperty)
+            .Subscribe(OnRequestedThemeChanged);
+        _actualThemeChangedSubscription = ActualThemeScope
+            .GetObservable(ThemeVariantScope.ActualThemeVariantProperty)
+            .Subscribe(OnActualThemeChanged);
+        SyncCurrentTheme();
+    }
 
-        if (TargetScope is not null)
-        {
-            TargetScope.ActualThemeVariantChanged += OnScopeThemeChanged;
-            SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
-                ? TargetScope.RequestedThemeVariant
-                : TargetScope.ActualThemeVariant);
-        }
-        else if (this.GetLogicalAncestors().FirstOrDefault(a => a is ThemeVariantScope) is ThemeVariantScope scope)
-        {
-            TargetScope = scope;
-            TargetScope.ActualThemeVariantChanged += OnScopeThemeChanged;
-            SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
-                ? TargetScope.RequestedThemeVariant
-                : TargetScope.ActualThemeVariant);
-        }
-        else if (_application is not null)
-        {
-            _application.ActualThemeVariantChanged += OnScopeThemeChanged;
-            SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
-                ? _application.RequestedThemeVariant
-                : _application.ActualThemeVariant);
-        }
-
-        _syncFromScope = false;
+    private void GetEffectiveThemeScope()
+    {
+        TargetScope ??= this.GetLogicalAncestors().FirstOrDefault(a => a is ThemeVariantScope) as ThemeVariantScope;
+        ActualThemeScope ??= TargetScope;
+        ActualThemeScope ??= Application.Current;
+        return;
     }
 
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnDetachedFromVisualTree(e);
-        if (_application is not null)
-        {
-            _application.ActualThemeVariantChanged -= OnScopeThemeChanged;
-        }
-
-        if (TargetScope is not null)
-        {
-            TargetScope.ActualThemeVariantChanged -= OnScopeThemeChanged;
-        }
+        _requestedThemeChangedSubscription?.Dispose();
+        _actualThemeChangedSubscription?.Dispose();
     }
 
-    protected virtual void OnSelectedThemeChanged(AvaloniaPropertyChangedEventArgs<ThemeVariant?> args)
+    private void OnSelectedThemeChanged(AvaloniaPropertyChangedEventArgs<ThemeVariant?> args)
     {
         if (_syncFromScope) return;
-        ThemeVariant? newTheme = args.NewValue.Value;
-        if (TargetScope is not null)
-        {
-            TargetScope.RequestedThemeVariant = newTheme;
-            return;
-        }
-
-        if (_application is not null)
-        {
-            _application.RequestedThemeVariant = newTheme;
-        }
+        var newTheme = args.NewValue.Value;
+        if (ActualThemeScope is not null)
+            ActualThemeScope.SetValue(ThemeVariantScope.RequestedThemeVariantProperty, newTheme);
     }
 }

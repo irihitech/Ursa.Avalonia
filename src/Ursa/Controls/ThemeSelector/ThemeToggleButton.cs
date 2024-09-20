@@ -72,14 +72,30 @@ public class ThemeToggleButton: ThemeSelectorBase
         PseudoClasses.Set(PC_Default, SelectedTheme == ThemeVariant.Default);
     }
 
-    protected override void SyncThemeFromScope(ThemeVariant? theme)
+    
+    protected void SyncThemeFromScope(ThemeVariant? theme)
     {
-        base.SyncThemeFromScope(theme);
+        //base.SyncThemeFromScope(theme);
         if (!IsThreeState && theme is null)
         {
             theme = ThemeVariant.Light;
         }
         
+        PseudoClasses.Set(PC_Light, theme == ThemeVariant.Light);
+        PseudoClasses.Set(PC_Dark, theme == ThemeVariant.Dark);
+        PseudoClasses.Set(PC_Default, theme == null || SelectedTheme == ThemeVariant.Default);
+        if (theme == ThemeVariant.Dark) _state = false;
+        else if (theme == ThemeVariant.Light) _state = true;
+        else _state = null;
+    }
+
+    protected override void OnTargetThemeChanged(ThemeVariant? theme)
+    {
+        base.OnTargetThemeChanged(theme);
+        if (!IsThreeState && theme is null)
+        {
+            theme = ThemeVariant.Light;
+        }
         PseudoClasses.Set(PC_Light, theme == ThemeVariant.Light);
         PseudoClasses.Set(PC_Dark, theme == ThemeVariant.Dark);
         PseudoClasses.Set(PC_Default, theme == null || SelectedTheme == ThemeVariant.Default);
