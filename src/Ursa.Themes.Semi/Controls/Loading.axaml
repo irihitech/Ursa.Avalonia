@@ -93,6 +93,8 @@
 
     <ControlTheme x:Key="{x:Type u:LoadingContainer}" TargetType="u:LoadingContainer">
         <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="MessageForeground" Value="{DynamicResource TextBlockDefaultForeground}"/>
+        <Setter Property="Background" Value="{DynamicResource LoadingMaskBackground}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Indicator">
             <Template>
@@ -109,6 +111,8 @@
                         Content="{TemplateBinding Content}"
                         ContentTemplate="{TemplateBinding ContentTemplate}" />
                     <u:Loading
+                        Background="{TemplateBinding Background}"
+                        Foreground="{TemplateBinding MessageForeground}"
                         Content="{TemplateBinding LoadingMessage}"
                         ContentTemplate="{TemplateBinding LoadingMessageTemplate}"
                         Indicator="{TemplateBinding Indicator}"

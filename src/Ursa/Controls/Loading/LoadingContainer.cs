@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Templates;
+using Avalonia.Media;
 
 namespace Ursa.Controls;
 
@@ -26,6 +27,15 @@ public class LoadingContainer: ContentControl
     {
         get => GetValue(LoadingMessageProperty);
         set => SetValue(LoadingMessageProperty, value);
+    }
+
+    public static readonly StyledProperty<IBrush?> MessageForegroundProperty = AvaloniaProperty.Register<LoadingContainer, IBrush?>(
+        nameof(MessageForeground));
+
+    public IBrush? MessageForeground
+    {
+        get => GetValue(MessageForegroundProperty);
+        set => SetValue(MessageForegroundProperty, value);
     }
 
     public static readonly StyledProperty<IDataTemplate> LoadingMessageTemplateProperty = AvaloniaProperty.Register<LoadingContainer, IDataTemplate>(
