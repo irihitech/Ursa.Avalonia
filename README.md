@@ -59,6 +59,26 @@ You can now use Ursa controls in your Avalonia Application.
 
 ![Demo](./assets/demo.jpg)
 
+## ReactiveUI
+If you're familiar with and often use Avalonia.ReactiveUI for development, you can use the Irihi.Ursa.ReactiveUIExtension package. This package implements the ReactiveUI versions of UrsaWindow and UrsaView.
+
+You just need to replace ReactiveWindow or ReactiveUserControl with ReactiveUrsaWindow or ReactiveUrsaView.
+```xaml
+<u:ReactiveUrsaWindow
+    ...
+    xmlns:u="https://irihi.tech/ursa"
+    x:TypeArguments="TViewModel"
+    ...>
+...
+</u:ReactiveUrsaWindow>
+```
+```csharp
+public partial class WindowHome : ReactiveUrsaWindow<TViewModel>
+{
+
+}
+```
+
 ## Support
 
 We offer limited free community support for Semi Avalonia and Ursa. Please join our group via FeiShu(Lark)
