@@ -38,6 +38,20 @@ public static class Dialog
     }
 
     /// <summary>
+    /// Show a Window Dialog that with all content fully customized. And the owner of the dialog is specified.
+    /// </summary>
+    /// <typeparam name="TView"></typeparam>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <param name="owner"></param>
+    /// <param name="options"></param>
+    public static void ShowCustom<TView, TViewModel>(Window? owner = null, DialogOptions? options = null)
+        where TView : Control, new()
+        where TViewModel : new()
+    {
+        ShowCustom<TView, TViewModel>(new TViewModel(), owner, options);
+    }
+
+    /// <summary>
     ///     Show a Window Dialog that with all content fully customized. And the owner of the dialog is specified.
     /// </summary>
     /// <param name="view">View to show in Dialog Window</param>
@@ -92,6 +106,21 @@ public static class Dialog
 
         window.Icon = owner.Icon;
         return window.ShowDialog<DialogResult>(owner);
+    }
+
+    /// <summary>
+    /// Show a Modal Dialog Window with default style.
+    /// </summary>
+    /// <typeparam name="TView"></typeparam>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <param name="owner"></param>
+    /// <param name="options"></param>
+    /// <returns></returns>
+    public static Task<DialogResult> ShowModal<TView, TViewModel>(Window? owner = null, DialogOptions? options = null)
+        where TView : Control, new()
+        where TViewModel : new()
+    {
+        return ShowModal<TView, TViewModel>(new TViewModel(), owner, options);
     }
 
     /// <summary>
@@ -151,6 +180,22 @@ public static class Dialog
 
         window.Icon = owner.Icon;
         return window.ShowDialog<TResult?>(owner);
+    }
+
+    /// <summary>
+    /// Show a Modal Dialog Window with all content fully customized.
+    /// </summary>
+    /// <typeparam name="TView"></typeparam>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <typeparam name="TResult"></typeparam>
+    /// <param name="owner"></param>
+    /// <param name="options"></param>
+    /// <returns></returns>
+    public static Task<TResult?> ShowCustomModal<TView, TViewModel, TResult>(Window? owner = null, DialogOptions? options = null)
+        where TView : Control, new()
+        where TViewModel : new()
+    {
+        return ShowCustomModal<TView, TViewModel, TResult>(new TViewModel(), owner, options);
     }
 
     /// <summary>
