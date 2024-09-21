@@ -10,7 +10,7 @@
     mc:Ignorable="d">
     <Grid RowDefinitions="Auto, Auto, *">
         <ToggleSwitch Name="s" Content="Loading" />
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" IsVisible="False">
             <u:LoadingIcon Classes="Small" />
             <u:LoadingIcon />
             <u:LoadingIcon Classes="Large" />

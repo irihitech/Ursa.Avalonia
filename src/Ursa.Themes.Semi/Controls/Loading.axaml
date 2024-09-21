@@ -7,6 +7,7 @@
     <!--  Add Resources Here  -->
     <converters:BrushToColorConverter x:Key="BrushToColorConverter" />
     <ControlTheme x:Key="{x:Type u:LoadingIcon}" TargetType="u:LoadingIcon">
+        <Setter Property="IsLoading" Value="True"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource LoadingIconForeground}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:LoadingIcon">
@@ -29,20 +30,6 @@
                             </GradientStops>
                         </ConicGradientBrush>
                     </Arc.Stroke>
-                    <Arc.Styles>
-                        <Style Selector="Arc[IsVisible=True]">
-                            <Style.Animations>
-                                <Animation IterationCount="Infinite" Duration="0:0:0.5">
-                                    <KeyFrame Cue="0%">
-                                        <Setter Property="RotateTransform.Angle" Value="0.0" />
-                                    </KeyFrame>
-                                    <KeyFrame Cue="100%">
-                                        <Setter Property="RotateTransform.Angle" Value="-360.0" />
-                                    </KeyFrame>
-                                </Animation>
-                            </Style.Animations>
-                        </Style>
-                    </Arc.Styles>
                 </Arc>
             </ControlTemplate>
         </Setter>
@@ -56,13 +43,25 @@
             <Setter Property="Height" Value="32" />
             <Setter Property="StrokeThickness" Value="5" />
         </Style>
+        <Style Selector="^[IsLoading=True] /template/ Arc#PART_Arc">
+            <Style.Animations>
+                <Animation IterationCount="Infinite" Duration="0:0:0.5">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="RotateTransform.Angle" Value="0.0" />
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="RotateTransform.Angle" Value="-360.0" />
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:Loading}" TargetType="u:Loading">
         <Setter Property="Background" Value="{DynamicResource LoadingMaskBackground}" />
         <Setter Property="Indicator">
             <Template>
-                <u:LoadingIcon />
+                <u:LoadingIcon IsLoading="{Binding $parent[u:Loading].IsLoading, Mode=TwoWay}" />
             </Template>
         </Setter>
         <Setter Property="Template">
@@ -98,7 +97,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Indicator">
             <Template>
-                <u:LoadingIcon />
+                <u:LoadingIcon IsLoading="{Binding $parent[u:LoadingContainer].IsLoading, Mode=TwoWay}" />
             </Template>
         </Setter>
         <Setter Property="Template">
