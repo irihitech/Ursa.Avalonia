@@ -22,6 +22,13 @@ public static class OverlayDialog
         host.AddDialog(t);
     }
 
+    public static void Show<TView, TViewModel>(string? hostId = null, OverlayDialogOptions? options = null)
+        where TView : Control, new()
+        where TViewModel : new()
+    {
+        Show(new TViewModel(), hostId, options);
+    }
+
     public static void Show(Control control, object? vm, string? hostId = null,
         OverlayDialogOptions? options = null)
     {
@@ -66,6 +73,13 @@ public static class OverlayDialog
         };
         ConfigureCustomDialogControl(t, options);
         host.AddDialog(t);
+    }
+
+    public static void ShowCustom<TView, TViewModel>(string? hostId = null, OverlayDialogOptions? options = null)
+        where TView : Control, new()
+        where TViewModel : new()
+    {
+        ShowCustom(new TViewModel(), hostId, options);
     }
 
     public static void ShowCustom(Control control, object? vm, string? hostId = null,
@@ -117,6 +131,14 @@ public static class OverlayDialog
         return t.ShowAsync<DialogResult>(token);
     }
 
+    public static Task<DialogResult> ShowModal<TView, TViewModel>(string? hostId = null,
+    OverlayDialogOptions? options = null, CancellationToken? token = default)
+        where TView : Control, new()
+        where TViewModel : new()
+    {
+        return ShowModal<TView, TViewModel>(hostId, options, token);
+    }
+
     public static Task<DialogResult> ShowModal(Control control, object? vm, string? hostId = null,
         OverlayDialogOptions? options = null, CancellationToken? token = default)
     {
@@ -148,6 +170,14 @@ public static class OverlayDialog
         ConfigureCustomDialogControl(t, options);
         host.AddModalDialog(t);
         return t.ShowAsync<TResult?>(token);
+    }
+
+    public static Task<TResult?> ShowCustomModal<TView, TViewModel, TResult>(string? hostId = null,
+    OverlayDialogOptions? options = null, CancellationToken? token = default)
+        where TView : Control, new()
+        where TViewModel : new()
+    {
+        return ShowCustomModal<TView, TViewModel, TResult>(new TViewModel(), hostId, options, token);
     }
 
     public static Task<TResult?> ShowCustomModal<TResult>(Control control, object? vm, string? hostId = null,
