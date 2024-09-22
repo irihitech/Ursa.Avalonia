@@ -15,7 +15,7 @@ public static class OverlayDialog
         if (host is null) return;
         var t = new DefaultDialogControl()
         {
-            Content = new TView(){ DataContext = vm },
+            Content = new TView(),
             DataContext = vm,
         };
         ConfigureDefaultDialogControl(t, options);
