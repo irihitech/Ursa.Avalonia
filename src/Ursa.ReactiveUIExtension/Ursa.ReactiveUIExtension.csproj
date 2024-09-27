@@ -10,13 +10,11 @@
         <PackageProjectUrl>https://github.com/irihitech/Ursa.Avalonia</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Nullable>enable</Nullable>
-        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Description>This is a Ursa expansion. This package integrates and is compatible with UrsaWindow and UrsaView with Avalonia.ReactiveUI. [Avalonia.ReactiveUI See: https://docs.avaloniaui.net/zh-Hans/docs/concepts/reactiveui/]
 
             这个是一个Ursa拓展包。这个包整合并互相兼容了UrsaWindow和UrsaView与Avalonia.ReactiveUI的功能。【Avalonia.ReactiveUI参见：https://docs.avaloniaui.net/docs/concepts/reactiveui/】
         </Description>
         <Version>1.0.1</Version>
-        <Copyright></Copyright>
         <RepositoryUrl>https://github.com/irihitech/Ursa.Avalonia</RepositoryUrl>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
