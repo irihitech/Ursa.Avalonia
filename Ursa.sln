@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "demo\Sandbox\Sandbox.csproj", "{1E94BAFD-867E-425F-8E12-7F416D523C94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ursa.ReactiveUIExtension", "src\Ursa.ReactiveUI\Ursa.ReactiveUIExtension.csproj", "{1317FA08-1C62-4E64-9568-3DF210760B48}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ursa.ReactiveUIExtension", "src\Ursa.ReactiveUIExtension\Ursa.ReactiveUIExtension.csproj", "{8DD57D6B-1C44-4E42-9541-8380DD17A3A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,10 +79,10 @@ Global
 		{1E94BAFD-867E-425F-8E12-7F416D523C94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E94BAFD-867E-425F-8E12-7F416D523C94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E94BAFD-867E-425F-8E12-7F416D523C94}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1317FA08-1C62-4E64-9568-3DF210760B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1317FA08-1C62-4E64-9568-3DF210760B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1317FA08-1C62-4E64-9568-3DF210760B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1317FA08-1C62-4E64-9568-3DF210760B48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DD57D6B-1C44-4E42-9541-8380DD17A3A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DD57D6B-1C44-4E42-9541-8380DD17A3A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DD57D6B-1C44-4E42-9541-8380DD17A3A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DD57D6B-1C44-4E42-9541-8380DD17A3A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
