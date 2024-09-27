@@ -1,0 +1,102 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--
+    <Color x:Key="WindowColor">#202020</Color>
+    <Color x:Key="WindowTextColor">#FFFFFF</Color>
+    <Color x:Key="HotlightColor">#75E9FC</Color>
+    <Color x:Key="GrayTextColor">#A6A6A6</Color>
+    <Color x:Key="HighlightTextColor">#263B50</Color>
+    <Color x:Key="HighlightColor">#8EE3F0</Color>
+    <Color x:Key="ButtonTextColor">#FFFFFF</Color>
+    <Color x:Key="ButtonFaceColor">#202020</Color>
+     -->
+    <!-- Badge -->
+    <SolidColorBrush x:Key="BadgeBorderBrush" Color="{StaticResource WindowTextColor}" />
+    <SolidColorBrush x:Key="BadgeForeground" Color="{StaticResource WindowColor}" />
+    <SolidColorBrush x:Key="BadgeContentForeground" Color="{StaticResource WindowTextColor}" />
+    <SolidColorBrush x:Key="BadgePrimaryBadgeBackground" Color="{StaticResource HotlightColor}" />
+    <SolidColorBrush x:Key="BadgeLightPrimaryBadgeForeground" Color="{StaticResource HotlightColor}" />
+    <SolidColorBrush x:Key="BadgeInvertedBadgeBackground" Color="{StaticResource WindowColor}" />
+    <SolidColorBrush x:Key="BadgeInvertedPrimaryBadgeForeground" Color="{StaticResource WindowTextColor}" />
+    
+    <!-- Banner -->
+    <SolidColorBrush x:Key="BannerInformationBackground" Color="{StaticResource WindowColor}" />
+    <SolidColorBrush x:Key="BannerBorderBrush" Color="{StaticResource WindowTextColor}" />
+    <SolidColorBrush x:Key="BannerInformationBorderBrush" Color="{StaticResource WindowTextColor}" />
+    <SolidColorBrush x:Key="BannerCloseButtonForeground" Color="{StaticResource WindowTextColor}" />
+    
+    <SolidColorBrush x:Key="ButtonGroupSeparatorForeground" Color="{StaticResource ButtonTextColor}" />
+    <!--  Light  -->
+    <SolidColorBrush x:Key="ButtonGroupDefaultPrimaryForeground" Color="{StaticResource ButtonTextColor}" />
+    <SolidColorBrush x:Key="ButtonGroupDefaultDisabledForeground" Color="{StaticResource GrayTextColor}" />
+
+    <SolidColorBrush x:Key="ButtonGroupDefaultBackground" Color="{StaticResource ButtonFaceColor}" />
+    <SolidColorBrush x:Key="ButtonGroupDefaultPointeroverBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="ButtonGroupDefaultPressedBackground" Color="{StaticResource HighlightColor}" />
+
+    <SolidColorBrush x:Key="ButtonGroupDefaultBorderBrush" Color="{StaticResource ButtonTextColor}" />
+    <SolidColorBrush x:Key="ButtonGroupDefaultPointeroverBorderBrush" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="ButtonGroupDefaultPressedBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="ButtonGroupDefaultDisabledBorderBrush" Color="{StaticResource GrayTextColor}" />
+
+    <!--  end Light  -->
+
+    <!--  Solid  -->
+    <SolidColorBrush x:Key="ButtonGroupSolidForeground" Color="{StaticResource HighlightTextColor}" />
+    <SolidColorBrush x:Key="ButtonGroupSolidDisabledForeground" Color="{StaticResource GrayTextColor}" />
+
+    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryPointeroverBackground" Color="{StaticResource ButtonTextColor}" />
+    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryPressedBackground" Color="{StaticResource HighlightColor}" />
+
+    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryBorderBrush" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryPointeroverBorderBrush" Color="{StaticResource ButtonTextColor}" />
+    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryPressedBorderBrush" Color="{StaticResource HighlightColor}" />
+
+    <SolidColorBrush x:Key="ButtonGroupSolidDisabledBorderBrush" Color="{StaticResource GrayTextColor}" />
+    <!--  end Solid  -->
+    
+    <!--CalenderDayButton-->
+    <SolidColorBrush x:Key="CalenderDayBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="CalenderDayBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="CalenderDayInRangeBackground" Color="{StaticResource HotlightColor}" />
+    <SolidColorBrush x:Key="CalenderDayTodayBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="CalenderDayTodayForeground" Color="{StaticResource ButtonTextColor}" />
+    <SolidColorBrush x:Key="CalenderDayNotCurrentMonthForeground" Color="{StaticResource GrayTextColor}" />
+    <SolidColorBrush x:Key="CalenderDayPointeroverBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="CalenderDayPressedBackground" Color="{StaticResource HighlightColor}" />
+
+    <SolidColorBrush x:Key="CalenderDaySelectedBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="CalenderDaySelectedForeground" Color="{StaticResource HighlightTextColor}" />
+    <SolidColorBrush x:Key="CalenderDaySelectedPointeroverBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="CalenderDaySelectedPressedBackground" Color="{StaticResource HighlightColor}" />
+
+    <SolidColorBrush x:Key="CalenderDayStartEndDateBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="CalenderDayStartEndDateBorderBrush" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="CalenderDayStartEndDatePointeroverBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="CalenderDayStartEndDatePressedBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="CalenderDayStartEndDateInRangeBackground" Color="{StaticResource HighlightColor}" />
+
+    <SolidColorBrush x:Key="CalenderDayPreviewStartEndDateBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="CalenderDayPreviewStartEndDatePressedBackground" Color="{StaticResource HighlightColor}" />
+
+    <SolidColorBrush x:Key="CalenderDayBlackoutForeground" Color="{StaticResource GrayTextColor}" />
+    <SolidColorBrush x:Key="CalenderDayBlackoutBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="CalenderDayBlackoutTodayBackground" Color="Transparent" />
+
+    <!--CalenderYearButton-->
+    <SolidColorBrush x:Key="CalenderYearBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="CalenderYearBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="CalenderYearPointeroverBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="CalenderYearPressedBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="CalenderYearSelectedBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="CalenderYearSelectedForeground" Color="{StaticResource HighlightTextColor}" />
+    <SolidColorBrush x:Key="CalenderYearSelectedPointeroverBackground" Color="{StaticResource HighlightColor}" />
+
+    <!--CalenderView-->
+    <SolidColorBrush x:Key="CalenderViewBackground" Color="Transparent" />
+    
+    <!-- Divider -->
+    <SolidColorBrush x:Key="DividerBorderBrush" Color="{StaticResource WindowTextColor}" />
+    
+</ResourceDictionary>

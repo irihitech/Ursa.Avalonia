@@ -5,7 +5,7 @@
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:Banner}" TargetType="u:Banner">
         <Setter Property="u:Banner.BorderThickness" Value="{DynamicResource BannerBorderThickness}" />
-        <Setter Property="u:Banner.BorderBrush" Value="Transparent" />
+        <Setter Property="u:Banner.BorderBrush" Value="{DynamicResource BannerBorderBrush}" />
         <Setter Property="u:Banner.HorizontalContentAlignment" Value="Center" />
         <Setter Property="u:Banner.Template">
             <ControlTemplate TargetType="u:Banner">
