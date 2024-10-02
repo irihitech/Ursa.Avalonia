@@ -3,7 +3,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:u-semi="https://irihi.tech/ursa/themes/semi"
-    RequestedThemeVariant="{x:Static semi:SemiTheme.Aquatic}"
+    RequestedThemeVariant="{x:Static semi:SemiTheme.Desert}"
     xmlns:semi="https://irihi.tech/semi"
     xmlns:demo="clr-namespace:Ursa.Demo">
     <Application.Styles>
