@@ -1,52 +1,58 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:u="https://irihi.tech/ursa">
-    <!-- Add Resources Here -->
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
     <Design.PreviewWith>
         <StackPanel Margin="20">
-            <TextBlock Text="Hello World"/>
+            <TextBlock Text="Hello World" />
         </StackPanel>
     </Design.PreviewWith>
-    
+
     <ControlTheme x:Key="{x:Type u:TimeBox}" TargetType="{x:Type u:TimeBox}">
-        <Setter Property="u:TimeBox.Focusable" Value="True"/>
-        <Setter Property="u:TimeBox.ShowLeadingZero" Value="True"/>
-        <Setter Property="u:TimeBox.TextAlignment" Value="Center"/>
-        <Setter Property="u:TimeBox.HorizontalAlignment" Value="Left"/>
-        <Setter Property="u:TimeBox.CornerRadius" Value="{DynamicResource TimeBoxCornerRadius}" />
-        <Setter Property="u:TimeBox.Background" Value="{DynamicResource TimeBoxBackground}" />
-        <Setter Property="u:TimeBox.MinHeight" Value="{DynamicResource TimeBoxDefaultMinHeight}" />
-        <Setter Property="u:TimeBox.BorderThickness" Value="{DynamicResource TimeBoxBorderThickness}" />
-        <Setter Property="u:TimeBox.SelectionBrush" Value="{DynamicResource TimeBoxSelectionBrush}" />
-        <Setter Property="u:TimeBox.SelectionForegroundBrush" Value="{DynamicResource TimeBoxSelectionForeground}" />
-        <Setter Property="u:TimeBox.CaretBrush" Value="{DynamicResource TimeBoxCaretBrush}" />
-        <Setter Property="u:TimeBox.Template">
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="ShowLeadingZero" Value="True" />
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
+        <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
+        <Setter Property="MinHeight" Value="{DynamicResource TextBoxDefaultHeight}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource TextBoxSelectionBackground}" />
+        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource TextBoxSelectionForeground}" />
+        <Setter Property="CaretBrush" Value="{DynamicResource TextBoxTextCaretBrush}" />
+        <Setter Property="Template">
             <ControlTemplate TargetType="u:TimeBox">
-                <Border Name="PART_Border"
+                <Border
+                    Name="PART_Border"
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <Grid Width="{TemplateBinding Width}" ColumnDefinitions="1*, Auto, 1*, Auto, 1*, Auto, 1*">
-                        <Border Name="{x:Static u:TimeBox.PART_HourBorder}" 
-                                Grid.Column="0"
-                                Background="Transparent"
-                                BorderBrush="Transparent"
-                                BorderThickness="0"
-                                CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border
+                            Name="{x:Static u:TimeBox.PART_HourBorder}"
+                            Grid.Column="0"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            CornerRadius="{TemplateBinding CornerRadius}">
                             <Grid>
-                                <TextPresenter Name="{x:Static u:TimeBox.PART_HoursTextPresenter}"
-                                               MinWidth="8"
-                                               VerticalAlignment="Center"
-                                               CaretBrush="{TemplateBinding CaretBrush}"
-                                               Cursor="IBeam"
-                                               SelectionBrush="{TemplateBinding SelectionBrush}"
-                                               SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
-                                               TextAlignment="{TemplateBinding TextAlignment}"/>
-                                <Panel Name="{x:Static u:TimeBox.PART_HourDragPanel}"
-                                       HorizontalAlignment="Stretch"
-                                       VerticalAlignment="Stretch"
-                                       Background="Transparent"/>
+                                <TextPresenter
+                                    Name="{x:Static u:TimeBox.PART_HoursTextPresenter}"
+                                    MinWidth="8"
+                                    VerticalAlignment="Center"
+                                    CaretBrush="{TemplateBinding CaretBrush}"
+                                    Cursor="IBeam"
+                                    SelectionBrush="{TemplateBinding SelectionBrush}"
+                                    SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                                    TextAlignment="{TemplateBinding TextAlignment}" />
+                                <Panel
+                                    Name="{x:Static u:TimeBox.PART_HourDragPanel}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Background="Transparent" />
                             </Grid>
                         </Border>
                         <TextBlock
@@ -55,25 +61,28 @@
                             VerticalAlignment="Center"
                             Focusable="False"
                             Text=":" />
-                        <Border Name="{x:Static u:TimeBox.PART_MinuteBorder}" 
-                                Grid.Column="2"
-                                Background="Transparent"
-                                BorderBrush="Transparent"
-                                BorderThickness="0"
-                                CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border
+                            Name="{x:Static u:TimeBox.PART_MinuteBorder}"
+                            Grid.Column="2"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            CornerRadius="{TemplateBinding CornerRadius}">
                             <Grid>
-                                <TextPresenter Name="{x:Static u:TimeBox.PART_MinuteTextPresenter}"
-                                               MinWidth="8"
-                                               VerticalAlignment="Center"
-                                               CaretBrush="{TemplateBinding CaretBrush}"
-                                               Cursor="IBeam"
-                                               SelectionBrush="{TemplateBinding SelectionBrush}"
-                                               SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
-                                               TextAlignment="{TemplateBinding TextAlignment}"/>
-                                <Panel Name="{x:Static u:TimeBox.PART_MinuteDragPanel}"
-                                       HorizontalAlignment="Stretch"
-                                       VerticalAlignment="Stretch"
-                                       Background="Transparent"/>
+                                <TextPresenter
+                                    Name="{x:Static u:TimeBox.PART_MinuteTextPresenter}"
+                                    MinWidth="8"
+                                    VerticalAlignment="Center"
+                                    CaretBrush="{TemplateBinding CaretBrush}"
+                                    Cursor="IBeam"
+                                    SelectionBrush="{TemplateBinding SelectionBrush}"
+                                    SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                                    TextAlignment="{TemplateBinding TextAlignment}" />
+                                <Panel
+                                    Name="{x:Static u:TimeBox.PART_MinuteDragPanel}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Background="Transparent" />
                             </Grid>
                         </Border>
                         <TextBlock
@@ -82,25 +91,28 @@
                             VerticalAlignment="Center"
                             Focusable="False"
                             Text=":" />
-                        <Border Name="{x:Static u:TimeBox.PART_SecondBorder}" 
-                                Grid.Column="4"
-                                Background="Transparent"
-                                BorderBrush="Transparent"
-                                BorderThickness="0"
-                                CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border
+                            Name="{x:Static u:TimeBox.PART_SecondBorder}"
+                            Grid.Column="4"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            CornerRadius="{TemplateBinding CornerRadius}">
                             <Grid>
-                                <TextPresenter Name="{x:Static u:TimeBox.PART_SecondTextPresenter}"
-                                               MinWidth="8"
-                                               VerticalAlignment="Center"
-                                               CaretBrush="{TemplateBinding CaretBrush}"
-                                               Cursor="IBeam"
-                                               SelectionBrush="{TemplateBinding SelectionBrush}"
-                                               SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
-                                               TextAlignment="{TemplateBinding TextAlignment}"/>
-                                <Panel Name="{x:Static u:TimeBox.PART_SecondDragPanel}"
-                                       HorizontalAlignment="Stretch"
-                                       VerticalAlignment="Stretch"
-                                       Background="Transparent"/>
+                                <TextPresenter
+                                    Name="{x:Static u:TimeBox.PART_SecondTextPresenter}"
+                                    MinWidth="8"
+                                    VerticalAlignment="Center"
+                                    CaretBrush="{TemplateBinding CaretBrush}"
+                                    Cursor="IBeam"
+                                    SelectionBrush="{TemplateBinding SelectionBrush}"
+                                    SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                                    TextAlignment="{TemplateBinding TextAlignment}" />
+                                <Panel
+                                    Name="{x:Static u:TimeBox.PART_SecondDragPanel}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Background="Transparent" />
                             </Grid>
                         </Border>
                         <TextBlock
@@ -109,25 +121,28 @@
                             VerticalAlignment="Center"
                             Focusable="False"
                             Text="." />
-                        <Border Name="{x:Static u:TimeBox.PART_MilliSecondBorder}" 
-                                Grid.Column="6"
-                                Background="Transparent"
-                                BorderBrush="Transparent"
-                                BorderThickness="0"
-                                CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border
+                            Name="{x:Static u:TimeBox.PART_MilliSecondBorder}"
+                            Grid.Column="6"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            CornerRadius="{TemplateBinding CornerRadius}">
                             <Grid>
-                                <TextPresenter Name="{x:Static u:TimeBox.PART_MillisecondTextPresenter}"
-                                               MinWidth="8"
-                                               VerticalAlignment="Center"
-                                               CaretBrush="{TemplateBinding CaretBrush}"
-                                               Cursor="IBeam"
-                                               SelectionBrush="{TemplateBinding SelectionBrush}"
-                                               SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
-                                               TextAlignment="{TemplateBinding TextAlignment}"/>
-                                <Panel Name="{x:Static u:TimeBox.PART_MilliSecondDragPanel}"
-                                       HorizontalAlignment="Stretch"
-                                       VerticalAlignment="Stretch"
-                                       Background="Transparent"/>
+                                <TextPresenter
+                                    Name="{x:Static u:TimeBox.PART_MillisecondTextPresenter}"
+                                    MinWidth="8"
+                                    VerticalAlignment="Center"
+                                    CaretBrush="{TemplateBinding CaretBrush}"
+                                    Cursor="IBeam"
+                                    SelectionBrush="{TemplateBinding SelectionBrush}"
+                                    SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                                    TextAlignment="{TemplateBinding TextAlignment}" />
+                                <Panel
+                                    Name="{x:Static u:TimeBox.PART_MilliSecondDragPanel}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Background="Transparent" />
                             </Grid>
                         </Border>
                     </Grid>
@@ -135,20 +150,21 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:focus-within">
-            <Setter Property="Border.BorderBrush" Value="{DynamicResource TimeBoxFocusBorderBrush}" />
+            <Setter Property="Border.BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
         </Style>
         <Style Selector="^:disabled">
-            <Setter Property="Background" Value="{DynamicResource TimeBoxDisabledBackground}" />
-            <Setter Property="Foreground" Value="{DynamicResource SemiColorDisabledText}" />
+            <Setter Property="Background" Value="{DynamicResource TextBoxDisabledBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBoxDisabledForeground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDisabledBorderBrush}" />
         </Style>
         <Style Selector="^[DragOrientation=Horizontal]">
             <Style Selector="^/template/ Panel">
-                <Setter Property="Cursor" Value="SizeWestEast"/>
+                <Setter Property="Cursor" Value="SizeWestEast" />
             </Style>
         </Style>
         <Style Selector="^[DragOrientation=Vertical]">
             <Style Selector="^/template/ Panel">
-                <Setter Property="Cursor" Value="SizeNorthSouth"/>
+                <Setter Property="Cursor" Value="SizeNorthSouth" />
             </Style>
         </Style>
     </ControlTheme>

@@ -267,11 +267,13 @@
 
         <!--  Pointerover State  -->
         <Style Selector="^:pointerover">
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemPointeroverForeground}" />
             <Setter Property="Background" Value="{DynamicResource ListBoxItemPointeroverBackground}" />
         </Style>
 
         <!--  Pressed State  -->
         <Style Selector="^:pressed">
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemPressedForeground}" />
             <Setter Property="Background" Value="{DynamicResource ListBoxItemPressedBackground}" />
         </Style>
 

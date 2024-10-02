@@ -100,4 +100,21 @@
     <SolidColorBrush x:Key="DividerBorderBrush" Color="{StaticResource WindowTextColor}" />
     
     <SolidColorBrush x:Key="NavigationMenuItemExpandIconForeground" Color="{StaticResource WindowTextColor}" />
+    
+    <!-- Pagination -->
+    <SolidColorBrush x:Key="PaginationButtonDefaultForeground" Color="{StaticResource WindowTextColor}" />
+    <SolidColorBrush x:Key="PaginationButtonSelectedForeground" Color="{StaticResource HighlightTextColor}" />
+    <SolidColorBrush x:Key="PaginationButtonIconForeground" Color="{StaticResource WindowTextColor}" />
+    <SolidColorBrush x:Key="PaginationButtonDefaultBackground" Color="{StaticResource WindowColor}" />
+    <SolidColorBrush x:Key="PaginationButtonPointeroverBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="PaginationButtonPressedBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="PaginationButtonSelectedBackground" Color="{DynamicResource HighlightColor}" />
+    
+    <!-- SelectionList -->
+    <SolidColorBrush x:Key="SelectionListIndicatorBackground" Color="{StaticResource WindowColor}" />
+    
+    <!-- Tag -->
+    <SolidColorBrush x:Key="ClosableTagBackground" Color="{StaticResource WindowColor}" />
+    <SolidColorBrush x:Key="ClosableTagForeground" Color="{StaticResource WindowTextColor}" />
+    <SolidColorBrush x:Key="ClosableTagBorder" Color="{StaticResource WindowTextColor}" />
 </ResourceDictionary>

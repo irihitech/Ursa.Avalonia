@@ -23,6 +23,5 @@
         <ResourceInclude Source="ThemeSelector.axaml" />
         <ResourceInclude Source="Toast.axaml" />
         <ResourceInclude Source="ToolBar.axaml" />
-        <ResourceInclude Source="TimeBox.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

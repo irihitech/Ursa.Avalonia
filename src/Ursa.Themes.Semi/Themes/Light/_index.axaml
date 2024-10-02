@@ -13,10 +13,10 @@
         <ResourceInclude Source="NotificationShared.axaml" />
         <ResourceInclude Source="Pagination.axaml" />
         <ResourceInclude Source="Rating.axaml" />
+        <ResourceInclude Source="SelectionList.axaml" />
         <ResourceInclude Source="TagInput.axaml" />
         <ResourceInclude Source="Timeline.axaml" />
         <ResourceInclude Source="Toast.axaml" />
         <ResourceInclude Source="Skeleton.axaml" />
-        <ResourceInclude Source="TimeBox.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
