@@ -8,7 +8,7 @@
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="Background" Value="{DynamicResource ComboBoxSelectorBackground}" />
         <Setter Property="CornerRadius" Value="{DynamicResource ComboBoxSelectorCornerRadius}" />
-        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxSelectorBorderBrush}" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="MaxDropdownHeight" Value="300" />
         <Setter Property="MaxSelectionBoxHeight" Value="270"></Setter>

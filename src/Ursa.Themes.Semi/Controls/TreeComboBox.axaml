@@ -18,6 +18,7 @@
         <Setter Property="Background" Value="{DynamicResource ComboBoxSelectorBackground}" />
         <Setter Property="CornerRadius" Value="{DynamicResource ComboBoxSelectorCornerRadius}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxSelectorBorderBrush}"></Setter>
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="MinHeight" Value="{DynamicResource ComboBoxDefaultHeight}" />
         <Setter Property="Cursor" Value="Hand" />

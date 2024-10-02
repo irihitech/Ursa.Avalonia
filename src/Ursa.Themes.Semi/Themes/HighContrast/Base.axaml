@@ -99,4 +99,5 @@
     <!-- Divider -->
     <SolidColorBrush x:Key="DividerBorderBrush" Color="{StaticResource WindowTextColor}" />
     
+    <SolidColorBrush x:Key="NavigationMenuItemExpandIconForeground" Color="{StaticResource WindowTextColor}" />
 </ResourceDictionary>
