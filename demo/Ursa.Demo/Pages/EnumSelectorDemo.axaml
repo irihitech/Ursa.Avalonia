@@ -26,5 +26,12 @@
             EnumType="{Binding SelectedType}"
             Value="{Binding Value}" />
         <TextBlock Text="{Binding Value}" />
+        <u:Divider Content="Small Size"></u:Divider>
+        <u:EnumSelector
+            Width="200"
+            Classes="Small"
+            DisplayDescription="{Binding #description.IsChecked}"
+            EnumType="{Binding SelectedType}"
+            Value="{Binding Value}" />
     </StackPanel>
 </UserControl>
