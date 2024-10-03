@@ -1,7 +1,8 @@
 <ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:u="https://irihi.tech/ursa">
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:u-semi="https://irihi.tech/ursa/themes/semi">
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:EnumSelector}" TargetType="u:EnumSelector">
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -9,6 +10,7 @@
             <ControlTemplate TargetType="u:EnumSelector">
                 <ComboBox
                     Width="{TemplateBinding Width}"
+                    u-semi:ClassHelper.ClassSource="{TemplateBinding}"
                     HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                     VerticalAlignment="{TemplateBinding VerticalAlignment}"
                     Name="PART_ComboBox"
