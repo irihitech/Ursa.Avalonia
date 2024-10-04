@@ -1,15 +1,16 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:u="https://irihi.tech/ursa">
-    <!-- Add Resources Here -->
-    <ControlTheme TargetType="u:ThemeToggleButton" x:Key="{x:Type u:ThemeToggleButton}">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <!--  Add Resources Here  -->
+    <ControlTheme x:Key="{x:Type u:ThemeToggleButton}" TargetType="u:ThemeToggleButton">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:ThemeToggleButton">
                 <Button
-                    Padding="8"
-                    FontWeight="Regular"
                     Name="{x:Static u:ThemeToggleButton.PART_ThemeButton}"
+                    Padding="8"
                     HorizontalAlignment="Center"
+                    FontWeight="Regular"
                     Theme="{DynamicResource BorderlessButton}">
                     <PathIcon
                         Name="PART_Icon"
@@ -20,16 +21,35 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:dark /template/ PathIcon#PART_Icon">
-            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonDarkGlyph}"></Setter>
-            <Setter Property="ToolTip.Tip" Value="{DynamicResource STRING_THEME_TOGGLE_DARK}"></Setter>
+            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonDarkGlyph}" />
+            <Setter Property="ToolTip.Tip" Value="{DynamicResource STRING_THEME_TOGGLE_DARK}" />
         </Style>
         <Style Selector="^:light /template/ PathIcon#PART_Icon">
-            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonLightGlyph}"></Setter>
-            <Setter Property="ToolTip.Tip" Value="{DynamicResource STRING_THEME_TOGGLE_LIGHT}"></Setter>
+            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonLightGlyph}" />
+            <Setter Property="ToolTip.Tip" Value="{DynamicResource STRING_THEME_TOGGLE_LIGHT}" />
         </Style>
         <Style Selector="^ /template/ PathIcon#PART_Icon">
-            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonDefaultGlyph}"></Setter>
-            <Setter Property="ToolTip.Tip" Value="{DynamicResource STRING_THEME_TOGGLE_SYSTEM}"></Setter>
+            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonDefaultGlyph}" />
+            <Setter Property="ToolTip.Tip" Value="{DynamicResource STRING_THEME_TOGGLE_SYSTEM}" />
         </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:ThemeSelector}" TargetType="u:ThemeSelector">
+        <Setter Property="ItemTemplate">
+            <DataTemplate x:DataType="ThemeVariant">
+                <TextBlock Text="{Binding Key}" />
+            </DataTemplate>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:ThemeSelector">
+                <ComboBox
+                    HorizontalAlignment="Stretch"
+                    ItemsSource="{TemplateBinding ThemeSource}"
+                    ItemTemplate="{TemplateBinding ItemTemplate}"
+                    SelectedItem="{Binding SelectedTheme, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+
+                </ComboBox>
+            </ControlTemplate>
+        </Setter>
     </ControlTheme>
 </ResourceDictionary>
