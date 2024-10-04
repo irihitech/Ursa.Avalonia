@@ -10,4 +10,5 @@
     <SolidColorBrush x:Key="BannerErrorBorderBrush" Color="#FFFC725A" />
 
     <SolidColorBrush x:Key="BannerCloseButtonForeground" Opacity="0.6" Color="#FFF9F9F9" />
+    <SolidColorBrush x:Key="BannerBorderBrush" Color="Transparent" />
 </ResourceDictionary>

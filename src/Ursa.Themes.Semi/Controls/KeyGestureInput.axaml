@@ -7,12 +7,11 @@
     <converters:PlatformKeyGestureConverter x:Key="KeyGestureConverter" />
 
     <ControlTheme x:Key="{x:Type u:KeyGestureInput}" TargetType="u:KeyGestureInput">
-        <Setter Property="MinWidth" Value="{DynamicResource KeyGestureInputWidth}" />
-        <Setter Property="MinHeight" Value="{DynamicResource KeyGestureInputHeight}" />
-        <Setter Property="Background" Value="{DynamicResource KeyGestureInputBackground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource KeyGestureInputBorderBrush}" />
-        <Setter Property="BorderThickness" Value="{DynamicResource KeyGestureInputBorderThickness}" />
-        <Setter Property="CornerRadius" Value="{DynamicResource KeyGestureInputCornerRadius}" />
+        <Setter Property="MinHeight" Value="{DynamicResource TextBoxDefaultHeight}" />
+        <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
         <Setter Property="Padding" Value="8 0" />
         <Setter Property="Template">
@@ -67,18 +66,18 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover /template/ Border#Background">
-            <Setter Property="Background" Value="{DynamicResource KeyGestureInputPointeroverBackground}" />
+            <Setter Property="Background" Value="{DynamicResource TextBoxPointeroverBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxPointeroverBorderBrush}" />
         </Style>
         <Style Selector="^:pressed /template/ Border#Background">
-            <Setter Property="Background" Value="{DynamicResource KeyGestureInputPressedBackground}" />
+            <Setter Property="Background" Value="{DynamicResource TextBoxPressedBackground}" />
         </Style>
         <Style Selector="^:focus /template/ Border#Background">
-            <Setter Property="Background" Value="{DynamicResource KeyGestureInputPressedBackground}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource KeyGestureInputFocusBorderBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
         </Style>
         <Style Selector="^:focus-within /template/ Border#Background">
-            <Setter Property="Background" Value="{DynamicResource KeyGestureInputPressedBackground}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource KeyGestureInputFocusBorderBrush}" />
+            <Setter Property="Background" Value="{DynamicResource TextBoxPressedBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
         </Style>
         <Style Selector="^:not(:empty).clearButton, ^:not(:empty).ClearButton">
             <Style Selector="^:focus /template/ Button#PART_ClearButton">

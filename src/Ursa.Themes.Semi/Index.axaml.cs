@@ -11,6 +11,11 @@ namespace Ursa.Themes.Semi;
 /// </summary>
 public class SemiTheme: Styles
 {
+    public static ThemeVariant Aquatic => new ThemeVariant(nameof(Aquatic), ThemeVariant.Dark);
+    public static ThemeVariant Desert => new ThemeVariant(nameof(Desert), ThemeVariant.Light);
+    public static ThemeVariant Dust => new ThemeVariant(nameof(Dust), ThemeVariant.Dark);
+    public static ThemeVariant NightSky => new ThemeVariant(nameof(NightSky), ThemeVariant.Dark);
+    
     private static readonly Lazy<Dictionary<CultureInfo, ResourceDictionary>> _localeToResource = new Lazy<Dictionary<CultureInfo, ResourceDictionary>>(
         () => new Dictionary<CultureInfo, ResourceDictionary>
         {
