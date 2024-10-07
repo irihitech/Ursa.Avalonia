@@ -12,7 +12,7 @@ public partial class MainWindow : UrsaWindow
 
     protected override async Task<bool> CanClose()
     {
-        var result = await MessageBox.ShowOverlayAsync("Are you sure you want to exit?", "Exit", button: MessageBoxButton.YesNo);
+        var result = await MessageBox.ShowOverlayAsync("Are you sure you want to exit?\n您确定要退出吗？", "Exit", button: MessageBoxButton.YesNo);
         return result == MessageBoxResult.Yes;
     }
 }
