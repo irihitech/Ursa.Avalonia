@@ -74,4 +74,9 @@ public class BreadcrumbItem: ContentControl
             Command?.Execute(CommandParameter);
         }
     }
+    
+    internal void SetPseudoClassLast(bool isLast)
+    {
+        PseudoClasses.Set(PC_Last, isLast);
+    }
 }
