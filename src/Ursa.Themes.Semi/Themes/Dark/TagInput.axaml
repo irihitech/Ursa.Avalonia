@@ -1,6 +1,6 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--  Add Resources Here  -->
     <SolidColorBrush x:Key="ClosableTagBackground" Opacity="0.15" Color="#888D92" />
-    <SolidColorBrush x:Key="ClosableTagForeground" Color="#E6E8EA"/>
-    <SolidColorBrush x:Key="ClosableTagBorder" Opacity="0.08" Color="White"/>
+    <SolidColorBrush x:Key="ClosableTagForeground" Color="#E6E8EA" />
+    <SolidColorBrush x:Key="ClosableTagBorder" Opacity="0.08" Color="White" />
 </ResourceDictionary>

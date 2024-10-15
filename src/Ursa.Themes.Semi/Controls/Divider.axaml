@@ -9,28 +9,28 @@
     </Design.PreviewWith>
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="DividerLeftLine" TargetType="{x:Type Rectangle}">
-        <Setter Property="Rectangle.Fill" Value="{DynamicResource DividerBorderBrush}" />
-        <Setter Property="Rectangle.Height" Value="{DynamicResource SizeDividerWidth}" />
-        <Setter Property="Rectangle.MinWidth" Value="{DynamicResource SizeDividerLeftMinWidth}" />
+        <Setter Property="Fill" Value="{DynamicResource DividerBorderBrush}" />
+        <Setter Property="Height" Value="{DynamicResource SizeDividerWidth}" />
+        <Setter Property="MinWidth" Value="{DynamicResource SizeDividerLeftMinWidth}" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </ControlTheme>
 
     <ControlTheme x:Key="DividerRightLine" TargetType="{x:Type Rectangle}">
-        <Setter Property="Rectangle.Fill" Value="{DynamicResource DividerBorderBrush}" />
-        <Setter Property="Rectangle.Height" Value="{DynamicResource SizeDividerWidth}" />
-        <Setter Property="Rectangle.MinWidth" Value="{DynamicResource SizeDividerRightMinWidth}" />
+        <Setter Property="Fill" Value="{DynamicResource DividerBorderBrush}" />
+        <Setter Property="Height" Value="{DynamicResource SizeDividerWidth}" />
+        <Setter Property="MinWidth" Value="{DynamicResource SizeDividerRightMinWidth}" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </ControlTheme>
 
     <ControlTheme x:Key="DividerContentPresenter" TargetType="{x:Type ContentPresenter}">
-        <Setter Property="ContentPresenter.Content" Value="{TemplateBinding Content}" />
-        <Setter Property="ContentPresenter.Background" Value="{TemplateBinding Background}" />
-        <Setter Property="TextElement.Foreground" Value="{TemplateBinding Foreground}" />
-        <Setter Property="ContentPresenter.ContentTemplate" Value="{TemplateBinding ContentTemplate}" />
-        <Setter Property="TextElement.FontFamily" Value="{TemplateBinding FontFamily}" />
-        <Setter Property="TextElement.FontWeight" Value="{TemplateBinding FontWeight}" />
-        <Setter Property="TextElement.FontSize" Value="{TemplateBinding FontSize}" />
-        <Setter Property="ContentPresenter.Margin" Value="{DynamicResource ThicknessDividerTextMargin}" />
+        <Setter Property="Content" Value="{TemplateBinding Content}" />
+        <Setter Property="Background" Value="{TemplateBinding Background}" />
+        <Setter Property="Foreground" Value="{TemplateBinding Foreground}" />
+        <Setter Property="ContentTemplate" Value="{TemplateBinding ContentTemplate}" />
+        <Setter Property="FontFamily" Value="{TemplateBinding FontFamily}" />
+        <Setter Property="FontWeight" Value="{TemplateBinding FontWeight}" />
+        <Setter Property="FontSize" Value="{TemplateBinding FontSize}" />
+        <Setter Property="Margin" Value="{DynamicResource ThicknessDividerTextMargin}" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </ControlTheme>
 

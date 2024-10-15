@@ -150,7 +150,7 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:focus-within">
-            <Setter Property="Border.BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
         </Style>
         <Style Selector="^:disabled">
             <Setter Property="Background" Value="{DynamicResource TextBoxDisabledBackground}" />

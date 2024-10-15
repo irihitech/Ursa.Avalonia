@@ -43,8 +43,8 @@
         <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
         <Setter Property="CaretBrush" Value="{DynamicResource TextBoxTextCaretBrush}" />
         <Setter Property="ContextFlyout" Value="{DynamicResource IPv4BoxMenuFlyout}" />
-        <Setter Property="FocusAdorner" Value="{x:Null}"></Setter>
-        <Setter Property="u:IPv4Box.Template">
+        <Setter Property="FocusAdorner" Value="{x:Null}" />
+        <Setter Property="Template">
             <ControlTemplate TargetType="u:IPv4Box">
                 <Border
                     Name="PART_Border"

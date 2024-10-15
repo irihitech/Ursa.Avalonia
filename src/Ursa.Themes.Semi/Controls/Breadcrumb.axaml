@@ -56,13 +56,13 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^ /template/ ContentPresenter#PART_IconPresenter">
-            <Setter Property="Margin" Value="0 0 4 0"></Setter>
+            <Setter Property="Margin" Value="0 0 4 0" />
         </Style>
         <Style Selector="^ /template/ ContentPresenter#Separator">
-            <Setter Property="Margin" Value="4 0"></Setter>
+            <Setter Property="Margin" Value="4 0" />
         </Style>
         <Style Selector="^[IsReadOnly=False]">
-            <Setter Property="Cursor" Value="Hand"></Setter>
+            <Setter Property="Cursor" Value="Hand" />
         </Style>
         <Style Selector="^:last">
             <Style Selector="^ /template/ ContentPresenter#PART_IconPresenter">

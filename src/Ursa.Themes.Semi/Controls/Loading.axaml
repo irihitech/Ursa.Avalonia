@@ -7,7 +7,7 @@
     <!--  Add Resources Here  -->
     <converters:BrushToColorConverter x:Key="BrushToColorConverter" />
     <ControlTheme x:Key="{x:Type u:LoadingIcon}" TargetType="u:LoadingIcon">
-        <Setter Property="IsLoading" Value="True"></Setter>
+        <Setter Property="IsLoading" Value="True" />
         <Setter Property="Foreground" Value="{DynamicResource LoadingIconForeground}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:LoadingIcon">

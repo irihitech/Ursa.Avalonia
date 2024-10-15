@@ -49,7 +49,7 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:empty /template/ TextBlock#PART_Watermark">
-            <Setter Property="IsVisible" Value="True"></Setter>
+            <Setter Property="IsVisible" Value="True" />
         </Style>
         <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder">
             <Setter Property="Background" Value="{DynamicResource TextBoxPointeroverBackground}" />

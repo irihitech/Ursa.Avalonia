@@ -109,7 +109,7 @@
         </Style>
         
         <Style Selector="^:empty[IsLoading=False] /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Margin" Value="0"></Setter>
+            <Setter Property="Margin" Value="0" />
         </Style>
 
         <Style Selector="^:right">

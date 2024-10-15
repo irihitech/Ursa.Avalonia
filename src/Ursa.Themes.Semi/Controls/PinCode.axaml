@@ -11,7 +11,7 @@
         <Setter Property="Width" Value="{DynamicResource TextBoxDefaultHeight}" />
         <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
         <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}"></Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
         <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
         <Setter Property="FocusAdorner" Value="{x:Null}" />
         <Setter Property="Template">

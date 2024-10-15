@@ -19,14 +19,14 @@
         <Style Selector="^[DisplayDescription=True] /template/ ComboBox">
             <Setter Property="ItemTemplate">
                 <DataTemplate x:DataType="u:EnumItemTuple">
-                    <TextBlock Text="{Binding DisplayName}"></TextBlock>
+                    <TextBlock Text="{Binding DisplayName}" />
                 </DataTemplate>
             </Setter>
         </Style>
         <Style Selector="^[DisplayDescription=False] /template/ ComboBox">
             <Setter Property="ItemTemplate">
                 <DataTemplate x:DataType="u:EnumItemTuple">
-                    <TextBlock Text="{Binding Value}"></TextBlock>
+                    <TextBlock Text="{Binding Value}" />
                 </DataTemplate>
             </Setter>
         </Style>

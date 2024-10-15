@@ -30,14 +30,11 @@
                             Classes.Active="{Binding Path= IsActive, RelativeSource={RelativeSource TemplatedParent}}"
                             IsHitTestVisible="{TemplateBinding IsLoading}"
                             Background="{DynamicResource SkeletonDefaultBackground}"
-                            IsVisible="{TemplateBinding IsLoading}">
-                        </iri:PureRectangle>
+                            IsVisible="{TemplateBinding IsLoading}" />
                         <iri:PureRectangle
                             x:Name="PART_ActiveBorder"
                             IsHitTestVisible="{TemplateBinding IsLoading}"
-                            IsVisible="{TemplateBinding IsLoading}"
-                            >
-                        </iri:PureRectangle>
+                            IsVisible="{TemplateBinding IsLoading}" />
                     </Panel>
                 </Border>
             </ControlTemplate>

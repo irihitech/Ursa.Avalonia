@@ -4,10 +4,10 @@
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:Banner}" TargetType="u:Banner">
-        <Setter Property="u:Banner.BorderThickness" Value="{DynamicResource BannerBorderThickness}" />
-        <Setter Property="u:Banner.BorderBrush" Value="{DynamicResource BannerBorderBrush}" />
-        <Setter Property="u:Banner.HorizontalContentAlignment" Value="Center" />
-        <Setter Property="u:Banner.Template">
+        <Setter Property="BorderThickness" Value="{DynamicResource BannerBorderThickness}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource BannerBorderBrush}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Template">
             <ControlTemplate TargetType="u:Banner">
                 <Border
                     Name="PART_Container"

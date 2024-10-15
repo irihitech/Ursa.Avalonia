@@ -16,13 +16,13 @@
         <Setter Property="Background" Value="{DynamicResource ButtonGroupDefaultBackground}" />
         <Setter Property="CornerRadius" Value="3" />
         <Setter Property="ClipToBounds" Value="True" />
-        <Setter Property="u:ButtonGroup.ItemContainerTheme" Value="{DynamicResource ButtonGroupItemTheme}" />
-        <Setter Property="u:ButtonGroup.ItemsPanel">
+        <Setter Property="ItemContainerTheme" Value="{DynamicResource ButtonGroupItemTheme}" />
+        <Setter Property="ItemsPanel">
             <ItemsPanelTemplate>
                 <StackPanel Orientation="Horizontal" />
             </ItemsPanelTemplate>
         </Setter>
-        <Setter Property="u:ButtonGroup.Template">
+        <Setter Property="Template">
             <ControlTemplate TargetType="u:ButtonGroup">
                 <Border
                     Background="{TemplateBinding Background}"
@@ -43,7 +43,7 @@
         <Setter Property="Padding" Value="{DynamicResource ButtonGroupDefaultPadding}" />
         <Setter Property="FontWeight" Value="{DynamicResource ButtonGroupDefaultFontWeight}" />
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Button.Template">
+        <Setter Property="Template">
             <ControlTemplate TargetType="Button">
                 <DockPanel LastChildFill="True">
                     <Rectangle

@@ -34,7 +34,7 @@
     <ControlTheme x:Key="{x:Type u:TimelineItem}" TargetType="u:TimelineItem">
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="u:TimelineItem.Template">
+        <Setter Property="Template">
             <ControlTemplate TargetType="u:TimelineItem">
                 <Grid
                     Name="PART_RootGrid"
@@ -148,7 +148,7 @@
                 <Setter Property="Grid.Column" Value="2" />
                 <Setter Property="TextAlignment" Value="Left" />
                 <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="Margin" Value="8 2 8 12"></Setter>
+                <Setter Property="Margin" Value="8 2 8 12" />
             </Style>
         </Style>
         <Style Selector="^:all-right">
@@ -169,7 +169,7 @@
                 <Setter Property="Grid.Column" Value="0" />
                 <Setter Property="TextAlignment" Value="Right" />
                 <Setter Property="HorizontalAlignment" Value="Right" />
-                <Setter Property="Margin" Value="8 2 8 12"></Setter>
+                <Setter Property="Margin" Value="8 2 8 12" />
             </Style>
         </Style>
         <Style Selector="^:separate">
@@ -184,7 +184,7 @@
                 <Setter Property="Grid.Column" Value="2" />
                 <Setter Property="HorizontalContentAlignment" Value="Left" />
                 <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="Margin" Value="8 2 8 12"></Setter>
+                <Setter Property="Margin" Value="8 2 8 12" />
             </Style>
             <Style Selector="^ /template/ TextBlock#PART_Time">
                 <Setter Property="Grid.Row" Value="0" />

@@ -4,19 +4,19 @@
     xmlns:u="https://irihi.tech/ursa"
     xmlns:converters="clr-namespace:Ursa.Converters;assembly=Ursa">
     <ControlTheme x:Key="{x:Type u:DualBadge}" TargetType="u:DualBadge">
-        <Setter Property="u:DualBadge.CornerRadius" Value="{DynamicResource DualBadgeDefaultCornerRadius}" />
-        <Setter Property="u:DualBadge.FontSize" Value="{DynamicResource DualBadgeDefaultFontSize}" />
-        <Setter Property="u:DualBadge.IconForeground" Value="{DynamicResource DualBadgeDefaultIconForeground}" />
-        <Setter Property="u:DualBadge.HeaderForeground" Value="{DynamicResource DualBadgeDefaultHeaderForeground}" />
-        <Setter Property="u:DualBadge.HeaderBackground" Value="{DynamicResource DualBadgeDefaultHeaderBackground}" />
-        <Setter Property="u:DualBadge.Foreground" Value="{DynamicResource DualBadgeDefaultForeground}" />
-        <Setter Property="u:DualBadge.Background" Value="{DynamicResource DualBadgeFlatGreenBackground}" />
-        <Setter Property="u:DualBadge.ClipToBounds" Value="{DynamicResource DualBadgeDefaultClipToBounds}" />
-        <Setter Property="u:DualBadge.HorizontalAlignment" Value="{DynamicResource DualBadgeDefaultHorizontalAlignment}" />
-        <Setter Property="u:DualBadge.VerticalAlignment" Value="{DynamicResource DualBadgeDefaultVerticalAlignment}" />
-        <Setter Property="u:DualBadge.UseLayoutRounding" Value="{DynamicResource DualBadgeDefaultUseLayoutRounding}" />
-        <Setter Property="u:DualBadge.Padding" Value="{DynamicResource DualBadgeDefaultPadding}" />
-        <Setter Property="u:DualBadge.Template">
+        <Setter Property="CornerRadius" Value="{DynamicResource DualBadgeDefaultCornerRadius}" />
+        <Setter Property="FontSize" Value="{DynamicResource DualBadgeDefaultFontSize}" />
+        <Setter Property="IconForeground" Value="{DynamicResource DualBadgeDefaultIconForeground}" />
+        <Setter Property="HeaderForeground" Value="{DynamicResource DualBadgeDefaultHeaderForeground}" />
+        <Setter Property="HeaderBackground" Value="{DynamicResource DualBadgeDefaultHeaderBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource DualBadgeDefaultForeground}" />
+        <Setter Property="Background" Value="{DynamicResource DualBadgeFlatGreenBackground}" />
+        <Setter Property="ClipToBounds" Value="{DynamicResource DualBadgeDefaultClipToBounds}" />
+        <Setter Property="HorizontalAlignment" Value="{DynamicResource DualBadgeDefaultHorizontalAlignment}" />
+        <Setter Property="VerticalAlignment" Value="{DynamicResource DualBadgeDefaultVerticalAlignment}" />
+        <Setter Property="UseLayoutRounding" Value="{DynamicResource DualBadgeDefaultUseLayoutRounding}" />
+        <Setter Property="Padding" Value="{DynamicResource DualBadgeDefaultPadding}" />
+        <Setter Property="Template">
             <ControlTemplate TargetType="{x:Type u:DualBadge}">
                 <Border
                     HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
