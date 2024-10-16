@@ -237,7 +237,7 @@
                             Height="{DynamicResource NavigationMenuSeparatorBorderHeight}"
                             Margin="{DynamicResource NavigationMenuSeparatorBorderMargin}"
                             HorizontalAlignment="Stretch"
-                            Fill="{DynamicResource SemiColorBorder}" />
+                            Fill="{DynamicResource NavigationMenuItemSeparatorBorderForeground}" />
                     </StackPanel>
                 </ControlTemplate>
             </Setter>

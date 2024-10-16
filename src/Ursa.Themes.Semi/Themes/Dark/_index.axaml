@@ -3,20 +3,25 @@
         <ResourceInclude Source="Avatar.axaml" />
         <ResourceInclude Source="Badge.axaml" />
         <ResourceInclude Source="Banner.axaml" />
+        <ResourceInclude Source="Breadcrumb.axaml" />
         <ResourceInclude Source="ButtonGroup.axaml" />
+        <ResourceInclude Source="Clock.axaml" />
         <ResourceInclude Source="DatePicker.axaml" />
         <ResourceInclude Source="Dialog.axaml" />
         <ResourceInclude Source="Divider.axaml" />
         <ResourceInclude Source="DualBadge.axaml" />
+        <ResourceInclude Source="Form.axaml" />
         <ResourceInclude Source="Loading.axaml" />
         <ResourceInclude Source="NavigationMenu.axaml" />
         <ResourceInclude Source="NotificationShared.axaml" />
         <ResourceInclude Source="Pagination.axaml" />
         <ResourceInclude Source="Rating.axaml" />
         <ResourceInclude Source="SelectionList.axaml" />
+        <ResourceInclude Source="Skeleton.axaml" />
         <ResourceInclude Source="TagInput.axaml" />
         <ResourceInclude Source="Timeline.axaml" />
         <ResourceInclude Source="Toast.axaml" />
-        <ResourceInclude Source="Skeleton.axaml" />
+        <ResourceInclude Source="ToolBar.axaml" />
+        <ResourceInclude Source="TwoTonePathIcon.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

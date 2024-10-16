@@ -38,7 +38,7 @@
                         Height="1"
                         Margin="0,8"
                         HorizontalAlignment="Stretch"
-                        Fill="{DynamicResource SemiColorBorder}"
+                        Fill="{DynamicResource FormGroupForeground}"
                         IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Header, Converter={x:Static ObjectConverters.IsNotNull}}" />
                     <ItemsPresenter
                         ItemsPanel="{TemplateBinding ItemsPanel}" />
@@ -64,7 +64,7 @@
                             FontWeight="{DynamicResource TextBlockTitleFontWeight}"
                             Target="{Binding #PART_ContentPresenter.Content}" />
                         <TextBlock
-                            Foreground="{DynamicResource SemiRed6}"
+                            Foreground="{DynamicResource FormAsteriskForeground}"
                             IsVisible="{TemplateBinding IsRequired}"
                             Text="*" />
                     </StackPanel>
@@ -100,7 +100,7 @@
                                     FontWeight="{DynamicResource TextBlockTitleFontWeight}"
                                     Target="{Binding #PART_ContentPresenter.Content}" />
                                 <TextBlock
-                                    Foreground="{DynamicResource SemiRed6}"
+                                    Foreground="{DynamicResource FormAsteriskForeground}"
                                     IsVisible="{TemplateBinding IsRequired}"
                                     Text="*" />
                             </StackPanel>

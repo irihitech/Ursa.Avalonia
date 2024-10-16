@@ -1,5 +1,5 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!--  Add Resources Here  -->
+    <SolidColorBrush x:Key="TimelineHeaderForeground" Color="#F9F9F9" />
     <SolidColorBrush x:Key="DefaultTimelineIconForeground" Opacity="0.2" Color="White" />
     <SolidColorBrush x:Key="OngoingTimelineIconForeground" Color="#FF54A9FF" />
     <SolidColorBrush x:Key="SuccessTimelineIconForeground" Color="#FF5DC264" />

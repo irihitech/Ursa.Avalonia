@@ -1,0 +1,4 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="FormGroupForeground" Opacity="0.08" Color="White" />
+    <SolidColorBrush x:Key="FormAsteriskForeground" Color="#FD9983" />
+</ResourceDictionary>

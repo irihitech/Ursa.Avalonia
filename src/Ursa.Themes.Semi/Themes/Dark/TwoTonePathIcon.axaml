@@ -1,0 +1,6 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="TwoTonePathIconForeground" Color="#135CB8"/>
+    <SolidColorBrush x:Key="TwoTonePathIconStrokeBrush" Color="#7FC1FF"/>
+    <SolidColorBrush x:Key="TwoTonePathIconActiveForeground" Color="#7FC1FF"/>
+    <SolidColorBrush x:Key="TwoTonePathIconActiveStrokeBrush" Color="#7FC1FF"/>
+</ResourceDictionary>

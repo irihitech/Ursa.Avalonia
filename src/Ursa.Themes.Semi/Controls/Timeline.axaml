@@ -79,7 +79,7 @@
                         Content="{TemplateBinding Header}"
                         ContentTemplate="{TemplateBinding HeaderTemplate}"
                         FontSize="14"
-                        Foreground="{DynamicResource SemiGrey9}" />
+                        Foreground="{DynamicResource TimelineHeaderForeground}" />
                     <ContentPresenter
                         Name="{x:Static u:TimelineItem.PART_Content}"
                         Grid.Row="1"
