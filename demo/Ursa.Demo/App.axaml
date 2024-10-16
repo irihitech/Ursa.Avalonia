@@ -1,11 +1,9 @@
 <Application
     x:Class="Ursa.Demo.App"
     xmlns="https://github.com/avaloniaui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-    xmlns:u-semi="https://irihi.tech/ursa/themes/semi"
-    RequestedThemeVariant="{x:Static semi:SemiTheme.Desert}"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:semi="https://irihi.tech/semi"
-    xmlns:demo="clr-namespace:Ursa.Demo">
+    xmlns:u-semi="https://irihi.tech/ursa/themes/semi">
     <Application.Styles>
         <semi:SemiTheme Locale="zh-CN" />
         <u-semi:SemiTheme Locale="zh-CN" />
