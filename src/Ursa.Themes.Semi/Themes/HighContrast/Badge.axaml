@@ -1,0 +1,9 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="BadgeBorderBrush" Color="{StaticResource WindowTextColor}" />
+    <SolidColorBrush x:Key="BadgeForeground" Color="{StaticResource WindowColor}" />
+    <SolidColorBrush x:Key="BadgeContentForeground" Color="{StaticResource WindowTextColor}" />
+    <SolidColorBrush x:Key="BadgePrimaryBadgeBackground" Color="{StaticResource HotlightColor}" />
+    <SolidColorBrush x:Key="BadgeLightPrimaryBadgeForeground" Color="{StaticResource HotlightColor}" />
+    <SolidColorBrush x:Key="BadgeInvertedBadgeBackground" Color="{StaticResource WindowColor}" />
+    <SolidColorBrush x:Key="BadgeInvertedPrimaryBadgeForeground" Color="{StaticResource WindowTextColor}" />
+</ResourceDictionary>

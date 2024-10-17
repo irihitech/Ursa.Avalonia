@@ -1,6 +1,4 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!-- Add Resources Here -->
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Color x:Key="WindowColor">#202020</Color>
     <Color x:Key="WindowTextColor">#FFFFFF</Color>
     <Color x:Key="HotlightColor">#75E9FC</Color>
@@ -10,6 +8,6 @@
     <Color x:Key="ButtonTextColor">#FFFFFF</Color>
     <Color x:Key="ButtonFaceColor">#202020</Color>
     <ResourceDictionary.MergedDictionaries>
-        <ResourceInclude Source="Base.axaml" />
+        <ResourceInclude Source="_index.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
