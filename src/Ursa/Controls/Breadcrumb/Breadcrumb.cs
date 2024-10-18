@@ -1,3 +1,4 @@
+using System.Collections.Specialized;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
@@ -83,9 +84,19 @@ public class Breadcrumb: ItemsControl
         return new BreadcrumbItem();
     }
 
+    protected override void LogicalChildrenCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        base.LogicalChildrenCollectionChanged(sender, e);
+        var breadcrumbItems = LogicalChildren.OfType<BreadcrumbItem>().ToList();
+        for (var i = 0; i < breadcrumbItems.Count; i++)
+        {
+            var breadcrumbItem = breadcrumbItems[i];
+            breadcrumbItem.SetPseudoClassLast(i == breadcrumbItems.Count - 1);
+        }
+    }
+
     protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
     {
-        // base.PrepareContainerForItemOverride(container, item, index);
         if (container is not BreadcrumbItem breadcrumbItem) return;
         if (!breadcrumbItem.IsSet(BreadcrumbItem.SeparatorProperty))
         {
@@ -99,8 +110,6 @@ public class Breadcrumb: ItemsControl
                     breadcrumbItem.Separator = b;
             });
         }
-
-        PseudolassesExtensions.Set(container.Classes, BreadcrumbItem.PC_Last, index == ItemCount - 1);
 
         if (container == item) return;
         if(!breadcrumbItem.IsSet(ContentControl.ContentProperty))
