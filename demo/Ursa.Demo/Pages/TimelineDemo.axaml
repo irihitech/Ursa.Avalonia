@@ -14,47 +14,43 @@
     mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
-            <selectors:TimelineIconTemplateSelector x:Key="IconSelector" >
-                <SolidColorBrush x:Key="Default" Color="{DynamicResource SemiGray6Color}"></SolidColorBrush>
-                <SolidColorBrush x:Key="Ongoing" Color="{DynamicResource SemiBlue6Color}"></SolidColorBrush>
-                <SolidColorBrush x:Key="Success" Color="{DynamicResource SemiGreen6Color}"></SolidColorBrush>
-                <SolidColorBrush x:Key="Warning" Color="{DynamicResource SemiOrange6Color}"></SolidColorBrush>
-                <SolidColorBrush x:Key="Error" Color="{DynamicResource SemiRed6Color}"></SolidColorBrush>
+            <selectors:TimelineIconTemplateSelector x:Key="IconSelector">
+                <SolidColorBrush x:Key="Default" Color="{DynamicResource SemiGray6Color}" />
+                <SolidColorBrush x:Key="Ongoing" Color="{DynamicResource SemiBlue6Color}" />
+                <SolidColorBrush x:Key="Success" Color="{DynamicResource SemiGreen6Color}" />
+                <SolidColorBrush x:Key="Warning" Color="{DynamicResource SemiOrange6Color}" />
+                <SolidColorBrush x:Key="Error" Color="{DynamicResource SemiRed6Color}" />
             </selectors:TimelineIconTemplateSelector>
         </ResourceDictionary>
     </UserControl.Resources>
     <WrapPanel>
         <u:Timeline
+            HorizontalAlignment="Left"
+            ContentMemberBinding="{Binding Description}"
+            HeaderMemberBinding="{Binding Header}"
+            IconMemberBinding="{Binding ItemType}"
+            IconTemplate="{StaticResource IconSelector}"
+            ItemsSource="{Binding Items}"
             Mode="Alternate"
+            TimeMemberBinding="{Binding Time}" />
+        <u:Timeline
             HorizontalAlignment="Left"
             ContentMemberBinding="{Binding Description}"
             HeaderMemberBinding="{Binding Header}"
             IconMemberBinding="{Binding ItemType}"
             IconTemplate="{StaticResource IconSelector}"
             ItemsSource="{Binding Items}"
-            TimeMemberBinding="{Binding Time}" >
-                
-        </u:Timeline>
-        <u:Timeline
             Mode="Left"
-            HorizontalAlignment="Left"
-            ContentMemberBinding="{Binding Description}"
-            HeaderMemberBinding="{Binding Header}"
-            IconMemberBinding="{Binding ItemType}"
-            IconTemplate="{StaticResource IconSelector}"
-            ItemsSource="{Binding Items}"
-            TimeMemberBinding="{Binding Time}" >
-        </u:Timeline>
+            TimeMemberBinding="{Binding Time}" />
         <u:Timeline
-            Mode="Right"
             HorizontalAlignment="Left"
             ContentMemberBinding="{Binding Description}"
             HeaderMemberBinding="{Binding Header}"
             IconMemberBinding="{Binding ItemType}"
             IconTemplate="{StaticResource IconSelector}"
             ItemsSource="{Binding Items}"
-            TimeMemberBinding="{Binding Time}" >
-        </u:Timeline>
+            Mode="Right"
+            TimeMemberBinding="{Binding Time}" />
         <u:Timeline HorizontalAlignment="Left" Mode="Alternate">
             <u:TimelineItem
                 Content="Step 1"
