@@ -20,16 +20,16 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:dark /template/ PathIcon#PART_Icon">
-            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonDarkGlyph}"></Setter>
-            <Setter Property="ToolTip.Tip" Value="{DynamicResource STRING_THEME_TOGGLE_DARK}"></Setter>
+            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonDarkGlyph}" />
+            <Setter Property="ToolTip.Tip" Value="{DynamicResource STRING_THEME_TOGGLE_DARK}" />
         </Style>
         <Style Selector="^:light /template/ PathIcon#PART_Icon">
-            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonLightGlyph}"></Setter>
-            <Setter Property="ToolTip.Tip" Value="{DynamicResource STRING_THEME_TOGGLE_LIGHT}"></Setter>
+            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonLightGlyph}" />
+            <Setter Property="ToolTip.Tip" Value="{DynamicResource STRING_THEME_TOGGLE_LIGHT}" />
         </Style>
         <Style Selector="^ /template/ PathIcon#PART_Icon">
-            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonDefaultGlyph}"></Setter>
-            <Setter Property="ToolTip.Tip" Value="{DynamicResource STRING_THEME_TOGGLE_SYSTEM}"></Setter>
+            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonDefaultGlyph}" />
+            <Setter Property="ToolTip.Tip" Value="{DynamicResource STRING_THEME_TOGGLE_SYSTEM}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

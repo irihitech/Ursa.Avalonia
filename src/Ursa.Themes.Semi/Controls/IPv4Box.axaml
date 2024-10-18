@@ -30,20 +30,21 @@
             Header="Clear" />
     </MenuFlyout>
     <ControlTheme x:Key="{x:Type u:IPv4Box}" TargetType="{x:Type u:IPv4Box}">
-        <Setter Property="u:IPv4Box.Focusable" Value="True" />
-        <Setter Property="u:IPv4Box.ShowLeadingZero" Value="True" />
-        <Setter Property="u:IPv4Box.TextAlignment" Value="Center" />
-        <Setter Property="u:IPv4Box.HorizontalAlignment" Value="Left" />
-        <Setter Property="u:IPv4Box.CornerRadius" Value="{DynamicResource IPv4BoxCornerRadius}" />
-        <Setter Property="u:IPv4Box.Background" Value="{DynamicResource IPv4BoxBackground}" />
-        <Setter Property="u:IPv4Box.MinHeight" Value="{DynamicResource IPv4BoxDefaultMinHeight}" />
-        <Setter Property="u:IPv4Box.BorderThickness" Value="{DynamicResource IPv4BoxBorderThickness}" />
-        <Setter Property="u:IPv4Box.SelectionBrush" Value="{DynamicResource IPv4BoxSelectionBrush}" />
-        <Setter Property="u:IPv4Box.SelectionForegroundBrush" Value="{DynamicResource IPv4BoxSelectionForeground}" />
-        <Setter Property="u:IPv4Box.CaretBrush" Value="{DynamicResource IPv4BoxCaretBrush}" />
-        <Setter Property="u:IPv4Box.ContextFlyout" Value="{DynamicResource IPv4BoxMenuFlyout}" />
-        <Setter Property="FocusAdorner" Value="{x:Null}"></Setter>
-        <Setter Property="u:IPv4Box.Template">
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="ShowLeadingZero" Value="True" />
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
+        <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
+        <Setter Property="MinHeight" Value="{DynamicResource TextBoxDefaultHeight}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource TextBoxSelectionBackground}" />
+        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource TextBoxSelectionForeground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
+        <Setter Property="CaretBrush" Value="{DynamicResource TextBoxTextCaretBrush}" />
+        <Setter Property="ContextFlyout" Value="{DynamicResource IPv4BoxMenuFlyout}" />
+        <Setter Property="FocusAdorner" Value="{x:Null}" />
+        <Setter Property="Template">
             <ControlTemplate TargetType="u:IPv4Box">
                 <Border
                     Name="PART_Border"
@@ -113,17 +114,20 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover /template/ Border#PART_Border">
-            <Setter Property="Background" Value="{DynamicResource IPv4BoxPointeroverBackground}" />
+            <Setter Property="Background" Value="{DynamicResource TextBoxPointeroverBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxPointeroverBorderBrush}" />
         </Style>
         <Style Selector="^:pressed /template/ Border#PART_Border">
             <Setter Property="Background" Value="{DynamicResource IPv4BoxPressedBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource  TextBoxFocusBorderBrush}" />
         </Style>
         <Style Selector="^:focus-within">
-            <Setter Property="Border.BorderBrush" Value="{DynamicResource IPv4BoxFocusBorderBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
         </Style>
         <Style Selector="^:disabled">
-            <Setter Property="Background" Value="{DynamicResource IPv4BoxDisabledBackground}" />
-            <Setter Property="Foreground" Value="{DynamicResource SemiColorDisabledText}" />
+            <Setter Property="Background" Value="{DynamicResource TextBoxDisabledBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBoxDisabledForeground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDisabledBorderBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

@@ -31,7 +31,7 @@
                             VerticalAlignment="Center"
                             Content="{TemplateBinding Icon}"
                             ContentTemplate="{TemplateBinding IconTemplate}"
-                            Foreground="{DynamicResource SemiColorText2}"
+                            Foreground="{DynamicResource BreadcrumbItemForeground}"
                             IsVisible="{TemplateBinding Icon,
                                                         Converter={x:Static ObjectConverters.IsNotNull}}" />
                         <ContentPresenter
@@ -39,14 +39,14 @@
                             VerticalAlignment="Center"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}"
-                            Foreground="{DynamicResource SemiColorText2}"
+                            Foreground="{DynamicResource BreadcrumbItemForeground}"
                             IsVisible="{TemplateBinding Content,
                                                         Converter={x:Static ObjectConverters.IsNotNull}}" />
                         <ContentPresenter
                             Name="Separator"
                             VerticalAlignment="Center"
                             Content="{TemplateBinding Separator}"
-                            Foreground="{DynamicResource SemiColorText3}">
+                            Foreground="{DynamicResource BreadcrumbItemSeparatorForeground}">
                             <ContentPresenter.IsVisible>
                                 <TemplateBinding Converter="{x:Static ObjectConverters.IsNotNull}" Property="Separator" />
                             </ContentPresenter.IsVisible>
@@ -56,20 +56,20 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^ /template/ ContentPresenter#PART_IconPresenter">
-            <Setter Property="Margin" Value="0 0 4 0"></Setter>
+            <Setter Property="Margin" Value="0 0 4 0" />
         </Style>
         <Style Selector="^ /template/ ContentPresenter#Separator">
-            <Setter Property="Margin" Value="4 0"></Setter>
+            <Setter Property="Margin" Value="4 0" />
         </Style>
         <Style Selector="^[IsReadOnly=False]">
-            <Setter Property="Cursor" Value="Hand"></Setter>
+            <Setter Property="Cursor" Value="Hand" />
         </Style>
         <Style Selector="^:last">
             <Style Selector="^ /template/ ContentPresenter#PART_IconPresenter">
-                <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
+                <Setter Property="Foreground" Value="{DynamicResource BreadcrumbItemLastForeground}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
+                <Setter Property="Foreground" Value="{DynamicResource BreadcrumbItemLastForeground}" />
                 <Setter Property="FontWeight" Value="{DynamicResource TextBlockTitleFontWeight}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#Separator">
@@ -77,19 +77,19 @@
             </Style>
             <Style Selector="^[IsReadOnly=False]:pointerover">
                 <Style Selector="^ /template/ ContentPresenter#PART_IconPresenter">
-                    <Setter Property="Foreground" Value="{DynamicResource SemiBlue5}" />
+                    <Setter Property="Foreground" Value="{DynamicResource BreadcrumbItemPointeroverForeground}" />
                 </Style>
                 <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                    <Setter Property="Foreground" Value="{DynamicResource SemiBlue5}" />
+                    <Setter Property="Foreground" Value="{DynamicResource BreadcrumbItemPointeroverForeground}" />
                 </Style>
             </Style>
         </Style>
         <Style Selector="^[IsReadOnly=False]:pointerover">
             <Style Selector="^ /template/ ContentPresenter#PART_IconPresenter">
-                <Setter Property="Foreground" Value="{DynamicResource SemiBlue5}" />
+                <Setter Property="Foreground" Value="{DynamicResource BreadcrumbItemPointeroverForeground}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Foreground" Value="{DynamicResource SemiBlue5}" />
+                <Setter Property="Foreground" Value="{DynamicResource BreadcrumbItemPointeroverForeground}" />
             </Style>
         </Style>
     </ControlTheme>

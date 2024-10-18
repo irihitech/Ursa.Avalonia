@@ -8,10 +8,10 @@
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="Background" Value="{DynamicResource ComboBoxSelectorBackground}" />
         <Setter Property="CornerRadius" Value="{DynamicResource ComboBoxSelectorCornerRadius}" />
-        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxSelectorBorderBrush}" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="MaxDropdownHeight" Value="300" />
-        <Setter Property="MaxSelectionBoxHeight" Value="270"></Setter>
+        <Setter Property="MaxSelectionBoxHeight" Value="270" />
         <Setter Property="MinHeight" Value="32" />
         <Setter Property="Padding" Value="12 4" />
         <Setter Property="BorderThickness" Value="1" />
@@ -267,11 +267,13 @@
 
         <!--  Pointerover State  -->
         <Style Selector="^:pointerover">
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemPointeroverForeground}" />
             <Setter Property="Background" Value="{DynamicResource ListBoxItemPointeroverBackground}" />
         </Style>
 
         <!--  Pressed State  -->
         <Style Selector="^:pressed">
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemPressedForeground}" />
             <Setter Property="Background" Value="{DynamicResource ListBoxItemPressedBackground}" />
         </Style>
 

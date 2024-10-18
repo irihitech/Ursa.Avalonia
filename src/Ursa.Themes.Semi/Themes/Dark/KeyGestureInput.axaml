@@ -1,9 +1,0 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!--  Add Resources Here  -->
-    <SolidColorBrush x:Key="KeyGestureInputBackground" Opacity="0.12" Color="White" />
-    <SolidColorBrush x:Key="KeyGestureInputPointeroverBackground" Opacity="0.16" Color="White" />
-    <SolidColorBrush x:Key="KeyGestureInputPressedBackground" Opacity="0.2" Color="White" />
-    <SolidColorBrush x:Key="KeyGestureInputBorderBrush" Color="Transparent" />
-    <SolidColorBrush x:Key="KeyGestureInputDisabledBackground" Opacity="0.04" Color="#E6E8EA" />
-    <SolidColorBrush x:Key="KeyGestureInputFocusBorderBrush" Color="#FF54A9FF" />
-</ResourceDictionary>

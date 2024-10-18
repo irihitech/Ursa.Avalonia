@@ -8,10 +8,10 @@
         <Setter Property="Height" Value="{DynamicResource IconElementThemeHeight}" />
         <Setter Property="Width" Value="{DynamicResource IconElementThemeWidth}" />
         <Setter Property="StrokeThickness" Value="0.4" />
-        <Setter Property="Foreground" Value="{DynamicResource SemiBlue2}" />
-        <Setter Property="StrokeBrush" Value="{DynamicResource SemiBlue6}" />
-        <Setter Property="ActiveForeground" Value="{DynamicResource SemiBlue6}" />
-        <Setter Property="ActiveStrokeBrush" Value="{DynamicResource SemiBlue6}" />
+        <Setter Property="Foreground" Value="{DynamicResource TwoTonePathIconForeground}" />
+        <Setter Property="StrokeBrush" Value="{DynamicResource TwoTonePathIconStrokeBrush}" />
+        <Setter Property="ActiveForeground" Value="{DynamicResource TwoTonePathIconActiveForeground}" />
+        <Setter Property="ActiveStrokeBrush" Value="{DynamicResource TwoTonePathIconActiveStrokeBrush}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:TwoTonePathIcon">
                 <Border Background="{TemplateBinding Background}">

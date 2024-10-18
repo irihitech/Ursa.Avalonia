@@ -6,7 +6,7 @@
     <ControlTheme x:Key="{x:Type u:ScrollToButton}" TargetType="u:ScrollToButton">
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="VerticalAlignment" Value="Bottom" />
-        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Margin" Value="0, 0, 16, 16" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:ScrollToButton">
@@ -36,13 +36,13 @@
             <Setter Property="Background" Value="{DynamicResource ButtonDefaultPressedBackground}" />
         </Style>
         <Style Selector="^[Direction=Right] /template/ PathIcon#PART_Icon">
-            <Setter Property="RenderTransform" Value="rotate(90deg)"></Setter>
+            <Setter Property="RenderTransform" Value="rotate(90deg)" />
         </Style>
         <Style Selector="^[Direction=Bottom] /template/ PathIcon#PART_Icon">
-            <Setter Property="RenderTransform" Value="rotate(180deg)"></Setter>
+            <Setter Property="RenderTransform" Value="rotate(180deg)" />
         </Style>
         <Style Selector="^[Direction=Left] /template/ PathIcon#PART_Icon">
-            <Setter Property="RenderTransform" Value="rotate(270deg)"></Setter>
+            <Setter Property="RenderTransform" Value="rotate(270deg)" />
         </Style>
     </ControlTheme>
     
@@ -50,7 +50,7 @@
     <ControlTheme x:Key="PrimaryScrollToButton" TargetType="u:ScrollToButton">
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="VerticalAlignment" Value="Bottom" />
-        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Margin" Value="0, 0, 16, 16" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:ScrollToButton">
@@ -80,13 +80,13 @@
             <Setter Property="BorderBrush" Value="{DynamicResource ButtonSolidPrimaryPressedBorderBrush}" />
         </Style>
         <Style Selector="^[Direction=Right] /template/ PathIcon#PART_Icon">
-            <Setter Property="RenderTransform" Value="rotate(90deg)"></Setter>
+            <Setter Property="RenderTransform" Value="rotate(90deg)" />
         </Style>
         <Style Selector="^[Direction=Bottom] /template/ PathIcon#PART_Icon">
-            <Setter Property="RenderTransform" Value="rotate(180deg)"></Setter>
+            <Setter Property="RenderTransform" Value="rotate(180deg)" />
         </Style>
         <Style Selector="^[Direction=Left] /template/ PathIcon#PART_Icon">
-            <Setter Property="RenderTransform" Value="rotate(270deg)"></Setter>
+            <Setter Property="RenderTransform" Value="rotate(270deg)" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

@@ -5,7 +5,7 @@
     xmlns:u="https://irihi.tech/ursa">
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:Clock}" TargetType="u:Clock">
-        <Setter Property="HandBrush" Value="{DynamicResource SemiGrey6}"/>
+        <Setter Property="HandBrush" Value="{DynamicResource ClockHandBrush}"/>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Clock">
                 <Grid>
@@ -13,8 +13,8 @@
                         ShowHourTicks="{TemplateBinding ShowHourTicks}"
                         ShowMinuteTicks="{TemplateBinding ShowMinuteTicks}"
                         HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                        HourTickForeground="{DynamicResource SemiGrey6}"
-                        MinuteTickForeground="{DynamicResource SemiGrey4}" />
+                        HourTickForeground="{DynamicResource ClockHourTickForeground}"
+                        MinuteTickForeground="{DynamicResource ClockMinuteTickForeground}" />
                     <UniformGrid Rows="2" IsVisible="{TemplateBinding ShowHourHand}">
                         <Border
                             Width="16"
@@ -51,8 +51,8 @@
                     <Ellipse
                         Width="20"
                         Height="20"
-                        Fill="White"
-                        Stroke="{DynamicResource SemiBlue5}"
+                        Fill="{DynamicResource ClockArborFill}"
+                        Stroke="{DynamicResource ClockArborStroke}"
                         StrokeThickness="3" />
                 </Grid>
             </ControlTemplate>

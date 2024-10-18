@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using Avalonia;
+using Avalonia.Styling;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
+using Semi.Avalonia;
 
 namespace Ursa.Demo.ViewModels;
 
-public class MainViewViewModel : ViewModelBase
+public partial class MainViewViewModel : ViewModelBase
 {
     public MenuViewModel Menus { get; set; } = new MenuViewModel();
 
@@ -75,4 +80,33 @@ public class MainViewViewModel : ViewModelBase
             _ => throw new ArgumentOutOfRangeException(nameof(s), s, null)
         };
     }
+
+    public ObservableCollection<ThemeItem> Themes { get; } =
+    [
+        new("Default", ThemeVariant.Default),
+        new("Light", ThemeVariant.Light),
+        new("Dark", ThemeVariant.Dark),
+        new("Aquatic", SemiTheme.Aquatic),
+        new("Desert", SemiTheme.Desert),
+        new("Dust", SemiTheme.Dust),
+        new("NightSky", SemiTheme.NightSky)
+    ];
+
+    [ObservableProperty] private ThemeItem? _selectedTheme;
+
+    partial void OnSelectedThemeChanged(ThemeItem? oldValue, ThemeItem? newValue)
+    {
+        if (newValue is null) return;
+        var app = Application.Current;
+        if (app is not null)
+        {
+            app.RequestedThemeVariant = newValue.Theme;
+        }
+    }
+}
+
+public class ThemeItem(string name, ThemeVariant theme)
+{
+    public string Name { get; set; } = name;
+    public ThemeVariant Theme { get; set; } = theme;
 }

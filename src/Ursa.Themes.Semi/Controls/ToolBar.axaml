@@ -54,7 +54,7 @@
                             Content="{TemplateBinding Header}"
                             ContentTemplate="{TemplateBinding HeaderTemplate}"
                             DockPanel.Dock="Left"
-                            Foreground="{DynamicResource SemiColorText2}"
+                            Foreground="{DynamicResource ToolBarHeaderForeground}"
                             IsVisible="{TemplateBinding Header,
                                                         Converter={x:Static ObjectConverters.IsNotNull}}" />
                         <Panel Name="PART_PopupButtonPanel" DockPanel.Dock="Right">
@@ -67,7 +67,7 @@
                                 <PathIcon
                                     Name="PART_Icon"
                                     Height="12"
-                                    Foreground="{DynamicResource SemiColorText2}"
+                                    Foreground="{DynamicResource ToolBarHeaderForeground}"
                                     Data="{DynamicResource ToolBarHorizontalMoreGlyph}" />
                             </ToggleButton>
                             <Popup
@@ -122,7 +122,7 @@
                 <Rectangle
                     Name="PART_Rect"
                     Margin="4"
-                    Fill="{DynamicResource SemiColorBorder}" />
+                    Fill="{DynamicResource ToolBarSeparatorForeground}" />
             </ControlTemplate>
         </Setter>
         <Style Selector="^ /template/ Rectangle#PART_Rect">

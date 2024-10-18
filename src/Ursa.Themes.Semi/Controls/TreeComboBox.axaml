@@ -18,6 +18,7 @@
         <Setter Property="Background" Value="{DynamicResource ComboBoxSelectorBackground}" />
         <Setter Property="CornerRadius" Value="{DynamicResource ComboBoxSelectorCornerRadius}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxSelectorBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="MinHeight" Value="{DynamicResource ComboBoxDefaultHeight}" />
         <Setter Property="Cursor" Value="Hand" />
@@ -68,7 +69,7 @@
                     </ContentPresenter>
                     <ContentPresenter
                         Grid.Column="2"
-                        Margin="0 0 8 0"
+                        Margin="0,0,8,0"
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
                         Content="{TemplateBinding InnerRightContent}"
@@ -78,11 +79,11 @@
                     <Button
                         Name="PART_ClearButton"
                         Grid.Column="3"
-                        Command="{Binding $parent[u:TreeComboBox].Clear}"
                         Margin="0,0,8,0"
+                        Command="{Binding $parent[u:TreeComboBox].Clear}"
+                        Content="{DynamicResource IconButtonClearData}"
                         IsVisible="False"
-                        Theme="{DynamicResource InnerIconButton}"
-                        Content="{DynamicResource IconButtonClearData}" />
+                        Theme="{DynamicResource InnerIconButton}" />
 
                     <PathIcon
                         x:Name="DropDownGlyph"
@@ -94,8 +95,8 @@
                         VerticalAlignment="Center"
                         Data="{DynamicResource ComboBoxIcon}"
                         Foreground="{DynamicResource ComboBoxIconDefaultForeground}"
-                        UseLayoutRounding="False"
-                        IsHitTestVisible="True" />
+                        IsHitTestVisible="True"
+                        UseLayoutRounding="False" />
 
                     <Popup
                         Name="{x:Static iri:PartNames.PART_Popup}"
@@ -111,27 +112,27 @@
                         <Border
                             Name="PopupBorder"
                             Margin="0,4"
-                            BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
                             Background="{DynamicResource ComboBoxPopupBackground}"
                             BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"
+                            BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
                             BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
                             ClipToBounds="True"
                             CornerRadius="6">
                             <DockPanel LastChildFill="True">
                                 <ContentPresenter
                                     Name="PART_PopupHeader"
-                                    Margin="8,8 8 0"
-                                    IsVisible="{TemplateBinding PopupInnerTopContent,
-                                                                Converter={x:Static ObjectConverters.IsNotNull}}"
+                                    Margin="8,8,8,0"
                                     Content="{TemplateBinding PopupInnerTopContent}"
-                                    DockPanel.Dock="Top" />
+                                    DockPanel.Dock="Top"
+                                    IsVisible="{TemplateBinding PopupInnerTopContent,
+                                                                Converter={x:Static ObjectConverters.IsNotNull}}" />
                                 <ContentPresenter
                                     Name="PART_PopupFooter"
-                                    Margin="8 0 8 8"
-                                    IsVisible="{TemplateBinding PopupInnerBottomContent,
-                                                                Converter={x:Static ObjectConverters.IsNotNull}}"
+                                    Margin="8,0,8,8"
                                     Content="{TemplateBinding PopupInnerBottomContent}"
-                                    DockPanel.Dock="Bottom" />
+                                    DockPanel.Dock="Bottom"
+                                    IsVisible="{TemplateBinding PopupInnerBottomContent,
+                                                                Converter={x:Static ObjectConverters.IsNotNull}}" />
                                 <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}">
                                     <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
                                 </ScrollViewer>
@@ -141,23 +142,23 @@
                 </Grid>
             </ControlTemplate>
         </Setter>
-        
+
         <Style Selector="^.clearButton, ^.ClearButton">
             <Style Selector="^:pointerover /template/ Button#PART_ClearButton">
-                <Setter Property="IsVisible" Value="{Binding $parent[u:TreeComboBox].SelectionBoxItem, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+                <Setter Property="IsVisible" Value="{Binding $parent[u:TreeComboBox].SelectionBoxItem, Converter={x:Static ObjectConverters.IsNotNull}}" />
             </Style>
             <Style Selector="^:pointerover /template/ PathIcon#DropDownGlyph">
-                <Setter Property="IsVisible" Value="{Binding $parent[u:TreeComboBox].SelectionBoxItem, Converter={x:Static ObjectConverters.IsNull}}"/>
+                <Setter Property="IsVisible" Value="{Binding $parent[u:TreeComboBox].SelectionBoxItem, Converter={x:Static ObjectConverters.IsNull}}" />
             </Style>
         </Style>
-        
+
         <Style Selector="^.Large">
-            <Setter Property="MinHeight" Value="{DynamicResource ComboBoxLargeHeight}"/>
+            <Setter Property="MinHeight" Value="{DynamicResource ComboBoxLargeHeight}" />
         </Style>
         <Style Selector="^.Small">
-            <Setter Property="MinHeight" Value="{DynamicResource ComboBoxSmallHeight}"/>
+            <Setter Property="MinHeight" Value="{DynamicResource ComboBoxSmallHeight}" />
         </Style>
-        
+
         <!--  Pointerover State  -->
         <Style Selector="^:pointerover">
             <Setter Property="Background" Value="{DynamicResource ComboBoxSelectorPointeroverBackground}" />
@@ -217,7 +218,7 @@
         <Setter Property="Background" Value="{DynamicResource TreeViewItemDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource TreeViewItemDefaultForeground}" />
         <Setter Property="CornerRadius" Value="3" />
-        <Setter Property="MinHeight" Value="32"></Setter>
+        <Setter Property="MinHeight" Value="32" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:TreeComboBoxItem">
@@ -265,7 +266,6 @@
             </ControlTemplate>
         </Setter>
 
-        <!--  Pointerover state  -->
         <Style Selector="^ /template/ Border#PART_LayoutRoot:pointerover">
             <Setter Property="Background" Value="{DynamicResource TreeViewItemPointeroverBackground}" />
         </Style>
@@ -286,6 +286,12 @@
         <!--  Selected state  -->
         <Style Selector="^:selected /template/ Border#PART_LayoutRoot">
             <Setter Property="Background" Value="{DynamicResource TreeViewItemSelectedBackground}" />
+        </Style>
+        <Style Selector="^:selected /template/ ContentPresenter#PART_HeaderPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource TreeViewItemSelectedForeground}" />
+        </Style>
+        <Style Selector="^:selected /template/ ToggleButton#PART_ExpandCollapseChevron">
+            <Setter Property="Foreground" Value="{DynamicResource TreeViewItemSelectedForeground}" />
         </Style>
 
         <!--  Disabled Selected state  -->

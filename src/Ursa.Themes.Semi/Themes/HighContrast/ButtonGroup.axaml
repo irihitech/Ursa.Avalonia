@@ -1,0 +1,32 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="ButtonGroupSeparatorForeground" Color="{StaticResource ButtonTextColor}" />
+    <!--  Light  -->
+    <SolidColorBrush x:Key="ButtonGroupDefaultPrimaryForeground" Color="{StaticResource ButtonTextColor}" />
+    <SolidColorBrush x:Key="ButtonGroupDefaultDisabledForeground" Color="{StaticResource GrayTextColor}" />
+
+    <SolidColorBrush x:Key="ButtonGroupDefaultBackground" Color="{StaticResource ButtonFaceColor}" />
+    <SolidColorBrush x:Key="ButtonGroupDefaultPointeroverBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="ButtonGroupDefaultPressedBackground" Color="{StaticResource HighlightColor}" />
+
+    <SolidColorBrush x:Key="ButtonGroupDefaultBorderBrush" Color="{StaticResource ButtonTextColor}" />
+    <SolidColorBrush x:Key="ButtonGroupDefaultPointeroverBorderBrush" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="ButtonGroupDefaultPressedBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="ButtonGroupDefaultDisabledBorderBrush" Color="{StaticResource GrayTextColor}" />
+
+    <!--  end Light  -->
+
+    <!--  Solid  -->
+    <SolidColorBrush x:Key="ButtonGroupSolidForeground" Color="{StaticResource HighlightTextColor}" />
+    <SolidColorBrush x:Key="ButtonGroupSolidDisabledForeground" Color="{StaticResource GrayTextColor}" />
+
+    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryPointeroverBackground" Color="{StaticResource ButtonTextColor}" />
+    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryPressedBackground" Color="{StaticResource HighlightColor}" />
+
+    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryBorderBrush" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryPointeroverBorderBrush" Color="{StaticResource ButtonTextColor}" />
+    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryPressedBorderBrush" Color="{StaticResource HighlightColor}" />
+
+    <SolidColorBrush x:Key="ButtonGroupSolidDisabledBorderBrush" Color="{StaticResource GrayTextColor}" />
+    <!--  end Solid  -->
+</ResourceDictionary>

@@ -14,6 +14,7 @@
         <Setter Property="MinWidth" Value="{DynamicResource CalenderDayMinWidth}" />
         <Setter Property="MinHeight" Value="{DynamicResource CalenderDayMinHeight}" />
         <Setter Property="Margin" Value="{DynamicResource CalenderDayMargin}" />
+        <Setter Property="Foreground" Value="{DynamicResource CalendarItemCalendarDayButtonForeground}" />
         <Setter Property="Background" Value="{DynamicResource CalenderDayBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource CalenderDayBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource CalenderDayBorderThickness}" />
@@ -43,6 +44,7 @@
             <Setter Property="Background" Value="{DynamicResource CalenderDayInRangeBackground}" />
             <Setter Property="CornerRadius" Value="{DynamicResource CalenderDayInRangeCornerRadius}" />
             <Setter Property="BorderThickness" Value="{DynamicResource CalenderDayNoBorderThickness}" />
+            <Setter Property="Foreground" Value="{DynamicResource CalenderDaySelectedForeground}" />
         </Style>
 
         <Style Selector="^:today">
@@ -143,7 +145,7 @@
 
     <ControlTheme x:Key="{x:Type u:CalendarYearButton}" TargetType="u:CalendarYearButton">
         <Setter Property="MinWidth" Value="{DynamicResource CalenderYearMinWidth}" />
-        <Setter Property="MinHeight" Value="{DynamicResource CalenderYearMinHeight }" />
+        <Setter Property="MinHeight" Value="{DynamicResource CalenderYearMinHeight}" />
         <Setter Property="Margin" Value="{DynamicResource CalenderYearMargin}" />
         <Setter Property="Background" Value="{DynamicResource CalenderYearBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource CalenderYearBorderBrush}" />

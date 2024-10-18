@@ -52,7 +52,7 @@
     </ControlTheme>
 
     <ControlTheme x:Key="TinyPagination" TargetType="{x:Type u:Pagination}">
-        <Setter Property="DisplayCurrentPageInQuickJumper" Value="True"></Setter>
+        <Setter Property="DisplayCurrentPageInQuickJumper" Value="True" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Pagination">
                 <StackPanel Orientation="Horizontal">

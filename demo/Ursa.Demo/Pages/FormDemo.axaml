@@ -16,7 +16,7 @@
         <StackPanel HorizontalAlignment="Left" Margin="24  0 0 0 ">
             <u:Divider Content="Simple Form"/>
             <u:Form LabelPosition="Left" LabelWidth="*">
-                <TextBox Width="300" u:FormItem.Label="Name" />
+                <TextBox Width="300" u:FormItem.Label="Name" u:FormItem.IsRequired="True" />
                 <TextBox Width="300" u:FormItem.Label="Email" />
                 <TextBox Width="300" u:FormItem.Label="Message" Classes="TextArea"/>
             </u:Form>

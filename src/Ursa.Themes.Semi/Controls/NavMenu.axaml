@@ -19,11 +19,10 @@
                         HorizontalAlignment="Stretch"
                         HorizontalScrollBarVisibility="Disabled"
                         AllowAutoHide="True"
-                        
                         VerticalScrollBarVisibility="Auto">
                         <ScrollViewer.Styles>
                             <Style Selector="ScrollViewer /template/ ScrollBar">
-                                <Setter Property="Opacity" Value="0"></Setter>
+                                <Setter Property="Opacity" Value="0" />
                             </Style>
                             <Style Selector="ScrollViewer:pointerover">
                                 <Style Selector="^ /template/ ScrollBar#PART_HorizontalScrollBar">
@@ -40,11 +39,11 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:not(:horizontal-collapsed)">
-            <Setter Property="Width" Value="{Binding $self.ExpandWidth}"></Setter>
+            <Setter Property="Width" Value="{Binding $self.ExpandWidth}" />
         </Style>
         <Style Selector="^:horizontal-collapsed">
             <Setter Property="Width" Value="{Binding $self.CollapseWidth}" />
-            <Setter Property="Grid.IsSharedSizeScope" Value="False"></Setter>
+            <Setter Property="Grid.IsSharedSizeScope" Value="False" />
         </Style>
     </ControlTheme>
 
@@ -55,7 +54,8 @@
                 Grid.Row="0"
                 MinHeight="32"
                 HorizontalAlignment="Stretch"
-                Background="{TemplateBinding u:NavMenuItem.Background}"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
                 CornerRadius="4"
                 Cursor="Hand">
                 <Grid
@@ -149,9 +149,11 @@
         </Setter>
         <Setter Property="Template" Value="{StaticResource DefaultNavMenuItemTemplate}" />
         <Style Selector="^:selected">
-            <Setter Property="Background" Value="{DynamicResource NavigationMenuItemSelectedBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource ListBoxItemSelectedForeground}" />
+            <Setter Property="Background" Value="{DynamicResource ListBoxItemSelectedBackground}" />
             <Style Selector="^:pointerover">
-                <Setter Property="Background" Value="{DynamicResource NavigationMenuItemSelectedBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource ListBoxItemSelectedForeground}" />
+                <Setter Property="Background" Value="{DynamicResource ListBoxItemSelectedPointeroverBackground}" />
             </Style>
         </Style>
         <Style Selector="^:vertical-collapsed /template/ ItemsPresenter#PART_ItemsPresenter">
@@ -165,21 +167,25 @@
             <Setter Property="IsVisible" Value="False" />
         </Style>
         <Style Selector="^ /template/ Border#PART_Border:pointerover">
-            <Setter Property="Background" Value="{DynamicResource NavigationMenuItemPointeroverBackground}" />
+            <Setter Property="Background" Value="{DynamicResource ListBoxItemPointeroverBackground}" />
+        </Style>
+        <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter:pointerover">
+            <Setter Property="Foreground" Value="{DynamicResource ListBoxItemPointeroverForeground}" />
         </Style>
         <Style Selector="^:horizontal-collapsed:first-level">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Style Selector="^ /template/ Border#PART_Border">
-                <Setter Property="ToolTip.Tip" >
+                <Setter Property="ToolTip.Tip">
                     <Template>
-                        <ContentPresenter Content="{TemplateBinding u:NavMenuItem.Header}" ContentTemplate="{TemplateBinding u:NavMenuItem.HeaderTemplate}"></ContentPresenter>
+                        <ContentPresenter Content="{TemplateBinding u:NavMenuItem.Header}"
+                                          ContentTemplate="{TemplateBinding u:NavMenuItem.HeaderTemplate}" />
                     </Template>
                 </Setter>
                 <Setter Property="ToolTip.ShowDelay" Value="0" />
                 <Setter Property="HorizontalAlignment" Value="Stretch" />
             </Style>
             <Style Selector="^ /template/ Border#PART_Border:pointerover">
-                <Setter Property="Background" Value="{DynamicResource NavigationMenuItemPointeroverBackground}" />
+                <Setter Property="Background" Value="{DynamicResource ListBoxItemPointeroverBackground}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_IconPresenter">
                 <Setter Property="Grid.ColumnSpan" Value="3" />
@@ -202,7 +208,7 @@
             </Style>
         </Style>
         <Style Selector="^:horizontal-collapsed:first-level">
-            <Setter Property="Grid.IsSharedSizeScope" Value="True"></Setter>
+            <Setter Property="Grid.IsSharedSizeScope" Value="True" />
         </Style>
         <Style Selector="^[IsSeparator=True]">
             <Setter Property="Template">
@@ -218,11 +224,11 @@
                             Content="{TemplateBinding Header}"
                             ContentTemplate="{TemplateBinding HeaderTemplate}"
                             Foreground="{DynamicResource TextBlockQuaternaryForeground}"
-                            IsVisible="{TemplateBinding Header,
-                                                        Converter={x:Static ObjectConverters.IsNotNull}}">
+                            IsVisible="{TemplateBinding Header, Converter={x:Static ObjectConverters.IsNotNull}}">
                             <ContentPresenter.Styles>
                                 <Style Selector="TextBlock">
-                                    <Setter Property="FontSize" Value="{DynamicResource NavigationMenuSeparatorHeaderFontSize}" />
+                                    <Setter Property="FontSize"
+                                            Value="{DynamicResource NavigationMenuSeparatorHeaderFontSize}" />
                                 </Style>
                             </ContentPresenter.Styles>
                         </ContentPresenter>
@@ -231,7 +237,7 @@
                             Height="{DynamicResource NavigationMenuSeparatorBorderHeight}"
                             Margin="{DynamicResource NavigationMenuSeparatorBorderMargin}"
                             HorizontalAlignment="Stretch"
-                            Fill="{DynamicResource SemiColorBorder}" />
+                            Fill="{DynamicResource NavigationMenuItemSeparatorBorderForeground}" />
                     </StackPanel>
                 </ControlTemplate>
             </Setter>

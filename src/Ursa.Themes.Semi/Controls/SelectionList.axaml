@@ -10,11 +10,11 @@
                     Margin="2"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
-                    Background="{DynamicResource SemiBlue1}"
+                    Background="{DynamicResource SelectionListIndicatorBackground}"
                     Theme="{DynamicResource CardBorder}" />
             </Template>
         </Setter>
-        <Setter Property="ListBox.Template">
+        <Setter Property="Template">
             <ControlTemplate TargetType="u:SelectionList">
                 <Border
                     Name="border"

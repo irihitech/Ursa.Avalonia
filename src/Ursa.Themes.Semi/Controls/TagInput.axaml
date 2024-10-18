@@ -6,7 +6,7 @@
     <ControlTheme x:Key="{x:Type u:TagInput}" TargetType="u:TagInput">
         <Setter Property="InputTheme" Value="{DynamicResource TagInputTextBoxTheme}" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="MinHeight" Value="{DynamicResource TagInputDefaultHeight}" />
+        <Setter Property="MinHeight" Value="{DynamicResource TextBoxDefaultHeight}" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="ItemTemplate">
             <DataTemplate>
@@ -22,8 +22,8 @@
                     VerticalAlignment="Stretch"
                     Background="{DynamicResource TextBoxDefaultBackground}"
                     BorderBrush="{DynamicResource TextBoxDefaultBorderBrush}"
-                    BorderThickness="1"
-                    CornerRadius="3">
+                    BorderThickness="{DynamicResource TextBoxBorderThickness}"
+                    CornerRadius="{DynamicResource TextBoxDefaultCornerRadius}">
                     <Panel HorizontalAlignment="Stretch">
                         <TextBlock
                             Name="{x:Static u:TagInput.PART_Watermark}"
@@ -49,10 +49,11 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:empty /template/ TextBlock#PART_Watermark">
-            <Setter Property="IsVisible" Value="True"></Setter>
+            <Setter Property="IsVisible" Value="True" />
         </Style>
         <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder">
             <Setter Property="Background" Value="{DynamicResource TextBoxPointeroverBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxPointeroverBorderBrush}" />
         </Style>
         <Style Selector="^:focus-within /template/ Border#PART_BackgroundBorder">
             <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
@@ -60,13 +61,13 @@
     </ControlTheme>
 
     <ControlTheme x:Key="TagInputTextBoxTheme" TargetType="TextBox">
-        <Setter Property="TextBox.Foreground" Value="{DynamicResource TextBoxForeground}" />
-        <Setter Property="TextBox.Background" Value="{DynamicResource TextBoxDefaultBackground}" />
-        <Setter Property="TextBox.BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
-        <Setter Property="TextBox.SelectionBrush" Value="{DynamicResource TextBoxSelectionBackground}" />
-        <Setter Property="TextBox.SelectionForegroundBrush" Value="{DynamicResource TextBoxSelectionForeground}" />
-        <Setter Property="TextBox.Cursor" Value="Ibeam" />
-        <Setter Property="TextBox.CaretBrush" Value="{DynamicResource TextBoxTextCaretBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBoxInnerForeground}" />
+        <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource TextBoxSelectionBackground}" />
+        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource TextBoxSelectionForeground}" />
+        <Setter Property="Cursor" Value="Ibeam" />
+        <Setter Property="CaretBrush" Value="{DynamicResource TextBoxTextCaretBrush}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="ScrollViewer.IsScrollChainingEnabled" Value="True" />
@@ -106,10 +107,10 @@
 
     <ControlTheme x:Key="{x:Type u:ClosableTag}" TargetType="u:ClosableTag">
         <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="u:ClosableTag.Foreground" Value="{DynamicResource LabelTagLightGreyForeground}" />
-        <Setter Property="u:ClosableTag.Background" Value="{DynamicResource ClosableTagBackground}" />
-        <Setter Property="u:ClosableTag.BorderBrush" Value="{DynamicResource SemiColorBorder}" />
-        <Setter Property="u:ClosableTag.BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{DynamicResource ClosableTagForeground}" />
+        <Setter Property="Background" Value="{DynamicResource ClosableTagBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ClosableTagBorder}" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:ClosableTag">

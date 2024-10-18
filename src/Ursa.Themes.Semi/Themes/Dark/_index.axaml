@@ -1,24 +1,27 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
-        <MergeResourceInclude Source="Avatar.axaml" />
-        <MergeResourceInclude Source="Badge.axaml" />
-        <MergeResourceInclude Source="Banner.axaml" />
-        <MergeResourceInclude Source="ButtonGroup.axaml" />
-        <MergeResourceInclude Source="DatePicker.axaml" />
-        <MergeResourceInclude Source="Dialog.axaml" />
-        <MergeResourceInclude Source="Divider.axaml" />
-        <MergeResourceInclude Source="DualBadge.axaml" />
-        <MergeResourceInclude Source="IPv4Box.axaml" />
-        <MergeResourceInclude Source="KeyGestureInput.axaml" />
-        <MergeResourceInclude Source="Loading.axaml" />
-        <MergeResourceInclude Source="NavigationMenu.axaml" />
-        <MergeResourceInclude Source="NotificationShared.axaml" />
-        <MergeResourceInclude Source="Pagination.axaml" />
-        <MergeResourceInclude Source="Rating.axaml" />
-        <MergeResourceInclude Source="TagInput.axaml" />
-        <MergeResourceInclude Source="Timeline.axaml" />
-        <MergeResourceInclude Source="Toast.axaml" />
-        <MergeResourceInclude Source="Skeleton.axaml" />
-        <MergeResourceInclude Source="TimeBox.axaml" />
+        <ResourceInclude Source="Avatar.axaml" />
+        <ResourceInclude Source="Badge.axaml" />
+        <ResourceInclude Source="Banner.axaml" />
+        <ResourceInclude Source="Breadcrumb.axaml" />
+        <ResourceInclude Source="ButtonGroup.axaml" />
+        <ResourceInclude Source="Clock.axaml" />
+        <ResourceInclude Source="DatePicker.axaml" />
+        <ResourceInclude Source="Dialog.axaml" />
+        <ResourceInclude Source="Divider.axaml" />
+        <ResourceInclude Source="DualBadge.axaml" />
+        <ResourceInclude Source="Form.axaml" />
+        <ResourceInclude Source="Loading.axaml" />
+        <ResourceInclude Source="NavigationMenu.axaml" />
+        <ResourceInclude Source="NotificationShared.axaml" />
+        <ResourceInclude Source="Pagination.axaml" />
+        <ResourceInclude Source="Rating.axaml" />
+        <ResourceInclude Source="SelectionList.axaml" />
+        <ResourceInclude Source="Skeleton.axaml" />
+        <ResourceInclude Source="TagInput.axaml" />
+        <ResourceInclude Source="Timeline.axaml" />
+        <ResourceInclude Source="Toast.axaml" />
+        <ResourceInclude Source="ToolBar.axaml" />
+        <ResourceInclude Source="TwoTonePathIcon.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
