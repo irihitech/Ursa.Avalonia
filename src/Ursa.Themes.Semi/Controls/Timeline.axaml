@@ -2,7 +2,8 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters"
-    xmlns:u="https://irihi.tech/ursa">
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:usemi="https://irihi.tech/ursa/themes/semi">
     <Design.PreviewWith>
         <StackPanel Width="100" Spacing="20">
             <u:Timeline>
@@ -88,8 +89,7 @@
                         VerticalAlignment="Top"
                         Content="{TemplateBinding Content}"
                         ContentTemplate="{TemplateBinding ContentTemplate}"
-                        TextElement.FontSize="12"
-                        TextElement.Foreground="Gray" />
+                        TextElement.FontSize="12"/>
                     <TextBlock
                         Name="{x:Static u:TimelineItem.PART_Time}"
                         Grid.Row="0"
@@ -97,7 +97,6 @@
                         Margin="8,2"
                         VerticalAlignment="Top"
                         FontSize="12"
-                        Foreground="Gray"
                         TextWrapping="Wrap">
                         <TextBlock.Text>
                             <MultiBinding Converter="{StaticResource FormatConverter}">
@@ -111,6 +110,12 @@
         </Setter>
         <Style Selector="^:last /template/ Rectangle.end">
             <Setter Property="Fill" Value="Transparent" />
+        </Style>
+        <Style Selector="^ /template/ TextBlock#PART_Time">
+            <Setter Property="Foreground" Value="{DynamicResource TextBlockTertiaryForeground}"/>
+        </Style>
+        <Style Selector="^ /template/ ContentPresenter#PART_Content">
+            <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBlockTertiaryForeground}"/>
         </Style>
         <Style Selector="^:empty-icon /template/ Ellipse#PART_DefaultIcon">
             <Setter Property="IsVisible" Value="True"/>
