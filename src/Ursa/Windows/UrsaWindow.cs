@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls;
 
@@ -100,5 +101,24 @@ public class UrsaWindow: Window
         set => SetValue(TitleBarMarginProperty, value);
     }
     
+    protected virtual async Task<bool> CanClose()
+    {
+        return await Task.FromResult(true);
+    }
     
+    private bool _canClose = false;
+    protected override async void OnClosing(WindowClosingEventArgs e)
+    {
+        VerifyAccess();
+        if (!_canClose)
+        {
+            e.Cancel = true;
+            _canClose = await CanClose();
+            if (_canClose)
+            {
+                Close();
+            }
+        }
+        base.OnClosing(e);
+    }
 }
