@@ -64,21 +64,23 @@
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
                     <VisualLayerManager Padding="{TemplateBinding OffScreenMargin, Mode=OneWay}">
                         <VisualLayerManager.ChromeOverlayLayer>
-                            <u:TitleBar
-                                Margin="{Binding $parent[u:UrsaWindow].TitleBarMargin}"
-                                Content="{Binding $parent[u:UrsaWindow].TitleBarContent}"
-                                IsTitleVisible="{Binding $parent[u:UrsaWindow].IsTitleBarVisible}"
-                                LeftContent="{Binding $parent[u:UrsaWindow].LeftContent}"
-                                RightContent="{Binding $parent[u:UrsaWindow].RightContent}" />
-                            <VisualLayerManager>
-                                <Panel>
-                                    <u:OverlayDialogHost IsModalStatusReporter="True" IsTopLevel="True" />
-                                    <u:WindowResizer
-                                        HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Stretch"
-                                        IsVisible="{Binding $parent[u:UrsaWindow].IsManagedResizerVisible}" />
-                                </Panel>
-                            </VisualLayerManager>
+                            <Panel Margin="{Binding $parent[u:UrsaWindow].OffScreenMargin}">
+                                <u:TitleBar
+                                    Margin="{Binding $parent[u:UrsaWindow].TitleBarMargin}"
+                                    Content="{Binding $parent[u:UrsaWindow].TitleBarContent}"
+                                    IsTitleVisible="{Binding $parent[u:UrsaWindow].IsTitleBarVisible}"
+                                    LeftContent="{Binding $parent[u:UrsaWindow].LeftContent}"
+                                    RightContent="{Binding $parent[u:UrsaWindow].RightContent}" />
+                                <VisualLayerManager>
+                                    <Panel>
+                                        <u:OverlayDialogHost IsModalStatusReporter="True" IsTopLevel="True" />
+                                        <u:WindowResizer
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"
+                                            IsVisible="{Binding $parent[u:UrsaWindow].IsManagedResizerVisible}" />
+                                    </Panel>
+                                </VisualLayerManager>
+                            </Panel>
                         </VisualLayerManager.ChromeOverlayLayer>
                         <Panel>
                             <ContentPresenter
