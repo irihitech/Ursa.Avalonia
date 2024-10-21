@@ -7,6 +7,8 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.VisualTree;
+using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
 
@@ -25,6 +27,7 @@ public class DatePicker: DatePickerBase, IClearControl
     private Button? _button;
     private TextBox? _textBox;
     private CalendarView? _calendar;
+    private Popup? _popup;
 
     public static readonly StyledProperty<DateTime?> SelectedDateProperty = AvaloniaProperty.Register<DatePicker, DateTime?>(
         nameof(SelectedDate), defaultBindingMode: BindingMode.TwoWay);
@@ -66,7 +69,7 @@ public class DatePicker: DatePickerBase, IClearControl
         CalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _calendar);
         
         _button = e.NameScope.Find<Button>(PART_Button);
-        e.NameScope.Find<Popup>(PART_Popup);
+        _popup = e.NameScope.Find<Popup>(PART_Popup);
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
         _calendar = e.NameScope.Find<CalendarView>(PART_Calendar);
         
@@ -171,12 +174,18 @@ public class DatePicker: DatePickerBase, IClearControl
         }
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
-
-    protected override void OnLostFocus(RoutedEventArgs e)
+    
+    /// <inheritdoc/>
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
-        base.OnLostFocus(e);
-        SetCurrentValue(IsDropdownOpenProperty, false);
-        SetSelectedDate();
+        base.OnPointerPressed(e);
+        if(!e.Handled && e.Source is Visual source)
+        {
+            if (_popup?.IsInsidePopup(source) == true)
+            {
+                e.Handled = true;
+            }
+        }
     }
 
     protected override void OnKeyDown(KeyEventArgs e)
