@@ -434,30 +434,28 @@ public class DateRangePicker : DatePickerBase, IClearControl
     
     protected override void OnKeyDown(KeyEventArgs e)
     {
-        if (e.Key == Key.Escape)
+        switch (e.Key)
         {
-            SetCurrentValue(IsDropdownOpenProperty, false);
-            e.Handled = true;
-            return;
-        }
-
-        if (e.Key == Key.Down)
-        {
-            SetCurrentValue(IsDropdownOpenProperty, true);
-            e.Handled = true;
-            return;
-        }
-
-        if (e.Key == Key.Tab)
-        {
-            if(_endTextBox?.IsFocused == true)
-            {
+            case Key.Escape:
                 SetCurrentValue(IsDropdownOpenProperty, false);
+                e.Handled = true;
+                return;
+            case Key.Down:
+                SetCurrentValue(IsDropdownOpenProperty, true);
+                e.Handled = true;
+                return;
+            case Key.Tab:
+            {
+                if(_endTextBox?.IsFocused == true)
+                {
+                    SetCurrentValue(IsDropdownOpenProperty, false);
+                }
+                return;
             }
-            return;
+            default:
+                base.OnKeyDown(e);
+                break;
         }
-
-        base.OnKeyDown(e);
     }
     
 }

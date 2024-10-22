@@ -190,27 +190,23 @@ public class DatePicker: DatePickerBase, IClearControl
 
     protected override void OnKeyDown(KeyEventArgs e)
     {
-        if (e.Key == Key.Escape)
+        switch (e.Key)
         {
-            SetCurrentValue(IsDropdownOpenProperty, false);
-            e.Handled = true;
-            return;
+            case Key.Escape:
+                SetCurrentValue(IsDropdownOpenProperty, false);
+                e.Handled = true;
+                return;
+            case Key.Down:
+                SetCurrentValue(IsDropdownOpenProperty, true);
+                e.Handled = true;
+                return;
+            case Key.Tab:
+                SetCurrentValue(IsDropdownOpenProperty, false);
+                return;
+            default:
+                base.OnKeyDown(e);
+                break;
         }
-
-        if (e.Key == Key.Down)
-        {
-            SetCurrentValue(IsDropdownOpenProperty, true);
-            e.Handled = true;
-            return;
-        }
-
-        if (e.Key == Key.Tab)
-        {
-            SetCurrentValue(IsDropdownOpenProperty, false);
-            return;
-        }
-
-        base.OnKeyDown(e);
     }
 
     public void Clear()
