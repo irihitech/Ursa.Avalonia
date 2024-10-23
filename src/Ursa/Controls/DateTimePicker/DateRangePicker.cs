@@ -49,6 +49,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
     private bool? _start;
     private CalendarView? _startCalendar;
     private TextBox? _startTextBox;
+    private Popup? _popup;
 
     static DateRangePicker()
     {
@@ -139,7 +140,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
         }
 
         _button = e.NameScope.Find<Button>(PART_Button);
-        e.NameScope.Find<Popup>(PART_Popup);
+        _popup = e.NameScope.Find<Popup>(PART_Popup);
         _startCalendar = e.NameScope.Find<CalendarView>(PART_StartCalendar);
         _endCalendar = e.NameScope.Find<CalendarView>(PART_EndCalendar);
         _startTextBox = e.NameScope.Find<TextBox>(PART_StartTextBox);
@@ -398,6 +399,19 @@ public class DateRangePicker : DatePickerBase, IClearControl
             }
         }
     }
+    
+    /// <inheritdoc/>
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    {
+        base.OnPointerPressed(e);
+        if(!e.Handled && e.Source is Visual source)
+        {
+            if (_popup?.IsInsidePopup(source) == true)
+            {
+                e.Handled = true;
+            }
+        }
+    }
 
     private void OnTextBoxGetFocus(object? sender, GotFocusEventArgs e)
     {
@@ -418,5 +432,30 @@ public class DateRangePicker : DatePickerBase, IClearControl
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
     
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        switch (e.Key)
+        {
+            case Key.Escape:
+                SetCurrentValue(IsDropdownOpenProperty, false);
+                e.Handled = true;
+                return;
+            case Key.Down:
+                SetCurrentValue(IsDropdownOpenProperty, true);
+                e.Handled = true;
+                return;
+            case Key.Tab:
+            {
+                if(_endTextBox?.IsFocused == true)
+                {
+                    SetCurrentValue(IsDropdownOpenProperty, false);
+                }
+                return;
+            }
+            default:
+                base.OnKeyDown(e);
+                break;
+        }
+    }
     
 }
