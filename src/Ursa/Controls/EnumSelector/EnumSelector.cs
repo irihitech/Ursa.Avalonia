@@ -131,7 +131,7 @@ public class EnumSelector: TemplatedControl
     }
 
     // netstandard 2.0 does not support Enum.GetValuesAsUnderlyingType, which is used for native aot compilation
-#if NET8_0_OR_GREATER
+#if NET
     private List<EnumItemTuple> GenerateItemTuple()
     {
         if (EnumType is null) return new List<EnumItemTuple>();
