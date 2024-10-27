@@ -367,7 +367,7 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
                 text = text.Substring(1);
             }
         }
-#if NET8_0_OR_GREATER
+#if NET
         else if ((numberStyles & NumberStyles.AllowBinarySpecifier) != 0)
         {
             if (text.StartsWith("0b") || text.StartsWith("0B")) // support 0b bin while user input
