@@ -9,28 +9,16 @@
     </Design.PreviewWith>
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="DividerLeftLine" TargetType="{x:Type Rectangle}">
-        <Setter Property="Fill" Value="{DynamicResource DividerBorderBrush}" />
-        <Setter Property="Height" Value="{DynamicResource SizeDividerWidth}" />
-        <Setter Property="MinWidth" Value="{DynamicResource SizeDividerLeftMinWidth}" />
+        <Setter Property="Rectangle.Fill" Value="{DynamicResource DividerBorderBrush}" />
+        <Setter Property="Rectangle.Height" Value="{DynamicResource SizeDividerWidth}" />
+        <Setter Property="Rectangle.MinWidth" Value="{DynamicResource SizeDividerLeftMinWidth}" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </ControlTheme>
 
     <ControlTheme x:Key="DividerRightLine" TargetType="{x:Type Rectangle}">
-        <Setter Property="Fill" Value="{DynamicResource DividerBorderBrush}" />
-        <Setter Property="Height" Value="{DynamicResource SizeDividerWidth}" />
-        <Setter Property="MinWidth" Value="{DynamicResource SizeDividerRightMinWidth}" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-    </ControlTheme>
-
-    <ControlTheme x:Key="DividerContentPresenter" TargetType="{x:Type ContentPresenter}">
-        <Setter Property="Content" Value="{TemplateBinding Content}" />
-        <Setter Property="Background" Value="{TemplateBinding Background}" />
-        <Setter Property="Foreground" Value="{TemplateBinding Foreground}" />
-        <Setter Property="ContentTemplate" Value="{TemplateBinding ContentTemplate}" />
-        <Setter Property="FontFamily" Value="{TemplateBinding FontFamily}" />
-        <Setter Property="FontWeight" Value="{TemplateBinding FontWeight}" />
-        <Setter Property="FontSize" Value="{TemplateBinding FontSize}" />
-        <Setter Property="Margin" Value="{DynamicResource ThicknessDividerTextMargin}" />
+        <Setter Property="Rectangle.Fill" Value="{DynamicResource DividerBorderBrush}" />
+        <Setter Property="Rectangle.Height" Value="{DynamicResource SizeDividerWidth}" />
+        <Setter Property="Rectangle.MinWidth" Value="{DynamicResource SizeDividerRightMinWidth}" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </ControlTheme>
 
@@ -49,8 +37,12 @@
                             <Rectangle Theme="{StaticResource DividerLeftLine}" />
                             <ContentPresenter
                                 Grid.Column="1"
-                                IsVisible="{Binding Content, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                Theme="{StaticResource DividerContentPresenter}" />
+                                Content="{TemplateBinding Content}"
+                                Background="{TemplateBinding Background}"
+                                Foreground="{TemplateBinding Foreground}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                Margin="{DynamicResource ThicknessDividerTextMargin}"
+                                IsVisible="{Binding Content, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}"/>
                             <Rectangle Grid.Column="2" Theme="{StaticResource DividerRightLine}" />
                         </Grid>
                     </ControlTemplate>
@@ -66,8 +58,12 @@
                             <Rectangle Theme="{StaticResource DividerLeftLine}" />
                             <ContentPresenter
                                 Grid.Column="1"
-                                IsVisible="{Binding Content, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                Theme="{StaticResource DividerContentPresenter}" />
+                                Content="{TemplateBinding Content}"
+                                Background="{TemplateBinding Background}"
+                                Foreground="{TemplateBinding Foreground}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                Margin="{DynamicResource ThicknessDividerTextMargin}"
+                                IsVisible="{Binding Content, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}"/>
                             <Rectangle Grid.Column="2" Theme="{StaticResource DividerRightLine}" />
                         </Grid>
                     </ControlTemplate>
@@ -83,8 +79,12 @@
                             <Rectangle Theme="{StaticResource DividerLeftLine}" />
                             <ContentPresenter
                                 Grid.Column="1"
-                                IsVisible="{Binding Content, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                Theme="{StaticResource DividerContentPresenter}" />
+                                Content="{TemplateBinding Content}"
+                                Background="{TemplateBinding Background}"
+                                Foreground="{TemplateBinding Foreground}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                Margin="{DynamicResource ThicknessDividerTextMargin}"
+                                IsVisible="{Binding Content, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}"/>
                             <Rectangle Grid.Column="2" Theme="{StaticResource DividerRightLine}" />
                         </Grid>
                     </ControlTemplate>
@@ -100,8 +100,12 @@
                             <Rectangle Theme="{StaticResource DividerLeftLine}" />
                             <ContentPresenter
                                 Grid.Column="1"
-                                IsVisible="{Binding Content, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                Theme="{StaticResource DividerContentPresenter}" />
+                                Content="{TemplateBinding Content}"
+                                Background="{TemplateBinding Background}"
+                                Foreground="{TemplateBinding Foreground}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                Margin="{DynamicResource ThicknessDividerTextMargin}"
+                                IsVisible="{Binding Content, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}"/>
                             <Rectangle Grid.Column="2" Theme="{StaticResource DividerRightLine}" />
                         </Grid>
                     </ControlTemplate>
