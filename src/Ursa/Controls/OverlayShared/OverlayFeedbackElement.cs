@@ -20,11 +20,11 @@ public abstract class OverlayFeedbackElement : ContentControl
             nameof(Closed), RoutingStrategies.Bubble);
 
     private bool _resizeDragging;
-    
+
     protected Panel? ContainerPanel;
     private Rect _resizeDragStartBounds;
     private Point _resizeDragStartPoint;
-    
+
     private WindowEdge? _windowEdge;
 
     static OverlayFeedbackElement()
@@ -33,6 +33,12 @@ public abstract class OverlayFeedbackElement : ContentControl
         DataContextProperty.Changed.AddClassHandler<OverlayFeedbackElement, object?>((o, e) =>
             o.OnDataContextChange(e));
         ClosedEvent.AddClassHandler<OverlayFeedbackElement>((o, e) => o.OnClosed(e));
+    }
+
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+        Content = null;
     }
 
     public bool IsClosed
@@ -96,7 +102,7 @@ public abstract class OverlayFeedbackElement : ContentControl
         _resizeDragStartBounds = Bounds;
         _windowEdge = windowEdge;
     }
-    
+
     internal void BeginMoveDrag(PointerPressedEventArgs e)
     {
         if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
@@ -133,9 +139,11 @@ public abstract class OverlayFeedbackElement : ContentControl
         var left = Canvas.GetLeft(this);
         var top = Canvas.GetTop(this);
         var width = _windowEdge is WindowEdge.West or WindowEdge.NorthWest or WindowEdge.SouthWest
-            ? Bounds.Width : _resizeDragStartBounds.Width;
+            ? Bounds.Width
+            : _resizeDragStartBounds.Width;
         var height = _windowEdge is WindowEdge.North or WindowEdge.NorthEast or WindowEdge.NorthWest
-            ? Bounds.Height : _resizeDragStartBounds.Height;
+            ? Bounds.Height
+            : _resizeDragStartBounds.Height;
         var newBounds = CalculateNewBounds(left, top, width, height, diff, ContainerPanel?.Bounds, _windowEdge.Value);
         Canvas.SetLeft(this, newBounds.Left);
         Canvas.SetTop(this, newBounds.Top);
@@ -144,37 +152,49 @@ public abstract class OverlayFeedbackElement : ContentControl
         AnchorAndUpdatePositionInfo();
     }
 
-    private Rect CalculateNewBounds(double left, double top, double width, double height, Vector diff, Rect? containerBounds,
+    private Rect CalculateNewBounds(double left, double top, double width, double height, Vector diff,
+        Rect? containerBounds,
         WindowEdge windowEdge)
     {
         diff = CoerceDelta(left, top, width, height, diff, containerBounds, windowEdge);
         switch (windowEdge)
         {
             case WindowEdge.North:
-                top += diff.Y; height -= diff.Y;
+                top += diff.Y;
+                height -= diff.Y;
                 break;
             case WindowEdge.NorthEast:
-                top += diff.Y; width += diff.X; height -= diff.Y;
+                top += diff.Y;
+                width += diff.X;
+                height -= diff.Y;
                 break;
             case WindowEdge.East:
                 width += diff.X;
                 break;
             case WindowEdge.SouthEast:
-                width += diff.X; height += diff.Y;
+                width += diff.X;
+                height += diff.Y;
                 break;
             case WindowEdge.South:
                 height += diff.Y;
                 break;
             case WindowEdge.SouthWest:
-                left += diff.X; width -= diff.X; height += diff.Y;
+                left += diff.X;
+                width -= diff.X;
+                height += diff.Y;
                 break;
             case WindowEdge.West:
-                left += diff.X; width -= diff.X;
+                left += diff.X;
+                width -= diff.X;
                 break;
             case WindowEdge.NorthWest:
-                left += diff.X; top += diff.Y; width -= diff.X; height -= diff.Y;
+                left += diff.X;
+                top += diff.Y;
+                width -= diff.X;
+                height -= diff.Y;
                 break;
         }
+
         return new Rect(left, top, width, height);
     }
 
@@ -184,18 +204,18 @@ public abstract class OverlayFeedbackElement : ContentControl
         if (containerBounds is null) return diff;
         var minX = windowEdge is WindowEdge.West or WindowEdge.NorthWest or WindowEdge.SouthWest
             ? -left
-            : -width; 
+            : -width;
         var minY = windowEdge is WindowEdge.North or WindowEdge.NorthEast or WindowEdge.NorthWest
             ? -top
             : -height;
         var maxX = windowEdge is WindowEdge.West or WindowEdge.NorthWest or WindowEdge.SouthWest
-            ? width-MinWidth
-            : containerBounds.Value.Width - left - width; 
+            ? width - MinWidth
+            : containerBounds.Value.Width - left - width;
         var maxY = windowEdge is WindowEdge.North or WindowEdge.NorthEast or WindowEdge.NorthWest
-            ? height-MinWidth
+            ? height - MinWidth
             : containerBounds.Value.Height - top - height;
         return new Vector(MathHelpers.SafeClamp(diff.X, minX, maxX), MathHelpers.SafeClamp(diff.Y, minY, maxY));
     }
-    
+
     protected internal abstract void AnchorAndUpdatePositionInfo();
 }
