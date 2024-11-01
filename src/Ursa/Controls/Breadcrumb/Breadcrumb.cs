@@ -5,6 +5,7 @@ using Avalonia.Controls.Templates;
 using Avalonia.Data;
 using Avalonia.Layout;
 using Avalonia.Metadata;
+using Avalonia.VisualTree;
 
 namespace Ursa.Controls;
 
@@ -84,17 +85,6 @@ public class Breadcrumb: ItemsControl
         return new BreadcrumbItem();
     }
 
-    protected override void LogicalChildrenCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
-    {
-        base.LogicalChildrenCollectionChanged(sender, e);
-        var breadcrumbItems = LogicalChildren.OfType<BreadcrumbItem>().ToList();
-        for (var i = 0; i < breadcrumbItems.Count; i++)
-        {
-            var breadcrumbItem = breadcrumbItems[i];
-            breadcrumbItem.SetPseudoClassLast(i == breadcrumbItems.Count - 1);
-        }
-    }
-
     protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
     {
         if (container is not BreadcrumbItem breadcrumbItem) return;
@@ -149,4 +139,13 @@ public class Breadcrumb: ItemsControl
         ITemplate<Control?> t => t.Build(),
         _ => separator.ToString()
     };
+
+    internal void InvalidateContainers()
+    {
+        var breadcrumbItems = this.GetVisualDescendants().OfType<BreadcrumbItem>().ToList();
+        for (var i = 0; i < breadcrumbItems.Count; i++)
+        {
+            breadcrumbItems[i].SetPseudoClassLast(i == breadcrumbItems.Count - 1);
+        }
+    }
 }
