@@ -26,6 +26,22 @@ public class BreadcrumbTests
     }
     
     [AvaloniaFact]
+    public void BreadcrumbItem_Should_Have_Correct_PseudoClasses_When_Insert()
+    {
+        var window = new Window();
+        var breadcrumb = new Breadcrumb();
+        window.Content = breadcrumb;
+        window.Show();
+        var item1 = new BreadcrumbItem();
+        var item2 = new BreadcrumbItem();
+        breadcrumb.Items.Add(item1);
+        Assert.Contains(":last", item1.Classes);
+        breadcrumb.Items.Insert(0, item2);
+        Assert.Contains(":last", item1.Classes);
+        Assert.DoesNotContain(":last", item2.Classes);
+    }
+    
+    [AvaloniaFact]
     public void Generated_BreadcrumbItem_Should_Have_Correct_PseudoClasses()
     {
         var window = new Window();
@@ -42,6 +58,28 @@ public class BreadcrumbTests
         var lastItem = breadcrumb.GetVisualDescendants().OfType<BreadcrumbItem>().LastOrDefault();
         Assert.NotNull(lastItem);
         Assert.Contains(":last", lastItem.Classes);
+        Assert.DoesNotContain(":last", firstItem.Classes);
+    }
+    
+    [AvaloniaFact]
+    public void Generated_BreadcrumbItem_Should_Have_Correct_PseudoClasses_When_Insert()
+    {
+        var window = new Window();
+        var breadcrumb = new Breadcrumb();
+        window.Content = breadcrumb;
+        window.Show();
+        var item1 = new TextBlock();
+        var item2 = new TextBlock();
+        breadcrumb.Items.Add(item1);
+        var firstItem = breadcrumb.GetVisualDescendants().OfType<BreadcrumbItem>().FirstOrDefault();
+        Assert.NotNull(firstItem);
+        Assert.Contains(":last", firstItem.Classes);
+        breadcrumb.Items.Insert(0, item2);
+        var lastItem = breadcrumb.GetVisualDescendants().OfType<BreadcrumbItem>().LastOrDefault();
+        Assert.NotNull(lastItem);
+        Assert.Contains(":last", lastItem.Classes);
+        firstItem = breadcrumb.GetVisualDescendants().OfType<BreadcrumbItem>().FirstOrDefault();
+        Assert.NotNull(firstItem);
         Assert.DoesNotContain(":last", firstItem.Classes);
     }
     
