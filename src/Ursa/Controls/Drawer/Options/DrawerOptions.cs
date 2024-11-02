@@ -22,4 +22,6 @@ public class DrawerOptions
     public int? TopLevelHashCode { get; set; }
 
     public bool CanResize { get; set; }
+    
+    public string? StyleClass { get; set; }
 }

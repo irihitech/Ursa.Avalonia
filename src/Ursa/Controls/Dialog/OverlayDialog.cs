@@ -205,6 +205,10 @@ public static class OverlayDialog
         control.IsCloseButtonVisible = options.IsCloseButtonVisible;
         control.CanLightDismiss = options.CanLightDismiss;
         control.CanResize = options.CanResize;
+        if (!string.IsNullOrWhiteSpace(options.StyleClass))
+        {
+            control.Classes.Add(options.StyleClass);
+        }
         DialogControlBase.SetCanDragMove(control, options.CanDragMove);
     }
     
@@ -231,6 +235,10 @@ public static class OverlayDialog
         control.CanLightDismiss = options.CanLightDismiss;
         control.IsCloseButtonVisible = options.IsCloseButtonVisible;
         control.CanResize = options.CanResize;
+        if (!string.IsNullOrWhiteSpace(options.StyleClass))
+        {
+            control.Classes.Add(options.StyleClass);
+        }
         DialogControlBase.SetCanDragMove(control, options.CanDragMove);
     }
 

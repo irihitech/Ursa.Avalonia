@@ -64,4 +64,6 @@ public class OverlayDialogOptions
     public int? TopLevelHashCode { get; set; }
 
     public bool CanResize { get; set; }
+    
+    public string? StyleClass { get; set; }
 }

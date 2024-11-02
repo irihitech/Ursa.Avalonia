@@ -214,6 +214,10 @@ public static class Dialog
             else
                 window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
         }
+        if (!string.IsNullOrWhiteSpace(options.StyleClass))
+        {
+            window.Classes.Add(options.StyleClass);
+        }
     }
 
     /// <summary>
@@ -239,6 +243,10 @@ public static class Dialog
                 window.Position = options.Position.Value;
             else
                 window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+        }
+        if (!string.IsNullOrWhiteSpace(options.StyleClass))
+        {
+            window.Classes.Add(options.StyleClass);
         }
     }
 }

@@ -217,6 +217,11 @@ public static class Drawer
             if(options.MinHeight is not null) drawer.MinHeight = options.MinHeight.Value;
             if(options.MaxHeight is not null) drawer.MaxHeight = options.MaxHeight.Value;
         }
+
+        if (!string.IsNullOrWhiteSpace(options.StyleClass))
+        {
+            drawer.Classes.Add(options.StyleClass!);
+        }
     }
 
     private static void ConfigureDefaultDrawer(DefaultDrawerControl drawer, DrawerOptions? options)
@@ -238,6 +243,10 @@ public static class Drawer
         {
             if(options.MinHeight is not null) drawer.MinHeight = options.MinHeight.Value;
             if(options.MaxHeight is not null) drawer.MaxHeight = options.MaxHeight.Value;
+        }
+        if (!string.IsNullOrWhiteSpace(options.StyleClass))
+        {
+            drawer.Classes.Add(options.StyleClass!);
         }
     }
 }

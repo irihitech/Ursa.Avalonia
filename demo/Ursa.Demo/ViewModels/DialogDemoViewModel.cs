@@ -163,6 +163,7 @@ public partial class DefaultOverlayDialogDemoViewModel : ObservableObject
             CanDragMove = CanDragMove,
             IsCloseButtonVisible = IsCloseButtonVisible,
             CanResize = CanResize,
+            StyleClass = "Alert",
         };
         string? dialogHostId = IsLocal ? DialogDemoViewModel.LocalHost : null;
         if (IsModal)
