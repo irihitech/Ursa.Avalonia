@@ -117,6 +117,7 @@ public class UrsaWindow: Window
             if (_canClose)
             {
                 Close();
+                return;
             }
         }
         base.OnClosing(e);
