@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:theme="clr-namespace:Ursa.Themes.Semi"
-    xmlns:u="https://irihi.tech/ursa">
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:helpers="clr-namespace:Irihi.Avalonia.Shared.Helpers;assembly=Irihi.Avalonia.Shared">
 
     <ControlTheme x:Key="{x:Type u:OverlayDialogHost}" TargetType="u:OverlayDialogHost">
         <Setter Property="OverlayMaskBrush" Value="{DynamicResource OverlayDialogMaskBrush}" />
@@ -207,35 +207,24 @@
                                         DockPanel.Dock="Right"
                                         Theme="{DynamicResource OverlayCloseButton}" />
                                 </Grid>
-                                <StackPanel
+                                <Grid
                                     Grid.Row="2"
                                     Margin="24,0,24,24"
                                     HorizontalAlignment="Right"
-                                    Orientation="Horizontal">
+                                    ColumnDefinitions="Auto, Auto, Auto, Auto">
                                     <Button
                                         Name="{x:Static u:DefaultDialogControl.PART_CancelButton}"
-                                        Margin="8,0,0,0"
-                                        Classes="Tertiary"
-                                        Content="{DynamicResource STRING_MENU_DIALOG_CANCEL}" />
+                                        Margin="8,0,0,0" />
                                     <Button
                                         Name="{x:Static u:DefaultDialogControl.PART_NoButton}"
-                                        Margin="8,0,0,0"
-                                        Classes="Danger"
-                                        Content="{DynamicResource STRING_MENU_DIALOG_NO}"
-                                        Theme="{DynamicResource SolidButton}" />
+                                        Margin="8,0,0,0"/>
                                     <Button
                                         Name="{x:Static u:DefaultDialogControl.PART_YesButton}"
-                                        Margin="8,0,0,0"
-                                        Classes="Primary"
-                                        Content="{DynamicResource STRING_MENU_DIALOG_YES}"
-                                        Theme="{DynamicResource SolidButton}" />
+                                        Margin="8,0,0,0"/>
                                     <Button
                                         Name="{x:Static u:DefaultDialogControl.PART_OKButton}"
-                                        Margin="8,0,0,0"
-                                        Classes="Primary"
-                                        Content="{DynamicResource STRING_MENU_DIALOG_OK}"
-                                        Theme="{DynamicResource SolidButton}" />
-                                </StackPanel>
+                                        Margin="8,0,0,0"/>
+                                </Grid>
                                 
                             </Grid>
                         </Border>
@@ -254,6 +243,29 @@
             <Setter Property="Margin" Value="0" />
             <Setter Property="Background" Value="{DynamicResource BorderCardBackground}" />
         </Style>
+        <Style Selector="^ /template/ Button#PART_CancelButton">
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary"/>
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_CANCEL}"/>
+        </Style>
+        <Style Selector="^ /template/ Button#PART_NoButton">
+            <Setter Property="Grid.Column" Value="1"></Setter>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Danger"/>
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_NO}"/>
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+        </Style>
+        <Style Selector="^ /template/ Button#PART_YesButton">
+            <Setter Property="Grid.Column" Value="2"></Setter>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Primary"/>
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_YES}"/>
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+        </Style>
+        <Style Selector="^ /template/ Button#PART_OKButton">
+            <Setter Property="Grid.Column" Value="3"></Setter>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Primary"/>
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_OK}"/>
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+        </Style>
         <Style Selector="^[Mode=None]">
             <Style Selector="^ /template/ PathIcon#PART_Icon">
                 <Setter Property="IsVisible" Value="False" />
@@ -262,16 +274,16 @@
                 <Setter Property="Margin" Value="24 24 0 0" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Primary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
             </Style>
             <Style Selector="^ /template/ Button#PART_YesButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Primary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
             </Style>
             <Style Selector="^ /template/ Button#PART_NoButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Danger" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
             </Style>
             <Style Selector="^ /template/ Button#PART_CancelButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
             </Style>
         </Style>
         <Style Selector="^[Mode=Info]">
@@ -281,16 +293,16 @@
                 <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Primary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
             </Style>
             <Style Selector="^ /template/ Button#PART_YesButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Primary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
             </Style>
             <Style Selector="^ /template/ Button#PART_NoButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Danger" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
             </Style>
             <Style Selector="^ /template/ Button#PART_CancelButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
             </Style>
         </Style>
         <Style Selector="^[Mode=Warning]">
@@ -300,19 +312,19 @@
                 <Setter Property="Foreground" Value="{DynamicResource SemiOrange6}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Warning" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Warning" />
                 <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_YesButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Warning" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Warning" />
                 <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_NoButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Danger" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
                 <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_CancelButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
             </Style>
         </Style>
         <Style Selector="^[Mode=Error]">
@@ -322,16 +334,16 @@
                 <Setter Property="Foreground" Value="{DynamicResource SemiRed6}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Danger" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
             </Style>
             <Style Selector="^ /template/ Button#PART_YesButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Danger" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
             </Style>
             <Style Selector="^ /template/ Button#PART_NoButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
             </Style>
             <Style Selector="^ /template/ Button#PART_CancelButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
             </Style>
         </Style>
         <Style Selector="^[Mode=Question]">
@@ -341,16 +353,16 @@
                 <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Primary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
             </Style>
             <Style Selector="^ /template/ Button#PART_YesButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Primary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
             </Style>
             <Style Selector="^ /template/ Button#PART_NoButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Danger" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
             </Style>
             <Style Selector="^ /template/ Button#PART_CancelButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
             </Style>
         </Style>
         <Style Selector="^[Mode=Success]">
@@ -360,16 +372,16 @@
                 <Setter Property="Foreground" Value="{DynamicResource SemiGreen6}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Success" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Success" />
             </Style>
             <Style Selector="^ /template/ Button#PART_YesButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Success" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Success" />
             </Style>
             <Style Selector="^ /template/ Button#PART_NoButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Danger" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
             </Style>
             <Style Selector="^ /template/ Button#PART_CancelButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
             </Style>
         </Style>
         <Style Selector="^ /template/ Panel#PART_TitleArea">
@@ -604,27 +616,16 @@
                                 Orientation="Horizontal">
                                 <Button
                                     Name="{x:Static u:DefaultDialogControl.PART_CancelButton}"
-                                    Margin="8,0,0,0"
-                                    Classes="Tertiary"
-                                    Content="{DynamicResource STRING_MENU_DIALOG_CANCEL}" />
+                                    Margin="8,0,0,0" />
                                 <Button
                                     Name="{x:Static u:DefaultDialogControl.PART_NoButton}"
-                                    Margin="8,0,0,0"
-                                    Classes="Danger"
-                                    Content="{DynamicResource STRING_MENU_DIALOG_NO}"
-                                    Theme="{DynamicResource SolidButton}" />
+                                    Margin="8,0,0,0" />
                                 <Button
                                     Name="{x:Static u:DefaultDialogControl.PART_YesButton}"
-                                    Margin="8,0,0,0"
-                                    Classes="Primary"
-                                    Content="{DynamicResource STRING_MENU_DIALOG_YES}"
-                                    Theme="{DynamicResource SolidButton}" />
+                                    Margin="8,0,0,0" />
                                 <Button
                                     Name="{x:Static u:DefaultDialogControl.PART_OKButton}"
-                                    Margin="8,0,0,0"
-                                    Classes="Primary"
-                                    Content="{DynamicResource STRING_MENU_DIALOG_OK}"
-                                    Theme="{DynamicResource SolidButton}" />
+                                    Margin="8,0,0,0" />
                             </StackPanel>
                             
                         </Grid>
@@ -633,6 +634,29 @@
                 </Panel>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^ /template/ Button#PART_CancelButton">
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary"/>
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_CANCEL}"/>
+        </Style>
+        <Style Selector="^ /template/ Button#PART_NoButton">
+            <Setter Property="Grid.Column" Value="1"></Setter>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Danger"/>
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_NO}"/>
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+        </Style>
+        <Style Selector="^ /template/ Button#PART_YesButton">
+            <Setter Property="Grid.Column" Value="2"></Setter>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Primary"/>
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_YES}"/>
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+        </Style>
+        <Style Selector="^ /template/ Button#PART_OKButton">
+            <Setter Property="Grid.Column" Value="3"></Setter>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Primary"/>
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_OK}"/>
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+        </Style>
         <Style Selector="^[Mode=None]">
             <Style Selector="^ /template/ PathIcon#PART_Icon">
                 <Setter Property="IsVisible" Value="False" />
@@ -641,16 +665,16 @@
                 <Setter Property="Margin" Value="24 24 0 0" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Primary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
             </Style>
             <Style Selector="^ /template/ Button#PART_YesButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Primary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
             </Style>
             <Style Selector="^ /template/ Button#PART_NoButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Danger" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
             </Style>
             <Style Selector="^ /template/ Button#PART_CancelButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
             </Style>
         </Style>
         <Style Selector="^[Mode=Info]">
@@ -660,16 +684,16 @@
                 <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Primary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
             </Style>
             <Style Selector="^ /template/ Button#PART_YesButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Primary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
             </Style>
             <Style Selector="^ /template/ Button#PART_NoButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Danger" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
             </Style>
             <Style Selector="^ /template/ Button#PART_CancelButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
             </Style>
         </Style>
         <Style Selector="^[Mode=Warning]">
@@ -679,19 +703,19 @@
                 <Setter Property="Foreground" Value="{DynamicResource SemiOrange6}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Warning" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Warning" />
                 <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_YesButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Warning" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Warning" />
                 <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_NoButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Danger" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
                 <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_CancelButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
             </Style>
         </Style>
         <Style Selector="^[Mode=Error]">
@@ -701,16 +725,16 @@
                 <Setter Property="Foreground" Value="{DynamicResource SemiRed6}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Danger" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
             </Style>
             <Style Selector="^ /template/ Button#PART_YesButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Danger" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
             </Style>
             <Style Selector="^ /template/ Button#PART_NoButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
             </Style>
             <Style Selector="^ /template/ Button#PART_CancelButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
             </Style>
         </Style>
         <Style Selector="^[Mode=Question]">
@@ -720,16 +744,16 @@
                 <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Primary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
             </Style>
             <Style Selector="^ /template/ Button#PART_YesButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Primary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
             </Style>
             <Style Selector="^ /template/ Button#PART_NoButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Danger" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
             </Style>
             <Style Selector="^ /template/ Button#PART_CancelButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
             </Style>
         </Style>
         <Style Selector="^[Mode=Success]">
@@ -739,16 +763,16 @@
                 <Setter Property="Foreground" Value="{DynamicResource SemiGreen6}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Success" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Success" />
             </Style>
             <Style Selector="^ /template/ Button#PART_YesButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Success" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Success" />
             </Style>
             <Style Selector="^ /template/ Button#PART_NoButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Danger" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
             </Style>
             <Style Selector="^ /template/ Button#PART_CancelButton">
-                <Setter Property="theme:ClassHelper.Classes" Value="Tertiary" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
             </Style>
         </Style>
     </ControlTheme>

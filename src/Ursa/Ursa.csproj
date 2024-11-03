@@ -15,7 +15,8 @@
 
     <ItemGroup>
         <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)"/>
-        <PackageReference Include="Irihi.Avalonia.Shared" Version="0.1.9" />
+        <PackageReference Include="Irihi.Avalonia.Shared" Version="0.2.0" />
+        <PackageReference Include="Irihi.Avalonia.Shared.Contracts" Version="0.2.0" />
     </ItemGroup>
 
     <ItemGroup>
