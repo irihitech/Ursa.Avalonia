@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using Avalonia.Automation.Peers;
 using Avalonia.Controls;
 using Avalonia.Controls.Mixins;
 using Avalonia.Input;
@@ -111,5 +112,9 @@ public class MultiComboBoxItem: ContentControl
             IsSelected =  _parent?.SelectedItems?.Contains(DataContext) ?? false;
         }
         _updateInternal = false;
+    }
+    protected override AutomationPeer OnCreateAutomationPeer()
+    {
+        return new ListItemAutomationPeer(this);
     }
 }
