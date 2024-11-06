@@ -162,10 +162,11 @@ public class PinCode: TemplatedControl
     protected async void OnPreviewKeyDown(KeyEventArgs e)
     {
         TextBox b = new TextBox();
-        var pasteKeys = Application.Current?.PlatformSettings.HotkeyConfiguration.Paste;
+        var pasteKeys = Application.Current?.PlatformSettings?.HotkeyConfiguration.Paste;
         if (pasteKeys?.Any(a => a.Matches(e)) == true)
         {
             var clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
+            if (clipboard is null) return;
             var text = await clipboard.GetTextAsync();
             if (text is not null)
             {
