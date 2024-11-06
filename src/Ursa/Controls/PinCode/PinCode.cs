@@ -159,8 +159,31 @@ public class PinCode: TemplatedControl
         };
     }
 
-    protected void OnPreviewKeyDown(KeyEventArgs e)
+    protected async void OnPreviewKeyDown(KeyEventArgs e)
     {
+        TextBox b = new TextBox();
+        var pasteKeys = Application.Current?.PlatformSettings?.HotkeyConfiguration.Paste;
+        if (pasteKeys?.Any(a => a.Matches(e)) == true)
+        {
+            var clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
+            if (clipboard is null) return;
+            var text = await clipboard.GetTextAsync();
+            if (text is not null)
+            {
+                var newText = text.Where(c => Valid(c, Mode)).Take(Count).ToArray();
+                for (int i = 0; i < newText.Length; i++)
+                {
+                    Digits[i] = newText[i].ToString();
+                    var presenter = _itemsControl?.ContainerFromIndex(i) as PinCodeItem;
+                    if (presenter is not null)
+                    {
+                        presenter.Focus();
+                        presenter.Text = newText[i].ToString();
+                    }
+                }
+            }
+            return;
+        }
         if (e.Key == Key.Tab && e.Source is PinCodeItem)
         {
             _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);

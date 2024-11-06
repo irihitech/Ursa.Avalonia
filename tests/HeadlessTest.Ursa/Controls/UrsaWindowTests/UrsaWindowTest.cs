@@ -17,7 +17,7 @@ public class UrsaWindowTest
     }
 
     [AvaloniaFact]
-    public async void Inferenced_Window_Closing_Called_Once_When_Yes()
+    public void Inferenced_Window_Closing_Called_Once_When_Yes()
     {
         var window = new UrsaWindowWithCloseInference();
         window.Show();
@@ -29,7 +29,7 @@ public class UrsaWindowTest
     }
 
     [AvaloniaFact]
-    public async void Inferenced_Window_Closing_Called_Once_When_No()
+    public void Inferenced_Window_Closing_Called_Once_When_No()
     {
         var window = new UrsaWindowWithCloseInference();
         window.Show();
