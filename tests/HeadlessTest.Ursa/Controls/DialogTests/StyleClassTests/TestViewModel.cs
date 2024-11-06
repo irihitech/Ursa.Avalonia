@@ -6,12 +6,13 @@ namespace HeadlessTest.Ursa.Controls.DialogTests.StyleClassTests;
 
 public class TestViewModel: ObservableObject
 {
-    public void InvokeDialog()
+    public void InvokeDialog(string? classes, int? hash)
     {
         OverlayDialog.Show<TextBlock, string>("Hello World", options: new OverlayDialogOptions()
         {
             Buttons = DialogButton.OKCancel,
-            StyleClass = "Custom",
+            StyleClass = classes,
+            TopLevelHashCode = hash,
         });
     }
 }
