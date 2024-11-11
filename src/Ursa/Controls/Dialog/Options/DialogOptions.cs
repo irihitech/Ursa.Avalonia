@@ -32,4 +32,5 @@ public class DialogOptions
     public bool CanDragMove { get; set; } = true;
 
     public bool CanResize { get; set; }
+    public string? StyleClass { get; set; }
 }

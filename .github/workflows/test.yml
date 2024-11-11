@@ -1,0 +1,23 @@
+name: Test
+
+on:
+  push:
+    branches: [ "action/publish" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+      - name: Ursa Headless Test
+        run: dotnet test ./tests/HeadlessTest.Ursa
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+      - name: Ursa Headless Test
+        run: dotnet test ./tests/HeadlessTest.Ursa

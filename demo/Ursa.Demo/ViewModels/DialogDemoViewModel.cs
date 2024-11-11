@@ -33,6 +33,7 @@ public partial class DefaultWindowDialogDemoViewModel: ObservableObject
     [ObservableProperty] private bool? _isCloseButtonVisible;
     [ObservableProperty] private bool _canDragMove;
     [ObservableProperty] private bool _canResize;
+    [ObservableProperty] private string? _styleClass;
 
     public ICommand ShowDialogCommand { get; }
 
@@ -57,6 +58,7 @@ public partial class DefaultWindowDialogDemoViewModel: ObservableObject
             StartupLocation = Location,
             CanDragMove = CanDragMove,
             CanResize = CanResize,
+            StyleClass = StyleClass,
         };
         if (X.HasValue && Y.HasValue)
         {
@@ -133,6 +135,7 @@ public partial class DefaultOverlayDialogDemoViewModel : ObservableObject
     [ObservableProperty] private bool _isModal;
     [ObservableProperty] private bool _isLocal;
     [ObservableProperty] private bool _canResize;
+    [ObservableProperty] private string? _styleClass;
 
     public ICommand ShowDialogCommand { get; }
 
@@ -163,6 +166,7 @@ public partial class DefaultOverlayDialogDemoViewModel : ObservableObject
             CanDragMove = CanDragMove,
             IsCloseButtonVisible = IsCloseButtonVisible,
             CanResize = CanResize,
+            StyleClass = StyleClass,
         };
         string? dialogHostId = IsLocal ? DialogDemoViewModel.LocalHost : null;
         if (IsModal)

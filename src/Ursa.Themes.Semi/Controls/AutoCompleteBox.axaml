@@ -2,7 +2,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa"
-    xmlns:usemi="https://irihi.tech/ursa/themes/semi">
+    xmlns:helpers="clr-namespace:Irihi.Avalonia.Shared.Helpers;assembly=Irihi.Avalonia.Shared">
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:AutoCompleteBox}" TargetType="u:AutoCompleteBox">
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -15,7 +15,7 @@
                         Name="PART_TextBox"
                         MinHeight="{TemplateBinding MinHeight}"
                         VerticalAlignment="Stretch"
-                        usemi:ClassHelper.ClassSource="{TemplateBinding}"
+                        helpers:ClassHelper.ClassSource="{TemplateBinding}"
                         DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}"
                         InnerLeftContent="{TemplateBinding InnerLeftContent}"
                         InnerRightContent="{TemplateBinding InnerRightContent}"

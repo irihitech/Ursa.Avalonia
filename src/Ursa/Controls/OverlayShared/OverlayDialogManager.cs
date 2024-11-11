@@ -1,4 +1,5 @@
 using System.Collections.Concurrent;
+using System.Diagnostics;
 
 namespace Ursa.Controls;
 
@@ -10,6 +11,7 @@ internal static class OverlayDialogManager
     
     public static void RegisterHost(OverlayDialogHost host, string? id, int? hash)
     {
+        Debug.WriteLine("Count: "+Hosts.Count);
         Hosts.TryAdd(new HostKey(id, hash), host);
     }
     

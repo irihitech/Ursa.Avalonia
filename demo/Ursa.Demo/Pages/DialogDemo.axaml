@@ -51,6 +51,21 @@
                         IsThreeState="True" />
                     <CheckBox u:FormItem.Label="CanDragMove" IsChecked="{Binding CanDragMove}" />
                     <CheckBox u:FormItem.Label="CanResize" IsChecked="{Binding CanResize}" />
+                    <u:FormItem>
+                        <u:FormItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Style Class" />
+                                <PathIcon
+                                    Width="12"
+                                    Height="12"
+                                    VerticalAlignment="Center"
+                                    TextElement.FontWeight="Normal"
+                                    Data="{DynamicResource DialogQuestionIconGlyph}"
+                                    ToolTip.Tip="Pass a Style Class to the created Dialog. In this example, if you set StyleClass as 'Custom', You will get Special Style for OK Button. These styles usually are defined in the root of your App/Window" />
+                            </StackPanel>
+                        </u:FormItem.Label>
+                        <TextBox HorizontalAlignment="Stretch" Text="{Binding StyleClass}" />
+                    </u:FormItem>
                     <Button
                         HorizontalAlignment="Left"
                         u:FormItem.NoLabel="True"
@@ -128,6 +143,21 @@
                         IsChecked="{Binding IsLocal}"
                         OffContent="Global"
                         OnContent="Local" />
+                    <u:FormItem>
+                        <u:FormItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Style Class" />
+                                <PathIcon
+                                    Width="12"
+                                    Height="12"
+                                    VerticalAlignment="Center"
+                                    TextElement.FontWeight="Normal"
+                                    Data="{DynamicResource DialogQuestionIconGlyph}"
+                                    ToolTip.Tip="Pass a Style Class to the created Dialog. In this example, if you set StyleClass as 'Custom', You will get Special Style for OK Button. These styles usually are defined in the root of your App/Window" />
+                            </StackPanel>
+                        </u:FormItem.Label>
+                        <TextBox HorizontalAlignment="Stretch" Text="{Binding StyleClass}" />
+                    </u:FormItem>
                     <Button
                         HorizontalAlignment="Left"
                         u:FormItem.NoLabel="True"

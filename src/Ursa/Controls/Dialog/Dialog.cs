@@ -214,6 +214,11 @@ public static class Dialog
             else
                 window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
         }
+        if (!string.IsNullOrWhiteSpace(options.StyleClass))
+        {
+            var styles = options.StyleClass!.Split([' '], StringSplitOptions.RemoveEmptyEntries);
+            window.Classes.AddRange(styles);
+        }
     }
 
     /// <summary>
@@ -239,6 +244,11 @@ public static class Dialog
                 window.Position = options.Position.Value;
             else
                 window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+        }
+        if (!string.IsNullOrWhiteSpace(options.StyleClass))
+        {
+            var styles = options.StyleClass!.Split([' '], StringSplitOptions.RemoveEmptyEntries);
+            window.Classes.AddRange(styles);
         }
     }
 }

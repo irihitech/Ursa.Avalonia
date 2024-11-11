@@ -3,21 +3,31 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="clr-namespace:Irihi.Avalonia.Shared.Helpers;assembly=Irihi.Avalonia.Shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:views="clr-namespace:Ursa.Demo.Views"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+    xmlns:views="clr-namespace:Ursa.Demo.Views"
     Title="Ursa.Demo"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:CompileBindings="True"
-    IsFullScreenButtonVisible="{OnPlatform True, macOS=False}"
-    IsManagedResizerVisible="{OnPlatform False, Linux=True}"
     x:DataType="viewModels:MainWindowViewModel"
     Icon="/Assets/Ursa.ico"
+    IsFullScreenButtonVisible="{OnPlatform True, macOS=False}"
+    IsManagedResizerVisible="{OnPlatform False, Linux=True}"
     mc:Ignorable="d">
     <u:UrsaWindow.RightContent>
-        <views:TitleBarRightContent/>        
+        <views:TitleBarRightContent />
     </u:UrsaWindow.RightContent>
+    <u:UrsaWindow.Styles>
+        <!--This style is created to demonstrate Dialog StyleClass feature. This style is applied to dialogs in MainWindow OverlayDialogHost -->
+        <Style Selector="u|DefaultDialogControl.Custom">
+            <Style Selector="^ /template/ Button#PART_OKButton">
+                <Setter Property="Content" Value="CUSTOM" />
+                <Setter Property="helpers:ClassHelper.Classes" Value="Warning" />
+            </Style>
+        </Style>
+    </u:UrsaWindow.Styles>
     <views:MainView />
 </u:UrsaWindow>

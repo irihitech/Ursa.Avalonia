@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:u="https://irihi.tech/ursa">
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:helpers="clr-namespace:Irihi.Avalonia.Shared.Helpers;assembly=Irihi.Avalonia.Shared">
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:MessageBoxWindow}" TargetType="u:MessageBoxWindow">
         <Setter Property="Title" Value="{x:Null}" />
@@ -90,33 +91,45 @@
                             Orientation="Horizontal">
                             <Button
                                 Name="{x:Static u:MessageBoxWindow.PART_CancelButton}"
-                                Margin="8,0,0,0"
-                                Classes="Tertiary"
-                                Content="{DynamicResource STRING_MENU_DIALOG_CANCEL}" />
+                                Margin="8,0,0,0"  />
                             <Button
                                 Name="{x:Static u:MessageBoxWindow.PART_NoButton}"
-                                Margin="8,0,0,0"
-                                Classes="Danger"
-                                Content="{DynamicResource STRING_MENU_DIALOG_NO}"
-                                Theme="{DynamicResource SolidButton}" />
+                                Margin="8,0,0,0" />
                             <Button
                                 Name="{x:Static u:MessageBoxWindow.PART_YesButton}"
-                                Margin="8,0,0,0"
-                                Classes="Primary"
-                                Content="{DynamicResource STRING_MENU_DIALOG_YES}"
-                                Theme="{DynamicResource SolidButton}" />
+                                Margin="8,0,0,0" />
                             <Button
                                 Name="{x:Static u:MessageBoxWindow.PART_OKButton}"
-                                Margin="8,0,0,0"
-                                Classes="Primary"
-                                Content="{DynamicResource STRING_MENU_DIALOG_OK}"
-                                Theme="{DynamicResource SolidButton}" />
+                                Margin="8,0,0,0" />
                         </StackPanel>
                     </Grid>
                     </VisualLayerManager>
                 </Panel>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^ /template/ Button#PART_CancelButton">
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary"/>
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_CANCEL}"/>
+        </Style>
+        <Style Selector="^ /template/ Button#PART_NoButton">
+            <Setter Property="Grid.Column" Value="1"></Setter>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Danger"/>
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_NO}"/>
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+        </Style>
+        <Style Selector="^ /template/ Button#PART_YesButton">
+            <Setter Property="Grid.Column" Value="2"></Setter>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Primary"/>
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_YES}"/>
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+        </Style>
+        <Style Selector="^ /template/ Button#PART_OKButton">
+            <Setter Property="Grid.Column" Value="3"></Setter>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Primary"/>
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_OK}"/>
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+        </Style>
         <Style Selector="^[MessageIcon=None] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="False" />
         </Style>
@@ -224,27 +237,16 @@
                                 Orientation="Horizontal">
                                 <Button
                                     Name="{x:Static u:MessageBoxControl.PART_CancelButton}"
-                                    Margin="8,0,0,0"
-                                    Classes="Tertiary"
-                                    Content="{DynamicResource STRING_MENU_DIALOG_CANCEL}" />
+                                    Margin="8,0,0,0" />
                                 <Button
                                     Name="{x:Static u:MessageBoxControl.PART_NoButton}"
-                                    Margin="8,0,0,0"
-                                    Classes="Danger"
-                                    Content="{DynamicResource STRING_MENU_DIALOG_NO}"
-                                    Theme="{DynamicResource SolidButton}" />
+                                    Margin="8,0,0,0" />
                                 <Button
                                     Name="{x:Static u:MessageBoxControl.PART_YesButton}"
-                                    Margin="8,0,0,0"
-                                    Classes="Primary"
-                                    Content="{DynamicResource STRING_MENU_DIALOG_YES}"
-                                    Theme="{DynamicResource SolidButton}" />
+                                    Margin="8,0,0,0" />
                                 <Button
                                     Name="{x:Static u:MessageBoxControl.PART_OKButton}"
-                                    Margin="8,0,0,0"
-                                    Classes="Primary"
-                                    Content="{DynamicResource STRING_MENU_DIALOG_OK}"
-                                    Theme="{DynamicResource SolidButton}" />
+                                    Margin="8,0,0,0" />
                             </StackPanel>
                         </Grid>
                     </Border>
@@ -264,6 +266,29 @@
                     </MenuItem>
                 </MenuFlyout>
             </Setter>
+        </Style>
+        <Style Selector="^ /template/ Button#PART_CancelButton">
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary"/>
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_CANCEL}"/>
+        </Style>
+        <Style Selector="^ /template/ Button#PART_NoButton">
+            <Setter Property="Grid.Column" Value="1"></Setter>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Danger"/>
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_NO}"/>
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+        </Style>
+        <Style Selector="^ /template/ Button#PART_YesButton">
+            <Setter Property="Grid.Column" Value="2"></Setter>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Primary"/>
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_YES}"/>
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+        </Style>
+        <Style Selector="^ /template/ Button#PART_OKButton">
+            <Setter Property="Grid.Column" Value="3"></Setter>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Primary"/>
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_OK}"/>
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
         </Style>
         <Style Selector="^[MessageIcon=None] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="False" />

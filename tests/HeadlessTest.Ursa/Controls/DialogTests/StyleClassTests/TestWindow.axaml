@@ -1,0 +1,25 @@
+<u:UrsaWindow xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:u="https://irihi.tech/ursa"
+        xmlns:helpers="clr-namespace:Irihi.Avalonia.Shared.Helpers;assembly=Irihi.Avalonia.Shared"
+        mc:Ignorable="d" d:DesignWidth="800"
+        d:DesignHeight="450"
+        x:Class="HeadlessTest.Ursa.Controls.DialogTests.StyleClassTests.TestWindow"
+        Title="TestWindow">
+    <u:UrsaWindow.Styles>
+        <Style Selector="u|DefaultDialogControl.Custom">
+            <Style Selector="^ /template/ Button#PART_OKButton">
+                <Setter Property="Content" Value="CUSTOM"/>
+            </Style>
+        </Style>
+        <Style Selector="u|DefaultDialogControl.Custom2">
+            <Style Selector="^ /template/ Button#PART_OKButton">
+                <Setter Property="helpers:ClassHelper.Classes" Value="Warning Small" />
+            </Style>
+        </Style>
+    </u:UrsaWindow.Styles>
+    Welcome to Avalonia!
+
+</u:UrsaWindow>
