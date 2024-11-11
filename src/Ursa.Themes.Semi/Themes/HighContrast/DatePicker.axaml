@@ -13,6 +13,7 @@
     <SolidColorBrush x:Key="CalenderDaySelectedForeground" Color="{StaticResource HighlightTextColor}" />
     <SolidColorBrush x:Key="CalenderDaySelectedPointeroverBackground" Color="{StaticResource HighlightColor}" />
     <SolidColorBrush x:Key="CalenderDaySelectedPressedBackground" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="CalendarDayInRangeForeground" Color="{StaticResource HighlightTextColor}" />
 
     <SolidColorBrush x:Key="CalenderDayStartEndDateBackground" Color="{StaticResource HighlightColor}" />
     <SolidColorBrush x:Key="CalenderDayStartEndDateBorderBrush" Color="{StaticResource HighlightColor}" />

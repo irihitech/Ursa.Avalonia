@@ -44,7 +44,7 @@
             <Setter Property="Background" Value="{DynamicResource CalenderDayInRangeBackground}" />
             <Setter Property="CornerRadius" Value="{DynamicResource CalenderDayInRangeCornerRadius}" />
             <Setter Property="BorderThickness" Value="{DynamicResource CalenderDayNoBorderThickness}" />
-            <Setter Property="Foreground" Value="{DynamicResource CalenderDaySelectedForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource CalendarDayInRangeForeground}" />
         </Style>
 
         <Style Selector="^:today">
