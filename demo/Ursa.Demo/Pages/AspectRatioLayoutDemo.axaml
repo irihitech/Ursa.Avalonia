@@ -1,0 +1,28 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Ursa.Demo.Pages.AspectRatioLayoutDemo">
+    <Grid
+        RowDefinitions="Auto,*">
+        <StackPanel
+            Grid.Row="0"
+            Orientation="Horizontal">
+            <u:NumericDoubleUpDown InnerLeftContent="AspectRatioChangeAmbiguity" Value="{Binding  #AspectRatioLayout.AspectRatioChangeAmbiguity}"></u:NumericDoubleUpDown>
+        </StackPanel>
+
+        <u:AspectRatioLayout Name="AspectRatioLayout" Grid.Row="1">
+            <u:AspectRatioLayoutItem AcceptAspectRatioMode="HorizontalRectangle">
+                <Button>HorizontalRectangle ControlLayout</Button>
+            </u:AspectRatioLayoutItem>
+            <u:AspectRatioLayoutItem AcceptAspectRatioMode="VerticalRectangle">
+                <Button>VerticalRectangle ControlLayout</Button>
+            </u:AspectRatioLayoutItem>
+            <u:AspectRatioLayoutItem AcceptAspectRatioMode="Square">
+                <Button>Square ControlLayout</Button>
+            </u:AspectRatioLayoutItem>
+        </u:AspectRatioLayout>
+    </Grid>
+</UserControl>
