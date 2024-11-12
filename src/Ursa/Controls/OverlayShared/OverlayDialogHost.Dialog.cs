@@ -112,6 +112,7 @@ public partial class OverlayDialogHost
         SetToPosition(control);
         control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDialogControlClosing);
         control.AddHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged);
+        // Notice: mask animation here is not really awaited, because currently dialogs appears immediately.
         if (!IsAnimationDisabled) MaskAppearAnimation.RunAsync(mask);
 
         var element = control.GetVisualDescendants().OfType<InputElement>()
