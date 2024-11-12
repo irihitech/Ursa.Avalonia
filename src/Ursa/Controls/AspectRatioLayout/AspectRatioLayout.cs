@@ -11,7 +11,7 @@ public class AspectRatioLayout : TransitioningContentControl
 {
     public static readonly StyledProperty<List<AspectRatioLayoutItem>> ItemsProperty =
         AvaloniaProperty.Register<AspectRatioLayout, List<AspectRatioLayoutItem>>(
-            nameof(Items), new List<AspectRatioLayoutItem>());
+            nameof(Items));
 
     public static readonly StyledProperty<double> AspectRatioChangeAmbiguityProperty =
         AvaloniaProperty.Register<AspectRatioLayout, double>(
@@ -20,12 +20,6 @@ public class AspectRatioLayout : TransitioningContentControl
     public static readonly StyledProperty<AspectRatioMode> CurrentAspectRatioModeProperty =
         AvaloniaProperty.Register<AspectRatioLayout, AspectRatioMode>(
             nameof(CurrentAspectRatioMode));
-
-    public AspectRatioMode CurrentAspectRatioMode
-    {
-        get => GetValue(CurrentAspectRatioModeProperty);
-        set => SetValue(CurrentAspectRatioModeProperty, value);
-    }
 
     private readonly Queue<bool> _history = new();
 
@@ -38,6 +32,17 @@ public class AspectRatioLayout : TransitioningContentControl
             FadeOutEasing = new QuadraticEaseInOut()
         };
         PageTransitionProperty.OverrideDefaultValue<AspectRatioLayout>(pCrossFade);
+    }
+
+    public AspectRatioLayout()
+    {
+        Items = new List<AspectRatioLayoutItem>();
+    }
+
+    public AspectRatioMode CurrentAspectRatioMode
+    {
+        get => GetValue(CurrentAspectRatioModeProperty);
+        set => SetValue(CurrentAspectRatioModeProperty, value);
     }
 
     protected override Type StyleKeyOverride => typeof(TransitioningContentControl);
