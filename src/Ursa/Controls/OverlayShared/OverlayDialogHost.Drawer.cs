@@ -9,6 +9,7 @@ using Irihi.Avalonia.Shared.Shapes;
 using Ursa.Common;
 using Ursa.Controls.OverlayShared;
 using Ursa.EventArgs;
+using Ursa.Helpers;
 
 namespace Ursa.Controls;
 
@@ -69,7 +70,13 @@ public partial class OverlayDialogHost
         {
             await Task.WhenAll(animation.RunAsync(control), MaskAppearAnimation.RunAsync(mask));
         }
-        var element = control.GetVisualDescendants().OfType<InputElement>().FirstOrDefault(a => a.Focusable);
+
+        var element = control.GetVisualDescendants().OfType<InputElement>()
+                             .FirstOrDefault(FocusHelper.GetDialogFocusHint);
+        if (element is null)
+        {
+            element = control.GetVisualDescendants().OfType<InputElement>().FirstOrDefault(a => a.Focusable);
+        }
         element?.Focus();
     }
 

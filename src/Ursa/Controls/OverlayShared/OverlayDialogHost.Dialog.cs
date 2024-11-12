@@ -4,6 +4,7 @@ using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Helpers;
 using Irihi.Avalonia.Shared.Shapes;
 using Ursa.Controls.OverlayShared;
+using Ursa.Helpers;
 
 namespace Ursa.Controls;
 
@@ -113,12 +114,17 @@ public partial class OverlayDialogHost
         control.AddHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged);
         if (!IsAnimationDisabled) MaskAppearAnimation.RunAsync(mask);
 
-        var element = control.GetVisualDescendants().OfType<InputElement>().FirstOrDefault(a => a.Focusable);
+        var element = control.GetVisualDescendants().OfType<InputElement>()
+                             .FirstOrDefault(FocusHelper.GetDialogFocusHint);
+        if (element is null)
+        {
+            element = control.GetVisualDescendants().OfType<InputElement>().FirstOrDefault(a => a.Focusable);
+        }
         element?.Focus();
         _modalCount++;
         IsInModalStatus = _modalCount > 0;
         control.IsClosed = false;
-        control.Focus();
+        // control.Focus();
     }
 
     // Handle dialog layer change event
