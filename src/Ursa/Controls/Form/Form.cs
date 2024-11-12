@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Layout;
+using Irihi.Avalonia.Shared.Contracts;
 using Ursa.Common;
 
 namespace Ursa.Controls;
@@ -64,7 +65,11 @@ public class Form: ItemsControl
     
     protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey)
     {
-        if (item is not Control control) return new FormItem();
+        if (item is not Control control)
+        {
+            if (item is IFormGroup) return new FormGroup();
+            return new FormItem();
+        }
         return new FormItem()
         {
             Content = control,
@@ -72,5 +77,18 @@ public class Form: ItemsControl
             [!FormItem.IsRequiredProperty] = control[!FormItem.IsRequiredProperty],
             [!FormItem.NoLabelProperty] = control[!FormItem.NoLabelProperty],
         };
+    }
+
+    protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
+    {
+        base.PrepareContainerForItemOverride(container, item, index);
+        if(container is FormItem formItem && !formItem.IsSet(ContentControl.ContentTemplateProperty))
+        {
+            formItem.ContentTemplate = ItemTemplate;
+        }
+        if (container is FormGroup group && !group.IsSet(FormGroup.ItemTemplateProperty))
+        {
+            group.ItemTemplate = ItemTemplate;
+        }
     }
 }

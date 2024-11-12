@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="clr-namespace:Ursa.Demo.ViewModels;assembly=Ursa.Demo"
+    xmlns:converters="clr-namespace:Ursa.Demo.Converters"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:CompileBindings="True"
@@ -49,6 +50,31 @@
             <u:Form LabelPosition="Left" LabelWidth="*" DataContext="{Binding Model}">
                 <TextBox Width="300" u:FormItem.Label="Name" Text="{Binding  Name}"/>
                 <TextBox Width="300" u:FormItem.Label="Email" Text="{Binding Email}" />
+            </u:Form>
+            <u:Divider Content="MVVM setup for dynamic items. " />
+            <u:Form ItemsSource="{Binding FormGroups}" HorizontalAlignment="Stretch" LabelPosition="Left" LabelWidth="*">
+                <u:Form.Styles>
+                    <Style Selector="u|FormGroup" x:DataType="vm:IFormGroupViewModel">
+                        <Setter Property="Header" Value="{Binding Title}" />
+                        <Setter Property="ItemsSource" Value="{Binding Items}" />
+                    </Style>
+                    <Style Selector="u|FormItem" x:DataType="vm:IFromItemViewModel">
+                        <Setter Property="Label" Value="{Binding Label}" />
+                    </Style>
+                </u:Form.Styles>
+                <u:Form.ItemTemplate>
+                    <converters:FormDataTemplateSelector>
+                        <DataTemplate x:Key="{x:Type vm:FormTextViewModel}" DataType="vm:FormTextViewModel">
+                            <TextBox Text="{Binding Value}"/>
+                        </DataTemplate>
+                        <DataTemplate x:Key="{x:Type vm:FormAgeViewModel}" DataType="vm:FormAgeViewModel">
+                            <u:NumericUIntUpDown Value="{Binding Age}"/>
+                        </DataTemplate>
+                        <DataTemplate x:Key="{x:Type vm:FormDateRangeViewModel}" DataType="vm:FormDateRangeViewModel">
+                            <u:DateRangePicker SelectedStartDate="{Binding Start}" SelectedEndDate="{Binding End}"/>
+                        </DataTemplate>
+                    </converters:FormDataTemplateSelector>
+                </u:Form.ItemTemplate>
             </u:Form>
         </StackPanel>
     </ScrollViewer>

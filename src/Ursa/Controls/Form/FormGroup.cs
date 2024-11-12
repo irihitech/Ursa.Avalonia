@@ -21,5 +21,13 @@ public class FormGroup: HeaderedItemsControl
             [!FormItem.IsRequiredProperty] = control[!FormItem.IsRequiredProperty],
         };
     }
-    
+
+    protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
+    {
+        base.PrepareContainerForItemOverride(container, item, index);
+        if (container is FormItem formItem && !formItem.IsSet(ContentControl.ContentTemplateProperty))
+        {
+            formItem.ContentTemplate = ItemTemplate;
+        }
+    }
 }

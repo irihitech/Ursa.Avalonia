@@ -70,6 +70,7 @@
                     </StackPanel>
                     <ContentPresenter
                         Name="PART_ContentPresenter"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
                         Content="{TemplateBinding Content}" />
                 </StackPanel>
             </ControlTemplate>
@@ -111,6 +112,7 @@
                             Grid.Column="1"
                             VerticalAlignment="Stretch"
                             VerticalContentAlignment="Center"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
                             Content="{TemplateBinding Content}" />
                     </Grid>
                 </ControlTemplate>
@@ -120,6 +122,7 @@
             <Setter Property="Template">
                 <ControlTemplate TargetType="u:FormItem">
                     <ContentPresenter
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
                         Content="{TemplateBinding Content}" />
                 </ControlTemplate>
             </Setter>
