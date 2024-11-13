@@ -13,13 +13,15 @@ public class AspectRatioLayout : TransitioningContentControl
         AvaloniaProperty.Register<AspectRatioLayout, List<AspectRatioLayoutItem>>(
             nameof(Items));
 
-    public static readonly StyledProperty<double> AspectRatioChangeAmbiguityProperty =
+    public static readonly StyledProperty<double> AspectRatioToleranceProperty =
         AvaloniaProperty.Register<AspectRatioLayout, double>(
-            nameof(AspectRatioChangeAmbiguity), 0.2);
+            nameof(AspectRatioTolerance), 0.2);
 
-    public static readonly StyledProperty<AspectRatioMode> CurrentAspectRatioModeProperty =
-        AvaloniaProperty.Register<AspectRatioLayout, AspectRatioMode>(
-            nameof(CurrentAspectRatioMode));
+    private AspectRatioMode _currentAspectRatioMode;
+
+    public static readonly DirectProperty<AspectRatioLayout, AspectRatioMode> CurrentAspectRatioModeProperty =
+        AvaloniaProperty.RegisterDirect<AspectRatioLayout, AspectRatioMode>(
+            nameof(CurrentAspectRatioMode), o => o.CurrentAspectRatioMode);
 
     private readonly Queue<bool> _history = new();
 
@@ -42,7 +44,7 @@ public class AspectRatioLayout : TransitioningContentControl
     public AspectRatioMode CurrentAspectRatioMode
     {
         get => GetValue(CurrentAspectRatioModeProperty);
-        set => SetValue(CurrentAspectRatioModeProperty, value);
+        set => SetAndRaise(CurrentAspectRatioModeProperty, ref _currentAspectRatioMode, value);
     }
 
     public static readonly StyledProperty<double> AspectRatioValueProperty =
@@ -64,13 +66,13 @@ public class AspectRatioLayout : TransitioningContentControl
         set => SetValue(ItemsProperty, value);
     }
 
-    public double AspectRatioChangeAmbiguity
+    public double AspectRatioTolerance
     {
-        get => GetValue(AspectRatioChangeAmbiguityProperty);
-        set => SetValue(AspectRatioChangeAmbiguityProperty, value);
+        get => GetValue(AspectRatioToleranceProperty);
+        set => SetValue(AspectRatioToleranceProperty, value);
     }
 
-    private void UpdataHistory(bool value)
+    private void UpdateHistory(bool value)
     {
         _history.Enqueue(value);
         while (_history.Count > 3)
@@ -91,7 +93,7 @@ public class AspectRatioLayout : TransitioningContentControl
     private AspectRatioMode GetScaleMode(Rect rect)
     {
         var scale = GetAspectRatio(rect);
-        var absA = Math.Abs(AspectRatioChangeAmbiguity);
+        var absA = Math.Abs(AspectRatioTolerance);
         var h = 1d + absA;
         var v = 1d - absA;
         if (scale >= h) return AspectRatioMode.HorizontalRectangle;
@@ -104,14 +106,14 @@ public class AspectRatioLayout : TransitioningContentControl
     {
         base.OnPropertyChanged(change);
         if (change.Property == ItemsProperty ||
-            change.Property == AspectRatioChangeAmbiguityProperty ||
+            change.Property == AspectRatioToleranceProperty ||
             change.Property == BoundsProperty)
         {
             if (change.Property == BoundsProperty)
             {
                 var o = (Rect)change.OldValue!;
                 var n = (Rect)change.NewValue!;
-                UpdataHistory(GetAspectRatio(o) <= GetAspectRatio(n));
+                UpdateHistory(GetAspectRatio(o) <= GetAspectRatio(n));
                 if (!IsRightChanges()) return;
                 CurrentAspectRatioMode = GetScaleMode(n);
             }

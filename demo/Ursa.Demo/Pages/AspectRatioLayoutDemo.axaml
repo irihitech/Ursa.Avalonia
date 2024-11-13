@@ -9,8 +9,8 @@
         RowDefinitions="Auto,*">
         <StackPanel
             Grid.Row="0">
-            <u:NumericDoubleUpDown InnerLeftContent="AspectRatioChangeAmbiguity"
-                                   Value="{Binding  #AspectRatioLayout.AspectRatioChangeAmbiguity}">
+            <u:NumericDoubleUpDown InnerLeftContent="AspectRatioTolerance"
+                                   Value="{Binding  #AspectRatioLayout.AspectRatioTolerance}">
             </u:NumericDoubleUpDown>
             <TextBlock Text="{Binding #AspectRatioLayout.AspectRatioValue,StringFormat='AspectRatioValue: {0}'}"></TextBlock>
         </StackPanel>

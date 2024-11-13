@@ -29,42 +29,14 @@ public class AspectRatioLayoutItem : ContentControl
         set => SetValue(EndAspectRatioValueProperty, value);
     }
 
-
-    private bool _isUseAspectRatioRange;
-
-    public static readonly DirectProperty<AspectRatioLayoutItem, bool> IsUseAspectRatioRangeProperty =
-        AvaloniaProperty.RegisterDirect<AspectRatioLayoutItem, bool>(
-            nameof(IsUseAspectRatioRange), o => o.IsUseAspectRatioRange);
-
-    public bool IsUseAspectRatioRange
-    {
-        get => _isUseAspectRatioRange;
-        private set => SetAndRaise(IsUseAspectRatioRangeProperty, ref _isUseAspectRatioRange, value);
-    }
+    public bool IsUseAspectRatioRange =>
+        !double.IsNaN(StartAspectRatioValue)
+        && !double.IsNaN(EndAspectRatioValue)
+        && !(StartAspectRatioValue > EndAspectRatioValue);
 
     public AspectRatioMode AcceptAspectRatioMode
     {
         get => GetValue(AcceptScaleModeProperty);
         set => SetValue(AcceptScaleModeProperty, value);
-    }
-
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
-    {
-        base.OnPropertyChanged(change);
-        if (change.Property == StartAspectRatioValueProperty ||
-            change.Property == EndAspectRatioValueProperty)
-        {
-            UpdataIsUseAspectRatioRange();
-        }
-    }
-
-    private void UpdataIsUseAspectRatioRange()
-    {
-        if (double.IsNaN(StartAspectRatioValue)
-            || double.IsNaN(EndAspectRatioValue)
-            || StartAspectRatioValue > EndAspectRatioValue)
-            IsUseAspectRatioRange = false;
-        else
-            IsUseAspectRatioRange = true;
     }
 }
