@@ -45,6 +45,16 @@ public class AspectRatioLayout : TransitioningContentControl
         set => SetValue(CurrentAspectRatioModeProperty, value);
     }
 
+    public static readonly StyledProperty<double> AspectRatioValueProperty =
+        AvaloniaProperty.Register<AspectRatioLayout, double>(
+            nameof(AspectRatioValue));
+
+    public double AspectRatioValue
+    {
+        get => GetValue(AspectRatioValueProperty);
+        set => SetValue(AspectRatioValueProperty, value);
+    }
+
     protected override Type StyleKeyOverride => typeof(TransitioningContentControl);
 
     [Content]
@@ -73,9 +83,14 @@ public class AspectRatioLayout : TransitioningContentControl
         return _history.All(x => x) || _history.All(x => !x);
     }
 
+    private double GetAspectRatio(Rect rect)
+    {
+        return Math.Round(Math.Truncate(Math.Abs(rect.Width)) / Math.Truncate(Math.Abs(rect.Height)), 3);
+    }
+
     private AspectRatioMode GetScaleMode(Rect rect)
     {
-        var scale = Math.Round(Math.Truncate(Math.Abs(rect.Width)) / Math.Truncate(Math.Abs(rect.Height)), 3);
+        var scale = GetAspectRatio(rect);
         var absA = Math.Abs(AspectRatioChangeAmbiguity);
         var h = 1d + absA;
         var v = 1d - absA;
@@ -96,12 +111,20 @@ public class AspectRatioLayout : TransitioningContentControl
             {
                 var o = (Rect)change.OldValue!;
                 var n = (Rect)change.NewValue!;
-                UpdataHistory(GetScaleMode(o) == GetScaleMode(n));
+                UpdataHistory(GetAspectRatio(o) <= GetAspectRatio(n));
                 if (!IsRightChanges()) return;
                 CurrentAspectRatioMode = GetScaleMode(n);
             }
 
-            var c = Items.FirstOrDefault(x => x.AcceptAspectRatioMode == GetScaleMode(Bounds));
+            AspectRatioValue = GetAspectRatio(Bounds);
+            var c =
+                Items
+                    .Where(x => x.IsUseAspectRatioRange)
+                    .FirstOrDefault(x =>
+                        x.StartAspectRatioValue <= AspectRatioValue
+                        && AspectRatioValue <= x.EndAspectRatioValue);
+
+            c ??= Items.FirstOrDefault(x => x.AcceptAspectRatioMode == GetScaleMode(Bounds));
             if (c == null)
             {
                 if (Items.Count == 0) return;
