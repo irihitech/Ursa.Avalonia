@@ -1,0 +1,51 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:u="https://irihi.tech/ursa"
+        xmlns:vm="clr-namespace:HeadlessTest.Ursa.Controls.FormTests.Dynamic_Item_Generation"
+        mc:Ignorable="d" d:DesignWidth="800"
+        d:DesignHeight="450"
+        x:DataType="vm:TestViewModel"
+        x:CompileBindings="True"
+        x:Class="HeadlessTest.Ursa.Controls.FormTests.Dynamic_Item_Generation.TestWindow"
+        Title="TestWindow">
+    <u:Form Name="Form" ItemsSource="{Binding Items}">
+        <u:Form.Styles>
+            <Style Selector="u|FormGroup"
+                   x:DataType="vm:IFormGroupViewModel">
+                <Setter Property="Header"
+                        Value="{Binding Title}" />
+                <Setter Property="ItemsSource"
+                        Value="{Binding Items}" />
+            </Style>
+            <Style Selector="u|FormItem"
+                   x:DataType="vm:IFromItemViewModel">
+                <Setter Property="Label"
+                        Value="{Binding Label}" />
+            </Style>
+        </u:Form.Styles>
+        <u:Form.ItemTemplate>
+            <vm:DataTemplateSelector>
+                <DataTemplate
+                    x:Key="{x:Type vm:FormTextViewModel}"
+                    DataType="vm:FormTextViewModel">
+                    <TextBox Text="{Binding Value}" />
+                </DataTemplate>
+                <DataTemplate
+                    x:Key="{x:Type vm:FormAgeViewModel}"
+                    DataType="vm:FormAgeViewModel">
+                    <u:NumericUIntUpDown
+                        Value="{Binding Age}" />
+                </DataTemplate>
+                <DataTemplate
+                    x:Key="{x:Type vm:FormDateRangeViewModel}"
+                    DataType="vm:FormDateRangeViewModel">
+                    <u:DateRangePicker
+                        SelectedStartDate="{Binding Start}"
+                        SelectedEndDate="{Binding End}" />
+                </DataTemplate>
+            </vm:DataTemplateSelector>
+        </u:Form.ItemTemplate>
+    </u:Form>
+</Window>
