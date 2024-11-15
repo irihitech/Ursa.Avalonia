@@ -17,4 +17,15 @@
             </Style>
         </Style>
     </Application.Styles>
+    <Application.Resources>
+        <FontWeight x:Key="ButtonDefaultFontWeight">700</FontWeight>
+        <FontWeight x:Key="CalendarItemCalendarButtonSelectedFontWeight">700</FontWeight>
+        <FontWeight x:Key="ExpanderHeaderFontWeight">700</FontWeight>
+        <FontWeight x:Key="ListBoxItemRadioGroupButtonFontWeight">700</FontWeight>
+        <FontWeight x:Key="ProgressBarTextFontWeight">700</FontWeight>
+        <FontWeight x:Key="RadioButtonButtonFontWeight">700</FontWeight>
+        <FontWeight x:Key="TabItemSelectedFontWeight">700</FontWeight>
+        <FontWeight x:Key="TextBlockTitleFontWeight">700</FontWeight>
+        <FontWeight x:Key="ToggleButtonDefaultFontWeight">700</FontWeight>
+    </Application.Resources>
 </Application>
