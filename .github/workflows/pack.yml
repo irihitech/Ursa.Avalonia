@@ -8,7 +8,7 @@ on:
 
 jobs:
   nuget:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
