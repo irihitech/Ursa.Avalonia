@@ -62,6 +62,9 @@ You can now use Ursa controls in your Avalonia Application.
 
 ![Demo](./assets/demo.jpg)
 
+## Compatibility Notice
+Ursa currently is compatible with both Avalonia 11.1.x and 11.2.x, but specifically does not support Avalonia 11.2.0.
+
 ## Extensions
 
 ### Prism Extension
