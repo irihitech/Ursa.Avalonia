@@ -82,7 +82,7 @@
                             Placement="BottomEdgeAlignedLeft"
                             PlacementTarget="Background">
                             <Border
-                                Margin="8"
+                                Margin="{DynamicResource ComboBoxPopupBorderMargin}"
                                 Padding="8"
                                 HorizontalAlignment="Stretch"
                                 Background="{DynamicResource ComboBoxPopupBackground}"

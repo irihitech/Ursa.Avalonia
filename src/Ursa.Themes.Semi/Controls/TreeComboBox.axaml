@@ -111,7 +111,7 @@
                         WindowManagerAddShadowHint="False">
                         <Border
                             Name="PopupBorder"
-                            Margin="0,4"
+                            Margin="{DynamicResource ComboBoxPopupBorderMargin}"
                             Background="{DynamicResource ComboBoxPopupBackground}"
                             BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"
                             BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"

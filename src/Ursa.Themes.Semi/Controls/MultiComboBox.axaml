@@ -110,7 +110,7 @@
                             IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsDropDownOpen, Mode=TwoWay}"
                             PlacementTarget="PART_RootGrid">
                             <Border
-                                Margin="0,4"
+                                Margin="{DynamicResource ComboBoxPopupBorderMargin}"
                                 HorizontalAlignment="Stretch"
                                 Background="{DynamicResource ComboBoxPopupBackground}"
                                 BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"
