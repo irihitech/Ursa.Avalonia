@@ -28,6 +28,7 @@
                         VerticalAlignment="{TemplateBinding VerticalAlignment}"
                         Classes="Shadow"
                         ClipToBounds="False"
+                        Background="{DynamicResource SemiColorBackground2}"
                         CornerRadius="{TemplateBinding CornerRadius}"
                         Focusable="True"
                         IsHitTestVisible="True"
@@ -162,6 +163,7 @@
                         VerticalAlignment="{TemplateBinding VerticalAlignment}"
                         BoxShadow="0 0 8 0 #1A000000"
                         Classes="Shadow"
+                        Background="{DynamicResource SemiColorBackground2}"
                         ClipToBounds="False"
                         CornerRadius="{TemplateBinding CornerRadius}"
                         Focusable="True"
@@ -463,7 +465,7 @@
 
     <ControlTheme x:Key="{x:Type u:DialogWindow}" TargetType="u:DialogWindow">
         <Setter Property="Title" Value="{x:Null}" />
-        <Setter Property="Background" Value="{DynamicResource BorderCardBackground}" />
+        <Setter Property="Background" Value="{DynamicResource SemiColorBackground2}" />
         <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
@@ -535,7 +537,7 @@
 
     <ControlTheme x:Key="{x:Type u:DefaultDialogWindow}" TargetType="u:DefaultDialogWindow">
         <Setter Property="Title" Value="{x:Null}" />
-        <Setter Property="Background" Value="{DynamicResource BorderCardBackground}" />
+        <Setter Property="Background" Value="{DynamicResource SemiColorBackground2}" />
         <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />

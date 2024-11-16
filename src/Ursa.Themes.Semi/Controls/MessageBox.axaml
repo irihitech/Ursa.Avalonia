@@ -6,7 +6,7 @@
     <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:MessageBoxWindow}" TargetType="u:MessageBoxWindow">
         <Setter Property="Title" Value="{x:Null}" />
-        <Setter Property="Background" Value="{DynamicResource BorderCardBackground}" />
+        <Setter Property="Background" Value="{DynamicResource SemiColorBackground2}" />
         <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
@@ -178,6 +178,7 @@
                     VerticalAlignment="Center"
                     Classes="Shadow"
                     ClipToBounds="False"
+                    Background="{DynamicResource SemiColorBackground2}"
                     CornerRadius="{TemplateBinding CornerRadius}"
                     IsHitTestVisible="True"
                     Theme="{DynamicResource CardBorder}">

@@ -110,13 +110,12 @@
                             IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsDropDownOpen, Mode=TwoWay}"
                             PlacementTarget="PART_RootGrid">
                             <Border
-                                Margin="0,4"
+                                Margin="{DynamicResource ComboBoxPopupBorderMargin}"
                                 HorizontalAlignment="Stretch"
                                 Background="{DynamicResource ComboBoxPopupBackground}"
                                 BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"
                                 BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
                                 BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
-                                ClipToBounds="True"
                                 CornerRadius="6">
                                 <DockPanel LastChildFill="True">
                                     <ContentPresenter Content="{TemplateBinding PopupInnerTopContent}" DockPanel.Dock="Top"/>
@@ -217,12 +216,8 @@
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="FontSize" Value="{DynamicResource ListBoxItemCheckFontSize}" />
-        <Setter Property="CornerRadius" Value="{DynamicResource ListBoxItemCheckBoxCornerRadius}" />
         <Setter Property="MinHeight" Value="32" />
-        <Setter Property="Foreground" Value="{DynamicResource ListBoxItemCheckForeground}" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderBrush" Value="{DynamicResource ListBoxItemCheckDefaultBorderBrush}" />
+        <Setter Property="Background" Value="{DynamicResource ComboBoxItemBackground}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:MultiComboBoxItem">
                 <Border
@@ -235,11 +230,11 @@
                         <PathIcon
                             Name="CheckGlyph"
                             Grid.Column="0"
-                            Width="{DynamicResource ListBoxItemCheckBoxGlyphWidth}"
-                            Height="{DynamicResource ListBoxItemCheckBoxGlyphHeight}"
+                            Width="{DynamicResource CheckBoxBoxGlyphWidth}"
+                            Height="{DynamicResource CheckBoxBoxGlyphHeight}"
                             Margin="8,0"
                             VerticalAlignment="Center"
-                            Data="{DynamicResource ListBoxItemCheckCheckGlyph}"
+                            Data="{DynamicResource CheckBoxCheckGlyph}"
                             Opacity="0" />
                         <ContentPresenter
                             x:Name="ContentPresenter"
@@ -268,13 +263,13 @@
         <!--  Pointerover State  -->
         <Style Selector="^:pointerover">
             <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemPointeroverForeground}" />
-            <Setter Property="Background" Value="{DynamicResource ListBoxItemPointeroverBackground}" />
+            <Setter Property="Background" Value="{DynamicResource ComboBoxItemPointeroverBackground}" />
         </Style>
 
         <!--  Pressed State  -->
         <Style Selector="^:pressed">
             <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemPressedForeground}" />
-            <Setter Property="Background" Value="{DynamicResource ListBoxItemPressedBackground}" />
+            <Setter Property="Background" Value="{DynamicResource ComboBoxItemPressedBackground}" />
         </Style>
 
         <!--  Selected State  -->

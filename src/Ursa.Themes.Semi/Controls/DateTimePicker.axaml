@@ -73,7 +73,7 @@
                                 Placement="BottomEdgeAlignedLeft"
                                 PlacementTarget="{TemplateBinding}">
                                 <Border
-                                    Margin="8"
+                                    Margin="{DynamicResource ComboBoxPopupBorderMargin}"
                                     Padding="8"
                                     Background="{DynamicResource ComboBoxPopupBackground}"
                                     BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"

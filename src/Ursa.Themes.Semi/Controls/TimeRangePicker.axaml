@@ -83,13 +83,12 @@
                             Placement="BottomEdgeAlignedLeft"
                             PlacementTarget="Background">
                             <Border
-                                Margin="0,4"
+                                Margin="{DynamicResource ComboBoxPopupBorderMargin}"
                                 HorizontalAlignment="Stretch"
                                 Background="{DynamicResource ComboBoxPopupBackground}"
                                 BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"
                                 BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
                                 BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
-                                ClipToBounds="True"
                                 CornerRadius="6">
                                 <DockPanel>
                                     <StackPanel DockPanel.Dock="Bottom" IsVisible="{TemplateBinding NeedConfirmation}">

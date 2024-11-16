@@ -24,4 +24,6 @@
         <ResourceInclude Source="Toast.axaml" />
         <ResourceInclude Source="ToolBar.axaml" />
     </ResourceDictionary.MergedDictionaries>
+    <!-- This resource definition is from Semi Avalonia 11.2.1. This can be removed after Ursa dependency is higher than Avalonia 11.2.1 -->
+    <Thickness x:Key="ComboBoxPopupBorderMargin">4</Thickness>
 </ResourceDictionary>
