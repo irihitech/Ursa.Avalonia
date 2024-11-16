@@ -116,7 +116,6 @@
                                 BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"
                                 BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
                                 BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
-                                ClipToBounds="True"
                                 CornerRadius="6">
                                 <DockPanel LastChildFill="True">
                                     <ContentPresenter Content="{TemplateBinding PopupInnerTopContent}" DockPanel.Dock="Top"/>
