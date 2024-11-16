@@ -19,6 +19,7 @@
                         Name="PART_Root"
                         Margin="{TemplateBinding Padding,
                                                  Converter={x:Static c:ThicknessTakeConverter.Left}}"
+                        Background="{DynamicResource SemiColorBackground2}"
                         Padding="0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
@@ -111,6 +112,7 @@
                         Name="PART_Root"
                         Margin="{TemplateBinding Padding,
                                                  Converter={x:Static c:ThicknessTakeConverter.Left}}"
+                        Background="{DynamicResource SemiColorBackground2}"
                         Padding="0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
