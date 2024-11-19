@@ -197,8 +197,6 @@ public class TagInput : TemplatedControl
         _presenter = _textBox.GetTemplateChildren().OfType<TextPresenter>().FirstOrDefault();
         _presenter?.GetObservable(TextPresenter.PreeditTextProperty).Subscribe(_ => CheckEmpty());
         _textBox.GetObservable(TextBox.TextProperty).Subscribe(_ => CheckEmpty());
-        if (Tags is INotifyCollectionChanged incc)
-            incc.GetWeakCollectionChangedObservable().Subscribe(_ => CheckEmpty());
     }
 
     private void OnInputThemePropertyChanged(AvaloniaPropertyChangedEventArgs args)
@@ -269,6 +267,8 @@ public class TagInput : TemplatedControl
             Items.Add(_textBox);
             InvalidateVisual();
         }
+
+        CheckEmpty();
     }
 
     private void OnTextBoxKeyDown(object? sender, KeyEventArgs args)
