@@ -22,7 +22,7 @@ public static class MessageBox
         };
         if (!string.IsNullOrWhiteSpace(styleClass))
         {
-            var styles = styleClass!.Split([' '], StringSplitOptions.RemoveEmptyEntries);
+            var styles = styleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
             messageWindow.Classes.AddRange(styles);
         }
         var lifetime = Application.Current?.ApplicationLifetime;
@@ -54,7 +54,7 @@ public static class MessageBox
         };
         if (!string.IsNullOrWhiteSpace(styleClass))
         {
-            var styles = styleClass!.Split([' '], StringSplitOptions.RemoveEmptyEntries);
+            var styles = styleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
             messageWindow.Classes.AddRange(styles!);
         }
         var result = await messageWindow.ShowDialog<MessageBoxResult>(owner);
@@ -82,7 +82,7 @@ public static class MessageBox
         };
         if (!string.IsNullOrWhiteSpace(styleClass))
         {
-            var styles = styleClass!.Split([' '], StringSplitOptions.RemoveEmptyEntries);
+            var styles = styleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
             messageControl.Classes.AddRange(styles!);
         }
         host.AddModalDialog(messageControl);

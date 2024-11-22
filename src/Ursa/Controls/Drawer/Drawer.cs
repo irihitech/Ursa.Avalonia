@@ -220,7 +220,7 @@ public static class Drawer
 
         if (!string.IsNullOrWhiteSpace(options.StyleClass))
         {
-            var styles = options.StyleClass!.Split([' '], StringSplitOptions.RemoveEmptyEntries);
+            var styles = options.StyleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
             drawer.Classes.AddRange(styles);
         }
     }
@@ -247,7 +247,7 @@ public static class Drawer
         }
         if (!string.IsNullOrWhiteSpace(options.StyleClass))
         {
-            var styles = options.StyleClass!.Split([' '], StringSplitOptions.RemoveEmptyEntries);
+            var styles = options.StyleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
             drawer.Classes.AddRange(styles);
         }
     }

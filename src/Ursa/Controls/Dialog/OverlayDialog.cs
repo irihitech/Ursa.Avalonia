@@ -207,7 +207,7 @@ public static class OverlayDialog
         control.CanResize = options.CanResize;
         if (!string.IsNullOrWhiteSpace(options.StyleClass))
         {
-            var styles = options.StyleClass!.Split([' '], StringSplitOptions.RemoveEmptyEntries);
+            var styles = options.StyleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
             control.Classes.AddRange(styles);
         }
         DialogControlBase.SetCanDragMove(control, options.CanDragMove);
@@ -238,7 +238,7 @@ public static class OverlayDialog
         control.CanResize = options.CanResize;
         if (!string.IsNullOrWhiteSpace(options.StyleClass))
         {
-            var styles = options.StyleClass!.Split([' '], StringSplitOptions.RemoveEmptyEntries);
+            var styles = options.StyleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
             control.Classes.AddRange(styles);
         }
         DialogControlBase.SetCanDragMove(control, options.CanDragMove);

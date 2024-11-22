@@ -216,7 +216,7 @@ public static class Dialog
         }
         if (!string.IsNullOrWhiteSpace(options.StyleClass))
         {
-            var styles = options.StyleClass!.Split([' '], StringSplitOptions.RemoveEmptyEntries);
+            var styles = options.StyleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
             window.Classes.AddRange(styles);
         }
     }
@@ -247,7 +247,7 @@ public static class Dialog
         }
         if (!string.IsNullOrWhiteSpace(options.StyleClass))
         {
-            var styles = options.StyleClass!.Split([' '], StringSplitOptions.RemoveEmptyEntries);
+            var styles = options.StyleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
             window.Classes.AddRange(styles);
         }
     }
