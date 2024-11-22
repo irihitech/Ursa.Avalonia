@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Ursa.Common;
 using Ursa.Controls.Options;
+// ReSharper disable RedundantExplicitArrayCreation
 
 namespace Ursa.Controls;
 
@@ -220,7 +221,7 @@ public static class Drawer
 
         if (!string.IsNullOrWhiteSpace(options.StyleClass))
         {
-            var styles = options.StyleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
+            var styles = options.StyleClass!.Split(Constants.SpaceSeparator, StringSplitOptions.RemoveEmptyEntries);
             drawer.Classes.AddRange(styles);
         }
     }
@@ -247,7 +248,7 @@ public static class Drawer
         }
         if (!string.IsNullOrWhiteSpace(options.StyleClass))
         {
-            var styles = options.StyleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
+            var styles = options.StyleClass!.Split(Constants.SpaceSeparator, StringSplitOptions.RemoveEmptyEntries);
             drawer.Classes.AddRange(styles);
         }
     }

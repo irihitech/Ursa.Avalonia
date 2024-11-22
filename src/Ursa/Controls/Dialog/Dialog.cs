@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Ursa.Common;
 
 namespace Ursa.Controls;
 
@@ -216,7 +217,7 @@ public static class Dialog
         }
         if (!string.IsNullOrWhiteSpace(options.StyleClass))
         {
-            var styles = options.StyleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
+            var styles = options.StyleClass!.Split(Constants.SpaceSeparator, StringSplitOptions.RemoveEmptyEntries);
             window.Classes.AddRange(styles);
         }
     }
@@ -247,7 +248,7 @@ public static class Dialog
         }
         if (!string.IsNullOrWhiteSpace(options.StyleClass))
         {
-            var styles = options.StyleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
+            var styles = options.StyleClass!.Split(Constants.SpaceSeparator, StringSplitOptions.RemoveEmptyEntries);
             window.Classes.AddRange(styles);
         }
     }

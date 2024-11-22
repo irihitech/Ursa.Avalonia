@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Layout;
+using Ursa.Common;
 
 namespace Ursa.Controls;
 
@@ -207,7 +208,7 @@ public static class OverlayDialog
         control.CanResize = options.CanResize;
         if (!string.IsNullOrWhiteSpace(options.StyleClass))
         {
-            var styles = options.StyleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
+            var styles = options.StyleClass!.Split(Constants.SpaceSeparator, StringSplitOptions.RemoveEmptyEntries);
             control.Classes.AddRange(styles);
         }
         DialogControlBase.SetCanDragMove(control, options.CanDragMove);
@@ -238,7 +239,7 @@ public static class OverlayDialog
         control.CanResize = options.CanResize;
         if (!string.IsNullOrWhiteSpace(options.StyleClass))
         {
-            var styles = options.StyleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
+            var styles = options.StyleClass!.Split(Constants.SpaceSeparator, StringSplitOptions.RemoveEmptyEntries);
             control.Classes.AddRange(styles);
         }
         DialogControlBase.SetCanDragMove(control, options.CanDragMove);

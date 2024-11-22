@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Input;
+using Ursa.Common;
 
 namespace Ursa.Controls;
 
@@ -22,7 +23,7 @@ public static class MessageBox
         };
         if (!string.IsNullOrWhiteSpace(styleClass))
         {
-            var styles = styleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
+            var styles = styleClass!.Split(Constants.SpaceSeparator, StringSplitOptions.RemoveEmptyEntries);
             messageWindow.Classes.AddRange(styles);
         }
         var lifetime = Application.Current?.ApplicationLifetime;
@@ -54,7 +55,7 @@ public static class MessageBox
         };
         if (!string.IsNullOrWhiteSpace(styleClass))
         {
-            var styles = styleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
+            var styles = styleClass!.Split(Constants.SpaceSeparator, StringSplitOptions.RemoveEmptyEntries);
             messageWindow.Classes.AddRange(styles!);
         }
         var result = await messageWindow.ShowDialog<MessageBoxResult>(owner);
@@ -82,7 +83,7 @@ public static class MessageBox
         };
         if (!string.IsNullOrWhiteSpace(styleClass))
         {
-            var styles = styleClass!.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
+            var styles = styleClass!.Split(Constants.SpaceSeparator, StringSplitOptions.RemoveEmptyEntries);
             messageControl.Classes.AddRange(styles!);
         }
         host.AddModalDialog(messageControl);
