@@ -140,7 +140,7 @@ public class DateTimePicker : DatePickerBase
         }
     }
 
-    private void OnTimeSelectedChanged(object sender, TimeChangedEventArgs e)
+    private void OnTimeSelectedChanged(object? sender, TimeChangedEventArgs e)
     {
         if (SelectedDate is null)
         {
