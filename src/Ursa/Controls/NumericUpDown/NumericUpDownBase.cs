@@ -26,6 +26,7 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
     protected ButtonSpinner? _spinner;
     protected TextBox? _textBox;
     protected internal Panel? _dragPanel;
+    private bool _isFocused;
 
     private Point? _point;
     protected internal bool _updateFromTextInput;
@@ -149,6 +150,7 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
 
     static NumericUpDown()
     {
+        FocusableProperty.OverrideDefaultValue<NumericUpDown>(true);
         NumberFormatProperty.Changed.AddClassHandler<NumericUpDown>((o, e) => o.OnFormatChange(e));
         FormatStringProperty.Changed.AddClassHandler<NumericUpDown>((o, e) => o.OnFormatChange(e));
         IsReadOnlyProperty.Changed.AddClassHandler<NumericUpDown, bool>((o, args) => o.OnIsReadOnlyChanged(args));
@@ -215,6 +217,35 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
         if (AllowDrag && _dragPanel is not null)
         {
             _dragPanel.IsVisible = true;
+        }
+        FocusChanged(IsKeyboardFocusWithin);
+    }
+
+    protected override void OnGotFocus(GotFocusEventArgs e)
+    {
+        base.OnGotFocus(e);
+        FocusChanged(IsKeyboardFocusWithin);
+    }
+
+    private void FocusChanged(bool hasFocus)
+    {
+        // The OnGotFocus & OnLostFocus are asynchronously and cannot
+        // reliably tell you that have the focus.  All they do is let you
+        // know that the focus changed sometime in the past.  To determine
+        // if you currently have the focus you need to do consult the
+        // FocusManager.
+
+        bool wasFocused = _isFocused;
+        _isFocused = hasFocus;
+
+        if (hasFocus)
+        {
+
+            if (!wasFocused && _textBox != null)
+            {
+                _textBox.Focus();
+                _textBox.SelectAll();
+            }
         }
     }
 
