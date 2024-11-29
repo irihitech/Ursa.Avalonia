@@ -17,29 +17,17 @@
     </Design.DataContext>
 
     <Grid>
-        <DataGrid ItemsSource="{Binding Items}" IsReadOnly="False" HorizontalAlignment="Left">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                
-                <DataGridTemplateColumn Width="2*" Header="Address" MaxWidth="300" MinWidth="300">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Text="{Binding Address}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <u:IPv4Box
-                                HorizontalAlignment="Stretch"
-                                IPAddress="{Binding Address}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <u:Form>
+            <u:FormItem Label="_Numeric">
+                <u:NumericIntUpDown/>
+            </u:FormItem>
+            <u:FormItem Label="_AnotherNumeric">
+                <u:NumericIntUpDown/>
+            </u:FormItem>
+            <u:FormItem Label="_TextBox">
+                <TextBox/>
+            </u:FormItem>
+        </u:Form>
     </Grid>
 
 </Window>
