@@ -244,7 +244,6 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
             if (!wasFocused && _textBox != null)
             {
                 _textBox.Focus();
-                _textBox.SelectAll();
             }
         }
     }
