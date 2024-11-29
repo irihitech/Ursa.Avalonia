@@ -26,6 +26,7 @@ public class Test
         window.Show();
 
         var form = window.FindControl<Form>("Form");
+        Assert.NotNull(form);
         var logicalChildren = form.GetLogicalChildren().ToList();
         Assert.True(logicalChildren.All(a=>a is FormItem));
         Assert.IsType<TextBox>(logicalChildren[0].LogicalChildren[0]);
@@ -65,6 +66,7 @@ public class Test
         window.Show();
 
         var form = window.FindControl<Form>("Form");
+        Assert.NotNull(form);
         var logicalChildren = form.GetLogicalChildren().ToList();
         Assert.True(logicalChildren.All(a=>a is FormGroup));
         var formGroup = (FormGroup)logicalChildren[0];
@@ -108,6 +110,7 @@ public class Test
         window.Show();
 
         var form = window.FindControl<Form>("Form");
+        Assert.NotNull(form);
         var logicalChildren = form.GetLogicalChildren().ToList();
         Assert.True(logicalChildren.All(a=>a is FormItem || a is FormGroup));
         Assert.IsType<TextBox>(logicalChildren[0].LogicalChildren[0]);

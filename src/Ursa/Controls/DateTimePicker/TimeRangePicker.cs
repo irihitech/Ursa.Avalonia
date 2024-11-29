@@ -156,7 +156,7 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         SyncTimeToText(EndTime, false);
     }
 
-    private void OnPresenterTimeChanged(object sender, TimeChangedEventArgs e)
+    private void OnPresenterTimeChanged(object? sender, TimeChangedEventArgs e)
     {
         if (_suppressTextPresenterEvent) return;
         SetCurrentValue(Equals(sender, _startPresenter) ? StartTimeProperty : EndTimeProperty, e.NewTime);

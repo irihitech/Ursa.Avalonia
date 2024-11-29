@@ -93,7 +93,7 @@ public class TimePicker : TimePickerBase, IClearControl
         SyncTimeToText(SelectedTime);
     }
 
-    private void OnPresenterTimeChanged(object sender, TimeChangedEventArgs e)
+    private void OnPresenterTimeChanged(object? sender, TimeChangedEventArgs e)
     {
         if (_suppressTextPresenterEvent) return;
         SetCurrentValue(SelectedTimeProperty, e.NewTime);
