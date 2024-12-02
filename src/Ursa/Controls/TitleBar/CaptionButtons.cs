@@ -75,8 +75,9 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
             }
         }
     }
-    public override void Attach(Window hostWindow)
+    public override void Attach(Window? hostWindow)
     {
+        if (hostWindow is null) return;
         base.Attach(hostWindow);
         _windowStateSubscription = HostWindow?.GetObservable(Window.WindowStateProperty).Subscribe(_ =>
         {
