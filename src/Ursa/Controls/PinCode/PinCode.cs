@@ -11,12 +11,12 @@ using Irihi.Avalonia.Shared.Helpers;
 namespace Ursa.Controls;
 
 [TemplatePart(PART_ItemsControl, typeof(ItemsControl))]
-public class PinCode: TemplatedControl
+public class PinCode : TemplatedControl
 {
     public const string PART_ItemsControl = "PART_ItemsControl";
     private ItemsControl? _itemsControl;
     private int _currentIndex;
-    
+
     public static readonly StyledProperty<ICommand?> CompleteCommandProperty = AvaloniaProperty.Register<PinCode, ICommand?>(
         nameof(CompleteCommand));
 
@@ -57,18 +57,18 @@ public class PinCode: TemplatedControl
 
     public static readonly DirectProperty<PinCode, IList<string>> DigitsProperty = AvaloniaProperty.RegisterDirect<PinCode, IList<string>>(
         nameof(Digits), o => o.Digits);
-    
+
     private IList<string> _digits = [];
     public IList<string> Digits
     {
         get => _digits;
         private set => SetAndRaise(DigitsProperty, ref _digits, value);
     }
-    
+
     public static readonly RoutedEvent<PinCodeCompleteEventArgs> CompleteEvent =
         RoutedEvent.Register<PinCode, PinCodeCompleteEventArgs>(
             nameof(Complete), RoutingStrategies.Bubble);
-    
+
     public event EventHandler<PinCodeCompleteEventArgs> Complete
     {
         add => AddHandler(CompleteEvent, value);
@@ -79,7 +79,7 @@ public class PinCode: TemplatedControl
     {
         CountProperty.Changed.AddClassHandler<PinCode, int>((code, args) => code.OnCountOfDigitChanged(args));
         FocusableProperty.OverrideDefaultValue<PinCode>(true);
-        KeyDownEvent.AddClassHandler<PinCode>((o,e)=>o.OnPreviewKeyDown(e), RoutingStrategies.Tunnel);
+        KeyDownEvent.AddClassHandler<PinCode>((o, e) => o.OnPreviewKeyDown(e), RoutingStrategies.Tunnel);
     }
 
     public PinCode()
@@ -119,7 +119,7 @@ public class PinCode: TemplatedControl
                 _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);
                 _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
             }
-            
+
         }
         e.Handled = true;
     }
@@ -181,6 +181,11 @@ public class PinCode: TemplatedControl
                         presenter.Text = newText[i].ToString();
                     }
                 }
+                if (newText.Length == Count)
+                {
+                    CompleteCommand?.Execute(Digits);
+                    RaiseEvent(new PinCodeCompleteEventArgs(Digits, CompleteEvent));
+                }
             }
             return;
         }
@@ -210,7 +215,7 @@ public class PinCode: TemplatedControl
             _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);
             _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
         }
-        else if(e.Key is Key.Right or Key.FnRightArrow)
+        else if (e.Key is Key.Right or Key.FnRightArrow)
         {
             _currentIndex++;
             _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);
