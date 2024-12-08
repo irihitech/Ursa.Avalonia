@@ -59,7 +59,7 @@
                             <Button
                                 Name="PART_Button"
                                 Grid.Column="1"
-                                Padding="0,0,8,0"
+                                Margin="8 0"
                                 IsVisible="{Binding !#ClearButton.IsVisible}"
                                 Content="{DynamicResource DateTimePickerGlyph}"
                                 Focusable="False"
