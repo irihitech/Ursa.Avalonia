@@ -1,16 +1,20 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
+using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
+[PseudoClasses(PseudoClassName.PC_Active)]
 public class TitleBar: ContentControl
 {
     private CaptionButtons? _captionButtons;
     private InputElement? _background;
     private Window? _visualRoot;
+    private IDisposable? _activeSubscription;
     
     public static readonly StyledProperty<object?> LeftContentProperty = AvaloniaProperty.Register<TitleBar, object?>(
         nameof(LeftContent));
@@ -45,19 +49,27 @@ public class TitleBar: ContentControl
         this._captionButtons?.Detach();
         this._captionButtons = e.NameScope.Get<CaptionButtons>("PART_CaptionButtons");
         this._background = e.NameScope.Get<InputElement>("PART_Background");
-        if (!(this.VisualRoot is Window visualRoot))
-            return;
-        _visualRoot = visualRoot;
         DoubleTappedEvent.AddHandler(OnDoubleTapped, _background);
         PointerPressedEvent.AddHandler(OnPointerPressed, _background);
-        this._captionButtons?.Attach(visualRoot);
-        // this.UpdateSize(visualRoot);
+        this._captionButtons?.Attach(_visualRoot);
+    }
+
+    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnAttachedToVisualTree(e);
+        _visualRoot = this.VisualRoot as Window;
+        if (_visualRoot is not null)
+        {
+            _activeSubscription = _visualRoot.GetObservable(WindowBase.IsActiveProperty).Subscribe(isActive =>
+            {
+                PseudoClasses.Set(PseudoClassName.PC_Active, isActive);
+            });
+        }
     }
 
     private void OnPointerPressed(object? sender, PointerPressedEventArgs e)
     {
-        if(_visualRoot is not null
-            && _visualRoot.WindowState == WindowState.FullScreen)
+        if(_visualRoot is not null && _visualRoot.WindowState == WindowState.FullScreen)
         {
             return;
         }
@@ -95,5 +107,12 @@ public class TitleBar: ContentControl
             if (this._captionButtons != null)
                 this._captionButtons.Height = this.Height;
         }
+    }
+
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+        _captionButtons?.Detach();
+        _activeSubscription?.Dispose();
     }
 }
