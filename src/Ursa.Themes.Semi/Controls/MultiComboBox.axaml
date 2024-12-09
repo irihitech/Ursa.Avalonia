@@ -26,7 +26,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}">
-                            <Grid Name="PART_RootGrid" ColumnDefinitions="Auto, *, Auto, Auto, 32">
+                            <Grid Name="PART_RootGrid" ColumnDefinitions="Auto, *, Auto, Auto, Auto">
                                 <Border
                                     Name="{x:Static u:MultiComboBox.PART_BackgroundBorder}"
                                     Grid.Column="0"
@@ -94,6 +94,7 @@
                                 <Button
                                     Name="ClearButton"
                                     Grid.Column="4"
+                                    Width="{DynamicResource ComboBoxIconWidth}"
                                     Command="{Binding $parent[u:MultiComboBox].Clear}"
                                     Content="{DynamicResource IconButtonClearData}"
                                     IsVisible="False"

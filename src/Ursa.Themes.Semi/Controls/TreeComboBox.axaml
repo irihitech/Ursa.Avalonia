@@ -79,7 +79,7 @@
                     <Button
                         Name="PART_ClearButton"
                         Grid.Column="3"
-                        Margin="0,0,8,0"
+                        Margin="8 0"
                         Command="{Binding $parent[u:TreeComboBox].Clear}"
                         Content="{DynamicResource IconButtonClearData}"
                         IsVisible="False"
