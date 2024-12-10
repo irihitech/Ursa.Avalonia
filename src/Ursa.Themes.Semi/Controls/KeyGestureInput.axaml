@@ -51,9 +51,8 @@
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Text="{TemplateBinding Gesture,
                                                        Converter={StaticResource KeyGestureConverter}}" />
-                            <Button Grid.Column="0" Grid.ColumnSpan="3"
+                            <Button Grid.Column="1"
                                 Name="PART_ClearButton"
-                                Margin="0,0,8,0"
                                 HorizontalAlignment="Right"
                                 Command="{Binding $parent[u:KeyGestureInput].Clear}"
                                 Content="{DynamicResource IconButtonClearData}"

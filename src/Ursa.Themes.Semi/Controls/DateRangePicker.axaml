@@ -58,7 +58,7 @@
                             <Button
                                 Name="ClearButton"
                                 Grid.Column="3"
-                                Padding="8,0"
+                                Margin="8,0"
                                 Command="{Binding $parent[u:DateRangePicker].Clear}"
                                 Content="{DynamicResource IconButtonClearData}"
                                 Focusable="False"
@@ -67,7 +67,7 @@
                             <Button
                                 Name="{x:Static u:DateRangePicker.PART_Button}"
                                 Grid.Column="3"
-                                Padding="8,0"
+                                Margin="8,0"
                                 Content="{DynamicResource CalendarDatePickerIconGlyph}"
                                 Focusable="False"
                                 IsVisible="{Binding !#ClearButton.IsVisible}"
