@@ -6,6 +6,9 @@
     <StaticResource x:Key="BannerCloseIconGeometry" ResourceKey="SemiIconClose" />
 
     <CornerRadius x:Key="BannerCornerRadius">3</CornerRadius>
+    <Thickness x:Key="BannerBorderPadding">12</Thickness>
     <Thickness x:Key="BannerBorderThickness">1</Thickness>
     <Thickness x:Key="BannerIconMargin">0 0 12 0</Thickness>
+    <Thickness x:Key="BannerCloseButtonMargin">12 0 0 0</Thickness>
+    <x:Double x:Key="BannerTitleFontSize">18</x:Double>
 </ResourceDictionary>

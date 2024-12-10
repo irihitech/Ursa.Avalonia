@@ -2,8 +2,18 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
-    <!--  Add Resources Here  -->
+    <Design.PreviewWith>
+        <HeaderedContentControl Theme="{StaticResource GroupBox}" Width="500">
+            <u:Banner
+                Classes="Bordered"
+                Header="Title"
+                Content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+                Type="Warning"
+                CanClose="True" />
+        </HeaderedContentControl>
+    </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:Banner}" TargetType="u:Banner">
+        <Setter Property="Padding" Value="{DynamicResource BannerBorderPadding}" />
         <Setter Property="BorderThickness" Value="{DynamicResource BannerBorderThickness}" />
         <Setter Property="BorderBrush" Value="{DynamicResource BannerBorderBrush}" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -11,19 +21,16 @@
             <ControlTemplate TargetType="u:Banner">
                 <Border
                     Name="PART_Container"
-                    Padding="12"
+                    Padding="{TemplateBinding Padding}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}">
                     <Grid ColumnDefinitions="*, Auto">
                         <Grid
                             Grid.Column="0"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            ColumnDefinitions="Auto, *"
-                            RowDefinitions="Auto, *">
+                            ColumnDefinitions="Auto, *">
                             <!--  Icon Area  -->
                             <Panel
-                                Grid.Row="0"
-                                Grid.RowSpan="2"
                                 Grid.Column="0"
                                 Margin="{DynamicResource BannerIconMargin}"
                                 VerticalAlignment="Top"
@@ -31,38 +38,29 @@
                                 <ContentPresenter Content="{TemplateBinding Icon}" />
                                 <PathIcon
                                     Name="PART_BuildInIcon"
-                                    Width="16"
-                                    Height="16"
-                                    IsVisible="{TemplateBinding Icon,
-                                                                Converter={x:Static ObjectConverters.IsNull}}" />
+                                    Theme="{DynamicResource InnerPathIcon}"
+                                    Classes="Large"
+                                    IsVisible="{TemplateBinding Icon, Converter={x:Static ObjectConverters.IsNull}}" />
                             </Panel>
-                            <ContentPresenter
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Content="{TemplateBinding Header}"
-                                ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                IsVisible="{TemplateBinding Header,
-                                                            Converter={x:Static ObjectConverters.IsNotNull}}"
-                                TextElement.FontWeight="{DynamicResource TextBlockTitleFontWeight}" />
-                            <ContentPresenter
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Content="{TemplateBinding Content}"
-                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            <StackPanel Grid.Column="1" Spacing="2">
+                                <ContentPresenter
+                                    Content="{TemplateBinding Header}"
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                    TextElement.FontSize="{DynamicResource BannerTitleFontSize}"
+                                    TextElement.FontWeight="{DynamicResource TextBlockTitleFontWeight}" />
+                                <ContentPresenter
+                                    Content="{TemplateBinding Content}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </StackPanel>
                         </Grid>
                         <Button
                             Name="{x:Static u:Banner.PART_CloseButton}"
                             Grid.Column="1"
-                            Padding="4"
-                            Cursor="Hand"
-                            IsVisible="{TemplateBinding CanClose}"
-                            Theme="{DynamicResource BorderlessButton}">
-                            <PathIcon
-                                Width="12"
-                                Height="12"
-                                Data="{DynamicResource BannerCloseIconGeometry}"
-                                Foreground="{DynamicResource BannerCloseButtonForeground}" />
-                        </Button>
+                            Margin="{DynamicResource BannerCloseButtonMargin}"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Theme="{DynamicResource NotificationCloseButton}"
+                            IsVisible="{TemplateBinding CanClose}" />
                     </Grid>
                 </Border>
             </ControlTemplate>

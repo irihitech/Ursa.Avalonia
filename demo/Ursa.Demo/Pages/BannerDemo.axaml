@@ -13,28 +13,27 @@
     </Design.DataContext>
     <StackPanel Spacing="20">
         <Grid ColumnDefinitions="*, 300">
-            <Grid Grid.Column="0">
-                <Border Margin="20">
-                    <u:Banner
-                        Classes.Bordered="{Binding Bordered}"
-                        Content="This is the Demo of Ursa Banner. "
-                        Header="Welcome to Ursa"
-                        Type="{Binding SelectedType}" />
-                </Border>
-            </Grid>
+            <u:Banner
+                Margin="20"
+                Grid.Column="0"
+                Classes.Bordered="{Binding Bordered}"
+                CanClose="{Binding CanClose}"
+                Content="This is the Demo of Ursa Banner. "
+                Header="Welcome to Ursa"
+                Type="{Binding SelectedType}" />
             <Border Grid.Column="1" VerticalAlignment="Top">
-                <Grid ColumnDefinitions="*, Auto" RowDefinitions="*, *">
+                <Grid ColumnDefinitions="*, Auto" RowDefinitions="*, *, *">
                     <Label
                         Grid.Row="0"
                         Grid.Column="0"
                         VerticalAlignment="Center"
                         Content="Type" />
-                    <ComboBox
+                    <u:EnumSelector
                         Grid.Row="0"
                         Grid.Column="1"
-                        MinWidth="200"
-                        ItemsSource="{Binding Types}"
-                        SelectedItem="{Binding SelectedType}" />
+                        Width="200"
+                        EnumType="NotificationType"
+                        Value="{Binding SelectedType}" />
                     <Label
                         Grid.Row="1"
                         Grid.Column="0"
@@ -45,6 +44,16 @@
                         Grid.Column="1"
                         VerticalAlignment="Center"
                         IsChecked="{Binding Bordered}" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Content="CanClose" />
+                    <ToggleSwitch
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        IsChecked="{Binding CanClose}" />
                 </Grid>
             </Border>
         </Grid>
