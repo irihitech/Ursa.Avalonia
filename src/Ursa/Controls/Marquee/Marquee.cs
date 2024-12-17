@@ -18,7 +18,7 @@ public class Marquee : ContentControl
         nameof(IsRunning), true);
 
     /// <summary>
-    ///     Defines the <see cref="MarqueeMode" /> property.
+    ///     Defines the <see cref="Direction" /> property.
     /// </summary>
     public static readonly StyledProperty<Direction> DirectionProperty = AvaloniaProperty.Register<Marquee, Direction>(
         nameof(Direction));
