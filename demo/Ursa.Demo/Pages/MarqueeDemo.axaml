@@ -25,6 +25,13 @@
                 u:FormItem.Label="VerticalContentAlignment"
                 EnumType="{x:Type VerticalAlignment}"
                 Value="{x:Static VerticalAlignment.Center}" />
+            <u:NumericDoubleUpDown 
+                Name="speed"
+                AllowDrag="True"
+                u:FormItem.Label="Speed"
+                Minimum="1"
+                Maximum="300"
+                Value="60"/>
             <ToggleSwitch
                 Name="running"
                 u:FormItem.Label="IsRunning"
@@ -35,6 +42,7 @@
             Height="100"
             HorizontalContentAlignment="{Binding #horizontal.Value}"
             VerticalContentAlignment="{Binding #vertical.Value}"
+            Speed="{Binding #speed.Value}"
             Background="{DynamicResource SemiBlue1}"
             Direction="{Binding #direction.Value}"
             IsRunning="{Binding #running.IsChecked}">

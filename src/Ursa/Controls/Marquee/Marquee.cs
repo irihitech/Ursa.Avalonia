@@ -114,7 +114,7 @@ public class Marquee : ContentControl
         {
             Canvas.SetTop(Presenter, location.Value.top);
             Canvas.SetLeft(Presenter, location.Value.left);
-        }, DispatcherPriority.Background);
+        }, DispatcherPriority.Render);
     }
 
     private void InvalidatePresenterPosition()

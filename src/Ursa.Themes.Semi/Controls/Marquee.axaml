@@ -7,12 +7,19 @@
     <ControlTheme x:Key="{x:Type u:Marquee}" TargetType="u:Marquee">
         <Setter Property="Template">
             <ControlTemplate>
-                <Canvas Background="{TemplateBinding Background}">
-                    <ContentPresenter
-                        Name="{x:Static iri:PartNames.PART_ContentPresenter}"
-                        Content="{TemplateBinding Content}"
-                        ContentTemplate="{TemplateBinding ContentTemplate}" />
-                </Canvas>
+                <Border
+                    Background="{TemplateBinding Background}"
+                    BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                    <Canvas>
+                        <ContentPresenter
+                            Name="{x:Static iri:PartNames.PART_ContentPresenter}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </Canvas>
+                </Border>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
