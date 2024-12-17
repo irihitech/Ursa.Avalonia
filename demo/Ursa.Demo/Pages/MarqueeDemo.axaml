@@ -10,6 +10,7 @@
     mc:Ignorable="d">
     <StackPanel>
         <u:Form>
+            <TextBox Width="300" Name="content" u:FormItem.Label="Content" Text="Hello Avalonia"></TextBox>
             <u:EnumSelector
                 u:FormItem.Label="Direction"
                 Name="direction"
@@ -45,8 +46,9 @@
             Speed="{Binding #speed.Value}"
             Background="{DynamicResource SemiBlue1}"
             Direction="{Binding #direction.Value}"
+            Content="{Binding #content.Text}"
             IsRunning="{Binding #running.IsChecked}">
-            <TextBlock VerticalAlignment="Center" Text="Hello World" />
+            
         </u:Marquee>
     </StackPanel>
 </UserControl>

@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Layout;
 using Avalonia.Threading;
 using Irihi.Avalonia.Shared.Helpers;
@@ -75,6 +76,10 @@ public class Marquee : ContentControl
         _timer.Elapsed -= TimerOnTick;
         _timer.Stop();
         _timer.Dispose();
+        if (Presenter is not null)
+        {
+            Presenter.SizeChanged -= OnPresenterSizeChanged;
+        }
     }
 
     /// <summary>
@@ -103,6 +108,22 @@ public class Marquee : ContentControl
         get => GetValue(SpeedProperty);
         set => SetValue(SpeedProperty, value);
     }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        if (Presenter is not null)
+        {
+            Presenter.SizeChanged+= OnPresenterSizeChanged;
+        }
+    }
+
+    private void OnPresenterSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        InvalidatePresenterPosition();
+    }
+
+    
 
     private void TimerOnTick(object sender, System.EventArgs e)
     {
