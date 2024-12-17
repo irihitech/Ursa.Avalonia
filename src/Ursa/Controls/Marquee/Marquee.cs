@@ -127,8 +127,8 @@ public class Marquee : ContentControl
 
     private void TimerOnTick(object sender, System.EventArgs e)
     {
-        var layoutValues = Dispatcher.UIThread.Invoke(GetLayoutValues);
         if (Presenter is null) return;
+        var layoutValues = Dispatcher.UIThread.Invoke(GetLayoutValues);
         var location = UpdateLocation(layoutValues);
         if (location is null) return;
         Dispatcher.UIThread.Post(() =>
