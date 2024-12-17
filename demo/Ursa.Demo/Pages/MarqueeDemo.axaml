@@ -9,12 +9,36 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <StackPanel>
-        <u:EnumSelector Name="direction" EnumType="{x:Type u:Direction}" />
+        <u:Form>
+            <u:EnumSelector
+                u:FormItem.Label="Direction"
+                Name="direction"
+                EnumType="{x:Type u:Direction}"
+                Value="{x:Static u:Direction.Left}" />
+            <u:EnumSelector
+                Name="horizontal"
+                u:FormItem.Label="HorizontalContentAlignment"
+                EnumType="{x:Type HorizontalAlignment}"
+                Value="{x:Static HorizontalAlignment.Center}" />
+            <u:EnumSelector
+                Name="vertical"
+                u:FormItem.Label="VerticalContentAlignment"
+                EnumType="{x:Type VerticalAlignment}"
+                Value="{x:Static VerticalAlignment.Center}" />
+            <ToggleSwitch
+                Name="running"
+                u:FormItem.Label="IsRunning"
+                IsChecked="True" />
+        </u:Form>
+
         <u:Marquee
-            Background="Red"
-            Height="100" 
-            Direction="{Binding #direction.Value}" >
-            <TextBlock Text="Hello World" VerticalAlignment="Center"/>
+            Height="100"
+            HorizontalContentAlignment="{Binding #horizontal.Value}"
+            VerticalContentAlignment="{Binding #vertical.Value}"
+            Background="{DynamicResource SemiBlue1}"
+            Direction="{Binding #direction.Value}"
+            IsRunning="{Binding #running.IsChecked}">
+            <TextBlock VerticalAlignment="Center" Text="Hello World" />
         </u:Marquee>
     </StackPanel>
 </UserControl>

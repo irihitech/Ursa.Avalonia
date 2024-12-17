@@ -1,5 +1,7 @@
+using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Layout;
 using Avalonia.Threading;
 using Irihi.Avalonia.Shared.Helpers;
 using Timer = System.Timers.Timer;
@@ -12,7 +14,7 @@ public class Marquee : ContentControl
     ///     Defines the <see cref="IsRunning" /> property.
     /// </summary>
     public static readonly StyledProperty<bool> IsRunningProperty = AvaloniaProperty.Register<Marquee, bool>(
-        nameof(IsRunning));
+        nameof(IsRunning), true);
 
     /// <summary>
     ///     Defines the <see cref="MarqueeMode" /> property.
@@ -26,19 +28,53 @@ public class Marquee : ContentControl
     public static readonly StyledProperty<double> SpeedProperty = AvaloniaProperty.Register<Marquee, double>(
         nameof(Speed), 60.0);
 
-    private readonly Timer _timer;
+    private Timer _timer;
 
     static Marquee()
     {
         ClipToBoundsProperty.OverrideDefaultValue<Marquee>(true);
+        HorizontalContentAlignmentProperty.OverrideDefaultValue<Marquee>(HorizontalAlignment.Center);
+        VerticalContentAlignmentProperty.OverrideDefaultValue<Marquee>(VerticalAlignment.Center);
+        HorizontalContentAlignmentProperty.Changed.AddClassHandler<Marquee>((o,args)=>o.InvalidatePresenterPosition());
+        VerticalContentAlignmentProperty.Changed.AddClassHandler<Marquee>((o,args)=>o.InvalidatePresenterPosition());
+        IsRunningProperty.Changed.AddClassHandler<Marquee, bool>((o, args) => o.OnIsRunningChanged(args));
+    }
+
+    private void OnIsRunningChanged(AvaloniaPropertyChangedEventArgs<bool> args)
+    {
+        if (args.NewValue.Value)
+        {
+            _timer.Start();
+        }
+        else
+        {
+            _timer.Stop();
+        }
     }
 
     public Marquee()
     {
         _timer = new Timer();
         _timer.Interval = 1000 / 60.0;
+    }
+
+    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnAttachedToVisualTree(e);
+        _timer.Stop();
+        _timer.Dispose();
+        _timer = new Timer();
+        _timer.Interval = 1000 / 60.0;
         _timer.Elapsed += TimerOnTick;
         _timer.Start();
+    }
+    
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+        _timer.Elapsed -= TimerOnTick;
+        _timer.Stop();
+        _timer.Dispose();
     }
 
     /// <summary>
@@ -70,7 +106,25 @@ public class Marquee : ContentControl
 
     private void TimerOnTick(object sender, System.EventArgs e)
     {
-        Dispatcher.UIThread.Post(UpdateLocation, DispatcherPriority.Background);
+        var layoutValues = Dispatcher.UIThread.Invoke(GetLayoutValues);
+        if (Presenter is null) return;
+        var location = UpdateLocation(layoutValues);
+        if (location is null) return;
+        Dispatcher.UIThread.Post(() =>
+        {
+            Canvas.SetTop(Presenter, location.Value.top);
+            Canvas.SetLeft(Presenter, location.Value.left);
+        }, DispatcherPriority.Background);
+    }
+
+    private void InvalidatePresenterPosition()
+    {
+        if (Presenter is null) return;
+        var layoutValues = GetLayoutValues();
+        var location = UpdateLocation(layoutValues);
+        if (location is null) return;
+        Canvas.SetTop(Presenter, location.Value.top);
+        Canvas.SetLeft(Presenter, location.Value.left);
     }
 
     protected override Size MeasureOverride(Size availableSize)
@@ -90,23 +144,22 @@ public class Marquee : ContentControl
         return result;
     }
 
-    private void UpdateLocation()
+    private (double top, double left)? UpdateLocation(LayoutValues values)
     {
-        if (Presenter is null) return;
-        var horizontalOffset = Direction switch
+        var horizontalOffset = values.Direction switch
         {
-            Direction.Up or Direction.Down => 0,
-            Direction.Left or Direction.Right => Canvas.GetLeft(Presenter),
+            Direction.Up or Direction.Down => GetHorizontalOffset(values.Bounds, values.PresenterSize, values.HorizontalAlignment),
+            Direction.Left or Direction.Right => values.Left,
         };
-        var verticalOffset = Direction switch
+        var verticalOffset = values.Direction switch
         {
-            Direction.Up or Direction.Down => Canvas.GetTop(Presenter),
-            Direction.Left or Direction.Right => 0,
+            Direction.Up or Direction.Down => values.Top,
+            Direction.Left or Direction.Right => GetVerticalOffset(values.Bounds, values.PresenterSize, values.VerticalAlignment),
         };
         if (horizontalOffset is double.NaN) horizontalOffset = 0.0;
         if (verticalOffset is double.NaN) verticalOffset = 0.0;
-        var speed = Speed / 60.0;
-        var diff = Direction switch
+        var speed = values.Diff;
+        var diff = values.Direction switch
         {
             Direction.Up => -speed,
             Direction.Down => speed,
@@ -114,7 +167,7 @@ public class Marquee : ContentControl
             Direction.Right => speed,
             _ => 0
         };
-        switch (Direction)
+        switch (values.Direction)
         {
             case Direction.Up:
             case Direction.Down:
@@ -125,26 +178,74 @@ public class Marquee : ContentControl
                 horizontalOffset += diff;
                 break;
         }
-        switch (Direction)
+        switch (values.Direction)
         {
             case Direction.Down:
-                if (verticalOffset > Bounds.Height) verticalOffset = -Presenter.Bounds.Height;
-                verticalOffset = MathHelpers.SafeClamp(verticalOffset, -Presenter.Bounds.Height, Bounds.Height);
+                if (verticalOffset > values.Bounds.Height) verticalOffset = -values.PresenterSize.Height;
                 break;
             case Direction.Up:
-                if (verticalOffset < -Presenter.Bounds.Height) verticalOffset = Bounds.Height;
-                verticalOffset = MathHelpers.SafeClamp(verticalOffset, -Presenter.Bounds.Height, Bounds.Height);
+                if (verticalOffset < -values.PresenterSize.Height) verticalOffset = values.Bounds.Height;
                 break;
             case Direction.Right:
-                if (horizontalOffset > Bounds.Width) horizontalOffset = -Presenter.Bounds.Width;
-                horizontalOffset = MathHelpers.SafeClamp(horizontalOffset, -Presenter.Bounds.Width, Bounds.Width);
+                if (horizontalOffset > values.Bounds.Width) horizontalOffset = -values.PresenterSize.Width;
                 break;
             case Direction.Left:
-                if (horizontalOffset < -Presenter.Bounds.Width) horizontalOffset = Bounds.Width;
-                horizontalOffset = MathHelpers.SafeClamp(horizontalOffset, -Presenter.Bounds.Width, Bounds.Width);
+                if (horizontalOffset < -values.PresenterSize.Width) horizontalOffset = values.Bounds.Width;
                 break;
         }
-        Canvas.SetTop(Presenter, verticalOffset);
-        Canvas.SetLeft(Presenter, horizontalOffset);
+        verticalOffset = MathHelpers.SafeClamp(verticalOffset, -values.PresenterSize.Height, values.Bounds.Height);
+        horizontalOffset = MathHelpers.SafeClamp(horizontalOffset, -values.PresenterSize.Width, values.Bounds.Width);
+        return (verticalOffset, horizontalOffset);
     }
+    
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private double GetHorizontalOffset(Size bounds, Size presenterBounds, HorizontalAlignment horizontalAlignment)
+    {
+        return horizontalAlignment switch
+        {
+            HorizontalAlignment.Left => 0,
+            HorizontalAlignment.Center => (bounds.Width - presenterBounds.Width) / 2,
+            HorizontalAlignment.Right => bounds.Width - presenterBounds.Width,
+            _ => 0
+        };
+    }
+    
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private double GetVerticalOffset(Size bounds, Size presenterBounds, VerticalAlignment verticalAlignment)
+    {
+        return verticalAlignment switch
+        {
+            VerticalAlignment.Top => 0,
+            VerticalAlignment.Center => (bounds.Height - presenterBounds.Height) / 2,
+            VerticalAlignment.Bottom => bounds.Height - presenterBounds.Height,
+            _ => 0
+        };
+    }
+    
+    private LayoutValues GetLayoutValues()
+    {
+        return new LayoutValues
+        {
+            Bounds = Bounds.Size,
+            PresenterSize = Presenter?.Bounds.Size ?? new Size(),
+            Left = Presenter is null? 0 : Canvas.GetLeft(Presenter),
+            Top = Presenter is null? 0 : Canvas.GetTop(Presenter),
+            Diff = IsRunning ? Speed / 60.0 : 0,
+            HorizontalAlignment = HorizontalContentAlignment,
+            VerticalAlignment = VerticalContentAlignment,
+            Direction = Direction
+        };
+    }
+}
+
+struct LayoutValues
+{
+    public Size Bounds { get; set; }
+    public Size PresenterSize { get; set; }
+    public double Left { get; set; }
+    public double Top { get; set; }
+    public double Diff { get; set; }
+    public Direction Direction { get; set; }
+    public HorizontalAlignment HorizontalAlignment { get; set; }
+    public VerticalAlignment VerticalAlignment { get; set; }
 }
