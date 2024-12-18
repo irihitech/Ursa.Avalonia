@@ -30,7 +30,7 @@
                 Name="speed"
                 AllowDrag="True"
                 u:FormItem.Label="Speed"
-                Minimum="1"
+                Minimum="-100"
                 Maximum="300"
                 Value="60"/>
             <ToggleSwitch

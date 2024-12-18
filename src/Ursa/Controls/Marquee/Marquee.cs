@@ -1,7 +1,6 @@
 using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Layout;
 using Avalonia.Threading;
 using Irihi.Avalonia.Shared.Helpers;
@@ -27,17 +26,23 @@ public class Marquee : ContentControl
     ///     Defines the <see cref="Speed" /> property.
     /// </summary>
     public static readonly StyledProperty<double> SpeedProperty = AvaloniaProperty.Register<Marquee, double>(
-        nameof(Speed), 60.0);
+        nameof(Speed), 60.0, coerce: OnCoerceSpeed);
 
-    private Timer _timer;
+    private static double OnCoerceSpeed(AvaloniaObject arg1, double arg2)
+    {
+        if (arg2 < 0) return 0;
+        return arg2;
+    }
+
+    private Timer? _timer;
 
     static Marquee()
     {
         ClipToBoundsProperty.OverrideDefaultValue<Marquee>(true);
         HorizontalContentAlignmentProperty.OverrideDefaultValue<Marquee>(HorizontalAlignment.Center);
         VerticalContentAlignmentProperty.OverrideDefaultValue<Marquee>(VerticalAlignment.Center);
-        HorizontalContentAlignmentProperty.Changed.AddClassHandler<Marquee>((o,args)=>o.InvalidatePresenterPosition());
-        VerticalContentAlignmentProperty.Changed.AddClassHandler<Marquee>((o,args)=>o.InvalidatePresenterPosition());
+        HorizontalContentAlignmentProperty.Changed.AddClassHandler<Marquee>((o,_)=>o.InvalidatePresenterPosition());
+        VerticalContentAlignmentProperty.Changed.AddClassHandler<Marquee>((o,_)=>o.InvalidatePresenterPosition());
         IsRunningProperty.Changed.AddClassHandler<Marquee, bool>((o, args) => o.OnIsRunningChanged(args));
     }
 
@@ -45,11 +50,11 @@ public class Marquee : ContentControl
     {
         if (args.NewValue.Value)
         {
-            _timer.Start();
+            _timer?.Start();
         }
         else
         {
-            _timer.Stop();
+            _timer?.Stop();
         }
     }
 
@@ -62,20 +67,30 @@ public class Marquee : ContentControl
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
-        _timer.Stop();
-        _timer.Dispose();
+        if (Presenter is not null)
+        {
+            Presenter.SizeChanged+= OnPresenterSizeChanged;
+        }
+        _timer?.Stop();
+        _timer?.Dispose();
         _timer = new Timer();
         _timer.Interval = 1000 / 60.0;
         _timer.Elapsed += TimerOnTick;
-        _timer.Start();
+        if (IsRunning)
+        {
+            _timer.Start();
+        }
     }
     
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnDetachedFromVisualTree(e);
-        _timer.Elapsed -= TimerOnTick;
-        _timer.Stop();
-        _timer.Dispose();
+        if (_timer is not null)
+        {
+            _timer.Elapsed -= TimerOnTick;
+            _timer.Stop();
+            _timer.Dispose();
+        }
         if (Presenter is not null)
         {
             Presenter.SizeChanged -= OnPresenterSizeChanged;
@@ -101,21 +116,12 @@ public class Marquee : ContentControl
     }
 
     /// <summary>
-    ///     Gets or sets the speed of the marquee.
+    ///     Gets or sets the speed of the marquee. Point per second.
     /// </summary>
     public double Speed
     {
         get => GetValue(SpeedProperty);
         set => SetValue(SpeedProperty, value);
-    }
-
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
-    {
-        base.OnApplyTemplate(e);
-        if (Presenter is not null)
-        {
-            Presenter.SizeChanged+= OnPresenterSizeChanged;
-        }
     }
 
     private void OnPresenterSizeChanged(object sender, SizeChangedEventArgs e)
