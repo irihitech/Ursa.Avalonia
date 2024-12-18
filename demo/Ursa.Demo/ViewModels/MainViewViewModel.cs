@@ -54,6 +54,7 @@ public partial class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyIpBox => new IPv4BoxDemoViewModel(),
             MenuKeys.MenuKeyKeyGestureInput => new KeyGestureInputDemoViewModel(),
             MenuKeys.MenuKeyLoading => new LoadingDemoViewModel(),
+            MenuKeys.MenuKeyMarquee => new MarqueeDemoViewModel(),
             MenuKeys.MenuKeyMessageBox => new MessageBoxDemoViewModel(),
             MenuKeys.MenuKeyMultiComboBox => new MultiComboBoxDemoViewModel(),
             MenuKeys.MenuKeyNavMenu => new NavMenuDemoViewModel(),

@@ -1,0 +1,54 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.MarqueeDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel>
+        <u:Form>
+            <TextBox Width="300" Name="content" u:FormItem.Label="Content" Text="Hello Avalonia"></TextBox>
+            <u:EnumSelector
+                u:FormItem.Label="Direction"
+                Name="direction"
+                EnumType="{x:Type u:Direction}"
+                Value="{x:Static u:Direction.Left}" />
+            <u:EnumSelector
+                Name="horizontal"
+                u:FormItem.Label="HorizontalContentAlignment"
+                EnumType="{x:Type HorizontalAlignment}"
+                Value="{x:Static HorizontalAlignment.Center}" />
+            <u:EnumSelector
+                Name="vertical"
+                u:FormItem.Label="VerticalContentAlignment"
+                EnumType="{x:Type VerticalAlignment}"
+                Value="{x:Static VerticalAlignment.Center}" />
+            <u:NumericDoubleUpDown 
+                Name="speed"
+                AllowDrag="True"
+                u:FormItem.Label="Speed"
+                Minimum="-100"
+                Maximum="300"
+                Value="60"/>
+            <ToggleSwitch
+                Name="running"
+                u:FormItem.Label="IsRunning"
+                IsChecked="True" />
+        </u:Form>
+
+        <u:Marquee
+            Height="100"
+            HorizontalContentAlignment="{Binding #horizontal.Value}"
+            VerticalContentAlignment="{Binding #vertical.Value}"
+            Speed="{Binding #speed.Value}"
+            Background="{DynamicResource SemiBlue1}"
+            Direction="{Binding #direction.Value}"
+            Content="{Binding #content.Text}"
+            IsRunning="{Binding #running.IsChecked}">
+            
+        </u:Marquee>
+    </StackPanel>
+</UserControl>

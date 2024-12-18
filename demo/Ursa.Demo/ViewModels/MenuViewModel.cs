@@ -35,6 +35,7 @@ public class MenuViewModel : ViewModelBase
             new() { MenuHeader = "IPv4Box", Key = MenuKeys.MenuKeyIpBox },
             new() { MenuHeader = "KeyGestureInput", Key = MenuKeys.MenuKeyKeyGestureInput },
             new() { MenuHeader = "Loading", Key = MenuKeys.MenuKeyLoading },
+            new() { MenuHeader = "Marquee", Key = MenuKeys.MenuKeyMarquee },
             new() { MenuHeader = "Message Box", Key = MenuKeys.MenuKeyMessageBox },
             new() { MenuHeader = "MultiComboBox", Key = MenuKeys.MenuKeyMultiComboBox, Status = "Updated" },
             new() { MenuHeader = "Nav Menu", Key = MenuKeys.MenuKeyNavMenu },
@@ -89,6 +90,7 @@ public static class MenuKeys
     public const string MenuKeyIpBox = "IPv4Box";
     public const string MenuKeyKeyGestureInput = "KeyGestureInput";
     public const string MenuKeyLoading = "Loading";
+    public const string MenuKeyMarquee = "Marquee";
     public const string MenuKeyMessageBox = "MessageBox";
     public const string MenuKeyMultiComboBox = "MultiComboBox";
     public const string MenuKeyNavMenu = "NavMenu";
