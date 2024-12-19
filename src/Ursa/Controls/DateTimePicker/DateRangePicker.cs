@@ -457,5 +457,26 @@ public class DateRangePicker : DatePickerBase, IClearControl
                 break;
         }
     }
-    
+
+    protected override void OnGotFocus(GotFocusEventArgs e)
+    {
+        base.OnGotFocus(e);
+        FocusChanged(IsKeyboardFocusWithin);
+    }
+
+    private bool _isFocused;
+    private void FocusChanged(bool hasFocus)
+    {
+        bool wasFocused = _isFocused;
+        _isFocused = hasFocus;
+
+        if (hasFocus)
+        {
+
+            if (!wasFocused && _start == null)
+            {
+                _start = true;
+            }
+        }
+    }
 }
