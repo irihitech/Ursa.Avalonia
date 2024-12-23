@@ -39,6 +39,17 @@ public abstract class WindowMessageManager : TemplatedControl
         VerticalAlignmentProperty.OverrideDefaultValue<WindowMessageManager>(VerticalAlignment.Stretch);
     }
 
+    public WindowMessageManager()
+    {
+    }
+
+    public WindowMessageManager(VisualLayerManager? visualLayerManager) : this()
+    {
+        if (visualLayerManager is null) return;
+        visualLayerManager.AdornerLayer.Children.Add(this);
+        AdornerLayer.SetAdornedElement(this, visualLayerManager.AdornerLayer);
+    }
+
     /// <inheritdoc/>
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {

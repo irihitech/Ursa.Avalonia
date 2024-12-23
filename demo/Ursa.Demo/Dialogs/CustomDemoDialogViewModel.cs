@@ -15,6 +15,8 @@ public partial class CustomDemoDialogViewModel : ObservableObject, IDialogContex
     [ObservableProperty] private string? _department;
     [ObservableProperty] private string? _owner;
     [ObservableProperty] private string? _target;
+    public WindowNotificationManager? NotificationManager { get; set; }
+    public WindowToastManager? ToastManager { get; set; }
 
     public CustomDemoDialogViewModel()
     {
@@ -36,12 +38,11 @@ public partial class CustomDemoDialogViewModel : ObservableObject, IDialogContex
     }
 
     public event EventHandler<object?>? RequestClose;
-    
+
     public ICommand OKCommand { get; set; }
     public ICommand CancelCommand { get; set; }
-    
     public ICommand DialogCommand { get; set; }
-    
+
     private void OK()
     {
         RequestClose?.Invoke(this, true);
@@ -51,9 +52,22 @@ public partial class CustomDemoDialogViewModel : ObservableObject, IDialogContex
     {
         RequestClose?.Invoke(this, false);
     }
-    
+
     private async Task ShowDialog()
     {
-        await OverlayDialog.ShowCustomModal<CustomDemoDialog, CustomDemoDialogViewModel, bool>(new CustomDemoDialogViewModel());
+        await OverlayDialog.ShowCustomModal<CustomDemoDialog, CustomDemoDialogViewModel, bool>(
+            new CustomDemoDialogViewModel());
+    }
+
+    [RelayCommand]
+    private void ShowToast(object obj)
+    {
+        ToastManager?.Show("This is a Toast message");
+    }
+
+    [RelayCommand]
+    private void ShowNotification(object obj)
+    {
+        NotificationManager?.Show("This is a Notification message");
     }
 }

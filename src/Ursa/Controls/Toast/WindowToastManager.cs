@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Controls.Notifications;
+using Avalonia.Controls.Primitives;
 using Avalonia.Threading;
 
 namespace Ursa.Controls;
@@ -12,6 +13,13 @@ public class WindowToastManager : WindowMessageManager, IToastManager
     /// <summary>
     /// Initializes a new instance of the <see cref="WindowToastManager"/> class.
     /// </summary>
+    public WindowToastManager()
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="WindowToastManager"/> class.
+    /// </summary>
     /// <param name="host">The TopLevel that will host the control.</param>
     public WindowToastManager(TopLevel? host) : this()
     {
@@ -21,10 +29,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
         }
     }
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="WindowToastManager"/> class.
-    /// </summary>
-    public WindowToastManager()
+    public WindowToastManager(VisualLayerManager? visualLayerManager) : base(visualLayerManager)
     {
     }
 

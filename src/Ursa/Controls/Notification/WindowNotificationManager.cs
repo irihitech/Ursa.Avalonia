@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Notifications;
+using Avalonia.Controls.Primitives;
 using Avalonia.Layout;
 using Avalonia.Threading;
 
@@ -40,6 +41,14 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
     /// <summary>
     /// Initializes a new instance of the <see cref="WindowNotificationManager"/> class.
     /// </summary>
+    public WindowNotificationManager()
+    {
+        UpdatePseudoClasses(Position);
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="WindowNotificationManager"/> class.
+    /// </summary>
     /// <param name="host">The TopLevel that will host the control.</param>
     public WindowNotificationManager(TopLevel? host) : this()
     {
@@ -49,10 +58,7 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
         }
     }
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="WindowNotificationManager"/> class.
-    /// </summary>
-    public WindowNotificationManager()
+    public WindowNotificationManager(VisualLayerManager? visualLayerManager) : base(visualLayerManager)
     {
         UpdatePseudoClasses(Position);
     }
