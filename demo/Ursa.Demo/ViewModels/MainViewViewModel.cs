@@ -4,7 +4,7 @@ using Avalonia;
 using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
-using Semi.Avalonia;
+using Ursa.Themes.Semi;
 
 namespace Ursa.Demo.ViewModels;
 
@@ -90,7 +90,7 @@ public partial class MainViewViewModel : ViewModelBase
         new("Dark", ThemeVariant.Dark),
         new("Aquatic", SemiTheme.Aquatic),
         new("Desert", SemiTheme.Desert),
-        new("Dust", SemiTheme.Dust),
+        new("Dusk", SemiTheme.Dusk),
         new("NightSky", SemiTheme.NightSky)
     ];
 
