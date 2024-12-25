@@ -120,7 +120,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _startTextBox);
+        GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _startTextBox, _endTextBox);
         TextBox.TextChangedEvent.RemoveHandler(OnTextChanged, _startTextBox, _endTextBox);
         PointerPressedEvent.RemoveHandler(OnTextBoxPointerPressed, _startTextBox, _endTextBox);
         Button.ClickEvent.RemoveHandler(OnButtonClick, _button);
@@ -248,7 +248,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
             if (SelectedEndDate < e.Date) SelectedEndDate = null;
             SetCurrentValue(SelectedStartDateProperty, e.Date);
             _startTextBox?.SetValue(TextBox.TextProperty, e.Date?.ToString(DisplayFormat ?? "yyyy-MM-dd"));
-            _start = false;
+            //_start = false;
             _previewStart = null;
             _previewEnd = null;
             _startCalendar?.MarkDates(SelectedStartDate, SelectedEndDate, _previewStart, _previewEnd);
@@ -267,7 +267,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
             _endCalendar?.MarkDates(SelectedStartDate, SelectedEndDate, _previewStart, _previewEnd);
             if (SelectedStartDate is null)
             {
-                _start = true;
+                //_start = true;
                 _startTextBox?.Focus();
             }
             else
@@ -281,14 +281,15 @@ public class DateRangePicker : DatePickerBase, IClearControl
     {
         Focus(NavigationMethod.Pointer);
         SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
-        _start = true;
+        _startTextBox?.Focus();
+        // _start = true;
     }
 
     private void OnTextBoxPointerPressed(object? sender, PointerPressedEventArgs e)
     {
         if (Equals(sender, _startTextBox))
         {
-            _start = true;
+            //_start = true;
             if (_startCalendar is not null)
             {
                 var date = SelectedStartDate ?? DateTime.Today;
@@ -312,7 +313,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
         }
         else if (Equals(sender, _endTextBox))
         {
-            _start = false;
+            //_start = false;
             if (_endCalendar is not null)
             {
                 var date = SelectedEndDate ?? DateTime.Today;
@@ -415,23 +416,22 @@ public class DateRangePicker : DatePickerBase, IClearControl
 
     private void OnTextBoxGetFocus(object? sender, GotFocusEventArgs e)
     {
-        if (_startCalendar is not null && _startCalendar?.Mode == CalendarViewMode.Month)
+        if (sender == _startTextBox)
         {
-            //_startCalendar.ContextDate = new CalendarContext(date.Year, date.Month);
-            //_startCalendar.UpdateDayButtons();
+            _start = true;
+        }
+        else if (sender == _endTextBox)
+        {
+            _start = false;
         }
 
-        if (_endCalendar is not null && _endCalendar?.Mode == CalendarViewMode.Month)
+        if (IsDropdownOpen == false)
         {
-            var date2 = SelectedStartDate ?? DateTime.Today;
-            date2 = date2.AddMonths(1);
-            //_endCalendar.ContextDate = new CalendarContext(date2.Year, date2.Month);
-            //_endCalendar.UpdateDayButtons();
+            SetCurrentValue(IsDropdownOpenProperty, true);
         }
-
-        SetCurrentValue(IsDropdownOpenProperty, true);
+        
     }
-    
+
     protected override void OnKeyDown(KeyEventArgs e)
     {
         switch (e.Key)
@@ -446,7 +446,11 @@ public class DateRangePicker : DatePickerBase, IClearControl
                 return;
             case Key.Tab:
             {
-                if(_endTextBox?.IsFocused == true)
+                if(_endTextBox?.IsFocused == true && e.KeyModifiers == KeyModifiers.None)
+                {
+                    SetCurrentValue(IsDropdownOpenProperty, false);
+                }
+                else if (_startTextBox?.IsFocused == true && e.KeyModifiers == KeyModifiers.Shift)
                 {
                     SetCurrentValue(IsDropdownOpenProperty, false);
                 }
@@ -457,5 +461,4 @@ public class DateRangePicker : DatePickerBase, IClearControl
                 break;
         }
     }
-    
 }
