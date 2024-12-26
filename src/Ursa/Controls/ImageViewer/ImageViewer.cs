@@ -163,8 +163,9 @@ public class ImageViewer: TemplatedControl
 
     private void OnStretchChanged(AvaloniaPropertyChangedEventArgs args)
     {
+        if (_image is null) return;
         var stretch = args.GetNewValue<Stretch>();
-        Scale = GetScaleRatio(Width / _image!.Width, Height / _image!.Height, stretch);
+        Scale = GetScaleRatio(Width / _image.Width, Height / _image.Height, stretch);
         _sourceMinScale = _image is not null ? Math.Min(Width * MinScale / _image.Width, Height * MinScale / _image.Height) : MinScale;
     }
 
