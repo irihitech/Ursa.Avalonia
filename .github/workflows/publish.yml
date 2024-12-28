@@ -1,13 +1,27 @@
 name: Publish Demo
 
 on:
-  push:
-    branches: [ "action/publish" ]
-  pull_request:
-    branches: [ "action/publish" ]
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: 'Platform to publish'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - 'windows'
+          - 'linux'
+          - 'android'
+          - 'all'
+      include_aot:
+        description: 'Include Windows AOT packaging'
+        required: true
+        default: true
+        type: boolean
 
 jobs:
   windows:
+    if: ${{ github.event.inputs.platform == 'windows' || github.event.inputs.platform == 'all' }}
     runs-on: windows-latest
     steps:
       - name: Checkout
@@ -25,14 +39,17 @@ jobs:
           Compress-Archive -Path $files.FullName -DestinationPath ./upload/Ursa.Demo.Desktop.win-x64.zip
 
       - name: Enable Native AOT in .csproj
+        if: ${{ github.event.inputs.include_aot == true }}
         run: |
           sed -i 's#<!--<PublishAot>true</PublishAot>-->#<PublishAot>true</PublishAot>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
           sed -i 's#<!--<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>-->#<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
 
       - name: Publish win-x64 AOT
+        if: ${{ github.event.inputs.include_aot == true }}
         run: dotnet publish demo/Ursa.Demo.Desktop -r win-x64 -c Release -o ./publish/win64-aot
 
       - name: Zip win-x64 AOT
+        if: ${{ github.event.inputs.include_aot == true }}
         run: |
           $files = Get-ChildItem -Path ./publish/win64-aot/* -Recurse -Exclude *.pdb
           Compress-Archive -Path $files.FullName -DestinationPath ./upload/Ursa.Demo.Desktop.win-x64.NativeAOT.zip
@@ -44,6 +61,7 @@ jobs:
           path: ./upload
 
   linux:
+    if: ${{ github.event.inputs.platform == 'linux' || github.event.inputs.platform == 'all' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -65,6 +83,7 @@ jobs:
           path: ./upload
 
   android:
+    if: ${{ github.event.inputs.platform == 'android' || github.event.inputs.platform == 'all' }}
     runs-on: windows-latest
     steps:
       - name: Checkout

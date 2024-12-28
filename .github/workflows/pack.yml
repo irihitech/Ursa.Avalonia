@@ -1,28 +1,50 @@
-name: Pack Nuget
+name: Pack to NuGet
 
 on:
-  push:
-    branches: [ "action/pack" ]
-  pull_request:
-    branches: [ "action/pack" ]
+  workflow_dispatch:
+    inputs:
+      Ursa:
+        description: 'Pack Ursa'
+        required: true
+        default: 'true'
+        type: boolean
+      Ursa_Themes_Semi:
+        description: 'Pack Ursa.Themes.Semi'
+        required: true
+        default: 'true'
+        type: boolean
+      PrismExtension:
+        description: 'Pack Prism Extension'
+        required: true
+        default: 'false'
+        type: boolean
+      ReactiveUIExtension:
+        description: 'Pack ReactiveUI Extension'
+        required: true
+        default: 'false'
+        type: boolean
 
 jobs:
-  nuget:
+  Pack_to_NuGet:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
 
-      - name: Nuget Ursa
+      - name: Pack Ursa
+        if: ${{ github.event.inputs.Ursa == 'true' }}
         run: dotnet pack ./src/Ursa -o ./nugets
 
-      - name: Nuget Ursa.Themes.Semi
+      - name: Pack Ursa.Themes.Semi
+        if: ${{ github.event.inputs.Ursa_Themes_Semi == 'true' }}
         run: dotnet pack ./src/Ursa.Themes.Semi -o ./nugets
-        
-      - name: Nuget Prism Extension
+
+      - name: Pack Prism Extension
+        if: ${{ github.event.inputs.PrismExtension == 'true' }}
         run: dotnet pack ./src/Ursa.PrismExtension -o ./nugets
-        
-      - name: Nuget ReactiveUI Extension
+
+      - name: Pack ReactiveUI Extension
+        if: ${{ github.event.inputs.ReactiveUIExtension == 'true' }}
         run: dotnet pack ./src/Ursa.ReactiveUIExtension -o ./nugets
 
       - name: Publish NuGet package
@@ -33,3 +55,4 @@ jobs:
         with:
           name: nugets
           path: ./nugets
+        if: always()
