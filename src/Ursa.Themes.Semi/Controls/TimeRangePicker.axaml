@@ -58,9 +58,8 @@
                             <Button
                                 Name="ClearButton"
                                 Grid.Column="3"
-                                Padding="8,0"
-                                Command="{Binding $parent[u:TimeRangePicker
-                                ].Clear}"
+                                Margin="8,0"
+                                Command="{Binding $parent[u:TimeRangePicker].Clear}"
                                 Content="{DynamicResource IconButtonClearData}"
                                 Focusable="False"
                                 IsVisible="False"
@@ -68,7 +67,7 @@
                             <Button
                                 Name="{x:Static u:TimePicker.PART_Button}"
                                 Grid.Column="3"
-                                Padding="8,0"
+                                Margin="8,0"
                                 Content="{DynamicResource TimePickerIconGlyph}"
                                 Focusable="False"
                                 Theme="{DynamicResource InnerIconButton}" />
