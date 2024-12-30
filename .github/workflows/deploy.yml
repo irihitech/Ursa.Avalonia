@@ -4,10 +4,7 @@ env:
   PROJECT_PATH: demo/Ursa.Demo.Browser/Ursa.Demo.Browser.csproj
   OUTPUT_PATH: demo/Ursa.Demo.Browser/bin/Release/net8.0-browser/publish/wwwroot
 on:
-  push:
-    branches: [ "action/deploy" ]
-  pull_request:
-    branches: [ "action/deploy" ]
+  workflow_dispatch:
 
 jobs:
   deploy-to-github-pages:
@@ -28,7 +25,7 @@ jobs:
         run: dotnet publish $PROJECT_PATH -c Release --nologo
 
       - name: Change base-tag in index.html
-        run: sed -i 's/<base href="\/" \/>/<base href="\/Ursa.Avalonia\/" \/>/g' $OUTPUT_PATH/index.html
+        run: sed -i 's#<base href="/" />#<base href="/Ursa.Avalonia/" />#g' $OUTPUT_PATH/index.html
 
       - name: copy index.html to 404.html
         run: cp $OUTPUT_PATH/index.html $OUTPUT_PATH/404.html

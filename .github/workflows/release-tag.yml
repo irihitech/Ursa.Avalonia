@@ -1,31 +1,36 @@
-name: Publish Demo
+name: Release Tag
 
 on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
   workflow_dispatch:
-    inputs:
-      platform:
-        description: 'Platform to publish'
-        required: true
-        default: 'all'
-        type: choice
-        options:
-          - 'windows'
-          - 'linux'
-          - 'android'
-          - 'all'
-      include_aot:
-        description: 'Include Windows AOT packaging'
-        required: true
-        default: true
-        type: boolean
 
 jobs:
-  windows:
-    if: ${{ github.event.inputs.platform == 'windows' || github.event.inputs.platform == 'all' }}
+  pack:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Pack Ursa
+        run: dotnet pack ./src/Ursa -o ./nugets
+
+      - name: Pack Ursa.Themes.Semi
+        run: dotnet pack ./src/Ursa.Themes.Semi -o ./nugets
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nugets
+          path: ./nugets
+
+  publish-windows:
     runs-on: windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4
 
       - name: Make upload directory
         run: mkdir upload
@@ -39,33 +44,29 @@ jobs:
           Compress-Archive -Path $files.FullName -DestinationPath ./upload/Ursa.Demo.Desktop.win-x64.zip
 
       - name: Enable Native AOT in .csproj
-        if: ${{ github.event.inputs.include_aot == true }}
         run: |
           sed -i 's#<!--<PublishAot>true</PublishAot>-->#<PublishAot>true</PublishAot>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
           sed -i 's#<!--<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>-->#<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
 
       - name: Publish win-x64 AOT
-        if: ${{ github.event.inputs.include_aot == true }}
         run: dotnet publish demo/Ursa.Demo.Desktop -r win-x64 -c Release -o ./publish/win64-aot
 
       - name: Zip win-x64 AOT
-        if: ${{ github.event.inputs.include_aot == true }}
         run: |
           $files = Get-ChildItem -Path ./publish/win64-aot/* -Recurse -Exclude *.pdb
           Compress-Archive -Path $files.FullName -DestinationPath ./upload/Ursa.Demo.Desktop.win-x64.NativeAOT.zip
 
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4.3.1
+        uses: actions/upload-artifact@v4
         with:
           name: windows
           path: ./upload
 
-  linux:
-    if: ${{ github.event.inputs.platform == 'linux' || github.event.inputs.platform == 'all' }}
+  publish-linux:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4
 
       - name: Make upload directory
         run: mkdir upload
@@ -77,17 +78,16 @@ jobs:
         run: zip -j -r ./upload/Ursa.Demo.Desktop.linux-x64.zip ./publish/linux64 -x "*.pdb"
 
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4.3.1
+        uses: actions/upload-artifact@v4
         with:
           name: linux
           path: ./upload
 
-  android:
-    if: ${{ github.event.inputs.platform == 'android' || github.event.inputs.platform == 'all' }}
+  publish-android:
     runs-on: windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4
 
       - name: CD Android
         run: cd ./demo/Ursa.Demo.Android
@@ -99,7 +99,42 @@ jobs:
         run: dotnet publish demo/Ursa.Demo.Android -c Release -f net8.0-android --no-restore -o ./publish -p:RuntimeIdentifier=android-arm64
 
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4.3.1
+        uses: actions/upload-artifact@v4
         with:
           name: android
           path: ./publish/*Signed.apk
+
+  draft-release:
+    needs: [ pack, publish-windows, publish-linux, publish-android ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download nugets Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: nugets
+
+      - name: Download windows Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: windows
+
+      - name: Download linux Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: linux
+
+      - name: Download android Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: android
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
+        with:
+          generate_release_notes: true
+          draft: true
+          files: |
+            *.nupkg
+            *.zip
+            *.apk
