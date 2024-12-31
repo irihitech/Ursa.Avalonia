@@ -8,6 +8,7 @@
     xmlns:helpers="clr-namespace:Irihi.Avalonia.Shared.Helpers;assembly=Irihi.Avalonia.Shared">
     <Application.Styles>
         <semi:SemiTheme Locale="zh-CN" />
+        <semi:SemiPopupAnimations/>
         <u-semi:SemiTheme Locale="zh-CN" />
         <!--This style is created to demonstrate Dialog StyleClass feature. This style is applied to Dialog Window-->
         <Style Selector="u|DefaultDialogWindow.Custom">
