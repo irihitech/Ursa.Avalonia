@@ -71,7 +71,6 @@ public abstract class WindowMessageManager : TemplatedControl
         var adorner = topLevel.FindDescendantOfType<VisualLayerManager>()?.AdornerLayer;
         if(adorner is not null)
         {
-            adorner.Margin = new Thickness(0, 25, 0, 0);
             adorner.Children.Add(this);
             AdornerLayer.SetAdornedElement(this, adorner);
         }
