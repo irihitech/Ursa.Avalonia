@@ -45,7 +45,8 @@ public abstract class WindowMessageManager : TemplatedControl
 
     public WindowMessageManager(VisualLayerManager? visualLayerManager) : this()
     {
-        if (visualLayerManager is null) return;
+        if(visualLayerManager is null)
+            return;
         visualLayerManager.AdornerLayer.Children.Add(this);
         AdornerLayer.SetAdornedElement(this, visualLayerManager.AdornerLayer);
     }
@@ -68,8 +69,9 @@ public abstract class WindowMessageManager : TemplatedControl
     {
         topLevel.TemplateApplied += TopLevelOnTemplateApplied;
         var adorner = topLevel.FindDescendantOfType<VisualLayerManager>()?.AdornerLayer;
-        if (adorner is not null)
+        if(adorner is not null)
         {
+            adorner.Margin = new Thickness(0, 25, 0, 0);
             adorner.Children.Add(this);
             AdornerLayer.SetAdornedElement(this, adorner);
         }
@@ -77,7 +79,7 @@ public abstract class WindowMessageManager : TemplatedControl
 
     public virtual void Uninstall()
     {
-        if (Parent is AdornerLayer adornerLayer)
+        if(Parent is AdornerLayer adornerLayer)
         {
             adornerLayer.Children.Remove(this);
             AdornerLayer.SetAdornedElement(this, null);
@@ -86,7 +88,7 @@ public abstract class WindowMessageManager : TemplatedControl
 
     protected void TopLevelOnTemplateApplied(object? sender, TemplateAppliedEventArgs e)
     {
-        if (Parent is AdornerLayer adornerLayer)
+        if(Parent is AdornerLayer adornerLayer)
         {
             adornerLayer.Children.Remove(this);
             AdornerLayer.SetAdornedElement(this, null);
