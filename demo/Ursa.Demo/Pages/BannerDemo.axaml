@@ -19,6 +19,11 @@
                         Classes.Bordered="{Binding Bordered}"
                         Content="This is the Demo of Ursa Banner. "
                         Header="Welcome to Ursa"
+                        Width="300"
+                        Height="100"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        CanClose="True"
                         Type="{Binding SelectedType}" />
                 </Border>
             </Grid>

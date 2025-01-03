@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Notifications;
 using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Helpers;
 
@@ -20,15 +22,17 @@ public class Banner: HeaderedContentControl
     public static readonly StyledProperty<bool> CanCloseProperty = AvaloniaProperty.Register<Banner, bool>(
         nameof(CanClose));
 
+    [ExcludeFromCodeCoverage]
     public bool CanClose
     {
         get => GetValue(CanCloseProperty);
         set => SetValue(CanCloseProperty, value);
     }
-
+    
     public static readonly StyledProperty<bool> ShowIconProperty = AvaloniaProperty.Register<Banner, bool>(
         nameof(ShowIcon), true);
 
+    [ExcludeFromCodeCoverage]
     public bool ShowIcon
     {
         get => GetValue(ShowIconProperty);
@@ -38,6 +42,7 @@ public class Banner: HeaderedContentControl
     public static readonly StyledProperty<object?> IconProperty = AvaloniaProperty.Register<Banner, object?>(
         nameof(Icon));
 
+    [ExcludeFromCodeCoverage]
     public object? Icon
     {
         get => GetValue(IconProperty);
@@ -47,6 +52,7 @@ public class Banner: HeaderedContentControl
     public static readonly StyledProperty<NotificationType> TypeProperty = AvaloniaProperty.Register<Banner, NotificationType>(
         nameof(Type));
 
+    [ExcludeFromCodeCoverage]
     public NotificationType Type
     {
         get => GetValue(TypeProperty);
@@ -63,6 +69,6 @@ public class Banner: HeaderedContentControl
 
     private void OnCloseClick(object? sender, RoutedEventArgs args)
     {
-        IsVisible = false;
+        SetCurrentValue(IsVisibleProperty, false);
     }
 }
