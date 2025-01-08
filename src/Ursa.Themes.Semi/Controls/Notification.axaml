@@ -84,8 +84,8 @@
                             <DockPanel MinWidth="{DynamicResource NotificationCardMinWidth}">
                                 <PathIcon
                                     x:Name="NotificationIcon"
-                                    Width="{DynamicResource NotificationCardIconWidth}"
-                                    Height="{DynamicResource NotificationCardIconHeight}"
+                                    Theme="{StaticResource InnerPathIcon}"
+                                    Classes="Large"
                                     Margin="{DynamicResource NotificationCardIconMargin}"
                                     VerticalAlignment="Top"
                                     IsVisible="{TemplateBinding ShowIcon}"

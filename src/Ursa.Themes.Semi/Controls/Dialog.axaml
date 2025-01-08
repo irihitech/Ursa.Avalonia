@@ -76,9 +76,8 @@
                     <MenuItem Command="{Binding $parent[u:DialogControlBase].Close}" Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
                         <MenuItem.Icon>
                             <PathIcon
-                                Width="12"
-                                Height="12"
-                                Data="{DynamicResource WindowCloseIconGlyph}" />
+                                Theme="{StaticResource InnerPathIcon}"
+                                Data="{DynamicResource SemiIconClose}" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuFlyout>
@@ -93,8 +92,7 @@
                         Header="{DynamicResource STRING_MENU_BRING_FORWARD}">
                         <MenuItem.Icon>
                             <PathIcon
-                                Width="12"
-                                Height="12"
+                                Theme="{StaticResource InnerPathIcon}"
                                 Data="{DynamicResource DialogArrangeBringForwardGlyph}" />
                         </MenuItem.Icon>
                     </MenuItem>
@@ -104,8 +102,7 @@
                         Header="{DynamicResource STRING_MENU_BRING_TO_FRONT}">
                         <MenuItem.Icon>
                             <PathIcon
-                                Width="12"
-                                Height="12"
+                                Theme="{StaticResource InnerPathIcon}"
                                 Data="{DynamicResource DialogArrangeBringToFrontGlyph}" />
                         </MenuItem.Icon>
                     </MenuItem>
@@ -115,8 +112,7 @@
                         Header="{DynamicResource STRING_MENU_SEND_BACKWARD}">
                         <MenuItem.Icon>
                             <PathIcon
-                                Width="12"
-                                Height="12"
+                                Theme="{StaticResource InnerPathIcon}"
                                 Data="{DynamicResource DialogArrangeSendBackwardGlyph}" />
                         </MenuItem.Icon>
                     </MenuItem>
@@ -126,17 +122,15 @@
                         Header="{DynamicResource STRING_MENU_SEND_TO_BACK}">
                         <MenuItem.Icon>
                             <PathIcon
-                                Width="12"
-                                Height="12"
+                                Theme="{StaticResource InnerPathIcon}"
                                 Data="{DynamicResource DialogArrangeSendToBackGlyph}" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Command="{Binding $parent[u:DialogControlBase].Close}" Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
                         <MenuItem.Icon>
                             <PathIcon
-                                Width="12"
-                                Height="12"
-                                Data="{DynamicResource WindowCloseIconGlyph}" />
+                                Theme="{StaticResource InnerPathIcon}"
+                                Data="{DynamicResource SemiIconClose}" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuFlyout>
@@ -186,8 +180,8 @@
                                     <PathIcon
                                         Name="PART_Icon"
                                         Grid.Column="0"
-                                        Width="16"
-                                        Height="16"
+                                        Theme="{StaticResource InnerPathIcon}"
+                                        Classes="ExtraLarge"
                                         Margin="24,24,8,0"
                                         VerticalAlignment="Center" />
                                     <TextBlock
@@ -392,9 +386,8 @@
                     <MenuItem Command="{Binding $parent[u:DialogControlBase].Close}" Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
                         <MenuItem.Icon>
                             <PathIcon
-                                Width="12"
-                                Height="12"
-                                Data="{DynamicResource WindowCloseIconGlyph}" />
+                                Theme="{StaticResource InnerPathIcon}"
+                                Data="{DynamicResource SemiIconClose}" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuFlyout>
@@ -409,8 +402,7 @@
                         Header="{DynamicResource STRING_MENU_BRING_FORWARD}">
                         <MenuItem.Icon>
                             <PathIcon
-                                Width="12"
-                                Height="12"
+                                Theme="{StaticResource InnerPathIcon}"
                                 Data="{DynamicResource DialogArrangeBringForwardGlyph}" />
                         </MenuItem.Icon>
                     </MenuItem>
@@ -420,8 +412,7 @@
                         Header="{DynamicResource STRING_MENU_BRING_TO_FRONT}">
                         <MenuItem.Icon>
                             <PathIcon
-                                Width="12"
-                                Height="12"
+                                Theme="{StaticResource InnerPathIcon}"
                                 Data="{DynamicResource DialogArrangeBringToFrontGlyph}" />
                         </MenuItem.Icon>
                     </MenuItem>
@@ -431,8 +422,7 @@
                         Header="{DynamicResource STRING_MENU_SEND_BACKWARD}">
                         <MenuItem.Icon>
                             <PathIcon
-                                Width="12"
-                                Height="12"
+                                Theme="{StaticResource InnerPathIcon}"
                                 Data="{DynamicResource DialogArrangeSendBackwardGlyph}" />
                         </MenuItem.Icon>
                     </MenuItem>
@@ -442,8 +432,7 @@
                         Header="{DynamicResource STRING_MENU_SEND_TO_BACK}">
                         <MenuItem.Icon>
                             <PathIcon
-                                Width="12"
-                                Height="12"
+                                Theme="{StaticResource InnerPathIcon}"
                                 Data="{DynamicResource DialogArrangeSendToBackGlyph}" />
                         </MenuItem.Icon>
                     </MenuItem>
@@ -453,9 +442,8 @@
                         Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
                         <MenuItem.Icon>
                             <PathIcon
-                                Width="12"
-                                Height="12"
-                                Data="{DynamicResource WindowCloseIconGlyph}" />
+                                Theme="{StaticResource InnerPathIcon}"
+                                Data="{DynamicResource SemiIconClose}" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuFlyout>
@@ -588,8 +576,8 @@
                                 <PathIcon
                                     Name="PART_Icon"
                                     Grid.Column="0"
-                                    Width="16"
-                                    Height="16"
+                                    Theme="{StaticResource InnerPathIcon}"
+                                    Classes="ExtraLarge"
                                     Margin="24,24,8,0"
                                     VerticalAlignment="Center" />
                                 <TextBlock

@@ -56,8 +56,8 @@
                             <DockPanel>
                                 <PathIcon
                                     x:Name="ToastIcon"
-                                    Width="{DynamicResource ToastCardIconWidth}"
-                                    Height="{DynamicResource ToastCardIconHeight}"
+                                    Theme="{StaticResource InnerPathIcon}"
+                                    Classes="Large"
                                     Margin="{DynamicResource ToastCardIconMargin}"
                                     VerticalAlignment="Top"
                                     IsVisible="{TemplateBinding ShowIcon}"

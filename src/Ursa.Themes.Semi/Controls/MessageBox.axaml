@@ -47,8 +47,8 @@
                             <PathIcon
                                 Name="PART_Icon"
                                 Grid.Column="0"
-                                Width="24"
-                                Height="24"
+                                Theme="{StaticResource InnerPathIcon}"
+                                Classes="ExtraLarge"
                                 Margin="0,0,8,0"
                                 VerticalAlignment="Center"
                                 IsHitTestVisible="False" />
@@ -193,8 +193,8 @@
                                 <PathIcon
                                     Name="PART_Icon"
                                     Grid.Column="0"
-                                    Width="24"
-                                    Height="24"
+                                    Theme="{StaticResource InnerPathIcon}"
+                                    Classes="ExtraLarge"
                                     Margin="24,24,8,0"
                                     VerticalAlignment="Center"
                                     IsHitTestVisible="False" />
