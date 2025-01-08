@@ -59,7 +59,7 @@
                             Margin="{DynamicResource BannerCloseButtonMargin}"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
-                            Theme="{DynamicResource NotificationCloseButton}"
+                            Theme="{DynamicResource OverlayCloseButton}"
                             IsVisible="{TemplateBinding CanClose}" />
                     </Grid>
                 </Border>

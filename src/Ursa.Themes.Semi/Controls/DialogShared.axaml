@@ -1,28 +1,44 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!--  Add Resources Here  -->
-    <ControlTheme x:Key="CloseButton" TargetType="Button">
+    <Design.PreviewWith>
+        <StackPanel Orientation="Horizontal" Margin="20">
+            <Button Theme="{DynamicResource CloseButton}" />
+            <Button Theme="{DynamicResource OverlayCloseButton}" />
+            <Button Theme="{DynamicResource NotificationCloseButton}" />
+            <Button Theme="{DynamicResource ToastCloseButton}" />
+        </StackPanel>
+    </Design.PreviewWith>
+
+    <ControlTheme x:Key="OverlayCloseButton" TargetType="Button">
         <Setter Property="CornerRadius" Value="6" />
-        <Setter Property="Margin" Value="0, 4" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="Width" Value="24" />
         <Setter Property="Padding" Value="4" />
-        <Setter Property="Height" Value="28" />
-        <Setter Property="Width" Value="28" />
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Template">
             <ControlTemplate TargetType="Button">
                 <Border
-                    Name="PART_Border"
                     Padding="{TemplateBinding Padding}"
                     Background="Transparent"
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <PathIcon
-                        Width="12"
-                        Height="12"
-                        Data="{DynamicResource WindowCloseIconGlyph}"/>
+                        Foreground="{DynamicResource SemiColorText1}"
+                        Theme="{StaticResource InnerPathIcon}"
+                        Data="{DynamicResource SemiIconClose}" />
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:pointerover /template/ Border">
+            <Setter Property="Background" Value="{DynamicResource SemiColorFill1}" />
+        </Style>
+        <Style Selector="^:pressed /template/ Border">
+            <Setter Property="Background" Value="{DynamicResource SemiColorFill2}" />
+        </Style>
+    </ControlTheme>
 
+    <ControlTheme
+        x:Key="CloseButton"
+        BasedOn="{StaticResource OverlayCloseButton}"
+        TargetType="Button">
         <Style Selector="^:pointerover /template/ Border">
             <Setter Property="Background" Value="{DynamicResource CaptionButtonClosePointeroverBackground}" />
         </Style>
@@ -37,35 +53,5 @@
             <Setter Property="Foreground" Value="White" />
         </Style>
     </ControlTheme>
-    
-    <ControlTheme x:Key="OverlayCloseButton" TargetType="Button">
-        <Setter Property="CornerRadius" Value="6" />
-        <Setter Property="Margin" Value="0, 4" />
-        <Setter Property="Padding" Value="4" />
-        <Setter Property="Height" Value="28" />
-        <Setter Property="Width" Value="28" />
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="Template">
-            <ControlTemplate TargetType="Button">
-                <Border
-                    Name="PART_Border"
-                    Padding="{TemplateBinding Padding}"
-                    Background="Transparent"
-                    CornerRadius="{TemplateBinding CornerRadius}">
-                    <PathIcon
-                        Width="12"
-                        Height="12"
-                        Data="{DynamicResource WindowCloseIconGlyph}"/>
-                </Border>
-            </ControlTemplate>
-        </Setter>
-        <Style Selector="^:pointerover /template/ Border">
-            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPointeroverBackground}" />
-        </Style>
-        <Style Selector="^:pressed /template/ Border">
-            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPressedBackground}" />
-        </Style>
-    </ControlTheme>
-    
+
 </ResourceDictionary>
