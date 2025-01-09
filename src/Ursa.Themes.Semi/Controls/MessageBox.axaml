@@ -260,9 +260,8 @@
                     <MenuItem Command="{Binding $parent[u:CustomDialogControl].Close}" Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
                         <MenuItem.Icon>
                             <PathIcon
-                                Width="12"
-                                Height="12"
-                                Data="{DynamicResource WindowCloseIconGlyph}" />
+                                Theme="{StaticResource InnerPathIcon}"
+                                Data="{DynamicResource SemiIconClose}" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuFlyout>
