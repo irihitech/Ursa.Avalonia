@@ -46,11 +46,13 @@
                                 <ContentPresenter
                                     Content="{TemplateBinding Header}"
                                     ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                    TextTrimming="CharacterEllipsis"
                                     TextElement.FontSize="{DynamicResource BannerTitleFontSize}"
                                     TextElement.FontWeight="{DynamicResource TextBlockTitleFontWeight}" />
                                 <ContentPresenter
                                     Content="{TemplateBinding Content}"
-                                    ContentTemplate="{TemplateBinding ContentTemplate}" />
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    TextWrapping="Wrap" />
                             </StackPanel>
                         </Grid>
                         <Button
