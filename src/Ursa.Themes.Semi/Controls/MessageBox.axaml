@@ -3,10 +3,35 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:helpers="clr-namespace:Irihi.Avalonia.Shared.Helpers;assembly=Irihi.Avalonia.Shared">
-    <!--  Add Resources Here  -->
+    <Design.PreviewWith>
+        <StackPanel Margin="20">
+            <u:MessageBoxControl
+                Content="此修改将不可逆"
+                MessageIcon="None"
+                Buttons="OK" />
+            <u:MessageBoxControl
+                Content="此修改将不可逆"
+                MessageIcon="Warning"
+                Buttons="OKCancel" />
+            <u:MessageBoxControl
+                Title="确定是否要保存此修改？"
+                MessageIcon="Warning"
+                Buttons="OKCancel" />
+            <u:MessageBoxControl
+                Title="确定是否要保存此修改？"
+                Content="此修改将不可逆"
+                MessageIcon="Warning"
+                Buttons="OKCancel" />
+            <u:MessageBoxControl
+                Title="确定是否要保存此修改？"
+                Content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                MessageIcon="Warning"
+                Buttons="OKCancel" />
+        </StackPanel>
+    </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:MessageBoxWindow}" TargetType="u:MessageBoxWindow">
         <Setter Property="Title" Value="{x:Null}" />
-        <Setter Property="Background" Value="{DynamicResource SemiColorBackground2}" />
+        <Setter Property="Background" Value="{DynamicResource SemiColorBackground3}" />
         <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
@@ -36,99 +61,93 @@
                             BackgroundSizing="InnerBorderEdge"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            IsHitTestVisible="False"  />
+                            IsHitTestVisible="False" />
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
                     <VisualLayerManager>
                         <Grid RowDefinitions="Auto, *, Auto">
                             <Grid
-                            Grid.Row="0"
-                            Margin="24,24,24,0"
-                            ColumnDefinitions="Auto, *, Auto">
-                            <PathIcon
-                                Name="PART_Icon"
-                                Grid.Column="0"
-                                Width="24"
-                                Height="24"
-                                Margin="0,0,8,0"
-                                VerticalAlignment="Center"
-                                IsHitTestVisible="False" />
-                            <TextBlock
-                                Grid.Column="1"
-                                VerticalAlignment="Center"
-                                FontSize="16"
-                                FontWeight="{DynamicResource TextBlockTitleFontWeight}"
-                                IsHitTestVisible="False"
-                                Text="{TemplateBinding Title}"
-                                TextTrimming="CharacterEllipsis"
-                                TextWrapping="NoWrap" />
-                            <Button
-                                Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
-                                Grid.Column="2"
-                                Theme="{DynamicResource CloseButton}" />
-                        </Grid>
-                            <Grid
-                            Grid.Row="1"
-                            MaxWidth="{DynamicResource MessageBoxWindowContentMaxWidth}"
-                            Margin="{TemplateBinding Padding}"
-                            ColumnDefinitions="Auto, *">
-                            <ScrollViewer
-                                Grid.Column="1"
-                                MaxHeight="300"
-                                HorizontalScrollBarVisibility="Disabled"
-                                VerticalScrollBarVisibility="Auto">
-                                <ContentPresenter
-                                    Name="PART_ContentPresenter"
+                                Grid.Row="0"
+                                Margin="24,24,24,0"
+                                ColumnDefinitions="Auto, *, Auto">
+                                <PathIcon
+                                    Name="PART_Icon"
+                                    Grid.Column="0"
+                                    Theme="{StaticResource InnerPathIcon}"
+                                    Classes="ExtraLarge"
+                                    Margin="0,0,8,0"
                                     VerticalAlignment="Center"
-                                    Content="{TemplateBinding Content}"
-                                    TextAlignment="Left"
-                                    TextWrapping="Wrap" />
-                            </ScrollViewer>
-                        </Grid>
+                                    IsHitTestVisible="False" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    FontWeight="{DynamicResource TextBlockTitleFontWeight}"
+                                    IsHitTestVisible="False"
+                                    Text="{TemplateBinding Title}"
+                                    TextTrimming="CharacterEllipsis"
+                                    TextWrapping="NoWrap" />
+                                <Button
+                                    Name="{x:Static u:MessageBoxWindow.PART_CloseButton}"
+                                    Grid.Column="2"
+                                    Theme="{DynamicResource CloseButton}" />
+                            </Grid>
+                            <Grid
+                                Grid.Row="1"
+                                MaxWidth="{DynamicResource MessageBoxWindowContentMaxWidth}"
+                                Margin="{TemplateBinding Padding}"
+                                ColumnDefinitions="Auto, *">
+                                <ScrollViewer
+                                    Grid.Column="1"
+                                    MaxHeight="300"
+                                    HorizontalScrollBarVisibility="Disabled"
+                                    VerticalScrollBarVisibility="Auto">
+                                    <ContentPresenter
+                                        Name="PART_ContentPresenter"
+                                        VerticalAlignment="Center"
+                                        Content="{TemplateBinding Content}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        TextAlignment="Left"
+                                        TextWrapping="Wrap" />
+                                </ScrollViewer>
+                            </Grid>
                             <StackPanel
-                            Grid.Row="2"
-                            Margin="24,0,24,24"
-                            HorizontalAlignment="Right"
-                            Orientation="Horizontal">
-                            <Button
-                                Name="{x:Static u:MessageBoxWindow.PART_CancelButton}"
-                                Margin="8,0,0,0"  />
-                            <Button
-                                Name="{x:Static u:MessageBoxWindow.PART_NoButton}"
-                                Margin="8,0,0,0" />
-                            <Button
-                                Name="{x:Static u:MessageBoxWindow.PART_YesButton}"
-                                Margin="8,0,0,0" />
-                            <Button
-                                Name="{x:Static u:MessageBoxWindow.PART_OKButton}"
-                                Margin="8,0,0,0" />
-                        </StackPanel>
-                    </Grid>
+                                Grid.Row="2"
+                                Margin="24,0,24,24"
+                                Spacing="8"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+                                <Button Name="{x:Static u:MessageBoxControl.PART_CancelButton}" />
+                                <Button Name="{x:Static u:MessageBoxControl.PART_NoButton}" />
+                                <Button Name="{x:Static u:MessageBoxControl.PART_YesButton}" />
+                                <Button Name="{x:Static u:MessageBoxControl.PART_OKButton}" />
+                            </StackPanel>
+                        </Grid>
                     </VisualLayerManager>
                 </Panel>
             </ControlTemplate>
         </Setter>
         <Style Selector="^ /template/ Button#PART_CancelButton">
-            <Setter Property="Grid.Column" Value="0"/>
-            <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary"/>
-            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_CANCEL}"/>
+            <Setter Property="Grid.Column" Value="0" />
+            <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_CANCEL}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_NoButton">
-            <Setter Property="Grid.Column" Value="1"></Setter>
-            <Setter Property="helpers:ClassHelper.Classes" Value="Danger"/>
-            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_NO}"/>
-            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_NO}" />
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_YesButton">
-            <Setter Property="Grid.Column" Value="2"></Setter>
-            <Setter Property="helpers:ClassHelper.Classes" Value="Primary"/>
-            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_YES}"/>
-            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+            <Setter Property="Grid.Column" Value="2" />
+            <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_YES}" />
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_OKButton">
-            <Setter Property="Grid.Column" Value="3"></Setter>
-            <Setter Property="helpers:ClassHelper.Classes" Value="Primary"/>
-            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_OK}"/>
-            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+            <Setter Property="Grid.Column" Value="3" />
+            <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_OK}" />
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
         </Style>
         <Style Selector="^[MessageIcon=None] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="False" />
@@ -166,7 +185,7 @@
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:MessageBoxControl}" TargetType="u:MessageBoxControl">
-        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="CornerRadius" Value="6" />
         <Setter Property="Padding" Value="48 24" />
         <Setter Property="u:DialogControlBase.CanDragMove" Value="True" />
         <Setter Property="Template">
@@ -178,7 +197,7 @@
                     VerticalAlignment="Center"
                     Classes="Shadow"
                     ClipToBounds="False"
-                    Background="{DynamicResource SemiColorBackground2}"
+                    Background="{DynamicResource SemiColorBackground3}"
                     CornerRadius="{TemplateBinding CornerRadius}"
                     IsHitTestVisible="True"
                     Theme="{DynamicResource CardBorder}">
@@ -193,8 +212,8 @@
                                 <PathIcon
                                     Name="PART_Icon"
                                     Grid.Column="0"
-                                    Width="24"
-                                    Height="24"
+                                    Theme="{StaticResource InnerPathIcon}"
+                                    Classes="ExtraLarge"
                                     Margin="24,24,8,0"
                                     VerticalAlignment="Center"
                                     IsHitTestVisible="False" />
@@ -227,6 +246,7 @@
                                         Name="PART_ContentPresenter"
                                         VerticalAlignment="Center"
                                         Content="{TemplateBinding Content}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
                                         TextAlignment="Left"
                                         TextWrapping="Wrap" />
                                 </ScrollViewer>
@@ -234,20 +254,13 @@
                             <StackPanel
                                 Grid.Row="2"
                                 Margin="24,0,24,24"
+                                Spacing="8"
                                 HorizontalAlignment="Right"
                                 Orientation="Horizontal">
-                                <Button
-                                    Name="{x:Static u:MessageBoxControl.PART_CancelButton}"
-                                    Margin="8,0,0,0" />
-                                <Button
-                                    Name="{x:Static u:MessageBoxControl.PART_NoButton}"
-                                    Margin="8,0,0,0" />
-                                <Button
-                                    Name="{x:Static u:MessageBoxControl.PART_YesButton}"
-                                    Margin="8,0,0,0" />
-                                <Button
-                                    Name="{x:Static u:MessageBoxControl.PART_OKButton}"
-                                    Margin="8,0,0,0" />
+                                <Button Name="{x:Static u:MessageBoxControl.PART_CancelButton}" />
+                                <Button Name="{x:Static u:MessageBoxControl.PART_NoButton}" />
+                                <Button Name="{x:Static u:MessageBoxControl.PART_YesButton}" />
+                                <Button Name="{x:Static u:MessageBoxControl.PART_OKButton}" />
                             </StackPanel>
                         </Grid>
                     </Border>
@@ -257,39 +270,38 @@
         <Style Selector="^ /template/ Panel#PART_TitleArea">
             <Setter Property="ContextFlyout">
                 <MenuFlyout>
-                    <MenuItem Command="{Binding $parent[u:CustomDialogControl].Close}" Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
+                    <MenuItem Command="{Binding $parent[u:MessageBoxControl].Close}" Header="{DynamicResource STRING_MENU_DIALOG_CLOSE}">
                         <MenuItem.Icon>
                             <PathIcon
-                                Width="12"
-                                Height="12"
-                                Data="{DynamicResource WindowCloseIconGlyph}" />
+                                Theme="{StaticResource InnerPathIcon}"
+                                Data="{DynamicResource SemiIconClose}" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuFlyout>
             </Setter>
         </Style>
         <Style Selector="^ /template/ Button#PART_CancelButton">
-            <Setter Property="Grid.Column" Value="0"/>
-            <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary"/>
-            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_CANCEL}"/>
+            <Setter Property="Grid.Column" Value="0" />
+            <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_CANCEL}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_NoButton">
-            <Setter Property="Grid.Column" Value="1"></Setter>
-            <Setter Property="helpers:ClassHelper.Classes" Value="Danger"/>
-            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_NO}"/>
-            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_NO}" />
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_YesButton">
-            <Setter Property="Grid.Column" Value="2"></Setter>
-            <Setter Property="helpers:ClassHelper.Classes" Value="Primary"/>
-            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_YES}"/>
-            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+            <Setter Property="Grid.Column" Value="2" />
+            <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_YES}" />
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_OKButton">
-            <Setter Property="Grid.Column" Value="3"></Setter>
-            <Setter Property="helpers:ClassHelper.Classes" Value="Primary"/>
-            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_OK}"/>
-            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+            <Setter Property="Grid.Column" Value="3" />
+            <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_OK}" />
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
         </Style>
         <Style Selector="^[MessageIcon=None] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="False" />

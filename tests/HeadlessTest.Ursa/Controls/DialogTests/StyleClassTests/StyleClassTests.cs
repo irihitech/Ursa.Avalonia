@@ -76,7 +76,7 @@ public class StyleClassTests
         Assert.DoesNotContain("Custom", dialog.Classes);
         var okButton = dialog.GetVisualDescendants().OfType<Button>().SingleOrDefault(a=>a.Name == DefaultDialogControl.PART_OKButton);
         Assert.NotNull(okButton);
-        Assert.Equal("确认", okButton.Content);
+        Assert.Equal("确定", okButton.Content);
         var cancelButton = dialog.GetVisualDescendants().OfType<Button>().SingleOrDefault(a=>a.Name == DefaultDialogControl.PART_CancelButton);
         Assert.NotNull(cancelButton);
         Assert.Equal("取消", cancelButton.Content);

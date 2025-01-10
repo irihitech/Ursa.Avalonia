@@ -13,23 +13,23 @@
     <UserControl.Styles>
         <Style Selector="Button">
             <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Margin" Value="8"></Setter>
+            <Setter Property="Margin" Value="8" />
         </Style>
     </UserControl.Styles>
     <StackPanel HorizontalAlignment="Left">
         <ComboBox ItemsSource="{Binding Icons}" SelectedItem="{Binding SelectedIcon}" />
-        <ToggleSwitch Content="Try Long Message" IsChecked="{Binding UseLong}"></ToggleSwitch>
-        <ToggleSwitch Content="Show Title" IsChecked="{Binding UseTitle}"></ToggleSwitch>
-        <ToggleSwitch Content="Overlay" IsChecked="{Binding UseOverlay}"></ToggleSwitch>
+        <ToggleSwitch Content="Try Long Message" IsChecked="{Binding UseLong}" />
+        <ToggleSwitch Content="Show Title" IsChecked="{Binding UseTitle}" />
+        <ToggleSwitch Content="Overlay" IsChecked="{Binding UseOverlay}" />
         <Button Command="{Binding DefaultMessageBoxCommand}" Content="Default" />
         <Button Command="{Binding OkCommand}" Content="OK" />
         <Button Command="{Binding OkCancelCommand}" Content="OKCancel" />
         <Button Command="{Binding YesNoCommand}" Content="YesNo" />
         <Button Command="{Binding YesNoCancelCommand}" Content="YesNoCancel" />
-        
+
         <TextBlock>
-            <Run Text="Last Clicked Result: "></Run>
-            <Run Text="{Binding Result}"></Run>
+            <Run Text="Last Clicked Result: " />
+            <Run Text="{Binding Result}" />
         </TextBlock>
     </StackPanel>
 </UserControl>
