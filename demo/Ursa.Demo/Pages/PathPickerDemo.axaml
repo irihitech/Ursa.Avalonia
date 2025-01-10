@@ -1,23 +1,12 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:Sandbox.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:u="https://irihi.tech/ursa"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="Sandbox.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
-        xmlns:sys="using:System"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="Sandbox">
-
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel />
-    </Design.DataContext>
-
-
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:vm="using:Ursa.Demo.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Ursa.Demo.Pages.PathPickerDemo"
+             x:DataType="vm:PathPickerDemoViewModel">
     <Grid ColumnDefinitions="*,*"
           RowDefinitions="7*,3*">
         <ScrollViewer Grid.Column="0" Grid.Row="0">
@@ -36,38 +25,41 @@
         <ScrollViewer Grid.Column="0" Grid.Row="1">
             <StackPanel Spacing="2">
                 <HeaderedContentControl Header="Default">
-                    <u:PathPicker Name="PathPicker"
-                                  Title="{Binding #Title.Text}"
+                    <u:PathPicker Title="{Binding #Title.Text}"
                                   SuggestedFileName="{Binding #SuggestedFileName.Text}"
                                   SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
                                   FileFilter="{Binding #FileFilter.Text}"
                                   DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
                                   AllowMultiple="{Binding #AllowMultiple.IsChecked}"
-                                  UsePickerType="{Binding #UsePickerType.Value}">
+                                  UsePickerType="{Binding #UsePickerType.Value}"
+                                  SelectedPath="{Binding Path,Mode=OneWayToSource}"
+                                  SelectedPaths="{Binding Paths,Mode=OneWayToSource}">
                     </u:PathPicker>
                 </HeaderedContentControl>
                 <HeaderedContentControl Header="PathPickerOnlyButton">
-                    <u:PathPicker Name="PathPicker1"
-                                  Theme="{DynamicResource PathPickerOnlyButton}"
+                    <u:PathPicker Theme="{DynamicResource PathPickerOnlyButton}"
                                   Title="{Binding #Title.Text}"
                                   SuggestedFileName="{Binding #SuggestedFileName.Text}"
                                   SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
                                   FileFilter="{Binding #FileFilter.Text}"
                                   DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
                                   AllowMultiple="{Binding #AllowMultiple.IsChecked}"
-                                  UsePickerType="{Binding #UsePickerType.Value}">
+                                  UsePickerType="{Binding #UsePickerType.Value}"
+                                  SelectedPath="{Binding Path,Mode=OneWayToSource}"
+                                  SelectedPaths="{Binding Paths,Mode=OneWayToSource}">
                     </u:PathPicker>
                 </HeaderedContentControl>
                 <HeaderedContentControl Header="PathPickerForList">
-                    <u:PathPicker Name="PathPicker2"
-                                  Theme="{DynamicResource PathPickerForList}"
+                    <u:PathPicker Theme="{DynamicResource PathPickerForList}"
                                   Title="{Binding #Title.Text}"
                                   SuggestedFileName="{Binding #SuggestedFileName.Text}"
                                   SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
                                   FileFilter="{Binding #FileFilter.Text}"
                                   DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
                                   AllowMultiple="{Binding #AllowMultiple.IsChecked}"
-                                  UsePickerType="{Binding #UsePickerType.Value}">
+                                  UsePickerType="{Binding #UsePickerType.Value}"
+                                  SelectedPath="{Binding Path,Mode=OneWayToSource}"
+                                  SelectedPaths="{Binding Paths,Mode=OneWayToSource}">
                     </u:PathPicker>
                 </HeaderedContentControl>
             </StackPanel>
@@ -76,15 +68,15 @@
             <StackPanel Spacing="1">
                 <HeaderedContentControl Header="SelectedPath">
                     <TextBox Name="SelectedPath" u:FormItem.Label="SelectedPath" IsReadOnly="True"
-                             Text="{Binding #PathPicker.SelectedPath}">
+                             Text="{Binding Path}">
                     </TextBox>
                 </HeaderedContentControl>
                 <HeaderedContentControl Header="SelectedPaths">
                     <ListBox Name="SelectedPaths"
-                             ItemsSource="{Binding #PathPicker.SelectedPaths}">
+                             ItemsSource="{Binding Paths}">
                     </ListBox>
                 </HeaderedContentControl>
             </StackPanel>
         </ScrollViewer>
     </Grid>
-</Window>
+</UserControl>
