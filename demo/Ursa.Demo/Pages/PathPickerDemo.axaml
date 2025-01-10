@@ -10,17 +10,31 @@
     <Grid ColumnDefinitions="*,*"
           RowDefinitions="7*,3*">
         <ScrollViewer Grid.Column="0" Grid.Row="0">
-            <u:Form LabelAlignment="Left" LabelPosition="Left" LabelWidth="*" HorizontalAlignment="Stretch">
-                <TextBox Name="Title" u:FormItem.Label="Title"></TextBox>
-                <TextBox Name="SuggestedFileName" u:FormItem.Label="SuggestedFileName"></TextBox>
-                <TextBox Name="SuggestedStartPath" u:FormItem.Label="SuggestedStartPath"></TextBox>
-                <TextBox Name="FileFilter" u:FormItem.Label="FileFilter"></TextBox>
-                <TextBox Name="DefaultFileExtension" u:FormItem.Label="DefaultFileExtension"></TextBox>
-                <ToggleButton Name="AllowMultiple" Content="AllowMultiple" u:FormItem.NoLabel="True"
-                              HorizontalAlignment="Stretch">
-                </ToggleButton>
-                <u:EnumSelector Name="UsePickerType" EnumType="u:UsePickerTypes" u:FormItem.Label="UsePickerType"></u:EnumSelector>
-            </u:Form>
+            <StackPanel>
+                <HeaderedContentControl Theme="{DynamicResource GroupBox}"
+                                        Header="Functionality and Usage"
+                                        Content="PathPicker aggregates file selection functionality and provides a Command property. When a button is pressed or Enter is pressed while the focus is on PathPicker, the Command is triggered and a Task &lt;IReadOnlyList&gt; is passed to the Command.">
+                </HeaderedContentControl>
+                <u:Form LabelAlignment="Left" LabelPosition="Left" LabelWidth="*" HorizontalAlignment="Stretch">
+                    <TextBox Name="Title" u:FormItem.Label="Title"></TextBox>
+                    <TextBox Name="SuggestedFileName" u:FormItem.Label="SuggestedFileName"
+                             Watermark="filename(not have file extension)">
+                    </TextBox>
+                    <TextBox Name="SuggestedStartPath" u:FormItem.Label="SuggestedStartPath"
+                             Watermark="D:\Win7 Help\win-x64">
+                    </TextBox>
+                    <TextBox Name="FileFilter" u:FormItem.Label="FileFilter"
+                             Watermark="*.txt,*.json or *.json">
+                    </TextBox>
+                    <TextBox Name="DefaultFileExtension" u:FormItem.Label="DefaultFileExtension"
+                             Watermark="json">
+                    </TextBox>
+                    <ToggleButton Name="AllowMultiple" Content="AllowMultiple" u:FormItem.NoLabel="True"
+                                  HorizontalAlignment="Stretch">
+                    </ToggleButton>
+                    <u:EnumSelector Name="UsePickerType" EnumType="u:UsePickerTypes" u:FormItem.Label="UsePickerType"></u:EnumSelector>
+                </u:Form>
+            </StackPanel>
         </ScrollViewer>
         <ScrollViewer Grid.Column="0" Grid.Row="1">
             <StackPanel Spacing="2">
