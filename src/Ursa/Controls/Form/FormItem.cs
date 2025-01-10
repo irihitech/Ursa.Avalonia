@@ -1,6 +1,9 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
+using Avalonia.Controls.Primitives;
+using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Reactive;
 using Avalonia.VisualTree;
@@ -10,8 +13,10 @@ using Ursa.Common;
 namespace Ursa.Controls;
 
 [PseudoClasses(PC_Horizontal, PC_NoLabel)]
+[TemplatePart(PART_Label, typeof(Label))]
 public class FormItem: ContentControl
 {
+    public const string PART_Label = "PART_Label";
     public const string PC_Horizontal = ":horizontal";
     public const string PC_NoLabel = ":no-label";
     
@@ -33,7 +38,8 @@ public class FormItem: ContentControl
     public static void SetNoLabel(Control obj, bool value) => obj.SetValue(NoLabelProperty, value);
     public static bool GetNoLabel(Control obj) => obj.GetValue(NoLabelProperty);
     #endregion
-    
+
+    private Label? _label;
     private List<IDisposable> _formSubscriptions = new List<IDisposable>();
 
     public static readonly StyledProperty<double> LabelWidthProperty = AvaloniaProperty.Register<FormItem, double>(
@@ -57,6 +63,8 @@ public class FormItem: ContentControl
     static FormItem()
     {
         NoLabelProperty.AffectsPseudoClass<FormItem>(PC_NoLabel);
+        LabelProperty.Changed.AddClassHandler<FormItem>((o, e) => o.SetLabelTarget());
+        ContentProperty.Changed.AddClassHandler<FormItem>((o, e) => o.SetLabelTarget());
     }
 
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
@@ -78,6 +86,36 @@ public class FormItem: ContentControl
             _formSubscriptions.Add(labelSubscription);
             _formSubscriptions.Add(positionSubscription);
             _formSubscriptions.Add(alignmentSubscription);
+        }
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        _label = e.NameScope.Find<Label>(PART_Label);
+    }
+
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        SetLabelTarget();
+    }
+
+    private void SetLabelTarget()
+    {
+        if (_label is null) return;
+        // Set it directly if content is a control, this is faster than looking up logical tree. 
+        if (Content is InputElement input)
+        {
+            _label.Target = input;
+        }
+        else
+        {
+            var logical = this.LogicalChildren.OfType<InputElement>().FirstOrDefault(a => a.Focusable);
+            if (logical is not null)
+            {
+                _label.Target = logical;
+            }
         }
     }
 

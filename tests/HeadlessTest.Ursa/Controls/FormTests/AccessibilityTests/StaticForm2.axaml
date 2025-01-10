@@ -5,9 +5,13 @@
              xmlns:u="https://irihi.tech/ursa"
              mc:Ignorable="d" d:DesignWidth="800"
              d:DesignHeight="450"
-             x:Class="HeadlessTest.Ursa.Controls.FormTests.AccessibilityTests.StaticForm">
+             x:Class="HeadlessTest.Ursa.Controls.FormTests.AccessibilityTests.StaticForm2">
     <u:Form LabelWidth="200" LabelPosition="Left" LabelAlignment="Left">
-        <TextBox Name="NameBox" Width="300" u:FormItem.Label="_Name" />
-        <TextBox Name="EmailBox" Width="300" u:FormItem.Label="_Email" />
+        <u:FormItem Label="_Name">
+            <TextBox Name="NameBox" Width="300" />
+        </u:FormItem>
+        <u:FormItem Label="_Email">
+            <TextBox Name="EmailBox" Width="300" />
+        </u:FormItem>
     </u:Form>
 </UserControl>
