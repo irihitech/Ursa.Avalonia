@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
@@ -8,8 +10,6 @@ namespace Ursa.Controls;
 
 public class AutoCompleteBox: Avalonia.Controls.AutoCompleteBox, IClearControl
 {
-    // protected override Type StyleKeyOverride { get; } = typeof(Avalonia.Controls.AutoCompleteBox);
-    private TextBox? _text;
     static AutoCompleteBox()
     {
         MinimumPrefixLengthProperty.OverrideDefaultValue<AutoCompleteBox>(0);
@@ -17,15 +17,9 @@ public class AutoCompleteBox: Avalonia.Controls.AutoCompleteBox, IClearControl
 
     public AutoCompleteBox()
     {
-        this.AddHandler(PointerPressedEvent, OnBoxPointerPressed, RoutingStrategies.Tunnel);
+        AddHandler(PointerPressedEvent, OnBoxPointerPressed, RoutingStrategies.Tunnel);
     }
-
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
-    {
-        base.OnApplyTemplate(e);
-        _text = e.NameScope.Get<TextBox>("PART_TextBox");
-    }
-
+    
     private void OnBoxPointerPressed(object? sender, PointerPressedEventArgs e)
     {
         if (Equals(sender, this) && e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
@@ -37,6 +31,7 @@ public class AutoCompleteBox: Avalonia.Controls.AutoCompleteBox, IClearControl
     protected override void OnGotFocus(GotFocusEventArgs e)
     {
         base.OnGotFocus(e);
+        if (IsDropDownOpen) return;
         SetCurrentValue(IsDropDownOpenProperty, true);
     }
 

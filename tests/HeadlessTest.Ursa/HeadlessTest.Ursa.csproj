@@ -10,11 +10,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia.Headless.XUnit" Version="11.1.3" />
+        <PackageReference Include="Avalonia.Headless.XUnit" Version="11.2.3" />
+        <PackageReference Include="Avalonia.Skia" Version="11.2.3" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
         <PackageReference Include="coverlet.collector" Version="6.0.0"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
-        <PackageReference Include="Semi.Avalonia" Version="11.1.0.4" />
+        <PackageReference Include="Semi.Avalonia" Version="11.2.1.3" />
         <PackageReference Include="xunit" Version="2.5.3"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3"/>
     </ItemGroup>
