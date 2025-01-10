@@ -31,7 +31,7 @@ public class FormAccessibilityTests
     public void Static_Form_With_FormItem_Accessible()
     {
         var window = new Window();
-        var form = new StaticForm();
+        var form = new StaticForm2();
         window.Content = form;
         window.Show();
 
