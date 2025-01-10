@@ -56,8 +56,8 @@
                             <DockPanel>
                                 <PathIcon
                                     x:Name="ToastIcon"
-                                    Width="{DynamicResource ToastCardIconWidth}"
-                                    Height="{DynamicResource ToastCardIconHeight}"
+                                    Theme="{StaticResource InnerPathIcon}"
+                                    Classes="Large"
                                     Margin="{DynamicResource ToastCardIconMargin}"
                                     VerticalAlignment="Top"
                                     IsVisible="{TemplateBinding ShowIcon}"
@@ -87,7 +87,7 @@
                                 </ContentControl>
                                 <Button
                                     x:Name="PART_CloseButton"
-                                    Theme="{StaticResource ToastCloseButton}"
+                                    Theme="{StaticResource OverlayCloseButton}"
                                     VerticalAlignment="Top"
                                     IsVisible="{TemplateBinding ShowClose}"
                                     u:MessageCard.CloseOnClick="True" />
@@ -218,33 +218,6 @@
                 <Setter Property="BorderBrush" Value="{DynamicResource NotificationCardLightErrorBorderBrush}" />
                 <Setter Property="Background" Value="{DynamicResource NotificationCardLightErrorBackground}" />
             </Style>
-        </Style>
-    </ControlTheme>
-
-    <ControlTheme x:Key="ToastCloseButton" TargetType="Button">
-        <Setter Property="CornerRadius" Value="6" />
-        <Setter Property="Height" Value="24" />
-        <Setter Property="Width" Value="24" />
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Template">
-            <ControlTemplate TargetType="Button">
-                <Border
-                    Name="PART_Border"
-                    Padding="{TemplateBinding Padding}"
-                    Background="Transparent"
-                    CornerRadius="{TemplateBinding CornerRadius}">
-                    <PathIcon
-                        Width="10"
-                        Height="10"
-                        Data="{DynamicResource WindowCloseIconGlyph}" />
-                </Border>
-            </ControlTemplate>
-        </Setter>
-        <Style Selector="^:pointerover /template/ Border">
-            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPointeroverBackground}" />
-        </Style>
-        <Style Selector="^:pressed /template/ Border">
-            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPressedBackground}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

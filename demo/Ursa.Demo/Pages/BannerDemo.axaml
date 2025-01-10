@@ -4,54 +4,65 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:pages="clr-namespace:Ursa.Demo.Pages"
     xmlns:u="https://irihi.tech/ursa"
-    x:DataType="pages:BannerDemoViewModel"
+    xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
+    x:DataType="vm:BannerDemoViewModel"
     mc:Ignorable="d">
     <Design.DataContext>
-        <pages:BannerDemoViewModel />
+        <vm:BannerDemoViewModel />
     </Design.DataContext>
-    <StackPanel Spacing="20">
-        <Grid ColumnDefinitions="*, 300">
-            <Grid Grid.Column="0">
-                <Border Margin="20">
-                    <u:Banner
-                        Classes.Bordered="{Binding Bordered}"
-                        Content="This is the Demo of Ursa Banner. "
-                        Header="Welcome to Ursa"
-                        Width="300"
-                        Height="100"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        CanClose="True"
-                        Type="{Binding SelectedType}" />
-                </Border>
-            </Grid>
-            <Border Grid.Column="1" VerticalAlignment="Top">
-                <Grid ColumnDefinitions="*, Auto" RowDefinitions="*, *">
-                    <Label
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="Type" />
-                    <ComboBox
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        MinWidth="200"
-                        ItemsSource="{Binding Types}"
-                        SelectedItem="{Binding SelectedType}" />
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="Bordered" />
-                    <ToggleSwitch
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        IsChecked="{Binding Bordered}" />
-                </Grid>
-            </Border>
-        </Grid>
-    </StackPanel>
+    <ScrollViewer>
+        <StackPanel Spacing="20">
+            <u:Banner
+                Name="banner"
+                Classes.Bordered="{Binding Bordered}"
+                Header="{Binding Title}"
+                Content="{Binding Content}" />
+            <u:Form Width="500">
+                <TextBox
+                    Classes="ClearButton"
+                    IsEnabled="{Binding SetTitleNull}"
+                    Text="{Binding Title}">
+                    <u:FormItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Content="Title" IsChecked="{Binding SetTitleNull}" />
+                        </StackPanel>
+                    </u:FormItem.Label>
+                </TextBox>
+                <TextBox
+                    Classes="ClearButton TextArea"
+                    IsEnabled="{Binding SetContentNull}"
+                    Text="{Binding Content}"
+                    TextWrapping="Wrap">
+                    <u:FormItem.Label>
+                        <CheckBox Content="Content" IsChecked="{Binding SetContentNull}" />
+                    </u:FormItem.Label>
+                </TextBox>
+                <u:EnumSelector
+                    u:FormItem.Label="NotificationType"
+                    EnumType="NotificationType"
+                    Value="{Binding #banner.Type}" />
+                <u:EnumSelector
+                    u:FormItem.Label="HorizontalContentAlignment"
+                    EnumType="HorizontalAlignment"
+                    Value="{Binding  #banner.HorizontalContentAlignment}" />
+                <ToggleSwitch
+                    Theme="{StaticResource SimpleToggleSwitch}"
+                    u:FormItem.Label="Bordered"
+                    IsChecked="{Binding Bordered}" />
+                <ToggleSwitch
+                    Theme="{StaticResource SimpleToggleSwitch}"
+                    u:FormItem.Label="ShowIcon"
+                    IsChecked="{Binding #banner.ShowIcon}" />
+                <ToggleSwitch
+                    Theme="{StaticResource SimpleToggleSwitch}"
+                    u:FormItem.Label="CanClose"
+                    IsChecked="{Binding #banner.CanClose}" />
+                <ToggleSwitch
+                    Theme="{StaticResource SimpleToggleSwitch}"
+                    u:FormItem.Label="IsVisible"
+                    IsChecked="{Binding  #banner.IsVisible}" />
+            </u:Form>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>
