@@ -13,7 +13,7 @@
             <StackPanel>
                 <HeaderedContentControl Theme="{DynamicResource GroupBox}"
                                         Header="Functionality and Usage"
-                                        Content="PathPicker aggregates file selection functionality and provides a Command property. When a button is pressed or Enter is pressed while the focus is on PathPicker, the Command is triggered and a Task &lt;IReadOnlyList&gt; is passed to the Command.">
+                                        Content="PathPicker aggregates a file selector and provides a Command property. The Command is triggered solely after opening the file selector and selecting a file, whereupon the Command receives an IReadOnlyList&lt;string&gt; parameter.">
                 </HeaderedContentControl>
                 <u:Form LabelAlignment="Left" LabelPosition="Left" LabelWidth="*" HorizontalAlignment="Stretch">
                     <TextBox Name="Title" u:FormItem.Label="Title"></TextBox>
@@ -24,7 +24,7 @@
                              Watermark="D:\Win7 Help\win-x64">
                     </TextBox>
                     <TextBox Name="FileFilter" u:FormItem.Label="FileFilter"
-                             Watermark="*.txt,*.json or *.json">
+                             Watermark="[Name,Pattern] like this [123,*.exe,*.pdb] or [All][ImageAll][11,*.txt]">
                     </TextBox>
                     <TextBox Name="DefaultFileExtension" u:FormItem.Label="DefaultFileExtension"
                              Watermark="json">
@@ -46,7 +46,20 @@
                                   DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
                                   AllowMultiple="{Binding #AllowMultiple.IsChecked}"
                                   UsePickerType="{Binding #UsePickerType.Value}"
-                                  SelectedPath="{Binding Path,Mode=OneWayToSource}"
+                                  SelectedPathsText="{Binding Path,Mode=OneWayToSource}"
+                                  SelectedPaths="{Binding Paths,Mode=OneWayToSource}">
+                    </u:PathPicker>
+                </HeaderedContentControl>
+                <HeaderedContentControl Header="PathPickerForMultipleText">
+                    <u:PathPicker Title="{Binding #Title.Text}"
+                                  Theme="{DynamicResource PathPickerForMultipleText}"
+                                  SuggestedFileName="{Binding #SuggestedFileName.Text}"
+                                  SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
+                                  FileFilter="{Binding #FileFilter.Text}"
+                                  DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
+                                  AllowMultiple="{Binding #AllowMultiple.IsChecked}"
+                                  UsePickerType="{Binding #UsePickerType.Value}"
+                                  SelectedPathsText="{Binding Path,Mode=OneWayToSource}"
                                   SelectedPaths="{Binding Paths,Mode=OneWayToSource}">
                     </u:PathPicker>
                 </HeaderedContentControl>
@@ -59,11 +72,11 @@
                                   DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
                                   AllowMultiple="{Binding #AllowMultiple.IsChecked}"
                                   UsePickerType="{Binding #UsePickerType.Value}"
-                                  SelectedPath="{Binding Path,Mode=OneWayToSource}"
+                                  SelectedPathsText="{Binding Path,Mode=OneWayToSource}"
                                   SelectedPaths="{Binding Paths,Mode=OneWayToSource}">
                     </u:PathPicker>
                 </HeaderedContentControl>
-                <HeaderedContentControl Header="PathPickerForList">
+                <HeaderedContentControl Header="PathPickerForListView">
                     <u:PathPicker Theme="{DynamicResource PathPickerForList}"
                                   Title="{Binding #Title.Text}"
                                   SuggestedFileName="{Binding #SuggestedFileName.Text}"
@@ -72,7 +85,7 @@
                                   DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
                                   AllowMultiple="{Binding #AllowMultiple.IsChecked}"
                                   UsePickerType="{Binding #UsePickerType.Value}"
-                                  SelectedPath="{Binding Path,Mode=OneWayToSource}"
+                                  SelectedPathsText="{Binding Path,Mode=OneWayToSource}"
                                   SelectedPaths="{Binding Paths,Mode=OneWayToSource}">
                     </u:PathPicker>
                 </HeaderedContentControl>
@@ -80,7 +93,7 @@
         </ScrollViewer>
         <ScrollViewer Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
             <StackPanel Spacing="1">
-                <HeaderedContentControl Header="SelectedPath">
+                <HeaderedContentControl Header="SelectedPathsText">
                     <TextBox Name="SelectedPath" u:FormItem.Label="SelectedPath" IsReadOnly="True"
                              Text="{Binding Path}">
                     </TextBox>

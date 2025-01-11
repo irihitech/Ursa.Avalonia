@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Text;
+using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -6,21 +7,17 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Logging;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using Irihi.Avalonia.Shared.Common;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
 [TemplatePart(Name = "PART_Button", Type = typeof(Button))]
 public class PathPicker : TemplatedControl
 {
-    public static readonly StyledProperty<string?> SelectedPathProperty =
-        AvaloniaProperty.Register<PathPicker, string?>(
-            nameof(SelectedPath), defaultBindingMode: BindingMode.TwoWay, enableDataValidation: true,
-            validate: x => string.IsNullOrWhiteSpace(x) || File.Exists(x) || Directory.Exists(x));
-
-
     public static readonly StyledProperty<string> SuggestedStartPathProperty =
         AvaloniaProperty.Register<PathPicker, string>(
             nameof(SuggestedStartPath), string.Empty);
@@ -53,23 +50,19 @@ public class PathPicker : TemplatedControl
     public static readonly StyledProperty<bool> AllowMultipleProperty = AvaloniaProperty.Register<PathPicker, bool>(
         nameof(AllowMultiple));
 
+    public static readonly StyledProperty<string?> SelectedPathsTextProperty =
+        AvaloniaProperty.Register<PathPicker, string?>(
+            nameof(SelectedPathsText), defaultBindingMode: BindingMode.TwoWay);
+
+    public string? SelectedPathsText
+    {
+        get => GetValue(SelectedPathsTextProperty);
+        set => SetValue(SelectedPathsTextProperty, value);
+    }
+
     private Button? _button;
 
     private IReadOnlyList<string> _selectedPaths = [];
-
-    public PathPicker()
-    {
-        KeyBindings.Add(new KeyBinding
-        {
-            Command = new IRIHI_CommandBase(() =>
-            {
-                if (!SelectedPathProperty.ValidateValue!.Invoke(SelectedPath)) return;
-                SelectedPaths = string.IsNullOrWhiteSpace(SelectedPath) ? Array.Empty<string>() : [SelectedPath!];
-                Command?.Execute(Task.FromResult(SelectedPaths));
-            }),
-            Gesture = new KeyGesture(Key.Enter)
-        });
-    }
 
     public bool AllowMultiple
     {
@@ -126,86 +119,161 @@ public class PathPicker : TemplatedControl
         set => SetValue(SuggestedStartPathProperty, value);
     }
 
-    public string? SelectedPath
-    {
-        get => GetValue(SelectedPathProperty);
-        set => SetValue(SelectedPathProperty, value);
-    }
+    private bool _twoConvertLock;
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
+        if (_twoConvertLock) return;
         if (change.Property == SelectedPathsProperty)
-            SelectedPath = SelectedPaths.Count > 0 ? SelectedPaths[0] : string.Empty;
+        {
+            _twoConvertLock = true;
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append(SelectedPaths.FirstOrDefault());
+            foreach (var item in SelectedPaths.Skip(1))
+            {
+                stringBuilder.AppendLine(item);
+            }
+
+            SelectedPathsText = stringBuilder.ToString();
+            _twoConvertLock = false;
+        }
+
+        if (change.Property == SelectedPathsTextProperty)
+        {
+            _twoConvertLock = true;
+            string[] separatedStrings = ["\r", "\n", "\r\n"];
+            // var list = SelectedPathsText?.Split(separatedStrings, StringSplitOptions.RemoveEmptyEntries)
+            //                .Select(RemoveNewLine).ToArray()
+            //            ?? [];
+            // if (list.Length == SelectedPaths.Count)
+            // {
+            //     if (SelectedPaths.Select(x => list.Any(y => x == y)).All(x => x is false))
+            // }
+
+            SelectedPaths = SelectedPathsText?.Split(separatedStrings, StringSplitOptions.RemoveEmptyEntries)
+                                .Select(RemoveNewLine).ToArray()
+                            ?? [];
+            _twoConvertLock = false;
+        }
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
+        Button.ClickEvent.RemoveHandler(LaunchPicker, _button);
         _button = e.NameScope.Find<Button>("PART_Button");
-        _button!.Click += LaunchPicker;
+        Button.ClickEvent.AddHandler(LaunchPicker, _button);
     }
 
-    private void LaunchPicker(object? sender, RoutedEventArgs e)
+
+    private static string RemoveNewLine(string str)
     {
-        if (TopLevel.GetTopLevel(this)?.StorageProvider is not { } storageProvider) return;
+        return str.Replace("\r", "")
+            .Replace("\n", "")
+            .Replace("\r\n", "")
+            .Replace(Environment.NewLine, "");
+    }
 
-        Task<IReadOnlyList<string>> task = Task.Run(async () =>
+    /**
+     * FilePickerFileTypeName,Pattern,Pattern,Pattern...
+     */
+    private static FilePickerFileType ParseFilePickerType(string str)
+    {
+        return str switch
         {
-            await Dispatcher.UIThread.InvokeAsync(async () =>
+            nameof(FilePickerFileTypes.All) => FilePickerFileTypes.All,
+            nameof(FilePickerFileTypes.Pdf) => FilePickerFileTypes.Pdf,
+            nameof(FilePickerFileTypes.ImageAll) => FilePickerFileTypes.ImageAll,
+            nameof(FilePickerFileTypes.ImageJpg) => FilePickerFileTypes.ImageJpg,
+            nameof(FilePickerFileTypes.ImagePng) => FilePickerFileTypes.ImagePng,
+            nameof(FilePickerFileTypes.ImageWebp) => FilePickerFileTypes.ImageWebp,
+            nameof(FilePickerFileTypes.TextPlain) => FilePickerFileTypes.TextPlain,
+            _ => parse()
+        };
+
+        FilePickerFileType parse()
+        {
+            var list = str.Split(',');
+            return new FilePickerFileType(list.First())
             {
-                switch (UsePickerType)
-                {
-                    case UsePickerTypes.OpenFile:
-                        FilePickerOpenOptions filePickerOpenOptions = new()
-                        {
-                            Title = Title,
-                            AllowMultiple = AllowMultiple,
-                            SuggestedStartLocation =
-                                await storageProvider.TryGetFolderFromPathAsync(SuggestedStartPath),
-                            FileTypeFilter = FileFilter?.Split(',')
-                                .Select(x => new FilePickerFileType(x) { Patterns = [x] }).ToList()
-                        };
-                        var resFiles = await storageProvider.OpenFilePickerAsync(filePickerOpenOptions);
-                        SelectedPaths = resFiles.Select(x => x.TryGetLocalPath()).ToArray()!;
-                        break;
-                    case UsePickerTypes.SaveFile:
-                        FilePickerSaveOptions filePickerSaveOptions = new()
-                        {
-                            Title = Title,
-                            SuggestedStartLocation =
-                                await storageProvider.TryGetFolderFromPathAsync(SuggestedStartPath),
-                            SuggestedFileName = SuggestedFileName,
-                            FileTypeChoices = FileFilter?.Split(',')
-                                .Select(x => new FilePickerFileType(x) { Patterns = [x] }).ToList(),
-                            DefaultExtension = DefaultFileExtension
-                        };
+                Patterns = list.Skip(1).Select(x => x.Trim()).ToArray()
+            };
+        }
+    }
 
-                        var path = (await storageProvider.SaveFilePickerAsync(filePickerSaveOptions))
-                            ?.TryGetLocalPath();
-                        SelectedPaths = string.IsNullOrEmpty(path)
-                            ? Array.Empty<string>()
-                            : [path!];
-                        break;
-                    case UsePickerTypes.OpenFolder:
-                        FolderPickerOpenOptions folderPickerOpenOptions = new()
-                        {
-                            Title = Title,
-                            AllowMultiple = AllowMultiple,
-                            SuggestedStartLocation =
-                                await storageProvider.TryGetFolderFromPathAsync(SuggestedStartPath),
-                            SuggestedFileName = SuggestedFileName
-                        };
-                        var resFolder = await storageProvider.OpenFolderPickerAsync(folderPickerOpenOptions);
-                        SelectedPaths = resFolder.Select(x => x.TryGetLocalPath()).ToArray()!;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            });
+    /**
+    * [ParseFilePickerTypeStr][ParseFilePickerTypeStr]...
+    */
+    private static IReadOnlyList<FilePickerFileType>? ParseFileTypes(string str)
+    {
+        if (string.IsNullOrWhiteSpace(str)) return null;
+        string[] separatedStrings = ["[", "][", "]"];
+        var list = RemoveNewLine(str)
+            .Replace(" ", string.Empty)
+            .Split(separatedStrings, StringSplitOptions.RemoveEmptyEntries);
+        return list.Select(ParseFilePickerType).ToArray();
+    }
 
-            return await Dispatcher.UIThread.InvokeAsync(() => SelectedPaths);
-        });
-        _button!.CommandParameter = task;
+    private async void LaunchPicker(object? sender, RoutedEventArgs e)
+    {
+        try
+        {
+            if (TopLevel.GetTopLevel(this)?.StorageProvider is not { } storageProvider) return;
+
+            switch (UsePickerType)
+            {
+                case UsePickerTypes.OpenFile:
+                    FilePickerOpenOptions filePickerOpenOptions = new()
+                    {
+                        Title = Title,
+                        AllowMultiple = AllowMultiple,
+                        SuggestedStartLocation =
+                            await storageProvider.TryGetFolderFromPathAsync(SuggestedStartPath),
+                        FileTypeFilter = ParseFileTypes(FileFilter)
+                    };
+                    var resFiles = await storageProvider.OpenFilePickerAsync(filePickerOpenOptions);
+                    SelectedPaths = resFiles.Select(x => x.TryGetLocalPath()).ToArray()!;
+                    break;
+                case UsePickerTypes.SaveFile:
+                    FilePickerSaveOptions filePickerSaveOptions = new()
+                    {
+                        Title = Title,
+                        SuggestedStartLocation =
+                            await storageProvider.TryGetFolderFromPathAsync(SuggestedStartPath),
+                        SuggestedFileName = SuggestedFileName,
+                        FileTypeChoices = ParseFileTypes(FileFilter),
+                        DefaultExtension = DefaultFileExtension
+                    };
+
+                    var path = (await storageProvider.SaveFilePickerAsync(filePickerSaveOptions))
+                        ?.TryGetLocalPath();
+                    SelectedPaths = string.IsNullOrEmpty(path)
+                        ? Array.Empty<string>()
+                        : [path!];
+                    break;
+                case UsePickerTypes.OpenFolder:
+                    FolderPickerOpenOptions folderPickerOpenOptions = new()
+                    {
+                        Title = Title,
+                        AllowMultiple = AllowMultiple,
+                        SuggestedStartLocation =
+                            await storageProvider.TryGetFolderFromPathAsync(SuggestedStartPath),
+                        SuggestedFileName = SuggestedFileName
+                    };
+                    var resFolder = await storageProvider.OpenFolderPickerAsync(folderPickerOpenOptions);
+                    SelectedPaths = resFolder.Select(x => x.TryGetLocalPath()).ToArray()!;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            if (SelectedPaths.Count != 0)
+                Command?.Execute(SelectedPaths);
+        }
+        catch (Exception exception)
+        {
+            Logger.TryGet(LogEventLevel.Error, LogArea.Control)?.Log(this, $"{exception}");
+        }
     }
 }

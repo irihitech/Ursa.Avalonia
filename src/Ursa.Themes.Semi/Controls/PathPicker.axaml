@@ -9,16 +9,36 @@
                     <Button Name="PART_Button"
                             DockPanel.Dock="Right"
                             Content="{TemplateBinding Title}"
-                            Command="{TemplateBinding Command}"
                             Margin="1,0,0,0">
                     </Button>
                     <TextBox DockPanel.Dock="Left"
-                             Text="{TemplateBinding SelectedPath,Mode=TwoWay}">
+                             Text="{TemplateBinding SelectedPathsText,Mode=TwoWay}">
                     </TextBox>
                 </DockPanel>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
+
+    <ControlTheme x:Key="PathPickerForMultipleText" TargetType="ursa:PathPicker">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <DockPanel HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                           VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                    <Button Name="PART_Button"
+                            DockPanel.Dock="Top"
+                            HorizontalAlignment="Stretch"
+                            Content="{TemplateBinding Title}"
+                            Margin="0,0,0,1">
+                    </Button>
+                    <TextBox DockPanel.Dock="Bottom"
+                             Text="{TemplateBinding SelectedPathsText,Mode=TwoWay}"
+                             AcceptsReturn="True">
+                    </TextBox>
+                </DockPanel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
 
     <ControlTheme x:Key="PathPickerOnlyButton" TargetType="ursa:PathPicker">
         <Setter Property="Template">
@@ -26,14 +46,13 @@
                 <Button Name="PART_Button"
                         HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                         VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                        Content="{TemplateBinding Title}"
-                        Command="{TemplateBinding Command}">
+                        Content="{TemplateBinding Title}">
                 </Button>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
 
-    <ControlTheme x:Key="PathPickerForList" TargetType="ursa:PathPicker">
+    <ControlTheme x:Key="PathPickerForListView" TargetType="ursa:PathPicker">
         <Setter Property="Template">
             <ControlTemplate>
                 <Expander HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
@@ -41,8 +60,7 @@
                     <Expander.Header>
                         <Button Name="PART_Button"
                                 HorizontalAlignment="Stretch"
-                                Content="{TemplateBinding Title}"
-                                Command="{TemplateBinding Command}">
+                                Content="{TemplateBinding Title}">
                             <Button.Theme>
                                 <ControlTheme TargetType="Button">
                                     <Setter Property="Template">
