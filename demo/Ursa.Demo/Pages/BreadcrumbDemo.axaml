@@ -48,7 +48,9 @@
             </u:Breadcrumb.Styles>
             <u:Breadcrumb.IconTemplate>
                 <DataTemplate DataType="x:String">
-                    <PathIcon Width="12" Height="12" Data="{Binding Path=., Converter={StaticResource IconConverter}}"></PathIcon>
+                    <PathIcon
+                        Theme="{StaticResource InnerPathIcon}"
+                        Data="{Binding Converter={StaticResource IconConverter}}" />
                 </DataTemplate>
             </u:Breadcrumb.IconTemplate>
         </u:Breadcrumb>

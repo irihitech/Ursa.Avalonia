@@ -6,13 +6,13 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.TwoTonePathIconDemo">
     <StackPanel>
-        <TextBlock Text="Size"></TextBlock>
-        <Slider Name="width" Minimum="0" Maximum="100" Value="20" Width="300"></Slider>
-        <ToggleSwitch Name="active" Content="Active"></ToggleSwitch>
+        <TextBlock Text="Size" />
+        <Slider Name="width" Minimum="0" Maximum="100" Value="20" Width="300" />
+        <ToggleSwitch Name="active" Content="Active" />
         <u:TwoTonePathIcon
             IsActive="{Binding ElementName=active, Path=IsChecked}"
             Width="{Binding #width.Value}"
             Height="{Binding #width.Value}"
-            Data="M12 3L2 12H5V20H19V12H22L12 3M13 18H11V16H13V18M13 14H11V8H13V14Z"/>
+            Data="{StaticResource SemiIconHome}" />
     </StackPanel>
 </UserControl>
