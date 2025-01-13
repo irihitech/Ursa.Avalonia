@@ -1,26 +1,69 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:u="https://irihi.tech/ursa"
-             mc:Ignorable="d" d:DesignWidth="800"
-             d:DesignHeight="450"
-             x:Class="Ursa.Demo.Pages.ThemeTogglerDemo">
+<UserControl
+    x:Class="Ursa.Demo.Pages.ThemeTogglerDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Ursa.Demo.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="viewModels:ThemeTogglerDemoViewModel"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <converters:ThemeIconConverter x:Key="ThemeIconConverter">
+                <StreamGeometry x:Key="{x:Static ThemeVariant.Dark}">M9,2C7.95,2 6.95,2.16 6,2.46C10.06,3.73 13,7.5 13,12C13,16.5 10.06,20.27 6,21.54C6.95,21.84 7.95,22 9,22A10,10 0 0,0 19,12A10,10 0 0,0 9,2Z</StreamGeometry>
+                <StreamGeometry x:Key="{x:Static ThemeVariant.Light}">M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8M12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z</StreamGeometry>
+                <StreamGeometry x:Key="{x:Static ThemeVariant.Default}">M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z</StreamGeometry>
+            </converters:ThemeIconConverter>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid ColumnDefinitions="Auto, *">
         <StackPanel Grid.Column="0">
-            <TextBlock Text="Global"></TextBlock>
-            <u:ThemeToggleButton/>
-            <TextBlock Text="Global Indicator"></TextBlock>
-            <u:ThemeToggleButton Mode="Indicator"/>
-            <TextBlock Text="Target To Scope"></TextBlock>
-            <u:ThemeToggleButton TargetScope="{Binding #scope}"></u:ThemeToggleButton>
+            <TextBlock Text="Global (Controller, TwoState)" />
+            <u:ThemeToggleButton Mode="Controller" />
+            <TextBlock Text="Global (Controller, ThreeState)" />
+            <u:ThemeToggleButton IsThreeState="True" Mode="Controller" />
+            <TextBlock Text="Global (Indicator, TwoState)" />
+            <u:ThemeToggleButton Mode="Indicator" />
+            <TextBlock Text="Global (Indicator, ThreeState)" />
+            <u:ThemeToggleButton IsThreeState="True" Mode="Indicator" />
+            <TextBlock Text="Target To Scope" />
+            <u:ThemeToggleButton TargetScope="{Binding #scope}" />
+            <u:ThemeSelector
+                Width="200"
+                Mode="Indicator"
+                ThemeSource="{Binding ThemeSource}" />
+            <u:ThemeSelector
+                Width="200"
+                Mode="Indicator"
+                ThemeSource="{Binding ThemeSource}">
+                <u:ThemeSelector.ItemTemplate>
+                    <DataTemplate x:DataType="ThemeVariant">
+                        <StackPanel Orientation="Horizontal">
+                            <PathIcon
+                                Width="16"
+                                Height="16"
+                                Margin="12,4"
+                                VerticalAlignment="Center"
+                                Data="{Binding Converter={StaticResource ThemeIconConverter}}" />
+                            <TextBlock Text="{Binding Key}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </u:ThemeSelector.ItemTemplate>
+            </u:ThemeSelector>
         </StackPanel>
-        <ThemeVariantScope Grid.Column="1" Name="scope" RequestedThemeVariant="Dark">
+        <ThemeVariantScope
+            Name="scope"
+            Grid.Column="1"
+            RequestedThemeVariant="Dark">
             <Border Theme="{DynamicResource CardBorder}">
                 <StackPanel>
-                    <Button Content="Hello World"></Button>
-                    <Calendar></Calendar>
-                    <u:ThemeToggleButton></u:ThemeToggleButton>
+                    <Button Content="Hello World" />
+                    <Calendar />
+                    <u:ThemeToggleButton />
                 </StackPanel>
             </Border>
         </ThemeVariantScope>
