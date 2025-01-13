@@ -67,4 +67,7 @@
     <StreamGeometry x:Key="SemiIconMoon">
         M12 23a11 11 0 1 0 0-22 11 11 0 0 0 0 22Zm5-8c.48 0 .94-.05 1.39-.14a7 7 0 1 1-7.78-9.72A7 7 0 0 0 17 15Z
     </StreamGeometry>
+    <StreamGeometry x:Key="SemiIconTick">
+        M21.35 4.27c.68.47.86 1.4.38 2.08l-10 14.5a1.5 1.5 0 0 1-2.33.17l-6.5-7a1.5 1.5 0 0 1 2.2-2.04l5.23 5.63 8.94-12.96a1.5 1.5 0 0 1 2.08-.38Z
+    </StreamGeometry>
 </ResourceDictionary>
