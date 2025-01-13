@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:u="https://irihi.tech/ursa">
-    <!-- Add Resources Here -->
     <ControlTheme TargetType="u:ThemeToggleButton" x:Key="{x:Type u:ThemeToggleButton}">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:ThemeToggleButton">
@@ -13,8 +12,7 @@
                     Theme="{DynamicResource BorderlessButton}">
                     <PathIcon
                         Name="PART_Icon"
-                        Width="16"
-                        Height="16"
+                        Theme="{StaticResource InnerPathIcon}"
                         Foreground="{DynamicResource ButtonDefaultTertiaryForeground}" />
                 </Button>
             </ControlTemplate>
