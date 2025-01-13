@@ -139,10 +139,13 @@ public class PathPicker : TemplatedControl
         {
             _twoConvertLock = true;
             var stringBuilder = new StringBuilder();
-            stringBuilder.Append(SelectedPaths[0]);
-            foreach (var item in SelectedPaths.Skip(1))
+            if (SelectedPaths.Count != 0)
             {
-                stringBuilder.AppendLine(item);
+                stringBuilder.Append(SelectedPaths[0]);
+                foreach (var item in SelectedPaths.Skip(1))
+                {
+                    stringBuilder.AppendLine(item);
+                }
             }
 
             SelectedPathsText = stringBuilder.ToString();
