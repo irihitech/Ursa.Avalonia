@@ -10,7 +10,7 @@
         <Setter Property="CornerRadius" Value="{DynamicResource ComboBoxSelectorCornerRadius}" />
         <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxSelectorBorderBrush}" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="MaxDropdownHeight" Value="300" />
+        <Setter Property="MaxDropDownHeight" Value="300" />
         <Setter Property="MaxSelectionBoxHeight" Value="270" />
         <Setter Property="MinHeight" Value="32" />
         <Setter Property="Padding" Value="12 4" />
@@ -103,7 +103,7 @@
                         </Border>
                         <Popup
                             MinWidth="{Binding #PART_RootGrid.Bounds.Width}"
-                            MaxHeight="{TemplateBinding MaxDropdownHeight}"
+                            MaxHeight="{TemplateBinding MaxDropDownHeight}"
                             IsLightDismissEnabled="True"
                             IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsDropDownOpen, Mode=TwoWay}"
                             PlacementTarget="PART_RootGrid">
