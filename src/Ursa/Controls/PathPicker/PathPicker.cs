@@ -54,6 +54,16 @@ public class PathPicker : TemplatedControl
         AvaloniaProperty.Register<PathPicker, string?>(
             nameof(SelectedPathsText), defaultBindingMode: BindingMode.TwoWay);
 
+    public static readonly StyledProperty<bool> IsCancelingPickerAlsoTriggersProperty =
+        AvaloniaProperty.Register<PathPicker, bool>(
+            nameof(IsCancelingPickerAlsoTriggers));
+
+    public bool IsCancelingPickerAlsoTriggers
+    {
+        get => GetValue(IsCancelingPickerAlsoTriggersProperty);
+        set => SetValue(IsCancelingPickerAlsoTriggersProperty, value);
+    }
+
     public string? SelectedPathsText
     {
         get => GetValue(SelectedPathsTextProperty);
@@ -129,7 +139,7 @@ public class PathPicker : TemplatedControl
         {
             _twoConvertLock = true;
             var stringBuilder = new StringBuilder();
-            stringBuilder.Append(SelectedPaths.FirstOrDefault());
+            stringBuilder.Append(SelectedPaths[0]);
             foreach (var item in SelectedPaths.Skip(1))
             {
                 stringBuilder.AppendLine(item);
@@ -268,7 +278,7 @@ public class PathPicker : TemplatedControl
                     throw new ArgumentOutOfRangeException();
             }
 
-            if (SelectedPaths.Count != 0)
+            if (SelectedPaths.Count != 0 || IsCancelingPickerAlsoTriggers)
                 Command?.Execute(SelectedPaths);
         }
         catch (Exception exception)

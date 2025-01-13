@@ -32,6 +32,10 @@
                     <ToggleButton Name="AllowMultiple" Content="AllowMultiple" u:FormItem.NoLabel="True"
                                   HorizontalAlignment="Stretch">
                     </ToggleButton>
+                    <ToggleButton Name="IsCancelingPickerAlsoTriggers" Content="Canceling selection also triggers the Command."
+                                  u:FormItem.NoLabel="True"
+                                  HorizontalAlignment="Stretch">
+                    </ToggleButton>
                     <u:EnumSelector Name="UsePickerType" EnumType="u:UsePickerTypes" u:FormItem.Label="UsePickerType"></u:EnumSelector>
                 </u:Form>
             </StackPanel>
@@ -47,20 +51,9 @@
                                   AllowMultiple="{Binding #AllowMultiple.IsChecked}"
                                   UsePickerType="{Binding #UsePickerType.Value}"
                                   SelectedPathsText="{Binding Path,Mode=OneWayToSource}"
-                                  SelectedPaths="{Binding Paths,Mode=OneWayToSource}">
-                    </u:PathPicker>
-                </HeaderedContentControl>
-                <HeaderedContentControl Header="PathPickerForMultipleText">
-                    <u:PathPicker Title="{Binding #Title.Text}"
-                                  Theme="{DynamicResource PathPickerForMultipleText}"
-                                  SuggestedFileName="{Binding #SuggestedFileName.Text}"
-                                  SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
-                                  FileFilter="{Binding #FileFilter.Text}"
-                                  DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
-                                  AllowMultiple="{Binding #AllowMultiple.IsChecked}"
-                                  UsePickerType="{Binding #UsePickerType.Value}"
-                                  SelectedPathsText="{Binding Path,Mode=OneWayToSource}"
-                                  SelectedPaths="{Binding Paths,Mode=OneWayToSource}">
+                                  SelectedPaths="{Binding Paths,Mode=OneWayToSource}"
+                                  Command="{Binding SelectedCommand}"
+                                  IsCancelingPickerAlsoTriggers="{Binding #IsCancelingPickerAlsoTriggers.IsChecked}">
                     </u:PathPicker>
                 </HeaderedContentControl>
                 <HeaderedContentControl Header="PathPickerOnlyButton">
@@ -73,11 +66,13 @@
                                   AllowMultiple="{Binding #AllowMultiple.IsChecked}"
                                   UsePickerType="{Binding #UsePickerType.Value}"
                                   SelectedPathsText="{Binding Path,Mode=OneWayToSource}"
-                                  SelectedPaths="{Binding Paths,Mode=OneWayToSource}">
+                                  SelectedPaths="{Binding Paths,Mode=OneWayToSource}"
+                                  Command="{Binding SelectedCommand}"
+                                  IsCancelingPickerAlsoTriggers="{Binding #IsCancelingPickerAlsoTriggers.IsChecked}">
                     </u:PathPicker>
                 </HeaderedContentControl>
                 <HeaderedContentControl Header="PathPickerForListView">
-                    <u:PathPicker Theme="{DynamicResource PathPickerForList}"
+                    <u:PathPicker Theme="{DynamicResource PathPickerForListView}"
                                   Title="{Binding #Title.Text}"
                                   SuggestedFileName="{Binding #SuggestedFileName.Text}"
                                   SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
@@ -86,13 +81,16 @@
                                   AllowMultiple="{Binding #AllowMultiple.IsChecked}"
                                   UsePickerType="{Binding #UsePickerType.Value}"
                                   SelectedPathsText="{Binding Path,Mode=OneWayToSource}"
-                                  SelectedPaths="{Binding Paths,Mode=OneWayToSource}">
+                                  SelectedPaths="{Binding Paths,Mode=OneWayToSource}"
+                                  Command="{Binding SelectedCommand}"
+                                  IsCancelingPickerAlsoTriggers="{Binding #IsCancelingPickerAlsoTriggers.IsChecked}">
                     </u:PathPicker>
                 </HeaderedContentControl>
             </StackPanel>
         </ScrollViewer>
         <ScrollViewer Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
             <StackPanel Spacing="1">
+                <TextBlock Text="{Binding CommandTriggerCount,StringFormat='Command Trigger Count:{0}'}"></TextBlock>
                 <HeaderedContentControl Header="SelectedPathsText">
                     <TextBox Name="SelectedPath" u:FormItem.Label="SelectedPath" IsReadOnly="True"
                              Text="{Binding Path}">

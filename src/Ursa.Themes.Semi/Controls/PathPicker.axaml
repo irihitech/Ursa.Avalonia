@@ -11,32 +11,31 @@
                             Content="{TemplateBinding Title}"
                             Margin="1,0,0,0">
                     </Button>
-                    <TextBox DockPanel.Dock="Left"
+                    <TextBox Name="PART_TextBox"
+                             DockPanel.Dock="Left"
+                             AcceptsReturn="{TemplateBinding AllowMultiple}"
                              Text="{TemplateBinding SelectedPathsText,Mode=TwoWay}">
                     </TextBox>
                 </DockPanel>
             </ControlTemplate>
         </Setter>
-    </ControlTheme>
 
-    <ControlTheme x:Key="PathPickerForMultipleText" TargetType="ursa:PathPicker">
-        <Setter Property="Template">
-            <ControlTemplate>
-                <DockPanel HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                           VerticalAlignment="{TemplateBinding VerticalAlignment}">
-                    <Button Name="PART_Button"
-                            DockPanel.Dock="Top"
-                            HorizontalAlignment="Stretch"
-                            Content="{TemplateBinding Title}"
-                            Margin="0,0,0,1">
-                    </Button>
-                    <TextBox DockPanel.Dock="Bottom"
-                             Text="{TemplateBinding SelectedPathsText,Mode=TwoWay}"
-                             AcceptsReturn="True">
-                    </TextBox>
-                </DockPanel>
-            </ControlTemplate>
-        </Setter>
+        <Style Selector="^[AllowMultiple=False]">
+            <Style Selector="^ /template/ Button#PART_Button">
+                <Setter Property="DockPanel.Dock" Value="Right"></Setter>
+            </Style>
+            <Style Selector="^ /template/ TextBox#PART_TextBox">
+                <Setter Property="DockPanel.Dock" Value="Left"></Setter>
+            </Style>
+        </Style>
+        <Style Selector="^[AllowMultiple=True]">
+            <Style Selector="^ /template/ Button#PART_Button">
+                <Setter Property="DockPanel.Dock" Value="Top"></Setter>
+            </Style>
+            <Style Selector="^ /template/ TextBox#PART_TextBox">
+                <Setter Property="DockPanel.Dock" Value="Bottom"></Setter>
+            </Style>
+        </Style>
     </ControlTheme>
 
 
