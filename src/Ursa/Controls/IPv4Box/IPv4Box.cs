@@ -281,6 +281,13 @@ public class IPv4Box: TemplatedControl
         {
             if (presenter?.Bounds.Contains(position)??false)
             {
+                _imClient.SetPresenter(presenter, this);
+                RaiseEvent(new TextInputMethodClientRequestedEventArgs()
+                {
+                    Source = presenter,
+                    Client = _imClient,
+                    RoutedEvent = InputElement.TextInputMethodClientRequestedEvent,
+                });
                 if (e.ClickCount == 1)
                 {
                     presenter.ShowCaret();
