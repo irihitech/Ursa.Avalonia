@@ -5,7 +5,20 @@
     xmlns:converters1="clr-namespace:Ursa.Converters;assembly=Ursa"
     xmlns:iri="https://irihi.tech/shared"
     xmlns:u="https://irihi.tech/ursa">
-    <!--  Add Resources Here  -->
+    <Design.PreviewWith>
+        <StackPanel Height="300">
+            <u:TreeComboBox
+                Watermark="Please Select"
+                Width="300"
+                MaxHeight="200">
+                <u:TreeComboBoxItem Header="Option 1">
+                    <u:TreeComboBoxItem Header="Inner Option 1" />
+                    <u:TreeComboBoxItem Header="Inner Option 2" />
+                </u:TreeComboBoxItem>
+                <u:TreeComboBoxItem Header="Option 2" />
+            </u:TreeComboBox>
+        </StackPanel>
+    </Design.PreviewWith>
 
     <converters:MarginMultiplierConverter
         x:Key="LeftMarginConverter"
@@ -100,7 +113,6 @@
                     <Popup
                         Name="{x:Static iri:PartNames.PART_Popup}"
                         Grid.Column="0"
-                        MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
                         MaxHeight="{TemplateBinding MaxDropDownHeight}"
                         ClipToBounds="False"
                         InheritsTransform="True"
@@ -110,12 +122,14 @@
                         WindowManagerAddShadowHint="False">
                         <Border
                             Name="PopupBorder"
+                            MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
                             Margin="{DynamicResource ComboBoxPopupBorderMargin}"
+                            Padding="{DynamicResource ComboBoxPopupBorderPadding}"
                             Background="{DynamicResource ComboBoxPopupBackground}"
                             BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"
                             BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
                             BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
-                            CornerRadius="6">
+                            CornerRadius="{DynamicResource ComboBoxPopupBoxCornerRadius}">
                             <DockPanel LastChildFill="True">
                                 <ContentPresenter
                                     Name="PART_PopupHeader"

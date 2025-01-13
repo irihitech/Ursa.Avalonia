@@ -2,7 +2,16 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
-    <!--  Add Resources Here  -->
+    <Design.PreviewWith>
+        <StackPanel Height="300">
+            <u:MultiComboBox Width="300">
+                <u:MultiComboBoxItem Content="Option 1" />
+                <u:MultiComboBoxItem Content="Option 2" />
+                <u:MultiComboBoxItem Content="Option 3" />
+                <u:MultiComboBoxItem Content="Option 4" />
+            </u:MultiComboBox>
+        </StackPanel>
+    </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:MultiComboBox}" TargetType="u:MultiComboBox">
         <Setter Property="Focusable" Value="True" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -10,7 +19,7 @@
         <Setter Property="CornerRadius" Value="{DynamicResource ComboBoxSelectorCornerRadius}" />
         <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxSelectorBorderBrush}" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="MaxDropdownHeight" Value="300" />
+        <Setter Property="MaxDropDownHeight" Value="300" />
         <Setter Property="MaxSelectionBoxHeight" Value="270" />
         <Setter Property="MinHeight" Value="32" />
         <Setter Property="Padding" Value="12 4" />
@@ -42,18 +51,18 @@
                                     IsVisible="{TemplateBinding InnerLeftContent,
                                                                 Converter={x:Static ObjectConverters.IsNotNull}}" />
                                 <TextBlock
-                                  x:Name="PlaceholderTextBlock"
-                                  Grid.Column="1"
-                                  Grid.ColumnSpan="2"
-                                  Margin="{TemplateBinding Padding}"
-                                  TextTrimming="CharacterEllipsis"
-                                  HorizontalAlignment="Left"
-                                  VerticalAlignment="Center"
-                                  Foreground="{TemplateBinding Foreground}"
-                                  IsHitTestVisible="False"
-                                  IsVisible="False"
-                                  Opacity="0.3"
-                                  Text="{TemplateBinding Watermark}" />
+                                    x:Name="PlaceholderTextBlock"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="2"
+                                    Margin="{TemplateBinding Padding}"
+                                    TextTrimming="CharacterEllipsis"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    IsHitTestVisible="False"
+                                    IsVisible="False"
+                                    Opacity="0.3"
+                                    Text="{TemplateBinding Watermark}" />
                                 <ScrollViewer
                                     Grid.Column="1"
                                     Grid.ColumnSpan="2"
@@ -102,22 +111,23 @@
                             </Grid>
                         </Border>
                         <Popup
-                            MinWidth="{Binding #PART_RootGrid.Bounds.Width}"
-                            MaxHeight="{TemplateBinding MaxDropdownHeight}"
+                            MaxHeight="{TemplateBinding MaxDropDownHeight}"
                             IsLightDismissEnabled="True"
                             IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsDropDownOpen, Mode=TwoWay}"
                             PlacementTarget="PART_RootGrid">
                             <Border
-                                Margin="{DynamicResource ComboBoxPopupBorderMargin}"
                                 HorizontalAlignment="Stretch"
+                                MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                                Margin="{DynamicResource ComboBoxPopupBorderMargin}"
+                                Padding="{DynamicResource ComboBoxPopupBorderPadding}"
                                 Background="{DynamicResource ComboBoxPopupBackground}"
                                 BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"
                                 BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
                                 BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
-                                CornerRadius="6">
+                                CornerRadius="{DynamicResource ComboBoxPopupBoxCornerRadius}">
                                 <DockPanel LastChildFill="True">
-                                    <ContentPresenter Content="{TemplateBinding PopupInnerTopContent}" DockPanel.Dock="Top"/>
-                                    <ContentPresenter Content="{TemplateBinding PopupInnerBottomContent}" DockPanel.Dock="Bottom"/>
+                                    <ContentPresenter Content="{TemplateBinding PopupInnerTopContent}" DockPanel.Dock="Top" />
+                                    <ContentPresenter Content="{TemplateBinding PopupInnerBottomContent}" DockPanel.Dock="Bottom" />
                                     <ScrollViewer
                                         Grid.IsSharedSizeScope="True"
                                         HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
@@ -208,7 +218,7 @@
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:MultiComboBoxItem}" TargetType="u:MultiComboBoxItem">
-        <Setter Property="Padding" Value="8,0,0,0" />
+        <Setter Property="Padding" Value="12 8" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="Cursor" Value="Hand" />
@@ -220,6 +230,7 @@
             <ControlTemplate TargetType="u:MultiComboBoxItem">
                 <Border
                     x:Name="RootBorder"
+                    Padding="{TemplateBinding Padding}"
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
@@ -231,20 +242,18 @@
                             Width="{DynamicResource CheckBoxBoxGlyphWidth}"
                             Height="{DynamicResource CheckBoxBoxGlyphHeight}"
                             Theme="{DynamicResource InnerPathIcon}"
-                            Margin="8,0"
+                            Margin="0 0 8 0"
                             VerticalAlignment="Center"
-                            Data="{DynamicResource CheckBoxCheckGlyph}"
+                            Data="{DynamicResource SemiIconTick}"
                             Opacity="0" />
                         <ContentPresenter
                             x:Name="ContentPresenter"
                             Grid.Column="1"
-                            Margin="{TemplateBinding Padding}"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="Center"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}"
-                            IsVisible="{TemplateBinding Content,
-                                                        Converter={x:Static ObjectConverters.IsNotNull}}"
+                            IsVisible="{TemplateBinding Content, Converter={x:Static ObjectConverters.IsNotNull}}"
                             RecognizesAccessKey="True"
                             TextWrapping="Wrap" />
                     </Grid>

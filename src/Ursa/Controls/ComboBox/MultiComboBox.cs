@@ -30,9 +30,9 @@ public class MultiComboBox : SelectingItemsControl, IInnerContentControl, IPopup
     public static readonly StyledProperty<bool> IsDropDownOpenProperty =
         ComboBox.IsDropDownOpenProperty.AddOwner<MultiComboBox>();
 
-    public static readonly StyledProperty<double> MaxDropdownHeightProperty =
+    public static readonly StyledProperty<double> MaxDropDownHeightProperty =
         AvaloniaProperty.Register<MultiComboBox, double>(
-            nameof(MaxDropdownHeight));
+            nameof(MaxDropDownHeight));
 
     public static readonly StyledProperty<double> MaxSelectionBoxHeightProperty =
         AvaloniaProperty.Register<MultiComboBox, double>(
@@ -89,10 +89,10 @@ public class MultiComboBox : SelectingItemsControl, IInnerContentControl, IPopup
         set => SetValue(IsDropDownOpenProperty, value);
     }
 
-    public double MaxDropdownHeight
+    public double MaxDropDownHeight
     {
-        get => GetValue(MaxDropdownHeightProperty);
-        set => SetValue(MaxDropdownHeightProperty, value);
+        get => GetValue(MaxDropDownHeightProperty);
+        set => SetValue(MaxDropDownHeightProperty, value);
     }
 
     public double MaxSelectionBoxHeight
