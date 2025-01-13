@@ -7,6 +7,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Input.Platform;
+using Avalonia.Input.TextInput;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Media.TextFormatting;
@@ -96,11 +97,15 @@ public class IPv4Box: TemplatedControl
         get => GetValue(InputModeProperty);
         set => SetValue(InputModeProperty, value);
     }
-
+    private readonly IPv4BoxInputMethodClient _imClient = new IPv4BoxInputMethodClient();
     static IPv4Box()
     {
         ShowLeadingZeroProperty.Changed.AddClassHandler<IPv4Box>((o, e) => o.OnFormatChange(e));
         IPAddressProperty.Changed.AddClassHandler<IPv4Box>((o, e) => o.OnIPChanged(e));
+        TextInputMethodClientRequestedEvent.AddClassHandler<IPv4Box>((tb, e) =>
+        {
+            e.Client = tb._imClient;
+        });
     }
     
     #region Overrides
@@ -278,6 +283,7 @@ public class IPv4Box: TemplatedControl
             {
                 if (e.ClickCount == 1)
                 {
+                    _imClient.SetPresenter(presenter);
                     presenter.ShowCaret();
                     _currentActivePresenter = presenter;
                     var caretPosition = position.WithX(position.X - presenter.Bounds.X);
