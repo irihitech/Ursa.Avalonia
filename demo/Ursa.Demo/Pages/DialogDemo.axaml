@@ -56,11 +56,10 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Style Class" />
                                 <PathIcon
-                                    Width="12"
-                                    Height="12"
+                                    Theme="{StaticResource InnerPathIcon}"
                                     VerticalAlignment="Center"
                                     TextElement.FontWeight="Normal"
-                                    Data="{DynamicResource DialogQuestionIconGlyph}"
+                                    Data="{DynamicResource SemiIconHelpCircle}"
                                     ToolTip.Tip="Pass a Style Class to the created Dialog. In this example, if you set StyleClass as 'Custom', You will get Special Style for OK Button. These styles usually are defined in the root of your App/Window" />
                             </StackPanel>
                         </u:FormItem.Label>
@@ -148,11 +147,10 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Style Class" />
                                 <PathIcon
-                                    Width="12"
-                                    Height="12"
+                                    Theme="{StaticResource InnerPathIcon}"
                                     VerticalAlignment="Center"
                                     TextElement.FontWeight="Normal"
-                                    Data="{DynamicResource DialogQuestionIconGlyph}"
+                                    Data="{DynamicResource SemiIconHelpCircle}"
                                     ToolTip.Tip="Pass a Style Class to the created Dialog. In this example, if you set StyleClass as 'Custom', You will get Special Style for OK Button. These styles usually are defined in the root of your App/Window" />
                             </StackPanel>
                         </u:FormItem.Label>
