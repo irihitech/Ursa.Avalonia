@@ -1,0 +1,26 @@
+<UserControl
+    x:Class="HeadlessTest.Ursa.Controls.FormTests.AccessibilityTests.DynamicForm"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:accessibilityTests="clr-namespace:HeadlessTest.Ursa.Controls.FormTests.AccessibilityTests"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="accessibilityTests:DynamicFormViewModel"
+    mc:Ignorable="d">
+    <u:Form Name="form" ItemsSource="{Binding Items}">
+        <u:Form.Styles>
+            <Style x:DataType="accessibilityTests:FormTextViewModel" Selector="u|FormItem">
+                <Setter Property="Label" Value="{Binding Label}" />
+            </Style>
+        </u:Form.Styles>
+        <u:Form.ItemTemplate>
+            <DataTemplate DataType="accessibilityTests:FormTextViewModel">
+                <TextBox Text="{Binding Value}" />
+            </DataTemplate>
+        </u:Form.ItemTemplate>
+    </u:Form>
+</UserControl>

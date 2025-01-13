@@ -59,6 +59,7 @@
                         HorizontalAlignment="{TemplateBinding LabelAlignment}"
                         Orientation="Horizontal">
                         <Label
+                            Name="PART_Label"
                             Content="{TemplateBinding Label}"
                             Background="Transparent"
                             FontWeight="{DynamicResource TextBlockTitleFontWeight}"
@@ -98,8 +99,7 @@
                                     Name="PART_Label"
                                     Content="{TemplateBinding Label}"
                                     Background="Transparent"
-                                    FontWeight="{DynamicResource TextBlockTitleFontWeight}"
-                                    Target="{Binding #PART_ContentPresenter.Content}" />
+                                    FontWeight="{DynamicResource TextBlockTitleFontWeight}"/>
                                 <TextBlock
                                     Foreground="{DynamicResource FormAsteriskForeground}"
                                     IsVisible="{TemplateBinding IsRequired}"
