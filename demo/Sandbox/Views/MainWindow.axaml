@@ -7,27 +7,19 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Sandbox.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+        xmlns:sys="using:System"
         Icon="/Assets/avalonia-logo.ico"
         Title="Sandbox">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
-
-    <Grid>
-        <u:Form>
-            <u:FormItem Label="_Numeric">
-                <u:NumericIntUpDown/>
-            </u:FormItem>
-            <u:FormItem Label="_AnotherNumeric">
-                <u:NumericIntUpDown/>
-            </u:FormItem>
-            <u:FormItem Label="_TextBox">
-                <TextBox/>
-            </u:FormItem>
-        </u:Form>
-    </Grid>
-
+    <u:UrsaView>
+        <Panel>
+            <Button Content="???" Click="Button_OnClick"></Button>
+            <u:OverlayDialogHost HostId="root"></u:OverlayDialogHost>
+        </Panel>
+    </u:UrsaView>
 </Window>

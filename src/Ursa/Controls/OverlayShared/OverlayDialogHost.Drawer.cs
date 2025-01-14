@@ -5,6 +5,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Styling;
 using Avalonia.VisualTree;
+using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Shapes;
 using Ursa.Common;
 using Ursa.Controls.OverlayShared;
@@ -22,9 +23,10 @@ public partial class OverlayDialogHost
         {
             mask = CreateOverlayMask(false, true);
         }
+
         _layers.Add(new DialogPair(mask, control));
         ResetZIndices();
-        if(mask is not null)this.Children.Add(mask);
+        if (mask is not null) this.Children.Add(mask);
         this.Children.Add(control);
         control.Measure(this.Bounds.Size);
         control.Arrange(new Rect(control.DesiredSize));
@@ -47,7 +49,7 @@ public partial class OverlayDialogHost
             }
         }
     }
-    
+
     internal async void AddModalDrawer(DrawerControlBase control)
     {
         PureRectangle mask = CreateOverlayMask(true, control.CanLightDismiss);
@@ -72,26 +74,28 @@ public partial class OverlayDialogHost
         }
 
         var element = control.GetVisualDescendants().OfType<InputElement>()
-                             .FirstOrDefault(FocusHelper.GetDialogFocusHint);
+            .FirstOrDefault(FocusHelper.GetDialogFocusHint);
         if (element is null)
         {
             element = control.GetVisualDescendants().OfType<InputElement>().FirstOrDefault(a => a.Focusable);
         }
+
         element?.Focus();
     }
 
     private void SetDrawerPosition(DrawerControlBase control)
     {
-        if(control.Position is Position.Left or Position.Right)
+        if (control.Position is Position.Left or Position.Right)
         {
             control.Height = this.Bounds.Height;
         }
-        if(control.Position is Position.Top or Position.Bottom)
+
+        if (control.Position is Position.Top or Position.Bottom)
         {
             control.Width = this.Bounds.Width;
         }
     }
-    
+
     private static void ResetDrawerPosition(DrawerControlBase control, Size newSize)
     {
         if (control.Position == Position.Right)
@@ -112,7 +116,7 @@ public partial class OverlayDialogHost
         else
         {
             control.Width = newSize.Width;
-            SetTop(control, newSize.Height-control.Bounds.Height);
+            SetTop(control, newSize.Height - control.Bounds.Height);
         }
     }
 
@@ -132,26 +136,28 @@ public partial class OverlayDialogHost
             source = appear ? Bounds.Width : Bounds.Width - elementBounds.Width;
             target = appear ? Bounds.Width - elementBounds.Width : Bounds.Width;
         }
-        
+
         if (position == Position.Top)
         {
             source = appear ? -elementBounds.Height : 0;
             target = appear ? 0 : -elementBounds.Height;
         }
-        
+
         if (position == Position.Bottom)
         {
             source = appear ? Bounds.Height : Bounds.Height - elementBounds.Height;
             target = appear ? Bounds.Height - elementBounds.Height : Bounds.Height;
         }
-        
-        var targetProperty = position==Position.Left || position==Position.Right ? Canvas.LeftProperty : Canvas.TopProperty;
+
+        var targetProperty = position == Position.Left || position == Position.Right
+            ? Canvas.LeftProperty
+            : Canvas.TopProperty;
         var animation = new Animation
         {
             Easing = new CubicEaseOut(),
             FillMode = FillMode.Forward
         };
-        var keyFrame1 = new KeyFrame(){ Cue = new Cue(0.0) };
+        var keyFrame1 = new KeyFrame() { Cue = new Cue(0.0) };
         keyFrame1.Setters.Add(new Setter()
             { Property = targetProperty, Value = source });
         var keyFrame2 = new KeyFrame() { Cue = new Cue(1.0) };
@@ -162,16 +168,19 @@ public partial class OverlayDialogHost
         animation.Duration = TimeSpan.FromSeconds(0.3);
         return animation;
     }
-    
+
     private async void OnDrawerControlClosing(object? sender, ResultEventArgs e)
     {
         if (sender is DrawerControlBase control)
         {
+            if (control.IsShowAsync is false)
+                e.Handled = true;
+
             var layer = _layers.FirstOrDefault(a => a.Element == control);
-            if(layer is null) return;
+            if (layer is null) return;
             _layers.Remove(layer);
             control.RemoveHandler(OverlayFeedbackElement.ClosedEvent, OnDialogControlClosing);
-            control.RemoveHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged); 
+            control.RemoveHandler(DialogControlBase.LayerChangedEvent, OnDialogLayerChanged);
             if (layer.Mask is not null)
             {
                 _modalCount--;
@@ -181,8 +190,10 @@ public partial class OverlayDialogHost
                 if (!IsAnimationDisabled)
                 {
                     var disappearAnimation = CreateAnimation(control.Bounds.Size, control.Position, false);
-                    await Task.WhenAll(disappearAnimation.RunAsync(control), MaskDisappearAnimation.RunAsync(layer.Mask));
+                    await Task.WhenAll(disappearAnimation.RunAsync(control),
+                        MaskDisappearAnimation.RunAsync(layer.Mask));
                 }
+
                 Children.Remove(layer.Mask);
             }
             else
@@ -193,6 +204,7 @@ public partial class OverlayDialogHost
                     await disappearAnimation.RunAsync(control);
                 }
             }
+
             Children.Remove(control);
             ResetZIndices();
         }
