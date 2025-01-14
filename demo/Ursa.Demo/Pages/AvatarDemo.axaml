@@ -6,7 +6,7 @@
              xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
              x:CompileBindings="True"
              x:DataType="vm:AvatarDemoViewModel"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="850"
              x:Class="Ursa.Demo.Pages.AvatarDemo">
     <Design.DataContext>
         <vm:AvatarDemoViewModel />
@@ -98,5 +98,14 @@
             </u:Avatar>
         </StackPanel>
 
+        <StackPanel Orientation="Horizontal">
+            <u:AvatarGroup MaxCount="3">
+                <u:Avatar Content="AS" />
+                <u:Avatar Content="BM" Classes="Red" />
+                <u:Avatar Content="TJ" Classes="LightBlue" />
+                <u:Avatar Content="ZL" Foreground="#F56A00" Background="#FDE3CF" />
+                <u:Avatar Content="YZ" Background="#87D068" />
+            </u:AvatarGroup>
+        </StackPanel>
     </StackPanel>
 </UserControl>
