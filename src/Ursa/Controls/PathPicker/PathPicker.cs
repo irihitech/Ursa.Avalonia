@@ -54,14 +54,24 @@ public class PathPicker : TemplatedControl
         AvaloniaProperty.Register<PathPicker, string?>(
             nameof(SelectedPathsText), defaultBindingMode: BindingMode.TwoWay);
 
-    public static readonly StyledProperty<bool> IsCancelingPickerAlsoTriggersProperty =
+    public static readonly StyledProperty<bool> IsOmitCommandOnCancelProperty =
         AvaloniaProperty.Register<PathPicker, bool>(
-            nameof(IsCancelingPickerAlsoTriggers));
+            nameof(IsOmitCommandOnCancel));
 
-    public bool IsCancelingPickerAlsoTriggers
+    public static readonly StyledProperty<bool> IsClearSelectionOnCancelProperty =
+        AvaloniaProperty.Register<PathPicker, bool>(
+            nameof(IsClearSelectionOnCancel));
+
+    public bool IsClearSelectionOnCancel
     {
-        get => GetValue(IsCancelingPickerAlsoTriggersProperty);
-        set => SetValue(IsCancelingPickerAlsoTriggersProperty, value);
+        get => GetValue(IsClearSelectionOnCancelProperty);
+        set => SetValue(IsClearSelectionOnCancelProperty, value);
+    }
+
+    public bool IsOmitCommandOnCancel
+    {
+        get => GetValue(IsOmitCommandOnCancelProperty);
+        set => SetValue(IsOmitCommandOnCancelProperty, value);
     }
 
     public string? SelectedPathsText
@@ -246,7 +256,7 @@ public class PathPicker : TemplatedControl
                         FileTypeFilter = ParseFileTypes(FileFilter)
                     };
                     var resFiles = await storageProvider.OpenFilePickerAsync(filePickerOpenOptions);
-                    SelectedPaths = resFiles.Select(x => x.TryGetLocalPath()).ToArray()!;
+                    UpdateSelectedPaths(resFiles.Select(x => x.TryGetLocalPath()).ToArray()!);
                     break;
                 case UsePickerTypes.SaveFile:
                     FilePickerSaveOptions filePickerSaveOptions = new()
@@ -261,9 +271,9 @@ public class PathPicker : TemplatedControl
 
                     var path = (await storageProvider.SaveFilePickerAsync(filePickerSaveOptions))
                         ?.TryGetLocalPath();
-                    SelectedPaths = string.IsNullOrEmpty(path)
+                    UpdateSelectedPaths(string.IsNullOrEmpty(path)
                         ? Array.Empty<string>()
-                        : [path!];
+                        : [path!]);
                     break;
                 case UsePickerTypes.OpenFolder:
                     FolderPickerOpenOptions folderPickerOpenOptions = new()
@@ -275,18 +285,26 @@ public class PathPicker : TemplatedControl
                         SuggestedFileName = SuggestedFileName
                     };
                     var resFolder = await storageProvider.OpenFolderPickerAsync(folderPickerOpenOptions);
-                    SelectedPaths = resFolder.Select(x => x.TryGetLocalPath()).ToArray()!;
+                    UpdateSelectedPaths(resFolder.Select(x => x.TryGetLocalPath()).ToArray()!);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            if (SelectedPaths.Count != 0 || IsCancelingPickerAlsoTriggers)
+            if (SelectedPaths.Count != 0 || IsOmitCommandOnCancel is false)
                 Command?.Execute(SelectedPaths);
         }
         catch (Exception exception)
         {
             Logger.TryGet(LogEventLevel.Error, LogArea.Control)?.Log(this, $"{exception}");
         }
+
+        return;
+    }
+
+    private void UpdateSelectedPaths(IReadOnlyList<string> newList)
+    {
+        if (newList.Count != 0 || IsClearSelectionOnCancel && newList.Count == 0)
+            SelectedPaths = newList;
     }
 }

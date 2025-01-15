@@ -32,7 +32,11 @@
                     <ToggleButton Name="AllowMultiple" Content="AllowMultiple" u:FormItem.NoLabel="True"
                                   HorizontalAlignment="Stretch">
                     </ToggleButton>
-                    <ToggleButton Name="IsCancelingPickerAlsoTriggers" Content="Canceling selection also triggers the Command."
+                    <ToggleButton Name="IsOmitCommandOnCancel" Content="Do not trigger the command after unselecting."
+                                  u:FormItem.NoLabel="True"
+                                  HorizontalAlignment="Stretch">
+                    </ToggleButton>
+                    <ToggleButton Name="IsClearSelectionOnCancel" Content="Clear the selection when unselecting."
                                   u:FormItem.NoLabel="True"
                                   HorizontalAlignment="Stretch">
                     </ToggleButton>
@@ -53,7 +57,8 @@
                                   SelectedPathsText="{Binding Path,Mode=OneWayToSource}"
                                   SelectedPaths="{Binding Paths,Mode=OneWayToSource}"
                                   Command="{Binding SelectedCommand}"
-                                  IsCancelingPickerAlsoTriggers="{Binding #IsCancelingPickerAlsoTriggers.IsChecked}">
+                                  IsOmitCommandOnCancel="{Binding #IsOmitCommandOnCancel.IsChecked}"
+                                  IsClearSelectionOnCancel="{Binding #IsClearSelectionOnCancel.IsChecked}">
                     </u:PathPicker>
                 </HeaderedContentControl>
                 <HeaderedContentControl Header="PathPickerOnlyButton">
@@ -68,7 +73,8 @@
                                   SelectedPathsText="{Binding Path,Mode=OneWayToSource}"
                                   SelectedPaths="{Binding Paths,Mode=OneWayToSource}"
                                   Command="{Binding SelectedCommand}"
-                                  IsCancelingPickerAlsoTriggers="{Binding #IsCancelingPickerAlsoTriggers.IsChecked}">
+                                  IsOmitCommandOnCancel="{Binding #IsOmitCommandOnCancel.IsChecked}"
+                                  IsClearSelectionOnCancel="{Binding #IsClearSelectionOnCancel.IsChecked}">
                     </u:PathPicker>
                 </HeaderedContentControl>
                 <HeaderedContentControl Header="PathPickerForListView">
@@ -83,7 +89,8 @@
                                   SelectedPathsText="{Binding Path,Mode=OneWayToSource}"
                                   SelectedPaths="{Binding Paths,Mode=OneWayToSource}"
                                   Command="{Binding SelectedCommand}"
-                                  IsCancelingPickerAlsoTriggers="{Binding #IsCancelingPickerAlsoTriggers.IsChecked}">
+                                  IsOmitCommandOnCancel="{Binding #IsOmitCommandOnCancel.IsChecked}"
+                                  IsClearSelectionOnCancel="{Binding #IsClearSelectionOnCancel.IsChecked}">
                     </u:PathPicker>
                 </HeaderedContentControl>
             </StackPanel>
