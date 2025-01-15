@@ -3,7 +3,27 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="clr-namespace:Ursa.Converters;assembly=Ursa"
     xmlns:u="https://irihi.tech/ursa">
-    <!--  Add Resources Here  -->
+    <Design.PreviewWith>
+        <StackPanel Orientation="Horizontal" Margin="20" Width="300" Spacing="10">
+            <u:Badge Header="5">
+                <u:Avatar Classes="Square Blue" Content="BM" />
+            </u:Badge>
+            <u:Badge Dot="True">
+                <u:Avatar Classes="Square Blue" Content="YL" />
+            </u:Badge>
+            <u:Badge>
+                <u:Badge.Header>
+                    <PathIcon
+                        Theme="{StaticResource InnerPathIcon}"
+                        Data="{StaticResource SemiIconLock}" />
+                </u:Badge.Header>
+                <u:Avatar Classes="Square Blue" Content="YL" />
+            </u:Badge>
+            <u:Badge Header="NEW">
+                <u:Avatar Classes="Square LightBlue" Content="WF" />
+            </u:Badge>
+        </StackPanel>
+    </Design.PreviewWith>
 
     <converters:BadgeContentOverflowConverter x:Key="BadgeContentConverter" />
 
@@ -94,7 +114,6 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}"
-                            IsVisible="{Binding Header, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}"
                             RenderTransformOrigin=".5,.5" />
                     </Grid>
                 </ControlTemplate>
@@ -138,6 +157,12 @@
         </Style>
 
         <Style Selector="^.Light">
+            <Style Selector="^/template/ ContentPresenter#PART_HeaderPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource BadgeLightPrimaryBadgeForeground}" />
+            </Style>
+            <Style Selector="^/template/ Border#PART_BadgeContainer">
+                <Setter Property="Background" Value="{DynamicResource BadgeLightPrimaryBadgeBackground}" />
+            </Style>
             <Style Selector="^.Primary">
                 <Style Selector="^/template/ ContentPresenter#PART_HeaderPresenter">
                     <Setter Property="Foreground" Value="{DynamicResource BadgeLightPrimaryBadgeForeground}" />
@@ -191,6 +216,7 @@
             <Style Selector="^/template/ Border#PART_BadgeContainer">
                 <Setter Property="Background" Value="{DynamicResource BadgeInvertedBadgeBackground}" />
             </Style>
+            <Setter Property="Foreground" Value="{DynamicResource BadgeInvertedPrimaryBadgeForeground}" />
             <Style Selector="^.Primary /template/ ContentPresenter#PART_HeaderPresenter">
                 <Setter Property="Foreground" Value="{DynamicResource BadgeInvertedPrimaryBadgeForeground}" />
             </Style>
