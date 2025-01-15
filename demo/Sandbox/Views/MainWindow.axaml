@@ -7,27 +7,84 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Sandbox.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+        xmlns:sys="using:System"
         Icon="/Assets/avalonia-logo.ico"
         Title="Sandbox">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <Grid>
-        <u:Form>
-            <u:FormItem Label="_Numeric">
-                <u:NumericIntUpDown/>
-            </u:FormItem>
-            <u:FormItem Label="_AnotherNumeric">
-                <u:NumericIntUpDown/>
-            </u:FormItem>
-            <u:FormItem Label="_TextBox">
-                <TextBox/>
-            </u:FormItem>
-        </u:Form>
-    </Grid>
 
+    <Grid ColumnDefinitions="*,*"
+          RowDefinitions="7*,3*">
+        <ScrollViewer Grid.Column="0" Grid.Row="0">
+            <u:Form LabelAlignment="Left" LabelPosition="Left" LabelWidth="*" HorizontalAlignment="Stretch">
+                <TextBox Name="Title" u:FormItem.Label="Title"></TextBox>
+                <TextBox Name="SuggestedFileName" u:FormItem.Label="SuggestedFileName"></TextBox>
+                <TextBox Name="SuggestedStartPath" u:FormItem.Label="SuggestedStartPath"></TextBox>
+                <TextBox Name="FileFilter" u:FormItem.Label="FileFilter"></TextBox>
+                <TextBox Name="DefaultFileExtension" u:FormItem.Label="DefaultFileExtension"></TextBox>
+                <ToggleButton Name="AllowMultiple" Content="AllowMultiple" u:FormItem.NoLabel="True"
+                              HorizontalAlignment="Stretch">
+                </ToggleButton>
+                <u:EnumSelector Name="UsePickerType" EnumType="u:UsePickerTypes" u:FormItem.Label="UsePickerType"></u:EnumSelector>
+            </u:Form>
+        </ScrollViewer>
+        <ScrollViewer Grid.Column="0" Grid.Row="1">
+            <StackPanel Spacing="2">
+                <HeaderedContentControl Header="Default">
+                    <u:PathPicker Name="PathPicker"
+                                  Title="{Binding #Title.Text}"
+                                  SuggestedFileName="{Binding #SuggestedFileName.Text}"
+                                  SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
+                                  FileFilter="{Binding #FileFilter.Text}"
+                                  DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
+                                  AllowMultiple="{Binding #AllowMultiple.IsChecked}"
+                                  UsePickerType="{Binding #UsePickerType.Value}">
+                    </u:PathPicker>
+                </HeaderedContentControl>
+                <HeaderedContentControl Header="PathPickerOnlyButton">
+                    <u:PathPicker Name="PathPicker1"
+                                  Theme="{DynamicResource PathPickerOnlyButton}"
+                                  Title="{Binding #Title.Text}"
+                                  SuggestedFileName="{Binding #SuggestedFileName.Text}"
+                                  SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
+                                  FileFilter="{Binding #FileFilter.Text}"
+                                  DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
+                                  AllowMultiple="{Binding #AllowMultiple.IsChecked}"
+                                  UsePickerType="{Binding #UsePickerType.Value}">
+                    </u:PathPicker>
+                </HeaderedContentControl>
+                <HeaderedContentControl Header="PathPickerForList">
+                    <u:PathPicker Name="PathPicker2"
+                                  Theme="{DynamicResource PathPickerForList}"
+                                  Title="{Binding #Title.Text}"
+                                  SuggestedFileName="{Binding #SuggestedFileName.Text}"
+                                  SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
+                                  FileFilter="{Binding #FileFilter.Text}"
+                                  DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
+                                  AllowMultiple="{Binding #AllowMultiple.IsChecked}"
+                                  UsePickerType="{Binding #UsePickerType.Value}">
+                    </u:PathPicker>
+                </HeaderedContentControl>
+            </StackPanel>
+        </ScrollViewer>
+        <ScrollViewer Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
+            <StackPanel Spacing="1">
+                <HeaderedContentControl Header="SelectedPath">
+                    <TextBox Name="SelectedPath" u:FormItem.Label="SelectedPath" IsReadOnly="True"
+                             Text="{Binding #PathPicker.SelectedPath}">
+                    </TextBox>
+                </HeaderedContentControl>
+                <HeaderedContentControl Header="SelectedPaths">
+                    <ListBox Name="SelectedPaths"
+                             ItemsSource="{Binding #PathPicker.SelectedPaths}">
+                    </ListBox>
+                </HeaderedContentControl>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </Window>

@@ -1,0 +1,83 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ursa="https://irihi.tech/ursa">
+    <ControlTheme x:Key="{x:Type ursa:PathPicker}" TargetType="ursa:PathPicker">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <DockPanel HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                           VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                    <Button Name="PART_Button"
+                            DockPanel.Dock="Right"
+                            Content="{TemplateBinding Title}"
+                            Margin="1,0,0,0">
+                    </Button>
+                    <TextBox Name="PART_TextBox"
+                             DockPanel.Dock="Left"
+                             AcceptsReturn="{TemplateBinding AllowMultiple}"
+                             Text="{TemplateBinding SelectedPathsText,Mode=TwoWay}">
+                    </TextBox>
+                </DockPanel>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^[AllowMultiple=False]">
+            <Style Selector="^ /template/ Button#PART_Button">
+                <Setter Property="DockPanel.Dock" Value="Right"></Setter>
+            </Style>
+            <Style Selector="^ /template/ TextBox#PART_TextBox">
+                <Setter Property="DockPanel.Dock" Value="Left"></Setter>
+            </Style>
+        </Style>
+        <Style Selector="^[AllowMultiple=True]">
+            <Style Selector="^ /template/ Button#PART_Button">
+                <Setter Property="DockPanel.Dock" Value="Top"></Setter>
+            </Style>
+            <Style Selector="^ /template/ TextBox#PART_TextBox">
+                <Setter Property="DockPanel.Dock" Value="Bottom"></Setter>
+            </Style>
+        </Style>
+    </ControlTheme>
+
+
+    <ControlTheme x:Key="PathPickerOnlyButton" TargetType="ursa:PathPicker">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Button Name="PART_Button"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                        Content="{TemplateBinding Title}">
+                </Button>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="PathPickerForListView" TargetType="ursa:PathPicker">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Expander HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                    <Expander.Header>
+                        <Button Name="PART_Button"
+                                HorizontalAlignment="Stretch"
+                                Content="{TemplateBinding Title}">
+                            <Button.Theme>
+                                <ControlTheme TargetType="Button">
+                                    <Setter Property="Template">
+                                        <ControlTemplate>
+                                            <TextPresenter Text="{TemplateBinding Content}"
+                                                           Background="Transparent"
+                                                           HorizontalAlignment="Stretch"
+                                                           VerticalAlignment="Stretch">
+                                            </TextPresenter>
+                                        </ControlTemplate>
+                                    </Setter>
+                                </ControlTheme>
+                            </Button.Theme>
+                        </Button>
+                    </Expander.Header>
+                    <ListBox ItemsSource="{TemplateBinding SelectedPaths}"></ListBox>
+                </Expander>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>
