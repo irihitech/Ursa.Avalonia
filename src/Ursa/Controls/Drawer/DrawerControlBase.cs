@@ -49,11 +49,6 @@ public abstract class DrawerControlBase: OverlayFeedbackElement
     internal bool? IsCloseButtonVisible { get; set; }
     
     protected internal bool CanLightDismiss { get; set; }
-    
-    static DrawerControlBase()
-    {
-        DataContextProperty.Changed.AddClassHandler<DrawerControlBase, object?>((o, e) => o.OnDataContextChange(e));
-    }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -61,23 +56,6 @@ public abstract class DrawerControlBase: OverlayFeedbackElement
         Button.ClickEvent.RemoveHandler(OnCloseButtonClick, _closeButton);
         _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
         Button.ClickEvent.AddHandler(OnCloseButtonClick, _closeButton);
-    }
-
-    private void OnDataContextChange(AvaloniaPropertyChangedEventArgs<object?> args)
-    {
-        if(args.OldValue.Value is IDialogContext oldContext)
-        {
-            oldContext.RequestClose -= OnContextRequestClose;
-        }
-        if(args.NewValue.Value is IDialogContext newContext)
-        {
-            newContext.RequestClose += OnContextRequestClose;
-        }
-    }
-
-    private void OnContextRequestClose(object? sender, object? e)
-    {
-        RaiseEvent(new ResultEventArgs(ClosedEvent, e));
     }
 
     private void OnCloseButtonClick(object? sender, RoutedEventArgs e) => Close();

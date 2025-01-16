@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.LogicalTree;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Contracts;
@@ -35,19 +36,13 @@ public abstract class OverlayFeedbackElement : ContentControl
         ClosedEvent.AddClassHandler<OverlayFeedbackElement>((o, e) => o.OnClosed(e));
     }
 
-    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
-    {
-        base.OnDetachedFromVisualTree(e);
-        Content = null;
-    }
-
     public bool IsClosed
     {
         get => GetValue(IsClosedProperty);
         set => SetValue(IsClosedProperty, value);
     }
 
-    private void OnClosed(ResultEventArgs _)
+    private void OnClosed(ResultEventArgs args)
     {
         SetCurrentValue(IsClosedProperty, true);
     }
@@ -74,13 +69,25 @@ public abstract class OverlayFeedbackElement : ContentControl
         RaiseEvent(new ResultEventArgs(ClosedEvent, args));
     }
 
+    protected override void OnDetachedFromLogicalTree(LogicalTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromLogicalTree(e);
+        Content = null;
+    }
+
+    internal bool IsShowAsync { get; set; }
+
     public Task<T?> ShowAsync<T>(CancellationToken? token = default)
     {
+        IsShowAsync = true;
         var tcs = new TaskCompletionSource<T?>();
         token?.Register(() => { Dispatcher.UIThread.Invoke(Close); });
 
         void OnCloseHandler(object? sender, ResultEventArgs? args)
         {
+            IsShowAsync = false;
+            if (args is not null)
+                args.Handled = true;
             if (args?.Result is T result)
                 tcs.SetResult(result);
             else

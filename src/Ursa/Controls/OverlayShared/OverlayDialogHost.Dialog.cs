@@ -1,6 +1,8 @@
 using Avalonia;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.VisualTree;
+using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
 using Irihi.Avalonia.Shared.Shapes;
 using Ursa.Controls.OverlayShared;
@@ -63,6 +65,8 @@ public partial class OverlayDialogHost
     private async void OnDialogControlClosing(object? sender, object? e)
     {
         if (sender is not DialogControlBase control) return;
+        if (control.IsShowAsync is false && e is RoutedEventArgs args)
+            args.Handled = true;
         var layer = _layers.FirstOrDefault(a => a.Element == control);
         if (layer is null) return;
         _layers.Remove(layer);
@@ -116,11 +120,12 @@ public partial class OverlayDialogHost
         if (!IsAnimationDisabled) MaskAppearAnimation.RunAsync(mask);
 
         var element = control.GetVisualDescendants().OfType<InputElement>()
-                             .FirstOrDefault(FocusHelper.GetDialogFocusHint);
+            .FirstOrDefault(FocusHelper.GetDialogFocusHint);
         if (element is null)
         {
             element = control.GetVisualDescendants().OfType<InputElement>().FirstOrDefault(a => a.Focusable);
         }
+
         element?.Focus();
         _modalCount++;
         IsInModalStatus = _modalCount > 0;
