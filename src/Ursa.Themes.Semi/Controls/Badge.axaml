@@ -22,6 +22,9 @@
             <u:Badge Header="NEW">
                 <u:Avatar Classes="Square LightBlue" Content="WF" />
             </u:Badge>
+            <u:Badge Classes="Light" Header="Pyro" CornerPosition="BottomLeft">
+                <u:Avatar Classes="Red" Content="火" />
+            </u:Badge>
         </StackPanel>
     </Design.PreviewWith>
 
@@ -42,7 +45,7 @@
         <Setter Property="CornerPosition" Value="{DynamicResource BadgeCornerPosition}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="{x:Type u:Badge}">
-                <Grid
+                <Panel
                     HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                     VerticalAlignment="{TemplateBinding VerticalAlignment}"
                     ClipToBounds="False">
@@ -59,8 +62,6 @@
                         MinWidth="{DynamicResource BadgeMinWidth}"
                         MinHeight="{DynamicResource BadgeMinHeight}"
                         Padding="{DynamicResource BadgePadding}"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Top"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
@@ -85,14 +86,14 @@
                             </ContentPresenter.Content>
                         </ContentPresenter>
                     </Border>
-                </Grid>
+                </Panel>
             </ControlTemplate>
         </Setter>
 
         <Style Selector="^[Dot=True]">
             <Setter Property="Template">
                 <ControlTemplate TargetType="{x:Type u:Badge}">
-                    <Grid
+                    <Panel
                         HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                         VerticalAlignment="{TemplateBinding VerticalAlignment}"
                         ClipToBounds="False">
@@ -108,14 +109,12 @@
                             Name="{x:Static u:Badge.PART_BadgeContainer}"
                             Width="{DynamicResource BadgeDotWidth}"
                             Height="{DynamicResource BadgeDotHeight}"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Top"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}"
                             RenderTransformOrigin=".5,.5" />
-                    </Grid>
+                    </Panel>
                 </ControlTemplate>
             </Setter>
         </Style>
