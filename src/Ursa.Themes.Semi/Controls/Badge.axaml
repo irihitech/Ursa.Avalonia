@@ -66,10 +66,15 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}"
-                        IsVisible="{Binding Header, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}"
                         RenderTransformOrigin=".5,.5"
                         Theme="{TemplateBinding BadgeTheme}"
                         UseLayoutRounding="False">
+                        <Border.IsVisible>
+                            <MultiBinding Converter="{x:Static BoolConverters.Or}">
+                                <Binding Path="Header" RelativeSource="{RelativeSource TemplatedParent}" Converter="{x:Static ObjectConverters.IsNotNull}" />
+                                <Binding Path="Dot" RelativeSource="{RelativeSource TemplatedParent}" />
+                            </MultiBinding>
+                        </Border.IsVisible>
                         <ContentPresenter
                             Name="{x:Static u:Badge.PART_HeaderPresenter}"
                             HorizontalAlignment="Center"
@@ -90,33 +95,13 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^[Dot=True]">
-            <Setter Property="Template">
-                <ControlTemplate TargetType="{x:Type u:Badge}">
-                    <Panel
-                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                        ClipToBounds="False">
-                        <ContentPresenter
-                            Name="{x:Static u:Badge.PART_ContentPresenter}"
-                            Margin="{TemplateBinding Padding}"
-                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                            Content="{TemplateBinding Content}"
-                            ContentTemplate="{TemplateBinding ContentTemplate}"
-                            Foreground="{DynamicResource BadgeContentForeground}" />
-                        <Border
-                            Name="{x:Static u:Badge.PART_BadgeContainer}"
-                            Width="{DynamicResource BadgeDotWidth}"
-                            Height="{DynamicResource BadgeDotHeight}"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}"
-                            RenderTransformOrigin=".5,.5" />
-                    </Panel>
-                </ControlTemplate>
-            </Setter>
+        <Style Selector="^[Dot=True] /template/ Border#PART_BadgeContainer">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="MinWidth" Value="{DynamicResource BadgeDotWidth}" />
+            <Setter Property="MinHeight" Value="{DynamicResource BadgeDotHeight}" />
+        </Style>
+        <Style Selector="^[Dot=True] /template/ ContentPresenter#PART_HeaderPresenter">
+            <Setter Property="IsVisible" Value="False" />
         </Style>
 
         <Style Selector="^[CornerPosition=TopLeft] /template/ Border#PART_BadgeContainer">
