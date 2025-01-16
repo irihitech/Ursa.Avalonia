@@ -103,24 +103,24 @@
                                 Content="Step 1"
                                 Header="ToDo"
                                 Type="Default"
-                                Time="2023-01-14 09:24:05"/>
+                                Time="2023-01-14 09:24:05" />
                             <u:TimelineItem
                                 Content="Step 2"
                                 Header="Start"
                                 Position="Right"
                                 Type="Ongoing"
-                                Time="2024-01-04 22:32:58"/>
+                                Time="2024-01-04 22:32:58" />
                             <u:TimelineItem
                                 Content="Step 3"
                                 Header="In Between"
                                 Type="Warning"
-                                Time="2024-01-05 00:08:29"/>
+                                Time="2024-01-05 00:08:29" />
                             <u:TimelineItem
                                 Content="Step 4"
                                 Header="Finished"
                                 Position="Right"
-                                Type="Success" 
-                                Time="2024-01-05 00:27:44"/>
+                                Type="Success"
+                                Time="2024-01-05 00:27:44" />
                         </u:Timeline>
                         <StackPanel Grid.Column="2" Spacing="20">
                             <u:ButtonGroup Classes="Primary Solid" ItemsSource="{Binding ButtonGroupItems}" />
@@ -133,58 +133,38 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" Grid.Row="1" Spacing="20" Margin="8">
-                    <u:Divider HorizontalContentAlignment="Right">Badge</u:Divider>
+                    <u:Divider HorizontalContentAlignment="Right">
+                        <u:Badge Header="Badge" />
+                    </u:Divider>
                     <WrapPanel Orientation="Horizontal">
-                        <u:Badge Header="Ursa" CornerPosition="TopRight">
-                            <Border Classes="Hover">
-                                <TextBlock Text="Pyro"/>
-                            </Border>
+                        <u:Badge Classes="Light" Header="Pyro">
+                            <u:Avatar Classes="Red" Content="火" />
                         </u:Badge>
-                        <u:Badge
-                            HorizontalAlignment="Center"
-                            CornerPosition="TopRight"
-                            Header="500"
-                            OverflowCount="99">
-                            <Border Classes="Hover">
-                                <TextBlock Text="Hydro"/>
-                            </Border>
+                        <u:Badge Classes="Inverted" Header="500" OverflowCount="99">
+                            <u:Avatar Classes="Square Blue" Content="水" />
                         </u:Badge>
-                        <u:Badge
-                            Header="Ursa"
-                            CornerPosition="TopRight"
-                            Dot="True">
-                            <Border Classes="Hover">
-                                <TextBlock Text="Ameno"/>
-                            </Border>
+                        <u:Badge Classes="Secondary" Dot="True">
+                            <u:Avatar Classes="Square Green" Content="风" />
                         </u:Badge>
-
+                        <u:Badge Classes="Tertiary" Header="Electro">
+                            <u:Avatar Classes="Square Violet" Content="雷" />
+                        </u:Badge>
+                        <u:Badge Classes="Success" Header="Dendro" CornerPosition="BottomLeft">
+                            <u:Avatar Classes="Square Lime" Content="草" />
+                        </u:Badge>
+                        <u:Badge Classes="Warning" Header="Cryo" CornerPosition="BottomRight">
+                            <u:Avatar Classes="Square LightBlue" Content="冰" />
+                        </u:Badge>
+                        <u:Badge Classes="Danger" Header="Geo" CornerPosition="TopRight">
+                            <u:Avatar Classes="Square Amber" Content="岩" />
+                        </u:Badge>
                         <u:Badge Header="Ursa" />
-                        <u:Badge Header="Ursa" Dot="True" />
-                    </WrapPanel>
-                    <WrapPanel Orientation="Horizontal">
-                        <u:Badge Header="Ursa" Classes="Secondary">
-                            <Border Classes="Hover">
-                                <TextBlock Text="Electro"/>
-                            </Border>
-                        </u:Badge>
-                        <u:Badge Header="Ursa" Classes="Tertiary" CornerPosition="BottomLeft">
-                            <Border Classes="Hover">
-                                <TextBlock Text="Dendro"/>
-                            </Border>
-                        </u:Badge>
-                        <u:Badge Header="Ursa" Classes="Warning" CornerPosition="BottomRight">
-                            <Border Classes="Hover">
-                                <TextBlock Text="Cryo"/>
-                            </Border>
-                        </u:Badge>
-                        <u:Badge Header="Ursa" Classes="Danger" CornerPosition="TopRight">
-                            <Border Classes="Hover">
-                                <TextBlock Text="Geo"/>
-                            </Border>
-                        </u:Badge>
+                        <u:Badge Dot="True" />
                     </WrapPanel>
 
-                    <u:Divider>DualBadge</u:Divider>
+                    <u:Divider>
+                        <u:DualBadge Content="DualBadge" />
+                    </u:Divider>
                     <WrapPanel Orientation="Horizontal">
                         <u:DualBadge Header="downloads">
                             <u:DualBadge.Icon>
