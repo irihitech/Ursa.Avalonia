@@ -59,7 +59,8 @@ public class MenuViewModel : ViewModelBase
             new() { MenuHeader = "ToolBar", Key = MenuKeys.MenuKeyToolBar },
             new() { MenuHeader = "TreeComboBox", Key = MenuKeys.MenuKeyTreeComboBox },
             new() { MenuHeader = "TwoTonePathIcon", Key = MenuKeys.MenuKeyTwoTonePathIcon },
-            new() { MenuHeader = "AspectRatioLayout", Key = MenuKeys.AspectRatioLayout ,Status = "WIP"},
+            new() { MenuHeader = "AspectRatioLayout", Key = MenuKeys.AspectRatioLayout, Status = "New" },
+            new() { MenuHeader = "PathPicker", Key = MenuKeys.PathPicker, Status = "WIP" },
         };
     }
 }
@@ -115,4 +116,5 @@ public static class MenuKeys
     public const string MenuKeyTreeComboBox = "TreeComboBox";
     public const string MenuKeyTwoTonePathIcon = "TwoTonePathIcon";
     public const string AspectRatioLayout = "AspectRatioLayout";
+    public const string PathPicker = "PathPicker";
 }

@@ -55,5 +55,6 @@
         <ResourceInclude Source="UrsaView.axaml" />
         <ResourceInclude Source="UrsaWindow.axaml"/>
         <ResourceInclude Source="PinCode.axaml" />
+        <ResourceInclude Source="PathPicker.axaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

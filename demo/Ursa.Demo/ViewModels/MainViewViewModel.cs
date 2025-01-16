@@ -4,6 +4,7 @@ using Avalonia;
 using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
+using Ursa.Controls;
 using Ursa.Themes.Semi;
 
 namespace Ursa.Demo.ViewModels;
@@ -79,6 +80,7 @@ public partial class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyTreeComboBox => new TreeComboBoxDemoViewModel(),
             MenuKeys.MenuKeyTwoTonePathIcon => new TwoTonePathIconDemoViewModel(),
             MenuKeys.AspectRatioLayout => new AspectRatioLayoutDemoViewModel(),
+            MenuKeys.PathPicker => new PathPickerDemoViewModel(),
             _ => throw new ArgumentOutOfRangeException(nameof(s), s, null)
         };
     }
