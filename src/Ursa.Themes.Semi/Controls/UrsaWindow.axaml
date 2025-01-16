@@ -126,7 +126,6 @@
                             <u:CaptionButtons
                                 x:Name="PART_CaptionButtons"
                                 Grid.Column="3"
-                                Margin="8,0"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
                                 DockPanel.Dock="Right"
@@ -139,63 +138,56 @@
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:CaptionButtons}" TargetType="u:CaptionButtons">
+        <Setter Property="Foreground" Value="{DynamicResource CaptionButtonForeground}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:CaptionButtons">
-                <StackPanel
-                    VerticalAlignment="Stretch"
-                    Orientation="Horizontal"
-                    Spacing="2"
-                    TextElement.FontSize="10">
-                    <Button x:Name="PART_FullScreenButton" Theme="{DynamicResource CaptionButton}">
+                <StackPanel Orientation="Horizontal">
+                    <Button Name="PART_FullScreenButton" Theme="{StaticResource CaptionButton}">
                         <PathIcon
                             Name="PART_FullScreenButtonIcon"
-                            Width="12"
-                            Height="12"
-                            Data="{DynamicResource WindowExpandGlyph}"
+                            Theme="{StaticResource InnerPathIcon}"
+                            Data="{StaticResource WindowExpandGlyph}"
                             Foreground="{Binding $parent[Button].Foreground}" />
                     </Button>
-                    <Button x:Name="PART_MinimizeButton" Theme="{DynamicResource CaptionButton}">
+                    <Button Name="PART_MinimizeButton" Theme="{StaticResource CaptionButton}">
                         <PathIcon
-                            Width="12"
-                            Height="12"
-                            Data="{DynamicResource WindowMinimizeGlyph}"
+                            Name="PART_MinimizeButtonIcon"
+                            Theme="{StaticResource InnerPathIcon}"
+                            Data="{StaticResource WindowMinimizeGlyph}"
                             Foreground="{Binding $parent[Button].Foreground}" />
                     </Button>
-                    <Button x:Name="PART_RestoreButton" Theme="{DynamicResource CaptionButton}">
+                    <Button Name="PART_RestoreButton" Theme="{StaticResource CaptionButton}">
                         <PathIcon
                             Name="PART_RestoreButtonIcon"
-                            Width="12"
-                            Height="12"
-                            Data="{DynamicResource WindowMaximizeGlyph}"
+                            Theme="{StaticResource InnerPathIcon}"
+                            Data="{StaticResource WindowMaximizeGlyph}"
                             Foreground="{Binding $parent[Button].Foreground}" />
                     </Button>
-                    <Button
-                        x:Name="PART_CloseButton"
-                        Background="{DynamicResource CaptionButtonClosePointeroverBackground}"
-                        BorderBrush="{DynamicResource CaptionButtonClosePressedBackground}"
-                        Theme="{DynamicResource CaptionButton}">
-                        <Button.Styles>
-                            <Style Selector="Button:pointerover">
-                                <Setter Property="Foreground" Value="White" />
-                            </Style>
-                            <Style Selector="Button:pressed">
-                                <Setter Property="Foreground" Value="White" />
-                            </Style>
-                        </Button.Styles>
+                    <Button Name="PART_CloseButton" Theme="{StaticResource CaptionButton}">
                         <PathIcon
-                            Width="12"
-                            Height="12"
-                            Data="{DynamicResource WindowCloseIconGlyph}"
+                            Name="PART_CloseButtonIcon"
+                            Theme="{StaticResource InnerPathIcon}"
+                            Data="{StaticResource WindowCloseIconGlyph}"
                             Foreground="{Binding $parent[Button].Foreground}" />
                     </Button>
                 </StackPanel>
             </ControlTemplate>
         </Setter>
+
+        <Style Selector="^ /template/ Button#PART_CloseButton:pointerover">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="{DynamicResource CaptionButtonClosePointeroverBackground}" />
+        </Style>
+        <Style Selector="^ /template/ Button#PART_CloseButton:pressed">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="{DynamicResource CaptionButtonClosePressedBackground}" />
+        </Style>
+
         <Style Selector="^:maximized /template/ PathIcon#PART_RestoreButtonIcon">
-            <Setter Property="Data" Value="{DynamicResource WindowRestoreGlyph}" />
+            <Setter Property="Data" Value="{StaticResource WindowRestoreGlyph}" />
         </Style>
         <Style Selector="^:fullscreen /template/ PathIcon#PART_FullScreenButtonIcon">
-            <Setter Property="Data" Value="{DynamicResource WindowCollapseGlyph}" />
+            <Setter Property="Data" Value="{StaticResource WindowCollapseGlyph}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
