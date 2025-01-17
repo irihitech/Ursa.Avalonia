@@ -98,13 +98,33 @@
             </u:Avatar>
         </StackPanel>
 
-        <u:AvatarGroup MaxCount="3">
+        <u:NumericIntUpDown
+            Name="n"
+            HorizontalAlignment="Left"
+            Width="200"
+            AllowDrag="True"
+            Maximum="20"
+            Minimum="-5"
+            Value="3" />
+
+        <u:AvatarGroup MaxCount="{Binding #n.Value}">
             <u:Avatar Content="AS" />
             <u:Avatar Content="BM" Classes="Red" />
             <u:Avatar Content="TJ" Classes="LightBlue" />
             <u:Avatar Content="ZL" Foreground="#F56A00" Background="#FDE3CF" />
             <u:Avatar Content="YZ" Background="#87D068" />
         </u:AvatarGroup>
-        <u:AvatarGroup MaxCount="3" ItemsSource="{Binding Items}" />
+        <u:AvatarGroup MaxCount="{Binding #n.Value}" ItemsSource="{Binding Items}" />
+        <u:AvatarGroup MaxCount="{Binding #n.Value}" ItemsSource="{Binding People}">
+            <u:AvatarGroup.ItemTemplate>
+                <DataTemplate DataType="vm:Person">
+                    <u:Avatar
+                        Theme="{StaticResource AvatarGroupItemTheme}"
+                        Content="{Binding Name}"
+                        Command="{Binding $parent[UserControl].((vm:AvatarDemoViewModel)DataContext).ShowCommand}"
+                        CommandParameter="{Binding $self.Content}" />
+                </DataTemplate>
+            </u:AvatarGroup.ItemTemplate>
+        </u:AvatarGroup>
     </StackPanel>
 </UserControl>
