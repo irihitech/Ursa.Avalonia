@@ -16,341 +16,306 @@
 
             <StackPanel.Styles>
                 <Style Selector="u|Badge">
-                    <Setter Property="Margin" Value="14" />
-                    <Style Selector="^ Border">
-                        <Setter Property="Background" Value="{DynamicResource SemiOrange3}" />
-                        <Setter Property="CornerRadius" Value="8" />
-                        <Style Selector="^ TextBlock">
-                            <Setter Property="HorizontalAlignment" Value="Center" />
-                            <Setter Property="VerticalAlignment" Value="Center" />
-                        </Style>
-                    </Style>
+                    <Setter Property="Margin" Value="10" />
                 </Style>
             </StackPanel.Styles>
 
             <StackPanel Orientation="Horizontal">
-                <u:Badge
-                    HorizontalAlignment="Center"
-                    Header="500"
-                    OverflowCount="100">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
-                    </Border>
+                <u:Badge Header="5">
+                    <u:Avatar Classes="Square Blue" Content="BM" />
                 </u:Badge>
-                <u:Badge Header="SUCCEED!">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
-                    </Border>
+                <u:Badge Dot="True">
+                    <u:Avatar Classes="Square Blue" Content="YL" />
                 </u:Badge>
-                <u:Badge Header="Hello" />
-                <u:Badge Header="Hello" Dot="True" />
+                <!-- <u:Badge> -->
+                <!--     <u:Badge.Header> -->
+                <!--         <PathIcon -->
+                <!--             Theme="{StaticResource PathIcon}" -->
+                <!--             Data="{StaticResource SemiIconLock}" /> -->
+                <!--     </u:Badge.Header> -->
+                <!--     <u:Avatar Classes="Square Blue" Content="YL" /> -->
+                <!-- </u:Badge> -->
+                <u:Badge Header="NEW">
+                    <u:Avatar Classes="Square LightBlue" Content="WF" />
+                </u:Badge>
             </StackPanel>
+
             <StackPanel Orientation="Horizontal">
-                <u:Badge Header="5" CornerPosition="TopLeft">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
-                    </Border>
+                <u:Badge Header="99">
+                    <u:Avatar Classes="Square Teal" Content="ZH" />
                 </u:Badge>
-                <u:Badge Header="5" CornerPosition="TopRight">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
-                    </Border>
+                <u:Badge Header="100">
+                    <u:Avatar Classes="Square Teal" Content="HS" />
                 </u:Badge>
-                <u:Badge Header="5" CornerPosition="BottomLeft">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
-                    </Border>
+                <u:Badge Header="99" OverflowCount="10">
+                    <u:Avatar Classes="Square Green" Content="DY" />
                 </u:Badge>
-                <u:Badge Header="5" CornerPosition="BottomRight">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
-                    </Border>
+                <u:Badge Header="1000" OverflowCount="999">
+                    <u:Avatar Classes="Square Green" Content="TT" />
                 </u:Badge>
             </StackPanel>
+
             <StackPanel Orientation="Horizontal">
-                <u:Badge
-                    Header="VIP"
-                    CornerPosition="TopLeft"
-                    Dot="True">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
-                    </Border>
+                <u:Badge Classes="Danger" Header="VIP" CornerPosition="TopRight">
+                    <u:Avatar Classes="Square Amber" Content="ZH" />
                 </u:Badge>
-                <u:Badge
-                    Header="VIP"
-                    CornerPosition="TopRight"
-                    Dot="True">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
-                    </Border>
+                <u:Badge Classes="Danger" Header="VIP" CornerPosition="BottomRight">
+                    <u:Avatar Classes="Square Amber" Content="HS" />
                 </u:Badge>
-                <u:Badge
-                    Header="VIP"
-                    CornerPosition="BottomLeft"
-                    Dot="True">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
-                    </Border>
+                <u:Badge Classes="Danger" Header="VIP" CornerPosition="TopLeft">
+                    <u:Avatar Classes="Square Orange" Content="DY" />
                 </u:Badge>
-                <u:Badge
-                    Header="VIP"
-                    CornerPosition="BottomRight"
-                    Dot="True">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="■■■"/>
-                    </Border>
+                <u:Badge Classes="Danger" Header="VIP" CornerPosition="BottomLeft">
+                    <u:Avatar Classes="Square Orange" Content="TT" />
                 </u:Badge>
             </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <u:Badge Header="5">
+                    <u:Avatar Classes="Square Indigo" Content="XZ" />
+                </u:Badge>
+                <u:Badge Header="5" Classes="Light">
+                    <u:Avatar Classes="Square Indigo" Content="YB" />
+                </u:Badge>
+                <u:Badge Header="5" Classes="Inverted">
+                    <u:Avatar Classes="Square LightGreen" Content="LX" />
+                </u:Badge>
+                <u:Badge Header="5" Dot="True">
+                    <u:Avatar Classes="Square LightGreen" Content="YZ" />
+                </u:Badge>
+                <u:Badge Header="5" Classes="Light" Dot="True">
+                    <u:Avatar Classes="Square Lime" Content="HW" />
+                </u:Badge>
+                <Border
+                    Background="{DynamicResource SemiColorFill0}"
+                    CornerRadius="4">
+                    <u:Badge Header="5" Classes="Inverted" Dot="True">
+                        <u:Avatar Classes="Square Lime" Content="XM" />
+                    </u:Badge>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <u:Badge Header="5">
+                    <u:Avatar Classes="Square Violet" Content="MR" />
+                </u:Badge>
+                <u:Badge Header="5" Classes="Secondary">
+                    <u:Avatar Classes="Square Violet" Content="YL" />
+                </u:Badge>
+                <u:Badge Header="5" Classes="Tertiary">
+                    <u:Avatar Classes="Square Red" Content="ZW" />
+                </u:Badge>
+                <u:Badge Header="5" Classes="Warning">
+                    <u:Avatar Classes="Square Red" Content="JL" />
+                </u:Badge>
+                <u:Badge Header="5" Classes="Danger">
+                    <u:Avatar Classes="Square Pink" Content="RT" />
+                </u:Badge>
+                <u:Badge Header="5" Classes="Primary" Dot="True">
+                    <u:Avatar Classes="Square Pink" Content="YF" />
+                </u:Badge>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <u:Badge Header="5" />
+                <u:Badge Classes="Light" Header="NEW" />
+                <u:Badge Classes="Danger" Header="99" OverflowCount="10" />
+                <u:Badge Classes="Primary" Dot="True" />
+                <u:Badge Classes="Secondary" Dot="True" />
+                <u:Badge Classes="Tertiary" Dot="True" />
+                <u:Badge Classes="Success" Dot="True" />
+                <u:Badge Classes="Warning" Dot="True" />
+                <u:Badge Classes="Danger" Dot="True" />
+            </StackPanel>
+
             <u:Badge HorizontalAlignment="Stretch" Header="VIP">
-                <Border Height="50">
-                    <TextBlock Text="■■■"/>
+                <Border Theme="{StaticResource CardBorder}" Margin="0">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Stretch Space"
+                        FontWeight="600" />
                 </Border>
             </u:Badge>
+
             <StackPanel Orientation="Horizontal">
                 <u:Badge Header="URSA" Classes="Primary">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Solid"/>
-                    </Border>
+                    <u:Avatar Classes="Square Indigo" Content="Solid" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Secondary">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Solid"/>
-                    </Border>
+                    <u:Avatar Classes="Square Indigo" Content="Solid" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Tertiary">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Solid"/>
-                    </Border>
+                    <u:Avatar Classes="Square Indigo" Content="Solid" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Success">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Solid"/>
-                    </Border>
+                    <u:Avatar Classes="Square Indigo" Content="Solid" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Warning">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Solid"/>
-                    </Border>
+                    <u:Avatar Classes="Square Indigo" Content="Solid" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Danger">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Solid"/>
-                    </Border>
+                    <u:Avatar Classes="Square Indigo" Content="Solid" />
                 </u:Badge>
             </StackPanel>
+
             <StackPanel Orientation="Horizontal">
                 <u:Badge Header="URSA" Classes="Light Primary">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Light"/>
-                    </Border>
+                    <u:Avatar Classes="Square Indigo" Content="Light" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Light Secondary">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Light"/>
-                    </Border>
+                    <u:Avatar Classes="Square Indigo" Content="Light" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Light Tertiary">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Light"/>
-                    </Border>
+                    <u:Avatar Classes="Square Indigo" Content="Light" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Light Success">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Light"/>
-                    </Border>
+                    <u:Avatar Classes="Square Indigo" Content="Light" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Light Warning">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Light"/>
-                    </Border>
+                    <u:Avatar Classes="Square Indigo" Content="Light" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Light Danger">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Light"/>
-                    </Border>
+                    <u:Avatar Classes="Square Indigo" Content="Light" />
                 </u:Badge>
             </StackPanel>
+
             <StackPanel Orientation="Horizontal">
                 <u:Badge Header="URSA" Classes="Inverted Primary">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Inverted"/>
-                    </Border>
+                    <u:Avatar Classes="Square LightGreen" Content="Inverted" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Inverted Secondary">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Inverted"/>
-                    </Border>
+                    <u:Avatar Classes="Square LightGreen" Content="Inverted" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Inverted Tertiary">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Inverted"/>
-                    </Border>
+                    <u:Avatar Classes="Square LightGreen" Content="Inverted" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Inverted Success">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Inverted"/>
-                    </Border>
+                    <u:Avatar Classes="Square LightGreen" Content="Inverted" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Inverted Warning">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Inverted"/>
-                    </Border>
+                    <u:Avatar Classes="Square LightGreen" Content="Inverted" />
                 </u:Badge>
                 <u:Badge Header="URSA" Classes="Inverted Danger">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Inverted"/>
-                    </Border>
+                    <u:Avatar Classes="Square LightGreen" Content="Inverted" />
                 </u:Badge>
             </StackPanel>
+
             <StackPanel Orientation="Horizontal">
                 <u:Badge
                     Header="URSA"
                     Classes="Primary"
                     Dot="True">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Solid"/>
-                    </Border>
+                    <u:Avatar Classes="Square Lime" Content="Solid" />
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Secondary"
                     Dot="True">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Solid"/>
-                    </Border>
+                    <u:Avatar Classes="Square Lime" Content="Solid" />
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Tertiary"
                     Dot="True">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Solid"/>
-                    </Border>
+                    <u:Avatar Classes="Square Lime" Content="Solid" />
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Success"
                     Dot="True">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Solid"/>
-                    </Border>
+                    <u:Avatar Classes="Square Lime" Content="Solid" />
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Warning"
                     Dot="True">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Solid"/>
-                    </Border>
+                    <u:Avatar Classes="Square Lime" Content="Solid" />
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Danger"
                     Dot="True">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Solid"/>
-                    </Border>
+                    <u:Avatar Classes="Square Lime" Content="Solid" />
                 </u:Badge>
             </StackPanel>
+
             <StackPanel Orientation="Horizontal">
                 <u:Badge
                     Header="URSA"
                     Classes="Light Primary"
                     Dot="True">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Light"/>
-                    </Border>
+                    <u:Avatar Classes="Square Violet" Content="Light" />
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Light Secondary"
                     Dot="True">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Light"/>
-                    </Border>
+                    <u:Avatar Classes="Square Violet" Content="Light" />
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Light Tertiary"
                     Dot="True">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Light"/>
-                    </Border>
+                    <u:Avatar Classes="Square Violet" Content="Light" />
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Light Success"
                     Dot="True">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Light"/>
-                    </Border>
+                    <u:Avatar Classes="Square Violet" Content="Light" />
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Light Warning"
                     Dot="True">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Light"/>
-                    </Border>
+                    <u:Avatar Classes="Square Violet" Content="Light" />
                 </u:Badge>
                 <u:Badge
                     Header="URSA"
                     Classes="Light Danger"
                     Dot="True">
-                    <Border Width="100" Height="50">
-                        <TextBlock Text="Light"/>
-                    </Border>
+                    <u:Avatar Classes="Square Violet" Content="Light" />
                 </u:Badge>
             </StackPanel>
-            <Border Background="{DynamicResource SemiGrey2}" CornerRadius="4">
+
+            <Border Background="{DynamicResource SemiColorFill0}" CornerRadius="4">
                 <StackPanel Orientation="Horizontal">
                     <u:Badge
                         Header="URSA"
                         Classes="Inverted Primary"
                         Dot="True">
-                        <Border Width="100" Height="50">
-                            <TextBlock Text="Inverted"/>
-                        </Border>
+                        <u:Avatar Classes="Square Pink" Content="Inverted" />
                     </u:Badge>
                     <u:Badge
                         Header="URSA"
                         Classes="Inverted Secondary"
                         Dot="True">
-                        <Border Width="100" Height="50">
-                            <TextBlock Text="Inverted"/>
-                        </Border>
+                        <u:Avatar Classes="Square Pink" Content="Inverted" />
                     </u:Badge>
                     <u:Badge
                         Header="URSA"
                         Classes="Inverted Tertiary"
                         Dot="True">
-                        <Border Width="100" Height="50">
-                            <TextBlock Text="Inverted"/>
-                        </Border>
+                        <u:Avatar Classes="Square Pink" Content="Inverted" />
                     </u:Badge>
                     <u:Badge
                         Header="URSA"
                         Classes="Inverted Success"
                         Dot="True">
-                        <Border Width="100" Height="50">
-                            <TextBlock Text="Inverted"/>
-                        </Border>
+                        <u:Avatar Classes="Square Pink" Content="Inverted" />
                     </u:Badge>
                     <u:Badge
                         Header="URSA"
                         Classes="Inverted Warning"
                         Dot="True">
-                        <Border Width="100" Height="50">
-                            <TextBlock Text="Inverted"/>
-                        </Border>
+                        <u:Avatar Classes="Square Pink" Content="Inverted" />
                     </u:Badge>
                     <u:Badge
                         Header="URSA"
                         Classes="Inverted Danger"
                         Dot="True">
-                        <Border Width="100" Height="50">
-                            <TextBlock Text="Inverted"/>
-                        </Border>
+                        <u:Avatar Classes="Square Pink" Content="Inverted" />
                     </u:Badge>
                 </StackPanel>
             </Border>

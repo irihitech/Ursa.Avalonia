@@ -1,14 +1,20 @@
 ﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:u="https://irihi.tech/ursa"
-    xmlns:converters="clr-namespace:Ursa.Converters;assembly=Ursa">
-    <converters:DivideByTwoConverter x:Key="DivideByTwoConverter" />
+    xmlns:u="https://irihi.tech/ursa">
+    <Design.PreviewWith>
+        <StackPanel Margin="20" Orientation="Horizontal" Spacing="8">
+            <u:Avatar Content="AS" />
+            <u:Avatar Content="Semi" Padding="4" />
+            <u:Avatar Content="Semi" Padding="10" />
+        </StackPanel>
+    </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:Avatar}" TargetType="{x:Type u:Avatar}">
         <Setter Property="Foreground" Value="{DynamicResource AvatarForeground}" />
         <Setter Property="Background" Value="{DynamicResource AvatarGreyBackground}" />
         <Setter Property="FontSize" Value="{DynamicResource AvatarMediumFontSize}" />
         <Setter Property="FontWeight" Value="{DynamicResource AvatarFontWeight}" />
+        <Setter Property="Padding" Value="3" />
         <Setter Property="Width" Value="{DynamicResource AvatarMediumWidth}" />
         <Setter Property="Height" Value="{Binding $self.Width}" />
         <Setter Property="Cursor" Value="Hand" />
@@ -25,13 +31,18 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}"
                             Background="{TemplateBinding Background}" />
-                        <ContentPresenter
-                            Name="PART_ContentPresenter"
-                            IsVisible="{TemplateBinding Source, Converter={x:Static ObjectConverters.IsNull}}"
-                            CornerRadius="{TemplateBinding CornerRadius}"
-                            Content="{TemplateBinding Content}"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center" />
+                        <Viewbox
+                            Margin="{TemplateBinding Padding}"
+                            StretchDirection="DownOnly">
+                            <ContentPresenter
+                                Name="PART_ContentPresenter"
+                                IsVisible="{TemplateBinding Source, Converter={x:Static ObjectConverters.IsNull}}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center" />
+                        </Viewbox>
                         <Image Source="{TemplateBinding Source}" />
                         <ContentPresenter
                             Name="PART_HoverMask"
