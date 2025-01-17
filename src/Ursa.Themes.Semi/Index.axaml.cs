@@ -19,7 +19,7 @@ public class SemiTheme : Styles
     };
 
     private static readonly ResourceDictionary _defaultResource = new zh_cn();
-    
+
     private CultureInfo? _locale;
 
     public SemiTheme(IServiceProvider? provider = null)
@@ -39,10 +39,16 @@ public class SemiTheme : Styles
         {
             try
             {
-                _locale = value;
-                var resource = TryGetLocaleResource(value);
-                if (resource is null) return;
-                foreach (var kv in resource) Resources.Add(kv);
+                if (TryGetLocaleResource(value, out var resource) && resource is not null)
+                {
+                    _locale = value;
+                    foreach (var kv in resource) Resources[kv.Key] = kv.Value;
+                }
+                else
+                {
+                    _locale = new CultureInfo("zh-CN");
+                    foreach (var kv in _defaultResource) Resources[kv.Key] = kv.Value;
+                }
             }
             catch
             {
@@ -51,12 +57,28 @@ public class SemiTheme : Styles
         }
     }
 
-    private static ResourceDictionary? TryGetLocaleResource(CultureInfo? locale)
+    private static bool TryGetLocaleResource(CultureInfo? locale, out ResourceDictionary? resourceDictionary)
     {
-        if (Equals(locale, CultureInfo.InvariantCulture)) return _defaultResource;
-        if (locale is null) return _localeToResource[new CultureInfo("zh-CN")];
-        if (_localeToResource.TryGetValue(locale, out var resource)) return resource;
-        return _localeToResource[new CultureInfo("zh-CN")];
+        if (Equals(locale, CultureInfo.InvariantCulture))
+        {
+            resourceDictionary = _defaultResource;
+            return true;
+        }
+
+        if (locale is null)
+        {
+            resourceDictionary = _defaultResource;
+            return false;
+        }
+
+        if (_localeToResource.TryGetValue(locale, out var resource))
+        {
+            resourceDictionary = resource;
+            return true;
+        }
+
+        resourceDictionary = _defaultResource;
+        return false;
     }
 
     public static void OverrideLocaleResources(Application application, CultureInfo? culture)
