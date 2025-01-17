@@ -16,7 +16,7 @@
                                         Content="PathPicker aggregates a file selector and provides a Command property. The Command is triggered solely after opening the file selector and selecting a file, whereupon the Command receives an IReadOnlyList&lt;string&gt; parameter.">
                 </HeaderedContentControl>
                 <u:Form LabelAlignment="Left" LabelPosition="Left" LabelWidth="*" HorizontalAlignment="Stretch">
-                    <TextBox Name="Title" u:FormItem.Label="Title"></TextBox>
+                    <TextBox Name="Title" u:FormItem.Label="Title" Text="选择文件"></TextBox>
                     <TextBox Name="SuggestedFileName" u:FormItem.Label="SuggestedFileName"
                              Watermark="filename(not have file extension)">
                     </TextBox>
@@ -29,18 +29,19 @@
                     <TextBox Name="DefaultFileExtension" u:FormItem.Label="DefaultFileExtension"
                              Watermark="json">
                     </TextBox>
-                    <ToggleButton Name="AllowMultiple" Content="AllowMultiple" u:FormItem.NoLabel="True"
-                                  HorizontalAlignment="Stretch">
-                    </ToggleButton>
-                    <ToggleButton Name="IsOmitCommandOnCancel" Content="Do not trigger the command after unselecting."
-                                  u:FormItem.NoLabel="True"
-                                  HorizontalAlignment="Stretch">
-                    </ToggleButton>
-                    <ToggleButton Name="IsClearSelectionOnCancel" Content="Clear the selection when unselecting."
-                                  u:FormItem.NoLabel="True"
-                                  HorizontalAlignment="Stretch">
-                    </ToggleButton>
+                    <CheckBox Name="AllowMultiple" Content="AllowMultiple" u:FormItem.NoLabel="True"
+                                  >
+                    </CheckBox>
+                    <CheckBox Name="IsOmitCommandOnCancel" Content="Do not trigger the command after unselecting."
+                              u:FormItem.NoLabel="True"
+                    >
+                    </CheckBox>
+                    <CheckBox Name="IsClearSelectionOnCancel" Content="Clear the selection when unselecting."
+                              u:FormItem.NoLabel="True"
+                    >
+                    </CheckBox>
                     <u:EnumSelector Name="UsePickerType" EnumType="u:UsePickerTypes" u:FormItem.Label="UsePickerType"></u:EnumSelector>
+                    <u:ControlClassesInput Name="ClassInput" u:FormItem.Label="Style Class" HorizontalAlignment="Left"></u:ControlClassesInput>
                 </u:Form>
             </StackPanel>
         </ScrollViewer>
@@ -48,11 +49,12 @@
             <StackPanel Spacing="2">
                 <HeaderedContentControl Header="Default">
                     <u:PathPicker Title="{Binding #Title.Text}"
+                                  u:ControlClassesInput.Source="{Binding #ClassInput}"
                                   SuggestedFileName="{Binding #SuggestedFileName.Text}"
                                   SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
                                   FileFilter="{Binding #FileFilter.Text}"
                                   DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
-                                  AllowMultiple="{Binding #AllowMultiple.IsChecked}"
+                                  AllowMultiple="{Binding #AllowMultiple.IsChecked, Mode=TwoWay}"
                                   UsePickerType="{Binding #UsePickerType.Value}"
                                   SelectedPathsText="{Binding Path,Mode=OneWayToSource}"
                                   SelectedPaths="{Binding Paths,Mode=OneWayToSource}"
@@ -61,8 +63,8 @@
                                   IsClearSelectionOnCancel="{Binding #IsClearSelectionOnCancel.IsChecked}">
                     </u:PathPicker>
                 </HeaderedContentControl>
-                <HeaderedContentControl Header="PathPickerOnlyButton">
-                    <u:PathPicker Theme="{DynamicResource PathPickerOnlyButton}"
+                <HeaderedContentControl Header="ButtonPathPicker">
+                    <u:PathPicker Theme="{DynamicResource ButtonPathPicker}"
                                   Title="{Binding #Title.Text}"
                                   SuggestedFileName="{Binding #SuggestedFileName.Text}"
                                   SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
