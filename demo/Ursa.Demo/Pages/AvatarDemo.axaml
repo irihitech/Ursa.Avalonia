@@ -95,8 +95,8 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" Spacing="8">
             <u:Avatar Content="AS" />
-            <u:Avatar Content="Semi" Gap="4" />
-            <u:Avatar Content="Semi" Gap="10" />
+            <u:Avatar Content="Semi" Padding="4" />
+            <u:Avatar Content="Semi" Padding="10" />
         </StackPanel>
 
     </StackPanel>
