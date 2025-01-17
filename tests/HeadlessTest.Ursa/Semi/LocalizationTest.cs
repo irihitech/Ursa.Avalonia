@@ -76,7 +76,7 @@ public class LocalizationTest
         Assert.Equal("Yes", yesButton?.Content?.ToString());
     }
     
-    [Fact]
+    [AvaloniaFact]
     public void SemiTheme_Localization_Behavior()
     {
         var theme = new SemiTheme();
