@@ -16,4 +16,5 @@
     <SolidColorBrush x:Key="AvatarAmberBackground" Color="#F6D86F" />
     <SolidColorBrush x:Key="AvatarOrangeBackground" Color="#FDC165" />
     <SolidColorBrush x:Key="AvatarGreyBackground" Color="#A7ABB0" />
+    <SolidColorBrush x:Key="AvatarGroupItemBorderBrush" Color="White" />
 </ResourceDictionary>

@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace Ursa.Demo.ViewModels;
@@ -13,4 +14,6 @@ public partial class AvatarDemoViewModel : ViewModelBase
     {
         Content = "BM";
     }
+
+    public ObservableCollection<string> Items => ["AS", "BM", "TJ", "ZL", "YZ"];
 }

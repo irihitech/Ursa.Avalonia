@@ -160,14 +160,33 @@
         </Style>
     </ControlTheme>
 
+    <ControlTheme
+        x:Key="AvatarGroupItemTheme"
+        BasedOn="{StaticResource {x:Type u:Avatar}}"
+        TargetType="u:Avatar">
+        <Setter Property="BorderBrush" Value="{DynamicResource AvatarGroupItemBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{StaticResource AvatarGroupItemBorderThickness}" />
+    </ControlTheme>
+
     <ControlTheme x:Key="{x:Type u:AvatarGroup}" TargetType="{x:Type u:AvatarGroup}">
+        <Setter Property="ItemContainerTheme" Value="{DynamicResource AvatarGroupItemTheme}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:AvatarGroup">
                 <StackPanel Orientation="Horizontal">
                     <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
-                    <u:Avatar Name="PART_OverflowButton" Content="{TemplateBinding OverflowedItemCount}" />
+                    <u:Avatar
+                        Name="{x:Static u:AvatarGroup.PART_OverflowButton}"
+                        Theme="{StaticResource AvatarGroupItemTheme}"
+                        Content="{TemplateBinding OverflowedItemCount}" />
                 </StackPanel>
             </ControlTemplate>
+        </Setter>
+        <Setter Property="ItemTemplate">
+            <DataTemplate>
+                <u:Avatar
+                    Theme="{StaticResource AvatarGroupItemTheme}"
+                    Content="{ReflectionBinding}" />
+            </DataTemplate>
         </Setter>
     </ControlTheme>
 </ResourceDictionary>
