@@ -177,7 +177,16 @@
                     <u:Avatar
                         Name="{x:Static u:AvatarGroup.PART_OverflowButton}"
                         Theme="{StaticResource AvatarGroupItemTheme}"
-                        Content="{TemplateBinding OverflowedItemCount}" />
+                        Content="{Binding OverflowedItemCount,
+                            RelativeSource={RelativeSource TemplatedParent}, 
+                            StringFormat='+{0}'}">
+                        <u:Avatar.IsVisible>
+                            <MultiBinding Converter="{x:Static BoolConverters.And}">
+                                <TemplateBinding Property="IsOverflowed" />
+                                <TemplateBinding Property="MaxCount" Converter="{x:Static ObjectConverters.IsNotNull}" />
+                            </MultiBinding>
+                        </u:Avatar.IsVisible>
+                    </u:Avatar>
                 </StackPanel>
             </ControlTemplate>
         </Setter>
