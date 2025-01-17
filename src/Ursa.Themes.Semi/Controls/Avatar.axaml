@@ -3,12 +3,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
-        <StackPanel Margin="20" Orientation="Horizontal" Spacing="8">
-            <u:Avatar Content="AS" />
-            <u:Avatar Content="Semi" Padding="4" />
-            <u:Avatar Content="Semi" Padding="10" />
+        <StackPanel Margin="20" Width="300">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <u:Avatar Content="AS" />
+                <u:Avatar Content="Semi" Padding="4" />
+                <u:Avatar Content="Semi" Padding="10" />
+            </StackPanel>
 
-            <u:AvatarGroup MaxCount="5">
+            <u:NumericIntUpDown Name="n" AllowDrag="True" Maximum="20" Minimum="-5" Value="3" />
+            <u:AvatarGroup MaxCount="{Binding #n.Value}">
                 <u:Avatar Classes="Red" Content="LL" />
                 <u:Avatar Classes="" Content="CX" />
                 <u:Avatar Classes="Amber" Content="RM" />
@@ -162,7 +165,7 @@
             <ControlTemplate TargetType="u:AvatarGroup">
                 <StackPanel Orientation="Horizontal">
                     <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
-                    <u:Avatar Name="PART_OverflowButton" />
+                    <u:Avatar Name="PART_OverflowButton" Content="{TemplateBinding OverflowedItemCount}" />
                 </StackPanel>
             </ControlTemplate>
         </Setter>
