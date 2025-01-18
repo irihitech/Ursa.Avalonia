@@ -148,6 +148,7 @@
 
     <ControlTheme x:Key="INTERNAL_PathPickerExpanderHeaderToggleButtonTheme" TargetType="ToggleButton">
         <Setter Property="Padding" Value="{DynamicResource ButtonDefaultPadding}" />
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <ControlTemplate TargetType="ToggleButton">
                 <ContentPresenter
