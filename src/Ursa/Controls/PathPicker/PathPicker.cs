@@ -8,11 +8,13 @@ using Avalonia.Data;
 using Avalonia.Interactivity;
 using Avalonia.Logging;
 using Avalonia.Platform.Storage;
+using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
 [TemplatePart(Name = PART_Button, Type = typeof(Button))]
+[PseudoClasses(PseudoClassName.PC_Empty)]
 public class PathPicker : TemplatedControl
 {
     public const string PART_Button = "PART_Button";
@@ -164,14 +166,6 @@ public class PathPicker : TemplatedControl
         {
             _twoConvertLock = true;
             string[] separatedStrings = ["\r", "\n", "\r\n"];
-            // var list = SelectedPathsText?.Split(separatedStrings, StringSplitOptions.RemoveEmptyEntries)
-            //                .Select(RemoveNewLine).ToArray()
-            //            ?? [];
-            // if (list.Length == SelectedPaths.Count)
-            // {
-            //     if (SelectedPaths.Select(x => list.Any(y => x == y)).All(x => x is false))
-            // }
-
             SelectedPaths = SelectedPathsText?.Split(separatedStrings, StringSplitOptions.RemoveEmptyEntries)
                                 .Select(RemoveNewLine).ToArray()
                             ?? [];
@@ -288,9 +282,11 @@ public class PathPicker : TemplatedControl
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
+            this.PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedPaths.Count == 0);
             if (SelectedPaths.Count != 0 || IsOmitCommandOnCancel is false)
+            {
                 Command?.Execute(SelectedPaths);
+            }
         }
         catch (Exception exception)
         {
