@@ -12,6 +12,7 @@ public class MenuViewModel : ViewModelBase
         {
             new() { MenuHeader = "Introduction", Key = MenuKeys.MenuKeyIntroduction, IsSeparator = false },
             new() { MenuHeader = "Controls", IsSeparator = true },
+            new() { MenuHeader = "AspectRatioLayout", Key = MenuKeys.AspectRatioLayout, Status = "New" },
             new() { MenuHeader = "AutoCompleteBox", Key = MenuKeys.MenuKeyAutoCompleteBox, Status = "WIP" },
             new() { MenuHeader = "Avatar", Key = MenuKeys.MenuKeyAvatar, Status = "WIP" },
             new() { MenuHeader = "Badge", Key = MenuKeys.MenuKeyBadge },
@@ -44,6 +45,7 @@ public class MenuViewModel : ViewModelBase
             new() { MenuHeader = "Numeric UpDown", Key = MenuKeys.MenuKeyNumericUpDown },
             new() { MenuHeader = "NumPad", Key = MenuKeys.MenuKeyNumPad },
             new() { MenuHeader = "Pagination", Key = MenuKeys.MenuKeyPagination },
+            new() { MenuHeader = "PathPicker", Key = MenuKeys.PathPicker, Status = "WIP" },
             new() { MenuHeader = "PinCode", Key = MenuKeys.MenuKeyPinCode },
             new() { MenuHeader = "RangeSlider", Key = MenuKeys.MenuKeyRangeSlider },
             new() { MenuHeader = "Rating", Key = MenuKeys.MenuKeyRating },
@@ -59,8 +61,7 @@ public class MenuViewModel : ViewModelBase
             new() { MenuHeader = "ToolBar", Key = MenuKeys.MenuKeyToolBar },
             new() { MenuHeader = "TreeComboBox", Key = MenuKeys.MenuKeyTreeComboBox },
             new() { MenuHeader = "TwoTonePathIcon", Key = MenuKeys.MenuKeyTwoTonePathIcon },
-            new() { MenuHeader = "AspectRatioLayout", Key = MenuKeys.AspectRatioLayout, Status = "New" },
-            new() { MenuHeader = "PathPicker", Key = MenuKeys.PathPicker, Status = "WIP" },
+            
         };
     }
 }
