@@ -124,8 +124,8 @@
                     <DockPanel LastChildFill="True">
                         <PathIcon
                             Name="{x:Static u:ClosableTag.PART_CloseButton}"
-                            Width="8"
-                            Height="8"
+                            Theme="{StaticResource InnerPathIcon}"
+                            Classes="Small"
                             Margin="4,0"
                             Background="Transparent"
                             Data="{DynamicResource ClosableTagCloseIconGlyph}"

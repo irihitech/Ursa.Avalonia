@@ -17,8 +17,7 @@
                     <PathIcon
                         Name="PART_Icon"
                         Margin="8"
-                        Width="12"
-                        Height="12"
+                        Theme="{StaticResource InnerPathIcon}"
                         Data="{DynamicResource ScrollToButtonIconGlyph}"
                         Foreground="{DynamicResource ButtonDefaultPrimaryForeground}" />
                 </Border>
@@ -61,8 +60,7 @@
                     <PathIcon
                         Name="PART_Icon"
                         Margin="8"
-                        Width="12"
-                        Height="12"
+                        Theme="{StaticResource InnerPathIcon}"
                         Data="{DynamicResource ScrollToButtonIconGlyph}"
                         Foreground="{DynamicResource ButtonSolidForeground}" />
                 </Border>

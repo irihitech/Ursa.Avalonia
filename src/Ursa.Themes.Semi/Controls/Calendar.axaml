@@ -206,8 +206,8 @@
                             Foreground="{TemplateBinding Foreground}"
                             Theme="{DynamicResource BorderlessButton}">
                             <PathIcon
-                                Width="{DynamicResource CalenderViewPathIconWidth}"
-                                Height="{DynamicResource CalenderViewPathIconHeight}"
+                                Theme="{StaticResource InnerPathIcon}"
+                                Classes="Large"
                                 Data="{DynamicResource CalendarViewFastForwardGlyph}"
                                 Foreground="{DynamicResource CalendarItemIconForeground}" />
                         </Button>
@@ -219,8 +219,8 @@
                             Foreground="{TemplateBinding Foreground}"
                             Theme="{DynamicResource BorderlessButton}">
                             <PathIcon
-                                Width="{DynamicResource CalenderViewPathIconWidth}"
-                                Height="{DynamicResource CalenderViewPathIconHeight}"
+                                Theme="{StaticResource InnerPathIcon}"
+                                Classes="Large"
                                 Data="{DynamicResource CalendarItemPreviousIconGlyph}"
                                 Foreground="{DynamicResource CalendarItemIconForeground}" />
                         </Button>
@@ -253,8 +253,8 @@
                             Foreground="{TemplateBinding Foreground}"
                             Theme="{DynamicResource BorderlessButton}">
                             <PathIcon
-                                Width="{DynamicResource CalenderViewPathIconWidth}"
-                                Height="{DynamicResource CalenderViewPathIconHeight}"
+                                Theme="{StaticResource InnerPathIcon}"
+                                Classes="Large"
                                 Data="{DynamicResource CalendarItemNextIconGlyph}"
                                 Foreground="{DynamicResource CalendarItemIconForeground}" />
                         </Button>
@@ -265,8 +265,8 @@
                             Foreground="{TemplateBinding Foreground}"
                             Theme="{DynamicResource BorderlessButton}">
                             <PathIcon
-                                Width="{DynamicResource CalenderViewPathIconWidth}"
-                                Height="{DynamicResource CalenderViewPathIconHeight}"
+                                Theme="{StaticResource InnerPathIcon}"
+                                Classes="Large"
                                 Data="{DynamicResource CalendarViewFastBackwardGlyph}"
                                 Foreground="{DynamicResource CalendarItemIconForeground}" />
                         </Button>
