@@ -49,6 +49,7 @@
                             Name="{x:Static u:DualBadge.PART_ContentPresenter}"
                             Grid.Column="1"
                             TextElement.FontSize="{TemplateBinding FontSize}"
+                            IsVisible="{TemplateBinding Content,Converter={x:Static ObjectConverters.IsNotNull}}"
                             Foreground="{TemplateBinding Foreground}"
                             Background="{TemplateBinding Background}"
                             Padding="{TemplateBinding Padding}"
