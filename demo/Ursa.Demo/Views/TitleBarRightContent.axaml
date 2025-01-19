@@ -8,6 +8,8 @@
     <StackPanel Orientation="Horizontal">
         <Button
             Padding="8"
+            Width="32"
+            Height="32"
             Theme="{DynamicResource BorderlessButton}"
             Click="OpenRepository">
             <PathIcon

@@ -2,14 +2,15 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:u="https://irihi.tech/ursa">
     <ControlTheme TargetType="u:ThemeToggleButton" x:Key="{x:Type u:ThemeToggleButton}">
+        <Setter Property="Padding" Value="8" />
+        <Setter Property="Width" Value="32" />
+        <Setter Property="Height" Value="32" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:ThemeToggleButton">
                 <Button
-                    Padding="8"
-                    FontWeight="Regular"
                     Name="{x:Static u:ThemeToggleButton.PART_ThemeButton}"
-                    HorizontalAlignment="Center"
-                    Theme="{DynamicResource BorderlessButton}">
+                    Theme="{DynamicResource BorderlessButton}"
+                    Padding="{TemplateBinding Padding}">
                     <PathIcon
                         Name="PART_Icon"
                         Theme="{StaticResource InnerPathIcon}"
