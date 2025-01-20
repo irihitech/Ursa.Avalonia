@@ -61,7 +61,14 @@
                     <u:ControlClassesInput
                         Name="ClassInput"
                         HorizontalAlignment="Left"
-                        u:FormItem.Label="Style Class" />
+                        u:FormItem.Label="Style Class" >
+                        <u:ControlClassesInput.Styles>
+                            <Style Selector="u|ControlClassesInput /template/ u|TagInput">
+                                <Setter Property="Watermark" Value="Available: Top"></Setter>
+                            </Style>
+                        </u:ControlClassesInput.Styles>
+                    </u:ControlClassesInput>
+                    
                 </u:Form>
             </StackPanel>
         </ScrollViewer>
