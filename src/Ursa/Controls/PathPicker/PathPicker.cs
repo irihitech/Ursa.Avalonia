@@ -5,19 +5,19 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
-using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Logging;
 using Avalonia.Platform.Storage;
-using Avalonia.Threading;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-[TemplatePart(Name = "PART_Button", Type = typeof(Button))]
+[TemplatePart(Name = PART_Button, Type = typeof(Button))]
+[PseudoClasses(PseudoClassName.PC_Empty)]
 public class PathPicker : TemplatedControl
 {
+    public const string PART_Button = "PART_Button";
     public static readonly StyledProperty<string> SuggestedStartPathProperty =
         AvaloniaProperty.Register<PathPicker, string>(
             nameof(SuggestedStartPath), string.Empty);
@@ -166,14 +166,6 @@ public class PathPicker : TemplatedControl
         {
             _twoConvertLock = true;
             string[] separatedStrings = ["\r", "\n", "\r\n"];
-            // var list = SelectedPathsText?.Split(separatedStrings, StringSplitOptions.RemoveEmptyEntries)
-            //                .Select(RemoveNewLine).ToArray()
-            //            ?? [];
-            // if (list.Length == SelectedPaths.Count)
-            // {
-            //     if (SelectedPaths.Select(x => list.Any(y => x == y)).All(x => x is false))
-            // }
-
             SelectedPaths = SelectedPathsText?.Split(separatedStrings, StringSplitOptions.RemoveEmptyEntries)
                                 .Select(RemoveNewLine).ToArray()
                             ?? [];
@@ -185,7 +177,7 @@ public class PathPicker : TemplatedControl
     {
         base.OnApplyTemplate(e);
         Button.ClickEvent.RemoveHandler(LaunchPicker, _button);
-        _button = e.NameScope.Find<Button>("PART_Button");
+        _button = e.NameScope.Find<Button>(PART_Button);
         Button.ClickEvent.AddHandler(LaunchPicker, _button);
     }
 
@@ -243,7 +235,7 @@ public class PathPicker : TemplatedControl
         try
         {
             if (TopLevel.GetTopLevel(this)?.StorageProvider is not { } storageProvider) return;
-
+            _button?.SetValue(IsEnabledProperty, false);
             switch (UsePickerType)
             {
                 case UsePickerTypes.OpenFile:
@@ -273,7 +265,7 @@ public class PathPicker : TemplatedControl
                         ?.TryGetLocalPath();
                     UpdateSelectedPaths(string.IsNullOrEmpty(path)
                         ? Array.Empty<string>()
-                        : [path!]);
+                        : [path]);
                     break;
                 case UsePickerTypes.OpenFolder:
                     FolderPickerOpenOptions folderPickerOpenOptions = new()
@@ -290,16 +282,20 @@ public class PathPicker : TemplatedControl
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
+            this.PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedPaths.Count == 0);
             if (SelectedPaths.Count != 0 || IsOmitCommandOnCancel is false)
+            {
                 Command?.Execute(SelectedPaths);
+            }
         }
         catch (Exception exception)
         {
             Logger.TryGet(LogEventLevel.Error, LogArea.Control)?.Log(this, $"{exception}");
         }
-
-        return;
+        finally
+        {
+            _button?.SetValue(IsEnabledProperty, true);
+        }
     }
 
     private void UpdateSelectedPaths(IReadOnlyList<string> newList)
