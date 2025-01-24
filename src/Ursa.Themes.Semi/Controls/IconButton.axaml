@@ -18,7 +18,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="MinHeight" Value="12" />
+        <Setter Property="MinHeight" Value="{DynamicResource ButtonDefaultHeight}" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:IconButton">
@@ -161,9 +161,11 @@
         </Style>
 
         <Style Selector="^.Large">
+            <Setter Property="MinHeight" Value="{DynamicResource ButtonLargeHeight}" />
             <Setter Property="Padding" Value="{DynamicResource ButtonLargePadding}" />
         </Style>
         <Style Selector="^.Small">
+            <Setter Property="MinHeight" Value="{DynamicResource ButtonSmallHeight}" />
             <Setter Property="Padding" Value="{DynamicResource ButtonSmallPadding}" />
         </Style>
     </ControlTheme>
