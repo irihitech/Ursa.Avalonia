@@ -3,7 +3,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters"
     xmlns:u="https://irihi.tech/ursa">
-    <!--  Add Resources Here  -->
+    <Design.PreviewWith>
+        <StackPanel Margin="20">
+            <u:IconButton Icon="{StaticResource SemiIconGithubLogo}" />
+            <u:IconButton
+                Theme="{StaticResource SolidIconButton}"
+                Icon="{StaticResource SemiIconGithubLogo}"
+                Classes="Warning"
+                Content="GitHub" />
+        </StackPanel>
+    </Design.PreviewWith>
     <converters:BooleansToOpacityConverter x:Key="OpacityConverter" />
     <ControlTheme x:Key="{x:Type u:IconButton}" TargetType="u:IconButton">
         <Setter Property="Background" Value="{DynamicResource ButtonDefaultBackground}" />
@@ -31,14 +40,13 @@
                     TextElement.FontSize="{TemplateBinding FontSize}"
                     TextElement.FontWeight="{TemplateBinding FontWeight}"
                     UseLayoutRounding="False">
-                    <Grid
+                    <ReversibleStackPanel
+                        Name="{x:Static u:IconButton.PART_RootPanel}"
                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                        ColumnDefinitions="Auto, Auto"
-                        RowDefinitions="Auto, Auto">
-                        <Panel
-                            Name="PART_IconRoot"
-                            Grid.Column="0">
+                        Orientation="Horizontal"
+                        Spacing="{StaticResource IconButtonInnerSpacing}">
+                        <Panel Name="PART_IconRoot">
                             <Panel.IsVisible>
                                 <MultiBinding Converter="{x:Static BoolConverters.Or}">
                                     <Binding Path="IsLoading" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -51,7 +59,16 @@
                             <ContentPresenter
                                 Content="{TemplateBinding Icon}"
                                 ContentTemplate="{TemplateBinding IconTemplate}"
-                                Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=!IsLoading, Converter={StaticResource OpacityConverter}}" />
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=!IsLoading, Converter={StaticResource OpacityConverter}}">
+                                <ContentPresenter.DataTemplates>
+                                    <DataTemplate DataType="Geometry">
+                                        <PathIcon
+                                            Theme="{StaticResource InnerPathIcon}"
+                                            Data="{Binding }" />
+                                    </DataTemplate>
+                                </ContentPresenter.DataTemplates>
+                            </ContentPresenter>
                             <u:LoadingIcon
                                 Classes="Small"
                                 Foreground="{TemplateBinding Foreground}"
@@ -59,13 +76,11 @@
                         </Panel>
                         <ContentPresenter
                             Name="PART_ContentPresenter"
-                            Grid.Row="0" Grid.Column="1"
-                            Margin="8 0 0 0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             IsVisible="{TemplateBinding Content, Converter={x:Static ObjectConverters.IsNotNull}}"
                             Content="{TemplateBinding Content}" />
-                    </Grid>
+                    </ReversibleStackPanel>
                 </Border>
             </ControlTemplate>
         </Setter>
@@ -107,66 +122,40 @@
             <Setter Property="BorderBrush" Value="{DynamicResource ButtonDefaultDisabledBorderBrush}" />
             <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultDisabledForeground}" />
         </Style>
-        
-        <Style Selector="^:empty[IsLoading=False] /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Margin" Value="0" />
+
+        <Style Selector="^:right /template/ ReversibleStackPanel#PART_RootPanel">
+            <Setter Property="Orientation" Value="Horizontal" />
+            <Setter Property="ReverseOrder" Value="True" />
         </Style>
 
-        <Style Selector="^:right">
-            <Style Selector="^ /template/ Panel#PART_IconRoot">
-                <Setter Property="Grid.Column" Value="1" />
-                <Setter Property="Grid.Row" Value="0" />
-            </Style>
-            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Grid.Column" Value="0" />
-                <Setter Property="Grid.Row" Value="0" />
-                <Setter Property="Margin" Value="0 0 8 0" />
-            </Style>
+        <Style Selector="^:left /template/ ReversibleStackPanel#PART_RootPanel">
+            <Setter Property="Orientation" Value="Horizontal" />
+            <Setter Property="ReverseOrder" Value="False" />
         </Style>
 
-        <Style Selector="^:left">
-            <Style Selector="^ /template/ Panel#PART_IconRoot">
-                <Setter Property="Grid.Column" Value="0" />
-                <Setter Property="Grid.Row" Value="0" />
-            </Style>
-            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Grid.Column" Value="1" />
-                <Setter Property="Grid.Row" Value="0" />
-                <Setter Property="Margin" Value="8 0 0 0" />
-            </Style>
+        <Style Selector="^:top /template/ ReversibleStackPanel#PART_RootPanel">
+            <Setter Property="Orientation" Value="Vertical" />
+            <Setter Property="ReverseOrder" Value="False" />
         </Style>
 
-        <Style Selector="^:top">
-            <Style Selector="^ /template/ Panel#PART_IconRoot">
-                <Setter Property="Grid.Column" Value="0" />
-                <Setter Property="Grid.Row" Value="0" />
-            </Style>
-            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Grid.Column" Value="0" />
-                <Setter Property="Grid.Row" Value="1" />
-                <Setter Property="Margin" Value="0 4 0 0" />
-            </Style>
-        </Style>
-
-        <Style Selector="^:bottom">
-            <Style Selector="^ /template/ Panel#PART_IconRoot">
-                <Setter Property="Grid.Column" Value="0" />
-                <Setter Property="Grid.Row" Value="1" />
-            </Style>
-            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Grid.Column" Value="0" />
-                <Setter Property="Grid.Row" Value="0" />
-                <Setter Property="Margin" Value="0 0 0 4" />
-            </Style>
+        <Style Selector="^:bottom /template/ ReversibleStackPanel#PART_RootPanel">
+            <Setter Property="Orientation" Value="Vertical" />
+            <Setter Property="ReverseOrder" Value="True" />
         </Style>
 
         <Style Selector="^.Large">
             <Setter Property="MinHeight" Value="{DynamicResource ButtonLargeHeight}" />
             <Setter Property="Padding" Value="{DynamicResource ButtonLargePadding}" />
         </Style>
+
         <Style Selector="^.Small">
             <Setter Property="MinHeight" Value="{DynamicResource ButtonSmallHeight}" />
             <Setter Property="Padding" Value="{DynamicResource ButtonSmallPadding}" />
+        </Style>
+
+        <Style Selector="^:empty-content">
+            <Setter Property="MinWidth" Value="{Binding $self.MinHeight}" />
+            <Setter Property="Padding" Value="0" />
         </Style>
     </ControlTheme>
 
@@ -284,9 +273,8 @@
             <Setter Property="Background" Value="{DynamicResource ButtonOutlineBackground}" />
             <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultDisabledForeground}" />
         </Style>
-
     </ControlTheme>
-    
+
     <ControlTheme
         x:Key="OutlineIconButton"
         BasedOn="{StaticResource {x:Type u:IconButton}}"
