@@ -2,113 +2,143 @@
     x:Class="Ursa.Demo.Pages.IconButtonDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:common="clr-namespace:Ursa.Common;assembly=Ursa"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
-    d:DesignHeight="450"
+    xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
+    xmlns:common="clr-namespace:Ursa.Common;assembly=Ursa"
+    d:DesignHeight="NaN"
     d:DesignWidth="800"
+    x:DataType="vm:IconButtonDemoViewModel"
     mc:Ignorable="d">
-    <StackPanel HorizontalAlignment="Left" Spacing="16">
-        <ToggleSwitch Name="loading" Content="Toggle Loading" />
-        <u:EnumSelector Name="placement" EnumType="{x:Type common:Position}" />
-        <u:IconButton
-            Content="Hello World"
-            IconPlacement="{Binding #placement.Value}"
-            IsLoading="{Binding #loading.IsChecked}" />
-        <u:IconButton
-            Content="Hello Panda"
-            IconPlacement="{Binding #placement.Value}"
-            IsLoading="{Binding #loading.IsChecked}">
-            <u:IconButton.Icon>
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    FontSize="40"
-                    Text="🐼" />
-            </u:IconButton.Icon>
-        </u:IconButton>
-        <u:IconButton
-            Content="GitHub"
-            IconPlacement="{Binding #placement.Value}"
-            IsLoading="{Binding #loading.IsChecked}">
-            <u:IconButton.Icon>
-                <PathIcon
-                    Theme="{StaticResource InnerPathIcon}"
-                    Data="{StaticResource SemiIconGithubLogo}" />
-            </u:IconButton.Icon>
-        </u:IconButton>
-        <u:IconButton
-            Width="150"
-            Content="GitHub"
-            IconPlacement="{Binding #placement.Value}"
-            IsLoading="{Binding #loading.IsChecked}">
-            <u:IconButton.Icon>
-                <PathIcon
-                    Theme="{StaticResource InnerPathIcon}"
-                    Data="{StaticResource SemiIconGithubLogo}" />
-            </u:IconButton.Icon>
-        </u:IconButton>
-        <u:IconButton
-            Width="150"
-            Classes="Warning"
-            Content="GitHub"
-            IconPlacement="{Binding #placement.Value}"
-            IsLoading="{Binding #loading.IsChecked}">
-            <u:IconButton.Icon>
-                <PathIcon
-                    Theme="{StaticResource InnerPathIcon}"
-                    Data="{StaticResource SemiIconGithubLogo}" />
-            </u:IconButton.Icon>
-        </u:IconButton>
-        <u:IconButton
-            Width="150"
-            Content="GitHub"
-            IconPlacement="{Binding #placement.Value}"
-            IsLoading="{Binding #loading.IsChecked}"
-            Theme="{DynamicResource SolidIconButton}">
-            <u:IconButton.Icon>
-                <PathIcon
-                    Theme="{StaticResource InnerPathIcon}"
-                    Data="{StaticResource SemiIconGithubLogo}" />
-            </u:IconButton.Icon>
-        </u:IconButton>
-        <u:IconButton
-            Width="150"
-            Classes="Warning"
-            Content="GitHub"
-            IconPlacement="{Binding #placement.Value}"
-            IsLoading="{Binding #loading.IsChecked}"
-            Theme="{DynamicResource SolidIconButton}">
-            <u:IconButton.Icon>
-                <PathIcon
-                    Theme="{StaticResource InnerPathIcon}"
-                    Data="{StaticResource SemiIconGithubLogo}" />
-            </u:IconButton.Icon>
-        </u:IconButton>
-        <u:IconButton
-            Classes="Danger"
-            IsLoading="{Binding #loading.IsChecked}"
-            Theme="{DynamicResource SolidIconButton}">
-            <u:IconButton.Icon>
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    FontSize="40"
-                    Text="🐼" />
-            </u:IconButton.Icon>
-        </u:IconButton>
-        
-        <u:IconButton
-            IsLoading="{Binding #loading.IsChecked}"
-            Icon="🐼"
-            Content="Borderless"
-            Theme="{DynamicResource BorderlessIconButton}">
-        </u:IconButton>
-        
-        <u:IconButton
-            IsLoading="{Binding #loading.IsChecked}"
-            Icon="🐼"
-            Content="Outline"
-            Theme="{DynamicResource OutlineIconButton}">
-        </u:IconButton>
-    </StackPanel>
+    <Design.DataContext>
+        <vm:IconButtonDemoViewModel />
+    </Design.DataContext>
+    <ScrollViewer>
+        <StackPanel Margin="20" Spacing="8" HorizontalAlignment="Left" Width="500">
+            <Border Theme="{StaticResource CardBorder}">
+                <StackPanel Spacing="8">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:IconButton Icon="🐼" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" IsEnabled="False" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:IconButton
+                            Icon="{StaticResource SemiIconCamera}" />
+                        <u:IconButton
+                            Classes="Secondary"
+                            Icon="{StaticResource SemiIconCamera}" />
+                        <u:IconButton
+                            Classes="Warning"
+                            Icon="{StaticResource SemiIconCamera}" />
+                        <u:IconButton
+                            Classes="Danger"
+                            Icon="{StaticResource SemiIconCamera}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:IconButton
+                            Theme="{StaticResource SolidIconButton}"
+                            Icon="{StaticResource SemiIconCamera}" />
+                        <u:IconButton
+                            Icon="{StaticResource SemiIconCamera}" />
+                        <u:IconButton
+                            Theme="{StaticResource BorderlessIconButton}"
+                            Icon="{StaticResource SemiIconCamera}" />
+                        <u:IconButton
+                            Theme="{StaticResource OutlineIconButton}"
+                            Icon="{StaticResource SemiIconCamera}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:IconButton
+                            Theme="{StaticResource SolidIconButton}"
+                            Icon="{StaticResource SemiIconSidebar}"
+                            Content="收起" />
+                        <u:IconButton
+                            Theme="{StaticResource SolidIconButton}"
+                            IconPlacement="Right"
+                            Icon="{StaticResource SemiIconChevronDown}"
+                            Content="展开选项" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Theme="{StaticResource CardBorder}">
+                <StackPanel Spacing="8">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Text="加载态"
+                            FontWeight="Bold" />
+                        <ToggleSwitch
+                            Theme="{StaticResource SimpleToggleSwitch}"
+                            IsChecked="{Binding IsLoading}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:IconButton
+                            IsLoading="{Binding IsLoading}"
+                            Content="保存" />
+                        <u:IconButton
+                            Classes="Danger"
+                            Icon="{StaticResource SemiIconDelete}"
+                            IsLoading="{Binding IsLoading}"
+                            Content="删除" />
+                        <u:IconButton
+                            Width="200"
+                            Theme="{StaticResource SolidIconButton}"
+                            Classes="Warning"
+                            IsLoading="{Binding IsLoading}"
+                            Content="撤销" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Theme="{StaticResource CardBorder}">
+                <StackPanel Spacing="8">
+                    <u:EnumSelector
+                        Width="100"
+                        EnumType="common:Position"
+                        Value="{Binding SelectedPosition}" />
+                    <u:IconButton
+                        IconPlacement="{Binding SelectedPosition}"
+                        Icon="{StaticResource SemiIconCamera}"
+                        Content="Hello Camera" />
+                    <u:IconButton
+                        IconPlacement="{Binding SelectedPosition}"
+                        Icon="🐼"
+                        Content="Hello Panda" />
+                    <u:IconButton
+                        IconPlacement="{Binding SelectedPosition}"
+                        Content="Hello Panda">
+                        <u:IconButton.Icon>
+                            <TextBlock
+                                FontSize="40"
+                                HorizontalAlignment="Center"
+                                Text="🐼" />
+                        </u:IconButton.Icon>
+                    </u:IconButton>
+                    <u:IconButton
+                        IconPlacement="{Binding SelectedPosition}"
+                        Theme="{StaticResource SolidIconButton}"
+                        Classes="Danger Large">
+                        <u:IconButton.Icon>
+                            <TextBlock FontSize="40" Text="🐼" />
+                        </u:IconButton.Icon>
+                    </u:IconButton>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:IconButton
+                            IconPlacement="{Binding SelectedPosition}"
+                            Theme="{StaticResource SolidIconButton}"
+                            Classes="Danger Large"
+                            Icon="{StaticResource SemiIconCamera}" />
+                        <u:IconButton
+                            IconPlacement="{Binding SelectedPosition}"
+                            Theme="{StaticResource SolidIconButton}"
+                            Classes="Danger Large"
+                            Icon="🐼" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>
