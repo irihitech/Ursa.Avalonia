@@ -11,6 +11,7 @@
         <ResourceInclude Source="Divider.axaml" />
         <ResourceInclude Source="Drawer.axaml" />
         <ResourceInclude Source="DualBadge.axaml" />
+        <ResourceInclude Source="IconButton.axaml" />
         <ResourceInclude Source="MessageBox.axaml" />
         <ResourceInclude Source="NavigationMenu.axaml" />
         <ResourceInclude Source="Notification.axaml" />
