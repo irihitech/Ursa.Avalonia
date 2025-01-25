@@ -95,19 +95,31 @@
 
             <Border Theme="{StaticResource CardBorder}">
                 <StackPanel Spacing="8">
-                    <u:EnumSelector
-                        Width="100"
-                        EnumType="common:Position"
-                        Value="{Binding SelectedPosition}" />
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Text="加载态"
+                            FontWeight="Bold" />
+                        <ToggleSwitch
+                            Theme="{StaticResource SimpleToggleSwitch}"
+                            IsChecked="{Binding IsLoading2}" />
+                        <u:EnumSelector
+                            Width="100"
+                            EnumType="common:Position"
+                            Value="{Binding SelectedPosition}" />
+                    </StackPanel>
                     <u:IconButton
+                        IsLoading="{Binding IsLoading2}"
                         IconPlacement="{Binding SelectedPosition}"
                         Icon="{StaticResource SemiIconCamera}"
                         Content="Hello Camera" />
                     <u:IconButton
+                        IsLoading="{Binding IsLoading2}"
                         IconPlacement="{Binding SelectedPosition}"
                         Icon="🐼"
                         Content="Hello Panda" />
                     <u:IconButton
+                        IsLoading="{Binding IsLoading2}"
                         IconPlacement="{Binding SelectedPosition}"
                         Content="Hello Panda">
                         <u:IconButton.Icon>
@@ -118,6 +130,7 @@
                         </u:IconButton.Icon>
                     </u:IconButton>
                     <u:IconButton
+                        IsLoading="{Binding IsLoading2}"
                         IconPlacement="{Binding SelectedPosition}"
                         Theme="{StaticResource SolidIconButton}"
                         Classes="Danger Large">
@@ -127,11 +140,13 @@
                     </u:IconButton>
                     <StackPanel Orientation="Horizontal" Spacing="8">
                         <u:IconButton
+                            IsLoading="{Binding IsLoading2}"
                             IconPlacement="{Binding SelectedPosition}"
                             Theme="{StaticResource SolidIconButton}"
                             Classes="Danger Large"
                             Icon="{StaticResource SemiIconCamera}" />
                         <u:IconButton
+                            IsLoading="{Binding IsLoading2}"
                             IconPlacement="{Binding SelectedPosition}"
                             Theme="{StaticResource SolidIconButton}"
                             Classes="Danger Large"
