@@ -2,32 +2,27 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:u="https://irihi.tech/ursa">
     <ControlTheme TargetType="u:ThemeToggleButton" x:Key="{x:Type u:ThemeToggleButton}">
-        <Setter Property="Padding" Value="8" />
-        <Setter Property="Width" Value="32" />
-        <Setter Property="Height" Value="32" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:ThemeToggleButton">
-                <Button
+                <u:IconButton
                     Name="{x:Static u:ThemeToggleButton.PART_ThemeButton}"
-                    Theme="{DynamicResource BorderlessButton}"
-                    Padding="{TemplateBinding Padding}">
-                    <PathIcon
-                        Name="PART_Icon"
-                        Theme="{StaticResource InnerPathIcon}"
-                        Foreground="{DynamicResource ButtonDefaultTertiaryForeground}" />
-                </Button>
+                    Theme="{StaticResource BorderlessIconButton}"
+                    Classes="Tertiary"
+                    Padding="{TemplateBinding Padding}"
+                    Width="{TemplateBinding Width}"
+                    Height="{TemplateBinding Height}" />
             </ControlTemplate>
         </Setter>
-        <Style Selector="^:dark /template/ PathIcon#PART_Icon">
-            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonDarkGlyph}" />
+        <Style Selector="^:dark /template/ u|IconButton#PART_ThemeButton">
+            <Setter Property="Icon" Value="{StaticResource ThemeSelectorButtonDarkGlyph}" />
             <Setter Property="ToolTip.Tip" Value="{DynamicResource STRING_THEME_TOGGLE_DARK}" />
         </Style>
-        <Style Selector="^:light /template/ PathIcon#PART_Icon">
-            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonLightGlyph}" />
+        <Style Selector="^:light /template/ u|IconButton#PART_ThemeButton">
+            <Setter Property="Icon" Value="{StaticResource ThemeSelectorButtonLightGlyph}" />
             <Setter Property="ToolTip.Tip" Value="{DynamicResource STRING_THEME_TOGGLE_LIGHT}" />
         </Style>
-        <Style Selector="^ /template/ PathIcon#PART_Icon">
-            <Setter Property="Data" Value="{DynamicResource ThemeSelectorButtonDefaultGlyph}" />
+        <Style Selector="^ /template/ u|IconButton#PART_ThemeButton">
+            <Setter Property="Icon" Value="{StaticResource ThemeSelectorButtonDefaultGlyph}" />
             <Setter Property="ToolTip.Tip" Value="{DynamicResource STRING_THEME_TOGGLE_SYSTEM}" />
         </Style>
     </ControlTheme>
