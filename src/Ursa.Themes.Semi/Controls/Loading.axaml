@@ -45,12 +45,12 @@
         </Style>
         <Style Selector="^[IsLoading=True] /template/ Arc#PART_Arc">
             <Style.Animations>
-                <Animation IterationCount="Infinite" Duration="0:0:0.5">
+                <Animation IterationCount="Infinite" Duration="0:0:0.6">
                     <KeyFrame Cue="0%">
                         <Setter Property="RotateTransform.Angle" Value="0.0" />
                     </KeyFrame>
                     <KeyFrame Cue="100%">
-                        <Setter Property="RotateTransform.Angle" Value="-360.0" />
+                        <Setter Property="RotateTransform.Angle" Value="360.0" />
                     </KeyFrame>
                 </Animation>
             </Style.Animations>
