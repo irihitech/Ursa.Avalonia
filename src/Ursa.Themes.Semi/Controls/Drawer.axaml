@@ -2,8 +2,8 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:c="clr-namespace:Ursa.Themes.Semi.Converters"
-    xmlns:u="https://irihi.tech/ursa"
-    xmlns:helpers="clr-namespace:Irihi.Avalonia.Shared.Helpers;assembly=Irihi.Avalonia.Shared">
+    xmlns:helpers="clr-namespace:Irihi.Avalonia.Shared.Helpers;assembly=Irihi.Avalonia.Shared"
+    xmlns:u="https://irihi.tech/ursa">
     <ControlTheme x:Key="{x:Type u:CustomDrawerControl}" TargetType="u:CustomDrawerControl">
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -19,10 +19,10 @@
                         Name="PART_Root"
                         Margin="{TemplateBinding Padding,
                                                  Converter={x:Static c:ThicknessTakeConverter.Left}}"
-                        Background="{DynamicResource SemiColorBackground2}"
                         Padding="0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
+                        Background="{DynamicResource SemiColorBackground2}"
                         BorderThickness="{TemplateBinding BorderThickness,
                                                           Converter={x:Static c:ThicknessTakeConverter.Left}}"
                         Classes="Shadow"
@@ -34,11 +34,13 @@
                         Theme="{DynamicResource CardBorder}">
                         <Border ClipToBounds="True" CornerRadius="{Binding #PART_Root.CornerRadius}">
                             <Grid RowDefinitions="Auto, *">
-                                <ContentPresenter
-                                    Name="PART_ContentPresenter"
+                                <ScrollViewer
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
-                                    Content="{TemplateBinding Content}" />
+                                    HorizontalScrollBarVisibility="Auto"
+                                    VerticalScrollBarVisibility="Auto">
+                                    <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}" />
+                                </ScrollViewer>
                                 <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
                                     <Panel
                                         Name="{x:Static u:DialogControlBase.PART_TitleArea}"
@@ -81,19 +83,19 @@
         </Style>
         <Style Selector="^[Position=Top] /template/ u|DialogResizer">
             <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Bottom}}" />
-            <Setter Property="ResizeDirection" Value="Bottom"/>
+            <Setter Property="ResizeDirection" Value="Bottom" />
         </Style>
         <Style Selector="^[Position=Bottom] /template/ u|DialogResizer">
             <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Top}}" />
-            <Setter Property="ResizeDirection" Value="Top"/>
+            <Setter Property="ResizeDirection" Value="Top" />
         </Style>
         <Style Selector="^[Position=Left] /template/ u|DialogResizer">
             <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Right}}" />
-            <Setter Property="ResizeDirection" Value="Right"/>
+            <Setter Property="ResizeDirection" Value="Right" />
         </Style>
         <Style Selector="^[Position=Right] /template/ u|DialogResizer">
             <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Left}}" />
-            <Setter Property="ResizeDirection" Value="Left"/>
+            <Setter Property="ResizeDirection" Value="Left" />
         </Style>
     </ControlTheme>
 
@@ -112,10 +114,10 @@
                         Name="PART_Root"
                         Margin="{TemplateBinding Padding,
                                                  Converter={x:Static c:ThicknessTakeConverter.Left}}"
-                        Background="{DynamicResource SemiColorBackground2}"
                         Padding="0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
+                        Background="{DynamicResource SemiColorBackground2}"
                         BorderThickness="{TemplateBinding BorderThickness,
                                                           Converter={x:Static c:ThicknessTakeConverter.Left}}"
                         Classes="Shadow"
@@ -127,7 +129,10 @@
                         Theme="{DynamicResource CardBorder}">
                         <Border ClipToBounds="True" CornerRadius="{Binding #PART_Root.CornerRadius}">
                             <Grid RowDefinitions="Auto, *, Auto">
-                                <ScrollViewer Grid.Row="1">
+                                <ScrollViewer
+                                    Grid.Row="1"
+                                    HorizontalScrollBarVisibility="Auto"
+                                    VerticalScrollBarVisibility="Auto">
                                     <ContentPresenter
                                         Name="PART_ContentPresenter"
                                         Margin="24,8"
@@ -158,18 +163,10 @@
                                     Margin="24,0,24,24"
                                     HorizontalAlignment="Right"
                                     Orientation="Horizontal">
-                                    <Button
-                                        Name="{x:Static u:DefaultDialogControl.PART_CancelButton}"
-                                        Margin="8,0,0,0" />
-                                    <Button
-                                        Name="{x:Static u:DefaultDialogControl.PART_NoButton}"
-                                        Margin="8,0,0,0" />
-                                    <Button
-                                        Name="{x:Static u:DefaultDialogControl.PART_YesButton}"
-                                        Margin="8,0,0,0" />
-                                    <Button
-                                        Name="{x:Static u:DefaultDialogControl.PART_OKButton}"
-                                        Margin="8,0,0,0" />
+                                    <Button Name="{x:Static u:DefaultDialogControl.PART_CancelButton}" Margin="8,0,0,0" />
+                                    <Button Name="{x:Static u:DefaultDialogControl.PART_NoButton}" Margin="8,0,0,0" />
+                                    <Button Name="{x:Static u:DefaultDialogControl.PART_YesButton}" Margin="8,0,0,0" />
+                                    <Button Name="{x:Static u:DefaultDialogControl.PART_OKButton}" Margin="8,0,0,0" />
                                 </StackPanel>
                             </Grid>
                         </Border>
@@ -179,27 +176,27 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^ /template/ Button#PART_CancelButton">
-            <Setter Property="Grid.Column" Value="0"/>
-            <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary"/>
-            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_CANCEL}"/>
+            <Setter Property="Grid.Column" Value="0" />
+            <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_CANCEL}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_NoButton">
-            <Setter Property="Grid.Column" Value="1"></Setter>
-            <Setter Property="helpers:ClassHelper.Classes" Value="Danger"/>
-            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_NO}"/>
-            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_NO}" />
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_YesButton">
-            <Setter Property="Grid.Column" Value="2"></Setter>
-            <Setter Property="helpers:ClassHelper.Classes" Value="Primary"/>
-            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_YES}"/>
-            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+            <Setter Property="Grid.Column" Value="2" />
+            <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_YES}" />
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_OKButton">
-            <Setter Property="Grid.Column" Value="3"></Setter>
-            <Setter Property="helpers:ClassHelper.Classes" Value="Primary"/>
-            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_OK}"/>
-            <Setter Property="Theme" Value="{DynamicResource SolidButton}"/>
+            <Setter Property="Grid.Column" Value="3" />
+            <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
+            <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_OK}" />
+            <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
         </Style>
         <Style Selector="^[Position=Right] /template/ Border#PART_Root">
             <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Left}}" />
@@ -223,19 +220,19 @@
         </Style>
         <Style Selector="^[Position=Top] /template/ u|DialogResizer">
             <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Bottom}}" />
-            <Setter Property="ResizeDirection" Value="Bottom"/>
+            <Setter Property="ResizeDirection" Value="Bottom" />
         </Style>
         <Style Selector="^[Position=Bottom] /template/ u|DialogResizer">
             <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Top}}" />
-            <Setter Property="ResizeDirection" Value="Top"/>
+            <Setter Property="ResizeDirection" Value="Top" />
         </Style>
         <Style Selector="^[Position=Left] /template/ u|DialogResizer">
             <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Right}}" />
-            <Setter Property="ResizeDirection" Value="Right"/>
+            <Setter Property="ResizeDirection" Value="Right" />
         </Style>
         <Style Selector="^[Position=Right] /template/ u|DialogResizer">
             <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={x:Static c:ThicknessTakeConverter.Left}}" />
-            <Setter Property="ResizeDirection" Value="Left"/>
+            <Setter Property="ResizeDirection" Value="Left" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
