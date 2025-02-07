@@ -2,9 +2,14 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters"
-    xmlns:u="clr-namespace:Ursa.Controls;assembly=Ursa"
-    xmlns:iri="https://irihi.tech/shared">
+    xmlns:iri="https://irihi.tech/shared"
+    xmlns:u="clr-namespace:Ursa.Controls;assembly=Ursa">
     <!--  Add Resources Here  -->
+    <Design.PreviewWith>
+        <StackPanel Margin="20">
+            <u:LoadingIcon Classes="Large"/>
+        </StackPanel>
+    </Design.PreviewWith>
     <converters:BrushToColorConverter x:Key="BrushToColorConverter" />
     <ControlTheme x:Key="{x:Type u:LoadingIcon}" TargetType="u:LoadingIcon">
         <Setter Property="IsLoading" Value="True" />
@@ -14,19 +19,19 @@
                 <Arc
                     Name="PART_Arc"
                     Width="20"
-                    IsVisible="{TemplateBinding IsVisible}"
                     Height="20"
+                    IsVisible="{TemplateBinding IsVisible}"
                     StartAngle="0"
                     StrokeJoin="Round"
                     StrokeLineCap="Round"
                     StrokeThickness="3"
                     SweepAngle="300">
                     <Arc.Stroke>
-                        <ConicGradientBrush Angle="70">
+                        <ConicGradientBrush Angle="50">
                             <GradientStops>
-                                <GradientStop Offset="0" Color="{Binding Foreground, Converter={StaticResource BrushToColorConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
-                                <GradientStop Offset="0.2" Color="{Binding Foreground, Converter={StaticResource BrushToColorConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
-                                <GradientStop Offset="0.6" Color="Transparent" />
+                                <GradientStop Offset="0.4" Color="Transparent" />
+                                <GradientStop Offset="0.8" Color="{Binding Foreground, Converter={StaticResource BrushToColorConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <GradientStop Offset="1.0" Color="{Binding Foreground, Converter={StaticResource BrushToColorConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
                             </GradientStops>
                         </ConicGradientBrush>
                     </Arc.Stroke>
@@ -45,12 +50,12 @@
         </Style>
         <Style Selector="^[IsLoading=True] /template/ Arc#PART_Arc">
             <Style.Animations>
-                <Animation IterationCount="Infinite" Duration="0:0:0.5">
+                <Animation IterationCount="Infinite" Duration="0:0:0.6">
                     <KeyFrame Cue="0%">
                         <Setter Property="RotateTransform.Angle" Value="0.0" />
                     </KeyFrame>
                     <KeyFrame Cue="100%">
-                        <Setter Property="RotateTransform.Angle" Value="-360.0" />
+                        <Setter Property="RotateTransform.Angle" Value="360.0" />
                     </KeyFrame>
                 </Animation>
             </Style.Animations>
@@ -70,8 +75,8 @@
                     <iri:PureRectangle
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
-                        IsHitTestVisible="True"
-                        Background="{TemplateBinding Background}" />
+                        Background="{TemplateBinding Background}"
+                        IsHitTestVisible="True" />
                     <Grid
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
@@ -92,7 +97,7 @@
 
     <ControlTheme x:Key="{x:Type u:LoadingContainer}" TargetType="u:LoadingContainer">
         <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="MessageForeground" Value="{DynamicResource TextBlockDefaultForeground}"/>
+        <Setter Property="MessageForeground" Value="{DynamicResource TextBlockDefaultForeground}" />
         <Setter Property="Background" Value="{DynamicResource LoadingMaskBackground}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Indicator">
@@ -111,9 +116,9 @@
                         ContentTemplate="{TemplateBinding ContentTemplate}" />
                     <u:Loading
                         Background="{TemplateBinding Background}"
-                        Foreground="{TemplateBinding MessageForeground}"
                         Content="{TemplateBinding LoadingMessage}"
                         ContentTemplate="{TemplateBinding LoadingMessageTemplate}"
+                        Foreground="{TemplateBinding MessageForeground}"
                         Indicator="{TemplateBinding Indicator}"
                         IsLoading="{TemplateBinding IsLoading}" />
                 </Panel>

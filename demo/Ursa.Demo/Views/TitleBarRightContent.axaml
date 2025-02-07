@@ -6,17 +6,11 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Views.TitleBarRightContent">
     <StackPanel Orientation="Horizontal">
-        <Button
-            Padding="8"
-            Width="32"
-            Height="32"
-            Theme="{DynamicResource BorderlessButton}"
-            Click="OpenRepository">
-            <PathIcon
-                Theme="{StaticResource InnerPathIcon}"
-                Data="{StaticResource SemiIconGithubLogo}"
-                Foreground="{DynamicResource SemiColorText1}" />
-        </Button>
+        <u:IconButton
+            Theme="{StaticResource BorderlessIconButton}"
+            Classes="Tertiary"
+            Icon="{StaticResource SemiIconGithubLogo}"
+            Click="OpenRepository" />
         <u:ThemeToggleButton
             IsThreeState="True"
             Mode="Controller" />
