@@ -57,10 +57,10 @@ public class DrawerMeasureTest
         };
         window.Show();
         Dispatcher.UIThread.RunJobs();
+        var d = window.GetVisualDescendants().ToList();
         Drawer.ShowCustom(textBlock, "hello world", null,
             new DrawerOptions { Position = position, TopLevelHashCode = window.GetHashCode() });
         await Task.Delay(TimeSpan.FromSeconds(0.1));
-        var d = window.GetVisualDescendants().ToList();
         var dialogControl = window.GetVisualDescendants().OfType<CustomDrawerControl>().SingleOrDefault();
         Assert.NotNull(dialogControl);
         Assert.True(dialogControl.Bounds.Width <= window.Bounds.Width);
