@@ -22,6 +22,7 @@
                 <Border
                     Name="PART_Container"
                     Padding="{TemplateBinding Padding}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}">
                     <Grid ColumnDefinitions="*, Auto">
@@ -67,9 +68,11 @@
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^.Bordered">
+            <Setter Property="CornerRadius" Value="{DynamicResource BannerCornerRadius}" />
+        </Style>
         <Style Selector="^[Type=Information]">
             <Style Selector="^.Bordered /template/ Border#PART_Container">
-                <Setter Property="CornerRadius" Value="{DynamicResource BannerCornerRadius}" />
                 <Setter Property="BorderBrush" Value="{DynamicResource BannerInformationBorderBrush}" />
             </Style>
             <Style Selector="^ /template/ Border#PART_Container">
@@ -82,7 +85,6 @@
         </Style>
         <Style Selector="^[Type=Success]">
             <Style Selector="^.Bordered /template/ Border#PART_Container">
-                <Setter Property="CornerRadius" Value="{DynamicResource BannerCornerRadius}" />
                 <Setter Property="BorderBrush" Value="{DynamicResource BannerSuccessBorderBrush}" />
             </Style>
             <Style Selector="^ /template/ Border#PART_Container">
@@ -95,7 +97,6 @@
         </Style>
         <Style Selector="^[Type=Warning]">
             <Style Selector="^.Bordered /template/ Border#PART_Container">
-                <Setter Property="CornerRadius" Value="{DynamicResource BannerCornerRadius}" />
                 <Setter Property="BorderBrush" Value="{DynamicResource BannerWarningBorderBrush}" />
             </Style>
             <Style Selector="^ /template/ Border#PART_Container">
@@ -108,7 +109,6 @@
         </Style>
         <Style Selector="^[Type=Error]">
             <Style Selector="^.Bordered /template/ Border#PART_Container">
-                <Setter Property="CornerRadius" Value="{DynamicResource BannerCornerRadius}" />
                 <Setter Property="BorderBrush" Value="{DynamicResource BannerErrorBorderBrush}" />
             </Style>
             <Style Selector="^ /template/ Border#PART_Container">
