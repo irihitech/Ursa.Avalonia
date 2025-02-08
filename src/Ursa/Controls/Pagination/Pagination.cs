@@ -166,7 +166,10 @@ public class Pagination : TemplatedControl
     private static int? CoerceCurrentPage(AvaloniaObject arg1, int? arg2)
     {
         if (arg2 is null) return null;
-        if (arg1 is Pagination p) arg2 = MathHelpers.SafeClamp(arg2.Value, 1, p.PageCount);
+        if (arg1 is Pagination { IsInitialized: true } p)
+        {
+            arg2 = MathHelpers.SafeClamp(arg2.Value, 1, p.PageCount);
+        }
         return arg2;
     }
 
@@ -218,7 +221,7 @@ public class Pagination : TemplatedControl
         LostFocusEvent.AddHandler(OnQuickJumpInputLostFocus, _quickJumpInput);
 
         InitializePanelButtons();
-        UpdateButtonsByCurrentPage(0);
+        UpdateButtonsByCurrentPage(CurrentPage);
     }
 
     private void OnQuickJumpInputKeyDown(object? sender, KeyEventArgs e)
