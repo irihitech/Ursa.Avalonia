@@ -13,6 +13,13 @@ public partial class MainWindow : Window
 
     private async void Button_OnClick(object? sender, RoutedEventArgs e)
     {
-        var res = await OverlayDialog.ShowModal(new TextBlock() { Text = "sdfksjdl" }, "root");
+        if (content.Content is int s)
+        {
+            content.Content = 1.1;
+        }
+        else
+        {
+            content.Content = 1;
+        }
     }
 }
