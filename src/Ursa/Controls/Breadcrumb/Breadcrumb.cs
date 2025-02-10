@@ -73,8 +73,21 @@ public class Breadcrumb: ItemsControl
     static Breadcrumb()
     {
         ItemsPanelProperty.OverrideDefaultValue<Breadcrumb>(_defaultPanel);
+        SeparatorProperty.Changed.AddClassHandler<Breadcrumb, object?>((b, args) => b.OnSeparatorChanged(args));
     }
-    
+
+    private void OnSeparatorChanged(AvaloniaPropertyChangedEventArgs<object?> args)
+    {
+        if (GetSeparatorInstance(Separator) is { } a)
+        {
+            var breadcrumbItems = this.GetVisualDescendants().OfType<BreadcrumbItem>().ToList();
+            foreach (var item in breadcrumbItems)
+            {
+                item.Separator = a;
+            }
+        }
+    }
+
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
         return NeedsContainer<BreadcrumbItem>(item, out recycleKey);
@@ -94,11 +107,6 @@ public class Breadcrumb: ItemsControl
             {
                 breadcrumbItem.Separator = a;
             }
-            SeparatorProperty.Changed.AddClassHandler<Breadcrumb, object?>((_, args) =>
-            {
-                if (GetSeparatorInstance(args.NewValue.Value) is { } b)
-                    breadcrumbItem.Separator = b;
-            });
         }
 
         if (container == item) return;
