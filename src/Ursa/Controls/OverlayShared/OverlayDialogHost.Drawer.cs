@@ -26,6 +26,8 @@ public partial class OverlayDialogHost
 
         _layers.Add(new DialogPair(mask, control));
         ResetZIndices();
+        control.MaxWidth = Math.Min(control.MaxWidth, this.Bounds.Width);
+        control.MaxHeight = Math.Min(control.MaxHeight, this.Bounds.Height);
         if (mask is not null) this.Children.Add(mask);
         this.Children.Add(control);
         control.Measure(this.Bounds.Size);
@@ -53,6 +55,8 @@ public partial class OverlayDialogHost
     internal async void AddModalDrawer(DrawerControlBase control)
     {
         PureRectangle mask = CreateOverlayMask(true, control.CanLightDismiss);
+        control.MaxWidth = Math.Min(control.MaxWidth, this.Bounds.Width);
+        control.MaxHeight = Math.Min(control.MaxHeight, this.Bounds.Height);
         _layers.Add(new DialogPair(mask, control));
         this.Children.Add(mask);
         this.Children.Add(control);
