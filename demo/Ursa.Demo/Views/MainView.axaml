@@ -38,6 +38,7 @@
                     SubMenuBinding="{Binding Children}"
                     HeaderBinding="{Binding}"
                     IconBinding="{Binding MenuHeader}"
+                    IsHorizontalCollapsed="{Binding IsCollapsed, Mode=TwoWay}"
                     ItemsSource="{Binding Menus.MenuItems}">
                     <u:NavMenu.Styles>
                         <Style x:DataType="vm:MenuItemViewModel" Selector="u|NavMenuItem">
@@ -59,12 +60,12 @@
                     </u:NavMenu.IconTemplate>
                     <u:NavMenu.HeaderTemplate>
                         <DataTemplate x:DataType="vm:MenuItemViewModel">
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Spacing="{StaticResource SemiSpacingExtraTight}">
                                 <TextBlock HorizontalAlignment="Left" Text="{Binding MenuHeader}" />
-                                <u:Badge
-                                    Margin="8,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    Header="{Binding Status}"
+                                <Label
+                                    Theme="{StaticResource TagLabel}"
+                                    Classes="Purple"
+                                    Content="{Binding Status}"
                                     IsVisible="{Binding Status, Converter={x:Static ObjectConverters.IsNotNull}}" />
                             </StackPanel>
                         </DataTemplate>
@@ -91,20 +92,20 @@
                         <u:IconButton
                             HorizontalAlignment="Stretch"
                             Classes="Tertiary"
+                            Icon="{StaticResource SemiIconSetting}"
+                            Content="{Binding FooterText}"
+                            RenderTransform="{x:Null}"
+                            ToolTip.Tip="Settings"
+                            FontWeight="Normal"
                             Theme="{DynamicResource BorderlessIconButton}">
-                            <TextBlock IsVisible="{Binding !#menu.IsHorizontalCollapsed}" Text="Settings" />
-                            <u:IconButton.Icon>
-                                <PathIcon Data="{StaticResource SemiIconSetting}" Theme="{StaticResource InnerPathIcon}" />
-                            </u:IconButton.Icon>
                             <Button.Flyout>
                                 <Flyout Placement="RightEdgeAlignedBottom">
                                     <u:Form LabelPosition="Left">
                                         <ComboBox
-                                            MinWidth="100"
-                                            u:FormItem.Label="ThemeVariant"
+                                            Width="110"
+                                            u:FormItem.Label="Theme"
                                             DisplayMemberBinding="{Binding Name}"
                                             ItemsSource="{Binding Themes}"
-                                            PlaceholderText="Select a theme"
                                             SelectedItem="{Binding SelectedTheme}" />
                                     </u:Form>
                                 </Flyout>

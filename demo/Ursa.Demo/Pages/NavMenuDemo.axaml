@@ -20,16 +20,10 @@
         HorizontalAlignment="Left"
         ColumnDefinitions="Auto, Auto"
         RowDefinitions="Auto, Auto, *">
-        <ToggleButton
-            Name="collapse"
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.ColumnSpan="2">
-            Collapse
-        </ToggleButton>
-        <StackPanel Grid.Row="1" Grid.Column="0">
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <ToggleSwitch Name="collapse" OnContent="Collapse" OffContent="Expand" />
+            <Button HorizontalAlignment="Left" Command="{Binding RandomCommand}" Content="Random a selection" />
             <TextBlock Text="{Binding SelectedMenuItem.Header}" />
-            <Button Command="{Binding RandomCommand}">Random a selection</Button>
         </StackPanel>
         <Border
             Grid.Row="2"

@@ -107,6 +107,15 @@ public partial class MainViewViewModel : ViewModelBase
             app.RequestedThemeVariant = newValue.Theme;
         }
     }
+
+    [ObservableProperty] private string? _footerText = "Settings";
+
+    [ObservableProperty] private bool _isCollapsed;
+
+    partial void OnIsCollapsedChanged(bool value)
+    {
+        FooterText = value ? null : "Settings";
+    }
 }
 
 public class ThemeItem(string name, ThemeVariant theme)
