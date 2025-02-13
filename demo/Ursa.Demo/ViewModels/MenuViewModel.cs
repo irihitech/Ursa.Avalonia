@@ -4,66 +4,98 @@ namespace Ursa.Demo.ViewModels;
 
 public class MenuViewModel : ViewModelBase
 {
-    public ObservableCollection<MenuItemViewModel> MenuItems { get; set; }
-
     public MenuViewModel()
     {
-        MenuItems = new ObservableCollection<MenuItemViewModel>()
+        MenuItems = new ObservableCollection<MenuItemViewModel>
         {
             new() { MenuHeader = "Introduction", Key = MenuKeys.MenuKeyIntroduction, IsSeparator = false },
             new() { MenuHeader = "Controls", IsSeparator = true },
-            new() { MenuHeader = "AspectRatioLayout", Key = MenuKeys.AspectRatioLayout, Status = "New" },
-            new() { MenuHeader = "AutoCompleteBox", Key = MenuKeys.MenuKeyAutoCompleteBox, Status = "WIP" },
-            new() { MenuHeader = "Avatar", Key = MenuKeys.MenuKeyAvatar, Status = "WIP" },
-            new() { MenuHeader = "Badge", Key = MenuKeys.MenuKeyBadge },
-            new() { MenuHeader = "Banner", Key = MenuKeys.MenuKeyBanner },
-            new() { MenuHeader = "Breadcrumb", Key = MenuKeys.MenuKeyBreadcrumb },
-            new() { MenuHeader = "Button Group", Key = MenuKeys.MenuKeyButtonGroup },
-            new() { MenuHeader = "Class Input", Key = MenuKeys.MenuKeyClassInput },
-            new() { MenuHeader = "Clock", Key = MenuKeys.MenuKeyClock, Status = "Updated" },
-            new() { MenuHeader = "Date Picker", Key = MenuKeys.MenuKeyDatePicker, Status = "New" },
-            new() { MenuHeader = "Date Time Picker", Key = MenuKeys.MenuKeyDateTimePicker, Status = "New" },
-            new() { MenuHeader = "Dialog", Key = MenuKeys.MenuKeyDialog },
-            new() { MenuHeader = "Disable Container", Key = MenuKeys.MenuKeyDisableContainer },
-            new() { MenuHeader = "Divider", Key = MenuKeys.MenuKeyDivider },
-            new() { MenuHeader = "Drawer", Key = MenuKeys.MenuKeyDrawer },
-            new() { MenuHeader = "DualBadge", Key = MenuKeys.MenuKeyDualBadge },
-            new() { MenuHeader = "ElasticWrapPanel", Key = MenuKeys.MenuKeyElasticWrapPanel },
-            new() { MenuHeader = "Enum Selector", Key = MenuKeys.MenuKeyEnumSelector },
-            new() { MenuHeader = "Form", Key = MenuKeys.MenuKeyForm },
-            new() { MenuHeader = "Icon Button", Key = MenuKeys.MenuKeyIconButton },
-            new() { MenuHeader = "ImageViewer", Key = MenuKeys.MenuKeyImageViewer, Status = "WIP" },
-            new() { MenuHeader = "IPv4Box", Key = MenuKeys.MenuKeyIpBox },
-            new() { MenuHeader = "KeyGestureInput", Key = MenuKeys.MenuKeyKeyGestureInput },
-            new() { MenuHeader = "Loading", Key = MenuKeys.MenuKeyLoading },
-            new() { MenuHeader = "Marquee", Key = MenuKeys.MenuKeyMarquee },
-            new() { MenuHeader = "Message Box", Key = MenuKeys.MenuKeyMessageBox },
-            new() { MenuHeader = "MultiComboBox", Key = MenuKeys.MenuKeyMultiComboBox, Status = "Updated" },
-            new() { MenuHeader = "Nav Menu", Key = MenuKeys.MenuKeyNavMenu },
-            new() { MenuHeader = "Notification", Key = MenuKeys.MenuKeyNotification, Status = "New" },
-            new() { MenuHeader = "Number Displayer", Key = MenuKeys.MenuKeyNumberDisplayer, Status = "New" },
-            new() { MenuHeader = "Numeric UpDown", Key = MenuKeys.MenuKeyNumericUpDown },
-            new() { MenuHeader = "NumPad", Key = MenuKeys.MenuKeyNumPad },
-            new() { MenuHeader = "Pagination", Key = MenuKeys.MenuKeyPagination },
-            new() { MenuHeader = "PathPicker", Key = MenuKeys.PathPicker, Status = "WIP" },
-            new() { MenuHeader = "PinCode", Key = MenuKeys.MenuKeyPinCode },
-            new() { MenuHeader = "RangeSlider", Key = MenuKeys.MenuKeyRangeSlider },
-            new() { MenuHeader = "Rating", Key = MenuKeys.MenuKeyRating },
-            new() { MenuHeader = "Scroll To", Key = MenuKeys.MenuKeyScrollToButton },
-            new() { MenuHeader = "Selection List", Key = MenuKeys.MenuKeySelectionList },
-            new() { MenuHeader = "Skeleton", Key = MenuKeys.MenuKeySkeleton },
-            new() { MenuHeader = "TagInput", Key = MenuKeys.MenuKeyTagInput, Status = "Updated" },
-            new() { MenuHeader = "Theme Toggler", Key = MenuKeys.MenuKeyThemeToggler },
-            new() { MenuHeader = "Time Box", Key = MenuKeys.MenuKeyTimeBox },
-            new() { MenuHeader = "Timeline", Key = MenuKeys.MenuKeyTimeline },
-            new() { MenuHeader = "TimePicker", Key = MenuKeys.MenuKeyTimePicker },
-            new() { MenuHeader = "Toast", Key = MenuKeys.MenuKeyToast, Status = "New" },
-            new() { MenuHeader = "ToolBar", Key = MenuKeys.MenuKeyToolBar },
-            new() { MenuHeader = "TreeComboBox", Key = MenuKeys.MenuKeyTreeComboBox },
-            new() { MenuHeader = "TwoTonePathIcon", Key = MenuKeys.MenuKeyTwoTonePathIcon },
+            new()
+            {
+                MenuHeader = "Buttons and Inputs", Children = new ObservableCollection<MenuItemViewModel>
+                {
+                    new() { MenuHeader = "Button Group", Key = MenuKeys.MenuKeyButtonGroup },
+                    new() { MenuHeader = "Icon Button", Key = MenuKeys.MenuKeyIconButton },
+                    new() { MenuHeader = "AutoCompleteBox", Key = MenuKeys.MenuKeyAutoCompleteBox },
+                    new() { MenuHeader = "Class Input", Key = MenuKeys.MenuKeyClassInput },
+                    new() { MenuHeader = "Enum Selector", Key = MenuKeys.MenuKeyEnumSelector },
+                    new() { MenuHeader = "Form", Key = MenuKeys.MenuKeyForm },
+                    new() { MenuHeader = "KeyGestureInput", Key = MenuKeys.MenuKeyKeyGestureInput },
+                    new() { MenuHeader = "IPv4Box", Key = MenuKeys.MenuKeyIpBox },
+                    new() { MenuHeader = "MultiComboBox", Key = MenuKeys.MenuKeyMultiComboBox },
+                    new() { MenuHeader = "Numeric UpDown", Key = MenuKeys.MenuKeyNumericUpDown },
+                    new() { MenuHeader = "NumPad", Key = MenuKeys.MenuKeyNumPad },
+                    new() { MenuHeader = "PathPicker", Key = MenuKeys.PathPicker },
+                    new() { MenuHeader = "PinCode", Key = MenuKeys.MenuKeyPinCode },
+                    new() { MenuHeader = "RangeSlider", Key = MenuKeys.MenuKeyRangeSlider },
+                    new() { MenuHeader = "Rating", Key = MenuKeys.MenuKeyRating },
+                    new() { MenuHeader = "Selection List", Key = MenuKeys.MenuKeySelectionList },
+                    new() { MenuHeader = "TagInput", Key = MenuKeys.MenuKeyTagInput },
+                    new() { MenuHeader = "Theme Toggler", Key = MenuKeys.MenuKeyThemeToggler },
+                    new() { MenuHeader = "TreeComboBox", Key = MenuKeys.MenuKeyTreeComboBox },
+                }
+            },
+            new()
+            {
+                MenuHeader = "Dialog and Feedbacks", Children = new ObservableCollection<MenuItemViewModel>()
+                {
+                    new() { MenuHeader = "Dialog", Key = MenuKeys.MenuKeyDialog },
+                    new() { MenuHeader = "Drawer", Key = MenuKeys.MenuKeyDrawer },
+                    new() { MenuHeader = "Loading", Key = MenuKeys.MenuKeyLoading },
+                    new() { MenuHeader = "Message Box", Key = MenuKeys.MenuKeyMessageBox },
+                    new() { MenuHeader = "Notification", Key = MenuKeys.MenuKeyNotification },
+                    new() { MenuHeader = "Toast", Key = MenuKeys.MenuKeyToast },
+                    new() { MenuHeader = "Skeleton", Key = MenuKeys.MenuKeySkeleton },
+                }
+            },
+            new()
+            {
+                MenuHeader = "Date and Time", Children = new ObservableCollection<MenuItemViewModel>
+                {
+                    new() { MenuHeader = "Date Picker", Key = MenuKeys.MenuKeyDatePicker },
+                    new() { MenuHeader = "Date Time Picker", Key = MenuKeys.MenuKeyDateTimePicker },
+                    new() { MenuHeader = "Time Box", Key = MenuKeys.MenuKeyTimeBox },
+                    new() { MenuHeader = "TimePicker", Key = MenuKeys.MenuKeyTimePicker },
+                    new() { MenuHeader = "Clock", Key = MenuKeys.MenuKeyClock }
+                }
+            },
+            new()
+            {
+                MenuHeader = "Navigation and Menus", Children = new ObservableCollection<MenuItemViewModel>
+                {
+                    new() { MenuHeader = "Breadcrumb", Key = MenuKeys.MenuKeyBreadcrumb },
+                    new() { MenuHeader = "Nav Menu", Key = MenuKeys.MenuKeyNavMenu },
+                    new() { MenuHeader = "Pagination", Key = MenuKeys.MenuKeyPagination },
+                    new() { MenuHeader = "ToolBar", Key = MenuKeys.MenuKeyToolBar },
+                }
+            },
+            new()
+            {
+                MenuHeader = "Layout and Display",
+                Children = new ObservableCollection<MenuItemViewModel>
+                {
+                    new() { MenuHeader = "AspectRatioLayout", Key = MenuKeys.AspectRatioLayout },
+                    new() { MenuHeader = "Avatar", Key = MenuKeys.MenuKeyAvatar },
+                    new() { MenuHeader = "Badge", Key = MenuKeys.MenuKeyBadge },
+                    new() { MenuHeader = "Banner", Key = MenuKeys.MenuKeyBanner },
+                    new() { MenuHeader = "Disable Container", Key = MenuKeys.MenuKeyDisableContainer },
+                    new() { MenuHeader = "Divider", Key = MenuKeys.MenuKeyDivider },
+                    new() { MenuHeader = "DualBadge", Key = MenuKeys.MenuKeyDualBadge },
+                    new() { MenuHeader = "ImageViewer", Key = MenuKeys.MenuKeyImageViewer },
+                    new() { MenuHeader = "ElasticWrapPanel", Key = MenuKeys.MenuKeyElasticWrapPanel },
+                    new() { MenuHeader = "Marquee", Key = MenuKeys.MenuKeyMarquee },
+                    new() { MenuHeader = "Number Displayer", Key = MenuKeys.MenuKeyNumberDisplayer },
+                    new() { MenuHeader = "Scroll To", Key = MenuKeys.MenuKeyScrollToButton },
+                    new() { MenuHeader = "Timeline", Key = MenuKeys.MenuKeyTimeline },
+                    new() { MenuHeader = "TwoTonePathIcon", Key = MenuKeys.MenuKeyTwoTonePathIcon }
+                }
+            },
+            
             
         };
     }
+
+    public ObservableCollection<MenuItemViewModel> MenuItems { get; set; }
 }
 
 public static class MenuKeys

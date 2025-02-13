@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="clr-namespace:Ursa.Demo.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:iri="https://irihi.tech/shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="using:Ursa.Demo.ViewModels"
@@ -22,24 +23,25 @@
     <Panel>
         <Panel.Styles>
             <Style Selector="Grid.Blur">
-                <Setter Property="Effect" Value="blur(10)"></Setter>
+                <Setter Property="Effect" Value="blur(10)" />
             </Style>
         </Panel.Styles>
-        <Grid
-            Classes.Blur="{Binding $parent[u:UrsaWindow].(u:OverlayDialogHost.IsInModalStatus)}"
-            ColumnDefinitions="Auto, *">
+        <Grid Classes.Blur="{Binding $parent[u:UrsaWindow].(u:OverlayDialogHost.IsInModalStatus)}" ColumnDefinitions="Auto, *">
             <Border
-                Padding="8 4"
+                Padding="8,4"
                 VerticalAlignment="Stretch"
                 Theme="{DynamicResource CardBorder}">
-                <u:NavMenu Name="menu" ItemsSource="{Binding Menus.MenuItems}"
-                           ExpandWidth="300"
-                           CommandBinding="{Binding ActivateCommand}"
-                           HeaderBinding="{Binding}"
-                           IconBinding="{Binding MenuHeader}">
+                <u:NavMenu
+                    Name="menu"
+                    CommandBinding="{Binding ActivateCommand}"
+                    ExpandWidth="300"
+                    SubMenuBinding="{Binding Children}"
+                    HeaderBinding="{Binding}"
+                    IconBinding="{Binding MenuHeader}"
+                    ItemsSource="{Binding Menus.MenuItems}">
                     <u:NavMenu.Styles>
-                        <Style Selector="u|NavMenuItem" x:DataType="vm:MenuItemViewModel">
-                            <Setter Property="IsSeparator" Value="{Binding IsSeparator}"></Setter>
+                        <Style x:DataType="vm:MenuItemViewModel" Selector="u|NavMenuItem">
+                            <Setter Property="IsSeparator" Value="{Binding IsSeparator}" />
                         </Style>
                     </u:NavMenu.Styles>
                     <u:NavMenu.IconTemplate>
@@ -62,51 +64,47 @@
                                 <u:Badge
                                     Margin="8,0,0,0"
                                     HorizontalAlignment="Left"
-                                    IsVisible="{Binding Status, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                    Header="{Binding Status}" />
+                                    Header="{Binding Status}"
+                                    IsVisible="{Binding Status, Converter={x:Static ObjectConverters.IsNotNull}}" />
                             </StackPanel>
                         </DataTemplate>
                     </u:NavMenu.HeaderTemplate>
                     <u:NavMenu.Header>
-                        <DockPanel HorizontalAlignment="Center" Margin="8">
-                            <Image
-                                Width="48"
-                                Height="48"
+                        <DockPanel Margin="8 32 8 8" HorizontalAlignment="Center" >
+                            <Panel
+                                VerticalAlignment="Center"
                                 u:NavMenu.CanToggle="True"
-                                VerticalAlignment="Center"
-                                DockPanel.Dock="Left"
-                                RenderOptions.BitmapInterpolationMode="HighQuality"
-                                Source="../Assets/Ursa.ico" />
+                                Background="Transparent"
+                                DockPanel.Dock="Left">
+                                <iri:IrihiLogo Width="32" Fill="{DynamicResource SemiGrey7}" />
+                            </Panel>
                             <TextBlock
-                                Classes="H4"
-                                Text="Ursa"
-                                IsVisible="{Binding !#menu.IsHorizontalCollapsed}"
                                 VerticalAlignment="Center"
+                                Classes="H4"
+                                Margin="16 0 0 0"
+                                IsVisible="{Binding !#menu.IsHorizontalCollapsed}"
+                                Text="Ursa"
                                 Theme="{DynamicResource TitleTextBlock}" />
                         </DockPanel>
                     </u:NavMenu.Header>
                     <u:NavMenu.Footer>
                         <u:IconButton
-                            Theme="{DynamicResource BorderlessIconButton}"
+                            HorizontalAlignment="Stretch"
                             Classes="Tertiary"
-                            HorizontalAlignment="Stretch">
-                            <TextBlock
-                                Text="Settings"
-                                IsVisible="{Binding !#menu.IsHorizontalCollapsed}" />
+                            Theme="{DynamicResource BorderlessIconButton}">
+                            <TextBlock IsVisible="{Binding !#menu.IsHorizontalCollapsed}" Text="Settings" />
                             <u:IconButton.Icon>
-                                <PathIcon
-                                    Theme="{StaticResource InnerPathIcon}"
-                                    Data="{StaticResource SemiIconSetting}" />
+                                <PathIcon Data="{StaticResource SemiIconSetting}" Theme="{StaticResource InnerPathIcon}" />
                             </u:IconButton.Icon>
                             <Button.Flyout>
                                 <Flyout Placement="RightEdgeAlignedBottom">
                                     <u:Form LabelPosition="Left">
                                         <ComboBox
-                                            u:FormItem.Label="ThemeVariant"
                                             MinWidth="100"
-                                            PlaceholderText="Select a theme"
+                                            u:FormItem.Label="ThemeVariant"
                                             DisplayMemberBinding="{Binding Name}"
                                             ItemsSource="{Binding Themes}"
+                                            PlaceholderText="Select a theme"
                                             SelectedItem="{Binding SelectedTheme}" />
                                     </u:Form>
                                 </Flyout>
@@ -117,7 +115,7 @@
             </Border>
             <ContentControl
                 Grid.Column="1"
-                Margin="12 36 12 12"
+                Margin="12,36,12,12"
                 Content="{Binding Content}">
                 <ContentControl.ContentTemplate>
                     <converters:ViewLocator />

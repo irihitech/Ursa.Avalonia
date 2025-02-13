@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="using:Ursa.Demo.ViewModels"
+    xmlns:iri="https://irihi.tech/shared"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:CompileBindings="True"
@@ -65,13 +66,14 @@
                 </u:NavMenu.IconTemplate>
                 <u:NavMenu.Header>
                     <Grid HorizontalAlignment="Center" ColumnDefinitions="Auto, Auto">
-                        <Image
-                            Width="48"
-                            Height="48"
-                            Margin="4,12"
+                        <Panel
+                            VerticalAlignment="Center"
                             u:NavMenu.CanToggle="True"
-                            RenderOptions.BitmapInterpolationMode="HighQuality"
-                            Source="../Assets/Ursa.ico" />
+                            Margin="4 12"
+                            Background="Transparent"
+                            DockPanel.Dock="Left">
+                            <iri:IrihiLogo Width="32" Fill="{DynamicResource SemiGrey7}" />
+                        </Panel>
                         <TextBlock
                             Grid.Column="1"
                             VerticalAlignment="Center"
