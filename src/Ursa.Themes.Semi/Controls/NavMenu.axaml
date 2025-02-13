@@ -97,7 +97,7 @@
                         Foreground="{DynamicResource NavigationMenuItemExpandIconForeground}">
                         <PathIcon.Transitions>
                             <Transitions>
-                                <TransformOperationsTransition Property="RenderTransform" Duration="0.1" />
+                                <TransformOperationsTransition Property="RenderTransform" Duration="0.2" />
                             </Transitions>
                         </PathIcon.Transitions>
                     </PathIcon>
@@ -131,8 +131,9 @@
                 RenderTransformOrigin="0.5,0">
                 <ItemsPresenter.Transitions>
                     <Transitions>
-                        <DoubleTransition Property="Height" Duration="0.1" />
-                        <TransformOperationsTransition Property="RenderTransform" Duration="0.1" />
+                        <DoubleTransition Easing="QuadraticEaseIn" Property="Height" Duration="0.25" />
+                        <DoubleTransition Easing="QuadraticEaseOut" Property="Opacity" Duration="0.25" />
+                        <!-- <TransformOperationsTransition Easing="QuadraticEaseIn" Property="RenderTransform" Duration="0.25" /> -->
                     </Transitions>
                 </ItemsPresenter.Transitions>
             </ItemsPresenter>
@@ -157,7 +158,8 @@
         </Style>
         <Style Selector="^:vertical-collapsed /template/ ItemsPresenter#PART_ItemsPresenter">
             <Setter Property="Height" Value="0" />
-            <Setter Property="RenderTransform" Value="scale(1,0)" />
+            <Setter Property="Opacity" Value="0" />
+            <!-- <Setter Property="RenderTransform" Value="scale(1,0)" /> -->
         </Style>
         <Style Selector="^:vertical-collapsed /template/ PathIcon#PART_ExpanderIcon">
             <Setter Property="RenderTransform" Value="rotate(180deg)" />
