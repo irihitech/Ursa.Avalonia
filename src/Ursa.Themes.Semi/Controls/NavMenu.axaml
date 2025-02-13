@@ -121,22 +121,30 @@
                     </Popup>
                 </Grid>
             </Border>
-            <ItemsPresenter
-                Name="PART_ItemsPresenter"
-                Grid.Row="1"
-                Margin="0,4,0,0"
-                VerticalAlignment="Top"
-                Grid.IsSharedSizeScope="True"
-                ItemsPanel="{Binding ItemsPanel, RelativeSource={RelativeSource TemplatedParent}}"
-                RenderTransformOrigin="0.5,0">
-                <ItemsPresenter.Transitions>
+            <LayoutTransformControl Grid.Row="1" RenderTransformOrigin="0.5,0">
+                <ItemsPresenter
+                    Name="PART_ItemsPresenter"
+                    Grid.Row="1"
+                    Margin="0,4,0,0"
+                    Opacity="1"
+                    VerticalAlignment="Top"
+                    Grid.IsSharedSizeScope="True"
+                    ItemsPanel="{Binding ItemsPanel, RelativeSource={RelativeSource TemplatedParent}}"
+                    RenderTransformOrigin="0.5,0">
+                    <ItemsPresenter.Transitions>
+                        <Transitions>
+                            <DoubleTransition Easing="QuadraticEaseIn" Property="Height" Duration="0.25" />
+                            <DoubleTransition Easing="QuadraticEaseOut" Property="Opacity" Duration="0.25" />
+                            <TransformOperationsTransition Easing="QuadraticEaseInOut" Property="RenderTransform" Duration="0.25" />
+                        </Transitions>
+                    </ItemsPresenter.Transitions>
+                </ItemsPresenter>
+                <LayoutTransformControl.Transitions>
                     <Transitions>
-                        <DoubleTransition Easing="QuadraticEaseIn" Property="Height" Duration="0.25" />
-                        <DoubleTransition Easing="QuadraticEaseOut" Property="Opacity" Duration="0.25" />
-                        <!-- <TransformOperationsTransition Easing="QuadraticEaseIn" Property="RenderTransform" Duration="0.25" /> -->
+                        <TransformOperationsTransition Easing="QuadraticEaseInOut" Property="LayoutTransform" Duration="0.15" Delay="0.1" />
                     </Transitions>
-                </ItemsPresenter.Transitions>
-            </ItemsPresenter>
+                </LayoutTransformControl.Transitions>
+            </LayoutTransformControl>
         </Grid>
     </ControlTemplate>
     <ControlTheme x:Key="{x:Type u:NavMenuItem}" TargetType="u:NavMenuItem">
@@ -159,7 +167,10 @@
         <Style Selector="^:vertical-collapsed /template/ ItemsPresenter#PART_ItemsPresenter">
             <Setter Property="Height" Value="0" />
             <Setter Property="Opacity" Value="0" />
-            <!-- <Setter Property="RenderTransform" Value="scale(1,0)" /> -->
+            <!--<Setter Property="RenderTransform" Value="scale(1,0.9)" />-->
+        </Style>
+        <Style Selector="^:vertical-collapsed /template/ LayoutTransformControl">
+            <Setter Property="LayoutTransform" Value="scale(1,0)" />
         </Style>
         <Style Selector="^:vertical-collapsed /template/ PathIcon#PART_ExpanderIcon">
             <Setter Property="RenderTransform" Value="rotate(180deg)" />
