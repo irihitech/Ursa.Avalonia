@@ -216,7 +216,7 @@
         </Style>
         <Style Selector="^:horizontal-collapsed:not(:first-level)">
             <Style Selector="^ /template/ PathIcon#PART_ExpanderIcon">
-                <Setter Property="RenderTransform" Value="rotate(-90deg)" />
+                <Setter Property="RenderTransform" Value="rotate(90deg)" />
             </Style>
         </Style>
         <Style Selector="^:horizontal-collapsed:first-level">
