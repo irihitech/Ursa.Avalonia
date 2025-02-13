@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="using:Ursa.Demo.ViewModels"
+    xmlns:iri="https://irihi.tech/shared"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:CompileBindings="True"
@@ -19,16 +20,10 @@
         HorizontalAlignment="Left"
         ColumnDefinitions="Auto, Auto"
         RowDefinitions="Auto, Auto, *">
-        <ToggleButton
-            Name="collapse"
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.ColumnSpan="2">
-            Collapse
-        </ToggleButton>
-        <StackPanel Grid.Row="1" Grid.Column="0">
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <ToggleSwitch Name="collapse" OnContent="Collapse" OffContent="Expand" />
+            <Button HorizontalAlignment="Left" Command="{Binding RandomCommand}" Content="Random a selection" />
             <TextBlock Text="{Binding SelectedMenuItem.Header}" />
-            <Button Command="{Binding RandomCommand}">Random a selection</Button>
         </StackPanel>
         <Border
             Grid.Row="2"
@@ -65,13 +60,14 @@
                 </u:NavMenu.IconTemplate>
                 <u:NavMenu.Header>
                     <Grid HorizontalAlignment="Center" ColumnDefinitions="Auto, Auto">
-                        <Image
-                            Width="48"
-                            Height="48"
-                            Margin="4,12"
+                        <Panel
+                            VerticalAlignment="Center"
                             u:NavMenu.CanToggle="True"
-                            RenderOptions.BitmapInterpolationMode="HighQuality"
-                            Source="../Assets/Ursa.ico" />
+                            Margin="4 12"
+                            Background="Transparent"
+                            DockPanel.Dock="Left">
+                            <iri:IrihiLogo Width="32" Fill="{DynamicResource SemiGrey7}" />
+                        </Panel>
                         <TextBlock
                             Grid.Column="1"
                             VerticalAlignment="Center"
