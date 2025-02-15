@@ -8,11 +8,12 @@
 [![Irihi.Ursa](https://img.shields.io/nuget/dt/Irihi.Ursa.svg?style=flat-square)](https://www.nuget.org/packages/Irihi.Ursa/)
 [![GitCode](https://gitcode.com/IRIHI_Technology/Ursa.Avalonia/star/badge.svg)](https://gitcode.com/IRIHI_Technology/Ursa.Avalonia)
 
-Ursa is a UI library for building cross-platform UIs with Avalonia UI.
+Ursa is an enterprise level UI library for building cross-platform applications with Avalonia UI.
 
 ![Demo](./assets/demo.png)
 
-## How to use
+## Get Started
+
 1. Ursa
 
 Add nuget package:
@@ -52,16 +53,19 @@ You can now use Ursa controls in your Avalonia Application.
     xmlns:u="https://irihi.tech/ursa"
     ...>
     <StackPanel Margin="20">
-        <u:ButtonGroup Classes="Solid Warning">
-            <Button Content="Hello" />
-            <Button Content="World" />
-        </u:ButtonGroup>
         <u:TagInput />
     </StackPanel>
 </Window>
 ```
 
-![Demo](./assets/demo.jpg)
+## .NET Foundation
+
+This project is supported by the [.NET Foundation](https://dotnetfoundation.org).
+
+## Code of Conduct
+
+This project has adopted the code of conduct defined by the Contributor Covenant to clarify expected behavior in our community.
+For more information see the [.NET Foundation Code of Conduct](https://dotnetfoundation.org/code-of-conduct).
 
 ## Compatibility Notice
 Ursa currently is compatible with both Avalonia 11.1.x and 11.2.x, but specifically does not support Avalonia 11.2.0.
