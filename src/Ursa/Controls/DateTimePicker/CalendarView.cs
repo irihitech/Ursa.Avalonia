@@ -95,13 +95,13 @@ public class CalendarView : TemplatedControl
 
     private CalendarContext _contextDate = new();
 
-    public static readonly DirectProperty<CalendarView, CalendarContext> ContextDateProperty = AvaloniaProperty.RegisterDirect<CalendarView, CalendarContext>(
+    internal static readonly DirectProperty<CalendarView, CalendarContext> ContextDateProperty = AvaloniaProperty.RegisterDirect<CalendarView, CalendarContext>(
         nameof(ContextDate), o => o.ContextDate, (o, v) => o.ContextDate = v);
 
-    public CalendarContext ContextDate
+    internal CalendarContext ContextDate
     {
         get => _contextDate;
-        internal set => SetAndRaise(ContextDateProperty, ref _contextDate, value);
+        set => SetAndRaise(ContextDateProperty, ref _contextDate, value);
     }
 
     public bool IsTodayHighlighted
@@ -535,7 +535,7 @@ public class CalendarView : TemplatedControl
         IsEnabledProperty.SetValue(canNext, _nextButton, _fastNextButton);
     }
     
-    public void MarkDates(DateTime? startDate = null, DateTime? endDate = null, DateTime? previewStartDate = null, DateTime? previewEndDate = null)
+    internal void MarkDates(DateTime? startDate = null, DateTime? endDate = null, DateTime? previewStartDate = null, DateTime? previewEndDate = null)
     {
         _start = startDate;
         _end = endDate;

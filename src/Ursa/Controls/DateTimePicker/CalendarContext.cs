@@ -1,6 +1,6 @@
 namespace Ursa.Controls;
 
-public sealed class CalendarContext(int? year = null, int? month = null, int? startYear = null, int? endYear = null): IComparable<CalendarContext>
+internal sealed class CalendarContext(int? year = null, int? month = null, int? startYear = null, int? endYear = null): IComparable<CalendarContext>
 {
     public int? Year { get; } = year;
     public int? Month { get; } = month;

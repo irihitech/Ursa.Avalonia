@@ -46,7 +46,7 @@ internal static class DateTimeHelper
     public static (int start, int end) GetDecadeViewRangeByYear(int year)
     {
         int start = year / 10 * 10;
-        return new ValueTuple<int, int>(start, start + 10);
+        return new ValueTuple<int, int>(start, start + 10 - 1);
     }
     
     public static (int start, int end) GetCenturyViewRangeByYear(int year)
