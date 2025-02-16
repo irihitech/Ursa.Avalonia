@@ -12,6 +12,7 @@ public class CalendarDayButtonTests
         var button = new CalendarDayButton();
         button.IsToday = true;
         Assert.Contains(CalendarDayButton.PC_Today, button.Classes);
+        Assert.True(button.IsToday);
     }
 
     [Fact]
@@ -20,6 +21,7 @@ public class CalendarDayButtonTests
         var button = new CalendarDayButton();
         button.IsStartDate = true;
         Assert.Contains(CalendarDayButton.PC_StartDate, button.Classes);
+        Assert.True(button.IsStartDate);
     }
 
     [Fact]
@@ -28,6 +30,7 @@ public class CalendarDayButtonTests
         var button = new CalendarDayButton();
         button.IsEndDate = true;
         Assert.Contains(CalendarDayButton.PC_EndDate, button.Classes);
+        Assert.True(button.IsEndDate);
     }
 
     [Fact]
@@ -36,6 +39,7 @@ public class CalendarDayButtonTests
         var button = new CalendarDayButton();
         button.IsPreviewStartDate = true;
         Assert.Contains(CalendarDayButton.PC_PreviewStartDate, button.Classes);
+        Assert.True(button.IsPreviewStartDate);
     }
 
     [Fact]
@@ -44,6 +48,7 @@ public class CalendarDayButtonTests
         var button = new CalendarDayButton();
         button.IsPreviewEndDate = true;
         Assert.Contains(CalendarDayButton.PC_PreviewEndDate, button.Classes);
+        Assert.True(button.IsPreviewEndDate);
     }
 
     [Fact]
@@ -52,6 +57,7 @@ public class CalendarDayButtonTests
         var button = new CalendarDayButton();
         button.IsInRange = true;
         Assert.Contains(CalendarDayButton.PC_InRange, button.Classes);
+        Assert.True(button.IsInRange);
     }
 
     [Fact]
@@ -60,6 +66,7 @@ public class CalendarDayButtonTests
         var button = new CalendarDayButton();
         button.IsSelected = true;
         Assert.Contains(PseudoClassName.PC_Selected, button.Classes);
+        Assert.True(button.IsSelected);
     }
 
     [Fact]
@@ -68,6 +75,7 @@ public class CalendarDayButtonTests
         var button = new CalendarDayButton();
         button.IsBlackout = true;
         Assert.Contains(CalendarDayButton.PC_Blackout, button.Classes);
+        Assert.True(button.IsBlackout);
     }
 
     [Fact]
@@ -76,6 +84,7 @@ public class CalendarDayButtonTests
         var button = new CalendarDayButton();
         button.IsNotCurrentMonth = true;
         Assert.Contains(CalendarDayButton.PC_NotCurrentMonth, button.Classes);
+        Assert.True(button.IsNotCurrentMonth);
     }
 
     [Fact]
@@ -86,6 +95,18 @@ public class CalendarDayButtonTests
         button.IsStartDate = true;
         button.ResetSelection();
         Assert.DoesNotContain(PseudoClassName.PC_Selected, button.Classes);
+        Assert.DoesNotContain(CalendarDayButton.PC_StartDate, button.Classes);
+    }
+    
+    [Fact]
+    public void IsToday_ClearsOtherPseudoClasses()
+    {
+        var button = new CalendarDayButton();
+        button.IsStartDate = true;
+        button.IsEndDate = true;
+        button.IsToday = true;
+        Assert.Contains(CalendarDayButton.PC_Today, button.Classes);
+        Assert.Contains(CalendarDayButton.PC_EndDate, button.Classes);
         Assert.DoesNotContain(CalendarDayButton.PC_StartDate, button.Classes);
     }
 }

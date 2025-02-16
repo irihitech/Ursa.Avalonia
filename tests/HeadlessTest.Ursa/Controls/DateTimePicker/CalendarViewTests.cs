@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Templates;
 using Avalonia.Headless;
 using Avalonia.Headless.XUnit;
 using Avalonia.Input;
@@ -20,7 +21,7 @@ public class CalendarViewTests
         window.Content = calendarView;
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        calendarView.ContextDate = new CalendarContext(2023, 5);
+        calendarView.SyncContextDate(new CalendarContext(2023, 5));
         Dispatcher.UIThread.RunJobs();
         calendarView.ClickNext();
         Assert.Equal(6, calendarView.ContextDate.Month);
@@ -36,7 +37,7 @@ public class CalendarViewTests
         window.Content = calendarView;
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        calendarView.ContextDate = new CalendarContext(2023, 5);
+        calendarView.SyncContextDate(new CalendarContext(2023, 5));
         Dispatcher.UIThread.RunJobs();
         calendarView.ClickFastNext();
         Assert.Equal(5, calendarView.ContextDate.Month);
@@ -52,7 +53,7 @@ public class CalendarViewTests
         window.Content = calendarView;
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        calendarView.ContextDate = new CalendarContext(2023, 5);
+        calendarView.SyncContextDate(new CalendarContext(2023, 5));
         Dispatcher.UIThread.RunJobs();
         calendarView.ClickNext();
         Assert.Equal(5, calendarView.ContextDate.Month);
@@ -67,7 +68,7 @@ public class CalendarViewTests
         window.Content = calendarView;
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        calendarView.ContextDate = new CalendarContext(null, null, 2000, 2009);
+        calendarView.SyncContextDate(new CalendarContext(null, null, 2000, 2009));
         Dispatcher.UIThread.RunJobs();
         calendarView.ClickNext();
         Assert.Equal(2010, calendarView.ContextDate.StartYear);
@@ -82,7 +83,7 @@ public class CalendarViewTests
         window.Content = calendarView;
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        calendarView.ContextDate = new CalendarContext(null, null, 1900, 1999);
+        calendarView.SyncContextDate(new CalendarContext(null, null, 1900, 1999));
         Dispatcher.UIThread.RunJobs();
         calendarView.ClickNext();
         Assert.Equal(2000, calendarView.ContextDate.StartYear);
@@ -97,7 +98,7 @@ public class CalendarViewTests
         window.Content = calendarView;
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        calendarView.ContextDate = new CalendarContext(2023, 5);
+        calendarView.SyncContextDate(new CalendarContext(2023, 5));
         Dispatcher.UIThread.RunJobs();
         calendarView.ClickPrevious();
         Assert.Equal(4, calendarView.ContextDate.Month);
@@ -112,7 +113,7 @@ public class CalendarViewTests
         window.Content = calendarView;
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        calendarView.ContextDate = new CalendarContext(2023, 5);
+        calendarView.SyncContextDate(new CalendarContext(2023, 5));
         Dispatcher.UIThread.RunJobs();
         calendarView.ClickPrevious();
         Assert.Equal(2022, calendarView.ContextDate.Year);
@@ -126,7 +127,7 @@ public class CalendarViewTests
         window.Content = calendarView;
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        calendarView.ContextDate = new CalendarContext(null, null, 2000, 2009);
+        calendarView.SyncContextDate(new CalendarContext(null, null, 2000, 2009));
         Dispatcher.UIThread.RunJobs();
         calendarView.ClickPrevious();
         Assert.Equal(1990, calendarView.ContextDate.StartYear);
@@ -141,7 +142,7 @@ public class CalendarViewTests
         window.Content = calendarView;
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        calendarView.ContextDate = new CalendarContext(null, null, 1900, 1999);
+        calendarView.SyncContextDate(new CalendarContext(null, null, 1900, 1999));
         Dispatcher.UIThread.RunJobs();
         calendarView.ClickPrevious();
         Assert.Equal(1800, calendarView.ContextDate.StartYear);
@@ -156,7 +157,7 @@ public class CalendarViewTests
         window.Content = calendarView;
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        calendarView.ContextDate = new CalendarContext(2023, 5);
+        calendarView.SyncContextDate(new CalendarContext(2023, 5));
         Dispatcher.UIThread.RunJobs();
         calendarView.ClickFastPrevious();
         Assert.Equal(2022, calendarView.ContextDate.Year);
@@ -170,7 +171,7 @@ public class CalendarViewTests
         window.Content = calendarView;
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        calendarView.ContextDate = new CalendarContext(2023, 5);
+        calendarView.SyncContextDate(new CalendarContext(2023, 5));
         Dispatcher.UIThread.RunJobs();
         calendarView.ClickHeaderButton();
         Assert.Equal(CalendarViewMode.Decade, calendarView.Mode);
@@ -186,7 +187,7 @@ public class CalendarViewTests
         window.Content = calendarView;
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        calendarView.ContextDate = new CalendarContext(null, null, 2000, 2009);
+        calendarView.SyncContextDate(new CalendarContext(null, null, 2000, 2009));
         Dispatcher.UIThread.RunJobs();
         calendarView.ClickHeaderButton();
         Assert.Equal(CalendarViewMode.Century, calendarView.Mode);
@@ -200,7 +201,7 @@ public class CalendarViewTests
         window.Content = calendarView;
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        calendarView.ContextDate = new CalendarContext(null, null, 1900, 1999);
+        calendarView.SyncContextDate(new CalendarContext(null, null, 1900, 1999));
         Dispatcher.UIThread.RunJobs();
         var yearButton = calendarView.FindDescendantOfType<CalendarYearButton>();
         var position = yearButton?.TranslatePoint(new Point(6, 6), window);
@@ -217,7 +218,7 @@ public class CalendarViewTests
         window.Content = calendarView;
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        calendarView.ContextDate = new CalendarContext(null, null, 2000, 2009);
+        calendarView.SyncContextDate(new CalendarContext(null, null, 2000, 2009));
         Dispatcher.UIThread.RunJobs();
         var yearButton = calendarView.FindDescendantOfType<CalendarYearButton>();
         var position = yearButton?.TranslatePoint(new Point(6, 6), window);
@@ -234,7 +235,7 @@ public class CalendarViewTests
         window.Content = calendarView;
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        calendarView.ContextDate = new CalendarContext(2023, 5);
+        calendarView.SyncContextDate(new CalendarContext(2023, 5));
         Dispatcher.UIThread.RunJobs();
         var yearButton = calendarView.FindDescendantOfType<CalendarYearButton>();
         var position = yearButton?.TranslatePoint(new Point(6, 6), window);
@@ -242,4 +243,34 @@ public class CalendarViewTests
         window.MouseUp(position.Value, MouseButton.Left);
         Assert.Equal(CalendarViewMode.Month, calendarView.Mode);
     }
+    
+    [AvaloniaFact]
+    public void Update_FirstDayOfWeek_UpdatesCalendar()
+    {
+        var window = new Window();
+        var calendarView = new CalendarView { Mode = CalendarViewMode.Month, FirstDayOfWeek = DayOfWeek.Sunday};
+        window.Content = calendarView;
+        window.Show();
+        Dispatcher.UIThread.RunJobs();
+        calendarView.SyncContextDate(new CalendarContext(2023, 5));
+        Dispatcher.UIThread.RunJobs();
+        var monthGrid = calendarView.GetTemplateChildren()
+                                    .FirstOrDefault(a => a is Grid && a.Name == CalendarView.PART_MonthGrid) as Grid;
+        Assert.NotNull(monthGrid);
+        var dayHeader = monthGrid.Children.OfType<TextBlock>().FirstOrDefault();
+        var dayButton = monthGrid.Children.OfType<CalendarDayButton>().FirstOrDefault();
+        Assert.NotNull(dayHeader);
+        Assert.NotNull(dayButton);
+        Assert.Equal("S", dayHeader.Text);
+        Assert.Equal(30, (dayButton.DataContext as DateTime?)?.Day);
+        
+        calendarView.FirstDayOfWeek = DayOfWeek.Tuesday;
+        
+        dayHeader = monthGrid.Children.OfType<TextBlock>().FirstOrDefault();
+        dayButton = monthGrid.Children.OfType<CalendarDayButton>().FirstOrDefault();
+        Assert.Equal("T", dayHeader.Text);
+        Assert.Equal(25, (dayButton.DataContext as DateTime?)?.Day);
+        
+    }
+    
 }
