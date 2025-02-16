@@ -12,6 +12,10 @@ Ursa is an enterprise level UI library for building cross-platform applications 
 
 ![Demo](./assets/demo.png)
 
+## .NET Foundation
+
+This project is supported by the [.NET Foundation](https://dotnetfoundation.org).
+
 ## Get Started
 
 1. Ursa
@@ -58,9 +62,7 @@ You can now use Ursa controls in your Avalonia Application.
 </Window>
 ```
 
-## .NET Foundation
 
-This project is supported by the [.NET Foundation](https://dotnetfoundation.org).
 
 ## Code of Conduct
 
@@ -76,28 +78,13 @@ Ursa currently is compatible with both Avalonia 11.1.x and 11.2.x, but specifica
 If you need to integrate Ursa with Prism.Avalonia, you can use the Irihi.Ursa.PrismExtension package. This package provide Dialog related services to utilize Ursa Dialogs with Prism flavor. 
 
 ### ReactiveUI Extension
-If need to integrate Ursa with Avalonia.ReactiveUI, you can use the Irihi.Ursa.ReactiveUIExtension package. This package implements the ReactiveUI versions of UrsaWindow and UrsaView.
-
-You just need to replace ReactiveWindow or ReactiveUserControl with ReactiveUrsaWindow or ReactiveUrsaView.
-
-```xaml
-<u:ReactiveUrsaWindow
-    ...
-    xmlns:u="https://irihi.tech/ursa"
-    x:TypeArguments="TViewModel"
-    ...>
-...
-</u:ReactiveUrsaWindow>
-```
-```csharp
-public partial class WindowHome : ReactiveUrsaWindow<TViewModel>
-{
-
-}
-```
+If need to integrate Ursa with Avalonia.ReactiveUI, you can use the Irihi.Ursa.ReactiveUIExtension package. This package implements the ReactiveUI versions of UrsaWindow and UrsaView. Please refer to [wiki](https://github.com/irihitech/Ursa.Avalonia/wiki/Ursa-ReactiveUI-extension) for detail. 
 
 ## Support
 
 We offer limited free community support for Semi Avalonia and Ursa. Please join our group via FeiShu(Lark)
 
-![Support](./assets/community-support.png)
+<p>
+    <img src="./assets/community-support.png" alt="drawing" width="600" />
+</p>
+
