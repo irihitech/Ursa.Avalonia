@@ -43,11 +43,11 @@ public class TimePickerPresenter : TemplatedControl
 
     public static readonly StyledProperty<int> MinuteIncrementProperty =
         AvaloniaProperty.Register<TimePickerPresenter, int>(
-            nameof(MinuteIncrement));
+            nameof(MinuteIncrement), 1);
 
     public static readonly StyledProperty<int> SecondIncrementProperty =
         AvaloniaProperty.Register<TimePickerPresenter, int>(
-            nameof(SecondIncrement));
+            nameof(SecondIncrement), 1);
 
     public static readonly StyledProperty<TimeSpan?> TimeProperty =
         AvaloniaProperty.Register<TimePickerPresenter, TimeSpan?>(
@@ -191,6 +191,7 @@ public class TimePickerPresenter : TemplatedControl
         if (panels.Count < 1) return;
         IsVisibleProperty.SetValue(false, _hourScrollPanel, _minuteScrollPanel, _secondScrollPanel, _ampmScrollPanel,
             _firstSeparator, _secondSeparator, _thirdSeparator);
+        Grid.ColumnProperty.SetValue(0, _hourScrollPanel, _minuteScrollPanel, _secondScrollPanel, _ampmScrollPanel);
         for (var i = 0; i < panels.Count; i++)
         {
             var panel = panels[i];
