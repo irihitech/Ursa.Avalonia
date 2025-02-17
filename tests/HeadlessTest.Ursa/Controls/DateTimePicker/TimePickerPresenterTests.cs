@@ -9,7 +9,7 @@ namespace HeadlessTest.Ursa.Controls.DateTimePicker;
 
 public class TimePickerPresenterTests
 {
-    [Fact]
+    [AvaloniaFact]
     public void TimePickerPresenter_DefaultValues_ShouldBeCorrect()
     {
         var presenter = new TimePickerPresenter();
@@ -21,7 +21,7 @@ public class TimePickerPresenterTests
         Assert.Equal("HH mm ss t", presenter.PanelFormat);
     }
 
-    [Fact]
+    [AvaloniaFact]
     public void TimePickerPresenter_SetTime_ShouldUpdateTimeProperty()
     {
         var presenter = new TimePickerPresenter();

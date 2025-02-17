@@ -7,6 +7,7 @@ using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.LogicalTree;
 using Avalonia.Threading;
+using Avalonia.VisualTree;
 using HeadlessTest.Ursa.TestHelpers;
 using Ursa.Controls;
 using DatePicker = Ursa.Controls.DatePicker;
@@ -308,6 +309,47 @@ public class DatePickerTests
         textBox?.SetValue(TextBox.TextProperty, "2025/02/19");
         Dispatcher.UIThread.RunJobs();
         Assert.Equal(new DateTime(2025, 2, 19), picker.SelectedDate);
+    }
+
+    [AvaloniaFact]
+    public void Ensure_Focusable()
+    {
+        var picker = new DatePicker();
+        Assert.True(picker.Focusable);
+    }
+
+    [AvaloniaFact]
+    public void Click_On_Popup_Will_Not_Close_Popup()
+    {
+        var window = new Window()
+        {
+            Width = 800, Height = 800
+        };
+        var picker = new DatePicker()
+        {
+            Width = 300,
+            HorizontalAlignment = HorizontalAlignment.Left,
+            VerticalAlignment = VerticalAlignment.Top
+        };
+        window.Content = picker;
+        window.Show();
+        Assert.False(picker.IsDropdownOpen);
+        Dispatcher.UIThread.RunJobs();
+        window.MouseDown(new Point(10, 10), MouseButton.Left);
+        Dispatcher.UIThread.RunJobs();
+        Assert.True(picker.IsDropdownOpen);
+        var popup = picker.GetTemplateChildOfType<Popup>(DatePicker.PART_Popup);
+        var calendar = popup?.GetLogicalDescendants().OfType<CalendarView>().FirstOrDefault();
+        Assert.NotNull(calendar);
+        var nextButton = calendar.GetTemplateChildOfType<Button>(CalendarView.PART_NextButton);
+        Assert.NotNull(nextButton);
+        var position = nextButton.TranslatePoint(new Point(5, 5), window);
+        Assert.NotNull(position);
+        window.MouseDown(new Point(10, 10), MouseButton.Left);
+        var renderRoot = popup.GetVisualRoot();
+        
+        Dispatcher.UIThread.RunJobs();
+        Assert.True(picker.IsDropdownOpen);
     }
     
 }

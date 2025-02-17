@@ -7,8 +7,6 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.VisualTree;
-using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
 
@@ -49,6 +47,7 @@ public class DatePicker: DatePickerBase, IClearControl
 
     static DatePicker()
     {
+        FocusableProperty.OverrideDefaultValue<DatePicker>(true);
         SelectedDateProperty.Changed.AddClassHandler<DatePicker, DateTime?>((picker, args) =>
             picker.OnSelectionChanged(args));
     }
@@ -58,13 +57,28 @@ public class DatePicker: DatePickerBase, IClearControl
         SyncSelectedDateToText(args.NewValue.Value);
     }
 
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+        if (change.Property == IsDropdownOpenProperty)
+        {
+            if (change.GetNewValue<bool>() == false)
+            {
+                
+            }
+            else
+            {
+                
+            }
+        }
+    }
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
 
         GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _textBox);
         TextBox.TextChangedEvent.RemoveHandler(OnTextChanged, _textBox);
-        PointerPressedEvent.RemoveHandler(OnTextBoxPointerPressed, _textBox);
         Button.ClickEvent.RemoveHandler(OnButtonClick, _button);
         CalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _calendar);
         
@@ -73,10 +87,9 @@ public class DatePicker: DatePickerBase, IClearControl
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
         _calendar = e.NameScope.Find<CalendarView>(PART_Calendar);
         
-        Button.ClickEvent.AddHandler(OnButtonClick, RoutingStrategies.Bubble, true, _button);
+        Button.ClickEvent.AddHandler(OnButtonClick, RoutingStrategies.Bubble, false, _button);
         GotFocusEvent.AddHandler(OnTextBoxGetFocus, _textBox);
         TextBox.TextChangedEvent.AddHandler(OnTextChanged, _textBox);
-        PointerPressedEvent.AddHandler(OnTextBoxPointerPressed, RoutingStrategies.Tunnel, false, _textBox);
         CalendarView.DateSelectedEvent.AddHandler(OnDateSelected, RoutingStrategies.Bubble, true, _calendar);
         SyncSelectedDateToText(SelectedDate);
     }
@@ -89,19 +102,10 @@ public class DatePicker: DatePickerBase, IClearControl
 
     private void OnButtonClick(object? sender, RoutedEventArgs e)
     {
-        Focus(NavigationMethod.Pointer);
-        SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
-    }
-
-    private void OnTextBoxPointerPressed(object? sender, PointerPressedEventArgs e)
-    {
-        if (_calendar is not null)
+        if(IsFocused)
         {
-            var date = SelectedDate ?? DateTime.Today;
-            _calendar.ContextDate = new CalendarContext(date.Year, date.Month);
-            _calendar.UpdateDayButtons();
+            SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
         }
-        SetCurrentValue(IsDropdownOpenProperty, true);
     }
     
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -186,6 +190,7 @@ public class DatePicker: DatePickerBase, IClearControl
                 e.Handled = true;
             }
         }
+        
     }
 
     protected override void OnKeyDown(KeyEventArgs e)
@@ -212,5 +217,41 @@ public class DatePicker: DatePickerBase, IClearControl
     public void Clear()
     {
         SetCurrentValue(SelectedDateProperty, null);
+    }
+    
+    protected override void OnGotFocus(GotFocusEventArgs e)
+    {
+        base.OnGotFocus(e);
+        FocusChanged(IsKeyboardFocusWithin);
+    }
+
+    protected override void OnLostFocus(RoutedEventArgs e)
+    {
+        base.OnLostFocus(e);
+        FocusChanged(IsKeyboardFocusWithin);
+        var top = TopLevel.GetTopLevel(this);
+        var element = top?.FocusManager?.GetFocusedElement();
+        if (element is Visual v && _popup?.IsInsidePopup(v)==true)
+        {
+            return;
+        }
+        SetCurrentValue(IsDropdownOpenProperty, false);
+    }
+
+    private bool _isFocused;
+    private void FocusChanged(bool hasFocus)
+    {
+        bool wasFocused = _isFocused;
+        _isFocused = hasFocus;
+
+        if (hasFocus)
+        {
+
+            if (!wasFocused && _textBox != null)
+            {
+                _textBox.Focus();
+                _textBox.SelectAll();
+            }
+        }
     }
 }

@@ -8,6 +8,10 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.DatePickerDemo">
     <StackPanel Margin="20" HorizontalAlignment="Left">
+        <u:Form>
+            <u:DatePicker Width="200" u:FormItem.Label="_Test"/>
+            <TextBox Width="200" u:FormItem.Label="_West"/>
+        </u:Form>
         <u:CalendarView DateSelected="CalendarView_OnOnDateSelected" DatePreviewed="CalendarView_OnOnDatePreviewed"/>
         <TextBlock Text="{Binding #singlePicker.SelectedDate}" ></TextBlock>
         <u:DatePicker Name="singlePicker" Width="200" Classes="ClearButton" />
