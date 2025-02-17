@@ -261,14 +261,16 @@ public class CalendarViewTests
         var dayButton = monthGrid.Children.OfType<CalendarDayButton>().FirstOrDefault();
         Assert.NotNull(dayHeader);
         Assert.NotNull(dayButton);
-        Assert.Equal("S", dayHeader.Text);
+        Assert.Equal('S', dayHeader.Text?[0]);
         Assert.Equal(30, (dayButton.DataContext as DateTime?)?.Day);
         
         calendarView.FirstDayOfWeek = DayOfWeek.Tuesday;
         
         dayHeader = monthGrid.Children.OfType<TextBlock>().FirstOrDefault();
         dayButton = monthGrid.Children.OfType<CalendarDayButton>().FirstOrDefault();
-        Assert.Equal("T", dayHeader.Text);
+        Assert.NotNull(dayHeader);
+        Assert.NotNull(dayButton);
+        Assert.Equal('T', dayHeader.Text?[0]);
         Assert.Equal(25, (dayButton.DataContext as DateTime?)?.Day);
         
     }
