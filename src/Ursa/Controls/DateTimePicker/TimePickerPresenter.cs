@@ -154,6 +154,7 @@ public class TimePickerPresenter : TemplatedControl
                 {
                     panels.Add(_ampmScrollPanel);
                     _ampmSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty, part);
+                    if (_ampmSelector is not null) _ampmSelector.IsEnabled = _use12Clock;
                 }
             }
             catch

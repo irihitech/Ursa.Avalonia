@@ -61,8 +61,8 @@ public class TimePicker : TimePickerBase, IClearControl
 
     public void Clear()
     {
+        SetCurrentValue(SelectedTimeProperty, null);
         Focus(NavigationMethod.Pointer);
-        _presenter?.SyncTime(null);
     }
 
     private void OnDisplayFormatChanged(AvaloniaPropertyChangedEventArgs<string?> _)
@@ -70,6 +70,16 @@ public class TimePicker : TimePickerBase, IClearControl
         if (_textBox is null) return;
         SyncTimeToText(SelectedTime);
     }
+
+    /// <inheritdoc />
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    {
+        base.OnPointerPressed(e);
+        if (!e.Handled && e.Source is Visual source)
+            if (_popup?.IsInsidePopup(source) == true)
+                e.Handled = true;
+    }
+
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -89,9 +99,7 @@ public class TimePicker : TimePickerBase, IClearControl
         TextBox.TextChangedEvent.AddHandler(OnTextChanged, _textBox);
         Button.ClickEvent.AddHandler(OnButtonClick, _button);
         TimePickerPresenter.SelectedTimeChangedEvent.AddHandler(OnPresenterTimeChanged, _presenter);
-
-        // SetCurrentValue(SelectedTimeProperty, DateTime.Now.TimeOfDay);
-        // _presenter?.SetValue(TimePickerPresenter.TimeProperty, SelectedTime);
+        
         _presenter?.SyncTime(SelectedTime);
         SyncTimeToText(SelectedTime);
     }
@@ -105,17 +113,14 @@ public class TimePicker : TimePickerBase, IClearControl
 
     private void OnButtonClick(object? sender, RoutedEventArgs e)
     {
-        if(IsFocused)
-        {
-            SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
-        }
+        if (IsFocused) SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
     }
 
     private void OnTextBoxGetFocus(object? sender, GotFocusEventArgs e)
     {
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
-
+    
     protected override void OnKeyDown(KeyEventArgs e)
     {
         if (e.Key == Key.Escape)
@@ -124,20 +129,17 @@ public class TimePicker : TimePickerBase, IClearControl
             e.Handled = true;
             return;
         }
-
         if (e.Key == Key.Down)
         {
             SetCurrentValue(IsDropdownOpenProperty, true);
             e.Handled = true;
             return;
         }
-
         if (e.Key == Key.Tab)
         {
             SetCurrentValue(IsDropdownOpenProperty, false);
             return;
         }
-
         base.OnKeyDown(e);
     }
 
@@ -150,18 +152,13 @@ public class TimePicker : TimePickerBase, IClearControl
         }
         else if (DisplayFormat is null || DisplayFormat.Length == 0)
         {
-            if (TimeSpan.TryParse(_textBox?.Text, out var defaultTime))
-            {
-                _presenter?.SyncTime(defaultTime);
-            }
+            if (TimeSpan.TryParse(_textBox?.Text, out var defaultTime)) _presenter?.SyncTime(defaultTime);
         }
         else
         {
             if (DateTime.TryParseExact(_textBox?.Text, DisplayFormat, CultureInfo.CurrentUICulture, DateTimeStyles.None,
                     out var time))
-            {
                 _presenter?.SyncTime(time.TimeOfDay);
-            }
         }
     }
 
@@ -210,6 +207,7 @@ public class TimePicker : TimePickerBase, IClearControl
     protected override void OnGotFocus(GotFocusEventArgs e)
     {
         base.OnGotFocus(e);
+        // SetCurrentValue(IsDropdownOpenProperty, true);
         FocusChanged(IsKeyboardFocusWithin);
     }
 
@@ -220,6 +218,7 @@ public class TimePicker : TimePickerBase, IClearControl
         var top = TopLevel.GetTopLevel(this);
         var element = top?.FocusManager?.GetFocusedElement();
         if (element is Visual v && _popup?.IsInsidePopup(v) == true) return;
+        if (element == _textBox) return;
         SetCurrentValue(IsDropdownOpenProperty, false);
     }
 
@@ -227,12 +226,8 @@ public class TimePicker : TimePickerBase, IClearControl
     {
         var wasFocused = _isFocused;
         _isFocused = hasFocus;
-
         if (hasFocus)
             if (!wasFocused && _textBox != null)
-            {
                 _textBox.Focus();
-                _textBox.SelectAll();
-            }
     }
 }
