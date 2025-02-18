@@ -76,6 +76,7 @@ public class DateTimePicker : DatePickerBase
 
     private void OnSelectionChanged(AvaloniaPropertyChangedEventArgs<DateTime?> args)
     {
+        if (_fromText) return;
         SyncSelectedDateToText(args.NewValue.Value);
     }
 
@@ -181,6 +182,8 @@ public class DateTimePicker : DatePickerBase
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
 
+    private bool _fromText = false;
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void OnTextChanged(object? sender, TextChangedEventArgs e)
     {
@@ -189,6 +192,8 @@ public class DateTimePicker : DatePickerBase
 
     private void SetSelectedDate(bool fromText = false)
     {
+        var temp = _fromText;
+        _fromText = fromText;
         if (string.IsNullOrEmpty(_textBox?.Text))
         {
             SetCurrentValue(SelectedDateProperty, null);
@@ -227,6 +232,7 @@ public class DateTimePicker : DatePickerBase
                 _timePickerPresenter?.SyncTime(null);
             }
         }
+        _fromText = temp;
     }
 
     private void OnTextBoxGetFocus(object? sender, GotFocusEventArgs e)
