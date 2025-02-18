@@ -25,7 +25,7 @@ public class CalendarYearButton : ContentControl
 
     internal CalendarViewMode Mode { get; private set; }
 
-    public event EventHandler<CalendarDayButtonEventArgs> ItemSelected
+    public event EventHandler<CalendarYearButtonEventArgs> ItemSelected
     {
         add => AddHandler(ItemSelectedEvent, value);
         remove => RemoveHandler(ItemSelectedEvent, value);

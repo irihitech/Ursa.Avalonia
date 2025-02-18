@@ -15,7 +15,7 @@ namespace Ursa.Controls;
 [TemplatePart(PART_Popup, typeof(Popup))]
 [TemplatePart(PART_TextBox, typeof(TextBox))]
 [TemplatePart(PART_Calendar, typeof(CalendarView))]
-[TemplatePart(PART_TimePicker, typeof(TimePicker))]
+[TemplatePart(PART_TimePicker, typeof(TimePickerPresenter))]
 public class DateTimePicker : DatePickerBase
 {
     public const string PART_Button = "PART_Button";
@@ -76,6 +76,7 @@ public class DateTimePicker : DatePickerBase
 
     private void OnSelectionChanged(AvaloniaPropertyChangedEventArgs<DateTime?> args)
     {
+        if (_fromText) return;
         SyncSelectedDateToText(args.NewValue.Value);
     }
 
@@ -85,14 +86,14 @@ public class DateTimePicker : DatePickerBase
         {
             _textBox?.SetValue(TextBox.TextProperty, null);
             _calendar?.ClearSelection();
-            _timePickerPresenter?.SetValue(TimePickerPresenter.TimeProperty, null);
+            _timePickerPresenter?.SyncTime(null);
         }
         else
         {
             _textBox?.SetValue(TextBox.TextProperty,
                 date.Value.ToString(DisplayFormat ?? CultureInfo.InvariantCulture.DateTimeFormat.FullDateTimePattern));
             _calendar?.MarkDates(date.Value.Date, date.Value.Date);
-            _timePickerPresenter?.SetValue(TimePickerPresenter.TimeProperty, date.Value.TimeOfDay);
+            _timePickerPresenter?.SyncTime(date.Value.TimeOfDay);
         }
     }
 
@@ -175,11 +176,13 @@ public class DateTimePicker : DatePickerBase
             var date = SelectedDate ?? DateTime.Now;
             _calendar.ContextDate = new CalendarContext(date.Year, date.Month);
             _calendar.UpdateDayButtons();
-            _timePickerPresenter?.SetValue(TimePickerPresenter.TimeProperty, SelectedDate?.TimeOfDay);
+            _timePickerPresenter?.SyncTime(SelectedDate?.TimeOfDay);
         }
 
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
+
+    private bool _fromText = false;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void OnTextChanged(object? sender, TextChangedEventArgs e)
@@ -189,11 +192,13 @@ public class DateTimePicker : DatePickerBase
 
     private void SetSelectedDate(bool fromText = false)
     {
+        var temp = _fromText;
+        _fromText = fromText;
         if (string.IsNullOrEmpty(_textBox?.Text))
         {
             SetCurrentValue(SelectedDateProperty, null);
             _calendar?.ClearSelection();
-            _timePickerPresenter?.SetValue(TimePickerPresenter.TimeProperty, null);
+            _timePickerPresenter?.SyncTime(null);
         }
         else if (DisplayFormat is null || DisplayFormat.Length == 0)
         {
@@ -201,7 +206,7 @@ public class DateTimePicker : DatePickerBase
             {
                 SetCurrentValue(SelectedDateProperty, defaultTime);
                 _calendar?.MarkDates(defaultTime.Date, defaultTime.Date);
-                _timePickerPresenter?.SetValue(TimePickerPresenter.TimeProperty, defaultTime.TimeOfDay);
+                _timePickerPresenter?.SyncTime(defaultTime.TimeOfDay);
             }
         }
         else
@@ -217,16 +222,17 @@ public class DateTimePicker : DatePickerBase
                 }
 
                 _calendar?.MarkDates(date.Date, date.Date);
-                _timePickerPresenter?.SetValue(TimePickerPresenter.TimeProperty, date.TimeOfDay);
+                _timePickerPresenter?.SyncTime(date.TimeOfDay);
             }
             else
             {
                 SetCurrentValue(SelectedDateProperty, null);
                 if (!fromText) _textBox?.SetValue(TextBox.TextProperty, null);
                 _calendar?.ClearSelection();
-                _timePickerPresenter?.SetValue(TimePickerPresenter.TimeProperty, null);
+                _timePickerPresenter?.SyncTime(null);
             }
         }
+        _fromText = temp;
     }
 
     private void OnTextBoxGetFocus(object? sender, GotFocusEventArgs e)
@@ -236,7 +242,7 @@ public class DateTimePicker : DatePickerBase
             var date = SelectedDate ?? DateTime.Today;
             _calendar.ContextDate = _calendar.ContextDate.With(date.Year, date.Month);
             _calendar.UpdateDayButtons();
-            _timePickerPresenter?.SetValue(TimePickerPresenter.TimeProperty, date.TimeOfDay);
+            _timePickerPresenter?.SyncTime(date.TimeOfDay);
         }
 
         SetCurrentValue(IsDropdownOpenProperty, true);
