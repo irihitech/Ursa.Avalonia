@@ -100,15 +100,16 @@ public class TimeRangePicker : TimePickerBase, IClearControl
     public void Clear()
     {
         Focus(NavigationMethod.Pointer);
-        _startPresenter?.SetValue(TimePickerPresenter.TimeProperty, null);
-        _endPresenter?.SetValue(TimePickerPresenter.TimeProperty, null);
+        _startPresenter?.SyncTime(null);
+        _endPresenter?.SyncTime(null);
     }
 
     private void OnSelectionChanged(AvaloniaPropertyChangedEventArgs<TimeSpan?> args, bool start = true)
     {
         SyncTimeToText(args.NewValue.Value, start);
         _suppressTextPresenterEvent = true;
-        TimePickerPresenter.TimeProperty.SetValue(args.NewValue.Value, start ? _startPresenter : _endPresenter);
+        var presenter = start ? _startPresenter : _endPresenter;
+        presenter?.SyncTime(args.NewValue.Value);
         _suppressTextPresenterEvent = false;
     }
 
@@ -150,8 +151,8 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         Button.ClickEvent.AddHandler(OnButtonClick, _button);
         TimePickerPresenter.SelectedTimeChangedEvent.AddHandler(OnPresenterTimeChanged, _startPresenter, _endPresenter);
         
-        _startPresenter?.SetValue(TimePickerPresenter.TimeProperty, StartTime);
-        _endPresenter?.SetValue(TimePickerPresenter.TimeProperty, EndTime);
+        _startPresenter?.SyncTime(StartTime);
+        _endPresenter?.SyncTime(EndTime);
         SyncTimeToText(StartTime);
         SyncTimeToText(EndTime, false);
     }

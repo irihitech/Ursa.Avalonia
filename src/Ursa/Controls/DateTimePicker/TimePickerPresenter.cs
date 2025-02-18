@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Helpers;
 
@@ -49,13 +50,13 @@ public class TimePickerPresenter : TemplatedControl
         AvaloniaProperty.Register<TimePickerPresenter, int>(
             nameof(SecondIncrement), 1);
 
-    public static readonly StyledProperty<TimeSpan?> TimeProperty =
-        AvaloniaProperty.Register<TimePickerPresenter, TimeSpan?>(
-            nameof(Time));
-
     public static readonly StyledProperty<string> PanelFormatProperty =
         AvaloniaProperty.Register<TimePickerPresenter, string>(
             nameof(PanelFormat), "HH mm ss t");
+
+    public static readonly RoutedEvent<TimeChangedEventArgs> SelectedTimeChangedEvent =
+        RoutedEvent.Register<TimePickerPresenter, TimeChangedEventArgs>(
+            nameof(SelectedTimeChanged), RoutingStrategies.Bubble);
 
     private Control? _ampmScrollPanel;
     private DateTimePickerPanel? _ampmSelector;
@@ -65,26 +66,21 @@ public class TimePickerPresenter : TemplatedControl
     private DateTimePickerPanel? _hourSelector;
     private Control? _minuteScrollPanel;
     private DateTimePickerPanel? _minuteSelector;
+
     private Grid? _pickerContainer;
     private Control? _secondScrollPanel;
     private DateTimePickerPanel? _secondSelector;
     private Control? _secondSeparator;
+
+    private bool _surpressTimeEvent = true;
     private Control? _thirdSeparator;
-    internal TimeSpan TimeHolder;
-    private bool _updateFromTimeChange;
     private bool _use12Clock;
+    internal TimeSpan? TimeHolder;
 
     static TimePickerPresenter()
     {
         PanelFormatProperty.Changed.AddClassHandler<TimePickerPresenter, string>((presenter, args) =>
             presenter.OnPanelFormatChanged(args));
-        TimeProperty.Changed.AddClassHandler<TimePickerPresenter, TimeSpan?>((presenter, args) =>
-            presenter.OnTimeChanged(args));
-    }
-
-    public TimePickerPresenter()
-    {
-        // SetCurrentValue(TimeProperty, DateTime.Now.TimeOfDay);
     }
 
     public bool NeedsConfirmation
@@ -105,38 +101,16 @@ public class TimePickerPresenter : TemplatedControl
         set => SetValue(SecondIncrementProperty, value);
     }
 
-    public TimeSpan? Time
-    {
-        get => GetValue(TimeProperty);
-        set => SetValue(TimeProperty, value);
-    }
-
     public string PanelFormat
     {
         get => GetValue(PanelFormatProperty);
         set => SetValue(PanelFormatProperty, value);
     }
-    
-    public static readonly RoutedEvent<TimeChangedEventArgs> SelectedTimeChangedEvent =
-        RoutedEvent.Register<TimePickerPresenter, TimeChangedEventArgs>(
-            nameof(SelectedTimeChanged), RoutingStrategies.Bubble);
-    
+
     public event EventHandler<TimeChangedEventArgs> SelectedTimeChanged
     {
         add => AddHandler(SelectedTimeChangedEvent, value);
         remove => RemoveHandler(SelectedTimeChangedEvent, value);
-    }
-
-    private void OnTimeChanged(AvaloniaPropertyChangedEventArgs<TimeSpan?> args)
-    {
-        _updateFromTimeChange = true;
-        UpdatePanelsFromSelectedTime(args.NewValue.Value);
-        _updateFromTimeChange = false;
-        if (args.OldValue.Value != args.NewValue.Value)
-        {
-            RaiseEvent(new TimeChangedEventArgs(args.OldValue.Value, args.NewValue.Value)
-                { RoutedEvent = SelectedTimeChangedEvent, Source = this });
-        }
     }
 
     private void OnPanelFormatChanged(AvaloniaPropertyChangedEventArgs<string> args)
@@ -212,47 +186,63 @@ public class TimePickerPresenter : TemplatedControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        if (_hourSelector is not null) _hourSelector.SelectionChanged -= OnPanelSelectionChanged;
-        if (_minuteSelector is not null) _minuteSelector.SelectionChanged -= OnPanelSelectionChanged;
-        if (_secondSelector is not null) _secondSelector.SelectionChanged -= OnPanelSelectionChanged;
-        if (_ampmSelector is not null) _ampmSelector.SelectionChanged -= OnPanelSelectionChanged;
+
         _hourSelector = e.NameScope.Find<DateTimePickerPanel>(PART_HourSelector);
         _minuteSelector = e.NameScope.Find<DateTimePickerPanel>(PART_MinuteSelector);
         _secondSelector = e.NameScope.Find<DateTimePickerPanel>(PART_SecondSelector);
         _ampmSelector = e.NameScope.Find<DateTimePickerPanel>(PART_AmPmSelector);
-        if (_hourSelector is not null) _hourSelector.SelectionChanged += OnPanelSelectionChanged;
-        if (_minuteSelector is not null) _minuteSelector.SelectionChanged += OnPanelSelectionChanged;
-        if (_secondSelector is not null) _secondSelector.SelectionChanged += OnPanelSelectionChanged;
-        if (_ampmSelector is not null) _ampmSelector.SelectionChanged += OnPanelSelectionChanged;
+
         _pickerContainer = e.NameScope.Find<Grid>(PART_PickerContainer);
         _hourScrollPanel = e.NameScope.Find<Control>(PART_HourScrollPanel);
         _minuteScrollPanel = e.NameScope.Find<Control>(PART_MinuteScrollPanel);
         _secondScrollPanel = e.NameScope.Find<Control>(PART_SecondScrollPanel);
         _ampmScrollPanel = e.NameScope.Find<Control>(PART_AmPmScrollPanel);
+        
         _firstSeparator = e.NameScope.Find<Control>(PART_FirstSeparator);
         _secondSeparator = e.NameScope.Find<Control>(PART_SecondSeparator);
         _thirdSeparator = e.NameScope.Find<Control>(PART_ThirdSeparator);
         Initialize();
         UpdatePanelLayout(PanelFormat);
-        UpdatePanelsFromSelectedTime(Time);
+        _surpressTimeEvent = false;
+    }
+
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        UpdatePanelsFromSelectedTime(TimeHolder);
+        if (_hourSelector is not null) _hourSelector.SelectionChanged += OnPanelSelectionChanged;
+        if (_minuteSelector is not null) _minuteSelector.SelectionChanged += OnPanelSelectionChanged;
+        if (_secondSelector is not null) _secondSelector.SelectionChanged += OnPanelSelectionChanged;
+        if (_ampmSelector is not null) _ampmSelector.SelectionChanged += OnPanelSelectionChanged;
+    }
+
+    protected override void OnUnloaded(RoutedEventArgs e)
+    {
+        base.OnUnloaded(e);
+        if (_hourSelector is not null) _hourSelector.SelectionChanged -= OnPanelSelectionChanged;
+        if (_minuteSelector is not null) _minuteSelector.SelectionChanged -= OnPanelSelectionChanged;
+        if (_secondSelector is not null) _secondSelector.SelectionChanged -= OnPanelSelectionChanged;
+        if (_ampmSelector is not null) _ampmSelector.SelectionChanged -= OnPanelSelectionChanged;
     }
 
     private void OnPanelSelectionChanged(object? sender, System.EventArgs e)
     {
-        if (_updateFromTimeChange) return;
+        if (_surpressTimeEvent) return;
         if (!_use12Clock && Equals(sender, _ampmSelector)) return;
-        var time = NeedsConfirmation ? TimeHolder : Time ?? DateTime.Now.TimeOfDay;
+        var time = TimeHolder ?? DateTime.Now.TimeOfDay;
         var hour = _hourSelector?.SelectedValue ?? time.Hours;
         var minute = _minuteSelector?.SelectedValue ?? time.Minutes;
         var second = _secondSelector?.SelectedValue ?? time.Seconds;
         var ampm = _ampmSelector?.SelectedValue ?? (time.Hours >= 12 ? 1 : 0);
         if (_use12Clock)
+        {
             hour = ampm switch
             {
                 0 when hour == 12 => 0,
                 1 when hour < 12 => hour + 12,
                 _ => hour
             };
+        }
         else
         {
             ampm = hour switch
@@ -262,11 +252,23 @@ public class TimePickerPresenter : TemplatedControl
             };
             SetIfChanged(_ampmSelector, ampm);
         }
+
         var newTime = new TimeSpan(hour, minute, second);
         if (NeedsConfirmation)
+        {
             TimeHolder = newTime;
+        }
         else
-            SetCurrentValue(TimeProperty, newTime);
+        {
+            if (_surpressTimeEvent) return;
+            RaiseEvent(new TimeChangedEventArgs(null, newTime) { RoutedEvent = SelectedTimeChangedEvent });
+        }
+    }
+
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    {
+        base.OnPointerPressed(e);
+        OnPanelSelectionChanged(null, System.EventArgs.Empty);
     }
 
     private void UpdatePanelsFromSelectedTime(TimeSpan? time)
@@ -276,21 +278,19 @@ public class TimePickerPresenter : TemplatedControl
         {
             var index = _use12Clock ? time.Value.Hours % 12 : time.Value.Hours;
             if (_use12Clock && index == 0) index = 12;
-            SetIfChanged(_hourSelector, index);
+            SetIfChanged(_hourSelector, index, true);
         }
-        SetIfChanged(_minuteSelector, time.Value.Minutes);
-        SetIfChanged(_secondSelector, time.Value.Seconds);
+
+        SetIfChanged(_minuteSelector, time.Value.Minutes, true);
+        SetIfChanged(_secondSelector, time.Value.Seconds, true);
         var ampm = time.Value.Hours switch
         {
             >= 12 => 1,
             _ => 0
         };
-        
-        SetIfChanged(_ampmSelector, ampm);
-        if (_ampmSelector is not null)
-        {
-            _ampmSelector.IsEnabled = _use12Clock;
-        }
+
+        SetIfChanged(_ampmSelector, ampm, true);
+        if (_ampmSelector is not null) _ampmSelector.IsEnabled = _use12Clock;
     }
 
     private void Initialize()
@@ -327,12 +327,23 @@ public class TimePickerPresenter : TemplatedControl
 
     public void Confirm()
     {
-        if (NeedsConfirmation) SetCurrentValue(TimeProperty, TimeHolder);
+        if (NeedsConfirmation)
+            RaiseEvent(new TimeChangedEventArgs(null, TimeHolder) { RoutedEvent = SelectedTimeChangedEvent });
     }
 
-    private void SetIfChanged(DateTimePickerPanel? panel, int index)
+    private void SetIfChanged(DateTimePickerPanel? panel, int index, bool surpress = false)
     {
         if (panel is null) return;
+        panel.SelectionChanged -= OnPanelSelectionChanged;
         if (panel.SelectedValue != index) panel.SelectedValue = index;
+        panel.SelectionChanged += OnPanelSelectionChanged;
+    }
+
+    internal void SyncTime(TimeSpan? time)
+    {
+        _surpressTimeEvent = true;
+        TimeHolder = time;
+        UpdatePanelsFromSelectedTime(time);
+        _surpressTimeEvent = false;
     }
 }

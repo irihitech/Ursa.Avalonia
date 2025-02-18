@@ -17,7 +17,7 @@ public class TimePickerPresenterTests
         Assert.False(presenter.NeedsConfirmation);
         Assert.Equal(1, presenter.MinuteIncrement);
         Assert.Equal(1, presenter.SecondIncrement);
-        Assert.Null(presenter.Time);
+        Assert.Null(presenter.TimeHolder);
         Assert.Equal("HH mm ss t", presenter.PanelFormat);
     }
 
@@ -27,9 +27,9 @@ public class TimePickerPresenterTests
         var presenter = new TimePickerPresenter();
         var time = new TimeSpan(10, 30, 45);
 
-        presenter.Time = time;
+        presenter.TimeHolder = time;
 
-        Assert.Equal(time, presenter.Time);
+        Assert.Equal(time, presenter.TimeHolder);
     }
 
     [AvaloniaTheory]
@@ -77,37 +77,44 @@ public class TimePickerPresenterTests
     
     
 
-    [Fact]
+    [AvaloniaFact]
     public void TimePickerPresenter_Confirm_ShouldSetTimeProperty()
     {
         var presenter = new TimePickerPresenter { NeedsConfirmation = true };
         var time = new TimeSpan(10, 30, 45);
+        var eventRaised = 0;
+        TimeSpan? eventResult = null;
+        presenter.SelectedTimeChanged += (o, e) =>
+        {
+            eventRaised++;
+            eventResult = e.NewTime;
+        };
         presenter.TimeHolder = time;
-        Assert.NotEqual(time, presenter.Time);
+        Assert.Null(eventResult);
+        Assert.Equal(0, eventRaised);
 
         presenter.Confirm();
 
-        Assert.Equal(time, presenter.Time);
+        Assert.Equal(time, presenter.TimeHolder);
+        Assert.Equal(time, eventResult);
+        Assert.Equal(1, eventRaised);
     }
 
     [AvaloniaFact]
-    public void TimePickerPresenter_OnTimeChanged_ShouldRaiseEvent()
+    public void TimePickerPresenter_SyncTime_Should_Not_RaiseEvent()
     {
         var presenter = new TimePickerPresenter();
         var oldTime = new TimeSpan(10, 30, 45);
         var newTime = new TimeSpan(11, 45, 30);
-        presenter.Time = oldTime;
+        presenter.SyncTime(oldTime);
         var eventRaised = false;
         presenter.SelectedTimeChanged += (sender, args) =>
         {
             eventRaised = true;
-            Assert.Equal(oldTime, args.OldTime);
-            Assert.Equal(newTime, args.NewTime);
         };
 
-        presenter.Time = newTime;
-
-        Assert.True(eventRaised);
+        presenter.SyncTime(newTime);
+        Assert.False(eventRaised);
     }
 
     [AvaloniaTheory]
@@ -120,6 +127,11 @@ public class TimePickerPresenterTests
         window.Show();
         Dispatcher.UIThread.RunJobs();
         presenter.PanelFormat = format;
+        TimeSpan? eventResult = null;
+        presenter.SelectedTimeChanged += (o, e) =>
+        {
+            eventResult = e.NewTime;
+        };
         Dispatcher.UIThread.RunJobs();
         
         var hourPanel = presenter.GetTemplateChildren().OfType<DateTimePickerPanel>().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_HourSelector);
@@ -137,7 +149,7 @@ public class TimePickerPresenterTests
         secondPanel.SelectedValue = secondSelection;
         amPanel.SelectedValue = amSelection;
         
-        Assert.Equal(expectedTime, presenter.Time);        
+        Assert.Equal(expectedTime, eventResult);        
     }
     
     [AvaloniaTheory]

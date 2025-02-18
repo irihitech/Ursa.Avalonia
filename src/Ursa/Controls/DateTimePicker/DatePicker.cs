@@ -57,22 +57,6 @@ public class DatePicker: DatePickerBase, IClearControl
         SyncSelectedDateToText(args.NewValue.Value);
     }
 
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
-    {
-        base.OnPropertyChanged(change);
-        if (change.Property == IsDropdownOpenProperty)
-        {
-            if (change.GetNewValue<bool>() == false)
-            {
-                
-            }
-            else
-            {
-                
-            }
-        }
-    }
-
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
