@@ -52,12 +52,12 @@ public class MenuViewModel : ViewModelBase
             {
                 MenuHeader = "Date & Time", Children = new ObservableCollection<MenuItemViewModel>
                 {
-                    new() { MenuHeader = "Date Picker", Key = MenuKeys.MenuKeyDatePicker },
-                    new() { MenuHeader = "Date Range Picker", Key = MenuKeys.MenuKeyDateRangePicker },
-                    new() { MenuHeader = "Date Time Picker", Key = MenuKeys.MenuKeyDateTimePicker },
+                    new() { MenuHeader = "Date Picker", Key = MenuKeys.MenuKeyDatePicker, Status = "Updated" },
+                    new() { MenuHeader = "Date Range Picker", Key = MenuKeys.MenuKeyDateRangePicker, Status = "Updated" },
+                    new() { MenuHeader = "Date Time Picker", Key = MenuKeys.MenuKeyDateTimePicker, Status = "Updated" },
                     new() { MenuHeader = "Time Box", Key = MenuKeys.MenuKeyTimeBox },
-                    new() { MenuHeader = "Time Picker", Key = MenuKeys.MenuKeyTimePicker },
-                    new() { MenuHeader = "Time Range Picker", Key = MenuKeys.MenuKeyTimeRangePicker },
+                    new() { MenuHeader = "Time Picker", Key = MenuKeys.MenuKeyTimePicker, Status = "Updated" },
+                    new() { MenuHeader = "Time Range Picker", Key = MenuKeys.MenuKeyTimeRangePicker, Status = "Updated" },
                     new() { MenuHeader = "Clock", Key = MenuKeys.MenuKeyClock }
                 }
             },
