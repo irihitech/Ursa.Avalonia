@@ -140,9 +140,16 @@ public class TimePicker : TimePickerBase, IClearControl
             SetCurrentValue(IsDropdownOpenProperty, false);
             return;
         }
+
+        if (e.Key == Key.Enter)
+        {
+            CommitInput(true);
+            SetCurrentValue(IsDropdownOpenProperty, false);
+            e.Handled = true;
+            return;
+        }
         base.OnKeyDown(e);
     }
-
 
     private void OnTextChanged(object? sender, TextChangedEventArgs e)
     {
@@ -156,9 +163,7 @@ public class TimePicker : TimePickerBase, IClearControl
         }
         else
         {
-            if (DateTime.TryParseExact(_textBox?.Text, DisplayFormat, CultureInfo.CurrentUICulture, DateTimeStyles.None,
-                    out var time))
-                _presenter?.SyncTime(time.TimeOfDay);
+            CommitInput(false);
         }
     }
 
@@ -207,7 +212,6 @@ public class TimePicker : TimePickerBase, IClearControl
     protected override void OnGotFocus(GotFocusEventArgs e)
     {
         base.OnGotFocus(e);
-        // SetCurrentValue(IsDropdownOpenProperty, true);
         FocusChanged(IsKeyboardFocusWithin);
     }
 
@@ -219,6 +223,7 @@ public class TimePicker : TimePickerBase, IClearControl
         var element = top?.FocusManager?.GetFocusedElement();
         if (element is Visual v && _popup?.IsInsidePopup(v) == true) return;
         if (element == _textBox) return;
+        CommitInput(true);
         SetCurrentValue(IsDropdownOpenProperty, false);
     }
 
@@ -229,5 +234,23 @@ public class TimePicker : TimePickerBase, IClearControl
         if (hasFocus)
             if (!wasFocused && _textBox != null)
                 _textBox.Focus();
+    }
+    
+    private void CommitInput(bool clearWhenInvalid)
+    {
+        if (DateTime.TryParseExact(_textBox?.Text, DisplayFormat, CultureInfo.CurrentUICulture, DateTimeStyles.None,
+                out var time))
+        {
+            SetCurrentValue(SelectedTimeProperty, time.TimeOfDay);
+            _presenter?.SyncTime(time.TimeOfDay);
+        }
+        else
+        {
+            if (clearWhenInvalid)
+            {
+                SetCurrentValue(SelectedTimeProperty, null);
+            }
+            _presenter?.SyncTime(null);
+        }
     }
 }

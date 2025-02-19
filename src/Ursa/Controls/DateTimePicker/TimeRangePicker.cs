@@ -1,4 +1,5 @@
-﻿using Avalonia;
+﻿using System.Globalization;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
@@ -45,31 +46,22 @@ public class TimeRangePicker : TimePickerBase, IClearControl
     private Button? _button;
     private TimePickerPresenter? _endPresenter;
     private TextBox? _endTextBox;
+    private bool _isFocused;
+    private Popup? _popup;
     private TimePickerPresenter? _startPresenter;
 
     private TextBox? _startTextBox;
     private bool _suppressTextPresenterEvent;
 
-
     static TimeRangePicker()
     {
+        FocusableProperty.OverrideDefaultValue<TimeRangePicker>(true);
         StartTimeProperty.Changed.AddClassHandler<TimeRangePicker, TimeSpan?>((picker, args) =>
             picker.OnSelectionChanged(args));
         EndTimeProperty.Changed.AddClassHandler<TimeRangePicker, TimeSpan?>((picker, args) =>
             picker.OnSelectionChanged(args, false));
-        DisplayFormatProperty.Changed.AddClassHandler<TimeRangePicker, string?>((picker, args) => picker.OnDisplayFormatChanged(args));
-    }
-
-    private void OnDisplayFormatChanged(AvaloniaPropertyChangedEventArgs<string?> args)
-    {
-        if (_startTextBox is not null)
-        {
-            SyncTimeToText(StartTime);
-        }
-        if (_endTextBox is not null)
-        {
-            SyncTimeToText(EndTime, false);
-        }
+        DisplayFormatProperty.Changed.AddClassHandler<TimeRangePicker, string?>((picker, args) =>
+            picker.OnDisplayFormatChanged(args));
     }
 
 
@@ -104,6 +96,12 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         _endPresenter?.SyncTime(null);
     }
 
+    private void OnDisplayFormatChanged(AvaloniaPropertyChangedEventArgs<string?> args)
+    {
+        if (_startTextBox is not null) SyncTimeToText(StartTime);
+        if (_endTextBox is not null) SyncTimeToText(EndTime, false);
+    }
+
     private void OnSelectionChanged(AvaloniaPropertyChangedEventArgs<TimeSpan?> args, bool start = true)
     {
         SyncTimeToText(args.NewValue.Value, start);
@@ -133,12 +131,12 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         base.OnApplyTemplate(e);
 
         GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _startTextBox, _endTextBox);
-        PointerPressedEvent.RemoveHandler(OnTextBoxPointerPressed, _startTextBox, _endTextBox);
         Button.ClickEvent.RemoveHandler(OnButtonClick, _button);
         TimePickerPresenter.SelectedTimeChangedEvent.RemoveHandler(OnPresenterTimeChanged, _startPresenter,
             _endPresenter);
+        TextBox.TextChangedEvent.RemoveHandler(OnTextChanged, _startTextBox, _endTextBox);
 
-        e.NameScope.Find<Popup>(PartNames.PART_Popup);
+        _popup = e.NameScope.Find<Popup>(PartNames.PART_Popup);
         _startTextBox = e.NameScope.Find<TextBox>(PART_StartTextBox);
         _endTextBox = e.NameScope.Find<TextBox>(PART_EndTextBox);
         _startPresenter = e.NameScope.Find<TimePickerPresenter>(PART_StartPresenter);
@@ -146,32 +144,69 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         _button = e.NameScope.Find<Button>(PART_Button);
 
         GotFocusEvent.AddHandler(OnTextBoxGetFocus, _startTextBox, _endTextBox);
-        PointerPressedEvent.AddHandler(OnTextBoxPointerPressed, RoutingStrategies.Tunnel, false, _startTextBox,
-            _endTextBox);
         Button.ClickEvent.AddHandler(OnButtonClick, _button);
         TimePickerPresenter.SelectedTimeChangedEvent.AddHandler(OnPresenterTimeChanged, _startPresenter, _endPresenter);
-        
+        TextBox.TextChangedEvent.AddHandler(OnTextChanged, _startTextBox, _endTextBox);
+
         _startPresenter?.SyncTime(StartTime);
         _endPresenter?.SyncTime(EndTime);
         SyncTimeToText(StartTime);
         SyncTimeToText(EndTime, false);
     }
 
+    private void OnTextChanged(object? sender, TextChangedEventArgs e)
+    {
+        if (Equals(sender, _startTextBox))
+            OnTextChangedInternal(_startTextBox, _startPresenter, StartTimeProperty, true);
+        else if (Equals(sender, _endTextBox)) OnTextChangedInternal(_endTextBox, _endPresenter, EndTimeProperty, true);
+    }
+
+    private void OnTextChangedInternal(TextBox? textBox, TimePickerPresenter? presenter, AvaloniaProperty property,
+        bool fromText = false)
+    {
+        if (textBox?.Text is null || string.IsNullOrEmpty(textBox.Text))
+        {
+            SetCurrentValue(property, null);
+            presenter?.SyncTime(null);
+        }
+        else if (DisplayFormat is null || DisplayFormat.Length == 0)
+        {
+            if (DateTime.TryParse(textBox.Text, out var defaultTime))
+            {
+                SetCurrentValue(property, defaultTime.TimeOfDay);
+                presenter?.SyncTime(defaultTime.TimeOfDay);
+            }
+        }
+        else
+        {
+            if (DateTime.TryParseExact(textBox.Text, DisplayFormat, CultureInfo.CurrentUICulture, DateTimeStyles.None,
+                    out var date))
+            {
+                SetCurrentValue(property, date.TimeOfDay);
+                presenter?.SyncTime(date.TimeOfDay);
+            }
+            else
+            {
+                if (!fromText)
+                {
+                    SetCurrentValue(property, null);
+                    textBox.SetValue(TextBox.TextProperty, null);
+                    presenter?.SyncTime(null);
+                }
+            }
+        }
+    }
+
     private void OnPresenterTimeChanged(object? sender, TimeChangedEventArgs e)
     {
+        if (!IsInitialized) return;
         if (_suppressTextPresenterEvent) return;
         SetCurrentValue(Equals(sender, _startPresenter) ? StartTimeProperty : EndTimeProperty, e.NewTime);
     }
 
     private void OnButtonClick(object? sender, RoutedEventArgs e)
     {
-        Focus(NavigationMethod.Pointer);
         SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
-    }
-
-    private void OnTextBoxPointerPressed(object? sender, PointerPressedEventArgs e)
-    {
-        SetCurrentValue(IsDropdownOpenProperty, true);
     }
 
     private void OnTextBoxGetFocus(object? sender, GotFocusEventArgs e)
@@ -201,6 +236,14 @@ public class TimeRangePicker : TimePickerBase, IClearControl
             return;
         }
 
+        if (e.Key == Key.Enter)
+        {
+            SetCurrentValue(IsDropdownOpenProperty, false);
+            CommitInput(true);
+            e.Handled = true;
+            return;
+        }
+
         base.OnKeyDown(e);
     }
 
@@ -216,5 +259,66 @@ public class TimeRangePicker : TimePickerBase, IClearControl
     {
         SetCurrentValue(IsDropdownOpenProperty, false);
         Focus();
+    }
+
+    protected override void OnGotFocus(GotFocusEventArgs e)
+    {
+        base.OnGotFocus(e);
+        FocusChanged(IsKeyboardFocusWithin);
+    }
+
+    protected override void OnLostFocus(RoutedEventArgs e)
+    {
+        base.OnLostFocus(e);
+        FocusChanged(IsKeyboardFocusWithin);
+        var top = TopLevel.GetTopLevel(this);
+        var element = top?.FocusManager?.GetFocusedElement();
+        if (element is Visual v && _popup?.IsInsidePopup(v) == true) return;
+        if (element == _startTextBox || element == _endTextBox) return;
+        CommitInput(true);
+        SetCurrentValue(IsDropdownOpenProperty, false);
+    }
+
+    private void FocusChanged(bool hasFocus)
+    {
+        var wasFocused = _isFocused;
+        _isFocused = hasFocus;
+        if (hasFocus)
+            if (!wasFocused && _startTextBox != null)
+                _startTextBox.Focus();
+    }
+
+    private void CommitInput(bool clearWhenInvalid)
+    {
+        if (DateTime.TryParseExact(_startTextBox?.Text, DisplayFormat, CultureInfo.CurrentUICulture,
+                DateTimeStyles.None,
+                out var start))
+        {
+            _startPresenter?.SyncTime(start.TimeOfDay);
+            SetCurrentValue(StartTimeProperty, start.TimeOfDay);
+        }
+        else
+        {
+            if (clearWhenInvalid)
+            {
+                _startTextBox?.SetValue(TextBox.TextProperty, null);
+                _startPresenter?.SyncTime(null);
+            }
+        }
+
+        if (DateTime.TryParseExact(_endTextBox?.Text, DisplayFormat, CultureInfo.CurrentUICulture, DateTimeStyles.None,
+                out var end))
+        {
+            _endPresenter?.SyncTime(end.TimeOfDay);
+            SetCurrentValue(EndTimeProperty, end.TimeOfDay);
+        }
+        else
+        {
+            if (clearWhenInvalid)
+            {
+                _endTextBox?.SetValue(TextBox.TextProperty, null);
+                _endPresenter?.SyncTime(null);
+            }
+        }
     }
 }

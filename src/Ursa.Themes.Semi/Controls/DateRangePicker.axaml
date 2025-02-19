@@ -26,7 +26,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}" />
-                        <Grid ColumnDefinitions="*, Auto, * Auto">
+                        <Grid ColumnDefinitions="*, Auto, * Auto" Name="PART_PassThroughElement">
                             <TextBox
                                 Name="{x:Static u:DateRangePicker.PART_StartTextBox}"
                                 Grid.Column="0"
@@ -75,6 +75,7 @@
                         </Grid>
                         <Popup
                             Name="{x:Static contracts:PartNames.PART_Popup}"
+                            OverlayInputPassThroughElement="{Binding #PART_PassThroughElement}"
                             HorizontalOffset="-4"
                             IsLightDismissEnabled="True"
                             IsOpen="{TemplateBinding IsDropdownOpen,
