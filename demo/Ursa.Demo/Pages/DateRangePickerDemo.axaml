@@ -1,0 +1,37 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.DateRangePickerDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="viewModels:DateRangePickerDemoViewModel"
+    mc:Ignorable="d">
+    <StackPanel HorizontalAlignment="Left">
+        <TextBox
+            Name="format"
+            Text="yyyy-MM-dd"
+            Watermark="Display Format" />
+        <TextBlock Text="Default" />
+        <u:DateRangePicker
+            Width="360"
+            DisplayFormat="{Binding #format.Text}"
+            SelectedEndDate="{Binding EndDate}"
+            SelectedStartDate="{Binding StartDate}" />
+
+        <TextBlock Text="Clear Button" />
+        <u:DateRangePicker
+            Width="360"
+            Classes="ClearButton"
+            DisplayFormat="{Binding #format.Text}" />
+        <TextBlock Text="Initialized with Binding" />
+        <u:DateRangePicker
+            Width="360"
+            DisplayFormat="{Binding #format.Text}"
+            SelectedEndDate="{Binding EndDate}"
+            SelectedStartDate="{Binding StartDate}" />
+    </StackPanel>
+</UserControl>

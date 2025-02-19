@@ -18,6 +18,7 @@ namespace Ursa.Controls;
 [TemplatePart(PART_StartPresenter, typeof(TimePickerPresenter))]
 [TemplatePart(PART_EndPresenter, typeof(TimePickerPresenter))]
 [TemplatePart(PART_Button, typeof(Button))]
+[PseudoClasses(PseudoClassName.PC_Empty)]
 public class TimeRangePicker : TimePickerBase, IClearControl
 {
     public const string PART_StartTextBox = "PART_StartTextBox";
@@ -92,6 +93,8 @@ public class TimeRangePicker : TimePickerBase, IClearControl
     public void Clear()
     {
         Focus(NavigationMethod.Pointer);
+        SetCurrentValue(StartTimeProperty, null);
+        SetCurrentValue(EndTimeProperty, null);
         _startPresenter?.SyncTime(null);
         _endPresenter?.SyncTime(null);
     }
@@ -120,10 +123,10 @@ public class TimeRangePicker : TimePickerBase, IClearControl
             textBox.Text = null;
             return;
         }
-
         var date = new DateTime(1, 1, 1, time.Value.Hours, time.Value.Minutes, time.Value.Seconds);
         var text = date.ToString(DisplayFormat);
         textBox.Text = text;
+        PseudoClasses.Set(PseudoClassName.PC_Empty, StartTime is null && EndTime is null);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
