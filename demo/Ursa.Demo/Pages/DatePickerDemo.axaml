@@ -11,7 +11,7 @@
     x:DataType="viewModels:DatePickerDemoViewModel"
     mc:Ignorable="d">
     <StackPanel Margin="20" HorizontalAlignment="Left">
-        <TextBox Name="format" InnerLeftContent="Display Format" />
+        <TextBox Name="format" InnerLeftContent="Display Format" Text="yyyy-MM-dd" />
         <TextBlock Text="Default" />
         <u:DatePicker Width="200" DisplayFormat="{Binding #format.Text}" />
         <TextBlock Text="Binding" />
