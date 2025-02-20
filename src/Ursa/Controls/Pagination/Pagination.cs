@@ -166,6 +166,7 @@ public class Pagination : TemplatedControl
     private static int? CoerceCurrentPage(AvaloniaObject arg1, int? arg2)
     {
         if (arg2 is null) return null;
+        // Only coerce the value if the pagination is initialized. Otherwise the value will be coerced to default because PageCount is not yet determined.
         if (arg1 is Pagination { IsInitialized: true } p)
         {
             arg2 = MathHelpers.SafeClamp(arg2.Value, 1, p.PageCount);
@@ -221,6 +222,7 @@ public class Pagination : TemplatedControl
         LostFocusEvent.AddHandler(OnQuickJumpInputLostFocus, _quickJumpInput);
 
         InitializePanelButtons();
+        CurrentPage = MathHelpers.SafeClamp(CurrentPage ?? 1, 1, PageCount);
         UpdateButtonsByCurrentPage(CurrentPage);
     }
 

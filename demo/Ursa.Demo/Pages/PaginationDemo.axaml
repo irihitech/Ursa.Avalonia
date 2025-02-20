@@ -23,6 +23,7 @@
         <u:Pagination
             Name="page"
             PageSizeOptions="10, 20, 50, 100"
+            CurrentPage="5"
             ShowQuickJump="{Binding #quickJumperSelector.IsChecked}"
             ShowPageSizeSelector="{Binding #pageSizeSelector.IsChecked}"
 			Command="{Binding LoadPageCommand}"
