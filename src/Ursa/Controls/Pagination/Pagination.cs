@@ -197,6 +197,7 @@ public class Pagination : TemplatedControl
 
     private void OnPageSizeChanged(AvaloniaPropertyChangedEventArgs<int> args)
     {
+        if (!IsInitialized) return;
         var pageCount = TotalCount / args.NewValue.Value;
         var residue = TotalCount % args.NewValue.Value;
         if (residue > 0) pageCount++;
@@ -305,16 +306,15 @@ public class Pagination : TemplatedControl
     {
         if (PageSize == 0) return;
         var pageCount = TotalCount / PageSize;
+        var currentPage = CurrentPage;
+        var residue = TotalCount % PageSize;
+        if (residue > 0) pageCount++;
         if (_buttonPanel is null)
         {
             SetCurrentValue(PageCountProperty, pageCount);
             return;
         }
-
-        var currentPage = CurrentPage;
-        var residue = TotalCount % PageSize;
-        if (residue > 0) pageCount++;
-
+        
         if (pageCount <= 7)
         {
             for (var i = 0; i < 7; i++)
