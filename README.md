@@ -10,7 +10,7 @@
 
 Ursa is an enterprise level UI library for building cross-platform applications with Avalonia UI.
 
-![Demo](./assets/demo.png)
+![Demo](./assets/dark-demo.jpg)
 
 ## .NET Foundation
 
