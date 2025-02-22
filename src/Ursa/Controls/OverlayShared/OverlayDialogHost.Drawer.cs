@@ -102,6 +102,8 @@ public partial class OverlayDialogHost
 
     private static void ResetDrawerPosition(DrawerControlBase control, Size newSize)
     {
+        control.MaxWidth = newSize.Width;
+        control.MaxHeight = newSize.Height;
         if (control.Position == Position.Right)
         {
             control.Height = newSize.Height;
