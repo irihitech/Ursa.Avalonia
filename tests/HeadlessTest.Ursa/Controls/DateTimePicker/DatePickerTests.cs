@@ -270,9 +270,18 @@ public class DatePickerTests
             HorizontalAlignment = HorizontalAlignment.Left,
             VerticalAlignment = VerticalAlignment.Top
         };
-        window.Content = picker;
+        var focustextBox = new TextBox();
+        window.Content = new StackPanel()
+        {
+            Children =
+            {
+                picker,
+                focustextBox,
+            }
+        };
         window.Show();
         Dispatcher.UIThread.RunJobs();
+        picker.Focus();
         var textBox = picker.GetTemplateChildOfType<TextBox>(DatePicker.PART_TextBox);
         Dispatcher.UIThread.RunJobs();
         Assert.Null(picker.SelectedDate);
@@ -280,6 +289,7 @@ public class DatePickerTests
         Dispatcher.UIThread.RunJobs();
         Assert.Equal(new DateTime(2025, 2, 18), picker.SelectedDate);
         textBox?.SetValue(TextBox.TextProperty, "2025-02-18-");
+        focustextBox.Focus();
         Dispatcher.UIThread.RunJobs();
         Assert.Null(picker.SelectedDate);
     }

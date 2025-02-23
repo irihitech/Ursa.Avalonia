@@ -70,6 +70,7 @@
                                 Margin="8,0"
                                 Content="{DynamicResource TimePickerIconGlyph}"
                                 Focusable="False"
+                                IsVisible="{Binding !#ClearButton.IsVisible}"
                                 Theme="{DynamicResource InnerIconButton}" />
                         </Grid>
                         <Popup
@@ -164,11 +165,8 @@
         </Setter>
 
         <Style Selector="^.clearButton, ^.ClearButton">
-            <Style Selector="^:pointerover /template/ Button#ClearButton">
-                <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNotNull}}" />
-            </Style>
-            <Style Selector="^:pointerover /template/ Button#PART_Button">
-                <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNull}}" />
+            <Style Selector="^:not(:empty):pointerover /template/ Button#ClearButton">
+                <Setter Property="IsVisible" Value="True" />
             </Style>
         </Style>
 

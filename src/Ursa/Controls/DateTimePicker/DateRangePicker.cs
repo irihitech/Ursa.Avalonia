@@ -9,6 +9,7 @@ using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
+using Calendar = Avalonia.Controls.Calendar;
 
 namespace Ursa.Controls;
 
@@ -53,6 +54,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
 
     static DateRangePicker()
     {
+        FocusableProperty.OverrideDefaultValue<DateRangePicker>(true);
         SelectedStartDateProperty.Changed.AddClassHandler<DateRangePicker, DateTime?>((picker, args) =>
             picker.OnSelectionChanged(args));
         SelectedEndDateProperty.Changed.AddClassHandler<DateRangePicker, DateTime?>((picker, args) =>
@@ -279,7 +281,6 @@ public class DateRangePicker : DatePickerBase, IClearControl
 
     private void OnButtonClick(object? sender, RoutedEventArgs e)
     {
-        Focus(NavigationMethod.Pointer);
         SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
         _startTextBox?.Focus();
         // _start = true;
@@ -456,9 +457,111 @@ public class DateRangePicker : DatePickerBase, IClearControl
                 }
                 return;
             }
+            case Key.Enter:
+            {
+                SetCurrentValue(IsDropdownOpenProperty, false);
+                CommitInput(true);
+                e.Handled = true;
+                return;
+            }
             default:
                 base.OnKeyDown(e);
                 break;
         }
     }
+    
+    protected override void OnGotFocus(GotFocusEventArgs e)
+    {
+        base.OnGotFocus(e);
+        FocusChanged(IsKeyboardFocusWithin);
+    }
+
+    protected override void OnLostFocus(RoutedEventArgs e)
+    {
+        base.OnLostFocus(e);
+        FocusChanged(IsKeyboardFocusWithin);
+        var top = TopLevel.GetTopLevel(this);
+        var element = top?.FocusManager?.GetFocusedElement();
+        if (element is Visual v && _popup?.IsInsidePopup(v)==true)
+        {
+            return;
+        }
+
+        if (element == _startTextBox || element == _endTextBox)
+        {
+            return;
+        }
+        CommitInput(true);
+        SetCurrentValue(IsDropdownOpenProperty, false);
+    }
+
+    private bool _isFocused;
+    private void FocusChanged(bool hasFocus)
+    {
+        bool wasFocused = _isFocused;
+        _isFocused = hasFocus;
+
+        if (hasFocus)
+        {
+            if (!wasFocused && _startTextBox != null)
+            {
+                _startTextBox.Focus();
+                _start = true;
+            }
+        }
+    }
+    
+    private void CommitInput(bool clearWhenInvalid)
+    {
+        DateTime? startDate = null;
+        DateTime? endDate = null;
+        if (DateTime.TryParseExact(_startTextBox?.Text, DisplayFormat, CultureInfo.CurrentUICulture, DateTimeStyles.None,
+                out var localStartDate))
+        {
+            startDate = localStartDate;
+            SetCurrentValue(SelectedStartDateProperty, localStartDate);
+            if (_startCalendar is not null)
+            {
+                _startCalendar.ContextDate = _startCalendar.ContextDate.With(year: localStartDate.Year, month: localStartDate.Month);
+                _startCalendar.UpdateDayButtons();
+            }
+        }
+        else
+        {
+            if (clearWhenInvalid)
+            {
+                SetCurrentValue(SelectedStartDateProperty, null);
+            }
+            
+        }
+        if (DateTime.TryParseExact(_endTextBox?.Text, DisplayFormat, CultureInfo.CurrentUICulture, DateTimeStyles.None,
+                out var localEndDate))
+        {
+            endDate = localEndDate;
+            SetCurrentValue(SelectedEndDateProperty, localEndDate);
+            if (_endCalendar is not null)
+            {
+                _endCalendar.ContextDate = _endCalendar.ContextDate.With(year: localEndDate.Year, month: localEndDate.Month);
+                _endCalendar.UpdateDayButtons();
+            }
+        }
+        else
+        {
+            if (clearWhenInvalid)
+            {
+                SetCurrentValue(SelectedEndDateProperty, null);
+            }
+        }
+        if (startDate is null || endDate is null)
+        {
+            _startCalendar?.ClearSelection();
+            _endCalendar?.ClearSelection();
+        }
+        else
+        {
+            _startCalendar?.MarkDates(startDate: startDate, endDate: endDate);
+            _endCalendar?.MarkDates(startDate: startDate, endDate: endDate);
+        }
+    }
+    
 }

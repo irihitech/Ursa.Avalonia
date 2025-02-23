@@ -52,10 +52,12 @@ public class MenuViewModel : ViewModelBase
             {
                 MenuHeader = "Date & Time", Children = new ObservableCollection<MenuItemViewModel>
                 {
-                    new() { MenuHeader = "Date Picker", Key = MenuKeys.MenuKeyDatePicker },
-                    new() { MenuHeader = "Date Time Picker", Key = MenuKeys.MenuKeyDateTimePicker },
+                    new() { MenuHeader = "Date Picker", Key = MenuKeys.MenuKeyDatePicker, Status = "Updated" },
+                    new() { MenuHeader = "Date Range Picker", Key = MenuKeys.MenuKeyDateRangePicker, Status = "Updated" },
+                    new() { MenuHeader = "Date Time Picker", Key = MenuKeys.MenuKeyDateTimePicker, Status = "Updated" },
                     new() { MenuHeader = "Time Box", Key = MenuKeys.MenuKeyTimeBox },
-                    new() { MenuHeader = "TimePicker", Key = MenuKeys.MenuKeyTimePicker },
+                    new() { MenuHeader = "Time Picker", Key = MenuKeys.MenuKeyTimePicker, Status = "Updated" },
+                    new() { MenuHeader = "Time Range Picker", Key = MenuKeys.MenuKeyTimeRangePicker, Status = "Updated" },
                     new() { MenuHeader = "Clock", Key = MenuKeys.MenuKeyClock }
                 }
             },
@@ -108,6 +110,7 @@ public static class MenuKeys
     public const string MenuKeyClassInput = "Class Input";
     public const string MenuKeyClock = "Clock";
     public const string MenuKeyDatePicker = "DatePicker";
+    public const string MenuKeyDateRangePicker = "DateRangePicker";
     public const string MenuKeyDateTimePicker = "DateTimePicker";
     public const string MenuKeyDialog = "Dialog";
     public const string MenuKeyDisableContainer = "DisableContainer";
@@ -142,6 +145,7 @@ public static class MenuKeys
     public const string MenuKeyTimeBox = "TimeBox";
     public const string MenuKeyTimeline = "Timeline";
     public const string MenuKeyTimePicker = "TimePicker";
+    public const string MenuKeyTimeRangePicker = "TimeRangePicker";
     public const string MenuKeyToast = "Toast";
     public const string MenuKeyToolBar = "ToolBar";
     public const string MenuKeyTreeComboBox = "TreeComboBox";

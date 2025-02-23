@@ -129,26 +129,7 @@ public class DatePicker: DatePickerBase, IClearControl
         }
         else
         {
-            if (DateTime.TryParseExact(_textBox?.Text, DisplayFormat, CultureInfo.CurrentUICulture, DateTimeStyles.None,
-                    out var date))
-            {
-                SetCurrentValue(SelectedDateProperty, date);
-                if (_calendar is not null)
-                {
-                    _calendar.ContextDate = _calendar.ContextDate.With(year: date.Year, month: date.Month);
-                    _calendar.UpdateDayButtons();
-                }
-                _calendar?.MarkDates(startDate: date, endDate: date);
-            }
-            else
-            {
-                SetCurrentValue(SelectedDateProperty, null);
-                if (!fromText)
-                {
-                    _textBox?.SetValue(TextBox.TextProperty, null);
-                }
-                _calendar?.ClearSelection();
-            }
+            CommitInput(!fromText);
         }
     }
 
@@ -192,6 +173,13 @@ public class DatePicker: DatePickerBase, IClearControl
             case Key.Tab:
                 SetCurrentValue(IsDropdownOpenProperty, false);
                 return;
+            case Key.Enter:
+            {
+                SetCurrentValue(IsDropdownOpenProperty, false);
+                CommitInput(true);
+                e.Handled = true;
+                return;
+            }
             default:
                 base.OnKeyDown(e);
                 break;
@@ -219,6 +207,7 @@ public class DatePicker: DatePickerBase, IClearControl
         {
             return;
         }
+        CommitInput(true);
         SetCurrentValue(IsDropdownOpenProperty, false);
     }
 
@@ -230,12 +219,33 @@ public class DatePicker: DatePickerBase, IClearControl
 
         if (hasFocus)
         {
-
             if (!wasFocused && _textBox != null)
             {
                 _textBox.Focus();
-                _textBox.SelectAll();
             }
+        }
+    }
+
+    private void CommitInput(bool clearWhenInvalid)
+    {
+        if (DateTime.TryParseExact(_textBox?.Text, DisplayFormat, CultureInfo.CurrentUICulture, DateTimeStyles.None,
+                out var date))
+        {
+            SetCurrentValue(SelectedDateProperty, date);
+            if (_calendar is not null)
+            {
+                _calendar.ContextDate = _calendar.ContextDate.With(year: date.Year, month: date.Month);
+                _calendar.UpdateDayButtons();
+            }
+            _calendar?.MarkDates(startDate: date, endDate: date);
+        }
+        else
+        {
+            if (clearWhenInvalid)
+            {
+                SetCurrentValue(SelectedDateProperty, null);
+            }
+            _calendar?.ClearSelection();
         }
     }
 }
