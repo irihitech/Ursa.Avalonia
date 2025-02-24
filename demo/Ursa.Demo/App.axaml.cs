@@ -18,7 +18,10 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MainSplashWindow();
+            desktop.MainWindow = new MvvmSplashWindow()
+            {
+                DataContext = new SplashViewModel()
+            };
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleView)
         {

@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
+using Irihi.Avalonia.Shared.Contracts;
 
 namespace Ursa.Controls;
 
@@ -17,6 +18,24 @@ public abstract class SplashWindow: Window
     {
         get => GetValue(CountDownProperty);
         set => SetValue(CountDownProperty, value);
+    }
+    
+    static SplashWindow()
+    {
+        DataContextProperty.Changed.AddClassHandler<SplashWindow, object?>((window, e) =>
+            window.OnDataContextChange(e));
+    }
+    
+    private void OnDataContextChange(AvaloniaPropertyChangedEventArgs<object?> args)
+    {
+        if (args.OldValue.Value is IDialogContext oldContext) oldContext.RequestClose -= OnContextRequestClose;
+
+        if (args.NewValue.Value is IDialogContext newContext) newContext.RequestClose += OnContextRequestClose;
+    }
+    
+    private void OnContextRequestClose(object? sender, object? args)
+    {
+        Close(args);
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
@@ -49,6 +68,11 @@ public abstract class SplashWindow: Window
                 }
                 nextWindow.Show();
                 Close();
+                if (DataContext is IDialogContext idc)
+                {
+                    idc.Close();
+                    idc.RequestClose -= OnContextRequestClose;
+                }
                 return;
             }
         }
