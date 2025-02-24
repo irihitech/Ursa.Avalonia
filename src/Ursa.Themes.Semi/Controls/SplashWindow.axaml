@@ -3,7 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
     <ControlTheme x:Key="{x:Type u:SplashWindow}" TargetType="u:SplashWindow">
-        <Setter Property="CountDown" Value="0:0:3" />
         <Setter Property="Background" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
