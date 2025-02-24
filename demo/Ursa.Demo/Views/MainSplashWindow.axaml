@@ -1,0 +1,43 @@
+<u:SplashWindow
+    x:Class="Ursa.Demo.Views.MainSplashWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:iri="https://irihi.tech/shared"
+    xmlns:u="https://irihi.tech/ursa"
+    Title="MainSplashWindow"
+    Width="400"
+    Height="400">
+    <Grid
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        ColumnDefinitions="Auto, Auto"
+        RowDefinitions="Auto, Auto">
+        <iri:IrihiLogo
+            Grid.Row="0"
+            Grid.Column="0"
+            Width="64"
+            Margin="0,0,16,0"
+            Fill="{DynamicResource SemiColorText2}" />
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <TextBlock
+                Classes="H2"
+                Text="铱泓科技"
+                Theme="{DynamicResource TitleTextBlock}" />
+            <TextBlock FontWeight="Bold" Text="IRIHI Technology" />
+        </StackPanel>
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2">
+            <TextBlock
+                Margin="0,12,0,0"
+                HorizontalAlignment="Center"
+                FontSize="14"
+                Text="聚焦生产力的美学进化" />
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="14"
+                Text="Aesthetic Evolution of Productivity" />
+        </StackPanel>
+    </Grid>
+</u:SplashWindow>
