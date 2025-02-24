@@ -54,6 +54,14 @@
                 </DataTemplate>
             </u:SelectionList.ItemTemplate>
         </u:SelectionList>
-        <Button Command="{Binding Clear}">Clear</Button>
+        <SplitButton Content="Button With Selection">
+            <SplitButton.Flyout>
+                <Flyout>
+                    <u:SelectionList ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" />
+                </Flyout>
+            </SplitButton.Flyout>
+        </SplitButton>
+        <Button Margin="0 12" Command="{Binding Clear}">Clear</Button>
+        
     </StackPanel>
 </UserControl>
