@@ -23,7 +23,7 @@
             Grid.Column="0"
             Width="64"
             Margin="0,0,16,0"
-            Fill="{DynamicResource SemiGrey5}" />
+            Fill="{DynamicResource SemiColorText2}" />
         <StackPanel Grid.Row="0" Grid.Column="1">
             <TextBlock
                 Classes="H2"
@@ -33,6 +33,7 @@
         </StackPanel>
         <ProgressBar
             Grid.Row="1"
+            Grid.Column="0"
             Grid.ColumnSpan="2"
             Margin="0,16,0,0"
             Value="{Binding Progress}" />

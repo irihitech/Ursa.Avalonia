@@ -12,7 +12,7 @@ public partial class SplashViewModel: ObservableObject, IDialogContext
 
     public SplashViewModel()
     {
-        DispatcherTimer.Run(OnUpdate, TimeSpan.FromMilliseconds(200), DispatcherPriority.Default);
+        DispatcherTimer.Run(OnUpdate, TimeSpan.FromMilliseconds(20), DispatcherPriority.Default);
     }
 
     private bool OnUpdate()
