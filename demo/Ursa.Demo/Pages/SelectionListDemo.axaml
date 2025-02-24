@@ -12,10 +12,14 @@
     x:DataType="vm:SelectionListDemoViewModel"
     mc:Ignorable="d">
     <StackPanel HorizontalAlignment="Left">
-        <u:SelectionList ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}">
+        <u:SelectionList
+            Width="600"
+            HorizontalAlignment="Center"
+            ItemsSource="{Binding Items}"
+            SelectedItem="{Binding SelectedItem}">
             <u:SelectionList.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" />
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </u:SelectionList.ItemsPanel>
         </u:SelectionList>
@@ -36,9 +40,9 @@
                 <DataTemplate>
                     <Panel Height="40">
                         <TextBlock
-                            Classes.Active="{Binding $parent[u:SelectionListItem].IsSelected, Mode=OneWay}"
                             Margin="8,0"
                             VerticalAlignment="Center"
+                            Classes.Active="{Binding $parent[u:SelectionListItem].IsSelected, Mode=OneWay}"
                             Text="{Binding}">
                             <TextBlock.Styles>
                                 <Style Selector="TextBlock.Active">
