@@ -8,6 +8,8 @@ namespace Ursa.Controls;
 
 public abstract class SplashWindow: Window
 {
+    protected override Type StyleKeyOverride => typeof(SplashWindow);
+
     public static readonly StyledProperty<TimeSpan?> CountDownProperty = AvaloniaProperty.Register<SplashWindow, TimeSpan?>(
         nameof(CountDown));
 

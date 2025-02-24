@@ -1,0 +1,27 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <ControlTheme x:Key="{x:Type u:SplashWindow}" TargetType="u:SplashWindow">
+        <Setter Property="CountDown" Value="0:0:3" />
+        <Setter Property="Background" Value="{DynamicResource WindowDefaultBackground}" />
+        <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
+        <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
+        <Setter Property="ExtendClientAreaChromeHints" Value="NoChrome" />
+        <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="0" />
+        <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
+        <Setter Property="WindowStartupLocation" Value="CenterScreen" />
+        <Setter Property="SystemDecorations">
+            <OnPlatform>
+                <On Options="Default, Windows, macOS">
+                    <SystemDecorations>Full</SystemDecorations>
+                </On>
+                <On Options="Linux">
+                    <SystemDecorations>None</SystemDecorations>
+                </On>
+            </OnPlatform>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>
