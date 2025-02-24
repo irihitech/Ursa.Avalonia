@@ -58,7 +58,7 @@ public class SelectionList: SelectingItemsControl
         }
         OpacityProperty.SetValue(1d, _indicator);
         InvalidateMeasure();
-        InvalidateArrange();
+        // InvalidateArrange();
     }
 
     protected override Size ArrangeOverride(Size finalSize)
@@ -68,7 +68,12 @@ public class SelectionList: SelectingItemsControl
         {
             var container = ContainerFromItem(SelectedItem);
             if (container is null) return size;
-            _indicator.Arrange(container.Bounds);
+            var bounds = container.Bounds;
+            if (ItemsPanelRoot?.Bounds.Position is { } p)
+            {
+                bounds = bounds.Translate(p);
+            }
+            _indicator.Arrange(bounds);
         }
         else
         {
@@ -103,7 +108,12 @@ public class SelectionList: SelectingItemsControl
             var container = ContainerFromItem(SelectedItem);
             if (container is null) return;
             _indicator.Opacity = 1;
-            _indicator.Arrange(container.Bounds);
+            var bounds = container.Bounds;
+            if (ItemsPanelRoot?.Bounds.Position is { } p)
+            {
+                bounds = bounds.Translate(p);
+            }
+            _indicator.Arrange(bounds);
         }
     }
 
