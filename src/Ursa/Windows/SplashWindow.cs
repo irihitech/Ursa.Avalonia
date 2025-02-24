@@ -35,7 +35,8 @@ public abstract class SplashWindow: Window
     
     private void OnContextRequestClose(object? sender, object? args)
     {
-        Close(args);
+        DialogResult = args;
+        Close();
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
@@ -46,9 +47,11 @@ public abstract class SplashWindow: Window
             DispatcherTimer.RunOnce(Close, CountDown.Value);
         }
     }
+    
+    protected object? DialogResult { get; private set; }
 
     protected virtual Task<bool> CanClose() => Task.FromResult(true);
-    protected abstract Task<Window> CreateNextWindow();
+    protected abstract Task<Window?> CreateNextWindow();
     
     private bool _canClose;
     
@@ -62,16 +65,17 @@ public abstract class SplashWindow: Window
             if (_canClose)
             {
                 var nextWindow = await CreateNextWindow();
-                if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime lifetime)
+                if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime lifetime && nextWindow is not null)
                 {
                     lifetime.MainWindow = nextWindow;
                 }
-                nextWindow.Show();
+                nextWindow?.Show();
                 Close();
                 if (DataContext is IDialogContext idc)
                 {
-                    idc.Close();
+                    // unregister in advance in case developer try to raise event again. 
                     idc.RequestClose -= OnContextRequestClose;
+                    idc.Close();
                 }
                 return;
             }

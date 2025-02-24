@@ -14,7 +14,7 @@ public partial class MainSplashWindow : SplashWindow
         InitializeComponent();
     }
 
-    protected override async Task<Window> CreateNextWindow()
+    protected override async Task<Window?> CreateNextWindow()
     {
         return new MainWindow()
         {

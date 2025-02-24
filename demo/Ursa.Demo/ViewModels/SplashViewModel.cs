@@ -24,14 +24,14 @@ public partial class SplashViewModel: ObservableObject, IDialogContext
         }
         else
         {
-            RequestClose?.Invoke(this, null);
+            RequestClose?.Invoke(this, true);
             return false;
         }
     }
     
     public void Close()
     {
-        RequestClose?.Invoke(this, null);
+        RequestClose?.Invoke(this, false);
     }
 
     public event EventHandler<object?>? RequestClose;
