@@ -14,32 +14,33 @@ using Irihi.Avalonia.Shared.Helpers;
 namespace Ursa.Controls;
 
 [TemplatePart(PART_Indicator, typeof(ContentPresenter))]
-public class SelectionList: SelectingItemsControl
+public class SelectionList : SelectingItemsControl
 {
     public const string PART_Indicator = "PART_Indicator";
     private static readonly FuncTemplate<Panel?> DefaultPanel = new(() => new StackPanel());
-    
+
+    public static readonly StyledProperty<Control?> IndicatorProperty =
+        AvaloniaProperty.Register<SelectionList, Control?>(
+            nameof(Indicator));
+
     private ImplicitAnimationCollection? _implicitAnimations;
     private ContentPresenter? _indicator;
 
-    public static readonly StyledProperty<Control?> IndicatorProperty = AvaloniaProperty.Register<SelectionList, Control?>(
-        nameof(Indicator));
+    static SelectionList()
+    {
+        SelectionModeProperty.OverrideMetadata<SelectionList>(
+            new StyledPropertyMetadata<SelectionMode>(
+                SelectionMode.Single,
+                coerce: (_, _) => SelectionMode.Single)
+        );
+        SelectedItemProperty.Changed.AddClassHandler<SelectionList, object?>((list, args) =>
+            list.OnSelectedItemChanged(args));
+    }
 
     public Control? Indicator
     {
         get => GetValue(IndicatorProperty);
         set => SetValue(IndicatorProperty, value);
-    }
-    
-    static SelectionList()
-    {
-        SelectionModeProperty.OverrideMetadata<SelectionList>(
-            new StyledPropertyMetadata<SelectionMode>(
-            defaultValue: SelectionMode.Single, 
-            coerce: (_, _) => SelectionMode.Single)
-            );
-        SelectedItemProperty.Changed.AddClassHandler<SelectionList, object?>((list, args) =>
-            list.OnSelectedItemChanged(args));
     }
 
     private void OnSelectedItemChanged(AvaloniaPropertyChangedEventArgs<object?> args)
@@ -50,31 +51,36 @@ public class SelectionList: SelectingItemsControl
             OpacityProperty.SetValue(0d, _indicator);
             return;
         }
+
         var container = ContainerFromItem(newValue);
         if (container is null)
         {
             OpacityProperty.SetValue(0d, _indicator);
             return;
         }
+
         OpacityProperty.SetValue(1d, _indicator);
         InvalidateMeasure();
-        InvalidateArrange();
+        // InvalidateArrange();
     }
 
     protected override Size ArrangeOverride(Size finalSize)
     {
         var size = base.ArrangeOverride(finalSize);
-        if(_indicator is not null && SelectedItem is not null)
+        if (_indicator is not null && SelectedItem is not null)
         {
             var container = ContainerFromItem(SelectedItem);
             if (container is null) return size;
-            _indicator.Arrange(container.Bounds);
+            var bounds = container.Bounds;
+            if (ItemsPanelRoot?.Bounds.Position is { } p) bounds = bounds.Translate(p);
+            _indicator.Arrange(bounds);
         }
         else
         {
             // This is a hack. The indicator is not visible, so we arrange it to a 1x1 rectangle
             _indicator?.Arrange(new Rect(new Point(), new Size(1, 1)));
         }
+
         return size;
     }
 
@@ -91,19 +97,21 @@ public class SelectionList: SelectingItemsControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        _indicator= e.NameScope.Find<ContentPresenter>(PART_Indicator);
-        EnsureIndicatorAnimation();
+        _indicator = e.NameScope.Find<ContentPresenter>(PART_Indicator);
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
     {
         base.OnLoaded(e);
-        if(_indicator is not null && SelectedItem is not null)
+        EnsureIndicatorAnimation();
+        if (_indicator is not null && SelectedItem is not null)
         {
             var container = ContainerFromItem(SelectedItem);
             if (container is null) return;
             _indicator.Opacity = 1;
-            _indicator.Arrange(container.Bounds);
+            var bounds = container.Bounds;
+            if (ItemsPanelRoot?.Bounds.Position is { } p) bounds = bounds.Translate(p);
+            _indicator.Arrange(bounds);
         }
     }
 
@@ -113,10 +121,7 @@ public class SelectionList: SelectingItemsControl
         {
             _indicator.Opacity = 0;
             SetUpAnimation();
-            if (ElementComposition.GetElementVisual(_indicator) is { } v)
-            {
-                v.ImplicitAnimations = _implicitAnimations;
-            }
+            if (ElementComposition.GetElementVisual(_indicator) is { } v) v.ImplicitAnimations = _implicitAnimations;
         }
     }
 
@@ -126,7 +131,7 @@ public class SelectionList: SelectingItemsControl
         Selection.Clear();
         Selection.Select(index);
     }
-    
+
     private void SetUpAnimation()
     {
         if (_implicitAnimations != null) return;
@@ -151,15 +156,13 @@ public class SelectionList: SelectingItemsControl
         _implicitAnimations[nameof(CompositionVisual.Size)] = sizeAnimation;
         _implicitAnimations[nameof(CompositionVisual.Opacity)] = opacityAnimation;
     }
-    
+
     protected override void OnKeyDown(KeyEventArgs e)
     {
         var hotkeys = Application.Current!.PlatformSettings?.HotkeyConfiguration;
-        
-        if (e.Key.ToNavigationDirection() is { } direction &&  direction.IsDirectional())
-        {
+
+        if (e.Key.ToNavigationDirection() is { } direction && direction.IsDirectional())
             e.Handled |= MoveSelection(direction, WrapSelection);
-        }
         base.OnKeyDown(e);
     }
 }
