@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+             xmlns:u="https://irihi.tech/ursa"
+             mc:Ignorable="d" d:DesignWidth="800"
+             d:DesignHeight="450"
+             x:DataType="viewModels:TimeRangePickerDemoViewModel"
+             x:Class="Ursa.Demo.Pages.TimeRangePickerDemo">
+    <StackPanel HorizontalAlignment="Left">
+        <TextBox
+            Name="displayFormat"
+            Width="300"
+            InnerLeftContent="Display Format"
+            Text="HH:mm:ss" />
+        <TextBox
+            Name="panelFormat"
+            Width="300"
+            InnerLeftContent="Panel Format"
+            Text="tt HH mm ss" />
+        
+        <TextBlock Text="Default"/>
+        <u:TimeRangePicker
+            Width="300"
+            DisplayFormat="{Binding #displayFormat.Text}"
+            PanelFormat="{Binding #panelFormat.Text}" />
+        
+        <TextBlock Text="Initialized by Binding"/>
+        <u:TimeRangePicker
+            Width="300"
+            StartTime="{Binding StartTime}"
+            EndTime="{Binding EndTime}"
+            DisplayFormat="{Binding #displayFormat.Text}"
+            PanelFormat="{Binding #panelFormat.Text}" />
+        
+        <TextBlock Text="Clear Button"/>
+        <u:TimeRangePicker
+            Width="300"
+            Classes="ClearButton"
+            DisplayFormat="{Binding #displayFormat.Text}"
+            PanelFormat="{Binding #panelFormat.Text}" />
+    </StackPanel>
+</UserControl>

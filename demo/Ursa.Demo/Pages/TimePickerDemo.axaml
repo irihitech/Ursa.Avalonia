@@ -43,22 +43,12 @@
             InnerRightContent="截止"
             NeedConfirmation="True"
             PanelFormat="{Binding #panelFormat.Text}" />
-        <u:TimeRangePicker
-            Width="300"
-            DisplayFormat="{Binding #displayFormat.Text}"
-            PanelFormat="{Binding #panelFormat.Text}" />
         
         <TextBlock Text="Binding"/>
         <u:TimePicker
             Width="300"
             HorizontalAlignment="Left"
             SelectedTime="{Binding Time}"
-            DisplayFormat="{Binding #displayFormat.Text}"
-            PanelFormat="{Binding #panelFormat.Text}" />
-        <u:TimeRangePicker
-            Width="300"
-            StartTime="{Binding StartTime}"
-            EndTime="{Binding EndTime}"
             DisplayFormat="{Binding #displayFormat.Text}"
             PanelFormat="{Binding #panelFormat.Text}" />
     </StackPanel>

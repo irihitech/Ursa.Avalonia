@@ -10,14 +10,4 @@ public partial class DatePickerDemo : UserControl
     {
         InitializeComponent();
     }
-
-    private void CalendarView_OnOnDateSelected(object? _, CalendarDayButtonEventArgs e)
-    {
-        Debug.WriteLine("Pressed: "+ e.Date?.ToLongDateString());
-    }
-
-    private void CalendarView_OnOnDatePreviewed(object? _, CalendarDayButtonEventArgs e)
-    {
-        Debug.WriteLine("Hovered: "+e.Date?.ToLongDateString());
-    }
 }
