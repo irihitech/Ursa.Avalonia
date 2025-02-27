@@ -7,7 +7,6 @@ using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.LogicalTree;
 using Avalonia.Threading;
-using Avalonia.VisualTree;
 using HeadlessTest.Ursa.TestHelpers;
 using Ursa.Controls;
 using DatePicker = Ursa.Controls.DatePicker;
@@ -176,7 +175,7 @@ public class DatePickerTests
         window.MouseDown(new Point(10, 10), MouseButton.Left);
         Dispatcher.UIThread.RunJobs();
         var popup = picker.GetTemplateChildOfType<Popup>(DatePicker.PART_Popup);
-        var calendar = popup.GetLogicalDescendants().OfType<CalendarView>().FirstOrDefault();
+        var calendar = popup?.GetLogicalDescendants().OfType<CalendarView>().FirstOrDefault();
         calendar?.RaiseEvent(new CalendarDayButtonEventArgs(new DateTime(2025, 2, 17))
             { RoutedEvent = CalendarView.DateSelectedEvent }); 
         Dispatcher.UIThread.RunJobs();
@@ -203,7 +202,7 @@ public class DatePickerTests
         window.MouseDown(new Point(10, 10), MouseButton.Left);
         Dispatcher.UIThread.RunJobs();
         var popup = picker.GetTemplateChildOfType<Popup>(DatePicker.PART_Popup);
-        var calendar = popup.GetLogicalDescendants().OfType<CalendarView>().FirstOrDefault();
+        var calendar = popup?.GetLogicalDescendants().OfType<CalendarView>().FirstOrDefault();
         calendar?.RaiseEvent(new CalendarDayButtonEventArgs(new DateTime(2025, 2, 17))
             { RoutedEvent = CalendarView.DateSelectedEvent }); 
         Dispatcher.UIThread.RunJobs();
@@ -270,13 +269,13 @@ public class DatePickerTests
             HorizontalAlignment = HorizontalAlignment.Left,
             VerticalAlignment = VerticalAlignment.Top
         };
-        var focustextBox = new TextBox();
+        var focusTextBox = new TextBox();
         window.Content = new StackPanel()
         {
             Children =
             {
                 picker,
-                focustextBox,
+                focusTextBox,
             }
         };
         window.Show();
@@ -289,7 +288,7 @@ public class DatePickerTests
         Dispatcher.UIThread.RunJobs();
         Assert.Equal(new DateTime(2025, 2, 18), picker.SelectedDate);
         textBox?.SetValue(TextBox.TextProperty, "2025-02-18-");
-        focustextBox.Focus();
+        focusTextBox.Focus();
         Dispatcher.UIThread.RunJobs();
         Assert.Null(picker.SelectedDate);
     }
@@ -356,7 +355,6 @@ public class DatePickerTests
         var position = nextButton.TranslatePoint(new Point(5, 5), window);
         Assert.NotNull(position);
         window.MouseDown(new Point(10, 10), MouseButton.Left);
-        var renderRoot = popup.GetVisualRoot();
         
         Dispatcher.UIThread.RunJobs();
         Assert.True(picker.IsDropdownOpen);
