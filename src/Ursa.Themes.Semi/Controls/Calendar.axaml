@@ -199,31 +199,19 @@
                         Grid.Row="0"
                         Margin="0,0,0,16"
                         ColumnDefinitions="Auto, Auto,*, Auto, Auto">
-                        <Button
+                        <u:IconButton
                             Name="{x:Static u:CalendarView.PART_FastPreviousButton}"
+                            Classes="Tertiary"
                             Grid.Column="0"
-                            HorizontalContentAlignment="Left"
-                            Foreground="{TemplateBinding Foreground}"
-                            Theme="{DynamicResource BorderlessButton}">
-                            <PathIcon
-                                Theme="{StaticResource InnerPathIcon}"
-                                Classes="Large"
-                                Data="{DynamicResource CalendarViewFastForwardGlyph}"
-                                Foreground="{DynamicResource CalendarItemIconForeground}" />
-                        </Button>
+                            Icon="{DynamicResource CalendarViewFastForwardGlyph}"
+                            Theme="{DynamicResource BorderlessIconButton}"/>
 
-                        <Button
+                        <u:IconButton
                             Name="{x:Static u:CalendarView.PART_PreviousButton}"
                             Grid.Column="1"
-                            HorizontalContentAlignment="Left"
-                            Foreground="{TemplateBinding Foreground}"
-                            Theme="{DynamicResource BorderlessButton}">
-                            <PathIcon
-                                Theme="{StaticResource InnerPathIcon}"
-                                Classes="Large"
-                                Data="{DynamicResource CalendarItemPreviousIconGlyph}"
-                                Foreground="{DynamicResource CalendarItemIconForeground}" />
-                        </Button>
+                            Classes="Tertiary"
+                            Icon="{DynamicResource CalendarItemPreviousIconGlyph}"
+                            Theme="{DynamicResource BorderlessIconButton}"/>
 
                         <Grid Grid.Column="2" ColumnDefinitions="*, *">
                             <Button
@@ -246,30 +234,18 @@
                                 HorizontalContentAlignment="Center"
                                 IsVisible="True" />
                         </Grid>
-                        <Button
+                        <u:IconButton
                             Name="{x:Static u:CalendarView.PART_NextButton}"
                             Grid.Column="3"
-                            HorizontalContentAlignment="Left"
-                            Foreground="{TemplateBinding Foreground}"
-                            Theme="{DynamicResource BorderlessButton}">
-                            <PathIcon
-                                Theme="{StaticResource InnerPathIcon}"
-                                Classes="Large"
-                                Data="{DynamicResource CalendarItemNextIconGlyph}"
-                                Foreground="{DynamicResource CalendarItemIconForeground}" />
-                        </Button>
-                        <Button
+                            Classes="Tertiary"
+                            Icon="{DynamicResource CalendarItemNextIconGlyph}"
+                            Theme="{DynamicResource BorderlessIconButton}"/>
+                        <u:IconButton
                             Name="{x:Static u:CalendarView.PART_FastNextButton}"
                             Grid.Column="4"
-                            HorizontalContentAlignment="Left"
-                            Foreground="{TemplateBinding Foreground}"
-                            Theme="{DynamicResource BorderlessButton}">
-                            <PathIcon
-                                Theme="{StaticResource InnerPathIcon}"
-                                Classes="Large"
-                                Data="{DynamicResource CalendarViewFastBackwardGlyph}"
-                                Foreground="{DynamicResource CalendarItemIconForeground}" />
-                        </Button>
+                            Classes="Tertiary"
+                            Icon="{DynamicResource CalendarViewFastBackwardGlyph}"
+                            Theme="{DynamicResource BorderlessIconButton}"/>
                     </Grid>
                     <Grid
                         Name="{x:Static u:CalendarView.PART_MonthGrid}"
