@@ -204,10 +204,10 @@ public class PathPicker : TemplatedControl
             nameof(FilePickerFileTypes.ImagePng) => FilePickerFileTypes.ImagePng,
             nameof(FilePickerFileTypes.ImageWebp) => FilePickerFileTypes.ImageWebp,
             nameof(FilePickerFileTypes.TextPlain) => FilePickerFileTypes.TextPlain,
-            _ => parse()
+            _ => Parse()
         };
 
-        FilePickerFileType parse()
+        FilePickerFileType Parse()
         {
             var list = str.Split(',');
             return new FilePickerFileType(list.First())
@@ -248,7 +248,7 @@ public class PathPicker : TemplatedControl
                         FileTypeFilter = ParseFileTypes(FileFilter)
                     };
                     var resFiles = await storageProvider.OpenFilePickerAsync(filePickerOpenOptions);
-                    UpdateSelectedPaths(resFiles.Select(x => x.TryGetLocalPath()).ToArray()!);
+                    UpdateSelectedPaths(resFiles.Select(x => x.TryGetLocalPath()).ToArray());
                     break;
                 case UsePickerTypes.SaveFile:
                     FilePickerSaveOptions filePickerSaveOptions = new()
@@ -263,9 +263,7 @@ public class PathPicker : TemplatedControl
 
                     var path = (await storageProvider.SaveFilePickerAsync(filePickerSaveOptions))
                         ?.TryGetLocalPath();
-                    UpdateSelectedPaths(string.IsNullOrEmpty(path)
-                        ? Array.Empty<string>()
-                        : [path]);
+                    UpdateSelectedPaths([path]);
                     break;
                 case UsePickerTypes.OpenFolder:
                     FolderPickerOpenOptions folderPickerOpenOptions = new()
@@ -277,7 +275,7 @@ public class PathPicker : TemplatedControl
                         SuggestedFileName = SuggestedFileName
                     };
                     var resFolder = await storageProvider.OpenFolderPickerAsync(folderPickerOpenOptions);
-                    UpdateSelectedPaths(resFolder.Select(x => x.TryGetLocalPath()).ToArray()!);
+                    UpdateSelectedPaths(resFolder.Select(x => x.TryGetLocalPath()).ToArray());
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -298,9 +296,10 @@ public class PathPicker : TemplatedControl
         }
     }
 
-    private void UpdateSelectedPaths(IReadOnlyList<string> newList)
+    private void UpdateSelectedPaths(IReadOnlyList<string?> newList)
     {
-        if (newList.Count != 0 || IsClearSelectionOnCancel && newList.Count == 0)
-            SelectedPaths = newList;
+        var nonNullList = newList.Where(x => x is not null).Select(x => x!).ToList();
+        if (nonNullList.Count != 0 || IsClearSelectionOnCancel && nonNullList.Count == 0)
+            SelectedPaths = nonNullList;
     }
 }
