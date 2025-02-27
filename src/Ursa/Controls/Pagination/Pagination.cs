@@ -166,7 +166,11 @@ public class Pagination : TemplatedControl
     private static int? CoerceCurrentPage(AvaloniaObject arg1, int? arg2)
     {
         if (arg2 is null) return null;
-        if (arg1 is Pagination p) arg2 = MathHelpers.SafeClamp(arg2.Value, 1, p.PageCount);
+        // Only coerce the value if the pagination is initialized. Otherwise the value will be coerced to default because PageCount is not yet determined.
+        if (arg1 is Pagination { IsInitialized: true } p)
+        {
+            arg2 = MathHelpers.SafeClamp(arg2.Value, 1, p.PageCount);
+        }
         return arg2;
     }
 
@@ -193,6 +197,7 @@ public class Pagination : TemplatedControl
 
     private void OnPageSizeChanged(AvaloniaPropertyChangedEventArgs<int> args)
     {
+        if (!IsInitialized) return;
         var pageCount = TotalCount / args.NewValue.Value;
         var residue = TotalCount % args.NewValue.Value;
         if (residue > 0) pageCount++;
@@ -218,7 +223,8 @@ public class Pagination : TemplatedControl
         LostFocusEvent.AddHandler(OnQuickJumpInputLostFocus, _quickJumpInput);
 
         InitializePanelButtons();
-        UpdateButtonsByCurrentPage(0);
+        CurrentPage = MathHelpers.SafeClamp(CurrentPage ?? 1, 1, PageCount);
+        UpdateButtonsByCurrentPage(CurrentPage);
     }
 
     private void OnQuickJumpInputKeyDown(object? sender, KeyEventArgs e)
@@ -300,16 +306,15 @@ public class Pagination : TemplatedControl
     {
         if (PageSize == 0) return;
         var pageCount = TotalCount / PageSize;
+        var currentPage = CurrentPage;
+        var residue = TotalCount % PageSize;
+        if (residue > 0) pageCount++;
         if (_buttonPanel is null)
         {
             SetCurrentValue(PageCountProperty, pageCount);
             return;
         }
-
-        var currentPage = CurrentPage;
-        var residue = TotalCount % PageSize;
-        if (residue > 0) pageCount++;
-
+        
         if (pageCount <= 7)
         {
             for (var i = 0; i < 7; i++)
