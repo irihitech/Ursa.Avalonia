@@ -1,5 +1,4 @@
-﻿using Avalonia.Controls;
-using Avalonia.Headless.XUnit;
+﻿using Avalonia.Headless.XUnit;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 using Ursa.Controls;
@@ -17,11 +16,13 @@ public class DrawerCloseEventTest
         };
         testWindow.Show();
         DrawerCloseTestPopupControl level1 = new();
-        OverlayDialog.ShowCustomModal<object>(level1, new DrawerCloseTestPopupControlVM(), "root");
+        _ = OverlayDialog.ShowCustomModal<object>(level1, new DrawerCloseTestPopupControlVM(), "root");
         level1.OpenPopup();
         var level2 = level1.Popup;
+        Assert.NotNull(level2);
         level2.OpenPopup();
         var level3 = level2.Popup;
+        Assert.NotNull(level3);
         level2.ClosePopup();
         await Task.Delay(TimeSpan.FromSeconds(1));
         Dispatcher.UIThread.RunJobs();
@@ -47,11 +48,13 @@ public class DrawerCloseEventTest
         Assert.Equal(level2.LResult, level2.RResult);
         Assert.Equal(level3.LResult, level3.RResult);
 
-        OverlayDialog.ShowCustomModal<object>(level1, new DrawerCloseTestPopupControlVM(), "root");
+        _ = OverlayDialog.ShowCustomModal<object>(level1, new DrawerCloseTestPopupControlVM(), "root");
         level1.OpenPopup();
         level2 = level1.Popup;
+        Assert.NotNull(level2);
         level2.OpenPopup();
         level3 = level2.Popup;
+        Assert.NotNull(level3);
         level3.OpenPopup();
         level1.Close();
         await Task.Delay(TimeSpan.FromSeconds(1));

@@ -403,7 +403,8 @@ public class PaginationTests
         window.Show();
         Dispatcher.UIThread.RunJobs();
         var buttonsPanel = pagination.GetTemplateChildOfType<Panel>(Pagination.PART_ButtonPanel);
-        var buttons = buttonsPanel.Children.OfType<PaginationButton>().ToList();
+        var buttons = buttonsPanel?.Children.OfType<PaginationButton>().ToList();
+        Assert.NotNull(buttons);
         buttons[0].RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
         Dispatcher.UIThread.RunJobs();
         Assert.Equal(1, count);
