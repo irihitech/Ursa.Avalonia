@@ -6,42 +6,63 @@
              xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
              x:CompileBindings="True"
              x:DataType="vm:AvatarDemoViewModel"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="850"
              x:Class="Ursa.Demo.Pages.AvatarDemo">
     <Design.DataContext>
         <vm:AvatarDemoViewModel />
     </Design.DataContext>
-    <UserControl.Styles>
-        <Style Selector="u|Avatar">
-            <Setter Property="Content" Value="{Binding Content}" />
-            <Setter Property="Command" Value="{Binding ClickCommand}" />
-        </Style>
-    </UserControl.Styles>
     <StackPanel>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-            <u:Avatar />
-            <u:Avatar Classes="Red">
+        <StackPanel Orientation="Horizontal" Spacing="8">
+            <u:Avatar Content="U" Classes="ExtraExtraSmall" />
+            <u:Avatar Content="U" Classes="ExtraSmall" />
+            <u:Avatar Content="U" Classes="Small" />
+            <u:Avatar Content="U" Classes="Default" />
+            <u:Avatar Content="U" Classes="Medium" />
+            <u:Avatar Content="U" Classes="Large" />
+            <u:Avatar Content="U" Classes="ExtraLarge" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="8">
+            <u:Avatar Content="AS" />
+            <u:Avatar Content="BM" Classes="Red" />
+            <u:Avatar Content="TJ" Classes="LightBlue" />
+            <u:Avatar Content="ZL" Foreground="#F56A00" Background="#FDE3CF" />
+            <u:Avatar Content="YZ" Background="#87D068" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="8">
+            <u:Avatar Content="AS" />
+            <u:Avatar Content="Semi" Padding="4" />
+            <u:Avatar Content="Semi" Padding="10" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="8">
+            <u:Avatar Content="U" />
+            <u:Avatar Content="U" Classes="Square" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="8">
+            <u:Avatar Source="../Assets/IRIHI.png" />
+            <u:Avatar Source="../Assets/WORLD.png" />
+            <u:Avatar Source="../Assets/Ursa.ico" />
+            <u:Avatar Source="../Assets/Ursa.ico" Classes="Small" />
+            <u:Avatar Classes="Red" Content="BD" Command="{Binding ClickCommand}">
                 <u:Avatar.HoverMask>
-                    <Border Opacity="0.6">
-                        <Panel>
-                            <Border
-                                Background="#16161A"
-                                Width="{Binding $parent[u:Avatar].Width}"
-                                Height="{Binding $parent[u:Avatar].Height}" />
-                            <PathIcon
-                                Theme="{StaticResource InnerPathIcon}"
-                                Data="{StaticResource SemiIconCamera}"
-                                Width="{Binding $parent[u:Avatar].FontSize}"
-                                Height="{Binding $parent[u:Avatar].FontSize}" />
-                        </Panel>
+                    <Border
+                        Background="#16161A"
+                        Opacity="0.6"
+                        Width="{Binding $parent.Width}"
+                        Height="{Binding $parent.Height}">
+                        <PathIcon
+                            Theme="{StaticResource InnerPathIcon}"
+                            Data="{StaticResource SemiIconCamera}" />
                     </Border>
                 </u:Avatar.HoverMask>
             </u:Avatar>
-            <u:Avatar Source="../Assets/Ursa.ico" />
-            <u:Avatar Source="../Assets/IRIHI.png" />
-            <u:Avatar Source="../Assets/WORLD.png" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
+            <StackPanel.Styles>
+                <Style Selector="u|Avatar">
+                    <Setter Property="Content" Value="{Binding Content}" />
+                    <Setter Property="Command" Value="{Binding ClickCommand}" />
+                </Style>
+            </StackPanel.Styles>
             <u:Avatar Classes="Red" />
             <u:Avatar Classes="Pink" />
             <u:Avatar Classes="Purple" />
@@ -60,44 +81,50 @@
             <u:Avatar Classes="Grey" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <u:Avatar Classes="ExtraExtraSmall" />
-            <u:Avatar Classes="ExtraSmall" />
-            <u:Avatar Classes="Small" />
-            <u:Avatar Classes="Default" />
-            <u:Avatar Classes="Medium" />
-            <u:Avatar Classes="Large" />
-            <u:Avatar Classes="ExtraLarge" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <u:Avatar Classes="Square ExtraExtraSmall Green" />
-            <u:Avatar Classes="Square ExtraSmall Green" />
-            <u:Avatar Classes="Square Small Green" />
-            <u:Avatar Classes="Square Default Green" />
-            <u:Avatar Classes="Square Medium Green" />
-            <u:Avatar Classes="Square Large Green" />
             <u:Avatar Classes="Square ExtraLarge Green" Source="../Assets/Ursa.ico">
                 <u:Avatar.HoverMask>
-                    <Border Opacity="0.6">
-                        <Panel>
-                            <Border
-                                Background="#16161A"
-                                Width="{Binding $parent[u:Avatar].Width}"
-                                Height="{Binding $parent[u:Avatar].Height}" />
-                            <PathIcon
-                                Theme="{StaticResource InnerPathIcon}"
-                                Data="{StaticResource SemiIconCamera}"
-                                Width="{Binding $parent[u:Avatar].FontSize}"
-                                Height="{Binding $parent[u:Avatar].FontSize}" />
-                        </Panel>
+                    <Border
+                        Background="#16161A"
+                        Opacity="0.6"
+                        Width="{Binding $parent.Width}"
+                        Height="{Binding $parent.Height}">
+                        <PathIcon
+                            Theme="{StaticResource InnerPathIcon}"
+                            Width="{Binding $parent[u:Avatar].FontSize}"
+                            Height="{Binding $parent[u:Avatar].FontSize}"
+                            Data="{StaticResource SemiIconCamera}" />
                     </Border>
                 </u:Avatar.HoverMask>
             </u:Avatar>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Spacing="8">
-            <u:Avatar Content="AS" />
-            <u:Avatar Content="Semi" Padding="4" />
-            <u:Avatar Content="Semi" Padding="10" />
-        </StackPanel>
 
+        <u:NumericIntUpDown
+            Name="n"
+            HorizontalAlignment="Left"
+            Width="200"
+            AllowDrag="True"
+            Maximum="20"
+            Minimum="-5"
+            Value="3" />
+
+        <u:AvatarGroup MaxCount="{Binding #n.Value}">
+            <u:Avatar Content="AS" />
+            <u:Avatar Content="BM" Classes="Red" />
+            <u:Avatar Content="TJ" Classes="LightBlue" />
+            <u:Avatar Content="ZL" Foreground="#F56A00" Background="#FDE3CF" />
+            <u:Avatar Content="YZ" Background="#87D068" />
+        </u:AvatarGroup>
+        <u:AvatarGroup MaxCount="{Binding #n.Value}" ItemsSource="{Binding Items}" />
+        <u:AvatarGroup MaxCount="{Binding #n.Value}" ItemsSource="{Binding People}">
+            <u:AvatarGroup.ItemTemplate>
+                <DataTemplate DataType="vm:Person">
+                    <u:Avatar
+                        Theme="{StaticResource AvatarGroupItemTheme}"
+                        Content="{Binding Name}"
+                        Command="{Binding $parent[UserControl].((vm:AvatarDemoViewModel)DataContext).ShowCommand}"
+                        CommandParameter="{Binding $self.Content}" />
+                </DataTemplate>
+            </u:AvatarGroup.ItemTemplate>
+        </u:AvatarGroup>
     </StackPanel>
 </UserControl>
