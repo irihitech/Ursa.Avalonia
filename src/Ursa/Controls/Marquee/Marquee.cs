@@ -124,14 +124,14 @@ public class Marquee : ContentControl
         set => SetValue(SpeedProperty, value);
     }
 
-    private void OnPresenterSizeChanged(object sender, SizeChangedEventArgs e)
+    private void OnPresenterSizeChanged(object? sender, SizeChangedEventArgs e)
     {
         InvalidatePresenterPosition();
     }
 
     
 
-    private void TimerOnTick(object sender, System.EventArgs e)
+    private void TimerOnTick(object? sender, System.EventArgs e)
     {
         if (Presenter is null) return;
         var layoutValues = Dispatcher.UIThread.Invoke(GetLayoutValues);
@@ -177,11 +177,13 @@ public class Marquee : ContentControl
         {
             Direction.Up or Direction.Down => GetHorizontalOffset(values.Bounds, values.PresenterSize, values.HorizontalAlignment),
             Direction.Left or Direction.Right => values.Left,
+            _ => throw new NotImplementedException(),
         };
         var verticalOffset = values.Direction switch
         {
             Direction.Up or Direction.Down => values.Top,
             Direction.Left or Direction.Right => GetVerticalOffset(values.Bounds, values.PresenterSize, values.VerticalAlignment),
+            _ => throw new NotImplementedException(),
         };
         if (horizontalOffset is double.NaN) horizontalOffset = 0.0;
         if (verticalOffset is double.NaN) verticalOffset = 0.0;

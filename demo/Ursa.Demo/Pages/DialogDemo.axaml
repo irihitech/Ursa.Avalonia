@@ -12,193 +12,195 @@
     x:DataType="vm:DialogDemoViewModel"
     mc:Ignorable="d">
     <Grid ColumnDefinitions="Auto, *">
-        <TabControl Grid.Column="0" TabStripPlacement="Left">
-            <TabItem Header="Default Window Dialog">
-                <u:Form
-                    Width="300"
-                    Margin="16,0"
-                    DataContext="{Binding DefaultWindowDialogDemoViewModel}"
-                    LabelPosition="Top">
-                    <TextBox
-                        HorizontalAlignment="Stretch"
-                        u:FormItem.Label="Title"
-                        Text="{Binding Title}" />
-                    <u:EnumSelector
-                        HorizontalAlignment="Stretch"
-                        u:FormItem.Label="Startup Location"
-                        EnumType="WindowStartupLocation"
-                        Value="{Binding Location}" />
-                    <u:FormItem Label="PixelPosition">
-                        <UniformGrid Columns="2" Rows="1">
-                            <u:NumericIntUpDown InnerLeftContent="X" Value="{Binding X}" />
-                            <u:NumericIntUpDown InnerLeftContent="Y" Value="{Binding Y}" />
-                        </UniformGrid>
-                    </u:FormItem>
-                    <u:EnumSelector
-                        HorizontalAlignment="Stretch"
-                        u:FormItem.Label="Dialog Mode"
-                        EnumType="u:DialogMode"
-                        Value="{Binding Mode}" />
-                    <u:EnumSelector
-                        HorizontalAlignment="Stretch"
-                        u:FormItem.Label="Dialog Buttons"
-                        EnumType="u:DialogButton"
-                        Value="{Binding Button}" />
-                    <CheckBox u:FormItem.Label="Show In Taskbar" IsChecked="{Binding ShowInTaskBar}" />
-                    <CheckBox
-                        u:FormItem.Label="Is Close Button Visible"
-                        IsChecked="{Binding IsCloseButtonVisible}"
-                        IsThreeState="True" />
-                    <CheckBox u:FormItem.Label="CanDragMove" IsChecked="{Binding CanDragMove}" />
-                    <CheckBox u:FormItem.Label="CanResize" IsChecked="{Binding CanResize}" />
-                    <u:FormItem>
-                        <u:FormItem.Label>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Style Class" />
-                                <PathIcon
-                                    Theme="{StaticResource InnerPathIcon}"
-                                    VerticalAlignment="Center"
-                                    TextElement.FontWeight="Normal"
-                                    Data="{DynamicResource SemiIconHelpCircle}"
-                                    ToolTip.Tip="Pass a Style Class to the created Dialog. In this example, if you set StyleClass as 'Custom', You will get Special Style for OK Button. These styles usually are defined in the root of your App/Window" />
-                            </StackPanel>
-                        </u:FormItem.Label>
-                        <TextBox HorizontalAlignment="Stretch" Text="{Binding StyleClass}" />
-                    </u:FormItem>
-                    <Button
-                        HorizontalAlignment="Left"
-                        u:FormItem.NoLabel="True"
-                        Command="{Binding ShowDialogCommand}"
-                        Content="Show" />
-                </u:Form>
-            </TabItem>
-            <TabItem Header="Custom Window Dialog">
-                <u:Form
-                    Width="300"
-                    Margin="16,0"
-                    DataContext="{Binding CustomWindowDialogDemoViewModel}"
-                    LabelPosition="Top">
-                    <TextBox
-                        HorizontalAlignment="Stretch"
-                        u:FormItem.Label="Title"
-                        Text="{Binding Title}" />
-                    <u:EnumSelector
-                        HorizontalAlignment="Stretch"
-                        u:FormItem.Label="Startup Location"
-                        EnumType="WindowStartupLocation"
-                        Value="{Binding Location}" />
-                    <u:FormItem Label="PixelPosition">
-                        <UniformGrid Columns="2" Rows="1">
-                            <u:NumericIntUpDown InnerLeftContent="X" Value="{Binding X}" />
-                            <u:NumericIntUpDown InnerLeftContent="Y" Value="{Binding Y}" />
-                        </UniformGrid>
-                    </u:FormItem>
-                    <CheckBox u:FormItem.Label="Show In Taskbar" IsChecked="{Binding ShowInTaskBar}" />
-                    <CheckBox
-                        u:FormItem.Label="Is Close Button Visible"
-                        IsChecked="{Binding IsCloseButtonVisible}"
-                        IsThreeState="True" />
-                    <CheckBox u:FormItem.Label="Modal" IsChecked="{Binding IsModal}" />
-                    <CheckBox u:FormItem.Label="CanDragMove" IsChecked="{Binding CanDragMove}" />
-                    <CheckBox u:FormItem.Label="CanResize" IsChecked="{Binding CanResize}" />
-                    <Button
-                        HorizontalAlignment="Left"
-                        u:FormItem.NoLabel="True"
-                        Command="{Binding ShowDialogCommand}"
-                        Content="Show" />
-                </u:Form>
-            </TabItem>
-            <TabItem Header="Default Overlay Dialog">
-                <u:Form
-                    Width="300"
-                    Margin="16,0"
-                    DataContext="{Binding DefaultOverlayDialogDemoViewModel}"
-                    LabelPosition="Top">
-                    <TextBox
-                        HorizontalAlignment="Stretch"
-                        u:FormItem.Label="Title"
-                        Text="{Binding Title}" />
-                    <u:EnumSelector
-                        HorizontalAlignment="Stretch"
-                        u:FormItem.Label="Dialog Mode"
-                        EnumType="u:DialogMode"
-                        Value="{Binding Mode}" />
-                    <u:EnumSelector
-                        HorizontalAlignment="Stretch"
-                        u:FormItem.Label="Dialog Buttons"
-                        EnumType="u:DialogButton"
-                        Value="{Binding Button}" />
-                    <CheckBox
-                        u:FormItem.Label="Is Close Button Visible"
-                        IsChecked="{Binding IsCloseButtonVisible}"
-                        IsThreeState="True" />
-                    <CheckBox u:FormItem.Label="Modal" IsChecked="{Binding IsModal}" />
-                    <CheckBox u:FormItem.Label="Can DragMove" IsChecked="{Binding CanDragMove}" />
-                    <CheckBox u:FormItem.Label="Can LightDismiss" IsChecked="{Binding CanLightDismiss}" />
-                    <CheckBox u:FormItem.Label="FullScreen" IsChecked="{Binding FullScreen}" />
-                    <CheckBox u:FormItem.Label="CanResize" IsChecked="{Binding CanResize}" />
-                    <ToggleSwitch
-                        u:FormItem.Label="Global/Local OverlayHost"
-                        IsChecked="{Binding IsLocal}"
-                        OffContent="Global"
-                        OnContent="Local" />
-                    <u:FormItem>
-                        <u:FormItem.Label>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Style Class" />
-                                <PathIcon
-                                    Theme="{StaticResource InnerPathIcon}"
-                                    VerticalAlignment="Center"
-                                    TextElement.FontWeight="Normal"
-                                    Data="{DynamicResource SemiIconHelpCircle}"
-                                    ToolTip.Tip="Pass a Style Class to the created Dialog. In this example, if you set StyleClass as 'Custom', You will get Special Style for OK Button. These styles usually are defined in the root of your App/Window" />
-                            </StackPanel>
-                        </u:FormItem.Label>
-                        <TextBox HorizontalAlignment="Stretch" Text="{Binding StyleClass}" />
-                    </u:FormItem>
-                    <Button
-                        HorizontalAlignment="Left"
-                        u:FormItem.NoLabel="True"
-                        Command="{Binding ShowDialogCommand}"
-                        Content="Show" />
-                </u:Form>
-            </TabItem>
-            <TabItem Header="Custom Overlay Dialog">
-                <u:Form
-                    Width="300"
-                    Margin="16,0"
-                    DataContext="{Binding CustomOverlayDialogDemoViewModel}"
-                    LabelPosition="Top">
-                    <TextBox
-                        HorizontalAlignment="Stretch"
-                        u:FormItem.Label="Title"
-                        Text="{Binding Title}" />
-                    <CheckBox
-                        u:FormItem.Label="Is Close Button Visible"
-                        IsChecked="{Binding IsCloseButtonVisible}"
-                        IsThreeState="True" />
-                    <CheckBox u:FormItem.Label="Modal" IsChecked="{Binding IsModal}" />
-                    <CheckBox u:FormItem.Label="Can DragMove" IsChecked="{Binding CanDragMove}" />
-                    <CheckBox u:FormItem.Label="Can LightDismiss" IsChecked="{Binding CanLightDismiss}" />
-                    <CheckBox u:FormItem.Label="FullScreen" IsChecked="{Binding FullScreen}" />
-                    <CheckBox u:FormItem.Label="CanResize" IsChecked="{Binding CanResize}" />
-                    <ToggleSwitch
-                        u:FormItem.Label="Global/Local OverlayHost"
-                        IsChecked="{Binding IsLocal}"
-                        OffContent="Global"
-                        OnContent="Local" />
-                    <Button
-                        HorizontalAlignment="Left"
-                        u:FormItem.NoLabel="True"
-                        Command="{Binding ShowDialogCommand}"
-                        Content="Show" />
-                </u:Form>
-            </TabItem>
-        </TabControl>
+        <ScrollViewer>
+            <TabControl Grid.Column="0" TabStripPlacement="Left">
+                <TabItem Header="Default Window Dialog">
+                    <u:Form
+                        Width="300"
+                        Margin="16,0"
+                        DataContext="{Binding DefaultWindowDialogDemoViewModel}"
+                        LabelPosition="Top">
+                        <TextBox
+                            HorizontalAlignment="Stretch"
+                            u:FormItem.Label="Title"
+                            Text="{Binding Title}" />
+                        <u:EnumSelector
+                            HorizontalAlignment="Stretch"
+                            u:FormItem.Label="Startup Location"
+                            EnumType="WindowStartupLocation"
+                            Value="{Binding Location}" />
+                        <u:FormItem Label="PixelPosition">
+                            <UniformGrid Columns="2" Rows="1">
+                                <u:NumericIntUpDown InnerLeftContent="X" Value="{Binding X}" />
+                                <u:NumericIntUpDown InnerLeftContent="Y" Value="{Binding Y}" />
+                            </UniformGrid>
+                        </u:FormItem>
+                        <u:EnumSelector
+                            HorizontalAlignment="Stretch"
+                            u:FormItem.Label="Dialog Mode"
+                            EnumType="u:DialogMode"
+                            Value="{Binding Mode}" />
+                        <u:EnumSelector
+                            HorizontalAlignment="Stretch"
+                            u:FormItem.Label="Dialog Buttons"
+                            EnumType="u:DialogButton"
+                            Value="{Binding Button}" />
+                        <CheckBox u:FormItem.Label="Show In Taskbar" IsChecked="{Binding ShowInTaskBar}" />
+                        <CheckBox
+                            u:FormItem.Label="Is Close Button Visible"
+                            IsChecked="{Binding IsCloseButtonVisible}"
+                            IsThreeState="True" />
+                        <CheckBox u:FormItem.Label="CanDragMove" IsChecked="{Binding CanDragMove}" />
+                        <CheckBox u:FormItem.Label="CanResize" IsChecked="{Binding CanResize}" />
+                        <u:FormItem>
+                            <u:FormItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Style Class" />
+                                    <PathIcon
+                                        VerticalAlignment="Center"
+                                        Data="{DynamicResource SemiIconHelpCircle}"
+                                        TextElement.FontWeight="Normal"
+                                        Theme="{StaticResource InnerPathIcon}"
+                                        ToolTip.Tip="Pass a Style Class to the created Dialog. In this example, if you set StyleClass as 'Custom', You will get Special Style for OK Button. These styles usually are defined in the root of your App/Window" />
+                                </StackPanel>
+                            </u:FormItem.Label>
+                            <TextBox HorizontalAlignment="Stretch" Text="{Binding StyleClass}" />
+                        </u:FormItem>
+                        <Button
+                            HorizontalAlignment="Left"
+                            u:FormItem.NoLabel="True"
+                            Command="{Binding ShowDialogCommand}"
+                            Content="Show" />
+                    </u:Form>
+                </TabItem>
+                <TabItem Header="Custom Window Dialog">
+                    <u:Form
+                        Width="300"
+                        Margin="16,0"
+                        DataContext="{Binding CustomWindowDialogDemoViewModel}"
+                        LabelPosition="Top">
+                        <TextBox
+                            HorizontalAlignment="Stretch"
+                            u:FormItem.Label="Title"
+                            Text="{Binding Title}" />
+                        <u:EnumSelector
+                            HorizontalAlignment="Stretch"
+                            u:FormItem.Label="Startup Location"
+                            EnumType="WindowStartupLocation"
+                            Value="{Binding Location}" />
+                        <u:FormItem Label="PixelPosition">
+                            <UniformGrid Columns="2" Rows="1">
+                                <u:NumericIntUpDown InnerLeftContent="X" Value="{Binding X}" />
+                                <u:NumericIntUpDown InnerLeftContent="Y" Value="{Binding Y}" />
+                            </UniformGrid>
+                        </u:FormItem>
+                        <CheckBox u:FormItem.Label="Show In Taskbar" IsChecked="{Binding ShowInTaskBar}" />
+                        <CheckBox
+                            u:FormItem.Label="Is Close Button Visible"
+                            IsChecked="{Binding IsCloseButtonVisible}"
+                            IsThreeState="True" />
+                        <CheckBox u:FormItem.Label="Modal" IsChecked="{Binding IsModal}" />
+                        <CheckBox u:FormItem.Label="CanDragMove" IsChecked="{Binding CanDragMove}" />
+                        <CheckBox u:FormItem.Label="CanResize" IsChecked="{Binding CanResize}" />
+                        <Button
+                            HorizontalAlignment="Left"
+                            u:FormItem.NoLabel="True"
+                            Command="{Binding ShowDialogCommand}"
+                            Content="Show" />
+                    </u:Form>
+                </TabItem>
+                <TabItem Header="Default Overlay Dialog">
+                    <u:Form
+                        Width="300"
+                        Margin="16,0"
+                        DataContext="{Binding DefaultOverlayDialogDemoViewModel}"
+                        LabelPosition="Top">
+                        <TextBox
+                            HorizontalAlignment="Stretch"
+                            u:FormItem.Label="Title"
+                            Text="{Binding Title}" />
+                        <u:EnumSelector
+                            HorizontalAlignment="Stretch"
+                            u:FormItem.Label="Dialog Mode"
+                            EnumType="u:DialogMode"
+                            Value="{Binding Mode}" />
+                        <u:EnumSelector
+                            HorizontalAlignment="Stretch"
+                            u:FormItem.Label="Dialog Buttons"
+                            EnumType="u:DialogButton"
+                            Value="{Binding Button}" />
+                        <CheckBox
+                            u:FormItem.Label="Is Close Button Visible"
+                            IsChecked="{Binding IsCloseButtonVisible}"
+                            IsThreeState="True" />
+                        <CheckBox u:FormItem.Label="Modal" IsChecked="{Binding IsModal}" />
+                        <CheckBox u:FormItem.Label="Can DragMove" IsChecked="{Binding CanDragMove}" />
+                        <CheckBox u:FormItem.Label="Can LightDismiss" IsChecked="{Binding CanLightDismiss}" />
+                        <CheckBox u:FormItem.Label="FullScreen" IsChecked="{Binding FullScreen}" />
+                        <CheckBox u:FormItem.Label="CanResize" IsChecked="{Binding CanResize}" />
+                        <ToggleSwitch
+                            u:FormItem.Label="Global/Local OverlayHost"
+                            IsChecked="{Binding IsLocal}"
+                            OffContent="Global"
+                            OnContent="Local" />
+                        <u:FormItem>
+                            <u:FormItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Style Class" />
+                                    <PathIcon
+                                        VerticalAlignment="Center"
+                                        Data="{DynamicResource SemiIconHelpCircle}"
+                                        TextElement.FontWeight="Normal"
+                                        Theme="{StaticResource InnerPathIcon}"
+                                        ToolTip.Tip="Pass a Style Class to the created Dialog. In this example, if you set StyleClass as 'Custom', You will get Special Style for OK Button. These styles usually are defined in the root of your App/Window" />
+                                </StackPanel>
+                            </u:FormItem.Label>
+                            <TextBox HorizontalAlignment="Stretch" Text="{Binding StyleClass}" />
+                        </u:FormItem>
+                        <Button
+                            HorizontalAlignment="Left"
+                            u:FormItem.NoLabel="True"
+                            Command="{Binding ShowDialogCommand}"
+                            Content="Show" />
+                    </u:Form>
+                </TabItem>
+                <TabItem Header="Custom Overlay Dialog">
+                    <u:Form
+                        Width="300"
+                        Margin="16,0"
+                        DataContext="{Binding CustomOverlayDialogDemoViewModel}"
+                        LabelPosition="Top">
+                        <TextBox
+                            HorizontalAlignment="Stretch"
+                            u:FormItem.Label="Title"
+                            Text="{Binding Title}" />
+                        <CheckBox
+                            u:FormItem.Label="Is Close Button Visible"
+                            IsChecked="{Binding IsCloseButtonVisible}"
+                            IsThreeState="True" />
+                        <CheckBox u:FormItem.Label="Modal" IsChecked="{Binding IsModal}" />
+                        <CheckBox u:FormItem.Label="Can DragMove" IsChecked="{Binding CanDragMove}" />
+                        <CheckBox u:FormItem.Label="Can LightDismiss" IsChecked="{Binding CanLightDismiss}" />
+                        <CheckBox u:FormItem.Label="FullScreen" IsChecked="{Binding FullScreen}" />
+                        <CheckBox u:FormItem.Label="CanResize" IsChecked="{Binding CanResize}" />
+                        <ToggleSwitch
+                            u:FormItem.Label="Global/Local OverlayHost"
+                            IsChecked="{Binding IsLocal}"
+                            OffContent="Global"
+                            OnContent="Local" />
+                        <Button
+                            HorizontalAlignment="Left"
+                            u:FormItem.NoLabel="True"
+                            Command="{Binding ShowDialogCommand}"
+                            Content="Show" />
+                    </u:Form>
+                </TabItem>
+            </TabControl>
+        </ScrollViewer>
         <Grid Grid.Column="1">
             <Border
-                BorderBrush="{DynamicResource SemiGrey1}"
                 Background="{DynamicResource SemiColorBackground1}"
+                BorderBrush="{DynamicResource SemiGrey1}"
                 BorderThickness="1"
                 ClipToBounds="True"
                 CornerRadius="12">

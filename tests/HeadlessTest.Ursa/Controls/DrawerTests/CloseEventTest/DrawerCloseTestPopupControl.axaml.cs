@@ -1,11 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.IO;
-using System.Runtime.CompilerServices;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
+﻿using Avalonia.Controls;
 using Ursa.Controls;
 
 namespace HeadlessTest.Ursa.Controls;
@@ -19,7 +12,7 @@ public partial class DrawerCloseTestPopupControl : UserControl
     }
 
     private readonly string _hostid = Path.GetRandomFileName();
-    public DrawerCloseTestPopupControl Popup { get; set; }
+    public DrawerCloseTestPopupControl? Popup { get; set; }
     public int LResult { get; set; }
     public int RResult { get; set; }
 
@@ -32,7 +25,7 @@ public partial class DrawerCloseTestPopupControl : UserControl
 
     public void ClosePopup()
     {
-        (Popup.DataContext as DrawerCloseTestPopupControlVM)?.Close();
+        (Popup?.DataContext as DrawerCloseTestPopupControlVM)?.Close();
     }
 
 
