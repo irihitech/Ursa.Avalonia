@@ -7,9 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
-    Title="MvvmSplashWindow"
+    Title="Starting Ursa Demo..."
     Width="400"
     Height="400"
+    Icon="/Assets/Ursa.ico"
     x:DataType="viewModels:SplashViewModel"
     CountDown="{x:Null}"
     mc:Ignorable="d">

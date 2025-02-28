@@ -1,6 +1,6 @@
 <Project>
     <PropertyGroup>
-        <Version>1.8.1</Version>
+        <Version>1.9.0</Version>
         <AvaloniaVersion>11.1.1</AvaloniaVersion>
         <Authors>IRIHI Technology Co., Ltd.</Authors>
         <RepositoryUrl>https://github.com/irihitech/Ursa.Avalonia</RepositoryUrl>
