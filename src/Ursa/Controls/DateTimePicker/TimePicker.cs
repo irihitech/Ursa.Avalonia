@@ -222,7 +222,7 @@ public class TimePicker : TimePickerBase, IClearControl
         var top = TopLevel.GetTopLevel(this);
         var element = top?.FocusManager?.GetFocusedElement();
         if (element is Visual v && _popup?.IsInsidePopup(v) == true) return;
-        if (element == _textBox) return;
+        if (Equals(element, _textBox)) return;
         CommitInput(true);
         SetCurrentValue(IsDropdownOpenProperty, false);
     }

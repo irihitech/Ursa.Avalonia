@@ -203,10 +203,8 @@ public class DatePicker: DatePickerBase, IClearControl
         FocusChanged(IsKeyboardFocusWithin);
         var top = TopLevel.GetTopLevel(this);
         var element = top?.FocusManager?.GetFocusedElement();
-        if (element is Visual v && _popup?.IsInsidePopup(v)==true)
-        {
-            return;
-        }
+        if (element is Visual v && _popup?.IsInsidePopup(v) == true)return;
+        if (Equals(element, _textBox))return;
         CommitInput(true);
         SetCurrentValue(IsDropdownOpenProperty, false);
     }

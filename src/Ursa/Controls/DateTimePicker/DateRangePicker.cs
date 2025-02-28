@@ -487,7 +487,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
             return;
         }
 
-        if (element == _startTextBox || element == _endTextBox)
+        if (Equals(element, _startTextBox) || Equals(element, _endTextBox))
         {
             return;
         }

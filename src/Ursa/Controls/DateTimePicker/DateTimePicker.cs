@@ -234,7 +234,7 @@ public class DateTimePicker : DatePickerBase
             return;
         }
 
-        if (element == _textBox)
+        if (Equals(element, _textBox))
         {
             return;
         }
