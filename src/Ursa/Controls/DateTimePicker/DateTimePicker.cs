@@ -233,6 +233,11 @@ public class DateTimePicker : DatePickerBase
         {
             return;
         }
+
+        if (Equals(element, _textBox))
+        {
+            return;
+        }
         CommitInput(true);
         SetCurrentValue(IsDropdownOpenProperty, false);
     }

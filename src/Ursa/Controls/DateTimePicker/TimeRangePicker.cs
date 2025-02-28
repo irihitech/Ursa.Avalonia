@@ -277,7 +277,7 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         var top = TopLevel.GetTopLevel(this);
         var element = top?.FocusManager?.GetFocusedElement();
         if (element is Visual v && _popup?.IsInsidePopup(v) == true) return;
-        if (element == _startTextBox || element == _endTextBox) return;
+        if (Equals(element, _startTextBox) || Equals(element, _endTextBox)) return;
         CommitInput(true);
         SetCurrentValue(IsDropdownOpenProperty, false);
     }
