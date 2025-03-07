@@ -8,6 +8,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Metadata;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
 
@@ -107,6 +108,7 @@ public class MultiComboBox : SelectingItemsControl, IInnerContentControl, IPopup
         set => SetValue(SelectedItemsProperty, value);
     }
 
+    [InheritDataTypeFromItems(nameof(SelectedItems))]
     public IDataTemplate? SelectedItemTemplate
     {
         get => GetValue(SelectedItemTemplateProperty);
