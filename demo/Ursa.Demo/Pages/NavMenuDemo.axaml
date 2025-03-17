@@ -40,6 +40,39 @@
                 ItemsSource="{Binding MenuItems}"
                 SelectedItem="{Binding SelectedMenuItem}"
                 SubMenuBinding="{Binding Children}">
+                <u:NavMenu.ContainerTransition>
+                    <u:UrsaPageSlide Duration="0:0:0.55">
+                        <u:UrsaPageSlide.SlideInEasing>
+                            <CubicEaseInOut />
+                        </u:UrsaPageSlide.SlideInEasing>
+                        <u:UrsaPageSlide.SlideOutEasing>
+                            <CubicEaseInOut />
+                        </u:UrsaPageSlide.SlideOutEasing>
+                    </u:UrsaPageSlide>
+                </u:NavMenu.ContainerTransition>
+                <u:NavMenu.ItemsTransition>
+                    <u:UrsaCrossFade Duration="0:0:0.45">
+                        <u:UrsaCrossFade.FadeInEasing>
+                            <SineEaseInOut />
+                        </u:UrsaCrossFade.FadeInEasing>
+                        <u:UrsaCrossFade.FadeOutEasing>
+                            <SineEaseInOut />
+                        </u:UrsaCrossFade.FadeOutEasing>
+                    </u:UrsaCrossFade>
+                </u:NavMenu.ItemsTransition>
+                <u:NavMenu.WidthAnimation>
+                    <!-- <Animation Duration="0:0:0.5" Delay="0:0:0.1" FillMode="Both"> -->
+                    <!--     <Animation.Easing> -->
+                    <!--         <QuadraticEaseInOut /> -->
+                    <!--     </Animation.Easing> -->
+                    <!--     <KeyFrame Cue="0%" x:DataType="u:NavMenu"> -->
+                    <!--         <Setter Property="u:NavMenu.Width" Value="{Binding $parent[u:NavMenu].StartWidthAnimation}"></Setter> -->
+                    <!--     </KeyFrame> -->
+                    <!--     <KeyFrame Cue="100%"> -->
+                    <!--         <Setter Property="u:NavMenu.Width" Value="{Binding $parent[u:NavMenu].EndWidthAnimation}"></Setter> -->
+                    <!--     </KeyFrame> -->
+                    <!-- </Animation> -->
+                </u:NavMenu.WidthAnimation>
                 <u:NavMenu.Styles>
                     <Style x:DataType="vm:MenuItem" Selector="u|NavMenuItem">
                         <Setter Property="IsSeparator" Value="{Binding IsSeparator}" />
