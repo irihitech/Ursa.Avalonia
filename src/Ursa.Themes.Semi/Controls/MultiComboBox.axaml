@@ -76,7 +76,7 @@
                                         RemoveCommand="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Remove}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
-                                                <WrapPanel Orientation="Horizontal" />
+                                                <WrapPanel Orientation="Horizontal" Background="Transparent" />
                                             </ItemsPanelTemplate>
                                         </ItemsControl.ItemsPanel>
                                     </u:MultiComboBoxSelectedItemList>
