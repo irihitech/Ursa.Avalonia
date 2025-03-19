@@ -72,6 +72,7 @@
                             <u:LoadingIcon
                                 Classes="Small"
                                 Foreground="{TemplateBinding Foreground}"
+                                IsLoading="{TemplateBinding IsLoading}"
                                 IsVisible="{TemplateBinding IsLoading}" />
                         </Panel>
                         <ContentPresenter
