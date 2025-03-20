@@ -42,6 +42,17 @@ public class TitleBar: ContentControl
         get => GetValue(IsTitleVisibleProperty);
         set => SetValue(IsTitleVisibleProperty, value);
     }
+
+    public static readonly AttachedProperty<bool> IsTitleBarHitTestVisibleProperty =
+        AvaloniaProperty.RegisterAttached<TitleBar, Window, bool>("IsTitleBarHitTestVisible", defaultValue: true);
+    public static void SetIsTitleBarHitTestVisible(Window obj, bool value) => obj.SetValue(IsTitleBarHitTestVisibleProperty, value);
+    public static bool GetIsTitleBarHitTestVisible(Window obj) => obj.GetValue(IsTitleBarHitTestVisibleProperty);
+    
+    public bool IsTitleBarHitTestVisible
+    {
+        get => GetValue(IsTitleBarHitTestVisibleProperty);
+        set => SetValue(IsTitleBarHitTestVisibleProperty, value);
+    }
     
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {

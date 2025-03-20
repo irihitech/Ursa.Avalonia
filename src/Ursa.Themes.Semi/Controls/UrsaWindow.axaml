@@ -66,6 +66,7 @@
                         <VisualLayerManager.ChromeOverlayLayer>
                             <Panel Margin="{Binding $parent[u:UrsaWindow].OffScreenMargin}">
                                 <u:TitleBar
+                                    IsTitleBarHitTestVisible="{Binding $parent[u:UrsaWindow].(u:TitleBar.IsTitleBarHitTestVisible)}"
                                     Margin="{Binding $parent[u:UrsaWindow].TitleBarMargin}"
                                     Content="{Binding $parent[u:UrsaWindow].TitleBarContent}"
                                     IsTitleVisible="{Binding $parent[u:UrsaWindow].IsTitleBarVisible}"
@@ -109,7 +110,7 @@
                         <Border
                             Name="PART_Background"
                             Background="{TemplateBinding Background}"
-                            IsHitTestVisible="True" />
+                            IsHitTestVisible="{TemplateBinding IsTitleBarHitTestVisible}" />
                         <Grid HorizontalAlignment="Stretch" ColumnDefinitions="Auto, *, Auto, Auto">
                             <ContentPresenter
                                 Grid.Column="0"
