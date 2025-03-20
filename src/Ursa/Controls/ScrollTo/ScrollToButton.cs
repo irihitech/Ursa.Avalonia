@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.VisualTree;
+using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
 
 namespace Ursa.Controls;
@@ -54,9 +55,15 @@ public class ScrollToButton: Button
             }
             _scroll = scroll;
 
-            _disposable = ScrollViewer.OffsetProperty.Changed.AddClassHandler<ScrollViewer, Vector>(OnScrollChanged);
+            _disposable = _scroll?.GetObservable(ScrollViewer.OffsetProperty).Subscribe(OnScrollChanged);
             SetVisibility(Direction, _scroll?.Offset);
         }
+    }
+
+    protected override void OnUnloaded(RoutedEventArgs e)
+    {
+        base.OnUnloaded(e);
+        _disposable?.Dispose();
     }
 
     protected override void OnClick()
@@ -83,14 +90,13 @@ public class ScrollToButton: Button
             _scroll = null;
         }
         _scroll = scroll;
-        _disposable = ScrollViewer.OffsetProperty.Changed.AddClassHandler<ScrollViewer, Vector>(OnScrollChanged);
+        _disposable = _scroll?.GetObservable(ScrollViewer.OffsetProperty).Subscribe(OnScrollChanged);
         SetVisibility(Direction, _scroll?.Offset);
     }
 
-    private void OnScrollChanged(ScrollViewer arg1, AvaloniaPropertyChangedEventArgs<Vector> arg2)
+    private void OnScrollChanged(Vector arg2)
     {
-        if (arg1 != _scroll) return;
-        SetVisibility(Direction, arg2.NewValue.Value);
+        SetVisibility(Direction, arg2);
     }
 
     private void SetVisibility(Position direction, Vector? vector)
