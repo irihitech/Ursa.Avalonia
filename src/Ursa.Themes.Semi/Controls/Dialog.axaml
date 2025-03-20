@@ -17,6 +17,8 @@
                 <TransformOperationsTransition Property="RenderTransform" Duration="0.2" />
             </Transitions>
         </Setter>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="RenderTransform" Value="scale(1.0)" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:CustomDialogControl">
@@ -38,8 +40,8 @@
                                 <ScrollViewer
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
-                                    HorizontalScrollBarVisibility="Auto"
-                                    VerticalScrollBarVisibility="Auto">
+                                    HorizontalScrollBarVisibility="{Binding (ScrollViewer.HorizontalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}"
+                                    VerticalScrollBarVisibility="{Binding (ScrollViewer.VerticalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}">
                                     <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}" />
                                 </ScrollViewer>
                                 <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
@@ -132,6 +134,8 @@
         <Setter Property="MinWidth" Value="{DynamicResource DialogMinWidth}" />
         <Setter Property="MinHeight" Value="{DynamicResource DialogMinHeight}" />
         <Setter Property="CornerRadius" Value="{DynamicResource DialogCornerRadius}" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="Transitions">
             <Transitions>
                 <TransformOperationsTransition Property="RenderTransform" Duration="0.2" />
@@ -157,8 +161,8 @@
                             <Grid RowDefinitions="Auto, *, Auto">
                                 <ScrollViewer
                                     Grid.Row="1"
-                                    HorizontalScrollBarVisibility="Auto"
-                                    VerticalScrollBarVisibility="Auto">
+                                    HorizontalScrollBarVisibility="{Binding (ScrollViewer.HorizontalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}"
+                                    VerticalScrollBarVisibility="{Binding (ScrollViewer.VerticalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}">
                                     <ContentPresenter
                                         Name="PART_ContentPresenter"
                                         Margin="24,8"

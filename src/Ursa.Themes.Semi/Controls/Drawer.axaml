@@ -9,6 +9,8 @@
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="MinWidth" Value="96" />
         <Setter Property="MinHeight" Value="96" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="Padding" Value="{DynamicResource DrawerMargin}" />
         <Setter Property="BorderThickness" Value="{DynamicResource DrawerBorderThickness}" />
         <Setter Property="CornerRadius" Value="{DynamicResource DrawerCornerRadius}" />
@@ -37,8 +39,8 @@
                                 <ScrollViewer
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
-                                    HorizontalScrollBarVisibility="Auto"
-                                    VerticalScrollBarVisibility="Auto">
+                                    HorizontalScrollBarVisibility="{Binding (ScrollViewer.HorizontalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}"
+                                    VerticalScrollBarVisibility="{Binding (ScrollViewer.VerticalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}">
                                     <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}" />
                                 </ScrollViewer>
                                 <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
@@ -104,6 +106,8 @@
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="MinWidth" Value="96" />
         <Setter Property="MinHeight" Value="96" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="Padding" Value="{DynamicResource DrawerMargin}" />
         <Setter Property="BorderThickness" Value="{DynamicResource DrawerBorderThickness}" />
         <Setter Property="CornerRadius" Value="{DynamicResource DrawerCornerRadius}" />
@@ -131,8 +135,8 @@
                             <Grid RowDefinitions="Auto, *, Auto">
                                 <ScrollViewer
                                     Grid.Row="1"
-                                    HorizontalScrollBarVisibility="Auto"
-                                    VerticalScrollBarVisibility="Auto">
+                                    HorizontalScrollBarVisibility="{Binding (ScrollViewer.HorizontalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}"
+                                    VerticalScrollBarVisibility="{Binding (ScrollViewer.VerticalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}">
                                     <ContentPresenter
                                         Name="PART_ContentPresenter"
                                         Margin="24,8"
