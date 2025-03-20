@@ -107,6 +107,16 @@ public class NavMenu : ItemsControl
         CanToggleProperty.Changed.AddClassHandler<InputElement, bool>(OnInputRegisteredAsToggle);
     }
 
+    public NavMenu()
+    {
+        this[!WidthProperty] = new Binding()
+        {
+            Source = this,
+            Path = IsHorizontalCollapsed ? nameof(CollapseWidth) : nameof(ExpandWidth),
+            Mode = BindingMode.OneWay,
+        };
+    }
+
     public object? SelectedItem
     {
         get => GetValue(SelectedItemProperty);
@@ -273,11 +283,13 @@ public class NavMenu : ItemsControl
     {
         _container = e.NameScope.Find<Control>(PART_Container);
         _items = e.NameScope.Find<Control>(PART_Items);
+
         base.OnApplyTemplate(e);
     }
 
     // 在动画过程中Bounds可能多次触发，此字段用以防止重复启动同一段动画。
     private bool _animationIsRunning;
+
     // 过盈收缩缓解。在NavMenu的收缩过程中如果使用第一次返回的Bounds作为EndWidthValueInAnimation的话在动画结束后将有一次重绘
     // ，这次重绘是非常影响用户体验的。目前为什么会有此重绘原因未知，暂无更多精力调查。所以在NavMenu的收缩过程中我们使用第二次返回的Bounds
     // 作为EndWidthValueInAnimation的值。
@@ -322,6 +334,7 @@ public class NavMenu : ItemsControl
             List<Task?> tasks = new();
             var forward = IsHorizontalCollapsed;
 
+            // 由于暂时无法在axaml中给它赋值所以此处的赋值用于测试，后续蒋移除。
             WidthAnimation = new()
             {
                 Duration = TimeSpan.FromSeconds(0.2),
@@ -335,7 +348,12 @@ public class NavMenu : ItemsControl
                         Cue = new Cue(0.0d),
                         Setters =
                         {
-                            new Setter(NavMenu.WidthProperty, StartWidthValueInAnimation)
+                            new Setter(NavMenu.WidthProperty, new Binding()
+                            {
+                                Source = this,
+                                Path = nameof(StartWidthValueInAnimation),
+                                Mode = BindingMode.OneWay,
+                            })
                         }
                     },
                     new KeyFrame()
@@ -343,7 +361,12 @@ public class NavMenu : ItemsControl
                         Cue = new Cue(1d),
                         Setters =
                         {
-                            new Setter(NavMenu.WidthProperty, EndWidthValueInAnimation)
+                            new Setter(NavMenu.WidthProperty, new Binding()
+                            {
+                                Source = this,
+                                Path = nameof(EndWidthValueInAnimation),
+                                Mode = BindingMode.OneWay,
+                            })
                         }
                     }
                 }
@@ -358,7 +381,16 @@ public class NavMenu : ItemsControl
 
             Task.WhenAll(tasks.Where(x => x is not null)).GetAwaiter().OnCompleted(() =>
             {
-                Dispatcher.UIThread.Post(() => { Width = IsHorizontalCollapsed ? CollapseWidth : ExpandWidth; });
+                Dispatcher.UIThread.Post(() =>
+                {
+                    this[!WidthProperty] = new Binding()
+                    {
+                        Source = this,
+                        Path = IsHorizontalCollapsed ? nameof(CollapseWidth) : nameof(ExpandWidth),
+                        Mode = BindingMode.OneWay,
+                    };
+                    // Width = IsHorizontalCollapsed ? CollapseWidth : ExpandWidth;
+                });
             });
         }
 
