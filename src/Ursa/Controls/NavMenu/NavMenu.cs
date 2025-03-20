@@ -239,13 +239,13 @@ public class NavMenu : ItemsControl
     private Control? _items;
     private CancellationTokenSource? _transitionTokenSource;
 
-    public static readonly StyledProperty<double> StartWidthAnimationProperty =
+    public static readonly StyledProperty<double> StartWidthValueInAnimationProperty =
         AvaloniaProperty.Register<NavMenu, double>(
-            nameof(StartWidthAnimation));
+            nameof(StartWidthValueInAnimation));
 
-    public static readonly StyledProperty<double> EndWidthAnimationProperty =
+    public static readonly StyledProperty<double> EndWidthValueInAnimationProperty =
         AvaloniaProperty.Register<NavMenu, double>(
-            nameof(EndWidthAnimation));
+            nameof(EndWidthValueInAnimation));
 
     public static readonly StyledProperty<Animation?> WidthAnimationProperty =
         AvaloniaProperty.Register<NavMenu, Animation?>(
@@ -257,16 +257,16 @@ public class NavMenu : ItemsControl
         set => SetValue(WidthAnimationProperty, value);
     }
 
-    public double EndWidthAnimation
+    public double EndWidthValueInAnimation
     {
-        get => GetValue(EndWidthAnimationProperty);
-        set => SetValue(EndWidthAnimationProperty, value);
+        get => GetValue(EndWidthValueInAnimationProperty);
+        set => SetValue(EndWidthValueInAnimationProperty, value);
     }
 
-    public double StartWidthAnimation
+    public double StartWidthValueInAnimation
     {
-        get => GetValue(StartWidthAnimationProperty);
-        set => SetValue(StartWidthAnimationProperty, value);
+        get => GetValue(StartWidthValueInAnimationProperty);
+        set => SetValue(StartWidthValueInAnimationProperty, value);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -276,12 +276,22 @@ public class NavMenu : ItemsControl
         base.OnApplyTemplate(e);
     }
 
+    // 在动画过程中Bounds可能多次触发，此字段用以防止重复启动同一段动画。
     private bool _animationIsRunning;
-    private bool _isInitialized;
+    // 过盈收缩缓解。在NavMenu的收缩过程中如果使用第一次返回的Bounds作为EndWidthValueInAnimation的话在动画结束后将有一次重绘
+    // ，这次重绘是非常影响用户体验的。目前为什么会有此重绘原因未知，暂无更多精力调查。所以在NavMenu的收缩过程中我们使用第二次返回的Bounds
+    // 作为EndWidthValueInAnimation的值。
+    private bool _excessShrinkRelief;
+
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+        _transitionTokenSource?.Cancel();
+        _transitionTokenSource?.Dispose();
+    }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
-        if (change.Sender != this) return;
         if (change.Property == IsHorizontalCollapsedProperty
             && _container != null
             && _items != null)
@@ -289,10 +299,9 @@ public class NavMenu : ItemsControl
             _transitionTokenSource?.Cancel();
             _transitionTokenSource?.Dispose();
             _transitionTokenSource = new CancellationTokenSource();
-            //重新计算ExpandWidth和CollapseWidth
-            StartWidthAnimation = Bounds.Width;
+            StartWidthValueInAnimation = Bounds.Width;
             _animationIsRunning = false;
-            _isInitialized = false;
+            _excessShrinkRelief = false;
             Width = IsHorizontalCollapsed ? CollapseWidth : ExpandWidth;
         }
 
@@ -300,15 +309,15 @@ public class NavMenu : ItemsControl
             && _transitionTokenSource?.IsCancellationRequested is false
             && _animationIsRunning is false)
         {
-            if (_isInitialized is false
+            if (_excessShrinkRelief is false
                 && IsHorizontalCollapsed)
             {
-                _isInitialized = true;
+                _excessShrinkRelief = true;
                 return;
             }
 
             _animationIsRunning = true;
-            EndWidthAnimation = Bounds.Width;
+            EndWidthValueInAnimation = Bounds.Width;
 
             List<Task?> tasks = new();
             var forward = IsHorizontalCollapsed;
@@ -326,7 +335,7 @@ public class NavMenu : ItemsControl
                         Cue = new Cue(0.0d),
                         Setters =
                         {
-                            new Setter(NavMenu.WidthProperty, StartWidthAnimation)
+                            new Setter(NavMenu.WidthProperty, StartWidthValueInAnimation)
                         }
                     },
                     new KeyFrame()
@@ -334,7 +343,7 @@ public class NavMenu : ItemsControl
                         Cue = new Cue(1d),
                         Setters =
                         {
-                            new Setter(NavMenu.WidthProperty, EndWidthAnimation)
+                            new Setter(NavMenu.WidthProperty, EndWidthValueInAnimation)
                         }
                     }
                 }
