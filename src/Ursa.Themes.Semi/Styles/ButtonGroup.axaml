@@ -23,9 +23,11 @@
     </Style>
     <Style Selector="u|ButtonGroup.Large Button">
         <Setter Property="Padding" Value="{DynamicResource ButtonGroupLargePadding}" />
+        <Setter Property="MinHeight" Value="{DynamicResource ButtonGroupLargeMinHeight}" />
     </Style>
     <Style Selector="u|ButtonGroup.Small Button">
         <Setter Property="Padding" Value="{DynamicResource ButtonGroupSmallPadding}" />
+        <Setter Property="MinHeight" Value="{DynamicResource ButtonGroupSmallMinHeight}" />
     </Style>
     <Style Selector="u|ButtonGroup Button:pointerover">
         <Setter Property="Background" Value="{DynamicResource ButtonGroupDefaultPointeroverBackground}" />
