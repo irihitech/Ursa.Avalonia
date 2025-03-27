@@ -1,7 +1,9 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.Notifications;
 using Avalonia.Controls.Primitives;
 using Avalonia.Threading;
+using Avalonia.VisualTree;
 
 namespace Ursa.Controls;
 
@@ -31,6 +33,12 @@ public class WindowToastManager : WindowMessageManager, IToastManager
 
     public WindowToastManager(VisualLayerManager? visualLayerManager) : base(visualLayerManager)
     {
+    }
+
+    public static bool TryGetToastManager(Visual? visual, out WindowToastManager? manager)
+    {
+        manager = visual?.FindDescendantOfType<WindowToastManager>();
+        return manager is not null;
     }
 
     /// <inheritdoc/>

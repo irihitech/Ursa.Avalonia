@@ -1,8 +1,11 @@
+using System;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Notifications;
 using Avalonia.Controls.Primitives;
 using Avalonia.VisualTree;
 using Ursa.Controls;
+using WindowNotificationManager = Ursa.Controls.WindowNotificationManager;
 
 namespace Ursa.Demo.Dialogs;
 
@@ -24,6 +27,13 @@ public partial class CustomDemoDialog : UserControl
         {
             _viewModel.NotificationManager = new WindowNotificationManager(visualLayerManager) { MaxItems = 3 };
             _viewModel.ToastManager = new WindowToastManager(visualLayerManager) { MaxItems = 3 };
+        }
+
+        WindowNotificationManager.TryGetNotificationManager(visualLayerManager, out var manager);
+        if (manager is not null && _viewModel is not null)
+        {
+            Console.WriteLine(ReferenceEquals(_viewModel.NotificationManager, manager));
+            manager.Position = NotificationPosition.TopCenter;
         }
     }
 

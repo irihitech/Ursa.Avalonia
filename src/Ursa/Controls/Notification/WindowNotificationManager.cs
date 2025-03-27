@@ -5,6 +5,7 @@ using Avalonia.Controls.Notifications;
 using Avalonia.Controls.Primitives;
 using Avalonia.Layout;
 using Avalonia.Threading;
+using Avalonia.VisualTree;
 
 namespace Ursa.Controls;
 
@@ -67,6 +68,12 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
     {
         HorizontalAlignmentProperty.OverrideDefaultValue<WindowNotificationManager>(HorizontalAlignment.Stretch);
         VerticalAlignmentProperty.OverrideDefaultValue<WindowNotificationManager>(VerticalAlignment.Stretch);
+    }
+
+    public static bool TryGetNotificationManager(Visual? visual, out WindowNotificationManager? manager)
+    {
+        manager = visual?.FindDescendantOfType<WindowNotificationManager>();
+        return manager is not null;
     }
 
     /// <inheritdoc/>

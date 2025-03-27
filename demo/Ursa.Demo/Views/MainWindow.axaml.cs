@@ -5,9 +5,12 @@ namespace Ursa.Demo.Views;
 
 public partial class MainWindow : UrsaWindow
 {
+    public WindowNotificationManager? NotificationManager { get; set; }
+
     public MainWindow()
     {
         InitializeComponent();
+        NotificationManager = new WindowNotificationManager(this) { MaxItems = 3 };
     }
 
     protected override async Task<bool> CanClose()

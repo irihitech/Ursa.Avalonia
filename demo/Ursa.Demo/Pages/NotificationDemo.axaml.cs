@@ -1,6 +1,5 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
-using Avalonia.LogicalTree;
 using Ursa.Controls;
 using Ursa.Demo.ViewModels;
 
@@ -21,12 +20,11 @@ public partial class NotificationDemo : UserControl
     {
         base.OnAttachedToVisualTree(e);
         var topLevel = TopLevel.GetTopLevel(this);
-        _viewModel.NotificationManager = new WindowNotificationManager(topLevel) { MaxItems = 3 };
-    }
 
-    protected override void OnDetachedFromLogicalTree(LogicalTreeAttachmentEventArgs e)
-    {
-        base.OnDetachedFromLogicalTree(e);
-        _viewModel.NotificationManager?.Uninstall();
+        WindowNotificationManager.TryGetNotificationManager(topLevel, out var manager);
+        if (manager is not null)
+        {
+            _viewModel.NotificationManager = manager;
+        }
     }
 }
