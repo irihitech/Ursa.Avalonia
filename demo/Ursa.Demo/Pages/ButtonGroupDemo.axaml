@@ -11,25 +11,37 @@
     x:CompileBindings="True"
     x:DataType="vm:ButtonGroupDemoViewModel"
     mc:Ignorable="d">
-
     <StackPanel Margin="20" Spacing="20">
-        <u:ButtonGroup Classes="Primary Solid" 
-                       CommandBinding="{Binding InvokeCommand}"
-                       ItemsSource="{Binding Items}" >
+        <u:ButtonGroup
+            Classes="Primary Solid"
+            CommandBinding="{Binding InvokeCommand}"
+            ItemsSource="{Binding Items}">
             <u:ButtonGroup.ItemTemplate>
                 <DataTemplate x:DataType="vm:ButtonItem">
                     <TextBlock>
-                        <Run Text="🐼"></Run>
-                        <Run Text="{Binding Name}"></Run>
+                        <Run Text="🐼" />
+                        <Run Text="{Binding Name}" />
                     </TextBlock>
                 </DataTemplate>
             </u:ButtonGroup.ItemTemplate>
         </u:ButtonGroup>
-        
-        <u:ButtonGroup Classes="Primary" 
-                       ContentBinding="{Binding Name}"
-                       CommandBinding="{Binding InvokeCommand}"
-                       ItemsSource="{Binding Items}" >
-        </u:ButtonGroup>
+
+        <u:ButtonGroup
+            Classes="Success"
+            ContentBinding="{Binding Name}"
+            CommandBinding="{Binding InvokeCommand}"
+            ItemsSource="{Binding Items}" />
+
+        <u:ButtonGroup
+            Classes="Warning Small"
+            ContentBinding="{Binding Name}"
+            CommandBinding="{Binding InvokeCommand}"
+            ItemsSource="{Binding Items}" />
+
+        <u:ButtonGroup
+            Classes="Danger Large"
+            ContentBinding="{Binding Name}"
+            CommandBinding="{Binding InvokeCommand}"
+            ItemsSource="{Binding Items}" />
     </StackPanel>
 </UserControl>

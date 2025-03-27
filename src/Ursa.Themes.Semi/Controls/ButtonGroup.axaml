@@ -14,7 +14,7 @@
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="Background" Value="{DynamicResource ButtonGroupDefaultBackground}" />
-        <Setter Property="CornerRadius" Value="3" />
+        <Setter Property="CornerRadius" Value="{DynamicResource ButtonGroupCornerRadius}" />
         <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="ItemContainerTheme" Value="{DynamicResource ButtonGroupItemTheme}" />
         <Setter Property="ItemsPanel">
@@ -28,9 +28,11 @@
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
-                    ClipToBounds="True"
-                    CornerRadius="{TemplateBinding CornerRadius}">
-                    <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}" />
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    ClipToBounds="True">
+                    <ItemsPresenter
+                        Name="PART_ItemsPresenter"
+                        ItemsPanel="{TemplateBinding ItemsPanel}" />
                 </Border>
             </ControlTemplate>
         </Setter>
@@ -41,6 +43,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Padding" Value="{DynamicResource ButtonGroupDefaultPadding}" />
+        <Setter Property="MinHeight" Value="{DynamicResource ButtonGroupDefaultMinHeight}" />
         <Setter Property="FontWeight" Value="{DynamicResource ButtonGroupDefaultFontWeight}" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
@@ -48,10 +51,9 @@
                 <DockPanel LastChildFill="True">
                     <Rectangle
                         Name="PART_Separator"
-                        Width="1"
-                        Height="16"
-                        VerticalAlignment="Center"
                         DockPanel.Dock="Right"
+                        Width="1"
+                        Height="{DynamicResource ButtonGroupSeparatorHeight}"
                         Fill="{DynamicResource ButtonGroupSeparatorForeground}" />
                     <Border
                         Background="{TemplateBinding Background}"
