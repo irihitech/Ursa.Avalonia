@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Avalonia;
+using Avalonia.Controls.Notifications;
 using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
-using Ursa.Controls;
 using Ursa.Themes.Semi;
+using Notification = Ursa.Controls.Notification;
+using WindowNotificationManager = Ursa.Controls.WindowNotificationManager;
 
 namespace Ursa.Demo.ViewModels;
 
 public partial class MainViewViewModel : ViewModelBase
 {
+    public WindowNotificationManager? NotificationManager { get; set; }
     public MenuViewModel Menus { get; set; } = new MenuViewModel();
 
     private object? _content;
@@ -107,6 +110,10 @@ public partial class MainViewViewModel : ViewModelBase
         if (app is not null)
         {
             app.RequestedThemeVariant = newValue.Theme;
+            NotificationManager?.Show(
+                new Notification("Theme changed", $"Theme changed to {newValue.Name}"),
+                type: NotificationType.Success,
+                classes: ["Light"]);
         }
     }
 
