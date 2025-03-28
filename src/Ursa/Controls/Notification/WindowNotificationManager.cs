@@ -70,6 +70,12 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
         VerticalAlignmentProperty.OverrideDefaultValue<WindowNotificationManager>(VerticalAlignment.Stretch);
     }
 
+    /// <summary>
+    /// Tries to get the <see cref="WindowNotificationManager"/> from a <see cref="Visual"/>.
+    /// </summary>
+    /// <param name="visual">A <see cref="Visual"/> that is either a <see cref="Window"/> or a <see cref="VisualLayerManager"/>.</param>
+    /// <param name="manager">The existing <see cref="WindowNotificationManager"/> if found, or null if not found.</param>
+    /// <returns>True if a <see cref="WindowNotificationManager"/> is found; otherwise, false.</returns>
     public static bool TryGetNotificationManager(Visual? visual, out WindowNotificationManager? manager)
     {
         manager = visual?.FindDescendantOfType<WindowNotificationManager>();

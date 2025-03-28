@@ -35,6 +35,12 @@ public class WindowToastManager : WindowMessageManager, IToastManager
     {
     }
 
+    /// <summary>
+    /// Tries to get the <see cref="WindowToastManager"/> from a <see cref="Window"/> or <see cref="VisualLayerManager"/>.
+    /// </summary>
+    /// <param name="visual">A <see cref="Visual"/> that is either a <see cref="Window"/> or a <see cref="VisualLayerManager"/>.</param>
+    /// <param name="manager">The existing <see cref="WindowToastManager"/> if found, or null if not found.</param>
+    /// <returns>True if a <see cref="WindowToastManager"/> is found; otherwise, false.</returns>
     public static bool TryGetToastManager(Visual? visual, out WindowToastManager? manager)
     {
         manager = visual?.FindDescendantOfType<WindowToastManager>();

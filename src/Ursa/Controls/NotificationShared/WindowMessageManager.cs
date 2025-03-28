@@ -84,12 +84,6 @@ public abstract class WindowMessageManager : TemplatedControl
         }
     }
 
-    public static bool TryGetMessageManager(Visual? visual, out WindowMessageManager? manager)
-    {
-        manager = visual?.FindDescendantOfType<WindowMessageManager>();
-        return manager is not null;
-    }
-
     protected void TopLevelOnTemplateApplied(object? sender, TemplateAppliedEventArgs e)
     {
         if (Parent is AdornerLayer adornerLayer)
