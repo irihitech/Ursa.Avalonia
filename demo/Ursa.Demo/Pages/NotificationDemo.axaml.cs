@@ -20,11 +20,10 @@ public partial class NotificationDemo : UserControl
     {
         base.OnAttachedToVisualTree(e);
         var topLevel = TopLevel.GetTopLevel(this);
-
-        WindowNotificationManager.TryGetNotificationManager(topLevel, out var manager);
-        if (manager is not null)
-        {
-            _viewModel.NotificationManager = manager;
-        }
+        if (topLevel is null)
+            return;
+        _viewModel.NotificationManager = WindowNotificationManager.TryGetNotificationManager(topLevel, out var manager)
+            ? manager
+            : new WindowNotificationManager(topLevel);
     }
 }
