@@ -19,10 +19,10 @@ public partial class MainView : UserControl
         base.OnAttachedToVisualTree(e);
         _viewModel = DataContext as MainViewViewModel;
         var topLevel = TopLevel.GetTopLevel(this);
-        WindowNotificationManager.TryGetNotificationManager(topLevel, out var manager);
-        if (manager is not null && _viewModel is not null)
-        {
-            _viewModel.NotificationManager = manager;
-        }
+        if (topLevel is null || _viewModel is null)
+            return;
+        _viewModel.NotificationManager = WindowNotificationManager.TryGetNotificationManager(topLevel, out var manager)
+            ? manager
+            : new WindowNotificationManager(topLevel);
     }
 }
