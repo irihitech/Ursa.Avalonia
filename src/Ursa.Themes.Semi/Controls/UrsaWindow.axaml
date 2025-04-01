@@ -107,8 +107,7 @@
             <ControlTemplate TargetType="u:TitleBar">
                 <Panel Background="Transparent">
                     <Panel>
-                        <Border
-                            Name="PART_Background"
+                        <u:WindowThumb
                             Background="{TemplateBinding Background}"
                             IsHitTestVisible="{TemplateBinding IsTitleBarHitTestVisible}" />
                         <Grid HorizontalAlignment="Stretch" ColumnDefinitions="Auto, *, Auto, Auto">
@@ -125,7 +124,7 @@
                                 Content="{TemplateBinding RightContent}"
                                 IsVisible="{TemplateBinding IsTitleVisible}" />
                             <u:CaptionButtons
-                                x:Name="PART_CaptionButtons"
+                                Name="{x:Static u:TitleBar.PART_CaptionButtons}"
                                 Grid.Column="3"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
