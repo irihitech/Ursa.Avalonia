@@ -71,13 +71,13 @@ public abstract class DialogControlBase : OverlayFeedbackElement
         _titleArea = e.NameScope.Find<Panel>(PART_TitleArea);
         if (GetCanDragMove(this))
         {
-            _titleArea?.RemoveHandler(PointerMovedEvent, OnTitlePointerMove);
-            _titleArea?.RemoveHandler(PointerPressedEvent, OnTitlePointerPressed);
-            _titleArea?.RemoveHandler(PointerReleasedEvent, OnTitlePointerRelease);
+            _titleArea?.RemoveHandler(PointerMovedEvent, OnDraggableAreaPointerMove);
+            _titleArea?.RemoveHandler(PointerPressedEvent, OnDraggableAreaPointerPressed);
+            _titleArea?.RemoveHandler(PointerReleasedEvent, OnDraggableAreaPointerRelease);
 
-            _titleArea?.AddHandler(PointerMovedEvent, OnTitlePointerMove, RoutingStrategies.Bubble);
-            _titleArea?.AddHandler(PointerPressedEvent, OnTitlePointerPressed, RoutingStrategies.Bubble);
-            _titleArea?.AddHandler(PointerReleasedEvent, OnTitlePointerRelease, RoutingStrategies.Bubble);
+            _titleArea?.AddHandler(PointerMovedEvent, OnDraggableAreaPointerMove, RoutingStrategies.Bubble);
+            _titleArea?.AddHandler(PointerPressedEvent, OnDraggableAreaPointerPressed, RoutingStrategies.Bubble);
+            _titleArea?.AddHandler(PointerReleasedEvent, OnDraggableAreaPointerRelease, RoutingStrategies.Bubble);
         }
         else
         {
@@ -89,7 +89,7 @@ public abstract class DialogControlBase : OverlayFeedbackElement
         Button.ClickEvent.AddHandler(OnCloseButtonClick, _closeButton);
     }
 
-    private void OnTitlePointerPressed(InputElement sender, PointerPressedEventArgs e)
+    private void OnDraggableAreaPointerPressed(InputElement sender, PointerPressedEventArgs e)
     {
         //e.Source = this;
         if (ContainerPanel is OverlayDialogHost h)
@@ -110,7 +110,7 @@ public abstract class DialogControlBase : OverlayFeedbackElement
         _moveDragStartPoint = e.GetPosition(this);
     }
 
-    private void OnTitlePointerMove(InputElement sender, PointerEventArgs e)
+    private void OnDraggableAreaPointerMove(InputElement sender, PointerEventArgs e)
     {
         //e.Source = this;
         if (!_moveDragging) return;
@@ -124,7 +124,7 @@ public abstract class DialogControlBase : OverlayFeedbackElement
         Canvas.SetTop(this, top);
     }
 
-    private void OnTitlePointerRelease(InputElement sender, PointerReleasedEventArgs e)
+    private void OnDraggableAreaPointerRelease(InputElement sender, PointerReleasedEventArgs e)
     {
         // e.Source = this;
         _moveDragging = false;
@@ -190,19 +190,22 @@ public abstract class DialogControlBase : OverlayFeedbackElement
             arg1.RemoveHandler(PointerReleasedEvent, OnPointerReleased);
         }
 
-        void OnPointerPressed(InputElement sender, PointerPressedEventArgs e)
+        static void OnPointerPressed(InputElement sender, PointerPressedEventArgs e)
         {
-            if (sender.FindLogicalAncestorOfType<DialogControlBase>() is { } dialog) e.Source = dialog;
+            if (sender.FindLogicalAncestorOfType<DialogControlBase>() is { } dialog)
+                dialog.OnDraggableAreaPointerPressed(sender, e);
         }
 
-        void OnPointerMoved(InputElement sender, PointerEventArgs e)
+        static void OnPointerMoved(InputElement sender, PointerEventArgs e)
         {
-            if (sender.FindLogicalAncestorOfType<DialogControlBase>() is { } dialog) e.Source = dialog;
+            if (sender.FindLogicalAncestorOfType<DialogControlBase>() is { } dialog)
+                dialog.OnDraggableAreaPointerMove(sender, e);
         }
 
-        void OnPointerReleased(InputElement sender, PointerReleasedEventArgs e)
+        static void OnPointerReleased(InputElement sender, PointerReleasedEventArgs e)
         {
-            if (sender.FindLogicalAncestorOfType<DialogControlBase>() is { } dialog) e.Source = dialog;
+            if (sender.FindLogicalAncestorOfType<DialogControlBase>() is { } dialog)
+                dialog.OnDraggableAreaPointerRelease(sender, e);
         }
     }
 
