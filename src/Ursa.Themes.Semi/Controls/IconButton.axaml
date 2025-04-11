@@ -86,10 +86,6 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:pressed">
-            <Setter Property="RenderTransform" Value="scale(0.98)" />
-        </Style>
-
         <Style Selector="^.Primary">
             <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultPrimaryForeground}" />
         </Style>

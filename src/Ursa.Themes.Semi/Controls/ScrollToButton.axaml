@@ -23,9 +23,6 @@
                 </Border>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^:pressed">
-            <Setter Property="RenderTransform" Value="scale(0.98)" />
-        </Style>
         <Style Selector="^:pointerover /template/ Border#PART_Background">
             <Setter Property="BorderBrush" Value="{DynamicResource ButtonDefaultPointeroverBorderBrush}" />
             <Setter Property="Background" Value="{DynamicResource ButtonDefaultPointeroverBackground}" />
@@ -66,9 +63,6 @@
                 </Border>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^:pressed">
-            <Setter Property="RenderTransform" Value="scale(0.98)" />
-        </Style>
         <Style Selector="^:pointerover /template/ Border#PART_Background">
             <Setter Property="Background" Value="{DynamicResource ButtonSolidPrimaryPointeroverBackground}" />
             <Setter Property="BorderBrush" Value="{DynamicResource ButtonSolidPrimaryPointeroverBorderBrush}" />
