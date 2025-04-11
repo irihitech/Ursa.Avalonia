@@ -38,7 +38,7 @@
                                 IsVisible="{TemplateBinding IsTitleBarVisible}"
                                 Content="{TemplateBinding RightContent}" />
                         </Grid>
-                        <u:OverlayDialogHost IsModalStatusReporter="True" />
+                        <u:OverlayDialogHost Name="{x:Static u:UrsaView.PART_DialogHost}" IsModalStatusReporter="True" />
                     </Panel>
                 </Panel>
             </ControlTemplate>

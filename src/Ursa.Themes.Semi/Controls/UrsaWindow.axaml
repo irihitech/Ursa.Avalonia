@@ -74,7 +74,10 @@
                                     RightContent="{Binding $parent[u:UrsaWindow].RightContent}" />
                                 <VisualLayerManager>
                                     <Panel>
-                                        <u:OverlayDialogHost IsModalStatusReporter="True" IsTopLevel="True" />
+                                        <u:OverlayDialogHost 
+                                            Name="{x:Static u:UrsaWindow.PART_DialogHost}" 
+                                            IsModalStatusReporter="True" 
+                                            IsTopLevel="True" />
                                         <u:WindowResizer
                                             HorizontalAlignment="Stretch"
                                             VerticalAlignment="Stretch"
