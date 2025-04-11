@@ -82,7 +82,8 @@
                             Focusable="False"
                             IsTabStop="False"
                             TextElement.FontSize="{TemplateBinding BadgeFontSize}"
-                            TextElement.Foreground="{TemplateBinding Foreground}">
+                            TextElement.Foreground="{TemplateBinding Foreground}"
+                            ContentTemplate="{TemplateBinding HeaderTemplate}">
                             <ContentPresenter.Content>
                                 <MultiBinding Converter="{StaticResource BadgeContentConverter}">
                                     <Binding Path="Header" RelativeSource="{RelativeSource TemplatedParent}" />
