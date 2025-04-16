@@ -5,6 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+    xmlns:common="clr-namespace:Ursa.Common;assembly=Ursa"
+    x:DataType="viewModels:BadgeDemoViewModel"
     d:DesignHeight="850"
     d:DesignWidth="850"
     mc:Ignorable="d">
@@ -19,6 +22,15 @@
                     <Setter Property="Margin" Value="10" />
                 </Style>
             </StackPanel.Styles>
+            
+            <Border Theme="{DynamicResource CardBorder}">
+                <StackPanel>
+                    <u:EnumSelector Name="position" EnumType="{x:Type common:CornerPosition}"/>
+                    <u:Badge CornerPosition="{Binding #position.Value}" Header="{Binding Text}">
+                        <Button Content="Test" Command="{Binding ChangeTextCommand}"/>
+                    </u:Badge>
+                </StackPanel>
+            </Border>
 
             <StackPanel Orientation="Horizontal">
                 <u:Badge Header="5">

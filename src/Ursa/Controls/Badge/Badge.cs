@@ -66,6 +66,7 @@ public class Badge : HeaderedContentControl
     static Badge()
     {
         HeaderProperty.Changed.AddClassHandler<Badge>((badge, _) => badge.UpdateBadgePosition());
+        CornerPositionProperty.Changed.AddClassHandler<Badge>((badge, _) => badge.UpdateBadgePosition());
         DotProperty.Changed.AddClassHandler<Badge>((badge, _) => badge.UpdateBadgePosition());
     }
 
@@ -83,8 +84,9 @@ public class Badge : HeaderedContentControl
 
     protected override Size ArrangeOverride(Size finalSize)
     {
+        var size = base.ArrangeOverride(finalSize);
         UpdateBadgePosition();
-        return base.ArrangeOverride(finalSize);
+        return size;
     }
 
     private void UpdateBadgePosition()
