@@ -1,0 +1,26 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa">
+    <!-- Add Resources Here -->
+    <ControlTheme x:Key="{x:Type u:PopConfirm}" TargetType="u:PopConfirm">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:PopConfirm">
+                <Panel>
+                    <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                    <Popup IsOpen="True">
+                        <Border Theme="{DynamicResource CardBorder}">
+                            <StackPanel>
+                                <ContentPresenter Content="{TemplateBinding PopupHeader}" ContentTemplate="{TemplateBinding PopupHeaderTemplate}"/>
+                                <ContentPresenter Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Confirm" Command="{TemplateBinding ConfirmCommand}" CommandParameter="{TemplateBinding ConfirmCommandParameter}"/>
+                                    <Button Content="Cancel" Command="{TemplateBinding CancelCommand}" CommandParameter="{TemplateBinding CancelCommandParameter}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </Popup>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

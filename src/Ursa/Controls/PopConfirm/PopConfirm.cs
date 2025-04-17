@@ -4,6 +4,8 @@ using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Avalonia.LogicalTree;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -113,13 +115,39 @@ public class PopConfirm: ContentControl
         
     }
 
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+        
+    }
+
+    private void OnContentChanged()
+    {
+        
+    }
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
     }
+    
+    private IDisposable? _childChangeDisposable;
 
     protected override bool RegisterContentPresenter(ContentPresenter presenter)
     {
-        return base.RegisterContentPresenter(presenter);
+        var result = base.RegisterContentPresenter(presenter);
+        _childChangeDisposable = presenter.GetPropertyChangedObservable(ContentPresenter.ChildProperty).Subscribe(OnChildChanged);
+        return result;
+    }
+
+    private void OnChildChanged(AvaloniaPropertyChangedEventArgs arg)
+    {
+        if (arg.GetNewValue<Control?>() is null) return;
+    }
+
+    protected override void OnDetachedFromLogicalTree(LogicalTreeAttachmentEventArgs e)
+    {
+        _childChangeDisposable?.Dispose();
+        base.OnDetachedFromLogicalTree(e);
     }
 }

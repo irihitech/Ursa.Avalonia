@@ -69,6 +69,7 @@ public partial class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyNumPad => new NumPadDemoViewModel(),
             MenuKeys.MenuKeyPagination => new PaginationDemoViewModel(),
             MenuKeys.MenuKeyPinCode => new PinCodeDemoViewModel(),
+            MenuKeys.MenuKeyPopConfirm => new PopConfirmDemoViewModel(),
             MenuKeys.MenuKeyRangeSlider => new RangeSliderDemoViewModel(),
             MenuKeys.MenuKeyRating => new RatingDemoViewModel(),
             MenuKeys.MenuKeyScrollToButton => new ScrollToButtonDemoViewModel(),
