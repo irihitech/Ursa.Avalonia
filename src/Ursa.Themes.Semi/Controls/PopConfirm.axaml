@@ -7,14 +7,24 @@
             <ControlTemplate TargetType="u:PopConfirm">
                 <Panel>
                     <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
-                    <Popup IsOpen="True">
+                    <Popup IsOpen="True" 
+                           Name="{x:Static u:PopConfirm.PART_Popup}"
+                           Placement="Bottom" >
                         <Border Theme="{DynamicResource CardBorder}">
                             <StackPanel>
                                 <ContentPresenter Content="{TemplateBinding PopupHeader}" ContentTemplate="{TemplateBinding PopupHeaderTemplate}"/>
                                 <ContentPresenter Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Content="Confirm" Command="{TemplateBinding ConfirmCommand}" CommandParameter="{TemplateBinding ConfirmCommandParameter}"/>
-                                    <Button Content="Cancel" Command="{TemplateBinding CancelCommand}" CommandParameter="{TemplateBinding CancelCommandParameter}"/>
+                                    <Button 
+                                        Name="{x:Static u:PopConfirm.PART_ConfirmButton}"
+                                        Content="Confirm" 
+                                        Command="{TemplateBinding ConfirmCommand}" 
+                                        CommandParameter="{TemplateBinding ConfirmCommandParameter}"/>
+                                    <Button 
+                                        Name="{x:Static u:PopConfirm.PART_CancelButton}"
+                                        Content="Cancel" 
+                                        Command="{TemplateBinding CancelCommand}" 
+                                        CommandParameter="{TemplateBinding CancelCommandParameter}"/>
                                 </StackPanel>
                             </StackPanel>
                         </Border>

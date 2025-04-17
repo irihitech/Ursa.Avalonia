@@ -1,9 +1,11 @@
+using System.ComponentModel;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 using Irihi.Avalonia.Shared.Helpers;
 
@@ -11,6 +13,14 @@ namespace Ursa.Controls;
 
 public class PopConfirm: ContentControl
 {
+    public const string PART_ConfirmButton = "PART_ConfirmButton";
+    public const string PART_CancelButton = "PART_CancelButton";
+    public const string PART_Popup = "PART_Popup";
+    
+    private Button? _confirmButton;
+    private Button? _cancelButton;
+    private Popup? _popup;
+    
     public static readonly StyledProperty<object?> PopupHeaderProperty = AvaloniaProperty.Register<PopConfirm, object?>(
         nameof(PopupHeader));
 
@@ -100,14 +110,7 @@ public class PopConfirm: ContentControl
 
     private void OnCommandChanged(AvaloniaPropertyChangedEventArgs<ICommand?> args)
     {
-        var newValue = args.GetNewValue<ICommand>();
-        newValue.CanExecuteChanged += (sender, e) =>
-        {
-            if (args.Sender is PopConfirm popconfirm)
-            {
-                var b = newValue.CanExecute(this.ConfirmCommandParameter);
-            }
-        };
+        
     }
 
     public PopConfirm()
@@ -129,8 +132,37 @@ public class PopConfirm: ContentControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
+        _confirmButton = e.NameScope.Find<Button>(PART_ConfirmButton);
+        _cancelButton = e.NameScope.Find<Button>(PART_CancelButton);
+        _popup = e.NameScope.Find<Popup>(PART_Popup);
+        Button.ClickEvent.AddHandler(OnButtonClicked, _confirmButton, _cancelButton);
     }
+
+    private void OnButtonClicked(object sender, RoutedEventArgs e)
+    {
+        // This is a hack for MVVM toolkit that uses INotifyPropertyChanged for async command. It counts the number of
+        // IsRunning property changes to determine when the command is finished.
+        if (sender is Button button &&  button.Command is INotifyPropertyChanged inpc)
+        {
+            var count = 0;
+            void OnCommandPropertyChanged(object? sender, PropertyChangedEventArgs args)
+            {
+                if (args.PropertyName != "IsRunning") return;
+                count++;
+                if (count != 2) return;
+                inpc.PropertyChanged -= OnCommandPropertyChanged;
+                _popup?.SetValue(Popup.IsOpenProperty, false);
+            }
+            inpc.PropertyChanged += OnCommandPropertyChanged;
+        }
+        else
+        {
+            _popup?.SetValue(Popup.IsOpenProperty, false);
+        }
+    }
+
     
+
     private IDisposable? _childChangeDisposable;
 
     protected override bool RegisterContentPresenter(ContentPresenter presenter)

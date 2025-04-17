@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia.Controls.Notifications;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -15,12 +16,13 @@ public partial class PopConfirmDemoViewModel: ObservableObject
     
     public PopConfirmDemoViewModel()
     {
-        ConfirmCommand = new RelayCommand(OnConfirm);
+        ConfirmCommand = new AsyncRelayCommand(OnConfirm);
         CancelCommand = new RelayCommand(OnCancel);
     }
     
-    private void OnConfirm()
+    private async Task OnConfirm()
     {
+        await Task.Delay(3000);
         ToastManager?.Show(new Toast("Confirmed"), type: NotificationType.Success, classes: ["Light"]);
     }
     
