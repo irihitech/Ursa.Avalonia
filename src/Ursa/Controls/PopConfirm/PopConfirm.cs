@@ -190,7 +190,7 @@ public class PopConfirm : ContentControl
             void OnCanExecuteChanged(object? _, System.EventArgs a)
             {
                 count++;
-                if (count != 2) return;
+                if (count < 1) return;
                 var canExecute = command.CanExecute(button.CommandParameter);
                 if (canExecute)
                 {
@@ -225,14 +225,14 @@ public class PopConfirm : ContentControl
     private void SetupChildrenEventSubscriptions(Control? child, PopConfirmTriggerMode mode)
     {
         if (child is null) return;
-        if (mode == PopConfirmTriggerMode.Click)
+        if (mode.HasFlag(PopConfirmTriggerMode.Click))
         {
             if (child is Button button)
                 Button.ClickEvent.AddHandler(OnMainButtonClicked, button);
             else
                 PointerPressedEvent.AddHandler(OnMainElementPressed, child);
         }
-        else if (mode == PopConfirmTriggerMode.Focus)
+        if (mode.HasFlag(PopConfirmTriggerMode.Focus))
         {
             GotFocusEvent.AddHandler(OnMainElementGotFocus, child);
             LostFocusEvent.AddHandler(OnMainElementLostFocus, child);
