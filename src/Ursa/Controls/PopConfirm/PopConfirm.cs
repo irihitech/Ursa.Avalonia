@@ -194,9 +194,9 @@ public class PopConfirm : ContentControl
                 var canExecute = command.CanExecute(button.CommandParameter);
                 if (canExecute)
                 {
-                    command.CanExecuteChanged -= OnCanExecuteChanged;
                     _popup?.SetValue(Popup.IsOpenProperty, false);
                 }
+                command.CanExecuteChanged -= OnCanExecuteChanged;
             }
 
             command.CanExecuteChanged += OnCanExecuteChanged;
