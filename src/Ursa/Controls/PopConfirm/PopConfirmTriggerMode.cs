@@ -2,6 +2,6 @@ namespace Ursa.Controls;
 
 public enum PopConfirmTriggerMode
 {
-    Tap,
+    Click,
     Focus,
 }

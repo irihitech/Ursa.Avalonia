@@ -22,6 +22,14 @@
                       CancelCommand="{Binding Path=CancelCommand}" >
             <Button Content="Hello World"></Button>
         </u:PopConfirm>
+        <TextBlock Text="Non-button control as main element" Margin="0 16" />
+        <u:PopConfirm PopupHeader="Header" PopupContent="Content" 
+                      TriggerMode="Click"
+                      Placement="BottomEdgeAlignedLeft"
+                      ConfirmCommand="{Binding ConfirmCommand}"
+                      CancelCommand="{Binding Path=CancelCommand}" >
+            <TextBlock Text="Hello World" />
+        </u:PopConfirm>
         <TextBlock Text="Asynchronized command support" Margin="0 16" />
         <u:PopConfirm PopupHeader="Header" PopupContent="Content" 
                       ConfirmCommand="{Binding AsyncConfirmCommand}"

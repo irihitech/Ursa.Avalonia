@@ -221,7 +221,7 @@ public class PopConfirm : ContentControl
     private void SetupChildrenEventSubscriptions(Control? child, PopConfirmTriggerMode mode)
     {
         if (child is null) return;
-        if (mode == PopConfirmTriggerMode.Tap)
+        if (mode == PopConfirmTriggerMode.Click)
         {
             if (child is Button button)
                 Button.ClickEvent.AddHandler(OnMainButtonClicked, button);
