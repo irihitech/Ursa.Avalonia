@@ -6,8 +6,10 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:PopConfirm">
                 <Panel>
-                    <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
-                    <Popup IsOpen="True" 
+                    <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                    <Popup
+                        IsLightDismissEnabled="True"
+                        OverlayInputPassThroughElement="{Binding #PART_ContentPresenter}"
                            Name="{x:Static u:PopConfirm.PART_Popup}"
                            Placement="Bottom" >
                         <Border Theme="{DynamicResource CardBorder}">

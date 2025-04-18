@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
@@ -103,6 +104,15 @@ public class PopConfirm: ContentControl
         set => SetValue(TriggerModeProperty, value);
     }
 
+    public static readonly StyledProperty<bool> HandleAsyncCommandProperty = AvaloniaProperty.Register<PopConfirm, bool>(
+        nameof(HandleAsyncCommand), true);
+
+    public bool HandleAsyncCommand
+    {
+        get => GetValue(HandleAsyncCommandProperty);
+        set => SetValue(HandleAsyncCommandProperty, value);
+    }
+
     static PopConfirm()
     {
         ConfirmCommandProperty.Changed.AddClassHandler<PopConfirm, ICommand?>((popconfirm, args) => popconfirm.OnCommandChanged(args));
@@ -140,20 +150,44 @@ public class PopConfirm: ContentControl
 
     private void OnButtonClicked(object sender, RoutedEventArgs e)
     {
-        // This is a hack for MVVM toolkit that uses INotifyPropertyChanged for async command. It counts the number of
+        if (!HandleAsyncCommand)
+        {
+            _popup?.SetValue(Popup.IsOpenProperty, false);
+        }
+        // This is a hack for MVVM toolkit and Prism that uses INotifyPropertyChanged for async command. It counts the number of
         // IsRunning property changes to determine when the command is finished.
-        if (sender is Button button &&  button.Command is INotifyPropertyChanged inpc)
+        if (sender is Button button &&  button.Command is { } command and INotifyPropertyChanged)
         {
             var count = 0;
-            void OnCommandPropertyChanged(object? sender, PropertyChangedEventArgs args)
+            void OnCanExecuteChanged(object? _, System.EventArgs e)
             {
-                if (args.PropertyName != "IsRunning") return;
                 count++;
                 if (count != 2) return;
-                inpc.PropertyChanged -= OnCommandPropertyChanged;
-                _popup?.SetValue(Popup.IsOpenProperty, false);
+                var canExecute = command.CanExecute(button.CommandParameter);
+                if (canExecute == true)
+                {
+                    command.CanExecuteChanged -= OnCanExecuteChanged;
+                    _popup?.SetValue(Popup.IsOpenProperty, false);
+                }
             }
-            inpc.PropertyChanged += OnCommandPropertyChanged;
+            command.CanExecuteChanged += OnCanExecuteChanged;
+        }
+        // TODO: This is a hack for ReactiveUI that ReactiveCommand is an IDisposable. 
+        else if (sender is Button b2 && b2.Command is { } command2 and IDisposable)
+        {
+            var count = 0;
+            void OnCanExecuteChanged2(object? _, System.EventArgs e)
+            {
+                count++;
+                if (count != 2) return;
+                var canExecute = command2.CanExecute(b2.CommandParameter);
+                if (canExecute == true)
+                {
+                    command2.CanExecuteChanged -= OnCanExecuteChanged2;
+                    _popup?.SetValue(Popup.IsOpenProperty, false);
+                }
+            }
+            command2.CanExecuteChanged += OnCanExecuteChanged2;
         }
         else
         {
@@ -175,6 +209,13 @@ public class PopConfirm: ContentControl
     private void OnChildChanged(AvaloniaPropertyChangedEventArgs arg)
     {
         if (arg.GetNewValue<Control?>() is null) return;
+        if (arg.GetNewValue<Control?>() is Button button)
+        {
+            button.Click+= (o, e) =>
+            {
+                _popup?.SetValue(Popup.IsOpenProperty, !_popup.IsOpen);
+            };
+        }
     }
 
     protected override void OnDetachedFromLogicalTree(LogicalTreeAttachmentEventArgs e)
