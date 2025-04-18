@@ -1,5 +1,4 @@
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
@@ -69,12 +68,6 @@ public class PopConfirm : ContentControl
         Popup.PlacementProperty.AddOwner<PopConfirm>(new StyledPropertyMetadata<PlacementMode>());
 
     public static readonly StyledProperty<object?> IconProperty = Banner.IconProperty.AddOwner<PopConfirm>();
-    
-    public object? Icon
-    {
-        get => GetValue(IconProperty);
-        set => SetValue(IconProperty, value);
-    }
 
     private Button? _cancelButton;
 
@@ -89,6 +82,12 @@ public class PopConfirm : ContentControl
         IsDropdownOpenProperty.AffectsPseudoClass<PopConfirm>(PC_DropdownOpen);
         TriggerModeProperty.Changed.AddClassHandler<PopConfirm, PopConfirmTriggerMode>((pop, args) =>
             pop.OnTriggerModeChanged(args));
+    }
+
+    public object? Icon
+    {
+        get => GetValue(IconProperty);
+        set => SetValue(IconProperty, value);
     }
 
     public object? PopupHeader
@@ -166,7 +165,7 @@ public class PopConfirm : ContentControl
     private void OnTriggerModeChanged(AvaloniaPropertyChangedEventArgs<PopConfirmTriggerMode> args)
     {
         var child = Presenter?.Child;
-        TeardownChildrenEventSubscriptions(child, args.GetOldValue<PopConfirmTriggerMode>());
+        TeardownChildrenEventSubscriptions(child);
         SetupChildrenEventSubscriptions(child, args.GetNewValue<PopConfirmTriggerMode>());
     }
 
@@ -179,16 +178,16 @@ public class PopConfirm : ContentControl
         Button.ClickEvent.AddHandler(OnButtonClicked, _confirmButton, _cancelButton);
     }
 
-    private async void OnButtonClicked(object sender, RoutedEventArgs e)
+    private void OnButtonClicked(object sender, RoutedEventArgs e)
     {
         if (!HandleAsyncCommand) _popup?.SetValue(Popup.IsOpenProperty, false);
         // This is a hack for MVVM toolkit and Prism that uses INotifyPropertyChanged for async command. It counts the number of
         // IsRunning property changes to determine when the command is finished.
-        if (sender is Button button && button.Command is { } command and (INotifyPropertyChanged or IDisposable))
+        if (sender is Button { Command: { } command and (INotifyPropertyChanged or IDisposable) } button)
         {
             var count = 0;
 
-            void OnCanExecuteChanged(object? _, System.EventArgs e)
+            void OnCanExecuteChanged(object? _, System.EventArgs a)
             {
                 count++;
                 if (count != 2) return;
@@ -212,20 +211,15 @@ public class PopConfirm : ContentControl
     {
         var result = base.RegisterContentPresenter(presenter);
         if (result)
-        {
             _childChangeDisposable = presenter.GetPropertyChangedObservable(ContentPresenter.ChildProperty)
                                               .Subscribe(OnChildChanged);
-        }
         return result;
     }
 
     private void OnChildChanged(AvaloniaPropertyChangedEventArgs arg)
     {
-        TeardownChildrenEventSubscriptions(arg.GetOldValue<Control?>(), TriggerMode);
+        TeardownChildrenEventSubscriptions(arg.GetOldValue<Control?>());
         SetupChildrenEventSubscriptions(arg.GetNewValue<Control?>(), TriggerMode);
-        if (arg.GetNewValue<Control?>() is null) return;
-        if (arg.GetNewValue<Control?>() is Button button)
-            button.Click += (o, e) => { SetCurrentValue(IsDropdownOpenProperty, true); };
     }
 
     private void SetupChildrenEventSubscriptions(Control? child, PopConfirmTriggerMode mode)
@@ -257,7 +251,7 @@ public class PopConfirm : ContentControl
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
 
-    private void TeardownChildrenEventSubscriptions(Control? child, PopConfirmTriggerMode mode)
+    private void TeardownChildrenEventSubscriptions(Control? child)
     {
         if (child is null) return;
         PointerPressedEvent.RemoveHandler(OnMainElementPressed, child);

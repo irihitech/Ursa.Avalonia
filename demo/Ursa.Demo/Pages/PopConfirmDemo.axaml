@@ -33,7 +33,7 @@
                       CancelCommand="{Binding Path=CancelCommand}">
             <Button Content="Hello World" />
         </u:PopConfirm>
-        <TextBlock Text="Hover to trigger" Margin="0 16" />
+        <TextBlock Text="GotFocus to open, LostFocus to close" Margin="0 16" />
         <u:PopConfirm PopupHeader="确定是否要保存此修改？"
                       PopupContent="此修改将不可逆"
                       TriggerMode="Focus"
