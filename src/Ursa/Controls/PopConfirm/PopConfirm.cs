@@ -201,8 +201,11 @@ public class PopConfirm : ContentControl
     protected override bool RegisterContentPresenter(ContentPresenter presenter)
     {
         var result = base.RegisterContentPresenter(presenter);
-        _childChangeDisposable = presenter.GetPropertyChangedObservable(ContentPresenter.ChildProperty)
-                                          .Subscribe(OnChildChanged);
+        if (result)
+        {
+            _childChangeDisposable = presenter.GetPropertyChangedObservable(ContentPresenter.ChildProperty)
+                                              .Subscribe(OnChildChanged);
+        }
         return result;
     }
 

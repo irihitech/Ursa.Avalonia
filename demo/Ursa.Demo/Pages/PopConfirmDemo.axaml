@@ -9,9 +9,23 @@
              x:DataType="viewModels:PopConfirmDemoViewModel"
              x:Class="Ursa.Demo.Pages.PopConfirmDemo">
     <StackPanel HorizontalAlignment="Left">
+        <TextBlock Text="Default PopConfirm" Margin="0 16" />
         <u:PopConfirm PopupHeader="Header" PopupContent="Content" 
-                     ConfirmCommand="{Binding ConfirmCommand}"
-                     CancelCommand="{Binding Path=CancelCommand}" >
+                      ConfirmCommand="{Binding ConfirmCommand}"
+                      CancelCommand="{Binding Path=CancelCommand}" >
+            <Button Content="Hello World"></Button>
+        </u:PopConfirm>
+        <TextBlock Text="Hover to trigger" Margin="0 16" />
+        <u:PopConfirm PopupHeader="Header" PopupContent="Content" 
+                      TriggerMode="Focus"
+                      ConfirmCommand="{Binding ConfirmCommand}"
+                      CancelCommand="{Binding Path=CancelCommand}" >
+            <Button Content="Hello World"></Button>
+        </u:PopConfirm>
+        <TextBlock Text="Asynchronized command support" Margin="0 16" />
+        <u:PopConfirm PopupHeader="Header" PopupContent="Content" 
+                      ConfirmCommand="{Binding AsyncConfirmCommand}"
+                      CancelCommand="{Binding Path=AsyncCancelCommand}" >
             <Button Content="Hello World"></Button>
         </u:PopConfirm>
     </StackPanel>

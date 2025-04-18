@@ -12,7 +12,7 @@
                         ContentTemplate="{TemplateBinding ContentTemplate}" />
                     <Popup
                         IsLightDismissEnabled="True"
-                        IsOpen="{TemplateBinding IsDropdownOpen, Mode=TwoWay}"
+                        IsOpen="{Binding IsDropdownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                         OverlayInputPassThroughElement="{Binding #PART_ContentPresenter}"
                         Name="{x:Static u:PopConfirm.PART_Popup}"
                         Placement="{TemplateBinding Placement}" >
