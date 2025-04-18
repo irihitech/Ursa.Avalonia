@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
@@ -13,13 +14,14 @@ using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-[PseudoClasses(PC_DropdownOpen)]
+[PseudoClasses(PC_DropdownOpen, PC_Icon)]
 public class PopConfirm : ContentControl
 {
     public const string PART_ConfirmButton = "PART_ConfirmButton";
     public const string PART_CancelButton = "PART_CancelButton";
     public const string PART_Popup = "PART_Popup";
     public const string PC_DropdownOpen = ":dropdownopen";
+    public const string PC_Icon = ":icon";
 
     public static readonly StyledProperty<object?> PopupHeaderProperty = AvaloniaProperty.Register<PopConfirm, object?>(
         nameof(PopupHeader));
@@ -64,7 +66,15 @@ public class PopConfirm : ContentControl
         nameof(IsDropdownOpen));
 
     public static readonly StyledProperty<PlacementMode> PlacementProperty =
-        Popup.PlacementProperty.AddOwner<PopConfirm>();
+        Popup.PlacementProperty.AddOwner<PopConfirm>(new StyledPropertyMetadata<PlacementMode>());
+
+    public static readonly StyledProperty<object?> IconProperty = Banner.IconProperty.AddOwner<PopConfirm>();
+    
+    public object? Icon
+    {
+        get => GetValue(IconProperty);
+        set => SetValue(IconProperty, value);
+    }
 
     private Button? _cancelButton;
 

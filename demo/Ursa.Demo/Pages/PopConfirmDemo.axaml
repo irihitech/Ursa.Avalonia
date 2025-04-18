@@ -10,31 +10,43 @@
              x:Class="Ursa.Demo.Pages.PopConfirmDemo">
     <StackPanel HorizontalAlignment="Left">
         <TextBlock Text="Default PopConfirm" Margin="0 16" />
-        <u:PopConfirm PopupHeader="Header" PopupContent="Content" 
+        <u:PopConfirm PopupHeader="确定是否要保存此修改？" PopupContent="此修改将不可逆" 
                       ConfirmCommand="{Binding ConfirmCommand}"
                       CancelCommand="{Binding Path=CancelCommand}" >
             <Button Content="Hello World"></Button>
         </u:PopConfirm>
         <TextBlock Text="Hover to trigger" Margin="0 16" />
-        <u:PopConfirm PopupHeader="Header" PopupContent="Content" 
+        <u:PopConfirm PopupHeader="确定是否要保存此修改？" PopupContent="此修改将不可逆" 
                       TriggerMode="Focus"
+                      u:ControlClassesInput.Source="{Binding #classInput}"
                       ConfirmCommand="{Binding ConfirmCommand}"
                       CancelCommand="{Binding Path=CancelCommand}" >
             <Button Content="Hello World"></Button>
         </u:PopConfirm>
         <TextBlock Text="Non-button control as main element" Margin="0 16" />
-        <u:PopConfirm PopupHeader="Header" PopupContent="Content" 
+        <u:PopConfirm PopupHeader="确定是否要保存此修改？" PopupContent="此修改将不可逆" 
                       TriggerMode="Click"
+                      u:ControlClassesInput.Source="{Binding #classInput}"
                       Placement="BottomEdgeAlignedLeft"
                       ConfirmCommand="{Binding ConfirmCommand}"
                       CancelCommand="{Binding Path=CancelCommand}" >
             <TextBlock Text="Hello World" />
         </u:PopConfirm>
         <TextBlock Text="Asynchronized command support" Margin="0 16" />
-        <u:PopConfirm PopupHeader="Header" PopupContent="Content" 
+        <u:PopConfirm PopupHeader="确定是否要保存此修改？" 
+                      PopupContent="此修改将不可逆" 
+                      u:ControlClassesInput.Source="{Binding #classInput}"
                       ConfirmCommand="{Binding AsyncConfirmCommand}"
                       CancelCommand="{Binding Path=AsyncCancelCommand}" >
             <Button Content="Hello World"></Button>
         </u:PopConfirm>
+        
+        <u:ControlClassesInput Name="classInput" Width="320" >
+            <u:ControlClassesInput.Styles>
+                <Style Selector="TextBox">
+                    <Setter Property="Watermark" Value="Change Classes"></Setter>
+                </Style>
+            </u:ControlClassesInput.Styles>
+        </u:ControlClassesInput>
     </StackPanel>
 </UserControl>
