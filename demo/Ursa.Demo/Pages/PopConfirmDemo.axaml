@@ -10,9 +10,8 @@
              x:Class="Ursa.Demo.Pages.PopConfirmDemo">
     <StackPanel HorizontalAlignment="Left">
         <u:PopConfirm PopupHeader="Header" PopupContent="Content" 
-                     ConfirmCommand="{Binding Path=ConfirmCommand}"
-                     CancelCommand="{Binding Path=CancelCommand}"
-                     >
+                     ConfirmCommand="{Binding ConfirmCommand}"
+                     CancelCommand="{Binding Path=CancelCommand}" >
             <Button Content="Hello World"></Button>
         </u:PopConfirm>
     </StackPanel>

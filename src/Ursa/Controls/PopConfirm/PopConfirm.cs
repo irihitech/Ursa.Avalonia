@@ -1,29 +1,85 @@
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-public class PopConfirm: ContentControl
+[PseudoClasses(PC_DropdownOpen)]
+public class PopConfirm : ContentControl
 {
     public const string PART_ConfirmButton = "PART_ConfirmButton";
     public const string PART_CancelButton = "PART_CancelButton";
     public const string PART_Popup = "PART_Popup";
-    
-    private Button? _confirmButton;
-    private Button? _cancelButton;
-    private Popup? _popup;
-    
+    public const string PC_DropdownOpen = ":dropdownopen";
+
     public static readonly StyledProperty<object?> PopupHeaderProperty = AvaloniaProperty.Register<PopConfirm, object?>(
         nameof(PopupHeader));
+
+    public static readonly StyledProperty<IDataTemplate?> PopupHeaderTemplateProperty =
+        AvaloniaProperty.Register<PopConfirm, IDataTemplate?>(
+            nameof(PopupHeaderTemplate));
+
+    public static readonly StyledProperty<object?> PopupContentProperty =
+        AvaloniaProperty.Register<PopConfirm, object?>(
+            nameof(PopupContent));
+
+    public static readonly StyledProperty<IDataTemplate?> PopupContentTemplateProperty =
+        AvaloniaProperty.Register<PopConfirm, IDataTemplate?>(
+            nameof(PopupContentTemplate));
+
+    public static readonly StyledProperty<ICommand?> ConfirmCommandProperty =
+        AvaloniaProperty.Register<PopConfirm, ICommand?>(
+            nameof(ConfirmCommand));
+
+    public static readonly StyledProperty<ICommand?> CancelCommandProperty =
+        AvaloniaProperty.Register<PopConfirm, ICommand?>(
+            nameof(CancelCommand));
+
+    public static readonly StyledProperty<object?> ConfirmCommandParameterProperty =
+        AvaloniaProperty.Register<PopConfirm, object?>(
+            nameof(ConfirmCommandParameter));
+
+    public static readonly StyledProperty<object?> CancelCommandParameterProperty =
+        AvaloniaProperty.Register<PopConfirm, object?>(
+            nameof(CancelCommandParameter));
+
+    public static readonly StyledProperty<PopConfirmTriggerMode> TriggerModeProperty =
+        AvaloniaProperty.Register<PopConfirm, PopConfirmTriggerMode>(
+            nameof(TriggerMode));
+
+    public static readonly StyledProperty<bool> HandleAsyncCommandProperty =
+        AvaloniaProperty.Register<PopConfirm, bool>(
+            nameof(HandleAsyncCommand), true);
+
+    public static readonly StyledProperty<bool> IsDropdownOpenProperty = AvaloniaProperty.Register<PopConfirm, bool>(
+        nameof(IsDropdownOpen));
+
+    public static readonly StyledProperty<PlacementMode> PlacementProperty =
+        Popup.PlacementProperty.AddOwner<PopConfirm>();
+
+    private Button? _cancelButton;
+
+
+    private IDisposable? _childChangeDisposable;
+
+    private Button? _confirmButton;
+    private Popup? _popup;
+
+    static PopConfirm()
+    {
+        IsDropdownOpenProperty.AffectsPseudoClass<PopConfirm>(PC_DropdownOpen);
+        TriggerModeProperty.Changed.AddClassHandler<PopConfirm, PopConfirmTriggerMode>((pop, args) =>
+            pop.OnTriggerModeChanged(args));
+    }
 
     public object? PopupHeader
     {
@@ -31,17 +87,11 @@ public class PopConfirm: ContentControl
         set => SetValue(PopupHeaderProperty, value);
     }
 
-    public static readonly StyledProperty<IDataTemplate?> PopupHeaderTemplateProperty = AvaloniaProperty.Register<PopConfirm, IDataTemplate?>(
-        nameof(PopupHeaderTemplate));
-
     public IDataTemplate? PopupHeaderTemplate
     {
         get => GetValue(PopupHeaderTemplateProperty);
         set => SetValue(PopupHeaderTemplateProperty, value);
     }
-
-    public static readonly StyledProperty<object?> PopupContentProperty = AvaloniaProperty.Register<PopConfirm, object?>(
-        nameof(PopupContent));
 
     public object? PopupContent
     {
@@ -49,17 +99,11 @@ public class PopConfirm: ContentControl
         set => SetValue(PopupContentProperty, value);
     }
 
-    public static readonly StyledProperty<IDataTemplate?> PopupContentTemplateProperty = AvaloniaProperty.Register<PopConfirm, IDataTemplate?>(
-        nameof(PopupContentTemplate));
-
     public IDataTemplate? PopupContentTemplate
     {
         get => GetValue(PopupContentTemplateProperty);
         set => SetValue(PopupContentTemplateProperty, value);
     }
-
-    public static readonly StyledProperty<ICommand?> ConfirmCommandProperty = AvaloniaProperty.Register<PopConfirm, ICommand?>(
-        nameof(ConfirmCommand));
 
     public ICommand? ConfirmCommand
     {
@@ -67,17 +111,11 @@ public class PopConfirm: ContentControl
         set => SetValue(ConfirmCommandProperty, value);
     }
 
-    public static readonly StyledProperty<ICommand?> CancelCommandProperty = AvaloniaProperty.Register<PopConfirm, ICommand?>(
-        nameof(CancelCommand));
-
     public ICommand? CancelCommand
     {
         get => GetValue(CancelCommandProperty);
         set => SetValue(CancelCommandProperty, value);
     }
-
-    public static readonly StyledProperty<object?> ConfirmCommandParameterProperty = AvaloniaProperty.Register<PopConfirm, object?>(
-        nameof(ConfirmCommandParameter));
 
     public object? ConfirmCommandParameter
     {
@@ -85,18 +123,11 @@ public class PopConfirm: ContentControl
         set => SetValue(ConfirmCommandParameterProperty, value);
     }
 
-    public static readonly StyledProperty<object?> CancelCommandParameterProperty = AvaloniaProperty.Register<PopConfirm, object?>(
-        nameof(CancelCommandParameter));
-
     public object? CancelCommandParameter
     {
         get => GetValue(CancelCommandParameterProperty);
         set => SetValue(CancelCommandParameterProperty, value);
     }
-
-    public static readonly StyledProperty<PopConfirmTriggerMode> TriggerModeProperty =
-        AvaloniaProperty.Register<PopConfirm, PopConfirmTriggerMode>(
-            nameof(TriggerMode));
 
     public PopConfirmTriggerMode TriggerMode
     {
@@ -104,39 +135,29 @@ public class PopConfirm: ContentControl
         set => SetValue(TriggerModeProperty, value);
     }
 
-    public static readonly StyledProperty<bool> HandleAsyncCommandProperty = AvaloniaProperty.Register<PopConfirm, bool>(
-        nameof(HandleAsyncCommand), true);
-
     public bool HandleAsyncCommand
     {
         get => GetValue(HandleAsyncCommandProperty);
         set => SetValue(HandleAsyncCommandProperty, value);
     }
 
-    static PopConfirm()
+    public bool IsDropdownOpen
     {
-        ConfirmCommandProperty.Changed.AddClassHandler<PopConfirm, ICommand?>((popconfirm, args) => popconfirm.OnCommandChanged(args));
+        get => GetValue(IsDropdownOpenProperty);
+        set => SetValue(IsDropdownOpenProperty, value);
     }
 
-    private void OnCommandChanged(AvaloniaPropertyChangedEventArgs<ICommand?> args)
+    public PlacementMode Placement
     {
-        
+        get => GetValue(PlacementProperty);
+        set => SetValue(PlacementProperty, value);
     }
 
-    public PopConfirm()
+    private void OnTriggerModeChanged(AvaloniaPropertyChangedEventArgs<PopConfirmTriggerMode> args)
     {
-        
-    }
-
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
-    {
-        base.OnPropertyChanged(change);
-        
-    }
-
-    private void OnContentChanged()
-    {
-        
+        var child = Presenter?.Child;
+        TeardownChildrenEventSubscriptions(child, args.GetOldValue<PopConfirmTriggerMode>());
+        SetupChildrenEventSubscriptions(child, args.GetNewValue<PopConfirmTriggerMode>());
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -148,46 +169,28 @@ public class PopConfirm: ContentControl
         Button.ClickEvent.AddHandler(OnButtonClicked, _confirmButton, _cancelButton);
     }
 
-    private void OnButtonClicked(object sender, RoutedEventArgs e)
+    private async void OnButtonClicked(object sender, RoutedEventArgs e)
     {
-        if (!HandleAsyncCommand)
-        {
-            _popup?.SetValue(Popup.IsOpenProperty, false);
-        }
+        if (!HandleAsyncCommand) _popup?.SetValue(Popup.IsOpenProperty, false);
         // This is a hack for MVVM toolkit and Prism that uses INotifyPropertyChanged for async command. It counts the number of
         // IsRunning property changes to determine when the command is finished.
-        if (sender is Button button &&  button.Command is { } command and INotifyPropertyChanged)
+        if (sender is Button button && button.Command is { } command and (INotifyPropertyChanged or IDisposable))
         {
             var count = 0;
+
             void OnCanExecuteChanged(object? _, System.EventArgs e)
             {
                 count++;
                 if (count != 2) return;
                 var canExecute = command.CanExecute(button.CommandParameter);
-                if (canExecute == true)
+                if (canExecute)
                 {
                     command.CanExecuteChanged -= OnCanExecuteChanged;
                     _popup?.SetValue(Popup.IsOpenProperty, false);
                 }
             }
+
             command.CanExecuteChanged += OnCanExecuteChanged;
-        }
-        // TODO: This is a hack for ReactiveUI that ReactiveCommand is an IDisposable. 
-        else if (sender is Button b2 && b2.Command is { } command2 and IDisposable)
-        {
-            var count = 0;
-            void OnCanExecuteChanged2(object? _, System.EventArgs e)
-            {
-                count++;
-                if (count != 2) return;
-                var canExecute = command2.CanExecute(b2.CommandParameter);
-                if (canExecute == true)
-                {
-                    command2.CanExecuteChanged -= OnCanExecuteChanged2;
-                    _popup?.SetValue(Popup.IsOpenProperty, false);
-                }
-            }
-            command2.CanExecuteChanged += OnCanExecuteChanged2;
         }
         else
         {
@@ -195,28 +198,72 @@ public class PopConfirm: ContentControl
         }
     }
 
-    
-
-    private IDisposable? _childChangeDisposable;
-
     protected override bool RegisterContentPresenter(ContentPresenter presenter)
     {
         var result = base.RegisterContentPresenter(presenter);
-        _childChangeDisposable = presenter.GetPropertyChangedObservable(ContentPresenter.ChildProperty).Subscribe(OnChildChanged);
+        _childChangeDisposable = presenter.GetPropertyChangedObservable(ContentPresenter.ChildProperty)
+                                          .Subscribe(OnChildChanged);
         return result;
     }
 
     private void OnChildChanged(AvaloniaPropertyChangedEventArgs arg)
     {
+        TeardownChildrenEventSubscriptions(arg.GetOldValue<Control?>(), TriggerMode);
+        SetupChildrenEventSubscriptions(arg.GetNewValue<Control?>(), TriggerMode);
         if (arg.GetNewValue<Control?>() is null) return;
         if (arg.GetNewValue<Control?>() is Button button)
+            button.Click += (o, e) => { SetCurrentValue(IsDropdownOpenProperty, true); };
+    }
+
+    private void SetupChildrenEventSubscriptions(Control? child, PopConfirmTriggerMode mode)
+    {
+        if (child is null) return;
+        if (mode == PopConfirmTriggerMode.Tap)
         {
-            button.Click+= (o, e) =>
-            {
-                _popup?.SetValue(Popup.IsOpenProperty, !_popup.IsOpen);
-            };
+            if (child is Button button)
+                Button.ClickEvent.AddHandler(OnMainButtonClicked, button);
+            else
+                PointerPressedEvent.AddHandler(OnMainElementPressed, child);
+        }
+        else if (mode == PopConfirmTriggerMode.Focus)
+        {
+            GotFocusEvent.AddHandler(OnMainElementGotFocus, child);
+            LostFocusEvent.AddHandler(OnMainElementLostFocus, child);
         }
     }
+
+    private void OnMainElementLostFocus(object sender, RoutedEventArgs e)
+    {
+        var newFocus = TopLevel.GetTopLevel(this)?.FocusManager?.GetFocusedElement();
+        if (newFocus is Visual v && _popup?.IsInsidePopup(v) == true) return;
+        SetCurrentValue(IsDropdownOpenProperty, false);
+    }
+
+    private void OnMainElementGotFocus(object sender, GotFocusEventArgs e)
+    {
+        SetCurrentValue(IsDropdownOpenProperty, true);
+    }
+
+    private void TeardownChildrenEventSubscriptions(Control? child, PopConfirmTriggerMode mode)
+    {
+        if (child is null) return;
+        PointerPressedEvent.RemoveHandler(OnMainElementPressed, child);
+        Button.ClickEvent.RemoveHandler(OnMainButtonClicked, child);
+        GotFocusEvent.RemoveHandler(OnMainElementGotFocus, child);
+        LostFocusEvent.RemoveHandler(OnMainElementLostFocus, child);
+    }
+
+    private void OnMainButtonClicked(object sender, RoutedEventArgs e)
+    {
+        SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
+    }
+
+
+    private void OnMainElementPressed(object sender, PointerPressedEventArgs e)
+    {
+        SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
+    }
+
 
     protected override void OnDetachedFromLogicalTree(LogicalTreeAttachmentEventArgs e)
     {

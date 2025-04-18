@@ -6,27 +6,38 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:PopConfirm">
                 <Panel>
-                    <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                    <ContentPresenter 
+                        Name="PART_ContentPresenter" 
+                        Content="{TemplateBinding Content}" 
+                        ContentTemplate="{TemplateBinding ContentTemplate}" />
                     <Popup
                         IsLightDismissEnabled="True"
+                        IsOpen="{TemplateBinding IsDropdownOpen, Mode=TwoWay}"
                         OverlayInputPassThroughElement="{Binding #PART_ContentPresenter}"
-                           Name="{x:Static u:PopConfirm.PART_Popup}"
-                           Placement="Bottom" >
+                        Name="{x:Static u:PopConfirm.PART_Popup}"
+                        Placement="{TemplateBinding Placement}" >
                         <Border Theme="{DynamicResource CardBorder}">
                             <StackPanel>
-                                <ContentPresenter Content="{TemplateBinding PopupHeader}" ContentTemplate="{TemplateBinding PopupHeaderTemplate}"/>
-                                <ContentPresenter Content="{TemplateBinding PopupContent}" ContentTemplate="{TemplateBinding PopupContentTemplate}"/>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button 
-                                        Name="{x:Static u:PopConfirm.PART_ConfirmButton}"
-                                        Content="Confirm" 
-                                        Command="{TemplateBinding ConfirmCommand}" 
-                                        CommandParameter="{TemplateBinding ConfirmCommandParameter}"/>
+                                <ContentPresenter 
+                                    Content="{TemplateBinding PopupHeader}" 
+                                    ContentTemplate="{TemplateBinding PopupHeaderTemplate}"/>
+                                <ContentPresenter 
+                                    Content="{TemplateBinding PopupContent}" 
+                                    ContentTemplate="{TemplateBinding PopupContentTemplate}"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Button 
                                         Name="{x:Static u:PopConfirm.PART_CancelButton}"
-                                        Content="Cancel" 
+                                        Margin="0 0 8 0"
+                                        Content="{DynamicResource STRING_MENU_DIALOG_CANCEL}" 
                                         Command="{TemplateBinding CancelCommand}" 
                                         CommandParameter="{TemplateBinding CancelCommandParameter}"/>
+                                    <Button 
+                                        Name="{x:Static u:PopConfirm.PART_ConfirmButton}"
+                                        Theme="{DynamicResource SolidButton}"
+                                        Content="{DynamicResource STRING_MENU_DIALOG_OK}" 
+                                        Command="{TemplateBinding ConfirmCommand}" 
+                                        CommandParameter="{TemplateBinding ConfirmCommandParameter}"/>
+                                    
                                 </StackPanel>
                             </StackPanel>
                         </Border>
