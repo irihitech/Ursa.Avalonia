@@ -9,44 +9,64 @@
              x:DataType="viewModels:PopConfirmDemoViewModel"
              x:Class="Ursa.Demo.Pages.PopConfirmDemo">
     <StackPanel HorizontalAlignment="Left">
+        <Border Theme="{DynamicResource CardBorder}">
+            <u:Form>
+                <u:ControlClassesInput 
+                    Name="classInput"
+                    u:FormItem.Label="Control Classes"
+                    Width="240">
+                </u:ControlClassesInput>
+                <u:EnumSelector 
+                    Name="placement"
+                    Width="240"
+                    u:FormItem.Label="Popup Placement"
+                    EnumType="{x:Type PlacementMode}"
+                    Value="{x:Static PlacementMode.BottomEdgeAlignedLeft}" />
+            </u:Form>
+        </Border>
         <TextBlock Text="Default PopConfirm" Margin="0 16" />
-        <u:PopConfirm PopupHeader="确定是否要保存此修改？" PopupContent="此修改将不可逆" 
+        <u:PopConfirm PopupHeader="确定是否要保存此修改？"
+                      HorizontalAlignment="Left"
+                      PopupContent="此修改将不可逆"
+                      Placement="{Binding #placement.Value}"
                       ConfirmCommand="{Binding ConfirmCommand}"
-                      CancelCommand="{Binding Path=CancelCommand}" >
-            <Button Content="Hello World"></Button>
+                      CancelCommand="{Binding Path=CancelCommand}">
+            <Button Content="Hello World" />
         </u:PopConfirm>
         <TextBlock Text="Hover to trigger" Margin="0 16" />
-        <u:PopConfirm PopupHeader="确定是否要保存此修改？" PopupContent="此修改将不可逆" 
+        <u:PopConfirm PopupHeader="确定是否要保存此修改？"
+                      PopupContent="此修改将不可逆"
                       TriggerMode="Focus"
+                      HorizontalAlignment="Left"
+                      Placement="{Binding #placement.Value}"
                       u:ControlClassesInput.Source="{Binding #classInput}"
                       ConfirmCommand="{Binding ConfirmCommand}"
-                      CancelCommand="{Binding Path=CancelCommand}" >
-            <Button Content="Hello World"></Button>
+                      CancelCommand="{Binding Path=CancelCommand}">
+            <Button Content="Hello World" />
         </u:PopConfirm>
-        <TextBlock Text="Non-button control as main element" Margin="0 16" />
-        <u:PopConfirm PopupHeader="确定是否要保存此修改？" PopupContent="此修改将不可逆" 
+        <TextBlock
+            Text="Non-button control as main element"
+            Margin="0 16" />
+        <u:PopConfirm PopupHeader="确定是否要保存此修改？"
+                      PopupContent="此修改将不可逆"
                       TriggerMode="Click"
+                      HorizontalAlignment="Left"
                       u:ControlClassesInput.Source="{Binding #classInput}"
-                      Placement="BottomEdgeAlignedLeft"
+                      Placement="{Binding #placement.Value}"
                       ConfirmCommand="{Binding ConfirmCommand}"
-                      CancelCommand="{Binding Path=CancelCommand}" >
+                      CancelCommand="{Binding Path=CancelCommand}">
             <TextBlock Text="Hello World" />
         </u:PopConfirm>
-        <TextBlock Text="Asynchronized command support" Margin="0 16" />
-        <u:PopConfirm PopupHeader="确定是否要保存此修改？" 
-                      PopupContent="此修改将不可逆" 
+        <TextBlock Text="Asynchronized command support"
+                   Margin="0 16" />
+        <u:PopConfirm PopupHeader="确定是否要保存此修改？"
+                      PopupContent="此修改将不可逆"
+                      HorizontalAlignment="Left"
+                      Placement="{Binding #placement.Value}"
                       u:ControlClassesInput.Source="{Binding #classInput}"
                       ConfirmCommand="{Binding AsyncConfirmCommand}"
-                      CancelCommand="{Binding Path=AsyncCancelCommand}" >
-            <Button Content="Hello World"></Button>
+                      CancelCommand="{Binding Path=AsyncCancelCommand}">
+            <Button Content="Hello World" />
         </u:PopConfirm>
-        
-        <u:ControlClassesInput Name="classInput" Width="320" >
-            <u:ControlClassesInput.Styles>
-                <Style Selector="TextBox">
-                    <Setter Property="Watermark" Value="Change Classes"></Setter>
-                </Style>
-            </u:ControlClassesInput.Styles>
-        </u:ControlClassesInput>
     </StackPanel>
 </UserControl>

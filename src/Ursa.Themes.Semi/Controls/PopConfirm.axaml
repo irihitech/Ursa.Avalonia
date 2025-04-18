@@ -5,7 +5,7 @@
     <!-- Add Resources Here -->
     <ControlTheme x:Key="{x:Type u:PopConfirm}"
                   TargetType="u:PopConfirm">
-        <Setter Property="Placement" Value="TopEdgeAlignedLeft" />
+        <Setter Property="Placement" Value="BottomEdgeAlignedLeft" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:PopConfirm">
                 <Panel>
