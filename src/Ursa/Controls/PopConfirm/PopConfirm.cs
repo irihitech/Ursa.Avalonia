@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
@@ -190,7 +191,7 @@ public class PopConfirm : ContentControl
             void OnCanExecuteChanged(object? _, System.EventArgs a)
             {
                 count++;
-                if (count < 1) return;
+                if (count < 2) return;
                 var canExecute = command.CanExecute(button.CommandParameter);
                 if (canExecute)
                 {
@@ -246,8 +247,14 @@ public class PopConfirm : ContentControl
         SetCurrentValue(IsDropdownOpenProperty, false);
     }
 
+    private bool _suppressButtonClickEvent;
     private void OnMainElementGotFocus(object sender, GotFocusEventArgs e)
     {
+        Debug.WriteLine("Got Focus");
+        if (TriggerMode.HasFlag(PopConfirmTriggerMode.Click) && TriggerMode.HasFlag(PopConfirmTriggerMode.Focus))
+        {
+            _suppressButtonClickEvent = true;
+        }
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
 
@@ -262,7 +269,12 @@ public class PopConfirm : ContentControl
 
     private void OnMainButtonClicked(object sender, RoutedEventArgs e)
     {
-        SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
+        Debug.WriteLine("Main Button Clicked");
+        if (!_suppressButtonClickEvent)
+        {
+            SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
+        }
+        _suppressButtonClickEvent = false;
     }
 
 
