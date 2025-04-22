@@ -3,6 +3,6 @@ namespace Ursa.Controls;
 [Flags]
 public enum PopConfirmTriggerMode
 {
-    Click,
-    Focus,
+    Click = 1,
+    Focus = 2,
 }

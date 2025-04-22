@@ -55,7 +55,7 @@ public class PopConfirm : ContentControl
 
     public static readonly StyledProperty<PopConfirmTriggerMode> TriggerModeProperty =
         AvaloniaProperty.Register<PopConfirm, PopConfirmTriggerMode>(
-            nameof(TriggerMode));
+            nameof(TriggerMode), PopConfirmTriggerMode.Click);
 
     public static readonly StyledProperty<bool> HandleAsyncCommandProperty =
         AvaloniaProperty.Register<PopConfirm, bool>(
