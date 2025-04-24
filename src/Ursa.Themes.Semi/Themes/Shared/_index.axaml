@@ -16,8 +16,9 @@
         <ResourceInclude Source="NavigationMenu.axaml" />
         <ResourceInclude Source="Notification.axaml" />
         <ResourceInclude Source="Pagination.axaml" />
+        <ResourceInclude Source="PopConfirm.axaml" />
         <ResourceInclude Source="Rating.axaml" />
-        <ResourceInclude Source="Resizer.axaml"/>
+        <ResourceInclude Source="Resizer.axaml" />
         <ResourceInclude Source="ScrollToButton.axaml" />
         <ResourceInclude Source="TagInput.axaml" />
         <ResourceInclude Source="Skeleton.axaml" />

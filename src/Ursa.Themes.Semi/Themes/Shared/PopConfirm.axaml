@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <x:Double x:Key="PopConfirmBorderMaxWidth">400</x:Double>
+    <Thickness x:Key="PopConfirmBorderPadding">20 24 24 24</Thickness>
+    <Thickness x:Key="PopConfirmBorderMargin">4</Thickness>
+    <Thickness x:Key="PopConfirmBorderThickness">1</Thickness>
+    <CornerRadius x:Key="PopConfirmBorderCornerRadius">6</CornerRadius>
+    <Thickness x:Key="PopConfirmIconMargin">0 0 12 0</Thickness>
+    <x:Double x:Key="PopConfirmTitleFontSize">16</x:Double>
+    <FontWeight x:Key="PopConfirmTitleFontWeight">600</FontWeight>
+</ResourceDictionary>

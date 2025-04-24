@@ -20,9 +20,14 @@
                         Name="{x:Static u:PopConfirm.PART_Popup}"
                         Placement="{TemplateBinding Placement}">
                         <Border
-                            Theme="{DynamicResource CardBorder}"
-                            MinHeight="160"
-                            MinWidth="280">
+                            MaxWidth="{DynamicResource PopConfirmBorderMaxWidth}"
+                            Padding="{DynamicResource PopConfirmBorderPadding}"
+                            Margin="{DynamicResource PopConfirmBorderMargin}"
+                            Background="{DynamicResource PopConfirmBackground}"
+                            BorderBrush="{DynamicResource PopConfirmBorderBrush}"
+                            BorderThickness="{DynamicResource PopConfirmBorderThickness}"
+                            CornerRadius="{DynamicResource PopConfirmBorderCornerRadius}"
+                            BoxShadow="{DynamicResource PopConfirmBorderBoxShadows}">
                             <Grid
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 RowDefinitions="*, Auto"
@@ -30,41 +35,44 @@
                                 <!--  Icon Area  -->
                                 <Panel
                                     Grid.Column="0"
-                                    Margin="{DynamicResource BannerIconMargin}"
+                                    Margin="{DynamicResource PopConfirmIconMargin}"
                                     VerticalAlignment="Top">
                                     <ContentPresenter
                                         Content="{TemplateBinding Icon}" />
                                     <PathIcon
                                         Name="PART_BuildInIcon"
                                         Theme="{DynamicResource InnerPathIcon}"
+                                        Classes="ExtraLarge"
                                         Data="{DynamicResource BannerWarningIconGeometry}"
                                         Foreground="{DynamicResource BannerWarningBorderBrush}"
-                                        Classes="Large"
                                         IsVisible="{TemplateBinding Icon, Converter={x:Static ObjectConverters.IsNull}}" />
                                 </Panel>
-                                <StackPanel Grid.Row="0"
+                                <StackPanel
+                                    Grid.Row="0"
                                     Grid.Column="1"
-                                    Spacing="2">
+                                    Spacing="8">
                                     <ContentPresenter
                                         Content="{TemplateBinding PopupHeader}"
                                         ContentTemplate="{TemplateBinding PopupHeaderTemplate}"
                                         TextTrimming="CharacterEllipsis"
-                                        TextElement.FontSize="{DynamicResource BannerTitleFontSize}"
-                                        TextElement.FontWeight="{DynamicResource TextBlockTitleFontWeight}" />
+                                        TextElement.FontSize="{DynamicResource PopConfirmTitleFontSize}"
+                                        TextElement.FontWeight="{DynamicResource PopConfirmTitleFontWeight}" />
                                     <ContentPresenter
                                         Content="{TemplateBinding PopupContent}"
                                         ContentTemplate="{TemplateBinding PopupContentTemplate}"
+                                        Foreground="{DynamicResource PopConfirmContentForeground}"
                                         TextWrapping="Wrap" />
                                 </StackPanel>
-                                <StackPanel Grid.Row="1"
+                                <StackPanel
+                                    Grid.Row="1"
                                     Grid.Column="0"
-                                    Margin="0 8 0 0"
                                     Grid.ColumnSpan="2"
+                                    Margin="0 25 0 0"
+                                    Spacing="8"
                                     Orientation="Horizontal"
                                     HorizontalAlignment="Right">
                                     <Button
                                         Name="{x:Static u:PopConfirm.PART_CancelButton}"
-                                        Margin="0 0 8 0"
                                         Content="{DynamicResource STRING_MENU_DIALOG_CANCEL}"
                                         Command="{TemplateBinding CancelCommand}"
                                         CommandParameter="{TemplateBinding CancelCommandParameter}" />
@@ -74,7 +82,6 @@
                                         Content="{DynamicResource STRING_MENU_DIALOG_OK}"
                                         Command="{TemplateBinding ConfirmCommand}"
                                         CommandParameter="{TemplateBinding ConfirmCommandParameter}" />
-
                                 </StackPanel>
                             </Grid>
                         </Border>
@@ -82,49 +89,37 @@
                 </Panel>
             </ControlTemplate>
         </Setter>
-        
+
         <Style Selector="^ /template/ Button#PART_CancelButton">
             <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
         </Style>
-        
+
         <Style Selector="^ /template/ Button#PART_ConfirmButton">
             <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
         </Style>
 
         <Style Selector="^.Information">
-            <Style
-                Selector="^ /template/ PathIcon#PART_BuildInIcon">
-                <Setter Property="Data"
-                        Value="{DynamicResource BannerInformationIconGeometry}" />
-                <Setter Property="Foreground"
-                        Value="{DynamicResource BannerInformationBorderBrush}" />
+            <Style Selector="^ /template/ PathIcon#PART_BuildInIcon">
+                <Setter Property="Data" Value="{DynamicResource BannerInformationIconGeometry}" />
+                <Setter Property="Foreground" Value="{DynamicResource BannerInformationBorderBrush}" />
             </Style>
         </Style>
         <Style Selector="^.Success">
-            <Style
-                Selector="^ /template/ PathIcon#PART_BuildInIcon">
-                <Setter Property="Data"
-                        Value="{DynamicResource BannerSuccessIconGeometry}" />
-                <Setter Property="Foreground"
-                        Value="{DynamicResource BannerSuccessBorderBrush}" />
+            <Style Selector="^ /template/ PathIcon#PART_BuildInIcon">
+                <Setter Property="Data" Value="{DynamicResource BannerSuccessIconGeometry}" />
+                <Setter Property="Foreground" Value="{DynamicResource BannerSuccessBorderBrush}" />
             </Style>
         </Style>
         <Style Selector="^.Warning">
-            <Style
-                Selector="^ /template/ PathIcon#PART_BuildInIcon">
-                <Setter Property="Data"
-                        Value="{DynamicResource BannerWarningIconGeometry}" />
-                <Setter Property="Foreground"
-                        Value="{DynamicResource BannerWarningBorderBrush}" />
+            <Style Selector="^ /template/ PathIcon#PART_BuildInIcon">
+                <Setter Property="Data" Value="{DynamicResource BannerWarningIconGeometry}" />
+                <Setter Property="Foreground" Value="{DynamicResource BannerWarningBorderBrush}" />
             </Style>
         </Style>
         <Style Selector="^.Error">
-            <Style
-                Selector="^ /template/ PathIcon#PART_BuildInIcon">
-                <Setter Property="Data"
-                        Value="{DynamicResource BannerErrorIconGeometry}" />
-                <Setter Property="Foreground"
-                        Value="{DynamicResource BannerErrorBorderBrush}" />
+            <Style Selector="^ /template/ PathIcon#PART_BuildInIcon">
+                <Setter Property="Data" Value="{DynamicResource BannerErrorIconGeometry}" />
+                <Setter Property="Foreground" Value="{DynamicResource BannerErrorBorderBrush}" />
             </Style>
         </Style>
     </ControlTheme>
