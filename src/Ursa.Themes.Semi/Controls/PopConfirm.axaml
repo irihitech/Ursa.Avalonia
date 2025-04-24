@@ -31,7 +31,7 @@
                             <Grid
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 RowDefinitions="*, Auto"
-                                ColumnDefinitions="Auto, *">
+                                ColumnDefinitions="Auto, *, Auto">
                                 <!--  Icon Area  -->
                                 <Panel
                                     Grid.Column="0"
@@ -63,10 +63,19 @@
                                         Foreground="{DynamicResource PopConfirmContentForeground}"
                                         TextWrapping="Wrap" />
                                 </StackPanel>
+                                <Button
+                                    Name="{x:Static u:PopConfirm.PART_CloseButton}"
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Theme="{DynamicResource OverlayCloseButton}"
+                                    Command="{TemplateBinding CancelCommand}"
+                                    CommandParameter="{TemplateBinding CancelCommandParameter}" />
                                 <StackPanel
                                     Grid.Row="1"
                                     Grid.Column="0"
-                                    Grid.ColumnSpan="2"
+                                    Grid.ColumnSpan="3"
                                     Margin="0 25 0 0"
                                     Spacing="8"
                                     Orientation="Horizontal"

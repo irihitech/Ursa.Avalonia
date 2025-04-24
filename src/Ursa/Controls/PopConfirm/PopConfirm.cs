@@ -17,6 +17,7 @@ namespace Ursa.Controls;
 [PseudoClasses(PC_DropdownOpen, PC_Icon)]
 public class PopConfirm : ContentControl
 {
+    public const string PART_CloseButton = "PART_CloseButton";
     public const string PART_ConfirmButton = "PART_ConfirmButton";
     public const string PART_CancelButton = "PART_CancelButton";
     public const string PART_Popup = "PART_Popup";
@@ -70,6 +71,7 @@ public class PopConfirm : ContentControl
 
     public static readonly StyledProperty<object?> IconProperty = Banner.IconProperty.AddOwner<PopConfirm>();
 
+    private Button? _closeButton;
     private Button? _cancelButton;
 
 
@@ -173,10 +175,11 @@ public class PopConfirm : ContentControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
+        _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
         _confirmButton = e.NameScope.Find<Button>(PART_ConfirmButton);
         _cancelButton = e.NameScope.Find<Button>(PART_CancelButton);
         _popup = e.NameScope.Find<Popup>(PART_Popup);
-        Button.ClickEvent.AddHandler(OnButtonClicked, _confirmButton, _cancelButton);
+        Button.ClickEvent.AddHandler(OnButtonClicked, _closeButton, _cancelButton, _confirmButton);
     }
 
     private void OnButtonClicked(object sender, RoutedEventArgs e)
