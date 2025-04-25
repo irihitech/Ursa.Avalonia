@@ -15,8 +15,8 @@
     x:DataType="viewModels:MainWindowViewModel"
     WindowStartupLocation="CenterScreen"
     Icon="/Assets/Ursa.ico"
-    IsFullScreenButtonVisible="{OnPlatform True, macOS=False}"
-    IsManagedResizerVisible="{OnPlatform False, Linux=True}"
+    IsFullScreenButtonVisible="{OnPlatform {x:True}, macOS={x:False}}"
+    IsManagedResizerVisible="{OnPlatform {x:False}, Linux={x:True}}"
     mc:Ignorable="d">
     <u:UrsaWindow.RightContent>
         <views:TitleBarRightContent />

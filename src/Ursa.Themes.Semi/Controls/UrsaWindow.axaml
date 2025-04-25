@@ -11,39 +11,12 @@
         <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="-1" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
         <Setter Property="u:OverlayDialogHost.IsModalStatusScope" Value="True" />
-        <Setter Property="IsMinimizeButtonVisible">
-            <OnPlatform>
-                <On Options="Default, Windows, Linux">
-                    <x:Boolean>True</x:Boolean>
-                </On>
-                <On Options="macOS">
-                    <x:Boolean>False</x:Boolean>
-                </On>
-            </OnPlatform>
-        </Setter>
-        <Setter Property="IsRestoreButtonVisible">
-            <OnPlatform>
-                <On Options="Default, Windows, Linux">
-                    <x:Boolean>True</x:Boolean>
-                </On>
-                <On Options="macOS">
-                    <x:Boolean>False</x:Boolean>
-                </On>
-            </OnPlatform>
-        </Setter>
-        <Setter Property="IsCloseButtonVisible">
-            <OnPlatform>
-                <On Options="Default, Windows, Linux">
-                    <x:Boolean>True</x:Boolean>
-                </On>
-                <On Options="macOS">
-                    <x:Boolean>False</x:Boolean>
-                </On>
-            </OnPlatform>
-        </Setter>
+        <Setter Property="IsMinimizeButtonVisible" Value="{OnPlatform {x:True},macOS={x:False}}" />
+        <Setter Property="IsRestoreButtonVisible" Value="{OnPlatform {x:True},macOS={x:False}}" />
+        <Setter Property="IsCloseButtonVisible" Value="{OnPlatform {x:True},macOS={x:False}}"/>
         <Setter Property="SystemDecorations">
             <OnPlatform>
-                <On Options="Default, Windows, macOS">
+                <On Options="Default">
                     <SystemDecorations>Full</SystemDecorations>
                 </On>
                 <On Options="Linux">
