@@ -15,6 +15,7 @@
         <ResourceInclude Source="NavigationMenu.axaml" />
         <ResourceInclude Source="NotificationShared.axaml" />
         <ResourceInclude Source="Pagination.axaml" />
+        <ResourceInclude Source="PopConfirm.axaml" />
         <ResourceInclude Source="Rating.axaml" />
         <ResourceInclude Source="SelectionList.axaml" />
         <ResourceInclude Source="Skeleton.axaml" />

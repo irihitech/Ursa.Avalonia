@@ -44,6 +44,7 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = "Loading", Key = MenuKeys.MenuKeyLoading, Status = "Updated" },
                     new() { MenuHeader = "Message Box", Key = MenuKeys.MenuKeyMessageBox },
                     new() { MenuHeader = "Notification", Key = MenuKeys.MenuKeyNotification },
+                    new() { MenuHeader = "PopConfirm", Key = MenuKeys.MenuKeyPopConfirm },
                     new() { MenuHeader = "Toast", Key = MenuKeys.MenuKeyToast },
                     new() { MenuHeader = "Skeleton", Key = MenuKeys.MenuKeySkeleton },
                 }
@@ -135,6 +136,7 @@ public static class MenuKeys
     public const string MenuKeyNumPad = "NumPad";
     public const string MenuKeyPagination = "Pagination";
     public const string MenuKeyPinCode = "PinCode";
+    public const string MenuKeyPopConfirm = "PopConfirm";
     public const string MenuKeyRangeSlider = "RangeSlider";
     public const string MenuKeyRating = "Rating";
     public const string MenuKeyScrollToButton = "ScrollToButton";

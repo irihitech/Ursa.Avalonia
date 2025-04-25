@@ -36,26 +36,27 @@
         <ResourceInclude Source="NumPad.axaml" />
         <ResourceInclude Source="NumberDisplayer.axaml" />
         <ResourceInclude Source="Pagination.axaml" />
+        <ResourceInclude Source="PathPicker.axaml"/>
+        <ResourceInclude Source="PinCode.axaml" />
+        <ResourceInclude Source="PopConfirm.axaml" />
         <ResourceInclude Source="RangeSlider.axaml" />
         <ResourceInclude Source="Rating.axaml" />
         <ResourceInclude Source="Resizer.axaml" />
         <ResourceInclude Source="ScrollToButton.axaml" />
         <ResourceInclude Source="SelectionList.axaml" />
+        <ResourceInclude Source="Skeleton.axaml" />
+        <ResourceInclude Source="SplashWindow.axaml"/>
         <ResourceInclude Source="TagInput.axaml" />
         <ResourceInclude Source="ThemeSelector.axaml" />
         <ResourceInclude Source="TimePicker.axaml" />
         <ResourceInclude Source="TimeRangePicker.axaml" />
         <ResourceInclude Source="Timeline.axaml" />
         <ResourceInclude Source="TreeComboBox.axaml"/>
-        <ResourceInclude Source="Skeleton.axaml" />
         <ResourceInclude Source="TwoTonePathIcon.axaml" />
         <ResourceInclude Source="Toast.axaml" />
         <ResourceInclude Source="ToolBar.axaml" />
         <ResourceInclude Source="TimeBox.axaml"/>
         <ResourceInclude Source="UrsaView.axaml" />
         <ResourceInclude Source="UrsaWindow.axaml"/>
-        <ResourceInclude Source="PinCode.axaml" />
-        <ResourceInclude Source="PathPicker.axaml"/>
-        <ResourceInclude Source="SplashWindow.axaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

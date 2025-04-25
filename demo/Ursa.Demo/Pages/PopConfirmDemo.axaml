@@ -1,0 +1,72 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800"
+             d:DesignHeight="450"
+             x:DataType="viewModels:PopConfirmDemoViewModel"
+             x:Class="Ursa.Demo.Pages.PopConfirmDemo">
+    <StackPanel HorizontalAlignment="Left">
+        <Border Theme="{DynamicResource CardBorder}">
+            <u:Form>
+                <u:ControlClassesInput 
+                    Name="classInput"
+                    u:FormItem.Label="Control Classes"
+                    Width="240">
+                </u:ControlClassesInput>
+                <u:EnumSelector 
+                    Name="placement"
+                    Width="240"
+                    u:FormItem.Label="Popup Placement"
+                    EnumType="{x:Type PlacementMode}"
+                    Value="{x:Static PlacementMode.BottomEdgeAlignedLeft}" />
+            </u:Form>
+        </Border>
+        <TextBlock Text="Default PopConfirm" Margin="0 16" />
+        <u:PopConfirm PopupHeader="确定是否要保存此修改？"
+                      HorizontalAlignment="Left"
+                      PopupContent="此修改将不可逆"
+                      Placement="{Binding #placement.Value}"
+                      ConfirmCommand="{Binding ConfirmCommand}"
+                      CancelCommand="{Binding Path=CancelCommand}">
+            <Button Content="Hello World" />
+        </u:PopConfirm>
+        <TextBlock Text="GotFocus to open, LostFocus to close" Margin="0 16" />
+        <u:PopConfirm PopupHeader="确定是否要保存此修改？"
+                      PopupContent="此修改将不可逆"
+                      TriggerMode="Focus, Click"
+                      HorizontalAlignment="Left"
+                      Placement="{Binding #placement.Value}"
+                      u:ControlClassesInput.Source="{Binding #classInput}"
+                      ConfirmCommand="{Binding ConfirmCommand}"
+                      CancelCommand="{Binding Path=CancelCommand}">
+            <Button Content="Hello World" />
+        </u:PopConfirm>
+        <TextBlock
+            Text="Non-button control as main element"
+            Margin="0 16" />
+        <u:PopConfirm PopupHeader="确定是否要保存此修改？"
+                      PopupContent="此修改将不可逆"
+                      TriggerMode="Click"
+                      HorizontalAlignment="Left"
+                      u:ControlClassesInput.Source="{Binding #classInput}"
+                      Placement="{Binding #placement.Value}"
+                      ConfirmCommand="{Binding ConfirmCommand}"
+                      CancelCommand="{Binding Path=CancelCommand}">
+            <TextBlock Text="Hello World" />
+        </u:PopConfirm>
+        <TextBlock Text="Asynchronized command support"
+                   Margin="0 16" />
+        <u:PopConfirm PopupHeader="确定是否要保存此修改？"
+                      PopupContent="此修改将不可逆"
+                      HorizontalAlignment="Left"
+                      Placement="{Binding #placement.Value}"
+                      u:ControlClassesInput.Source="{Binding #classInput}"
+                      ConfirmCommand="{Binding AsyncConfirmCommand}"
+                      CancelCommand="{Binding Path=AsyncCancelCommand}">
+            <Button Content="Hello World" />
+        </u:PopConfirm>
+    </StackPanel>
+</UserControl>
