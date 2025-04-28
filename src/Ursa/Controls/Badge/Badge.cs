@@ -66,8 +66,10 @@ public class Badge : HeaderedContentControl
     static Badge()
     {
         HeaderProperty.Changed.AddClassHandler<Badge>((badge, _) => badge.UpdateBadgePosition());
+        HeaderTemplateProperty.Changed.AddClassHandler<Badge>((badge, _) => badge.UpdateBadgePosition());
         CornerPositionProperty.Changed.AddClassHandler<Badge>((badge, _) => badge.UpdateBadgePosition());
         DotProperty.Changed.AddClassHandler<Badge>((badge, _) => badge.UpdateBadgePosition());
+        AffectsArrange<Badge>(HeaderProperty, HeaderTemplateProperty);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
