@@ -1,13 +1,12 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="BannerInformationBackground" Opacity="0.2" Color="#54A9FF" />
-    <SolidColorBrush x:Key="BannerInformationBorderBrush" Color="#54A9FF" />
-    <SolidColorBrush x:Key="BannerSuccessBackground" Opacity="0.2" Color="#5DC264" />
-    <SolidColorBrush x:Key="BannerSuccessBorderBrush" Color="#5DC264" />
-    <SolidColorBrush x:Key="BannerWarningBackground" Opacity="0.2" Color="#FFAE43" />
-    <SolidColorBrush x:Key="BannerWarningBorderBrush" Color="#FFAE43" />
-    <SolidColorBrush x:Key="BannerErrorBackground" Opacity="0.2" Color="#FC725A" />
-    <SolidColorBrush x:Key="BannerErrorBorderBrush" Color="#FC725A" />
-
-    <SolidColorBrush x:Key="BannerCloseButtonForeground" Opacity="0.6" Color="#F9F9F9" />
+    <StaticResource x:Key="BannerInformationBackground" ResourceKey="SemiColorPrimaryLight" />
+    <StaticResource x:Key="BannerInformationBorderBrush" ResourceKey="SemiColorPrimary" />
+    <StaticResource x:Key="BannerSuccessBackground" ResourceKey="SemiColorSuccessLight" />
+    <StaticResource x:Key="BannerSuccessBorderBrush" ResourceKey="SemiColorSuccess" />
+    <StaticResource x:Key="BannerWarningBackground" ResourceKey="SemiColorWarningLight" />
+    <StaticResource x:Key="BannerWarningBorderBrush" ResourceKey="SemiColorWarning" />
+    <StaticResource x:Key="BannerErrorBackground" ResourceKey="SemiColorDangerLight" />
+    <StaticResource x:Key="BannerErrorBorderBrush" ResourceKey="SemiColorDanger" />
+    <StaticResource x:Key="BannerCloseButtonForeground" ResourceKey="SemiColorText2" />
     <SolidColorBrush x:Key="BannerBorderBrush" Color="Transparent" />
 </ResourceDictionary>

@@ -1,4 +1,4 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="ToolBarHeaderForeground" Opacity="0.6" Color="#F9F9F9" />
-    <SolidColorBrush x:Key="ToolBarSeparatorForeground" Opacity="0.08" Color="White" />
+    <StaticResource x:Key="ToolBarHeaderForeground" ResourceKey="SemiColorText2" />
+    <StaticResource x:Key="ToolBarSeparatorForeground" ResourceKey="SemiColorBorder" />
 </ResourceDictionary>

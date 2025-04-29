@@ -1,9 +1,9 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="TimelineHeaderForeground" Color="#F9F9F9" />
+    <StaticResource x:Key="TimelineHeaderForeground" ResourceKey="SemiColorText0" />
     <SolidColorBrush x:Key="DefaultTimelineIconForeground" Opacity="0.20" Color="White" />
-    <SolidColorBrush x:Key="OngoingTimelineIconForeground" Color="#54A9FF" />
-    <SolidColorBrush x:Key="SuccessTimelineIconForeground" Color="#5DC264" />
-    <SolidColorBrush x:Key="WarningTimelineIconForeground" Color="#FFAE43" />
-    <SolidColorBrush x:Key="ErrorTimelineIconForeground" Color="#FC725A" />
+    <StaticResource x:Key="OngoingTimelineIconForeground" ResourceKey="SemiColorPrimary" />
+    <StaticResource x:Key="SuccessTimelineIconForeground" ResourceKey="SemiColorSuccess" />
+    <StaticResource x:Key="WarningTimelineIconForeground" ResourceKey="SemiColorWarning" />
+    <StaticResource x:Key="ErrorTimelineIconForeground" ResourceKey="SemiColorDanger" />
     <SolidColorBrush x:Key="TimelineLineBrush" Opacity="0.20" Color="White" />
 </ResourceDictionary>
