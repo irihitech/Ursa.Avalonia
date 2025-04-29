@@ -72,22 +72,8 @@ public class Badge : HeaderedContentControl
     {
         base.OnApplyTemplate(e);
         _badgeContainer = e.NameScope.Find<Border>(PART_BadgeContainer);
+        _badgeContainer?.AddHandler(SizeChangedEvent, (_, _) => UpdateBadgePosition());
     }
-
-    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
-    {
-        base.OnAttachedToVisualTree(e);
-        ApplyTemplate();
-        _badgeContainer?.AddHandler(SizeChangedEvent, OnBadgeSizeChanged);
-    }
-
-    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
-    {
-        _badgeContainer?.RemoveHandler(SizeChangedEvent, OnBadgeSizeChanged);
-        base.OnDetachedFromVisualTree(e);
-    }
-
-    private void OnBadgeSizeChanged(object? sender, SizeChangedEventArgs e) => UpdateBadgePosition();
 
     private void UpdateBadgePosition()
     {
