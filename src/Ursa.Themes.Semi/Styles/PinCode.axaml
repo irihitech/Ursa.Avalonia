@@ -1,7 +1,7 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:u="https://irihi.tech/ursa"
-        xmlns:helpers="clr-namespace:Irihi.Avalonia.Shared.Helpers;assembly=Irihi.Avalonia.Shared">
+        xmlns:iri="https://irihi.tech/shared">
     <Style Selector="u|PinCode">
         <Style Selector="^ u|PinCodeItem:nth-last-child(n+2)">
             <Setter Property="Margin" Value="0 0 8 0" />
@@ -9,7 +9,7 @@
     </Style>
     <Style Selector="u|PinCode.Small">
         <Style Selector="^ u|PinCodeItem">
-            <Setter Property="helpers:ClassHelper.Classes" Value="Small" />
+            <Setter Property="iri:ClassHelper.Classes" Value="Small" />
             <Style Selector="^:nth-last-child(n+2)">
                 <Setter Property="Margin" Value="0 0 6 0" />
             </Style>
@@ -17,7 +17,7 @@
     </Style>
     <Style Selector="u|PinCode.Large">
         <Style Selector="^ u|PinCodeItem">
-            <Setter Property="helpers:ClassHelper.Classes" Value="Large" />
+            <Setter Property="iri:ClassHelper.Classes" Value="Large" />
             <Style Selector="^:nth-last-child(n+2)">
                 <Setter Property="Margin" Value="0 0 12 0" />
             </Style>

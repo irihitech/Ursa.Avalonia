@@ -2,7 +2,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa"
-    xmlns:helpers="clr-namespace:Irihi.Avalonia.Shared.Helpers;assembly=Irihi.Avalonia.Shared">
+    xmlns:iri="https://irihi.tech/shared">
     <Design.PreviewWith>
         <StackPanel Margin="20">
             <u:MessageBoxControl
@@ -128,24 +128,24 @@
         </Setter>
         <Style Selector="^ /template/ Button#PART_CancelButton">
             <Setter Property="Grid.Column" Value="0" />
-            <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
+            <Setter Property="iri:ClassHelper.Classes" Value="Tertiary" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_CANCEL}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_NoButton">
             <Setter Property="Grid.Column" Value="1" />
-            <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
+            <Setter Property="iri:ClassHelper.Classes" Value="Danger" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_NO}" />
             <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_YesButton">
             <Setter Property="Grid.Column" Value="2" />
-            <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
+            <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_YES}" />
             <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_OKButton">
             <Setter Property="Grid.Column" Value="3" />
-            <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
+            <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_OK}" />
             <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
         </Style>
@@ -282,24 +282,24 @@
         </Style>
         <Style Selector="^ /template/ Button#PART_CancelButton">
             <Setter Property="Grid.Column" Value="0" />
-            <Setter Property="helpers:ClassHelper.Classes" Value="Tertiary" />
+            <Setter Property="iri:ClassHelper.Classes" Value="Tertiary" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_CANCEL}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_NoButton">
             <Setter Property="Grid.Column" Value="1" />
-            <Setter Property="helpers:ClassHelper.Classes" Value="Danger" />
+            <Setter Property="iri:ClassHelper.Classes" Value="Danger" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_NO}" />
             <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_YesButton">
             <Setter Property="Grid.Column" Value="2" />
-            <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
+            <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_YES}" />
             <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_OKButton">
             <Setter Property="Grid.Column" Value="3" />
-            <Setter Property="helpers:ClassHelper.Classes" Value="Primary" />
+            <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_OK}" />
             <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
         </Style>

@@ -2,7 +2,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa"
-    xmlns:converters="clr-namespace:Ursa.Converters;assembly=Ursa">
+    xmlns:iri="https://irihi.tech/shared">
     <ControlTheme x:Key="{x:Type u:DualBadge}" TargetType="u:DualBadge">
         <Setter Property="CornerRadius" Value="{DynamicResource DualBadgeDefaultCornerRadius}" />
         <Setter Property="FontSize" Value="{DynamicResource DualBadgeDefaultFontSize}" />
@@ -33,7 +33,7 @@
                                 Height="{DynamicResource DualBadgeIconHeight}"
                                 IsVisible="{TemplateBinding Icon,Converter={x:Static ObjectConverters.IsNotNull}}"
                                 Foreground="{TemplateBinding IconForeground}"
-                                Margin="{TemplateBinding Padding, Converter={x:Static converters:ThicknessExcludeConverter.Right}}"
+                                Margin="{TemplateBinding Padding, Converter={iri:ThicknessMixerConverter 'Vertical,Left'}}"
                                 Content="{TemplateBinding Icon}"
                                 ContentTemplate="{TemplateBinding IconTemplate}" />
                             <ContentPresenter
