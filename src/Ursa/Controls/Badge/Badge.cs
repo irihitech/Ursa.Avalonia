@@ -70,10 +70,13 @@ public class Badge : HeaderedContentControl
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
+        _badgeContainer?.RemoveHandler(SizeChangedEvent, OnBadgeSizeChanged);
         base.OnApplyTemplate(e);
         _badgeContainer = e.NameScope.Find<Border>(PART_BadgeContainer);
-        _badgeContainer?.AddHandler(SizeChangedEvent, (_, _) => UpdateBadgePosition());
+        _badgeContainer?.AddHandler(SizeChangedEvent, OnBadgeSizeChanged);
     }
+
+    private void OnBadgeSizeChanged(object? sender, SizeChangedEventArgs e) => UpdateBadgePosition();
 
     private void UpdateBadgePosition()
     {
