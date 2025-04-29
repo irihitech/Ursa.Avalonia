@@ -1,4 +1,3 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="SelectionListIndicatorBackground" Color="#FF0A4694"></SolidColorBrush>
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="SelectionListIndicatorBackground" Color="#0A4694" />
 </ResourceDictionary>

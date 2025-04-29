@@ -1,9 +1,9 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="PaginationButtonDefaultForeground" Color="#FFF9F9F9" />
-    <SolidColorBrush x:Key="PaginationButtonSelectedForeground" Color="#FF54A9FF" />
-    <SolidColorBrush x:Key="PaginationButtonIconForeground" Opacity="0.6" Color="#FFF9F9F9" />
+    <SolidColorBrush x:Key="PaginationButtonDefaultForeground" Color="#F9F9F9" />
+    <SolidColorBrush x:Key="PaginationButtonSelectedForeground" Color="#54A9FF" />
+    <SolidColorBrush x:Key="PaginationButtonIconForeground" Opacity="0.6" Color="#F9F9F9" />
     <SolidColorBrush x:Key="PaginationButtonDefaultBackground" Color="Transparent" />
     <SolidColorBrush x:Key="PaginationButtonPointeroverBackground" Opacity="0.12" Color="White" />
     <SolidColorBrush x:Key="PaginationButtonPressedBackground" Opacity="0.16" Color="White" />
-    <SolidColorBrush x:Key="PaginationButtonSelectedBackground" Opacity="0.2" Color="#FF54A9FF" />
+    <SolidColorBrush x:Key="PaginationButtonSelectedBackground" Opacity="0.2" Color="#54A9FF" />
 </ResourceDictionary>

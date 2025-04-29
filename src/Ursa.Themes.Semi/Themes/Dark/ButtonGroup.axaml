@@ -75,6 +75,6 @@
     <SolidColorBrush x:Key="ButtonGroupSolidDangerPointeroverBorderBrush" Color="#FD9983" />
     <SolidColorBrush x:Key="ButtonGroupSolidDangerPressedBorderBrush" Color="#FDBEAC" />
 
-    <SolidColorBrush x:Key="ButtonGroupSolidDisabledBorderBrush" Color="#FF2E3238" />
+    <SolidColorBrush x:Key="ButtonGroupSolidDisabledBorderBrush" Color="#2E3238" />
     <!--  end Solid  -->
 </ResourceDictionary>

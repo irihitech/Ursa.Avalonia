@@ -1,13 +1,13 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="BannerInformationBackground" Color="#FF54A9FF" Opacity="0.2" />
-    <SolidColorBrush x:Key="BannerInformationBorderBrush" Color="#FF54A9FF" />
-    <SolidColorBrush x:Key="BannerSuccessBackground" Color="#FF5DC264" Opacity="0.2" />
-    <SolidColorBrush x:Key="BannerSuccessBorderBrush" Color="#FF5DC264" />
-    <SolidColorBrush x:Key="BannerWarningBackground" Color="#FFFFAE43" Opacity="0.2" />
-    <SolidColorBrush x:Key="BannerWarningBorderBrush" Color="#FFFFAE43" />
-    <SolidColorBrush x:Key="BannerErrorBackground" Color="#FFFC725A" Opacity="0.2" />
-    <SolidColorBrush x:Key="BannerErrorBorderBrush" Color="#FFFC725A" />
+    <SolidColorBrush x:Key="BannerInformationBackground" Opacity="0.2" Color="#54A9FF" />
+    <SolidColorBrush x:Key="BannerInformationBorderBrush" Color="#54A9FF" />
+    <SolidColorBrush x:Key="BannerSuccessBackground" Opacity="0.2" Color="#5DC264" />
+    <SolidColorBrush x:Key="BannerSuccessBorderBrush" Color="#5DC264" />
+    <SolidColorBrush x:Key="BannerWarningBackground" Opacity="0.2" Color="#FFAE43" />
+    <SolidColorBrush x:Key="BannerWarningBorderBrush" Color="#FFAE43" />
+    <SolidColorBrush x:Key="BannerErrorBackground" Opacity="0.2" Color="#FC725A" />
+    <SolidColorBrush x:Key="BannerErrorBorderBrush" Color="#FC725A" />
 
-    <SolidColorBrush x:Key="BannerCloseButtonForeground" Opacity="0.6" Color="#FFF9F9F9" />
+    <SolidColorBrush x:Key="BannerCloseButtonForeground" Opacity="0.6" Color="#F9F9F9" />
     <SolidColorBrush x:Key="BannerBorderBrush" Color="Transparent" />
 </ResourceDictionary>
