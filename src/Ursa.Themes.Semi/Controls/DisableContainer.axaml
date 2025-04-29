@@ -2,7 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:u="https://irihi.tech/ursa"
                     xmlns:iri="https://irihi.tech/shared">
-    <!-- Add Resources Here -->
     <ControlTheme TargetType="u:DisableContainer" x:Key="{x:Type u:DisableContainer}">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:DisableContainer">

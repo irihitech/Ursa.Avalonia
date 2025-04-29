@@ -1,33 +1,25 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:u="https://irihi.tech/ursa"
-        xmlns:theme="https://irihi.tech/ursa/themes/semi"
         xmlns:helpers="clr-namespace:Irihi.Avalonia.Shared.Helpers;assembly=Irihi.Avalonia.Shared">
-    <Design.PreviewWith>
-        <Border Padding="20">
-            <!-- Add Controls for Previewer Here -->
-        </Border>
-    </Design.PreviewWith>
-
-    <!-- Add Styles Here -->
     <Style Selector="u|PinCode">
         <Style Selector="^ u|PinCodeItem:nth-last-child(n+2)">
-            <Setter Property="Margin" Value="0 0 8 0"></Setter>
+            <Setter Property="Margin" Value="0 0 8 0" />
         </Style>
     </Style>
     <Style Selector="u|PinCode.Small">
         <Style Selector="^ u|PinCodeItem">
-            <Setter Property="helpers:ClassHelper.Classes" Value="Small"></Setter>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Small" />
             <Style Selector="^:nth-last-child(n+2)">
-                <Setter Property="Margin" Value="0 0 6 0"></Setter>
+                <Setter Property="Margin" Value="0 0 6 0" />
             </Style>
         </Style>
     </Style>
     <Style Selector="u|PinCode.Large">
         <Style Selector="^ u|PinCodeItem">
-            <Setter Property="helpers:ClassHelper.Classes" Value="Large"></Setter>
+            <Setter Property="helpers:ClassHelper.Classes" Value="Large" />
             <Style Selector="^:nth-last-child(n+2)">
-                <Setter Property="Margin" Value="0 0 12 0"></Setter>
+                <Setter Property="Margin" Value="0 0 12 0" />
             </Style>
         </Style>
     </Style>

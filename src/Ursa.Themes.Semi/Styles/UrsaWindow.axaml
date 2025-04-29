@@ -1,18 +1,12 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:u="https://irihi.tech/ursa">
-    <Design.PreviewWith>
-        <Border Padding="20">
-            <!-- Add Controls for Previewer Here -->
-        </Border>
-    </Design.PreviewWith>
-
     <Style Selector=":is(u|UrsaWindow)[ExtendClientAreaToDecorationsHint=True] u|WindowNotificationManager">
         <Style Selector="^:topright">
-            <Setter Property="Margin" Value="0 36 0 0"></Setter>
+            <Setter Property="Margin" Value="0 36 0 0" />
         </Style>
     </Style>
     <Style Selector=":is(u|UrsaWindow)[ExtendClientAreaToDecorationsHint=True] u|WindowToastManager">
-        <Setter Property="Margin" Value="0 36 0 0"></Setter>
+        <Setter Property="Margin" Value="0 36 0 0" />
     </Style>
 </Styles>

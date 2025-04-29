@@ -4,7 +4,6 @@
     xmlns:contracts="https://irihi.tech/shared"
     xmlns:u="https://irihi.tech/ursa"
     x:CompileBindings="True">
-    <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:DateRangePicker}" TargetType="u:DateRangePicker">
         <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}" />

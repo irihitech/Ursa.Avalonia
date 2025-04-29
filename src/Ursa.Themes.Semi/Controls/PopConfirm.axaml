@@ -2,7 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:u="https://irihi.tech/ursa"
                     xmlns:helpers="clr-namespace:Irihi.Avalonia.Shared.Helpers;assembly=Irihi.Avalonia.Shared">
-    <!-- Add Resources Here -->
     <ControlTheme x:Key="{x:Type u:PopConfirm}"
                   TargetType="u:PopConfirm">
         <Setter Property="Placement" Value="BottomEdgeAlignedLeft" />

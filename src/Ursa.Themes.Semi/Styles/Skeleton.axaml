@@ -2,13 +2,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:u="https://irihi.tech/ursa"
         xmlns:iri="https://irihi.tech/shared">
-    <Design.PreviewWith>
-        <Border Padding="20">
-            <!-- Add Controls for Previewer Here -->
-        </Border>
-    </Design.PreviewWith>
-
-    <!-- Add Styles Here -->
     <Style Selector="u|Skeleton[IsActive=True][IsLoading=True] /template/ iri|PureRectangle#PART_ActiveBorder">
         <Style.Animations>
             <Animation

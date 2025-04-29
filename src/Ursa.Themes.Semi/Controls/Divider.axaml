@@ -7,7 +7,6 @@
             <u:Divider Content="Hello" />
         </StackPanel>
     </Design.PreviewWith>
-    <!--  Add Resources Here  -->
     <ControlTheme x:Key="DividerLeftLine" TargetType="{x:Type Rectangle}">
         <Setter Property="Rectangle.Fill" Value="{DynamicResource DividerBorderBrush}" />
         <Setter Property="Rectangle.Height" Value="{DynamicResource SizeDividerWidth}" />
