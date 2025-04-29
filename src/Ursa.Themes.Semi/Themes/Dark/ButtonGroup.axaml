@@ -18,8 +18,7 @@
     <SolidColorBrush x:Key="ButtonGroupDefaultDisabledBorderBrush" Color="Transparent" />
     <!--  end Light  -->
     <!--  Solid  -->
-    <SolidColorBrush x:Key="ButtonGroupSolidForeground" Color="White" />
-    <SolidColorBrush x:Key="ButtonGroupSolidDisabledForeground" Color="Gray" />
+    <StaticResource x:Key="ButtonGroupSolidForeground" ResourceKey="SemiColorWhite" />
     <StaticResource x:Key="ButtonGroupSolidPrimaryBackground" ResourceKey="SemiColorPrimary" />
     <StaticResource x:Key="ButtonGroupSolidPrimaryPointeroverBackground" ResourceKey="SemiColorPrimaryPointerover" />
     <StaticResource x:Key="ButtonGroupSolidPrimaryPressedBackground" ResourceKey="SemiColorPrimaryActive" />
@@ -38,7 +37,6 @@
     <StaticResource x:Key="ButtonGroupSolidDangerBackground" ResourceKey="SemiColorDanger" />
     <StaticResource x:Key="ButtonGroupSolidDangerPointeroverBackground" ResourceKey="SemiColorDangerPointerover" />
     <StaticResource x:Key="ButtonGroupSolidDangerPressedBackground" ResourceKey="SemiColorDangerActive" />
-    <SolidColorBrush x:Key="ButtonGroupSolidDisabledBackground" Color="Gray" />
     <StaticResource x:Key="ButtonGroupSolidPrimaryBorderBrush" ResourceKey="SemiColorPrimary" />
     <StaticResource x:Key="ButtonGroupSolidPrimaryPointeroverBorderBrush" ResourceKey="SemiColorPrimaryPointerover" />
     <StaticResource x:Key="ButtonGroupSolidPrimaryPressedBorderBrush" ResourceKey="SemiColorPrimaryActive" />
@@ -57,6 +55,5 @@
     <StaticResource x:Key="ButtonGroupSolidDangerBorderBrush" ResourceKey="SemiColorDanger" />
     <StaticResource x:Key="ButtonGroupSolidDangerPointeroverBorderBrush" ResourceKey="SemiColorDangerPointerover" />
     <StaticResource x:Key="ButtonGroupSolidDangerPressedBorderBrush" ResourceKey="SemiColorDangerActive" />
-    <StaticResource x:Key="ButtonGroupSolidDisabledBorderBrush" ResourceKey="SemiColorDisabledBackground" />
     <!--  end Solid  -->
 </ResourceDictionary>

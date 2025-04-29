@@ -9,7 +9,7 @@
     <StaticResource x:Key="CalenderDayPointeroverBackground" ResourceKey="SemiColorFill0" />
     <StaticResource x:Key="CalenderDayPressedBackground" ResourceKey="SemiColorFill1" />
     <StaticResource x:Key="CalenderDaySelectedBackground" ResourceKey="SemiColorPrimary" />
-    <SolidColorBrush x:Key="CalenderDaySelectedForeground" Color="White" />
+    <StaticResource x:Key="CalenderDaySelectedForeground" ResourceKey="SemiColorWhite" />
     <StaticResource x:Key="CalenderDaySelectedPointeroverBackground" ResourceKey="SemiColorPrimaryPointerover" />
     <StaticResource x:Key="CalenderDaySelectedPressedBackground" ResourceKey="SemiColorPrimaryActive" />
     <StaticResource x:Key="CalendarDayInRangeForeground" ResourceKey="SemiColorText0" />
@@ -29,7 +29,7 @@
     <StaticResource x:Key="CalenderYearPointeroverBackground" ResourceKey="SemiColorFill0" />
     <StaticResource x:Key="CalenderYearPressedBackground" ResourceKey="SemiColorFill1" />
     <StaticResource x:Key="CalenderYearSelectedBackground" ResourceKey="SemiColorPrimary" />
-    <SolidColorBrush x:Key="CalenderYearSelectedForeground" Color="White" />
+    <StaticResource x:Key="CalenderYearSelectedForeground" ResourceKey="SemiColorWhite" />
     <StaticResource x:Key="CalenderYearSelectedPointeroverBackground" ResourceKey="SemiColorPrimaryPointerover" />
     <!--CalenderView-->
     <SolidColorBrush x:Key="CalenderViewBackground" Color="Transparent" />

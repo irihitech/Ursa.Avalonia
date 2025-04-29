@@ -1,5 +1,5 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <BoxShadows x:Key="NotificationCardBoxShadows">inset 0 0 0 1 #1AFFFFFF, 0 4 14 0 #40000000</BoxShadows>
+    <StaticResource x:Key="NotificationCardBoxShadows" ResourceKey="SemiShadowElevated" />
     <StaticResource x:Key="NotificationCardLightBackground" ResourceKey="SemiColorBackground0" />
     <StaticResource x:Key="NotificationCardLightInformationBorderBrush" ResourceKey="SemiColorPrimary" />
     <StaticResource x:Key="NotificationCardLightInformationBackground" ResourceKey="SemiColorPrimaryLight" />
