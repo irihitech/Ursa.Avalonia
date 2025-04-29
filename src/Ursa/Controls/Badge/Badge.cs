@@ -2,7 +2,6 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
-using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Styling;
 using Ursa.Common;
@@ -67,7 +66,6 @@ public class Badge : HeaderedContentControl
     {
         CornerPositionProperty.Changed.AddClassHandler<Badge>((badge, _) => badge.UpdateBadgePosition());
         DotProperty.Changed.AddClassHandler<Badge>((badge, _) => badge.UpdateBadgePosition());
-        AffectsArrange<Badge>(HeaderProperty, HeaderTemplateProperty);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -76,18 +74,20 @@ public class Badge : HeaderedContentControl
         _badgeContainer = e.NameScope.Find<Border>(PART_BadgeContainer);
     }
 
-    protected override void OnLoaded(RoutedEventArgs e)
+    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
-        base.OnLoaded(e);
-        UpdateBadgePosition();
+        base.OnAttachedToVisualTree(e);
+        ApplyTemplate();
+        _badgeContainer?.AddHandler(SizeChangedEvent, OnBadgeSizeChanged);
     }
 
-    protected override Size ArrangeOverride(Size finalSize)
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
     {
-        var size = base.ArrangeOverride(finalSize);
-        UpdateBadgePosition();
-        return size;
+        _badgeContainer?.RemoveHandler(SizeChangedEvent, OnBadgeSizeChanged);
+        base.OnDetachedFromVisualTree(e);
     }
+
+    private void OnBadgeSizeChanged(object? sender, SizeChangedEventArgs e) => UpdateBadgePosition();
 
     private void UpdateBadgePosition()
     {
