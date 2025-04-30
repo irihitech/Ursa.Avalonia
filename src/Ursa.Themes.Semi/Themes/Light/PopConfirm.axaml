@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="PopConfirmBackground">White</SolidColorBrush>
-    <SolidColorBrush x:Key="PopConfirmBorderBrush" Opacity="0.08" Color="#1C1F23" />
-    <SolidColorBrush x:Key="PopConfirmContentForeground" Opacity="0.62" Color="#1C1F23" />
-    <BoxShadows x:Key="PopConfirmBorderBoxShadows">0 0 1 #4A000000, 0 4 14 #1A000000</BoxShadows>
+    <StaticResource x:Key="PopConfirmBackground" ResourceKey="SemiColorBackground3" />
+    <StaticResource x:Key="PopConfirmBorderBrush" ResourceKey="SemiColorBorder" />
+    <StaticResource x:Key="PopConfirmContentForeground" ResourceKey="SemiColorText2" />
+    <StaticResource x:Key="PopConfirmBorderBoxShadows" ResourceKey="SemiShadowElevated" />
 </ResourceDictionary>

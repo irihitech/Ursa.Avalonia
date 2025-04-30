@@ -1,19 +1,19 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="AvatarForeground" Color="White" />
-    <SolidColorBrush x:Key="AvatarRedBackground" Color="#FB9078" />
-    <SolidColorBrush x:Key="AvatarPinkBackground" Color="#F27396" />
-    <SolidColorBrush x:Key="AvatarPurpleBackground" Color="#C96FD1" />
-    <SolidColorBrush x:Key="AvatarVioletBackground" Color="#A67FDD" />
-    <SolidColorBrush x:Key="AvatarIndigoBackground" Color="#8090D3" />
-    <SolidColorBrush x:Key="AvatarBlueBackground" Color="#65B2FC" />
-    <SolidColorBrush x:Key="AvatarLightBlueBackground" Color="#62C3F5" />
-    <SolidColorBrush x:Key="AvatarCyanBackground" Color="#58CBD3" />
-    <SolidColorBrush x:Key="AvatarTealBackground" Color="#54D1C1" />
-    <SolidColorBrush x:Key="AvatarGreenBackground" Color="#7DD182" />
-    <SolidColorBrush x:Key="AvatarLightGreenBackground" Color="#ADD37E" />
-    <SolidColorBrush x:Key="AvatarLimeBackground" Color="#B7E35B" />
-    <SolidColorBrush x:Key="AvatarYellowBackground" Color="#FCE865" />
-    <SolidColorBrush x:Key="AvatarAmberBackground" Color="#F6D86F" />
-    <SolidColorBrush x:Key="AvatarOrangeBackground" Color="#FDC165" />
-    <SolidColorBrush x:Key="AvatarGreyBackground" Color="#A7ABB0" />
+    <StaticResource x:Key="AvatarForeground" ResourceKey="SemiColorWhite" />
+    <StaticResource x:Key="AvatarRedBackground" ResourceKey="SemiRed3" />
+    <StaticResource x:Key="AvatarPinkBackground" ResourceKey="SemiPink3" />
+    <StaticResource x:Key="AvatarPurpleBackground" ResourceKey="SemiPurple3" />
+    <StaticResource x:Key="AvatarVioletBackground" ResourceKey="SemiViolet3" />
+    <StaticResource x:Key="AvatarIndigoBackground" ResourceKey="SemiIndigo3" />
+    <StaticResource x:Key="AvatarBlueBackground" ResourceKey="SemiBlue3" />
+    <StaticResource x:Key="AvatarLightBlueBackground" ResourceKey="SemiLightBlue3" />
+    <StaticResource x:Key="AvatarCyanBackground" ResourceKey="SemiCyan3" />
+    <StaticResource x:Key="AvatarTealBackground" ResourceKey="SemiTeal3" />
+    <StaticResource x:Key="AvatarGreenBackground" ResourceKey="SemiGreen3" />
+    <StaticResource x:Key="AvatarLightGreenBackground" ResourceKey="SemiLightGreen3" />
+    <StaticResource x:Key="AvatarLimeBackground" ResourceKey="SemiLime3" />
+    <StaticResource x:Key="AvatarYellowBackground" ResourceKey="SemiYellow3" />
+    <StaticResource x:Key="AvatarAmberBackground" ResourceKey="SemiAmber3" />
+    <StaticResource x:Key="AvatarOrangeBackground" ResourceKey="SemiOrange3" />
+    <StaticResource x:Key="AvatarGreyBackground" ResourceKey="SemiGrey3" />
 </ResourceDictionary>

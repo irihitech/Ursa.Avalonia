@@ -1,5 +1,5 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <StaticResource x:Key="ClosableTagBackground" ResourceKey="SemiColorTertiary" />
-    <StaticResource x:Key="ClosableTagForeground" ResourceKey="SemiGrey8" />
-    <StaticResource x:Key="ClosableTagBorder" ResourceKey="SemiColorBorder" />
+    <StaticResource x:Key="ClosableTagForeground" ResourceKey="SemiColorText0" />
+    <StaticResource x:Key="ClosableTagBackground" ResourceKey="SemiColorBackground4" />
+    <SolidColorBrush x:Key="ClosableTagBorder" Opacity="0.7" Color="{StaticResource SemiGrey2Color}" />
 </ResourceDictionary>

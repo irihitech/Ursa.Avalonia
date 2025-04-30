@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="DualBadgeDefaultIconForeground">White</SolidColorBrush>
-    <SolidColorBrush x:Key="DualBadgeDefaultHeaderForeground">White</SolidColorBrush>
-    <SolidColorBrush x:Key="DualBadgeDefaultForeground">White</SolidColorBrush>
+    <StaticResource x:Key="DualBadgeDefaultIconForeground" ResourceKey="SemiColorWhite" />
+    <StaticResource x:Key="DualBadgeDefaultHeaderForeground" ResourceKey="SemiColorWhite" />
+    <StaticResource x:Key="DualBadgeDefaultForeground" ResourceKey="SemiColorWhite" />
     <LinearGradientBrush x:Key="DualBadgeDefaultHeaderBackground" StartPoint="0%,0%" EndPoint="0%,100%">
         <GradientStop Color="#555B61" Offset="0" />
         <GradientStop Color="#41464C" Offset="1" />
