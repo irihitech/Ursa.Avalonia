@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="ClockHandBrush" Color="{StaticResource HighlightColor}" />
-    <SolidColorBrush x:Key="ClockHourTickForeground" Color="{StaticResource HotlightColor}" />
-    <SolidColorBrush x:Key="ClockMinuteTickForeground" Color="{StaticResource HotlightColor}" />
-    <SolidColorBrush x:Key="ClockArborFill" Color="{StaticResource ButtonFaceColor}" />
-    <SolidColorBrush x:Key="ClockArborStroke" Color="{StaticResource ButtonTextColor}" />
+    <StaticResource x:Key="ClockHandBrush" ResourceKey="SemiColorHighlight" />
+    <StaticResource x:Key="ClockHourTickForeground" ResourceKey="SemiColorHotlight" />
+    <StaticResource x:Key="ClockMinuteTickForeground" ResourceKey="SemiColorHotlight" />
+    <StaticResource x:Key="ClockArborFill" ResourceKey="SemiColorButtonFace" />
+    <StaticResource x:Key="ClockArborStroke" ResourceKey="SemiColorButtonText" />
 </ResourceDictionary>
