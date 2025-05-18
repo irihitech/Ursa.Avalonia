@@ -22,7 +22,7 @@
                         <Color>#FF98CDFD</Color>
                         <Color>#FF95D8F8</Color>
                     </collections:AvaloniaList>
-                    <LinearGradientBrush x:Key="TileTitleForeground" StartPoint="">
+                    <LinearGradientBrush x:Key="TileTitleForeground">
                         <GradientStop Offset="0.0" Color="#FFA20B48" />
                         <GradientStop Offset="0.3" Color="#FF71168A" />
                         <GradientStop Offset="0.6" Color="#FF46259E" />
