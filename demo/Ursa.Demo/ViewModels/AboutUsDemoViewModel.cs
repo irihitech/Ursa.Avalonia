@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Avalonia.Platform.Storage;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+
+namespace Ursa.Demo.ViewModels;
+
+public partial class AboutUsDemoViewModel: ObservableObject
+{
+    public ICommand NavigateCommand { get; set; }
+    
+    internal ILauncher? Launcher { get; set; }
+
+    public AboutUsDemoViewModel()
+    {
+        NavigateCommand = new AsyncRelayCommand<string>(OnNavigateAsync);
+    }
+
+    private static readonly IReadOnlyDictionary<string, string> _keyToUrlMapping = new Dictionary<string, string>()
+    {
+        ["semi"] = "https://github.com/irihitech/Semi.Avalonia",
+        ["ursa"] = "https://github.com/irihitech/Ursa.Avalonia",
+        ["mantra"] = "https://www.bilibili.com/video/BV15pfKYbEEQ",
+    };
+
+    private async Task OnNavigateAsync(string? arg)
+    {
+        if (Launcher is not null && arg is not null && _keyToUrlMapping.TryGetValue(arg.ToLower(), out var uri))
+        {
+            await Launcher.LaunchUriAsync(new Uri(uri));
+        }
+        
+    }
+}

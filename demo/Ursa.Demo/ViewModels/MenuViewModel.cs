@@ -9,6 +9,7 @@ public class MenuViewModel : ViewModelBase
         MenuItems = new ObservableCollection<MenuItemViewModel>
         {
             new() { MenuHeader = "Introduction", Key = MenuKeys.MenuKeyIntroduction, IsSeparator = false },
+            new() { MenuHeader = "About Us", Key = MenuKeys.MenuKeyAboutUs, IsSeparator = false },
             new() { MenuHeader = "Controls", IsSeparator = true },
             new()
             {
@@ -102,6 +103,7 @@ public class MenuViewModel : ViewModelBase
 public static class MenuKeys
 {
     public const string MenuKeyIntroduction = "Introduction";
+    public const string MenuKeyAboutUs = "AboutUs";
     public const string MenuKeyAutoCompleteBox = "AutoCompleteBox";
     public const string MenuKeyAvatar = "Avatar";
     public const string MenuKeyBadge = "Badge";
