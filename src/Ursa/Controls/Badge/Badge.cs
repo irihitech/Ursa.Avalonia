@@ -101,7 +101,7 @@ public class Badge : HeaderedContentControl
         set => SetValue(BadgeFontSizeProperty, value);
     }
 
-    /// <inheirtdoc/>
+    /// <inheritdoc/>
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         _badgeContainer?.RemoveHandler(SizeChangedEvent, OnBadgeSizeChanged);
