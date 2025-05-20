@@ -3,7 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:iri="https://irihi.tech/shared"
     xmlns:u="https://irihi.tech/ursa">
-    <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:Marquee}" TargetType="u:Marquee">
         <Setter Property="Template">
             <ControlTemplate>

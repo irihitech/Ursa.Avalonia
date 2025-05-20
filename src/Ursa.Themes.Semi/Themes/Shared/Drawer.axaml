@@ -1,6 +1,5 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!-- Add Resources Here -->
     <CornerRadius x:Key="DrawerCornerRadius">12</CornerRadius>
     <Thickness x:Key="DrawerMargin">8</Thickness>
     <Thickness x:Key="DrawerBorderThickness">1</Thickness>

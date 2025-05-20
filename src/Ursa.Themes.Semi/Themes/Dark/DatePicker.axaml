@@ -2,41 +2,35 @@
     <!--CalenderDayButton-->
     <SolidColorBrush x:Key="CalenderDayBackground" Color="Transparent" />
     <SolidColorBrush x:Key="CalenderDayBorderBrush" Color="Transparent" />
-    <SolidColorBrush x:Key="CalenderDayInRangeBackground" Opacity="0.2" Color="#54A9FF" />
-    <SolidColorBrush x:Key="CalenderDayTodayBackground" Opacity="0.12" Color="White" />
-    <SolidColorBrush x:Key="CalenderDayTodayForeground" Color="#54A9FF" />
-    <SolidColorBrush x:Key="CalenderDayNotCurrentMonthForeground" Opacity="0.6" Color="#F9F9F9" />
-    <SolidColorBrush x:Key="CalenderDayPointeroverBackground" Opacity="0.12" Color="White" />
-    <SolidColorBrush x:Key="CalenderDayPressedBackground" Opacity="0.16" Color="White" />
-
-    <SolidColorBrush x:Key="CalenderDaySelectedBackground" Color="#54A9FF" />
-    <SolidColorBrush x:Key="CalenderDaySelectedForeground" Color="White" />
-    <SolidColorBrush x:Key="CalenderDaySelectedPointeroverBackground" Color="#7FC1FF" />
-    <SolidColorBrush x:Key="CalenderDaySelectedPressedBackground" Color="#A9D7FF" />
-    <SolidColorBrush x:Key="CalendarDayInRangeForeground" Color="#F9F9F9" />
-
-    <SolidColorBrush x:Key="CalenderDayStartEndDateBackground" Color="#54A9FF" />
-    <SolidColorBrush x:Key="CalenderDayStartEndDateBorderBrush" Color="#54A9FF" />
-    <SolidColorBrush x:Key="CalenderDayStartEndDatePointeroverBackground" Color="#7FC1FF" />
-    <SolidColorBrush x:Key="CalenderDayStartEndDatePressedBackground" Color="#A9D7FF" />
-    <SolidColorBrush x:Key="CalenderDayStartEndDateInRangeBackground" Color="#A9D7FF" />
-
-    <SolidColorBrush x:Key="CalenderDayPreviewStartEndDateBackground" Opacity="0.3" Color="#54A9FF" />
-    <SolidColorBrush x:Key="CalenderDayPreviewStartEndDatePressedBackground" Opacity="0.4" Color="#54A9FF" />
-
-    <SolidColorBrush x:Key="CalenderDayBlackoutForeground" Opacity="0.35" Color="#F9F9F9" />
-    <SolidColorBrush x:Key="CalenderDayBlackoutBackground" Opacity="0.04" Color="#E6E8EA" />
-    <SolidColorBrush x:Key="CalenderDayBlackoutTodayBackground" Color="#135CB8" />
-
+    <StaticResource x:Key="CalenderDayInRangeBackground" ResourceKey="SemiColorPrimaryLight" />
+    <StaticResource x:Key="CalenderDayTodayBackground" ResourceKey="SemiColorFill0" />
+    <StaticResource x:Key="CalenderDayTodayForeground" ResourceKey="SemiColorPrimary" />
+    <StaticResource x:Key="CalenderDayNotCurrentMonthForeground" ResourceKey="SemiColorText2" />
+    <StaticResource x:Key="CalenderDayPointeroverBackground" ResourceKey="SemiColorFill0" />
+    <StaticResource x:Key="CalenderDayPressedBackground" ResourceKey="SemiColorFill1" />
+    <StaticResource x:Key="CalenderDaySelectedBackground" ResourceKey="SemiColorPrimary" />
+    <StaticResource x:Key="CalenderDaySelectedForeground" ResourceKey="SemiColorWhite" />
+    <StaticResource x:Key="CalenderDaySelectedPointeroverBackground" ResourceKey="SemiColorPrimaryPointerover" />
+    <StaticResource x:Key="CalenderDaySelectedPressedBackground" ResourceKey="SemiColorPrimaryActive" />
+    <StaticResource x:Key="CalendarDayInRangeForeground" ResourceKey="SemiColorText0" />
+    <StaticResource x:Key="CalenderDayStartEndDateBackground" ResourceKey="SemiColorPrimary" />
+    <StaticResource x:Key="CalenderDayStartEndDateBorderBrush" ResourceKey="SemiColorPrimary" />
+    <StaticResource x:Key="CalenderDayStartEndDatePointeroverBackground" ResourceKey="SemiColorPrimaryPointerover" />
+    <StaticResource x:Key="CalenderDayStartEndDatePressedBackground" ResourceKey="SemiColorPrimaryActive" />
+    <StaticResource x:Key="CalenderDayStartEndDateInRangeBackground" ResourceKey="SemiColorPrimaryActive" />
+    <StaticResource x:Key="CalenderDayPreviewStartEndDateBackground" ResourceKey="SemiColorPrimaryLightPointerover" />
+    <StaticResource x:Key="CalenderDayPreviewStartEndDatePressedBackground" ResourceKey="SemiColorPrimaryLightActive" />
+    <StaticResource x:Key="CalenderDayBlackoutForeground" ResourceKey="SemiColorDisabledText" />
+    <StaticResource x:Key="CalenderDayBlackoutBackground" ResourceKey="SemiColorDisabledFill" />
+    <StaticResource x:Key="CalenderDayBlackoutTodayBackground" ResourceKey="SemiColorPrimaryDisabled" />
     <!--CalenderYearButton-->
     <SolidColorBrush x:Key="CalenderYearBackground" Color="Transparent" />
     <SolidColorBrush x:Key="CalenderYearBorderBrush" Color="Transparent" />
-    <SolidColorBrush x:Key="CalenderYearPointeroverBackground" Opacity="0.12" Color="White" />
-    <SolidColorBrush x:Key="CalenderYearPressedBackground" Opacity="0.16" Color="White" />
-    <SolidColorBrush x:Key="CalenderYearSelectedBackground" Color="#54A9FF" />
-    <SolidColorBrush x:Key="CalenderYearSelectedForeground" Color="White" />
-    <SolidColorBrush x:Key="CalenderYearSelectedPointeroverBackground" Color="#7FC1FF" />
-
+    <StaticResource x:Key="CalenderYearPointeroverBackground" ResourceKey="SemiColorFill0" />
+    <StaticResource x:Key="CalenderYearPressedBackground" ResourceKey="SemiColorFill1" />
+    <StaticResource x:Key="CalenderYearSelectedBackground" ResourceKey="SemiColorPrimary" />
+    <StaticResource x:Key="CalenderYearSelectedForeground" ResourceKey="SemiColorWhite" />
+    <StaticResource x:Key="CalenderYearSelectedPointeroverBackground" ResourceKey="SemiColorPrimaryPointerover" />
     <!--CalenderView-->
     <SolidColorBrush x:Key="CalenderViewBackground" Color="Transparent" />
 </ResourceDictionary>

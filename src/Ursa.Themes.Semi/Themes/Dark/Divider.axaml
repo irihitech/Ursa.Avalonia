@@ -1,4 +1,3 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!--  Add Resources Here  -->
-    <SolidColorBrush x:Key="DividerBorderBrush" Opacity="0.2" Color="White" />
+    <StaticResource x:Key="DividerBorderBrush" ResourceKey="SemiColorFill2" />
 </ResourceDictionary>

@@ -4,7 +4,6 @@
     xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters"
     xmlns:iri="https://irihi.tech/shared"
     xmlns:u="clr-namespace:Ursa.Controls;assembly=Ursa">
-    <!--  Add Resources Here  -->
     <Design.PreviewWith>
         <StackPanel Margin="20">
             <u:LoadingIcon Classes="Large"/>

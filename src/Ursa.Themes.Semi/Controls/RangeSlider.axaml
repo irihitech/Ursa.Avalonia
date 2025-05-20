@@ -2,7 +2,6 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
-    <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:RangeSlider}" TargetType="u:RangeSlider">
         <Setter Property="Background" Value="{DynamicResource SliderTrackBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource SliderTrackForeground}" />

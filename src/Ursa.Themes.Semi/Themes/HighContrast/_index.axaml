@@ -13,7 +13,6 @@
         <ResourceInclude Source="SelectionList.axaml" />
         <ResourceInclude Source="TagInput.axaml" />
         <ResourceInclude Source="Timeline.axaml" />
-        <ResourceInclude Source="Toast.axaml" />
         <ResourceInclude Source="ToolBar.axaml" />
         <ResourceInclude Source="TwoTonePathIcon.axaml" />
     </ResourceDictionary.MergedDictionaries>

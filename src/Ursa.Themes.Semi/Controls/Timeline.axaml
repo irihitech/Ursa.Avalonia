@@ -14,7 +14,6 @@
             </u:Timeline>
         </StackPanel>
     </Design.PreviewWith>
-    <!--  Add Resources Here  -->
     <u:TimelineFormatConverter x:Key="FormatConverter" />
     <ControlTheme x:Key="{x:Type u:Timeline}" TargetType="u:Timeline">
         <Setter Property="Template">

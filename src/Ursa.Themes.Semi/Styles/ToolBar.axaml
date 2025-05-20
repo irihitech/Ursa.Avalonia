@@ -1,26 +1,20 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:u="https://irihi.tech/ursa">
-    <Design.PreviewWith>
-        <Border Padding="20">
-            <!-- Add Controls for Previewer Here -->
-        </Border>
-    </Design.PreviewWith>
     <Style Selector="u|ToolBar Button">
-        <Setter Property="Theme" Value="{DynamicResource BorderlessButton}"></Setter>
+        <Setter Property="Theme" Value="{DynamicResource BorderlessButton}" />
         <Setter Property="FontWeight" Value="Regular" />
-        <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
     </Style>
     <Style Selector="u|ToolBar CheckBox">
         <Setter Property="Margin" Value="8 0" />
     </Style>
     <Style Selector="u|ToolBar ToggleButton">
         <Setter Property="FontWeight" Value="Regular" />
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}"/>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
     </Style>
     <Style Selector="u|ToolBar ComboBox">
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
     </Style>
-    <!-- Add Styles Here -->
 </Styles>

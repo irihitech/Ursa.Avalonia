@@ -7,7 +7,6 @@
             <u:PaginationButton Page="3" />
         </StackPanel>
     </Design.PreviewWith>
-    <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:Pagination}" TargetType="u:Pagination">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Pagination">

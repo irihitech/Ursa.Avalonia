@@ -1,10 +1,8 @@
-<Styles
-    xmlns="https://github.com/avaloniaui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:u="https://irihi.tech/ursa">
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
         <Border Padding="20">
-            <!--  Add Controls for Previewer Here  -->
             <u:ButtonGroup Classes="Primary Solid">
                 <Button Content="Hello" />
                 <Button Content="Avalonia" />
@@ -14,7 +12,6 @@
         </Border>
     </Design.PreviewWith>
 
-    <!--  Add Styles Here  -->
     <Style Selector="u|ButtonGroup Button:nth-last-child(1) /template/ Rectangle#PART_Separator">
         <Setter Property="IsVisible" Value="False" />
     </Style>
@@ -126,5 +123,4 @@
             <Setter Property="Background" Value="{DynamicResource ButtonGroupSolidDangerPressedBackground}" />
         </Style>
     </Style>
-
 </Styles>

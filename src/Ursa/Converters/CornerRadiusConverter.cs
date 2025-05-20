@@ -4,6 +4,7 @@ using Avalonia.Data.Converters;
 
 namespace Ursa.Converters;
 
+[Obsolete("This converter is deprecated. Use CornerRadiusMixerConverter instead.")]
 [Flags]
 public enum CornerRadiusPosition
 {
@@ -17,6 +18,7 @@ public enum CornerRadiusPosition
     Bottom = 12,
 }
 
+[Obsolete("This converter is deprecated. Use CornerRadiusMixerConverter instead.")]
 public class CornerRadiusIncludeConverter(CornerRadiusPosition position) : IValueConverter
 {
     public static CornerRadiusIncludeConverter TopLeft { get; } = new( CornerRadiusPosition.TopLeft );
@@ -47,6 +49,7 @@ public class CornerRadiusIncludeConverter(CornerRadiusPosition position) : IValu
     }
 }
 
+[Obsolete("This converter is deprecated. Use CornerRadiusMixerConverter instead.")]
 public class CornerRadiusExcludeConverter : IValueConverter
 {
     public static CornerRadiusExcludeConverter TopLeft { get; } = new( CornerRadiusPosition.TopLeft );

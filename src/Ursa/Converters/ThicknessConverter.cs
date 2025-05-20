@@ -4,6 +4,7 @@ using Avalonia.Data.Converters;
 
 namespace Ursa.Converters;
 
+[Obsolete("This converter is deprecated. Use ThicknessMixerConverter instead.")]
 [Flags]
 public enum ThicknessPosition
 {
@@ -17,6 +18,7 @@ public enum ThicknessPosition
     BottomRight = 12,
 }
 
+[Obsolete("This converter is deprecated. Use ThicknessMixerConverter instead.")]
 public class ThicknessExcludeConverter(ThicknessPosition position) : IValueConverter
 {
     public static ThicknessExcludeConverter Left { get; } = new( ThicknessPosition.Left );
@@ -48,6 +50,7 @@ public class ThicknessExcludeConverter(ThicknessPosition position) : IValueConve
     }
 }
 
+[Obsolete("This converter is deprecated. Use ThicknessMixerConverter instead.")]
 public class ThicknessIncludeConverter(ThicknessPosition position) : IValueConverter
 {
     public static ThicknessIncludeConverter Left { get; } = new( ThicknessPosition.Left );

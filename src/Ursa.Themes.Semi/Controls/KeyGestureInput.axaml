@@ -2,8 +2,8 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="using:Avalonia.Controls.Converters"
-    xmlns:ursaConverters="using:Ursa.Converters"
-    xmlns:u="https://irihi.tech/ursa">
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:iri="https://irihi.tech/shared">
     <converters:PlatformKeyGestureConverter x:Key="KeyGestureConverter" />
 
     <ControlTheme x:Key="{x:Type u:KeyGestureInput}" TargetType="u:KeyGestureInput">
@@ -28,7 +28,7 @@
                         <Grid ColumnDefinitions="Auto, *, Auto" >
                             <ContentPresenter Grid.Column="0"
                                 Content="{TemplateBinding InnerLeftContent}"
-                                Padding="{TemplateBinding Padding, Converter={x:Static ursaConverters:ThicknessIncludeConverter.Right}}"
+                                Padding="{TemplateBinding Padding, Converter={iri:ThicknessMixerConverter Right}}"
                                 DockPanel.Dock="Left"
                                 VerticalAlignment="Stretch"
                                 VerticalContentAlignment="Center"
@@ -39,7 +39,7 @@
                                 Grid.Column="2"
                                 Content="{TemplateBinding InnerRightContent}"
                                 DockPanel.Dock="Right"
-                                Padding="{TemplateBinding Padding, Converter={x:Static ursaConverters:ThicknessIncludeConverter.Left}}"
+                                Padding="{TemplateBinding Padding, Converter={iri:ThicknessMixerConverter Left}}"
                                 VerticalAlignment="Stretch"
                                 VerticalContentAlignment="Center"
                                 Foreground="{DynamicResource TextBoxInnerForeground}"

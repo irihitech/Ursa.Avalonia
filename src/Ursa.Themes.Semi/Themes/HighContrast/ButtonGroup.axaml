@@ -1,32 +1,32 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="ButtonGroupSeparatorForeground" Color="{StaticResource ButtonTextColor}" />
+    <StaticResource x:Key="ButtonGroupSeparatorForeground" ResourceKey="SemiColorButtonText" />
     <!--  Light  -->
-    <SolidColorBrush x:Key="ButtonGroupDefaultPrimaryForeground" Color="{StaticResource ButtonTextColor}" />
-    <SolidColorBrush x:Key="ButtonGroupDefaultDisabledForeground" Color="{StaticResource GrayTextColor}" />
+    <StaticResource x:Key="ButtonGroupDefaultPrimaryForeground" ResourceKey="SemiColorButtonText" />
+    <StaticResource x:Key="ButtonGroupDefaultDisabledForeground" ResourceKey="SemiColorGrayText" />
 
-    <SolidColorBrush x:Key="ButtonGroupDefaultBackground" Color="{StaticResource ButtonFaceColor}" />
-    <SolidColorBrush x:Key="ButtonGroupDefaultPointeroverBackground" Color="{StaticResource HighlightColor}" />
-    <SolidColorBrush x:Key="ButtonGroupDefaultPressedBackground" Color="{StaticResource HighlightColor}" />
+    <StaticResource x:Key="ButtonGroupDefaultBackground" ResourceKey="ButtonFaceColor" />
+    <StaticResource x:Key="ButtonGroupDefaultPointeroverBackground" ResourceKey="SemiColorHighlight" />
+    <StaticResource x:Key="ButtonGroupDefaultPressedBackground" ResourceKey="SemiColorHighlight" />
 
-    <SolidColorBrush x:Key="ButtonGroupDefaultBorderBrush" Color="{StaticResource ButtonTextColor}" />
-    <SolidColorBrush x:Key="ButtonGroupDefaultPointeroverBorderBrush" Color="{StaticResource HighlightColor}" />
+    <StaticResource x:Key="ButtonGroupDefaultBorderBrush" ResourceKey="SemiColorButtonText" />
+    <StaticResource x:Key="ButtonGroupDefaultPointeroverBorderBrush" ResourceKey="SemiColorHighlight" />
     <SolidColorBrush x:Key="ButtonGroupDefaultPressedBorderBrush" Color="Transparent" />
-    <SolidColorBrush x:Key="ButtonGroupDefaultDisabledBorderBrush" Color="{StaticResource GrayTextColor}" />
+    <StaticResource x:Key="ButtonGroupDefaultDisabledBorderBrush" ResourceKey="SemiColorGrayText" />
 
     <!--  end Light  -->
 
     <!--  Solid  -->
-    <SolidColorBrush x:Key="ButtonGroupSolidForeground" Color="{StaticResource HighlightTextColor}" />
-    <SolidColorBrush x:Key="ButtonGroupSolidDisabledForeground" Color="{StaticResource GrayTextColor}" />
+    <StaticResource x:Key="ButtonGroupSolidForeground" ResourceKey="SemiColorHighlightText" />
+    <StaticResource x:Key="ButtonGroupSolidDisabledForeground" ResourceKey="SemiColorGrayText" />
 
-    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryBackground" Color="{StaticResource HighlightColor}" />
-    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryPointeroverBackground" Color="{StaticResource ButtonTextColor}" />
-    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryPressedBackground" Color="{StaticResource HighlightColor}" />
+    <StaticResource x:Key="ButtonGroupSolidPrimaryBackground" ResourceKey="SemiColorHighlight" />
+    <StaticResource x:Key="ButtonGroupSolidPrimaryPointeroverBackground" ResourceKey="SemiColorButtonText" />
+    <StaticResource x:Key="ButtonGroupSolidPrimaryPressedBackground" ResourceKey="SemiColorHighlight" />
 
-    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryBorderBrush" Color="{StaticResource HighlightColor}" />
-    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryPointeroverBorderBrush" Color="{StaticResource ButtonTextColor}" />
-    <SolidColorBrush x:Key="ButtonGroupSolidPrimaryPressedBorderBrush" Color="{StaticResource HighlightColor}" />
+    <StaticResource x:Key="ButtonGroupSolidPrimaryBorderBrush" ResourceKey="SemiColorHighlight" />
+    <StaticResource x:Key="ButtonGroupSolidPrimaryPointeroverBorderBrush" ResourceKey="SemiColorButtonText" />
+    <StaticResource x:Key="ButtonGroupSolidPrimaryPressedBorderBrush" ResourceKey="SemiColorHighlight" />
 
-    <SolidColorBrush x:Key="ButtonGroupSolidDisabledBorderBrush" Color="{StaticResource GrayTextColor}" />
+    <StaticResource x:Key="ButtonGroupSolidDisabledBorderBrush" ResourceKey="SemiColorGrayText" />
     <!--  end Solid  -->
 </ResourceDictionary>

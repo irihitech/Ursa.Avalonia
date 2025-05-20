@@ -1,9 +1,9 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="PaginationButtonDefaultForeground" Color="{StaticResource WindowTextColor}" />
-    <SolidColorBrush x:Key="PaginationButtonSelectedForeground" Color="{StaticResource HighlightTextColor}" />
-    <SolidColorBrush x:Key="PaginationButtonIconForeground" Color="{StaticResource WindowTextColor}" />
-    <SolidColorBrush x:Key="PaginationButtonDefaultBackground" Color="{StaticResource WindowColor}" />
-    <SolidColorBrush x:Key="PaginationButtonPointeroverBackground" Color="{StaticResource HighlightColor}" />
-    <SolidColorBrush x:Key="PaginationButtonPressedBackground" Color="{StaticResource HighlightColor}" />
-    <SolidColorBrush x:Key="PaginationButtonSelectedBackground" Color="{StaticResource HighlightColor}" />
+    <StaticResource x:Key="PaginationButtonDefaultForeground" ResourceKey="SemiColorWindowText" />
+    <StaticResource x:Key="PaginationButtonSelectedForeground" ResourceKey="SemiColorHighlightText" />
+    <StaticResource x:Key="PaginationButtonIconForeground" ResourceKey="SemiColorWindowText" />
+    <StaticResource x:Key="PaginationButtonDefaultBackground" ResourceKey="SemiColorWindow" />
+    <StaticResource x:Key="PaginationButtonPointeroverBackground" ResourceKey="SemiColorHighlight" />
+    <StaticResource x:Key="PaginationButtonPressedBackground" ResourceKey="SemiColorHighlight" />
+    <StaticResource x:Key="PaginationButtonSelectedBackground" ResourceKey="SemiColorHighlight" />
 </ResourceDictionary>
