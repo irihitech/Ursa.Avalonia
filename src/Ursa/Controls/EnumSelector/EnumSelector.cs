@@ -34,6 +34,7 @@ public class EnumSelector: TemplatedControl
     private static object? OnValueCoerce(AvaloniaObject o,  object? value)
     {
         if (o is not EnumSelector selector) return null;
+        if (!selector.IsInitialized) return value;
         if (value is null) return null;
         if (value.GetType() != selector.EnumType) return null;
         var first = selector.Values?.FirstOrDefault(a => Equals(a.Value, value));
@@ -128,6 +129,8 @@ public class EnumSelector: TemplatedControl
             return;
         }
         Values = GenerateItemTuple();
+        var first = Values?.FirstOrDefault(a => Equals(a.Value, this.Value));
+        SetCurrentValue(SelectedValueProperty, first);
     }
 
     // netstandard 2.0 does not support Enum.GetValuesAsUnderlyingType, which is used for native aot compilation
