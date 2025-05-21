@@ -1,6 +1,9 @@
 ﻿using Avalonia;
+using Avalonia.Animation;
+using Avalonia.Animation.Easings;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
+using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
@@ -8,14 +11,20 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 using Avalonia.Metadata;
+using Avalonia.Styling;
+using Avalonia.Threading;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
 [PseudoClasses(PC_HorizontalCollapsed)]
+[TemplatePart(Name = PART_Container)]
+[TemplatePart(Name = PART_Items)]
 public class NavMenu : ItemsControl
 {
     public const string PC_HorizontalCollapsed = ":horizontal-collapsed";
+    public const string PART_Container = nameof(PART_Container);
+    public const string PART_Items = nameof(PART_Items);
 
     public static readonly StyledProperty<object?> SelectedItemProperty = AvaloniaProperty.Register<NavMenu, object?>(
         nameof(SelectedItem), defaultBindingMode: BindingMode.TwoWay);
@@ -43,6 +52,26 @@ public class NavMenu : ItemsControl
     public static readonly StyledProperty<IDataTemplate?> IconTemplateProperty =
         AvaloniaProperty.Register<NavMenu, IDataTemplate?>(
             nameof(IconTemplate));
+
+    public static readonly StyledProperty<IPageTransition?> ItemsTransitionProperty =
+        AvaloniaProperty.Register<NavMenu, IPageTransition?>(
+            nameof(ItemsTransition));
+
+    public static readonly StyledProperty<IPageTransition?> ContainerTransitionProperty =
+        AvaloniaProperty.Register<NavMenu, IPageTransition?>(
+            nameof(ContainerTransition));
+
+    public IPageTransition? ContainerTransition
+    {
+        get => GetValue(ContainerTransitionProperty);
+        set => SetValue(ContainerTransitionProperty, value);
+    }
+
+    public IPageTransition? ItemsTransition
+    {
+        get => GetValue(ItemsTransitionProperty);
+        set => SetValue(ItemsTransitionProperty, value);
+    }
 
     public static readonly StyledProperty<double> SubMenuIndentProperty = AvaloniaProperty.Register<NavMenu, double>(
         nameof(SubMenuIndent));
@@ -76,6 +105,16 @@ public class NavMenu : ItemsControl
         SelectedItemProperty.Changed.AddClassHandler<NavMenu, object?>((o, e) => o.OnSelectedItemChange(e));
         IsHorizontalCollapsedProperty.AffectsPseudoClass<NavMenu>(PC_HorizontalCollapsed);
         CanToggleProperty.Changed.AddClassHandler<InputElement, bool>(OnInputRegisteredAsToggle);
+    }
+
+    public NavMenu()
+    {
+        this[!WidthProperty] = new Binding()
+        {
+            Source = this,
+            Path = IsHorizontalCollapsed ? nameof(CollapseWidth) : nameof(ExpandWidth),
+            Mode = BindingMode.OneWay,
+        };
     }
 
     public object? SelectedItem
@@ -206,6 +245,158 @@ public class NavMenu : ItemsControl
         TryToSelectItem(SelectedItem);
     }
 
+    private Control? _container;
+    private Control? _items;
+    private CancellationTokenSource? _transitionTokenSource;
+
+    public static readonly StyledProperty<double> StartWidthValueInAnimationProperty =
+        AvaloniaProperty.Register<NavMenu, double>(
+            nameof(StartWidthValueInAnimation));
+
+    public static readonly StyledProperty<double> EndWidthValueInAnimationProperty =
+        AvaloniaProperty.Register<NavMenu, double>(
+            nameof(EndWidthValueInAnimation));
+
+    public static readonly StyledProperty<Animation?> WidthAnimationProperty =
+        AvaloniaProperty.Register<NavMenu, Animation?>(
+            nameof(WidthAnimation));
+
+    public Animation? WidthAnimation
+    {
+        get => GetValue(WidthAnimationProperty);
+        set => SetValue(WidthAnimationProperty, value);
+    }
+
+    public double EndWidthValueInAnimation
+    {
+        get => GetValue(EndWidthValueInAnimationProperty);
+        set => SetValue(EndWidthValueInAnimationProperty, value);
+    }
+
+    public double StartWidthValueInAnimation
+    {
+        get => GetValue(StartWidthValueInAnimationProperty);
+        set => SetValue(StartWidthValueInAnimationProperty, value);
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        _container = e.NameScope.Find<Control>(PART_Container);
+        _items = e.NameScope.Find<Control>(PART_Items);
+
+        base.OnApplyTemplate(e);
+    }
+
+    // 在动画过程中Bounds可能多次触发，此字段用以防止重复启动同一段动画。
+    private bool _animationIsRunning;
+
+    // 过盈收缩缓解。在NavMenu的收缩过程中如果使用第一次返回的Bounds作为EndWidthValueInAnimation的话在动画结束后将有一次重绘
+    // ，这次重绘是非常影响用户体验的。目前为什么会有此重绘原因未知，暂无更多精力调查。所以在NavMenu的收缩过程中我们使用第二次返回的Bounds
+    // 作为EndWidthValueInAnimation的值。
+    private bool _excessShrinkRelief;
+
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+        _transitionTokenSource?.Cancel();
+        _transitionTokenSource?.Dispose();
+    }
+
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        if (change.Property == IsHorizontalCollapsedProperty
+            && _container != null
+            && _items != null)
+        {
+            _transitionTokenSource?.Cancel();
+            _transitionTokenSource?.Dispose();
+            _transitionTokenSource = new CancellationTokenSource();
+            StartWidthValueInAnimation = Bounds.Width;
+            _animationIsRunning = false;
+            _excessShrinkRelief = false;
+            Width = IsHorizontalCollapsed ? CollapseWidth : ExpandWidth;
+        }
+
+        if (change.Property == BoundsProperty
+            && _transitionTokenSource?.IsCancellationRequested is false
+            && _animationIsRunning is false)
+        {
+            if (_excessShrinkRelief is false
+                && IsHorizontalCollapsed)
+            {
+                _excessShrinkRelief = true;
+                return;
+            }
+
+            _animationIsRunning = true;
+            EndWidthValueInAnimation = Bounds.Width;
+
+            List<Task?> tasks = new();
+            var forward = IsHorizontalCollapsed;
+
+            // 由于暂时无法在axaml中给它赋值所以此处的赋值用于测试，后续蒋移除。
+            WidthAnimation = new()
+            {
+                Duration = TimeSpan.FromSeconds(0.2),
+                Delay = TimeSpan.FromSeconds(0.1),
+                Easing = new QuadraticEaseInOut(),
+                FillMode = FillMode.Both,
+                Children =
+                {
+                    new KeyFrame()
+                    {
+                        Cue = new Cue(0.0d),
+                        Setters =
+                        {
+                            new Setter(NavMenu.WidthProperty, new Binding()
+                            {
+                                Source = this,
+                                Path = nameof(StartWidthValueInAnimation),
+                                Mode = BindingMode.OneWay,
+                            })
+                        }
+                    },
+                    new KeyFrame()
+                    {
+                        Cue = new Cue(1d),
+                        Setters =
+                        {
+                            new Setter(NavMenu.WidthProperty, new Binding()
+                            {
+                                Source = this,
+                                Path = nameof(EndWidthValueInAnimation),
+                                Mode = BindingMode.OneWay,
+                            })
+                        }
+                    }
+                }
+            };
+
+
+            tasks.Add(WidthAnimation?.RunAsync(this, _transitionTokenSource.Token));
+            tasks.Add(ContainerTransition?.Start(null, _container, forward, _transitionTokenSource.Token));
+            tasks.Add(ItemsTransition?.Start(null, _items, forward, _transitionTokenSource.Token));
+
+            // this.Width = 100d;
+
+            Task.WhenAll(tasks.Where(x => x is not null)).GetAwaiter().OnCompleted(() =>
+            {
+                Dispatcher.UIThread.Post(() =>
+                {
+                    this[!WidthProperty] = new Binding()
+                    {
+                        Source = this,
+                        Path = IsHorizontalCollapsed ? nameof(CollapseWidth) : nameof(ExpandWidth),
+                        Mode = BindingMode.OneWay,
+                    };
+                    // Width = IsHorizontalCollapsed ? CollapseWidth : ExpandWidth;
+                });
+            });
+        }
+
+        base.OnPropertyChanged(change);
+    }
+
     /// <summary>
     ///     this implementation only works in the case that only leaf menu item is allowed to select. It will be changed if we
     ///     introduce parent level selection in the future.
@@ -230,11 +421,12 @@ public class NavMenu : ItemsControl
             RaiseEvent(a);
             return;
         }
+
         var found = TryToSelectItem(newValue);
         if (!found) ClearAll();
         RaiseEvent(a);
     }
-    
+
     private bool TryToSelectItem(object? item)
     {
         if (item is null) return false;

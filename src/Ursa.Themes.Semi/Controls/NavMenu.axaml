@@ -10,39 +10,41 @@
         <Setter Property="SubMenuIndent" Value="24" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:NavMenu">
-                <DockPanel LastChildFill="True">
-                    <ContentPresenter Content="{TemplateBinding Header}" DockPanel.Dock="Top" />
-                    <ContentPresenter Content="{TemplateBinding Footer}" DockPanel.Dock="Bottom" />
-                    <ScrollViewer
-                        HorizontalAlignment="Stretch"
-                        HorizontalScrollBarVisibility="Disabled"
-                        AllowAutoHide="True"
-                        VerticalScrollBarVisibility="Auto">
-                        <ScrollViewer.Styles>
-                            <Style Selector="ScrollViewer /template/ ScrollBar">
-                                <Setter Property="Opacity" Value="0" />
-                            </Style>
-                            <Style Selector="ScrollViewer:pointerover">
-                                <Style Selector="^ /template/ ScrollBar#PART_HorizontalScrollBar">
-                                    <Setter Property="Opacity" Value="1" />
+                <Panel Name="PART_Container">
+                    <DockPanel Name="PART_Items" LastChildFill="True">
+                        <ContentPresenter Content="{TemplateBinding Header}" DockPanel.Dock="Top" />
+                        <ContentPresenter Content="{TemplateBinding Footer}" DockPanel.Dock="Bottom" />
+                        <ScrollViewer
+                            HorizontalAlignment="Stretch"
+                            HorizontalScrollBarVisibility="Disabled"
+                            AllowAutoHide="True"
+                            VerticalScrollBarVisibility="Auto">
+                            <ScrollViewer.Styles>
+                                <Style Selector="ScrollViewer /template/ ScrollBar">
+                                    <Setter Property="Opacity" Value="0" />
                                 </Style>
-                                <Style Selector="^ /template/ ScrollBar#PART_VerticalScrollBar">
-                                    <Setter Property="Opacity" Value="1" />
+                                <Style Selector="ScrollViewer:pointerover">
+                                    <Style Selector="^ /template/ ScrollBar#PART_HorizontalScrollBar">
+                                        <Setter Property="Opacity" Value="1" />
+                                    </Style>
+                                    <Style Selector="^ /template/ ScrollBar#PART_VerticalScrollBar">
+                                        <Setter Property="Opacity" Value="1" />
+                                    </Style>
                                 </Style>
-                            </Style>
-                        </ScrollViewer.Styles>
-                        <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
-                    </ScrollViewer>
-                </DockPanel>
+                            </ScrollViewer.Styles>
+                            <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                        </ScrollViewer>
+                    </DockPanel>
+                </Panel>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^:not(:horizontal-collapsed)">
-            <Setter Property="Width" Value="{Binding $self.ExpandWidth}" />
-        </Style>
-        <Style Selector="^:horizontal-collapsed">
-            <Setter Property="Width" Value="{Binding $self.CollapseWidth}" />
-            <Setter Property="Grid.IsSharedSizeScope" Value="False" />
-        </Style>
+        <!-- <Style Selector="^:not(:horizontal-collapsed)"> -->
+        <!--     <Setter Property="Width" Value="{Binding $self.ExpandWidth}" /> -->
+        <!-- </Style> -->
+        <!-- <Style Selector="^:horizontal-collapsed"> -->
+        <!--     <Setter Property="Width" Value="{Binding $self.CollapseWidth}" /> -->
+        <!--     <Setter Property="Grid.IsSharedSizeScope" Value="False" /> -->
+        <!-- </Style> -->
     </ControlTheme>
 
     <ControlTemplate x:Key="DefaultNavMenuItemTemplate" TargetType="u:NavMenuItem">
@@ -133,13 +135,15 @@
                         <Transitions>
                             <DoubleTransition Easing="QuadraticEaseIn" Property="Height" Duration="0.25" />
                             <DoubleTransition Easing="QuadraticEaseOut" Property="Opacity" Duration="0.25" />
-                            <TransformOperationsTransition Easing="QuadraticEaseInOut" Property="RenderTransform" Duration="0.25" />
+                            <TransformOperationsTransition Easing="QuadraticEaseInOut" Property="RenderTransform"
+                                                           Duration="0.25" />
                         </Transitions>
                     </ItemsPresenter.Transitions>
                 </ItemsPresenter>
                 <LayoutTransformControl.Transitions>
                     <Transitions>
-                        <TransformOperationsTransition Easing="QuadraticEaseInOut" Property="LayoutTransform" Duration="0.15" Delay="0.1" />
+                        <TransformOperationsTransition Easing="QuadraticEaseInOut" Property="LayoutTransform"
+                                                       Duration="0.15" Delay="0.1" />
                     </Transitions>
                 </LayoutTransformControl.Transitions>
             </LayoutTransformControl>
