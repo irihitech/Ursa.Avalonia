@@ -148,7 +148,20 @@ public class ImageViewer: TemplatedControl
     private void OnSourceChanged(AvaloniaPropertyChangedEventArgs args)
     {
         if(!IsLoaded) return;
-        IImage image = args.GetNewValue<IImage>();
+        IImage? image = args.GetNewValue<IImage?>();
+        if (image is null)
+        {
+            // Clear the image when Source is set to null
+            if (_image is not null)
+            {
+                _image.Width = double.NaN;
+                _image.Height = double.NaN;
+            }
+            Scale = 1;
+            _sourceMinScale = MinScale;
+            return;
+        }
+        
         Size size = image.Size;
         double width = this.Bounds.Width;
         double height = this.Bounds.Height;
@@ -163,7 +176,7 @@ public class ImageViewer: TemplatedControl
 
     private void OnStretchChanged(AvaloniaPropertyChangedEventArgs args)
     {
-        if (_image is null) return;
+        if (_image is null || Source is null || double.IsNaN(_image.Width) || double.IsNaN(_image.Height)) return;
         var stretch = args.GetNewValue<Stretch>();
         Scale = GetScaleRatio(Width / _image.Width, Height / _image.Height, stretch);
         _sourceMinScale = _image is not null ? Math.Min(Width * MinScale / _image.Width, Height * MinScale / _image.Height) : MinScale;
