@@ -8,10 +8,10 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Ursa.Demo.ViewModels;
 
-public partial class AboutUsDemoViewModel: ObservableObject
+public partial class AboutUsDemoViewModel : ObservableObject
 {
     public ICommand NavigateCommand { get; set; }
-    
+
     internal ILauncher? Launcher { get; set; }
 
     public AboutUsDemoViewModel()
@@ -24,6 +24,7 @@ public partial class AboutUsDemoViewModel: ObservableObject
         ["semi"] = "https://github.com/irihitech/Semi.Avalonia",
         ["ursa"] = "https://github.com/irihitech/Ursa.Avalonia",
         ["mantra"] = "https://www.bilibili.com/video/BV15pfKYbEEQ",
+        ["huska"] = "https://www.bilibili.com/video/BV1knj1zWE4A",
     };
 
     private async Task OnNavigateAsync(string? arg)
@@ -32,6 +33,5 @@ public partial class AboutUsDemoViewModel: ObservableObject
         {
             await Launcher.LaunchUriAsync(new Uri(uri));
         }
-        
     }
 }
