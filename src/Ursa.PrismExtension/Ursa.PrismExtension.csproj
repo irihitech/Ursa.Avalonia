@@ -20,7 +20,6 @@
 
     <ItemGroup>
         <PackageReference Include="Prism.Core" Version="8.1.97"/>
-        <None Include="irihi.png" Pack="true" PackagePath=""/>
     </ItemGroup>
 
 </Project>

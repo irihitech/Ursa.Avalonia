@@ -27,8 +27,4 @@
         <UpToDateCheckInput Remove="Controls\Skeleton.axaml"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <None Include="irihi.png" Pack="true" PackagePath=""/>
-    </ItemGroup>
-
 </Project>
