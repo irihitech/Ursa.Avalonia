@@ -2,7 +2,7 @@ name: Test
 
 on:
   push:
-    branches: [ "main", "action/publish" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
@@ -14,9 +14,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.1
       - name: Ursa Unit Test
-        run: dotnet test ./tests/Test.Ursa
+        run: dotnet test tests/Test.Ursa
       - name: Ursa Headless Test
-        run: dotnet test ./tests/HeadlessTest.Ursa
+        run: dotnet test tests/HeadlessTest.Ursa
 
   ubuntu:
     runs-on: ubuntu-latest
@@ -24,6 +24,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.1
       - name: Ursa Unit Test
-        run: dotnet test ./tests/Test.Ursa
+        run: dotnet test tests/Test.Ursa
       - name: Ursa Headless Test
-        run: dotnet test ./tests/HeadlessTest.Ursa
+        run: dotnet test tests/HeadlessTest.Ursa

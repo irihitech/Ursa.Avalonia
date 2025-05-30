@@ -39,6 +39,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Ursa", "tests\Test.Urs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadlessTest.Ursa", "tests\HeadlessTest.Ursa\HeadlessTest.Ursa.csproj", "{2D1C279E-7FFF-4630-92CC-CB2C33C3F80F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub Action", "GitHub Action", "{66123AC1-7C8C-4AA0-BBDB-5CC3E647A741}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\deploy.yml = .github\workflows\deploy.yml
+		.github\workflows\pack.yml = .github\workflows\pack.yml
+		.github\workflows\pack-nightly.yml = .github\workflows\pack-nightly.yml
+		.github\workflows\publish.yml = .github\workflows\publish.yml
+		.github\workflows\release-tag.yml = .github\workflows\release-tag.yml
+		.github\workflows\test.yml = .github\workflows\test.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
