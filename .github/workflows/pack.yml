@@ -33,26 +33,26 @@ jobs:
 
       - name: Pack Ursa
         if: ${{ github.event.inputs.Ursa == 'true' }}
-        run: dotnet pack ./src/Ursa -o ./nugets
+        run: dotnet pack src/Ursa -o nugets
 
       - name: Pack Ursa.Themes.Semi
         if: ${{ github.event.inputs.Ursa_Themes_Semi == 'true' }}
-        run: dotnet pack ./src/Ursa.Themes.Semi -o ./nugets
+        run: dotnet pack src/Ursa.Themes.Semi -o nugets
 
       - name: Pack Prism Extension
         if: ${{ github.event.inputs.PrismExtension == 'true' }}
-        run: dotnet pack ./src/Ursa.PrismExtension -o ./nugets
+        run: dotnet pack src/Ursa.PrismExtension -o nugets
 
       - name: Pack ReactiveUI Extension
         if: ${{ github.event.inputs.ReactiveUIExtension == 'true' }}
-        run: dotnet pack ./src/Ursa.ReactiveUIExtension -o ./nugets
+        run: dotnet pack src/Ursa.ReactiveUIExtension -o nugets
 
       - name: Publish NuGet package
-        run: dotnet nuget push "./nugets/*.nupkg" --api-key ${{ secrets.NUGET_ORG_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+        run: dotnet nuget push "nugets/*.nupkg" --api-key ${{ secrets.NUGET_ORG_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.3.1
         with:
           name: nugets
-          path: ./nugets
+          path: nugets
         if: always()
