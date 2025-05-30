@@ -26,7 +26,7 @@
             EnumType="{Binding SelectedType}"
             Value="{Binding Value}" />
         <TextBlock Text="{Binding Value}" />
-        <u:Divider Content="Small Size"></u:Divider>
+        <u:Divider Content="Small Size" />
         <u:EnumSelector
             Width="200"
             Classes="Small"
