@@ -18,7 +18,12 @@ namespace Ursa.Controls;
 /// <summary>
 ///     Navigation Menu Item
 /// </summary>
-[PseudoClasses(PC_Highlighted, PC_HorizontalCollapsed, PC_VerticalCollapsed, PC_FirstLevel, PC_Selector)]
+[PseudoClasses(
+    PC_Highlighted,
+    PC_HorizontalCollapsed,
+    PC_VerticalCollapsed,
+    PC_FirstLevel,
+    PC_Selector)]
 public class NavMenuItem : HeaderedItemsControl
 {
     public const string PC_Highlighted = ":highlighted";
@@ -26,8 +31,6 @@ public class NavMenuItem : HeaderedItemsControl
     public const string PC_HorizontalCollapsed = ":horizontal-collapsed";
     public const string PC_VerticalCollapsed = ":vertical-collapsed";
     public const string PC_Selector = ":selector";
-
-    private static readonly Point InvalidPoint = new(double.NaN, double.NaN);
 
     public static readonly StyledProperty<object?> IconProperty = AvaloniaProperty.Register<NavMenuItem, object?>(
         nameof(Icon));
@@ -72,7 +75,7 @@ public class NavMenuItem : HeaderedItemsControl
     private bool _isHighlighted;
     private int _level;
     private Panel? _overflowPanel;
-    private Point _pointerDownPoint = InvalidPoint;
+    private bool _isPointerDown = false;
     private Popup? _popup;
 
     private NavMenu? _rootMenu;
@@ -157,23 +160,6 @@ public class NavMenuItem : HeaderedItemsControl
         set => SetValue(IsSeparatorProperty, value);
     }
 
-    private void OnIsHorizontalCollapsedChanged(AvaloniaPropertyChangedEventArgs<bool> args)
-    {
-        if (args.NewValue.Value)
-        {
-            if (ItemsPanelRoot is OverflowStackPanel s) s.MoveChildrenToOverflowPanel();
-        }
-        else
-        {
-            if (ItemsPanelRoot is OverflowStackPanel s) s.MoveChildrenToMainPanel();
-        }
-    }
-
-    private void OnLevelChange(AvaloniaPropertyChangedEventArgs<int> args)
-    {
-        PseudoClasses.Set(PC_FirstLevel, args.NewValue.Value == 1);
-    }
-
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
         return NeedsContainer<NavMenuItem>(item, out recycleKey);
@@ -230,82 +216,50 @@ public class NavMenuItem : HeaderedItemsControl
         var p = e.GetCurrentPoint(this);
         if (p.Properties.PointerUpdateKind is not (PointerUpdateKind.LeftButtonPressed
             or PointerUpdateKind.RightButtonPressed)) return;
+
         if (p.Pointer.Type == PointerType.Mouse)
-        {
-            if (ItemCount == 0)
-            {
-                SelectItem(this);
-                Command?.Execute(CommandParameter);
-                e.Handled = true;
-            }
-            else
-            {
-                if (!IsHorizontalCollapsed)
-                {
-                    SetCurrentValue(IsVerticalCollapsedProperty, !IsVerticalCollapsed);
-                    e.Handled = true;
-                }
-                else
-                {
-                    if (_popup is null || e.Source is not Visual v || _popup.IsInsidePopup(v)) return;
-                    if (_popup.IsOpen)
-                        _popup.Close();
-                    else
-                        _popup.Open();
-                }
-            }
-        }
+            ActivateMenuItem(e);
         else
-        {
-            _pointerDownPoint = p.Position;
-        }
+            _isPointerDown = true;
     }
 
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
     {
         base.OnPointerReleased(e);
-        if (!e.Handled && !double.IsNaN(_pointerDownPoint.X) &&
-            e.InitialPressMouseButton is MouseButton.Left or MouseButton.Right)
+
+        if (e.Handled || !_isPointerDown) return;
+
+        _isPointerDown = false;
+
+        if (e.InitialPressMouseButton is MouseButton.Left or MouseButton.Right)
         {
             var point = e.GetCurrentPoint(this);
-            if (!new Rect(Bounds.Size).ContainsExclusive(point.Position) || e.Pointer.Type != PointerType.Touch) return;
-            if (ItemCount == 0)
-            {
-                SelectItem(this);
-                Command?.Execute(CommandParameter);
-                e.Handled = true;
-            }
-            else
-            {
-                if (!IsHorizontalCollapsed)
-                {
-                    SetCurrentValue(IsVerticalCollapsedProperty, !IsVerticalCollapsed);
-                    e.Handled = true;
-                }
-                else
-                {
-                    if (_popup is null || e.Source is not Visual v || _popup.IsInsidePopup(v)) return;
-                    if (_popup.IsOpen)
-                        _popup.Close();
-                    else
-                        _popup.Open();
-                }
-            }
+            if (new Rect(Bounds.Size).ContainsExclusive(point.Position) && e.Pointer.Type == PointerType.Touch)
+                ActivateMenuItem(e);
         }
+    }
+
+    private void OnIsHorizontalCollapsedChanged(AvaloniaPropertyChangedEventArgs<bool> args)
+    {
+        if (args.NewValue.Value)
+        {
+            if (ItemsPanelRoot is OverflowStackPanel s) s.MoveChildrenToOverflowPanel();
+        }
+        else
+        {
+            if (ItemsPanelRoot is OverflowStackPanel s) s.MoveChildrenToMainPanel();
+        }
+    }
+
+    private void OnLevelChange(AvaloniaPropertyChangedEventArgs<int> args)
+    {
+        PseudoClasses.Set(PC_FirstLevel, args.NewValue.Value == 1);
     }
 
     internal void SelectItem(NavMenuItem item)
     {
-        if (item == this)
-        {
-            SetCurrentValue(IsSelectedProperty, true);
-            SetCurrentValue(IsHighlightedProperty, true);
-        }
-        else
-        {
-            SetCurrentValue(IsSelectedProperty, false);
-            SetCurrentValue(IsHighlightedProperty, true);
-        }
+        SetCurrentValue(IsSelectedProperty, item == this);
+        SetCurrentValue(IsHighlightedProperty, true);
 
         if (Parent is NavMenuItem menuItem)
         {
@@ -320,7 +274,7 @@ public class NavMenuItem : HeaderedItemsControl
             menu.SelectItem(item, this);
         }
 
-        if (_popup is not null) _popup.Close();
+        _popup?.Close();
     }
 
     internal void ClearSelection()
@@ -332,23 +286,40 @@ public class NavMenuItem : HeaderedItemsControl
                 item.ClearSelection();
     }
 
-    private NavMenu? GetRootMenu()
+    private void SelectAndExecute()
     {
-        var root = this.FindAncestorOfType<NavMenu>() ?? this.FindLogicalAncestorOfType<NavMenu>();
-        return root;
+        SelectItem(this);
+        Command?.Execute(CommandParameter);
     }
 
-    private static int CalculateDistanceFromLogicalParent<T>(ILogical? logical, int @default = -1) where T : class
+    private void ActivateMenuItem(RoutedEventArgs e)
     {
-        var result = 0;
-
-        while (logical != null && !(logical is T))
+        if (ItemCount == 0)
         {
-            if (logical is NavMenuItem) result++;
-            logical = logical.LogicalParent;
+            SelectAndExecute();
+            e.Handled = true;
+            return;
         }
 
-        return logical != null ? result : @default;
+        if (!IsHorizontalCollapsed)
+        {
+            SetCurrentValue(IsVerticalCollapsedProperty, !IsVerticalCollapsed);
+            e.Handled = true;
+        }
+        else if (_popup is not null)
+        {
+            TogglePopup(e.Source, true, !_popup.IsOpen);
+        }
+    }
+
+    private void TogglePopup(object? source, bool outsidePopup, bool open)
+    {
+        if (ItemCount > 0 &&
+            _popup is not null &&
+            source is Visual visual &&
+            _popup.IsInsidePopup(visual) != outsidePopup &&
+            _popup.IsOpen != open)
+            _popup.IsOpen = open;
     }
 
     internal IEnumerable<NavMenuItem> GetLeafMenus()
@@ -365,5 +336,24 @@ public class NavMenuItem : HeaderedItemsControl
                 var items = item.GetLeafMenus();
                 foreach (var i in items) yield return i;
             }
+    }
+
+    private NavMenu? GetRootMenu()
+    {
+        var root = this.FindAncestorOfType<NavMenu>() ?? this.FindLogicalAncestorOfType<NavMenu>();
+        return root;
+    }
+
+    private static int CalculateDistanceFromLogicalParent<T>(ILogical? logical, int @default = -1) where T : class
+    {
+        var result = 0;
+
+        while (logical is not null and not T)
+        {
+            if (logical is NavMenuItem) result++;
+            logical = logical.LogicalParent;
+        }
+
+        return logical is not null ? result : @default;
     }
 }

@@ -69,7 +69,7 @@ public class NavMenu : ItemsControl
     public static readonly RoutedEvent<SelectionChangedEventArgs> SelectionChangedEvent =
         RoutedEvent.Register<NavMenu, SelectionChangedEventArgs>(nameof(SelectionChanged), RoutingStrategies.Bubble);
 
-    private bool _updateFromUI;
+    private bool _isSelectionFromUI = false;
 
     static NavMenu()
     {
@@ -183,21 +183,14 @@ public class NavMenu : ItemsControl
         remove => RemoveHandler(SelectionChangedEvent, value);
     }
 
-    private static void OnInputRegisteredAsToggle(InputElement input, AvaloniaPropertyChangedEventArgs<bool> e)
+    protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
-        if (e.NewValue.Value)
-            input.AddHandler(PointerPressedEvent, OnElementToggle);
-        else
-            input.RemoveHandler(PointerPressedEvent, OnElementToggle);
+        return NeedsContainer<NavMenuItem>(item, out recycleKey);
     }
 
-    private static void OnElementToggle(object? sender, RoutedEventArgs args)
+    protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey)
     {
-        if (sender is not InputElement input) return;
-        var nav = input.FindLogicalAncestorOfType<NavMenu>();
-        if (nav is null) return;
-        var collapsed = nav.IsHorizontalCollapsed;
-        nav.IsHorizontalCollapsed = !collapsed;
+        return new NavMenuItem();
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
@@ -217,7 +210,7 @@ public class NavMenu : ItemsControl
             SelectionChangedEvent,
             new[] { args.OldValue.Value },
             new[] { args.NewValue.Value });
-        if (_updateFromUI)
+        if (_isSelectionFromUI)
         {
             RaiseEvent(a);
             return;
@@ -234,7 +227,48 @@ public class NavMenu : ItemsControl
         if (!found) ClearAll();
         RaiseEvent(a);
     }
-    
+
+    private static void OnInputRegisteredAsToggle(InputElement input, AvaloniaPropertyChangedEventArgs<bool> e)
+    {
+        if (e.NewValue.Value)
+            input.AddHandler(PointerPressedEvent, OnElementToggle);
+        else
+            input.RemoveHandler(PointerPressedEvent, OnElementToggle);
+    }
+
+    private static void OnElementToggle(object? sender, RoutedEventArgs args)
+    {
+        if (sender is not InputElement input) return;
+        var nav = input.FindLogicalAncestorOfType<NavMenu>();
+        if (nav is null) return;
+        var collapsed = nav.IsHorizontalCollapsed;
+        nav.IsHorizontalCollapsed = !collapsed;
+    }
+
+    internal void SelectItem(NavMenuItem item, NavMenuItem parent)
+    {
+        _isSelectionFromUI = true;
+        foreach (var child in LogicalChildren)
+        {
+            if (Equals(child, parent)) continue;
+            if (child is NavMenuItem navMenuItem) navMenuItem.ClearSelection();
+        }
+
+        if (item.DataContext is not null && item.DataContext != DataContext)
+            SelectedItem = item.DataContext;
+        else
+            SelectedItem = item;
+        item.BringIntoView();
+        _isSelectionFromUI = false;
+    }
+
+    private void ClearAll()
+    {
+        foreach (var child in LogicalChildren)
+            if (child is NavMenuItem item)
+                item.ClearSelection();
+    }
+
     private bool TryToSelectItem(object? item)
     {
         if (item is null) return false;
@@ -250,33 +284,6 @@ public class NavMenu : ItemsControl
         return found;
     }
 
-    protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
-    {
-        return NeedsContainer<NavMenuItem>(item, out recycleKey);
-    }
-
-    protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey)
-    {
-        return new NavMenuItem();
-    }
-
-    internal void SelectItem(NavMenuItem item, NavMenuItem parent)
-    {
-        _updateFromUI = true;
-        foreach (var child in LogicalChildren)
-        {
-            if (Equals(child, parent)) continue;
-            if (child is NavMenuItem navMenuItem) navMenuItem.ClearSelection();
-        }
-
-        if (item.DataContext is not null && item.DataContext != DataContext)
-            SelectedItem = item.DataContext;
-        else
-            SelectedItem = item;
-        item.BringIntoView();
-        _updateFromUI = false;
-    }
-
     private IEnumerable<NavMenuItem> GetLeafMenus()
     {
         foreach (var child in LogicalChildren)
@@ -285,12 +292,5 @@ public class NavMenu : ItemsControl
                 var leafs = item.GetLeafMenus();
                 foreach (var leaf in leafs) yield return leaf;
             }
-    }
-
-    private void ClearAll()
-    {
-        foreach (var child in LogicalChildren)
-            if (child is NavMenuItem item)
-                item.ClearSelection();
     }
 }
