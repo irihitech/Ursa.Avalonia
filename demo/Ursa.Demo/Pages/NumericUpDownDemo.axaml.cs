@@ -1,7 +1,6 @@
-﻿using Avalonia.Controls;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using Avalonia.Controls;
 using Ursa.Controls;
-using Ursa.Demo.ViewModels;
 
 namespace Ursa.Demo.Pages;
 
@@ -10,7 +9,6 @@ public partial class NumericUpDownDemo : UserControl
     public NumericUpDownDemo()
     {
         InitializeComponent();
-        DataContext = new NumericUpDownDemoViewModel();
         numd.ValueChanged += Numd_ValueChanged;
     }
 
