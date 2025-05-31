@@ -78,8 +78,6 @@ public class NavMenuItem : HeaderedItemsControl
     private bool _isPointerDown = false;
     private Popup? _popup;
 
-    private NavMenu? _rootMenu;
-
     static NavMenuItem()
     {
         // SelectableMixin.Attach<NavMenuItem>(IsSelectedProperty);
@@ -160,6 +158,8 @@ public class NavMenuItem : HeaderedItemsControl
         set => SetValue(IsSeparatorProperty, value);
     }
 
+    internal NavMenu? RootMenu { get; private set; }
+
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
         return NeedsContainer<NavMenuItem>(item, out recycleKey);
@@ -173,7 +173,7 @@ public class NavMenuItem : HeaderedItemsControl
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
-        _rootMenu = GetRootMenu();
+        RootMenu = GetRootMenu();
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -182,16 +182,16 @@ public class NavMenuItem : HeaderedItemsControl
         SetCurrentValue(LevelProperty, CalculateDistanceFromLogicalParent<NavMenu>(this));
         _popup = e.NameScope.Find<Popup>("PART_Popup");
         _overflowPanel = e.NameScope.Find<Panel>("PART_OverflowPanel");
-        if (_rootMenu is not null)
+        if (RootMenu is not null)
         {
-            this.TryBind(IconProperty, _rootMenu.IconBinding);
-            this.TryBind(HeaderProperty, _rootMenu.HeaderBinding);
-            this.TryBind(ItemsSourceProperty, _rootMenu.SubMenuBinding);
-            this.TryBind(CommandProperty, _rootMenu.CommandBinding);
-            this[!IconTemplateProperty] = _rootMenu[!NavMenu.IconTemplateProperty];
-            this[!HeaderTemplateProperty] = _rootMenu[!NavMenu.HeaderTemplateProperty];
-            this[!SubMenuIndentProperty] = _rootMenu[!NavMenu.SubMenuIndentProperty];
-            this[!IsHorizontalCollapsedProperty] = _rootMenu[!NavMenu.IsHorizontalCollapsedProperty];
+            this.TryBind(IconProperty, RootMenu.IconBinding);
+            this.TryBind(HeaderProperty, RootMenu.HeaderBinding);
+            this.TryBind(ItemsSourceProperty, RootMenu.SubMenuBinding);
+            this.TryBind(CommandProperty, RootMenu.CommandBinding);
+            this[!IconTemplateProperty] = RootMenu[!NavMenu.IconTemplateProperty];
+            this[!HeaderTemplateProperty] = RootMenu[!NavMenu.HeaderTemplateProperty];
+            this[!SubMenuIndentProperty] = RootMenu[!NavMenu.SubMenuIndentProperty];
+            this[!IsHorizontalCollapsedProperty] = RootMenu[!NavMenu.IsHorizontalCollapsedProperty];
         }
     }
 
@@ -200,6 +200,100 @@ public class NavMenuItem : HeaderedItemsControl
         base.OnLoaded(e);
         var root = ItemsPanelRoot;
         if (root is OverflowStackPanel stack) stack.OverflowPanel = _overflowPanel;
+    }
+
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        if (e.Handled) return;
+
+        if (e.Key is Key.Enter)
+        {
+            if (IsSeparator)
+            {
+                e.Handled = true;
+                return;
+            }
+            else if (ItemCount == 0)
+            {
+                SelectAndExecute();
+                e.Handled = true;
+                return;
+            }
+        }
+
+        if (!IsHorizontalCollapsed)
+        {
+            var handler = e.Key switch
+            {
+                Key.Left => ApplyToItemOrRecursivelyIfCtrl(FocusAwareCollapseItem, e.KeyModifiers),
+                Key.Right => ApplyToItemOrRecursivelyIfCtrl(ExpandItem, e.KeyModifiers),
+                Key.Enter => ApplyToItemOrRecursivelyIfCtrl(IsVerticalCollapsed ? ExpandItem : CollapseItem, e.KeyModifiers),
+                Key.Subtract => FocusAwareCollapseItem,
+                Key.Add => ExpandItem,
+                Key.Divide => ApplyToSubtree(CollapseItem),
+                Key.Multiply => ApplyToSubtree(ExpandItem),
+                _ => null
+            };
+
+            if (handler is not null)
+                e.Handled = handler(this);
+
+            static bool ToggleCollapse(NavMenuItem item, bool collapse)
+            {
+                if (item.ItemCount > 0 && item.IsVerticalCollapsed != collapse)
+                {
+                    item.SetCurrentValue(IsVerticalCollapsedProperty, collapse);
+                    return true;
+                }
+
+                return false;
+            }
+
+            static bool ExpandItem(NavMenuItem item) => ToggleCollapse(item, false);
+            static bool CollapseItem(NavMenuItem item) => ToggleCollapse(item, true);
+
+            static bool FocusAwareCollapseItem(NavMenuItem item)
+            {
+                if (item.ItemCount > 0 && !item.IsVerticalCollapsed)
+                {
+                    if (item.IsFocused)
+                        item.SetCurrentValue(IsVerticalCollapsedProperty, true);
+                    else
+                        item.Focus(NavigationMethod.Directional);
+
+                    return true;
+                }
+
+                return false;
+            }
+
+            static Func<NavMenuItem, bool> ApplyToItemOrRecursivelyIfCtrl(Func<NavMenuItem, bool> f, KeyModifiers keyModifiers) => keyModifiers.HasFlag(KeyModifiers.Control)
+                ? ApplyToSubtree(f)
+                : f;
+
+            static Func<NavMenuItem, bool> ApplyToSubtree(Func<NavMenuItem, bool> f) => i => Subtree(i)
+                .ToList()
+                .Select(i => f(i))
+                .Aggregate(false, (p, c) => p || c);
+
+            static IEnumerable<NavMenuItem> Subtree(NavMenuItem item)
+            {
+                yield return item;
+
+                var children = item.LogicalChildren
+                    .OfType<NavMenuItem>()
+                    .SelectMany(child => Subtree(child));
+                foreach (var child in children) yield return child;
+            }
+        }
+        else if (e.Key is Key.Right or Key.Enter)
+        {
+            TogglePopup(e.Source, true, true);
+        }
+        else if (e.Key is Key.Left or Key.Escape)
+        {
+            TogglePopup(e.Source, false, false);
+        }
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
@@ -255,6 +349,35 @@ public class NavMenuItem : HeaderedItemsControl
     {
         PseudoClasses.Set(PC_FirstLevel, args.NewValue.Value == 1);
     }
+
+    public NavMenuItem? CollapsedAwareContainerFromIndex(int index) =>
+    IsHorizontalCollapsed && _overflowPanel is not null
+        ? index >= 0 && index < _overflowPanel.Children.Count
+            ? (NavMenuItem?)_overflowPanel.Children[index]
+            : null
+        : (NavMenuItem?)ContainerFromIndex(index);
+
+    public NavMenuItem? CollapsedAwareContainerFromItem(object item)
+    {
+        var index = Items.IndexOf(item);
+        return index >= 0 ? CollapsedAwareContainerFromIndex(index) : null;
+    }
+
+    public int CollapsedAwareIndexFromContainer(NavMenuItem container) =>
+        IsHorizontalCollapsed && _overflowPanel is not null
+            ? _overflowPanel.Children.IndexOf(container)
+            : IndexFromContainer((Control)container);
+
+    public object? CollapsedAwareItemFromContainer(NavMenuItem container)
+    {
+        var index = CollapsedAwareIndexFromContainer(container);
+        return index >= 0 && index < Items.Count ? Items[index] : null;
+    }
+
+    public IEnumerable<Control> CollapsedAwareRealizedContainers() =>
+        IsHorizontalCollapsed && _overflowPanel is not null
+            ? _overflowPanel.Children
+            : GetRealizedContainers();
 
     internal void SelectItem(NavMenuItem item)
     {
@@ -336,6 +459,26 @@ public class NavMenuItem : HeaderedItemsControl
                 var items = item.GetLeafMenus();
                 foreach (var i in items) yield return i;
             }
+    }
+
+    internal void CloseAllOpenPopups()
+    {
+        var items = GetItemsWithChildren(this).Reverse();
+        foreach (var item in items)
+            if (item._popup is { IsOpen: true } popup) popup.Close();
+
+        static IEnumerable<NavMenuItem> GetItemsWithChildren(NavMenuItem item)
+        {
+            if (item.ItemCount > 0)
+            {
+                yield return item;
+
+                var children = item.LogicalChildren
+                    .OfType<NavMenuItem>()
+                    .SelectMany(child => GetItemsWithChildren(child));
+                foreach (var child in children) yield return child;
+            }
+        }
     }
 
     private NavMenu? GetRootMenu()
