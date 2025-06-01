@@ -124,16 +124,17 @@
                     BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="3">
                     <DockPanel LastChildFill="True">
-                        <PathIcon
+                        <Button
                             Name="{x:Static u:ClosableTag.PART_CloseButton}"
-                            Theme="{StaticResource InnerPathIcon}"
-                            Classes="Small"
-                            Margin="4,0,0,0"
-                            Background="Transparent"
-                            Data="{DynamicResource ClosableTagCloseIconGlyph}"
+                            Theme="{DynamicResource InnerIconButton}"
                             DockPanel.Dock="Right"
+                            Width="12"
+                            Height="12"
+                            Margin="4,0,0,0"
                             Foreground="{DynamicResource SemiColorText2}"
-                            Cursor="Hand" />
+                            Command="{TemplateBinding Command}"
+                            CommandParameter="{TemplateBinding}"
+                            Content="{StaticResource ClosableTagCloseIconGlyph}" />
                         <ContentPresenter
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             Content="{TemplateBinding Content}"
@@ -145,10 +146,10 @@
                 </Border>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^ /template/ PathIcon#PART_CloseButton:pointerover">
+        <Style Selector="^ /template/ Button#PART_CloseButton:pointerover">
             <Setter Property="Foreground" Value="{DynamicResource SemiColorText1}" />
         </Style>
-        <Style Selector="^ /template/ PathIcon#PART_CloseButton:pressed">
+        <Style Selector="^ /template/ Button#PART_CloseButton:pressed">
             <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
         </Style>
     </ControlTheme>
