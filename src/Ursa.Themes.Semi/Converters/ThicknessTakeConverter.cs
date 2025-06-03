@@ -5,6 +5,7 @@ using Avalonia.Data.Converters;
 
 namespace Ursa.Themes.Semi.Converters;
 
+[Obsolete("This converter is deprecated. Use ThicknessMixerConverter instead.")]
 public class ThicknessTakeConverter: IValueConverter
 {
     private readonly Dock _dock;

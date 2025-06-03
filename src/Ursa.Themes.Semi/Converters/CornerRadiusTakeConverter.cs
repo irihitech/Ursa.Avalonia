@@ -5,6 +5,7 @@ using Avalonia.Data.Converters;
 
 namespace Ursa.Themes.Semi.Converters;
 
+[Obsolete("This converter is deprecated. Use CornerRadiusMixerConverter instead.")]
 public class CornerRadiusTakeConverter: IValueConverter
 {
     private  readonly Dock _dock;
