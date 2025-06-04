@@ -8,12 +8,11 @@ using Avalonia.VisualTree;
 
 namespace Ursa.Controls;
 
-public class Breadcrumb: ItemsControl
+public class Breadcrumb : ItemsControl
 {
     private static readonly ITemplate<Panel?> _defaultPanel =
-        new FuncTemplate<Panel?>(() => new StackPanel() { Orientation = Orientation.Horizontal });
-    
-    
+        new FuncTemplate<Panel?>(() => new StackPanel { Orientation = Orientation.Horizontal });
+
     public static readonly StyledProperty<BindingBase?> IconBindingProperty = AvaloniaProperty.Register<Breadcrumb, BindingBase?>(
         nameof(IconBinding));
 
@@ -68,7 +67,7 @@ public class Breadcrumb: ItemsControl
         get => GetValue(IconTemplateProperty);
         set => SetValue(IconTemplateProperty, value);
     }
-    
+
     static Breadcrumb()
     {
         ItemsPanelProperty.OverrideDefaultValue<Breadcrumb>(_defaultPanel);
@@ -109,7 +108,7 @@ public class Breadcrumb: ItemsControl
         }
 
         if (container == item) return;
-        if(!breadcrumbItem.IsSet(ContentControl.ContentProperty))
+        if (!breadcrumbItem.IsSet(ContentControl.ContentProperty))
         {
             breadcrumbItem.SetCurrentValue(ContentControl.ContentProperty, item);
             if (DisplayMemberBinding is not null)
@@ -117,23 +116,28 @@ public class Breadcrumb: ItemsControl
                 breadcrumbItem[!ContentControl.ContentProperty] = DisplayMemberBinding;
             }
         }
+
         if (!breadcrumbItem.IsSet(ContentControl.ContentTemplateProperty) && this.ItemTemplate != null)
         {
             breadcrumbItem.SetCurrentValue(ContentControl.ContentTemplateProperty, this.ItemTemplate);
         }
-        if (!breadcrumbItem.IsSet(BreadcrumbItem.IconProperty) && IconBinding != null)
+
+        if (!breadcrumbItem.IsSet(IconButton.IconProperty) && IconBinding != null)
         {
-            breadcrumbItem[!BreadcrumbItem.IconProperty] = IconBinding;
+            breadcrumbItem[!IconButton.IconProperty] = IconBinding;
         }
-        if (!breadcrumbItem.IsSet(BreadcrumbItem.CommandProperty) && CommandBinding != null)
+
+        if (!breadcrumbItem.IsSet(Button.CommandProperty) && CommandBinding != null)
         {
-            breadcrumbItem[!BreadcrumbItem.CommandProperty] = CommandBinding;
+            breadcrumbItem[!Button.CommandProperty] = CommandBinding;
         }
-        if (!breadcrumbItem.IsSet(BreadcrumbItem.CommandParameterProperty) && CommandParameterBinding != null)
+
+        if (!breadcrumbItem.IsSet(Button.CommandParameterProperty) && CommandParameterBinding != null)
         {
-            breadcrumbItem[!BreadcrumbItem.CommandParameterProperty] = CommandParameterBinding;
+            breadcrumbItem[!Button.CommandParameterProperty] = CommandParameterBinding;
         }
-        if (!breadcrumbItem.IsSet(BreadcrumbItem.IconTemplateProperty) && IconTemplate != null)
+
+        if (!breadcrumbItem.IsSet(IconButton.IconTemplateProperty) && IconTemplate != null)
         {
             breadcrumbItem.IconTemplate = IconTemplate;
         }
