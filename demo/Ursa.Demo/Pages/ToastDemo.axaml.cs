@@ -7,25 +7,24 @@ namespace Ursa.Demo.Pages;
 
 public partial class ToastDemo : UserControl
 {
-    private ToastDemoViewModel _viewModel;
+    private ToastDemoViewModel? _viewModel;
 
     public ToastDemo()
     {
         InitializeComponent();
-        _viewModel = new ToastDemoViewModel();
-        DataContext = _viewModel;
     }
 
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
-        var topLevel = TopLevel.GetTopLevel(this);
-        _viewModel.ToastManager = new WindowToastManager(topLevel) { MaxItems = 3 };
+        if (DataContext is not ToastDemoViewModel vm) return;
+        _viewModel = vm;
+        _viewModel.ToastManager = new WindowToastManager(TopLevel.GetTopLevel(this)) { MaxItems = 3 };
     }
 
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnDetachedFromVisualTree(e);
-        _viewModel.ToastManager?.Uninstall();
+        _viewModel?.ToastManager?.Uninstall();
     }
 }

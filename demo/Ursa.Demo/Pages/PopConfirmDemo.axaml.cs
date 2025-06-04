@@ -1,6 +1,5 @@
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 using Ursa.Controls;
 using Ursa.Demo.ViewModels;
 
@@ -16,10 +15,10 @@ public partial class PopConfirmDemo : UserControl
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
-        if (this.DataContext is not PopConfirmDemoViewModel vm) return;
-        var manager = WindowToastManager.TryGetToastManager(TopLevel.GetTopLevel(this), out var m)
-            ? m
-            : new WindowToastManager(TopLevel.GetTopLevel(this));
-        vm.ToastManager = manager;
+        if (DataContext is not PopConfirmDemoViewModel vm) return;
+        var topLevel = TopLevel.GetTopLevel(this);
+        vm.ToastManager = WindowToastManager.TryGetToastManager(topLevel, out var manager)
+            ? manager
+            : new WindowToastManager(topLevel);
     }
 }
