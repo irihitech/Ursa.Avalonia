@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters"
-    xmlns:u="https://irihi.tech/ursa">
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:iri="https://irihi.tech/shared">
     <Design.PreviewWith>
         <StackPanel Margin="20">
             <u:PathPicker Title="Hello World" Width="300" />
@@ -36,22 +36,22 @@
         <Style Selector="^ /template/ Button#PART_Button">
             <Setter Property="DockPanel.Dock" Value="Right" />
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="CornerRadius" Value="{TemplateBinding CornerRadius, Converter={x:Static converters:CornerRadiusTakeConverter.Right}}" />
+            <Setter Property="CornerRadius" Value="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter Right}}" />
             <Setter Property="Margin" Value="1 0 0 0" />
         </Style>
         <Style Selector="^ /template/ TextBox#PART_TextBox">
             <Setter Property="DockPanel.Dock" Value="Left" />
-            <Setter Property="CornerRadius" Value="{TemplateBinding CornerRadius, Converter={x:Static converters:CornerRadiusTakeConverter.Left}}" />
+            <Setter Property="CornerRadius" Value="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter Left}}" />
         </Style>
         <Style Selector="^.Top">
             <Style Selector="^ /template/ Button#PART_Button">
                 <Setter Property="DockPanel.Dock" Value="Top" />
-                <Setter Property="CornerRadius" Value="{TemplateBinding CornerRadius, Converter={x:Static converters:CornerRadiusTakeConverter.Top}}" />
+                <Setter Property="CornerRadius" Value="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter Top}}" />
                 <Setter Property="Margin" Value="0 0 0 1" />
             </Style>
             <Style Selector="^ /template/ TextBox#PART_TextBox">
                 <Setter Property="DockPanel.Dock" Value="Bottom" />
-                <Setter Property="CornerRadius" Value="{TemplateBinding CornerRadius, Converter={x:Static converters:CornerRadiusTakeConverter.Bottom}}" />
+                <Setter Property="CornerRadius" Value="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter Bottom}}" />
             </Style>
         </Style>
     </ControlTheme>
@@ -87,7 +87,7 @@
                             HorizontalAlignment="Stretch"
                             Content="{TemplateBinding Title}"
                             CornerRadius="{TemplateBinding CornerRadius,
-                                                           Converter={x:Static converters:CornerRadiusTakeConverter.Left}}" />
+                                                           Converter={iri:CornerRadiusMixerConverter Left}}" />
                     </Expander.Header>
                     <ListBox ItemsSource="{TemplateBinding SelectedPaths}" />
                 </Expander>
@@ -108,7 +108,7 @@
                             Margin="1,0,0,0"
                             Background="{DynamicResource ToggleButtonDefaultBackground}"
                             CornerRadius="{TemplateBinding CornerRadius,
-                                                           Converter={x:Static converters:CornerRadiusTakeConverter.Right}}"
+                                                           Converter={iri:CornerRadiusMixerConverter Right}}"
                             DockPanel.Dock="Right"
                             IsChecked="{TemplateBinding IsExpanded,
                                                         Mode=TwoWay}"
