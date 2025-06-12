@@ -191,10 +191,10 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
     }
     
     
-    public static readonly RoutedEvent<SelectionChangedEventArgs> SelectionChangingEvent =
-        RoutedEvent.Register<NavMenu, SelectionChangedEventArgs>(nameof(SelectionChanging), RoutingStrategies.Bubble);
+    public static readonly RoutedEvent<SelectionChangingEventArgs> SelectionChangingEvent =
+        RoutedEvent.Register<NavMenu, SelectionChangingEventArgs>(nameof(SelectionChanging), RoutingStrategies.Bubble);
 
-    public event EventHandler SelectionChanging
+    public event EventHandler<SelectionChangingEventArgs> SelectionChanging
     {
         add => AddHandler(SelectionChangingEvent, value);
         remove => RemoveHandler(SelectionChangingEvent, value);
@@ -512,6 +512,12 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
             Source = this,
         };
         RaiseEvent(args);
-        return args.CanSelect;
+        var result =  args.CanSelect;
+        if (result == false)
+        {
+            var container = GetContainerForItem(SelectedItem);
+            container?.Focus(NavigationMethod.Directional);
+        }
+        return result;
     }
 }

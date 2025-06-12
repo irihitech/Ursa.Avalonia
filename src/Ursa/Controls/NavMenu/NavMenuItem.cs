@@ -381,6 +381,10 @@ public class NavMenuItem : HeaderedItemsControl
 
     internal void SelectItem(NavMenuItem item)
     {
+        if (item == this && RootMenu?.CanChangeSelection(item) != true)
+        {
+            return;
+        }
         SetCurrentValue(IsSelectedProperty, item == this);
         SetCurrentValue(IsHighlightedProperty, true);
 
