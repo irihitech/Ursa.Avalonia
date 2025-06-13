@@ -15,7 +15,8 @@ public class SemiTheme : Styles
     private static readonly Dictionary<CultureInfo, ResourceDictionary> _localeToResource = new()
     {
         { new CultureInfo("zh-CN"), new zh_cn() },
-        { new CultureInfo("en-US"), new en_us() }
+        { new CultureInfo("en-US"), new en_us() },
+        { new CultureInfo("en-US"), new fr_fr() },
     };
 
     private static readonly ResourceDictionary _defaultResource = new zh_cn();
