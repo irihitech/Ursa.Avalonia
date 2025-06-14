@@ -1,10 +1,10 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     x:Class="Ursa.Themes.Semi.Locale.fr_fr"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <x:String x:Key="STRING_MENU_BRING_TO_FRONT">Mettre en avant</x:String>
-    <x:String x:Key="STRING_MENU_BRING_FORWARD">Faire avancer</x:String>
-    <x:String x:Key="STRING_MENU_SEND_BACKWARD">Faire reculer</x:String>
-    <x:String x:Key="STRING_MENU_SEND_TO_BACK">Renvoyer à l'arrière</x:String>
+    <x:String x:Key="STRING_MENU_BRING_TO_FRONT">Mettre au premier plan</x:String>
+    <x:String x:Key="STRING_MENU_BRING_FORWARD">Avancer</x:String>
+    <x:String x:Key="STRING_MENU_SEND_BACKWARD">Reculer</x:String>
+    <x:String x:Key="STRING_MENU_SEND_TO_BACK">Envoyer à l'arrière</x:String>
     <x:String x:Key="STRING_MENU_DIALOG_OK">OK</x:String>
     <x:String x:Key="STRING_MENU_DIALOG_CANCEL">Annuler</x:String>
     <x:String x:Key="STRING_MENU_DIALOG_YES">Oui</x:String>
