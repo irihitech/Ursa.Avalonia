@@ -109,16 +109,19 @@
                             Value="{Binding SelectedPosition}" />
                     </StackPanel>
                     <u:IconButton
+                        HorizontalAlignment="Left"
                         IsLoading="{Binding IsLoading2}"
                         IconPlacement="{Binding SelectedPosition}"
                         Icon="{StaticResource SemiIconCamera}"
                         Content="Hello Camera" />
                     <u:IconButton
+                        HorizontalAlignment="Left"
                         IsLoading="{Binding IsLoading2}"
                         IconPlacement="{Binding SelectedPosition}"
                         Icon="🐼"
                         Content="Hello Panda" />
                     <u:IconButton
+                        HorizontalAlignment="Left"
                         IsLoading="{Binding IsLoading2}"
                         IconPlacement="{Binding SelectedPosition}"
                         Content="Hello Panda">
@@ -130,6 +133,7 @@
                         </u:IconButton.Icon>
                     </u:IconButton>
                     <u:IconButton
+                        HorizontalAlignment="Left"
                         IsLoading="{Binding IsLoading2}"
                         IconPlacement="{Binding SelectedPosition}"
                         Theme="{StaticResource SolidIconButton}"
