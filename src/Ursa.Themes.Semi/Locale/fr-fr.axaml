@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    x:Class="Ursa.Themes.Semi.Locale.fr_fr"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <x:String x:Key="STRING_MENU_BRING_TO_FRONT">Mettre au premier plan</x:String>
+    <x:String x:Key="STRING_MENU_BRING_FORWARD">Avancer</x:String>
+    <x:String x:Key="STRING_MENU_SEND_BACKWARD">Reculer</x:String>
+    <x:String x:Key="STRING_MENU_SEND_TO_BACK">Envoyer à l'arrière</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_OK">OK</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_CANCEL">Annuler</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_YES">Oui</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_NO">Non</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_CLOSE">Fermer</x:String>
+    <x:String x:Key="STRING_PAGINATION_JUMP_TO">Aller à la page</x:String>
+    <x:String x:Key="STRING_PAGINATION_PAGE"> </x:String>
+    <x:String x:Key="STRING_THEME_TOGGLE_DARK">Sombre</x:String>
+    <x:String x:Key="STRING_THEME_TOGGLE_LIGHT">Clair</x:String>
+    <x:String x:Key="STRING_THEME_TOGGLE_SYSTEM">Système</x:String>
+    <x:String x:Key="STRING_DATE_TIME_CONFIRM">Confirmer</x:String>
+    <x:String x:Key="STRING_DATE_TIME_START_TIME">Heure de début</x:String>
+    <x:String x:Key="STRING_DATE_TIME_END_TIME">Heure de fin</x:String>
+</ResourceDictionary>
