@@ -3,143 +3,143 @@
     <StaticResource x:Key="DualBadgeDefaultHeaderForeground" ResourceKey="SemiColorWhite" />
     <StaticResource x:Key="DualBadgeDefaultForeground" ResourceKey="SemiColorWhite" />
     <LinearGradientBrush x:Key="DualBadgeDefaultHeaderBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#555B61" Offset="0" />
-        <GradientStop Color="#41464C" Offset="1" />
+        <GradientStop Color="{StaticResource SemiGrey3Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiGrey2Color}" Offset="1" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="DualBadgeFlatRedBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#FA664C" Offset="0" />
-        <GradientStop Color="#F93920" Offset="1" />
+        <GradientStop Color="{StaticResource SemiRed5Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiRed4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgeFlatPinkBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#ED487B" Offset="0" />
-        <GradientStop Color="#E91E63" Offset="1" />
+        <GradientStop Color="{StaticResource SemiPink5Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiPink4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgeFlatPurpleBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#B449C2" Offset="0" />
-        <GradientStop Color="#9E28B3" Offset="1" />
+        <GradientStop Color="{StaticResource SemiPurple5Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiPurple4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgeFlatVioletBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#885BD2" Offset="0" />
-        <GradientStop Color="#6A3AC7" Offset="1" />
+        <GradientStop Color="{StaticResource SemiViolet5Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiViolet4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgeFlatIndigoBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#5E6FC4" Offset="0" />
-        <GradientStop Color="#3F51B5" Offset="1" />
+        <GradientStop Color="{StaticResource SemiIndigo5Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiIndigo4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgeFlatBlueBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#3295FB" Offset="0" />
-        <GradientStop Color="#0077FA" Offset="1" />
+        <GradientStop Color="{StaticResource SemiBlue5Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiBlue4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgeFlatLightBlueBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#30ACF1" Offset="0" />
-        <GradientStop Color="#0095EE" Offset="1" />
+        <GradientStop Color="{StaticResource SemiLightBlue5Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiLightBlue4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgeFlatCyanBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#2CB8C5" Offset="0" />
-        <GradientStop Color="#2CB8C5" Offset="1" />
+        <GradientStop Color="{StaticResource SemiCyan5Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiCyan4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgeFlatTealBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#27C2B0" Offset="0" />
-        <GradientStop Color="#00B3A1" Offset="1" />
+        <GradientStop Color="{StaticResource SemiTeal5Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiTeal4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgeFlatGreenBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#5AC262" Offset="0" />
-        <GradientStop Color="#3BB346" Offset="1" />
+        <GradientStop Color="{StaticResource SemiGreen5Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiGreen4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgeFlatLightGreenBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#93C55B" Offset="0" />
-        <GradientStop Color="#7BB63C" Offset="1" />
+        <GradientStop Color="{StaticResource SemiLightGreen5Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiLightGreen4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgeFlatLimeBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#A7DA2C" Offset="0" />
-        <GradientStop Color="#9BD100" Offset="1" />
+        <GradientStop Color="{StaticResource SemiLime5Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiLime4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgeFlatYellowBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#FBDA32" Offset="0" />
-        <GradientStop Color="#FAC800" Offset="1" />
+        <GradientStop Color="{StaticResource SemiYellow5Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiYellow4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgeFlatAmberBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#F3C641" Offset="0" />
-        <GradientStop Color="#F0B114" Offset="1" />
+        <GradientStop Color="{StaticResource SemiAmber5Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiAmber4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgeFlatOrangeBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#FDA633" Offset="0" />
-        <GradientStop Color="#FC8800" Offset="1" />
+        <GradientStop Color="{StaticResource SemiOrange5Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiOrange4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgeFlatGreyBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#888D92" Offset="0" />
-        <GradientStop Color="#6B7075" Offset="1" />
+        <GradientStop Color="{StaticResource SemiGrey5Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiGrey4Color}" Offset="1" />
     </LinearGradientBrush>
 
 
     <LinearGradientBrush x:Key="DualBadgePlasticHeaderBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#555B61" Offset="0" />
-        <GradientStop Color="#2E3238" Offset="1" />
+        <GradientStop Color="{StaticResource SemiGrey4Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiGrey2Color}" Offset="1" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="DualBadgePlasticRedBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#FA664C" Offset="0" />
-        <GradientStop Color="#D52515" Offset="1" />
+        <GradientStop Color="{StaticResource SemiRed6Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiRed4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgePlasticPinkBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#ED487B" Offset="0" />
-        <GradientStop Color="#C51356" Offset="1" />
+        <GradientStop Color="{StaticResource SemiPink6Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiPink4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgePlasticPurpleBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#B449C2" Offset="0" />
-        <GradientStop Color="#871E9E" Offset="1" />
+        <GradientStop Color="{StaticResource SemiPurple6Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiPurple4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgePlasticVioletBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#885BD2" Offset="0" />
-        <GradientStop Color="#572FB3" Offset="1" />
+        <GradientStop Color="{StaticResource SemiViolet6Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiViolet4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgePlasticIndigoBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#5E6FC4" Offset="0" />
-        <GradientStop Color="#3342A1" Offset="1" />
+        <GradientStop Color="{StaticResource SemiIndigo6Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiIndigo4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgePlasticBlueBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#3295FB" Offset="0" />
-        <GradientStop Color="#0077FA" Offset="1" />
+        <GradientStop Color="{StaticResource SemiBlue6Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiBlue4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgePlasticLightBlueBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#30ACF1" Offset="0" />
-        <GradientStop Color="#007BCA" Offset="1" />
+        <GradientStop Color="{StaticResource SemiLightBlue6Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiLightBlue4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgePlasticCyanBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#2CB8C5" Offset="0" />
-        <GradientStop Color="#038698" Offset="1" />
+        <GradientStop Color="{StaticResource SemiCyan6Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiCyan4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgePlasticTealBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#27C2B0" Offset="0" />
-        <GradientStop Color="#009589" Offset="1" />
+        <GradientStop Color="{StaticResource SemiTeal6Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiTeal4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgePlasticGreenBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#5AC262" Offset="0" />
-        <GradientStop Color="#30953B" Offset="1" />
+        <GradientStop Color="{StaticResource SemiGreen6Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiGreen4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgePlasticLightGreenBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#93C55B" Offset="0" />
-        <GradientStop Color="#649830" Offset="1" />
+        <GradientStop Color="{StaticResource SemiLightGreen6Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiLightGreen4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgePlasticLimeBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#A7DA2C" Offset="0" />
-        <GradientStop Color="#7EAE00" Offset="1" />
+        <GradientStop Color="{StaticResource SemiLime6Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiLime4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgePlasticYellowBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#FBDA32" Offset="0" />
-        <GradientStop Color="#D0AA00" Offset="1" />
+        <GradientStop Color="{StaticResource SemiYellow6Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiYellow4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgePlasticAmberBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#F3C641" Offset="0" />
-        <GradientStop Color="#C88A0F" Offset="1" />
+        <GradientStop Color="{StaticResource SemiAmber6Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiAmber4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgePlasticOrangeBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#FDA633" Offset="0" />
-        <GradientStop Color="#D26700" Offset="1" />
+        <GradientStop Color="{StaticResource SemiOrange6Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiOrange4Color}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="DualBadgePlasticGreyBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="#888D92" Offset="0" />
-        <GradientStop Color="#555B61" Offset="1" />
+        <GradientStop Color="{StaticResource SemiGrey6Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiGrey4Color}" Offset="1" />
     </LinearGradientBrush>
 </ResourceDictionary>
