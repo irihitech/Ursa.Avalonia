@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Avalonia.Controls.Notifications;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -13,6 +14,8 @@ public partial class NotificationDemoViewModel : ObservableObject
 
     [ObservableProperty] private bool _showIcon = true;
     [ObservableProperty] private bool _showClose = true;
+
+    private readonly List<Notification> _currentNotifications = new();
 
     [RelayCommand]
     public void ChangePosition(object obj)
@@ -29,8 +32,10 @@ public partial class NotificationDemoViewModel : ObservableObject
     {
         if (obj is not string s) return;
         Enum.TryParse<NotificationType>(s, out var notificationType);
+        var notification = new Notification("Welcome", "This is message");
+        _currentNotifications.Add(notification);
         NotificationManager?.Show(
-            new Notification("Welcome", "This is message"),
+            notification,
             showIcon: ShowIcon,
             showClose: ShowClose,
             type: notificationType);
@@ -41,11 +46,31 @@ public partial class NotificationDemoViewModel : ObservableObject
     {
         if (obj is not string s) return;
         Enum.TryParse<NotificationType>(s, out var notificationType);
+        var notification = new Notification("Welcome", "This is message");
+        _currentNotifications.Add(notification);
         NotificationManager?.Show(
-            new Notification("Welcome", "This is message"),
+            notification,
             showIcon: ShowIcon,
             showClose: ShowClose,
             type: notificationType,
             classes: ["Light"]);
+    }
+
+    [RelayCommand]
+    public void CloseFirstNotification()
+    {
+        if (_currentNotifications.Count > 0)
+        {
+            var notification = _currentNotifications[0];
+            NotificationManager?.Close(notification);
+            _currentNotifications.RemoveAt(0);
+        }
+    }
+
+    [RelayCommand]
+    public void CloseAllNotifications()
+    {
+        NotificationManager?.CloseAll();
+        _currentNotifications.Clear();
     }
 }
