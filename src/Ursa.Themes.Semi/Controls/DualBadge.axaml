@@ -3,39 +3,54 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:iri="https://irihi.tech/shared">
+    <Design.PreviewWith>
+        <StackPanel>
+            <u:DualBadge
+                Icon="{StaticResource SemiIconDownload}"
+                Header="downloads"
+                Content="35k" />
+        </StackPanel>
+    </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:DualBadge}" TargetType="u:DualBadge">
-        <Setter Property="CornerRadius" Value="{DynamicResource DualBadgeDefaultCornerRadius}" />
-        <Setter Property="FontSize" Value="{DynamicResource DualBadgeDefaultFontSize}" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="IconForeground" Value="{DynamicResource DualBadgeDefaultIconForeground}" />
         <Setter Property="HeaderForeground" Value="{DynamicResource DualBadgeDefaultHeaderForeground}" />
         <Setter Property="HeaderBackground" Value="{DynamicResource DualBadgeDefaultHeaderBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource DualBadgeDefaultForeground}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource DualBadgeDefaultCornerRadius}" />
         <Setter Property="Background" Value="{DynamicResource DualBadgeFlatGreenBackground}" />
-        <Setter Property="ClipToBounds" Value="{DynamicResource DualBadgeDefaultClipToBounds}" />
-        <Setter Property="HorizontalAlignment" Value="{DynamicResource DualBadgeDefaultHorizontalAlignment}" />
-        <Setter Property="VerticalAlignment" Value="{DynamicResource DualBadgeDefaultVerticalAlignment}" />
-        <Setter Property="UseLayoutRounding" Value="{DynamicResource DualBadgeDefaultUseLayoutRounding}" />
         <Setter Property="Padding" Value="{DynamicResource DualBadgeDefaultPadding}" />
+        <Setter Property="FontSize" Value="{DynamicResource DualBadgeDefaultFontSize}" />
+        <Setter Property="UseLayoutRounding" Value="False" />
+        <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="Template">
             <ControlTemplate TargetType="{x:Type u:DualBadge}">
                 <Border
                     HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                     VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                    ClipToBounds="True"
-                    CornerRadius="{TemplateBinding CornerRadius}">
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    ClipToBounds="{TemplateBinding ClipToBounds}">
                     <Grid ColumnDefinitions="Auto,Auto">
                         <DockPanel
                             Grid.Column="0"
                             Background="{TemplateBinding HeaderBackground}">
                             <ContentPresenter
                                 Name="{x:Static u:DualBadge.PART_Icon}"
-                                Width="{DynamicResource DualBadgeIconWidth}"
-                                Height="{DynamicResource DualBadgeIconHeight}"
+                                DockPanel.Dock="Left"
                                 IsVisible="{TemplateBinding Icon,Converter={x:Static ObjectConverters.IsNotNull}}"
                                 Foreground="{TemplateBinding IconForeground}"
                                 Margin="{TemplateBinding Padding, Converter={iri:ThicknessMixerConverter 'Vertical,Left'}}"
                                 Content="{TemplateBinding Icon}"
-                                ContentTemplate="{TemplateBinding IconTemplate}" />
+                                ContentTemplate="{TemplateBinding IconTemplate}">
+                                <ContentPresenter.DataTemplates>
+                                    <DataTemplate DataType="Geometry">
+                                        <PathIcon
+                                            Theme="{StaticResource InnerPathIcon}"
+                                            Data="{Binding}" />
+                                    </DataTemplate>
+                                </ContentPresenter.DataTemplates>
+                            </ContentPresenter>
                             <ContentPresenter
                                 Name="{x:Static u:DualBadge.PART_HeaderPresenter}"
                                 TextElement.FontSize="{TemplateBinding FontSize}"

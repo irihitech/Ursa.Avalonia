@@ -19,106 +19,34 @@
         <StackPanel HorizontalAlignment="Left" Spacing="20">
             <TextBlock Text="Flat:" />
             <StackPanel Orientation="Horizontal">
-                <u:DualBadge>
-                    2.4k
-                </u:DualBadge>
-                <u:DualBadge>
-                    <u:DualBadge.Icon>
-                        <PathIcon
-                            Theme="{StaticResource InnerPathIcon}"
-                            Data="{StaticResource SemiIconDownload}" />
-                    </u:DualBadge.Icon>
-                    2.4k
-                </u:DualBadge>
-                <u:DualBadge Header="downloads">
-                    2.4k
-                </u:DualBadge>
-                <u:DualBadge Header="downloads">
-                    <u:DualBadge.Icon>
-                        <PathIcon
-                            Theme="{StaticResource InnerPathIcon}"
-                            Data="{StaticResource SemiIconDownload}" />
-                    </u:DualBadge.Icon>
-                    2.4k
-                </u:DualBadge>
+                <u:DualBadge Content="35k" />
+                <u:DualBadge Content="35k" Icon="{StaticResource SemiIconDownload}" />
+                <u:DualBadge Content="35k" Header="downloads" />
+                <u:DualBadge Content="35k" Header="downloads" Icon="{StaticResource SemiIconDownload}" />
             </StackPanel>
 
             <TextBlock Text="FlatSquare:" />
             <StackPanel Orientation="Horizontal">
-                <u:DualBadge Classes="FlatSquare">
-                    2.4k
-                </u:DualBadge>
-                <u:DualBadge Classes="FlatSquare">
-                    <u:DualBadge.Icon>
-                        <PathIcon
-                            Theme="{StaticResource InnerPathIcon}"
-                            Data="{StaticResource SemiIconDownload}" />
-                    </u:DualBadge.Icon>
-                    2.4k
-                </u:DualBadge>
-                <u:DualBadge Classes="FlatSquare" Header="downloads">
-                    2.4k
-                </u:DualBadge>
-                <u:DualBadge Classes="FlatSquare" Header="downloads">
-                    <u:DualBadge.Icon>
-                        <PathIcon
-                            Theme="{StaticResource InnerPathIcon}"
-                            Data="{StaticResource SemiIconDownload}" />
-                    </u:DualBadge.Icon>
-                    2.4k
-                </u:DualBadge>
+                <u:DualBadge Classes="FlatSquare" Content="35k" />
+                <u:DualBadge Classes="FlatSquare" Content="35k" Icon="{StaticResource SemiIconDownload}" />
+                <u:DualBadge Classes="FlatSquare" Content="35k" Header="downloads" />
+                <u:DualBadge Classes="FlatSquare" Content="35k" Header="downloads" Icon="{StaticResource SemiIconDownload}" />
             </StackPanel>
 
             <TextBlock Text="Plastic:" />
             <StackPanel Orientation="Horizontal">
-                <u:DualBadge Classes="Plastic">
-                    2.4k
-                </u:DualBadge>
-                <u:DualBadge Classes="Plastic">
-                    <u:DualBadge.Icon>
-                        <PathIcon
-                            Theme="{StaticResource InnerPathIcon}"
-                            Data="{StaticResource SemiIconDownload}" />
-                    </u:DualBadge.Icon>
-                    2.4k
-                </u:DualBadge>
-                <u:DualBadge Classes="Plastic" Header="downloads">
-                    2.4k
-                </u:DualBadge>
-                <u:DualBadge Classes="Plastic" Header="downloads">
-                    <u:DualBadge.Icon>
-                        <PathIcon
-                            Theme="{StaticResource InnerPathIcon}"
-                            Data="{StaticResource SemiIconDownload}" />
-                    </u:DualBadge.Icon>
-                    2.4k
-                </u:DualBadge>
+                <u:DualBadge Classes="Plastic" Content="35k" />
+                <u:DualBadge Classes="Plastic" Content="35k" Icon="{StaticResource SemiIconDownload}" />
+                <u:DualBadge Classes="Plastic" Content="35k" Header="downloads" />
+                <u:DualBadge Classes="Plastic" Content="35k" Header="downloads" Icon="{StaticResource SemiIconDownload}" />
             </StackPanel>
 
             <TextBlock Text="ForTheBadge:" />
             <StackPanel Orientation="Horizontal">
-                <u:DualBadge Classes="ForTheBadge">
-                    2.4K
-                </u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge">
-                    <u:DualBadge.Icon>
-                        <PathIcon
-                            Theme="{StaticResource InnerPathIcon}"
-                            Data="{StaticResource SemiIconDownload}" />
-                    </u:DualBadge.Icon>
-                    2.4K
-                </u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge" Header="DOWNLOADS">
-                    2.4K
-                </u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge" Header="DOWNLOADS">
-                    <u:DualBadge.Icon>
-                        <PathIcon
-                            Theme="{StaticResource InnerPathIcon}"
-                            Data="{StaticResource SemiIconDownload}" />
-                    </u:DualBadge.Icon>
-                    2.4K
-                </u:DualBadge>
+                <u:DualBadge Classes="ForTheBadge" Content="35K" />
+                <u:DualBadge Classes="ForTheBadge" Content="35K" Icon="{StaticResource SemiIconDownload}" />
+                <u:DualBadge Classes="ForTheBadge" Content="35K" Header="DOWNLOADS" />
+                <u:DualBadge Classes="ForTheBadge" Content="35K" Header="DOWNLOADS" Icon="{StaticResource SemiIconDownload}" />
             </StackPanel>
 
             <WrapPanel>
