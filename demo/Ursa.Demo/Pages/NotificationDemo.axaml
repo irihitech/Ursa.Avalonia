@@ -59,5 +59,10 @@
             <Button Content="Warning" Classes="Warning" />
             <Button Content="Error" Classes="Danger" />
         </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Spacing="20">
+            <Button Content="Close First" Command="{Binding CloseFirstNotification}" />
+            <Button Content="Close All" Command="{Binding CloseAllNotifications}" Classes="Danger" />
+        </StackPanel>
     </StackPanel>
 </UserControl>

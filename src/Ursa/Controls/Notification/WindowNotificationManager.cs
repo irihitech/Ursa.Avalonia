@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -173,6 +175,35 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
         await Task.Delay(expiration ?? TimeSpan.FromSeconds(3));
 
         notificationControl.Close();
+    }
+
+    /// <summary>
+    /// Closes a specific notification.
+    /// </summary>
+    /// <param name="notification">The notification to close.</param>
+    public void Close(object notification)
+    {
+        if (_items == null) return;
+
+        var notificationCard = _items
+            .OfType<NotificationCard>()
+            .FirstOrDefault(card => ReferenceEquals(card.Content, notification));
+
+        notificationCard?.Close();
+    }
+
+    /// <summary>
+    /// Closes all currently displayed notifications.
+    /// </summary>
+    public void CloseAll()
+    {
+        if (_items == null) return;
+
+        var notifications = _items.OfType<NotificationCard>().ToList();
+        foreach (var notification in notifications)
+        {
+            notification.Close();
+        }
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
