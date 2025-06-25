@@ -183,7 +183,7 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
     /// <param name="notification">The notification to close.</param>
     public void Close(object notification)
     {
-        if (_items == null) return;
+        if (_items == null || notification == null) return;
 
         var notificationCard = _items
             .OfType<NotificationCard>()
