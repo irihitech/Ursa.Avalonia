@@ -26,7 +26,7 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = "MultiComboBox", Key = MenuKeys.MenuKeyMultiComboBox },
                     new() { MenuHeader = "Numeric UpDown", Key = MenuKeys.MenuKeyNumericUpDown },
                     new() { MenuHeader = "NumPad", Key = MenuKeys.MenuKeyNumPad },
-                    new() { MenuHeader = "PathPicker", Key = MenuKeys.PathPicker, Status = "New" },
+                    new() { MenuHeader = "PathPicker", Key = MenuKeys.MenuKeyPathPicker, Status = "New" },
                     new() { MenuHeader = "PinCode", Key = MenuKeys.MenuKeyPinCode },
                     new() { MenuHeader = "RangeSlider", Key = MenuKeys.MenuKeyRangeSlider },
                     new() { MenuHeader = "Rating", Key = MenuKeys.MenuKeyRating },
@@ -67,6 +67,7 @@ public class MenuViewModel : ViewModelBase
             {
                 MenuHeader = "Navigation & Menus", Children = new ObservableCollection<MenuItemViewModel>
                 {
+                    new() { MenuHeader = "Anchor", Key = MenuKeys.MenuKeyAnchor, Status = "New" },
                     new() { MenuHeader = "Breadcrumb", Key = MenuKeys.MenuKeyBreadcrumb, Status = "Updated" },
                     new() { MenuHeader = "Nav Menu", Key = MenuKeys.MenuKeyNavMenu, Status = "Updated" },
                     new() { MenuHeader = "Pagination", Key = MenuKeys.MenuKeyPagination },
@@ -78,7 +79,7 @@ public class MenuViewModel : ViewModelBase
                 MenuHeader = "Layout & Display",
                 Children = new ObservableCollection<MenuItemViewModel>
                 {
-                    new() { MenuHeader = "AspectRatioLayout", Key = MenuKeys.AspectRatioLayout },
+                    new() { MenuHeader = "AspectRatioLayout", Key = MenuKeys.MenuKeyAspectRatioLayout },
                     new() { MenuHeader = "Avatar", Key = MenuKeys.MenuKeyAvatar, Status = "WIP" },
                     new() { MenuHeader = "Badge", Key = MenuKeys.MenuKeyBadge },
                     new() { MenuHeader = "Banner", Key = MenuKeys.MenuKeyBanner, Status = "Updated" },
@@ -154,6 +155,7 @@ public static class MenuKeys
     public const string MenuKeyToolBar = "ToolBar";
     public const string MenuKeyTreeComboBox = "TreeComboBox";
     public const string MenuKeyTwoTonePathIcon = "TwoTonePathIcon";
-    public const string AspectRatioLayout = "AspectRatioLayout";
-    public const string PathPicker = "PathPicker";
+    public const string MenuKeyAspectRatioLayout = "AspectRatioLayout";
+    public const string MenuKeyPathPicker = "PathPicker";
+    public const string MenuKeyAnchor = "Anchor";
 }

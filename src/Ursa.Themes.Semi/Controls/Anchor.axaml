@@ -1,0 +1,15 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <ControlTheme x:Key="{x:Type u:Anchor}" TargetType="{x:Type u:Anchor}">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ItemsPresenter
+                    Name="PART_ItemsPresenter"
+                    Margin="{TemplateBinding Padding}"
+                    ItemsPanel="{TemplateBinding ItemsPanel}" />
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

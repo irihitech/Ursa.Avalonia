@@ -1,0 +1,69 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.AnchorDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid ColumnDefinitions="*, Auto">
+        <ScrollViewer
+            Name="container"
+            Grid.Column="0"
+            VerticalAlignment="Stretch">
+            <StackPanel>
+                <Rectangle
+                    Name="rectangle1"
+                    Height="300"
+                    HorizontalAlignment="Stretch"
+                    Fill="{DynamicResource SemiRed2}" />
+                <Rectangle
+                    Name="rectangle2"
+                    Height="300"
+                    HorizontalAlignment="Stretch"
+                    Fill="{DynamicResource SemiPink1}" />
+                <Rectangle
+                    Name="rectangle3"
+                    Height="300"
+                    HorizontalAlignment="Stretch"
+                    Fill="{DynamicResource SemiPurple1}" />
+                <Rectangle
+                    Name="rectangle4"
+                    Height="300"
+                    HorizontalAlignment="Stretch"
+                    Fill="{DynamicResource SemiViolet1}" />
+                <Rectangle
+                    Name="rectangle5"
+                    Height="300"
+                    HorizontalAlignment="Stretch"
+                    Fill="{DynamicResource SemiIndigo1}" />
+                <Rectangle
+                    Name="rectangle6"
+                    Height="300"
+                    HorizontalAlignment="Stretch"
+                    Fill="{DynamicResource SemiBlue1}" />
+                <Rectangle
+                    Name="rectangle7"
+                    Height="300"
+                    HorizontalAlignment="Stretch"
+                    Fill="{DynamicResource SemiLightBlue1}" />
+            </StackPanel>
+        </ScrollViewer>
+        <u:Anchor
+            Grid.Column="1"
+            Width="200"
+            Margin="24"
+            TargetContainer="{Binding ElementName=container}">
+            <u:AnchorItem Content="Rectangle 1" Target="{Binding #rectangle1}" />
+            <u:AnchorItem Content="Rectangle 2" Target="{Binding #rectangle2}" />
+            <u:AnchorItem Content="Rectangle 3" Target="{Binding #rectangle3}" />
+            <u:AnchorItem Content="Rectangle 4" Target="{Binding #rectangle4}" />
+            <u:AnchorItem Content="Rectangle 5" Target="{Binding #rectangle5}" />
+            <u:AnchorItem Content="Rectangle 6" Target="{Binding #rectangle6}" />
+            <u:AnchorItem Content="Rectangle 7" Target="{Binding #rectangle7}" />
+
+        </u:Anchor>
+    </Grid>
+</UserControl>
