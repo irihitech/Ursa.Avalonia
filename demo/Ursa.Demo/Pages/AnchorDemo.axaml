@@ -5,65 +5,169 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    x:DataType="viewModels:AnchorDemoViewModel"
     mc:Ignorable="d">
-    <Grid ColumnDefinitions="*, Auto">
-        <ScrollViewer
-            Name="container"
-            Grid.Column="0"
-            VerticalAlignment="Stretch">
-            <StackPanel>
-                <Rectangle
-                    Name="rectangle1"
-                    Height="300"
-                    HorizontalAlignment="Stretch"
-                    Fill="{DynamicResource SemiRed2}" />
-                <Rectangle
-                    Name="rectangle2"
-                    Height="300"
-                    HorizontalAlignment="Stretch"
-                    Fill="{DynamicResource SemiPink1}" />
-                <Rectangle
-                    Name="rectangle3"
-                    Height="300"
-                    HorizontalAlignment="Stretch"
-                    Fill="{DynamicResource SemiPurple1}" />
-                <Rectangle
-                    Name="rectangle4"
-                    Height="300"
-                    HorizontalAlignment="Stretch"
-                    Fill="{DynamicResource SemiViolet1}" />
-                <Rectangle
-                    Name="rectangle5"
-                    Height="300"
-                    HorizontalAlignment="Stretch"
-                    Fill="{DynamicResource SemiIndigo1}" />
-                <Rectangle
-                    Name="rectangle6"
-                    Height="300"
-                    HorizontalAlignment="Stretch"
-                    Fill="{DynamicResource SemiBlue1}" />
-                <Rectangle
-                    Name="rectangle7"
-                    Height="300"
-                    HorizontalAlignment="Stretch"
-                    Fill="{DynamicResource SemiLightBlue1}" />
-            </StackPanel>
-        </ScrollViewer>
-        <u:Anchor
-            Grid.Column="1"
-            Width="200"
-            Margin="24"
-            TargetContainer="{Binding ElementName=container}">
-            <u:AnchorItem Content="Rectangle 1" Target="{Binding #rectangle1}" />
-            <u:AnchorItem Content="Rectangle 2" Target="{Binding #rectangle2}" />
-            <u:AnchorItem Content="Rectangle 3" Target="{Binding #rectangle3}" />
-            <u:AnchorItem Content="Rectangle 4" Target="{Binding #rectangle4}" />
-            <u:AnchorItem Content="Rectangle 5" Target="{Binding #rectangle5}" />
-            <u:AnchorItem Content="Rectangle 6" Target="{Binding #rectangle6}" />
-            <u:AnchorItem Content="Rectangle 7" Target="{Binding #rectangle7}" />
+    <TabControl>
+        <TabItem Header="XAML Inline">
+            <Grid ColumnDefinitions="*, Auto">
+                <ScrollViewer
+                    Name="container1"
+                    Grid.Column="0"
+                    VerticalAlignment="Stretch">
+                    <StackPanel>
+                        <StackPanel.Styles>
+                            <Style Selector="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
+                        </StackPanel.Styles>
+                        <Border
+                            Name="a1"
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            Background="{DynamicResource SemiRed2}">
+                            <TextBlock Text="Border 1" />
+                        </Border>
+                        <Border
+                            Name="a2"
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            Background="{DynamicResource SemiPink1}">
+                            <TextBlock Text="Border 2" />
+                        </Border>
+                        <Border
+                            Name="a3"
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            Background="{DynamicResource SemiPurple1}">
+                            <TextBlock Text="Border 3" />
+                        </Border>
+                        <Border
+                            Name="a4"
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            Background="{DynamicResource SemiViolet1}">
+                            <TextBlock Text="Border 4" />
+                        </Border>
+                        <Border
+                            Name="a5"
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            Background="{DynamicResource SemiIndigo1}">
+                            <TextBlock Text="Border 5" />
+                        </Border>
+                        <Border
+                            Name="a6"
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            Background="{DynamicResource SemiBlue1}">
+                            <TextBlock Text="Border 6" />
+                        </Border>
+                        <Border
+                            Name="a7"
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            Background="{DynamicResource SemiLightBlue1}">
+                            <TextBlock Text="Border 7" />
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+                <u:Anchor
+                    Grid.Column="1"
+                    Width="200"
+                    Margin="24"
+                    TargetContainer="{Binding ElementName=container1}">
+                    <u:AnchorItem Content="Rectangle 1" Target="{Binding #a1}" />
+                    <u:AnchorItem Content="Rectangle 2" Target="{Binding #a2}" />
+                    <u:AnchorItem Content="Rectangle 3" Target="{Binding #a3}" />
+                    <u:AnchorItem Content="Rectangle 4" Target="{Binding #a4}" />
+                    <u:AnchorItem Content="Rectangle 5" Target="{Binding #a5}" />
+                    <u:AnchorItem Content="Rectangle 6" Target="{Binding #a6}" />
+                    <u:AnchorItem Content="Rectangle 7" Target="{Binding #a7}" />
 
-        </u:Anchor>
-    </Grid>
+                </u:Anchor>
+            </Grid>
+        </TabItem>
+        <TabItem Header="MVVM">
+            <Grid ColumnDefinitions="*, Auto">
+                <ScrollViewer
+                    Name="container2"
+                    Grid.Column="0"
+                    VerticalAlignment="Stretch">
+                    <StackPanel>
+                        <StackPanel.Styles>
+                            <Style Selector="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
+                        </StackPanel.Styles>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.AnchorId="anchor1"
+                            Background="{DynamicResource SemiRed2}">
+                            <TextBlock Text="Border 1" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.AnchorId="anchor2"
+                            Background="{DynamicResource SemiPink1}">
+                            <TextBlock Text="Border 2" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.AnchorId="anchor3"
+                            Background="{DynamicResource SemiPurple1}">
+                            <TextBlock Text="Border 3" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.AnchorId="anchor4"
+                            Background="{DynamicResource SemiViolet1}">
+                            <TextBlock Text="Border 4" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.AnchorId="anchor5"
+                            Background="{DynamicResource SemiIndigo1}">
+                            <TextBlock Text="Border 5" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.AnchorId="anchor6"
+                            Background="{DynamicResource SemiBlue1}">
+                            <TextBlock Text="Border 6" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.AnchorId="anchor7"
+                            Background="{DynamicResource SemiLightBlue1}">
+                            <TextBlock Text="Border 7" />
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+                <u:Anchor
+                    Grid.Column="1"
+                    MinWidth="300"
+                    ItemsSource="{Binding AnchorItems}"
+                    TargetContainer="{Binding #container2}">
+                    <u:Anchor.Styles>
+                        <Style x:DataType="viewModels:AnchorItemViewModel" Selector="u|AnchorItem">
+                            <Setter Property="AnchorId" Value="{Binding AnchorId}" />
+                            <Setter Property="Content" Value="{Binding Header}" />
+                        </Style>
+                    </u:Anchor.Styles>
+                </u:Anchor>
+            </Grid>
+        </TabItem>
+    </TabControl>
 </UserControl>

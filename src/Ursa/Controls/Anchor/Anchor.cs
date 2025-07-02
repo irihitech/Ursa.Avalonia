@@ -3,7 +3,9 @@ using Avalonia.Animation;
 using Avalonia.Animation.Easings;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Interactivity;
 using Avalonia.Styling;
+using Avalonia.VisualTree;
 
 namespace Ursa.Controls;
 
@@ -18,11 +20,11 @@ public class Anchor: SelectingItemsControl
         set => SetValue(TargetContainerProperty, value);
     }
 
-    public static readonly AttachedProperty<string> AnchorIdProperty =
-        AvaloniaProperty.RegisterAttached<Anchor, Control, string>("AnchorId");
+    public static readonly AttachedProperty<string?> AnchorIdProperty =
+        AvaloniaProperty.RegisterAttached<Anchor, Visual, string?>("AnchorId");
 
-    public static void SetAnchorId(Control obj, string value) => obj.SetValue(AnchorIdProperty, value);
-    public static string GetAnchorId(Control obj) => obj.GetValue(AnchorIdProperty);
+    public static void SetAnchorId(Visual obj, string? value) => obj.SetValue(AnchorIdProperty, value);
+    public static string? GetAnchorId(Visual obj) => obj.GetValue(AnchorIdProperty);
     
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
@@ -40,24 +42,16 @@ public class Anchor: SelectingItemsControl
     {
         if (TargetContainer is null)
             return;
-
-        var target = TargetContainer.FindControl<Control>(anchorId);
-        if (target is null)
-            return;
-
-        var targetPosition = target.TranslatePoint(new Point(0, 0), TargetContainer);
-        if (targetPosition.HasValue)
-        {
-            TargetContainer.Offset = new Vector(0, targetPosition.Value.Y);
-        }
-        
+        var target = TargetContainer.GetVisualDescendants().FirstOrDefault(a=>Anchor.GetAnchorId(a) == anchorId);
+        if (target is null) return;
+        ScrollToAnchor(target);
     }
     
-    internal void ScrollToAnchor(Control target)
+    internal void ScrollToAnchor(Visual target)
     {
         if (TargetContainer is null)
             return;
-        
+        TargetContainer.Loaded += OnTargetLoaded;
         var targetPosition = target.TranslatePoint(new Point(0, 0), TargetContainer);
         if (targetPosition.HasValue)
         {
@@ -95,5 +89,25 @@ public class Anchor: SelectingItemsControl
             // TargetContainer.Offset = TargetContainer.Offset.WithY(TargetContainer.Offset.Y + targetPosition.Value.Y);
         }
     }
-    
+
+    private void OnTargetLoaded(object sender, RoutedEventArgs e)
+    {
+        if (sender is ScrollViewer scrollViewer)
+        {
+            scrollViewer.Loaded -= OnTargetLoaded;
+            if (scrollViewer.Content is Visual target)
+            {
+                var anchorId = GetAnchorId(target);
+                if (!string.IsNullOrEmpty(anchorId))
+                {
+                    ScrollToAnchor(anchorId);
+                }
+            }
+        }
+    }
+
+    public void InvalidatePositions()
+    {
+        
+    }
 }

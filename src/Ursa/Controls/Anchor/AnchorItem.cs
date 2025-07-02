@@ -17,12 +17,12 @@ public class AnchorItem: ContentControl
         set => SetValue(TargetProperty, value);
     }
     
-    public static readonly StyledProperty<string?> AnchorNameProperty = AvaloniaProperty.Register<AnchorItem, string?>(
-        nameof(AnchorName));
-    public string? AnchorName
+    public static readonly StyledProperty<string?> AnchorIdProperty = AvaloniaProperty.Register<AnchorItem, string?>(
+        nameof(AnchorId));
+    public string? AnchorId
     {
-        get => GetValue(AnchorNameProperty);
-        set => SetValue(AnchorNameProperty, value);
+        get => GetValue(AnchorIdProperty);
+        set => SetValue(AnchorIdProperty, value);
     }
 
     private Anchor? _root;
@@ -42,6 +42,10 @@ public class AnchorItem: ContentControl
         if (Target is not null)
         {
             _root.ScrollToAnchor(Target);
+        }
+        else if (!string.IsNullOrEmpty(AnchorId))
+        {
+            _root.ScrollToAnchor(AnchorId);
         }
     }
 }
