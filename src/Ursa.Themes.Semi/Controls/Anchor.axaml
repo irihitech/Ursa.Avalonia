@@ -12,4 +12,16 @@
             </ControlTemplate>
         </Setter>
     </ControlTheme>
+    
+    <ControlTheme x:Key="{x:Type u:AnchorItem}" TargetType="u:AnchorItem" >
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:AnchorItem">
+                <StackPanel>
+                    <ContentPresenter Content="{TemplateBinding Header}" />
+                    <ItemsPresenter Margin="8 0 0 0" ItemsPanel="{TemplateBinding ItemsPanel}" />
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
 </ResourceDictionary>

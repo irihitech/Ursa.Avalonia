@@ -46,12 +46,13 @@ public class Anchor: SelectingItemsControl
         if (target is null) return;
         ScrollToAnchor(target);
     }
+
+    private CancellationTokenSource _cts = new();
     
-    internal void ScrollToAnchor(Visual target)
+    private void ScrollToAnchor(Visual target)
     {
         if (TargetContainer is null)
             return;
-        TargetContainer.Loaded += OnTargetLoaded;
         var targetPosition = target.TranslatePoint(new Point(0, 0), TargetContainer);
         if (targetPosition.HasValue)
         {
@@ -61,6 +62,7 @@ public class Anchor: SelectingItemsControl
             {
                 to = TargetContainer.Extent.Height - TargetContainer.Bounds.Height;
             }
+            if (from == to) return;
             Animation animation = new Animation()
             {
                 Duration = TimeSpan.FromSeconds(0.3),
@@ -85,29 +87,51 @@ public class Anchor: SelectingItemsControl
                 
                 }
             };
-            animation.RunAsync(TargetContainer);
-            // TargetContainer.Offset = TargetContainer.Offset.WithY(TargetContainer.Offset.Y + targetPosition.Value.Y);
+            _cts.Cancel();
+            _cts = new CancellationTokenSource();
+            animation.RunAsync(TargetContainer, _cts.Token);
         }
     }
-
-    private void OnTargetLoaded(object sender, RoutedEventArgs e)
-    {
-        if (sender is ScrollViewer scrollViewer)
-        {
-            scrollViewer.Loaded -= OnTargetLoaded;
-            if (scrollViewer.Content is Visual target)
-            {
-                var anchorId = GetAnchorId(target);
-                if (!string.IsNullOrEmpty(anchorId))
-                {
-                    ScrollToAnchor(anchorId);
-                }
-            }
-        }
-    }
-
+    
     public void InvalidatePositions()
     {
         
+    }
+
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        var items = this.GetVisualDescendants().OfType<AnchorItem>().ToList();
+        var target = this.TargetContainer;
+        if (target is null) return;
+        var targetItems = target.GetVisualDescendants().Where(a => Anchor.GetAnchorId(a) is not null).ToList();
+        var tops = targetItems.Select(a => (a.TransformToVisual(target)?.M32, GetAnchorId(a)));
+        var isloaded = TargetContainer?.IsLoaded; 
+        TargetContainer?.AddHandler(ScrollViewer.ScrollChangedEvent, OnScrollChanged);
+    }
+
+    private void OnScrollChanged(object? sender, ScrollChangedEventArgs e)
+    {
+        
+    }
+
+    internal Control CreateContainerForItemOverride_INTERNAL(object? item, int index, object? recycleKey)
+    {
+        return CreateContainerForItemOverride(item, index, recycleKey);
+    }
+    
+    internal bool NeedsContainerOverride_INTERNAL(object? item, int index, out object? recycleKey)
+    {
+        return NeedsContainerOverride(item, index, out recycleKey);
+    }
+    
+    internal void PrepareContainerForItemOverride_INTERNAL(Control container, object? item, int index)
+    {
+        PrepareContainerForItemOverride(container, item, index);
+    }
+
+    internal void ContainerForItemPreparedOverride_INTERNAL(Control container, object? item, int index)
+    {
+        ContainerForItemPreparedOverride(container, item, index);
     }
 }

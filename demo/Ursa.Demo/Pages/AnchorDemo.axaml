@@ -25,49 +25,48 @@
                             </Style>
                         </StackPanel.Styles>
                         <Border
-                            Name="a1"
+                            u:Anchor.AnchorId="a1"
                             Height="300"
                             HorizontalAlignment="Stretch"
                             Background="{DynamicResource SemiRed2}">
                             <TextBlock Text="Border 1" />
                         </Border>
                         <Border
-                            Name="a2"
+                            u:Anchor.AnchorId="a2"
                             Height="300"
                             HorizontalAlignment="Stretch"
                             Background="{DynamicResource SemiPink1}">
                             <TextBlock Text="Border 2" />
                         </Border>
                         <Border
-                            Name="a3"
+                            u:Anchor.AnchorId="a3"
                             Height="300"
                             HorizontalAlignment="Stretch"
                             Background="{DynamicResource SemiPurple1}">
                             <TextBlock Text="Border 3" />
                         </Border>
                         <Border
-                            Name="a4"
                             Height="300"
                             HorizontalAlignment="Stretch"
                             Background="{DynamicResource SemiViolet1}">
-                            <TextBlock Text="Border 4" />
+                            <TextBlock u:Anchor.AnchorId="a4" Text="Border 4" />
                         </Border>
                         <Border
-                            Name="a5"
+                            u:Anchor.AnchorId="a5"
                             Height="300"
                             HorizontalAlignment="Stretch"
                             Background="{DynamicResource SemiIndigo1}">
                             <TextBlock Text="Border 5" />
                         </Border>
                         <Border
-                            Name="a6"
+                            u:Anchor.AnchorId="a6"
                             Height="300"
                             HorizontalAlignment="Stretch"
                             Background="{DynamicResource SemiBlue1}">
                             <TextBlock Text="Border 6" />
                         </Border>
                         <Border
-                            Name="a7"
+                            u:Anchor.AnchorId="a7"
                             Height="300"
                             HorizontalAlignment="Stretch"
                             Background="{DynamicResource SemiLightBlue1}">
@@ -80,13 +79,16 @@
                     Width="200"
                     Margin="24"
                     TargetContainer="{Binding ElementName=container1}">
-                    <u:AnchorItem Content="Rectangle 1" Target="{Binding #a1}" />
-                    <u:AnchorItem Content="Rectangle 2" Target="{Binding #a2}" />
-                    <u:AnchorItem Content="Rectangle 3" Target="{Binding #a3}" />
-                    <u:AnchorItem Content="Rectangle 4" Target="{Binding #a4}" />
-                    <u:AnchorItem Content="Rectangle 5" Target="{Binding #a5}" />
-                    <u:AnchorItem Content="Rectangle 6" Target="{Binding #a6}" />
-                    <u:AnchorItem Content="Rectangle 7" Target="{Binding #a7}" />
+                    <u:AnchorItem Header="Rectangle 1" AnchorId="a1" >
+                        <u:AnchorItem Header="Rectangle 2" AnchorId="a2" />
+                        <u:AnchorItem Header="Rectangle 3" AnchorId="a3" />
+                    </u:AnchorItem>
+                    <u:AnchorItem Header="Rectangle 4" AnchorId="a4" />
+                    <u:AnchorItem Header="Rectangle 5" AnchorId="a5" >
+                        <u:AnchorItem Header="Rectangle 6" AnchorId="a6" />
+                        <u:AnchorItem Header="Rectangle 7" AnchorId="a7" />
+                    </u:AnchorItem>
+
 
                 </u:Anchor>
             </Grid>
@@ -157,13 +159,14 @@
                 </ScrollViewer>
                 <u:Anchor
                     Grid.Column="1"
-                    MinWidth="300"
+                    Width="200"
+                    Margin="24"
                     ItemsSource="{Binding AnchorItems}"
                     TargetContainer="{Binding #container2}">
                     <u:Anchor.Styles>
                         <Style x:DataType="viewModels:AnchorItemViewModel" Selector="u|AnchorItem">
                             <Setter Property="AnchorId" Value="{Binding AnchorId}" />
-                            <Setter Property="Content" Value="{Binding Header}" />
+                            <Setter Property="Header" Value="{Binding Header}" />
                         </Style>
                     </u:Anchor.Styles>
                 </u:Anchor>
