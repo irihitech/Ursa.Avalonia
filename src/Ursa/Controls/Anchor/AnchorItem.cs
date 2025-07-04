@@ -59,6 +59,7 @@ public class AnchorItem : HeaderedItemsControl, ISelectable
     {
         // var item = new TreeViewItem();
         base.OnPointerPressed(e);
+        return;
         if (e.Handled) return;
         if (_root is null)
             return;

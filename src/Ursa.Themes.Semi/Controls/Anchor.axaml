@@ -1,7 +1,8 @@
 <ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:u="https://irihi.tech/ursa">
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:iri="https://irihi.tech/shared">
     <ControlTheme x:Key="{x:Type u:Anchor}" TargetType="{x:Type u:Anchor}">
         <Setter Property="Template">
             <ControlTemplate>
@@ -18,10 +19,13 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:AnchorItem">
                 <StackPanel>
-                    <ContentPresenter Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                    <ContentPresenter Name="{x:Static iri:PartNames.PART_HeaderPresenter}" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" />
                     <ItemsPresenter Margin="8 0 0 0" ItemsPanel="{TemplateBinding ItemsPanel}" />
                 </StackPanel>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:selected /template/ ContentPresenter#PART_HeaderPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource SemiBlue5}" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

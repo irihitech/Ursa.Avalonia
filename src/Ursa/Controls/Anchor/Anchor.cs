@@ -1,15 +1,23 @@
+using System.Diagnostics;
 using Avalonia;
 using Avalonia.Animation;
 using Avalonia.Animation.Easings;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Styling;
 using Avalonia.VisualTree;
+using Ursa.Common;
 
 namespace Ursa.Controls;
 
-public class Anchor: SelectingItemsControl
+/// <summary>
+/// Some basic assumptions: This should not be a regular SelectingItemsControl, because it does not support multiple selections.
+/// Selection should not be exposed to the user, it is only used to determine which item is currently selected.
+/// The manipulation of container selection should be simplified.
+/// Scroll event of TargetContainer also triggers selection change. 
+/// </summary>
+public class Anchor: ItemsControl
 {
     public static readonly StyledProperty<ScrollViewer?> TargetContainerProperty = AvaloniaProperty.Register<Anchor, ScrollViewer?>(
         nameof(TargetContainer));
@@ -40,6 +48,7 @@ public class Anchor: SelectingItemsControl
     
     internal void ScrollToAnchor(string anchorId)
     {
+        return;
         if (TargetContainer is null)
             return;
         var target = TargetContainer.GetVisualDescendants().FirstOrDefault(a=>Anchor.GetAnchorId(a) == anchorId);
@@ -48,11 +57,13 @@ public class Anchor: SelectingItemsControl
     }
 
     private CancellationTokenSource _cts = new();
+    private bool _scrollingFromSelection = false;
     
     private void ScrollToAnchor(Visual target)
     {
         if (TargetContainer is null)
             return;
+        
         var targetPosition = target.TranslatePoint(new Point(0, 0), TargetContainer);
         if (targetPosition.HasValue)
         {
@@ -89,7 +100,10 @@ public class Anchor: SelectingItemsControl
             };
             _cts.Cancel();
             _cts = new CancellationTokenSource();
-            animation.RunAsync(TargetContainer, _cts.Token);
+            var token  = _cts.Token;
+            token.Register(_ => _scrollingFromSelection = false, null);
+            _scrollingFromSelection = true;
+            animation.RunAsync(TargetContainer, token).ContinueWith(_ => _scrollingFromSelection = false, token);
         }
     }
     
@@ -112,9 +126,30 @@ public class Anchor: SelectingItemsControl
 
     private void OnScrollChanged(object? sender, ScrollChangedEventArgs e)
     {
-        
+        if (_scrollingFromSelection) return;
+        Debug.WriteLine("Scroll changed");
     }
 
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    {
+        base.OnPointerPressed(e);
+        var source = (e.Source as Visual).GetContainerFromEventSource<AnchorItem>();
+        if (source is null) return;
+        if (_selectedContainer is not null)
+        {
+            _selectedContainer.IsSelected = false;
+        }
+        source.IsSelected = true;
+        _selectedContainer = source;
+        var target = TargetContainer?.GetVisualDescendants()
+                                    .FirstOrDefault(a => Anchor.GetAnchorId(a) == source?.AnchorId);
+        if (target is null) return;
+        ScrollToAnchor(target);
+    }
+
+    /// <summary>
+    /// This method is used to expose the protected CreateContainerForItemOverride method to the AnchorItem class.
+    /// </summary>
     internal Control CreateContainerForItemOverride_INTERNAL(object? item, int index, object? recycleKey)
     {
         return CreateContainerForItemOverride(item, index, recycleKey);
@@ -134,4 +169,8 @@ public class Anchor: SelectingItemsControl
     {
         ContainerForItemPreparedOverride(container, item, index);
     }
+
+    internal AnchorItem? _selectedContainer;
+    
+    
 }
