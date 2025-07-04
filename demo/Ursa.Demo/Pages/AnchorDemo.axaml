@@ -130,6 +130,27 @@
                         <Border
                             Height="300"
                             HorizontalAlignment="Stretch"
+                            u:Anchor.AnchorId="anchor3-1"
+                            Background="{DynamicResource SemiPurple1}">
+                            <TextBlock Text="Border 3-1" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.AnchorId="anchor3-2"
+                            Background="{DynamicResource SemiPurple1}">
+                            <TextBlock Text="Border 3-2" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.AnchorId="anchor3-3"
+                            Background="{DynamicResource SemiPurple1}">
+                            <TextBlock Text="Border 3-3" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
                             u:Anchor.AnchorId="anchor4"
                             Background="{DynamicResource SemiViolet1}">
                             <TextBlock Text="Border 4" />
@@ -166,9 +187,13 @@
                     <u:Anchor.Styles>
                         <Style x:DataType="viewModels:AnchorItemViewModel" Selector="u|AnchorItem">
                             <Setter Property="AnchorId" Value="{Binding AnchorId}" />
-                            <Setter Property="Header" Value="{Binding Header}" />
                         </Style>
                     </u:Anchor.Styles>
+                    <u:Anchor.ItemTemplate>
+                        <TreeDataTemplate ItemsSource="{Binding Children}">
+                            <TextBlock Text="{Binding Header}"/>
+                        </TreeDataTemplate>
+                    </u:Anchor.ItemTemplate>
                 </u:Anchor>
             </Grid>
         </TabItem>

@@ -18,7 +18,7 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:AnchorItem">
                 <StackPanel>
-                    <ContentPresenter Content="{TemplateBinding Header}" />
+                    <ContentPresenter Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" />
                     <ItemsPresenter Margin="8 0 0 0" ItemsPanel="{TemplateBinding ItemsPanel}" />
                 </StackPanel>
             </ControlTemplate>

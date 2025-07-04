@@ -44,11 +44,20 @@ public class AnchorItem : HeaderedItemsControl, ISelectable
     {
         base.OnAttachedToVisualTree(e);
         _root = this.GetLogicalAncestors().OfType<Anchor>().FirstOrDefault();
+        if (ItemTemplate is null && _root?.ItemTemplate is not null)
+        {
+            SetCurrentValue(ItemTemplateProperty, _root.ItemTemplate);
+        }
+
+        if (ItemContainerTheme is null && _root?.ItemContainerTheme is not null)
+        {
+            SetCurrentValue(ItemContainerThemeProperty, _root.ItemContainerTheme);
+        }
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
-        var item = new TreeViewItem();
+        // var item = new TreeViewItem();
         base.OnPointerPressed(e);
         if (e.Handled) return;
         if (_root is null)
