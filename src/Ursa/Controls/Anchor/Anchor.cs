@@ -45,16 +45,6 @@ public class Anchor: ItemsControl
         var i = new AnchorItem();
         return i;
     }
-    
-    internal void ScrollToAnchor(string anchorId)
-    {
-        return;
-        if (TargetContainer is null)
-            return;
-        var target = TargetContainer.GetVisualDescendants().FirstOrDefault(a=>Anchor.GetAnchorId(a) == anchorId);
-        if (target is null) return;
-        ScrollToAnchor(target);
-    }
 
     private CancellationTokenSource _cts = new();
     private bool _scrollingFromSelection = false;
@@ -109,7 +99,29 @@ public class Anchor: ItemsControl
     
     public void InvalidatePositions()
     {
-        
+        InvalidateAnchorPositions();
+        MarkSelectedContainerByPosition();
+    }
+
+    private List<(string, double)> _positions = [];
+
+    internal void InvalidateAnchorPositions()
+    {
+        if (TargetContainer is null) return;
+        var items = TargetContainer.GetVisualDescendants().Where(a => GetAnchorId(a) is not null);
+        List<(string, double)> positions = new List<(string, double)>();
+        foreach (var item in items)
+        {
+            var anchorId = GetAnchorId(item);
+            if (anchorId is null) continue;
+            var position = item.TransformToVisual(TargetContainer)?.M32;
+            if (position.HasValue)
+            {
+                positions.Add((anchorId, position.Value));
+            }
+        }
+        positions.Sort((a, b) => a.Item2.CompareTo(b.Item2));
+        _positions = positions;
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
@@ -122,12 +134,22 @@ public class Anchor: ItemsControl
         var tops = targetItems.Select(a => (a.TransformToVisual(target)?.M32, GetAnchorId(a)));
         var isloaded = TargetContainer?.IsLoaded; 
         TargetContainer?.AddHandler(ScrollViewer.ScrollChangedEvent, OnScrollChanged);
+        if (isloaded is true)
+        {
+            InvalidateAnchorPositions();
+        }
+        else
+        {
+            TargetContainer.Loaded += (s, args) => InvalidateAnchorPositions();
+        }
+
+        MarkSelectedContainerByPosition();
     }
 
     private void OnScrollChanged(object? sender, ScrollChangedEventArgs e)
     {
         if (_scrollingFromSelection) return;
-        Debug.WriteLine("Scroll changed");
+        MarkSelectedContainerByPosition();
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
@@ -135,12 +157,7 @@ public class Anchor: ItemsControl
         base.OnPointerPressed(e);
         var source = (e.Source as Visual).GetContainerFromEventSource<AnchorItem>();
         if (source is null) return;
-        if (_selectedContainer is not null)
-        {
-            _selectedContainer.IsSelected = false;
-        }
-        source.IsSelected = true;
-        _selectedContainer = source;
+        MarkSelectedContainer(source);
         var target = TargetContainer?.GetVisualDescendants()
                                     .FirstOrDefault(a => Anchor.GetAnchorId(a) == source?.AnchorId);
         if (target is null) return;
@@ -172,5 +189,26 @@ public class Anchor: ItemsControl
 
     internal AnchorItem? _selectedContainer;
     
+    internal void MarkSelectedContainer(AnchorItem? item)
+    {
+        var oldValue = _selectedContainer;
+        var newValue = item;
+        if (oldValue == newValue) return;
+        _selectedContainer?.SetValue(AnchorItem.IsSelectedProperty, false);
+        _selectedContainer = newValue;
+        _selectedContainer?.SetValue(AnchorItem.IsSelectedProperty, true);
+    }
+
+    internal void MarkSelectedContainerByPosition()
+    {
+        if (TargetContainer is null) return;
+        var top = TargetContainer.Offset.Y;
+        var topAnchorId = _positions.LastOrDefault(a => a.Item2 <= top).Item1;
+        if (topAnchorId is null) return;
+        var item = this.GetVisualDescendants().OfType<AnchorItem>()
+            .FirstOrDefault(a => a.AnchorId == topAnchorId);
+        if (item is null) return;
+        MarkSelectedContainer(item);
+    }
     
 }

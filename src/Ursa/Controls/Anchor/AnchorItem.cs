@@ -54,21 +54,6 @@ public class AnchorItem : HeaderedItemsControl, ISelectable
             SetCurrentValue(ItemContainerThemeProperty, _root.ItemContainerTheme);
         }
     }
-
-    protected override void OnPointerPressed(PointerPressedEventArgs e)
-    {
-        // var item = new TreeViewItem();
-        base.OnPointerPressed(e);
-        return;
-        if (e.Handled) return;
-        if (_root is null)
-            return;
-        if (!string.IsNullOrEmpty(AnchorId))
-        {
-            _root.ScrollToAnchor(AnchorId);
-            e.Handled = true;
-        }
-    }
     
     protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey)
     {
