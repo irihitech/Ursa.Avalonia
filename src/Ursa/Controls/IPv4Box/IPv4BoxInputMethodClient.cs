@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls.Presenters;
 using Avalonia.Input.TextInput;
 using Avalonia.Media.TextFormatting;
+using Avalonia.VisualTree;
 using System.Text;
 
 namespace Ursa.Controls;
