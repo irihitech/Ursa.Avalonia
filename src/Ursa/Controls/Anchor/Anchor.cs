@@ -201,7 +201,8 @@ public class Anchor : ItemsControl
     protected override void OnUnloaded(RoutedEventArgs e)
     {
         base.OnUnloaded(e);
-        TargetContainer?.RemoveHandler(UnloadedEvent, OnTargetContainerLoaded);
+        TargetContainer?.RemoveHandler(LoadedEvent, OnTargetContainerLoaded);
+        TargetContainer?.RemoveHandler(ScrollViewer.ScrollChangedEvent, OnScrollChanged);
     }
 
     private void OnTargetContainerLoaded(object? sender, RoutedEventArgs e)

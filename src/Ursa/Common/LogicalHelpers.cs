@@ -5,7 +5,7 @@ namespace Ursa.Common;
 
 public static class LogicalHelpers
 {
-    public static int CalculateDistanceFromLogicalParent<T, TItem>(TItem? item, int @default = -1) 
+    public static int CalculateDistanceFromLogicalParent<T, TItem>(TItem? item, int defaultValue = -1) 
         where T : class 
         where TItem : ILogical
     {
@@ -16,6 +16,6 @@ public static class LogicalHelpers
             if (logical is TItem) result++;
             logical = logical.LogicalParent;
         }
-        return item is not null ? result : @default;
+        return item is not null ? result : defaultValue;
     }
 }
