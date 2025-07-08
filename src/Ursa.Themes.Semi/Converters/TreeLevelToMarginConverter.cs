@@ -10,7 +10,7 @@ public class TreeLevelToMarginConverter: IMultiValueConverter
     {
         if (values[0] is int i && values[1] is double indent)
         {
-            return new Thickness((i-1) * indent, 0, 0, 0);
+            return new Thickness(Math.Max(i-1, 0) * indent, 0, 0, 0);
         }
         return new Thickness();
     }
