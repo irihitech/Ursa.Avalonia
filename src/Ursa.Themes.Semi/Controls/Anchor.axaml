@@ -1,31 +1,60 @@
 <ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:u="https://irihi.tech/ursa"
-    xmlns:iri="https://irihi.tech/shared">
+    xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters"
+    xmlns:iri="https://irihi.tech/shared"
+    xmlns:u="https://irihi.tech/ursa">
+    <converters:TreeLevelToMarginConverter x:Key="LevelToMarginConverter" />
     <ControlTheme x:Key="{x:Type u:Anchor}" TargetType="{x:Type u:Anchor}">
         <Setter Property="Template">
             <ControlTemplate>
-                <ItemsPresenter
-                    Name="PART_ItemsPresenter"
-                    Margin="{TemplateBinding Padding}"
-                    ItemsPanel="{TemplateBinding ItemsPanel}" />
+                <Panel>
+                    <Rectangle
+                        Width="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Stretch"
+                        Fill="{DynamicResource SemiColorBorder}" />
+                    <ItemsPresenter
+                        Name="PART_ItemsPresenter"
+                        Margin="{TemplateBinding Padding}"
+                        ItemsPanel="{TemplateBinding ItemsPanel}" />
+                </Panel>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
-    
-    <ControlTheme x:Key="{x:Type u:AnchorItem}" TargetType="u:AnchorItem" >
+
+    <ControlTheme x:Key="{x:Type u:AnchorItem}" TargetType="u:AnchorItem">
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="MinHeight" Value="20" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:AnchorItem">
                 <StackPanel>
-                    <ContentPresenter Name="{x:Static iri:PartNames.PART_HeaderPresenter}" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" />
-                    <ItemsPresenter Margin="8 0 0 0" ItemsPanel="{TemplateBinding ItemsPanel}" />
+                    <Panel>
+                        <Rectangle
+                            Name="PART_Pipe"
+                            Width="2"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Stretch" />
+                        <Panel Margin="8,0,0,0">
+                            <ContentPresenter
+                                Name="{x:Static iri:PartNames.PART_HeaderPresenter}"
+                                Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}">
+                                <ContentPresenter.Margin>
+                                    <MultiBinding Converter="{StaticResource LevelToMarginConverter}">
+                                        <Binding Path="Level" RelativeSource="{RelativeSource AncestorType={x:Type u:AnchorItem}}" />
+                                        <DynamicResource ResourceKey="AnchorIndent" />
+                                    </MultiBinding>
+                                </ContentPresenter.Margin>
+                            </ContentPresenter>
+                        </Panel>
+                    </Panel>
+                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
                 </StackPanel>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^:selected /template/ ContentPresenter#PART_HeaderPresenter">
-            <Setter Property="Foreground" Value="{DynamicResource SemiBlue5}" />
+        <Style Selector="^:selected /template/ Rectangle#PART_Pipe">
+            <Setter Property="Fill" Value="{DynamicResource SemiBlue5}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Avalonia;
 using Avalonia.Animation;
 using Avalonia.Animation.Easings;
@@ -47,7 +46,7 @@ public class Anchor: ItemsControl
     }
 
     private CancellationTokenSource _cts = new();
-    private bool _scrollingFromSelection = false;
+    private bool _scrollingFromSelection;
     
     private void ScrollToAnchor(Visual target)
     {
@@ -114,7 +113,7 @@ public class Anchor: ItemsControl
         {
             var anchorId = GetAnchorId(item);
             if (anchorId is null) continue;
-            var position = item.TransformToVisual(TargetContainer)?.M32;
+            var position = item.TransformToVisual(TargetContainer)?.M32 + TargetContainer.Offset.Y;
             if (position.HasValue)
             {
                 positions.Add((anchorId, position.Value));
@@ -127,22 +126,14 @@ public class Anchor: ItemsControl
     protected override void OnLoaded(RoutedEventArgs e)
     {
         base.OnLoaded(e);
-        var items = this.GetVisualDescendants().OfType<AnchorItem>().ToList();
         var target = this.TargetContainer;
         if (target is null) return;
-        var targetItems = target.GetVisualDescendants().Where(a => Anchor.GetAnchorId(a) is not null).ToList();
-        var tops = targetItems.Select(a => (a.TransformToVisual(target)?.M32, GetAnchorId(a)));
-        var isloaded = TargetContainer?.IsLoaded; 
         TargetContainer?.AddHandler(ScrollViewer.ScrollChangedEvent, OnScrollChanged);
-        if (isloaded is true)
+        TargetContainer?.AddHandler(LoadedEvent, OnTargetContainerLoaded);
+        if (TargetContainer?.IsLoaded == true)
         {
             InvalidateAnchorPositions();
         }
-        else
-        {
-            TargetContainer.Loaded += (s, args) => InvalidateAnchorPositions();
-        }
-
         MarkSelectedContainerByPosition();
     }
 
@@ -159,7 +150,7 @@ public class Anchor: ItemsControl
         if (source is null) return;
         MarkSelectedContainer(source);
         var target = TargetContainer?.GetVisualDescendants()
-                                    .FirstOrDefault(a => Anchor.GetAnchorId(a) == source?.AnchorId);
+                                    .FirstOrDefault(a => Anchor.GetAnchorId(a) == source.AnchorId);
         if (target is null) return;
         ScrollToAnchor(target);
     }
@@ -187,7 +178,7 @@ public class Anchor: ItemsControl
         ContainerForItemPreparedOverride(container, item, index);
     }
 
-    internal AnchorItem? _selectedContainer;
+    private AnchorItem? _selectedContainer;
     
     internal void MarkSelectedContainer(AnchorItem? item)
     {
@@ -210,5 +201,15 @@ public class Anchor: ItemsControl
         if (item is null) return;
         MarkSelectedContainer(item);
     }
-    
+
+    protected override void OnUnloaded(RoutedEventArgs e)
+    {
+        base.OnUnloaded(e);
+        TargetContainer?.RemoveHandler(UnloadedEvent, OnTargetContainerLoaded);
+    }
+
+    private void OnTargetContainerLoaded(object? sender, RoutedEventArgs e)
+    {
+        InvalidateAnchorPositions();
+    }
 }

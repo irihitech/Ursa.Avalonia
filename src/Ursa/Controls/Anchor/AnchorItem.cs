@@ -3,8 +3,8 @@ using Avalonia.Controls;
 using Avalonia.Controls.Mixins;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
-using Avalonia.Input;
 using Avalonia.LogicalTree;
+using Ursa.Common;
 
 namespace Ursa.Controls;
 
@@ -19,6 +19,12 @@ public class AnchorItem : HeaderedItemsControl, ISelectable
     private static readonly FuncTemplate<Panel?> DefaultPanel =
         new(() => new StackPanel());
 
+    internal static readonly DirectProperty<AnchorItem, int> LevelProperty =
+        AvaloniaProperty.RegisterDirect<AnchorItem, int>(
+            nameof(Level), o => o.Level, (o, v) => o.Level = v);
+
+    private int _level;
+
     private Anchor? _root;
 
     static AnchorItem()
@@ -26,6 +32,12 @@ public class AnchorItem : HeaderedItemsControl, ISelectable
         SelectableMixin.Attach<AnchorItem>(IsSelectedProperty);
         PressedMixin.Attach<AnchorItem>();
         ItemsPanelProperty.OverrideDefaultValue<TreeViewItem>(DefaultPanel);
+    }
+
+    public int Level
+    {
+        get => _level;
+        set => SetAndRaise(LevelProperty, ref _level, value);
     }
 
     public string? AnchorId
@@ -44,17 +56,14 @@ public class AnchorItem : HeaderedItemsControl, ISelectable
     {
         base.OnAttachedToVisualTree(e);
         _root = this.GetLogicalAncestors().OfType<Anchor>().FirstOrDefault();
+        Level = LogicalHelpers.CalculateDistanceFromLogicalParent<Anchor, AnchorItem>(this);
         if (ItemTemplate is null && _root?.ItemTemplate is not null)
-        {
             SetCurrentValue(ItemTemplateProperty, _root.ItemTemplate);
-        }
 
         if (ItemContainerTheme is null && _root?.ItemContainerTheme is not null)
-        {
             SetCurrentValue(ItemContainerThemeProperty, _root.ItemContainerTheme);
-        }
     }
-    
+
     protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey)
     {
         return EnsureRoot().CreateContainerForItemOverride_INTERNAL(item, index, recycleKey);
