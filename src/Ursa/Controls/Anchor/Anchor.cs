@@ -156,22 +156,22 @@ public class Anchor : ItemsControl
     /// <summary>
     ///     This method is used to expose the protected CreateContainerForItemOverride method to the AnchorItem class.
     /// </summary>
-    internal Control CreateContainerForItemOverride_INTERNAL(object? item, int index, object? recycleKey)
+    internal Control CreateContainerForItemOverrideInternal(object? item, int index, object? recycleKey)
     {
         return CreateContainerForItemOverride(item, index, recycleKey);
     }
 
-    internal bool NeedsContainerOverride_INTERNAL(object? item, int index, out object? recycleKey)
+    internal bool NeedsContainerOverrideInternal(object? item, int index, out object? recycleKey)
     {
         return NeedsContainerOverride(item, index, out recycleKey);
     }
 
-    internal void PrepareContainerForItemOverride_INTERNAL(Control container, object? item, int index)
+    internal void PrepareContainerForItemOverrideInternal(Control container, object? item, int index)
     {
         PrepareContainerForItemOverride(container, item, index);
     }
 
-    internal void ContainerForItemPreparedOverride_INTERNAL(Control container, object? item, int index)
+    internal void ContainerForItemPreparedOverrideInternal(Control container, object? item, int index)
     {
         ContainerForItemPreparedOverride(container, item, index);
     }
