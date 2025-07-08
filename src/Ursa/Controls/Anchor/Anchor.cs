@@ -93,6 +93,7 @@ public class Anchor : ItemsControl
                 }
             };
             _cts.Cancel();
+            _cts.Dispose();
             _cts = new CancellationTokenSource();
             var token = _cts.Token;
             token.Register(_ => _scrollingFromSelection = false, null);
