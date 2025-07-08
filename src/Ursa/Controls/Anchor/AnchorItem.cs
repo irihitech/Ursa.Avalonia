@@ -66,22 +66,22 @@ public class AnchorItem : HeaderedItemsControl, ISelectable
 
     protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey)
     {
-        return EnsureRoot().CreateContainerForItemOverride_INTERNAL(item, index, recycleKey);
+        return EnsureRoot().CreateContainerForItemOverrideInternal(item, index, recycleKey);
     }
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
-        return EnsureRoot().NeedsContainerOverride_INTERNAL(item, index, out recycleKey);
+        return EnsureRoot().NeedsContainerOverrideInternal(item, index, out recycleKey);
     }
 
     protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
     {
-        EnsureRoot().PrepareContainerForItemOverride_INTERNAL(container, item, index);
+        EnsureRoot().PrepareContainerForItemOverrideInternal(container, item, index);
     }
 
     protected override void ContainerForItemPreparedOverride(Control container, object? item, int index)
     {
-        EnsureRoot().ContainerForItemPreparedOverride_INTERNAL(container, item, index);
+        EnsureRoot().ContainerForItemPreparedOverrideInternal(container, item, index);
     }
 
     private Anchor EnsureRoot()
