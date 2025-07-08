@@ -42,8 +42,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub Action", "GitHub Action", "{66123AC1-7C8C-4AA0-BBDB-5CC3E647A741}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\deploy.yml = .github\workflows\deploy.yml
-		.github\workflows\pack.yml = .github\workflows\pack.yml
 		.github\workflows\pack-nightly.yml = .github\workflows\pack-nightly.yml
+		.github\workflows\pack.yml = .github\workflows\pack.yml
 		.github\workflows\publish.yml = .github\workflows\publish.yml
 		.github\workflows\release-tag.yml = .github\workflows\release-tag.yml
 		.github\workflows\test.yml = .github\workflows\test.yml
@@ -69,6 +69,7 @@ Global
 		{53B5F277-3AEB-4661-ACAE-15CFFF2ED800}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3FC76CD9-CE5D-4804-A8D6-4E292EB296AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3FC76CD9-CE5D-4804-A8D6-4E292EB296AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FC76CD9-CE5D-4804-A8D6-4E292EB296AA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{3FC76CD9-CE5D-4804-A8D6-4E292EB296AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FC76CD9-CE5D-4804-A8D6-4E292EB296AA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B6BAB821-A9FE-44F3-B9CD-06E27FDB63F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
