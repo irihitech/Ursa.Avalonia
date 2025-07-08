@@ -31,7 +31,7 @@ public class AnchorItem : HeaderedItemsControl, ISelectable
     {
         SelectableMixin.Attach<AnchorItem>(IsSelectedProperty);
         PressedMixin.Attach<AnchorItem>();
-        ItemsPanelProperty.OverrideDefaultValue<TreeViewItem>(DefaultPanel);
+        ItemsPanelProperty.OverrideDefaultValue<AnchorItem>(DefaultPanel);
     }
 
     public int Level

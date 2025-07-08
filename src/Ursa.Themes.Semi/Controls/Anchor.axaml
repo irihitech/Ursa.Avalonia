@@ -6,11 +6,14 @@
     xmlns:u="https://irihi.tech/ursa">
     <converters:TreeLevelToMarginConverter x:Key="LevelToMarginConverter" />
     <ControlTheme x:Key="{x:Type u:Anchor}" TargetType="{x:Type u:Anchor}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel>
                     <Rectangle
                         Width="1"
+                        Name="PART_Pipe"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Stretch"
                         Fill="{DynamicResource SemiColorBorder}" />
@@ -21,23 +24,30 @@
                 </Panel>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^.Mute /template/ Rectangle#PART_Pipe">
+            <Setter Property="Fill" Value="Transparent" />
+        </Style>
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:AnchorItem}" TargetType="u:AnchorItem">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="iri:ClassHelper.ClassSource" Value="{Binding $parent[u:Anchor]}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:AnchorItem">
                 <StackPanel>
-                    <Panel>
-                        <Rectangle
+                    <Panel Background="{TemplateBinding Background}" >
+                        <Border
                             Name="PART_Pipe"
                             Width="2"
+                            CornerRadius="1"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Stretch" />
                         <Panel Margin="8,0,0,0">
                             <ContentPresenter
                                 Name="{x:Static iri:PartNames.PART_HeaderPresenter}"
+                                VerticalAlignment="Center"
+                                Foreground="{DynamicResource SemiColorText2}"
                                 Content="{TemplateBinding Header}"
                                 ContentTemplate="{TemplateBinding HeaderTemplate}">
                                 <ContentPresenter.Margin>
@@ -53,8 +63,24 @@
                 </StackPanel>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^:selected /template/ Rectangle#PART_Pipe">
-            <Setter Property="Fill" Value="{DynamicResource SemiBlue5}" />
+        <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter">
+            <Setter Property="MinHeight" Value="{DynamicResource AnchorDefaultHeight}" />
+        </Style>
+        <Style Selector="^.Small /template/ ContentPresenter#PART_HeaderPresenter">
+            <Setter Property="MinHeight" Value="{DynamicResource AnchorSmallHeight}" />
+            <Setter Property="FontSize" Value="{DynamicResource SemiFontSizeSmall}" />
+        </Style>
+        <Style Selector="^:selected /template/ Border#PART_Pipe">
+            <Setter Property="Background" Value="{DynamicResource SemiColorTertiary}" />
+        </Style>
+        <Style Selector="^.Primary:selected /template/ Border#PART_Pipe">
+            <Setter Property="Background" Value="{DynamicResource SemiColorPrimary}" />
+        </Style>
+        <Style Selector="^.Mute:selected /template/ Border#PART_Pipe">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="^:selected /template/ ContentPresenter#PART_HeaderPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
