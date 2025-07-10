@@ -1,0 +1,90 @@
+<UserControl
+    x:Class="HeadlessTest.Ursa.Controls.AnchorTests.TestView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid ColumnDefinitions="Auto, *">
+        <ScrollViewer
+            Name="ScrollViewer"
+            Grid.Column="1"
+            VerticalAlignment="Stretch">
+            <StackPanel>
+                <StackPanel.Styles>
+                    <Style Selector="TextBlock">
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+                </StackPanel.Styles>
+                <Border
+                    Height="300"
+                    HorizontalAlignment="Stretch"
+                    u:Anchor.Id="a1"
+                    Background="{DynamicResource SemiRed2}">
+                    <TextBlock Text="Border 1" />
+                </Border>
+                <Border
+                    Height="300"
+                    HorizontalAlignment="Stretch"
+                    u:Anchor.Id="a2"
+                    Background="{DynamicResource SemiPink1}">
+                    <TextBlock Text="Border 2" />
+                </Border>
+                <Border
+                    Height="300"
+                    HorizontalAlignment="Stretch"
+                    u:Anchor.Id="a3"
+                    Background="{DynamicResource SemiPurple1}">
+                    <TextBlock Text="Border 3" />
+                </Border>
+                <Border
+                    Height="300"
+                    u:Anchor.Id="a4" 
+                    HorizontalAlignment="Stretch"
+                    Background="{DynamicResource SemiViolet1}">
+                    <TextBlock Text="Border 4" />
+                </Border>
+                <Border
+                    Height="300"
+                    HorizontalAlignment="Stretch"
+                    u:Anchor.Id="a5"
+                    Background="{DynamicResource SemiIndigo1}">
+                    <TextBlock Text="Border 5" />
+                </Border>
+                <Border
+                    Height="300"
+                    HorizontalAlignment="Stretch"
+                    u:Anchor.Id="a6"
+                    Background="{DynamicResource SemiBlue1}">
+                    <TextBlock Text="Border 6" />
+                </Border>
+                <Border
+                    Height="300"
+                    HorizontalAlignment="Stretch"
+                    u:Anchor.Id="a7"
+                    Background="{DynamicResource SemiLightBlue1}">
+                    <TextBlock Text="Border 7" />
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+        <u:Anchor
+            Name="Anchor"
+            Grid.Column="0"
+            Width="200"
+            TargetContainer="{Binding ElementName=ScrollViewer}">
+            <u:AnchorItem Name="Item1" AnchorId="a1" Header="Rectangle 1">
+                <u:AnchorItem Name="Item2" AnchorId="a2" Header="Rectangle 2" />
+                <u:AnchorItem AnchorId="a3" Header="Rectangle 3" />
+            </u:AnchorItem>
+            <u:AnchorItem Name="Item4" AnchorId="a4" Header="Rectangle 4" />
+            <u:AnchorItem AnchorId="a5" Header="Rectangle 5">
+                <u:AnchorItem AnchorId="a6" Header="Rectangle 6" />
+                <u:AnchorItem AnchorId="a7" Header="Rectangle 7" />
+            </u:AnchorItem>
+        </u:Anchor>
+    </Grid>
+</UserControl>

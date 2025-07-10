@@ -25,21 +25,21 @@
                             </Style>
                         </StackPanel.Styles>
                         <Border
-                            u:Anchor.AnchorId="a1"
+                            u:Anchor.Id="a1"
                             Height="300"
                             HorizontalAlignment="Stretch"
                             Background="{DynamicResource SemiRed2}">
                             <TextBlock Text="Border 1" />
                         </Border>
                         <Border
-                            u:Anchor.AnchorId="a2"
+                            u:Anchor.Id="a2"
                             Height="300"
                             HorizontalAlignment="Stretch"
                             Background="{DynamicResource SemiPink1}">
                             <TextBlock Text="Border 2" />
                         </Border>
                         <Border
-                            u:Anchor.AnchorId="a3"
+                            u:Anchor.Id="a3"
                             Height="300"
                             HorizontalAlignment="Stretch"
                             Background="{DynamicResource SemiPurple1}">
@@ -49,24 +49,24 @@
                             Height="300"
                             HorizontalAlignment="Stretch"
                             Background="{DynamicResource SemiViolet1}">
-                            <TextBlock u:Anchor.AnchorId="a4" Text="Border 4" />
+                            <TextBlock u:Anchor.Id="a4" Text="Border 4" />
                         </Border>
                         <Border
-                            u:Anchor.AnchorId="a5"
+                            u:Anchor.Id="a5"
                             Height="300"
                             HorizontalAlignment="Stretch"
                             Background="{DynamicResource SemiIndigo1}">
                             <TextBlock Text="Border 5" />
                         </Border>
                         <Border
-                            u:Anchor.AnchorId="a6"
+                            u:Anchor.Id="a6"
                             Height="300"
                             HorizontalAlignment="Stretch"
                             Background="{DynamicResource SemiBlue1}">
                             <TextBlock Text="Border 6" />
                         </Border>
                         <Border
-                            u:Anchor.AnchorId="a7"
+                            u:Anchor.Id="a7"
                             Height="300"
                             HorizontalAlignment="Stretch"
                             Background="{DynamicResource SemiLightBlue1}">
@@ -109,70 +109,70 @@
                         <Border
                             Height="300"
                             HorizontalAlignment="Stretch"
-                            u:Anchor.AnchorId="anchor1"
+                            u:Anchor.Id="anchor1"
                             Background="{DynamicResource SemiRed2}">
                             <TextBlock Text="Border 1" />
                         </Border>
                         <Border
                             Height="300"
                             HorizontalAlignment="Stretch"
-                            u:Anchor.AnchorId="anchor2"
+                            u:Anchor.Id="anchor2"
                             Background="{DynamicResource SemiPink1}">
                             <TextBlock Text="Border 2" />
                         </Border>
                         <Border
                             Height="300"
                             HorizontalAlignment="Stretch"
-                            u:Anchor.AnchorId="anchor3"
+                            u:Anchor.Id="anchor3"
                             Background="{DynamicResource SemiPurple1}">
                             <TextBlock Text="Border 3" />
                         </Border>
                         <Border
                             Height="300"
                             HorizontalAlignment="Stretch"
-                            u:Anchor.AnchorId="anchor3-1"
+                            u:Anchor.Id="anchor3-1"
                             Background="{DynamicResource SemiPurple1}">
                             <TextBlock Text="Border 3-1" />
                         </Border>
                         <Border
                             Height="300"
                             HorizontalAlignment="Stretch"
-                            u:Anchor.AnchorId="anchor3-2"
+                            u:Anchor.Id="anchor3-2"
                             Background="{DynamicResource SemiPurple1}">
                             <TextBlock Text="Border 3-2" />
                         </Border>
                         <Border
                             Height="300"
                             HorizontalAlignment="Stretch"
-                            u:Anchor.AnchorId="anchor3-3"
+                            u:Anchor.Id="anchor3-3"
                             Background="{DynamicResource SemiPurple1}">
                             <TextBlock Text="Border 3-3" />
                         </Border>
                         <Border
                             Height="300"
                             HorizontalAlignment="Stretch"
-                            u:Anchor.AnchorId="anchor4"
+                            u:Anchor.Id="anchor4"
                             Background="{DynamicResource SemiViolet1}">
                             <TextBlock Text="Border 4" />
                         </Border>
                         <Border
                             Height="300"
                             HorizontalAlignment="Stretch"
-                            u:Anchor.AnchorId="anchor5"
+                            u:Anchor.Id="anchor5"
                             Background="{DynamicResource SemiIndigo1}">
                             <TextBlock Text="Border 5" />
                         </Border>
                         <Border
                             Height="300"
                             HorizontalAlignment="Stretch"
-                            u:Anchor.AnchorId="anchor6"
+                            u:Anchor.Id="anchor6"
                             Background="{DynamicResource SemiBlue1}">
                             <TextBlock Text="Border 6" />
                         </Border>
                         <Border
                             Height="300"
                             HorizontalAlignment="Stretch"
-                            u:Anchor.AnchorId="anchor7"
+                            u:Anchor.Id="anchor7"
                             Background="{DynamicResource SemiLightBlue1}">
                             <TextBlock Text="Border 7" />
                         </Border>

@@ -23,8 +23,8 @@ public class Anchor : ItemsControl
         AvaloniaProperty.Register<Anchor, ScrollViewer?>(
             nameof(TargetContainer));
 
-    public static readonly AttachedProperty<string?> AnchorIdProperty =
-        AvaloniaProperty.RegisterAttached<Anchor, Visual, string?>("AnchorId");
+    public static readonly AttachedProperty<string?> IdProperty =
+        AvaloniaProperty.RegisterAttached<Anchor, Visual, string?>("Id");
 
     private CancellationTokenSource _cts = new();
 
@@ -39,17 +39,25 @@ public class Anchor : ItemsControl
         set => SetValue(TargetContainerProperty, value);
     }
 
-    public static void SetAnchorId(Visual obj, string? value)
+    public static void SetId(Visual obj, string? value)
     {
-        obj.SetValue(AnchorIdProperty, value);
+        obj.SetValue(IdProperty, value);
     }
 
-    public static string? GetAnchorId(Visual obj)
+    public static string? GetId(Visual obj)
     {
-        return obj.GetValue(AnchorIdProperty);
+        return obj.GetValue(IdProperty);
     }
 
+    public static readonly StyledProperty<double> TopOffsetProperty = AvaloniaProperty.Register<Anchor, double>(
+        nameof(TopOffset));
 
+    public double TopOffset
+    {
+        get => GetValue(TopOffsetProperty);
+        set => SetValue(TopOffsetProperty, value);
+    }
+    
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
         return NeedsContainer<AnchorItem>(item, out recycleKey);
@@ -70,7 +78,7 @@ public class Anchor : ItemsControl
         if (targetPosition.HasValue)
         {
             var from = TargetContainer.Offset.Y;
-            var to = TargetContainer.Offset.Y + targetPosition.Value.Y;
+            var to = TargetContainer.Offset.Y + targetPosition.Value.Y - TopOffset;
             if (to > TargetContainer.Extent.Height - TargetContainer.Bounds.Height)
                 to = TargetContainer.Extent.Height - TargetContainer.Bounds.Height;
             if (from == to) return;
@@ -111,11 +119,11 @@ public class Anchor : ItemsControl
     internal void InvalidateAnchorPositions()
     {
         if (TargetContainer is null) return;
-        var items = TargetContainer.GetVisualDescendants().Where(a => GetAnchorId(a) is not null);
+        var items = TargetContainer.GetVisualDescendants().Where(a => GetId(a) is not null);
         var positions = new List<(string, double)>();
         foreach (var item in items)
         {
-            var anchorId = GetAnchorId(item);
+            var anchorId = GetId(item);
             if (anchorId is null) continue;
             var position = item.TransformToVisual(TargetContainer)?.M32 + TargetContainer.Offset.Y;
             if (position.HasValue) positions.Add((anchorId, position.Value));
@@ -149,7 +157,7 @@ public class Anchor : ItemsControl
         if (source is null) return;
         MarkSelectedContainer(source);
         var target = TargetContainer?.GetVisualDescendants()
-                                    .FirstOrDefault(a => GetAnchorId(a) == source.AnchorId);
+                                    .FirstOrDefault(a => GetId(a) == source.AnchorId);
         if (target is null) return;
         ScrollToAnchor(target);
     }
@@ -190,7 +198,7 @@ public class Anchor : ItemsControl
     internal void MarkSelectedContainerByPosition()
     {
         if (TargetContainer is null) return;
-        var top = TargetContainer.Offset.Y;
+        var top = TargetContainer.Offset.Y + TopOffset;
         var topAnchorId = _positions.LastOrDefault(a => a.Item2 <= top).Item1;
         if (topAnchorId is null) return;
         var item = this.GetVisualDescendants().OfType<AnchorItem>()
