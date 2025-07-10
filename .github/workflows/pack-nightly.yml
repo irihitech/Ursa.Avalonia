@@ -10,23 +10,19 @@ on:
         type: string
       Ursa:
         description: 'Pack Ursa'
-        required: true
-        default: 'true'
+        default: true
         type: boolean
       Ursa_Themes_Semi:
         description: 'Pack Ursa.Themes.Semi'
-        required: true
-        default: 'true'
+        default: true
         type: boolean
       PrismExtension:
         description: 'Pack Prism Extension'
-        required: true
-        default: 'false'
+        default: false
         type: boolean
       ReactiveUIExtension:
         description: 'Pack ReactiveUI Extension'
-        required: true
-        default: 'false'
+        default: false
         type: boolean
 
 jobs:
@@ -40,23 +36,23 @@ jobs:
       - name: Get Version
         run: |
           VERSION_TIMESTAMP=$(date +'%Y%m%d%H%M%S')
-          VERSION="${{ github.event.inputs.Version_Prefix }}-nightly-${VERSION_TIMESTAMP}"
+          VERSION="${{ inputs.Version_Prefix }}-nightly-${VERSION_TIMESTAMP}"
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Pack Ursa
-        if: ${{ github.event.inputs.Ursa == 'true' }}
+        if: ${{ inputs.Ursa == true }}
         run: dotnet pack src/Ursa -o nugets /p:Version=${{ env.VERSION }}
 
       - name: Pack Ursa.Themes.Semi
-        if: ${{ github.event.inputs.Ursa_Themes_Semi == 'true' }}
+        if: ${{ inputs.Ursa_Themes_Semi == true }}
         run: dotnet pack src/Ursa.Themes.Semi -o nugets /p:Version=${{ env.VERSION }}
 
       - name: Pack Prism Extension
-        if: ${{ github.event.inputs.PrismExtension == 'true' }}
+        if: ${{ inputs.PrismExtension == true }}
         run: dotnet pack src/Ursa.PrismExtension -o nugets /p:Version=${{ env.VERSION }}
 
       - name: Pack ReactiveUI Extension
-        if: ${{ github.event.inputs.ReactiveUIExtension == 'true' }}
+        if: ${{ inputs.ReactiveUIExtension == true }}
         run: dotnet pack src/Ursa.ReactiveUIExtension -o nugets /p:Version=${{ env.VERSION }}
 
       - name: Add NuGet Source

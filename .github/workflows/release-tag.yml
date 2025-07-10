@@ -5,151 +5,43 @@ on:
     tags:
       - "v[0-9]+.[0-9]+.[0-9]+"
   workflow_dispatch:
+    inputs:
+      Upload_to_NuGet:
+        description: 'Upload to NuGet'
+        default: false
+        type: boolean
+      Ursa:
+        description: 'Pack Ursa'
+        default: true
+        type: boolean
+      Ursa_Themes_Semi:
+        description: 'Pack Ursa.Themes.Semi'
+        default: true
+        type: boolean
+      PrismExtension:
+        description: 'Pack Prism Extension'
+        default: false
+        type: boolean
+      ReactiveUIExtension:
+        description: 'Pack ReactiveUI Extension'
+        default: false
+        type: boolean
 
 jobs:
   nuget:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Pack Ursa
-        run: dotnet pack src/Ursa -o nugets
-      - name: Pack Ursa.Themes.Semi
-        run: dotnet pack src/Ursa.Themes.Semi -o nugets
+    uses: ./.github/workflows/pack.yml
+    with:
+      Upload_to_NuGet: ${{ inputs.Upload_to_NuGet }}
+      Ursa: ${{ inputs.Ursa }}
+      Ursa_Themes_Semi: ${{ inputs.Ursa_Themes_Semi }}
+      PrismExtension: ${{ inputs.PrismExtension }}
+      ReactiveUIExtension: ${{ inputs.ReactiveUIExtension }}
 
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4.6.2
-        with:
-          name: nugets
-          path: nugets
-
-  win-x64:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.2.2
-      - name: Publish win-x64
-        run: dotnet publish demo/Ursa.Demo.Desktop -r win-x64 -c Release -o publish --sc -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4.6.2
-        with:
-          name: Ursa.Demo.Desktop.win-x64
-          path: |
-            publish
-            !publish/*.pdb
-
-  win-x64-aot:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.2.2
-      - name: Enable Native AOT in .csproj
-        run: |
-          sed -i 's#<!--<PublishAot>true</PublishAot>-->#<PublishAot>true</PublishAot>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
-          sed -i 's#<!--<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>-->#<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
-      - name: Publish win-x64 AOT
-        run: dotnet publish demo/Ursa.Demo.Desktop -r win-x64 -c Release -o publish
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4.6.2
-        with:
-          name: Ursa.Demo.Desktop.win-x64.NativeAOT
-          path: |
-            publish
-            !publish/*.pdb
-
-  linux-x64:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.2.2
-      - name: Publish linux-x64
-        run: dotnet publish demo/Ursa.Demo.Desktop -r linux-x64 -c Release -o publish --sc -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4.6.2
-        with:
-          name: Ursa.Demo.Desktop.linux-x64
-          path: |
-            publish
-            !publish/*.pdb
-
-  linux-x64-aot:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.2.2
-      - name: Enable Native AOT in .csproj
-        run: |
-          sed -i 's#<!--<PublishAot>true</PublishAot>-->#<PublishAot>true</PublishAot>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
-          sed -i 's#<!--<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>-->#<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
-      - name: Publish linux-x64 AOT
-        run: dotnet publish demo/Ursa.Demo.Desktop -r linux-x64 -c Release -o publish
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4.6.2
-        with:
-          name: Ursa.Demo.Desktop.linux-x64.NativeAOT
-          path: |
-            publish
-            !publish/*.pdb
-
-  osx-arm64:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.2.2
-      - name: Publish osx-arm64
-        run: dotnet publish demo/Ursa.Demo.Desktop -r osx-arm64 -c Release -o publish --sc -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4.6.2
-        with:
-          name: Ursa.Demo.Desktop.osx-arm64
-          path: |
-            publish
-            !publish/*.pdb
-
-  osx-arm64-aot:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.2.2
-      - name: Enable Native AOT in .csproj
-        run: |
-          sed -i '' 's#<!--<PublishAot>true</PublishAot>-->#<PublishAot>true</PublishAot>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
-          sed -i '' 's#<!--<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>-->#<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
-      - name: Publish osx-arm64 AOT
-        run: dotnet publish demo/Ursa.Demo.Desktop -r osx-arm64 -c Release -o publish
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4.6.2
-        with:
-          name: Ursa.Demo.Desktop.osx-arm64.NativeAOT
-          path: |
-            publish
-            !publish/*.pdb
-
-  android-arm64:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.2.2
-      - name: CD Android
-        run: cd demo/Ursa.Demo.Android
-      - name: Restore Dependencies
-        run: dotnet restore
-      - name: Publish Android
-        run: dotnet publish demo/Ursa.Demo.Android -c Release -f net8.0-android --no-restore -o publish -p:RuntimeIdentifier=android-arm64
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4.6.2
-        with:
-          name: android-arm64
-          path: publish/*Signed.apk
+  publish:
+    uses: ./.github/workflows/publish.yml
 
   draft-release:
-    needs: [
-      nuget,
-      win-x64,win-x64-aot,
-      linux-x64,linux-x64-aot,
-      osx-arm64,osx-arm64-aot,
-      android-arm64
-    ]
+    needs: [ nuget,publish ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4.3.0
