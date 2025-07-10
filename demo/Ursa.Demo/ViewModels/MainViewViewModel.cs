@@ -86,8 +86,9 @@ public partial class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyToolBar => new ToolBarDemoViewModel(),
             MenuKeys.MenuKeyTreeComboBox => new TreeComboBoxDemoViewModel(),
             MenuKeys.MenuKeyTwoTonePathIcon => new TwoTonePathIconDemoViewModel(),
-            MenuKeys.AspectRatioLayout => new AspectRatioLayoutDemoViewModel(),
-            MenuKeys.PathPicker => new PathPickerDemoViewModel(),
+            MenuKeys.MenuKeyAspectRatioLayout => new AspectRatioLayoutDemoViewModel(),
+            MenuKeys.MenuKeyPathPicker => new PathPickerDemoViewModel(),
+            MenuKeys.MenuKeyAnchor => new AnchorDemoViewModel(),
             _ => throw new ArgumentOutOfRangeException(nameof(s), s, null)
         };
     }

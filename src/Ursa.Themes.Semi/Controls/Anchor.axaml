@@ -1,0 +1,91 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters"
+    xmlns:iri="https://irihi.tech/shared"
+    xmlns:u="https://irihi.tech/ursa">
+    <converters:TreeLevelToPaddingConverter x:Key="LevelToPaddingConverter" />
+    <ControlTheme x:Key="{x:Type u:Anchor}" TargetType="{x:Type u:Anchor}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <Rectangle
+                        Width="{DynamicResource AnchorPipeWidth}"
+                        Name="PART_Pipe"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Stretch"
+                        Fill="{DynamicResource AnchorPipeBackground}" />
+                    <ItemsPresenter
+                        Name="PART_ItemsPresenter"
+                        Margin="{TemplateBinding Padding}"
+                        ItemsPanel="{TemplateBinding ItemsPanel}" />
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^.Muted /template/ Rectangle#PART_Pipe">
+            <Setter Property="Fill" Value="Transparent" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:AnchorItem}" TargetType="u:AnchorItem">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="iri:ClassHelper.ClassSource" Value="{Binding $parent[u:Anchor]}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:AnchorItem">
+                <StackPanel>
+                    <Panel Background="{TemplateBinding Background}">
+                        <Border
+                            Name="PART_Pipe"
+                            Width="{DynamicResource AnchorPipeWidth}"
+                            CornerRadius="{DynamicResource AnchorPipeCornerRadius}"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Stretch" />
+                        <Panel>
+                            <ContentPresenter
+                                Name="{x:Static iri:PartNames.PART_HeaderPresenter}"
+                                VerticalAlignment="Center"
+                                Foreground="{DynamicResource AnchorForeground}"
+                                Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}">
+                                <ContentPresenter.Padding>
+                                    <MultiBinding Converter="{StaticResource LevelToPaddingConverter}">
+                                        <Binding Path="Level" RelativeSource="{RelativeSource AncestorType={x:Type u:AnchorItem}}" />
+                                        <DynamicResource ResourceKey="AnchorIndent" />
+                                    </MultiBinding>
+                                </ContentPresenter.Padding>
+                            </ContentPresenter>
+                        </Panel>
+                    </Panel>
+                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter">
+            <Setter Property="MinHeight" Value="{DynamicResource AnchorDefaultHeight}" />
+        </Style>
+        <Style Selector="^.Small /template/ ContentPresenter#PART_HeaderPresenter">
+            <Setter Property="MinHeight" Value="{DynamicResource AnchorSmallHeight}" />
+            <Setter Property="FontSize" Value="{DynamicResource AnchorSmallFontSize}" />
+        </Style>
+        <Style Selector="^:selected">
+            <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource AnchorSelectedForeground}" />
+            </Style>
+            <Style Selector="^ /template/ Border#PART_Pipe">
+                <Setter Property="Background" Value="{DynamicResource AnchorPipeSelectedBackground}" />
+            </Style>
+            <Style Selector="^.Primary /template/ Border#PART_Pipe">
+                <Setter Property="Background" Value="{DynamicResource AnchorPipeSelectedPrimaryBackground}" />
+            </Style>
+            <Style Selector="^.Tertiary /template/ Border#PART_Pipe">
+                <Setter Property="Background" Value="{DynamicResource AnchorPipeSelectedTertiaryBackground}" />
+            </Style>
+            <Style Selector="^.Muted /template/ Border#PART_Pipe">
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

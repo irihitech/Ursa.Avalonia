@@ -1,0 +1,265 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.AnchorDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="viewModels:AnchorDemoViewModel"
+    mc:Ignorable="d">
+    <TabControl>
+        <TabItem Header="XAML Inline">
+            <Grid ColumnDefinitions="*, Auto">
+                <ScrollViewer
+                    Name="container1"
+                    Grid.Column="0"
+                    VerticalAlignment="Stretch">
+                    <StackPanel>
+                        <StackPanel.Styles>
+                            <Style Selector="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
+                        </StackPanel.Styles>
+                        <Border
+                            u:Anchor.Id="a1"
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            Background="{DynamicResource SemiRed2}">
+                            <TextBlock Text="Border 1" />
+                        </Border>
+                        <Border
+                            u:Anchor.Id="a2"
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            Background="{DynamicResource SemiPink1}">
+                            <TextBlock Text="Border 2" />
+                        </Border>
+                        <Border
+                            u:Anchor.Id="a3"
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            Background="{DynamicResource SemiPurple1}">
+                            <TextBlock Text="Border 3" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            Background="{DynamicResource SemiViolet1}">
+                            <TextBlock u:Anchor.Id="a4" Text="Border 4" />
+                        </Border>
+                        <Border
+                            u:Anchor.Id="a5"
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            Background="{DynamicResource SemiIndigo1}">
+                            <TextBlock Text="Border 5" />
+                        </Border>
+                        <Border
+                            u:Anchor.Id="a6"
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            Background="{DynamicResource SemiBlue1}">
+                            <TextBlock Text="Border 6" />
+                        </Border>
+                        <Border
+                            u:Anchor.Id="a7"
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            Background="{DynamicResource SemiLightBlue1}">
+                            <TextBlock Text="Border 7" />
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+                <u:Anchor
+                    Grid.Column="1"
+                    Width="200"
+                    Margin="24"
+                    TargetContainer="{Binding ElementName=container1}">
+                    <u:AnchorItem Header="Rectangle 1" AnchorId="a1">
+                        <u:AnchorItem Header="Rectangle 2" AnchorId="a2" />
+                        <u:AnchorItem Header="Rectangle 3" AnchorId="a3" />
+                    </u:AnchorItem>
+                    <u:AnchorItem Header="Rectangle 4" AnchorId="a4" />
+                    <u:AnchorItem Header="Rectangle 5" AnchorId="a5">
+                        <u:AnchorItem Header="Rectangle 6" AnchorId="a6" />
+                        <u:AnchorItem Header="Rectangle 7" AnchorId="a7" />
+                    </u:AnchorItem>
+                </u:Anchor>
+            </Grid>
+        </TabItem>
+        <TabItem Header="MVVM">
+            <Grid ColumnDefinitions="*, Auto">
+                <ScrollViewer
+                    Name="container2"
+                    Grid.Column="0"
+                    VerticalAlignment="Stretch">
+                    <StackPanel>
+                        <StackPanel.Styles>
+                            <Style Selector="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
+                        </StackPanel.Styles>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.Id="anchor1"
+                            Background="{DynamicResource SemiRed2}">
+                            <TextBlock Text="Border 1" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.Id="anchor2"
+                            Background="{DynamicResource SemiPink1}">
+                            <TextBlock Text="Border 2" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.Id="anchor3"
+                            Background="{DynamicResource SemiPurple1}">
+                            <TextBlock Text="Border 3" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.Id="anchor3-1"
+                            Background="{DynamicResource SemiPurple1}">
+                            <TextBlock Text="Border 3-1" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.Id="anchor3-2"
+                            Background="{DynamicResource SemiPurple1}">
+                            <TextBlock Text="Border 3-2" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.Id="anchor3-2-1"
+                            Background="{DynamicResource SemiCyan1}">
+                            <TextBlock Text="Border 3-2-1" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.Id="anchor3-2-2"
+                            Background="{DynamicResource SemiCyan1}">
+                            <TextBlock Text="Border 3-2-2" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.Id="anchor3-2-3"
+                            Background="{DynamicResource SemiCyan1}">
+                            <TextBlock Text="Border 3-2-3" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.Id="anchor3-3"
+                            Background="{DynamicResource SemiPurple1}">
+                            <TextBlock Text="Border 3-3" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.Id="anchor4"
+                            Background="{DynamicResource SemiViolet1}">
+                            <TextBlock Text="Border 4" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.Id="anchor5"
+                            Background="{DynamicResource SemiIndigo1}">
+                            <TextBlock Text="Border 5" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.Id="anchor6"
+                            Background="{DynamicResource SemiBlue1}">
+                            <TextBlock Text="Border 6" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.Id="anchor7"
+                            Background="{DynamicResource SemiLightBlue1}">
+                            <TextBlock Text="Border 7" />
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+                <u:Anchor
+                    Grid.Column="1"
+                    Width="200"
+                    Margin="24"
+                    ItemsSource="{Binding AnchorItems}"
+                    TargetContainer="{Binding #container2}">
+                    <u:Anchor.Styles>
+                        <Style x:DataType="viewModels:AnchorItemViewModel" Selector="u|AnchorItem">
+                            <Setter Property="AnchorId" Value="{Binding AnchorId}" />
+                        </Style>
+                    </u:Anchor.Styles>
+                    <u:Anchor.ItemTemplate>
+                        <TreeDataTemplate ItemsSource="{Binding Children}">
+                            <TextBlock Text="{Binding Header}" />
+                        </TreeDataTemplate>
+                    </u:Anchor.ItemTemplate>
+                </u:Anchor>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Appearance">
+            <StackPanel
+                Orientation="Horizontal"
+                Spacing="100"
+                Margin="8">
+                <u:Anchor>
+                    <u:AnchorItem Header="组件" />
+                    <u:AnchorItem Header="设计语言" />
+                    <u:AnchorItem Header="物料平台" />
+                    <u:AnchorItem Header="主题商店" />
+                </u:Anchor>
+                <u:Anchor Classes="Small">
+                    <u:AnchorItem Header="组件" />
+                    <u:AnchorItem Header="设计语言" />
+                    <u:AnchorItem Header="物料平台" />
+                    <u:AnchorItem Header="主题商店" />
+                </u:Anchor>
+                <u:Anchor Classes="Tertiary">
+                    <u:AnchorItem Header="尺寸" />
+                    <u:AnchorItem Header="组件" />
+                    <u:AnchorItem Header="设计语言" />
+                    <u:AnchorItem Header="物料平台" />
+                    <u:AnchorItem Header="主题商店" />
+                </u:Anchor>
+                <u:Anchor Classes="Muted">
+                    <u:AnchorItem Header="尺寸" />
+                    <u:AnchorItem Header="组件" />
+                    <u:AnchorItem Header="设计语言" />
+                    <u:AnchorItem Header="物料平台" />
+                    <u:AnchorItem Header="主题商店" />
+                </u:Anchor>
+                <u:Anchor>
+                    <u:AnchorItem Header="1. 动态展示">
+                        <u:AnchorItem Header="1.1 组件">
+                            <u:AnchorItem Header="1.1.1 Avatar" />
+                            <u:AnchorItem Header="1.1.2 Button" />
+                            <u:AnchorItem Header="1.1.3 Icon" />
+                        </u:AnchorItem>
+                        <u:AnchorItem Header="1.2 物料" />
+                        <u:AnchorItem Header="1.3 主题商店" />
+                    </u:AnchorItem>
+                    <u:AnchorItem Header="2. 设计语言" />
+                </u:Anchor>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</UserControl>
