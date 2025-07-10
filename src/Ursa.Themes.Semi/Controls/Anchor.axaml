@@ -4,7 +4,7 @@
     xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters"
     xmlns:iri="https://irihi.tech/shared"
     xmlns:u="https://irihi.tech/ursa">
-    <converters:TreeLevelToMarginConverter x:Key="LevelToMarginConverter" />
+    <converters:TreeLevelToPaddingConverter x:Key="LevelToPaddingConverter" />
     <ControlTheme x:Key="{x:Type u:Anchor}" TargetType="{x:Type u:Anchor}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -12,7 +12,7 @@
             <ControlTemplate>
                 <Panel>
                     <Rectangle
-                        Width="1"
+                        Width="{DynamicResource AnchorPipeWidth}"
                         Name="PART_Pipe"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Stretch"
@@ -24,7 +24,7 @@
                 </Panel>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^.Mute /template/ Rectangle#PART_Pipe">
+        <Style Selector="^.Muted /template/ Rectangle#PART_Pipe">
             <Setter Property="Fill" Value="Transparent" />
         </Style>
     </ControlTheme>
@@ -39,23 +39,23 @@
                     <Panel Background="{TemplateBinding Background}">
                         <Border
                             Name="PART_Pipe"
-                            Width="2"
-                            CornerRadius="1"
+                            Width="{DynamicResource AnchorPipeWidth}"
+                            CornerRadius="{DynamicResource AnchorPipeCornerRadius}"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Stretch" />
-                        <Panel Margin="8,0,0,0">
+                        <Panel>
                             <ContentPresenter
                                 Name="{x:Static iri:PartNames.PART_HeaderPresenter}"
                                 VerticalAlignment="Center"
                                 Foreground="{DynamicResource AnchorForeground}"
                                 Content="{TemplateBinding Header}"
                                 ContentTemplate="{TemplateBinding HeaderTemplate}">
-                                <ContentPresenter.Margin>
-                                    <MultiBinding Converter="{StaticResource LevelToMarginConverter}">
+                                <ContentPresenter.Padding>
+                                    <MultiBinding Converter="{StaticResource LevelToPaddingConverter}">
                                         <Binding Path="Level" RelativeSource="{RelativeSource AncestorType={x:Type u:AnchorItem}}" />
                                         <DynamicResource ResourceKey="AnchorIndent" />
                                     </MultiBinding>
-                                </ContentPresenter.Margin>
+                                </ContentPresenter.Padding>
                             </ContentPresenter>
                         </Panel>
                     </Panel>
@@ -83,7 +83,7 @@
             <Style Selector="^.Tertiary /template/ Border#PART_Pipe">
                 <Setter Property="Background" Value="{DynamicResource AnchorPipeSelectedTertiaryBackground}" />
             </Style>
-            <Style Selector="^.Mute /template/ Border#PART_Pipe">
+            <Style Selector="^.Muted /template/ Border#PART_Pipe">
                 <Setter Property="Background" Value="Transparent" />
             </Style>
         </Style>
