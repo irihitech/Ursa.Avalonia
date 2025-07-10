@@ -179,6 +179,14 @@
                 <Setter Property="Foreground" Value="{DynamicResource ComboBoxIconPressedForeground}" />
             </Style>
         </Style>
+        
+        <Style Selector="^:focus">
+            <Setter Property="Background" Value="{DynamicResource ComboBoxSelectorFocusBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxSelectorFocusBorderBrush}" />
+            <Style Selector="^ /template/ PathIcon#DropDownGlyph">
+                <Setter Property="Foreground" Value="{DynamicResource ComboBoxIconFocusForeground}" />
+            </Style>
+        </Style>
 
         <Style Selector="^:dropdownopen">
             <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxSelectorPressedBorderBrush}" />

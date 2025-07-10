@@ -309,6 +309,7 @@ public class IPv4Box: TemplatedControl
 
     protected override void OnLostFocus(RoutedEventArgs e)
     {
+        base.OnLostFocus(e);
         foreach (var pre in _presenters)
         {
             pre?.HideCaret();
