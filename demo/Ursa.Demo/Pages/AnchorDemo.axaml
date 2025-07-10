@@ -144,6 +144,27 @@
                         <Border
                             Height="300"
                             HorizontalAlignment="Stretch"
+                            u:Anchor.Id="anchor3-2-1"
+                            Background="{DynamicResource SemiCyan1}">
+                            <TextBlock Text="Border 3-2-1" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.Id="anchor3-2-2"
+                            Background="{DynamicResource SemiCyan1}">
+                            <TextBlock Text="Border 3-2-2" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
+                            u:Anchor.Id="anchor3-2-3"
+                            Background="{DynamicResource SemiCyan1}">
+                            <TextBlock Text="Border 3-2-3" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            HorizontalAlignment="Stretch"
                             u:Anchor.Id="anchor3-3"
                             Background="{DynamicResource SemiPurple1}">
                             <TextBlock Text="Border 3-3" />
@@ -180,6 +201,7 @@
                 </ScrollViewer>
                 <u:Anchor
                     Grid.Column="1"
+                    Classes="Tertiary"
                     Width="200"
                     Margin="24"
                     ItemsSource="{Binding AnchorItems}"

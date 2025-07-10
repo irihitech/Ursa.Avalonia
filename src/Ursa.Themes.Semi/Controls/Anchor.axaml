@@ -16,7 +16,7 @@
                         Name="PART_Pipe"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Stretch"
-                        Fill="{DynamicResource SemiColorBorder}" />
+                        Fill="{DynamicResource AnchorPipeBackground}" />
                     <ItemsPresenter
                         Name="PART_ItemsPresenter"
                         Margin="{TemplateBinding Padding}"
@@ -36,7 +36,7 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:AnchorItem">
                 <StackPanel>
-                    <Panel Background="{TemplateBinding Background}" >
+                    <Panel Background="{TemplateBinding Background}">
                         <Border
                             Name="PART_Pipe"
                             Width="2"
@@ -47,7 +47,7 @@
                             <ContentPresenter
                                 Name="{x:Static iri:PartNames.PART_HeaderPresenter}"
                                 VerticalAlignment="Center"
-                                Foreground="{DynamicResource SemiColorText2}"
+                                Foreground="{DynamicResource AnchorForeground}"
                                 Content="{TemplateBinding Header}"
                                 ContentTemplate="{TemplateBinding HeaderTemplate}">
                                 <ContentPresenter.Margin>
@@ -68,19 +68,24 @@
         </Style>
         <Style Selector="^.Small /template/ ContentPresenter#PART_HeaderPresenter">
             <Setter Property="MinHeight" Value="{DynamicResource AnchorSmallHeight}" />
-            <Setter Property="FontSize" Value="{DynamicResource SemiFontSizeSmall}" />
+            <Setter Property="FontSize" Value="{DynamicResource AnchorSmallFontSize}" />
         </Style>
-        <Style Selector="^:selected /template/ Border#PART_Pipe">
-            <Setter Property="Background" Value="{DynamicResource SemiColorTertiary}" />
-        </Style>
-        <Style Selector="^.Primary:selected /template/ Border#PART_Pipe">
-            <Setter Property="Background" Value="{DynamicResource SemiColorPrimary}" />
-        </Style>
-        <Style Selector="^.Mute:selected /template/ Border#PART_Pipe">
-            <Setter Property="Background" Value="Transparent" />
-        </Style>
-        <Style Selector="^:selected /template/ ContentPresenter#PART_HeaderPresenter">
-            <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
+        <Style Selector="^:selected">
+            <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource AnchorSelectedForeground}" />
+            </Style>
+            <Style Selector="^ /template/ Border#PART_Pipe">
+                <Setter Property="Background" Value="{DynamicResource AnchorPipeSelectedBackground}" />
+            </Style>
+            <Style Selector="^.Primary /template/ Border#PART_Pipe">
+                <Setter Property="Background" Value="{DynamicResource AnchorPipeSelectedPrimaryBackground}" />
+            </Style>
+            <Style Selector="^.Tertiary /template/ Border#PART_Pipe">
+                <Setter Property="Background" Value="{DynamicResource AnchorPipeSelectedTertiaryBackground}" />
+            </Style>
+            <Style Selector="^.Mute /template/ Border#PART_Pipe">
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
         </Style>
     </ControlTheme>
 </ResourceDictionary>

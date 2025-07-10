@@ -4,7 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Ursa.Demo.ViewModels;
 
-public partial class AnchorDemoViewModel: ObservableObject
+public partial class AnchorDemoViewModel : ObservableObject
 {
     public List<AnchorItemViewModel> AnchorItems { get; } = new()
     {
@@ -16,7 +16,16 @@ public partial class AnchorDemoViewModel: ObservableObject
             Children =
             [
                 new AnchorItemViewModel() { AnchorId = "anchor3-1", Header = "Anchor 3.1" },
-                new AnchorItemViewModel() { AnchorId = "anchor3-2", Header = "Anchor 3.2" },
+                new AnchorItemViewModel()
+                {
+                    AnchorId = "anchor3-2", Header = "Anchor 3.2",
+                    Children =
+                    [
+                        new AnchorItemViewModel() { AnchorId = "anchor3-2-1", Header = "Anchor 3.2.1" },
+                        new AnchorItemViewModel() { AnchorId = "anchor3-2-2", Header = "Anchor 3.2.2" },
+                        new AnchorItemViewModel() { AnchorId = "anchor3-2-3", Header = "Anchor 3.2.3" }
+                    ]
+                },
                 new AnchorItemViewModel() { AnchorId = "anchor3-3", Header = "Anchor 3.3" }
             ]
         },
@@ -27,7 +36,7 @@ public partial class AnchorDemoViewModel: ObservableObject
     };
 }
 
-public partial class AnchorItemViewModel: ObservableObject
+public partial class AnchorItemViewModel : ObservableObject
 {
     [ObservableProperty] private string? _anchorId;
     [ObservableProperty] private string? _header;
