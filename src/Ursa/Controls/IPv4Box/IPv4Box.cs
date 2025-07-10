@@ -283,13 +283,11 @@ public class IPv4Box: TemplatedControl
             {
                 if (e.ClickCount == 1)
                 {
-                    _imClient.ShowInputPanel();
-					_imClient.SetPresenter(presenter);
-					presenter.ShowCaret();
+                    _imClient.SetPresenter(presenter);
+                    presenter.ShowCaret();
                     _currentActivePresenter = presenter;
                     var caretPosition = position.WithX(position.X - presenter.Bounds.X);
                     presenter.MoveCaretToPoint(caretPosition);
-                    
                 }
                 else if (e.ClickCount == 2)
                 {
