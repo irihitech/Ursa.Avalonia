@@ -120,7 +120,7 @@
             <Setter Property="Background" Value="{DynamicResource IPv4BoxPressedBackground}" />
             <Setter Property="BorderBrush" Value="{DynamicResource  TextBoxFocusBorderBrush}" />
         </Style>
-        <Style Selector="^:focus-within">
+        <Style Selector="^:focus-within /template/ Border#PART_Border">
             <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
         </Style>
         <Style Selector="^:disabled">
