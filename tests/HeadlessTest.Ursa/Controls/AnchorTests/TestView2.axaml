@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:vm="clr-namespace:HeadlessTest.Ursa.Controls.AnchorTests"
+             mc:Ignorable="d" d:DesignWidth="800"
+             d:DesignHeight="450"
+             x:DataType="vm:AnchorDemoViewModel"
+             x:CompileBindings="True"
+             x:Class="HeadlessTest.Ursa.Controls.AnchorTests.TestView2">
+    <u:Anchor
+        Width="200"
+        Margin="24"
+        ItemsSource="{Binding AnchorItems}">
+        <u:Anchor.Styles>
+            <Style x:DataType="vm:AnchorItemViewModel" Selector="u|AnchorItem">
+                <Setter Property="AnchorId" Value="{Binding AnchorId}" />
+            </Style>
+        </u:Anchor.Styles>
+        <u:Anchor.ItemTemplate>
+            <TreeDataTemplate ItemsSource="{Binding Children}">
+                <TextBlock Text="{Binding Header}"/>
+            </TreeDataTemplate>
+        </u:Anchor.ItemTemplate>
+    </u:Anchor>
+</UserControl>

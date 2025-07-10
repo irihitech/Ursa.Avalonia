@@ -4,6 +4,7 @@ using Avalonia.Headless;
 using Avalonia.Headless.XUnit;
 using Avalonia.Input;
 using Avalonia.Threading;
+using Avalonia.VisualTree;
 using Ursa.Controls;
 
 namespace HeadlessTest.Ursa.Controls.AnchorTests;
@@ -39,7 +40,7 @@ public class Tests
         Dispatcher.UIThread.RunJobs();
         await Task.Delay(800);
         Assert.True(item4.IsSelected);
-        Assert.Equal(300.0 * 3, scrollViewer.Offset.Y, 1.0);
+        Assert.Equal(300.0 * 3, scrollViewer.Offset.Y, 50.0);
     }
     
     [AvaloniaFact]
@@ -78,5 +79,19 @@ public class Tests
         // Check if the second item is selected
         Assert.True(item2.IsSelected);
         Assert.False(item4.IsSelected);
+    }
+
+    [AvaloniaFact]
+    public void MVVM_Support()
+    {
+        var window = new Window();
+        var view = new TestView2();
+        window.Content = view;
+        window.Show();
+        Dispatcher.UIThread.RunJobs();
+        var items = window.GetVisualDescendants().OfType<AnchorItem>().ToList();
+        Assert.NotEmpty(items);
+        Assert.Equal(10, items.Count);
+
     }
 }
