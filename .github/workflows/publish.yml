@@ -5,49 +5,65 @@ on:
     inputs:
       win-x64:
         description: 'Windows x64'
-        required: true
         default: false
         type: boolean
       win-x64-aot:
         description: 'Windows x64 AOT'
-        required: true
         default: false
         type: boolean
       linux-x64:
         description: 'Linux x64'
-        required: true
         default: false
         type: boolean
       linux-x64-aot:
         description: 'Linux x64 AOT'
-        required: true
         default: false
         type: boolean
       osx-arm64:
         description: 'macOS arm64'
-        required: true
         default: false
         type: boolean
       osx-arm64-aot:
         description: 'macOS arm64 AOT'
-        required: true
         default: false
         type: boolean
       android-arm64:
         description: 'Android arm64'
-        required: true
         default: false
         type: boolean
+  workflow_call:
+    inputs:
+      win-x64:
+        type: boolean
+        default: true
+      win-x64-aot:
+        type: boolean
+        default: true
+      linux-x64:
+        type: boolean
+        default: true
+      linux-x64-aot:
+        type: boolean
+        default: true
+      osx-arm64:
+        type: boolean
+        default: true
+      osx-arm64-aot:
+        type: boolean
+        default: true
+      android-arm64:
+        type: boolean
+        default: true
 
 jobs:
   win-x64:
-    if: ${{ github.event.inputs.win-x64 == 'true' }}
+    if: ${{ inputs.win-x64 }}
     runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.2
       - name: Publish win-x64
-        run: dotnet publish demo/Ursa.Demo.Desktop -r win-x64 -c Release -o publish --sc -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
+        run: dotnet publish demo/Ursa.Demo.Desktop -r win-x64 -c Release -o publish --sc /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.6.2
         with:
@@ -57,15 +73,13 @@ jobs:
             !publish/*.pdb
 
   win-x64-aot:
-    if: ${{ github.event.inputs.win-x64-aot == 'true' }}
+    if: ${{ inputs.win-x64-aot }}
     runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.2
       - name: Enable Native AOT in .csproj
-        run: |
-          sed -i 's#<!--<PublishAot>true</PublishAot>-->#<PublishAot>true</PublishAot>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
-          sed -i 's#<!--<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>-->#<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
+        run: sed -i 's#<!--<PublishAot>true</PublishAot>-->#<PublishAot>true</PublishAot>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
       - name: Publish win-x64 AOT
         run: dotnet publish demo/Ursa.Demo.Desktop -r win-x64 -c Release -o publish
       - name: Upload a Build Artifact
@@ -77,13 +91,13 @@ jobs:
             !publish/*.pdb
 
   linux-x64:
-    if: ${{ github.event.inputs.linux-x64 == 'true' }}
+    if: ${{ inputs.linux-x64 }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.2
       - name: Publish linux-x64
-        run: dotnet publish demo/Ursa.Demo.Desktop -r linux-x64 -c Release -o publish --sc -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
+        run: dotnet publish demo/Ursa.Demo.Desktop -r linux-x64 -c Release -o publish --sc /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.6.2
         with:
@@ -93,15 +107,13 @@ jobs:
             !publish/*.pdb
 
   linux-x64-aot:
-    if: ${{ github.event.inputs.linux-x64-aot == 'true' }}
+    if: ${{ inputs.linux-x64-aot }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.2
       - name: Enable Native AOT in .csproj
-        run: |
-          sed -i 's#<!--<PublishAot>true</PublishAot>-->#<PublishAot>true</PublishAot>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
-          sed -i 's#<!--<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>-->#<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
+        run: sed -i 's#<!--<PublishAot>true</PublishAot>-->#<PublishAot>true</PublishAot>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
       - name: Publish linux-x64 AOT
         run: dotnet publish demo/Ursa.Demo.Desktop -r linux-x64 -c Release -o publish
       - name: Upload a Build Artifact
@@ -113,13 +125,13 @@ jobs:
             !publish/*.pdb
 
   osx-arm64:
-    if: ${{ github.event.inputs.osx-arm64 == 'true' }}
+    if: ${{ inputs.osx-arm64 }}
     runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.2
       - name: Publish osx-arm64
-        run: dotnet publish demo/Ursa.Demo.Desktop -r osx-arm64 -c Release -o publish --sc -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
+        run: dotnet publish demo/Ursa.Demo.Desktop -r osx-arm64 -c Release -o publish --sc /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.6.2
         with:
@@ -129,15 +141,13 @@ jobs:
             !publish/*.pdb
 
   osx-arm64-aot:
-    if: ${{ github.event.inputs.osx-arm64-aot == 'true' }}
+    if: ${{ inputs.osx-arm64-aot }}
     runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.2
       - name: Enable Native AOT in .csproj
-        run: |
-          sed -i '' 's#<!--<PublishAot>true</PublishAot>-->#<PublishAot>true</PublishAot>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
-          sed -i '' 's#<!--<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>-->#<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
+        run: sed -i '' 's#<!--<PublishAot>true</PublishAot>-->#<PublishAot>true</PublishAot>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
       - name: Publish osx-arm64 AOT
         run: dotnet publish demo/Ursa.Demo.Desktop -r osx-arm64 -c Release -o publish
       - name: Upload a Build Artifact
@@ -149,7 +159,7 @@ jobs:
             !publish/*.pdb
 
   android-arm64:
-    if: ${{ github.event.inputs.android-arm64 == 'true' }}
+    if: ${{ inputs.android-arm64 }}
     runs-on: windows-latest
     steps:
       - name: Checkout
@@ -159,7 +169,7 @@ jobs:
       - name: Restore Dependencies
         run: dotnet restore
       - name: Publish Android
-        run: dotnet publish demo/Ursa.Demo.Android -c Release -f net8.0-android --no-restore -o publish -p:RuntimeIdentifier=android-arm64
+        run: dotnet publish demo/Ursa.Demo.Android -c Release -f net8.0-android --no-restore -o publish /p:RuntimeIdentifier=android-arm64
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.6.2
         with:
