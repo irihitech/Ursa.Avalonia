@@ -1,0 +1,13 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="HeadlessTest.Ursa.Controls.NavMenuTests.CanSelectTests.TestView1">
+    <u:NavMenu Name="Menu" ExpandWidth="400" IsHorizontalCollapsed="False" SelectionChanging="Menu_OnSelectionChanging">
+        <u:NavMenuItem Name="MenuItem1" Header="Item 1" />
+        <u:NavMenuItem Name="MenuItem2" Header="Item 2" />
+        <u:NavMenuItem Name="MenuItem3" Header="Item 3" />
+    </u:NavMenu>
+</UserControl>
