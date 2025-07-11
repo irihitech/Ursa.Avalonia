@@ -189,6 +189,16 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
         add => AddHandler(SelectionChangedEvent, value);
         remove => RemoveHandler(SelectionChangedEvent, value);
     }
+    
+    
+    public static readonly RoutedEvent<SelectionChangingEventArgs> SelectionChangingEvent =
+        RoutedEvent.Register<NavMenu, SelectionChangingEventArgs>(nameof(SelectionChanging), RoutingStrategies.Bubble);
+
+    public event EventHandler<SelectionChangingEventArgs> SelectionChanging
+    {
+        add => AddHandler(SelectionChangingEvent, value);
+        remove => RemoveHandler(SelectionChangingEvent, value);
+    }
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
@@ -485,5 +495,29 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
         }
 
         return null;
+    }
+
+    internal bool CanChangeSelection(NavMenuItem item)
+    {
+        object? newSelection = null;
+        if (item.DataContext is not null && item.DataContext != DataContext)
+            newSelection = item.DataContext;
+        else
+            newSelection = item;
+        var args = new SelectionChangingEventArgs(
+            SelectionChangingEvent, 
+            new[] { SelectedItem },
+            new[] { newSelection })
+        {
+            Source = this,
+        };
+        RaiseEvent(args);
+        var result =  args.CanSelect;
+        if (result == false)
+        {
+            var container = GetContainerForItem(SelectedItem);
+            container?.Focus(NavigationMethod.Directional);
+        }
+        return result;
     }
 }
