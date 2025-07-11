@@ -40,19 +40,19 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Pack Ursa
-        if: ${{ inputs.Ursa == true }}
+        if: ${{ inputs.Ursa }}
         run: dotnet pack src/Ursa -o nugets /p:Version=${{ env.VERSION }}
 
       - name: Pack Ursa.Themes.Semi
-        if: ${{ inputs.Ursa_Themes_Semi == true }}
+        if: ${{ inputs.Ursa_Themes_Semi }}
         run: dotnet pack src/Ursa.Themes.Semi -o nugets /p:Version=${{ env.VERSION }}
 
       - name: Pack Prism Extension
-        if: ${{ inputs.PrismExtension == true }}
+        if: ${{ inputs.PrismExtension }}
         run: dotnet pack src/Ursa.PrismExtension -o nugets /p:Version=${{ env.VERSION }}
 
       - name: Pack ReactiveUI Extension
-        if: ${{ inputs.ReactiveUIExtension == true }}
+        if: ${{ inputs.ReactiveUIExtension }}
         run: dotnet pack src/Ursa.ReactiveUIExtension -o nugets /p:Version=${{ env.VERSION }}
 
       - name: Add NuGet Source
