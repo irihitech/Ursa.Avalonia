@@ -2,7 +2,6 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
-using Avalonia.Interactivity;
 using Avalonia.Media;
 
 namespace Ursa.Controls;
@@ -28,7 +27,7 @@ public class WindowThumb: Control
         this.AddHandler(DoubleTappedEvent, OnTapped);
     }
 
-    private void OnTapped(object sender, TappedEventArgs e)
+    private void OnTapped(object? sender, TappedEventArgs e)
     {
         if (this.VisualRoot is not Window window) return;
         if (!window.CanResize) return;
@@ -36,7 +35,7 @@ public class WindowThumb: Control
         window.WindowState = window.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
     }
 
-    private void OnPressed(object sender, PointerPressedEventArgs e)
+    private void OnPressed(object? sender, PointerPressedEventArgs e)
     {
         if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
         if (e.ClickCount > 1) return;

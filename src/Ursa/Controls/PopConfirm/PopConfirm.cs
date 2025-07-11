@@ -182,7 +182,7 @@ public class PopConfirm : ContentControl
         Button.ClickEvent.AddHandler(OnButtonClicked, _closeButton, _cancelButton, _confirmButton);
     }
 
-    private void OnButtonClicked(object sender, RoutedEventArgs e)
+    private void OnButtonClicked(object? sender, RoutedEventArgs e)
     {
         if (!HandleAsyncCommand) _popup?.SetValue(Popup.IsOpenProperty, false);
         // This is a hack for MVVM toolkit and Prism that uses INotifyPropertyChanged for async command. It counts the number of
@@ -243,7 +243,7 @@ public class PopConfirm : ContentControl
         }
     }
 
-    private void OnMainElementLostFocus(object sender, RoutedEventArgs e)
+    private void OnMainElementLostFocus(object? sender, RoutedEventArgs e)
     {
         var newFocus = TopLevel.GetTopLevel(this)?.FocusManager?.GetFocusedElement();
         if (newFocus is Visual v && _popup?.IsInsidePopup(v) == true) return;
@@ -251,7 +251,7 @@ public class PopConfirm : ContentControl
     }
 
     private bool _suppressButtonClickEvent;
-    private void OnMainElementGotFocus(object sender, GotFocusEventArgs e)
+    private void OnMainElementGotFocus(object? sender, GotFocusEventArgs e)
     {
         Debug.WriteLine("Got Focus");
         if (TriggerMode.HasFlag(PopConfirmTriggerMode.Click) && TriggerMode.HasFlag(PopConfirmTriggerMode.Focus))
@@ -270,7 +270,7 @@ public class PopConfirm : ContentControl
         LostFocusEvent.RemoveHandler(OnMainElementLostFocus, child);
     }
 
-    private void OnMainButtonClicked(object sender, RoutedEventArgs e)
+    private void OnMainButtonClicked(object? sender, RoutedEventArgs e)
     {
         Debug.WriteLine("Main Button Clicked");
         if (!_suppressButtonClickEvent)
@@ -281,7 +281,7 @@ public class PopConfirm : ContentControl
     }
 
 
-    private void OnMainElementPressed(object sender, PointerPressedEventArgs e)
+    private void OnMainElementPressed(object? sender, PointerPressedEventArgs e)
     {
         SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
     }
