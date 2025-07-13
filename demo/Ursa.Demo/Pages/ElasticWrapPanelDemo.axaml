@@ -104,11 +104,19 @@
             <TabItem Header="Flat">
                 <TabControl>
                     <TabItem Header="Common">
-                        <u:ElasticWrapPanel IsFillHorizontal="{Binding IsFillHorizontal}"
+                        <u:ElasticWrapPanel
                                             IsFillVertical="{Binding IsFillVertical}"
                                             ItemHeight="{Binding ItemHeight}"
                                             ItemWidth="{Binding ItemWidth}"
                                             Orientation="{Binding SelectedOrientation}">
+                            <u:ElasticWrapPanel.Styles>
+                                <Style Selector="u|ElasticWrapPanel">
+                                    <Setter Property="IsFillHorizontal" Value="True" />
+                                </Style>
+                                <Style Selector="u|ElasticWrapPanel[LineCount=1]">
+                                    <Setter Property="IsFillHorizontal" Value="False" />
+                                </Style>
+                            </u:ElasticWrapPanel.Styles>
                             <Border Background="{DynamicResource SemiRed5Color}" />
                             <Border Background="{DynamicResource SemiPink5Color}" />
                             <Border Background="{DynamicResource SemiPurple5Color}" />

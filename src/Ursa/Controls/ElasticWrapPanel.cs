@@ -11,10 +11,8 @@ public class ElasticWrapPanel : WrapPanel
 {
     static ElasticWrapPanel()
     {
-        IsFillHorizontalProperty.Changed.AddClassHandler<Control>(OnIsFillPropertyChanged);
-        IsFillVerticalProperty.Changed.AddClassHandler<Control>(OnIsFillPropertyChanged);
-
         AffectsMeasure<ElasticWrapPanel>(IsFillHorizontalProperty, IsFillVerticalProperty);
+        AffectsArrange<ElasticWrapPanel>(IsFillHorizontalProperty, IsFillVerticalProperty);
     }
 
     #region AttachedProperty
@@ -60,9 +58,15 @@ public class ElasticWrapPanel : WrapPanel
     public static readonly StyledProperty<bool> IsFillVerticalProperty =
         AvaloniaProperty.Register<ElasticWrapPanel, bool>(nameof(IsFillVertical));
 
-    private static void OnIsFillPropertyChanged(AvaloniaObject d, AvaloniaPropertyChangedEventArgs e)
+    private int _lineCount;
+
+    public static readonly DirectProperty<ElasticWrapPanel, int> LineCountProperty = AvaloniaProperty.RegisterDirect<ElasticWrapPanel, int>(
+        nameof(LineCount), o => o.LineCount);
+
+    public int LineCount
     {
-        (d as ElasticWrapPanel)?.InvalidateMeasure();
+        get => _lineCount;
+        private set => SetAndRaise(LineCountProperty, ref _lineCount, value);
     }
 
     #endregion
@@ -376,7 +380,7 @@ public class ElasticWrapPanel : WrapPanel
                 lineUIEles.Clear();
             }
         }
-
+        LineCount = lineUVCollection.Count;
         lineUVCollection.ForEach(col => col.Dispose());
         lineUVCollection.Clear();
         return finalSize;
