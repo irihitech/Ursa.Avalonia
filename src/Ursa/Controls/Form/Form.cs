@@ -76,6 +76,7 @@ public class Form: ItemsControl
             [!FormItem.LabelProperty] = control[!FormItem.LabelProperty],
             [!FormItem.IsRequiredProperty] = control[!FormItem.IsRequiredProperty],
             [!FormItem.NoLabelProperty] = control[!FormItem.NoLabelProperty],
+            [!FormItem.IsVisibleProperty] = control[!IsVisibleProperty],
         };
     }
 
