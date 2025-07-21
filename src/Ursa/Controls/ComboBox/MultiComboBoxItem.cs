@@ -15,7 +15,7 @@ public class MultiComboBoxItem: ContentControl
     private static readonly Point s_invalidPoint = new (double.NaN, double.NaN);
     private Point _pointerDownPoint = s_invalidPoint;
     private bool _updateInternal;
-    
+
     public static readonly StyledProperty<bool> IsSelectedProperty = AvaloniaProperty.Register<MultiComboBoxItem, bool>(
         nameof(IsSelected));
 
@@ -24,7 +24,7 @@ public class MultiComboBoxItem: ContentControl
         get => GetValue(IsSelectedProperty);
         set => SetValue(IsSelectedProperty, value);
     }
-    
+
     static MultiComboBoxItem()
     {
         IsSelectedProperty.AffectsPseudoClass<MultiComboBoxItem>(PseudoClassName.PC_Selected);
@@ -52,8 +52,13 @@ public class MultiComboBoxItem: ContentControl
     {
         base.OnAttachedToLogicalTree(e);
         _parent = this.FindLogicalAncestorOfType<MultiComboBox>();
-        if(this.IsSelected)
-            _parent?.SelectedItems?.Add(this.DataContext);
+        if (this.IsSelected &&
+            _parent is not null &&
+            _parent.SelectedItems is not null &&
+            !_parent.SelectedItems.Contains(this.DataContext))
+        {
+            _parent.SelectedItems.Add(this.DataContext);
+        }
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
@@ -103,7 +108,7 @@ public class MultiComboBoxItem: ContentControl
         base.OnAttachedToVisualTree(e);
         UpdateSelection();
     }
-    
+
     internal void UpdateSelection()
     {
         _updateInternal = true;
