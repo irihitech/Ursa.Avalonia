@@ -421,7 +421,26 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
 #pragma warning disable AVP1002
     public static readonly StyledProperty<T?> ValueProperty = AvaloniaProperty.Register<NumericUpDownBase<T>, T?>(
 
-        nameof(Value), defaultBindingMode: BindingMode.TwoWay, enableDataValidation: true);
+        nameof(Value), defaultBindingMode: BindingMode.TwoWay, enableDataValidation: true, coerce: CoerceCurrentValue);
+
+    private static T? CoerceCurrentValue(AvaloniaObject instance, T? arg2)
+    {
+        if (instance is not NumericUpDownBase<T> { IsInitialized: true } n) return arg2;
+        if (arg2 is null)
+        {
+            return n.EmptyInputValue;
+        }
+        var value = arg2.Value;
+        if(value.CompareTo(n.Minimum) < 0)
+        {
+            return n.Minimum;
+        }
+        if (value.CompareTo(n.Maximum) > 0)
+        {
+            return n.Maximum;
+        }
+        return arg2.Value;
+    }
 
     public T? Value
     {
@@ -760,6 +779,7 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
 
     protected override void Increase()
     {
+        if (IsReadOnly) return;
         T? value;
         if (Value is not null)
         {
