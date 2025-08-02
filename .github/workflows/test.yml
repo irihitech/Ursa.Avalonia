@@ -24,6 +24,43 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.1
       - name: Ursa Unit Test
-        run: dotnet test tests/Test.Ursa
+        run: dotnet test tests/Test.Ursa --configuration Release --logger trx --collect:"XPlat Code Coverage;Format=cobertura" --results-directory ./TestResults/
       - name: Ursa Headless Test
-        run: dotnet test tests/HeadlessTest.Ursa
+        run: dotnet test tests/HeadlessTest.Ursa --configuration Release --logger trx --collect:"XPlat Code Coverage;Format=cobertura" --results-directory ./TestResults/
+      - name: Combine Coverage Reports # This is because one report is produced per project, and we want one result for all of them.
+        uses: danielpalme/ReportGenerator-GitHub-Action@v5.4.3
+        with:
+          reports: '**/*.cobertura.xml' # REQUIRED # The coverage reports that should be parsed (separated by semicolon). Globbing is supported.
+          targetdir: "${{ github.workspace }}" # REQUIRED # The directory where the generated report should be saved.
+          reporttypes: 'HtmlInline;Cobertura'
+      - name: Publish Code Coverage Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: "Cobertura.xml"
+          badge: true
+          fail_below_min: false # just informative for now
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: false
+          indicators: true
+          output: both
+          thresholds: "10 30"
+      - name: Add Coverage PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+          recreate: true
+          path: code-coverage-results.md
+      - name: Upload Test Result Files
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            ${{ github.workspace }}/**/TestResults/**/* 
+            ${{ github.workspace }}/**/CoverageReports/**/* 
+          retention-days: 5
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2.18.0
+        if: always()
+        with:
+          trx_files: "${{ github.workspace }}/**/*.trx"
