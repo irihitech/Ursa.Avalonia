@@ -13,6 +13,7 @@ public class CalendarYearButtonTests
     [AvaloniaFact]
     public void SetContext_YearMode_SetsContentToAbbreviatedMonthName()
     {
+        CultureInfo.CurrentCulture = new CultureInfo("en-US");
         var button = new CalendarYearButton();
         var context = new CalendarContext(null, 5);
         button.SetContext(CalendarViewMode.Year, context);

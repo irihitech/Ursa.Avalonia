@@ -1,3 +1,4 @@
+using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
@@ -247,6 +248,7 @@ public class CalendarViewTests
     [AvaloniaFact]
     public void Update_FirstDayOfWeek_UpdatesCalendar()
     {
+        CultureInfo.CurrentCulture = new CultureInfo("en-US");
         var window = new Window();
         var calendarView = new CalendarView { Mode = CalendarViewMode.Month, FirstDayOfWeek = DayOfWeek.Sunday};
         window.Content = calendarView;
