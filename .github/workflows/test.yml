@@ -25,10 +25,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
-      - name: Ursa Unit Test
-        run: dotnet test tests/Test.Ursa --configuration Release --logger trx --collect:"XPlat Code Coverage;Format=cobertura" --results-directory ./TestResults/
-      - name: Ursa Headless Test
-        run: dotnet test tests/HeadlessTest.Ursa --configuration Release --logger trx --collect:"XPlat Code Coverage;Format=cobertura" --results-directory ./TestResults/
+      - name: Add NuGet Source
+        run: dotnet nuget add source ${{ secrets.IRIHI_NUGET_NIGHTLY_FEED }} -n irihi.tech -u ${{ secrets.IRIHI_NUGET_USERNAME }} -p ${{ secrets.IRIHI_NUGET_PASSWORD }} --store-password-in-clear-text
+      - name: Unit Test
+        run: dotnet test --configuration Release --logger trx --collect:"XPlat Code Coverage;Format=cobertura" --results-directory ./TestResults/
       - name: Combine Coverage Reports # This is because one report is produced per project, and we want one result for all of them.
         uses: danielpalme/ReportGenerator-GitHub-Action@v5.4.3
         with:
@@ -61,3 +61,8 @@ jobs:
             ${{ github.workspace }}/**/TestResults/**/* 
             ${{ github.workspace }}/**/CoverageReports/**/* 
           retention-days: 5
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2.18.0
+        if: always()
+        with:
+          trx_files: "${{ github.workspace }}/**/*.trx"
