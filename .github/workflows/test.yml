@@ -21,11 +21,12 @@ jobs:
   ubuntu:
     runs-on: ubuntu-latest
     permissions:
+      checks: write
       pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
-      - name: Ursa Unit Test
+      - name: Unit Test
         run: dotnet test tests/Test.Ursa --configuration Release --logger trx --collect:"XPlat Code Coverage;Format=cobertura" --results-directory ./TestResults/
       - name: Ursa Headless Test
         run: dotnet test tests/HeadlessTest.Ursa --configuration Release --logger trx --collect:"XPlat Code Coverage;Format=cobertura" --results-directory ./TestResults/
@@ -61,3 +62,8 @@ jobs:
             ${{ github.workspace }}/**/TestResults/**/* 
             ${{ github.workspace }}/**/CoverageReports/**/* 
           retention-days: 5
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2.18.0
+        if: always()
+        with:
+          trx_files: "${{ github.workspace }}/**/*.trx"
