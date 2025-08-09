@@ -7,7 +7,7 @@ using Avalonia.Styling;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 
-namespace Ursa.Controls;
+namespace Ursa.Helpers;
 
 public class WHAnimationHelper(Control control, AvaloniaProperty property)
 {
@@ -41,7 +41,6 @@ public class WHAnimationHelper(Control control, AvaloniaProperty property)
         var oldValue = control.DesiredSize;
         control.UpdateLayout();
         var newValue = control.DesiredSize;
-        newValue = newValue.WithWidth(newValue.Width + 20);
         control.InvalidateArrange();
         var animation = CreateAnimation(oldValue, newValue);
         animation.RunAsync(control, _cancellationTokenSource.Token);
