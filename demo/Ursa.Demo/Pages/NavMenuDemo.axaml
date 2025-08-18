@@ -41,9 +41,7 @@
                 ItemsSource="{Binding MenuItems}"
                 SelectedItem="{Binding SelectedMenuItem}"
                 SubMenuBinding="{Binding Children}"
-                u:SizeAnimationHelper.TriggerAvaloniaProperty="{x:Static u:NavMenu.IsHorizontalCollapsedProperty}"
-                u:SizeAnimationHelper.CreateAnimation="{x:Static views:NavMenuDemo.NavMenuAnimation}"
-                u:SizeAnimationHelper.EnableWHAnimation="True">
+                Classes="enable_animation">
                 <u:NavMenu.Styles>
                     <Style x:DataType="vm:MenuItem" Selector="u|NavMenuItem">
                         <Setter Property="IsSeparator" Value="{Binding IsSeparator}" />

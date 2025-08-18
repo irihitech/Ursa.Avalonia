@@ -26,6 +26,8 @@ public class SemiTheme : Styles
     public SemiTheme(IServiceProvider? provider = null)
     {
         AvaloniaXamlLoader.Load(provider, this);
+        Resources.MergedDictionaries.Add(new SizeAnimations.DefaultSizeAnimations());
+        Resources.MergedDictionaries.Add(new SizeAnimations.NavMenuSizeAnimations());
     }
 
     public static ThemeVariant Aquatic => new(nameof(Aquatic), ThemeVariant.Dark);
