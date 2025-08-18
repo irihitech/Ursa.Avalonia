@@ -8,25 +8,25 @@ using Avalonia.Styling;
 
 namespace Ursa.Helpers;
 
-public delegate Animation WHAnimationHelperCreateAnimationDelegate(Control animationTargetControl, Size oldDesiredSize,
+public delegate Animation SizeAnimationHelperAnimationGeneratorDelegate(Control animationTargetControl, Size oldDesiredSize,
     Size newDesiredSize);
 
-public class WHAnimationHelper : AvaloniaObject
+public class SizeAnimationHelper : AvaloniaObject
 {
-    public static readonly AttachedProperty<WHAnimationHelperCreateAnimationDelegate> CreateAnimationProperty =
+    public static readonly AttachedProperty<SizeAnimationHelperAnimationGeneratorDelegate> CreateAnimationProperty =
         AvaloniaProperty
-            .RegisterAttached<WHAnimationHelper, Control, WHAnimationHelperCreateAnimationDelegate>(
+            .RegisterAttached<SizeAnimationHelper, Control, SizeAnimationHelperAnimationGeneratorDelegate>(
                 "CreateAnimation", CreateAnimationPropertyDefaultValue);
 
     internal static readonly AttachedProperty<CancellationTokenSource?> AnimationCancellationTokenSourceProperty =
-        AvaloniaProperty.RegisterAttached<WHAnimationHelper, Control, CancellationTokenSource?>(
+        AvaloniaProperty.RegisterAttached<SizeAnimationHelper, Control, CancellationTokenSource?>(
             "AnimationCancellationTokenSource");
 
     public static readonly AttachedProperty<AvaloniaProperty?> TriggerAvaloniaPropertyProperty =
-        AvaloniaProperty.RegisterAttached<WHAnimationHelper, Control, AvaloniaProperty?>("TriggerAvaloniaProperty");
+        AvaloniaProperty.RegisterAttached<SizeAnimationHelper, Control, AvaloniaProperty?>("TriggerAvaloniaProperty");
 
     public static readonly AttachedProperty<bool> EnableWHAnimationProperty =
-        AvaloniaProperty.RegisterAttached<WHAnimationHelper, Control, bool>("EnableWHAnimation");
+        AvaloniaProperty.RegisterAttached<SizeAnimationHelper, Control, bool>("EnableWHAnimation");
 
     private static Animation CreateAnimationPropertyDefaultValue(Control animationTargetControl, Size oldDesiredSize,
         Size newDesiredSize)
@@ -61,12 +61,12 @@ public class WHAnimationHelper : AvaloniaObject
     }
 
 
-    public static void SetCreateAnimation(Control obj, WHAnimationHelperCreateAnimationDelegate value)
+    public static void SetCreateAnimation(Control obj, SizeAnimationHelperAnimationGeneratorDelegate value)
     {
         obj.SetValue(CreateAnimationProperty, value);
     }
 
-    public static WHAnimationHelperCreateAnimationDelegate GetCreateAnimation(Control obj)
+    public static SizeAnimationHelperAnimationGeneratorDelegate GetCreateAnimation(Control obj)
     {
         return obj.GetValue(CreateAnimationProperty);
     }
@@ -101,14 +101,14 @@ public class WHAnimationHelper : AvaloniaObject
             if (triggerProperty == null)
             {
                 throw new InvalidOperationException(
-                    "WHAnimationHelper requires TriggerAvaloniaProperty to be set when EnableWHAnimation is true.");
+                    "SizeAnimationHelper requires TriggerAvaloniaProperty to be set when EnableWHAnimation is true.");
             }
 
             if (triggerProperty == Visual.BoundsProperty ||
                 triggerProperty == Layoutable.DesiredSizeProperty)
             {
                 throw new InvalidOperationException(
-                    "WHAnimationHelper does not support Visual.BoundsProperty or Layoutable.DesiredSizeProperty as trigger property.");
+                    "SizeAnimationHelper does not support Visual.BoundsProperty or Layoutable.DesiredSizeProperty as trigger property.");
             }
 
             obj.Loaded += ObjOnLoaded;

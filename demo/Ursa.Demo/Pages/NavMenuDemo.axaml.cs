@@ -18,7 +18,7 @@ public partial class NavMenuDemo : UserControl
         InitializeComponent();
     }
 
-    public static WHAnimationHelperCreateAnimationDelegate NavMenuAnimation { get; } =
+    public static SizeAnimationHelperAnimationGeneratorDelegate NavMenuAnimation { get; } =
         (_, oldDesiredSize, newDesiredSize) =>
         {
             if (oldDesiredSize.Width > newDesiredSize.Width)
