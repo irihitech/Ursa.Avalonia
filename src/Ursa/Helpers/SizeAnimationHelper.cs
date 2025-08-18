@@ -1,4 +1,6 @@
-﻿using Avalonia;
+﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.ComTypes;
+using Avalonia;
 using Avalonia.Animation;
 using Avalonia.Animation.Easings;
 using Avalonia.Controls;
@@ -8,7 +10,8 @@ using Avalonia.Styling;
 
 namespace Ursa.Helpers;
 
-public delegate Animation SizeAnimationHelperAnimationGeneratorDelegate(Control animationTargetControl, Size oldDesiredSize,
+public delegate Animation SizeAnimationHelperAnimationGeneratorDelegate(Control animationTargetControl,
+    Size oldDesiredSize,
     Size newDesiredSize);
 
 public class SizeAnimationHelper : AvaloniaObject
@@ -28,6 +31,11 @@ public class SizeAnimationHelper : AvaloniaObject
     public static readonly AttachedProperty<bool> EnableWHAnimationProperty =
         AvaloniaProperty.RegisterAttached<SizeAnimationHelper, Control, bool>("EnableWHAnimation");
 
+    static SizeAnimationHelper()
+    {
+        EnableWHAnimationProperty.Changed.AddClassHandler<Control>(OnPropertyChanged);
+    }
+    
     private static Animation CreateAnimationPropertyDefaultValue(Control animationTargetControl, Size oldDesiredSize,
         Size newDesiredSize)
     {
@@ -93,8 +101,18 @@ public class SizeAnimationHelper : AvaloniaObject
 
     public static void SetEnableWHAnimation(Control obj, bool value)
     {
-        if (value == obj.GetValue(EnableWHAnimationProperty)) return;
         obj.SetValue(EnableWHAnimationProperty, value);
+    }
+
+    public static bool GetEnableWHAnimation(Control obj)
+    {
+        return obj.GetValue(EnableWHAnimationProperty);
+    }
+
+    private static void OnPropertyChanged(Control obj, AvaloniaPropertyChangedEventArgs change)
+    {
+        if (change.Property != EnableWHAnimationProperty) return;
+        _ = change.NewValue is bool value ? value : throw new ArgumentNullException();
         if (value)
         {
             var triggerProperty = GetTriggerAvaloniaProperty(obj);
@@ -111,7 +129,14 @@ public class SizeAnimationHelper : AvaloniaObject
                     "SizeAnimationHelper does not support Visual.BoundsProperty or Layoutable.DesiredSizeProperty as trigger property.");
             }
 
-            obj.Loaded += ObjOnLoaded;
+            if (obj.IsLoaded)
+            {
+                obj.PropertyChanged += AnimationTargetOnPropertyChanged;
+            }
+            else
+            {
+                obj.Loaded += ObjOnLoaded;
+            }
         }
         else
         {
@@ -124,11 +149,6 @@ public class SizeAnimationHelper : AvaloniaObject
             obj.PropertyChanged += AnimationTargetOnPropertyChanged;
             obj.Loaded -= ObjOnLoaded;
         }
-    }
-
-    public static bool GetEnableWHAnimation(Control obj)
-    {
-        return obj.GetValue(EnableWHAnimationProperty);
     }
 
     private static void AnimationTargetOnPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
