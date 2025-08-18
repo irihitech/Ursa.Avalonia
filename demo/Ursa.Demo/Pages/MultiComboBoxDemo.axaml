@@ -11,37 +11,52 @@
     x:CompileBindings="True"
     x:DataType="vm:MultiComboBoxDemoViewModel"
     mc:Ignorable="d">
-    <StackPanel Orientation="Horizontal">
+    <StackPanel Orientation="Vertical" Spacing="10">
+        <TextBlock>Binded ItemsSource</TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <u:MultiComboBox
+                Watermark="Please Select"
+                Width="300"
+                MaxHeight="200"
+                SelectedItems="{Binding SelectedItems}"
+                ItemsSource="{Binding Items}" >
+            </u:MultiComboBox>
+            
+            <u:MultiComboBox
+                Name="combo"
+                Watermark="Please Select"
+                Width="300"
+                InnerLeftContent="Left"
+                InnerRightContent="Right"
+                Classes="ClearButton"
+                MaxHeight="200"
+                SelectedItems="{Binding SelectedItems}"
+                ItemsSource="{Binding Items}" >
+                <u:MultiComboBox.PopupInnerTopContent>
+                    <StackPanel Margin="0" Orientation="Horizontal">
+                        <Button Theme="{DynamicResource BorderlessButton}" Content="Select All" Command="{Binding SelectAllCommand}"/>
+                        <Button Theme="{DynamicResource BorderlessButton}" Content="Unselect All" Command="{Binding ClearAllCommand}"/>
+                        <Button Theme="{DynamicResource BorderlessButton}" Content="Inverse" Command="{Binding InvertSelectionCommand}"/>
+                    </StackPanel>
+                </u:MultiComboBox.PopupInnerTopContent>
+                <u:MultiComboBox.ContextFlyout>
+                    <MenuFlyout>
+                        <MenuItem Header="Select All" Command="{Binding SelectAllCommand}"/>
+                    </MenuFlyout>
+                </u:MultiComboBox.ContextFlyout>
+            </u:MultiComboBox>
+            
+            <ListBox ItemsSource="{Binding SelectedItems}" />
+        </StackPanel>
+        
+        <TextBlock>Items inside axaml (u:MultiComboBox's tag content)</TextBlock>
         <u:MultiComboBox
             Watermark="Please Select"
             Width="300"
-            MaxHeight="200"
-            SelectedItems="{Binding SelectedItems}"
-            ItemsSource="{Binding Items}" >
+            MaxHeight="200">
+            <u:MultiComboBoxItem>option 1</u:MultiComboBoxItem>
+            <u:MultiComboBoxItem>option 2</u:MultiComboBoxItem>
+            <u:MultiComboBoxItem>option 3</u:MultiComboBoxItem>
         </u:MultiComboBox>
-        <u:MultiComboBox
-            Name="combo"
-            Watermark="Please Select"
-            Width="300"
-            InnerLeftContent="Left"
-            InnerRightContent="Right"
-            Classes="ClearButton"
-            MaxHeight="200"
-            SelectedItems="{Binding SelectedItems}"
-            ItemsSource="{Binding Items}" >
-            <u:MultiComboBox.PopupInnerTopContent>
-                <StackPanel Margin="0" Orientation="Horizontal">
-                    <Button Theme="{DynamicResource BorderlessButton}" Content="Select All" Command="{Binding SelectAllCommand}"/>
-                    <Button Theme="{DynamicResource BorderlessButton}" Content="Unselect All" Command="{Binding ClearAllCommand}"/>
-                    <Button Theme="{DynamicResource BorderlessButton}" Content="Inverse" Command="{Binding InvertSelectionCommand}"/>
-                </StackPanel>
-            </u:MultiComboBox.PopupInnerTopContent>
-            <u:MultiComboBox.ContextFlyout>
-                <MenuFlyout>
-                    <MenuItem Header="Select All" Command="{Binding SelectAllCommand}"/>
-                </MenuFlyout>
-            </u:MultiComboBox.ContextFlyout>
-        </u:MultiComboBox>
-        <ListBox ItemsSource="{Binding SelectedItems}" />
     </StackPanel>
 </UserControl>
