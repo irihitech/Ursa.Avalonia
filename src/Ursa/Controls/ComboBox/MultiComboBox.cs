@@ -184,7 +184,10 @@ public class MultiComboBox : SelectingItemsControl, IInnerContentControl, IPopup
         if (item is MultiComboBoxItem containerItem)
         {
             container.DataContext = containerItem.Content;
+            return;
         }
+
+        base.PrepareContainerForItemOverride(container, item, index);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
