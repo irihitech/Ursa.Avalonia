@@ -11,7 +11,7 @@
     x:CompileBindings="True"
     x:DataType="vm:MultiComboBoxDemoViewModel"
     mc:Ignorable="d">
-    <StackPanel Orientation="Vertical" Spacing="10">
+    <StackPanel Orientation="Vertical">
         <TextBlock>Binded ItemsSource</TextBlock>
         <StackPanel Orientation="Horizontal">
             <u:MultiComboBox
@@ -48,6 +48,8 @@
             
             <ListBox ItemsSource="{Binding SelectedItems}" />
         </StackPanel>
+        
+        <Separator Margin="0 20" />
         
         <TextBlock>Items inside axaml (u:MultiComboBox's tag content)</TextBlock>
         <u:MultiComboBox
