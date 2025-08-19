@@ -28,7 +28,7 @@ public class Pagination : TemplatedControl
     public const string PART_QuickJumpInput = "PART_QuickJumpInput";
 
     public static readonly StyledProperty<int?> CurrentPageProperty = AvaloniaProperty.Register<Pagination, int?>(
-        nameof(CurrentPage), coerce: CoerceCurrentPage);
+        nameof(CurrentPage), coerce: CoerceCurrentPage, defaultBindingMode: Avalonia.Data.BindingMode.TwoWay);
 
     public static readonly RoutedEvent<ValueChangedEventArgs<int>> CurrentPageChangedEvent =
         RoutedEvent.Register<Pagination, ValueChangedEventArgs<int>>(nameof(CurrentPageChanged),
