@@ -12,27 +12,27 @@
             <ControlTemplate TargetType="u:NavMenu">
                 <Grid RowDefinitions="Auto, *, Auto">
                     <ContentPresenter Content="{TemplateBinding Header}" />
-					<ScrollViewer
-						Grid.Row="1"
-						HorizontalAlignment="Stretch"
-						HorizontalScrollBarVisibility="Disabled"
-						AllowAutoHide="True"
-						VerticalScrollBarVisibility="Auto">
-						<ScrollViewer.Styles>
-							<Style Selector="ScrollViewer /template/ ScrollBar">
-								<Setter Property="Opacity" Value="0" />
-							</Style>
-							<Style Selector="ScrollViewer:pointerover">
-								<Style Selector="^ /template/ ScrollBar#PART_HorizontalScrollBar">
-									<Setter Property="Opacity" Value="1" />
-								</Style>
-								<Style Selector="^ /template/ ScrollBar#PART_VerticalScrollBar">
-									<Setter Property="Opacity" Value="1" />
-								</Style>
-							</Style>
-						</ScrollViewer.Styles>
-						<ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}" />
-					</ScrollViewer>
+                    <ScrollViewer
+                        Grid.Row="1"
+                        HorizontalAlignment="Stretch"
+                        HorizontalScrollBarVisibility="Disabled"
+                        AllowAutoHide="True"
+                        VerticalScrollBarVisibility="Auto">
+                        <ScrollViewer.Styles>
+                            <Style Selector="ScrollViewer /template/ ScrollBar">
+                                <Setter Property="Opacity" Value="0" />
+                            </Style>
+                            <Style Selector="ScrollViewer:pointerover">
+                                <Style Selector="^ /template/ ScrollBar#PART_HorizontalScrollBar">
+                                    <Setter Property="Opacity" Value="1" />
+                                </Style>
+                                <Style Selector="^ /template/ ScrollBar#PART_VerticalScrollBar">
+                                    <Setter Property="Opacity" Value="1" />
+                                </Style>
+                            </Style>
+                        </ScrollViewer.Styles>
+                        <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}" />
+                    </ScrollViewer>
                     <ContentPresenter Grid.Row="2" Content="{TemplateBinding Footer}" />
                 </Grid>
             </ControlTemplate>
@@ -43,6 +43,15 @@
         <Style Selector="^:horizontal-collapsed">
             <Setter Property="Width" Value="{Binding $self.CollapseWidth}" />
             <Setter Property="Grid.IsSharedSizeScope" Value="False" />
+        </Style>
+        <Style Selector="^.enable_animation">
+            <Setter Property="u:SizeAnimationHelper.TriggerAvaloniaProperty"
+                    Value="{x:Static u:NavMenu.IsHorizontalCollapsedProperty}">
+            </Setter>
+            <Setter Property="u:SizeAnimationHelper.CreateAnimation"
+                    Value="{DynamicResource NavMenuWidthAnimationGenerator}">
+            </Setter>
+            <Setter Property="u:SizeAnimationHelper.EnableWHAnimation" Value="True"></Setter>
         </Style>
     </ControlTheme>
 
@@ -134,13 +143,15 @@
                         <Transitions>
                             <DoubleTransition Easing="QuadraticEaseIn" Property="Height" Duration="0.25" />
                             <DoubleTransition Easing="QuadraticEaseOut" Property="Opacity" Duration="0.25" />
-                            <TransformOperationsTransition Easing="QuadraticEaseInOut" Property="RenderTransform" Duration="0.25" />
+                            <TransformOperationsTransition Easing="QuadraticEaseInOut" Property="RenderTransform"
+                                                           Duration="0.25" />
                         </Transitions>
                     </ItemsPresenter.Transitions>
                 </ItemsPresenter>
                 <LayoutTransformControl.Transitions>
                     <Transitions>
-                        <TransformOperationsTransition Easing="QuadraticEaseInOut" Property="LayoutTransform" Duration="0.15" Delay="0.1" />
+                        <TransformOperationsTransition Easing="QuadraticEaseInOut" Property="LayoutTransform"
+                                                       Duration="0.15" Delay="0.1" />
                     </Transitions>
                 </LayoutTransformControl.Transitions>
             </LayoutTransformControl>
@@ -183,12 +194,12 @@
         <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter:pointerover">
             <Setter Property="Foreground" Value="{DynamicResource ListBoxItemPointeroverForeground}" />
         </Style>
-		<Style Selector="^:focus /template/ Border#PART_Border">
-			<Setter Property="Background" Value="{DynamicResource ListBoxItemPointeroverBackground}" />
-		</Style>
-		<Style Selector="^:focus /template/ ContentPresenter#PART_HeaderPresenter">
-			<Setter Property="Foreground" Value="{DynamicResource ListBoxItemPointeroverForeground}" />
-		</Style>
+        <Style Selector="^:focus /template/ Border#PART_Border">
+            <Setter Property="Background" Value="{DynamicResource ListBoxItemPointeroverBackground}" />
+        </Style>
+        <Style Selector="^:focus /template/ ContentPresenter#PART_HeaderPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource ListBoxItemPointeroverForeground}" />
+        </Style>
         <Style Selector="^:horizontal-collapsed:first-level">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Style Selector="^ /template/ Border#PART_Border">
