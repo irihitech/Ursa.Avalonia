@@ -107,7 +107,25 @@ public class IPv4Box: TemplatedControl
             e.Client = tb._imClient;
         });
     }
-    
+
+    /// <summary>
+    /// 是否使用小键盘输入
+    /// </summary>
+    internal bool IsTargetByNumPad 
+    {
+        set
+        {
+            if(_isTargetByNumPad
+                &&!value)
+            {
+                SetLostFocus();
+            }
+            _isTargetByNumPad =value;
+        }
+        get => _isTargetByNumPad;
+    }
+    private bool _isTargetByNumPad;
+
     #region Overrides
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -308,6 +326,15 @@ public class IPv4Box: TemplatedControl
     protected override void OnLostFocus(RoutedEventArgs e)
     {
         base.OnLostFocus(e);
+        if (IsTargetByNumPad)
+        {
+            return;
+        }
+        SetLostFocus();
+    }
+
+    private void SetLostFocus()
+    {
         foreach (var pre in _presenters)
         {
             pre?.HideCaret();
@@ -317,7 +344,8 @@ public class IPv4Box: TemplatedControl
         ParseBytes(ShowLeadingZero);
         SetIPAddressInternal();
     }
-    
+
+
     protected override void OnGotFocus(GotFocusEventArgs e)
     {
         _currentActivePresenter = _firstText;
