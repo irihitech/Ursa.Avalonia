@@ -186,6 +186,8 @@ public class MultiComboBox : SelectingItemsControl, IInnerContentControl, IPopup
             container.DataContext = containerItem.Content;
             return;
         }
+        
+        container.DataContext = item;
 
         base.PrepareContainerForItemOverride(container, item, index);
     }
@@ -213,7 +215,7 @@ public class MultiComboBox : SelectingItemsControl, IInnerContentControl, IPopup
     {
         if (o is StyledElement s)
         {
-            var data = s.DataContext;
+            var data = s is ClosableTag { VisualContent: not null } c ? c.Content : s.DataContext;
             SelectedItems?.Remove(data);
             var item = Items.FirstOrDefault(a => ReferenceEquals(a, data));
             if (item is not null)

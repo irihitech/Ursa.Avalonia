@@ -59,6 +59,8 @@
             <u:MultiComboBoxItem>option 1</u:MultiComboBoxItem>
             <u:MultiComboBoxItem>option 2</u:MultiComboBoxItem>
             <u:MultiComboBoxItem>option 3</u:MultiComboBoxItem>
+            <u:MultiComboBoxItem><Button>option 4</Button></u:MultiComboBoxItem>
+            <Button>option 5</Button>
         </u:MultiComboBox>
     </StackPanel>
 </UserControl>

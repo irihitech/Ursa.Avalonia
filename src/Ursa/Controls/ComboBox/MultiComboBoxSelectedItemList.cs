@@ -1,6 +1,8 @@
 ﻿using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Layout;
+using Avalonia.Media;
 
 namespace Ursa.Controls;
 
@@ -31,6 +33,15 @@ public class MultiComboBoxSelectedItemList: ItemsControl
         if (container is ClosableTag tag)
         {
             tag.Command = RemoveCommand;
+            if (item is Layoutable visualContent)
+            {
+                tag.VisualContent = new VisualBrush
+                {
+                    Visual = visualContent,
+                };
+                tag.VisualContentWidth = visualContent.Bounds.Width;
+                tag.VisualContentHeight = visualContent.Bounds.Height;
+            }
         }
     }
 }
