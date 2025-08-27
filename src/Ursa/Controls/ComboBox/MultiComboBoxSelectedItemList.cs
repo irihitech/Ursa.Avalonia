@@ -1,6 +1,7 @@
 ﻿using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Shapes;
 using Avalonia.Layout;
 using Avalonia.Media;
 
@@ -35,12 +36,18 @@ public class MultiComboBoxSelectedItemList: ItemsControl
             tag.Command = RemoveCommand;
             if (item is Layoutable visualContent)
             {
-                tag.VisualContent = new VisualBrush
+                var visualBrush= new VisualBrush
                 {
                     Visual = visualContent,
                 };
-                tag.VisualContentWidth = visualContent.Bounds.Width;
-                tag.VisualContentHeight = visualContent.Bounds.Height;
+                var rectangle = new Rectangle()
+                {
+                    Fill = visualBrush,
+                    Width = visualContent.Bounds.Width,
+                    Height = visualContent.Bounds.Height,
+                };
+                tag.Content = rectangle;
+                tag.DataContext = item;
             }
         }
     }

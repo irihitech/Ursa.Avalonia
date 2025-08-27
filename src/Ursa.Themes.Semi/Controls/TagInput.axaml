@@ -135,14 +135,7 @@
                             Command="{TemplateBinding Command}"
                             CommandParameter="{TemplateBinding}"
                             Content="{StaticResource ClosableTagCloseIconGlyph}" />
-                        <Border 
-                            IsVisible="{TemplateBinding VisualContent, Converter={x:Static ObjectConverters.IsNotNull}}"
-                            Background="{TemplateBinding VisualContent}"
-                            Width="{TemplateBinding VisualContentWidth}"
-                            Height="{TemplateBinding VisualContentHeight}"
-                            IsHitTestVisible="False" />
                         <ContentPresenter
-                            IsVisible="{TemplateBinding VisualContent, Converter={x:Static ObjectConverters.IsNull}}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}"
