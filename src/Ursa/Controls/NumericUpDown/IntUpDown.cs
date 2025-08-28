@@ -32,6 +32,10 @@ public class NumericIntUpDown : NumericUpDownBase<int>
         var result = a - b;
         return result > Value ? Minimum : result;
     }
+    public override void Clear()
+    {
+        base.Clear();
+    }
 }
 
 public class NumericUIntUpDown : NumericUpDownBase<uint>
@@ -68,6 +72,10 @@ public class NumericUIntUpDown : NumericUpDownBase<uint>
         var result = a - b;
         return result > Value ? Minimum : result;
     }
+    public override void Clear()
+    {
+        base.Clear();
+    }
 }
 
 public class NumericDoubleUpDown : NumericUpDownBase<double>
@@ -91,6 +99,10 @@ public class NumericDoubleUpDown : NumericUpDownBase<double>
     protected override double? Add(double? a, double? b) => a + b;
 
     protected override double? Minus(double? a, double? b) => a - b;
+    public override void Clear()
+    {
+        base.Clear();
+    }
 }
 
 public class NumericByteUpDown : NumericUpDownBase<byte>
@@ -121,6 +133,10 @@ public class NumericByteUpDown : NumericUpDownBase<byte>
     {
         var result = a - b;
         return (byte?)(result > Value ? Minimum : result);
+    }
+    public override void Clear()
+    {
+        base.Clear();
     }
 }
 
@@ -153,6 +169,10 @@ public class NumericSByteUpDown : NumericUpDownBase<sbyte>
         var result = a - b;
         return (sbyte?)(result > Value ? Minimum : result);
     }
+    public override void Clear()
+    {
+        base.Clear();
+    }
 }
 
 public class NumericShortUpDown : NumericUpDownBase<short>
@@ -183,6 +203,10 @@ public class NumericShortUpDown : NumericUpDownBase<short>
     {
         var result = a - b;
         return (short?)(result > Value ? Minimum : result);
+    }
+    public override void Clear()
+    {
+        base.Clear();
     }
 }
 
@@ -215,6 +239,10 @@ public class NumericUShortUpDown : NumericUpDownBase<ushort>
         var result = a - b;
         return (ushort?)(result > Value ? Minimum : result);
     }
+    public override void Clear()
+    {
+        base.Clear();
+    }
 }
 
 public class NumericLongUpDown : NumericUpDownBase<long>
@@ -246,6 +274,10 @@ public class NumericLongUpDown : NumericUpDownBase<long>
         var result = a - b;
         return result > Value ? Minimum : result;
     }
+    public override void Clear()
+    {
+        base.Clear();
+    }
 }
 
 public class NumericULongUpDown : NumericUpDownBase<ulong>
@@ -269,6 +301,10 @@ public class NumericULongUpDown : NumericUpDownBase<ulong>
     protected override ulong? Add(ulong? a, ulong? b) => a + b;
 
     protected override ulong? Minus(ulong? a, ulong? b) => a - b;
+    public override void Clear()
+    {
+        base.Clear();
+    }
 }
 
 public class NumericFloatUpDown : NumericUpDownBase<float>
@@ -292,6 +328,10 @@ public class NumericFloatUpDown : NumericUpDownBase<float>
     protected override float? Add(float? a, float? b) => a + b;
 
     protected override float? Minus(float? a, float? b) => a - b;
+    public override void Clear()
+    {
+        base.Clear();
+    }
 }
 
 public class NumericDecimalUpDown : NumericUpDownBase<decimal>
@@ -315,4 +355,9 @@ public class NumericDecimalUpDown : NumericUpDownBase<decimal>
     protected override decimal? Add(decimal? a, decimal? b) => a + b;
 
     protected override decimal? Minus(decimal? a, decimal? b) => a - b;
+
+    public override void Clear()
+    {
+        base.Clear();
+    }
 }

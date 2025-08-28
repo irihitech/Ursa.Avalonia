@@ -1,4 +1,4 @@
-using System.Net;
+ï»¿using System.Net;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -109,7 +109,7 @@ public class IPv4Box: TemplatedControl
     }
 
     /// <summary>
-    /// ÊÇ·ñÊ¹ÓÃĞ¡¼üÅÌÊäÈë
+    /// æ˜¯å¦ä½¿ç”¨å°é”®ç›˜è¾“å…¥
     /// </summary>
     internal bool IsTargetByNumPad 
     {

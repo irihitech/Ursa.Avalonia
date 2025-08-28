@@ -1,4 +1,4 @@
-using Avalonia;
+ï»¿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
@@ -20,7 +20,7 @@ public class NumPad: TemplatedControl
     }
 
     /// <summary>
-    /// Target Ä¿±êÄÚ²¿µÄ TextBox »ò TextPresenter ¿Ø¼ş 
+    /// Target ç›®æ ‡å†…éƒ¨çš„ TextBox æ§ä»¶ 
     /// </summary>
     private TextBox? _targetInnerText;
 
@@ -64,7 +64,7 @@ public class NumPad: TemplatedControl
         {
             if(existing.Target is IPv4Box pv4Box)
             {
-                pv4Box.IsTargetByNumPad = false; // È¡Ïû IPv4Box µÄ NumPad ÊäÈëÄ£Ê½
+                pv4Box.IsTargetByNumPad = false; // å–æ¶ˆ IPv4Box çš„ NumPad è¾“å…¥æ¨¡å¼
             }
             existing.Target = sender as InputElement;
             existing._targetInnerText = FindTextBoxInTarget((sender as InputElement)!);
@@ -107,7 +107,7 @@ public class NumPad: TemplatedControl
         if (Target is null || o is not NumPadButton b) return;
         var key = (b.NumMode ? b.NumKey : b.FunctionKey)?? Key.None;
 
-        // Èç¹û´æÔÚÄÚ²¿Îª TextBox µÄÄ¿±ê¿Ø¼ş£¬ÔòÊ¹ÓÃ¸Ã TextBox ×÷ÎªÊäÈëÄ¿±ê
+        // å¦‚æœå­˜åœ¨å†…éƒ¨ä¸º TextBox çš„ç›®æ ‡æ§ä»¶ï¼Œåˆ™ä½¿ç”¨è¯¥ TextBox ä½œä¸ºè¾“å…¥ç›®æ ‡
         var realTarget = _targetInnerText ?? Target;
         if (KeyInputMapping.TryGetValue(key, out var s))
         {
@@ -129,28 +129,28 @@ public class NumPad: TemplatedControl
         }
     }
     /// <summary>
-    /// ÔÚÄ¿±ê¿Ø¼şÖĞ²éÕÒ TextBox ¿Ø¼ş
+    /// åœ¨ç›®æ ‡æ§ä»¶ä¸­æŸ¥æ‰¾ TextBox æ§ä»¶
     /// </summary>
-    /// <param name="target">Ä¿±ê¿Ø¼ş</param>
-    /// <returns>ÕÒµ½µÄ TextBox£¬Èç¹ûÃ»ÓĞÕÒµ½Ôò·µ»Ø null</returns>
+    /// <param name="target">ç›®æ ‡æ§ä»¶</param>
+    /// <returns>æ‰¾åˆ°çš„ TextBoxï¼Œå¦‚æœæ²¡æœ‰æ‰¾åˆ°åˆ™è¿”å› null</returns>
     private static TextBox? FindTextBoxInTarget(InputElement target)
     {
-        // Èç¹ûÄ¿±ê±¾Éí¾ÍÊÇ TextBox
+        // å¦‚æœç›®æ ‡æœ¬èº«å°±æ˜¯ TextBox
         if (target is TextBox textBox)
             return textBox;
         
-        // Èç¹ûÄ¿±êÊÇ TemplatedControl£¬²¢ÇÒÒÑ¾­Ó¦ÓÃÁËÄ£°å
+        // å¦‚æœç›®æ ‡æ˜¯ TemplatedControlï¼Œå¹¶ä¸”å·²ç»åº”ç”¨äº†æ¨¡æ¿
         if (target is TemplatedControl templatedControl && templatedControl.IsInitialized)
         {
-            // ³¢ÊÔÍ¨¹ıÄ£°å²éÕÒ PART_TextBox
+            // å°è¯•é€šè¿‡æ¨¡æ¿æŸ¥æ‰¾ PART_TextBox
             if (templatedControl.GetTemplateChildren().FirstOrDefault(c => c is TextBox) is TextBox partTextBox)
                 return partTextBox;
         }
 
-        // Èç¹ûÄ¿±êÊÇ ILogical£¬Ê¹ÓÃ LogicalTree À©Õ¹·½·¨²éÕÒ
+        // å¦‚æœç›®æ ‡æ˜¯ ILogicalï¼Œä½¿ç”¨ LogicalTree æ‰©å±•æ–¹æ³•æŸ¥æ‰¾
         if (target is ILogical logical)
         {
-            // Ê¹ÓÃ GetLogicalDescendants ·½·¨²éÕÒËùÓĞÂß¼­×Ó¿Ø¼ş
+            // ä½¿ç”¨ GetLogicalDescendants æ–¹æ³•æŸ¥æ‰¾æ‰€æœ‰é€»è¾‘å­æ§ä»¶
             var textBoxes = logical.GetLogicalDescendants().OfType<TextBox>();
             return textBoxes.FirstOrDefault();
         }
