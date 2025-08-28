@@ -215,7 +215,7 @@ public class MultiComboBox : SelectingItemsControl, IInnerContentControl, IPopup
     {
         if (o is StyledElement s)
         {
-            var data = s is ClosableTag { VisualContent: not null } c ? c.Content : s.DataContext;
+            var data = s.DataContext;
             SelectedItems?.Remove(data);
             var item = Items.FirstOrDefault(a => ReferenceEquals(a, data));
             if (item is not null)
