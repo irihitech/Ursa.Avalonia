@@ -36,7 +36,7 @@ public class MultiComboBoxSelectedItemList: ItemsControl
             tag.Command = RemoveCommand;
             if (item is Layoutable visualContent)
             {
-                var visualBrush= new VisualBrush
+                var visualBrush = new VisualBrush
                 {
                     Visual = visualContent,
                 };
