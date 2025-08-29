@@ -21,11 +21,21 @@
             HorizontalAlignment="Stretch"
             u:NumPad.Attach="True"
             Watermark="Invoke NumPad" />
-        <u:IPv4Box Width="200" u:NumPad.Attach="True" />
+        <u:IPv4Box
+            Width="200"
+            u:NumPad.Attach="True"
+            InputMode="Fast"
+            ShowLeadingZero="False" />
         <u:NumericIntUpDown
             HorizontalAlignment="Stretch"
             u:NumPad.Attach="True"
-            Watermark="Invoke NumPad" />
+            Watermark="Invoke u:NumericIntUpDown" />
+
+        <NumericUpDown
+            u:NumPad.Attach="True"
+            ButtonSpinnerLocation="Left"
+            Watermark="NumericUpDown" />
+
         <Border Theme="{DynamicResource CardBorder}">
             <StackPanel>
                 <TextBox Name="text" Width="200" />

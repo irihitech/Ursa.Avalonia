@@ -1,6 +1,9 @@
-using Avalonia;
+﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Controls.Templates;
 using Avalonia.Input;
+using Avalonia.LogicalTree;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
@@ -15,6 +18,11 @@ public class NumPad: TemplatedControl
         get => GetValue(TargetProperty);
         set => SetValue(TargetProperty, value);
     }
+
+    /// <summary>
+    /// Target 目标内部的 TextBox 控件 
+    /// </summary>
+    private TextBox? _targetInnerText;
 
     public static readonly StyledProperty<bool> NumModeProperty = AvaloniaProperty.Register<NumPad, bool>(
         nameof(NumMode), defaultValue: true);
@@ -54,10 +62,24 @@ public class NumPad: TemplatedControl
         var existing = OverlayDialog.Recall<NumPad>(null);
         if (existing is not null)
         {
+            if(existing.Target is IPv4Box pv4Box)
+            {
+                pv4Box.IsTargetByNumPad = false; // 取消 IPv4Box 的 NumPad 输入模式
+            }
             existing.Target = sender as InputElement;
+            existing._targetInnerText = FindTextBoxInTarget((sender as InputElement)!);
+
+            if (existing.Target is IPv4Box pv4Box2)
+            {
+                pv4Box2.IsTargetByNumPad = true;
+            }
             return;
         }
-        var numPad = new NumPad() { Target = sender as InputElement };
+        var numPad = new NumPad() 
+        {
+            Target = sender as InputElement ,
+            _targetInnerText = FindTextBoxInTarget((sender as InputElement)!)
+        };
         OverlayDialog.Show(numPad, new object(), options: new OverlayDialogOptions() { Buttons = DialogButton.None });
     }
 
@@ -84,9 +106,12 @@ public class NumPad: TemplatedControl
     {
         if (Target is null || o is not NumPadButton b) return;
         var key = (b.NumMode ? b.NumKey : b.FunctionKey)?? Key.None;
+
+        // 如果存在内部为 TextBox 的目标控件，则使用该 TextBox 作为输入目标
+        var realTarget = _targetInnerText ?? Target;
         if (KeyInputMapping.TryGetValue(key, out var s))
         {
-            Target.RaiseEvent(new TextInputEventArgs()
+            realTarget.RaiseEvent(new TextInputEventArgs()
             {
                 Source = this,
                 RoutedEvent = TextInputEvent,
@@ -95,12 +120,41 @@ public class NumPad: TemplatedControl
         }
         else
         {
-            Target.RaiseEvent(new KeyEventArgs()
+            realTarget.RaiseEvent(new KeyEventArgs()
             {
                 Source = this,
                 RoutedEvent = KeyDownEvent,
                 Key = key,
             });
         }
+    }
+    /// <summary>
+    /// 在目标控件中查找 TextBox 控件
+    /// </summary>
+    /// <param name="target">目标控件</param>
+    /// <returns>找到的 TextBox，如果没有找到则返回 null</returns>
+    private static TextBox? FindTextBoxInTarget(InputElement target)
+    {
+        // 如果目标本身就是 TextBox
+        if (target is TextBox textBox)
+            return textBox;
+        
+        // 如果目标是 TemplatedControl，并且已经应用了模板
+        if (target is TemplatedControl templatedControl && templatedControl.IsInitialized)
+        {
+            // 尝试通过模板查找 PART_TextBox
+            if (templatedControl.GetTemplateChildren().FirstOrDefault(c => c is TextBox) is TextBox partTextBox)
+                return partTextBox;
+        }
+
+        // 如果目标是 ILogical，使用 LogicalTree 扩展方法查找
+        if (target is ILogical logical)
+        {
+            // 使用 GetLogicalDescendants 方法查找所有逻辑子控件
+            var textBoxes = logical.GetLogicalDescendants().OfType<TextBox>();
+            return textBoxes.FirstOrDefault();
+        }
+
+        return null;
     }
 }

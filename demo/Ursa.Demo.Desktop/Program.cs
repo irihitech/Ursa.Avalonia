@@ -1,10 +1,14 @@
-﻿using System;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Dialogs;
 using Avalonia.Media;
+using System;
+using System.Runtime.Versioning;
 
 namespace Ursa.Demo.Desktop;
 
+[SupportedOSPlatform("windows")]
+[SupportedOSPlatform("linux")]
+[SupportedOSPlatform("macos")]
 class Program
 {
     // Initialization code. Don't use any Avalonia, third-party APIs or any
