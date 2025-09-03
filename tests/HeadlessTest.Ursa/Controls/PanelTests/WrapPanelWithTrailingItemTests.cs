@@ -10,7 +10,7 @@ namespace HeadlessTest.Ursa.Controls.PanelTests;
 
 public class WrapPanelWithTrailingItemTests
 {
-    [Fact]
+    [AvaloniaFact]
     public void Visual_Children_Correct()
     {
         var panel = new WrapPanelWithTrailingItem();
@@ -57,7 +57,7 @@ public class WrapPanelWithTrailingItemTests
         Assert.Equal(trailing2, visualChildren[2]);
     }
     
-    [Fact]
+    [AvaloniaFact]
     // Items Appears in Logical Children because IsItemsHost is false for individual Panels
     public void Logical_Children_Correct()
     {
