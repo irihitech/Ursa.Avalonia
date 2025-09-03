@@ -4,7 +4,7 @@ using Avalonia.Layout;
 using Avalonia.LogicalTree;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
-using Ursa.Controls.Panels;
+using Ursa.Controls;
 
 namespace HeadlessTest.Ursa.Controls.PanelTests;
 

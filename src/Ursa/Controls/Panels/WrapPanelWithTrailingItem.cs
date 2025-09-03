@@ -4,7 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Layout;
 using Irihi.Avalonia.Shared.Helpers;
 
-namespace Ursa.Controls.Panels;
+namespace Ursa.Controls;
 
 public class WrapPanelWithTrailingItem: Panel
 {
