@@ -39,9 +39,9 @@ public class TagInputTests
         };
         window.Content = tagInput;
         window.Show();
-
+        Dispatcher.UIThread.RunJobs();
         // Get the internal TextBox
-        var textBox = tagInput.Items.OfType<TextBox>().FirstOrDefault();
+        var textBox = tagInput.InputTextBox;
         Assert.NotNull(textBox);
 
         // Act
@@ -69,8 +69,10 @@ public class TagInputTests
         };
         window.Content = tagInput;
         window.Show();
+        
+        Dispatcher.UIThread.RunJobs();
 
-        var textBox = tagInput.Items.OfType<TextBox>().FirstOrDefault();
+        var textBox = tagInput.InputTextBox;
         Assert.NotNull(textBox);
 
         // Act - Single line with AcceptsReturn should work normally
@@ -99,8 +101,8 @@ public class TagInputTests
         };
         window.Content = tagInput;
         window.Show();
-
-        var textBox = tagInput.Items.OfType<TextBox>().FirstOrDefault();
+        Dispatcher.UIThread.RunJobs();
+        var textBox = tagInput.InputTextBox;
         Assert.NotNull(textBox);
 
         // Act - Test the actual behavior when we have multiline text
@@ -130,8 +132,8 @@ public class TagInputTests
         tagInput.Tags.Add("tag1");
         tagInput.Tags.Add("tag2");
         tagInput.Tags.Add("tag3");
-
-        var textBox = tagInput.Items.OfType<TextBox>().FirstOrDefault();
+        Dispatcher.UIThread.RunJobs();
+        var textBox = tagInput.InputTextBox;
         Assert.NotNull(textBox);
         textBox.Text = "";
 
@@ -157,8 +159,9 @@ public class TagInputTests
         window.Content = tagInput;
         window.Show();
 
+        Dispatcher.UIThread.RunJobs();
         tagInput.Tags.Add("tag1");
-        var textBox = tagInput.Items.OfType<TextBox>().FirstOrDefault();
+        var textBox = tagInput.InputTextBox;
         Assert.NotNull(textBox);
         textBox.Text = "some text";
 
@@ -185,8 +188,8 @@ public class TagInputTests
         };
         window.Content = tagInput;
         window.Show();
-
-        var textBox = tagInput.Items.OfType<TextBox>().FirstOrDefault();
+        Dispatcher.UIThread.RunJobs();
+        var textBox = tagInput.InputTextBox;
         Assert.NotNull(textBox);
 
         // Act - Try to add 3 tags when MaxCount is 2
@@ -228,8 +231,8 @@ public class TagInputTests
         };
         window.Content = tagInput;
         window.Show();
-
-        var textBox = tagInput.Items.OfType<TextBox>().FirstOrDefault();
+        Dispatcher.UIThread.RunJobs();
+        var textBox = tagInput.InputTextBox;
         Assert.NotNull(textBox);
 
         // Act - Try to add duplicate tag
@@ -263,10 +266,10 @@ public class TagInputTests
         };
         window.Content = tagInput;
         window.Show();
-
-        var textBox = tagInput.Items.OfType<TextBox>().FirstOrDefault();
+        Dispatcher.UIThread.RunJobs();
+        var textBox = tagInput.InputTextBox;
         Assert.NotNull(textBox);
-
+        
         // Act
         textBox.Text = "duplicate-tag";
         textBox.RaiseEvent(new KeyEventArgs
@@ -298,8 +301,8 @@ public class TagInputTests
         };
         window.Content = tagInput;
         window.Show();
-
-        var textBox = tagInput.Items.OfType<TextBox>().FirstOrDefault();
+        Dispatcher.UIThread.RunJobs();
+        var textBox = tagInput.InputTextBox;
         Assert.NotNull(textBox);
 
         // Act
@@ -328,8 +331,8 @@ public class TagInputTests
         };
         window.Content = tagInput;
         window.Show();
-
-        var textBox = tagInput.Items.OfType<TextBox>().FirstOrDefault();
+        Dispatcher.UIThread.RunJobs();
+        var textBox = tagInput.InputTextBox;
         Assert.NotNull(textBox);
 
         // Act
@@ -352,8 +355,8 @@ public class TagInputTests
         };
         window.Content = tagInput;
         window.Show();
-
-        var textBox = tagInput.Items.OfType<TextBox>().FirstOrDefault();
+        Dispatcher.UIThread.RunJobs();
+        var textBox = tagInput.InputTextBox;
         Assert.NotNull(textBox);
 
         // Act
@@ -373,16 +376,15 @@ public class TagInputTests
         var tagInput = new UrsaControls.TagInput();
         window.Content = tagInput;
         window.Show();
-
+        Dispatcher.UIThread.RunJobs();
         // Act
         tagInput.Tags.Add("tag1");
         tagInput.Tags.Add("tag2");
 
         // Assert
-        Assert.Equal(3, tagInput.Items.Count); // 2 tags + 1 textbox
-        Assert.Equal("tag1", tagInput.Items[0]);
-        Assert.Equal("tag2", tagInput.Items[1]);
-        Assert.IsType<TextBox>(tagInput.Items[2]);
+        Assert.Equal(2, tagInput.Tags.Count); // 2 tags + 1 textbox
+        Assert.Equal("tag1", tagInput.Tags[0]);
+        Assert.Equal("tag2", tagInput.Tags[1]);
     }
 
     [AvaloniaFact]
@@ -403,17 +405,16 @@ public class TagInputTests
         customTags.Add("dynamic-tag2");
 
         // Assert
-        Assert.Equal(3, tagInput.Items.Count);
-        Assert.Equal("dynamic-tag1", tagInput.Items[0]);
-        Assert.Equal("dynamic-tag2", tagInput.Items[1]);
+        Assert.Equal(2, tagInput.Tags.Count);
+        Assert.Equal("dynamic-tag1", tagInput.Tags[0]);
+        Assert.Equal("dynamic-tag2", tagInput.Tags[1]);
 
         // Act - Remove a tag
         customTags.RemoveAt(0);
 
         // Assert
-        Assert.Equal(2, tagInput.Items.Count);
-        Assert.Equal("dynamic-tag2", tagInput.Items[0]);
-        Assert.IsType<TextBox>(tagInput.Items[1]);
+        Assert.Single(tagInput.Tags);
+        Assert.Equal("dynamic-tag2", tagInput.Tags[0]);
     }
 
     [AvaloniaFact]
@@ -435,7 +436,6 @@ public class TagInputTests
 
         // Assert
         Assert.Empty(tagInput.Tags);
-        Assert.Single(tagInput.Items); // Only TextBox should remain
     }
 
     [AvaloniaFact]
@@ -446,8 +446,8 @@ public class TagInputTests
         var tagInput = new UrsaControls.TagInput();
         window.Content = tagInput;
         window.Show();
-
-        var textBox = tagInput.Items.OfType<TextBox>().FirstOrDefault();
+        Dispatcher.UIThread.RunJobs();
+        var textBox = tagInput.InputTextBox;
         Assert.NotNull(textBox);
 
         // Act - Try to add empty string
@@ -487,14 +487,13 @@ public class TagInputTests
         window.Content = tagInput;
         window.Show();
 
-        Assert.Equal(4, tagInput.Items.Count); // 3 tags + 1 textbox
+        Assert.Equal(3, tagInput.Tags.Count); // 3 tags + 1 textbox
 
         // Act
         customTags.Clear();
 
         // Assert
-        Assert.Single(tagInput.Items); // Only TextBox should remain
-        Assert.IsType<TextBox>(tagInput.Items[0]);
+        Assert.Empty(tagInput.Tags); // Only TextBox should remain
     }
 
     [AvaloniaFact]
@@ -515,7 +514,6 @@ public class TagInputTests
         Dispatcher.UIThread.RunJobs();
 
         Assert.Equal(3, tagInput.Tags.Count);
-        Assert.Equal(4, tagInput.Items.Count); // 3 tags + 1 textbox
 
         // Act - Find the first ClosableTag and trigger its Close command
         var closableTag = tagInput.GetVisualDescendants().OfType<UrsaControls.ClosableTag>().FirstOrDefault();
@@ -530,7 +528,6 @@ public class TagInputTests
 
         // Assert - The first tag should be removed
         Assert.Equal(2, tagInput.Tags.Count);
-        Assert.Equal(3, tagInput.Items.Count); // 2 tags + 1 textbox
         Assert.Equal("tag2", tagInput.Tags[0]);
         Assert.Equal("tag3", tagInput.Tags[1]);
     }
