@@ -6,7 +6,6 @@
         <u:ClosableTag Content="Closable Tag"/>
     </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:TagInput}" TargetType="u:TagInput">
-        <Setter Property="InputTheme" Value="{DynamicResource TagInputTextBoxTheme}" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="MinHeight" Value="{DynamicResource TextBoxDefaultHeight}" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -20,7 +19,7 @@
                 <Border
                     Name="PART_RootBorder"
                     MinHeight="30"
-                    Padding="8,4"
+                    Padding="{DynamicResource TextBoxContentPadding}"
                     VerticalAlignment="Stretch"
                     Background="{DynamicResource TextBoxDefaultBackground}"
                     BorderBrush="{DynamicResource TextBoxDefaultBorderBrush}"
@@ -36,14 +35,13 @@
                         <ItemsControl
                             Name="PART_ItemsControl"
                             HorizontalAlignment="Stretch"
-                            VerticalAlignment="Top"
                             ItemTemplate="{TemplateBinding ItemTemplate}"
                             ItemsSource="{TemplateBinding Tags}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <u:WrapPanelWithTrailingItem>
+                                    <u:WrapPanelWithTrailingItem TrailingWrapWidth="24" >
                                         <u:WrapPanelWithTrailingItem.TrailingItem>
-                                            <TextBox />
+                                            <TextBox VerticalAlignment="Center" Theme="{DynamicResource TagInputTextBoxTheme}" />
                                         </u:WrapPanelWithTrailingItem.TrailingItem>
                                     </u:WrapPanelWithTrailingItem>
                                 </ItemsPanelTemplate>
@@ -80,7 +78,7 @@
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Template">
             <ControlTemplate TargetType="TextBox">
-                <Border Padding="0,4">
+                <Border >
                     <ScrollViewer
                         Width="{Binding $parent[TextBox].Bounds.Width}"
                         AllowAutoHide="{TemplateBinding (ScrollViewer.AllowAutoHide)}"

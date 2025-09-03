@@ -1,4 +1,3 @@
-using System.Collections.Specialized;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Layout;
@@ -12,21 +11,14 @@ public class WrapPanelWithTrailingItem : Panel
         AvaloniaProperty.Register<WrapPanelWithTrailingItem, Layoutable?>(
             nameof(TrailingItem));
 
-    public static readonly StyledProperty<double> TrailingWrapWidthProperty =
-        AvaloniaProperty.Register<WrapPanelWithTrailingItem, double>(
-            nameof(TrailingWrapWidth));
-
-    static WrapPanelWithTrailingItem()
-    {
-        AffectsMeasure<WrapPanelWithTrailingItem>(TrailingItemProperty);
-        AffectsArrange<WrapPanelWithTrailingItem>(TrailingItemProperty);
-    }
-
     public Layoutable? TrailingItem
     {
         get => GetValue(TrailingItemProperty);
         set => SetValue(TrailingItemProperty, value);
     }
+
+    public static readonly StyledProperty<double> TrailingWrapWidthProperty = AvaloniaProperty.Register<WrapPanelWithTrailingItem, double>(
+        nameof(TrailingWrapWidth));
 
     public double TrailingWrapWidth
     {
@@ -34,6 +26,11 @@ public class WrapPanelWithTrailingItem : Panel
         set => SetValue(TrailingWrapWidthProperty, value);
     }
     
+    static WrapPanelWithTrailingItem()
+    {
+        AffectsMeasure<WrapPanelWithTrailingItem>(TrailingItemProperty);
+        AffectsArrange<WrapPanelWithTrailingItem>(TrailingItemProperty);
+    }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
@@ -52,8 +49,6 @@ public class WrapPanelWithTrailingItem : Panel
                 if (!IsItemsHost) LogicalChildren.Add(newValue);
             }
         }
-
-        WrapPanel p = new WrapPanel();
     }
 
     protected override Size MeasureOverride(Size availableSize)
@@ -110,15 +105,14 @@ public class WrapPanelWithTrailingItem : Panel
         double currentLineHeight = 0;
         double totalHeight = 0;
         var children = Children;
-
+        
         foreach (var child in children)
         {
-            double deltaX = finalSize.Width - currentLineX;
+            var deltaX = finalSize.Width - currentLineX;
             // Width is enough to place next child
             if (MathHelpers.GreaterThan(deltaX, child.DesiredSize.Width))
             {
-                child.Arrange(new Rect(currentLineX, totalHeight, child.DesiredSize.Width,
-                    Math.Max(child.DesiredSize.Height, currentLineHeight)));
+                child.Arrange(new Rect(currentLineX, totalHeight, child.DesiredSize.Width, Math.Max(child.DesiredSize.Height, currentLineHeight)));
                 currentLineX += child.Bounds.Width;
                 currentLineHeight = Math.Max(currentLineHeight, child.Bounds.Height);
             }
@@ -129,8 +123,7 @@ public class WrapPanelWithTrailingItem : Panel
             else
             {
                 totalHeight += currentLineHeight;
-                child.Arrange(new Rect(0, totalHeight, Math.Min(child.DesiredSize.Width, finalSize.Width),
-                    child.DesiredSize.Height));
+                child.Arrange(new Rect(0, totalHeight, Math.Min(child.DesiredSize.Width, finalSize.Width), child.DesiredSize.Height));
                 currentLineX = child.Bounds.Width;
                 currentLineHeight = child.Bounds.Height;
             }
@@ -140,18 +133,18 @@ public class WrapPanelWithTrailingItem : Panel
         if (last is null) return new Size(finalSize.Width, totalHeight);
         var lastDeltaX = finalSize.Width - currentLineX;
         // If width is not enough, add a new line, and recalculate total height
-        if (lastDeltaX < TrailingWrapWidth)
+        if (lastDeltaX <= TrailingWrapWidth)
         {
             totalHeight += currentLineHeight;
             last.Arrange(new Rect(0, totalHeight, finalSize.Width, last.DesiredSize.Height));
-            totalHeight += last.DesiredSize.Height;
+            totalHeight += last.Bounds.Height;
         }
         else
         {
             currentLineHeight = children.Count == 1 ? finalSize.Height : currentLineHeight;
             last.Arrange(new Rect(currentLineX, totalHeight, lastDeltaX,
                 Math.Max(currentLineHeight, last.DesiredSize.Height)));
-            currentLineHeight = Math.Max(currentLineHeight, last.DesiredSize.Height);
+            currentLineHeight = Math.Max(currentLineHeight, last.Bounds.Height);
             totalHeight += currentLineHeight;
         }
 

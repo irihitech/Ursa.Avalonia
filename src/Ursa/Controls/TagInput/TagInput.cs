@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Avalonia;
@@ -12,7 +11,6 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Metadata;
 using Avalonia.Styling;
-using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Helpers;
 
@@ -30,9 +28,9 @@ public class TagInput : TemplatedControl
         AvaloniaProperty.Register<TagInput, IList<string>>(
             nameof(Tags));
 
-    public static readonly StyledProperty<string?> WatermarkProperty = TextBox.WatermarkProperty.AddOwner<TagInput>();
-
-
+    public static readonly StyledProperty<string?> WatermarkProperty = 
+        TextBox.WatermarkProperty.AddOwner<TagInput>();
+    
     public static readonly StyledProperty<bool> AcceptsReturnProperty =
         TextBox.AcceptsReturnProperty.AddOwner<TagInput>();
 
@@ -42,49 +40,40 @@ public class TagInput : TemplatedControl
         set => SetValue(AcceptsReturnProperty, value);
     }
 
-    public static readonly StyledProperty<int> MaxCountProperty = AvaloniaProperty.Register<TagInput, int>(
-        nameof(MaxCount), int.MaxValue);
+    public static readonly StyledProperty<int> MaxCountProperty = 
+        AvaloniaProperty.Register<TagInput, int>(nameof(MaxCount), int.MaxValue);
 
     public static readonly StyledProperty<ControlTheme> InputThemeProperty =
-        AvaloniaProperty.Register<TagInput, ControlTheme>(
-            nameof(InputTheme));
+        AvaloniaProperty.Register<TagInput, ControlTheme>(nameof(InputTheme));
 
     public static readonly StyledProperty<IDataTemplate?> ItemTemplateProperty =
-        AvaloniaProperty.Register<TagInput, IDataTemplate?>(
-            nameof(ItemTemplate));
+        AvaloniaProperty.Register<TagInput, IDataTemplate?>(nameof(ItemTemplate));
 
-    public static readonly StyledProperty<string> SeparatorProperty = AvaloniaProperty.Register<TagInput, string>(
-        nameof(Separator));
+    public static readonly StyledProperty<string> SeparatorProperty = 
+        AvaloniaProperty.Register<TagInput, string>(nameof(Separator));
 
     public static readonly StyledProperty<LostFocusBehavior> LostFocusBehaviorProperty =
-        AvaloniaProperty.Register<TagInput, LostFocusBehavior>(
-            nameof(LostFocusBehavior));
+        AvaloniaProperty.Register<TagInput, LostFocusBehavior>(nameof(LostFocusBehavior));
 
 
-    public static readonly StyledProperty<bool> AllowDuplicatesProperty = AvaloniaProperty.Register<TagInput, bool>(
-        nameof(AllowDuplicates), true);
+    public static readonly StyledProperty<bool> AllowDuplicatesProperty = 
+        AvaloniaProperty.Register<TagInput, bool>(nameof(AllowDuplicates), true);
 
     public static readonly StyledProperty<object?> InnerLeftContentProperty =
-        AvaloniaProperty.Register<TagInput, object?>(
-            nameof(InnerLeftContent));
+        AvaloniaProperty.Register<TagInput, object?>(nameof(InnerLeftContent));
 
     public static readonly StyledProperty<object?> InnerRightContentProperty =
-        AvaloniaProperty.Register<TagInput, object?>(
-            nameof(InnerRightContent));
+        AvaloniaProperty.Register<TagInput, object?>(nameof(InnerRightContent));
 
     private TextBox? _textBox;
     private ItemsControl? _itemsControl;
     private TextPresenter? _presenter;
-    private Visual? _watermark;
-    
-    static TagInput()
-    {
-        InputThemeProperty.Changed.AddClassHandler<TagInput>((o, e) => o.OnInputThemePropertyChanged(e));
-    }
 
     public TagInput()
     {
-        Tags = new ObservableCollection<string>();
+        var tags = new ObservableCollection<string>();
+        Tags = tags;
+        tags.GetWeakCollectionChangedObservable().Subscribe(_ => CheckEmpty());
     }
 
     public string? Watermark
@@ -153,10 +142,10 @@ public class TagInput : TemplatedControl
         switch (LostFocusBehavior)
         {
             case LostFocusBehavior.Add:
-                AddTags(_textBox.Text);
+                AddTags(_textBox?.Text);
                 break;
             case LostFocusBehavior.Clear:
-                _textBox.Text = "";
+                _textBox?.SetValue(TextBox.TextProperty, string.Empty);
                 break;
         }
     }
@@ -165,31 +154,26 @@ public class TagInput : TemplatedControl
     {
         base.OnApplyTemplate(e);
         _itemsControl = e.NameScope.Find<ItemsControl>(PART_ItemsControl);
-        _watermark = e.NameScope.Find<Visual>(PART_Watermark);
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
     {
         base.OnLoaded(e);
-        _textBox = (_itemsControl.ItemsPanelRoot as WrapPanelWithTrailingItem).TrailingItem as TextBox;
-        _textBox.Theme = InputTheme;
-        _textBox.AcceptsReturn = this.AcceptsReturn;
-        _textBox.AddHandler(KeyDownEvent, OnTextBoxKeyDown, RoutingStrategies.Tunnel);
-        _textBox.AddHandler(LostFocusEvent, OnTextBox_LostFocus, RoutingStrategies.Bubble);
-        _presenter = _textBox.GetTemplateChildren().OfType<TextPresenter>().FirstOrDefault();
+        _textBox = (_itemsControl?.ItemsPanelRoot as WrapPanelWithTrailingItem)?.TrailingItem as TextBox;
+        _textBox?.AddHandler(KeyDownEvent, OnTextBoxKeyDown, RoutingStrategies.Tunnel);
+        _textBox?.AddHandler(LostFocusEvent, OnTextBox_LostFocus, RoutingStrategies.Bubble);
+        if (_textBox != null)
+        {
+            _textBox[!AcceptsReturnProperty] = this[!AcceptsReturnProperty];
+        }
+        _textBox?.GetObservable(TextBox.TextProperty).Subscribe(_ => CheckEmpty());
+        _presenter = _textBox?.GetTemplateChildren().OfType<TextPresenter>().FirstOrDefault();
         _presenter?.GetObservable(TextPresenter.PreeditTextProperty).Subscribe(_ => CheckEmpty());
-        _textBox.GetObservable(TextBox.TextProperty).Subscribe(_ => CheckEmpty());
-    }
-
-    private void OnInputThemePropertyChanged(AvaloniaPropertyChangedEventArgs args)
-    {
-        var newTheme = args.GetNewValue<ControlTheme?>();
-        if (newTheme?.TargetType == typeof(TextBox) && _textBox is not null) _textBox.Theme = newTheme;
     }
 
     private void CheckEmpty()
     {
-        if (string.IsNullOrWhiteSpace(_presenter?.PreeditText) && string.IsNullOrEmpty(_textBox.Text) &&
+        if (string.IsNullOrWhiteSpace(_presenter?.PreeditText) && string.IsNullOrEmpty(_textBox?.Text) &&
             Tags.Count == 0)
             PseudoClasses.Set(PseudoClassName.PC_Empty, true);
         else
@@ -200,11 +184,11 @@ public class TagInput : TemplatedControl
     {
         if (!AcceptsReturn && args.Key == Key.Enter)
         {
-            AddTags(_textBox.Text);
+            AddTags(_textBox?.Text);
         }
         else if (AcceptsReturn && args.Key==Key.Enter)
         {
-            var texts = _textBox.Text?.Split(["\r", "\n"], StringSplitOptions.RemoveEmptyEntries) ?? [];
+            var texts = _textBox?.Text?.Split(["\r", "\n"], StringSplitOptions.RemoveEmptyEntries) ?? [];
             foreach (var text in texts)
             {
                 AddTags(text);
@@ -212,12 +196,10 @@ public class TagInput : TemplatedControl
             args.Handled = true;
         }
         else if (args.Key == Key.Delete || args.Key == Key.Back)
-            if (string.IsNullOrEmpty(_textBox.Text) || _textBox.Text?.Length == 0)
+            if (string.IsNullOrEmpty(_textBox?.Text) || _textBox.Text?.Length == 0)
             {
                 if (Tags.Count == 0) return;
-                var index = Tags.Count - 1;
-                // Items.RemoveAt(index);
-                Tags.RemoveAt(index);
+                Tags.RemoveAt(Tags.Count - 1);
             }
     }
 
@@ -227,33 +209,25 @@ public class TagInput : TemplatedControl
         if (Tags.Count >= MaxCount) return;
         string[] values = [];
         if (!string.IsNullOrEmpty(Separator))
-            values = text.Split(new[] { Separator },
-                StringSplitOptions.RemoveEmptyEntries);
-        else if(_textBox.Text is not null)
-            values = new[] { _textBox.Text };
+            values = text.Split([Separator], StringSplitOptions.RemoveEmptyEntries);
+        else if(_textBox?.Text is not null)
+            values = [_textBox.Text];
 
         if (!AllowDuplicates)
             values = values.Distinct().Except(Tags).ToArray();
 
         foreach (var value in values)
         {
-            var index = Tags.Count;
-            // Items.Insert(index, values[i]);
-            Tags.Insert(index, value);
+            Tags.Add(value);
         }
-
-        _textBox.Clear();
+        _textBox?.Clear();
     }
 
     public void Close(object o)
     {
-        if (o is Control t)
-            if (t.Parent is ContentPresenter presenter)
-            {
-                var index = _itemsControl?.IndexFromContainer(presenter);
-                if (index is >= 0 && index < Tags.Count)
-                    // Items.RemoveAt(index.Value);
-                    Tags.RemoveAt(index.Value);
-            }
+        if (o is not Control { Parent: ContentPresenter presenter }) return;
+        var index = _itemsControl?.IndexFromContainer(presenter);
+        if (index is >= 0 && index < Tags.Count)
+            Tags.RemoveAt(index.Value);
     }
 }
