@@ -12,7 +12,7 @@
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="ItemTemplate">
             <DataTemplate>
-                <u:ClosableTag Command="{Binding $parent[u:TagInput].Close}" Content="{ReflectionBinding}" />
+                <u:ClosableTag x:DataType="x:String" Command="{Binding $parent[u:TagInput].Close}" Content="{Binding Path=.}" />
             </DataTemplate>
         </Setter>
         <Setter Property="Template">
@@ -38,11 +38,14 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Top"
                             ItemTemplate="{TemplateBinding ItemTemplate}"
-                            ItemsSource="{TemplateBinding Items}">
-
+                            ItemsSource="{TemplateBinding Tags}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <u:TagInputPanel VerticalAlignment="Top" />
+                                    <u:WrapPanelWithTrailingItem>
+                                        <u:WrapPanelWithTrailingItem.TrailingItem>
+                                            <TextBox />
+                                        </u:WrapPanelWithTrailingItem.TrailingItem>
+                                    </u:WrapPanelWithTrailingItem>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>
