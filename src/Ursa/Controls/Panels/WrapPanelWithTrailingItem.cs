@@ -133,7 +133,7 @@ public class WrapPanelWithTrailingItem : Panel
         if (last is null) return new Size(finalSize.Width, totalHeight);
         var lastDeltaX = finalSize.Width - currentLineX;
         // If width is not enough, add a new line, and recalculate total height
-        if (lastDeltaX <= TrailingWrapWidth)
+        if (lastDeltaX < TrailingWrapWidth)
         {
             totalHeight += currentLineHeight;
             last.Arrange(new Rect(0, totalHeight, finalSize.Width, last.DesiredSize.Height));

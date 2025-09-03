@@ -145,7 +145,10 @@ public class TagInput : TemplatedControl
                 AddTags(InputTextBox?.Text);
                 break;
             case LostFocusBehavior.Clear:
-                InputTextBox?.SetValue(TextBox.TextProperty, string.Empty);
+                if (InputTextBox is not null)
+                {
+                    InputTextBox.Text = string.Empty;
+                }
                 break;
         }
     }
@@ -196,7 +199,7 @@ public class TagInput : TemplatedControl
             args.Handled = true;
         }
         else if (args.Key == Key.Delete || args.Key == Key.Back)
-            if (string.IsNullOrEmpty(InputTextBox?.Text) || InputTextBox.Text?.Length == 0)
+            if (string.IsNullOrEmpty(InputTextBox?.Text))
             {
                 if (Tags.Count == 0) return;
                 Tags.RemoveAt(Tags.Count - 1);
