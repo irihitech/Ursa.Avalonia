@@ -65,7 +65,7 @@ public class TagInput : TemplatedControl
     public static readonly StyledProperty<object?> InnerRightContentProperty =
         AvaloniaProperty.Register<TagInput, object?>(nameof(InnerRightContent));
 
-    private TextBox? _textBox;
+    internal TextBox? InputTextBox;
     private ItemsControl? _itemsControl;
     private TextPresenter? _presenter;
 
@@ -142,10 +142,10 @@ public class TagInput : TemplatedControl
         switch (LostFocusBehavior)
         {
             case LostFocusBehavior.Add:
-                AddTags(_textBox?.Text);
+                AddTags(InputTextBox?.Text);
                 break;
             case LostFocusBehavior.Clear:
-                _textBox?.SetValue(TextBox.TextProperty, string.Empty);
+                InputTextBox?.SetValue(TextBox.TextProperty, string.Empty);
                 break;
         }
     }
@@ -159,21 +159,21 @@ public class TagInput : TemplatedControl
     protected override void OnLoaded(RoutedEventArgs e)
     {
         base.OnLoaded(e);
-        _textBox = (_itemsControl?.ItemsPanelRoot as WrapPanelWithTrailingItem)?.TrailingItem as TextBox;
-        _textBox?.AddHandler(KeyDownEvent, OnTextBoxKeyDown, RoutingStrategies.Tunnel);
-        _textBox?.AddHandler(LostFocusEvent, OnTextBox_LostFocus, RoutingStrategies.Bubble);
-        if (_textBox != null)
+        InputTextBox = (_itemsControl?.ItemsPanelRoot as WrapPanelWithTrailingItem)?.TrailingItem as TextBox;
+        InputTextBox?.AddHandler(KeyDownEvent, OnTextBoxKeyDown, RoutingStrategies.Tunnel);
+        InputTextBox?.AddHandler(LostFocusEvent, OnTextBox_LostFocus, RoutingStrategies.Bubble);
+        if (InputTextBox != null)
         {
-            _textBox[!AcceptsReturnProperty] = this[!AcceptsReturnProperty];
+            InputTextBox[!AcceptsReturnProperty] = this[!AcceptsReturnProperty];
         }
-        _textBox?.GetObservable(TextBox.TextProperty).Subscribe(_ => CheckEmpty());
-        _presenter = _textBox?.GetTemplateChildren().OfType<TextPresenter>().FirstOrDefault();
+        InputTextBox?.GetObservable(TextBox.TextProperty).Subscribe(_ => CheckEmpty());
+        _presenter = InputTextBox?.GetTemplateChildren().OfType<TextPresenter>().FirstOrDefault();
         _presenter?.GetObservable(TextPresenter.PreeditTextProperty).Subscribe(_ => CheckEmpty());
     }
 
     private void CheckEmpty()
     {
-        if (string.IsNullOrWhiteSpace(_presenter?.PreeditText) && string.IsNullOrEmpty(_textBox?.Text) &&
+        if (string.IsNullOrWhiteSpace(_presenter?.PreeditText) && string.IsNullOrEmpty(InputTextBox?.Text) &&
             Tags.Count == 0)
             PseudoClasses.Set(PseudoClassName.PC_Empty, true);
         else
@@ -184,11 +184,11 @@ public class TagInput : TemplatedControl
     {
         if (!AcceptsReturn && args.Key == Key.Enter)
         {
-            AddTags(_textBox?.Text);
+            AddTags(InputTextBox?.Text);
         }
         else if (AcceptsReturn && args.Key==Key.Enter)
         {
-            var texts = _textBox?.Text?.Split(["\r", "\n"], StringSplitOptions.RemoveEmptyEntries) ?? [];
+            var texts = InputTextBox?.Text?.Split(["\r", "\n"], StringSplitOptions.RemoveEmptyEntries) ?? [];
             foreach (var text in texts)
             {
                 AddTags(text);
@@ -196,7 +196,7 @@ public class TagInput : TemplatedControl
             args.Handled = true;
         }
         else if (args.Key == Key.Delete || args.Key == Key.Back)
-            if (string.IsNullOrEmpty(_textBox?.Text) || _textBox.Text?.Length == 0)
+            if (string.IsNullOrEmpty(InputTextBox?.Text) || InputTextBox.Text?.Length == 0)
             {
                 if (Tags.Count == 0) return;
                 Tags.RemoveAt(Tags.Count - 1);
@@ -210,8 +210,8 @@ public class TagInput : TemplatedControl
         string[] values = [];
         if (!string.IsNullOrEmpty(Separator))
             values = text.Split([Separator], StringSplitOptions.RemoveEmptyEntries);
-        else if(_textBox?.Text is not null)
-            values = [_textBox.Text];
+        else if(InputTextBox?.Text is not null)
+            values = [InputTextBox.Text];
 
         if (!AllowDuplicates)
             values = values.Distinct().Except(Tags).ToArray();
@@ -220,7 +220,7 @@ public class TagInput : TemplatedControl
         {
             Tags.Add(value);
         }
-        _textBox?.Clear();
+        InputTextBox?.Clear();
     }
 
     public void Close(object o)
