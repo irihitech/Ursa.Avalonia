@@ -159,7 +159,7 @@ public class TagInputTests
         window.Content = tagInput;
         window.Show();
 
-        Dispatcher.UIThread.RunJobs();        
+        Dispatcher.UIThread.RunJobs();
         tagInput.Tags.Add("tag1");
         var textBox = tagInput.InputTextBox;
         Assert.NotNull(textBox);

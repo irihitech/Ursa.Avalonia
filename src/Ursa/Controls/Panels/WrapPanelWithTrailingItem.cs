@@ -11,25 +11,26 @@ public class WrapPanelWithTrailingItem : Panel
         AvaloniaProperty.Register<WrapPanelWithTrailingItem, Layoutable?>(
             nameof(TrailingItem));
 
+    public static readonly StyledProperty<double> TrailingWrapWidthProperty =
+        AvaloniaProperty.Register<WrapPanelWithTrailingItem, double>(
+            nameof(TrailingWrapWidth));
+
+    static WrapPanelWithTrailingItem()
+    {
+        AffectsMeasure<WrapPanelWithTrailingItem>(TrailingItemProperty);
+        AffectsArrange<WrapPanelWithTrailingItem>(TrailingItemProperty);
+    }
+
     public Layoutable? TrailingItem
     {
         get => GetValue(TrailingItemProperty);
         set => SetValue(TrailingItemProperty, value);
     }
 
-    public static readonly StyledProperty<double> TrailingWrapWidthProperty = AvaloniaProperty.Register<WrapPanelWithTrailingItem, double>(
-        nameof(TrailingWrapWidth));
-
     public double TrailingWrapWidth
     {
         get => GetValue(TrailingWrapWidthProperty);
         set => SetValue(TrailingWrapWidthProperty, value);
-    }
-    
-    static WrapPanelWithTrailingItem()
-    {
-        AffectsMeasure<WrapPanelWithTrailingItem>(TrailingItemProperty);
-        AffectsArrange<WrapPanelWithTrailingItem>(TrailingItemProperty);
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
@@ -105,14 +106,15 @@ public class WrapPanelWithTrailingItem : Panel
         double currentLineHeight = 0;
         double totalHeight = 0;
         var children = Children;
-        
+
         foreach (var child in children)
         {
             var deltaX = finalSize.Width - currentLineX;
             // Width is enough to place next child
             if (MathHelpers.GreaterThan(deltaX, child.DesiredSize.Width))
             {
-                child.Arrange(new Rect(currentLineX, totalHeight, child.DesiredSize.Width, Math.Max(child.DesiredSize.Height, currentLineHeight)));
+                child.Arrange(new Rect(currentLineX, totalHeight, child.DesiredSize.Width,
+                    Math.Max(child.DesiredSize.Height, currentLineHeight)));
                 currentLineX += child.Bounds.Width;
                 currentLineHeight = Math.Max(currentLineHeight, child.Bounds.Height);
             }
@@ -123,7 +125,8 @@ public class WrapPanelWithTrailingItem : Panel
             else
             {
                 totalHeight += currentLineHeight;
-                child.Arrange(new Rect(0, totalHeight, Math.Min(child.DesiredSize.Width, finalSize.Width), child.DesiredSize.Height));
+                child.Arrange(new Rect(0, totalHeight, Math.Min(child.DesiredSize.Width, finalSize.Width),
+                    child.DesiredSize.Height));
                 currentLineX = child.Bounds.Width;
                 currentLineHeight = child.Bounds.Height;
             }
