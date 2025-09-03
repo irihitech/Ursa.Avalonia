@@ -2,11 +2,11 @@ name: Test
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "2.0" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "2.0" ]
   pull_request_target:
-    branches: [ "main" ]
+    branches: [ "main", "2.0" ]
   workflow_dispatch:
     
 permissions:
