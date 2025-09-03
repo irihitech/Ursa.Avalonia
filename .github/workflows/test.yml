@@ -2,10 +2,17 @@ name: Test
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "2.0" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "2.0" ]
+  pull_request_target:
+    branches: [ "main", "2.0" ]
   workflow_dispatch:
+    
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
 
 jobs:
   windows:
@@ -50,7 +57,7 @@ jobs:
           thresholds: "10 30"
       - name: Add Coverage PR Comment
         uses: marocchino/sticky-pull-request-comment@v2
-        if: github.event_name == 'pull_request'
+        if: (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)
         with:
           recreate: true
           path: code-coverage-results.md
