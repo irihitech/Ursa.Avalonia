@@ -112,7 +112,7 @@ public class WrapPanelWithTrailingItemTests
         {
             Height = 1000, Width = 1000, VerticalContentAlignment = VerticalAlignment.Stretch
         };
-        var panel = new WrapPanelWithTrailingItem();
+        var panel = new WrapPanelWithTrailingItem() { TrailingWrapWidth = 30 };
         var child1 = new Button { Content = "Button 1", Width = 200, Height = 100 };
         var child2 = new Button { Content = "Button 2", Width = 300, Height = 100 };
         var trailing = new Button
