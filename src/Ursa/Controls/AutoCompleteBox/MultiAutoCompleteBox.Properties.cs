@@ -79,16 +79,6 @@ public partial class MultiAutoCompleteBox
                 nameof(IsDropDownOpen));
 
         /// <summary>
-        /// Identifies the <see cref="SelectedItem" /> property.
-        /// </summary>
-        /// <value>The identifier the <see cref="SelectedItem" /> property.</value>
-        public static readonly StyledProperty<object?> SelectedItemProperty =
-            AvaloniaProperty.Register<MultiAutoCompleteBox, object?>(
-                nameof(SelectedItem),
-                defaultBindingMode: BindingMode.TwoWay,
-                enableDataValidation: true);
-
-        /// <summary>
         /// Identifies the <see cref="Text" /> property.
         /// </summary>
         /// <value>The identifier for the <see cref="Text" /> property.</value>
@@ -182,6 +172,16 @@ public partial class MultiAutoCompleteBox
         /// </summary>
         public static readonly StyledProperty<object?> InnerRightContentProperty =
             TextBox.InnerRightContentProperty.AddOwner<MultiAutoCompleteBox>();
+        
+        public static readonly StyledProperty<IList?> SelectedItemsProperty =
+            AvaloniaProperty.Register<MultiAutoCompleteBox, IList?>(
+                nameof(SelectedItems));
+        
+        public IList? SelectedItems
+        {
+            get => GetValue(SelectedItemsProperty);
+            set => SetValue(SelectedItemsProperty, value);
+        }
 
         /// <summary>
         /// Gets or sets the caret index
@@ -314,22 +314,6 @@ public partial class MultiAutoCompleteBox
                     OnValueMemberBindingChanged(value);
                 }
             }
-        }
-
-        /// <summary>
-        /// Gets or sets the selected item in the drop-down.
-        /// </summary>
-        /// <value>The selected item in the drop-down.</value>
-        /// <remarks>
-        /// If the IsTextCompletionEnabled property is true and text typed by
-        /// the user matches an item in the ItemsSource collection, which is
-        /// then displayed in the text box, the SelectedItem property will be
-        /// a null reference.
-        /// </remarks>
-        public object? SelectedItem
-        {
-            get => GetValue(SelectedItemProperty);
-            set => SetValue(SelectedItemProperty, value);
         }
 
         /// <summary>

@@ -14,13 +14,14 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
+using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
 
 
 namespace Ursa.Controls;
 
-public partial class MultiAutoCompleteBox : TemplatedControl
+public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentControl
 {
     /// <summary>
     ///     Specifies the name of the selection adapter TemplatePart.
@@ -181,7 +182,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl
         MinimumPopulateDelayProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((x, e) =>
             x.OnMinimumPopulateDelayChanged(e));
         IsDropDownOpenProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((x, e) => x.OnIsDropDownOpenChanged(e));
-        SelectedItemProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((x, e) => x.OnSelectedItemPropertyChanged(e));
+        // SelectedItemProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((x, e) => x.OnSelectedItemPropertyChanged(e));
         TextProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((x, e) => x.OnTextPropertyChanged(e));
         SearchTextProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((x, e) => x.OnSearchTextPropertyChanged(e));
         FilterModeProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((x, e) => x.OnFilterModePropertyChanged(e));
@@ -589,7 +590,10 @@ public partial class MultiAutoCompleteBox : TemplatedControl
         BindingValueType state,
         Exception? error)
     {
-        if (property == TextProperty || property == SelectedItemProperty) DataValidationErrors.SetError(this, error);
+        if (property == TextProperty || property == SelectedItemProperty)
+        {
+            DataValidationErrors.SetError(this, error);
+        }
     }
 
     /// <summary>
