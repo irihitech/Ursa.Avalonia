@@ -14,11 +14,18 @@
                         Name="PART_TextBox"
                         MinHeight="{TemplateBinding MinHeight}"
                         VerticalAlignment="Stretch"
-                        iri:ClassHelper.ClassSource="{TemplateBinding}"
                         DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}"
                         InnerLeftContent="{TemplateBinding InnerLeftContent}"
                         InnerRightContent="{TemplateBinding InnerRightContent}"
                         Watermark="{TemplateBinding Watermark}" />
+                    <Button
+                        Name="PART_ClearButton"
+                        HorizontalAlignment="Right"
+                        Margin="{DynamicResource TextBoxContentPadding}"
+                        Command="{Binding $parent[u:AutoCompleteBox].Clear}"
+                        Content="{DynamicResource IconButtonClearData}"
+                        IsVisible="False"
+                        Theme="{StaticResource InnerIconButton}" />
                     <Popup
                         Name="PART_Popup"
                         MaxHeight="{TemplateBinding MaxDropDownHeight}"
@@ -45,5 +52,13 @@
                 </Panel>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^.clearButton, ^.ClearButton">
+            <Style Selector="^:focus-within:not(:empty) /template/ Button#PART_ClearButton">
+                <Setter Property="IsVisible" Value="True" />
+            </Style>
+            <Style Selector="^:pointerover:not(:empty) /template/ Button#PART_ClearButton">
+                <Setter Property="IsVisible" Value="True" />
+            </Style>
+        </Style>
     </ControlTheme>
 </ResourceDictionary>
