@@ -52,7 +52,7 @@ public class AutoCompleteBox : Avalonia.Controls.AutoCompleteBox, IClearControl
         if (e.NavigationMethod == NavigationMethod.Pointer) return;
         if (!this.GetTemplateChildren().Contains(e.Source)) return;
         // If the focus is set by keyboard navigation, open the dropdown.
-        if (e.NavigationMethod == NavigationMethod.Tab && IsDropDownOpen == false) SetCurrentValue(IsDropDownOpenProperty, true);
+        if (IsDropDownOpen == false) SetCurrentValue(IsDropDownOpenProperty, true);
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
