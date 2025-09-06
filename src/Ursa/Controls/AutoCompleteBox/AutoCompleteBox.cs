@@ -22,6 +22,7 @@ public class AutoCompleteBox : Avalonia.Controls.AutoCompleteBox, IClearControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
+        _textbox?.RemoveHandler(PointerPressedEvent, OnBoxPointerPressed);
         _textbox = e.NameScope.Find<TextBox>(PART_TextBox);
         _textbox?.AddHandler(PointerPressedEvent, OnBoxPointerPressed, handledEventsToo: true);
         PseudoClasses.Set(PseudoClassName.PC_Empty, string.IsNullOrEmpty(Text));
@@ -29,7 +30,7 @@ public class AutoCompleteBox : Avalonia.Controls.AutoCompleteBox, IClearControl
 
     public void Clear()
     {
-        // Note: this method only reset Text to null. 
+        // Note: this method only resets Text to null. 
         // By default, AutoCompleteBox will clear the SelectedItem when Text is set to null.
         // But user can use custom Predicate to control the behavior when Text is set to null.
         SetCurrentValue(TextProperty, null);
