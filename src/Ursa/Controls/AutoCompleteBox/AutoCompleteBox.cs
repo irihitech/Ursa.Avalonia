@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
@@ -15,7 +14,7 @@ public class AutoCompleteBox : Avalonia.Controls.AutoCompleteBox, IClearControl
 {
     // ReSharper disable once InconsistentNaming
     private const string PART_TextBox = "PART_TextBox";
-    private bool _closeBySelecctionFlag;
+    private bool _closeBySelectionFlag;
     
     private TextBox? _textbox;
     static AutoCompleteBox()
@@ -33,7 +32,7 @@ public class AutoCompleteBox : Avalonia.Controls.AutoCompleteBox, IClearControl
         var source = (e.Source as Control).FindAncestorOfType<ListBoxItem>();
         if (source is not null)
         {
-            _closeBySelecctionFlag = true;
+            _closeBySelectionFlag = true;
         }
     }
 
@@ -71,11 +70,11 @@ public class AutoCompleteBox : Avalonia.Controls.AutoCompleteBox, IClearControl
         if (e.NavigationMethod == NavigationMethod.Pointer) return;
         if (!this.GetTemplateChildren().Contains(e.Source)) return;
         // If the focus is set by keyboard navigation, open the dropdown.
-        if (!_closeBySelecctionFlag && IsDropDownOpen == false)
+        if (!_closeBySelectionFlag && IsDropDownOpen == false)
         {
             SetCurrentValue(IsDropDownOpenProperty, true);
         }
-        _closeBySelecctionFlag = false;
+        _closeBySelectionFlag = false;
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
