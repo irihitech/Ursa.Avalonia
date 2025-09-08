@@ -1,8 +1,11 @@
+using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
+using Avalonia.Interactivity;
+using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
 
@@ -12,11 +15,26 @@ public class AutoCompleteBox : Avalonia.Controls.AutoCompleteBox, IClearControl
 {
     // ReSharper disable once InconsistentNaming
     private const string PART_TextBox = "PART_TextBox";
+    private bool _closeBySelecctionFlag;
     
     private TextBox? _textbox;
     static AutoCompleteBox()
     {
         MinimumPrefixLengthProperty.OverrideDefaultValue<AutoCompleteBox>(0);
+    }
+
+    public AutoCompleteBox()
+    {
+        AddHandler(PointerReleasedEvent, OnCurrentPointerReleased, RoutingStrategies.Tunnel);
+    }
+
+    private void OnCurrentPointerReleased(object sender, PointerReleasedEventArgs e)
+    {
+        var source = (e.Source as Control).FindAncestorOfType<ListBoxItem>();
+        if (source is not null)
+        {
+            _closeBySelecctionFlag = true;
+        }
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -53,7 +71,11 @@ public class AutoCompleteBox : Avalonia.Controls.AutoCompleteBox, IClearControl
         if (e.NavigationMethod == NavigationMethod.Pointer) return;
         if (!this.GetTemplateChildren().Contains(e.Source)) return;
         // If the focus is set by keyboard navigation, open the dropdown.
-        if (IsDropDownOpen == false) SetCurrentValue(IsDropDownOpenProperty, true);
+        if (!_closeBySelecctionFlag && IsDropDownOpen == false)
+        {
+            SetCurrentValue(IsDropDownOpenProperty, true);
+        }
+        _closeBySelecctionFlag = false;
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
@@ -65,4 +87,6 @@ public class AutoCompleteBox : Avalonia.Controls.AutoCompleteBox, IClearControl
             PseudoClasses.Set(PseudoClassName.PC_Empty, string.IsNullOrEmpty(value));
         }
     }
+
+    
 }
