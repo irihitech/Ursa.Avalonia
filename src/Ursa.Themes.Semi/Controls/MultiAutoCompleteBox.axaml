@@ -1,0 +1,67 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa">
+    <!-- Add Resources Here -->
+    <ControlTheme x:Key="{x:Type u:MultiAutoCompleteBox}" TargetType="u:MultiAutoCompleteBox">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:MultiAutoCompleteBox">
+                <Panel>
+                    <Border
+                        Name="PART_RootBorder"
+                        MinHeight="30"
+                        Padding="{DynamicResource TextBoxContentPadding}"
+                        VerticalAlignment="Stretch"
+                        Background="{DynamicResource TextBoxDefaultBackground}"
+                        BorderBrush="{DynamicResource TextBoxDefaultBorderBrush}">
+                        <ItemsControl 
+                            Name="{x:Static u:MultiAutoCompleteBox.PART_SelectedItemsControl}"
+                            ItemsSource="{TemplateBinding SelectedItems}" >
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <!-- TODO: Update command.  -->
+                                    <u:ClosableTag 
+                                        Content="{Binding .}" 
+                                        Command="{Binding $parent[u:TagInput].Close}"
+                                        ContentTemplate="{TemplateBinding SelectedItemTemplate}" 
+                                        ></u:ClosableTag>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <u:WrapPanelWithTrailingItem>
+                                        <u:WrapPanelWithTrailingItem.TrailingItem>
+                                            <TextBox VerticalAlignment="Center" Theme="{DynamicResource TagInputTextBoxTheme}"/>
+                                        </u:WrapPanelWithTrailingItem.TrailingItem>
+                                    </u:WrapPanelWithTrailingItem>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </Border>
+                    <Popup
+                        Name="PART_Popup"
+                        MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                        IsLightDismissEnabled="True"
+                        PlacementTarget="{TemplateBinding}">
+                        <Border
+                            MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                            Margin="{DynamicResource AutoCompleteBoxPopupMargin}"
+                            Padding="{DynamicResource AutoCompleteBoxPopupPadding}"
+                            HorizontalAlignment="Stretch"
+                            Background="{DynamicResource AutoCompleteBoxPopupBackground}"
+                            BorderBrush="{DynamicResource AutoCompleteBoxPopupBorderBrush}"
+                            BorderThickness="{DynamicResource AutoCompleteBoxPopupBorderThickness}"
+                            BoxShadow="{DynamicResource AutoCompleteBoxPopupBoxShadow}"
+                            CornerRadius="{DynamicResource AutoCompleteBoxPopupCornerRadius}">
+                            <ListBox
+                                Name="PART_SelectingItemsControl"
+                                Foreground="{TemplateBinding Foreground}"
+                                ItemTemplate="{TemplateBinding ItemTemplate}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                        </Border>
+                    </Popup>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

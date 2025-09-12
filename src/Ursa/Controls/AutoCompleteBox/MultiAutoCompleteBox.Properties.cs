@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
@@ -173,14 +174,37 @@ public partial class MultiAutoCompleteBox
         public static readonly StyledProperty<object?> InnerRightContentProperty =
             TextBox.InnerRightContentProperty.AddOwner<MultiAutoCompleteBox>();
         
+        /// <summary>
+        /// Defines the <see cref="SelectedItems"/> property
+        /// </summary>
         public static readonly StyledProperty<IList?> SelectedItemsProperty =
             AvaloniaProperty.Register<MultiAutoCompleteBox, IList?>(
                 nameof(SelectedItems));
         
+        /// <summary>
+        /// Gets or sets the currently selected items. It is recommended to use an <see cref="ObservableCollection{T}"/>.
+        /// This property must be initialized from ViewModel. 
+        /// </summary>
         public IList? SelectedItems
         {
             get => GetValue(SelectedItemsProperty);
             set => SetValue(SelectedItemsProperty, value);
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="SelectedItemTemplate" /> property.
+        /// </summary>
+        public static readonly StyledProperty<IDataTemplate?> SelectedItemTemplateProperty = 
+            AvaloniaProperty.Register<MultiAutoCompleteBox, IDataTemplate?>(nameof(SelectedItemTemplate));
+
+        /// <summary>
+        /// Gets or sets the <see cref="T:Avalonia.DataTemplate" /> used to display each item in SelectedItems. 
+        /// </summary>
+        [InheritDataTypeFromItems(nameof(SelectedItems))]
+        public IDataTemplate? SelectedItemTemplate
+        {
+            get => GetValue(SelectedItemTemplateProperty);
+            set => SetValue(SelectedItemTemplateProperty, value);
         }
 
         /// <summary>

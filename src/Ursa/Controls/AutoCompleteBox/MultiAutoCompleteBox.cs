@@ -576,6 +576,16 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         if (IsDropDownOpen && DropDownPopup != null && !DropDownPopup.IsOpen) OpeningDropDown(false);
 
         base.OnApplyTemplate(e);
+        _selectedItemsControl = e.NameScope.Find<ItemsControl>(PART_SelectedItemsControl);
+    }
+
+    public const string PART_SelectedItemsControl = "PART_SelectedItemsControl";
+    private ItemsControl? _selectedItemsControl;
+
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        var textbox = (_selectedItemsControl?.ItemsPanelRoot as WrapPanelWithTrailingItem)?.TrailingItem as TextBox;
     }
 
     /// <summary>
@@ -590,7 +600,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         BindingValueType state,
         Exception? error)
     {
-        if (property == TextProperty || property == SelectedItemProperty)
+        if (property == TextProperty)
         {
             DataValidationErrors.SetError(this, error);
         }
@@ -1257,12 +1267,15 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         }
         else
         {
+            // TODO implement selection. 
+            /*
             SearchText = string.Empty;
             if (SelectedItem != null) _skipSelectedItemTextUpdate = true;
 
             SetCurrentValue(SelectedItemProperty, null);
 
             if (IsDropDownOpen) SetCurrentValue(IsDropDownOpenProperty, false);
+            */
         }
     }
 
@@ -1529,8 +1542,11 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
 
         // Update the selected item property
 
+        // TODO set selection. 
+        /*
         if (SelectedItem != newSelectedItem) _skipSelectedItemTextUpdate = true;
         SetCurrentValue(SelectedItemProperty, newSelectedItem);
+        */
 
         // Restore updates for TextSelection
         if (_ignoreTextSelectionChange)
@@ -1612,7 +1628,8 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     /// <param name="e">The selection changed event data.</param>
     private void OnAdapterSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        SetCurrentValue(SelectedItemProperty, _adapter!.SelectedItem);
+        // TODO set selection.
+        // SetCurrentValue(SelectedItemProperty, _adapter!.SelectedItem);
     }
 
     //TODO Check UpdateTextCompletion
