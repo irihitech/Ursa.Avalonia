@@ -24,6 +24,7 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = "KeyGestureInput", Key = MenuKeys.MenuKeyKeyGestureInput },
                     new() { MenuHeader = "IPv4Box", Key = MenuKeys.MenuKeyIpBox },
                     new() { MenuHeader = "MultiComboBox", Key = MenuKeys.MenuKeyMultiComboBox },
+                    new() { MenuHeader = "Multi AutoCompleteBox", Key = MenuKeys.MenuKeyMultiAutoCompleteBox, Status = "New" },
                     new() { MenuHeader = "Numeric UpDown", Key = MenuKeys.MenuKeyNumericUpDown },
                     new() { MenuHeader = "NumPad", Key = MenuKeys.MenuKeyNumPad },
                     new() { MenuHeader = "PathPicker", Key = MenuKeys.MenuKeyPathPicker, Status = "New" },
@@ -158,4 +159,5 @@ public static class MenuKeys
     public const string MenuKeyAspectRatioLayout = "AspectRatioLayout";
     public const string MenuKeyPathPicker = "PathPicker";
     public const string MenuKeyAnchor = "Anchor";
+    public const string MenuKeyMultiAutoCompleteBox = "MultiAutoCompleteBox";
 }
