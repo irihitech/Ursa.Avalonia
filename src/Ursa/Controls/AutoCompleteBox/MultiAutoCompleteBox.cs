@@ -539,7 +539,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
             adapter = selector as ISelectionAdapter;
             if (adapter == null)
                 // Built in support for wrapping a Selector control
-                adapter = new SelectingItemsControlSelectionAdapter(selector);
+                adapter = new MultiAutoCompleteSelectionAdapter(selector);
         }
 
         if (adapter == null) adapter = nameScope.Find<ISelectionAdapter>(ElementSelectionAdapter);
