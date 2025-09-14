@@ -585,7 +585,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     protected override void OnLoaded(RoutedEventArgs e)
     {
         base.OnLoaded(e);
-        var textbox = (_selectedItemsControl?.ItemsPanelRoot as WrapPanelWithTrailingItem)?.TrailingItem as TextBox;
+        TextBox = (_selectedItemsControl?.ItemsPanelRoot as WrapPanelWithTrailingItem)?.TrailingItem as TextBox;
     }
 
     /// <summary>

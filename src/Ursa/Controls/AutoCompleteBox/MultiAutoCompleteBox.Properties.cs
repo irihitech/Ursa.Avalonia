@@ -32,7 +32,7 @@ public partial class MultiAutoCompleteBox
         /// <value>The identifier for the <see cref="MinimumPrefixLength" /> property.</value>
         public static readonly StyledProperty<int> MinimumPrefixLengthProperty =
             AvaloniaProperty.Register<MultiAutoCompleteBox, int>(
-                nameof(MinimumPrefixLength), 1,
+                nameof(MinimumPrefixLength), 0,
                 validate: IsValidMinimumPrefixLength);
 
         /// <summary>

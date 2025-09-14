@@ -3,10 +3,25 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:u="https://irihi.tech/ursa"
+             xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:MultiAutoCompleteBoxDemoViewModel"
              x:Class="Ursa.Demo.Pages.MultiAutoCompleteBoxDemo">
-    <StackPanel>
+    <StackPanel Spacing="20">
         <TextBlock Text="Multi-AutoCompleteBox"/>
-        <u:MultiAutoCompleteBox />
+        <u:MultiAutoCompleteBox ItemsSource="{Binding Items}" 
+                                ItemFilter="{Binding FilterPredicate }"
+                                FilterMode="Custom">
+            <u:MultiAutoCompleteBox.ItemTemplate>
+                <DataTemplate DataType="vm:ControlData">
+                    <TextBlock>
+                        <Run Text="{Binding MenuHeader}" />
+                        <Run Text="(" />
+                        <Run Text="{Binding Chinese}" />
+                        <Run Text=")" />
+                    </TextBlock>
+                </DataTemplate>
+            </u:MultiAutoCompleteBox.ItemTemplate>
+        </u:MultiAutoCompleteBox>
     </StackPanel>
 </UserControl>

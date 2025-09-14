@@ -3,6 +3,8 @@
                     xmlns:u="https://irihi.tech/ursa">
     <!-- Add Resources Here -->
     <ControlTheme x:Key="{x:Type u:MultiAutoCompleteBox}" TargetType="u:MultiAutoCompleteBox">
+        <Setter Property="MinHeight" Value="{DynamicResource AutoCompleteBoxDefaultHeight}" />
+        <Setter Property="MaxDropDownHeight" Value="{DynamicResource AutoCompleteMaxDropdownHeight}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:MultiAutoCompleteBox">
                 <Panel>
