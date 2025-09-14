@@ -17,21 +17,13 @@
                         CornerRadius="{TemplateBinding CornerRadius}"
                         Background="{DynamicResource TextBoxDefaultBackground}"
                         BorderBrush="{DynamicResource TextBoxDefaultBorderBrush}">
-                        <ItemsControl 
+                        <u:MultiComboBoxSelectedItemList 
                             Name="{x:Static u:MultiAutoCompleteBox.PART_SelectedItemsControl}"
                             VerticalAlignment="Center"
+                            RemoveCommand="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Remove}"
+                            ItemTemplate="{TemplateBinding SelectedItemTemplate}"
                             ItemsSource="{TemplateBinding SelectedItems}" >
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <!-- TODO: Update command.  -->
-                                    <u:ClosableTag 
-                                        Content="{Binding .}" 
-                                        Command="{Binding $parent[u:TagInput].Close}"
-                                        ContentTemplate="{Binding $parent[u:MultiAutoCompleteBox].SelectedItemTemplate}" 
-                                        ></u:ClosableTag>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                            <ItemsControl.ItemsPanel>
+                            <u:MultiComboBoxSelectedItemList.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <u:WrapPanelWithTrailingItem>
                                         <u:WrapPanelWithTrailingItem.TrailingItem>
@@ -39,8 +31,8 @@
                                         </u:WrapPanelWithTrailingItem.TrailingItem>
                                     </u:WrapPanelWithTrailingItem>
                                 </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                        </ItemsControl>
+                            </u:MultiComboBoxSelectedItemList.ItemsPanel>
+                        </u:MultiComboBoxSelectedItemList>
                     </Border>
                     <Popup
                         Name="PART_Popup"

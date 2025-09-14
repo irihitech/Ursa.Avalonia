@@ -1879,6 +1879,15 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         }
     }
 
+    public void Remove(object? o)
+    {
+        if (o is not StyledElement s) return;
+        if (SelectedItems?.Contains(s.DataContext) == true)
+        {
+            SelectedItems.Remove(s.DataContext);
+        }
+    }
+
     // TODO12: Remove, this shouldn't be part of the public API. Use our internal BindingEvaluator instead.
     /// <summary>
     ///     A framework element that permits a binding to be evaluated in a new data
