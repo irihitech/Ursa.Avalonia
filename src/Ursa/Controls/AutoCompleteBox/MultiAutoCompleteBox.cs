@@ -16,6 +16,7 @@ using Avalonia.Threading;
 using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
+using Irihi.Avalonia.Shared.Reactive;
 using Ursa.Common;
 
 
@@ -150,6 +151,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     private TextBox? _textBox;
 
     private IDisposable? _textBoxSubscriptions;
+    private IDisposable? _textBoxKeyDownSubscriptions;
 
     /// <summary>
     ///     Gets or sets the last observed text box selection start location.
@@ -216,17 +218,30 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         set
         {
             _textBoxSubscriptions?.Dispose();
+            _textBoxKeyDownSubscriptions?.Dispose();
             _textBox = value;
 
             // Attach handlers
             if (_textBox != null)
             {
-                _textBoxSubscriptions =
+                _textBoxSubscriptions = 
                     _textBox.GetObservable(TextBox.TextProperty)
                             .Skip(1)
                             .Subscribe(_ => OnTextBoxTextChanged());
-
+                _textBoxKeyDownSubscriptions =
+                    _textBox.AddDisposableHandler(KeyDownEvent, OnTextBoxKeyDown, RoutingStrategies.Tunnel);
                 if (Text != null) UpdateTextValue(Text);
+            }
+        }
+    }
+
+    private void OnTextBoxKeyDown(object sender, KeyEventArgs e)
+    {
+        if ((e.Key == Key.Back || e.Key == Key.Delete )&& string.IsNullOrEmpty(TextBox?.Text) )
+        {
+            if (SelectedItems?.Count > 0)
+            {
+                SelectedItems.RemoveAt(SelectedItems.Count - 1);
             }
         }
     }
@@ -1642,7 +1657,8 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
 
         // Completion will update the selected value
         //UpdateTextCompletion(false);
-
+        UpdateTextValue(string.Empty, false);
+        
         // Text should not be selected
         ClearTextBoxSelection();
 
