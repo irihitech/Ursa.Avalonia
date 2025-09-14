@@ -1630,6 +1630,8 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     {
         // TODO set selection.
         // SetCurrentValue(SelectedItemProperty, _adapter!.SelectedItem);
+        SelectedItems?.Add(_adapter?.SelectedItem);
+        // UpdateTextValue(null);
     }
 
     //TODO Check UpdateTextCompletion

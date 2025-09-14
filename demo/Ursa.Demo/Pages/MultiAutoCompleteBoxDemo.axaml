@@ -10,6 +10,7 @@
     <StackPanel Spacing="20">
         <TextBlock Text="Multi-AutoCompleteBox"/>
         <u:MultiAutoCompleteBox ItemsSource="{Binding Items}" 
+                                SelectedItems="{Binding SelectedItems}"
                                 ItemFilter="{Binding FilterPredicate }"
                                 FilterMode="Custom">
             <u:MultiAutoCompleteBox.ItemTemplate>
@@ -22,6 +23,11 @@
                     </TextBlock>
                 </DataTemplate>
             </u:MultiAutoCompleteBox.ItemTemplate>
+            <u:MultiAutoCompleteBox.SelectedItemTemplate>
+                <DataTemplate DataType="vm:ControlData">
+                    <TextBlock Text="{Binding MenuHeader}" />
+                </DataTemplate>
+            </u:MultiAutoCompleteBox.SelectedItemTemplate>
         </u:MultiAutoCompleteBox>
     </StackPanel>
 </UserControl>

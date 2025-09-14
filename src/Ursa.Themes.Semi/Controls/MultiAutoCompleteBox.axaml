@@ -24,7 +24,7 @@
                                     <u:ClosableTag 
                                         Content="{Binding .}" 
                                         Command="{Binding $parent[u:TagInput].Close}"
-                                        ContentTemplate="{TemplateBinding SelectedItemTemplate}" 
+                                        ContentTemplate="{Binding $parent[u:MultiAutoCompleteBox].SelectedItemTemplate}" 
                                         ></u:ClosableTag>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>

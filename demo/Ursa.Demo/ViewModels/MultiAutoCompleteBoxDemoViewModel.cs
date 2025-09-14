@@ -8,10 +8,12 @@ namespace Ursa.Demo.ViewModels;
 public class MultiAutoCompleteBoxDemoViewModel: ObservableObject
 {
     public ObservableCollection<ControlData> Items { get; set; }
+    public ObservableCollection<ControlData> SelectedItems { get; set; }
     public AutoCompleteFilterPredicate<object> FilterPredicate { get; set; }
 
     public MultiAutoCompleteBoxDemoViewModel()
     {
+        SelectedItems = new ObservableCollection<ControlData>();
         Items = new ObservableCollection<ControlData>
         {
             new() { MenuHeader = "Button Group", Chinese = "按钮组" },
