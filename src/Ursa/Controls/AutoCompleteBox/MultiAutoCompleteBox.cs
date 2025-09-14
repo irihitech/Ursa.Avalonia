@@ -536,14 +536,11 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         if (selector != null)
         {
             // Check if it is already an IItemsSelector
-            adapter = selector as ISelectionAdapter;
-            if (adapter == null)
-                // Built in support for wrapping a Selector control
-                adapter = new MultiAutoCompleteSelectionAdapter(selector);
+            // Built in support for wrapping a Selector control
+            adapter = new MultiAutoCompleteSelectionAdapter(selector);
         }
 
-        if (adapter == null) adapter = nameScope.Find<ISelectionAdapter>(ElementSelectionAdapter);
-        return adapter;
+        return adapter ?? nameScope.Find<ISelectionAdapter>(ElementSelectionAdapter);
     }
 
     /// <summary>
@@ -745,8 +742,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
             // Check if we still have focus in the parent's focus scope
             if (GetFocusScope() is { } scope &&
                 (TopLevel.GetTopLevel(this)?.FocusManager?.GetFocusedElement() is not { } focused ||
-                 (focused != this &&
-                  focused is Visual v && !this.IsVisualAncestorOf(v))))
+                 (focused != this && focused is not ListBoxItem && focused is Visual v && !this.IsVisualAncestorOf(v))))
                 SetCurrentValue(IsDropDownOpenProperty, false);
 
             _userCalledPopulate = false;

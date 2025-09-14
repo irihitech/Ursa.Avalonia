@@ -5,6 +5,7 @@
     <ControlTheme x:Key="{x:Type u:MultiAutoCompleteBox}" TargetType="u:MultiAutoCompleteBox">
         <Setter Property="MinHeight" Value="{DynamicResource AutoCompleteBoxDefaultHeight}" />
         <Setter Property="MaxDropDownHeight" Value="{DynamicResource AutoCompleteMaxDropdownHeight}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}"></Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:MultiAutoCompleteBox">
                 <Panel>
@@ -13,10 +14,12 @@
                         MinHeight="30"
                         Padding="{DynamicResource TextBoxContentPadding}"
                         VerticalAlignment="Stretch"
+                        CornerRadius="{TemplateBinding CornerRadius}"
                         Background="{DynamicResource TextBoxDefaultBackground}"
                         BorderBrush="{DynamicResource TextBoxDefaultBorderBrush}">
                         <ItemsControl 
                             Name="{x:Static u:MultiAutoCompleteBox.PART_SelectedItemsControl}"
+                            VerticalAlignment="Center"
                             ItemsSource="{TemplateBinding SelectedItems}" >
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
