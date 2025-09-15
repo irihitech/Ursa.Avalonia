@@ -1257,15 +1257,8 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         }
         else
         {
-            // TODO implement selection. 
-            /*
             SearchText = string.Empty;
-            if (SelectedItem != null) _skipSelectedItemTextUpdate = true;
-
-            SetCurrentValue(SelectedItemProperty, null);
-
             if (IsDropDownOpen) SetCurrentValue(IsDropDownOpenProperty, false);
-            */
         }
     }
 

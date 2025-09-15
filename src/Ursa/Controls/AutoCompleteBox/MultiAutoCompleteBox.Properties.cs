@@ -431,7 +431,7 @@ public partial class MultiAutoCompleteBox
         /// The search mode is automatically set to Custom if you set the
         /// TextFilter property.
         /// </remarks>
-        public AutoCompleteFilterPredicate<string?>? TextFilter
+        public AutoCompleteFilterPredicate<string> TextFilter
         {
             get => GetValue(TextFilterProperty);
             set => SetValue(TextFilterProperty, value);
