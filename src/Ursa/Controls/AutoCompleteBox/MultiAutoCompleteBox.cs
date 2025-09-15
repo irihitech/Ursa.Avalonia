@@ -1,3 +1,7 @@
+// (c) Copyright Microsoft Corporation and Avalonia OÜ
+// This source is subject to the Microsoft Public License (Ms-PL) and MIT License.
+// All other rights reserved.
+
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -16,9 +20,7 @@ using Avalonia.Threading;
 using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
-using Irihi.Avalonia.Shared.Reactive;
 using Ursa.Common;
-
 
 namespace Ursa.Controls;
 
@@ -140,12 +142,6 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     private bool _settingItemTemplateFromValueMemberBinding;
 
     /// <summary>
-    ///     Gets or sets a value indicating whether to skip the text update
-    ///     processing when the selected item is updated.
-    /// </summary>
-    private bool _skipSelectedItemTextUpdate;
-
-    /// <summary>
     ///     The TextBox template part.
     /// </summary>
     private TextBox? _textBox;
@@ -171,7 +167,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
 
     /// <summary>
     ///     Gets or sets the observable collection that contains references to
-    ///     all of the items in the generated view of data that is provided to
+    ///     all the items in the generated view of data that is provided to
     ///     the selection-style control adapter.
     /// </summary>
     private AvaloniaList<object>? _view;
@@ -205,7 +201,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     }
 
     /// <summary>
-    ///     Gets or sets the drop down popup control.
+    ///     Gets or sets the dropdown popup control.
     /// </summary>
     private Popup? DropDownPopup { get; set; }
 
@@ -415,30 +411,6 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         UpdatePseudoClasses();
     }
 
-    private void OnSelectedItemPropertyChanged(AvaloniaPropertyChangedEventArgs e)
-    {
-        if (_ignorePropertyChange)
-        {
-            _ignorePropertyChange = false;
-            return;
-        }
-
-        // Update the text display
-        if (_skipSelectedItemTextUpdate)
-            _skipSelectedItemTextUpdate = false;
-        else
-            OnSelectedItemChanged(e.NewValue);
-
-        // Fire the SelectionChanged event
-        var removed = new List<object>();
-        if (e.OldValue != null) removed.Add(e.OldValue);
-
-        var added = new List<object>();
-        if (e.NewValue != null) added.Add(e.NewValue);
-
-        OnSelectionChanged(new SelectionChangedEventArgs(SelectionChangedEvent, removed, added));
-    }
-
     /// <summary>
     ///     TextProperty property changed handler.
     /// </summary>
@@ -508,7 +480,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         OnItemsSourceChanged((IEnumerable?)e.NewValue);
     }
 
-    private void OnItemTemplatePropertyChanged(AvaloniaPropertyChangedEventArgs e)
+    private void OnItemTemplatePropertyChanged(AvaloniaPropertyChangedEventArgs _)
     {
         if (!_settingItemTemplateFromValueMemberBinding)
             _itemTemplateIsFromValueMemberBinding = false;
@@ -521,7 +493,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
             var template =
                 new FuncDataTemplate(
                     typeof(object),
-                    (o, _) =>
+                    (_, _) =>
                     {
                         var control = new ContentControl();
                         if (value is not null)
@@ -583,9 +555,9 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         SelectionAdapter = GetSelectionAdapterPart(e.NameScope);
         TextBox = e.NameScope.Find<TextBox>(ElementTextBox);
 
-        // If the drop down property indicates that the popup is open,
+        // If the dropdown property indicates that the popup is open,
         // flip its value to invoke the changed handler.
-        if (IsDropDownOpen && DropDownPopup != null && !DropDownPopup.IsOpen) OpeningDropDown(false);
+        if (IsDropDownOpen && DropDownPopup is { IsOpen: false }) OpeningDropDown(false);
 
         base.OnApplyTemplate(e);
         _selectedItemsControl = e.NameScope.Find<ItemsControl>(PART_SelectedItemsControl);
@@ -634,10 +606,10 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
 
         if (e.Handled || !IsEnabled) return;
 
-        // The drop down is open, pass along the key event arguments to the
+        // The dropdown is open, pass along the key event arguments to the
         // selection adapter. If it isn't handled by the adapter's logic,
         // then we handle some simple navigation scenarios for controlling
-        // the drop down.
+        // the dropdown.
         if (IsDropDownOpen)
         {
             if (SelectionAdapter != null)
@@ -654,7 +626,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         }
         else
         {
-            // The drop down is not open, the Down key will toggle it open.
+            // The dropdown is not open, the Down key will toggle it open.
             // Ignore key buttons, if they are used for XY focus.
             if (e.Key == Key.Down
                 && !this.IsAllowedXYNavigationMode(e.KeyDeviceType))
@@ -755,9 +727,10 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         else
         {
             // Check if we still have focus in the parent's focus scope
-            if (GetFocusScope() is { } scope &&
+            // Add a special check for ListBoxItem because it should be closed when focus switch to dropdown. 
+            if (GetFocusScope() is not null &&
                 (TopLevel.GetTopLevel(this)?.FocusManager?.GetFocusedElement() is not { } focused ||
-                 (focused != this && focused is not ListBoxItem && focused is Visual v && !this.IsVisualAncestorOf(v))))
+                 (!Equals(focused, this) && focused is not ListBoxItem && focused is Visual v && !this.IsVisualAncestorOf(v))))
                 SetCurrentValue(IsDropDownOpenProperty, false);
 
             _userCalledPopulate = false;
@@ -998,7 +971,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     }
 
     /// <summary>
-    ///     Begin opening the drop down by firing cancelable events, opening the
+    ///     Begin opening the dropdown by firing cancelable events, opening the
     ///     drop-down or reverting, depending on the event argument values.
     /// </summary>
     /// <param name="oldValue">The original value, if needed for a revert.</param>
@@ -1029,7 +1002,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     /// <param name="e">The event data.</param>
     private void DropDownPopup_Closed(object? sender, System.EventArgs e)
     {
-        // Force the drop down dependency property to be false.
+        // Force the dropdown dependency property to be false.
         if (IsDropDownOpen) SetCurrentValue(IsDropDownOpenProperty, false);
 
         // Fire the DropDownClosed event
@@ -1161,7 +1134,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     /// </remarks>
     protected virtual string? FormatValue(object? value)
     {
-        if (_valueBindingEvaluator != null) return _valueBindingEvaluator.GetDynamicValue(value) ?? string.Empty;
+        if (_valueBindingEvaluator != null) return _valueBindingEvaluator.GetDynamicValue(value);
 
         return value == null ? string.Empty : value.ToString();
     }
@@ -1249,7 +1222,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
             return;
         }
 
-        if (newText == null) newText = string.Empty;
+        newText ??= string.Empty;
 
         // The TextBox.TextChanged event was not firing immediately and
         // was causing an immediate update, even with wrapping. If there is
@@ -1334,7 +1307,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
             // cache properties
             var textFilter = TextFilter;
             var itemFilter = ItemFilter;
-            var _newViewItems = new Collection<object>();
+            var newViewItems = new Collection<object>();
 
             // if the mode is objectFiltering and itemFilter is null, we throw an exception
             if (objectFiltering && itemFilter is null)
@@ -1355,11 +1328,11 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
                     else if (objectFiltering) inResults = itemFilter!(text, item);
                 }
 
-                if (inResults) _newViewItems.Add(item);
+                if (inResults) newViewItems.Add(item);
             }
 
             _view?.Clear();
-            _view?.AddRange(_newViewItems);
+            _view?.AddRange(newViewItems);
 
             // Clear the evaluator to discard a reference to the last item
             _valueBindingEvaluator?.ClearDataContext();
@@ -1393,7 +1366,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
 
         // Clear and set the view on the selection adapter
         ClearView();
-        if (SelectionAdapter != null && SelectionAdapter.ItemsSource != _view) SelectionAdapter.ItemsSource = _view;
+        if (SelectionAdapter != null && !Equals(SelectionAdapter.ItemsSource, _view)) SelectionAdapter.ItemsSource = _view;
         if (IsDropDownOpen) RefreshView();
     }
 
@@ -1461,7 +1434,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         PopulatedEventArgs populated = new PopulatedEventArgs(new ReadOnlyCollection<object>(_view!));
         OnPopulated(populated);
 
-        if (SelectionAdapter != null && SelectionAdapter.ItemsSource != _view) SelectionAdapter.ItemsSource = _view;
+        if (SelectionAdapter != null && !Equals(SelectionAdapter.ItemsSource, _view)) SelectionAdapter.ItemsSource = _view;
 
         var isDropDownOpen = _userCalledPopulate && _view!.Count > 0;
         if (isDropDownOpen != IsDropDownOpen)
@@ -1489,8 +1462,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     /// </param>
     private void UpdateTextCompletion(bool userInitiated)
     {
-        // By default this method will clear the selected value
-        object? newSelectedItem = null;
+        // By default, this method will clear the selected value
         var text = Text;
 
         // Text search is StartsWith explicit and only when enabled, in
@@ -1510,7 +1482,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
                     // first item in the view is used. This will improve
                     // performance on the lookup. It assumes that the
                     // FilterMode the user has selected is an acceptable
-                    // case sensitive matching function for their scenario.
+                    // case-sensitive matching function for their scenario.
                     var top = FilterMode == AutoCompleteFilterMode.StartsWith ||
                               FilterMode == AutoCompleteFilterMode.StartsWithCaseSensitive
                         ? _view[0]
@@ -1519,7 +1491,6 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
                     // If the search was successful, update SelectedItem
                     if (top != null)
                     {
-                        newSelectedItem = top;
                         var topString = FormatValue(top, true);
 
                         // Only replace partially when the two words being the same
@@ -1537,27 +1508,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
                     }
                 }
             }
-            else
-            {
-                // Perform an exact string lookup for the text. This is a
-                // design change from the original Toolkit release when the
-                // IsTextCompletionEnabled property behaved just like the
-                // WPF ComboBox's IsTextSearchEnabled property.
-                //
-                // This change provides the behavior that most people expect
-                // to find: a lookup for the value is always performed.
-                newSelectedItem = TryGetMatch(text, _view,
-                    AutoCompleteSearch.GetFilter(AutoCompleteFilterMode.EqualsCaseSensitive));
-            }
         }
-
-        // Update the selected item property
-
-        // TODO set selection. 
-        /*
-        if (SelectedItem != newSelectedItem) _skipSelectedItemTextUpdate = true;
-        SetCurrentValue(SelectedItemProperty, newSelectedItem);
-        */
 
         // Restore updates for TextSelection
         if (_ignoreTextSelectionChange)
@@ -1584,7 +1535,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         if (predicate is null)
             return null;
 
-        if (view != null && view.Count > 0)
+        if (view?.Count > 0)
             foreach (object o in view)
                 if (predicate(searchText, FormatValue(o)))
                     return o;
@@ -1605,31 +1556,6 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
             TextBox.SelectionStart = length;
             TextBox.SelectionEnd = length;
         }
-    }
-
-    /// <summary>
-    ///     Called when the selected item is changed, updates the text value
-    ///     that is displayed in the text box part.
-    /// </summary>
-    /// <param name="newItem">The new item.</param>
-    private void OnSelectedItemChanged(object? newItem)
-    {
-        string? text;
-
-        if (newItem == null)
-            text = SearchText;
-        else if (TextSelector != null)
-            text = TextSelector(SearchText, FormatValue(newItem, true));
-        else if (ItemSelector != null)
-            text = ItemSelector(SearchText, newItem);
-        else
-            text = FormatValue(newItem, true);
-
-        // Update the Text property and the TextBox values
-        UpdateTextValue(text);
-
-        // Move the caret to the end of the text box
-        ClearTextBoxSelection();
     }
 
     /// <summary>
@@ -1759,7 +1685,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         /// <param name="text">The AutoCompleteBox prefix text.</param>
         /// <param name="value">The item's string value.</param>
         /// <returns>Returns true if the condition is met.</returns>
-        public static bool StartsWith(string? text, string? value)
+        private static bool StartsWith(string? text, string? value)
         {
             if (value is not null && text is not null)
                 return value.StartsWith(text, StringComparison.CurrentCultureIgnoreCase);
@@ -1772,7 +1698,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         /// <param name="text">The AutoCompleteBox prefix text.</param>
         /// <param name="value">The item's string value.</param>
         /// <returns>Returns true if the condition is met.</returns>
-        public static bool StartsWithCaseSensitive(string? text, string? value)
+        private static bool StartsWithCaseSensitive(string? text, string? value)
         {
             if (value is not null && text is not null)
                 return value.StartsWith(text, StringComparison.CurrentCulture);
@@ -1785,7 +1711,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         /// <param name="text">The AutoCompleteBox prefix text.</param>
         /// <param name="value">The item's string value.</param>
         /// <returns>Returns true if the condition is met.</returns>
-        public static bool StartsWithOrdinal(string? text, string? value)
+        private static bool StartsWithOrdinal(string? text, string? value)
         {
             if (value is not null && text is not null)
                 return value.StartsWith(text, StringComparison.OrdinalIgnoreCase);
@@ -1798,7 +1724,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         /// <param name="text">The AutoCompleteBox prefix text.</param>
         /// <param name="value">The item's string value.</param>
         /// <returns>Returns true if the condition is met.</returns>
-        public static bool StartsWithOrdinalCaseSensitive(string? text, string? value)
+        private static bool StartsWithOrdinalCaseSensitive(string? text, string? value)
         {
             if (value is not null && text is not null)
                 return value.StartsWith(text, StringComparison.Ordinal);
@@ -1807,12 +1733,12 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
 
         /// <summary>
         ///     Check if the prefix is contained in the string value. The current
-        ///     culture's case insensitive string comparison operator is used.
+        ///     culture's case-insensitive string comparison operator is used.
         /// </summary>
         /// <param name="text">The AutoCompleteBox prefix text.</param>
         /// <param name="value">The item's string value.</param>
         /// <returns>Returns true if the condition is met.</returns>
-        public static bool Contains(string? text, string? value)
+        private static bool Contains(string? text, string? value)
         {
             return Contains(value, text, StringComparison.CurrentCultureIgnoreCase);
         }
@@ -1823,7 +1749,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         /// <param name="text">The AutoCompleteBox prefix text.</param>
         /// <param name="value">The item's string value.</param>
         /// <returns>Returns true if the condition is met.</returns>
-        public static bool ContainsCaseSensitive(string? text, string? value)
+        private static bool ContainsCaseSensitive(string? text, string? value)
         {
             return Contains(value, text, StringComparison.CurrentCulture);
         }
@@ -1834,7 +1760,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         /// <param name="text">The AutoCompleteBox prefix text.</param>
         /// <param name="value">The item's string value.</param>
         /// <returns>Returns true if the condition is met.</returns>
-        public static bool ContainsOrdinal(string? text, string? value)
+        private static bool ContainsOrdinal(string? text, string? value)
         {
             return Contains(value, text, StringComparison.OrdinalIgnoreCase);
         }
@@ -1845,7 +1771,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         /// <param name="text">The AutoCompleteBox prefix text.</param>
         /// <param name="value">The item's string value.</param>
         /// <returns>Returns true if the condition is met.</returns>
-        public static bool ContainsOrdinalCaseSensitive(string? text, string? value)
+        private static bool ContainsOrdinalCaseSensitive(string? text, string? value)
         {
             return Contains(value, text, StringComparison.Ordinal);
         }
@@ -1867,7 +1793,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         /// <param name="text">The AutoCompleteBox prefix text.</param>
         /// <param name="value">The item's string value.</param>
         /// <returns>Returns true if the condition is met.</returns>
-        public static bool EqualsCaseSensitive(string? text, string? value)
+        private static bool EqualsCaseSensitive(string? text, string? value)
         {
             return string.Equals(value, text, StringComparison.CurrentCulture);
         }
@@ -1878,7 +1804,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         /// <param name="text">The AutoCompleteBox prefix text.</param>
         /// <param name="value">The item's string value.</param>
         /// <returns>Returns true if the condition is met.</returns>
-        public static bool EqualsOrdinal(string? text, string? value)
+        private static bool EqualsOrdinal(string? text, string? value)
         {
             return string.Equals(value, text, StringComparison.OrdinalIgnoreCase);
         }
@@ -1889,7 +1815,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         /// <param name="text">The AutoCompleteBox prefix text.</param>
         /// <param name="value">The item's string value.</param>
         /// <returns>Returns true if the condition is met.</returns>
-        public static bool EqualsOrdinalCaseSensitive(string? text, string? value)
+        private static bool EqualsOrdinalCaseSensitive(string? text, string? value)
         {
             return string.Equals(value, text, StringComparison.Ordinal);
         }

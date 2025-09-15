@@ -1,11 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading;
-using System.Threading.Tasks;
 using Avalonia;
-using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Controls;
 using Avalonia.Data;
@@ -32,8 +27,7 @@ public partial class MultiAutoCompleteBox
         /// <value>The identifier for the <see cref="MinimumPrefixLength" /> property.</value>
         public static readonly StyledProperty<int> MinimumPrefixLengthProperty =
             AvaloniaProperty.Register<MultiAutoCompleteBox, int>(
-                nameof(MinimumPrefixLength), 0,
-                validate: IsValidMinimumPrefixLength);
+                nameof(MinimumPrefixLength), validate: IsValidMinimumPrefixLength);
 
         /// <summary>
         /// Identifies the <see cref="MinimumPopulateDelay" /> property.
