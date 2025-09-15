@@ -319,9 +319,19 @@ public class ElasticWrapPanel : WrapPanel
             {
                 if (itemSetSize.U > 0)
                 {
-                    int maxElementCount = lineUVCollection
-                        .Max(uiSet => uiSet.UICollection
-                            .Sum(p => p.Value.ULengthCount));
+                    // 用 foreach 替换嵌套 LINQ，彻底避免类型推断和绑定压力
+                    // 修复 C29236 编译时需要绑定 lambda 表达式至少 100 次。请考虑使用显式参数类型声明 lambda 表达式，如果包含的方法调用是泛型的，请考虑使用显式类型参数。
+                    int maxElementCount = 0;
+                    foreach (var uiSet in lineUVCollection)
+                    {
+                        int sum = 0;
+                        foreach (var p in uiSet.UICollection)
+                        {
+                            sum += p.Value.ULengthCount;
+                        }
+                        if (sum > maxElementCount)
+                            maxElementCount = sum;
+                    }
                     adaptULength = (uvFinalSize.U - maxElementCount * itemSetSize.U) / maxElementCount;
                     adaptULength = Max(adaptULength, 0);
                 }

@@ -53,7 +53,7 @@ public class WrapPanelWithTrailingItem : Panel
             }
         }
 
-        WrapPanel p = new WrapPanel();
+        // WrapPanel p = new WrapPanel();
     }
 
     protected override Size MeasureOverride(Size availableSize)
