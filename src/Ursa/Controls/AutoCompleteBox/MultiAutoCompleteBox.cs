@@ -10,6 +10,7 @@ using System.Collections;
 using Avalonia;
 using Avalonia.Collections;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Controls.Utils;
@@ -24,6 +25,11 @@ using Ursa.Common;
 
 namespace Ursa.Controls;
 
+[TemplatePart(ElementPopup, typeof(Popup))]
+[TemplatePart(ElementSelector, typeof(SelectingItemsControl))]
+[TemplatePart(ElementSelectionAdapter, typeof(ISelectionAdapter))]
+[TemplatePart(ElementTextBox, typeof(TextBox))]
+[PseudoClasses(":dropdownopen")]
 public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentControl
 {
     /// <summary>
@@ -176,18 +182,15 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     {
         FocusableProperty.OverrideDefaultValue<MultiAutoCompleteBox>(true);
         IsTabStopProperty.OverrideDefaultValue<MultiAutoCompleteBox>(false);
-
-        MinimumPopulateDelayProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((x, e) =>
-            x.OnMinimumPopulateDelayChanged(e));
-        IsDropDownOpenProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((x, e) => x.OnIsDropDownOpenChanged(e));
-        // SelectedItemProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((x, e) => x.OnSelectedItemPropertyChanged(e));
-        TextProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((x, e) => x.OnTextPropertyChanged(e));
-        SearchTextProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((x, e) => x.OnSearchTextPropertyChanged(e));
-        FilterModeProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((x, e) => x.OnFilterModePropertyChanged(e));
-        ItemFilterProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((x, e) => x.OnItemFilterPropertyChanged(e));
-        ItemsSourceProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((x, e) => x.OnItemsSourcePropertyChanged(e));
-        ItemTemplateProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((x, e) => x.OnItemTemplatePropertyChanged(e));
-        IsEnabledProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((x, e) => x.OnControlIsEnabledChanged(e));
+        MinimumPopulateDelayProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((box, args) => box.OnMinimumPopulateDelayChanged(args));
+        IsDropDownOpenProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((box, args)=> box.OnIsDropDownOpenChanged(args));
+        TextProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((box, args) => box.OnTextPropertyChanged(args));
+        SearchTextProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((box, args) => box.OnSearchTextPropertyChanged(args));
+        FilterModeProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((box, args)=> box.OnFilterModePropertyChanged(args));
+        ItemFilterProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((box, args) => box.OnItemFilterPropertyChanged(args));
+        ItemsSourceProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((box, args) => box.OnItemsSourcePropertyChanged(args));
+        ItemTemplateProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((box, args) => box.OnItemTemplatePropertyChanged(args));
+        IsEnabledProperty.Changed.AddClassHandler<MultiAutoCompleteBox>((box, args) => box.OnControlIsEnabledChanged(args));
     }
 
     /// <summary>
@@ -233,7 +236,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
 
     private void OnTextBoxKeyDown(object sender, KeyEventArgs e)
     {
-        if ((e.Key == Key.Back || e.Key == Key.Delete )&& string.IsNullOrEmpty(TextBox?.Text) )
+        if (e.Key is Key.Back or Key.Delete && string.IsNullOrEmpty(TextBox?.Text)) 
         {
             if (SelectedItems?.Count > 0)
             {
@@ -275,7 +278,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     ///     use with AutoCompleteBox or deriving from AutoCompleteBox to
     ///     create a custom control.
     /// </remarks>
-    protected ISelectionAdapter? SelectionAdapter
+    private ISelectionAdapter? SelectionAdapter
     {
         get => _adapter;
         set
@@ -566,9 +569,12 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     public const string PART_SelectedItemsControl = "PART_SelectedItemsControl";
     private ItemsControl? _selectedItemsControl;
 
+
+    /// <inheritdoc />
     protected override void OnLoaded(RoutedEventArgs e)
     {
         base.OnLoaded(e);
+        // TextBox can only be securely initialized after 
         TextBox = (_selectedItemsControl?.ItemsPanelRoot as WrapPanelWithTrailingItem)?.TrailingItem as TextBox;
     }
 
@@ -1614,11 +1620,11 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         ///     Index function that retrieves the filter for the provided
         ///     AutoCompleteFilterMode.
         /// </summary>
-        /// <param name="FilterMode">The built-in search mode.</param>
+        /// <param name="filterMode">The built-in search mode.</param>
         /// <returns>Returns the string-based comparison function.</returns>
-        public static AutoCompleteFilterPredicate<string?>? GetFilter(AutoCompleteFilterMode FilterMode)
+        public static AutoCompleteFilterPredicate<string?>? GetFilter(AutoCompleteFilterMode filterMode)
         {
-            switch (FilterMode)
+            switch (filterMode)
             {
                 case AutoCompleteFilterMode.Contains:
                     return Contains;
