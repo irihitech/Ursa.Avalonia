@@ -8,4 +8,19 @@ public partial class ImageViewerDemo : UserControl
     {
         InitializeComponent();
     }
+
+    Avalonia.Media.IImage? oldImg;
+
+    private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        if(viewer.Source!=null)
+        {
+            oldImg = viewer.Source;
+            viewer.Source = null;
+        }
+        else
+        {
+            viewer.Source = oldImg;
+        }
+    }
 }
