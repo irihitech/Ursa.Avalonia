@@ -6,7 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Ursa.Demo.ViewModels;
 
-public class MultiAutoCompleteBoxDemoViewModel: ObservableObject
+public class MultiAutoCompleteBoxDemoViewModel : ObservableObject
 {
     public ObservableCollection<ControlData> Items { get; set; }
     public ObservableCollection<ControlData> SelectedItems { get; set; }
@@ -37,7 +37,7 @@ public class MultiAutoCompleteBoxDemoViewModel: ObservableObject
             new() { MenuHeader = "TagInput", Chinese = "标签输入" },
             new() { MenuHeader = "Theme Toggler", Chinese = "主题切换" },
             new() { MenuHeader = "TreeComboBox", Chinese = "树形组合框" },
-        
+
             new() { MenuHeader = "Dialog", Chinese = "对话框" },
             new() { MenuHeader = "Drawer", Chinese = "抽屉" },
             new() { MenuHeader = "Loading", Chinese = "加载" },
@@ -46,7 +46,7 @@ public class MultiAutoCompleteBoxDemoViewModel: ObservableObject
             new() { MenuHeader = "PopConfirm", Chinese = "气泡确认" },
             new() { MenuHeader = "Toast", Chinese = "吐司" },
             new() { MenuHeader = "Skeleton", Chinese = "骨架屏" },
-        
+
             new() { MenuHeader = "Date Picker", Chinese = "日期选择器" },
             new() { MenuHeader = "Date Range Picker", Chinese = "日期范围选择器" },
             new() { MenuHeader = "Date Time Picker", Chinese = "日期时间选择器" },
@@ -54,13 +54,13 @@ public class MultiAutoCompleteBoxDemoViewModel: ObservableObject
             new() { MenuHeader = "Time Picker", Chinese = "时间选择器" },
             new() { MenuHeader = "Time Range Picker", Chinese = "时间范围选择器" },
             new() { MenuHeader = "Clock", Chinese = "时钟" },
-        
+
             new() { MenuHeader = "Anchor", Chinese = "锚点" },
             new() { MenuHeader = "Breadcrumb", Chinese = "面包屑" },
             new() { MenuHeader = "Nav Menu", Chinese = "导航菜单" },
             new() { MenuHeader = "Pagination", Chinese = "分页" },
             new() { MenuHeader = "ToolBar", Chinese = "工具栏" },
-        
+
             new() { MenuHeader = "AspectRatioLayout", Chinese = "宽高比布局" },
             new() { MenuHeader = "Avatar", Chinese = "头像" },
             new() { MenuHeader = "Badge", Chinese = "徽章" },

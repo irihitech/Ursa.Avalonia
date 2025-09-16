@@ -13,7 +13,7 @@
                                 MaxWidth="400"
                                 InnerLeftContent="Controls"
                                 SelectedItems="{Binding SelectedItems}"
-                                ItemFilter="{Binding FilterPredicate }"
+                                ItemFilter="{Binding FilterPredicate}"
                                 FilterMode="Custom">
             <u:MultiAutoCompleteBox.ItemTemplate>
                 <DataTemplate DataType="vm:ControlData">
