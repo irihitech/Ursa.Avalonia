@@ -1587,6 +1587,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
 
         // Completion will update the selected value
         //UpdateTextCompletion(false);
+        _ = SelectedItems ?? throw new NullReferenceException("Selected Items collection must be initialized. ");
         SelectedItems?.Add(_adapter?.SelectedItem);
         UpdateTextValue(string.Empty, false);
         

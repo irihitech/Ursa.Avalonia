@@ -17,12 +17,10 @@
                                 FilterMode="Custom">
             <u:MultiAutoCompleteBox.ItemTemplate>
                 <DataTemplate DataType="vm:ControlData">
-                    <TextBlock>
-                        <Run Text="{Binding MenuHeader}" />
-                        <Run Text="(" />
-                        <Run Text="{Binding Chinese}" />
-                        <Run Text=")" />
-                    </TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding MenuHeader}" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Chinese}" Classes="Secondary" FontSize="12" Margin="8 0 0 0" VerticalAlignment="Center"/>
+                    </StackPanel>
                 </DataTemplate>
             </u:MultiAutoCompleteBox.ItemTemplate>
             <u:MultiAutoCompleteBox.SelectedItemTemplate>
