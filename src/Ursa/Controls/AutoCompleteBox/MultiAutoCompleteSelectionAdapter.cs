@@ -258,6 +258,7 @@ public class MultiAutoCompleteSelectionAdapter : ISelectionAdapter
     /// </summary>
     internal void OnCommit()
     {
+        if (_previewSelectedItem is null) return;
         SelectedItem = _previewSelectedItem;
         SelectionChanged?.Invoke(this,
             new SelectionChangedEventArgs(
