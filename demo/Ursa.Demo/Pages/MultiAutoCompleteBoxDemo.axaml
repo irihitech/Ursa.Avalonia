@@ -7,9 +7,11 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:MultiAutoCompleteBoxDemoViewModel"
              x:Class="Ursa.Demo.Pages.MultiAutoCompleteBoxDemo">
-    <StackPanel Spacing="20">
+    <StackPanel Spacing="20" HorizontalAlignment="Left">
         <TextBlock Text="Multi-AutoCompleteBox"/>
         <u:MultiAutoCompleteBox ItemsSource="{Binding Items}" 
+                                MaxWidth="400"
+                                InnerLeftContent="Controls"
                                 SelectedItems="{Binding SelectedItems}"
                                 ItemFilter="{Binding FilterPredicate }"
                                 FilterMode="Custom">

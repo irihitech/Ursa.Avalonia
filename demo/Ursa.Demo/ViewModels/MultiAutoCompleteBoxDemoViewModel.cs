@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -82,12 +83,13 @@ public class MultiAutoCompleteBoxDemoViewModel: ObservableObject
     {
         if (text is null) return true;
         if (data is not ControlData control) return false;
-        return control.MenuHeader.Contains(text )|| control.Chinese.Contains(text);
+        return control.MenuHeader.Contains(text, StringComparison.InvariantCultureIgnoreCase) ||
+               control.Chinese.Contains(text, StringComparison.InvariantCultureIgnoreCase);
     }
 }
 
 public class ControlData
 {
-    public string MenuHeader { get; set; }
-    public string Chinese { get; set; }
+    public required string MenuHeader { get; init; }
+    public required string Chinese { get; init; }
 }

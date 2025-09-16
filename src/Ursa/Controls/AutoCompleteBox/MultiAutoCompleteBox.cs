@@ -30,7 +30,7 @@ namespace Ursa.Controls;
 [TemplatePart(ElementSelectionAdapter, typeof(ISelectionAdapter))]
 [TemplatePart(ElementTextBox, typeof(TextBox))]
 [PseudoClasses(":dropdownopen")]
-public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentControl
+public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentControl, IPopupInnerContent
 {
     /// <summary>
     ///     Specifies the name of the selection adapter TemplatePart.

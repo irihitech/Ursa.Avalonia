@@ -511,5 +511,23 @@ public partial class MultiAutoCompleteBox
         {
             get => GetValue(InnerRightContentProperty);
             set => SetValue(InnerRightContentProperty, value);
-        }      
+        }
+        
+        public static readonly StyledProperty<object?> PopupInnerTopContentProperty = AvaloniaProperty.Register<MultiAutoCompleteBox, object?>(
+            nameof(PopupInnerTopContent));
+
+        public object? PopupInnerTopContent
+        {
+            get => GetValue(PopupInnerTopContentProperty);
+            set => SetValue(PopupInnerTopContentProperty, value);
+        }
+
+        public static readonly StyledProperty<object?> PopupInnerBottomContentProperty = AvaloniaProperty.Register<MultiAutoCompleteBox, object?>(
+            nameof(PopupInnerBottomContent));
+
+        public object? PopupInnerBottomContent
+        {
+            get => GetValue(PopupInnerBottomContentProperty);
+            set => SetValue(PopupInnerBottomContentProperty, value);
+        }
     }
