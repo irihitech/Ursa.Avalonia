@@ -63,7 +63,7 @@
     </ControlTheme>
 
     <ControlTheme x:Key="TagInputTextBoxTheme" TargetType="TextBox">
-        <Setter Property="Foreground" Value="{DynamicResource TextBoxInnerForeground}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}" />
         <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
         <Setter Property="SelectionBrush" Value="{DynamicResource TextBoxSelectionBackground}" />

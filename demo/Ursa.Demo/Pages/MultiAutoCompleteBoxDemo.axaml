@@ -8,10 +8,10 @@
              x:DataType="vm:MultiAutoCompleteBoxDemoViewModel"
              x:Class="Ursa.Demo.Pages.MultiAutoCompleteBoxDemo">
     <StackPanel Spacing="20">
-        <TextBlock Text="Multi-AutoCompleteBox"/>
-        <u:MultiAutoCompleteBox ItemsSource="{Binding Items}" 
+        <TextBlock Text="Multi-AutoCompleteBox" />
+        <u:MultiAutoCompleteBox ItemsSource="{Binding Items}"
                                 SelectedItems="{Binding SelectedItems}"
-                                ItemFilter="{Binding FilterPredicate }"
+                                ItemFilter="{Binding FilterPredicate}"
                                 FilterMode="Custom">
             <u:MultiAutoCompleteBox.ItemTemplate>
                 <DataTemplate DataType="vm:ControlData">
