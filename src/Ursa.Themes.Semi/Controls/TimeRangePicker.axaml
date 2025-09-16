@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:iri="https://irihi.tech/shared"
-    xmlns:u="https://irihi.tech/ursa">
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:iri="https://irihi.tech/shared">
     <ControlTheme x:Key="{x:Type u:TimeRangePicker}" TargetType="u:TimeRangePicker">
         <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}" />

@@ -1,6 +1,7 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:u="https://irihi.tech/ursa">
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
     <ControlTheme x:Key="{x:Type u:DateTimePicker}" TargetType="u:DateTimePicker">
         <Setter Property="Background" Value="{DynamicResource CalendarDatePickerBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource CalendarDatePickerForeground}" />
