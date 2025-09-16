@@ -45,13 +45,9 @@
             <Setter Property="Grid.IsSharedSizeScope" Value="False" />
         </Style>
         <Style Selector="^.enable_animation">
-            <Setter Property="u:SizeAnimationHelper.TriggerAvaloniaProperty"
-                    Value="{x:Static u:NavMenu.IsHorizontalCollapsedProperty}">
-            </Setter>
-            <Setter Property="u:SizeAnimationHelper.CreateAnimation"
-                    Value="{DynamicResource NavMenuWidthAnimationGenerator}">
-            </Setter>
-            <Setter Property="u:SizeAnimationHelper.EnableWHAnimation" Value="True"></Setter>
+            <Setter Property="u:SizeAnimationHelper.TriggerAvaloniaProperty" Value="{x:Static u:NavMenu.IsHorizontalCollapsedProperty}" />
+            <Setter Property="u:SizeAnimationHelper.CreateAnimation" Value="{DynamicResource NavMenuWidthAnimationGenerator}" />
+            <Setter Property="u:SizeAnimationHelper.EnableWHAnimation" Value="True" />
         </Style>
     </ControlTheme>
 

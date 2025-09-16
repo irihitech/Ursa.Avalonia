@@ -8,7 +8,7 @@
             <ControlTemplate TargetType="u:DisableContainer">
                 <Panel>
                     <ContentPresenter Content="{TemplateBinding Content}" />
-                    <iri:PureRectangle Background="Transparent" IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content.IsEnabled, Converter={x:Static BoolConverters.Not}}" Cursor="No" ToolTip.Tip="{TemplateBinding DisabledTip}"/>
+                    <iri:PureRectangle Background="Transparent" IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content.IsEnabled, Converter={x:Static BoolConverters.Not}}" Cursor="No" ToolTip.Tip="{TemplateBinding DisabledTip}" />
                 </Panel>
             </ControlTemplate>
         </Setter>

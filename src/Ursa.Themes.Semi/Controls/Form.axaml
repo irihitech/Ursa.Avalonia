@@ -80,8 +80,7 @@
                 <ControlTemplate TargetType="u:FormItem">
                     <Grid RowDefinitions="*, *">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"
-                                SharedSizeGroup="Label" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Label" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Border
@@ -98,7 +97,7 @@
                                     Name="PART_Label"
                                     Content="{TemplateBinding Label}"
                                     Background="Transparent"
-                                    FontWeight="{DynamicResource TextBlockTitleFontWeight}"/>
+                                    FontWeight="{DynamicResource TextBlockTitleFontWeight}" />
                                 <TextBlock
                                     Foreground="{DynamicResource FormAsteriskForeground}"
                                     IsVisible="{TemplateBinding IsRequired}"

@@ -6,7 +6,7 @@
     xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters">
     <Design.PreviewWith>
         <StackPanel Margin="20">
-            <u:LoadingIcon Classes="Large"/>
+            <u:LoadingIcon Classes="Large" />
         </StackPanel>
     </Design.PreviewWith>
     <converters:BrushToColorConverter x:Key="BrushToColorConverter" />

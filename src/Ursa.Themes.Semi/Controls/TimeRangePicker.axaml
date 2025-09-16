@@ -138,8 +138,7 @@
                                             Grid.Row="2"
                                             Grid.Column="0"
                                             NeedsConfirmation="{TemplateBinding NeedConfirmation}"
-                                            PanelFormat="{TemplateBinding PanelFormat}"
-                                            />
+                                            PanelFormat="{TemplateBinding PanelFormat}" />
                                         <Rectangle
                                             Grid.Row="2"
                                             Grid.Column="1"
@@ -152,8 +151,7 @@
                                             Grid.Row="2"
                                             Grid.Column="2"
                                             NeedsConfirmation="{TemplateBinding NeedConfirmation}"
-                                            PanelFormat="{TemplateBinding PanelFormat}"
-                                            />
+                                            PanelFormat="{TemplateBinding PanelFormat}" />
                                     </Grid>
                                 </DockPanel>
                             </Border>

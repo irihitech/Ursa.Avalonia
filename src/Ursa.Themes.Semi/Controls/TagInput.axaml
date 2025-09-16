@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
-        <u:ClosableTag Content="Closable Tag"/>
+        <u:ClosableTag Content="Closable Tag" />
     </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:TagInput}" TargetType="u:TagInput">
         <Setter Property="InputTheme" Value="{DynamicResource TagInputTextBoxTheme}" />

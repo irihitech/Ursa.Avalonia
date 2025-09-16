@@ -106,7 +106,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
         <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
-        <Setter Property="MinHeight" Value="32"/>
+        <Setter Property="MinHeight" Value="32" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:TimePicker">
                 <DataValidationErrors>
@@ -153,8 +153,7 @@
                                 Name="{x:Static iri:PartNames.PART_Popup}"
                                 Grid.Column="0"
                                 IsLightDismissEnabled="True"
-                                IsOpen="{TemplateBinding IsDropdownOpen,
-                                                         Mode=TwoWay}"
+                                IsOpen="{TemplateBinding IsDropdownOpen,Mode=TwoWay}"
                                 Placement="BottomEdgeAlignedLeft"
                                 PlacementTarget="Background">
                                 <Border
@@ -178,19 +177,17 @@
                                             Margin="8,8,8,0"
                                             Content="{TemplateBinding PopupInnerTopContent}"
                                             DockPanel.Dock="Top"
-                                            IsVisible="{TemplateBinding PopupInnerTopContent,
-                                                                        Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                            IsVisible="{TemplateBinding PopupInnerTopContent,Converter={x:Static ObjectConverters.IsNotNull}}" />
                                         <ContentPresenter
                                             Name="PART_PopupFooter"
                                             Margin="8,0,8,8"
                                             Content="{TemplateBinding PopupInnerBottomContent}"
                                             DockPanel.Dock="Bottom"
-                                            IsVisible="{TemplateBinding PopupInnerBottomContent,
-                                                                        Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                            IsVisible="{TemplateBinding PopupInnerBottomContent,Converter={x:Static ObjectConverters.IsNotNull}}" />
                                         <u:TimePickerPresenter
                                             Name="{x:Static u:TimePicker.PART_Presenter}"
                                             NeedsConfirmation="{TemplateBinding NeedConfirmation}"
-                                            PanelFormat="{TemplateBinding PanelFormat}"/>
+                                            PanelFormat="{TemplateBinding PanelFormat}" />
                                     </DockPanel>
                                 </Border>
                             </Popup>
@@ -205,7 +202,7 @@
                 <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNotNull}}" />
             </Style>
             <Style Selector="^:pointerover /template/ Button#PART_Button">
-                <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNull}}"/>
+                <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNull}}" />
             </Style>
         </Style>
 

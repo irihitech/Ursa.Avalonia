@@ -39,7 +39,7 @@
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
                                 Background="Transparent"
-                                Cursor="SizeAll"/>
+                                Cursor="SizeAll" />
                             <Button
                                 Name="PART_ClearButton"
                                 Margin="0,0,8,0"
@@ -63,7 +63,7 @@
                 <Setter Property="IsVisible" Value="True" />
             </Style>
         </Style>
-        
+
         <Style Selector="^.Large">
             <Setter Property="MinHeight" Value="{DynamicResource NumericUpDownLargeHeight}" />
         </Style>

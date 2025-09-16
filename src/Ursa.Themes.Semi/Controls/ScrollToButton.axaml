@@ -40,8 +40,8 @@
             <Setter Property="RenderTransform" Value="rotate(270deg)" />
         </Style>
     </ControlTheme>
-    
-    
+
+
     <ControlTheme x:Key="PrimaryScrollToButton" TargetType="u:ScrollToButton">
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="VerticalAlignment" Value="Bottom" />

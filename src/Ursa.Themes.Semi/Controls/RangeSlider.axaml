@@ -209,7 +209,7 @@
         <Style Selector="^:error /template/ Thumb#thumb">
             <Setter Property="BorderBrush" Value="{DynamicResource DataValidationErrorsSelectedBorderBrush}" />
         </Style>
-        
+
         <Style Selector="^:disabled">
             <Style Selector="^ /template/ Border#PART_InnerSection">
                 <Setter Property="Background" Value="{DynamicResource SliderTrackDisabledForeground}" />
