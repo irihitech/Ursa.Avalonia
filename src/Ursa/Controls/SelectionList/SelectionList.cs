@@ -159,8 +159,6 @@ public class SelectionList : SelectingItemsControl
 
     protected override void OnKeyDown(KeyEventArgs e)
     {
-        var hotkeys = Application.Current!.PlatformSettings?.HotkeyConfiguration;
-
         if (e.Key.ToNavigationDirection() is { } direction && direction.IsDirectional())
             e.Handled |= MoveSelection(direction, WrapSelection);
         base.OnKeyDown(e);

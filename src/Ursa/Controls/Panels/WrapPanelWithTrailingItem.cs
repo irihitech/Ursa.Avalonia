@@ -52,8 +52,6 @@ public class WrapPanelWithTrailingItem : Panel
                 if (!IsItemsHost) LogicalChildren.Add(newValue);
             }
         }
-
-        WrapPanel p = new WrapPanel();
     }
 
     protected override Size MeasureOverride(Size availableSize)
