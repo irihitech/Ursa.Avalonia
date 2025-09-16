@@ -329,8 +329,7 @@ public class ElasticWrapPanel : WrapPanel
                         {
                             sum += p.Value.ULengthCount;
                         }
-                        if (sum > maxElementCount)
-                            maxElementCount = sum;
+                        maxElementCount = Max(sum, maxElementCount);
                     }
                     adaptULength = (uvFinalSize.U - maxElementCount * itemSetSize.U) / maxElementCount;
                     adaptULength = Max(adaptULength, 0);
