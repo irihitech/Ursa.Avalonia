@@ -5,11 +5,11 @@
         <ResourceInclude Source="Avatar.axaml" />
         <ResourceInclude Source="Badge.axaml" />
         <ResourceInclude Source="Banner.axaml" />
-        <ResourceInclude Source="ButtonGroup.axaml" />
         <ResourceInclude Source="Breadcrumb.axaml" />
+        <ResourceInclude Source="ButtonGroup.axaml" />
         <ResourceInclude Source="Calendar.axaml" />
-        <ResourceInclude Source="ControlClassesInput.axaml" />
         <ResourceInclude Source="Clock.axaml" />
+        <ResourceInclude Source="ControlClassesInput.axaml" />
         <ResourceInclude Source="DatePicker.axaml" />
         <ResourceInclude Source="DateRangePicker.axaml" />
         <ResourceInclude Source="DateTimePicker.axaml" />
@@ -31,11 +31,11 @@
         <ResourceInclude Source="MultiComboBox.axaml" />
         <ResourceInclude Source="NavMenu.axaml" />
         <ResourceInclude Source="Notification.axaml" />
+        <ResourceInclude Source="NumberDisplayer.axaml" />
         <ResourceInclude Source="NumericUpDown.axaml" />
         <ResourceInclude Source="NumPad.axaml" />
-        <ResourceInclude Source="NumberDisplayer.axaml" />
         <ResourceInclude Source="Pagination.axaml" />
-        <ResourceInclude Source="PathPicker.axaml"/>
+        <ResourceInclude Source="PathPicker.axaml" />
         <ResourceInclude Source="PinCode.axaml" />
         <ResourceInclude Source="PopConfirm.axaml" />
         <ResourceInclude Source="RangeSlider.axaml" />
@@ -44,18 +44,18 @@
         <ResourceInclude Source="ScrollToButton.axaml" />
         <ResourceInclude Source="SelectionList.axaml" />
         <ResourceInclude Source="Skeleton.axaml" />
-        <ResourceInclude Source="SplashWindow.axaml"/>
+        <ResourceInclude Source="SplashWindow.axaml" />
         <ResourceInclude Source="TagInput.axaml" />
         <ResourceInclude Source="ThemeSelector.axaml" />
+        <ResourceInclude Source="TimeBox.axaml" />
+        <ResourceInclude Source="Timeline.axaml" />
         <ResourceInclude Source="TimePicker.axaml" />
         <ResourceInclude Source="TimeRangePicker.axaml" />
-        <ResourceInclude Source="Timeline.axaml" />
-        <ResourceInclude Source="TreeComboBox.axaml"/>
-        <ResourceInclude Source="TwoTonePathIcon.axaml" />
         <ResourceInclude Source="Toast.axaml" />
         <ResourceInclude Source="ToolBar.axaml" />
-        <ResourceInclude Source="TimeBox.axaml"/>
+        <ResourceInclude Source="TreeComboBox.axaml" />
+        <ResourceInclude Source="TwoTonePathIcon.axaml" />
         <ResourceInclude Source="UrsaView.axaml" />
-        <ResourceInclude Source="UrsaWindow.axaml"/>
+        <ResourceInclude Source="UrsaWindow.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
