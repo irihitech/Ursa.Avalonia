@@ -34,10 +34,22 @@ public static class OverlayDialog
             DataContext = vm,
         };
         ConfigureDefaultDialogControl(t, options);
+
+        if (options?.OnDialogControlClosed != null)
+        {
+            t.AddHandler(OverlayShared.OverlayFeedbackElement.ClosedEvent, options.OnDialogControlClosed);
+
+            t.AddHandler(OverlayShared.OverlayFeedbackElement.ClosedEvent, (s,e)=>
+            {
+                if (s is not DialogControlBase control) return;
+                control.RemoveHandler(OverlayShared.OverlayFeedbackElement.ClosedEvent, options.OnDialogControlClosed);
+            });
+        }
+
         host.AddDialog(t);
         
     }
-    
+
     public static void Show(object? vm, string? hostId = null, OverlayDialogOptions? options = null)
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);

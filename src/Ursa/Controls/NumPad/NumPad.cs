@@ -55,7 +55,7 @@ public class NumPad: TemplatedControl
             GotFocusEvent.RemoveHandler(OnTargetGotFocus, input);
         }
     }
-    
+
     private static void OnTargetGotFocus(object? sender, GotFocusEventArgs e)
     {
         if (sender is not InputElement) return;
@@ -75,12 +75,19 @@ public class NumPad: TemplatedControl
             }
             return;
         }
-        var numPad = new NumPad() 
+        var numPad = new NumPad()
         {
             Target = sender as InputElement ,
             _targetInnerText = FindTextBoxInTarget((sender as InputElement)!)
         };
-        OverlayDialog.Show(numPad, new object(), options: new OverlayDialogOptions() { Buttons = DialogButton.None });
+        OverlayDialog.Show(numPad, new object(), options: new OverlayDialogOptions()
+        {
+            Buttons = DialogButton.None,
+            OnDialogControlClosed = (object? ss, object? e) =>
+            {
+                numPad.Target?.Focus();
+            }
+        });
     }
 
     private static readonly Dictionary<Key, string> KeyInputMapping = new()
@@ -138,7 +145,7 @@ public class NumPad: TemplatedControl
         // 如果目标本身就是 TextBox
         if (target is TextBox textBox)
             return textBox;
-        
+
         // 如果目标是 TemplatedControl，并且已经应用了模板
         if (target is TemplatedControl templatedControl && templatedControl.IsInitialized)
         {
