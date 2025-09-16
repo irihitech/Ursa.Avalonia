@@ -251,7 +251,11 @@ public class TimeBox : TemplatedControl
         }
         else if (e.Key == Key.Back)
         {
-            DeleteImplementation(_currentActiveSectionIndex.Value);
+            DeleteImplementation(_currentActiveSectionIndex.Value, isDeleteKey: false);
+        }
+        else if (e.Key == Key.Delete)
+        {
+            DeleteImplementation(_currentActiveSectionIndex.Value, isDeleteKey: true);
         }
         else if (e.Key == Key.Right)
         {
@@ -596,7 +600,11 @@ public class TimeBox : TemplatedControl
         }
     }
 
-    private void DeleteImplementation(int index)
+    /// <summary>
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="isDeleteKey">del 键 (从前往后删)</param>
+    private void DeleteImplementation(int index, bool isDeleteKey)
     {
         if (index < 0 || index > 3) return;
         var oldText = _presenters[index].Text??string.Empty;
@@ -605,17 +613,41 @@ public class TimeBox : TemplatedControl
             _presenters[index].DeleteSelection();
             _presenters[index].ClearSelection();
         }
-        else if (string.IsNullOrWhiteSpace(oldText) || _presenters[index].CaretIndex == 0)
+        else if (isDeleteKey)
         {
-            MoveToPreviousSection(index);
+            if (string.IsNullOrWhiteSpace(oldText) || _presenters[index].CaretIndex == oldText.Length)
+            {
+                MoveToNextSection(index);
+            }
+            else
+            {
+                int caretIndex = _presenters[index].CaretIndex;
+                var newText = string.Empty;
+                if (caretIndex == 0)
+                {
+                    newText = oldText.Substring(1, oldText.Length - 1);
+                }
+                else
+                {
+                    newText = oldText.Substring(0, caretIndex) + oldText.Substring(caretIndex + 1);
+                }
+                _presenters[index].Text = newText;
+            }
         }
         else
         {
-            int caretIndex = _presenters[index].CaretIndex;
-            string newText = oldText.Substring(0, caretIndex - 1) +
-                             oldText.Substring(Math.Min(caretIndex, oldText.Length));
-            _presenters[index].MoveCaretHorizontal(LogicalDirection.Backward);
-            _presenters[index].Text = newText;
+            if (string.IsNullOrWhiteSpace(oldText) || _presenters[index].CaretIndex == 0)
+            {
+                MoveToPreviousSection(index);
+            }
+            else
+            {
+                int caretIndex = _presenters[index].CaretIndex;
+                string newText = oldText.Substring(0, caretIndex - 1) +
+                                 oldText.Substring(Math.Min(caretIndex, oldText.Length));
+                _presenters[index].MoveCaretHorizontal(LogicalDirection.Backward);
+                _presenters[index].Text = newText;
+            }
         }
     }
 

@@ -209,6 +209,17 @@ public class PinCode : TemplatedControl
             _currentIndex--;
             _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
         }
+        else if (e.Key == Key.Delete && _currentIndex < Digits.Count)
+        {
+            _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);
+            var presenter = _itemsControl?.ContainerFromIndex(_currentIndex) as PinCodeItem;
+            if (presenter is null) return;
+            Digits[_currentIndex] = string.Empty;
+            presenter.Text = string.Empty;
+            if (_currentIndex == Digits.Count-1) return;
+            _currentIndex++;
+            _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
+        }
         else if (e.Key is Key.Left or Key.FnLeftArrow)
         {
             _currentIndex--;
