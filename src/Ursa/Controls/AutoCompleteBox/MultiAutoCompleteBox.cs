@@ -1570,7 +1570,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     private void OnAdapterSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         if (_valueBindingEvaluator is null) return;
-        UpdateTextValue(_valueBindingEvaluator?.GetDynamicValue(_adapter?.SelectedItem), false);
+        UpdateTextValue(_valueBindingEvaluator?.GetDynamicValue(_adapter?.SelectedItem, true), false);
         // SelectedItems?.Add(_adapter?.SelectedItem);
 
     }
@@ -1588,6 +1588,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         // Completion will update the selected value
         //UpdateTextCompletion(false);
         _ = SelectedItems ?? throw new NullReferenceException("Selected Items collection must be initialized. ");
+        if (_adapter?.SelectedItem is null) return;
         SelectedItems?.Add(_adapter?.SelectedItem);
         UpdateTextValue(string.Empty, false);
         
@@ -1842,7 +1843,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     ///     context leaf node.
     /// </summary>
     /// <typeparam name="T">The type of dynamic binding to return.</typeparam>
-    public class BindingEvaluator<T> : Control
+    public class BindingEvaluator<T> : StyledElement
     {
         /// <summary>
         ///     Identifies the Value dependency property.
@@ -1920,7 +1921,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         ///     Returns the evaluated T value of the bound dependency
         ///     property.
         /// </returns>
-        public T GetDynamicValue(object o, bool clearDataContext)
+        public T GetDynamicValue(object? o, bool clearDataContext)
         {
             DataContext = o;
             var value = Value;
