@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
@@ -15,9 +16,6 @@ public class MultiAutoCompleteSelectionAdapter : ISelectionAdapter
     ///     The SelectingItemsControl instance.
     /// </summary>
     private SelectingItemsControl? _selector;
-
-    private object? _previewSelectedItem;
-    private object? _selectedItem;
 
     /// <summary>
     ///     Initializes a new instance of the
@@ -110,14 +108,13 @@ public class MultiAutoCompleteSelectionAdapter : ISelectionAdapter
     /// <value>The selected item of the underlying selection adapter.</value>
     public object? SelectedItem
     {
-        get => _selectedItem;
+        get => SelectorControl?.SelectedItem;
 
         set
         {
             IgnoringSelectionChanged = true;
             if (SelectorControl != null)
             {
-                _selectedItem = value;
                 SelectorControl.SelectedItem = value;
             }
             // Attempt to reset the scroll viewer's position
@@ -215,7 +212,9 @@ public class MultiAutoCompleteSelectionAdapter : ISelectionAdapter
     private void OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         if (IgnoringSelectionChanged) return;
-        _previewSelectedItem = SelectorControl?.SelectedItem;
+        // SelectedItem = SelectorControl?.SelectedItem;
+        SelectionChanged?.Invoke(this, e);
+        // _previewSelectedItem = SelectorControl?.SelectedItem;
     }
 
     /// <summary>
@@ -258,6 +257,7 @@ public class MultiAutoCompleteSelectionAdapter : ISelectionAdapter
     /// </summary>
     internal void OnCommit()
     {
+        /*
         if (_previewSelectedItem is null) return;
         SelectedItem = _previewSelectedItem;
         SelectionChanged?.Invoke(this,
@@ -267,6 +267,7 @@ public class MultiAutoCompleteSelectionAdapter : ISelectionAdapter
                 new List<object?> { SelectedItem }
             )
         );
+        */
         Commit?.Invoke(this, new RoutedEventArgs());
         AfterAdapterAction();
     }
@@ -292,7 +293,6 @@ public class MultiAutoCompleteSelectionAdapter : ISelectionAdapter
         {
             SelectorControl.SelectedItem = null;
             SelectorControl.SelectedIndex = -1;
-            _previewSelectedItem = null;
         }
         IgnoringSelectionChanged = false;
     }

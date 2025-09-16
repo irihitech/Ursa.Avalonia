@@ -637,6 +637,11 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
             if (e.Key == Key.Down
                 && !this.IsAllowedXYNavigationMode(e.KeyDeviceType))
             {
+                if (string.IsNullOrEmpty(TextBox?.Text))
+                {
+                    UpdateTextValue(string.Empty, true);
+                }
+                RefreshView();
                 SetCurrentValue(IsDropDownOpenProperty, true);
                 e.Handled = true;
             }
@@ -1101,7 +1106,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     {
         if (_popupHasOpened)
         {
-            if (SelectionAdapter != null) SelectionAdapter.SelectedItem = null;
+            // if (SelectionAdapter != null) SelectionAdapter.SelectedItem = null;
             if (DropDownPopup != null) DropDownPopup.IsOpen = false;
             OnDropDownClosed(System.EventArgs.Empty);
         }
@@ -1564,7 +1569,10 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     /// <param name="e">The selection changed event data.</param>
     private void OnAdapterSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        SelectedItems?.Add(_adapter?.SelectedItem);
+        if (_valueBindingEvaluator is null) return;
+        UpdateTextValue(_valueBindingEvaluator?.GetDynamicValue(_adapter?.SelectedItem), false);
+        // SelectedItems?.Add(_adapter?.SelectedItem);
+
     }
 
     //TODO Check UpdateTextCompletion
@@ -1579,6 +1587,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
 
         // Completion will update the selected value
         //UpdateTextCompletion(false);
+        SelectedItems?.Add(_adapter?.SelectedItem);
         UpdateTextValue(string.Empty, false);
         
         // Text should not be selected

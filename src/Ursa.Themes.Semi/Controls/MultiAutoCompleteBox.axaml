@@ -37,7 +37,7 @@
                                     <ItemsPanelTemplate>
                                         <u:WrapPanelWithTrailingItem>
                                             <u:WrapPanelWithTrailingItem.TrailingItem>
-                                                <TextBox VerticalAlignment="Center" Theme="{DynamicResource TagInputTextBoxTheme}"/>
+                                                <TextBox VerticalAlignment="Center" MinWidth="24" Theme="{DynamicResource TagInputTextBoxTheme}"/>
                                             </u:WrapPanelWithTrailingItem.TrailingItem>
                                         </u:WrapPanelWithTrailingItem>
                                     </ItemsPanelTemplate>
