@@ -89,6 +89,7 @@ public partial class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyAspectRatioLayout => new AspectRatioLayoutDemoViewModel(),
             MenuKeys.MenuKeyPathPicker => new PathPickerDemoViewModel(),
             MenuKeys.MenuKeyAnchor => new AnchorDemoViewModel(),
+            MenuKeys.MenuKeyMultiAutoCompleteBox => new MultiAutoCompleteBoxDemoViewModel(),
             _ => throw new ArgumentOutOfRangeException(nameof(s), s, null)
         };
     }

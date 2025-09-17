@@ -23,10 +23,14 @@
             </Style>
         </StackPanel.Styles>
 
+        <TextBlock Text="{Binding #box.((viewModels:StateData)SelectedItem).Name}" />
+        
         <u:AutoCompleteBox
+            Name="box"
             Watermark="Please select a State"
             Classes="ClearButton"
             ValueMemberBinding="{ReflectionBinding Name}" />
+        
         <u:AutoCompleteBox
             Classes="Large"
             ValueMemberBinding="{ReflectionBinding Name}" />

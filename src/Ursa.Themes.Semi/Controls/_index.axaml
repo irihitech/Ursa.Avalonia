@@ -29,6 +29,7 @@
         <ResourceInclude Source="Loading.axaml" />
         <ResourceInclude Source="Marquee.axaml" />
         <ResourceInclude Source="MessageBox.axaml" />
+        <ResourceInclude Source="MultiAutoCompleteBox.axaml" />
         <ResourceInclude Source="MultiComboBox.axaml" />
         <ResourceInclude Source="NavMenu.axaml" />
         <ResourceInclude Source="Notification.axaml" />
