@@ -5,7 +5,7 @@ namespace Ursa.Themes.Semi.Converters;
 
 public class ClockHandLengthConverter(double ratio) : IValueConverter
 {
-    public static ClockHandLengthConverter Hour { get; } = new(1-0.618);
+    public static ClockHandLengthConverter Hour { get; } = new(1 - 0.618);
     public static ClockHandLengthConverter Minute { get; } = new(0.618);
     public static ClockHandLengthConverter Second { get; } = new(1);
 
@@ -15,6 +15,7 @@ public class ClockHandLengthConverter(double ratio) : IValueConverter
         {
             return d * ratio / 2;
         }
+
         return 0.0;
     }
 

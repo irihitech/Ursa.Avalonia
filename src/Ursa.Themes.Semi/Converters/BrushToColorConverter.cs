@@ -4,7 +4,7 @@ using Avalonia.Media;
 
 namespace Ursa.Themes.Semi.Converters;
 
-public class BrushToColorConverter: IValueConverter
+public class BrushToColorConverter : IValueConverter
 {
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
@@ -12,6 +12,7 @@ public class BrushToColorConverter: IValueConverter
         {
             return b.Color;
         }
+
         return Colors.Transparent;
     }
 

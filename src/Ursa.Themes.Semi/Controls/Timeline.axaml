@@ -22,14 +22,6 @@
         </Setter>
     </ControlTheme>
 
-    <converters:TimelineItemTypeToIconForegroundConverter
-        x:Key="ForegroundConverter"
-        DefaultBrush="{DynamicResource DefaultTimelineIconForeground}"
-        ErrorBrush="{DynamicResource ErrorTimelineIconForeground}"
-        OngoingBrush="{DynamicResource OngoingTimelineIconForeground}"
-        SuccessBrush="{DynamicResource SuccessTimelineIconForeground}"
-        WarningBrush="{DynamicResource WarningTimelineIconForeground}" />
-
     <ControlTheme x:Key="{x:Type u:TimelineItem}" TargetType="u:TimelineItem">
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Top" />
