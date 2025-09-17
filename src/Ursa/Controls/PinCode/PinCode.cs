@@ -161,7 +161,6 @@ public class PinCode : TemplatedControl
 
     protected async void OnPreviewKeyDown(KeyEventArgs e)
     {
-        TextBox b = new TextBox();
         var pasteKeys = Application.Current?.PlatformSettings?.HotkeyConfiguration.Paste;
         if (pasteKeys?.Any(a => a.Matches(e)) == true)
         {
