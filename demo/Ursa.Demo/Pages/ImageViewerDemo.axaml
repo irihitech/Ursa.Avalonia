@@ -9,7 +9,10 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <SolidColorBrush x:Key="MaskBackground" Opacity="0.2" Color="Red" />
+        <SolidColorBrush
+            x:Key="MaskBackground"
+            Opacity="0.2"
+            Color="Red" />
         <SolidColorBrush x:Key="MaskBorder" Color="Red" />
     </UserControl.Resources>
     <StackPanel>
@@ -20,7 +23,7 @@
         <u:ImageViewer
             Name="viewer"
             Width="600"
-            Height="300" 
+            Height="300"
             MinScale="0.5"
             Source="../Assets/3x.png">
             <u:ImageViewer.Overlayer>
@@ -117,6 +120,11 @@
                 Grid.Row="3"
                 Grid.Column="1"
                 Theme="{DynamicResource SimpleToggleSwitch}" />
+
+            <Button
+                Grid.Row="3"
+                Grid.Column="2" Click="Button_Click"
+                Content="测试设置为 null" />
         </Grid>
     </StackPanel>
 </UserControl>
