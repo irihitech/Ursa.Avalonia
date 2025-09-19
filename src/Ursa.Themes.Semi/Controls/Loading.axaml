@@ -9,7 +9,6 @@
             <u:LoadingIcon Classes="Large" />
         </StackPanel>
     </Design.PreviewWith>
-    <converters:BrushToColorConverter x:Key="BrushToColorConverter" />
     <ControlTheme x:Key="{x:Type u:LoadingIcon}" TargetType="u:LoadingIcon">
         <Setter Property="IsLoading" Value="True" />
         <Setter Property="Foreground" Value="{DynamicResource LoadingIconForeground}" />
@@ -29,8 +28,8 @@
                         <ConicGradientBrush Angle="50">
                             <GradientStops>
                                 <GradientStop Offset="0.4" Color="Transparent" />
-                                <GradientStop Offset="0.8" Color="{Binding Foreground, Converter={StaticResource BrushToColorConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
-                                <GradientStop Offset="1.0" Color="{Binding Foreground, Converter={StaticResource BrushToColorConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <GradientStop Offset="0.8" Color="{Binding Foreground, Converter={converters:BrushToColorConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <GradientStop Offset="1.0" Color="{Binding Foreground, Converter={converters:BrushToColorConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
                             </GradientStops>
                         </ConicGradientBrush>
                     </Arc.Stroke>

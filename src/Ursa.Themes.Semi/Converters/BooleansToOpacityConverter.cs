@@ -1,11 +1,11 @@
 ﻿using System.Globalization;
-using Avalonia.Data.Converters;
+using Irihi.Avalonia.Shared.Converters;
 
 namespace Ursa.Themes.Semi.Converters;
 
-public class BooleansToOpacityConverter : IValueConverter
+public class BooleansToOpacityConverter : MarkupValueConverter
 {
-    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public override object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is bool b)
         {
@@ -13,10 +13,5 @@ public class BooleansToOpacityConverter : IValueConverter
         }
 
         return 1;
-    }
-
-    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
     }
 }

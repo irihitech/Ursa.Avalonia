@@ -1,10 +1,10 @@
 using System.Globalization;
-using Avalonia.Data.Converters;
 using Avalonia.Layout;
+using Irihi.Avalonia.Shared.Converters;
 
 namespace Ursa.Themes.Semi.Converters;
 
-public class FormContentHeightToAlignmentConverter : IValueConverter
+public class FormContentHeightToAlignmentConverter : MarkupValueConverter
 {
     public static FormContentHeightToAlignmentConverter Instance = new(32);
     public double Threshold { get; set; }
@@ -21,15 +21,9 @@ public class FormContentHeightToAlignmentConverter : IValueConverter
         Threshold = threshold;
     }
 
-
-    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public override object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is not double d) return VerticalAlignment.Center;
         return d > Threshold ? VerticalAlignment.Top : VerticalAlignment.Center;
-    }
-
-    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
     }
 }

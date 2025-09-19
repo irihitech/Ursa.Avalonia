@@ -1,14 +1,14 @@
 ﻿using System.Globalization;
 using Avalonia.Controls.Templates;
-using Avalonia.Data.Converters;
+using Irihi.Avalonia.Shared.Converters;
 
 namespace Ursa.Converters;
 
-public class SelectionBoxTemplateConverter : IMultiValueConverter
+public class SelectionBoxTemplateConverter : MarkupMultiValueConverter
 {
     public static SelectionBoxTemplateConverter Instance { get; } = new();
 
-    public object? Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
+    public override object? Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
     {
         for (int i = 0; i < values.Count; i++)
         {

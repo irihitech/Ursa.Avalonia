@@ -28,8 +28,6 @@
         </StackPanel>
     </Design.PreviewWith>
 
-    <converters:BadgeContentOverflowConverter x:Key="BadgeContentConverter" />
-
     <ControlTheme x:Key="{x:Type u:Badge}" TargetType="{x:Type u:Badge}">
         <!--  Set a very large corner radius to achieve pill look.  -->
         <Setter Property="CornerRadius" Value="{DynamicResource BadgeCornerRadius}" />
@@ -85,7 +83,7 @@
                             TextElement.Foreground="{TemplateBinding Foreground}"
                             ContentTemplate="{TemplateBinding HeaderTemplate}">
                             <ContentPresenter.Content>
-                                <MultiBinding Converter="{StaticResource BadgeContentConverter}">
+                                <MultiBinding Converter="{converters:BadgeContentOverflowConverter}">
                                     <Binding Path="Header" RelativeSource="{RelativeSource TemplatedParent}" />
                                     <Binding Path="OverflowCount" RelativeSource="{RelativeSource TemplatedParent}" />
                                 </MultiBinding>

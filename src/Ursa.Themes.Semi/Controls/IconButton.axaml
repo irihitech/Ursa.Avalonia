@@ -29,7 +29,6 @@
             <Button Theme="{DynamicResource BorderlessButton}" Classes="Danger" Content="Button" />
         </StackPanel>
     </Design.PreviewWith>
-    <converters:BooleansToOpacityConverter x:Key="OpacityConverter" />
     <ControlTheme x:Key="{x:Type u:IconButton}" TargetType="u:IconButton">
         <Setter Property="Padding" Value="{DynamicResource ButtonDefaultPadding}" />
         <Setter Property="MinHeight" Value="{DynamicResource ButtonDefaultHeight}" />
@@ -75,7 +74,7 @@
                                 ContentTemplate="{TemplateBinding IconTemplate}"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 Foreground="{Binding #PART_ContentPresenter.Foreground}"
-                                Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=!IsLoading, Converter={StaticResource OpacityConverter}}">
+                                Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=!IsLoading, Converter={converters:BooleansToOpacityConverter}}">
                                 <ContentPresenter.DataTemplates>
                                     <DataTemplate DataType="Geometry">
                                         <PathIcon

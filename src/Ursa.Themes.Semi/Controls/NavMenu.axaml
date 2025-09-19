@@ -3,7 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters">
-    <converters:NavMenuMarginConverter x:Key="NavMarginConverter" />
 
     <ControlTheme x:Key="{x:Type u:NavMenu}" TargetType="u:NavMenu">
         <Setter Property="Grid.IsSharedSizeScope" Value="True" />
@@ -67,7 +66,7 @@
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center">
                     <Grid.Margin>
-                        <MultiBinding Converter="{StaticResource NavMarginConverter}">
+                        <MultiBinding Converter="{converters:NavMenuMarginConverter}">
                             <Binding Path="SubMenuIndent" RelativeSource="{RelativeSource TemplatedParent}" />
                             <Binding Path="Level" RelativeSource="{RelativeSource TemplatedParent}" />
                             <Binding Path="IsHorizontalCollapsed" RelativeSource="{RelativeSource TemplatedParent}" />
