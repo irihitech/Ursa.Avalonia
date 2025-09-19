@@ -1,9 +1,10 @@
-using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Layout;
 using Avalonia.Threading;
+using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Helpers;
+using System.Runtime.CompilerServices;
 using Timer = System.Timers.Timer;
 
 namespace Ursa.Controls;
@@ -80,16 +81,37 @@ public class Marquee : ContentControl
         {
             _timer.Start();
         }
+        if (this.GetVisualRoot() is Window window)
+        {
+            window.Closing += Window_Closing;
+        }
     }
-    
+
+
+    private void Window_Closing(object? sender, WindowClosingEventArgs e)
+    {
+        if(e.Cancel)
+        {
+            return;
+        }
+        IsRunning = false;
+        Detached();
+    }
+
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnDetachedFromVisualTree(e);
+        Detached();
+    }
+
+    private void Detached()
+    {
         if (_timer is not null)
         {
             _timer.Elapsed -= TimerOnTick;
             _timer.Stop();
             _timer.Dispose();
+            _timer = null;
         }
         if (Presenter is not null)
         {
@@ -134,14 +156,20 @@ public class Marquee : ContentControl
     private void TimerOnTick(object? sender, System.EventArgs e)
     {
         if (Presenter is null) return;
-        var layoutValues = Dispatcher.UIThread.Invoke(GetLayoutValues);
-        var location = UpdateLocation(layoutValues);
-        if (location is null) return;
-        Dispatcher.UIThread.Post(() =>
+        try
         {
-            Canvas.SetTop(Presenter, location.Value.top);
-            Canvas.SetLeft(Presenter, location.Value.left);
-        }, DispatcherPriority.Render);
+            var layoutValues = Dispatcher.UIThread.Invoke(GetLayoutValues);
+            var location = UpdateLocation(layoutValues);
+            if (location is null) return;
+            Dispatcher.UIThread.Post(() =>
+            {
+                Canvas.SetTop(Presenter, location.Value.top);
+                Canvas.SetLeft(Presenter, location.Value.left);
+            }, DispatcherPriority.Render);
+        }
+        catch 
+        {
+        }
     }
 
     private void InvalidatePresenterPosition()
