@@ -39,10 +39,10 @@ public static class OverlayDialog
         {
             t.AddHandler(OverlayShared.OverlayFeedbackElement.ClosedEvent, options.OnDialogControlClosed);
 
-            t.AddHandler(OverlayShared.OverlayFeedbackElement.ClosedEvent, (s,e)=>
+            t.AddHandler(OverlayShared.OverlayFeedbackElement.ClosedEvent, (s, _) =>
             {
-                if (s is not DialogControlBase control) return;
-                control.RemoveHandler(OverlayShared.OverlayFeedbackElement.ClosedEvent, options.OnDialogControlClosed);
+                if (s is not DialogControlBase dc) return;
+                dc.RemoveHandler(OverlayShared.OverlayFeedbackElement.ClosedEvent, options.OnDialogControlClosed);
             });
         }
 
