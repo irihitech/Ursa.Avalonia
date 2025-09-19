@@ -66,4 +66,8 @@ public class OverlayDialogOptions
     public bool CanResize { get; set; }
     
     public string? StyleClass { get; set; }
+
+    /// <summary>
+    /// </summary>
+    internal Delegate? OnDialogControlClosed { set; get; }
 }
