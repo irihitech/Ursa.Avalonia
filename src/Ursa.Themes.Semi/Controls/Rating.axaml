@@ -1,6 +1,7 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:u="https://irihi.tech/ursa">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
     <ControlTheme x:Key="{x:Type u:RatingCharacter}" TargetType="u:RatingCharacter">
         <Setter Property="Character" Value="{DynamicResource RatingStarIconGlyph}" />
         <Setter Property="Background" Value="{DynamicResource RatingCharacterBackground}" />

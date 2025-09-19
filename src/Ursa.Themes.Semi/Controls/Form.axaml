@@ -2,7 +2,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa"
-    xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters">
+    xmlns:converters="using:Ursa.Themes.Semi.Converters">
     <ControlTheme x:Key="{x:Type u:Form}"
                   TargetType="u:Form">
         <Setter Property="Grid.IsSharedSizeScope"
@@ -80,8 +80,7 @@
                 <ControlTemplate TargetType="u:FormItem">
                     <Grid RowDefinitions="*, *">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"
-                                SharedSizeGroup="Label" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Label" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Border
@@ -98,7 +97,7 @@
                                     Name="PART_Label"
                                     Content="{TemplateBinding Label}"
                                     Background="Transparent"
-                                    FontWeight="{DynamicResource TextBlockTitleFontWeight}"/>
+                                    FontWeight="{DynamicResource TextBlockTitleFontWeight}" />
                                 <TextBlock
                                     Foreground="{DynamicResource FormAsteriskForeground}"
                                     IsVisible="{TemplateBinding IsRequired}"

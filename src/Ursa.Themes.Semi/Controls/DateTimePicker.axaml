@@ -1,6 +1,7 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:u="https://irihi.tech/ursa">
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
     <ControlTheme x:Key="{x:Type u:DateTimePicker}" TargetType="u:DateTimePicker">
         <Setter Property="Background" Value="{DynamicResource CalendarDatePickerBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource CalendarDatePickerForeground}" />
@@ -87,11 +88,12 @@
                                             FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
                                             FontSize="{DynamicResource DefaultFontSize}"
                                             IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
-                                        <u:TimePickerPresenter Grid.Column="1"
+                                        <u:TimePickerPresenter
+                                            Grid.Column="1"
                                             Name="{x:Static u:DateTimePicker.PART_TimePicker}"
                                             FontSize="{DynamicResource DefaultFontSize}"
                                             NeedsConfirmation="{TemplateBinding NeedConfirmation}"
-                                            PanelFormat="{TemplateBinding PanelFormat}"/>
+                                            PanelFormat="{TemplateBinding PanelFormat}" />
                                     </Grid>
                                 </Border>
                             </Popup>
@@ -101,7 +103,7 @@
                 </DataValidationErrors>
             </ControlTemplate>
         </Setter>
-        
+
         <Style Selector="^.clearButton, ^.ClearButton">
             <Style Selector="^:pointerover /template/ Button#ClearButton">
                 <Setter Property="IsVisible" Value="{Binding $parent[u:DateTimePicker].SelectedDate, Converter={x:Static ObjectConverters.IsNotNull}}" />

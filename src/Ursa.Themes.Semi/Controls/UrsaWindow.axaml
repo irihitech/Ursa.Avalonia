@@ -13,7 +13,7 @@
         <Setter Property="u:OverlayDialogHost.IsModalStatusScope" Value="True" />
         <Setter Property="IsMinimizeButtonVisible" Value="{OnPlatform {x:True},macOS={x:False}}" />
         <Setter Property="IsRestoreButtonVisible" Value="{OnPlatform {x:True},macOS={x:False}}" />
-        <Setter Property="IsCloseButtonVisible" Value="{OnPlatform {x:True},macOS={x:False}}"/>
+        <Setter Property="IsCloseButtonVisible" Value="{OnPlatform {x:True},macOS={x:False}}" />
         <Setter Property="SystemDecorations">
             <OnPlatform>
                 <On Options="Default">
@@ -47,9 +47,9 @@
                                     RightContent="{Binding $parent[u:UrsaWindow].RightContent}" />
                                 <VisualLayerManager>
                                     <Panel>
-                                        <u:OverlayDialogHost 
-                                            Name="{x:Static u:UrsaWindow.PART_DialogHost}" 
-                                            IsModalStatusReporter="True" 
+                                        <u:OverlayDialogHost
+                                            Name="{x:Static u:UrsaWindow.PART_DialogHost}"
+                                            IsModalStatusReporter="True"
                                             IsTopLevel="True" />
                                         <u:WindowResizer
                                             HorizontalAlignment="Stretch"

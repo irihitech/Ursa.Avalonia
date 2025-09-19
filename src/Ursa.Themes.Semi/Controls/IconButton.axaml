@@ -2,7 +2,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa"
-    xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters">
+    xmlns:converters="using:Ursa.Themes.Semi.Converters">
     <Design.PreviewWith>
         <StackPanel Margin="20" Width="400">
             <u:IconButton Icon="{StaticResource SemiIconCamera}"
@@ -29,7 +29,6 @@
             <Button Theme="{DynamicResource BorderlessButton}" Classes="Danger" Content="Button" />
         </StackPanel>
     </Design.PreviewWith>
-    <converters:BooleansToOpacityConverter x:Key="OpacityConverter" />
     <ControlTheme x:Key="{x:Type u:IconButton}" TargetType="u:IconButton">
         <Setter Property="Padding" Value="{DynamicResource ButtonDefaultPadding}" />
         <Setter Property="MinHeight" Value="{DynamicResource ButtonDefaultHeight}" />
@@ -75,7 +74,7 @@
                                 ContentTemplate="{TemplateBinding IconTemplate}"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 Foreground="{Binding #PART_ContentPresenter.Foreground}"
-                                Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=!IsLoading, Converter={StaticResource OpacityConverter}}">
+                                Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=!IsLoading, Converter={converters:BooleansToOpacityConverter}}">
                                 <ContentPresenter.DataTemplates>
                                     <DataTemplate DataType="Geometry">
                                         <PathIcon

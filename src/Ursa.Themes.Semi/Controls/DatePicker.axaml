@@ -95,7 +95,7 @@
                 </DataValidationErrors>
             </ControlTemplate>
         </Setter>
-        
+
         <Style Selector="^.clearButton, ^.ClearButton">
             <Style Selector="^:pointerover /template/ Button#ClearButton">
                 <Setter Property="IsVisible" Value="{Binding $parent[u:DatePicker].SelectedDate, Converter={x:Static ObjectConverters.IsNotNull}}" />

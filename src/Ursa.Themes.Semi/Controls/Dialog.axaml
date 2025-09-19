@@ -17,8 +17,8 @@
                 <TransformOperationsTransition Property="RenderTransform" Duration="0.2" />
             </Transitions>
         </Setter>
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="RenderTransform" Value="scale(1.0)" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:CustomDialogControl">
@@ -134,8 +134,8 @@
         <Setter Property="MinWidth" Value="{DynamicResource DialogMinWidth}" />
         <Setter Property="MinHeight" Value="{DynamicResource DialogMinHeight}" />
         <Setter Property="CornerRadius" Value="{DynamicResource DialogCornerRadius}" />
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="Transitions">
             <Transitions>
                 <TransformOperationsTransition Property="RenderTransform" Duration="0.2" />

@@ -1,9 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters"
-    xmlns:u="https://irihi.tech/ursa">
-    <converters:NavMenuMarginConverter x:Key="NavMarginConverter" />
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:converters="using:Ursa.Themes.Semi.Converters">
 
     <ControlTheme x:Key="{x:Type u:NavMenu}" TargetType="u:NavMenu">
         <Setter Property="Grid.IsSharedSizeScope" Value="True" />
@@ -45,13 +44,9 @@
             <Setter Property="Grid.IsSharedSizeScope" Value="False" />
         </Style>
         <Style Selector="^.enable_animation">
-            <Setter Property="u:SizeAnimationHelper.TriggerAvaloniaProperty"
-                    Value="{x:Static u:NavMenu.IsHorizontalCollapsedProperty}">
-            </Setter>
-            <Setter Property="u:SizeAnimationHelper.CreateAnimation"
-                    Value="{DynamicResource NavMenuWidthAnimationGenerator}">
-            </Setter>
-            <Setter Property="u:SizeAnimationHelper.EnableWHAnimation" Value="True"></Setter>
+            <Setter Property="u:SizeAnimationHelper.TriggerAvaloniaProperty" Value="{x:Static u:NavMenu.IsHorizontalCollapsedProperty}" />
+            <Setter Property="u:SizeAnimationHelper.CreateAnimation" Value="{DynamicResource NavMenuWidthAnimationGenerator}" />
+            <Setter Property="u:SizeAnimationHelper.EnableWHAnimation" Value="True" />
         </Style>
     </ControlTheme>
 
@@ -71,7 +66,7 @@
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center">
                     <Grid.Margin>
-                        <MultiBinding Converter="{StaticResource NavMarginConverter}">
+                        <MultiBinding Converter="{converters:NavMenuMarginConverter}">
                             <Binding Path="SubMenuIndent" RelativeSource="{RelativeSource TemplatedParent}" />
                             <Binding Path="Level" RelativeSource="{RelativeSource TemplatedParent}" />
                             <Binding Path="IsHorizontalCollapsed" RelativeSource="{RelativeSource TemplatedParent}" />
