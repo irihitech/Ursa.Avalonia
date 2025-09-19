@@ -2,7 +2,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa"
-    xmlns:converters="clr-namespace:Ursa.Converters;assembly=Ursa">
+    xmlns:converters="using:Ursa.Converters">
     <Design.PreviewWith>
         <StackPanel Orientation="Horizontal" Margin="20" Width="300" Spacing="10">
             <u:Badge Header="5">

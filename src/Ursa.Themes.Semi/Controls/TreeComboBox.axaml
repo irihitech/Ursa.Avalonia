@@ -3,8 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:iri="https://irihi.tech/shared"
-    xmlns:converters="clr-namespace:Avalonia.Controls.Converters;assembly=Avalonia.Controls"
-    xmlns:converters1="clr-namespace:Ursa.Converters;assembly=Ursa">
+    xmlns:converters="using:Avalonia.Controls.Converters"
+    xmlns:converters1="using:Ursa.Converters">
     <Design.PreviewWith>
         <StackPanel Height="300">
             <u:TreeComboBox

@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:iri="https://irihi.tech/shared"
-    xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters">
+    xmlns:converters="using:Ursa.Themes.Semi.Converters">
     <ControlTheme x:Key="{x:Type u:Anchor}" TargetType="{x:Type u:Anchor}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="VerticalAlignment" Value="Top" />
