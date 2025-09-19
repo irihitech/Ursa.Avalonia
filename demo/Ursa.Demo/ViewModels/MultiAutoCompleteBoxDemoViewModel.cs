@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Ursa.Demo.Models;
 
 namespace Ursa.Demo.ViewModels;
 
@@ -86,10 +87,4 @@ public class MultiAutoCompleteBoxDemoViewModel : ObservableObject
         return control.MenuHeader.Contains(text, StringComparison.InvariantCultureIgnoreCase) ||
                control.Chinese.Contains(text, StringComparison.InvariantCultureIgnoreCase);
     }
-}
-
-public class ControlData
-{
-    public required string MenuHeader { get; init; }
-    public required string Chinese { get; init; }
 }

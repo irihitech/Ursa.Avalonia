@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:u="https://irihi.tech/ursa"
              xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
+             xmlns:models="clr-namespace:Ursa.Demo.Models"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:MultiAutoCompleteBoxDemoViewModel"
              x:Class="Ursa.Demo.Pages.MultiAutoCompleteBoxDemo">
@@ -16,7 +17,7 @@
                                 ItemFilter="{Binding FilterPredicate}"
                                 FilterMode="Custom">
             <u:MultiAutoCompleteBox.ItemTemplate>
-                <DataTemplate DataType="vm:ControlData">
+                <DataTemplate DataType="models:ControlData">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding MenuHeader}" VerticalAlignment="Center"/>
                         <TextBlock Text="{Binding Chinese}" Classes="Secondary" FontSize="12" Margin="8 0 0 0" VerticalAlignment="Center"/>
@@ -24,7 +25,7 @@
                 </DataTemplate>
             </u:MultiAutoCompleteBox.ItemTemplate>
             <u:MultiAutoCompleteBox.SelectedItemTemplate>
-                <DataTemplate DataType="vm:ControlData">
+                <DataTemplate DataType="models:ControlData">
                     <TextBlock Text="{Binding MenuHeader}" />
                 </DataTemplate>
             </u:MultiAutoCompleteBox.SelectedItemTemplate>
