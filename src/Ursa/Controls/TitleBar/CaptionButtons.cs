@@ -33,6 +33,7 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
     /// 切换进入全屏前 窗口的状态
     /// </summary>
     private WindowState? _oldWindowState;
+    
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         _closeButton = e.NameScope.Get<Button>(PART_CloseButton);
@@ -43,22 +44,12 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
         Button.ClickEvent.AddHandler((_, _) => OnRestore(), _restoreButton);
         Button.ClickEvent.AddHandler((_, _) => OnMinimize(), _minimizeButton);
         Button.ClickEvent.AddHandler((_, _) => OnToggleFullScreen(), _fullScreenButton);
-
-        Window.WindowStateProperty.Changed.AddClassHandler<Window, WindowState>(WindowStateChanged);
-        if (this.HostWindow is not null && !HostWindow.CanResize)
+        
+        if (HostWindow is not null && !HostWindow.CanResize)
         {
             _restoreButton.IsEnabled = false;
         }
         UpdateVisibility();
-    }
-
-    private void WindowStateChanged(Window window, AvaloniaPropertyChangedEventArgs<WindowState> e)
-    {
-        if (window != HostWindow) return;
-        if (e.NewValue.Value == WindowState.FullScreen)
-        {
-            _oldWindowState = e.OldValue.Value;
-        }
     }
 
     protected override void OnToggleFullScreen()
@@ -71,7 +62,7 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
             }
             else
             {
-                HostWindow.WindowState = _oldWindowState.HasValue ? _oldWindowState.Value : WindowState.Normal;
+                HostWindow.WindowState = _oldWindowState ?? WindowState.Normal;
             }
         }
     }
@@ -79,15 +70,21 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
     {
         if (hostWindow is null) return;
         base.Attach(hostWindow);
-        _windowStateSubscription = HostWindow?.GetObservable(Window.WindowStateProperty).Subscribe(_ =>
-        {
-            UpdateVisibility();
-        });
-        Action<bool> a = (_) => UpdateVisibility();
+        _windowStateSubscription = HostWindow?.GetPropertyChangedObservable(Window.WindowStateProperty).Subscribe(OnHostWindowStateChanged);
+        Action<bool> a = _ => UpdateVisibility();
         _fullScreenSubscription = HostWindow?.GetObservable(UrsaWindow.IsFullScreenButtonVisibleProperty).Subscribe(a);
         _minimizeSubscription = HostWindow?.GetObservable(UrsaWindow.IsMinimizeButtonVisibleProperty).Subscribe(a);
         _restoreSubscription = HostWindow?.GetObservable(UrsaWindow.IsRestoreButtonVisibleProperty).Subscribe(a);
         _closeSubscription = HostWindow?.GetObservable(UrsaWindow.IsCloseButtonVisibleProperty).Subscribe(a);
+    }
+
+    private void OnHostWindowStateChanged(AvaloniaPropertyChangedEventArgs e)
+    {
+        UpdateVisibility();
+        if (e.GetNewValue<WindowState>() == WindowState.FullScreen)
+        {
+            _oldWindowState = e.GetOldValue<WindowState>();
+        }
     }
     
     private void UpdateVisibility()
