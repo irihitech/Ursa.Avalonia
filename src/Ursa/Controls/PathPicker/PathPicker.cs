@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
@@ -222,7 +223,13 @@ public class PathPicker : TemplatedControl
     */
     private static IReadOnlyList<FilePickerFileType>? ParseFileTypes(string str)
     {
-        if (string.IsNullOrWhiteSpace(str)) return null;
+        if (string.IsNullOrWhiteSpace(str)) 
+            return null;
+        
+        var patternsRegex = new Regex(@"^\[(?:[^*.,]+|([^*.,]+(,[^,]+)+))\]$");
+        if(!patternsRegex.IsMatch(str))
+            throw new ArgumentException($"{nameof(str)} Invalid parameter, please refer to the following content: [Name, Pattern], such as [123, .exe, .pdb] or [All][ImageAll][11, *.txt]");
+        
         string[] separatedStrings = ["[", "][", "]"];
         var list = RemoveNewLine(str)
             .Replace(" ", string.Empty)
