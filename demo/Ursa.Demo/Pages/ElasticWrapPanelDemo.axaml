@@ -124,7 +124,7 @@
                             <Border Background="{DynamicResource SemiYellow5Color}" />
                             <Border Background="{DynamicResource SemiAmber5Color}" />
                             <Border Background="{DynamicResource SemiOrange5Color}" />
-                            <Border Background="{DynamicResource SemiGrey5Color}" />
+                            <Border Background="{DynamicResource SemiGray5Color}" />
                         </u:ElasticWrapPanel>
                     </TabItem>
                     <TabItem Header="Grid Auto">
@@ -150,7 +150,7 @@
                                 <Border Background="{DynamicResource SemiYellow5Color}" />
                                 <Border Background="{DynamicResource SemiAmber5Color}" />
                                 <Border Background="{DynamicResource SemiOrange5Color}" />
-                                <Border Background="{DynamicResource SemiGrey5Color}" />
+                                <Border Background="{DynamicResource SemiGray5Color}" />
                             </u:ElasticWrapPanel>
                             <Border Grid.Row="1" Margin="0,4" Theme="{StaticResource CardBorder}">
                                 <TextBlock Text="This is blank" />
@@ -181,7 +181,7 @@
                                     <Border Background="{DynamicResource SemiYellow5Color}" />
                                     <Border Background="{DynamicResource SemiAmber5Color}" />
                                     <Border Background="{DynamicResource SemiOrange5Color}" />
-                                    <Border Background="{DynamicResource SemiGrey5Color}" />
+                                    <Border Background="{DynamicResource SemiGray5Color}" />
                                 </u:ElasticWrapPanel>
                             </ScrollViewer>
                         </Border>

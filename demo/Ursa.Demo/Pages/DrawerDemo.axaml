@@ -41,7 +41,7 @@
         </u:Form>
         <Grid Grid.Column="1" ClipToBounds="True">
             <Border
-                BorderBrush="{DynamicResource SemiGrey1}"
+                BorderBrush="{DynamicResource SemiGray1}"
                 Background="{DynamicResource SemiColorBackground1}"
                 BorderThickness="1"
                 ClipToBounds="True"

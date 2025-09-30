@@ -57,7 +57,7 @@
             <u:Avatar Classes="Yellow" />
             <u:Avatar Classes="Amber" />
             <u:Avatar Classes="Orange" />
-            <u:Avatar Classes="Grey" />
+            <u:Avatar Classes="Gray" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <u:Avatar Classes="ExtraExtraSmall" />

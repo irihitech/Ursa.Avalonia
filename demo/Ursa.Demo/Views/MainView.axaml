@@ -53,9 +53,9 @@
                                 ActiveForeground="{DynamicResource SemiBlue5}"
                                 ActiveStrokeBrush="{DynamicResource SemiBlue5}"
                                 Data="{Binding Converter={StaticResource IconConverter}}"
-                                Foreground="{DynamicResource SemiGrey5}"
+                                Foreground="{DynamicResource SemiGray5}"
                                 IsActive="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=u:NavMenuItem}, Path=IsHighlighted, Mode=TwoWay}"
-                                StrokeBrush="{DynamicResource SemiGrey5}" />
+                                StrokeBrush="{DynamicResource SemiGray5}" />
                         </DataTemplate>
                     </u:NavMenu.IconTemplate>
                     <u:NavMenu.HeaderTemplate>
@@ -77,7 +77,7 @@
                                 u:NavMenu.CanToggle="True"
                                 Background="Transparent"
                                 DockPanel.Dock="Left">
-                                <iri:IrihiLogo Width="32" Fill="{DynamicResource SemiGrey7}" />
+                                <iri:IrihiLogo Width="32" Fill="{DynamicResource SemiGray7}" />
                             </Panel>
                             <TextBlock
                                 VerticalAlignment="Center"

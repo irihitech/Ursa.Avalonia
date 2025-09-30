@@ -15,5 +15,5 @@
     <StaticResource x:Key="AvatarYellowBackground" ResourceKey="SemiYellow3" />
     <StaticResource x:Key="AvatarAmberBackground" ResourceKey="SemiAmber3" />
     <StaticResource x:Key="AvatarOrangeBackground" ResourceKey="SemiOrange3" />
-    <StaticResource x:Key="AvatarGreyBackground" ResourceKey="SemiGrey3" />
+    <StaticResource x:Key="AvatarGrayBackground" ResourceKey="SemiGray3" />
 </ResourceDictionary>

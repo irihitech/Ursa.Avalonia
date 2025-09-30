@@ -3,8 +3,8 @@
     <StaticResource x:Key="DualBadgeDefaultHeaderForeground" ResourceKey="SemiColorWhite" />
     <StaticResource x:Key="DualBadgeDefaultForeground" ResourceKey="SemiColorWhite" />
     <LinearGradientBrush x:Key="DualBadgeDefaultHeaderBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="{StaticResource SemiGrey3Color}" Offset="0" />
-        <GradientStop Color="{StaticResource SemiGrey2Color}" Offset="1" />
+        <GradientStop Color="{StaticResource SemiGray3Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiGray2Color}" Offset="1" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="DualBadgeFlatRedBackground" StartPoint="0%,0%" EndPoint="0%,100%">
@@ -67,15 +67,15 @@
         <GradientStop Color="{StaticResource SemiOrange5Color}" Offset="0" />
         <GradientStop Color="{StaticResource SemiOrange4Color}" Offset="1" />
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="DualBadgeFlatGreyBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="{StaticResource SemiGrey5Color}" Offset="0" />
-        <GradientStop Color="{StaticResource SemiGrey4Color}" Offset="1" />
+    <LinearGradientBrush x:Key="DualBadgeFlatGrayBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SemiGray5Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiGray4Color}" Offset="1" />
     </LinearGradientBrush>
 
 
     <LinearGradientBrush x:Key="DualBadgePlasticHeaderBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="{StaticResource SemiGrey4Color}" Offset="0" />
-        <GradientStop Color="{StaticResource SemiGrey2Color}" Offset="1" />
+        <GradientStop Color="{StaticResource SemiGray4Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiGray2Color}" Offset="1" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="DualBadgePlasticRedBackground" StartPoint="0%,0%" EndPoint="0%,100%">
@@ -138,8 +138,8 @@
         <GradientStop Color="{StaticResource SemiOrange6Color}" Offset="0" />
         <GradientStop Color="{StaticResource SemiOrange4Color}" Offset="1" />
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="DualBadgePlasticGreyBackground" StartPoint="0%,0%" EndPoint="0%,100%">
-        <GradientStop Color="{StaticResource SemiGrey6Color}" Offset="0" />
-        <GradientStop Color="{StaticResource SemiGrey4Color}" Offset="1" />
+    <LinearGradientBrush x:Key="DualBadgePlasticGrayBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SemiGray6Color}" Offset="0" />
+        <GradientStop Color="{StaticResource SemiGray4Color}" Offset="1" />
     </LinearGradientBrush>
 </ResourceDictionary>

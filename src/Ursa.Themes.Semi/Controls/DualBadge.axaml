@@ -120,8 +120,8 @@
         <Style Selector="^.Orange">
             <Setter Property="Background" Value="{DynamicResource DualBadgeFlatOrangeBackground}" />
         </Style>
-        <Style Selector="^.Grey">
-            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatGreyBackground}" />
+        <Style Selector="^.Gray">
+            <Setter Property="Background" Value="{DynamicResource DualBadgeFlatGrayBackground}" />
         </Style>
 
         <Style Selector="^.FlatSquare">
@@ -176,8 +176,8 @@
             <Style Selector="^.Orange">
                 <Setter Property="Background" Value="{DynamicResource DualBadgePlasticOrangeBackground}" />
             </Style>
-            <Style Selector="^.Grey">
-                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticGreyBackground}" />
+            <Style Selector="^.Gray">
+                <Setter Property="Background" Value="{DynamicResource DualBadgePlasticGrayBackground}" />
             </Style>
         </Style>
 
