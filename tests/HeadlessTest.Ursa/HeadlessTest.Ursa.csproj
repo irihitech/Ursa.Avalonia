@@ -28,9 +28,4 @@
         <ProjectReference Include="..\..\src\Ursa\Ursa.csproj" />
         <ProjectReference Include="..\..\src\Ursa.Themes.Semi\Ursa.Themes.Semi.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <UpToDateCheckInput Remove="Controls\PathPickerTests\PathPickerTestView.axaml" />
-    </ItemGroup>
-
 </Project>
