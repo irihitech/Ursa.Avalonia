@@ -19,16 +19,18 @@ namespace Ursa.Controls;
 public partial class PathPicker : TemplatedControl
 {
     private const string PatternsRegexString = @"^\[(?:[^*.,]+|([^*.,]+(,[^,]+)+))\]$";
+    
 #if NETSTANDARD2_0
     private static readonly Regex _patternsRegex = new (PatternsRegexString);
 #endif
     
 #if NET8_0
     [GeneratedRegex(PatternsRegexString)]
-    internal static partial Regex GetPatternsRegex();
+    private static partial Regex GetPatternsRegex();
 #endif
     
     public const string PART_Button = "PART_Button";
+    
     public static readonly StyledProperty<string> SuggestedStartPathProperty =
         AvaloniaProperty.Register<PathPicker, string>(
             nameof(SuggestedStartPath), string.Empty);
@@ -230,7 +232,7 @@ public partial class PathPicker : TemplatedControl
     /**
     * [ParseFilePickerTypeStr][ParseFilePickerTypeStr]...
     */
-    private static IReadOnlyList<FilePickerFileType>? ParseFileTypes(string str)
+    internal static IReadOnlyList<FilePickerFileType>? ParseFileTypes(string str)
     {
         if (string.IsNullOrWhiteSpace(str)) 
             return null;
