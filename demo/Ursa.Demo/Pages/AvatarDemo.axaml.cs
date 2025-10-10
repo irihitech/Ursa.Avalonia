@@ -4,8 +4,12 @@ namespace Ursa.Demo.Pages;
 
 public partial class AvatarDemo : UserControl
 {
-    public AvatarDemo()
-    {
-        InitializeComponent();
-    }
+	public AvatarDemo()
+	{
+		InitializeComponent();
+	}
+
+	private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+	{
+	}
 }

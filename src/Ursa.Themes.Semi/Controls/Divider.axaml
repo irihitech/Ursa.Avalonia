@@ -4,7 +4,7 @@
     xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
         <StackPanel Spacing="20">
-            <u:Divider Content="Hello" />
+            <u:Divider Content="Hello" Width="300" Height="100" CornerRadius="2,2,2,2" />
         </StackPanel>
     </Design.PreviewWith>
     <ControlTheme x:Key="DividerLeftLine" TargetType="{x:Type Rectangle}">
