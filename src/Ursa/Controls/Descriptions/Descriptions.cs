@@ -4,30 +4,61 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
 using Avalonia.Metadata;
+using Ursa.Common;
 
 namespace Ursa.Controls;
 
 public class Descriptions: ItemsControl
 {
-    public static readonly StyledProperty<IDataTemplate?> HeaderTemplateProperty =
-        HeaderedContentControl.HeaderTemplateProperty.AddOwner<DescriptionsItem>();
+    public static readonly StyledProperty<IDataTemplate?> LabelTemplateProperty =
+        LabeledContentControl.LabelTemplateProperty.AddOwner<Descriptions>();
 
     [InheritDataTypeFromItems(nameof(ItemsSource))]
-    public IDataTemplate? HeaderTemplate
+    public IDataTemplate? LabelTemplate
     {
-        get => GetValue(HeaderTemplateProperty);
-        set => SetValue(HeaderTemplateProperty, value);
+        get => GetValue(LabelTemplateProperty);
+        set => SetValue(LabelTemplateProperty, value);
     }
 
-    public static readonly StyledProperty<IBinding?> HeaderValueBindingProperty = AvaloniaProperty.Register<Descriptions, IBinding?>(
-        nameof(HeaderValueBinding));
+    public static readonly StyledProperty<IBinding?> LabelBindingProperty = AvaloniaProperty.Register<Descriptions, IBinding?>(
+        nameof(LabelBinding));
 
     [AssignBinding]
     [InheritDataTypeFromItems(nameof(ItemsSource))]
-    public IBinding? HeaderValueBinding
+    public IBinding? LabelBinding
     {
-        get => GetValue(HeaderValueBindingProperty);
-        set => SetValue(HeaderValueBindingProperty, value);
+        get => GetValue(LabelBindingProperty);
+        set => SetValue(LabelBindingProperty, value);
+    }
+
+    public static readonly StyledProperty<Position> LabelPositionProperty =
+        DescriptionsItem.LabelPositionProperty.AddOwner<Descriptions>();
+
+    /// <summary>
+    /// The position of the header relative to the content. Only Top and Left are supported.
+    /// </summary>
+    public Position LabelPosition
+    {
+        get => GetValue(LabelPositionProperty);
+        set => SetValue(LabelPositionProperty, value);
+    }
+
+    public static readonly StyledProperty<GridLength> LabelWidthProperty =
+        AvaloniaProperty.Register<Descriptions, GridLength>(nameof(LabelWidth));
+
+    public GridLength LabelWidth
+    {
+        get => GetValue(LabelWidthProperty);
+        set => SetValue(LabelWidthProperty, value);
+    }
+
+    public static readonly StyledProperty<ItemAlignment> ItemAlignmentProperty =
+        DescriptionsItem.ItemAlignmentProperty.AddOwner<Descriptions>();
+
+    public ItemAlignment ItemAlignment
+    {
+        get => GetValue(ItemAlignmentProperty);
+        set => SetValue(ItemAlignmentProperty, value);
     }
     
     protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey)
@@ -39,11 +70,27 @@ public class Descriptions: ItemsControl
     {
         base.PrepareContainerForItemOverride(container, item, index);
         if (container is not DescriptionsItem descriptionItem) return;
-        if (HeaderValueBinding is not null)
+        if (container == item) return;
+        if (LabelBinding is not null)
         {
-            descriptionItem[!HeaderedContentControl.HeaderProperty] = HeaderValueBinding;
+            if (!descriptionItem.IsSet(LabeledContentControl.LabelProperty))
+            {
+                descriptionItem[!LabeledContentControl.LabelProperty] = LabelBinding;
+            }
+            if (!descriptionItem.IsSet(LabelTemplateProperty))
+            {
+                descriptionItem[!LabelTemplateProperty] = this[!LabelTemplateProperty];
+            }
+            if (!descriptionItem.IsSet(LabelPositionProperty))
+            {
+                descriptionItem[!LabelPositionProperty] = this[!LabelPositionProperty];
+            }
+            if (!descriptionItem.IsSet(DescriptionsItem.ItemAlignmentProperty))
+            {
+                descriptionItem[!DescriptionsItem.ItemAlignmentProperty] = this[!ItemAlignmentProperty];
+            }
         }
-        descriptionItem[!HeaderedContentControl.HeaderTemplateProperty] = this[!HeaderTemplateProperty];
+        descriptionItem[!HeaderedContentControl.HeaderTemplateProperty] = this[!LabelTemplateProperty];
     }
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
