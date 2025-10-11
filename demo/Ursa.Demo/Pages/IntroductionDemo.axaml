@@ -13,225 +13,211 @@
     <Design.DataContext>
         <vm:IntroductionDemoViewModel />
     </Design.DataContext>
-    <UserControl.Resources>
-        <SolidColorBrush x:Key="MaskBackground" Opacity="0.2" Color="{DynamicResource SemiBlue3Color}" />
-        <SolidColorBrush x:Key="MaskBorderBrush" Color="{DynamicResource SemiBlue5Color}" />
-    </UserControl.Resources>
     <UserControl.Styles>
         <Style Selector="u|Badge">
-            <Setter Property="Margin" Value="10" />
-            <Style Selector="^ > Border">
-                <Setter Property="Theme" Value="{DynamicResource CardBorder}" />
-                <Setter Property="Width" Value="100" />
-                <Setter Property="Height" Value="60" />
-            </Style>
+            <Setter Property="Margin" Value="6" />
         </Style>
         <Style Selector="u|DualBadge">
             <Setter Property="Margin" Value="4" />
         </Style>
+        <Style Selector="Border.SectionCard">
+            <Setter Property="Background" Value="{DynamicResource SemiColorBgDefault}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorBorder}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="16" />
+            <Setter Property="Margin" Value="8" />
+        </Style>
     </UserControl.Styles>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <StackPanel Margin="20">
-            <Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, Auto, Auto">
-                <u:Banner
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3"
-                    Grid.Row="0"
-                    Classes="Bordered"
-                    Content="Aesthetic revolution of productivity. "
-                    Header="Welcome to IRIHI Technology!"
-                    Type="Information" />
-                <StackPanel Grid.Column="1" Grid.Row="1" Spacing="20" Margin="8">
-                    <u:ImageViewer
-                        Name="viewer"
-                        Width="600"
-                        Height="300"
-                        Scale="0.2"
-                        Background="{DynamicResource SemiGrey1Color}"
-                        Source="../Assets/IRIHI.png">
-                        <u:ImageViewer.Overlayer>
-                            <Grid
-                                HorizontalAlignment="Stretch"
-                                ColumnDefinitions="*, Auto, *"
-                                IsVisible="{Binding #maskSwitch.IsChecked}">
-                                <Border
-                                    Grid.Column="0"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                                    Background="{DynamicResource MaskBackground}"
-                                    BorderBrush="{DynamicResource MaskBorderBrush}"
-                                    BorderThickness="0,0,1,0"
-                                    IsHitTestVisible="False" />
-                                <Rectangle
-                                    Grid.Column="1"
-                                    Width="150"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                                    Fill="Transparent"
-                                    IsHitTestVisible="False" />
-                                <Border
-                                    Grid.Column="2"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                                    Background="{DynamicResource MaskBackground}"
-                                    BorderBrush="{DynamicResource MaskBorderBrush}"
-                                    BorderThickness="1,0,0,0"
-                                    IsHitTestVisible="False" />
-                            </Grid>
-                        </u:ImageViewer.Overlayer>
-                    </u:ImageViewer>
-                    <u:Divider>
-                        <ToggleSwitch
-                            Name="maskSwitch"
-                            IsChecked="True"
-                            OnContent="Show Mask"
-                            OffContent="Show Mask" />
+        <StackPanel Margin="20" Spacing="20">
+            <!-- Welcome Banner -->
+            <u:Banner
+                Classes="Bordered"
+                Content="Aesthetic revolution of productivity. Explore Ursa controls below."
+                Header="Welcome to Ursa.Avalonia!"
+                Type="Information" />
+
+            <!-- Avatars Section -->
+            <Border Classes="SectionCard">
+                <StackPanel Spacing="12">
+                    <u:Divider HorizontalContentAlignment="Left">
+                        <TextBlock Text="Avatars" FontWeight="SemiBold" FontSize="16" />
                     </u:Divider>
-                    <Grid ColumnDefinitions="*,Auto,*">
-                        <StackPanel Grid.Column="0" Spacing="20">
-                            <u:IPv4Box HorizontalAlignment="Stretch" />
-                            <u:IPv4Box HorizontalAlignment="Stretch" InputMode="Fast" />
-                            <RepeatButton Command="{Binding ChangeAddress}" Content="Random" />
-                            <u:IPv4Box HorizontalAlignment="Stretch"
-                                       ShowLeadingZero="True"
-                                       IPAddress="{Binding Address}" />
-                            <u:IPv4Box HorizontalAlignment="Stretch" IsEnabled="False" />
-                        </StackPanel>
-                        <u:Timeline Grid.Column="1" HorizontalAlignment="Left" Mode="Alternate">
-                            <u:TimelineItem
-                                Content="Step 1"
-                                Header="ToDo"
-                                Type="Default"
-                                Time="2023-01-14 09:24:05" />
-                            <u:TimelineItem
-                                Content="Step 2"
-                                Header="Start"
-                                Position="Right"
-                                Type="Ongoing"
-                                Time="2024-01-04 22:32:58" />
-                            <u:TimelineItem
-                                Content="Step 3"
-                                Header="In Between"
-                                Type="Warning"
-                                Time="2024-01-05 00:08:29" />
-                            <u:TimelineItem
-                                Content="Step 4"
-                                Header="Finished"
-                                Position="Right"
-                                Type="Success"
-                                Time="2024-01-05 00:27:44" />
-                        </u:Timeline>
-                        <StackPanel Grid.Column="2" Spacing="20">
-                            <u:ButtonGroup Classes="Primary Solid" ItemsSource="{Binding ButtonGroupItems}" />
-                            <u:ButtonGroup Classes="Primary" ItemsSource="{Binding ButtonGroupItems}" />
-                            <u:ButtonGroup Classes="Primary Borderless" ItemsSource="{Binding ButtonGroupItems}" />
-                            <u:ButtonGroup Classes="Primary Large" ItemsSource="{Binding ButtonGroupItems}" />
-                            <u:ButtonGroup Classes="Primary Small" ItemsSource="{Binding ButtonGroupItems}" />
-                        </StackPanel>
-                    </Grid>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:Avatar Classes="Red" Content="UR" />
+                        <u:Avatar Classes="Blue" Content="SA" />
+                        <u:Avatar Classes="Green" Content="AV" />
+                        <u:Avatar Classes="Violet" Content="UI" />
+                        <u:Avatar Classes="Square Orange" Content="SQ" />
+                        <u:Avatar Classes="Square Teal" Content="XL" />
+                        <u:Avatar Source="../Assets/Ursa.ico" />
+                    </StackPanel>
                 </StackPanel>
+            </Border>
 
-                <StackPanel Grid.Column="2" Grid.Row="1" Spacing="20" Margin="8">
-                    <u:Divider HorizontalContentAlignment="Right">
-                        <u:Badge Header="Badge" />
+            <!-- Badges Section -->
+            <Border Classes="SectionCard">
+                <StackPanel Spacing="12">
+                    <u:Divider HorizontalContentAlignment="Left">
+                        <TextBlock Text="Badges" FontWeight="SemiBold" FontSize="16" />
                     </u:Divider>
                     <WrapPanel Orientation="Horizontal">
-                        <u:Badge Classes="Light" Header="Pyro">
-                            <u:Avatar Classes="Red" Content="火" />
+                        <u:Badge Classes="Primary" Header="New">
+                            <u:Avatar Classes="Blue" Content="A" />
                         </u:Badge>
-                        <u:Badge Classes="Inverted" Header="500" OverflowCount="99">
-                            <u:Avatar Classes="Square Blue" Content="水" />
+                        <u:Badge Classes="Success" Header="99" OverflowCount="99">
+                            <u:Avatar Classes="Square Green" Content="B" />
                         </u:Badge>
-                        <u:Badge Classes="Secondary" Dot="True">
-                            <u:Avatar Classes="Square Green" Content="风" />
+                        <u:Badge Classes="Warning" Dot="True">
+                            <u:Avatar Classes="Square Amber" Content="C" />
                         </u:Badge>
-                        <u:Badge Classes="Tertiary" Header="Electro">
-                            <u:Avatar Classes="Square Violet" Content="雷" />
+                        <u:Badge Classes="Danger" Header="Hot">
+                            <u:Avatar Classes="Square Red" Content="D" />
                         </u:Badge>
-                        <u:Badge Classes="Success" Header="Dendro" CornerPosition="BottomLeft">
-                            <u:Avatar Classes="Square Lime" Content="草" />
+                        <u:Badge Classes="Secondary" Header="VIP" CornerPosition="TopRight">
+                            <u:Avatar Classes="Square Violet" Content="E" />
                         </u:Badge>
-                        <u:Badge Classes="Warning" Header="Cryo" CornerPosition="BottomRight">
-                            <u:Avatar Classes="Square LightBlue" Content="冰" />
-                        </u:Badge>
-                        <u:Badge Classes="Danger" Header="Geo" CornerPosition="TopRight">
-                            <u:Avatar Classes="Square Amber" Content="岩" />
-                        </u:Badge>
-                        <u:Badge Header="Ursa" />
-                        <u:Badge Dot="True" />
                     </WrapPanel>
+                </StackPanel>
+            </Border>
 
-                    <u:Divider>
-                        <u:DualBadge Content="DualBadge" />
+            <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto">
+                <!-- Button Groups -->
+                <Border Grid.Column="0" Grid.Row="0" Classes="SectionCard">
+                    <StackPanel Spacing="12">
+                        <u:Divider HorizontalContentAlignment="Left">
+                            <TextBlock Text="Button Groups" FontWeight="SemiBold" FontSize="16" />
+                        </u:Divider>
+                        <u:ButtonGroup Classes="Primary Solid" ItemsSource="{Binding ButtonGroupItems}" />
+                        <u:ButtonGroup Classes="Success" ItemsSource="{Binding ButtonGroupItems}" />
+                        <u:ButtonGroup Classes="Warning Small" ItemsSource="{Binding ButtonGroupItems}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Icon Buttons -->
+                <Border Grid.Column="1" Grid.Row="0" Classes="SectionCard">
+                    <StackPanel Spacing="12">
+                        <u:Divider HorizontalContentAlignment="Left">
+                            <TextBlock Text="Icon Buttons" FontWeight="SemiBold" FontSize="16" />
+                        </u:Divider>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <u:IconButton Icon="{StaticResource SemiIconCamera}" />
+                            <u:IconButton Classes="Secondary" Icon="{StaticResource SemiIconCamera}" />
+                            <u:IconButton Classes="Warning" Icon="{StaticResource SemiIconCamera}" />
+                            <u:IconButton Classes="Danger" Icon="{StaticResource SemiIconCamera}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <u:IconButton Theme="{StaticResource SolidIconButton}" Icon="{StaticResource SemiIconCamera}" />
+                            <u:IconButton Theme="{StaticResource BorderlessIconButton}" Icon="{StaticResource SemiIconStar}" />
+                            <u:IconButton Theme="{StaticResource OutlineIconButton}" Icon="{StaticResource SemiIconLikeHeart}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Rating -->
+                <Border Grid.Column="0" Grid.Row="1" Classes="SectionCard">
+                    <StackPanel Spacing="12">
+                        <u:Divider HorizontalContentAlignment="Left">
+                            <TextBlock Text="Rating" FontWeight="SemiBold" FontSize="16" />
+                        </u:Divider>
+                        <u:Rating AllowHalf="True" Value="{Binding RatingValue}" />
+                        <u:Rating Classes="Small" Value="4" />
+                        <u:Rating Size="32" Foreground="{StaticResource SemiRed5}" Character="{StaticResource SemiIconLikeHeart}" Value="3" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Dividers -->
+                <Border Grid.Column="1" Grid.Row="1" Classes="SectionCard">
+                    <StackPanel Spacing="12">
+                        <u:Divider HorizontalContentAlignment="Left">
+                            <TextBlock Text="Dividers" FontWeight="SemiBold" FontSize="16" />
+                        </u:Divider>
+                        <u:Divider HorizontalContentAlignment="Center">Center</u:Divider>
+                        <u:Divider HorizontalContentAlignment="Left">Left</u:Divider>
+                        <u:Divider HorizontalContentAlignment="Right">Right</u:Divider>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="A" />
+                            <u:Divider Margin="12,0" Orientation="Vertical" />
+                            <TextBlock Text="B" />
+                            <u:Divider Margin="12,0" Orientation="Vertical" />
+                            <TextBlock Text="C" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- DualBadges -->
+            <Border Classes="SectionCard">
+                <StackPanel Spacing="12">
+                    <u:Divider HorizontalContentAlignment="Left">
+                        <TextBlock Text="Dual Badges" FontWeight="SemiBold" FontSize="16" />
                     </u:Divider>
                     <WrapPanel Orientation="Horizontal">
-                        <u:DualBadge Header="downloads">
+                        <u:DualBadge Header="version">
                             <u:DualBadge.Icon>
-                                <PathIcon
-                                    Theme="{StaticResource InnerPathIcon}"
-                                    Data="{StaticResource SemiIconDownload}" />
+                                <PathIcon Theme="{StaticResource InnerPathIcon}" Data="{StaticResource SemiIconStar}" />
                             </u:DualBadge.Icon>
-                            2.4k
+                            1.0.0
                         </u:DualBadge>
                         <u:DualBadge Classes="FlatSquare" Header="downloads">
                             <u:DualBadge.Icon>
-                                <PathIcon
-                                    Theme="{StaticResource InnerPathIcon}"
-                                    Data="{StaticResource SemiIconDownload}" />
+                                <PathIcon Theme="{StaticResource InnerPathIcon}" Data="{StaticResource SemiIconDownload}" />
                             </u:DualBadge.Icon>
-                            2.4k
+                            10k+
                         </u:DualBadge>
-                        <u:DualBadge Classes="Plastic" Header="downloads">
+                        <u:DualBadge Classes="Plastic" Header="status">
                             <u:DualBadge.Icon>
-                                <PathIcon
-                                    Theme="{StaticResource InnerPathIcon}"
-                                    Data="{StaticResource SemiIconDownload}" />
+                                <PathIcon Theme="{StaticResource InnerPathIcon}" Data="{StaticResource SemiIconTickCircle}" />
                             </u:DualBadge.Icon>
-                            2.4k
-                        </u:DualBadge>
-                        <u:DualBadge Classes="ForTheBadge" Header="downloads">
-                            <u:DualBadge.Icon>
-                                <PathIcon
-                                    Theme="{StaticResource InnerPathIcon}"
-                                    Data="{StaticResource SemiIconDownload}" />
-                            </u:DualBadge.Icon>
-                            2.4k
+                            active
                         </u:DualBadge>
                     </WrapPanel>
-
-                    <u:Divider HorizontalContentAlignment="Left">
-                        <ToggleSwitch
-                            Name="s"
-                            OffContent="Divider"
-                            OnContent="Divider"
-                            IsChecked="True" />
-                    </u:Divider>
-                    <u:LoadingContainer
-                        IsLoading="{Binding #s.IsChecked}"
-                        HorizontalContentAlignment="Stretch"
-                        LoadingMessage="Loading...">
-                        <StackPanel Spacing="20">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Windows" />
-                                <u:Divider Margin="12,0" Orientation="Vertical" />
-                                <TextBlock Text="macOS" />
-                                <u:Divider Orientation="Vertical" />
-                                <TextBlock Text="Linux" />
-                            </StackPanel>
-                            <Grid Height="100" Background="{DynamicResource MaskBackground}">
-                                <u:Divider HorizontalContentAlignment="Stretch">Stretch</u:Divider>
-                            </Grid>
-                        </StackPanel>
-                    </u:LoadingContainer>
-                    <u:TagInput HorizontalAlignment="Left" Width="550" />
-                    <u:Pagination
-                        PageSizeOptions="10, 20, 50, 100"
-                        ShowPageSizeSelector="True"
-                        TotalCount="600" />
                 </StackPanel>
+            </Border>
 
-            </Grid>
+            <!-- Breadcrumb -->
+            <Border Classes="SectionCard">
+                <StackPanel Spacing="12">
+                    <u:Divider HorizontalContentAlignment="Left">
+                        <TextBlock Text="Breadcrumb" FontWeight="SemiBold" FontSize="16" />
+                    </u:Divider>
+                    <u:Breadcrumb>
+                        <TextBlock Text="Home" />
+                        <TextBlock Text="Components" />
+                        <TextBlock Text="Ursa" />
+                        <TextBlock Text="Introduction" />
+                    </u:Breadcrumb>
+                </StackPanel>
+            </Border>
+
+            <!-- Slider & NumericUpDown -->
+            <Border Classes="SectionCard">
+                <StackPanel Spacing="12">
+                    <u:Divider HorizontalContentAlignment="Left">
+                        <TextBlock Text="Sliders and Inputs" FontWeight="SemiBold" FontSize="16" />
+                    </u:Divider>
+                    <Grid ColumnDefinitions="*, 100">
+                        <Slider Grid.Column="0" Minimum="0" Maximum="100" Value="{Binding SliderValue}" />
+                        <NumericUpDown Grid.Column="1" Margin="8,0,0,0" Value="{Binding SliderValue}" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Pagination -->
+            <Border Classes="SectionCard">
+                <StackPanel Spacing="12">
+                    <u:Divider HorizontalContentAlignment="Left">
+                        <TextBlock Text="Pagination" FontWeight="SemiBold" FontSize="16" />
+                    </u:Divider>
+                    <u:Pagination
+                        HorizontalAlignment="Center"
+                        PageSizeOptions="10, 20, 50"
+                        ShowPageSizeSelector="True"
+                        TotalCount="500" />
+                </StackPanel>
+            </Border>
         </StackPanel>
     </ScrollViewer>
 </UserControl>
