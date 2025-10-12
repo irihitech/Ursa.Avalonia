@@ -9,7 +9,7 @@
              x:Class="Ursa.Demo.Pages.DescriptionsDemo">
     <StackPanel Spacing="20">
         <TextBlock Text="Descriptions support different item alignments. "></TextBlock>
-        <u:Form>
+        <u:Form LabelPosition="Left">
             <u:EnumSelector u:FormItem.Label="Item Alignment" EnumType="u:ItemAlignment" Name="itemAlignment" Value="{x:Static u:ItemAlignment.Center}" />
         </u:Form>
         <u:Descriptions 
@@ -33,9 +33,33 @@
             ItemAlignment="{Binding #itemAlignment.Value}"
             >
             <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
-            <u:DescriptionsItem Label="7天留存" Content="98%" />
+            <u:DescriptionsItem Label="7天留存" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="98%" />
+                    <PathIcon Data="{DynamicResource SemiIconArrowUp}" Width="12" Height="12" Foreground="{DynamicResource SemiRed5}" />
+                </StackPanel>
+            </u:DescriptionsItem>
             <u:DescriptionsItem Label="安全等级" Content="3级" />
         </u:Descriptions>
+        
+        <TextBlock Text="Use ColumnWrapPanel to display horizontally" />
+        <u:Descriptions
+            HorizontalAlignment="Left"
+            ItemsSource="{Binding Items2}"
+            LabelBinding="{Binding Label}"
+            ItemAlignment="Plain" >
+            <u:Descriptions.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <u:ColumnWrapPanel Column="5" />
+                </ItemsPanelTemplate>
+            </u:Descriptions.ItemsPanel>
+            <u:Descriptions.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Description}" Margin="0 0 8 0" />
+                </DataTemplate>
+            </u:Descriptions.ItemTemplate>
+        </u:Descriptions>
+        
         <TextBlock Text="Setting LabelPosition to Top support Class Small and Large. "></TextBlock>
         <StackPanel >
             <Border Theme="{DynamicResource CardBorder}">
