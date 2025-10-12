@@ -66,7 +66,8 @@ public class ColumnWrapPanel: Panel, INavigableContainer
                 y += rowHeight;
                 rowHeight = 0;
             }
-            child.Arrange(new Rect(x, y, Math.Min(desiredSize.Width, desiredSize.Width), desiredSize.Height));
+
+            child.Arrange(new Rect(x, y, desiredSize.Width, desiredSize.Height));
             int colSpan = (int)Math.Ceiling(desiredSize.Width / unit);
             if (colSpan > Column) colSpan = Column; // limit to max columns
             x += colSpan * unit;
