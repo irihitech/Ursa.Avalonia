@@ -1,12 +1,13 @@
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Ursa.Common;
 
 namespace Ursa.Controls;
 
 public class DescriptionsItem: LabeledContentControl
 {
+    public const string PC_Horizontal = ":horizontal";
+    
     public static readonly StyledProperty<Position> LabelPositionProperty = AvaloniaProperty.Register<DescriptionsItem, Position>(
         nameof(LabelPosition));
 
@@ -33,4 +34,16 @@ public class DescriptionsItem: LabeledContentControl
         get => GetValue(LabelWidthProperty);
         set => SetValue(LabelWidthProperty, value);
     }
+
+    static DescriptionsItem()
+    {
+        LabelPositionProperty.Changed.AddClassHandler<DescriptionsItem, Position>((item, args)=> item.OnLabelPositionChanged(args));
+    }
+
+    private void OnLabelPositionChanged(AvaloniaPropertyChangedEventArgs<Position> args)
+    {
+        PseudoClasses.Set(PC_Horizontal, args.NewValue.Value == Position.Left || args.NewValue.Value == Position.Right);
+    }
+    
+    
 }

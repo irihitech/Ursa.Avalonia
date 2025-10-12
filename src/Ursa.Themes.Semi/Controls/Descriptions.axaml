@@ -1,20 +1,70 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:u="https://irihi.tech/ursa">
+                    xmlns:u="https://irihi.tech/ursa"
+                    xmlns:iri="https://irihi.tech/shared">
     <!-- Add Resources Here -->
     <ControlTheme x:Key="{x:Type u:Descriptions}" TargetType="u:Descriptions">
+        <Setter Property="Grid.IsSharedSizeScope" Value="False" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Descriptions">
                 <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:fixed-width">
+            <Setter Property="Grid.IsSharedSizeScope" Value="True" />
+        </Style>
     </ControlTheme>
     
     <ControlTheme x:Key="{x:Type u:DescriptionsItem}" TargetType="u:DescriptionsItem">
-        <Setter Property="Template">
-            <ControlTemplate TargetType="u:DescriptionsItem">
-                
-            </ControlTemplate>
-        </Setter>
+        <Style Selector="^:horizontal">
+            <Setter Property="Template">
+                <ControlTemplate TargetType="u:DescriptionsItem">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Label" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Name="{x:Static u:DescriptionsItem.PART_Label}"
+                            Grid.Column="0"
+                            Content="{TemplateBinding Label}"
+                            ContentTemplate="{TemplateBinding LabelTemplate}"
+                            Width="{TemplateBinding LabelWidth}"
+                            />
+                        <ContentPresenter 
+                            Name="{x:Static iri:PartNames.PART_ContentPresenter}"
+                            Grid.Column="1"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            />
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+            
+            <Style Selector="^[ItemAlignment=Center]">
+                <Style Selector="^ /template/ Label#PART_Label">
+                    <Setter Property="HorizontalAlignment" Value="Right" />
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                </Style>
+            </Style>
+            <Style Selector="^[ItemAlignment=Left]">
+                <Style Selector="^ /template/ Label#PART_Label">
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                </Style>
+            </Style>
+            <Style Selector="^[ItemAlignment=Justify]">
+                <Style Selector="^ /template/ Label#PART_Label">
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="HorizontalAlignment" Value="Right" />
+                </Style>
+            </Style>
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

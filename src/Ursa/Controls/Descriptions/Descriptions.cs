@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
@@ -8,8 +9,11 @@ using Ursa.Common;
 
 namespace Ursa.Controls;
 
+[PseudoClasses(PC_FixedWidth)]
 public class Descriptions: ItemsControl
 {
+    public const string PC_FixedWidth = ":fixed-width";
+    
     public static readonly StyledProperty<IDataTemplate?> LabelTemplateProperty =
         LabeledContentControl.LabelTemplateProperty.AddOwner<Descriptions>();
 
@@ -60,7 +64,30 @@ public class Descriptions: ItemsControl
         get => GetValue(ItemAlignmentProperty);
         set => SetValue(ItemAlignmentProperty, value);
     }
-    
+
+    static Descriptions()
+    {
+        LabelWidthProperty.Changed.AddClassHandler<Descriptions>((x, args) => x.OnLabelWidthChanged(args));
+        ItemAlignmentProperty.Changed.AddClassHandler<Descriptions, ItemAlignment>((x, args) =>
+            x.OnItemAlignmentChanged(args));
+    }
+
+    private void OnItemAlignmentChanged(AvaloniaPropertyChangedEventArgs<ItemAlignment> args)
+    {
+        PseudoClasses.Set(PC_FixedWidth, args.GetNewValue<ItemAlignment>() != ItemAlignment.PLain);
+    }
+
+    private void OnLabelWidthChanged(AvaloniaPropertyChangedEventArgs e)
+    {
+        foreach (var item in this.VisualChildren)
+        {
+            if (item is DescriptionsItem descriptionItem)
+            {
+                descriptionItem.LabelWidth = LabelWidth.IsAbsolute ? LabelWidth.Value : double.NaN;
+            }
+        }
+    }
+
     protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey)
     {
         return new DescriptionsItem();
@@ -88,6 +115,10 @@ public class Descriptions: ItemsControl
             if (!descriptionItem.IsSet(DescriptionsItem.ItemAlignmentProperty))
             {
                 descriptionItem[!DescriptionsItem.ItemAlignmentProperty] = this[!ItemAlignmentProperty];
+            }
+            if (!descriptionItem.IsSet(DescriptionsItem.LabelWidthProperty))
+            {
+                descriptionItem.LabelWidth = LabelWidth.IsAbsolute ? LabelWidth.Value : double.NaN;
             }
         }
         descriptionItem[!HeaderedContentControl.HeaderTemplateProperty] = this[!LabelTemplateProperty];
