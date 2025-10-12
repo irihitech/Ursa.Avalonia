@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Ursa.Common;
 
 namespace Ursa.Controls;
@@ -38,6 +39,12 @@ public class DescriptionsItem: LabeledContentControl
     static DescriptionsItem()
     {
         LabelPositionProperty.Changed.AddClassHandler<DescriptionsItem, Position>((item, args)=> item.OnLabelPositionChanged(args));
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        PseudoClasses.Set(PC_Horizontal, this.LabelPosition is Position.Left or Position.Right);
     }
 
     private void OnLabelPositionChanged(AvaloniaPropertyChangedEventArgs<Position> args)

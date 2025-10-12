@@ -1,0 +1,30 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+             xmlns:common="clr-namespace:Ursa.Common;assembly=Ursa"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="viewModels:DescriptionsDemoViewModel"
+             x:Class="Ursa.Demo.Pages.DescriptionsDemo">
+    <StackPanel Spacing="20">
+        <u:Form>
+            <u:EnumSelector EnumType="common:Position" Name="position" />
+            <u:EnumSelector EnumType="u:ItemAlignment" Name="itemAlignment" />
+        </u:Form>
+        <u:Descriptions 
+            ItemsSource="{Binding Items}"
+            LabelBinding="{Binding Label}"
+            LabelPosition="{Binding #position.Value}"
+            ItemAlignment="{Binding #itemAlignment.Value}"
+            MaxWidth="500"
+            >
+            <u:Descriptions.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Description}" />
+                </DataTemplate>
+            </u:Descriptions.ItemTemplate>
+        </u:Descriptions>
+    </StackPanel>
+</UserControl>

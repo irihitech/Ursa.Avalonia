@@ -25,7 +25,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Label
-                            Name="{x:Static u:DescriptionsItem.PART_Label}"
+                            Name="{x:Static u:LabeledContentControl.PART_Label}"
                             Grid.Column="0"
                             Content="{TemplateBinding Label}"
                             ContentTemplate="{TemplateBinding LabelTemplate}"

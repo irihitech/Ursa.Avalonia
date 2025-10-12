@@ -8,7 +8,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 
-namespace Ursa.Common;
+namespace Ursa.Controls;
 
 /// <summary>
 /// LabeledContentControl is almost identical to HeaderedContentControl, but uses "Label" terminology instead of "Header".
@@ -16,9 +16,10 @@ namespace Ursa.Common;
 /// Label part is recommended to be Label control for accessibility.
 /// </summary>
 [TemplatePart(PART_Label, typeof(Label))]
-public class LabeledContentControl: ContentControl
+public abstract class LabeledContentControl: ContentControl
 {
     public const string PART_Label = "PART_Label";
+    
     public static readonly StyledProperty<object?> LabelProperty = AvaloniaProperty.Register<LabeledContentControl, object?>(
         nameof(Label));
 
