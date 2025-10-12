@@ -4,21 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:u="https://irihi.tech/ursa"
              xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
-             xmlns:common="clr-namespace:Ursa.Common;assembly=Ursa"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="viewModels:DescriptionsDemoViewModel"
              x:Class="Ursa.Demo.Pages.DescriptionsDemo">
     <StackPanel Spacing="20">
+        <TextBlock Text="Descriptions support different item alignments. "></TextBlock>
         <u:Form>
-            <u:EnumSelector EnumType="common:Position" Name="position" Value="{x:Static common:Position.Left}" />
-            <u:EnumSelector EnumType="u:ItemAlignment" Name="itemAlignment" Value="{x:Static u:ItemAlignment.Center}" />
+            <u:EnumSelector u:FormItem.Label="Item Alignment" EnumType="u:ItemAlignment" Name="itemAlignment" Value="{x:Static u:ItemAlignment.Center}" />
         </u:Form>
         <u:Descriptions 
+            HorizontalAlignment="Left"
             ItemsSource="{Binding Items}"
             LabelBinding="{Binding Label}"
-            LabelPosition="{Binding #position.Value}"
             ItemAlignment="{Binding #itemAlignment.Value}"
-            MaxWidth="500"
+            MaxWidth="400"
             >
             <u:Descriptions.ItemTemplate>
                 <DataTemplate>
@@ -26,12 +25,45 @@
                 </DataTemplate>
             </u:Descriptions.ItemTemplate>
         </u:Descriptions>
+        
+        <TextBlock Text="Descriptions support XAML inline declaration. "></TextBlock>
         <u:Descriptions
-            LabelPosition="{Binding #position.Value}"
+            HorizontalAlignment="Left"
+            MaxWidth="400"
             ItemAlignment="{Binding #itemAlignment.Value}"
             >
-            <u:DescriptionsItem Label="Hello" Content="World" />
-            <u:DescriptionsItem Label="Hello" Content="Avalonia" />
+            <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
+            <u:DescriptionsItem Label="7天留存" Content="98%" />
+            <u:DescriptionsItem Label="安全等级" Content="3级" />
         </u:Descriptions>
+        <TextBlock Text="Setting LabelPosition to Top support Class Small and Large. "></TextBlock>
+        <StackPanel >
+            <Border Theme="{DynamicResource CardBorder}">
+                <u:Descriptions
+                    Classes="Small"
+                    LabelPosition="Top">
+                    <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
+                    <u:DescriptionsItem Label="7天留存" Content="98%" />
+                    <u:DescriptionsItem Label="安全等级" Content="3级" />
+                </u:Descriptions>
+            </Border>
+            <Border Theme="{DynamicResource CardBorder}">
+                <u:Descriptions
+                    LabelPosition="Top">
+                    <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
+                    <u:DescriptionsItem Label="7天留存" Content="98%" />
+                    <u:DescriptionsItem Label="安全等级" Content="3级" />
+                </u:Descriptions>
+            </Border>
+            <Border Theme="{DynamicResource CardBorder}">
+                <u:Descriptions
+                    Classes="Large"
+                    LabelPosition="Top">
+                    <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
+                    <u:DescriptionsItem Label="7天留存" Content="98%" />
+                    <u:DescriptionsItem Label="安全等级" Content="3级" />
+                </u:Descriptions>
+            </Border>
+        </StackPanel>
     </StackPanel>
 </UserControl>

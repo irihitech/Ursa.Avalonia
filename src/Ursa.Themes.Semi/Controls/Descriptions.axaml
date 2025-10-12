@@ -21,15 +21,23 @@
         <Style Selector="^:fixed-width">
             <Setter Property="Grid.IsSharedSizeScope" Value="True" />
         </Style>
+        <Style Selector="^[LabelPosition=Top]">
+            <Setter Property="ItemsPanel">
+                <ItemsPanelTemplate>
+                    <u:ColumnWrapPanel />
+                </ItemsPanelTemplate>
+            </Setter>
+        </Style>
     </ControlTheme>
     
     <ControlTheme x:Key="{x:Type u:DescriptionsItem}" TargetType="u:DescriptionsItem">
         <Style Selector="^:horizontal">
             <Setter Property="Template">
                 <ControlTemplate TargetType="u:DescriptionsItem">
-                    <Grid>
+                    <Grid Margin="0 0 0 12">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" SharedSizeGroup="Label" />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Label
@@ -42,9 +50,10 @@
                             ContentTemplate="{TemplateBinding LabelTemplate}"
                             Width="{TemplateBinding LabelWidth}"
                             />
+                        <TextBlock Grid.Column="1" Text=":" Name="PART_Colon" Foreground="{DynamicResource SemiColorText2}" Margin="0 0 8 0" />
                         <ContentPresenter 
                             Name="{x:Static iri:PartNames.PART_ContentPresenter}"
-                            Grid.Column="1"
+                            Grid.Column="2"
                             TextBlock.LineHeight="20"
                             Foreground="{DynamicResource SemiColorText0}"
                             Content="{TemplateBinding Content}"
@@ -57,6 +66,10 @@
             <Style Selector="^[ItemAlignment=Center]">
                 <Style Selector="^ /template/ Label#PART_Label">
                     <Setter Property="HorizontalAlignment" Value="Right" />
+                    <Setter Property="Padding" Value="0 0 24 0" />
+                </Style>
+                <Style Selector="^ /template/ TextBlock#PART_Colon">
+                    <Setter Property="IsVisible" Value="False" />
                 </Style>
                 <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                     <Setter Property="HorizontalAlignment" Value="Left" />
@@ -65,6 +78,10 @@
             <Style Selector="^[ItemAlignment=Left]">
                 <Style Selector="^ /template/ Label#PART_Label">
                     <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="Padding" Value="0 0 24 0" />
+                </Style>
+                <Style Selector="^ /template/ TextBlock#PART_Colon">
+                    <Setter Property="IsVisible" Value="False" />
                 </Style>
                 <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                     <Setter Property="HorizontalAlignment" Value="Left" />
@@ -73,9 +90,64 @@
             <Style Selector="^[ItemAlignment=Justify]">
                 <Style Selector="^ /template/ Label#PART_Label">
                     <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="Padding" Value="0 0 24 0" />
+                </Style>
+                <Style Selector="^ /template/ TextBlock#PART_Colon">
+                    <Setter Property="IsVisible" Value="False" />
                 </Style>
                 <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                     <Setter Property="HorizontalAlignment" Value="Right" />
+                </Style>
+            </Style>
+        </Style>
+        <Style Selector="^:vertical">
+            <Setter Property="iri:ClassHelper.ClassSource" Value="{Binding $parent[u:Descriptions]}" />
+            <Setter Property="Template">
+                <ControlTemplate TargetType="u:DescriptionsItem">
+                    <StackPanel>
+                        <Label
+                            Name="{x:Static u:LabeledContentControl.PART_Label}"
+                            DataContext="{TemplateBinding Label}"
+                            Foreground="{DynamicResource SemiColorText2}"
+                            Content="{TemplateBinding Label}"
+                            ContentTemplate="{TemplateBinding LabelTemplate}"
+                            Width="{TemplateBinding LabelWidth}"
+                        />
+                        <ContentPresenter 
+                            Name="{x:Static iri:PartNames.PART_ContentPresenter}"
+                            Foreground="{DynamicResource SemiColorText0}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                        />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter>
+            <Style Selector="^ /template/ Label#PART_Label">
+                <Setter Property="Margin" Value="0 0 0 4" />
+                <Setter Property="FontSize" Value="{DynamicResource SemiFontSizeRegular}" />
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Margin" Value="0 0 60 0" />
+                <Setter Property="FontSize" Value="{DynamicResource SemiFontSizeHeader4}" />
+            </Style>
+            <Style Selector="^.Small">
+                <Style Selector="^ /template/ Label#PART_Label">
+                    <Setter Property="Margin" Value="0 0 0 0" />
+                    <Setter Property="FontSize" Value="{DynamicResource SemiFontSizeSmall}" />
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="Margin" Value="0 0 48 0" />
+                    <Setter Property="FontSize" Value="{DynamicResource SemiFontSizeHeader6}" />
+                </Style>
+            </Style>
+            <Style Selector="^.Large">
+                <Style Selector="^ /template/ Label#PART_Label">
+                    <Setter Property="Margin" Value="0 0 0 4" />
+                    <Setter Property="FontSize" Value="{DynamicResource SemiFontSizeSmall}" />
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="Margin" Value="0 0 80 0" />
+                    <Setter Property="FontSize" Value="{DynamicResource SemiFontSizeHeader2}" />
                 </Style>
             </Style>
         </Style>

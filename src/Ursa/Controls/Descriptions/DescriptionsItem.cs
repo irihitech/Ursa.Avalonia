@@ -1,13 +1,15 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Irihi.Avalonia.Shared.Common;
 using Ursa.Common;
 
 namespace Ursa.Controls;
 
+[PseudoClasses(PseudoClassName.PC_Horizontal, PseudoClassName.PC_Vertical)]
 public class DescriptionsItem: LabeledContentControl
 {
-    public const string PC_Horizontal = ":horizontal";
     
     public static readonly StyledProperty<Position> LabelPositionProperty = AvaloniaProperty.Register<DescriptionsItem, Position>(
         nameof(LabelPosition));
@@ -44,12 +46,14 @@ public class DescriptionsItem: LabeledContentControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        PseudoClasses.Set(PC_Horizontal, this.LabelPosition is Position.Left or Position.Right);
+        PseudoClasses.Set(PseudoClassName.PC_Horizontal, this.LabelPosition is Position.Left or Position.Right);
+        PseudoClasses.Set(PseudoClassName.PC_Vertical, this.LabelPosition is Position.Top or Position.Bottom);
     }
 
     private void OnLabelPositionChanged(AvaloniaPropertyChangedEventArgs<Position> args)
     {
-        PseudoClasses.Set(PC_Horizontal, args.NewValue.Value == Position.Left || args.NewValue.Value == Position.Right);
+        PseudoClasses.Set(PseudoClassName.PC_Horizontal, args.GetNewValue<Position>() is Position.Left or Position.Right);
+        PseudoClasses.Set(PseudoClassName.PC_Vertical, args.GetNewValue<Position>() is Position.Top or Position.Bottom);
     }
     
     

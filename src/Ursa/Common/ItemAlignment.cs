@@ -16,7 +16,7 @@ public enum ItemAlignment
     /// <summary>
     /// Content docks to the right of Header.
     /// </summary>
-    PLain,
+    Plain,
     /// <summary>
     /// The separate line of header and content is aligned. Header left aligned and Content right aligned.
     /// </summary>

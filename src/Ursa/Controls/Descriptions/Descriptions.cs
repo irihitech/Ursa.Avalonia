@@ -74,13 +74,13 @@ public class Descriptions: ItemsControl
 
     private void OnItemAlignmentChanged(AvaloniaPropertyChangedEventArgs<ItemAlignment> args)
     {
-        PseudoClasses.Set(PC_FixedWidth, args.GetNewValue<ItemAlignment>() != ItemAlignment.PLain);
+        PseudoClasses.Set(PC_FixedWidth, args.GetNewValue<ItemAlignment>() != ItemAlignment.Plain);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        PseudoClasses.Set(PC_FixedWidth, this.ItemAlignment != ItemAlignment.PLain);
+        PseudoClasses.Set(PC_FixedWidth, this.ItemAlignment != ItemAlignment.Plain);
     }
 
     private void OnLabelWidthChanged(AvaloniaPropertyChangedEventArgs e)
