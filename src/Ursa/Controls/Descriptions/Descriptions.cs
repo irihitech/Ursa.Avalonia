@@ -4,6 +4,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
+using Avalonia.LogicalTree;
 using Avalonia.Metadata;
 using Ursa.Common;
 
@@ -85,12 +86,9 @@ public class Descriptions: ItemsControl
 
     private void OnLabelWidthChanged(AvaloniaPropertyChangedEventArgs e)
     {
-        foreach (var item in this.VisualChildren)
+        foreach (var item in this.GetLogicalDescendants().OfType<DescriptionsItem>())
         {
-            if (item is DescriptionsItem descriptionItem)
-            {
-                descriptionItem.LabelWidth = LabelWidth.IsAbsolute ? LabelWidth.Value : double.NaN;
-            }
+            item.LabelWidth = LabelWidth.IsAbsolute ? LabelWidth.Value : double.NaN;
         }
     }
 
