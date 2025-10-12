@@ -10,8 +10,8 @@
              x:Class="Ursa.Demo.Pages.DescriptionsDemo">
     <StackPanel Spacing="20">
         <u:Form>
-            <u:EnumSelector EnumType="common:Position" Name="position" />
-            <u:EnumSelector EnumType="u:ItemAlignment" Name="itemAlignment" />
+            <u:EnumSelector EnumType="common:Position" Name="position" Value="{x:Static common:Position.Left}" />
+            <u:EnumSelector EnumType="u:ItemAlignment" Name="itemAlignment" Value="{x:Static u:ItemAlignment.Center}" />
         </u:Form>
         <u:Descriptions 
             ItemsSource="{Binding Items}"
@@ -25,6 +25,13 @@
                     <TextBlock Text="{Binding Description}" />
                 </DataTemplate>
             </u:Descriptions.ItemTemplate>
+        </u:Descriptions>
+        <u:Descriptions
+            LabelPosition="{Binding #position.Value}"
+            ItemAlignment="{Binding #itemAlignment.Value}"
+            >
+            <u:DescriptionsItem Label="Hello" Content="World" />
+            <u:DescriptionsItem Label="Hello" Content="Avalonia" />
         </u:Descriptions>
     </StackPanel>
 </UserControl>

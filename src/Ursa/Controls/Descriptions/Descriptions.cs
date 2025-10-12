@@ -104,35 +104,42 @@ public class Descriptions: ItemsControl
         base.PrepareContainerForItemOverride(container, item, index);
         if (container is not DescriptionsItem descriptionItem) return;
         if (container == item) return;
-        if (LabelBinding is not null)
-        {
-            if (!descriptionItem.IsSet(LabeledContentControl.LabelProperty))
-            {
-                descriptionItem[!LabeledContentControl.LabelProperty] = LabelBinding;
-            }
-            if (!descriptionItem.IsSet(LabelTemplateProperty))
-            {
-                descriptionItem[!LabelTemplateProperty] = this[!LabelTemplateProperty];
-            }
-            if (!descriptionItem.IsSet(LabelPositionProperty))
-            {
-                descriptionItem[!LabelPositionProperty] = this[!LabelPositionProperty];
-            }
-            if (!descriptionItem.IsSet(DescriptionsItem.ItemAlignmentProperty))
-            {
-                descriptionItem[!DescriptionsItem.ItemAlignmentProperty] = this[!ItemAlignmentProperty];
-            }
-            if (!descriptionItem.IsSet(DescriptionsItem.LabelWidthProperty))
-            {
-                descriptionItem.LabelWidth = LabelWidth.IsAbsolute ? LabelWidth.Value : double.NaN;
-            }
-        }
-        descriptionItem[!HeaderedContentControl.HeaderTemplateProperty] = this[!LabelTemplateProperty];
+        SetupBindings(descriptionItem);
     }
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
         recycleKey = null;
-        return item is not DescriptionsItem;
+        if (item is not DescriptionsItem descriptionItem) return true;
+        SetupBindings(descriptionItem);
+        return false;
+    }
+
+    private void SetupBindings(DescriptionsItem item)
+    {
+        if (LabelBinding is not null)
+        {
+            if (!item.IsSet(LabeledContentControl.LabelProperty))
+            {
+                item[!LabeledContentControl.LabelProperty] = LabelBinding;
+            }
+        }
+        if (!item.IsSet(LabelTemplateProperty))
+        {
+            item[!LabelTemplateProperty] = this[!LabelTemplateProperty];
+        }
+        if (!item.IsSet(LabelPositionProperty))
+        {
+            item[!LabelPositionProperty] = this[!LabelPositionProperty];
+        }
+        if (!item.IsSet(DescriptionsItem.ItemAlignmentProperty))
+        {
+            item[!DescriptionsItem.ItemAlignmentProperty] = this[!ItemAlignmentProperty];
+        }
+        if (!item.IsSet(DescriptionsItem.LabelWidthProperty))
+        {
+            item.LabelWidth = LabelWidth.IsAbsolute ? LabelWidth.Value : double.NaN;
+        }
+        item[!HeaderedContentControl.HeaderTemplateProperty] = this[!LabelTemplateProperty];
     }
 }
