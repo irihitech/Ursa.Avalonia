@@ -46,15 +46,18 @@ public class DescriptionsItem: LabeledContentControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        PseudoClasses.Set(PseudoClassName.PC_Horizontal, this.LabelPosition is Position.Left or Position.Right);
-        PseudoClasses.Set(PseudoClassName.PC_Vertical, this.LabelPosition is Position.Top or Position.Bottom);
+        UpdatePositionPseudoClass(LabelPosition);
     }
 
     private void OnLabelPositionChanged(AvaloniaPropertyChangedEventArgs<Position> args)
     {
-        PseudoClasses.Set(PseudoClassName.PC_Horizontal, args.GetNewValue<Position>() is Position.Left or Position.Right);
-        PseudoClasses.Set(PseudoClassName.PC_Vertical, args.GetNewValue<Position>() is Position.Top or Position.Bottom);
+        UpdatePositionPseudoClass(args.GetNewValue<Position>());
     }
     
+    private void UpdatePositionPseudoClass(Position newPosition)
+    {
+        PseudoClasses.Set(PseudoClassName.PC_Horizontal, newPosition is Position.Left or Position.Right);
+        PseudoClasses.Set(PseudoClassName.PC_Vertical, newPosition is Position.Top or Position.Bottom);
+    }
     
 }

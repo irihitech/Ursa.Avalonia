@@ -140,6 +140,5 @@ public class Descriptions: ItemsControl
         {
             item.LabelWidth = LabelWidth.IsAbsolute ? LabelWidth.Value : double.NaN;
         }
-        item[!HeaderedContentControl.HeaderTemplateProperty] = this[!LabelTemplateProperty];
     }
 }

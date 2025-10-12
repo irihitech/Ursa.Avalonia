@@ -8,7 +8,7 @@ namespace Ursa.Controls;
 public class ColumnWrapPanel: Panel, INavigableContainer
 {
     public static readonly StyledProperty<int> ColumnProperty = AvaloniaProperty.Register<ColumnWrapPanel, int>(
-        nameof(Column), int.MaxValue);
+        nameof(Column), int.MaxValue, validate: a => a > 0);
 
     public int Column
     {
