@@ -21,7 +21,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ReactiveUI.Avalonia" Version="14.7.1" />
+        <PackageReference Include="ReactiveUI.Avalonia" Version="11.3.0" />
     </ItemGroup>
 
     <ItemGroup>
