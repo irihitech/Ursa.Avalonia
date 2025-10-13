@@ -15,15 +15,11 @@
         <u:Descriptions 
             HorizontalAlignment="Left"
             ItemsSource="{Binding Items}"
-            LabelBinding="{Binding Label}"
+            LabelMemberBinding="{Binding Label}"
+            DisplayMemberBinding="{Binding Description}"
             ItemAlignment="{Binding #itemAlignment.Value}"
             MaxWidth="400"
             >
-            <u:Descriptions.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Description}" />
-                </DataTemplate>
-            </u:Descriptions.ItemTemplate>
         </u:Descriptions>
         
         <TextBlock Text="Descriptions support XAML inline declaration. "></TextBlock>
@@ -46,7 +42,7 @@
         <u:Descriptions
             HorizontalAlignment="Left"
             ItemsSource="{Binding Items2}"
-            LabelBinding="{Binding Label}"
+            LabelMemberBinding="{Binding Label}"
             ItemAlignment="Plain" >
             <u:Descriptions.ItemsPanel>
                 <ItemsPanelTemplate>

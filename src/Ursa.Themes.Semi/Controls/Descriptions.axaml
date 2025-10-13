@@ -43,7 +43,6 @@
                         <Label
                             Name="{x:Static u:LabeledContentControl.PART_Label}"
                             Grid.Column="0"
-                            DataContext="{TemplateBinding Label}"
                             Foreground="{DynamicResource SemiColorText2}"
                             TextBlock.LineHeight="20"
                             Content="{TemplateBinding Label}"

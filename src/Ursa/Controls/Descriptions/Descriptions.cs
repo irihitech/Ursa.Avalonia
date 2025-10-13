@@ -25,15 +25,15 @@ public class Descriptions: ItemsControl
         set => SetValue(LabelTemplateProperty, value);
     }
 
-    public static readonly StyledProperty<IBinding?> LabelBindingProperty = AvaloniaProperty.Register<Descriptions, IBinding?>(
-        nameof(LabelBinding));
+    public static readonly StyledProperty<IBinding?> LabelMemberBindingProperty = AvaloniaProperty.Register<Descriptions, IBinding?>(
+        nameof(LabelMemberBinding));
 
     [AssignBinding]
     [InheritDataTypeFromItems(nameof(ItemsSource))]
-    public IBinding? LabelBinding
+    public IBinding? LabelMemberBinding
     {
-        get => GetValue(LabelBindingProperty);
-        set => SetValue(LabelBindingProperty, value);
+        get => GetValue(LabelMemberBindingProperty);
+        set => SetValue(LabelMemberBindingProperty, value);
     }
 
     public static readonly StyledProperty<Position> LabelPositionProperty =
@@ -84,6 +84,26 @@ public class Descriptions: ItemsControl
         PseudoClasses.Set(PC_FixedWidth, this.ItemAlignment != ItemAlignment.Plain);
     }
 
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+        if (change.Property == LabelMemberBindingProperty)
+        {
+            if (change.NewValue != null && LabelTemplate != null)
+                throw new InvalidOperationException("Cannot set both LabelMemberBinding and LabelTemplate.");
+            _labelDisplayMemberItemTemplate = null;
+            RefreshContainers();
+        }
+        if (change.Property == LabelTemplateProperty)
+        {
+            if (change.NewValue != null && LabelMemberBinding != null)
+            {
+                throw new InvalidOperationException("Cannot set both LabelMemberBinding and LabelTemplate.");
+            }
+            RefreshContainers();
+        }
+    }
+
     private void OnLabelWidthChanged(AvaloniaPropertyChangedEventArgs e)
     {
         foreach (var item in this.GetLogicalDescendants().OfType<DescriptionsItem>())
@@ -102,41 +122,77 @@ public class Descriptions: ItemsControl
         base.PrepareContainerForItemOverride(container, item, index);
         if (container is not DescriptionsItem descriptionItem) return;
         if (container == item) return;
-        SetupBindings(descriptionItem);
+        SetupBindings(descriptionItem, item);
     }
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
         recycleKey = null;
         if (item is not DescriptionsItem descriptionItem) return true;
-        SetupBindings(descriptionItem);
+        SetupBindings(descriptionItem, null);
         return false;
     }
 
-    private void SetupBindings(DescriptionsItem item)
+    private void SetupBindings(DescriptionsItem container, object? item)
     {
-        if (LabelBinding is not null)
+        var effectiveLabelTemplate = GetLabelTemplate();
+        if (effectiveLabelTemplate is not null && !container.IsSet(LabeledContentControl.LabelTemplateProperty))
         {
-            if (!item.IsSet(LabeledContentControl.LabelProperty))
-            {
-                item[!LabeledContentControl.LabelProperty] = LabelBinding;
-            }
+            container.LabelTemplate = effectiveLabelTemplate;
         }
-        if (!item.IsSet(LabelTemplateProperty))
+        var effectiveContentTemplate = GetContentTemplate();
+        if (effectiveContentTemplate is not null && !container.IsSet(ContentControl.ContentTemplateProperty))
         {
-            item[!LabelTemplateProperty] = this[!LabelTemplateProperty];
+            container.ContentTemplate = effectiveContentTemplate;
         }
-        if (!item.IsSet(LabelPositionProperty))
+        if (!container.IsSet(LabeledContentControl.LabelProperty))
         {
-            item[!LabelPositionProperty] = this[!LabelPositionProperty];
+            container.Label = item;
         }
-        if (!item.IsSet(DescriptionsItem.ItemAlignmentProperty))
+        if (!container.IsSet(LabelPositionProperty))
         {
-            item[!DescriptionsItem.ItemAlignmentProperty] = this[!ItemAlignmentProperty];
+            container[!LabelPositionProperty] = this[!LabelPositionProperty];
         }
-        if (!item.IsSet(DescriptionsItem.LabelWidthProperty))
+        if (!container.IsSet(DescriptionsItem.ItemAlignmentProperty))
         {
-            item.LabelWidth = LabelWidth.IsAbsolute ? LabelWidth.Value : double.NaN;
+            container[!DescriptionsItem.ItemAlignmentProperty] = this[!ItemAlignmentProperty];
         }
+        if (!container.IsSet(DescriptionsItem.LabelWidthProperty))
+        {
+            container.LabelWidth = LabelWidth.IsAbsolute ? LabelWidth.Value : double.NaN;
+        }
+    }
+    
+    private IDataTemplate? _valueDisplayMemberItemTemplate;
+    private IDataTemplate? _labelDisplayMemberItemTemplate;
+    
+    private IDataTemplate? GetContentTemplate()
+    {
+        IDataTemplate? itemTemplate = this.ItemTemplate;
+        if (itemTemplate != null)
+            return itemTemplate;
+        if (this._valueDisplayMemberItemTemplate == null)
+        {
+            IBinding? binding = this.DisplayMemberBinding;
+            if (binding != null)
+                _valueDisplayMemberItemTemplate =
+                    new FuncDataTemplate<object>((o, s) => new TextBlock { [!TextBlock.TextProperty] = binding });
+        }
+        return _valueDisplayMemberItemTemplate;
+    }
+    
+    private IDataTemplate? GetLabelTemplate()
+    {
+        IDataTemplate? itemTemplate = this.LabelTemplate;
+        if (itemTemplate != null)
+            return itemTemplate;
+        if (this._labelDisplayMemberItemTemplate == null)
+        {
+            IBinding? binding = this.LabelMemberBinding;
+            if (binding != null)
+                _labelDisplayMemberItemTemplate =
+                    new FuncDataTemplate<object>((o, s) => new TextBlock { [!TextBlock.TextProperty] = binding });
+        }
+        return _labelDisplayMemberItemTemplate;
     }
 }

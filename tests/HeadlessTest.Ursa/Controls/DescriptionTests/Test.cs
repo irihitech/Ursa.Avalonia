@@ -20,7 +20,7 @@ public class Test
                 new { Label = "Name", Content = "John Doe" },
                 new { Label = "Age", Content = "30" }
             },
-            LabelBinding = new Avalonia.Data.Binding("Label"),
+            LabelMemberBinding = new Avalonia.Data.Binding("Label"),
         };
         var window = new Window
         {
@@ -91,7 +91,7 @@ public class Test
                 new { Label = "Age", Content = "30" }
             },
             ItemAlignment = ItemAlignment.Center,
-            LabelBinding = new Avalonia.Data.Binding("Label"),
+            LabelMemberBinding = new Avalonia.Data.Binding("Label"),
         };
         var window = new Window
         {
@@ -161,7 +161,7 @@ public class Test
                 new { Label = "Name", Content = "John Doe" },
                 new { Label = "Age", Content = "30" }
             },
-            LabelBinding = new Avalonia.Data.Binding("Label"),
+            LabelMemberBinding = new Avalonia.Data.Binding("Label"),
         };
         var window = new Window
         {
