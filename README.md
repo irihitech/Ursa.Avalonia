@@ -78,7 +78,7 @@ Ursa currently is compatible with both Avalonia 11.1.x and 11.2.x, but specifica
 If you need to integrate Ursa with Prism.Avalonia, you can use the Irihi.Ursa.PrismExtension package. This package provide Dialog related services to utilize Ursa Dialogs with Prism flavor. 
 
 ### ReactiveUI Extension
-If need to integrate Ursa with Avalonia.ReactiveUI, you can use the Irihi.Ursa.ReactiveUIExtension package. This package implements the ReactiveUI versions of UrsaWindow and UrsaView. Please refer to [wiki](https://github.com/irihitech/Ursa.Avalonia/wiki/Ursa-ReactiveUI-extension) for detail. 
+If need to integrate Ursa with ReactiveUI.Avalonia, you can use the Irihi.Ursa.ReactiveUIExtension package. This package implements the ReactiveUI versions of UrsaWindow and UrsaView. Please refer to [wiki](https://github.com/irihitech/Ursa.Avalonia/wiki/Ursa-ReactiveUI-extension) for detail. 
 
 ## Support
 
