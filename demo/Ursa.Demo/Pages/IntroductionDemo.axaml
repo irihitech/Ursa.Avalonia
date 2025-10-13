@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="using:Ursa.Demo.ViewModels"
+    xmlns:models="clr-namespace:Ursa.Demo.Models"
     x:DataType="vm:IntroductionDemoViewModel"
     d:DesignHeight="800"
     d:DesignWidth="1600"
@@ -15,23 +16,27 @@
     </Design.DataContext>
     <UserControl.Styles>
         <Style Selector="u|Badge">
-            <Setter Property="Margin" Value="6" />
+            <Setter Property="Margin" Value="4" />
         </Style>
         <Style Selector="u|DualBadge">
-            <Setter Property="Margin" Value="4" />
+            <Setter Property="Margin" Value="3" />
         </Style>
         <Style Selector="Border.SectionCard">
             <Setter Property="Background" Value="{DynamicResource SemiColorBgDefault}" />
             <Setter Property="BorderBrush" Value="{DynamicResource SemiColorBorder}" />
             <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="CornerRadius" Value="8" />
-            <Setter Property="Padding" Value="16" />
-            <Setter Property="Margin" Value="8" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Margin" Value="4" />
+        </Style>
+        <Style Selector="TextBlock.SectionTitle">
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="FontSize" Value="14" />
         </Style>
     </UserControl.Styles>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <StackPanel Margin="20" Spacing="20">
+        <StackPanel Margin="12" Spacing="8">
             <!-- Welcome Banner -->
             <u:Banner
                 Classes="Bordered"
@@ -39,178 +44,198 @@
                 Header="Welcome to Ursa.Avalonia!"
                 Type="Information" />
 
-            <!-- Avatars Section -->
-            <Border Classes="SectionCard">
-                <StackPanel Spacing="12">
-                    <u:Divider HorizontalContentAlignment="Left">
-                        <TextBlock Text="Avatars" FontWeight="SemiBold" FontSize="16" />
-                    </u:Divider>
-                    <StackPanel Orientation="Horizontal" Spacing="8">
-                        <u:Avatar Classes="Red" Content="UR" />
-                        <u:Avatar Classes="Blue" Content="SA" />
-                        <u:Avatar Classes="Green" Content="AV" />
-                        <u:Avatar Classes="Violet" Content="UI" />
-                        <u:Avatar Classes="Square Orange" Content="SQ" />
-                        <u:Avatar Classes="Square Teal" Content="XL" />
-                        <u:Avatar Source="../Assets/Ursa.ico" />
-                    </StackPanel>
-                </StackPanel>
-            </Border>
+            <!-- Marquee -->
+            <u:Marquee Height="40" Speed="40" Content="This is a scrolling marquee text - Ursa.Avalonia UI Library" />
 
-            <!-- Badges Section -->
-            <Border Classes="SectionCard">
-                <StackPanel Spacing="12">
-                    <u:Divider HorizontalContentAlignment="Left">
-                        <TextBlock Text="Badges" FontWeight="SemiBold" FontSize="16" />
-                    </u:Divider>
-                    <WrapPanel Orientation="Horizontal">
-                        <u:Badge Classes="Primary" Header="New">
-                            <u:Avatar Classes="Blue" Content="A" />
-                        </u:Badge>
-                        <u:Badge Classes="Success" Header="99" OverflowCount="99">
-                            <u:Avatar Classes="Square Green" Content="B" />
-                        </u:Badge>
-                        <u:Badge Classes="Warning" Dot="True">
-                            <u:Avatar Classes="Square Amber" Content="C" />
-                        </u:Badge>
-                        <u:Badge Classes="Danger" Header="Hot">
-                            <u:Avatar Classes="Square Red" Content="D" />
-                        </u:Badge>
-                        <u:Badge Classes="Secondary" Header="VIP" CornerPosition="TopRight">
-                            <u:Avatar Classes="Square Violet" Content="E" />
-                        </u:Badge>
-                    </WrapPanel>
-                </StackPanel>
-            </Border>
-
-            <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto">
-                <!-- Button Groups -->
+            <Grid ColumnDefinitions="*, *, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+                <!-- Row 0 - Avatars, Badges, Button Groups -->
                 <Border Grid.Column="0" Grid.Row="0" Classes="SectionCard">
-                    <StackPanel Spacing="12">
-                        <u:Divider HorizontalContentAlignment="Left">
-                            <TextBlock Text="Button Groups" FontWeight="SemiBold" FontSize="16" />
-                        </u:Divider>
-                        <u:ButtonGroup Classes="Primary Solid" ItemsSource="{Binding ButtonGroupItems}" />
-                        <u:ButtonGroup Classes="Success" ItemsSource="{Binding ButtonGroupItems}" />
-                        <u:ButtonGroup Classes="Warning Small" ItemsSource="{Binding ButtonGroupItems}" />
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Avatars" Classes="SectionTitle" />
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <u:Avatar Classes="Red Small" Content="R" />
+                            <u:Avatar Classes="Blue Small" Content="B" />
+                            <u:Avatar Classes="Green Small" Content="G" />
+                            <u:Avatar Classes="Square Orange Small" Content="S" />
+                        </StackPanel>
                     </StackPanel>
                 </Border>
 
-                <!-- Icon Buttons -->
                 <Border Grid.Column="1" Grid.Row="0" Classes="SectionCard">
-                    <StackPanel Spacing="12">
-                        <u:Divider HorizontalContentAlignment="Left">
-                            <TextBlock Text="Icon Buttons" FontWeight="SemiBold" FontSize="16" />
-                        </u:Divider>
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <u:IconButton Icon="{StaticResource SemiIconCamera}" />
-                            <u:IconButton Classes="Secondary" Icon="{StaticResource SemiIconCamera}" />
-                            <u:IconButton Classes="Warning" Icon="{StaticResource SemiIconCamera}" />
-                            <u:IconButton Classes="Danger" Icon="{StaticResource SemiIconCamera}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <u:IconButton Theme="{StaticResource SolidIconButton}" Icon="{StaticResource SemiIconCamera}" />
-                            <u:IconButton Theme="{StaticResource BorderlessIconButton}" Icon="{StaticResource SemiIconStar}" />
-                            <u:IconButton Theme="{StaticResource OutlineIconButton}" Icon="{StaticResource SemiIconLikeHeart}" />
-                        </StackPanel>
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Badges" Classes="SectionTitle" />
+                        <WrapPanel Orientation="Horizontal">
+                            <u:Badge Classes="Primary" Header="5">
+                                <u:Avatar Classes="Blue Small" Content="A" />
+                            </u:Badge>
+                            <u:Badge Classes="Success" Header="99" OverflowCount="50">
+                                <u:Avatar Classes="Green Small" Content="B" />
+                            </u:Badge>
+                            <u:Badge Classes="Warning" Dot="True">
+                                <u:Avatar Classes="Amber Small" Content="C" />
+                            </u:Badge>
+                        </WrapPanel>
                     </StackPanel>
                 </Border>
 
-                <!-- Rating -->
+                <Border Grid.Column="2" Grid.Row="0" Classes="SectionCard">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Button Groups" Classes="SectionTitle" />
+                        <u:ButtonGroup Classes="Primary Small" ItemsSource="{Binding ButtonGroupItems}" />
+                        <u:ButtonGroup Classes="Success Small" ItemsSource="{Binding ButtonGroupItems}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Row 1 - Icon Buttons, Rating, Dividers -->
                 <Border Grid.Column="0" Grid.Row="1" Classes="SectionCard">
-                    <StackPanel Spacing="12">
-                        <u:Divider HorizontalContentAlignment="Left">
-                            <TextBlock Text="Rating" FontWeight="SemiBold" FontSize="16" />
-                        </u:Divider>
-                        <u:Rating AllowHalf="True" Value="{Binding RatingValue}" />
-                        <u:Rating Classes="Small" Value="4" />
-                        <u:Rating Size="32" Foreground="{StaticResource SemiRed5}" Character="{StaticResource SemiIconLikeHeart}" Value="3" />
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Icon Buttons" Classes="SectionTitle" />
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <u:IconButton Icon="{StaticResource SemiIconCamera}" Classes="Small" />
+                            <u:IconButton Icon="{StaticResource SemiIconStar}" Classes="Secondary Small" />
+                            <u:IconButton Icon="{StaticResource SemiIconLikeHeart}" Classes="Warning Small" />
+                        </StackPanel>
                     </StackPanel>
                 </Border>
 
-                <!-- Dividers -->
                 <Border Grid.Column="1" Grid.Row="1" Classes="SectionCard">
-                    <StackPanel Spacing="12">
-                        <u:Divider HorizontalContentAlignment="Left">
-                            <TextBlock Text="Dividers" FontWeight="SemiBold" FontSize="16" />
-                        </u:Divider>
-                        <u:Divider HorizontalContentAlignment="Center">Center</u:Divider>
-                        <u:Divider HorizontalContentAlignment="Left">Left</u:Divider>
-                        <u:Divider HorizontalContentAlignment="Right">Right</u:Divider>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="A" />
-                            <u:Divider Margin="12,0" Orientation="Vertical" />
-                            <TextBlock Text="B" />
-                            <u:Divider Margin="12,0" Orientation="Vertical" />
-                            <TextBlock Text="C" />
-                        </StackPanel>
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Rating" Classes="SectionTitle" />
+                        <u:Rating Classes="Small" AllowHalf="True" Value="{Binding RatingValue}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Grid.Row="1" Classes="SectionCard">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Dual Badge" Classes="SectionTitle" />
+                        <u:DualBadge Header="v">1.0</u:DualBadge>
+                    </StackPanel>
+                </Border>
+
+                <!-- Row 2 - IPv4Box, NumericUpDown, Slider -->
+                <Border Grid.Column="0" Grid.Row="2" Classes="SectionCard">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="IPv4Box" Classes="SectionTitle" />
+                        <u:IPv4Box Width="180" IPAddress="{Binding IpAddress}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" Grid.Row="2" Classes="SectionCard">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="NumericUpDown" Classes="SectionTitle" />
+                        <NumericUpDown Width="120" Value="{Binding SliderValue}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Grid.Row="2" Classes="SectionCard">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Slider" Classes="SectionTitle" />
+                        <Slider Minimum="0" Maximum="100" Value="{Binding SliderValue}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Row 3 - RangeSlider, MultiComboBox, TreeComboBox -->
+                <Border Grid.Column="0" Grid.Row="3" Classes="SectionCard">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="RangeSlider" Classes="SectionTitle" />
+                        <u:RangeSlider Minimum="0" Maximum="100" LowerValue="{Binding LowerValue}" UpperValue="{Binding UpperValue}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" Grid.Row="3" Classes="SectionCard">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="MultiComboBox" Classes="SectionTitle" />
+                        <u:MultiComboBox Width="180" Watermark="Select..." ItemsSource="{Binding ComboBoxItems}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Grid.Row="3" Classes="SectionCard">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="TreeComboBox" Classes="SectionTitle" />
+                        <u:TreeComboBox Width="180" Watermark="Select...">
+                            <u:TreeComboBoxItem Header="Item 1">
+                                <u:TreeComboBoxItem Header="Sub 1" />
+                                <u:TreeComboBoxItem Header="Sub 2" />
+                            </u:TreeComboBoxItem>
+                            <u:TreeComboBoxItem Header="Item 2" />
+                        </u:TreeComboBox>
+                    </StackPanel>
+                </Border>
+
+                <!-- Row 4 - TagInput, MultiAutoCompleteBox, Breadcrumb -->
+                <Border Grid.Column="0" Grid.Row="4" Classes="SectionCard">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="TagInput" Classes="SectionTitle" />
+                        <u:TagInput Width="180" Watermark="Add tags..." Tags="{Binding TagItems}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" Grid.Row="4" Classes="SectionCard">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="MultiAutoComplete" Classes="SectionTitle" />
+                        <u:MultiAutoCompleteBox Width="180" Watermark="Type..." ItemsSource="{Binding AutoCompleteItems}">
+                            <u:MultiAutoCompleteBox.ItemTemplate>
+                                <DataTemplate DataType="models:ControlData">
+                                    <TextBlock Text="{Binding MenuHeader}" />
+                                </DataTemplate>
+                            </u:MultiAutoCompleteBox.ItemTemplate>
+                        </u:MultiAutoCompleteBox>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Grid.Row="4" Classes="SectionCard">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Breadcrumb" Classes="SectionTitle" />
+                        <u:Breadcrumb>
+                            <TextBlock Text="Home" />
+                            <TextBlock Text="Ursa" />
+                            <TextBlock Text="Intro" />
+                        </u:Breadcrumb>
                     </StackPanel>
                 </Border>
             </Grid>
 
-            <!-- DualBadges -->
-            <Border Classes="SectionCard">
-                <StackPanel Spacing="12">
-                    <u:Divider HorizontalContentAlignment="Left">
-                        <TextBlock Text="Dual Badges" FontWeight="SemiBold" FontSize="16" />
-                    </u:Divider>
-                    <WrapPanel Orientation="Horizontal">
-                        <u:DualBadge Header="version">
-                            <u:DualBadge.Icon>
-                                <PathIcon Theme="{StaticResource InnerPathIcon}" Data="{StaticResource SemiIconStar}" />
-                            </u:DualBadge.Icon>
-                            1.0.0
-                        </u:DualBadge>
-                        <u:DualBadge Classes="FlatSquare" Header="downloads">
-                            <u:DualBadge.Icon>
-                                <PathIcon Theme="{StaticResource InnerPathIcon}" Data="{StaticResource SemiIconDownload}" />
-                            </u:DualBadge.Icon>
-                            10k+
-                        </u:DualBadge>
-                        <u:DualBadge Classes="Plastic" Header="status">
-                            <u:DualBadge.Icon>
-                                <PathIcon Theme="{StaticResource InnerPathIcon}" Data="{StaticResource SemiIconTickCircle}" />
-                            </u:DualBadge.Icon>
-                            active
-                        </u:DualBadge>
-                    </WrapPanel>
-                </StackPanel>
-            </Border>
+            <!-- Date and Time Pickers Row -->
+            <Grid ColumnDefinitions="*, *, *" RowDefinitions="Auto">
+                <Border Grid.Column="0" Classes="SectionCard">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="DateRangePicker" Classes="SectionTitle" />
+                        <u:DateRangePicker Width="220" SelectedStartDate="{Binding StartDate}" SelectedEndDate="{Binding EndDate}" />
+                    </StackPanel>
+                </Border>
 
-            <!-- Breadcrumb -->
-            <Border Classes="SectionCard">
-                <StackPanel Spacing="12">
-                    <u:Divider HorizontalContentAlignment="Left">
-                        <TextBlock Text="Breadcrumb" FontWeight="SemiBold" FontSize="16" />
-                    </u:Divider>
-                    <u:Breadcrumb>
-                        <TextBlock Text="Home" />
-                        <TextBlock Text="Components" />
-                        <TextBlock Text="Ursa" />
-                        <TextBlock Text="Introduction" />
-                    </u:Breadcrumb>
-                </StackPanel>
-            </Border>
+                <Border Grid.Column="1" Classes="SectionCard">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="DateTimePicker" Classes="SectionTitle" />
+                        <u:DateTimePicker Width="220" SelectedDate="{Binding DateTime}" />
+                    </StackPanel>
+                </Border>
 
-            <!-- Slider & NumericUpDown -->
+                <Border Grid.Column="2" Classes="SectionCard">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="TimeRangePicker" Classes="SectionTitle" />
+                        <u:TimeRangePicker Width="220" StartTime="{Binding StartTime}" EndTime="{Binding EndTime}" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- ToolBar -->
             <Border Classes="SectionCard">
-                <StackPanel Spacing="12">
-                    <u:Divider HorizontalContentAlignment="Left">
-                        <TextBlock Text="Sliders and Inputs" FontWeight="SemiBold" FontSize="16" />
-                    </u:Divider>
-                    <Grid ColumnDefinitions="*, 100">
-                        <Slider Grid.Column="0" Minimum="0" Maximum="100" Value="{Binding SliderValue}" />
-                        <NumericUpDown Grid.Column="1" Margin="8,0,0,0" Value="{Binding SliderValue}" />
-                    </Grid>
+                <StackPanel Spacing="6">
+                    <TextBlock Text="ToolBar" Classes="SectionTitle" />
+                    <u:ToolBar Header="Actions">
+                        <Button Content="Save" Classes="Small" />
+                        <u:ToolBarSeparator />
+                        <Button Content="Load" Classes="Small" />
+                        <Button Content="Delete" Classes="Small" />
+                    </u:ToolBar>
                 </StackPanel>
             </Border>
 
             <!-- Pagination -->
             <Border Classes="SectionCard">
-                <StackPanel Spacing="12">
-                    <u:Divider HorizontalContentAlignment="Left">
-                        <TextBlock Text="Pagination" FontWeight="SemiBold" FontSize="16" />
-                    </u:Divider>
+                <StackPanel Spacing="6">
+                    <TextBlock Text="Pagination" Classes="SectionTitle" />
                     <u:Pagination
                         HorizontalAlignment="Center"
                         PageSizeOptions="10, 20, 50"
