@@ -2,7 +2,7 @@
 using ReactiveUI;
 using Ursa.Controls;
 
-/* These codes are ported from Avalonia.ReactiveUI.
+/* These codes are ported from ReactiveUI.Avalonia.
  * **/
 
 namespace Ursa.ReactiveUIExtension;
