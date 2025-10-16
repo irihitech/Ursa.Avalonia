@@ -17,6 +17,7 @@ public class SemiTheme : Styles
         { new CultureInfo("zh-CN"), new zh_cn() },
         { new CultureInfo("en-US"), new en_us() },
         { new CultureInfo("fr-FR"), new fr_fr() },
+        { new CultureInfo("ru-RU"), new ru_ru() },
     };
 
     private static readonly ResourceDictionary _defaultResource = new zh_cn();
