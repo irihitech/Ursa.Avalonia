@@ -10,8 +10,8 @@
     <x:String x:Key="STRING_MENU_DIALOG_YES">Да</x:String>
     <x:String x:Key="STRING_MENU_DIALOG_NO">Нет</x:String>
     <x:String x:Key="STRING_MENU_DIALOG_CLOSE">Закрыть</x:String>
-    <x:String x:Key="STRING_PAGINATION_JUMP_TO">Перейти к</x:String>
-    <x:String x:Key="STRING_PAGINATION_PAGE">Страница</x:String>
+    <x:String x:Key="STRING_PAGINATION_JUMP_TO">Перейти к странице</x:String>
+    <x:String x:Key="STRING_PAGINATION_PAGE"> </x:String>
     <x:String x:Key="STRING_THEME_TOGGLE_DARK">Темная</x:String>
     <x:String x:Key="STRING_THEME_TOGGLE_LIGHT">Светлая</x:String>
     <x:String x:Key="STRING_THEME_TOGGLE_SYSTEM">Системная</x:String>
