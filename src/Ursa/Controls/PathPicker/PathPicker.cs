@@ -238,11 +238,11 @@ public partial class PathPicker : TemplatedControl
             return null;
 
 #if NETSTANDARD2_0
-        if(!_patternsRegex.IsMatch(str))
+        if (!_patternsRegex.IsMatch(str))
 #endif
 
 #if NET8_0
-        if(!GetPatternsRegex().IsMatch(str))
+        if (!GetPatternsRegex().IsMatch(str))
 #endif
         throw new ArgumentException($"{nameof(str)} Invalid parameter, please refer to the following content: [Name, Pattern], such as [123, .exe, .pdb] or [All][ImageAll][11, *.txt]");
         
