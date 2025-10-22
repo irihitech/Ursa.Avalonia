@@ -21,7 +21,8 @@
         <Style Selector="^:fixed-width">
             <Setter Property="Grid.IsSharedSizeScope" Value="True" />
         </Style>
-        <Style Selector="^[LabelPosition=Top]">
+        <Style Selector="^[Orientation=Horizontal]">
+            <Setter Property="LabelPosition" Value="Top" />
             <Setter Property="ItemsPanel">
                 <ItemsPanelTemplate>
                     <u:ColumnWrapPanel />

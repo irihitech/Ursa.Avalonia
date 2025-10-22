@@ -4,6 +4,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
+using Avalonia.Layout;
 using Avalonia.LogicalTree;
 using Avalonia.Metadata;
 using Ursa.Common;
@@ -64,6 +65,15 @@ public class Descriptions: ItemsControl
     {
         get => GetValue(ItemAlignmentProperty);
         set => SetValue(ItemAlignmentProperty, value);
+    }
+
+    public static readonly StyledProperty<Orientation> OrientationProperty =
+        AvaloniaProperty.Register<Descriptions, Orientation>(nameof(Orientation), Orientation.Vertical);
+
+    public Orientation Orientation
+    {
+        get => GetValue(OrientationProperty);
+        set => SetValue(OrientationProperty, value);
     }
 
     static Descriptions()

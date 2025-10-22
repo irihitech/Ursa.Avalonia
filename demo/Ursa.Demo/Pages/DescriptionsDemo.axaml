@@ -56,12 +56,12 @@
             </u:Descriptions.ItemTemplate>
         </u:Descriptions>
         
-        <TextBlock Text="Setting LabelPosition to Top support Class Small and Large. "></TextBlock>
+        <TextBlock Text="Setting Orientation to Horizontal support Class Small and Large. "></TextBlock>
         <StackPanel >
             <Border Theme="{DynamicResource CardBorder}">
                 <u:Descriptions
                     Classes="Small"
-                    LabelPosition="Top">
+                    Orientation="Horizontal">
                     <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
                     <u:DescriptionsItem Label="7天留存" Content="98%" />
                     <u:DescriptionsItem Label="安全等级" Content="3级" />
@@ -69,7 +69,7 @@
             </Border>
             <Border Theme="{DynamicResource CardBorder}">
                 <u:Descriptions
-                    LabelPosition="Top">
+                    Orientation="Horizontal">
                     <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
                     <u:DescriptionsItem Label="7天留存" Content="98%" />
                     <u:DescriptionsItem Label="安全等级" Content="3级" />
@@ -78,7 +78,7 @@
             <Border Theme="{DynamicResource CardBorder}">
                 <u:Descriptions
                     Classes="Large"
-                    LabelPosition="Top">
+                    Orientation="Horizontal">
                     <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
                     <u:DescriptionsItem Label="7天留存" Content="98%" />
                     <u:DescriptionsItem Label="安全等级" Content="3级" />
