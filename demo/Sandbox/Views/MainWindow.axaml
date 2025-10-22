@@ -15,20 +15,28 @@
         <vm:MainWindowViewModel />
     </Design.DataContext>
     <StackPanel>
-        <Button Content="???" Click="Button_OnClick"></Button>
-        <ContentControl Name="content">
-            <ContentControl.DataTemplates>
-                <DataTemplate DataType="x:Int32">
-                    <u:Breadcrumb Separator="·" Classes="Margin">
-                        <u:BreadcrumbItem Content="a" />
-                        <u:BreadcrumbItem Content="b" />
-                        <u:BreadcrumbItem Content="c" />
-                    </u:Breadcrumb>
-                </DataTemplate>
-                <DataTemplate DataType="x:Double">
-                    <TextBlock Text="Hello World"/>
-                </DataTemplate>
-            </ContentControl.DataTemplates>
-        </ContentControl>
+        <StackPanel.Styles>
+            <Style Selector="Button">
+                <Setter Property="Margin" Value="10" />
+            </Style>
+        </StackPanel.Styles>
+        <u:ColumnWrapPanel Column="4" Width="500" Background="AntiqueWhite">
+            <Button Content="Hello" Theme="{DynamicResource SolidButton}" />
+            <Button Content="Hello" Theme="{DynamicResource SolidButton}" />
+            <Button Content="Hello" Theme="{DynamicResource SolidButton}" Width="200" />
+            <Button Content="Hello" Theme="{DynamicResource SolidButton}" />
+            <Button Content="Hello" Theme="{DynamicResource SolidButton}" />
+            <Button Content="Hello" Theme="{DynamicResource SolidButton}" />
+            <Button Content="Hello" Theme="{DynamicResource SolidButton}" Width="200" />
+            <Button Content="Hello" Theme="{DynamicResource SolidButton}" Width="150" />
+            <Button Content="Hello" Theme="{DynamicResource SolidButton}" />
+            <Button Content="Hello" Theme="{DynamicResource SolidButton}" />
+            <Button Content="Hello" Theme="{DynamicResource SolidButton}" Width="200" />
+            <Button Content="Hello" Theme="{DynamicResource SolidButton}" />
+            <Button Content="Hello" Theme="{DynamicResource SolidButton}" Width="200" />
+            <Button Content="Hello" Theme="{DynamicResource SolidButton}" />
+            <Button Content="Hello" Theme="{DynamicResource SolidButton}" />
+            <Button Content="Hello" Theme="{DynamicResource SolidButton}" />
+        </u:ColumnWrapPanel>
     </StackPanel>
 </Window>

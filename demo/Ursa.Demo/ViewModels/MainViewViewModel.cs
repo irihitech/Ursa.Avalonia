@@ -47,6 +47,7 @@ public partial class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyDatePicker => new DatePickerDemoViewModel(),
             MenuKeys.MenuKeyDateRangePicker => new DateRangePickerDemoViewModel(),
             MenuKeys.MenuKeyDateTimePicker => new DateTimePickerDemoViewModel(),
+            MenuKeys.MenuKeyDescriptions => new DescriptionsDemoViewModel(),
             MenuKeys.MenuKeyDialog => new DialogDemoViewModel(),
             MenuKeys.MenuKeyDisableContainer => new DisableContainerDemoViewModel(),
             MenuKeys.MenuKeyDivider => new DividerDemoViewModel(),

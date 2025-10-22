@@ -13,6 +13,7 @@
         <ResourceInclude Source="DatePicker.axaml" />
         <ResourceInclude Source="DateRangePicker.axaml" />
         <ResourceInclude Source="DateTimePicker.axaml" />
+        <ResourceInclude Source="Descriptions.axaml" />
         <ResourceInclude Source="Dialog.axaml" />
         <ResourceInclude Source="DialogShared.axaml" />
         <ResourceInclude Source="DisableContainer.axaml" />

@@ -24,7 +24,10 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = "KeyGestureInput", Key = MenuKeys.MenuKeyKeyGestureInput },
                     new() { MenuHeader = "IPv4Box", Key = MenuKeys.MenuKeyIpBox },
                     new() { MenuHeader = "MultiComboBox", Key = MenuKeys.MenuKeyMultiComboBox },
-                    new() { MenuHeader = "Multi AutoCompleteBox", Key = MenuKeys.MenuKeyMultiAutoCompleteBox, Status = "New" },
+                    new()
+                    {
+                        MenuHeader = "Multi AutoCompleteBox", Key = MenuKeys.MenuKeyMultiAutoCompleteBox, Status = "New"
+                    },
                     new() { MenuHeader = "Numeric UpDown", Key = MenuKeys.MenuKeyNumericUpDown },
                     new() { MenuHeader = "NumPad", Key = MenuKeys.MenuKeyNumPad },
                     new() { MenuHeader = "PathPicker", Key = MenuKeys.MenuKeyPathPicker, Status = "New" },
@@ -56,11 +59,17 @@ public class MenuViewModel : ViewModelBase
                 MenuHeader = "Date & Time", Children = new ObservableCollection<MenuItemViewModel>
                 {
                     new() { MenuHeader = "Date Picker", Key = MenuKeys.MenuKeyDatePicker, Status = "Updated" },
-                    new() { MenuHeader = "Date Range Picker", Key = MenuKeys.MenuKeyDateRangePicker, Status = "Updated" },
+                    new()
+                    {
+                        MenuHeader = "Date Range Picker", Key = MenuKeys.MenuKeyDateRangePicker, Status = "Updated"
+                    },
                     new() { MenuHeader = "Date Time Picker", Key = MenuKeys.MenuKeyDateTimePicker, Status = "Updated" },
                     new() { MenuHeader = "Time Box", Key = MenuKeys.MenuKeyTimeBox },
                     new() { MenuHeader = "Time Picker", Key = MenuKeys.MenuKeyTimePicker, Status = "Updated" },
-                    new() { MenuHeader = "Time Range Picker", Key = MenuKeys.MenuKeyTimeRangePicker, Status = "Updated" },
+                    new()
+                    {
+                        MenuHeader = "Time Range Picker", Key = MenuKeys.MenuKeyTimeRangePicker, Status = "Updated"
+                    },
                     new() { MenuHeader = "Clock", Key = MenuKeys.MenuKeyClock }
                 }
             },
@@ -83,13 +92,14 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = "AspectRatioLayout", Key = MenuKeys.MenuKeyAspectRatioLayout },
                     new() { MenuHeader = "Avatar", Key = MenuKeys.MenuKeyAvatar, Status = "WIP" },
                     new() { MenuHeader = "Badge", Key = MenuKeys.MenuKeyBadge },
-                    new() { MenuHeader = "Banner", Key = MenuKeys.MenuKeyBanner, Status = "Updated" },
+                    new() { MenuHeader = "Banner", Key = MenuKeys.MenuKeyBanner },
+                    new() { MenuHeader = "Descriptions", Key = MenuKeys.MenuKeyDescriptions, Status = "New" },
                     new() { MenuHeader = "Disable Container", Key = MenuKeys.MenuKeyDisableContainer },
                     new() { MenuHeader = "Divider", Key = MenuKeys.MenuKeyDivider },
                     new() { MenuHeader = "DualBadge", Key = MenuKeys.MenuKeyDualBadge },
                     new() { MenuHeader = "ImageViewer", Key = MenuKeys.MenuKeyImageViewer },
                     new() { MenuHeader = "ElasticWrapPanel", Key = MenuKeys.MenuKeyElasticWrapPanel },
-                    new() { MenuHeader = "Marquee", Key = MenuKeys.MenuKeyMarquee, Status = "New" },
+                    new() { MenuHeader = "Marquee", Key = MenuKeys.MenuKeyMarquee },
                     new() { MenuHeader = "Number Displayer", Key = MenuKeys.MenuKeyNumberDisplayer },
                     new() { MenuHeader = "Scroll To", Key = MenuKeys.MenuKeyScrollToButton },
                     new() { MenuHeader = "Timeline", Key = MenuKeys.MenuKeyTimeline },
@@ -117,6 +127,7 @@ public static class MenuKeys
     public const string MenuKeyDatePicker = "DatePicker";
     public const string MenuKeyDateRangePicker = "DateRangePicker";
     public const string MenuKeyDateTimePicker = "DateTimePicker";
+    public const string MenuKeyDescriptions = "Descriptions";
     public const string MenuKeyDialog = "Dialog";
     public const string MenuKeyDisableContainer = "DisableContainer";
     public const string MenuKeyDivider = "Divider";

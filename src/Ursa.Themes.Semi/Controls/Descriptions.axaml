@@ -1,0 +1,158 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa"
+                    xmlns:iri="https://irihi.tech/shared">
+    <Design.PreviewWith>
+        <StackPanel Margin="20" Spacing="20">
+            <Border Theme="{DynamicResource CardBorder}">
+                <u:Descriptions Orientation="Horizontal" LabelPosition="Top" ItemAlignment="Center">
+                    <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
+                    <u:DescriptionsItem Label="7天留存" Content="98%" />
+                    <u:DescriptionsItem Label="安全等级" Content="3级" />
+                </u:Descriptions>
+            </Border>
+        </StackPanel>
+    </Design.PreviewWith>
+    <ControlTheme x:Key="{x:Type u:Descriptions}" TargetType="u:Descriptions">
+        <Setter Property="Grid.IsSharedSizeScope" Value="False" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:Descriptions">
+                <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:fixed-width">
+            <Setter Property="Grid.IsSharedSizeScope" Value="True" />
+        </Style>
+        <Style Selector="^[Orientation=Horizontal]">
+            <Setter Property="ItemsPanel">
+                <ItemsPanelTemplate>
+                    <u:ColumnWrapPanel />
+                </ItemsPanelTemplate>
+            </Setter>
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:DescriptionsItem}" TargetType="u:DescriptionsItem">
+        <Style Selector="^:horizontal">
+            <Setter Property="Template">
+                <ControlTemplate TargetType="u:DescriptionsItem">
+                    <Grid Margin="{DynamicResource DescriptionsItemMargin}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Label" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Name="{x:Static u:LabeledContentControl.PART_Label}"
+                            Grid.Column="0"
+                            Foreground="{DynamicResource DescriptionsKeyTextForeground}"
+                            TextBlock.LineHeight="{DynamicResource DescriptionsLineHeight}"
+                            Content="{TemplateBinding Label}"
+                            ContentTemplate="{TemplateBinding LabelTemplate}"
+                            Width="{TemplateBinding LabelWidth}" />
+                        <TextBlock
+                            Name="PART_Colon"
+                            Grid.Column="1"
+                            Text=":"
+                            Foreground="{DynamicResource DescriptionsKeyTextForeground}"
+                            Margin="{DynamicResource DescriptionsKeyPlainMargin}" />
+                        <ContentPresenter
+                            Name="{x:Static iri:PartNames.PART_ContentPresenter}"
+                            Grid.Column="2"
+                            TextBlock.LineHeight="{DynamicResource DescriptionsLineHeight}"
+                            Foreground="{DynamicResource DescriptionsValueTextForeground}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+
+            <Style Selector="^[ItemAlignment=Center]">
+                <Style Selector="^ /template/ Label#PART_Label">
+                    <Setter Property="HorizontalAlignment" Value="Right" />
+                    <Setter Property="Padding" Value="{DynamicResource DescriptionsKeyPadding}" />
+                </Style>
+                <Style Selector="^ /template/ TextBlock#PART_Colon">
+                    <Setter Property="IsVisible" Value="False" />
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                </Style>
+            </Style>
+            <Style Selector="^[ItemAlignment=Left]">
+                <Style Selector="^ /template/ Label#PART_Label">
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="Padding" Value="{DynamicResource DescriptionsKeyPadding}" />
+                </Style>
+                <Style Selector="^ /template/ TextBlock#PART_Colon">
+                    <Setter Property="IsVisible" Value="False" />
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                </Style>
+            </Style>
+            <Style Selector="^[ItemAlignment=Justify]">
+                <Style Selector="^ /template/ Label#PART_Label">
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="Padding" Value="{DynamicResource DescriptionsKeyPadding}" />
+                </Style>
+                <Style Selector="^ /template/ TextBlock#PART_Colon">
+                    <Setter Property="IsVisible" Value="False" />
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="HorizontalAlignment" Value="Right" />
+                </Style>
+            </Style>
+        </Style>
+        <Style Selector="^:vertical">
+            <Setter Property="iri:ClassHelper.ClassSource" Value="{Binding $parent[u:Descriptions]}" />
+            <Setter Property="Template">
+                <ControlTemplate TargetType="u:DescriptionsItem">
+                    <StackPanel>
+                        <Label
+                            Name="{x:Static u:LabeledContentControl.PART_Label}"
+                            DataContext="{TemplateBinding Label}"
+                            Foreground="{DynamicResource DescriptionsKeyTextForeground}"
+                            Content="{TemplateBinding Label}"
+                            ContentTemplate="{TemplateBinding LabelTemplate}"
+                            Width="{TemplateBinding LabelWidth}" />
+                        <ContentPresenter
+                            Name="{x:Static iri:PartNames.PART_ContentPresenter}"
+                            Foreground="{DynamicResource DescriptionsValueTextForeground}"
+                            FontWeight="{DynamicResource DescriptionsValueFontWeight}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter>
+            <Style Selector="^ /template/ Label#PART_Label">
+                <Setter Property="Margin" Value="{DynamicResource DescriptionsKeyMediumMargin}" />
+                <Setter Property="FontSize" Value="{DynamicResource DescriptionsKeyMediumFontSize}" />
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Margin" Value="{DynamicResource DescriptionsValueMediumMargin}" />
+                <Setter Property="FontSize" Value="{DynamicResource DescriptionsValueMediumFontSize}" />
+            </Style>
+            <Style Selector="^.Small">
+                <Style Selector="^ /template/ Label#PART_Label">
+                    <Setter Property="Margin" Value="{DynamicResource DescriptionsKeySmallMargin}" />
+                    <Setter Property="FontSize" Value="{DynamicResource DescriptionsKeySmallFontSize}" />
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="Margin" Value="{DynamicResource DescriptionsValueSmallMargin}" />
+                    <Setter Property="FontSize" Value="{DynamicResource DescriptionsValueSmallFontSize}" />
+                </Style>
+            </Style>
+            <Style Selector="^.Large">
+                <Style Selector="^ /template/ Label#PART_Label">
+                    <Setter Property="Margin" Value="{DynamicResource DescriptionsKeyLargeMargin}" />
+                    <Setter Property="FontSize" Value="{DynamicResource DescriptionsKeyLargeFontSize}" />
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="Margin" Value="{DynamicResource DescriptionsValueLargeMargin}" />
+                    <Setter Property="FontSize" Value="{DynamicResource DescriptionsValueLargeFontSize}" />
+                </Style>
+            </Style>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

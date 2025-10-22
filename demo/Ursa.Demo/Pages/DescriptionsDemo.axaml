@@ -1,0 +1,124 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
+             xmlns:common="clr-namespace:Ursa.Common;assembly=Ursa"
+             mc:Ignorable="d" d:DesignWidth="800"
+             x:DataType="vm:DescriptionsDemoViewModel"
+             x:Class="Ursa.Demo.Pages.DescriptionsDemo">
+    <Design.DataContext>
+        <vm:DescriptionsDemoViewModel />
+    </Design.DataContext>
+
+    <ScrollViewer>
+        <StackPanel Spacing="20">
+            <TextBlock Text="Descriptions support different orientations and item alignments. " />
+            <u:Form LabelPosition="Left">
+                <u:EnumSelector
+                    Name="orientation"
+                    u:FormItem.Label="Orientation"
+                    EnumType="Orientation"
+                    Value="{x:Static Orientation.Vertical}" />
+                <u:EnumSelector
+                    Name="labelPosition"
+                    u:FormItem.Label="Label Position"
+                    EnumType="common:Position"
+                    Value="{x:Static common:Position.Left}" />
+                <u:EnumSelector
+                    Name="itemAlignment"
+                    u:FormItem.Label="Item Alignment"
+                    EnumType="common:ItemAlignment"
+                    Value="{x:Static common:ItemAlignment.Center}" />
+            </u:Form>
+            <u:Descriptions
+                HorizontalAlignment="Left"
+                ItemsSource="{Binding Items}"
+                LabelMemberBinding="{Binding Label}"
+                DisplayMemberBinding="{Binding Description}"
+                Orientation="{Binding #orientation.Value}"
+                LabelPosition="{Binding #labelPosition.Value}"
+                ItemAlignment="{Binding #itemAlignment.Value}"
+                MaxWidth="400" />
+
+            <TextBlock Text="Descriptions support XAML inline declaration. " />
+            <u:Descriptions
+                MaxWidth="400"
+                HorizontalAlignment="Left"
+                Orientation="{Binding #orientation.Value}"
+                LabelPosition="{Binding #labelPosition.Value}"
+                ItemAlignment="{Binding #itemAlignment.Value}">
+                <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
+                <u:DescriptionsItem Label="7天留存">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="98%" />
+                        <PathIcon
+                            Theme="{DynamicResource InnerPathIcon}"
+                            Classes="Small"
+                            Margin="2 0 0 0"
+                            Data="{DynamicResource SemiIconArrowUp}"
+                            Foreground="{DynamicResource SemiGreen5}" />
+                    </StackPanel>
+                </u:DescriptionsItem>
+                <u:DescriptionsItem Label="安全等级" Content="3级" />
+                <u:DescriptionsItem Label="垂类标签">
+                    <Label Theme="{DynamicResource TagLabel}" Content="电商" />
+                </u:DescriptionsItem>
+                <u:DescriptionsItem Label="认证状态" Content="未认证" />
+            </u:Descriptions>
+
+            <TextBlock Text="Use ColumnWrapPanel to display horizontally" />
+            <u:Descriptions
+                ItemsSource="{Binding Items2}"
+                LabelMemberBinding="{Binding Label}"
+                ItemAlignment="Plain">
+                <u:Descriptions.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <u:ColumnWrapPanel Column="5" />
+                    </ItemsPanelTemplate>
+                </u:Descriptions.ItemsPanel>
+                <u:Descriptions.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock
+                            Text="{Binding Description}"
+                            Margin="0 0 8 0" />
+                    </DataTemplate>
+                </u:Descriptions.ItemTemplate>
+            </u:Descriptions>
+
+            <TextBlock Text="Setting Orientation to Horizontal support Classes Small and Large. " />
+            <StackPanel>
+                <Border Theme="{DynamicResource CardBorder}">
+                    <u:Descriptions
+                        Classes="Small"
+                        Orientation="Horizontal"
+                        LabelPosition="Top">
+                        <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
+                        <u:DescriptionsItem Label="7天留存" Content="98%" />
+                        <u:DescriptionsItem Label="安全等级" Content="3级" />
+                    </u:Descriptions>
+                </Border>
+                <Border Theme="{DynamicResource CardBorder}">
+                    <u:Descriptions
+                        Orientation="Horizontal"
+                        LabelPosition="Top">
+                        <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
+                        <u:DescriptionsItem Label="7天留存" Content="98%" />
+                        <u:DescriptionsItem Label="安全等级" Content="3级" />
+                    </u:Descriptions>
+                </Border>
+                <Border Theme="{DynamicResource CardBorder}">
+                    <u:Descriptions
+                        Classes="Large"
+                        Orientation="Horizontal"
+                        LabelPosition="Top">
+                        <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
+                        <u:DescriptionsItem Label="7天留存" Content="98%" />
+                        <u:DescriptionsItem Label="安全等级" Content="3级" />
+                    </u:Descriptions>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
