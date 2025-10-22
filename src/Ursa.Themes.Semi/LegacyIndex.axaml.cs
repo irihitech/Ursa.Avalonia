@@ -5,11 +5,12 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Styling;
 using Ursa.Themes.Semi.Locale;
 
-namespace Ursa.Themes.Semi;
+namespace Ursa.Themes.Semi.Legacy;
 
 /// <summary>
 ///     Notice: Don't set Locale if your app is in InvariantGlobalization mode.
 /// </summary>
+[Obsolete("This is the legacy theme. Please use UrsaSemiTheme instead.")]
 public class SemiTheme : Styles
 {
     private static readonly Dictionary<CultureInfo, ResourceDictionary> _localeToResource = new()
@@ -17,7 +18,6 @@ public class SemiTheme : Styles
         { new CultureInfo("zh-CN"), new zh_cn() },
         { new CultureInfo("en-US"), new en_us() },
         { new CultureInfo("fr-FR"), new fr_fr() },
-        { new CultureInfo("ru-RU"), new ru_ru() },
     };
 
     private static readonly ResourceDictionary _defaultResource = new zh_cn();
@@ -46,12 +46,12 @@ public class SemiTheme : Styles
                 if (TryGetLocaleResource(value, out var resource) && resource is not null)
                 {
                     _locale = value;
-                    SetResources(this.Resources, resource);
+                    foreach (var kv in resource) Resources[kv.Key] = kv.Value;
                 }
                 else
                 {
                     _locale = new CultureInfo("zh-CN");
-                    SetResources(Resources, _defaultResource);
+                    foreach (var kv in _defaultResource) Resources[kv.Key] = kv.Value;
                 }
             }
             catch
@@ -89,25 +89,13 @@ public class SemiTheme : Styles
     {
         if (culture is null) return;
         if (!_localeToResource.TryGetValue(culture, out var resources)) return;
-        SetResources(application.Resources, resources);
+        foreach (var kv in resources) application.Resources[kv.Key] = kv.Value;
     }
 
     public static void OverrideLocaleResources(StyledElement element, CultureInfo? culture)
     {
         if (culture is null) return;
         if (!_localeToResource.TryGetValue(culture, out var resources)) return;
-        SetResources(element.Resources, resources);
-    }
-
-    private static void SetResources(IResourceDictionary source, IResourceDictionary content)
-    {
-        if (source is ResourceDictionary resourceDictionary)
-        {
-             resourceDictionary.SetItems(content);
-        }
-        else
-        {
-            foreach (var kv in content) source[kv.Key] = kv.Value;
-        }
+        foreach (var kv in resources) element.Resources[kv.Key] = kv.Value;
     }
 }
