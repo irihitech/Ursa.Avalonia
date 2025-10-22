@@ -5,11 +5,12 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Styling;
 using Ursa.Themes.Semi.Locale;
 
-namespace Ursa.Themes.Semi;
+namespace Ursa.Themes.Semi.Legacy;
 
 /// <summary>
 ///     Notice: Don't set Locale if your app is in InvariantGlobalization mode.
 /// </summary>
+[Obsolete("This is the legacy theme. Please use UrsaSemiTheme instead.")]
 public class SemiTheme : Styles
 {
     private static readonly Dictionary<CultureInfo, ResourceDictionary> _localeToResource = new()
@@ -17,7 +18,6 @@ public class SemiTheme : Styles
         { new CultureInfo("zh-CN"), new zh_cn() },
         { new CultureInfo("en-US"), new en_us() },
         { new CultureInfo("fr-FR"), new fr_fr() },
-        { new CultureInfo("ru-RU"), new ru_ru() },
     };
 
     private static readonly ResourceDictionary _defaultResource = new zh_cn();

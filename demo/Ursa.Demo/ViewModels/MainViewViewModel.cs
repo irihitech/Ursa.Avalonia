@@ -100,10 +100,10 @@ public partial class MainViewViewModel : ViewModelBase
         new("Default", ThemeVariant.Default),
         new("Light", ThemeVariant.Light),
         new("Dark", ThemeVariant.Dark),
-        new("Aquatic", SemiTheme.Aquatic),
-        new("Desert", SemiTheme.Desert),
-        new("Dusk", SemiTheme.Dusk),
-        new("NightSky", SemiTheme.NightSky)
+        new("Aquatic", UrsaSemiTheme.Aquatic),
+        new("Desert", UrsaSemiTheme.Desert),
+        new("Dusk", UrsaSemiTheme.Dusk),
+        new("NightSky", UrsaSemiTheme.NightSky)
     ];
 
     [ObservableProperty] private ThemeItem? _selectedTheme;

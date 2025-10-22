@@ -1,15 +1,16 @@
-<Styles xmlns="https://github.com/avaloniaui"
+<Styles x:Class="Ursa.Themes.Semi.Legacy.SemiTheme"
+        xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:semi="https://irihi.tech/semi">
+        xmlns:u-semi="https://irihi.tech/ursa/themes/semi">
     <Styles.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceInclude x:Key="Dark" Source="Themes/Dark/_index.axaml" />
                 <ResourceInclude x:Key="Light" Source="Themes/Light/_index.axaml" />
-                <ResourceInclude x:Key="{x:Static semi:UrsaSemiTheme.Aquatic}" Source="Themes/HighContrast/Aquatic.axaml" />
-                <ResourceInclude x:Key="{x:Static semi:UrsaSemiTheme.Desert}" Source="Themes/HighContrast/Desert.axaml" />
-                <ResourceInclude x:Key="{x:Static semi:UrsaSemiTheme.Dusk}" Source="Themes/HighContrast/Dusk.axaml" />
-                <ResourceInclude x:Key="{x:Static semi:UrsaSemiTheme.NightSky}" Source="Themes/HighContrast/NightSky.axaml" />
+                <ResourceInclude x:Key="{x:Static u-semi:SemiTheme.Aquatic}" Source="Themes/HighContrast/Aquatic.axaml" />
+                <ResourceInclude x:Key="{x:Static u-semi:SemiTheme.Desert}" Source="Themes/HighContrast/Desert.axaml" />
+                <ResourceInclude x:Key="{x:Static u-semi:SemiTheme.Dusk}" Source="Themes/HighContrast/Dusk.axaml" />
+                <ResourceInclude x:Key="{x:Static u-semi:SemiTheme.NightSky}" Source="Themes/HighContrast/NightSky.axaml" />
             </ResourceDictionary.ThemeDictionaries>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="Controls/_index.axaml" />
