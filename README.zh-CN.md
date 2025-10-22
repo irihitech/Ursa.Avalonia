@@ -10,13 +10,13 @@
 [![Irihi.Ursa](https://img.shields.io/nuget/dt/Irihi.Ursa.svg?style=flat-square)](https://www.nuget.org/packages/Irihi.Ursa/)
 [![GitCode](https://gitcode.com/IRIHI_Technology/Ursa.Avalonia/star/badge.svg)](https://gitcode.com/IRIHI_Technology/Ursa.Avalonia)
 
-Ursa 是一个企业级 UI 库，用于使用 Avalonia UI 构建跨平台应用程序。
+Ursa 是一个企业级 Avalonia UI 库，助力开发者快速构建跨平台应用程序。
 
 ![Demo](./assets/dark-demo.jpg)
 
-## .NET Foundation
+## .NET 基金会
 
-本项目由 [.NET Foundation](https://dotnetfoundation.org) 支持。
+本项目由 [.NET 基金会](https://dotnetfoundation.org) 支持。
 
 ## 快速开始
 
@@ -49,6 +49,7 @@ dotnet add package Irihi.Ursa.Themes.Semi
         <semi:SemiTheme Locale="zh-CN" />
         <u-semi:SemiTheme Locale="zh-CN"/>
     </Application.Styles>
+    ...
 ```
 
 
@@ -68,11 +69,11 @@ dotnet add package Irihi.Ursa.Themes.Semi
 
 ## 行为准则
 
-本项目采用了由贡献者公约定义的行为准则，以明确我们社区的预期行为。
-有关更多信息，请参阅 [.NET Foundation 行为准则](https://dotnetfoundation.org/code-of-conduct)。
+本项目采用了由贡献者公约定义的行为准则，以明确社区的预期行为。
+有关更多信息，请参阅 [.NET 基金会行为准则](https://dotnetfoundation.org/code-of-conduct)。
 
 ## 兼容性说明
-Ursa 目前兼容 Avalonia 11.1.x 和 11.2.x，但明确不支持 Avalonia 11.2.0。
+Ursa 目前兼容 Avalonia 11.1.x 到 11.3.x，但明确不支持 Avalonia 11.2.0。
 
 ## 扩展
 
