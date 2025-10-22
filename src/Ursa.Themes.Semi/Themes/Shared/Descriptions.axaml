@@ -1,4 +1,5 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <x:Double x:Key="DescriptionsLineHeight">20</x:Double>
     <StaticResource x:Key="DescriptionsValueFontWeight" ResourceKey="SemiFontWeightBold" />
     <StaticResource x:Key="DescriptionsKeySmallFontSize" ResourceKey="SemiFontSizeSmall" />
     <StaticResource x:Key="DescriptionsValueSmallFontSize" ResourceKey="SemiFontSizeHeader6" />
@@ -6,4 +7,14 @@
     <StaticResource x:Key="DescriptionsValueMediumFontSize" ResourceKey="SemiFontSizeHeader4" />
     <StaticResource x:Key="DescriptionsKeyLargeFontSize" ResourceKey="SemiFontSizeRegular" />
     <StaticResource x:Key="DescriptionsValueLargeFontSize" ResourceKey="SemiFontSizeHeader2" />
+
+    <Thickness x:Key="DescriptionsKeyPadding">0 0 24 0</Thickness>
+    <Thickness x:Key="DescriptionsItemMargin">0 0 0 12</Thickness>
+    <Thickness x:Key="DescriptionsValueSmallMargin">0 0 48 0</Thickness>
+    <Thickness x:Key="DescriptionsValueMediumMargin">0 0 60 0</Thickness>
+    <Thickness x:Key="DescriptionsValueLargeMargin">0 0 80 0</Thickness>
+    <Thickness x:Key="DescriptionsKeySmallMargin">0</Thickness>
+    <Thickness x:Key="DescriptionsKeyMediumMargin">0 0 0 4</Thickness>
+    <Thickness x:Key="DescriptionsKeyLargeMargin">0 0 0 4</Thickness>
+    <Thickness x:Key="DescriptionsKeyPlainMargin">0 0 8 0</Thickness>
 </ResourceDictionary>
