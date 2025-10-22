@@ -1,5 +1,7 @@
 # Ursa
 
+English | [简体中文](README.zh-CN.md)
+
 <p align="center">
     <img src="./assets/Ursa.svg" alt="drawing" width="150" />
 </p>
