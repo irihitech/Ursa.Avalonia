@@ -4,7 +4,7 @@
                     xmlns:iri="https://irihi.tech/shared">
     <Design.PreviewWith>
         <StackPanel Margin="20" Spacing="20">
-            <u:Descriptions>
+            <u:Descriptions Orientation="Horizontal" LabelPosition="Top">
                 <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
                 <u:DescriptionsItem Label="7天留存" Content="98%" />
                 <u:DescriptionsItem Label="安全等级" Content="3级" />
@@ -22,7 +22,6 @@
             <Setter Property="Grid.IsSharedSizeScope" Value="True" />
         </Style>
         <Style Selector="^[Orientation=Horizontal]">
-            <Setter Property="LabelPosition" Value="Top" />
             <Setter Property="ItemsPanel">
                 <ItemsPanelTemplate>
                     <u:ColumnWrapPanel />

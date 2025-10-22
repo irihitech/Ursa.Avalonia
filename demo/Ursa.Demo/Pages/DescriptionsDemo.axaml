@@ -21,6 +21,11 @@
                 EnumType="Orientation"
                 Value="{x:Static Orientation.Vertical}" />
             <u:EnumSelector
+                Name="labelPosition"
+                u:FormItem.Label="Label Position"
+                EnumType="common:Position"
+                Value="{x:Static common:Position.Left}" />
+            <u:EnumSelector
                 Name="itemAlignment"
                 u:FormItem.Label="Item Alignment"
                 EnumType="common:ItemAlignment"
@@ -31,16 +36,18 @@
             ItemsSource="{Binding Items}"
             LabelMemberBinding="{Binding Label}"
             DisplayMemberBinding="{Binding Description}"
-            ItemAlignment="{Binding #itemAlignment.Value}"
             Orientation="{Binding #orientation.Value}"
+            LabelPosition="{Binding #labelPosition.Value}"
+            ItemAlignment="{Binding #itemAlignment.Value}"
             MaxWidth="400" />
 
         <TextBlock Text="Descriptions support XAML inline declaration. " />
         <u:Descriptions
             MaxWidth="400"
             HorizontalAlignment="Left"
-            ItemAlignment="{Binding #itemAlignment.Value}"
-            Orientation="{Binding #orientation.Value}">
+            Orientation="{Binding #orientation.Value}"
+            LabelPosition="{Binding #labelPosition.Value}"
+            ItemAlignment="{Binding #itemAlignment.Value}">
             <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
             <u:DescriptionsItem Label="7天留存">
                 <StackPanel Orientation="Horizontal">
@@ -80,7 +87,8 @@
             <Border Theme="{DynamicResource CardBorder}">
                 <u:Descriptions
                     Classes="Small"
-                    Orientation="Horizontal">
+                    Orientation="Horizontal"
+                    LabelPosition="Top">
                     <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
                     <u:DescriptionsItem Label="7天留存" Content="98%" />
                     <u:DescriptionsItem Label="安全等级" Content="3级" />
@@ -88,7 +96,8 @@
             </Border>
             <Border Theme="{DynamicResource CardBorder}">
                 <u:Descriptions
-                    Orientation="Horizontal">
+                    Orientation="Horizontal"
+                    LabelPosition="Top">
                     <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
                     <u:DescriptionsItem Label="7天留存" Content="98%" />
                     <u:DescriptionsItem Label="安全等级" Content="3级" />
@@ -97,7 +106,8 @@
             <Border Theme="{DynamicResource CardBorder}">
                 <u:Descriptions
                     Classes="Large"
-                    Orientation="Horizontal">
+                    Orientation="Horizontal"
+                    LabelPosition="Top">
                     <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
                     <u:DescriptionsItem Label="7天留存" Content="98%" />
                     <u:DescriptionsItem Label="安全等级" Content="3级" />
