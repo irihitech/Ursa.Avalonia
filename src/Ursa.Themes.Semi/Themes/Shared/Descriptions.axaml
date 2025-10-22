@@ -1,12 +1,19 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <x:Double x:Key="DescriptionsLineHeight">20</x:Double>
-    <StaticResource x:Key="DescriptionsValueFontWeight" ResourceKey="SemiFontWeightBold" />
-    <StaticResource x:Key="DescriptionsKeySmallFontSize" ResourceKey="SemiFontSizeSmall" />
-    <StaticResource x:Key="DescriptionsValueSmallFontSize" ResourceKey="SemiFontSizeHeader6" />
-    <StaticResource x:Key="DescriptionsKeyMediumFontSize" ResourceKey="SemiFontSizeRegular" />
-    <StaticResource x:Key="DescriptionsValueMediumFontSize" ResourceKey="SemiFontSizeHeader4" />
-    <StaticResource x:Key="DescriptionsKeyLargeFontSize" ResourceKey="SemiFontSizeRegular" />
-    <StaticResource x:Key="DescriptionsValueLargeFontSize" ResourceKey="SemiFontSizeHeader2" />
+    <FontWeight x:Key="DescriptionsValueFontWeight">600</FontWeight>
+    <x:Double x:Key="DescriptionsKeySmallFontSize">12</x:Double>
+    <x:Double x:Key="DescriptionsValueSmallFontSize">16</x:Double>
+    <x:Double x:Key="DescriptionsKeyMediumFontSize">14</x:Double>
+    <x:Double x:Key="DescriptionsValueMediumFontSize">20</x:Double>
+    <x:Double x:Key="DescriptionsKeyLargeFontSize">14</x:Double>
+    <x:Double x:Key="DescriptionsValueLargeFontSize">28</x:Double>
+    <!-- <StaticResource x:Key="DescriptionsValueFontWeight" ResourceKey="SemiFontWeightBold" /> -->
+    <!-- <StaticResource x:Key="DescriptionsKeySmallFontSize" ResourceKey="SemiFontSizeSmall" /> -->
+    <!-- <StaticResource x:Key="DescriptionsValueSmallFontSize" ResourceKey="SemiFontSizeHeader6" /> -->
+    <!-- <StaticResource x:Key="DescriptionsKeyMediumFontSize" ResourceKey="SemiFontSizeRegular" /> -->
+    <!-- <StaticResource x:Key="DescriptionsValueMediumFontSize" ResourceKey="SemiFontSizeHeader4" /> -->
+    <!-- <StaticResource x:Key="DescriptionsKeyLargeFontSize" ResourceKey="SemiFontSizeRegular" /> -->
+    <!-- <StaticResource x:Key="DescriptionsValueLargeFontSize" ResourceKey="SemiFontSizeHeader2" /> -->
 
     <Thickness x:Key="DescriptionsKeyPadding">0 0 24 0</Thickness>
     <Thickness x:Key="DescriptionsItemMargin">0 0 0 12</Thickness>

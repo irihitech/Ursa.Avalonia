@@ -1,7 +1,7 @@
 ﻿using Avalonia.Controls;
+using Avalonia.Data;
 using Avalonia.Headless.XUnit;
 using Avalonia.LogicalTree;
-using Avalonia.VisualTree;
 using Ursa.Common;
 using Ursa.Controls;
 
@@ -20,15 +20,15 @@ public class Test
                 new { Label = "Name", Content = "John Doe" },
                 new { Label = "Age", Content = "30" }
             },
-            LabelMemberBinding = new Avalonia.Data.Binding("Label"),
+            LabelMemberBinding = new Binding("Label"),
         };
         var window = new Window
         {
             Content = descriptions
         };
-        
+
         window.Show();
-        
+
         var items = descriptions.GetLogicalChildren().OfType<DescriptionsItem>().ToList();
         foreach (var item in items)
         {
@@ -41,7 +41,7 @@ public class Test
             Assert.Equal(Position.Top, item.LabelPosition);
         }
     }
-    
+
     [AvaloniaFact]
     public void Inline_Descriptions_LabelPosition_Overrides_Parent_Descriptions()
     {
@@ -67,18 +67,18 @@ public class Test
         {
             Content = descriptions
         };
-        
+
         window.Show();
-        
+
         var items = descriptions.GetLogicalChildren().OfType<DescriptionsItem>().ToList();
         Assert.Equal(Position.Top, items[0].LabelPosition);
         Assert.Equal(Position.Left, items[1].LabelPosition);
-        
+
         descriptions.LabelPosition = Position.Top;
         Assert.Equal(Position.Top, items[0].LabelPosition);
         Assert.Equal(Position.Top, items[1].LabelPosition);
     }
-    
+
     [AvaloniaFact]
     public void Descriptions_ItemAlignment_Propagates_To_DescriptionItems()
     {
@@ -91,15 +91,15 @@ public class Test
                 new { Label = "Age", Content = "30" }
             },
             ItemAlignment = ItemAlignment.Center,
-            LabelMemberBinding = new Avalonia.Data.Binding("Label"),
+            LabelMemberBinding = new Binding("Label"),
         };
         var window = new Window
         {
             Content = descriptions
         };
-        
+
         window.Show();
-        
+
         var items = descriptions.GetLogicalChildren().OfType<DescriptionsItem>().ToList();
         foreach (var item in items)
         {
@@ -112,7 +112,7 @@ public class Test
             Assert.Equal(ItemAlignment.Justify, item.ItemAlignment);
         }
     }
-    
+
     [AvaloniaFact]
     public void Inline_Descriptions_ItemAlignment_Overrides_Parent_Descriptions()
     {
@@ -138,9 +138,9 @@ public class Test
         {
             Content = descriptions
         };
-        
+
         window.Show();
-        
+
         var items = descriptions.GetLogicalChildren().OfType<DescriptionsItem>().ToList();
         Assert.Equal(ItemAlignment.Justify, items[0].ItemAlignment);
         Assert.Equal(ItemAlignment.Center, items[1].ItemAlignment);
@@ -161,7 +161,7 @@ public class Test
                 new { Label = "Name", Content = "John Doe" },
                 new { Label = "Age", Content = "30" }
             },
-            LabelMemberBinding = new Avalonia.Data.Binding("Label"),
+            LabelMemberBinding = new Binding("Label"),
         };
         var window = new Window
         {
@@ -173,7 +173,7 @@ public class Test
         {
             Assert.Equal(100, item.LabelWidth);
         }
-        
+
         descriptions.LabelWidth = new GridLength(150);
         foreach (var item in items)
         {
