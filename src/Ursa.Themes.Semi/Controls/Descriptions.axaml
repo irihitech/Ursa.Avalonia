@@ -4,13 +4,13 @@
                     xmlns:iri="https://irihi.tech/shared">
     <Design.PreviewWith>
         <StackPanel Margin="20" Spacing="20">
-            <u:Descriptions LabelPosition="Left" >
-                <u:DescriptionsItem Label="Hello" Content="World" />
-                <u:DescriptionsItem Label="您好" Content="Avalonia" />
+            <u:Descriptions>
+                <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
+                <u:DescriptionsItem Label="7天留存" Content="98%" />
+                <u:DescriptionsItem Label="安全等级" Content="3级" />
             </u:Descriptions>
         </StackPanel>
     </Design.PreviewWith>
-    <!-- Add Resources Here -->
     <ControlTheme x:Key="{x:Type u:Descriptions}" TargetType="u:Descriptions">
         <Setter Property="Grid.IsSharedSizeScope" Value="False" />
         <Setter Property="Template">
@@ -30,7 +30,7 @@
             </Setter>
         </Style>
     </ControlTheme>
-    
+
     <ControlTheme x:Key="{x:Type u:DescriptionsItem}" TargetType="u:DescriptionsItem">
         <Style Selector="^:horizontal">
             <Setter Property="Template">
@@ -44,25 +44,28 @@
                         <Label
                             Name="{x:Static u:LabeledContentControl.PART_Label}"
                             Grid.Column="0"
-                            Foreground="{DynamicResource SemiColorText2}"
+                            Foreground="{DynamicResource DescriptionsKeyTextForeground}"
                             TextBlock.LineHeight="20"
                             Content="{TemplateBinding Label}"
                             ContentTemplate="{TemplateBinding LabelTemplate}"
-                            Width="{TemplateBinding LabelWidth}"
-                            />
-                        <TextBlock Grid.Column="1" Text=":" Name="PART_Colon" Foreground="{DynamicResource SemiColorText2}" Margin="0 0 8 0" />
-                        <ContentPresenter 
+                            Width="{TemplateBinding LabelWidth}" />
+                        <TextBlock
+                            Name="PART_Colon"
+                            Grid.Column="1"
+                            Text=":"
+                            Foreground="{DynamicResource DescriptionsKeyTextForeground}"
+                            Margin="0 0 8 0" />
+                        <ContentPresenter
                             Name="{x:Static iri:PartNames.PART_ContentPresenter}"
                             Grid.Column="2"
                             TextBlock.LineHeight="20"
-                            Foreground="{DynamicResource SemiColorText0}"
+                            Foreground="{DynamicResource DescriptionsValueTextForeground}"
                             Content="{TemplateBinding Content}"
-                            ContentTemplate="{TemplateBinding ContentTemplate}"
-                            />
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
                     </Grid>
                 </ControlTemplate>
             </Setter>
-            
+
             <Style Selector="^[ItemAlignment=Center]">
                 <Style Selector="^ /template/ Label#PART_Label">
                     <Setter Property="HorizontalAlignment" Value="Right" />
@@ -108,17 +111,15 @@
                         <Label
                             Name="{x:Static u:LabeledContentControl.PART_Label}"
                             DataContext="{TemplateBinding Label}"
-                            Foreground="{DynamicResource SemiColorText2}"
+                            Foreground="{DynamicResource DescriptionsKeyTextForeground}"
                             Content="{TemplateBinding Label}"
                             ContentTemplate="{TemplateBinding LabelTemplate}"
-                            Width="{TemplateBinding LabelWidth}"
-                        />
-                        <ContentPresenter 
+                            Width="{TemplateBinding LabelWidth}" />
+                        <ContentPresenter
                             Name="{x:Static iri:PartNames.PART_ContentPresenter}"
-                            Foreground="{DynamicResource SemiColorText0}"
+                            Foreground="{DynamicResource DescriptionsValueTextForeground}"
                             Content="{TemplateBinding Content}"
-                            ContentTemplate="{TemplateBinding ContentTemplate}"
-                        />
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
                     </StackPanel>
                 </ControlTemplate>
             </Setter>

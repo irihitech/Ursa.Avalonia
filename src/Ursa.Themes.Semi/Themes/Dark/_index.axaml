@@ -8,6 +8,7 @@
         <ResourceInclude Source="ButtonGroup.axaml" />
         <ResourceInclude Source="Clock.axaml" />
         <ResourceInclude Source="DatePicker.axaml" />
+        <ResourceInclude Source="Descriptions.axaml" />
         <ResourceInclude Source="Dialog.axaml" />
         <ResourceInclude Source="Divider.axaml" />
         <ResourceInclude Source="DualBadge.axaml" />
