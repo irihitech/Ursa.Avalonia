@@ -1,10 +1,9 @@
 ﻿using System.Collections.ObjectModel;
-using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Ursa.Demo.ViewModels;
 
-public partial class DescriptionsDemoViewModel: ObservableObject
+public partial class DescriptionsDemoViewModel : ObservableObject
 {
     public ObservableCollection<DescriptionItemViewModel> Items { get; set; }
     public ObservableCollection<DescriptionItemViewModel> Items2 { get; set; }
@@ -13,21 +12,11 @@ public partial class DescriptionsDemoViewModel: ObservableObject
     {
         Items = new ObservableCollection<DescriptionItemViewModel>()
         {
-            new()
-            {
-                Label = "Actual Users",
-                Description = "1,480,000"
-            },
-            new()
-            {
-                Label = "7-day Retention",
-                Description = "98%"
-            },
-            new()
-            {
-                Label = "Security Level",
-                Description = "III"
-            }
+            new() { Label = "Actual Users", Description = "1,480,000" },
+            new() { Label = "7-day Retention", Description = "98%" },
+            new() { Label = "Security Level", Description = "III" },
+            new() { Label = "Category Tag", Description = "E-commerce" },
+            new() { Label = "Authorized State", Description = "Unauthorized" },
         };
         Items2 = new ObservableCollection<DescriptionItemViewModel>()
         {
@@ -37,7 +26,7 @@ public partial class DescriptionsDemoViewModel: ObservableObject
             new() { Label = "垂类标签", Description = "编程" },
             new() { Label = "作品数量", Description = "88888888" },
             new() { Label = "认证状态", Description = "这是一个很长很长很长很长很长很长很长很长很长的值" },
-            new() { Label = "上次直播时间", Description = "2024-05-01 12:00:00"}
+            new() { Label = "上次直播时间", Description = "2024-05-01 12:00:00" }
         };
     }
 }

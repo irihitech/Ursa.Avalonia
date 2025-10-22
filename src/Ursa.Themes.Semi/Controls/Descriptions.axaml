@@ -4,11 +4,13 @@
                     xmlns:iri="https://irihi.tech/shared">
     <Design.PreviewWith>
         <StackPanel Margin="20" Spacing="20">
-            <u:Descriptions Orientation="Horizontal" LabelPosition="Top">
-                <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
-                <u:DescriptionsItem Label="7天留存" Content="98%" />
-                <u:DescriptionsItem Label="安全等级" Content="3级" />
-            </u:Descriptions>
+            <Border Theme="{DynamicResource CardBorder}">
+                <u:Descriptions Orientation="Vertical" LabelPosition="Left" ItemAlignment="Center">
+                    <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
+                    <u:DescriptionsItem Label="7天留存" Content="98%" />
+                    <u:DescriptionsItem Label="安全等级" Content="3级" />
+                </u:Descriptions>
+            </Border>
         </StackPanel>
     </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:Descriptions}" TargetType="u:Descriptions">
@@ -117,6 +119,7 @@
                         <ContentPresenter
                             Name="{x:Static iri:PartNames.PART_ContentPresenter}"
                             Foreground="{DynamicResource DescriptionsValueTextForeground}"
+                            FontWeight="{DynamicResource DescriptionsValueFontWeight}"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}" />
                     </StackPanel>
@@ -124,30 +127,30 @@
             </Setter>
             <Style Selector="^ /template/ Label#PART_Label">
                 <Setter Property="Margin" Value="0 0 0 4" />
-                <Setter Property="FontSize" Value="{DynamicResource SemiFontSizeRegular}" />
+                <Setter Property="FontSize" Value="{DynamicResource DescriptionsKeyMediumFontSize}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                 <Setter Property="Margin" Value="0 0 60 0" />
-                <Setter Property="FontSize" Value="{DynamicResource SemiFontSizeHeader4}" />
+                <Setter Property="FontSize" Value="{DynamicResource DescriptionsValueMediumFontSize}" />
             </Style>
             <Style Selector="^.Small">
                 <Style Selector="^ /template/ Label#PART_Label">
                     <Setter Property="Margin" Value="0 0 0 0" />
-                    <Setter Property="FontSize" Value="{DynamicResource SemiFontSizeSmall}" />
+                    <Setter Property="FontSize" Value="{DynamicResource DescriptionsKeySmallFontSize}" />
                 </Style>
                 <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                     <Setter Property="Margin" Value="0 0 48 0" />
-                    <Setter Property="FontSize" Value="{DynamicResource SemiFontSizeHeader6}" />
+                    <Setter Property="FontSize" Value="{DynamicResource DescriptionsValueSmallFontSize}" />
                 </Style>
             </Style>
             <Style Selector="^.Large">
                 <Style Selector="^ /template/ Label#PART_Label">
                     <Setter Property="Margin" Value="0 0 0 4" />
-                    <Setter Property="FontSize" Value="{DynamicResource SemiFontSizeSmall}" />
+                    <Setter Property="FontSize" Value="{DynamicResource DescriptionsKeyLargeFontSize}" />
                 </Style>
                 <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                     <Setter Property="Margin" Value="0 0 80 0" />
-                    <Setter Property="FontSize" Value="{DynamicResource SemiFontSizeHeader2}" />
+                    <Setter Property="FontSize" Value="{DynamicResource DescriptionsValueLargeFontSize}" />
                 </Style>
             </Style>
         </Style>

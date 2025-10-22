@@ -1,3 +1,9 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
+    <StaticResource x:Key="DescriptionsValueFontWeight" ResourceKey="SemiFontWeightBold" />
+    <StaticResource x:Key="DescriptionsKeySmallFontSize" ResourceKey="SemiFontSizeSmall" />
+    <StaticResource x:Key="DescriptionsValueSmallFontSize" ResourceKey="SemiFontSizeHeader6" />
+    <StaticResource x:Key="DescriptionsKeyMediumFontSize" ResourceKey="SemiFontSizeRegular" />
+    <StaticResource x:Key="DescriptionsValueMediumFontSize" ResourceKey="SemiFontSizeHeader4" />
+    <StaticResource x:Key="DescriptionsKeyLargeFontSize" ResourceKey="SemiFontSizeRegular" />
+    <StaticResource x:Key="DescriptionsValueLargeFontSize" ResourceKey="SemiFontSizeHeader2" />
 </ResourceDictionary>
