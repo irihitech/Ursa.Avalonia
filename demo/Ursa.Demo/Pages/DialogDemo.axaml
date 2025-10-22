@@ -200,7 +200,7 @@
         <Grid Grid.Column="1">
             <Border
                 Background="{DynamicResource SemiColorBackground1}"
-                BorderBrush="{DynamicResource SemiGrey1}"
+                BorderBrush="{DynamicResource SemiGray1}"
                 BorderThickness="1"
                 ClipToBounds="True"
                 CornerRadius="12">

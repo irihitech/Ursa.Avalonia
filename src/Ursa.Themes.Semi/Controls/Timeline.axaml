@@ -110,7 +110,7 @@
             <Setter Property="IsVisible" Value="True" />
         </Style>
         <Style Selector="^:empty-icon[Type=Default] /template/ Ellipse#PART_DefaultIcon">
-            <Setter Property="Fill" Value="{DynamicResource SemiGrey6}" />
+            <Setter Property="Fill" Value="{DynamicResource SemiGray6}" />
         </Style>
         <Style Selector="^:empty-icon[Type=Error] /template/ Ellipse#PART_DefaultIcon">
             <Setter Property="Fill" Value="{DynamicResource SemiRed6}" />

@@ -65,7 +65,7 @@
                 <u:DualBadge Classes="Yellow">Yellow</u:DualBadge>
                 <u:DualBadge Classes="Amber">Amber</u:DualBadge>
                 <u:DualBadge Classes="Orange">Orange</u:DualBadge>
-                <u:DualBadge Classes="Grey">Grey</u:DualBadge>
+                <u:DualBadge Classes="Gray">Gray</u:DualBadge>
             </WrapPanel>
             <WrapPanel>
                 <u:DualBadge Classes="FlatSquare Red">Red</u:DualBadge>
@@ -83,7 +83,7 @@
                 <u:DualBadge Classes="FlatSquare Yellow">Yellow</u:DualBadge>
                 <u:DualBadge Classes="FlatSquare Amber">Amber</u:DualBadge>
                 <u:DualBadge Classes="FlatSquare Orange">Orange</u:DualBadge>
-                <u:DualBadge Classes="FlatSquare Grey">Grey</u:DualBadge>
+                <u:DualBadge Classes="FlatSquare Gray">Gray</u:DualBadge>
             </WrapPanel>
             <WrapPanel>
                 <u:DualBadge Classes="Plastic Red">Red</u:DualBadge>
@@ -101,7 +101,7 @@
                 <u:DualBadge Classes="Plastic Yellow">Yellow</u:DualBadge>
                 <u:DualBadge Classes="Plastic Amber">Amber</u:DualBadge>
                 <u:DualBadge Classes="Plastic Orange">Orange</u:DualBadge>
-                <u:DualBadge Classes="Plastic Grey">Grey</u:DualBadge>
+                <u:DualBadge Classes="Plastic Gray">Gray</u:DualBadge>
             </WrapPanel>
             <WrapPanel>
                 <u:DualBadge Classes="ForTheBadge Red">Red</u:DualBadge>
@@ -119,7 +119,7 @@
                 <u:DualBadge Classes="ForTheBadge Yellow">Yellow</u:DualBadge>
                 <u:DualBadge Classes="ForTheBadge Amber">Amber</u:DualBadge>
                 <u:DualBadge Classes="ForTheBadge Orange">Orange</u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge Grey">Grey</u:DualBadge>
+                <u:DualBadge Classes="ForTheBadge Gray">Gray</u:DualBadge>
             </WrapPanel>
         </StackPanel>
     </ScrollViewer>

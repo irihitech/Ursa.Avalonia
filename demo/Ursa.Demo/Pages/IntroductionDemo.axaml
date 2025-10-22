@@ -48,7 +48,7 @@
                         Width="600"
                         Height="300"
                         Scale="0.2"
-                        Background="{DynamicResource SemiGrey1Color}"
+                        Background="{DynamicResource SemiGray1Color}"
                         Source="../Assets/IRIHI.png">
                         <u:ImageViewer.Overlayer>
                             <Grid

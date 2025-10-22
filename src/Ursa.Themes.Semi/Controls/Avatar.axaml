@@ -11,7 +11,7 @@
     </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:Avatar}" TargetType="{x:Type u:Avatar}">
         <Setter Property="Foreground" Value="{DynamicResource AvatarForeground}" />
-        <Setter Property="Background" Value="{DynamicResource AvatarGreyBackground}" />
+        <Setter Property="Background" Value="{DynamicResource AvatarGrayBackground}" />
         <Setter Property="FontSize" Value="{DynamicResource AvatarMediumFontSize}" />
         <Setter Property="FontWeight" Value="{DynamicResource AvatarFontWeight}" />
         <Setter Property="Padding" Value="3" />
@@ -105,8 +105,8 @@
         <Style Selector="^.Orange">
             <Setter Property="Background" Value="{DynamicResource AvatarOrangeBackground}" />
         </Style>
-        <Style Selector="^.Grey">
-            <Setter Property="Background" Value="{DynamicResource AvatarGreyBackground}" />
+        <Style Selector="^.Gray">
+            <Setter Property="Background" Value="{DynamicResource AvatarGrayBackground}" />
         </Style>
 
         <Style Selector="^.Square">
