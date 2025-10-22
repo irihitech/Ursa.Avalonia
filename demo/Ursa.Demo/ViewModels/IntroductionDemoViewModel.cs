@@ -2,59 +2,52 @@ using System;
 using System.Collections.ObjectModel;
 using System.Net;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Ursa.Demo.Models;
 
 namespace Ursa.Demo.ViewModels;
 
 public partial class IntroductionDemoViewModel : ObservableObject
 {
-    public ObservableCollection<MenuItemViewModel> MenuItems { get; set; } = new()
-    {
-        new MenuItemViewModel()
-        {
-            MenuHeader = "任务管理",
-            MenuIconName = "User",
-            Children = new ObservableCollection<MenuItemViewModel>()
-            {
-                new()
-                {
-                    MenuHeader = "公告管理",
-                    MenuIconName = "Star",
-                    Children = new ObservableCollection<MenuItemViewModel>()
-                    {
-                        new() { MenuHeader = "公告设置" },
-                        new() { MenuHeader = "公告处理" }
-                    }
-                },
-                new() { MenuHeader = "任务查询" }
-            }
-        },
-        new MenuItemViewModel()
-        {
-            MenuHeader = "附加功能",
-            IsSeparator = true,
-        },
-        new MenuItemViewModel()
-        {
-            MenuHeader = "任务平台",
-            MenuIconName = "Gear",
-            Children = new ObservableCollection<MenuItemViewModel>()
-            {
-                new() { MenuHeader = "任务管理" },
-                new() { MenuHeader = "用户任务查询" }
-            }
-        }
-    };
-
     public ObservableCollection<string> ButtonGroupItems { get; set; } = new()
     {
         "Avalonia", "WPF", "Xamarin"
     };
 
-    [ObservableProperty] private IPAddress? _address;
-
-    public void ChangeAddress()
+    public ObservableCollection<string> ComboBoxItems { get; set; } = new()
     {
-        long l = Random.Shared.NextInt64(0x00000000FFFFFFFF);
-        Address = new IPAddress(l);
-    }
+        "Option 1", "Option 2", "Option 3", "Option 4", "Option 5"
+    };
+
+    public ObservableCollection<ControlData> AutoCompleteItems { get; set; } = new()
+    {
+        new() { MenuHeader = "Avatar", Chinese = "头像" },
+        new() { MenuHeader = "Badge", Chinese = "徽标" },
+        new() { MenuHeader = "Button", Chinese = "按钮" },
+        new() { MenuHeader = "Dialog", Chinese = "对话框" },
+    };
+
+    public ObservableCollection<string> TagItems { get; set; } = new()
+    {
+        "Tag1", "Tag2", "Tag3"
+    };
+
+    [ObservableProperty] private double _ratingValue = 3.5;
+    
+    [ObservableProperty] private int _sliderValue = 50;
+
+    [ObservableProperty] private IPAddress? _ipAddress = new IPAddress(new byte[] { 192, 168, 1, 1 });
+
+    [ObservableProperty] private double _lowerValue = 20;
+    
+    [ObservableProperty] private double _upperValue = 80;
+
+    [ObservableProperty] private DateTime _startDate = DateTime.Today;
+    
+    [ObservableProperty] private DateTime _endDate = DateTime.Today.AddDays(7);
+
+    [ObservableProperty] private DateTime _dateTime = DateTime.Now;
+
+    [ObservableProperty] private TimeSpan _startTime = new TimeSpan(9, 0, 0);
+    
+    [ObservableProperty] private TimeSpan _endTime = new TimeSpan(17, 0, 0);
 }
