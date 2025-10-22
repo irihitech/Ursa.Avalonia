@@ -5,7 +5,7 @@ using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-public class ColumnWrapPanel: Panel, INavigableContainer
+public class ColumnWrapPanel : Panel, INavigableContainer
 {
     public static readonly StyledProperty<int> ColumnProperty = AvaloniaProperty.Register<ColumnWrapPanel, int>(
         nameof(Column), int.MaxValue, validate: a => a > 0);
@@ -21,7 +21,7 @@ public class ColumnWrapPanel: Panel, INavigableContainer
         AffectsMeasure<ColumnWrapPanel>(ColumnProperty);
         AffectsArrange<ColumnWrapPanel>(ColumnProperty);
     }
-    
+
     protected override Size MeasureOverride(Size availableSize)
     {
         double unit = availableSize.Width / Column;
@@ -37,15 +37,17 @@ public class ColumnWrapPanel: Panel, INavigableContainer
             int colSpan = (int)Math.Ceiling(desiredSize.Width / unit);
             if (colSpan > Column) colSpan = Column; // limit to max columns
             double childWidth = colSpan * unit;
-            if (MathHelpers.GreaterThan(x + childWidth , availableSize.Width)) // wrap to next row
+            if (MathHelpers.GreaterThan(x + childWidth, availableSize.Width)) // wrap to next row
             {
                 x = 0;
                 y += rowHeight;
                 rowHeight = 0;
             }
+
             x += childWidth;
             rowHeight = Math.Max(rowHeight, desiredSize.Height);
         }
+
         return new Size(availableSize.Width, y + rowHeight);
     }
 
@@ -73,6 +75,7 @@ public class ColumnWrapPanel: Panel, INavigableContainer
             x += colSpan * unit;
             rowHeight = Math.Max(rowHeight, desiredSize.Height);
         }
+
         return new Size(finalSize.Width, y + rowHeight);
     }
 
