@@ -47,6 +47,7 @@ public partial class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyDatePicker => new DatePickerDemoViewModel(),
             MenuKeys.MenuKeyDateRangePicker => new DateRangePickerDemoViewModel(),
             MenuKeys.MenuKeyDateTimePicker => new DateTimePickerDemoViewModel(),
+            MenuKeys.MenuKeyDescriptions => new DescriptionsDemoViewModel(),
             MenuKeys.MenuKeyDialog => new DialogDemoViewModel(),
             MenuKeys.MenuKeyDisableContainer => new DisableContainerDemoViewModel(),
             MenuKeys.MenuKeyDivider => new DividerDemoViewModel(),
@@ -89,6 +90,7 @@ public partial class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyAspectRatioLayout => new AspectRatioLayoutDemoViewModel(),
             MenuKeys.MenuKeyPathPicker => new PathPickerDemoViewModel(),
             MenuKeys.MenuKeyAnchor => new AnchorDemoViewModel(),
+            MenuKeys.MenuKeyMultiAutoCompleteBox => new MultiAutoCompleteBoxDemoViewModel(),
             _ => throw new ArgumentOutOfRangeException(nameof(s), s, null)
         };
     }
@@ -98,10 +100,10 @@ public partial class MainViewViewModel : ViewModelBase
         new("Default", ThemeVariant.Default),
         new("Light", ThemeVariant.Light),
         new("Dark", ThemeVariant.Dark),
-        new("Aquatic", SemiTheme.Aquatic),
-        new("Desert", SemiTheme.Desert),
-        new("Dusk", SemiTheme.Dusk),
-        new("NightSky", SemiTheme.NightSky)
+        new("Aquatic", UrsaSemiTheme.Aquatic),
+        new("Desert", UrsaSemiTheme.Desert),
+        new("Dusk", UrsaSemiTheme.Dusk),
+        new("NightSky", UrsaSemiTheme.NightSky)
     ];
 
     [ObservableProperty] private ThemeItem? _selectedTheme;

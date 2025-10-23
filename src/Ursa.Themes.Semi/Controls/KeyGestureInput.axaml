@@ -1,9 +1,9 @@
 <ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="using:Avalonia.Controls.Converters"
     xmlns:u="https://irihi.tech/ursa"
-    xmlns:iri="https://irihi.tech/shared">
+    xmlns:iri="https://irihi.tech/shared"
+    xmlns:converters="using:Avalonia.Controls.Converters">
     <converters:PlatformKeyGestureConverter x:Key="KeyGestureConverter" />
 
     <ControlTheme x:Key="{x:Type u:KeyGestureInput}" TargetType="u:KeyGestureInput">
@@ -25,8 +25,9 @@
                     BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <Panel VerticalAlignment="Stretch" Margin="{TemplateBinding Padding}">
-                        <Grid ColumnDefinitions="Auto, *, Auto" >
-                            <ContentPresenter Grid.Column="0"
+                        <Grid ColumnDefinitions="Auto, *, Auto">
+                            <ContentPresenter
+                                Grid.Column="0"
                                 Content="{TemplateBinding InnerLeftContent}"
                                 Padding="{TemplateBinding Padding, Converter={iri:ThicknessMixerConverter Right}}"
                                 DockPanel.Dock="Left"
@@ -34,7 +35,7 @@
                                 VerticalContentAlignment="Center"
                                 Foreground="{DynamicResource TextBoxInnerForeground}"
                                 IsVisible="{Binding Path=InnerLeftContent, RelativeSource={RelativeSource TemplatedParent},
-                                                            Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                    Converter={x:Static ObjectConverters.IsNotNull}}" />
                             <ContentPresenter
                                 Grid.Column="2"
                                 Content="{TemplateBinding InnerRightContent}"
@@ -44,14 +45,14 @@
                                 VerticalContentAlignment="Center"
                                 Foreground="{DynamicResource TextBoxInnerForeground}"
                                 IsVisible="{Binding Path=InnerRightContent, RelativeSource={RelativeSource TemplatedParent},
-                                                            Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                    Converter={x:Static ObjectConverters.IsNotNull}}" />
                             <SelectableTextBlock
                                 Grid.Column="1"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Text="{TemplateBinding Gesture,
-                                                       Converter={StaticResource KeyGestureConverter}}" />
-                            <Button Grid.Column="1"
+                                Text="{TemplateBinding Gesture,Converter={StaticResource KeyGestureConverter}}" />
+                            <Button
+                                Grid.Column="1"
                                 Name="PART_ClearButton"
                                 HorizontalAlignment="Right"
                                 Command="{Binding $parent[u:KeyGestureInput].Clear}"

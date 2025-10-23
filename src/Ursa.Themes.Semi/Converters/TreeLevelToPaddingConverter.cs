@@ -1,12 +1,12 @@
 using System.Globalization;
 using Avalonia;
-using Avalonia.Data.Converters;
+using Irihi.Avalonia.Shared.Converters;
 
 namespace Ursa.Themes.Semi.Converters;
 
-public class TreeLevelToPaddingConverter : IMultiValueConverter
+public class TreeLevelToPaddingConverter : MarkupMultiValueConverter
 {
-    public object? Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
+    public override object? Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
     {
         if (values[0] is int i && values[1] is Thickness indent)
         {

@@ -204,14 +204,14 @@
                             Classes="Tertiary"
                             Grid.Column="0"
                             Icon="{DynamicResource CalendarViewFastForwardGlyph}"
-                            Theme="{DynamicResource BorderlessIconButton}"/>
+                            Theme="{DynamicResource BorderlessIconButton}" />
 
                         <u:IconButton
                             Name="{x:Static u:CalendarView.PART_PreviousButton}"
                             Grid.Column="1"
                             Classes="Tertiary"
                             Icon="{DynamicResource CalendarItemPreviousIconGlyph}"
-                            Theme="{DynamicResource BorderlessIconButton}"/>
+                            Theme="{DynamicResource BorderlessIconButton}" />
 
                         <Grid Grid.Column="2" ColumnDefinitions="*, *">
                             <Button
@@ -239,13 +239,13 @@
                             Grid.Column="3"
                             Classes="Tertiary"
                             Icon="{DynamicResource CalendarItemNextIconGlyph}"
-                            Theme="{DynamicResource BorderlessIconButton}"/>
+                            Theme="{DynamicResource BorderlessIconButton}" />
                         <u:IconButton
                             Name="{x:Static u:CalendarView.PART_FastNextButton}"
                             Grid.Column="4"
                             Classes="Tertiary"
                             Icon="{DynamicResource CalendarViewFastBackwardGlyph}"
-                            Theme="{DynamicResource BorderlessIconButton}"/>
+                            Theme="{DynamicResource BorderlessIconButton}" />
                     </Grid>
                     <Grid
                         Name="{x:Static u:CalendarView.PART_MonthGrid}"

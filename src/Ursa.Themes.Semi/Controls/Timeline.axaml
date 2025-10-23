@@ -1,9 +1,7 @@
 <ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters"
-    xmlns:u="https://irihi.tech/ursa"
-    xmlns:usemi="https://irihi.tech/ursa/themes/semi">
+    xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
         <StackPanel Width="100" Spacing="20">
             <u:Timeline>
@@ -22,14 +20,6 @@
             </ControlTemplate>
         </Setter>
     </ControlTheme>
-
-    <converters:TimelineItemTypeToIconForegroundConverter
-        x:Key="ForegroundConverter"
-        DefaultBrush="{DynamicResource DefaultTimelineIconForeground}"
-        ErrorBrush="{DynamicResource ErrorTimelineIconForeground}"
-        OngoingBrush="{DynamicResource OngoingTimelineIconForeground}"
-        SuccessBrush="{DynamicResource SuccessTimelineIconForeground}"
-        WarningBrush="{DynamicResource WarningTimelineIconForeground}" />
 
     <ControlTheme x:Key="{x:Type u:TimelineItem}" TargetType="u:TimelineItem">
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -88,7 +78,7 @@
                         VerticalAlignment="Top"
                         Content="{TemplateBinding Content}"
                         ContentTemplate="{TemplateBinding ContentTemplate}"
-                        TextElement.FontSize="12"/>
+                        TextElement.FontSize="12" />
                     <TextBlock
                         Name="{x:Static u:TimelineItem.PART_Time}"
                         Grid.Row="0"
@@ -111,28 +101,28 @@
             <Setter Property="Fill" Value="Transparent" />
         </Style>
         <Style Selector="^ /template/ TextBlock#PART_Time">
-            <Setter Property="Foreground" Value="{DynamicResource TextBlockTertiaryForeground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBlockTertiaryForeground}" />
         </Style>
         <Style Selector="^ /template/ ContentPresenter#PART_Content">
-            <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBlockTertiaryForeground}"/>
+            <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBlockTertiaryForeground}" />
         </Style>
         <Style Selector="^:empty-icon /template/ Ellipse#PART_DefaultIcon">
-            <Setter Property="IsVisible" Value="True"/>
+            <Setter Property="IsVisible" Value="True" />
         </Style>
         <Style Selector="^:empty-icon[Type=Default] /template/ Ellipse#PART_DefaultIcon">
-            <Setter Property="Fill" Value="{DynamicResource SemiGrey6}"/>
+            <Setter Property="Fill" Value="{DynamicResource SemiGrey6}" />
         </Style>
         <Style Selector="^:empty-icon[Type=Error] /template/ Ellipse#PART_DefaultIcon">
-            <Setter Property="Fill" Value="{DynamicResource SemiRed6}"/>
+            <Setter Property="Fill" Value="{DynamicResource SemiRed6}" />
         </Style>
         <Style Selector="^:empty-icon[Type=Ongoing] /template/ Ellipse#PART_DefaultIcon">
-            <Setter Property="Fill" Value="{DynamicResource SemiBlue6}"/>
+            <Setter Property="Fill" Value="{DynamicResource SemiBlue6}" />
         </Style>
         <Style Selector="^:empty-icon[Type=Success] /template/ Ellipse#PART_DefaultIcon">
-            <Setter Property="Fill" Value="{DynamicResource SemiGreen6}"/>
+            <Setter Property="Fill" Value="{DynamicResource SemiGreen6}" />
         </Style>
         <Style Selector="^:empty-icon[Type=Warning] /template/ Ellipse#PART_DefaultIcon">
-            <Setter Property="Fill" Value="{DynamicResource SemiOrange6}"/>
+            <Setter Property="Fill" Value="{DynamicResource SemiOrange6}" />
         </Style>
         <Style Selector="^:all-left">
             <Style Selector="^ /template/ ContentPresenter#PART_Header">

@@ -179,7 +179,7 @@
                 <Setter Property="Foreground" Value="{DynamicResource ComboBoxIconPressedForeground}" />
             </Style>
         </Style>
-        
+
         <Style Selector="^:focus">
             <Setter Property="Background" Value="{DynamicResource ComboBoxSelectorFocusBackground}" />
             <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxSelectorFocusBorderBrush}" />

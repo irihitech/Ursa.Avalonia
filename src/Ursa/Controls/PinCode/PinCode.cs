@@ -161,7 +161,6 @@ public class PinCode : TemplatedControl
 
     protected async void OnPreviewKeyDown(KeyEventArgs e)
     {
-        TextBox b = new TextBox();
         var pasteKeys = Application.Current?.PlatformSettings?.HotkeyConfiguration.Paste;
         if (pasteKeys?.Any(a => a.Matches(e)) == true)
         {
@@ -207,6 +206,17 @@ public class PinCode : TemplatedControl
             presenter.Text = string.Empty;
             if (_currentIndex == 0) return;
             _currentIndex--;
+            _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
+        }
+        else if (e.Key == Key.Delete && _currentIndex < Digits.Count)
+        {
+            _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);
+            var presenter = _itemsControl?.ContainerFromIndex(_currentIndex) as PinCodeItem;
+            if (presenter is null) return;
+            Digits[_currentIndex] = string.Empty;
+            presenter.Text = string.Empty;
+            if (_currentIndex == Digits.Count-1) return;
+            _currentIndex++;
             _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
         }
         else if (e.Key is Key.Left or Key.FnLeftArrow)

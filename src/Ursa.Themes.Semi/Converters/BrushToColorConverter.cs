@@ -1,22 +1,18 @@
 using System.Globalization;
-using Avalonia.Data.Converters;
 using Avalonia.Media;
+using Irihi.Avalonia.Shared.Converters;
 
 namespace Ursa.Themes.Semi.Converters;
 
-public class BrushToColorConverter: IValueConverter
+public class BrushToColorConverter : MarkupValueConverter
 {
-    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public override object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is ISolidColorBrush b)
         {
             return b.Color;
         }
-        return Colors.Transparent;
-    }
 
-    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
+        return Colors.Transparent;
     }
 }

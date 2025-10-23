@@ -26,7 +26,7 @@ public enum IPv4BoxInputMode
 [TemplatePart(PART_SecondTextPresenter, typeof(TextPresenter))]
 [TemplatePart(PART_ThirdTextPresenter, typeof(TextPresenter))]
 [TemplatePart(PART_FourthTextPresenter, typeof(TextPresenter))]
-public class IPv4Box: TemplatedControl
+public class IPv4Box : TemplatedControl
 {
     public const string PART_FirstTextPresenter = "PART_FirstTextPresenter";
     public const string PART_SecondTextPresenter = "PART_SecondTextPresenter";
@@ -42,7 +42,7 @@ public class IPv4Box: TemplatedControl
     private byte? _fourthByte;
     private readonly TextPresenter?[] _presenters = new TextPresenter?[4];
     private TextPresenter? _currentActivePresenter;
-    
+
     public static readonly StyledProperty<IPAddress?> IPAddressProperty = AvaloniaProperty.Register<IPv4Box, IPAddress?>(
         nameof(IPAddress), defaultBindingMode: BindingMode.TwoWay);
     public IPAddress? IPAddress
@@ -111,7 +111,7 @@ public class IPv4Box: TemplatedControl
     /// <summary>
     /// 是否使用小键盘输入
     /// </summary>
-    internal bool IsTargetByNumPad 
+    internal bool IsTargetByNumPad
     {
         set
         {
@@ -152,7 +152,7 @@ public class IPv4Box: TemplatedControl
             ParseBytes(ShowLeadingZero);
         }
     }
-    
+
     protected override void OnKeyDown(KeyEventArgs e)
     {
         _currentActivePresenter ??= _presenters[0];
@@ -214,7 +214,13 @@ public class IPv4Box: TemplatedControl
 
         if (e.Key == Key.Back)
         {
-            DeleteImplementation(_currentActivePresenter);
+            DeleteImplementation(_currentActivePresenter, isDeleteKey: false);
+            e.Handled = true;
+            return;
+        }
+        if (e.Key == Key.Delete)
+        {
+            DeleteImplementation(_currentActivePresenter, isDeleteKey: true);
             e.Handled = true;
             return;
         }
@@ -234,7 +240,7 @@ public class IPv4Box: TemplatedControl
         }
         base.OnKeyDown(e);
     }
-    
+
     protected override void OnTextInput(TextInputEventArgs e)
     {
         if (e.Handled) return;
@@ -291,7 +297,7 @@ public class IPv4Box: TemplatedControl
             }
         }
     }
-    
+
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
         Point position = e.GetPosition(_firstText);
@@ -413,7 +419,7 @@ public class IPv4Box: TemplatedControl
         if (_fourthText != null) _fourthText.Text = _fourthByte?.ToString(format);
     }
 
-    
+
 
     private bool MoveToNextPresenter(TextPresenter? presenter, bool selectAllAfterMove)
     {
@@ -451,7 +457,7 @@ public class IPv4Box: TemplatedControl
         _fourthByte = null;
         IPAddress = null;
     }
-    
+
     private void SetIPAddressInternal()
     {
         if (_firstByte is null && _secondByte is null && _thirdByte is null && _fourthByte is null)
@@ -474,31 +480,69 @@ public class IPv4Box: TemplatedControl
         }
     }
 
-    private void DeleteImplementation(TextPresenter? presenter)
+    /// <summary>
+    /// </summary>
+    /// <param name="presenter"></param>
+    /// <param name="isDeleteKey">del 键 (从前往后删)</param>
+    private void DeleteImplementation(TextPresenter? presenter, bool isDeleteKey)
     {
-        if(presenter is null) return;
+        if (presenter is null) return;
         var oldText = presenter.Text ?? string.Empty;
         if (presenter.SelectionStart != presenter.SelectionEnd)
         {
             presenter.DeleteSelection();
             presenter.ClearSelection();
         }
-        else if (string.IsNullOrWhiteSpace(oldText) || presenter.CaretIndex == 0)
+        else if (isDeleteKey)
         {
-            presenter.HideCaret();
-            MoveToPreviousTextPresenter(presenter);
-            if (_currentActivePresenter != null)
+            if (string.IsNullOrWhiteSpace(oldText) || presenter.CaretIndex == oldText.Length)
             {
-                _currentActivePresenter.ShowCaret();
-                _currentActivePresenter.MoveCaretToEnd();
+                presenter.HideCaret();
+                var oldActivePresenter = _currentActivePresenter;
+                MoveToNextPresenter(presenter, selectAllAfterMove: false);
+                if (_currentActivePresenter != null)
+                {
+                    _currentActivePresenter.ShowCaret();
+                    if (!ReferenceEquals(oldActivePresenter, _currentActivePresenter))
+                    {
+                        _currentActivePresenter.MoveCaretToStart();
+                    }
+                }
+            }
+            else
+            {
+                var index = presenter.CaretIndex;
+                var newText = string.Empty;
+                if (index == 0)
+                {
+                    newText = oldText.Substring(1, oldText.Length - 1);
+                }
+                else
+                {
+                    newText = oldText.Substring(0, index) + oldText.Substring(index + 1);
+                }
+                presenter.Text = newText;
             }
         }
         else
         {
-            int index = presenter.CaretIndex;
-            string newText = oldText.Substring(0, index - 1) + oldText.Substring(Math.Min(index, oldText.Length));
-            presenter.MoveCaretHorizontal(LogicalDirection.Backward);
-            presenter.Text = newText;
+            if (string.IsNullOrWhiteSpace(oldText) || presenter.CaretIndex == 0)
+            {
+                presenter.HideCaret();
+                MoveToPreviousTextPresenter(presenter);
+                if (_currentActivePresenter != null)
+                {
+                    _currentActivePresenter.ShowCaret();
+                    _currentActivePresenter.MoveCaretToEnd();
+                }
+            }
+            else
+            {
+                int index = presenter.CaretIndex;
+                string newText = oldText.Substring(0, index - 1) + oldText.Substring(Math.Min(index, oldText.Length));
+                presenter.MoveCaretHorizontal(LogicalDirection.Backward);
+                presenter.Text = newText;
+            }
         }
     }
 
@@ -565,7 +609,7 @@ public class IPv4Box: TemplatedControl
         if (clipboard is null) return;
         await clipboard.SetTextAsync(s);
     }
-    
+
     public static KeyGesture? CopyKeyGesture { get; } = Application.Current?.PlatformSettings?.HotkeyConfiguration.Copy.FirstOrDefault();
     public static KeyGesture? PasteKeyGesture { get; } = Application.Current?.PlatformSettings?.HotkeyConfiguration.Paste.FirstOrDefault();
     public static KeyGesture? CutKeyGesture { get; } = Application.Current?.PlatformSettings?.HotkeyConfiguration.Cut.FirstOrDefault();

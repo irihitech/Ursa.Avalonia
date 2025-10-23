@@ -8,8 +8,8 @@
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="MinWidth" Value="96" />
         <Setter Property="MinHeight" Value="96" />
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="Padding" Value="{DynamicResource DrawerMargin}" />
         <Setter Property="BorderThickness" Value="{DynamicResource DrawerBorderThickness}" />
         <Setter Property="CornerRadius" Value="{DynamicResource DrawerCornerRadius}" />
@@ -105,8 +105,8 @@
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="MinWidth" Value="96" />
         <Setter Property="MinHeight" Value="96" />
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="Padding" Value="{DynamicResource DrawerMargin}" />
         <Setter Property="BorderThickness" Value="{DynamicResource DrawerBorderThickness}" />
         <Setter Property="CornerRadius" Value="{DynamicResource DrawerCornerRadius}" />

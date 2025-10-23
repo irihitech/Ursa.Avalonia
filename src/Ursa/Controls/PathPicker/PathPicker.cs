@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
@@ -15,9 +16,21 @@ namespace Ursa.Controls;
 
 [TemplatePart(Name = PART_Button, Type = typeof(Button))]
 [PseudoClasses(PseudoClassName.PC_Empty)]
-public class PathPicker : TemplatedControl
+public partial class PathPicker : TemplatedControl
 {
+    private const string PatternsRegexString = @"^\[(?:[^*.,]+|([^*.,]+(,[^,]+)+))\]$";
+    
+#if NETSTANDARD2_0
+    private static readonly Regex _patternsRegex = new (PatternsRegexString);
+#endif
+    
+#if NET8_0
+    [GeneratedRegex(PatternsRegexString)]
+    private static partial Regex GetPatternsRegex();
+#endif
+    
     public const string PART_Button = "PART_Button";
+    
     public static readonly StyledProperty<string> SuggestedStartPathProperty =
         AvaloniaProperty.Register<PathPicker, string>(
             nameof(SuggestedStartPath), string.Empty);
@@ -181,7 +194,6 @@ public class PathPicker : TemplatedControl
         Button.ClickEvent.AddHandler(LaunchPicker, _button);
     }
 
-
     private static string RemoveNewLine(string str)
     {
         return str.Replace("\r", "")
@@ -220,9 +232,20 @@ public class PathPicker : TemplatedControl
     /**
     * [ParseFilePickerTypeStr][ParseFilePickerTypeStr]...
     */
-    private static IReadOnlyList<FilePickerFileType>? ParseFileTypes(string str)
+    internal static IReadOnlyList<FilePickerFileType>? ParseFileTypes(string str)
     {
-        if (string.IsNullOrWhiteSpace(str)) return null;
+        if (string.IsNullOrWhiteSpace(str)) 
+            return null;
+
+#if NETSTANDARD2_0
+        if (!_patternsRegex.IsMatch(str))
+#endif
+
+#if NET8_0
+        if (!GetPatternsRegex().IsMatch(str))
+#endif
+        throw new ArgumentException($"{nameof(str)} Invalid parameter, please refer to the following content: [Name, Pattern], such as [123, .exe, .pdb] or [All][ImageAll][11, *.txt]");
+        
         string[] separatedStrings = ["[", "][", "]"];
         var list = RemoveNewLine(str)
             .Replace(" ", string.Empty)

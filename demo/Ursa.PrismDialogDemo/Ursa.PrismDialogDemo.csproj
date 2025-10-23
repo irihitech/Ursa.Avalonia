@@ -16,7 +16,7 @@
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)"/>
         <PackageReference Include="Prism.DryIoc.Avalonia" Version="8.1.97.11072" />
-        <PackageReference Include="Semi.Avalonia" Version="11.1.0-rc2.1" />
+		<PackageReference Include="Semi.Avalonia" Version="11.2.1.9" />
     </ItemGroup>
 
 

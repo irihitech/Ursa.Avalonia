@@ -25,9 +25,9 @@
         </Setter>
     </ControlTheme>
     <ControlTheme x:Key="{x:Type u:ToolBar}" TargetType="u:ToolBar">
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="ItemsPanel">
             <ItemsPanelTemplate>
                 <u:ToolBarPanel />
