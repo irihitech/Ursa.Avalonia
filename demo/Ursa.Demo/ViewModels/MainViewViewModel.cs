@@ -16,17 +16,12 @@ public partial class MainViewViewModel : ViewModelBase
     public WindowNotificationManager? NotificationManager { get; set; }
     public MenuViewModel Menus { get; set; } = new MenuViewModel();
 
-    private object? _content;
-
-    public object? Content
-    {
-        get => _content;
-        set => SetProperty(ref _content, value);
-    }
+    [ObservableProperty] private object? _content;
 
     public MainViewViewModel()
     {
-        WeakReferenceMessenger.Default.Register<MainViewViewModel, string>(this, OnNavigation);
+        WeakReferenceMessenger.Default.Register<MainViewViewModel, string, string>(this, "JumpTo", OnNavigation);
+        OnNavigation(this, MenuKeys.MenuKeyIntroduction);
     }
 
 

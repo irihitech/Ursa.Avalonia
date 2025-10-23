@@ -32,6 +32,6 @@ public class MenuItemViewModel: ViewModelBase
     private void OnActivate()
     {
         if (IsSeparator || Key is null) return;
-        WeakReferenceMessenger.Default.Send(Key);
+        WeakReferenceMessenger.Default.Send(Key, "JumpTo");
     }
 }

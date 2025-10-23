@@ -5,7 +5,9 @@
     xmlns:semi="https://irihi.tech/semi"
     xmlns:u-semi="https://irihi.tech/ursa/themes/semi"
     xmlns:u="https://irihi.tech/ursa"
-    xmlns:iri="https://irihi.tech/shared">
+    xmlns:iri="https://irihi.tech/shared"
+    xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
+    x:DataType="vm:ApplicationViewModel">
     <Application.Styles>
         <semi:SemiTheme Locale="zh-CN" />
         <semi:SemiPopupAnimations />
@@ -18,4 +20,12 @@
             </Style>
         </Style>
     </Application.Styles>
+    <NativeMenu.Menu>
+        <NativeMenu>
+            <NativeMenuItem
+                Header="About Us"
+                Command="{Binding JumpToCommand}"
+                CommandParameter="{x:Static vm:MenuKeys.MenuKeyAboutUs}"/>
+        </NativeMenu>
+    </NativeMenu.Menu>
 </Application>
