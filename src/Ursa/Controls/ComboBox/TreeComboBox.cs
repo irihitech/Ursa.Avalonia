@@ -197,8 +197,8 @@ public class TreeComboBox: ItemsControl, IClearControl, IInnerContentControl, IP
             return;
         
         // F4 or Alt+Down/Up toggles dropdown
-        if (e.Key == Key.F4 && !e.KeyModifiers.HasFlag(KeyModifiers.Alt) || 
-            (e.Key == Key.Down || e.Key == Key.Up) && e.KeyModifiers.HasFlag(KeyModifiers.Alt))
+        if ((e.Key == Key.F4 && !e.KeyModifiers.HasFlag(KeyModifiers.Alt)) || 
+            ((e.Key == Key.Down || e.Key == Key.Up) && e.KeyModifiers.HasFlag(KeyModifiers.Alt)))
         {
             SetCurrentValue(IsDropDownOpenProperty, !IsDropDownOpen);
             e.Handled = true;
@@ -219,6 +219,7 @@ public class TreeComboBox: ItemsControl, IClearControl, IInnerContentControl, IP
         else if (IsDropDownOpen && e.Key == Key.Tab)
         {
             SetCurrentValue(IsDropDownOpenProperty, false);
+            e.Handled = true;
         }
     }
 
