@@ -190,6 +190,38 @@ public class TreeComboBox: ItemsControl, IClearControl, IInnerContentControl, IP
         ContainerForItemPreparedOverride(container, item, index);
     }
     
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        base.OnKeyDown(e);
+        if (e.Handled)
+            return;
+        
+        // F4 or Alt+Down/Up toggles dropdown
+        if (e.Key == Key.F4 && !e.KeyModifiers.HasFlag(KeyModifiers.Alt) || 
+            (e.Key == Key.Down || e.Key == Key.Up) && e.KeyModifiers.HasFlag(KeyModifiers.Alt))
+        {
+            SetCurrentValue(IsDropDownOpenProperty, !IsDropDownOpen);
+            e.Handled = true;
+        }
+        // Escape closes dropdown
+        else if (IsDropDownOpen && e.Key == Key.Escape)
+        {
+            SetCurrentValue(IsDropDownOpenProperty, false);
+            e.Handled = true;
+        }
+        // Enter or Space opens dropdown when closed
+        else if (!IsDropDownOpen && (e.Key == Key.Return || e.Key == Key.Space))
+        {
+            SetCurrentValue(IsDropDownOpenProperty, true);
+            e.Handled = true;
+        }
+        // Tab closes dropdown
+        else if (IsDropDownOpen && e.Key == Key.Tab)
+        {
+            SetCurrentValue(IsDropDownOpenProperty, false);
+        }
+    }
+
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
     {
         base.OnPointerReleased(e);
