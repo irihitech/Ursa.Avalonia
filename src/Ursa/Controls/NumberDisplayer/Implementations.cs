@@ -25,6 +25,29 @@ public class Int32Displayer : NumberDisplayer<int>
     }
 }
 
+public class Int64Displayer : NumberDisplayer<long>
+{
+    protected override Type StyleKeyOverride { get; } = typeof(NumberDisplayerBase);
+
+    protected override InterpolatingAnimator<long> GetAnimator()
+    {
+        return new LongAnimator();
+    }
+
+    private class LongAnimator : InterpolatingAnimator<long>
+    {
+        public override long Interpolate(double progress, long oldValue, long newValue)
+        {
+            return oldValue + (long)((newValue - oldValue) * progress);
+        }
+    }
+
+    protected override string GetString(long value)
+    {
+        return value.ToString(StringFormat);
+    }
+}
+
 public class DoubleDisplayer : NumberDisplayer<double>
 {
     protected override Type StyleKeyOverride { get; } = typeof(NumberDisplayerBase);

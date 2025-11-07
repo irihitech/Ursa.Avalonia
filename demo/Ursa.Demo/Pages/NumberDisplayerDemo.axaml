@@ -14,6 +14,7 @@
     <StackPanel HorizontalAlignment="Left">
         <Button Command="{Binding IncreaseCommand}">Change</Button>
         <u:Int32Displayer Value="{Binding Value}" />
+        <u:Int64Displayer Value="{Binding LongValue}" />
         <u:DoubleDisplayer StringFormat="N2" Value="{Binding DoubleValue}" />
         <u:DateDisplay
             FontSize="30"
@@ -21,6 +22,7 @@
             Value="{Binding DateValue}" />
         <TextBlock Text="Selectable: "></TextBlock>
         <u:Int32Displayer Value="{Binding Value}" IsSelectable="True" />
+        <u:Int64Displayer Value="{Binding LongValue}" IsSelectable="True" />
         <u:DoubleDisplayer StringFormat="N2" Value="{Binding DoubleValue}" IsSelectable="True" />
         <u:DateDisplay
             FontSize="30"
