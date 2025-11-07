@@ -25,7 +25,7 @@ public partial class NumberDisplayerDemoViewModel: ObservableObject
     {
         Random r = new Random();
         Value = r.Next(int.MaxValue);
-        LongValue = ((long)r.Next(int.MaxValue)) * r.Next(1000);
+        LongValue = ((long)r.Next(int.MaxValue)) * 1000 + r.Next(1000);
         DoubleValue = r.NextDouble() * 100000;
         DateValue = DateTime.Today.AddDays(r.Next(1000));
     }
