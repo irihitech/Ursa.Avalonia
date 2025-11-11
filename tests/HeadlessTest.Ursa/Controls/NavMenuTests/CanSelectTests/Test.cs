@@ -100,4 +100,44 @@ public class Test
         window.MouseUp(new Point(point3.Value.X+10, point3.Value.Y+10), Avalonia.Input.MouseButton.Left);
         Assert.Equal(item3.DataContext, menu.SelectedItem); // Should change selection to item3
     }
+    
+    [AvaloniaFact]
+    public void RightClick_Does_Not_Change_Selection()
+    {
+        Window window = new Window
+        {
+            Width = 400,
+            Height = 400,
+        };
+
+        var view = new TestView1();
+        
+        window.Content = view;
+        
+        window.Show();
+
+        var menu = view.FindControl<NavMenu>("Menu");
+        var item1 = view.FindControl<NavMenuItem>("MenuItem1");
+        var item3 = view.FindControl<NavMenuItem>("MenuItem3");
+
+        Assert.NotNull(menu);
+        Assert.NotNull(item1);
+        Assert.NotNull(item3);
+
+        var point1 = item1.TranslatePoint(new Point(0, 0), window);
+        var point3 = item3.TranslatePoint(new Point(0, 0), window);
+        Assert.NotNull(point1);
+        Assert.NotNull(point3);
+        
+        // Left-click on item1 to select it
+        window.MouseDown(new Point(point1.Value.X+10, point1.Value.Y+10), Avalonia.Input.MouseButton.Left);
+        window.MouseUp(new Point(point1.Value.X+10, point1.Value.Y+10), Avalonia.Input.MouseButton.Left);
+        Assert.Equal(item1, menu.SelectedItem);
+        
+        // Right-click on item3 - should NOT change selection
+        window.MouseDown(new Point(point3.Value.X+10, point3.Value.Y+10), Avalonia.Input.MouseButton.Right);
+        window.MouseUp(new Point(point3.Value.X+10, point3.Value.Y+10), Avalonia.Input.MouseButton.Right);
+        Assert.Equal(item1, menu.SelectedItem); // Selection should remain on item1
+        Assert.False(item3.IsSelected); // item3 should not be selected
+    }
 }
