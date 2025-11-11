@@ -46,12 +46,12 @@ public class SemiTheme : Styles
                 if (TryGetLocaleResource(value, out var resource) && resource is not null)
                 {
                     _locale = value;
-                    foreach (var kv in resource) Resources[kv.Key] = kv.Value;
+                    SetResources(this.Resources, resource);
                 }
                 else
                 {
                     _locale = new CultureInfo("zh-CN");
-                    foreach (var kv in _defaultResource) Resources[kv.Key] = kv.Value;
+                    SetResources(Resources, _defaultResource);
                 }
             }
             catch
@@ -89,13 +89,25 @@ public class SemiTheme : Styles
     {
         if (culture is null) return;
         if (!_localeToResource.TryGetValue(culture, out var resources)) return;
-        foreach (var kv in resources) application.Resources[kv.Key] = kv.Value;
+        SetResources(application.Resources, resources);
     }
 
     public static void OverrideLocaleResources(StyledElement element, CultureInfo? culture)
     {
         if (culture is null) return;
         if (!_localeToResource.TryGetValue(culture, out var resources)) return;
-        foreach (var kv in resources) element.Resources[kv.Key] = kv.Value;
+        SetResources(element.Resources, resources);
+    }
+
+    private static void SetResources(IResourceDictionary source, IResourceDictionary content)
+    {
+        if (source is ResourceDictionary resourceDictionary)
+        {
+             resourceDictionary.SetItems(content);
+        }
+        else
+        {
+            foreach (var kv in content) source[kv.Key] = kv.Value;
+        }
     }
 }
