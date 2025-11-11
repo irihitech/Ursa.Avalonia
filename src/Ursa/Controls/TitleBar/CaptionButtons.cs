@@ -21,13 +21,12 @@ public class CaptionButtons : Avalonia.Controls.Chrome.CaptionButtons
     private Button? _closeButton;
     private Button? _fullScreenButton;
     private Button? _minimizeButton;
+    private Button? _restoreButton;
 
     /// <summary>
-    ///     切换进入全屏前 窗口的状态
+    /// Stores the previous window state before entering full-screen mode.
     /// </summary>
     private WindowState? _oldWindowState;
-
-    private Button? _restoreButton;
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
