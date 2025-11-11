@@ -29,8 +29,8 @@ public class WindowThumb: Control
 
     private void OnTapped(object? sender, TappedEventArgs e)
     {
-        if (this.VisualRoot is not Window window) return;
-        if (!window.CanResize) return;
+        if (VisualRoot is not Window window) return;
+        if (!window.CanResize || !window.CanMaximize) return;
         if ( window.WindowState == WindowState.FullScreen) return;
         window.WindowState = window.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
     }
