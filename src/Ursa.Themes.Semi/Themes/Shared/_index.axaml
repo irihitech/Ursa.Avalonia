@@ -5,6 +5,7 @@
         <ResourceInclude Source="Badge.axaml" />
         <ResourceInclude Source="Banner.axaml" />
         <ResourceInclude Source="ButtonGroup.axaml" />
+        <ResourceInclude Source="CaptionButton.axaml" />
         <ResourceInclude Source="DatePicker.axaml" />
         <ResourceInclude Source="DateTimePicker.axaml" />
         <ResourceInclude Source="Descriptions.axaml" />
