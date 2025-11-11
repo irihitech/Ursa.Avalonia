@@ -17,15 +17,10 @@ public class CaptionButtons : Avalonia.Controls.Chrome.CaptionButtons
     private const string PART_RestoreButton = "PART_RestoreButton";
     private const string PART_MinimizeButton = "PART_MinimizeButton";
     private const string PART_FullScreenButton = "PART_FullScreenButton";
-    private IDisposable? _camMaximizeSubscription;
-    private IDisposable? _canMinimizeSubscription;
 
     private Button? _closeButton;
-    private IDisposable? _closeSubscription;
     private Button? _fullScreenButton;
-    private IDisposable? _fullScreenSubscription;
     private Button? _minimizeButton;
-    private IDisposable? _minimizeSubscription;
 
     /// <summary>
     ///     切换进入全屏前 窗口的状态
@@ -33,9 +28,6 @@ public class CaptionButtons : Avalonia.Controls.Chrome.CaptionButtons
     private WindowState? _oldWindowState;
 
     private Button? _restoreButton;
-    private IDisposable? _restoreSubscription;
-
-    private IDisposable? _windowStateSubscription;
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -83,11 +75,9 @@ public class CaptionButtons : Avalonia.Controls.Chrome.CaptionButtons
             || e.Property == UrsaWindow.IsMinimizeButtonVisibleProperty
             || e.Property == UrsaWindow.IsRestoreButtonVisibleProperty
             || e.Property == UrsaWindow.IsCloseButtonVisibleProperty
-            || e.Property == Window.CanMaximizeProperty 
+            || e.Property == Window.CanMaximizeProperty
             || e.Property == Window.CanMinimizeProperty)
-        {
             UpdateVisibility();
-        }
     }
 
     private void UpdateVisibility()
@@ -95,7 +85,8 @@ public class CaptionButtons : Avalonia.Controls.Chrome.CaptionButtons
         if (HostWindow is UrsaWindow u)
         {
             IsVisibleProperty.SetValue(u.IsCloseButtonVisible, _closeButton);
-            IsVisibleProperty.SetValue(u.CanMaximize && u.WindowState != WindowState.FullScreen && u.IsRestoreButtonVisible,
+            IsVisibleProperty.SetValue(
+                u.CanMaximize && u.WindowState != WindowState.FullScreen && u.IsRestoreButtonVisible,
                 _restoreButton);
             IsVisibleProperty.SetValue(
                 u.CanMinimize && u.WindowState != WindowState.FullScreen && u.IsMinimizeButtonVisible,
@@ -111,11 +102,7 @@ public class CaptionButtons : Avalonia.Controls.Chrome.CaptionButtons
 
     public override void Detach()
     {
-        if (HostWindow is not null)
-        {
-             HostWindow.PropertyChanged -= OnWindowPropertyChanged;
-        }
+        if (HostWindow is not null) HostWindow.PropertyChanged -= OnWindowPropertyChanged;
         base.Detach();
-        
     }
 }

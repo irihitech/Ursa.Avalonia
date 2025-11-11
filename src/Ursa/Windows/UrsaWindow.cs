@@ -24,7 +24,7 @@ public class UrsaWindow : Window
     /// <summary>
     /// Defines the visibility of the minimize button.
     /// </summary>
-    [Obsolete("Use Window.CanMinimize property instead.")]
+    [Obsolete("Will be removed in Ursa 2.0. Use Window.CanMinimize property instead.")]
     public static readonly StyledProperty<bool> IsMinimizeButtonVisibleProperty =
         AvaloniaProperty.Register<UrsaWindow, bool>(
             nameof(IsMinimizeButtonVisible), true);
@@ -32,7 +32,7 @@ public class UrsaWindow : Window
     /// <summary>
     /// Defines the visibility of the restore button.
     /// </summary>
-    [Obsolete("Use Window.CanMaximize property instead.")]
+    [Obsolete("Will be removed in Ursa 2.0. Use Window.CanMaximize property instead.")]
     public static readonly StyledProperty<bool> IsRestoreButtonVisibleProperty =
         AvaloniaProperty.Register<UrsaWindow, bool>(
             nameof(IsRestoreButtonVisible), true);
@@ -103,7 +103,7 @@ public class UrsaWindow : Window
     /// <summary>
     /// Gets or sets a value indicating whether the minimize button is visible.
     /// </summary>
-    [Obsolete("Use Window.CanMinimize property instead.")]
+    [Obsolete("Will be removed in Ursa 2.0. Use Window.CanMinimize property instead.")]
     public bool IsMinimizeButtonVisible
     {
         get => GetValue(IsMinimizeButtonVisibleProperty);
@@ -113,7 +113,7 @@ public class UrsaWindow : Window
     /// <summary>
     /// Gets or sets a value indicating whether the restore button is visible.
     /// </summary>
-    [Obsolete("Use Window.CanMaximize property instead.")]
+    [Obsolete("Will be removed in Ursa 2.0. Use Window.CanMaximize property instead.")]
     public bool IsRestoreButtonVisible
     {
         get => GetValue(IsRestoreButtonVisibleProperty);
