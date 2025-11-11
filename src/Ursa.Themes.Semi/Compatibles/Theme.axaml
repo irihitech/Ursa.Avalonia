@@ -46,9 +46,9 @@
     <ControlTheme x:Key="CaptionButton" TargetType="Button">
         <Setter Property="Foreground" Value="{DynamicResource CaptionButtonForeground}" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="CornerRadius" Value="3" />
-        <Setter Property="Padding" Value="8" />
-        <Setter Property="Width" Value="32" />
+        <Setter Property="CornerRadius" Value="{DynamicResource CaptionButtonCornerRadius}" />
+        <Setter Property="Padding" Value="{DynamicResource CaptionButtonPadding}" />
+        <Setter Property="Width" Value="{DynamicResource CaptionButtonWidth}" />
         <Setter Property="Height" Value="{DynamicResource CaptionButtonHeight}" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
