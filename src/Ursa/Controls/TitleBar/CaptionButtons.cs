@@ -6,34 +6,37 @@ using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-[TemplatePart(PART_CloseButton, typeof (Button))]
-[TemplatePart(PART_RestoreButton, typeof (Button))]
-[TemplatePart(PART_MinimizeButton, typeof (Button))]
-[TemplatePart(PART_FullScreenButton, typeof (Button))]
+[TemplatePart(PART_CloseButton, typeof(Button))]
+[TemplatePart(PART_RestoreButton, typeof(Button))]
+[TemplatePart(PART_MinimizeButton, typeof(Button))]
+[TemplatePart(PART_FullScreenButton, typeof(Button))]
 [PseudoClasses(":minimized", ":normal", ":maximized", ":fullscreen")]
-public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
+public class CaptionButtons : Avalonia.Controls.Chrome.CaptionButtons
 {
     private const string PART_CloseButton = "PART_CloseButton";
     private const string PART_RestoreButton = "PART_RestoreButton";
     private const string PART_MinimizeButton = "PART_MinimizeButton";
     private const string PART_FullScreenButton = "PART_FullScreenButton";
+    private IDisposable? _camMaximizeSubscription;
+    private IDisposable? _canMinimizeSubscription;
 
     private Button? _closeButton;
-    private Button? _restoreButton;
-    private Button? _minimizeButton;
-    private Button? _fullScreenButton;
-    
-    private IDisposable? _windowStateSubscription;
-    private IDisposable? _fullScreenSubscription;
-    private IDisposable? _minimizeSubscription;
-    private IDisposable? _restoreSubscription;
     private IDisposable? _closeSubscription;
+    private Button? _fullScreenButton;
+    private IDisposable? _fullScreenSubscription;
+    private Button? _minimizeButton;
+    private IDisposable? _minimizeSubscription;
 
     /// <summary>
-    /// 切换进入全屏前 窗口的状态
+    ///     切换进入全屏前 窗口的状态
     /// </summary>
     private WindowState? _oldWindowState;
-    
+
+    private Button? _restoreButton;
+    private IDisposable? _restoreSubscription;
+
+    private IDisposable? _windowStateSubscription;
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         _closeButton = e.NameScope.Get<Button>(PART_CloseButton);
@@ -44,11 +47,9 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
         Button.ClickEvent.AddHandler((_, _) => OnRestore(), _restoreButton);
         Button.ClickEvent.AddHandler((_, _) => OnMinimize(), _minimizeButton);
         Button.ClickEvent.AddHandler((_, _) => OnToggleFullScreen(), _fullScreenButton);
-        
-        if (HostWindow is not null && !HostWindow.CanResize)
-        {
+
+        if (HostWindow is not null && (!HostWindow.CanResize || !HostWindow.CanMaximize))
             _restoreButton.IsEnabled = false;
-        }
         UpdateVisibility();
     }
 
@@ -57,58 +58,64 @@ public class CaptionButtons: Avalonia.Controls.Chrome.CaptionButtons
         if (HostWindow != null)
         {
             if (HostWindow.WindowState != WindowState.FullScreen)
-            {
                 HostWindow.WindowState = WindowState.FullScreen;
-            }
             else
-            {
                 HostWindow.WindowState = _oldWindowState ?? WindowState.Normal;
-            }
         }
     }
+
     public override void Attach(Window? hostWindow)
     {
         if (hostWindow is null) return;
         base.Attach(hostWindow);
-        _windowStateSubscription = HostWindow?.GetPropertyChangedObservable(Window.WindowStateProperty).Subscribe(OnHostWindowStateChanged);
-        Action<bool> a = _ => UpdateVisibility();
-        _fullScreenSubscription = HostWindow?.GetObservable(UrsaWindow.IsFullScreenButtonVisibleProperty).Subscribe(a);
-        _minimizeSubscription = HostWindow?.GetObservable(UrsaWindow.IsMinimizeButtonVisibleProperty).Subscribe(a);
-        _restoreSubscription = HostWindow?.GetObservable(UrsaWindow.IsRestoreButtonVisibleProperty).Subscribe(a);
-        _closeSubscription = HostWindow?.GetObservable(UrsaWindow.IsCloseButtonVisibleProperty).Subscribe(a);
+        if (HostWindow is not null) HostWindow.PropertyChanged += OnWindowPropertyChanged;
     }
 
-    private void OnHostWindowStateChanged(AvaloniaPropertyChangedEventArgs e)
+    private void OnWindowPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
     {
-        UpdateVisibility();
-        if (e.GetNewValue<WindowState>() == WindowState.FullScreen)
+        if (e.Property == Window.WindowStateProperty)
         {
-            _oldWindowState = e.GetOldValue<WindowState>();
+            UpdateVisibility();
+            if (e.GetNewValue<WindowState>() == WindowState.FullScreen) _oldWindowState = e.GetOldValue<WindowState>();
+        }
+
+        if (e.Property == UrsaWindow.IsFullScreenButtonVisibleProperty
+            || e.Property == UrsaWindow.IsMinimizeButtonVisibleProperty
+            || e.Property == UrsaWindow.IsRestoreButtonVisibleProperty
+            || e.Property == UrsaWindow.IsCloseButtonVisibleProperty
+            || e.Property == Window.CanMaximizeProperty 
+            || e.Property == Window.CanMinimizeProperty)
+        {
+            UpdateVisibility();
         }
     }
-    
+
     private void UpdateVisibility()
     {
-        if (HostWindow is not UrsaWindow u)
+        if (HostWindow is UrsaWindow u)
         {
-            return;
+            IsVisibleProperty.SetValue(u.IsCloseButtonVisible, _closeButton);
+            IsVisibleProperty.SetValue(u.CanMaximize && u.WindowState != WindowState.FullScreen && u.IsRestoreButtonVisible,
+                _restoreButton);
+            IsVisibleProperty.SetValue(
+                u.CanMinimize && u.WindowState != WindowState.FullScreen && u.IsMinimizeButtonVisible,
+                _minimizeButton);
+            IsVisibleProperty.SetValue(u.IsFullScreenButtonVisible, _fullScreenButton);
         }
-
-        IsVisibleProperty.SetValue(u.IsCloseButtonVisible, _closeButton);
-        IsVisibleProperty.SetValue(u.WindowState != WindowState.FullScreen && u.IsRestoreButtonVisible,
-            _restoreButton);
-        IsVisibleProperty.SetValue(u.WindowState != WindowState.FullScreen && u.IsMinimizeButtonVisible,
-            _minimizeButton);
-        IsVisibleProperty.SetValue(u.IsFullScreenButtonVisible, _fullScreenButton);
+        else if (HostWindow is { } s)
+        {
+            IsVisibleProperty.SetValue(s.CanMaximize && s.WindowState != WindowState.FullScreen, _restoreButton);
+            IsVisibleProperty.SetValue(s.CanMinimize && s.WindowState != WindowState.FullScreen, _minimizeButton);
+        }
     }
 
     public override void Detach()
     {
+        if (HostWindow is not null)
+        {
+             HostWindow.PropertyChanged -= OnWindowPropertyChanged;
+        }
         base.Detach();
-        _windowStateSubscription?.Dispose();
-        _fullScreenSubscription?.Dispose();
-        _minimizeSubscription?.Dispose();
-        _restoreSubscription?.Dispose();
-        _closeSubscription?.Dispose();
+        
     }
 }
