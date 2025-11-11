@@ -12,6 +12,8 @@ namespace Ursa.Controls;
 /// </summary>
 public class WindowToastManager : WindowMessageManager, IToastManager
 {
+    // Dictionary to track close reasons for each toast
+    private readonly Dictionary<ToastCard, MessageCloseReason> _closeReasons = new();
     /// <summary>
     /// Initializes a new instance of the <see cref="WindowToastManager"/> class.
     /// </summary>
@@ -52,7 +54,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
     {
         Show(content, content.Type, content.Expiration,
             content.ShowIcon, content.ShowClose,
-            content.OnClick, content.OnClose);
+            content.OnClick, content.OnClose, null, content.OnCloseWithReason);
     }
 
     /// <inheritdoc/>
@@ -62,7 +64,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
         {
             Show(toast, toast.Type, toast.Expiration,
                 toast.ShowIcon, toast.ShowClose,
-                toast.OnClick, toast.OnClose);
+                toast.OnClick, toast.OnClose, null, toast.OnCloseWithReason);
         }
         else
         {
@@ -81,6 +83,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
     /// <param name="onClick">an Action to be run when the toast is clicked</param>
     /// <param name="onClose">an Action to be run when the toast is closed</param>
     /// <param name="classes">style classes to apply</param>
+    /// <param name="onCloseWithReason">an Action to be run when the toast is closed, with close reason information</param>
     public async void Show(
         object content,
         NotificationType type,
@@ -89,7 +92,8 @@ public class WindowToastManager : WindowMessageManager, IToastManager
         bool showClose = true,
         Action? onClick = null,
         Action? onClose = null,
-        string[]? classes = null)
+        string[]? classes = null,
+        Action<MessageCloseReason>? onCloseWithReason = null)
     {
         Dispatcher.UIThread.VerifyAccess();
 
@@ -110,9 +114,28 @@ public class WindowToastManager : WindowMessageManager, IToastManager
             }
         }
 
+        // Initialize close reason as UserAction (default for user clicking close button)
+        _closeReasons[toastControl] = MessageCloseReason.UserAction;
+
         toastControl.MessageClosed += (sender, _) =>
         {
-            onClose?.Invoke();
+            // Get the close reason for this toast
+            var reason = MessageCloseReason.UserAction;
+            if (sender is ToastCard card && _closeReasons.TryGetValue(card, out var storedReason))
+            {
+                reason = storedReason;
+                _closeReasons.Remove(card);
+            }
+
+            // Invoke the appropriate callback
+            if (onCloseWithReason is not null)
+            {
+                onCloseWithReason.Invoke(reason);
+            }
+            else
+            {
+                onClose?.Invoke();
+            }
 
             _items?.Remove(sender);
         };
@@ -125,7 +148,10 @@ public class WindowToastManager : WindowMessageManager, IToastManager
 
             if (_items?.OfType<ToastCard>().Count(i => !i.IsClosing) > MaxItems)
             {
-                _items.OfType<ToastCard>().First(i => !i.IsClosing).Close();
+                var oldestCard = _items.OfType<ToastCard>().First(i => !i.IsClosing);
+                // Mark the oldest card as displaced before closing
+                _closeReasons[oldestCard] = MessageCloseReason.Displaced;
+                oldestCard.Close();
             }
         });
 
@@ -136,6 +162,8 @@ public class WindowToastManager : WindowMessageManager, IToastManager
 
         await Task.Delay(expiration ?? TimeSpan.FromSeconds(3));
 
+        // Mark as timeout and close
+        _closeReasons[toastControl] = MessageCloseReason.Timeout;
         toastControl.Close();
     }
 }

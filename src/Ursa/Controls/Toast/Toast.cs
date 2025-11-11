@@ -26,13 +26,15 @@ public class Toast : IToast, INotifyPropertyChanged
     /// <param name="showClose">A value indicating whether the toast should show a close button.</param>
     /// <param name="onClick">An Action to call when the toast is clicked.</param>
     /// <param name="onClose">An Action to call when the toast is closed.</param>
+    /// <param name="onCloseWithReason">An Action to call when the toast is closed, with close reason information.</param>
     public Toast(
         string? content,
         NotificationType type = NotificationType.Information,
         TimeSpan? expiration = null,
         bool showClose = true,
         Action? onClick = null,
-        Action? onClose = null)
+        Action? onClose = null,
+        Action<MessageCloseReason>? onCloseWithReason = null)
     {
         Content = content;
         Type = type;
@@ -40,6 +42,7 @@ public class Toast : IToast, INotifyPropertyChanged
         ShowClose = showClose;
         OnClick = onClick;
         OnClose = onClose;
+        OnCloseWithReason = onCloseWithReason;
     }
 
     /// <summary>
@@ -81,6 +84,9 @@ public class Toast : IToast, INotifyPropertyChanged
 
     /// <inheritdoc/>
     public Action? OnClose { get; set; }
+
+    /// <inheritdoc/>
+    public Action<MessageCloseReason>? OnCloseWithReason { get; set; }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

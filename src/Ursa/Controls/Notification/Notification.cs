@@ -27,6 +27,7 @@ public class Notification : INotification, INotifyPropertyChanged
     /// <param name="showClose">A value indicating whether the notification should show a close button.</param>
     /// <param name="onClick">An Action to call when the notification is clicked.</param>
     /// <param name="onClose">An Action to call when the notification is closed.</param>
+    /// <param name="onCloseWithReason">An Action to call when the notification is closed, with close reason information.</param>
     public Notification(
         string? title,
         string? content,
@@ -34,7 +35,8 @@ public class Notification : INotification, INotifyPropertyChanged
         TimeSpan? expiration = null,
         bool showClose = true,
         Action? onClick = null,
-        Action? onClose = null)
+        Action? onClose = null,
+        Action<MessageCloseReason>? onCloseWithReason = null)
     {
         Title = title;
         Content = content;
@@ -43,6 +45,7 @@ public class Notification : INotification, INotifyPropertyChanged
         ShowClose = showClose;
         OnClick = onClick;
         OnClose = onClose;
+        OnCloseWithReason = onCloseWithReason;
     }
 
     /// <summary>
@@ -98,6 +101,9 @@ public class Notification : INotification, INotifyPropertyChanged
 
     /// <inheritdoc/>
     public Action? OnClose { get; set; }
+
+    /// <inheritdoc/>
+    public Action<MessageCloseReason>? OnCloseWithReason { get; set; }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

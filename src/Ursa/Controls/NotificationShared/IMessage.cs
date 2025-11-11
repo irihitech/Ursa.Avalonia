@@ -37,4 +37,10 @@ public interface IMessage
     /// Gets an Action to be run when the message is closed.
     /// </summary>
     Action? OnClose { get; }
+
+    /// <summary>
+    /// Gets an Action to be run when the message is closed, with information about why it was closed.
+    /// If this property is set, it will be invoked instead of <see cref="OnClose"/>.
+    /// </summary>
+    Action<MessageCloseReason>? OnCloseWithReason { get; }
 }
