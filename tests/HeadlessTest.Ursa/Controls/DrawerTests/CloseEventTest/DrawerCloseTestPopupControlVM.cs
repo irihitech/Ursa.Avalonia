@@ -9,11 +9,9 @@ public class DrawerCloseTestPopupControlVM : IDialogContext
         RequestClose?.Invoke(this, Result);
     }
     
-#if NET8_0 
+#if NET8_0_OR_GREATER
     public int Result { get; } = Random.Shared.Next();
-#endif
-    
-#if NETSTANDARD2_0
+#else
     private static Random r = new Random();
     public int Result { get; } = r.Next();
 #endif    
