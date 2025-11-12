@@ -308,8 +308,7 @@ public class NavMenuItem : HeaderedItemsControl
         if (e.Handled) return;
 
         var p = e.GetCurrentPoint(this);
-        if (p.Properties.PointerUpdateKind is not (PointerUpdateKind.LeftButtonPressed
-            or PointerUpdateKind.RightButtonPressed)) return;
+        if (p.Properties.PointerUpdateKind is not PointerUpdateKind.LeftButtonPressed) return;
 
         if (p.Pointer.Type == PointerType.Mouse)
             ActivateMenuItem(e);
@@ -325,7 +324,7 @@ public class NavMenuItem : HeaderedItemsControl
 
         _isPointerDown = false;
 
-        if (e.InitialPressMouseButton is MouseButton.Left or MouseButton.Right)
+        if (e.InitialPressMouseButton is MouseButton.Left)
         {
             var point = e.GetCurrentPoint(this);
             if (new Rect(Bounds.Size).ContainsExclusive(point.Position) && e.Pointer.Type == PointerType.Touch)
