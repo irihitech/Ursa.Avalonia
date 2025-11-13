@@ -158,6 +158,52 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
+
+            <Border Theme="{StaticResource CardBorder}">
+                <StackPanel HorizontalAlignment="Left" Spacing="16">
+                    <WrapPanel ItemSpacing="16" LineSpacing="16">
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Content="Primary" Classes="Colorful Primary" />
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Content="Tertiary" Classes="Colorful Tertiary" />
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Content="Disabled" Classes="Colorful Primary" IsEnabled="False" />
+                    </WrapPanel>
+                    <WrapPanel ItemSpacing="16" LineSpacing="16">
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Content="Primary" Classes="Colorful Primary" Theme="{StaticResource SolidIconButton}" />
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Content="Tertiary" Classes="Colorful Tertiary" Theme="{StaticResource SolidIconButton}" />
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Content="Disabled" Classes="Colorful Primary" Theme="{StaticResource SolidIconButton}" IsEnabled="False" />
+                    </WrapPanel>
+                    <WrapPanel ItemSpacing="16" LineSpacing="16">
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Content="Primary" Classes="Colorful Primary" Theme="{StaticResource OutlineIconButton}" />
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Content="Tertiary" Classes="Colorful Tertiary" Theme="{StaticResource OutlineIconButton}" />
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Content="Disabled" Classes="Colorful Primary" Theme="{StaticResource OutlineIconButton}" IsEnabled="False" />
+                    </WrapPanel>
+                    <WrapPanel ItemSpacing="16" LineSpacing="16">
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Content="Primary" Classes="Colorful Primary" Theme="{StaticResource BorderlessIconButton}" />
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Content="Tertiary" Classes="Colorful Tertiary" Theme="{StaticResource BorderlessIconButton}" />
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Content="Disabled" Classes="Colorful Primary" Theme="{StaticResource BorderlessIconButton}" IsEnabled="False" />
+                    </WrapPanel>
+                    <WrapPanel ItemSpacing="16" LineSpacing="16">
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Classes="Colorful Primary" />
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Classes="Colorful Tertiary" />
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Classes="Colorful Primary" IsEnabled="False" />
+                    </WrapPanel>
+                    <WrapPanel ItemSpacing="16" LineSpacing="16">
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Classes="Colorful Primary" Theme="{StaticResource SolidIconButton}" />
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Classes="Colorful Tertiary" Theme="{StaticResource SolidIconButton}" />
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Classes="Colorful Primary" Theme="{StaticResource SolidIconButton}" IsEnabled="False" />
+                    </WrapPanel>
+                    <WrapPanel ItemSpacing="16" LineSpacing="16">
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Classes="Colorful Primary" Theme="{StaticResource OutlineIconButton}" />
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Classes="Colorful Tertiary" Theme="{StaticResource OutlineIconButton}" />
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Classes="Colorful Primary" Theme="{StaticResource OutlineIconButton}" IsEnabled="False" />
+                    </WrapPanel>
+                    <WrapPanel ItemSpacing="16" LineSpacing="16">
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Classes="Colorful Primary" Theme="{StaticResource BorderlessIconButton}" />
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Classes="Colorful Tertiary" Theme="{StaticResource BorderlessIconButton}" />
+                        <u:IconButton Icon="{StaticResource SemiIconAIFilled}" Classes="Colorful Primary" Theme="{StaticResource BorderlessIconButton}" IsEnabled="False" />
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+
         </StackPanel>
     </ScrollViewer>
 </UserControl>
