@@ -62,6 +62,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.2
+      # Step 2: Set up the .NET environment
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x' # Specify the desired .NET SDK version
       - name: Publish win-x64
         run: dotnet publish demo/Ursa.Demo.Desktop -r win-x64 -c Release -o publish --sc /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
       - name: Upload a Build Artifact
@@ -78,6 +83,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x' # Specify the desired .NET SDK version
       - name: Enable Native AOT in .csproj
         run: sed -i 's#<!--<PublishAot>true</PublishAot>-->#<PublishAot>true</PublishAot>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
       - name: Publish win-x64 AOT
