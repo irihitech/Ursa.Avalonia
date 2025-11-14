@@ -24,18 +24,15 @@
                     StrokeLineCap="Round"
                     StrokeThickness="3"
                     SweepAngle="300">
-                    <Arc.Stroke>
-                        <ConicGradientBrush Angle="50">
-                            <GradientStops>
-                                <GradientStop Offset="0.4" Color="Transparent" />
-                                <GradientStop Offset="0.8" Color="{Binding Foreground, Converter={converters:BrushToColorConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
-                                <GradientStop Offset="1.0" Color="{Binding Foreground, Converter={converters:BrushToColorConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
-                            </GradientStops>
-                        </ConicGradientBrush>
-                    </Arc.Stroke>
                 </Arc>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^ /template/ Arc#PART_Arc">
+            <Setter Property="Stroke" Value="{Binding $parent[u:LoadingIcon].Foreground, Converter={converters:BrushToConicGradientConverter}}" />
+        </Style>
+        <Style Selector="^.Colorful /template/ Arc#PART_Arc">
+            <Setter Property="Stroke" Value="{DynamicResource LoadingColorfulForeground}"/>
+        </Style>
         <Style Selector="^.Small /template/ Arc#PART_Arc">
             <Setter Property="Width" Value="14" />
             <Setter Property="Height" Value="14" />

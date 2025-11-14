@@ -14,6 +14,7 @@
             <u:LoadingIcon Classes="Small" />
             <u:LoadingIcon />
             <u:LoadingIcon Classes="Large" />
+            <u:LoadingIcon Classes="Colorful" />
         </StackPanel>
         <u:LoadingContainer
             Grid.Row="2"

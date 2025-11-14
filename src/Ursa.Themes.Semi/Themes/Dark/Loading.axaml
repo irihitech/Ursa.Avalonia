@@ -1,4 +1,14 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StaticResource x:Key="LoadingIconForeground" ResourceKey="SemiColorPrimary" />
     <StaticResource x:Key="LoadingMaskBackground" ResourceKey="SemiColorFill0" />
+    <ConicGradientBrush x:Key="LoadingColorfulForeground" Angle="50">
+        <ConicGradientBrush.GradientStops>
+            <GradientStops>
+                <GradientStop Offset="0.0" Color="#005BA2F5" />
+                <GradientStop Offset="0.4" Color="#8681FC" />
+                <GradientStop Offset="0.7" Color="#C375FF" />
+                <GradientStop Offset="1.0" Color="#EA6BF6" />
+            </GradientStops>
+        </ConicGradientBrush.GradientStops>
+    </ConicGradientBrush>
 </ResourceDictionary>
