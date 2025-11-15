@@ -18,8 +18,9 @@
         <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
-        <PackageReference Include="Semi.Avalonia" Version="11.2.1.9" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+        <PackageReference Include="Semi.Avalonia" Version="11.3.7.1" />
+        <PackageReference Include="SkiaSharp" Version="3.119.0" />
     </ItemGroup>
 
     <ItemGroup>
