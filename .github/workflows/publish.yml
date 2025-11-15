@@ -164,10 +164,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.2
-      - name: CD Android
-        run: cd demo/Ursa.Demo.Android
       - name: Restore Dependencies
-        run: dotnet restore
+        run: dotnet restore demo/Ursa.Demo.Android
       - name: Publish Android
         run: dotnet publish demo/Ursa.Demo.Android -c Release -f net8.0-android --no-restore -o publish /p:RuntimeIdentifier=android-arm64
       - name: Upload a Build Artifact
