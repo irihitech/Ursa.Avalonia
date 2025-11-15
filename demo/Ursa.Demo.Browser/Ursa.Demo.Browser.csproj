@@ -9,6 +9,10 @@
     <ItemGroup>
         <AvaloniaResource Include="Assets\**"/>
     </ItemGroup>
+    
+    <ItemGroup>
+        <TrimmerRootAssembly Include="Ursa.Demo.Browser" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Avalonia.Browser" Version="$(AvaloniaVersion)"/>
