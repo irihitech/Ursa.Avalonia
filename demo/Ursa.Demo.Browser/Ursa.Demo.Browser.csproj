@@ -12,6 +12,7 @@
 
     <ItemGroup>
         <PackageReference Include="Avalonia.Browser" Version="$(AvaloniaVersion)"/>
+        <PackageReference Include="SkiaSharp.NativeAssets.WebAssembly" Version="3.119.1" />
     </ItemGroup>
 
     <ItemGroup>
