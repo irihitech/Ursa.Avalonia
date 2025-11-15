@@ -1,0 +1,96 @@
+{
+  "mainAssemblyName": "Ursa.Demo.Browser",
+  "resources": {
+    "hash": "sha256-2VBc//GwCaABQfshkVzST8zVm9UeEJPOTtlNiNDZ7ko=",
+    "jsModuleNative": {
+      "dotnet.native.js": "sha256-JPieFA36nWKDVmGIumdCpR/DACSXZnSisA2L9HzST8U="
+    },
+    "jsModuleRuntime": {
+      "dotnet.runtime.js": "sha256-6bV/iAemowb59rmItegP8VsxwWpWUNyMb0Q76Fvvsjo="
+    },
+    "wasmNative": {
+      "dotnet.native.wasm": "sha256-AhMIAMtdWaMnNl8aqq/OADujdoVlxciKXGy8alwBxO8="
+    },
+    "icu": {
+      "icudt_CJK.dat": "sha256-SZLtQnRc0JkwqHab0VUVP7T3uBPSeYzxzDnpxPpUnHk=",
+      "icudt_EFIGS.dat": "sha256-8fItetYY8kQ0ww6oxwTLiT3oXlBwHKumbeP2pRF4yTc=",
+      "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
+    },
+    "coreAssembly": {},
+    "assembly": {
+      "Avalonia.Base.wasm": "sha256-6Z0u0lj2Zkig7qdKOq8p8ST62D54h6ZJGRbx6NMpkHw=",
+      "Avalonia.Browser.wasm": "sha256-d3WALZW7rjTIvt8vuTYkfvOXP+d8MGPD19GO642Tijg=",
+      "Avalonia.Controls.wasm": "sha256-qnjodwqX/bkjXgvZUJ8RdV3mWqRlmzAtDJkZ+ijssqg=",
+      "Avalonia.Dialogs.wasm": "sha256-SrdgA/Weemt1CRPNe7BUzYsgK1Y6eytlND8mQ1llkyw=",
+      "Avalonia.Markup.Xaml.wasm": "sha256-KKHr7/PlrzREL/dT1+Moq2yMb89BsVg74FJeK9u/nH4=",
+      "Avalonia.Markup.wasm": "sha256-Bj3ytOQeqv0YiQ0kQ+sRrQ48Gvqf2CucQ3f9oLjC+Is=",
+      "Avalonia.Metal.wasm": "sha256-0PGg7ZRbAzJbPCMGyxbSHn2eiUK7rETY5B5XbGAG8N0=",
+      "Avalonia.OpenGL.wasm": "sha256-SlH7D6Ulw9XcvKZxx1JaJ2SHpzji93+UqAY9Cn3suQU=",
+      "Avalonia.Skia.wasm": "sha256-xcsMB2WsqakZJsMKzsApgkOie4IWFQF55XHaF7MfcZU=",
+      "Avalonia.Vulkan.wasm": "sha256-Zm5VDOPeEg8vfn6ZqxvsdrfbSOXvwfcu+6PQ1bfqs7Y=",
+      "CommunityToolkit.Mvvm.wasm": "sha256-JeNq+OATOC40P1B7b4sF5DIeAHq7LVAi8DE3WrOQtYA=",
+      "HarfBuzzSharp.wasm": "sha256-bYtiTDhx0hrlMUlqsggEr3IXepcObpv54eJ9zmqHA3g=",
+      "Irihi.Avalonia.Shared.Contracts.wasm": "sha256-cWrDn7Xnovr9m8a4FYMrVLY+D1yPLAERE2XnoNV4FN0=",
+      "Irihi.Avalonia.Shared.wasm": "sha256-v6FZB0hcpQoLMw7SdGZ20SUWIULS+MZt2Tqc7v/LY2U=",
+      "Semi.Avalonia.wasm": "sha256-AfPrWBRThDr45qEFIvTfQ+ogZ+3GwQzZy0xfW3JE/wI=",
+      "SkiaSharp.wasm": "sha256-nBf43vYhzk/KCxzGULeHpfhiW5ftbiR/I8SXSA+/RCE=",
+      "System.Collections.Concurrent.wasm": "sha256-+gHUli/QSaM7sej2Tgtmq6pym4XTzisnm5vXdaEEdH4=",
+      "System.Collections.NonGeneric.wasm": "sha256-UidemR3QdvdPgHDFXDAC7tZ0i1H5gB9wraqZz7AbrCA=",
+      "System.Collections.Specialized.wasm": "sha256-XC5LQfVb+IyRa0H+wY4jBJ/2M8pEMgeDnewed8bT1og=",
+      "System.Collections.wasm": "sha256-nVzgZnn17HwXPKOZlK3egfEpaw8s8+j7uX/bIGaQfK8=",
+      "System.ComponentModel.Annotations.wasm": "sha256-Cmjixr8zOE0MHZEDqaWkOTqmTk17b2Jx226cI4Of4nY=",
+      "System.ComponentModel.Primitives.wasm": "sha256-H+b0P+OQ+6aDhj+EoJTz+953oPGyOaYOvM1eEJO84Ck=",
+      "System.ComponentModel.TypeConverter.wasm": "sha256-mcVlabdsuaaJMMXxiw21PcsUicJp4wjzuem5aA5vJxw=",
+      "System.ComponentModel.wasm": "sha256-q5/pYKrIafpW47Nr646ugloQiZsyhXbhu8zgxW1q5SQ=",
+      "System.Diagnostics.DiagnosticSource.wasm": "sha256-vHIlbM4UiPIql9P2jTTI83tFHn4meZA0xMlN43aQjeI=",
+      "System.Linq.Expressions.wasm": "sha256-XXgSWcA2HK0yuwYEsNfw7pfamgNMMHihhPaMkXcIxE0=",
+      "System.Linq.wasm": "sha256-VTxHZ0fBkWLjce3dp3qtNLlO1NalkFyAmt/uRl+bCgU=",
+      "System.Net.Primitives.wasm": "sha256-rrPkEbKpa9Cy9JFt2epLzudoQ6j9ZE6AZgxsw0ALDfI=",
+      "System.ObjectModel.wasm": "sha256-G4VgcNdi3nWVxd1K5LfVKG3ES0o+yjg8YCiSlKiMeiM=",
+      "System.Private.CoreLib.wasm": "sha256-22wU18l318oOVUirbte5+jG/joW4P1smhWOYepCq9jM=",
+      "System.Private.Uri.wasm": "sha256-C3DquxoB9eg90tI+pdFUVJsaSEFkv1sZdNQYW1rW+R0=",
+      "System.Runtime.InteropServices.JavaScript.wasm": "sha256-E4KfvjkAxOnKV2QzyGkhKVe2sFmLoNk3QJ+TOQx/0l4=",
+      "System.Runtime.wasm": "sha256-+FylGAdMNUrRb2MMeAdx0WscyESMhjr7Tncyie4hJYM=",
+      "System.Text.RegularExpressions.wasm": "sha256-1jT1g2d/ls3Ono0hITwGOu9Smbx1VjmnaqPkNQ64UX4=",
+      "System.wasm": "sha256-I4hhyMuUoHdrzDopL9tlnkL/Skg+0OO+gmkOXNT3dcg=",
+      "Ursa.Demo.Browser.wasm": "sha256-1G96MVLHYY2mwz9Vc6gGpCk1yiA+qRrmG/+2vOexz+s=",
+      "Ursa.Demo.wasm": "sha256-cYq2SLQS5F8ahskX7OmNBzWSrZsgCMShB+RwMG8R7gI=",
+      "Ursa.Themes.Semi.wasm": "sha256-vumMh1/d4mSXWIyQ7yOMWrwL0clBayX2hjZAY6hPU4M=",
+      "Ursa.wasm": "sha256-8NJUixO5UW4djfI4XGCsnB+dOBx4nNoJJuMM+XEauj8="
+    }
+  },
+  "cacheBootResources": true,
+  "debugLevel": 0,
+  "linkerEnabled": true,
+  "globalizationMode": "sharded",
+  "runtimeConfig": {
+    "runtimeOptions": {
+      "configProperties": {
+        "MVVMTOOLKIT_ENABLE_INOTIFYPROPERTYCHANGING_SUPPORT": true,
+        "Microsoft.Extensions.DependencyInjection.VerifyOpenGenericServiceTrimmability": true,
+        "System.ComponentModel.TypeConverter.EnableUnsafeBinaryFormatterInDesigntimeLicenseContextSerialization": false,
+        "System.Diagnostics.Debugger.IsSupported": false,
+        "System.Diagnostics.Metrics.Meter.IsSupported": false,
+        "System.Diagnostics.Tracing.EventSource.IsSupported": false,
+        "System.Globalization.Invariant": false,
+        "System.TimeZoneInfo.Invariant": false,
+        "System.Linq.Enumerable.IsSizeOptimized": true,
+        "System.Net.Http.EnableActivityPropagation": false,
+        "System.Net.Http.WasmEnableStreamingResponse": true,
+        "System.Net.SocketsHttpHandler.Http3Support": false,
+        "System.Reflection.Metadata.MetadataUpdater.IsSupported": false,
+        "System.Resources.ResourceManager.AllowCustomResourceTypes": false,
+        "System.Resources.UseSystemResourceKeys": true,
+        "System.Runtime.InteropServices.BuiltInComInterop.IsSupported": false,
+        "System.Runtime.InteropServices.EnableConsumingManagedCodeFromNativeHosting": false,
+        "System.Runtime.InteropServices.EnableCppCLIHostActivation": false,
+        "System.Runtime.InteropServices.Marshalling.EnableGeneratedComInterfaceComImportInterop": false,
+        "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": false,
+        "System.StartupHookProvider.IsSupported": false,
+        "System.Text.Encoding.EnableUnsafeUTF7Encoding": false,
+        "System.Text.Json.JsonSerializer.IsReflectionEnabledByDefault": false,
+        "System.Threading.Thread.EnableAutoreleasePool": false
+      }
+    }
+  }
+}
