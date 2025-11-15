@@ -1,6 +1,7 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:u="https://irihi.tech/ursa">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
     <ControlTheme x:Key="{x:Type u:MultiAutoCompleteBox}" TargetType="u:MultiAutoCompleteBox">
         <Setter Property="MinHeight" Value="{DynamicResource AutoCompleteBoxDefaultHeight}" />
         <Setter Property="MaxDropDownHeight" Value="{DynamicResource AutoCompleteMaxDropdownHeight}" />
@@ -12,31 +13,35 @@
                         Name="PART_RootBorder"
                         MinHeight="30"
                         VerticalAlignment="Stretch"
-                        CornerRadius="{TemplateBinding CornerRadius}"
                         Background="{DynamicResource TextBoxDefaultBackground}"
-                        BorderBrush="{DynamicResource TextBoxDefaultBorderBrush}">
+                        BorderBrush="{DynamicResource TextBoxDefaultBorderBrush}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid ColumnDefinitions="Auto, *, Auto">
                             <ContentPresenter
                                 Grid.Column="0"
-                                Margin="8,0"
-                                IsHitTestVisible="False"
+                                Margin="8,0,0,0"
                                 VerticalAlignment="Center"
                                 Content="{TemplateBinding InnerLeftContent}"
                                 Foreground="{DynamicResource TextBoxInnerForeground}"
+                                IsHitTestVisible="False"
                                 IsVisible="{TemplateBinding InnerLeftContent,
-                                                                Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                                            Converter={x:Static ObjectConverters.IsNotNull}}" />
                             <u:MultiComboBoxSelectedItemList
-                                Grid.Column="1"
                                 Name="{x:Static u:MultiAutoCompleteBox.PART_SelectedItemsControl}"
+                                Grid.Column="1"
+                                Margin="8,0,0,0"
                                 VerticalAlignment="Center"
-                                RemoveCommand="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Remove}"
                                 ItemTemplate="{TemplateBinding SelectedItemTemplate}"
-                                ItemsSource="{TemplateBinding SelectedItems}" >
+                                ItemsSource="{TemplateBinding SelectedItems}"
+                                RemoveCommand="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Remove}">
                                 <u:MultiComboBoxSelectedItemList.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <u:WrapPanelWithTrailingItem>
                                             <u:WrapPanelWithTrailingItem.TrailingItem>
-                                                <TextBox VerticalAlignment="Center" MinWidth="24" Theme="{DynamicResource TagInputTextBoxTheme}"/>
+                                                <TextBox
+                                                    MinWidth="24"
+                                                    VerticalAlignment="Center"
+                                                    Theme="{DynamicResource TagInputTextBoxTheme}" />
                                             </u:WrapPanelWithTrailingItem.TrailingItem>
                                         </u:WrapPanelWithTrailingItem>
                                     </ItemsPanelTemplate>
@@ -46,11 +51,11 @@
                                 Grid.Column="2"
                                 Margin="8,0"
                                 VerticalAlignment="Center"
-                                IsHitTestVisible="False"
                                 Content="{TemplateBinding InnerRightContent}"
                                 Foreground="{DynamicResource TextBoxInnerForeground}"
+                                IsHitTestVisible="False"
                                 IsVisible="{TemplateBinding InnerRightContent,
-                                                                Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                                            Converter={x:Static ObjectConverters.IsNotNull}}" />
                         </Grid>
                     </Border>
                     <Popup
