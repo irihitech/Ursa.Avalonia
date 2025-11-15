@@ -4,31 +4,90 @@
     xmlns:u="https://irihi.tech/ursa"
     xmlns:converters="using:Ursa.Themes.Semi.Converters">
     <Design.PreviewWith>
-        <StackPanel Margin="20" Width="400">
-            <u:IconButton Icon="{StaticResource SemiIconCamera}"
-                          Content="Button" Foreground="Black" />
-            <u:IconButton Icon="{StaticResource SemiIconCamera}"
-                          Classes="Primary" Content="Button" Foreground="Black" />
-            <u:IconButton Icon="{StaticResource SemiIconCamera}"
-                          Classes="Secondary" Content="Button" />
-            <u:IconButton Icon="{StaticResource SemiIconCamera}"
-                          IsEnabled="False" Classes="Tertiary" Content="Button" />
-            <u:IconButton Icon="{StaticResource SemiIconCamera}"
-                          Theme="{DynamicResource SolidIconButton}" Classes="Success" Content="Button" />
-            <u:IconButton Icon="{StaticResource SemiIconCamera}"
-                          Theme="{DynamicResource OutlineIconButton}" Classes="Warning" Content="Button" />
-            <u:IconButton Icon="{StaticResource SemiIconCamera}"
-                          Theme="{DynamicResource BorderlessIconButton}" Classes="Danger" Content="Button" />
-
-            <Button Content="Button" Foreground="Black" />
-            <Button Classes="Primary" Content="Button" Foreground="Black" />
-            <Button Classes="Secondary" Content="Button" />
-            <Button IsEnabled="False" Classes="Tertiary" Content="Button" />
-            <Button Theme="{DynamicResource SolidButton}" Classes="Success" Content="Button" />
-            <Button Theme="{DynamicResource OutlineButton}" Classes="Warning" Content="Button" />
-            <Button Theme="{DynamicResource BorderlessButton}" Classes="Danger" Content="Button" />
+        <StackPanel Margin="16" Spacing="16">
+            <WrapPanel ItemSpacing="16">
+                <u:IconButton Content="Default" />
+                <u:IconButton Content="Primary" Classes="Primary" />
+                <u:IconButton Content="Secondary" Classes="Secondary" />
+                <u:IconButton Content="Tertiary" Classes="Tertiary" />
+                <u:IconButton Content="Success" Classes="Success" />
+                <u:IconButton Content="Warning" Classes="Warning" />
+                <u:IconButton Content="Danger" Classes="Danger" />
+                <u:IconButton Content="Disabled" Classes="Danger" IsEnabled="False" />
+            </WrapPanel>
+            <WrapPanel ItemSpacing="16">
+                <u:IconButton Content="Default" Theme="{DynamicResource SolidIconButton}" />
+                <u:IconButton Content="Primary" Classes="Primary" Theme="{DynamicResource SolidIconButton}" />
+                <u:IconButton Content="Secondary" Classes="Secondary" Theme="{DynamicResource SolidIconButton}" />
+                <u:IconButton Content="Tertiary" Classes="Tertiary" Theme="{DynamicResource SolidIconButton}" />
+                <u:IconButton Content="Success" Classes="Success" Theme="{DynamicResource SolidIconButton}" />
+                <u:IconButton Content="Warning" Classes="Warning" Theme="{DynamicResource SolidIconButton}" />
+                <u:IconButton Content="Danger" Classes="Danger" Theme="{DynamicResource SolidIconButton}" />
+                <u:IconButton Content="Disabled" Classes="Danger" Theme="{DynamicResource SolidIconButton}" IsEnabled="False" />
+            </WrapPanel>
+            <WrapPanel ItemSpacing="16">
+                <u:IconButton Content="Default" Theme="{DynamicResource OutlineIconButton}" />
+                <u:IconButton Content="Primary" Classes="Primary" Theme="{DynamicResource OutlineIconButton}" />
+                <u:IconButton Content="Secondary" Classes="Secondary" Theme="{DynamicResource OutlineIconButton}" />
+                <u:IconButton Content="Tertiary" Classes="Tertiary" Theme="{DynamicResource OutlineIconButton}" />
+                <u:IconButton Content="Success" Classes="Success" Theme="{DynamicResource OutlineIconButton}" />
+                <u:IconButton Content="Warning" Classes="Warning" Theme="{DynamicResource OutlineIconButton}" />
+                <u:IconButton Content="Danger" Classes="Danger" Theme="{DynamicResource OutlineIconButton}" />
+                <u:IconButton Content="Disabled" Classes="Danger" Theme="{DynamicResource OutlineIconButton}" IsEnabled="False" />
+            </WrapPanel>
+            <WrapPanel ItemSpacing="16">
+                <u:IconButton Content="Default" Theme="{DynamicResource BorderlessIconButton}" />
+                <u:IconButton Content="Primary" Classes="Primary" Theme="{DynamicResource BorderlessIconButton}" />
+                <u:IconButton Content="Secondary" Classes="Secondary" Theme="{DynamicResource BorderlessIconButton}" />
+                <u:IconButton Content="Tertiary" Classes="Tertiary" Theme="{DynamicResource BorderlessIconButton}" />
+                <u:IconButton Content="Success" Classes="Success" Theme="{DynamicResource BorderlessIconButton}" />
+                <u:IconButton Content="Warning" Classes="Warning" Theme="{DynamicResource BorderlessIconButton}" />
+                <u:IconButton Content="Danger" Classes="Danger" Theme="{DynamicResource BorderlessIconButton}" />
+                <u:IconButton Content="Disabled" Classes="Danger" Theme="{DynamicResource BorderlessIconButton}" IsEnabled="False" />
+            </WrapPanel>
+            <WrapPanel ItemSpacing="16">
+                <u:IconButton Content="Default" Classes="Colorful" />
+                <u:IconButton Content="Primary" Classes="Colorful Primary" />
+                <u:IconButton Content="Secondary" Classes="Colorful Secondary" />
+                <u:IconButton Content="Tertiary" Classes="Colorful Tertiary" />
+                <u:IconButton Content="Success" Classes="Colorful Success" />
+                <u:IconButton Content="Warning" Classes="Colorful Warning" />
+                <u:IconButton Content="Danger" Classes="Colorful Danger" />
+                <u:IconButton Content="Disabled" Classes="Colorful Primary" IsEnabled="False" />
+            </WrapPanel>
+            <WrapPanel ItemSpacing="16">
+                <u:IconButton Content="Default" Classes="Colorful" Theme="{DynamicResource SolidIconButton}" />
+                <u:IconButton Content="Primary" Classes="Colorful Primary" Theme="{DynamicResource SolidIconButton}" />
+                <u:IconButton Content="Secondary" Classes="Colorful Secondary" Theme="{DynamicResource SolidIconButton}" />
+                <u:IconButton Content="Tertiary" Classes="Colorful Tertiary" Theme="{DynamicResource SolidIconButton}" />
+                <u:IconButton Content="Success" Classes="Colorful Success" Theme="{DynamicResource SolidIconButton}" />
+                <u:IconButton Content="Warning" Classes="Colorful Warning" Theme="{DynamicResource SolidIconButton}" />
+                <u:IconButton Content="Danger" Classes="Colorful Danger" Theme="{DynamicResource SolidIconButton}" />
+                <u:IconButton Content="Disabled" Classes="Colorful Primary" Theme="{DynamicResource SolidIconButton}" IsEnabled="False" />
+            </WrapPanel>
+            <WrapPanel ItemSpacing="16">
+                <u:IconButton Content="Default" Classes="Colorful" Theme="{DynamicResource OutlineIconButton}" />
+                <u:IconButton Content="Primary" Classes="Colorful Primary" Theme="{DynamicResource OutlineIconButton}" />
+                <u:IconButton Content="Secondary" Classes="Colorful Secondary" Theme="{DynamicResource OutlineIconButton}" />
+                <u:IconButton Content="Tertiary" Classes="Colorful Tertiary" Theme="{DynamicResource OutlineIconButton}" />
+                <u:IconButton Content="Success" Classes="Colorful Success" Theme="{DynamicResource OutlineIconButton}" />
+                <u:IconButton Content="Warning" Classes="Colorful Warning" Theme="{DynamicResource OutlineIconButton}" />
+                <u:IconButton Content="Danger" Classes="Colorful Danger" Theme="{DynamicResource OutlineIconButton}" />
+                <u:IconButton Content="Disabled" Classes="Colorful Primary" Theme="{DynamicResource OutlineIconButton}" IsEnabled="False" />
+            </WrapPanel>
+            <WrapPanel ItemSpacing="16">
+                <u:IconButton Content="Default" Classes="Colorful" Theme="{DynamicResource BorderlessIconButton}" />
+                <u:IconButton Content="Primary" Classes="Colorful Primary" Theme="{DynamicResource BorderlessIconButton}" />
+                <u:IconButton Content="Secondary" Classes="Colorful Secondary" Theme="{DynamicResource BorderlessIconButton}" />
+                <u:IconButton Content="Tertiary" Classes="Colorful Tertiary" Theme="{DynamicResource BorderlessIconButton}" />
+                <u:IconButton Content="Success" Classes="Colorful Success" Theme="{DynamicResource BorderlessIconButton}" />
+                <u:IconButton Content="Warning" Classes="Colorful Warning" Theme="{DynamicResource BorderlessIconButton}" />
+                <u:IconButton Content="Danger" Classes="Colorful Danger" Theme="{DynamicResource BorderlessIconButton}" />
+                <u:IconButton Content="Disabled" Classes="Colorful Primary" Theme="{DynamicResource BorderlessIconButton}" IsEnabled="False" />
+            </WrapPanel>
         </StackPanel>
     </Design.PreviewWith>
+
     <ControlTheme x:Key="{x:Type u:IconButton}" TargetType="u:IconButton">
         <Setter Property="Padding" Value="{DynamicResource ButtonDefaultPadding}" />
         <Setter Property="MinHeight" Value="{DynamicResource ButtonDefaultHeight}" />
@@ -128,6 +187,12 @@
         </Style>
         <Style Selector="^.Danger /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultDangerForeground}" />
+        </Style>
+
+        <Style Selector="^.Colorful">
+            <Style Selector="^.Primary /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultColorfulPrimaryForeground}" />
+            </Style>
         </Style>
 
         <Style Selector="^:pointerover /template/ Border#PART_Background">
@@ -314,6 +379,41 @@
             </Style>
         </Style>
 
+        <Style Selector="^.Colorful">
+            <Style Selector="^.Primary">
+                <Style Selector="^ /template/ Border#PART_Background">
+                    <Setter Property="Background" Value="{DynamicResource ButtonSolidColorfulPrimaryBackground}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ButtonSolidColorfulPrimaryBackground}" />
+                </Style>
+                <Style Selector="^:pointerover /template/ Border#PART_Background">
+                    <Setter Property="Background" Value="{DynamicResource ButtonSolidColorfulPrimaryPointeroverBackground}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ButtonSolidColorfulPrimaryPointeroverBackground}" />
+                </Style>
+                <Style Selector="^:pressed /template/ Border#PART_Background">
+                    <Setter Property="Background" Value="{DynamicResource ButtonSolidColorfulPrimaryPressedBackground}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ButtonSolidColorfulPrimaryPressedBackground}" />
+                </Style>
+            </Style>
+            <Style Selector="^.Tertiary">
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="Foreground" Value="{DynamicResource ButtonSolidColorfulTertiaryForeground}" />
+                </Style>
+                <Style Selector="^ /template/ Border#PART_Background">
+                    <Setter Property="Background" Value="{DynamicResource ButtonSolidColorfulTertiaryBackground}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ButtonSolidColorfulTertiaryBackground}" />
+                </Style>
+                <Style Selector="^:pointerover /template/ Border#PART_Background">
+                    <Setter Property="Background" Value="{DynamicResource ButtonSolidColorfulTertiaryPointeroverBackground}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ButtonSolidColorfulTertiaryPointeroverBackground}" />
+                </Style>
+                <Style Selector="^:pressed /template/ Border#PART_Background">
+                    <Setter Property="Background" Value="{DynamicResource ButtonSolidColorfulTertiaryPressedBackground}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ButtonSolidColorfulTertiaryPressedBackground}" />
+                </Style>
+            </Style>
+        </Style>
+
+
         <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Foreground" Value="{DynamicResource ButtonSolidDisabledForeground}" />
         </Style>
@@ -347,6 +447,16 @@
         </Style>
         <Style Selector="^.Danger /template/ Border#PART_Background">
             <Setter Property="BorderBrush" Value="{DynamicResource ButtonOutlineDangerBorderBrush}" />
+        </Style>
+        <Style Selector="^.Colorful">
+            <Style Selector="^.Primary">
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="Foreground" Value="{DynamicResource ButtonOutlineColorfulPrimaryForeground}" />
+                </Style>
+                <Style Selector="^ /template/ Border#PART_Background">
+                    <Setter Property="BorderBrush" Value="{DynamicResource ButtonOutlineColorfulPrimaryBorderBrush}" />
+                </Style>
+            </Style>
         </Style>
         <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultDisabledForeground}" />
