@@ -11,6 +11,7 @@
     </ItemGroup>
     
     <ItemGroup>
+        <TrimmerRootAssembly Include="Ursa.Demo" />
         <TrimmerRootAssembly Include="Ursa.Demo.Browser" />
     </ItemGroup>
 
