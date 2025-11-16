@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Avalonia.Markup.Xaml.MarkupExtensions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
@@ -126,6 +127,12 @@ public class MessageBoxDemoViewModel: ObservableObject
         }
         else
         {
+            if (OperatingSystem.IsBrowser() || OperatingSystem.IsAndroid() || OperatingSystem.IsIOS())
+            {
+                await MessageBox.ShowOverlayAsync("Only overlay message box is supported on this platform.",
+                    "Ursa MessageBox", button: MessageBoxButton.OK, icon: MessageBoxIcon.Error);
+                return;
+            }
             Result = await MessageBox.ShowAsync(_message, _title, icon: SelectedIcon, button:button);
         }
     }
