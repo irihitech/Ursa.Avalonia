@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 env:
   PROJECT_PATH: demo/Ursa.Demo.Browser/Ursa.Demo.Browser.csproj
-  OUTPUT_PATH: demo/Ursa.Demo.Browser/bin/Release/net8.0-browser/publish/wwwroot
+  OUTPUT_PATH: demo/Ursa.Demo.Browser/bin/Release/net10.0-browser/publish/wwwroot
 on:
   workflow_dispatch:
 
@@ -13,10 +13,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.1
 
-      - name: Setup .NET 8
-        uses: actions/setup-dotnet@v4
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x
 
       - name: Install wasm-tools
         run: dotnet workload install wasm-tools

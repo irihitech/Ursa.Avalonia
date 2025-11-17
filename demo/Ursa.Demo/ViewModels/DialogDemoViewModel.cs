@@ -48,6 +48,11 @@ public partial class DefaultWindowDialogDemoViewModel: ObservableObject
 
     private async Task ShowDialog()
     {
+        if(OperatingSystem.IsBrowser() || OperatingSystem.IsAndroid() || OperatingSystem.IsIOS())
+        {
+            await MessageBox.ShowOverlayAsync("Window dialogs are not supported on this platform. Please use overlay dialogs instead.");
+            return;
+        }
         var options = new DialogOptions()
         {
             Title = Title,
@@ -92,6 +97,11 @@ public partial class CustomWindowDialogDemoViewModel: ObservableObject
 
     private async Task ShowDialog()
     {
+        if(OperatingSystem.IsBrowser() || OperatingSystem.IsAndroid() || OperatingSystem.IsIOS())
+        {
+            await MessageBox.ShowOverlayAsync("Window dialogs are not supported on this platform. Please use overlay dialogs instead.");
+            return;
+        }
         var options = new DialogOptions()
         {
             Title = Title,

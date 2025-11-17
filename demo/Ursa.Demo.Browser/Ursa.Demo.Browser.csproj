@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
     <PropertyGroup>
-        <TargetFramework>net8.0-browser</TargetFramework>
+        <TargetFramework>net10.0-browser</TargetFramework>
         <OutputType>Exe</OutputType>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <Nullable>enable</Nullable>
@@ -9,9 +9,15 @@
     <ItemGroup>
         <AvaloniaResource Include="Assets\**"/>
     </ItemGroup>
+    
+    <ItemGroup>
+        <TrimmerRootAssembly Include="Ursa.Demo" />
+        <TrimmerRootAssembly Include="Ursa.Demo.Browser" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Avalonia.Browser" Version="$(AvaloniaVersion)"/>
+        <PackageReference Include="SkiaSharp.NativeAssets.WebAssembly" Version="3.119.1" />
     </ItemGroup>
 
     <ItemGroup>
