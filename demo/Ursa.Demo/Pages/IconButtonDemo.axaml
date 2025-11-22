@@ -18,47 +18,90 @@
         <StackPanel Margin="20" Spacing="8" HorizontalAlignment="Left" Width="500">
             <Border Theme="{StaticResource CardBorder}">
                 <StackPanel Spacing="8">
-                    <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Text="States" />
+                    <WrapPanel Orientation="Horizontal" ItemSpacing="8" LineSpacing="8">
                         <u:IconButton Icon="🐼" />
-                        <u:IconButton Icon="{StaticResource SemiIconCamera}" />
-                        <u:IconButton Icon="{StaticResource SemiIconCamera}" IsEnabled="False" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Content="Text with icon" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Content="Disabled" IsEnabled="False" />
+                    </WrapPanel>
+                    <TextBlock Text="Classes" />
+                    <WrapPanel Orientation="Horizontal" ItemSpacing="8" LineSpacing="8">
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Content="Primary" Classes="Primary" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Content="Secondary" Classes="Secondary" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Content="Tertiary" Classes="Tertiary" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Content="Success" Classes="Success" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Content="Warning" Classes="Warning" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Content="Danger" Classes="Danger" />
+                    </WrapPanel>
+                    <TextBlock Text="Themes" />
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconButton}" Classes="Primary" Content="Solid" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconButton}" Classes="Secondary" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconButton}" Classes="Tertiary" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconButton}" Classes="Success" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconButton}" Classes="Warning" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconButton}" Classes="Danger" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="8">
-                        <u:IconButton
-                            Icon="{StaticResource SemiIconCamera}" />
-                        <u:IconButton
-                            Classes="Secondary"
-                            Icon="{StaticResource SemiIconCamera}" />
-                        <u:IconButton
-                            Classes="Warning"
-                            Icon="{StaticResource SemiIconCamera}" />
-                        <u:IconButton
-                            Classes="Danger"
-                            Icon="{StaticResource SemiIconCamera}" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource OutlineIconButton}" Classes="Primary" Content="Outline" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource OutlineIconButton}" Classes="Secondary" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource OutlineIconButton}" Classes="Tertiary" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource OutlineIconButton}" Classes="Success" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource OutlineIconButton}" Classes="Warning" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource OutlineIconButton}" Classes="Danger" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="8">
-                        <u:IconButton
-                            Theme="{StaticResource SolidIconButton}"
-                            Icon="{StaticResource SemiIconCamera}" />
-                        <u:IconButton
-                            Icon="{StaticResource SemiIconCamera}" />
-                        <u:IconButton
-                            Theme="{StaticResource BorderlessIconButton}"
-                            Icon="{StaticResource SemiIconCamera}" />
-                        <u:IconButton
-                            Theme="{StaticResource OutlineIconButton}"
-                            Icon="{StaticResource SemiIconCamera}" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource BorderlessIconButton}" Classes="Primary" Content="Borderless" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource BorderlessIconButton}" Classes="Secondary" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource BorderlessIconButton}" Classes="Tertiary" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource BorderlessIconButton}" Classes="Success" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource BorderlessIconButton}" Classes="Warning" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource BorderlessIconButton}" Classes="Danger" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="8">
-                        <u:IconButton
-                            Theme="{StaticResource SolidIconButton}"
-                            Icon="{StaticResource SemiIconSidebar}"
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Classes="Colorful Primary" Content="Colorful" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Classes="Colorful Secondary" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Classes="Colorful Tertiary" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Classes="Colorful Success" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Classes="Colorful Warning" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Classes="Colorful Danger" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconButton}" Classes="Colorful Primary" Content="Colorful Solid" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconButton}" Classes="Colorful Secondary" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconButton}" Classes="Colorful Tertiary" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconButton}" Classes="Colorful Success" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconButton}" Classes="Colorful Warning" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconButton}" Classes="Colorful Danger" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource OutlineIconButton}" Classes="Colorful Primary" Content="Colorful Outline" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource OutlineIconButton}" Classes="Colorful Secondary" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource OutlineIconButton}" Classes="Colorful Tertiary" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource OutlineIconButton}" Classes="Colorful Success" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource OutlineIconButton}" Classes="Colorful Warning" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource OutlineIconButton}" Classes="Colorful Danger" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource BorderlessIconButton}" Classes="Colorful Primary" Content="Colorful Borderless" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource BorderlessIconButton}" Classes="Colorful Secondary" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource BorderlessIconButton}" Classes="Colorful Tertiary" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource BorderlessIconButton}" Classes="Colorful Success" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource BorderlessIconButton}" Classes="Colorful Warning" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource BorderlessIconButton}" Classes="Colorful Danger" />
+                    </StackPanel>
+                    <TextBlock Text="Types" />
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:IconRepeatButton Icon="{StaticResource SemiIconCamera}" Classes="Primary" Content="RepeatButton" />
+                        <u:IconRepeatButton Icon="{StaticResource SemiIconCamera}" Classes="Tertiary" />
+                        <u:IconRepeatButton Icon="{StaticResource SemiIconCamera}" Classes="Success" />
+                        <u:IconRepeatButton Icon="{StaticResource SemiIconCamera}" IsEnabled="False" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:IconButton Icon="{StaticResource SemiIconSidebar}" Theme="{StaticResource SolidIconButton}"
                             Content="收起" />
-                        <u:IconButton
-                            Theme="{StaticResource SolidIconButton}"
-                            IconPlacement="Right"
-                            Icon="{StaticResource SemiIconChevronDown}"
-                            Content="展开选项" />
+                        <u:IconButton Icon="{StaticResource SemiIconChevronDown}" Theme="{StaticResource SolidIconButton}"
+                            Content="展开选项" IconPlacement="Right" />
                     </StackPanel>
                 </StackPanel>
             </Border>
