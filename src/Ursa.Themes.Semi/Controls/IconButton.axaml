@@ -12,7 +12,7 @@
                         <Setter Property="VerticalAlignment" Value="Center" />
                         <Setter Property="MinWidth" Value="140" />
                     </Style>
-                    <Style Selector="u|IconButton, u|IconRepeatButton">
+                    <Style Selector="u|IconButton">
                         <Setter Property="Icon" Value="👍" />
                         <Setter Property="IconPlacement" Value="Left" />
                         <Setter Property="IsLoading" Value="False" />
@@ -105,17 +105,6 @@
                     <u:IconButton Content="Warning" Classes="Colorful Warning" Theme="{DynamicResource BorderlessIconButton}" />
                     <u:IconButton Content="Danger" Classes="Colorful Danger" Theme="{DynamicResource BorderlessIconButton}" />
                     <u:IconButton Content="Disabled" Classes="Colorful Primary" Theme="{DynamicResource BorderlessIconButton}" IsEnabled="False" />
-                </WrapPanel>
-                <WrapPanel ItemSpacing="16">
-                    <Label Content="Repeat" />
-                    <u:IconRepeatButton Content="Default" />
-                    <u:IconRepeatButton Content="Primary" Classes="Primary" />
-                    <u:IconRepeatButton Content="Secondary" Classes="Secondary" />
-                    <u:IconRepeatButton Content="Tertiary" Classes="Tertiary" />
-                    <u:IconRepeatButton Content="Success" Classes="Success" />
-                    <u:IconRepeatButton Content="Warning" Classes="Warning" />
-                    <u:IconRepeatButton Content="Danger" Classes="Danger" />
-                    <u:IconRepeatButton Content="Disabled" Classes="Danger" IsEnabled="False" />
                 </WrapPanel>
             </StackPanel>
         </ThemeVariantScope>
@@ -277,6 +266,7 @@
     </ControlTheme>
 
     <ControlTheme x:Key="BaseSolidIconButton" TargetType="ContentControl" BasedOn="{StaticResource BaseIconButton}">
+        <!-- Copy to IconToggleButton:checked -->
         <Setter Property="FocusAdorner">
             <FocusAdornerTemplate>
                 <Border Theme="{DynamicResource AdornerLayerBorder}"
@@ -448,6 +438,7 @@
     </ControlTheme>
 
     <ControlTheme x:Key="BaseOutlineIconButton" TargetType="ContentControl" BasedOn="{StaticResource BaseIconButton}">
+        <!-- Copy to IconToggleButton:indeterminate -->
         <Style Selector="^ /template/ Border#PART_Background">
             <Setter Property="Background" Value="{DynamicResource ButtonOutlineBackground}" />
             <Setter Property="BorderBrush" Value="{DynamicResource ButtonOutlineBorderBrush}" />
@@ -514,19 +505,6 @@
         <Setter Property="Template" Value="{StaticResource IconButtonTemplate}" />
     </ControlTheme>
     <ControlTheme x:Key="BorderlessIconButton" TargetType="u:IconButton" BasedOn="{StaticResource BaseBorderlessIconButton}">
-        <Setter Property="Template" Value="{StaticResource IconButtonTemplate}" />
-    </ControlTheme>
-
-    <ControlTheme x:Key="{x:Type u:IconRepeatButton}" TargetType="u:IconRepeatButton" BasedOn="{StaticResource BaseIconButton}">
-        <Setter Property="Template" Value="{StaticResource IconButtonTemplate}" />
-    </ControlTheme>
-    <ControlTheme x:Key="SolidIconRepeatButton" TargetType="u:IconRepeatButton" BasedOn="{StaticResource BaseSolidIconButton}">
-        <Setter Property="Template" Value="{StaticResource IconButtonTemplate}" />
-    </ControlTheme>
-    <ControlTheme x:Key="OutlineIconRepeatButton" TargetType="u:IconRepeatButton" BasedOn="{StaticResource BaseOutlineIconButton}">
-        <Setter Property="Template" Value="{StaticResource IconButtonTemplate}" />
-    </ControlTheme>
-    <ControlTheme x:Key="BorderlessIconRepeatButton" TargetType="u:IconRepeatButton" BasedOn="{StaticResource BaseBorderlessIconButton}">
         <Setter Property="Template" Value="{StaticResource IconButtonTemplate}" />
     </ControlTheme>
 

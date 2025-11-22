@@ -23,6 +23,8 @@
         <ResourceInclude Source="EnumSelector.axaml" />
         <ResourceInclude Source="Form.axaml" />
         <ResourceInclude Source="IconButton.axaml" />
+        <ResourceInclude Source="IconRepeatButton.axaml" />
+        <ResourceInclude Source="IconToggleButton.axaml" />
         <ResourceInclude Source="ImageViewer.axaml" />
         <ResourceInclude Source="IPv4Box.axaml" />
         <ResourceInclude Source="KeyGestureInput.axaml" />

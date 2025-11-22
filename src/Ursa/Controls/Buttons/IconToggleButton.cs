@@ -1,11 +1,12 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Ursa.Common;
 
 namespace Ursa.Controls;
 
-public class IconRepeatButton : RepeatButton, IIconButton
+public class IconToggleButton : ToggleButton, IIconButton
 {
     public static readonly StyledProperty<object?> IconProperty =
         IconButton.IconProperty.AddOwner<IconRepeatButton>();
@@ -45,7 +46,7 @@ public class IconRepeatButton : RepeatButton, IIconButton
 
     IPseudoClasses IIconButton.PseudoClasses => PseudoClasses;
 
-    static IconRepeatButton()
+    static IconToggleButton()
     {
         ReversibleStackPanelUtils.EnsureBugFixed();
     }

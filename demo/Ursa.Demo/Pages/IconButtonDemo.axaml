@@ -98,6 +98,12 @@
                         <u:IconRepeatButton Icon="{StaticResource SemiIconCamera}" IsEnabled="False" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:IconToggleButton Icon="{StaticResource SemiIconCamera}" IsThreeState="True" Classes="Primary" Content="ToggleButton" />
+                        <u:IconToggleButton Icon="{StaticResource SemiIconCamera}" IsThreeState="True" Classes="Tertiary" />
+                        <u:IconToggleButton Icon="{StaticResource SemiIconCamera}" IsThreeState="True" Classes="Success" />
+                        <u:IconToggleButton Icon="{StaticResource SemiIconCamera}" IsThreeState="True" IsEnabled="False" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
                         <u:IconButton Icon="{StaticResource SemiIconSidebar}" Theme="{StaticResource SolidIconButton}"
                             Content="收起" />
                         <u:IconButton Icon="{StaticResource SemiIconChevronDown}" Theme="{StaticResource SolidIconButton}"
