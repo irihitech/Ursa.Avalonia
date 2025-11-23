@@ -22,6 +22,7 @@
                     <WrapPanel Orientation="Horizontal" ItemSpacing="8" LineSpacing="8">
                         <u:IconButton Icon="🐼" />
                         <u:IconButton Icon="{StaticResource SemiIconCamera}" Content="Text with icon" />
+                        <u:IconButton Icon="{StaticResource SemiIconCamera}" Content="Foreground" Foreground="Teal" />
                         <u:IconButton Icon="{StaticResource SemiIconCamera}" Content="Disabled" IsEnabled="False" />
                     </WrapPanel>
                     <TextBlock Text="Classes" />
@@ -102,6 +103,25 @@
                         <u:IconToggleButton Icon="{StaticResource SemiIconCamera}" IsThreeState="True" Classes="Tertiary" />
                         <u:IconToggleButton Icon="{StaticResource SemiIconCamera}" IsThreeState="True" Classes="Success" />
                         <u:IconToggleButton Icon="{StaticResource SemiIconCamera}" IsThreeState="True" IsEnabled="False" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" Classes="Colorful Primary" Content="SplitButton" />
+                        <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" Classes="Colorful Tertiary" />
+                        <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" Classes="Colorful Success" />
+                        <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" IsEnabled="False" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconSplitButton}" Classes="Colorful Primary" Content="SplitButton">
+                            <SplitButton.Flyout>
+                                <MenuFlyout Placement="BottomEdgeAlignedRight">
+                                    <MenuItem Header="Split 1" />
+                                    <MenuItem Header="Split 2" />
+                                </MenuFlyout>
+                            </SplitButton.Flyout>
+                        </u:IconSplitButton>
+                        <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconSplitButton}" Classes="Colorful Tertiary" />
+                        <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconSplitButton}" Classes="Colorful Success" />
+                        <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconSplitButton}" IsEnabled="False" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="8">
                         <u:IconButton Icon="{StaticResource SemiIconSidebar}" Theme="{StaticResource SolidIconButton}"
