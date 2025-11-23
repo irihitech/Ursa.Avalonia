@@ -33,7 +33,6 @@
                 <Rectangle
                     x:Name="SeparatorBorder"
                     Grid.Column="1"
-                    DockPanel.Dock="Right"
                     Width="{DynamicResource SplitButtonSeparatorWidth}"
                     VerticalAlignment="Stretch"
                     Fill="Transparent"
@@ -41,7 +40,6 @@
                 <u:IconButton
                     x:Name="PART_SecondaryButton"
                     Grid.Column="2"
-                    DockPanel.Dock="Right"
                     common:BindableClasses.Classes="{TemplateBinding (common:BindableClasses.Classes)}"
                     IsEnabled="{TemplateBinding IsEnabled}"
                     Padding="4,0"

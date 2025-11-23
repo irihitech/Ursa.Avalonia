@@ -23,6 +23,7 @@
         <ResourceInclude Source="EnumSelector.axaml" />
         <ResourceInclude Source="Form.axaml" />
         <ResourceInclude Source="IconButton.axaml" />
+        <ResourceInclude Source="IconDropDownButton.axaml" />
         <ResourceInclude Source="IconRepeatButton.axaml" />
         <ResourceInclude Source="IconSplitButton.axaml" />
         <ResourceInclude Source="IconToggleButton.axaml" />

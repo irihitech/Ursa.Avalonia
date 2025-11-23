@@ -5,10 +5,10 @@ using Ursa.Common;
 
 namespace Ursa.Controls;
 
-public class IconToggleSplitButton : ToggleSplitButton, IIconButton
+public class IconDropDownButton : RepeatButton, IIconButton
 {
     public static readonly StyledProperty<object?> IconProperty =
-        IconButton.IconProperty.AddOwner<IconRepeatButton>();
+        IconButton.IconProperty.AddOwner<IconDropDownButton>();
 
     public object? Icon
     {
@@ -17,7 +17,7 @@ public class IconToggleSplitButton : ToggleSplitButton, IIconButton
     }
 
     public static readonly StyledProperty<IDataTemplate?> IconTemplateProperty =
-        IconButton.IconTemplateProperty.AddOwner<IconRepeatButton>();
+        IconButton.IconTemplateProperty.AddOwner<IconDropDownButton>();
 
     public IDataTemplate? IconTemplate
     {
@@ -26,7 +26,7 @@ public class IconToggleSplitButton : ToggleSplitButton, IIconButton
     }
 
     public static readonly StyledProperty<bool> IsLoadingProperty =
-        IconButton.IsLoadingProperty.AddOwner<IconRepeatButton>();
+        IconButton.IsLoadingProperty.AddOwner<IconDropDownButton>();
 
     public bool IsLoading
     {
@@ -35,7 +35,7 @@ public class IconToggleSplitButton : ToggleSplitButton, IIconButton
     }
 
     public static readonly StyledProperty<Position> IconPlacementProperty =
-        IconButton.IconPlacementProperty.AddOwner<IconSplitButton>();
+        IconButton.IconPlacementProperty.AddOwner<IconDropDownButton>();
 
     public Position IconPlacement
     {
@@ -45,10 +45,8 @@ public class IconToggleSplitButton : ToggleSplitButton, IIconButton
 
     IPseudoClasses IIconButton.PseudoClasses => PseudoClasses;
 
-    static IconToggleSplitButton()
+    static IconDropDownButton()
     {
         ReversibleStackPanelUtils.EnsureBugFixed();
     }
-
-    protected override Type StyleKeyOverride => GetType();
 }

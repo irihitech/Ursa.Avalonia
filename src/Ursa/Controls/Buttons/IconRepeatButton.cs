@@ -35,7 +35,7 @@ public class IconRepeatButton : RepeatButton, IIconButton
     }
 
     public static readonly StyledProperty<Position> IconPlacementProperty =
-        AvaloniaProperty.Register<IconButton, Position>(nameof(IconPlacement), defaultValue: Position.Left);
+        IconButton.IconPlacementProperty.AddOwner<IconRepeatButton>();
 
     public Position IconPlacement
     {

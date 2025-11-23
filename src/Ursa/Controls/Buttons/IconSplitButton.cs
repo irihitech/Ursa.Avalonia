@@ -35,7 +35,7 @@ public class IconSplitButton : SplitButton, IIconButton
     }
 
     public static readonly StyledProperty<Position> IconPlacementProperty =
-        AvaloniaProperty.Register<IconButton, Position>(nameof(IconPlacement), defaultValue: Position.Left);
+        IconButton.IconPlacementProperty.AddOwner<IconSplitButton>();
 
     public Position IconPlacement
     {

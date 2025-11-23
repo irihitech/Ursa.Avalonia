@@ -36,7 +36,7 @@ public class IconToggleButton : ToggleButton, IIconButton
     }
 
     public static readonly StyledProperty<Position> IconPlacementProperty =
-        AvaloniaProperty.Register<IconButton, Position>(nameof(IconPlacement), defaultValue: Position.Left);
+        IconButton.IconPlacementProperty.AddOwner<IconToggleButton>();
 
     public Position IconPlacement
     {

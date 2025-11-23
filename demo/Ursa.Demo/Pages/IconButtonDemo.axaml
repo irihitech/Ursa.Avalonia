@@ -15,7 +15,7 @@
         <vm:IconButtonDemoViewModel />
     </Design.DataContext>
     <Control.Styles>
-        <Style Selector="u|IconSplitButton,u|IconToggleSplitButton">
+        <Style Selector="u|IconDropDownButton, u|IconSplitButton, u|IconToggleSplitButton">
             <Setter Property="Button.Flyout">
                 <MenuFlyout Placement="BottomEdgeAlignedRight">
                     <MenuItem Header="Submit All" />
@@ -113,6 +113,12 @@
                         <u:IconToggleButton Icon="{StaticResource SemiIconCamera}" IsThreeState="True" Classes="Tertiary" />
                         <u:IconToggleButton Icon="{StaticResource SemiIconCamera}" IsThreeState="True" Classes="Success" />
                         <u:IconToggleButton Icon="{StaticResource SemiIconCamera}" IsThreeState="True" IsEnabled="False" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:IconDropDownButton Icon="{StaticResource SemiIconCamera}" Classes="Colorful Primary" Content="DropDownButton" />
+                        <u:IconDropDownButton Icon="{StaticResource SemiIconCamera}" Classes="Colorful Tertiary" />
+                        <u:IconDropDownButton Icon="{StaticResource SemiIconCamera}" Classes="Colorful Success" />
+                        <u:IconDropDownButton Icon="{StaticResource SemiIconCamera}" IsEnabled="False" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="8">
                         <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" Classes="Colorful Primary" Content="SplitButton" />

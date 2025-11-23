@@ -1,0 +1,89 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:converters="using:Ursa.Themes.Semi.Converters">
+
+    <ControlTemplate x:Key="IconDropDownButtonTemplate" TargetType="ContentControl">
+        <Border
+            Name="PART_Background"
+            Padding="{TemplateBinding Padding}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}">
+            <Grid
+                ColumnDefinitions="*, Auto"
+                ColumnSpacing="{StaticResource IconButtonInnerSpacing}">
+                <ReversibleStackPanel
+                    Name="{x:Static u:IconButton.PART_RootPanel}"
+                    Grid.Column="0"
+                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                    Orientation="Horizontal"
+                    Spacing="{StaticResource IconButtonInnerSpacing}">
+                    <Panel Name="PART_IconRoot">
+                        <Panel.IsVisible>
+                            <MultiBinding Converter="{x:Static BoolConverters.Or}">
+                                <Binding Path="(u:IconButton.IsLoading)" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Path="(u:IconButton.Icon)" RelativeSource="{RelativeSource TemplatedParent}" />
+                            </MultiBinding>
+                        </Panel.IsVisible>
+                        <ContentPresenter
+                            Content="{TemplateBinding (u:IconButton.Icon)}"
+                            ContentTemplate="{TemplateBinding (u:IconButton.IconTemplate)}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            Foreground="{Binding #PART_ContentPresenter.Foreground}"
+                            Opacity="{Binding !(u:IconButton.IsLoading), RelativeSource={RelativeSource TemplatedParent}, Converter={converters:BooleansToOpacityConverter}}">
+                            <ContentPresenter.DataTemplates>
+                                <DataTemplate DataType="Geometry">
+                                    <PathIcon
+                                        Theme="{StaticResource InnerPathIcon}"
+                                        Data="{Binding}" />
+                                </DataTemplate>
+                            </ContentPresenter.DataTemplates>
+                        </ContentPresenter>
+                        <u:LoadingIcon
+                            Classes="Small"
+                            Foreground="{Binding #PART_ContentPresenter.Foreground}"
+                            IsLoading="{TemplateBinding (u:IconButton.IsLoading)}"
+                            IsVisible="{TemplateBinding (u:IconButton.IsLoading)}" />
+                    </Panel>
+                    <ContentPresenter
+                        Name="PART_ContentPresenter"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        TextElement.FontSize="{TemplateBinding FontSize}"
+                        TextElement.FontWeight="{TemplateBinding FontWeight}"
+                        IsVisible="{TemplateBinding Content, Converter={x:Static ObjectConverters.IsNotNull}}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        UseLayoutRounding="False" />
+                </ReversibleStackPanel>
+                <PathIcon
+                    Name="DropDownGlyph"
+                    Grid.Column="1"
+                    Theme="{DynamicResource InnerPathIcon}"
+                    HorizontalAlignment="Right"
+                    Data="{DynamicResource DropDownButtonIconGlyph}"
+                    Foreground="{Binding #PART_ContentPresenter.Foreground}"
+                    IsHitTestVisible="False"
+                    UseLayoutRounding="False" />
+            </Grid>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTheme x:Key="{x:Type u:IconDropDownButton}" TargetType="u:IconDropDownButton" BasedOn="{StaticResource BaseIconButton}">
+        <Setter Property="Template" Value="{StaticResource IconDropDownButtonTemplate}" />
+    </ControlTheme>
+    <ControlTheme x:Key="SolidIconDropDownButton" TargetType="u:IconDropDownButton" BasedOn="{StaticResource BaseSolidIconButton}">
+        <Setter Property="Template" Value="{StaticResource IconDropDownButtonTemplate}" />
+    </ControlTheme>
+    <ControlTheme x:Key="OutlineIconDropDownButton" TargetType="u:IconDropDownButton" BasedOn="{StaticResource BaseOutlineIconButton}">
+        <Setter Property="Template" Value="{StaticResource IconDropDownButtonTemplate}" />
+    </ControlTheme>
+    <ControlTheme x:Key="BorderlessIconDropDownButton" TargetType="u:IconDropDownButton" BasedOn="{StaticResource BaseBorderlessIconButton}">
+        <Setter Property="Template" Value="{StaticResource IconDropDownButtonTemplate}" />
+    </ControlTheme>
+
+</ResourceDictionary>
