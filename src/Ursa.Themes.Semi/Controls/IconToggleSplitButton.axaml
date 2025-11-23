@@ -1,0 +1,22 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:common="using:Ursa.Common">
+
+    <ControlTheme x:Key="{x:Type u:IconToggleSplitButton}" TargetType="u:IconToggleSplitButton" BasedOn="{StaticResource BaseIconButton}">
+        <Setter Property="Template" Value="{StaticResource IconSplitButtonTemplate}" />
+        <Setter Property="common:BindableClasses.IsClassesSource" Value="True" />
+        <Style Selector="^ /template/ u|IconButton">
+            <Setter Property="Theme" Value="{StaticResource {x:Type u:IconButton}}" />
+        </Style>
+        <Style Selector="^:checked /template/ u|IconButton">
+            <Setter Property="Theme" Value="{StaticResource SolidIconButton}" />
+            <Setter Property="Foreground" Value="{DynamicResource ButtonSolidForeground}" />
+        </Style>
+        <Style Selector="^:indeterminate /template/ u|IconButton">
+            <Setter Property="Theme" Value="{StaticResource OutlineIconButton}" />
+        </Style>
+    </ControlTheme>
+
+</ResourceDictionary>

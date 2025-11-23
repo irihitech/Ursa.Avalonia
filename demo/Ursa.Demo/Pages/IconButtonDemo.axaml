@@ -14,6 +14,16 @@
     <Design.DataContext>
         <vm:IconButtonDemoViewModel />
     </Design.DataContext>
+    <Control.Styles>
+        <Style Selector="u|IconSplitButton,u|IconToggleSplitButton">
+            <Setter Property="Button.Flyout">
+                <MenuFlyout Placement="BottomEdgeAlignedRight">
+                    <MenuItem Header="Submit All" />
+                    <MenuItem Header="Submit Updated" />
+                </MenuFlyout>
+            </Setter>
+        </Style>
+    </Control.Styles>
     <ScrollViewer>
         <StackPanel Margin="20" Spacing="8" HorizontalAlignment="Left" Width="500">
             <Border Theme="{StaticResource CardBorder}">
@@ -111,17 +121,16 @@
                         <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" IsEnabled="False" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="8">
-                        <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconSplitButton}" Classes="Colorful Primary" Content="SplitButton">
-                            <SplitButton.Flyout>
-                                <MenuFlyout Placement="BottomEdgeAlignedRight">
-                                    <MenuItem Header="Split 1" />
-                                    <MenuItem Header="Split 2" />
-                                </MenuFlyout>
-                            </SplitButton.Flyout>
-                        </u:IconSplitButton>
+                        <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconSplitButton}" Classes="Colorful Primary" Content="SplitButton" />
                         <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconSplitButton}" Classes="Colorful Tertiary" />
                         <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconSplitButton}" Classes="Colorful Success" />
                         <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" Theme="{StaticResource SolidIconSplitButton}" IsEnabled="False" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <u:IconToggleSplitButton Icon="{StaticResource SemiIconCamera}" Classes="Colorful Primary" Content="ToggleSplitButton" />
+                        <u:IconToggleSplitButton Icon="{StaticResource SemiIconCamera}" Classes="Colorful Tertiary" />
+                        <u:IconToggleSplitButton Icon="{StaticResource SemiIconCamera}" Classes="Colorful Success" />
+                        <u:IconToggleSplitButton Icon="{StaticResource SemiIconCamera}" IsEnabled="False" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="8">
                         <u:IconButton Icon="{StaticResource SemiIconSidebar}" Theme="{StaticResource SolidIconButton}"

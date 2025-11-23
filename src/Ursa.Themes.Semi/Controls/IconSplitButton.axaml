@@ -4,40 +4,21 @@
     xmlns:u="https://irihi.tech/ursa"
     xmlns:common="using:Ursa.Common">
 
-    <ControlTemplate x:Key="IconSplitButtonTemplate" TargetType="u:IconSplitButton">
+    <ControlTemplate x:Key="IconSplitButtonTemplate" TargetType="SplitButton">
         <Border
             BackgroundSizing="OuterBorderEdge"
             ClipToBounds="True"
             CornerRadius="{TemplateBinding CornerRadius}">
-            <DockPanel LastChildFill="True">
-                <u:IconButton
-                    x:Name="PART_SecondaryButton"
-                    DockPanel.Dock="Right"
-                    common:BindableClasses.Classes="{TemplateBinding (common:BindableClasses.Classes)}"
-                    IsEnabled="{TemplateBinding IsEnabled}"
-                    Padding="4,0"
-                    CornerRadius="0">
-                    <u:IconButton.Icon>
-                        <PathIcon
-                            Theme="{DynamicResource InnerPathIcon}"
-                            Data="{DynamicResource SplitButtonIconGlyph}" />
-                    </u:IconButton.Icon>
-                </u:IconButton>
-                <Rectangle
-                    x:Name="SeparatorBorder"
-                    DockPanel.Dock="Right"
-                    Width="{DynamicResource SplitButtonSeparatorWidth}"
-                    VerticalAlignment="Stretch"
-                    Fill="Transparent"
-                    StrokeThickness="0" />
+            <Grid ColumnDefinitions="*, Auto, Auto">
                 <u:IconButton
                     x:Name="PART_PrimaryButton"
+                    Grid.Column="0"
                     common:BindableClasses.Classes="{TemplateBinding (common:BindableClasses.Classes)}"
                     IsEnabled="{TemplateBinding IsEnabled}"
-                    Icon="{TemplateBinding Icon}"
-                    IconPlacement="{TemplateBinding IconPlacement}"
-                    IconTemplate="{TemplateBinding IconTemplate}"
-                    IsLoading="{TemplateBinding IsLoading}"
+                    Icon="{TemplateBinding (u:IconButton.Icon)}"
+                    IconPlacement="{TemplateBinding (u:IconButton.IconPlacement)}"
+                    IconTemplate="{TemplateBinding (u:IconButton.IconTemplate)}"
+                    IsLoading="{TemplateBinding (u:IconButton.IsLoading)}"
                     Padding="{TemplateBinding Padding}"
                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -49,7 +30,29 @@
                     FontFamily="{TemplateBinding FontFamily}"
                     FontSize="{TemplateBinding FontSize}"
                     FontWeight="{TemplateBinding FontWeight}" />
-            </DockPanel>
+                <Rectangle
+                    x:Name="SeparatorBorder"
+                    Grid.Column="1"
+                    DockPanel.Dock="Right"
+                    Width="{DynamicResource SplitButtonSeparatorWidth}"
+                    VerticalAlignment="Stretch"
+                    Fill="Transparent"
+                    StrokeThickness="0" />
+                <u:IconButton
+                    x:Name="PART_SecondaryButton"
+                    Grid.Column="2"
+                    DockPanel.Dock="Right"
+                    common:BindableClasses.Classes="{TemplateBinding (common:BindableClasses.Classes)}"
+                    IsEnabled="{TemplateBinding IsEnabled}"
+                    Padding="4,0"
+                    CornerRadius="0">
+                    <u:IconButton.Icon>
+                        <PathIcon
+                            Theme="{DynamicResource InnerPathIcon}"
+                            Data="{DynamicResource SplitButtonIconGlyph}" />
+                    </u:IconButton.Icon>
+                </u:IconButton>
+            </Grid>
         </Border>
     </ControlTemplate>
 

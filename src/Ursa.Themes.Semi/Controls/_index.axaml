@@ -26,6 +26,7 @@
         <ResourceInclude Source="IconRepeatButton.axaml" />
         <ResourceInclude Source="IconSplitButton.axaml" />
         <ResourceInclude Source="IconToggleButton.axaml" />
+        <ResourceInclude Source="IconToggleSplitButton.axaml" />
         <ResourceInclude Source="ImageViewer.axaml" />
         <ResourceInclude Source="IPv4Box.axaml" />
         <ResourceInclude Source="KeyGestureInput.axaml" />
