@@ -6,7 +6,7 @@ using Ursa.Common;
 
 namespace Ursa.Controls;
 
-public class IconSplitButton : SplitButton, IIconButton
+public class IconSplitButton : SplitButton
 {
     public static readonly StyledProperty<object?> IconProperty =
         IconButton.IconProperty.AddOwner<IconRepeatButton>();
@@ -43,8 +43,6 @@ public class IconSplitButton : SplitButton, IIconButton
         get => GetValue(IconPlacementProperty);
         set => SetValue(IconPlacementProperty, value);
     }
-
-    IPseudoClasses IIconButton.PseudoClasses => PseudoClasses;
 
     static IconSplitButton()
     {

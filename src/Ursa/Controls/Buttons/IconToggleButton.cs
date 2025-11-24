@@ -1,12 +1,11 @@
 ﻿using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Ursa.Common;
 
 namespace Ursa.Controls;
 
-public class IconToggleButton : ToggleButton, IIconButton
+public class IconToggleButton : ToggleButton
 {
     public static readonly StyledProperty<object?> IconProperty =
         IconButton.IconProperty.AddOwner<IconRepeatButton>();
@@ -43,8 +42,6 @@ public class IconToggleButton : ToggleButton, IIconButton
         get => GetValue(IconPlacementProperty);
         set => SetValue(IconPlacementProperty, value);
     }
-
-    IPseudoClasses IIconButton.PseudoClasses => PseudoClasses;
 
     static IconToggleButton()
     {

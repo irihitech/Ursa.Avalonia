@@ -41,6 +41,7 @@
                     x:Name="PART_SecondaryButton"
                     Grid.Column="2"
                     iri:ClassHelper.ClassSource="{TemplateBinding}"
+                    VerticalAlignment="Stretch"
                     IsEnabled="{TemplateBinding IsEnabled}"
                     CornerRadius="0">
                     <u:IconButton.Icon>

@@ -6,7 +6,7 @@ using Ursa.Common;
 
 namespace Ursa.Controls;
 
-public class IconRepeatButton : RepeatButton, IIconButton
+public class IconRepeatButton : RepeatButton
 {
     public static readonly StyledProperty<object?> IconProperty =
         IconButton.IconProperty.AddOwner<IconRepeatButton>();
@@ -43,8 +43,6 @@ public class IconRepeatButton : RepeatButton, IIconButton
         get => GetValue(IconPlacementProperty);
         set => SetValue(IconPlacementProperty, value);
     }
-
-    IPseudoClasses IIconButton.PseudoClasses => PseudoClasses;
 
     static IconRepeatButton()
     {

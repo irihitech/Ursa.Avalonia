@@ -3,14 +3,13 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
-using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
 
 namespace Ursa.Controls;
 
 [TemplatePart(PART_RootPanel, typeof(Panel))]
 [PseudoClasses(PC_Right, PC_Left, PC_Top, PC_Bottom, PC_Empty, PC_EmptyContent)]
-public class IconButton : Button, IIconButton
+public class IconButton : Button
 {
     public const string PC_Right = ":right";
     public const string PC_Left = ":left";
@@ -23,6 +22,9 @@ public class IconButton : Button, IIconButton
     public static readonly StyledProperty<object?> IconProperty =
         AvaloniaProperty.Register<IconButton, object?>(nameof(Icon));
 
+    public static object? GetIcon(ContentControl o) => o.GetValue(IconProperty);
+    public static void SetIcon(ContentControl o, object? value) => o.SetValue(IconProperty, value);
+
     public object? Icon
     {
         get => GetValue(IconProperty);
@@ -31,6 +33,9 @@ public class IconButton : Button, IIconButton
 
     public static readonly StyledProperty<IDataTemplate?> IconTemplateProperty =
         AvaloniaProperty.Register<IconButton, IDataTemplate?>(nameof(IconTemplate));
+
+    public static IDataTemplate? GetIconTemplate(ContentControl o) => o.GetValue(IconTemplateProperty);
+    public static void SetIconTemplate(ContentControl o, IDataTemplate? value) => o.SetValue(IconTemplateProperty, value);
 
     public IDataTemplate? IconTemplate
     {
@@ -41,6 +46,9 @@ public class IconButton : Button, IIconButton
     public static readonly StyledProperty<bool> IsLoadingProperty =
         AvaloniaProperty.Register<IconButton, bool>(nameof(IsLoading));
 
+    public static bool GetIsLoading(ContentControl o) => o.GetValue(IsLoadingProperty);
+    public static void SetIsLoading(ContentControl o, bool value) => o.SetValue(IsLoadingProperty, value);
+
     public bool IsLoading
     {
         get => GetValue(IsLoadingProperty);
@@ -50,31 +58,29 @@ public class IconButton : Button, IIconButton
     public static readonly StyledProperty<Position> IconPlacementProperty =
         AvaloniaProperty.Register<IconButton, Position>(nameof(IconPlacement), defaultValue: Position.Left);
 
+    public static Position GetIconPlacement(ContentControl o) => o.GetValue(IconPlacementProperty);
+    public static void SetIconPlacement(ContentControl o, Position value) => o.SetValue(IconPlacementProperty, value);
+
     public Position IconPlacement
     {
         get => GetValue(IconPlacementProperty);
         set => SetValue(IconPlacementProperty, value);
     }
 
-    IPseudoClasses IIconButton.PseudoClasses => PseudoClasses;
-
     static IconButton()
     {
         ReversibleStackPanelUtils.EnsureBugFixed();
-        IconPlacementProperty.Changed.Subscribe(e =>
+        IconPlacementProperty.Changed.AddClassHandler<ContentControl, Position>((o, e) =>
         {
-            if (e.Sender is IIconButton o)
-                UpdateIconPseudoClasses(o, e.NewValue.Value, o.Icon);
+            UpdateIconPseudoClasses(o, e.NewValue.Value, GetIcon(o));
         });
-        IconPlacementProperty.Changed.Subscribe(e =>
+        IconProperty.Changed.AddClassHandler<ContentControl, object?>((o, e) =>
         {
-            if (e.Sender is IIconButton o)
-                UpdateIconPseudoClasses(o, o.IconPlacement, e.NewValue.Value);
+            UpdateIconPseudoClasses(o, GetIconPlacement(o), e.NewValue.Value);
         });
-        ContentProperty.Changed.Subscribe(e =>
+        ContentProperty.Changed.AddClassHandler<ContentControl, object?>((o, _) =>
         {
-            if (e.Sender is IIconButton o)
-                UpdateEmptyContentPseudoClass(o);
+            UpdateEmptyContentPseudoClass(o);
         });
     }
 
@@ -85,33 +91,26 @@ public class IconButton : Button, IIconButton
         UpdateIconPseudoClasses(this, IconPlacement, Icon);
     }
 
-    internal static void UpdatePseudoClasses(IIconButton button)
+    internal static void UpdatePseudoClasses(ContentControl button)
     {
         UpdateEmptyContentPseudoClass(button);
-        UpdateIconPseudoClasses(button, button.IconPlacement, button.Icon);
+        UpdateIconPseudoClasses(button, GetIconPlacement(button), GetIcon(button));
     }
 
-    private static void UpdateEmptyContentPseudoClass(IIconButton button)
+    private static void UpdateEmptyContentPseudoClass(ContentControl button)
     {
-        button.PseudoClasses.Set(PC_EmptyContent, ((ContentControl)button) /*.Presenter?*/.Content is null);
+        IPseudoClasses pseudo = button.Classes;
+        pseudo.Set(PC_EmptyContent, button.Content is null);
     }
 
-    private static void UpdateIconPseudoClasses(IIconButton button, Position placement, object? icon)
+    private static void UpdateIconPseudoClasses(ContentControl button, Position placement, object? icon)
     {
-        if (icon is null)
-        {
-            button.PseudoClasses.Set(PC_Empty, true);
-            button.PseudoClasses.Set(PC_Left, false);
-            button.PseudoClasses.Set(PC_Right, false);
-            button.PseudoClasses.Set(PC_Top, false);
-            button.PseudoClasses.Set(PC_Bottom, false);
-            return;
-        }
-
-        button.PseudoClasses.Set(PC_Empty, false);
-        button.PseudoClasses.Set(PC_Left, placement == Position.Left);
-        button.PseudoClasses.Set(PC_Right, placement == Position.Right);
-        button.PseudoClasses.Set(PC_Top, placement == Position.Top);
-        button.PseudoClasses.Set(PC_Bottom, placement == Position.Bottom);
+        IPseudoClasses pseudo = button.Classes;
+        var hasIcon = icon is not null;
+        pseudo.Set(PC_Empty, !hasIcon);
+        pseudo.Set(PC_Left, hasIcon && placement == Position.Left);
+        pseudo.Set(PC_Right, hasIcon && placement == Position.Right);
+        pseudo.Set(PC_Top, hasIcon && placement == Position.Top);
+        pseudo.Set(PC_Bottom, hasIcon && placement == Position.Bottom);
     }
 }
