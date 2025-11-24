@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Ursa.Common;
 
@@ -51,4 +52,10 @@ public class IconToggleSplitButton : ToggleSplitButton, IIconButton
     }
 
     protected override Type StyleKeyOverride => GetType();
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        IconButton.UpdatePseudoClasses(this);
+    }
 }

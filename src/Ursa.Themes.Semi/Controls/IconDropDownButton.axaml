@@ -24,7 +24,8 @@
                         <Panel.IsVisible>
                             <MultiBinding Converter="{x:Static BoolConverters.Or}">
                                 <Binding Path="(u:IconButton.IsLoading)" RelativeSource="{RelativeSource TemplatedParent}" />
-                                <Binding Path="(u:IconButton.Icon)" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Path="(u:IconButton.Icon)" RelativeSource="{RelativeSource TemplatedParent}"
+                                    Converter="{x:Static ObjectConverters.IsNotNull}" />
                             </MultiBinding>
                         </Panel.IsVisible>
                         <ContentPresenter
@@ -75,6 +76,10 @@
 
     <ControlTheme x:Key="{x:Type u:IconDropDownButton}" TargetType="u:IconDropDownButton" BasedOn="{StaticResource BaseIconButton}">
         <Setter Property="Template" Value="{StaticResource IconDropDownButtonTemplate}" />
+        <Style Selector="^:empty-content">
+            <Setter Property="MinWidth" Value="0" />
+            <Setter Property="Padding" Value="{DynamicResource ButtonDefaultPadding}" />
+        </Style>
     </ControlTheme>
     <ControlTheme x:Key="SolidIconDropDownButton" TargetType="u:IconDropDownButton" BasedOn="{StaticResource BaseSolidIconButton}">
         <Setter Property="Template" Value="{StaticResource IconDropDownButtonTemplate}" />

@@ -64,29 +64,39 @@ public class IconButton : Button, IIconButton
         IconPlacementProperty.Changed.Subscribe(e =>
         {
             if (e.Sender is IIconButton o)
-                UpdatePseudoClasses(o, e.NewValue.Value, o.Icon);
+                UpdateIconPseudoClasses(o, e.NewValue.Value, o.Icon);
         });
         IconPlacementProperty.Changed.Subscribe(e =>
         {
             if (e.Sender is IIconButton o)
-                UpdatePseudoClasses(o, o.IconPlacement, e.NewValue.Value);
+                UpdateIconPseudoClasses(o, o.IconPlacement, e.NewValue.Value);
         });
-        ContentProperty.Changed.AddClassHandler<IconButton>((o, _) => o.UpdateEmptyContentPseudoClass());
+        ContentProperty.Changed.Subscribe(e =>
+        {
+            if (e.Sender is IIconButton o)
+                UpdateEmptyContentPseudoClass(o);
+        });
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        UpdateEmptyContentPseudoClass();
-        UpdatePseudoClasses(this, IconPlacement, Icon);
+        UpdateEmptyContentPseudoClass(this);
+        UpdateIconPseudoClasses(this, IconPlacement, Icon);
     }
 
-    private void UpdateEmptyContentPseudoClass()
+    internal static void UpdatePseudoClasses(IIconButton button)
     {
-        PseudoClasses.Set(PC_EmptyContent, Presenter?.Content is null);
+        UpdateEmptyContentPseudoClass(button);
+        UpdateIconPseudoClasses(button, button.IconPlacement, button.Icon);
     }
 
-    private static void UpdatePseudoClasses(IIconButton button, Position placement, object? icon)
+    private static void UpdateEmptyContentPseudoClass(IIconButton button)
+    {
+        button.PseudoClasses.Set(PC_EmptyContent, ((ContentControl)button) /*.Presenter?*/.Content is null);
+    }
+
+    private static void UpdateIconPseudoClasses(IIconButton button, Position placement, object? icon)
     {
         if (icon is null)
         {

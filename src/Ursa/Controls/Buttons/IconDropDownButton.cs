@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Ursa.Common;
 
@@ -48,5 +49,11 @@ public class IconDropDownButton : RepeatButton, IIconButton
     static IconDropDownButton()
     {
         ReversibleStackPanelUtils.EnsureBugFixed();
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        IconButton.UpdatePseudoClasses(this);
     }
 }

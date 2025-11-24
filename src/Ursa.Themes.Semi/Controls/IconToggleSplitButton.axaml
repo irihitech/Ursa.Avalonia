@@ -9,6 +9,10 @@
         <Setter Property="common:BindableClasses.IsClassesSource" Value="True" />
         <Style Selector="^ /template/ u|IconButton">
             <Setter Property="Theme" Value="{StaticResource {x:Type u:IconButton}}" />
+            <Style Selector="^#PART_SecondaryButton:empty-content">
+                <Setter Property="MinWidth" Value="0" />
+                <Setter Property="Padding" Value="4 0" />
+            </Style>
         </Style>
         <Style Selector="^:checked /template/ u|IconButton">
             <Setter Property="Theme" Value="{StaticResource SolidIconButton}" />

@@ -126,7 +126,8 @@
                     <Panel.IsVisible>
                         <MultiBinding Converter="{x:Static BoolConverters.Or}">
                             <Binding Path="(u:IconButton.IsLoading)" RelativeSource="{RelativeSource TemplatedParent}" />
-                            <Binding Path="(u:IconButton.Icon)" RelativeSource="{RelativeSource TemplatedParent}" />
+                            <Binding Path="(u:IconButton.Icon)" RelativeSource="{RelativeSource TemplatedParent}"
+                                Converter="{x:Static ObjectConverters.IsNotNull}" />
                         </MultiBinding>
                     </Panel.IsVisible>
                     <ContentPresenter

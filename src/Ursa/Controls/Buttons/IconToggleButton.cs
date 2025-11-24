@@ -50,4 +50,10 @@ public class IconToggleButton : ToggleButton, IIconButton
     {
         ReversibleStackPanelUtils.EnsureBugFixed();
     }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        IconButton.UpdatePseudoClasses(this);
+    }
 }
