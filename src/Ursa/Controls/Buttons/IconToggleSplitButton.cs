@@ -9,7 +9,7 @@ namespace Ursa.Controls;
 public class IconToggleSplitButton : ToggleSplitButton
 {
     public static readonly StyledProperty<object?> IconProperty =
-        IconButton.IconProperty.AddOwner<IconRepeatButton>();
+        IconButton.IconProperty.AddOwner<IconToggleSplitButton>();
 
     public object? Icon
     {
@@ -18,7 +18,7 @@ public class IconToggleSplitButton : ToggleSplitButton
     }
 
     public static readonly StyledProperty<IDataTemplate?> IconTemplateProperty =
-        IconButton.IconTemplateProperty.AddOwner<IconRepeatButton>();
+        IconButton.IconTemplateProperty.AddOwner<IconToggleSplitButton>();
 
     public IDataTemplate? IconTemplate
     {
@@ -27,7 +27,7 @@ public class IconToggleSplitButton : ToggleSplitButton
     }
 
     public static readonly StyledProperty<bool> IsLoadingProperty =
-        IconButton.IsLoadingProperty.AddOwner<IconRepeatButton>();
+        IconButton.IsLoadingProperty.AddOwner<IconToggleSplitButton>();
 
     public bool IsLoading
     {
@@ -36,7 +36,7 @@ public class IconToggleSplitButton : ToggleSplitButton
     }
 
     public static readonly StyledProperty<Position> IconPlacementProperty =
-        IconButton.IconPlacementProperty.AddOwner<IconSplitButton>();
+        IconButton.IconPlacementProperty.AddOwner<IconToggleSplitButton>();
 
     public Position IconPlacement
     {

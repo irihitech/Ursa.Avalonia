@@ -8,7 +8,7 @@ namespace Ursa.Controls;
 public class IconToggleButton : ToggleButton
 {
     public static readonly StyledProperty<object?> IconProperty =
-        IconButton.IconProperty.AddOwner<IconRepeatButton>();
+        IconButton.IconProperty.AddOwner<IconToggleButton>();
 
     public object? Icon
     {
@@ -17,7 +17,7 @@ public class IconToggleButton : ToggleButton
     }
 
     public static readonly StyledProperty<IDataTemplate?> IconTemplateProperty =
-        IconButton.IconTemplateProperty.AddOwner<IconRepeatButton>();
+        IconButton.IconTemplateProperty.AddOwner<IconToggleButton>();
 
     public IDataTemplate? IconTemplate
     {
@@ -26,7 +26,7 @@ public class IconToggleButton : ToggleButton
     }
 
     public static readonly StyledProperty<bool> IsLoadingProperty =
-        IconButton.IsLoadingProperty.AddOwner<IconRepeatButton>();
+        IconButton.IsLoadingProperty.AddOwner<IconToggleButton>();
 
     public bool IsLoading
     {

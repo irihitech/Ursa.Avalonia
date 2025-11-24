@@ -10,13 +10,12 @@ namespace Ursa.Common;
 /// </summary>
 internal class ReversibleStackPanelUtils : Layoutable
 {
-    private static bool _isBugFixed = false;
+    private static int _isBugFixed = 0;
 
     public static void EnsureBugFixed()
     {
-        if (_isBugFixed)
+        if (Interlocked.CompareExchange(ref _isBugFixed, 1, 0) != 0)
             return;
         AffectsArrange<ReversibleStackPanel>(ReversibleStackPanel.ReverseOrderProperty);
-        _isBugFixed = true;
     }
 }
