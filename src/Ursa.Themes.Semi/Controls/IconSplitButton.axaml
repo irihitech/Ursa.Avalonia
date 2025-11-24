@@ -2,7 +2,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa"
-    xmlns:common="using:Ursa.Common">
+    xmlns:iri="https://irihi.tech/shared">
 
     <ControlTemplate x:Key="IconSplitButtonTemplate" TargetType="SplitButton">
         <Border
@@ -13,7 +13,7 @@
                 <u:IconButton
                     x:Name="PART_PrimaryButton"
                     Grid.Column="0"
-                    common:BindableClasses.Classes="{TemplateBinding (common:BindableClasses.Classes)}"
+                    iri:ClassHelper.ClassSource="{TemplateBinding}"
                     IsEnabled="{TemplateBinding IsEnabled}"
                     Icon="{TemplateBinding (u:IconButton.Icon)}"
                     IconPlacement="{TemplateBinding (u:IconButton.IconPlacement)}"
@@ -40,7 +40,7 @@
                 <u:IconButton
                     x:Name="PART_SecondaryButton"
                     Grid.Column="2"
-                    common:BindableClasses.Classes="{TemplateBinding (common:BindableClasses.Classes)}"
+                    iri:ClassHelper.ClassSource="{TemplateBinding}"
                     IsEnabled="{TemplateBinding IsEnabled}"
                     CornerRadius="0">
                     <u:IconButton.Icon>
@@ -55,7 +55,6 @@
 
     <ControlTheme x:Key="{x:Type u:IconSplitButton}" TargetType="u:IconSplitButton" BasedOn="{StaticResource BaseIconButton}">
         <Setter Property="Template" Value="{StaticResource IconSplitButtonTemplate}" />
-        <Setter Property="common:BindableClasses.IsClassesSource" Value="True" />
         <Style Selector="^ /template/ u|IconButton">
             <Setter Property="Theme" Value="{StaticResource {x:Type u:IconButton}}" />
             <Style Selector="^#PART_SecondaryButton:empty-content">
@@ -69,6 +68,9 @@
         <Setter Property="Template" Value="{StaticResource IconSplitButtonTemplate}" />
         <Style Selector="^ /template/ u|IconButton">
             <Setter Property="Theme" Value="{StaticResource SolidIconButton}" />
+            <Setter Property="Foreground" Value="{DynamicResource ButtonSolidForeground}" />
+            <Setter Property="Background" Value="{DynamicResource ButtonSolidPrimaryBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ButtonSolidPrimaryBorderBrush}" />
         </Style>
     </ControlTheme>
 
