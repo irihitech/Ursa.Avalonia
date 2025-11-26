@@ -6,7 +6,7 @@ using Ursa.Common;
 
 namespace Ursa.Controls;
 
-public class IconDropDownButton : RepeatButton
+public class IconDropDownButton : DropDownButton
 {
     public static readonly StyledProperty<object?> IconProperty =
         IconButton.IconProperty.AddOwner<IconDropDownButton>();
