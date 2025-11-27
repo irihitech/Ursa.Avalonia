@@ -33,6 +33,7 @@ class Program
         => AppBuilder.Configure<App>()
             .UseManagedSystemDialogs()
             .UsePlatformDetect()
+            .WithSourceHanSansCNFont()
             .With(new Win32PlatformOptions())
             .LogToTrace();
 }

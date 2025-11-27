@@ -20,6 +20,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <AvaloniaResource Include="..\Fonts\*" Link="Assets\Fonts\%(Filename)%(Extension)" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)"/>
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)"/>
