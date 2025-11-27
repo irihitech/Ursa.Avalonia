@@ -362,7 +362,7 @@
                             <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" Content="Disabled" Classes="Danger" Theme="{DynamicResource BorderlessIconSplitButton}" IsEnabled="False" />
                         </WrapPanel>
 
-                        <TextBlock Text="Theme – Colorful (AI style)" FontWeight="Bold" />
+                        <!--<TextBlock Text="Theme – Colorful (AI style)" FontWeight="Bold" />
                         <WrapPanel ItemSpacing="8">
                             <Label Content="Light" Width="80"
                                 ToolTip.Tip="Default theme" />
@@ -386,7 +386,7 @@
                             <u:IconSplitButton Icon="{StaticResource SemiIconAIFilled}" Content="Primary" Classes="Colorful Primary" Theme="{DynamicResource BorderlessIconSplitButton}" />
                             <u:IconSplitButton Icon="{StaticResource SemiIconAIFilled}" Content="Tertiary" Classes="Colorful Tertiary" Theme="{DynamicResource BorderlessIconSplitButton}" />
                             <u:IconSplitButton Icon="{StaticResource SemiIconAIFilled}" Content="Disabled" Classes="Colorful Danger" Theme="{DynamicResource BorderlessIconSplitButton}" IsEnabled="False" />
-                        </WrapPanel>
+                        </WrapPanel>-->
 
                     </StackPanel>
                 </Panel>
@@ -549,7 +549,7 @@
                             <u:IconToggleSplitButton Icon="{StaticResource SemiIconCamera}" IsChecked="True" Content="Disabled" Classes="Danger" IsEnabled="False" />
                         </WrapPanel>
 
-                        <TextBlock Text="State – Colorful (AI style)" FontWeight="Bold" />
+                        <!--<TextBlock Text="State – Colorful (AI style)" FontWeight="Bold" />
                         <WrapPanel ItemSpacing="8">
                             <Label Content="Unchecked" Width="100" />
                             <u:IconToggleSplitButton Icon="{StaticResource SemiIconAIFilled}" IsChecked="False" Content="Primary" Classes="Colorful Primary" />
@@ -561,7 +561,7 @@
                             <u:IconToggleSplitButton Icon="{StaticResource SemiIconAIFilled}" IsChecked="True" Content="Primary" Classes="Colorful Primary" />
                             <u:IconToggleSplitButton Icon="{StaticResource SemiIconAIFilled}" IsChecked="True" Content="Tertiary" Classes="Colorful Tertiary" />
                             <u:IconToggleSplitButton Icon="{StaticResource SemiIconAIFilled}" IsChecked="True" Content="Disabled" Classes="Colorful Danger" IsEnabled="False" />
-                        </WrapPanel>
+                        </WrapPanel>-->
 
                     </StackPanel>
                 </Panel>

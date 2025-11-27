@@ -5,63 +5,52 @@
     xmlns:iri="https://irihi.tech/shared">
 
     <ControlTemplate x:Key="IconSplitButtonTemplate" TargetType="SplitButton">
-        <Border
-            BackgroundSizing="OuterBorderEdge"
-            ClipToBounds="True"
-            CornerRadius="{TemplateBinding CornerRadius}">
-            <Grid ColumnDefinitions="*, Auto, Auto">
-                <u:IconButton
-                    x:Name="PART_PrimaryButton"
-                    Grid.Column="0"
-                    iri:ClassHelper.ClassSource="{TemplateBinding}"
-                    IsEnabled="{TemplateBinding IsEnabled}"
-                    Icon="{TemplateBinding (u:IconButton.Icon)}"
-                    IconPlacement="{TemplateBinding (u:IconButton.IconPlacement)}"
-                    IconTemplate="{TemplateBinding (u:IconButton.IconTemplate)}"
-                    IsLoading="{TemplateBinding (u:IconButton.IsLoading)}"
-                    Padding="{TemplateBinding Padding}"
-                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                    Command="{TemplateBinding Command}"
-                    CommandParameter="{TemplateBinding CommandParameter}"
-                    Content="{TemplateBinding Content}"
-                    ContentTemplate="{TemplateBinding ContentTemplate}"
-                    CornerRadius="0"
-                    FontFamily="{TemplateBinding FontFamily}"
-                    FontSize="{TemplateBinding FontSize}"
-                    FontWeight="{TemplateBinding FontWeight}" />
-                <Rectangle
-                    x:Name="SeparatorBorder"
-                    Grid.Column="1"
-                    Width="{DynamicResource SplitButtonSeparatorWidth}"
-                    VerticalAlignment="Stretch"
-                    Fill="Transparent"
-                    StrokeThickness="0" />
-                <u:IconButton
-                    x:Name="PART_SecondaryButton"
-                    Grid.Column="2"
-                    iri:ClassHelper.ClassSource="{TemplateBinding}"
-                    VerticalAlignment="Stretch"
-                    IsEnabled="{TemplateBinding IsEnabled}"
-                    CornerRadius="0">
-                    <u:IconButton.Icon>
-                        <PathIcon
-                            Theme="{DynamicResource InnerPathIcon}"
-                            Data="{DynamicResource SplitButtonIconGlyph}" />
-                    </u:IconButton.Icon>
-                </u:IconButton>
-            </Grid>
-        </Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition MinWidth="{DynamicResource SplitButtonSeparatorWidth}" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <u:IconButton
+                x:Name="PART_PrimaryButton"
+                Grid.Column="0"
+                iri:ClassHelper.ClassSource="{TemplateBinding}"
+                IsEnabled="{TemplateBinding IsEnabled}"
+                Icon="{TemplateBinding (u:IconButton.Icon)}"
+                IconPlacement="{TemplateBinding (u:IconButton.IconPlacement)}"
+                IconTemplate="{TemplateBinding (u:IconButton.IconTemplate)}"
+                IsLoading="{TemplateBinding (u:IconButton.IsLoading)}"
+                Padding="{TemplateBinding Padding}"
+                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                Command="{TemplateBinding Command}"
+                CommandParameter="{TemplateBinding CommandParameter}"
+                Content="{TemplateBinding Content}"
+                ContentTemplate="{TemplateBinding ContentTemplate}"
+                CornerRadius="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter Left}}"
+                FontFamily="{TemplateBinding FontFamily}"
+                FontSize="{TemplateBinding FontSize}"
+                FontWeight="{TemplateBinding FontWeight}" />
+            <u:IconButton
+                x:Name="PART_SecondaryButton"
+                Grid.Column="2"
+                iri:ClassHelper.ClassSource="{TemplateBinding}"
+                VerticalAlignment="Stretch"
+                IsEnabled="{TemplateBinding IsEnabled}"
+                CornerRadius="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter Right}}">
+                <u:IconButton.Icon>
+                    <PathIcon
+                        Theme="{DynamicResource InnerPathIcon}"
+                        Data="{DynamicResource SplitButtonIconGlyph}" />
+                </u:IconButton.Icon>
+            </u:IconButton>
+        </Grid>
     </ControlTemplate>
 
     <ControlTheme x:Key="{x:Type u:IconSplitButton}" TargetType="u:IconSplitButton" BasedOn="{StaticResource BaseIconButton}">
         <Setter Property="Template" Value="{StaticResource IconSplitButtonTemplate}" />
         <Style Selector="^ /template/ u|IconButton">
             <Setter Property="Theme" Value="{StaticResource {x:Type u:IconButton}}" />
-            <Style Selector="^#PART_SecondaryButton:empty-content">
-                <Setter Property="MinWidth" Value="0" />
-                <Setter Property="Padding" Value="4 0" />
-            </Style>
         </Style>
     </ControlTheme>
 
