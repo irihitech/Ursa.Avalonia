@@ -1,0 +1,19 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+
+    <ControlTheme x:Key="{x:Type u:IconRepeatButton}" TargetType="u:IconRepeatButton" BasedOn="{StaticResource BaseIconButton}">
+        <Setter Property="Template" Value="{StaticResource IconButtonTemplate}" />
+    </ControlTheme>
+    <ControlTheme x:Key="SolidIconRepeatButton" TargetType="u:IconRepeatButton" BasedOn="{StaticResource BaseSolidIconButton}">
+        <Setter Property="Template" Value="{StaticResource IconButtonTemplate}" />
+    </ControlTheme>
+    <ControlTheme x:Key="OutlineIconRepeatButton" TargetType="u:IconRepeatButton" BasedOn="{StaticResource BaseOutlineIconButton}">
+        <Setter Property="Template" Value="{StaticResource IconButtonTemplate}" />
+    </ControlTheme>
+    <ControlTheme x:Key="BorderlessIconRepeatButton" TargetType="u:IconRepeatButton" BasedOn="{StaticResource BaseBorderlessIconButton}">
+        <Setter Property="Template" Value="{StaticResource IconButtonTemplate}" />
+    </ControlTheme>
+
+</ResourceDictionary>

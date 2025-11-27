@@ -1,0 +1,47 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+
+    <ControlTheme x:Key="{x:Type u:IconToggleSplitButton}" TargetType="u:IconToggleSplitButton" BasedOn="{StaticResource BaseIconButton}">
+        <Setter Property="Template" Value="{StaticResource IconSplitButtonTemplate}" />
+        <Style Selector="^:not(:checked) /template/ u|IconButton">
+            <Setter Property="Theme" Value="{StaticResource {x:Type u:IconButton}}" />
+            <Style Selector="^#PART_SecondaryButton">
+                <Style Selector="^.Primary">
+                    <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultPrimaryForeground}" />
+                </Style>
+                <Style Selector="^.Secondary">
+                    <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultSecondaryForeground}" />
+                </Style>
+                <Style Selector="^.Tertiary">
+                    <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultTertiaryForeground}" />
+                </Style>
+                <Style Selector="^.Success">
+                    <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultSuccessForeground}" />
+                </Style>
+                <Style Selector="^.Warning">
+                    <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultWarningForeground}" />
+                </Style>
+                <Style Selector="^.Danger">
+                    <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultDangerForeground}" />
+                </Style>
+                <Style Selector="^.Colorful">
+                    <Style Selector="^.Primary">
+                        <Setter Property="Foreground" Value="{DynamicResource ButtonDefaultColorfulPrimaryForeground}" />
+                    </Style>
+                </Style>
+            </Style>
+        </Style>
+        <Style Selector="^:checked /template/ u|IconButton">
+            <Setter Property="Theme" Value="{StaticResource SolidIconButton}" />
+            <Setter Property="Foreground" Value="{DynamicResource ButtonSolidForeground}" />
+            <Setter Property="Background" Value="{DynamicResource ButtonSolidPrimaryBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ButtonSolidPrimaryBorderBrush}" />
+        </Style>
+        <Style Selector="^:indeterminate /template/ u|IconButton">
+            <Setter Property="Theme" Value="{StaticResource OutlineIconButton}" />
+        </Style>
+    </ControlTheme>
+
+</ResourceDictionary>

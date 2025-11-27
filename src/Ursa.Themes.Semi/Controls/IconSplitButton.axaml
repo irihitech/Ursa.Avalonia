@@ -1,0 +1,81 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:iri="https://irihi.tech/shared">
+
+    <ControlTemplate x:Key="IconSplitButtonTemplate" TargetType="SplitButton">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition MinWidth="{DynamicResource SplitButtonSeparatorWidth}" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <u:IconButton
+                x:Name="PART_PrimaryButton"
+                Grid.Column="0"
+                iri:ClassHelper.ClassSource="{TemplateBinding}"
+                IsEnabled="{TemplateBinding IsEnabled}"
+                Icon="{TemplateBinding (u:IconButton.Icon)}"
+                IconPlacement="{TemplateBinding (u:IconButton.IconPlacement)}"
+                IconTemplate="{TemplateBinding (u:IconButton.IconTemplate)}"
+                IsLoading="{TemplateBinding (u:IconButton.IsLoading)}"
+                Padding="{TemplateBinding Padding}"
+                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                Command="{TemplateBinding Command}"
+                CommandParameter="{TemplateBinding CommandParameter}"
+                Content="{TemplateBinding Content}"
+                ContentTemplate="{TemplateBinding ContentTemplate}"
+                CornerRadius="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter Left}}"
+                FontFamily="{TemplateBinding FontFamily}"
+                FontSize="{TemplateBinding FontSize}"
+                FontWeight="{TemplateBinding FontWeight}" />
+            <u:IconButton
+                x:Name="PART_SecondaryButton"
+                Grid.Column="2"
+                iri:ClassHelper.ClassSource="{TemplateBinding}"
+                VerticalAlignment="Stretch"
+                IsEnabled="{TemplateBinding IsEnabled}"
+                CornerRadius="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter Right}}">
+                <u:IconButton.Icon>
+                    <PathIcon
+                        Theme="{DynamicResource InnerPathIcon}"
+                        Data="{DynamicResource SplitButtonIconGlyph}" />
+                </u:IconButton.Icon>
+            </u:IconButton>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTheme x:Key="{x:Type u:IconSplitButton}" TargetType="u:IconSplitButton" BasedOn="{StaticResource BaseIconButton}">
+        <Setter Property="Template" Value="{StaticResource IconSplitButtonTemplate}" />
+        <Style Selector="^ /template/ u|IconButton">
+            <Setter Property="Theme" Value="{StaticResource {x:Type u:IconButton}}" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="SolidIconSplitButton" TargetType="u:IconSplitButton" BasedOn="{StaticResource {x:Type u:IconSplitButton}}">
+        <Setter Property="Template" Value="{StaticResource IconSplitButtonTemplate}" />
+        <Style Selector="^ /template/ u|IconButton">
+            <Setter Property="Theme" Value="{StaticResource SolidIconButton}" />
+            <Setter Property="Foreground" Value="{DynamicResource ButtonSolidForeground}" />
+            <Setter Property="Background" Value="{DynamicResource ButtonSolidPrimaryBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ButtonSolidPrimaryBorderBrush}" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="OutlineIconSplitButton" TargetType="u:IconSplitButton" BasedOn="{StaticResource {x:Type u:IconSplitButton}}">
+        <Setter Property="Template" Value="{StaticResource IconSplitButtonTemplate}" />
+        <Style Selector="^ /template/ u|IconButton">
+            <Setter Property="Theme" Value="{StaticResource OutlineIconButton}" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="BorderlessIconSplitButton" TargetType="u:IconSplitButton" BasedOn="{StaticResource {x:Type u:IconSplitButton}}">
+        <Setter Property="Template" Value="{StaticResource IconSplitButtonTemplate}" />
+        <Style Selector="^ /template/ u|IconButton">
+            <Setter Property="Theme" Value="{StaticResource BorderlessIconButton}" />
+        </Style>
+    </ControlTheme>
+
+</ResourceDictionary>

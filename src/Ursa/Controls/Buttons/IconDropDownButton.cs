@@ -1,0 +1,57 @@
+﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
+using Avalonia.Controls.Templates;
+using Ursa.Common;
+
+namespace Ursa.Controls;
+
+public class IconDropDownButton : DropDownButton
+{
+    public static readonly StyledProperty<object?> IconProperty =
+        IconButton.IconProperty.AddOwner<IconDropDownButton>();
+
+    public object? Icon
+    {
+        get => GetValue(IconProperty);
+        set => SetValue(IconProperty, value);
+    }
+
+    public static readonly StyledProperty<IDataTemplate?> IconTemplateProperty =
+        IconButton.IconTemplateProperty.AddOwner<IconDropDownButton>();
+
+    public IDataTemplate? IconTemplate
+    {
+        get => GetValue(IconTemplateProperty);
+        set => SetValue(IconTemplateProperty, value);
+    }
+
+    public static readonly StyledProperty<bool> IsLoadingProperty =
+        IconButton.IsLoadingProperty.AddOwner<IconDropDownButton>();
+
+    public bool IsLoading
+    {
+        get => GetValue(IsLoadingProperty);
+        set => SetValue(IsLoadingProperty, value);
+    }
+
+    public static readonly StyledProperty<Position> IconPlacementProperty =
+        IconButton.IconPlacementProperty.AddOwner<IconDropDownButton>();
+
+    public Position IconPlacement
+    {
+        get => GetValue(IconPlacementProperty);
+        set => SetValue(IconPlacementProperty, value);
+    }
+
+    static IconDropDownButton()
+    {
+        ReversibleStackPanelUtils.EnsureBugFixed();
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        IconButton.UpdatePseudoClasses(this);
+    }
+}
