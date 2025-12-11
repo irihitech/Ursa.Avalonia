@@ -218,6 +218,7 @@ public static class OverlayDialog
         control.IsCloseButtonVisible = options.IsCloseButtonVisible;
         control.CanLightDismiss = options.CanLightDismiss;
         control.CanResize = options.CanResize;
+        control.Title = options?.Title ?? string.Empty;
         if (!string.IsNullOrWhiteSpace(options.StyleClass))
         {
             var styles = options.StyleClass!.Split(Constants.SpaceSeparator, StringSplitOptions.RemoveEmptyEntries);

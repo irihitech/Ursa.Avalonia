@@ -29,6 +29,27 @@ public class DialogWindow : Window
         set => SetValue(IsManagedResizerVisibleProperty, value);
     }
 
+    public static readonly StyledProperty<Thickness> ContentMarginProperty =
+        AvaloniaProperty.Register<DialogWindow, Thickness>(
+            nameof(ContentMargin),
+            new Thickness(0)
+        );
+    public Thickness ContentMargin
+    {
+        get => GetValue(ContentMarginProperty);
+        set => SetValue(ContentMarginProperty, value);
+    }
+    
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+        if (change.Property == TitleProperty)
+        {
+            ContentMargin = string.IsNullOrWhiteSpace(Title)
+                ?  new Thickness(0,0,0,0)
+                : new Thickness(0,48,0,0);
+        }
+    }
     static DialogWindow()
     {
         DataContextProperty.Changed.AddClassHandler<DialogWindow, object?>((window, e) =>
