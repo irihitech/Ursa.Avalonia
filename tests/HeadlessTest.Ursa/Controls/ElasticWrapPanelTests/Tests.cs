@@ -173,4 +173,47 @@ public class Tests
         Assert.True(panel.DesiredSize.Width >= 210);
         Assert.True(panel.DesiredSize.Height >= 220);
     }
+
+    [AvaloniaFact]
+    public void ItemSpacing_Does_Not_Affect_LineCount()
+    {
+        var window = new Window() { };
+        
+        // Panel without spacing - should fit 2 items per line (200 width / 100 per item = 2)
+        var panel1 = new ElasticWrapPanel
+        {
+            Width = 200,
+            Height = 400,
+            Orientation = Orientation.Horizontal,
+            ItemSpacing = 0,
+        };
+        
+        for (int i = 0; i < 4; i++)
+        {
+            panel1.Children.Add(new Rectangle { Width = 100, Height = 100 });
+        }
+        
+        // Panel with spacing - items with spacing should fit fewer per line
+        // 100 + 10 + 100 = 210 > 200, so only 1 item per line
+        var panel2 = new ElasticWrapPanel
+        {
+            Width = 200,
+            Height = 400,
+            Orientation = Orientation.Horizontal,
+            ItemSpacing = 10,
+        };
+        
+        for (int i = 0; i < 4; i++)
+        {
+            panel2.Children.Add(new Rectangle { Width = 100, Height = 100 });
+        }
+        
+        window.Content = panel1;
+        window.Show();
+        Assert.Equal(2, panel1.LineCount); // 2 items per line, 4 items total = 2 lines
+        
+        window.Content = panel2;
+        window.UpdateLayout();
+        Assert.Equal(4, panel2.LineCount); // 1 item per line, 4 items total = 4 lines
+    }
 }
