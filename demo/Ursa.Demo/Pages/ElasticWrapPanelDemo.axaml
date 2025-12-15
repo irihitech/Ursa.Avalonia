@@ -132,6 +132,8 @@
                                             ItemWidth="190"
                                             ItemSpacing="18"
                                             LineSpacing="18"
+                                            IsFillHorizontal="{Binding IsFillHorizontal}"
+                                            IsFillVertical="{Binding IsFillVertical}"
                                             Orientation="Horizontal">
                             <Border Background="{DynamicResource SemiRed5Color}" />
                             <Border Background="{DynamicResource SemiPink5Color}" />
