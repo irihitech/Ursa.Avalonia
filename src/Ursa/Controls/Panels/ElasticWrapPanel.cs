@@ -252,7 +252,7 @@ public class ElasticWrapPanel : WrapPanel
         #region Get the collection of elements in the same direction
 
         // Current collection of elements in a row/column
-        UVCollection curLineUIs = new UVCollection(Orientation, itemSetSize);
+        UVCollection curLineUIs = new UVCollection(Orientation, itemSetSize, itemSpacing);
 
         // Iterate over the child elements
         var children = Children;
@@ -282,15 +282,16 @@ public class ElasticWrapPanel : WrapPanel
                     sz.V = itemSetSize.V;
                 }
 
-                double spacingToAdd = curLineUIs.Count > 0 ? itemSpacing : 0;
-                if (MathHelpers.GreaterThan(curLineUIs.TotalU + spacingToAdd + sz.U, uvFinalSize.U))
+                // Account for spacing before this item if it's not the first
+                double spacingBeforeItem = curLineUIs.Count > 0 ? itemSpacing : 0;
+                if (MathHelpers.GreaterThan(curLineUIs.TotalU + spacingBeforeItem + sz.U, uvFinalSize.U))
                 {
                     if (curLineUIs.Count > 0)
                     {
                         lineUVCollection.Add(curLineUIs);
                     }
 
-                    curLineUIs = new UVCollection(Orientation, itemSetSize);
+                    curLineUIs = new UVCollection(Orientation, itemSetSize, itemSpacing);
                     curLineUIs.Add(child, sz, Convert.ToInt32(lengthCount));
                 }
                 else
@@ -299,7 +300,7 @@ public class ElasticWrapPanel : WrapPanel
                 }
 
                 lineUVCollection.Add(curLineUIs);
-                curLineUIs = new UVCollection(Orientation, itemSetSize);
+                curLineUIs = new UVCollection(Orientation, itemSetSize, itemSpacing);
             }
             else
             {
@@ -307,20 +308,21 @@ public class ElasticWrapPanel : WrapPanel
                     itemWidthSet ? ItemWidth : child.DesiredSize.Width,
                     itemHeightSet ? ItemHeight : child.DesiredSize.Height);
 
-                double spacingToAdd = curLineUIs.Count > 0 ? itemSpacing : 0;
-                if (MathHelpers.GreaterThan(curLineUIs.TotalU + spacingToAdd + sz.U, uvFinalSize.U)) // Need to switch to another line
+                // Account for spacing before this item if it's not the first
+                double spacingBeforeItem = curLineUIs.Count > 0 ? itemSpacing : 0;
+                if (MathHelpers.GreaterThan(curLineUIs.TotalU + spacingBeforeItem + sz.U, uvFinalSize.U)) // Need to switch to another line
                 {
                     if (curLineUIs.Count > 0)
                     {
                         lineUVCollection.Add(curLineUIs);
                     }
 
-                    curLineUIs = new UVCollection(Orientation, itemSetSize);
+                    curLineUIs = new UVCollection(Orientation, itemSetSize, itemSpacing);
                     curLineUIs.Add(child, sz);
                     if (MathHelpers.GreaterThan(sz.U, uvFinalSize.U))
                     {
                         lineUVCollection.Add(curLineUIs);
-                        curLineUIs = new UVCollection(Orientation, itemSetSize);
+                        curLineUIs = new UVCollection(Orientation, itemSetSize, itemSpacing);
                     }
                 }
                 else
@@ -518,15 +520,26 @@ public class ElasticWrapPanel : WrapPanel
         private UVSize LineDesireUVSize;
 
         private UVSize ItemSetSize;
+        
+        private double ItemSpacing;
 
-        public UVCollection(Orientation orientation, UVSize itemSetSize)
+        public UVCollection(Orientation orientation, UVSize itemSetSize, double itemSpacing = 0)
         {
             UICollection = new Dictionary<Control, UVLengthSize>();
             LineDesireUVSize = new UVSize(orientation);
             ItemSetSize = itemSetSize;
+            ItemSpacing = itemSpacing;
         }
 
-        public double TotalU => LineDesireUVSize.U;
+        public double TotalU
+        {
+            get
+            {
+                // TotalU includes spacing between items (not before first or after last)
+                double spacingTotal = UICollection.Count > 1 ? (UICollection.Count - 1) * ItemSpacing : 0;
+                return LineDesireUVSize.U + spacingTotal;
+            }
+        }
 
         public double LineV => LineDesireUVSize.V;
 
