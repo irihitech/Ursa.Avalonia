@@ -127,6 +127,22 @@
                             <Border Background="{DynamicResource SemiGrey5Color}" />
                         </u:ElasticWrapPanel>
                     </TabItem>
+                    <TabItem Header="With Spacing">
+                        <u:ElasticWrapPanel ItemHeight="190"
+                                            ItemWidth="190"
+                                            ItemSpacing="18"
+                                            LineSpacing="18"
+                                            Orientation="Horizontal">
+                            <Border Background="{DynamicResource SemiRed5Color}" />
+                            <Border Background="{DynamicResource SemiPink5Color}" />
+                            <Border Background="{DynamicResource SemiPurple5Color}" />
+                            <Border Background="{DynamicResource SemiViolet5Color}" />
+                            <Border Background="{DynamicResource SemiIndigo5Color}" />
+                            <Border Background="{DynamicResource SemiBlue5Color}" />
+                            <Border Background="{DynamicResource SemiLightBlue5Color}" />
+                            <Border Background="{DynamicResource SemiCyan5Color}" />
+                        </u:ElasticWrapPanel>
+                    </TabItem>
                     <TabItem Header="Grid Auto">
                         <Grid RowDefinitions="auto,*">
                             <u:ElasticWrapPanel Grid.Row="0"
