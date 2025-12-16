@@ -12,8 +12,8 @@ public class ElasticWrapPanel : WrapPanel
 {
     static ElasticWrapPanel()
     {
-        AffectsMeasure<ElasticWrapPanel>(IsFillHorizontalProperty, IsFillVerticalProperty);
-        AffectsArrange<ElasticWrapPanel>(IsFillHorizontalProperty, IsFillVerticalProperty);
+        AffectsMeasure<ElasticWrapPanel>(IsFillHorizontalProperty, IsFillVerticalProperty, ItemSpacingProperty, LineSpacingProperty);
+        AffectsArrange<ElasticWrapPanel>(IsFillHorizontalProperty, IsFillVerticalProperty, ItemSpacingProperty, LineSpacingProperty);
     }
 
     #region AttachedProperty
@@ -78,6 +78,8 @@ public class ElasticWrapPanel : WrapPanel
         double itemHeight = ItemHeight;
         var orientation = Orientation;
         var children = Children;
+        double itemSpacing = ItemSpacing;
+        double lineSpacing = LineSpacing;
 
         // Determine the space required for items in the same row/column based on horizontal/vertical arrangement
         var curLineSize = new UVSize(orientation);
@@ -111,6 +113,8 @@ public class ElasticWrapPanel : WrapPanel
             itemWidthSet ? itemWidth : 0,
             itemHeightSet ? itemHeight : 0);
 
+        bool isFirstItemInLine = true;
+
         foreach (var child in children)
         {
             UVSize sz;
@@ -138,21 +142,38 @@ public class ElasticWrapPanel : WrapPanel
                     sz.V = itemSetSize.V;
                 }
 
-                if (MathHelpers.GreaterThan(curLineSize.U + sz.U, uvConstraint.U))
+                double itemUWithSpacing = isFirstItemInLine ? sz.U : sz.U + itemSpacing;
+                
+                if (MathHelpers.GreaterThan(curLineSize.U + itemUWithSpacing, uvConstraint.U))
                 {
                     panelSize.U = Max(curLineSize.U, panelSize.U);
+                    if (panelSize.V > 0)
+                    {
+                        panelSize.V += lineSpacing;
+                    }
                     panelSize.V += curLineSize.V;
                     curLineSize = sz;
+                    isFirstItemInLine = false;
                 }
                 else
                 {
+                    if (!isFirstItemInLine)
+                    {
+                        curLineSize.U += itemSpacing;
+                    }
                     curLineSize.U += sz.U;
                     curLineSize.V = Max(sz.V, curLineSize.V);
                     panelSize.U = Max(curLineSize.U, panelSize.U);
+                    if (panelSize.V > 0)
+                    {
+                        panelSize.V += lineSpacing;
+                    }
                     panelSize.V += curLineSize.V;
+                    isFirstItemInLine = false;
                 }
 
                 curLineSize = new UVSize(orientation);
+                isFirstItemInLine = true;
             }
             else
             {
@@ -164,23 +185,40 @@ public class ElasticWrapPanel : WrapPanel
                     itemWidthSet ? itemWidth : child.DesiredSize.Width,
                     itemHeightSet ? itemHeight : child.DesiredSize.Height);
 
-                if (MathHelpers.GreaterThan(curLineSize.U + sz.U, uvConstraint.U)) // Need to switch to another line
+                double itemUWithSpacing = isFirstItemInLine ? sz.U : sz.U + itemSpacing;
+
+                if (MathHelpers.GreaterThan(curLineSize.U + itemUWithSpacing, uvConstraint.U)) // Need to switch to another line
                 {
                     panelSize.U = Max(curLineSize.U, panelSize.U);
+                    if (panelSize.V > 0)
+                    {
+                        panelSize.V += lineSpacing;
+                    }
                     panelSize.V += curLineSize.V;
                     curLineSize = sz;
+                    isFirstItemInLine = false;
 
                     if (MathHelpers.GreaterThan(sz.U, uvConstraint.U)) // The element is wider than the constraint - give it a separate line
                     {
                         panelSize.U = Max(sz.U, panelSize.U);
+                        if (panelSize.V > 0)
+                        {
+                            panelSize.V += lineSpacing;
+                        }
                         panelSize.V += sz.V;
                         curLineSize = new UVSize(orientation);
+                        isFirstItemInLine = true;
                     }
                 }
                 else // Continue to accumulate a line
                 {
+                    if (!isFirstItemInLine)
+                    {
+                        curLineSize.U += itemSpacing;
+                    }
                     curLineSize.U += sz.U;
                     curLineSize.V = Max(sz.V, curLineSize.V);
+                    isFirstItemInLine = false;
                 }
             }
         }
@@ -197,6 +235,8 @@ public class ElasticWrapPanel : WrapPanel
     {
         bool itemWidthSet = !double.IsNaN(ItemWidth);
         bool itemHeightSet = !double.IsNaN(ItemHeight);
+        double itemSpacing = ItemSpacing;
+        double lineSpacing = LineSpacing;
 
         // This is the size for non-space measurement
         UVSize itemSetSize = new UVSize(Orientation,
@@ -212,7 +252,7 @@ public class ElasticWrapPanel : WrapPanel
         #region Get the collection of elements in the same direction
 
         // Current collection of elements in a row/column
-        UVCollection curLineUIs = new UVCollection(Orientation, itemSetSize);
+        UVCollection curLineUIs = new UVCollection(Orientation, itemSetSize, itemSpacing);
 
         // Iterate over the child elements
         var children = Children;
@@ -242,14 +282,16 @@ public class ElasticWrapPanel : WrapPanel
                     sz.V = itemSetSize.V;
                 }
 
-                if (MathHelpers.GreaterThan(curLineUIs.TotalU + sz.U, uvFinalSize.U))
+                // Account for spacing before this item if it's not the first
+                double spacingBeforeItem = curLineUIs.Count > 0 ? itemSpacing : 0;
+                if (MathHelpers.GreaterThan(curLineUIs.TotalU + spacingBeforeItem + sz.U, uvFinalSize.U))
                 {
                     if (curLineUIs.Count > 0)
                     {
                         lineUVCollection.Add(curLineUIs);
                     }
 
-                    curLineUIs = new UVCollection(Orientation, itemSetSize);
+                    curLineUIs = new UVCollection(Orientation, itemSetSize, itemSpacing);
                     curLineUIs.Add(child, sz, Convert.ToInt32(lengthCount));
                 }
                 else
@@ -258,7 +300,7 @@ public class ElasticWrapPanel : WrapPanel
                 }
 
                 lineUVCollection.Add(curLineUIs);
-                curLineUIs = new UVCollection(Orientation, itemSetSize);
+                curLineUIs = new UVCollection(Orientation, itemSetSize, itemSpacing);
             }
             else
             {
@@ -266,19 +308,21 @@ public class ElasticWrapPanel : WrapPanel
                     itemWidthSet ? ItemWidth : child.DesiredSize.Width,
                     itemHeightSet ? ItemHeight : child.DesiredSize.Height);
 
-                if (MathHelpers.GreaterThan(curLineUIs.TotalU + sz.U, uvFinalSize.U)) // Need to switch to another line
+                // Account for spacing before this item if it's not the first
+                double spacingBeforeItem = curLineUIs.Count > 0 ? itemSpacing : 0;
+                if (MathHelpers.GreaterThan(curLineUIs.TotalU + spacingBeforeItem + sz.U, uvFinalSize.U)) // Need to switch to another line
                 {
                     if (curLineUIs.Count > 0)
                     {
                         lineUVCollection.Add(curLineUIs);
                     }
 
-                    curLineUIs = new UVCollection(Orientation, itemSetSize);
+                    curLineUIs = new UVCollection(Orientation, itemSetSize, itemSpacing);
                     curLineUIs.Add(child, sz);
                     if (MathHelpers.GreaterThan(sz.U, uvFinalSize.U))
                     {
                         lineUVCollection.Add(curLineUIs);
-                        curLineUIs = new UVCollection(Orientation, itemSetSize);
+                        curLineUIs = new UVCollection(Orientation, itemSetSize, itemSpacing);
                     }
                 }
                 else
@@ -332,7 +376,8 @@ public class ElasticWrapPanel : WrapPanel
                         }
                         maxElementCount = Max(sum, maxElementCount);
                     }
-                    adaptULength = (uvFinalSize.U - maxElementCount * itemSetSize.U) / maxElementCount;
+                    double totalItemSpacing = maxElementCount > 1 ? (maxElementCount - 1) * itemSpacing : 0;
+                    adaptULength = (uvFinalSize.U - maxElementCount * itemSetSize.U - totalItemSpacing) / maxElementCount;
                     adaptULength = Max(adaptULength, 0);
                 }
             }
@@ -342,16 +387,19 @@ public class ElasticWrapPanel : WrapPanel
                 if (itemSetSize.V > 0)
                 {
                     isAdaptV = true;
-                    adaptVLength = uvFinalSize.V / lineUVCollection.Count;
+                    double totalLineSpacing = lineUVCollection.Count > 1 ? (lineUVCollection.Count - 1) * lineSpacing : 0;
+                    adaptVLength = (uvFinalSize.V - totalLineSpacing) / lineUVCollection.Count;
                 }
             }
 
             bool isHorizontal = Orientation == Orientation.Horizontal;
+            int lineIndex = 0;
             foreach (var uvCollection in lineUVCollection)
             {
                 double u = 0;
                 var lineUIEles = uvCollection.UICollection.Keys.ToList();
                 double linevV = isAdaptV ? adaptVLength : uvCollection.LineV;
+                int itemIndex = 0;
                 foreach (var child in lineUIEles)
                 {
                     UVLengthSize childSize = uvCollection.UICollection[child];
@@ -384,9 +432,19 @@ public class ElasticWrapPanel : WrapPanel
                     }
 
                     u += layoutSlotU;
+                    if (itemIndex < lineUIEles.Count - 1)
+                    {
+                        u += itemSpacing;
+                    }
+                    itemIndex++;
                 }
 
                 accumulatedV += linevV;
+                if (lineIndex < lineUVCollection.Count - 1)
+                {
+                    accumulatedV += lineSpacing;
+                }
+                lineIndex++;
                 lineUIEles.Clear();
             }
         }
@@ -462,15 +520,26 @@ public class ElasticWrapPanel : WrapPanel
         private UVSize LineDesireUVSize;
 
         private UVSize ItemSetSize;
+        
+        private double ItemSpacing;
 
-        public UVCollection(Orientation orientation, UVSize itemSetSize)
+        public UVCollection(Orientation orientation, UVSize itemSetSize, double itemSpacing = 0)
         {
             UICollection = new Dictionary<Control, UVLengthSize>();
             LineDesireUVSize = new UVSize(orientation);
             ItemSetSize = itemSetSize;
+            ItemSpacing = itemSpacing;
         }
 
-        public double TotalU => LineDesireUVSize.U;
+        public double TotalU
+        {
+            get
+            {
+                // TotalU includes spacing between items (not before first or after last)
+                double spacingTotal = UICollection.Count > 1 ? (UICollection.Count - 1) * ItemSpacing : 0;
+                return LineDesireUVSize.U + spacingTotal;
+            }
+        }
 
         public double LineV => LineDesireUVSize.V;
 
