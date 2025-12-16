@@ -64,6 +64,22 @@
                         Minimum="0"
                         Value="{Binding ItemHeight}" />
                 </u:FormItem>
+                <u:FormItem Label="ItemSpacing">
+                    <u:NumericDoubleUpDown
+                        AllowDrag="True"
+                        Step="1"
+                        Maximum="100"
+                        Minimum="-10"
+                        Value="{Binding ItemSpacing}" />
+                </u:FormItem>
+                <u:FormItem Label="LineSpacing">
+                    <u:NumericDoubleUpDown
+                        AllowDrag="True"
+                        Step="1"
+                        Maximum="100"
+                        Minimum="-10"
+                        Value="{Binding LineSpacing}" />
+                </u:FormItem>
             </u:FormGroup>
             <u:FormGroup Header="FixToRB Extension" IsEnabled="{Binding #FixToRBTabItem.IsSelected}">
                 <u:FormItem>
@@ -108,6 +124,8 @@
                                             IsFillVertical="{Binding IsFillVertical}"
                                             ItemHeight="{Binding ItemHeight}"
                                             ItemWidth="{Binding ItemWidth}"
+                                            ItemSpacing="{Binding ItemSpacing}"
+                                            LineSpacing="{Binding LineSpacing}"
                                             Orientation="{Binding SelectedOrientation}">
                             <Border Background="{DynamicResource SemiRed5Color}" />
                             <Border Background="{DynamicResource SemiPink5Color}" />
@@ -127,24 +145,6 @@
                             <Border Background="{DynamicResource SemiGrey5Color}" />
                         </u:ElasticWrapPanel>
                     </TabItem>
-                    <TabItem Header="With Spacing">
-                        <u:ElasticWrapPanel ItemHeight="190"
-                                            ItemWidth="190"
-                                            ItemSpacing="18"
-                                            LineSpacing="18"
-                                            IsFillHorizontal="{Binding IsFillHorizontal}"
-                                            IsFillVertical="{Binding IsFillVertical}"
-                                            Orientation="Horizontal">
-                            <Border Background="{DynamicResource SemiRed5Color}" />
-                            <Border Background="{DynamicResource SemiPink5Color}" />
-                            <Border Background="{DynamicResource SemiPurple5Color}" />
-                            <Border Background="{DynamicResource SemiViolet5Color}" />
-                            <Border Background="{DynamicResource SemiIndigo5Color}" />
-                            <Border Background="{DynamicResource SemiBlue5Color}" />
-                            <Border Background="{DynamicResource SemiLightBlue5Color}" />
-                            <Border Background="{DynamicResource SemiCyan5Color}" />
-                        </u:ElasticWrapPanel>
-                    </TabItem>
                     <TabItem Header="Grid Auto">
                         <Grid RowDefinitions="auto,*">
                             <u:ElasticWrapPanel Grid.Row="0"
@@ -152,6 +152,8 @@
                                                 IsFillVertical="{Binding IsFillVertical}"
                                                 ItemHeight="{Binding ItemHeight}"
                                                 ItemWidth="{Binding ItemWidth}"
+                                                ItemSpacing="{Binding ItemSpacing}"
+                                                LineSpacing="{Binding LineSpacing}"
                                                 Orientation="{Binding SelectedOrientation}">
                                 <Border Background="{DynamicResource SemiRed5Color}" />
                                 <Border Background="{DynamicResource SemiPink5Color}" />
@@ -183,6 +185,8 @@
                                                     IsFillVertical="{Binding IsFillVertical}"
                                                     ItemHeight="{Binding ItemHeight}"
                                                     ItemWidth="{Binding ItemWidth}"
+                                                    ItemSpacing="{Binding ItemSpacing}"
+                                                    LineSpacing="{Binding LineSpacing}"
                                                     Orientation="{Binding SelectedOrientation}">
                                     <Border Background="{DynamicResource SemiRed5Color}" />
                                     <Border Background="{DynamicResource SemiPink5Color}" />
@@ -218,6 +222,8 @@
                                         <u:Divider HorizontalContentAlignment="Left" Content="WrapPanel" />
                                         <WrapPanel ItemHeight="{Binding ItemHeight}"
                                                    ItemWidth="{Binding ItemWidth}"
+                                                   ItemSpacing="{Binding ItemSpacing}"
+                                                   LineSpacing="{Binding LineSpacing}"
                                                    Orientation="{Binding SelectedOrientation}">
                                             <Border Background="{DynamicResource SemiRed5Color}" />
                                             <Border Background="{DynamicResource SemiPink5Color}" />
@@ -241,6 +247,8 @@
                                                             IsFillVertical="{Binding IsFillVertical}"
                                                             ItemHeight="{Binding ItemHeight}"
                                                             ItemWidth="{Binding ItemWidth}"
+                                                            ItemSpacing="{Binding ItemSpacing}"
+                                                            LineSpacing="{Binding LineSpacing}"
                                                             Orientation="{Binding SelectedOrientation}">
                                             <Border Background="{DynamicResource SemiRed5Color}" />
                                             <Border Background="{DynamicResource SemiPink5Color}" />
@@ -267,6 +275,8 @@
                                         <u:Divider HorizontalContentAlignment="Left" Content="WrapPanel" />
                                         <WrapPanel ItemHeight="{Binding ItemHeight}"
                                                    ItemWidth="{Binding ItemWidth}"
+                                                   ItemSpacing="{Binding ItemSpacing}"
+                                                   LineSpacing="{Binding LineSpacing}"
                                                    Orientation="{Binding SelectedOrientation}">
                                             <Border Background="{DynamicResource SemiRed5Color}" />
                                             <Border Background="{DynamicResource SemiPink5Color}" />
@@ -303,6 +313,8 @@
                                                             IsFillVertical="{Binding IsFillVertical}"
                                                             ItemHeight="{Binding ItemHeight}"
                                                             ItemWidth="{Binding ItemWidth}"
+                                                            ItemSpacing="{Binding ItemSpacing}"
+                                                            LineSpacing="{Binding LineSpacing}"
                                                             Orientation="{Binding SelectedOrientation}">
                                             <Border Background="{DynamicResource SemiRed5Color}" />
                                             <Border Background="{DynamicResource SemiPink5Color}" />
