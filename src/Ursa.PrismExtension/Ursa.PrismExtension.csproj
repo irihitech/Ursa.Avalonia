@@ -1,25 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="../Directory.Build.props"/>
 
-    <Import Project="../Package.props"/>
-    
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <Version>1.0.1</Version>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <LangVersion>latest</LangVersion>
         <PackageId>Irihi.Ursa.PrismExtension</PackageId>
-        <PackageIcon>irihi.png</PackageIcon>
-        <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Prism.Core"/>
+    </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\Ursa\Ursa.csproj"/>
     </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Prism.Core" Version="8.1.97"/>
-    </ItemGroup>
-
 </Project>

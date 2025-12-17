@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
@@ -8,20 +7,21 @@
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
     </PropertyGroup>
-    
+
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)"/>
-        <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)"/>
-        <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)"/>
+        <PackageReference Include="Avalonia"/>
+        <PackageReference Include="Avalonia.Desktop"/>
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)"/>
-        <PackageReference Include="Prism.DryIoc.Avalonia" Version="8.1.97.11072" />
-		<PackageReference Include="Semi.Avalonia" Version="11.2.1.9" />
+        <PackageReference Include="Avalonia.Diagnostics">
+            <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+            <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Prism.DryIoc.Avalonia"/>
+        <PackageReference Include="Semi.Avalonia"/>
     </ItemGroup>
 
-
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Ursa.PrismExtension\Ursa.PrismExtension.csproj" />
-      <ProjectReference Include="..\..\src\Ursa.Themes.Semi\Ursa.Themes.Semi.csproj" />
+        <ProjectReference Include="..\..\src\Ursa.PrismExtension\Ursa.PrismExtension.csproj"/>
+        <ProjectReference Include="..\..\src\Ursa.Themes.Semi\Ursa.Themes.Semi.csproj"/>
     </ItemGroup>
 </Project>

@@ -1,21 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-    <Import Project="../Package.props"/>
+    <Import Project="../Directory.Build.props"/>
 
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <LangVersion>latest</LangVersion>
         <PackageId>Irihi.Ursa</PackageId>
-        <PackageIcon>irihi.png</PackageIcon>
-        <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)"/>
-        <PackageReference Include="Irihi.Avalonia.Shared" Version="0.3.1" />
-        <PackageReference Include="Irihi.Avalonia.Shared.Contracts" Version="0.3.1" />
+        <PackageReference Include="Avalonia"/>
+        <PackageReference Include="Irihi.Avalonia.Shared"/>
+        <PackageReference Include="Irihi.Avalonia.Shared.Contracts"/>
     </ItemGroup>
 </Project>

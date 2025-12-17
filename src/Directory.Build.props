@@ -1,12 +1,18 @@
 <Project>
     <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+
         <Version>1.14.0</Version>
-        <AvaloniaVersion>11.3.7</AvaloniaVersion>
         <Authors>IRIHI Technology Co., Ltd.</Authors>
         <RepositoryUrl>https://github.com/irihitech/Ursa.Avalonia</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <PackageProjectUrl>https://github.com/irihitech/Ursa.Avalonia</PackageProjectUrl>
+        <PackageIcon>irihi.png</PackageIcon>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
 		<NoWarn>
 			IDE0130;IDE00056;IDE0306;IDE0305;IDE0300;IDE0290;IDE0251;IDE0090;IDE0079;IDE0066;IDE0062;IDE0060;IDE0057;IDE0056;IDE0044;IDE0042;IDE0039;IDE0031;IDE0028;IDE0017;

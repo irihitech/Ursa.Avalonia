@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -10,14 +9,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia.Headless.XUnit" Version="11.3.7" />
-        <PackageReference Include="Avalonia.Skia" Version="11.3.7" />
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
-        <PackageReference Include="coverlet.collector" Version="6.0.4"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
-        <PackageReference Include="Semi.Avalonia" Version="11.3.7" />
-        <PackageReference Include="xunit" Version="2.5.3"/>
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3"/>
+        <PackageReference Include="coverlet.collector"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk"/>
+        <PackageReference Include="xunit"/>
+        <PackageReference Include="xunit.runner.visualstudio"/>
+        <PackageReference Include="Avalonia.Headless.XUnit"/>
+        <PackageReference Include="Avalonia.Skia"/>
+        <PackageReference Include="CommunityToolkit.Mvvm"/>
+        <PackageReference Include="Semi.Avalonia"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -25,7 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Ursa\Ursa.csproj" />
-        <ProjectReference Include="..\..\src\Ursa.Themes.Semi\Ursa.Themes.Semi.csproj" />
+        <ProjectReference Include="..\..\src\Ursa\Ursa.csproj"/>
+        <ProjectReference Include="..\..\src\Ursa.Themes.Semi\Ursa.Themes.Semi.csproj"/>
     </ItemGroup>
 </Project>
