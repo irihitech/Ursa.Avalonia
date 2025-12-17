@@ -13,5 +13,4 @@
     <ItemGroup>
         <ProjectReference Include="..\Ursa.Demo\Ursa.Demo.csproj"/>
     </ItemGroup>
-
 </Project>
