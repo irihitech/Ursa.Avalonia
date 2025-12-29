@@ -1,0 +1,40 @@
+<Solution>
+    <Folder Name="/Demo/">
+        <Project Path="demo/Sandbox/Sandbox.csproj"/>
+        <Project Path="demo/Ursa.Demo.Android/Ursa.Demo.Android.csproj">
+            <Deploy Solution="Debug|*"/>
+        </Project>
+        <Project Path="demo/Ursa.Demo.Browser/Ursa.Demo.Browser.csproj"/>
+        <Project Path="demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj"/>
+        <Project Path="demo/Ursa.Demo.iOS/Ursa.Demo.iOS.csproj"/>
+        <Project Path="demo/Ursa.Demo/Ursa.Demo.csproj"/>
+        <Project Path="demo/Ursa.PrismDialogDemo/Ursa.PrismDialogDemo.csproj"/>
+    </Folder>
+    <Folder Name="/GitHub Action/">
+        <File Path=".github/workflows/deploy.yml"/>
+        <File Path=".github/workflows/pack-nightly.yml"/>
+        <File Path=".github/workflows/pack.yml"/>
+        <File Path=".github/workflows/publish.yml"/>
+        <File Path=".github/workflows/release-tag.yml"/>
+        <File Path=".github/workflows/test.yml"/>
+    </Folder>
+    <Folder Name="/Solution Items/"/>
+    <Folder Name="/Solution Items/Demo/">
+        <File Path="demo/Directory.Packages.props"/>
+    </Folder>
+    <Folder Name="/Solution Items/Package/">
+        <File Path="src/Directory.Packages.props"/>
+        <File Path="src/Directory.Build.props"/>
+    </Folder>
+    <Folder Name="/Solution Items/Tests/">
+        <File Path="tests/Directory.Packages.props"/>
+    </Folder>
+    <Folder Name="/Tests/">
+        <Project Path="tests/HeadlessTest.Ursa/HeadlessTest.Ursa.csproj"/>
+        <Project Path="tests/Test.Ursa/Test.Ursa.csproj"/>
+    </Folder>
+    <Project Path="src/Ursa.PrismExtension/Ursa.PrismExtension.csproj"/>
+    <Project Path="src/Ursa.ReactiveUIExtension/Ursa.ReactiveUIExtension.csproj"/>
+    <Project Path="src/Ursa.Themes.Semi/Ursa.Themes.Semi.csproj"/>
+    <Project Path="src/Ursa/Ursa.csproj"/>
+</Solution>

@@ -7,28 +7,27 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <AvaloniaResource Include="Assets\**" />
+        <AvaloniaResource Include="Assets\**"/>
     </ItemGroup>
 
     <ItemGroup>
-        <TrimmerRootDescriptor Include="Roots.xml" />
+        <TrimmerRootDescriptor Include="Roots.xml"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+        <PackageReference Include="Avalonia"/>
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-        <PackageReference Include="Semi.Avalonia" Version="11.3.7.1" />
-        <PackageReference Include="SkiaSharp" Version="3.119.0" />
+        <PackageReference Include="Avalonia.Diagnostics">
+            <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+            <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="CommunityToolkit.Mvvm"/>
+        <PackageReference Include="Semi.Avalonia"/>
+        <PackageReference Include="SkiaSharp"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Ursa.Themes.Semi\Ursa.Themes.Semi.csproj" />
-        <ProjectReference Include="..\..\src\Ursa\Ursa.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Models\" />
+        <ProjectReference Include="..\..\src\Ursa.Themes.Semi\Ursa.Themes.Semi.csproj"/>
+        <ProjectReference Include="..\..\src\Ursa\Ursa.csproj"/>
     </ItemGroup>
 </Project>

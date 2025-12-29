@@ -1,0 +1,13 @@
+<Project>
+    <PropertyGroup>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageVersion Include="Avalonia" Version="11.3.7"/>
+        <PackageVersion Include="Irihi.Avalonia.Shared" Version="0.3.1" />
+        <PackageVersion Include="Irihi.Avalonia.Shared.Contracts" Version="0.3.1" />
+        <PackageVersion Include="Prism.Core" Version="8.1.97"/>
+        <PackageVersion Include="ReactiveUI.Avalonia" Version="11.3.0" />
+    </ItemGroup>
+</Project>

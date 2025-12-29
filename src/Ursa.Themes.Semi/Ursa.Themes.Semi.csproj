@@ -1,22 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-    <Import Project="../Package.props"/>
+    <Import Project="../Directory.Build.props"/>
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <LangVersion>latest</LangVersion>
-        <Authors>IRIHI Technology Co., Ltd.</Authors>
         <PackageId>Irihi.Ursa.Themes.Semi</PackageId>
-        <PackageIcon>irihi.png</PackageIcon>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-        <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)"/>
+        <PackageReference Include="Avalonia"/>
     </ItemGroup>
 
     <ItemGroup>
