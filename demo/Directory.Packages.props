@@ -1,7 +1,7 @@
 <Project>
     <PropertyGroup>
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-        <AvaloniaVersion>11.3.9</AvaloniaVersion>
+        <AvaloniaVersion>11.3.10</AvaloniaVersion>
         <SkiaSharpVersion>3.119.1</SkiaSharpVersion>
     </PropertyGroup>
 
@@ -16,11 +16,11 @@
         <PackageVersion Include="SkiaSharp" Version="$(SkiaSharpVersion)"/>
         <PackageVersion Include="SkiaSharp.NativeAssets.WebAssembly" Version="$(SkiaSharpVersion)"/>
 
-        <PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.0.1.15"/>
+        <PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.2.0"/>
 
         <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0"/>
-        <PackageVersion Include="Semi.Avalonia" Version="11.3.7.1"/>
-        <PackageVersion Include="Semi.Avalonia.DataGrid" Version="11.3.7.1" />
+        <PackageVersion Include="Semi.Avalonia" Version="11.3.7.2"/>
+        <PackageVersion Include="Semi.Avalonia.DataGrid" Version="11.3.7.2" />
         <PackageVersion Include="Prism.DryIoc.Avalonia" Version="8.1.97.11072"/>
     </ItemGroup>
 </Project>
