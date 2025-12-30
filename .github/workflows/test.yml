@@ -17,7 +17,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v5
       - name: Ursa Unit Test
         run: dotnet test tests/Test.Ursa
       - name: Ursa Headless Test
@@ -30,7 +30,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v5
       - name: Unit Test
         run: dotnet test tests/Test.Ursa --configuration Release --logger trx --collect:"XPlat Code Coverage;Format=cobertura" --results-directory ./TestResults/
       - name: Ursa Headless Test
