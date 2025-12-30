@@ -168,6 +168,10 @@
                 <Setter Property="Foreground" Value="{DynamicResource ListBoxItemSelectedForeground}" />
                 <Setter Property="Background" Value="{DynamicResource ListBoxItemSelectedPointeroverBackground}" />
             </Style>
+            <Style Selector="^:focus">
+                <Setter Property="Foreground" Value="{DynamicResource ListBoxItemSelectedForeground}" />
+                <Setter Property="Background" Value="{DynamicResource ListBoxItemSelectedBackground}" />
+            </Style>
         </Style>
         <Style Selector="^:vertical-collapsed /template/ ItemsPresenter#PART_ItemsPresenter">
             <Setter Property="Height" Value="0" />
@@ -194,6 +198,12 @@
         </Style>
         <Style Selector="^:focus /template/ ContentPresenter#PART_HeaderPresenter">
             <Setter Property="Foreground" Value="{DynamicResource ListBoxItemPointeroverForeground}" />
+        </Style>
+        <Style Selector="^:selected:focus /template/ Border#PART_Border">
+            <Setter Property="Background" Value="{DynamicResource ListBoxItemSelectedBackground}" />
+        </Style>
+        <Style Selector="^:selected:focus /template/ ContentPresenter#PART_HeaderPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource ListBoxItemSelectedForeground}" />
         </Style>
         <Style Selector="^:horizontal-collapsed:first-level">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
