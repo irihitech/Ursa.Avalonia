@@ -1,5 +1,4 @@
-﻿using System.Text;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
@@ -159,17 +158,8 @@ public partial class PathPicker : TemplatedControl
         if (change.Property == SelectedPathsProperty)
         {
             _twoConvertLock = true;
-            var stringBuilder = new StringBuilder();
-            if (SelectedPaths.Count != 0)
-            {
-                stringBuilder.Append(SelectedPaths[0]);
-                foreach (var item in SelectedPaths.Skip(1))
-                {
-                    stringBuilder.AppendLine(item);
-                }
-            }
 
-            SelectedPathsText = stringBuilder.ToString();
+            SelectedPathsText = string.Join(Environment.NewLine, SelectedPaths);
             _twoConvertLock = false;
         }
 
