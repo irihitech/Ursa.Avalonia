@@ -72,7 +72,7 @@
                             Name="{x:Static u:TimePickerPresenter.PART_SecondSelector}"
                             MinWidth="64"
                             ItemHeight="32"
-                            PanelType="Minute"
+                            PanelType="Second"
                             ShouldLoop="True" />
                     </ScrollViewer>
                     <Rectangle

@@ -148,7 +148,7 @@ public class TimePickerPresenter : TemplatedControl
                 else if (part[0] == 's' && !panels.Contains(_secondScrollPanel))
                 {
                     panels.Add(_secondScrollPanel);
-                    _secondSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty, part.Replace('s', 'm'));
+                    _secondSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty, part);
                 }
                 else if (part[0] == 't' && !panels.Contains(_ampmScrollPanel))
                 {
