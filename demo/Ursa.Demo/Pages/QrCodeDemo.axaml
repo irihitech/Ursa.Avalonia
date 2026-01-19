@@ -8,12 +8,23 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <u:QrCode
-        Width="200"
-        Height="200"
-        Padding="12"
-        Background="Black"
-        CornerRadius="2"
-        Data="Hello World!"
-        Foreground="White" />
+    <Grid ColumnDefinitions="*, Auto">
+        <u:QrCode
+            Width="400"
+            Height="400"
+            CornerRadius="0"
+            Data="{Binding #text.Text}"
+            ErrorCorrection="{Binding #eccLevel.Value}" />
+        <u:Form Grid.Column="1" Width="300">
+            <TextBox
+                Name="text"
+                u:FormItem.Label="Data"
+                Text="Hello Avalonia" />
+            <u:EnumSelector
+                Name="eccLevel"
+                u:FormItem.Label="Error Correction Level"
+                EnumType="{x:Type u:EccLevel}"
+                Value="{x:Static u:EccLevel.Medium}" />
+        </u:Form>
+    </Grid>
 </UserControl>

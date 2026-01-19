@@ -191,7 +191,7 @@ public class QrCode : Control
                 _setBitsTable.Clear();
 
             QrCodeGenerator.ErrorCorrectionLevel = ToQrCoderEccLevel(ErrorCorrection);
-            _encodedQrCode = QrCodeGenerator.Encode(Data);
+            _encodedQrCode = string.IsNullOrEmpty(Data)? null: QrCodeGenerator.Encode(Data);
         }
 
         switch (change.Property.Name)
@@ -233,7 +233,7 @@ public class QrCode : Control
     /// Raised whenever a property of the control changes that impacts the layout of the QRCode geometry
     /// </summary>
     /// <param name="qrCodeData">The QRCode Data with the underlying bit matrix</param>
-    private void OnLayoutChanged(Gma.QrCodeNet.Encoding.QrCode qrCodeData)
+    private void OnLayoutChanged(Gma.QrCodeNet.Encoding.QrCode? qrCodeData)
     {
         /*
          * The following code turns the QRCode bit matrix into a geometry path.  The path represents the SHAPE of the QRCode and
@@ -246,6 +246,11 @@ public class QrCode : Control
          */
 
         // Bounds of the entire control
+        if (qrCodeData is null)
+        {
+            _qrCodeGeometry = null;
+            return;
+        }
         var bounds = new Rect(0, 0, Width, Height);
         var matrix = qrCodeData.Matrix;
         var columnCount = matrix.Width + QuietMargin;
@@ -714,33 +719,7 @@ public class QrCode : Control
             context.DrawGeometry(Background, null, newGeometry);
         }
     }
-
-    /// <summary>
-    /// Indicates the level of error correction available in case of data loss or corruption.  The higher the correction level, the more data will be included in the QRCode
-    /// </summary>
-    public enum EccLevel
-    {
-        /// <summary>
-        /// The lowest level of error correction where up to ~7% of data can be be recovered if lost and uses the least amount of symbols to represent the data
-        /// </summary>
-        Lowest,
-
-        /// <summary>
-        /// The standard level of error correction where up to ~15% of data can be be recovered if lost and represents a good compromise between a small size and reliability
-        /// </summary>
-        Medium,
-
-        /// <summary>
-        /// A high readability level of error correction where up to ~25% of data can be be recovered if lost but requires a larger footprint to represent the data
-        /// </summary>
-        Quality,
-
-        /// <summary>
-        /// The maximum level of error correction where up to ~30% of data can be be recovered if lost and represents the maximum achievable reliability
-        /// </summary>
-        Highest,
-    }
-
+    
     /// <summary>
     /// Converts from our EccLevel to the one used by whichever algorithm being used.
     /// This exists as an abstraction layer for if/when the package or namespace of the actual QR Generator changes so that breaking changes are not introduced  
@@ -769,4 +748,30 @@ public class QrCode : Control
         BottomRight = 1 << 2,
         BottomLeft = 1 << 3
     }
+}
+
+/// <summary>
+/// Indicates the level of error correction available in case of data loss or corruption.  The higher the correction level, the more data will be included in the QRCode
+/// </summary>
+public enum EccLevel
+{
+    /// <summary>
+    /// The lowest level of error correction where up to ~7% of data can be be recovered if lost and uses the least amount of symbols to represent the data
+    /// </summary>
+    Lowest,
+
+    /// <summary>
+    /// The standard level of error correction where up to ~15% of data can be be recovered if lost and represents a good compromise between a small size and reliability
+    /// </summary>
+    Medium,
+
+    /// <summary>
+    /// A high readability level of error correction where up to ~25% of data can be be recovered if lost but requires a larger footprint to represent the data
+    /// </summary>
+    Quality,
+
+    /// <summary>
+    /// The maximum level of error correction where up to ~30% of data can be be recovered if lost and represents the maximum achievable reliability
+    /// </summary>
+    Highest,
 }

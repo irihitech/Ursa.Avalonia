@@ -45,6 +45,7 @@
         <ResourceInclude Source="PathPicker.axaml" />
         <ResourceInclude Source="PinCode.axaml" />
         <ResourceInclude Source="PopConfirm.axaml" />
+        <ResourceInclude Source="QrCode.axaml" />
         <ResourceInclude Source="RangeSlider.axaml" />
         <ResourceInclude Source="Rating.axaml" />
         <ResourceInclude Source="Resizer.axaml" />
