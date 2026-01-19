@@ -92,6 +92,7 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = "ElasticWrapPanel", Key = MenuKeys.MenuKeyElasticWrapPanel },
                     new() { MenuHeader = "Marquee", Key = MenuKeys.MenuKeyMarquee },
                     new() { MenuHeader = "Number Displayer", Key = MenuKeys.MenuKeyNumberDisplayer, Status = "Updated" },
+                    new() { MenuHeader = "Qr Code", Key = MenuKeys.MenuKeyQrCode, Status = "New" },
                     new() { MenuHeader = "Scroll To", Key = MenuKeys.MenuKeyScrollToButton },
                     new() { MenuHeader = "Timeline", Key = MenuKeys.MenuKeyTimeline },
                     new() { MenuHeader = "TwoTonePathIcon", Key = MenuKeys.MenuKeyTwoTonePathIcon }
@@ -143,6 +144,7 @@ public static class MenuKeys
     public const string MenuKeyPagination = "Pagination";
     public const string MenuKeyPinCode = "PinCode";
     public const string MenuKeyPopConfirm = "PopConfirm";
+    public const string MenuKeyQrCode = "QrCode";
     public const string MenuKeyRangeSlider = "RangeSlider";
     public const string MenuKeyRating = "Rating";
     public const string MenuKeyScrollToButton = "ScrollToButton";
