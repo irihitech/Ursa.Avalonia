@@ -23,7 +23,15 @@ internal static class OverlayDialogManager
     public static OverlayDialogHost? GetHost(string? id, int? hash)
     {
         HostKey? key = hash is null ? Hosts.Keys.Where(k => k.Id == id).ToArray().FirstOrDefault() : Hosts.Keys.FirstOrDefault(k => k.Id == id && k.Hash == hash);
-        if (key is null) return null;
+        if (key is null)
+        {
+            Debug.Assert(false, 
+                "OverlayDialogHost not found. Please ensure the host is properly set up:\n" +
+                "1. Use UrsaWindow or UrsaView which includes OverlayDialogHost in their control templates, or\n" +
+                "2. Add an OverlayDialogHost control with a HostId property to your view.\n" +
+                "For more information, see: https://docs.irihi.tech/ursa/docs/advanced/dialog-and-drawer/overlay-dialoghost");
+            return null;
+        }
         return Hosts.TryGetValue(key.Value, out var host) ? host : null;
     }
 }
