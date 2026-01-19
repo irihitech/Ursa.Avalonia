@@ -204,7 +204,8 @@ public class QrCode : Control
             case nameof(ErrorCorrection):
             case nameof(Data):
                 OnLayoutChanged(_encodedQrCode);
-
+                InvalidateVisual();
+                break;
                 // This is hard coded for now as I'm sure there is a better and more "Avalonia" way to transition between renders.
                 // Eventually, it may be a property of some sort.
                 if (_transitionTask == null || _transitionTask.IsCompleted)
@@ -280,7 +281,7 @@ public class QrCode : Control
         }
 
         _oldQrCodeGeometry = _qrCodeGeometry;
-        _qrCodeGeometry = (geometry, 0); // start at 0% opacity
+        _qrCodeGeometry = (geometry, 1); // start at 0% opacity
     }
 
     /// <summary>
