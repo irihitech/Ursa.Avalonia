@@ -26,8 +26,8 @@ internal static class OverlayDialogManager
         if (key is null)
         {
             Debug.Assert(false, 
-                "OverlayDialogHost not found. Please ensure the host is properly set up:\n" +
-                "1. Use UrsaWindow or UrsaView which includes OverlayDialogHost in their control templates, or\n" +
+                "OverlayDialogHost not found. Please ensure the host is properly set up with one of below method:\n" +
+                "1. Use UrsaWindow or UrsaView which includes a default OverlayDialogHost in their control templates, or\n" +
                 "2. Add an OverlayDialogHost control with a HostId property to your view.\n" +
                 "For more information, see: https://docs.irihi.tech/ursa/docs/advanced/dialog-and-drawer/overlay-dialoghost");
             return null;
