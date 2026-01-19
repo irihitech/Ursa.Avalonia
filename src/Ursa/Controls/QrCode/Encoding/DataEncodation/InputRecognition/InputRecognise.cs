@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Gma.QrCodeNet.Encoding.DataEncodation.InputRecognition;
 
-public static class InputRecognise
+internal static class InputRecognise
 {
 	public static RecognitionStruct Recognise(string content)
 	{

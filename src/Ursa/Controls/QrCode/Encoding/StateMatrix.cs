@@ -1,6 +1,6 @@
 namespace Gma.QrCodeNet.Encoding;
 
-public sealed class StateMatrix
+internal sealed class StateMatrix
 {
 	public StateMatrix(int width)
 	{

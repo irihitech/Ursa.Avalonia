@@ -1,6 +1,6 @@
 namespace Gma.QrCodeNet.Encoding.DataEncodation;
 
-public abstract class EncoderBase
+internal abstract class EncoderBase
 {
 	internal EncoderBase()
 	{

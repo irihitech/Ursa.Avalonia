@@ -2,7 +2,7 @@ using System;
 
 namespace Gma.QrCodeNet.Encoding.DataEncodation.InputRecognition;
 
-public static class ModeEncodeCheck
+internal static class ModeEncodeCheck
 {
 	/// <summary>
 	/// Encoding.GetEncoding.GetBytes will transform char to 0x3F if that char not belong to current encoding table.

@@ -1,6 +1,6 @@
 namespace Gma.QrCodeNet.Encoding.Masking.Scoring;
 
-public enum PenaltyRules
+internal enum PenaltyRules
 {
 	Rule01 = 1,
 	Rule02 = 2,

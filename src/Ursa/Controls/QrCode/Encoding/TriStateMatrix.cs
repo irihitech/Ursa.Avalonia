@@ -2,7 +2,7 @@ using System;
 
 namespace Gma.QrCodeNet.Encoding;
 
-public class TriStateMatrix : BitMatrixBase
+internal class TriStateMatrix : BitMatrixBase
 {
 	public TriStateMatrix(int width) : base(width, new bool[width, width])
 	{

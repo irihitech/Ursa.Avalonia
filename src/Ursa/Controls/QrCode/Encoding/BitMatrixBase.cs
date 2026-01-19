@@ -1,6 +1,6 @@
 namespace Gma.QrCodeNet.Encoding;
 
-public abstract class BitMatrixBase : BitMatrix
+internal abstract class BitMatrixBase : BitMatrix
 {
 	protected BitMatrixBase(int width, bool[,] internalArray)
 	{

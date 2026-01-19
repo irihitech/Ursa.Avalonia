@@ -1,6 +1,6 @@
 namespace Gma.QrCodeNet.Encoding;
 
-public abstract class BitMatrix
+internal abstract class BitMatrix
 {
 	public abstract int Width { get; }
 	public abstract int Height { get; }

@@ -3,7 +3,7 @@ namespace Gma.QrCodeNet.Encoding;
 /// <summary>
 /// Contain most of common constant variables. S
 /// </summary>
-public static class QRCodeConstantVariable
+internal static class QRCodeConstantVariable
 {
 	public const int MinVersion = 1;
 	public const int MaxVersion = 40;

@@ -1,6 +1,6 @@
 namespace Gma.QrCodeNet.Encoding.Masking;
 
-public enum MaskPatternType
+internal enum MaskPatternType
 {
 	Type0 = 0,
 	Type1 = 1,

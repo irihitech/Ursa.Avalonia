@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Gma.QrCodeNet.Encoding.DataEncodation;
 
-public sealed class ECISet
+internal sealed class ECISet
 {
 	/// <summary>
 	/// ISO/IEC 18004:2006 Chapter 6.4.2 Mode indicator = 0111 Page 23

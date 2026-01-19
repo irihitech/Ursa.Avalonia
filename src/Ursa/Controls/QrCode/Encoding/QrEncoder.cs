@@ -1,6 +1,6 @@
 namespace Gma.QrCodeNet.Encoding;
 
-public class QrEncoder
+internal class QrEncoder
 {
 	/// <summary>
 	/// Default QrEncoder will set ErrorCorrectionLevel as M

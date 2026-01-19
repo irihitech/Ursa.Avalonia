@@ -3,7 +3,7 @@ using Gma.QrCodeNet.Encoding.EncodingRegion;
 
 namespace Gma.QrCodeNet.Encoding.Masking;
 
-public static class MatrixExtensions
+internal static class MatrixExtensions
 {
 	public static TriStateMatrix Xor(this TriStateMatrix first, Pattern second, ErrorCorrectionLevel errorLevel)
 	{

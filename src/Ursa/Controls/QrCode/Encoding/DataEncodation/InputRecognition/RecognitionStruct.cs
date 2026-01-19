@@ -1,6 +1,6 @@
 namespace Gma.QrCodeNet.Encoding.DataEncodation.InputRecognition;
 
-public struct RecognitionStruct
+internal struct RecognitionStruct
 {
 	public RecognitionStruct(string encodingName)
 		: this()

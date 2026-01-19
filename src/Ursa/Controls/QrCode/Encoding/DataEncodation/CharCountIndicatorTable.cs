@@ -2,7 +2,7 @@ using System;
 
 namespace Gma.QrCodeNet.Encoding.DataEncodation;
 
-public static class CharCountIndicatorTable
+internal static class CharCountIndicatorTable
 {
 	/// <remarks>ISO/IEC 18004:2000 Table 3 Page 18</remarks>
 	public static int[] GetCharCountIndicatorSet()

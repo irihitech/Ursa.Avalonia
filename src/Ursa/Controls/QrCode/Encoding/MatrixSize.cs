@@ -1,6 +1,6 @@
 namespace Gma.QrCodeNet.Encoding;
 
-public struct MatrixSize
+internal struct MatrixSize
 {
 	internal MatrixSize(int width, int height)
 		: this()
