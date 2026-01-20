@@ -2,10 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
-        <u:QrCode Width="300" Height="300" Data="Hello Avalonia!" Foreground="White"/>
+        <u:QRCode Width="300" Height="300" Data="Hello Avalonia!" Foreground="White"/>
     </Design.PreviewWith>
     
-    <ControlTheme x:Key="{x:Type u:QrCode}" TargetType="u:QrCode">
+    <ControlTheme x:Key="{x:Type u:QRCode}" TargetType="u:QRCode">
         <Setter Property="Background" Value="{DynamicResource SemiColorBackground0}" />
         <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
     </ControlTheme>

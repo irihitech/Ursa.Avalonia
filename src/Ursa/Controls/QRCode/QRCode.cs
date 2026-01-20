@@ -13,14 +13,14 @@ namespace Ursa.Controls;
 /// Avalonia implementation of a Quick Response code (QR Code) with smooth borders and support for gradient brushes
 /// For spec, see: https://www.swisseduc.ch/informatik/theoretische_informatik/qr_codes/docs/qr_standard.pdf
 /// </summary>
-public class QrCode : Control
+public class QRCode : Control
 {
     #region Properties
 
     /// <summary>
     /// Property for the Background brush (i.e. the area that has no data)
     /// </summary>
-    public static readonly StyledProperty<IBrush?> BackgroundProperty = Border.BackgroundProperty.AddOwner<QrCode>();
+    public static readonly StyledProperty<IBrush?> BackgroundProperty = Border.BackgroundProperty.AddOwner<QRCode>();
 
     /// <summary>
     /// Property for the Foreground brush (i.e. the actual data)
@@ -32,7 +32,7 @@ public class QrCode : Control
     /// Property indicating how rounded the corners will be
     /// </summary>
     public static readonly StyledProperty<CornerRadius> CornerRadiusProperty =
-        Border.CornerRadiusProperty.AddOwner<QrCode>();
+        Border.CornerRadiusProperty.AddOwner<QRCode>();
 
     /// <summary>
     /// Property indicating the Quiet Zone (distance between the edge of the control and where the data actually starts)
@@ -42,7 +42,7 @@ public class QrCode : Control
     /// it will technically make the generated QRCodes "non-standard".  This implementation does not currently concern itself
     /// with this as the code itself it not meant for public consumption.
     /// </summary>
-    public static readonly StyledProperty<Thickness> PaddingProperty = Decorator.PaddingProperty.AddOwner<QrCode>();
+    public static readonly StyledProperty<Thickness> PaddingProperty = Decorator.PaddingProperty.AddOwner<QRCode>();
 
     /// <summary>
     /// Property indicating whether the Quiet Zone of 4 modules should be added to the QR Code as additional padding.  Default: True
@@ -52,7 +52,7 @@ public class QrCode : Control
     /// disabled and a fixed <see cref="Padding"/> can be set instead to have more control over the layout. 
     /// </summary>
     public static readonly StyledProperty<bool> IsQuietZoneEnabledProperty =
-        AvaloniaProperty.Register<QrCode, bool>(nameof(IsQuietZoneEnabled), true);
+        AvaloniaProperty.Register<QRCode, bool>(nameof(IsQuietZoneEnabled), true);
 
     /// <summary>
     /// Property indicating the Error Correction Code of the generated data.  Default: Medium
@@ -60,13 +60,13 @@ public class QrCode : Control
     /// Note: See <see cref="EccLevel" /> for the specific definitions of each value.
     /// </summary>
     public static readonly StyledProperty<EccLevel> ErrorCorrectionProperty =
-        AvaloniaProperty.Register<QrCode, EccLevel>(nameof(ErrorCorrection), EccLevel.Medium);
+        AvaloniaProperty.Register<QRCode, EccLevel>(nameof(ErrorCorrection), EccLevel.Medium);
 
     /// <summary>
     /// Property for the data represented in the QRCode
     /// </summary>
     public static readonly StyledProperty<string?> DataProperty =
-        AvaloniaProperty.Register<QrCode, string?>(nameof(Data));
+        AvaloniaProperty.Register<QRCode, string?>(nameof(Data));
 
     /// <inheritdoc cref="BackgroundProperty" />
     public IBrush? Background
@@ -150,11 +150,11 @@ public class QrCode : Control
 
     private Task? _transitionTask;
 
-    public QrCode()
+    public QRCode()
     {
         // These properties change how the control is rendered, but not the data that's being displayed
         // See "OnPropertyChanged" for the properties that require the data to be updated.
-        AffectsRender<QrCode>(BackgroundProperty, ForegroundProperty, CornerRadiusProperty, WidthProperty,
+        AffectsRender<QRCode>(BackgroundProperty, ForegroundProperty, CornerRadiusProperty, WidthProperty,
             HeightProperty);
     }
 
