@@ -14,7 +14,8 @@
             Height="400"
             CornerRadius="0"
             Data="{Binding #text.Text}"
-            ErrorCorrection="{Binding #eccLevel.Value}" />
+            ErrorCorrection="{Binding #eccLevel.Value}"
+            SymbolCornerRatio="{Binding #cornerRatio.Value}" />
         <u:Form Grid.Column="1" Width="300">
             <TextBox
                 Name="text"
@@ -25,6 +26,14 @@
                 u:FormItem.Label="Error Correction Level"
                 EnumType="{x:Type u:EccLevel}"
                 Value="{x:Static u:EccLevel.Medium}" />
+            <Slider
+                Name="cornerRatio"
+                u:FormItem.Label="Symbol Corner Ratio"
+                Minimum="0"
+                Maximum="1"
+                Value="0.5"
+                TickFrequency="0.1"
+                IsSnapToTickEnabled="True" />
         </u:Form>
     </Grid>
 </UserControl>

@@ -35,6 +35,14 @@ public class QRCode : Control
         Border.CornerRadiusProperty.AddOwner<QRCode>();
 
     /// <summary>
+    /// Property indicating the corner ratio for rounded QR code symbols.
+    /// Value ranges from 0.0 (sharp corners) to 1.0 (fully rounded).
+    /// Default is 0.5 (corner radius is half the symbol width).
+    /// </summary>
+    public static readonly StyledProperty<double> SymbolCornerRatioProperty =
+        AvaloniaProperty.Register<QRCode, double>(nameof(SymbolCornerRatio), 0.5);
+
+    /// <summary>
     /// Property indicating the Quiet Zone (distance between the edge of the control and where the data actually starts)
     /// 
     /// Note: The Quiet Zone (aka Padding) is defined in the QC Code standard (ISO 18004) as the width of 4 modules on all
@@ -87,6 +95,13 @@ public class QRCode : Control
     {
         get => GetValue(CornerRadiusProperty);
         set => SetValue(CornerRadiusProperty, value);
+    }
+
+    /// <inheritdoc cref="SymbolCornerRatioProperty" />
+    public double SymbolCornerRatio
+    {
+        get => GetValue(SymbolCornerRatioProperty);
+        set => SetValue(SymbolCornerRatioProperty, value);
     }
 
     /// <inheritdoc cref="PaddingProperty" />
@@ -203,6 +218,7 @@ public class QRCode : Control
             case nameof(IsQuietZoneEnabled):
             case nameof(ErrorCorrection):
             case nameof(Data):
+            case nameof(SymbolCornerRatio):
                 OnLayoutChanged(_encodedQrCode);
                 InvalidateVisual();
                 break;
@@ -344,25 +360,25 @@ public class QRCode : Control
         if (!IsValid(bitMatrix, column, row))
             return false;
 
-        var boundsRadius = symbolBounds.Size / 2;
+        var cornerRadius = symbolBounds.Size * SymbolCornerRatio;
         var cornerFlags = GetSetSymbolCornerFlags(bitMatrix, row, column);
         var figure = new PathFigure
-            { StartPoint = new Point(symbolBounds.Left, symbolBounds.Top + boundsRadius.Height) };
+            { StartPoint = new Point(symbolBounds.Left, symbolBounds.Top + cornerRadius.Height) };
 
         // Top Left
         if ((cornerFlags & CornerFlags.TopLeft) != 0)
         {
             figure.Segments!.Add(new LineSegment { Point = symbolBounds.TopLeft });
             figure.Segments!.Add(new LineSegment
-                { Point = new Point(symbolBounds.Left + boundsRadius.Width, symbolBounds.Top) });
+                { Point = new Point(symbolBounds.Left + cornerRadius.Width, symbolBounds.Top) });
         }
         else
         {
             figure.Segments!.Add(new ArcSegment
             {
                 SweepDirection = SweepDirection.Clockwise,
-                Point = new Point(symbolBounds.Left + boundsRadius.Width, symbolBounds.Top),
-                Size = boundsRadius
+                Point = new Point(symbolBounds.Left + cornerRadius.Width, symbolBounds.Top),
+                Size = cornerRadius
             });
         }
 
@@ -371,15 +387,15 @@ public class QRCode : Control
         {
             figure.Segments!.Add(new LineSegment { Point = symbolBounds.TopRight });
             figure.Segments!.Add(new LineSegment
-                { Point = new Point(symbolBounds.Right, symbolBounds.Top + boundsRadius.Height) });
+                { Point = new Point(symbolBounds.Right, symbolBounds.Top + cornerRadius.Height) });
         }
         else
         {
             figure.Segments!.Add(new ArcSegment
             {
                 SweepDirection = SweepDirection.Clockwise,
-                Point = new Point(symbolBounds.Right, symbolBounds.Top + boundsRadius.Height),
-                Size = boundsRadius
+                Point = new Point(symbolBounds.Right, symbolBounds.Top + cornerRadius.Height),
+                Size = cornerRadius
             });
         }
 
@@ -388,15 +404,15 @@ public class QRCode : Control
         {
             figure.Segments!.Add(new LineSegment { Point = symbolBounds.BottomRight });
             figure.Segments!.Add(new LineSegment
-                { Point = new Point(symbolBounds.Right - boundsRadius.Width, symbolBounds.Bottom) });
+                { Point = new Point(symbolBounds.Right - cornerRadius.Width, symbolBounds.Bottom) });
         }
         else
         {
             figure.Segments!.Add(new ArcSegment
             {
                 SweepDirection = SweepDirection.Clockwise,
-                Point = new Point(symbolBounds.Right - boundsRadius.Width, symbolBounds.Bottom),
-                Size = boundsRadius
+                Point = new Point(symbolBounds.Right - cornerRadius.Width, symbolBounds.Bottom),
+                Size = cornerRadius
             });
         }
 
@@ -412,7 +428,7 @@ public class QRCode : Control
             {
                 SweepDirection = SweepDirection.Clockwise,
                 Point = figure.StartPoint,
-                Size = boundsRadius
+                Size = cornerRadius
             });
         }
 
@@ -467,12 +483,12 @@ public class QRCode : Control
         if (cornerFlags == CornerFlags.None)
             return;
 
-        var boundsRadius = symbolBounds.Size / 2;
+        var cornerRadius = symbolBounds.Size * SymbolCornerRatio;
 
         // Top Left
         if ((cornerFlags & CornerFlags.TopLeft) != 0)
         {
-            var start = new Point(symbolBounds.Left, symbolBounds.Top + boundsRadius.Height);
+            var start = new Point(symbolBounds.Left, symbolBounds.Top + cornerRadius.Height);
 
             geometry.Figures!.Add(new PathFigure
             {
@@ -480,12 +496,12 @@ public class QRCode : Control
                 Segments = new PathSegments
                 {
                     new LineSegment { Point = symbolBounds.TopLeft },
-                    new LineSegment { Point = new Point(symbolBounds.Left + boundsRadius.Width, symbolBounds.Top) },
+                    new LineSegment { Point = new Point(symbolBounds.Left + cornerRadius.Width, symbolBounds.Top) },
                     new ArcSegment
                     {
                         SweepDirection = SweepDirection.CounterClockwise,
                         Point = start,
-                        Size = boundsRadius
+                        Size = cornerRadius
                     }
                 }
             });
@@ -494,7 +510,7 @@ public class QRCode : Control
         // Top Right
         if ((cornerFlags & CornerFlags.TopRight) != 0)
         {
-            var start = new Point(symbolBounds.Right - boundsRadius.Width, symbolBounds.Top);
+            var start = new Point(symbolBounds.Right - cornerRadius.Width, symbolBounds.Top);
 
             geometry.Figures!.Add(new PathFigure
             {
@@ -502,12 +518,12 @@ public class QRCode : Control
                 Segments = new PathSegments
                 {
                     new LineSegment { Point = symbolBounds.TopRight },
-                    new LineSegment { Point = new Point(symbolBounds.Right, symbolBounds.Top + boundsRadius.Height) },
+                    new LineSegment { Point = new Point(symbolBounds.Right, symbolBounds.Top + cornerRadius.Height) },
                     new ArcSegment
                     {
                         SweepDirection = SweepDirection.CounterClockwise,
                         Point = start,
-                        Size = boundsRadius
+                        Size = cornerRadius
                     }
                 }
             });
@@ -516,7 +532,7 @@ public class QRCode : Control
         // Bottom Right
         if ((cornerFlags & CornerFlags.BottomRight) != 0)
         {
-            var start = new Point(symbolBounds.Right, symbolBounds.Bottom - boundsRadius.Height);
+            var start = new Point(symbolBounds.Right, symbolBounds.Bottom - cornerRadius.Height);
 
             geometry.Figures!.Add(new PathFigure
             {
@@ -524,12 +540,12 @@ public class QRCode : Control
                 Segments = new PathSegments
                 {
                     new LineSegment { Point = symbolBounds.BottomRight },
-                    new LineSegment { Point = new Point(symbolBounds.Right - boundsRadius.Width, symbolBounds.Bottom) },
+                    new LineSegment { Point = new Point(symbolBounds.Right - cornerRadius.Width, symbolBounds.Bottom) },
                     new ArcSegment
                     {
                         SweepDirection = SweepDirection.CounterClockwise,
                         Point = start,
-                        Size = boundsRadius
+                        Size = cornerRadius
                     }
                 }
             });
@@ -538,7 +554,7 @@ public class QRCode : Control
         // Bottom Left
         if ((cornerFlags & CornerFlags.BottomLeft) != 0)
         {
-            var start = new Point(symbolBounds.Left + boundsRadius.Width, symbolBounds.Bottom);
+            var start = new Point(symbolBounds.Left + cornerRadius.Width, symbolBounds.Bottom);
 
             geometry.Figures!.Add(new PathFigure
             {
@@ -546,12 +562,12 @@ public class QRCode : Control
                 Segments = new PathSegments
                 {
                     new LineSegment { Point = symbolBounds.BottomLeft },
-                    new LineSegment { Point = new Point(symbolBounds.Left, symbolBounds.Bottom - boundsRadius.Height) },
+                    new LineSegment { Point = new Point(symbolBounds.Left, symbolBounds.Bottom - cornerRadius.Height) },
                     new ArcSegment
                     {
                         SweepDirection = SweepDirection.CounterClockwise,
                         Point = start,
-                        Size = boundsRadius
+                        Size = cornerRadius
                     }
                 }
             });
