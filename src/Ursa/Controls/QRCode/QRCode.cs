@@ -40,7 +40,14 @@ public class QRCode : Control
     /// Default is 0.5 (corner radius is half the symbol width).
     /// </summary>
     public static readonly StyledProperty<double> SymbolCornerRatioProperty =
-        AvaloniaProperty.Register<QRCode, double>(nameof(SymbolCornerRatio), 0.5);
+        AvaloniaProperty.Register<QRCode, double>(nameof(SymbolCornerRatio), 0.5, coerce: CoerceSymbolCornerRatio);
+
+    private static double CoerceSymbolCornerRatio(AvaloniaObject obj, double value)
+    {
+        if (value < 0.0) return 0.0;
+        if (value > 1.0) return 1.0;
+        return value;
+    }
 
     /// <summary>
     /// Property indicating the Quiet Zone (distance between the edge of the control and where the data actually starts)
