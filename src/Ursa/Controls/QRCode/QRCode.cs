@@ -52,7 +52,7 @@ public class QRCode : Control
     /// <summary>
     /// Property indicating the Quiet Zone (distance between the edge of the control and where the data actually starts)
     /// 
-    /// Note: The Quiet Zone (aka Padding) is defined in the QC Code standard (ISO 18004) as the width of 4 modules on all
+    /// Note: The Quiet Zone (aka Padding) is defined in the QR Code standard (ISO 18004) as the width of 4 modules on all
     /// sides, but is implemented separately in this control.  Official support may wish to remove this property as adjusting
     /// it will technically make the generated QRCodes "non-standard".  This implementation does not currently concern itself
     /// with this as the code itself it not meant for public consumption.
