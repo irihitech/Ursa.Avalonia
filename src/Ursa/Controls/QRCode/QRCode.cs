@@ -308,6 +308,15 @@ public class QRCode : Control
         Rect symbolBounds, 
         double cornerRatio)
     {
+        if (cornerRatio == 0)
+        {
+            var simpleFigure = new PathFigure() { StartPoint =  symbolBounds.TopLeft, };
+            simpleFigure.Segments!.Add( new LineSegment { Point = symbolBounds.TopRight });
+            simpleFigure.Segments .Add( new LineSegment { Point = symbolBounds.BottomRight });
+            simpleFigure.Segments .Add( new LineSegment { Point = symbolBounds.BottomLeft });
+            geometry.Figures?.Add(simpleFigure);
+            return;
+        }
         var cornerRadius = symbolBounds.Size * cornerRatio;
         var cornerFlags = GetSetSymbolCornerFlags(bitMatrix, row, column);
         var figure = new PathFigure
@@ -438,6 +447,7 @@ public class QRCode : Control
         // If filled, no action required
         if (IsValid(bitMatrix, column, row))
             return;
+        if (cornerRatio == 0) return;
 
         var cornerFlags = GetUnsetSymbolCornerFlags(bitMatrix, row, column);
 
