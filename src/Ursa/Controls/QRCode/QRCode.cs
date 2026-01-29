@@ -42,9 +42,12 @@ public partial class QRCode : Control
 
     private static double CoerceSymbolCornerRatio(AvaloniaObject obj, double value)
     {
-        if (value < 0.0) return 0.0;
-        if (value > 1.0) return 1.0;
-        return value;
+        return value switch
+        {
+            < 0.0 => 0.0,
+            > 0.5 => 0.5,
+            _ => value
+        };
     }
 
     /// <summary>
