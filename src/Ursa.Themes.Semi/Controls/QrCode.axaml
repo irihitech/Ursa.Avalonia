@@ -6,7 +6,6 @@
     </Design.PreviewWith>
     
     <ControlTheme x:Key="{x:Type u:QRCode}" TargetType="u:QRCode">
-        <Setter Property="Background" Value="{DynamicResource SemiColorBackground0}" />
         <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
     </ControlTheme>
 </ResourceDictionary>

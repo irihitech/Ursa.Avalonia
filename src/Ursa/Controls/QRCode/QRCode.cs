@@ -145,30 +145,20 @@ public class QRCode : Control
     /// Engine to actually calculate the bit matrix of the QRCode.  Currently a Nuget package, but official support may wish to implement and remove such dependency 
     /// </summary>
     private static readonly QrEncoder QrCodeGenerator = new();
-
-    /// <summary>
-    /// A cache of currently set bits in the bit matrix.  This is used to potentially speed up processing.
-    /// </summary>
-    private readonly Hashtable _setBitsTable = new();
-
+    
     /// <summary>
     /// A cache of the last encoded QRCode.  This is used to reuse the last generated data whenever a style property like Width, Height or Padding was changed.
     /// </summary>
-    private Gma.QrCodeNet.Encoding.QrCode? _encodedQrCode;
+    private QrCode? _encodedQrCode;
 
     // QRCode specs mandate a standard 4-symbol-sized space on each side of the data.  We support custom Padding and will ignore this zone when processing
     private int QuietZoneCount => IsQuietZoneEnabled ? 4 : 0;
     private int QuietMargin => QuietZoneCount * 2;
-
-    /// <summary>
-    /// Defines the geometry of the previously displayed QRCode
-    /// </summary>
-    private (PathGeometry, double)? _oldQrCodeGeometry;
-
+    
     /// <summary>
     /// Defines the geometry of the currently displayed QRCode
     /// </summary>
-    private (PathGeometry, double)? _qrCodeGeometry;
+    private PathGeometry? _qrCodeGeometry;
 
     private Task? _transitionTask;
 
@@ -209,9 +199,6 @@ public class QRCode : Control
         // Generating the QRCode bit matrix if needed.
         if (_encodedQrCode is null)
         {
-            lock (_setBitsTable)
-                _setBitsTable.Clear();
-
             QrCodeGenerator.ErrorCorrectionLevel = ToQrCoderEccLevel(ErrorCorrection);
             _encodedQrCode = string.IsNullOrEmpty(Data)? null: QrCodeGenerator.Encode(Data);
         }
@@ -229,26 +216,6 @@ public class QRCode : Control
                 OnLayoutChanged(_encodedQrCode);
                 InvalidateVisual();
                 break;
-                // This is hard coded for now as I'm sure there is a better and more "Avalonia" way to transition between renders.
-                // Eventually, it may be a property of some sort.
-                if (_transitionTask == null || _transitionTask.IsCompleted)
-                {
-                    _transitionTask = Dispatcher.UIThread.Invoke(async () =>
-                    {
-                        while (_qrCodeGeometry is (_, < 1))
-                        {
-                            if (_qrCodeGeometry is var (newGeometry, newOpacity))
-                                _qrCodeGeometry = (newGeometry, Math.Min(1, newOpacity + 0.1));
-                            InvalidateVisual();
-                            // await Task.Delay(30);
-                        }
-
-                        _oldQrCodeGeometry = null;
-                        
-                    });
-                }
-
-                break;
         }
     }
 
@@ -258,16 +225,6 @@ public class QRCode : Control
     /// <param name="qrCodeData">The QRCode Data with the underlying bit matrix</param>
     private void OnLayoutChanged(Gma.QrCodeNet.Encoding.QrCode? qrCodeData)
     {
-        /*
-         * The following code turns the QRCode bit matrix into a geometry path.  The path represents the SHAPE of the QRCode and
-         * thus is achieved maybe unintuitively by ensuring that the background covers the whole control and then "carving" out
-         * the areas where the foreground should appear.  In the case of the markers, pathing over a "carved" out area will
-         * re-add the background color and, indeed, create the ring effects in the finished render.
-         *
-         * This logic is in place to ensure that the the whole QRCode is contained in one "Geometry" object and will thus be
-         * rendered with one brush to support a gradient across the whole control if so desired.
-         */
-
         // Bounds of the entire control
         if (qrCodeData is null)
         {
@@ -287,19 +244,7 @@ public class QRCode : Control
 
         // QR Code Shape
         var geometry = new PathGeometry();
-
-        // The entire area is drawn here as the idea is to cover the control with the background brush and "carve" out the data showing the foreground
-        geometry.Figures!.Add(new PathFigure
-        {
-            IsClosed = true,
-            Segments =
-            [
-                new LineSegment { Point = bounds.BottomLeft },
-                new LineSegment { Point = bounds.BottomRight },
-                new LineSegment { Point = bounds.TopRight }
-            ]
-        });
-
+        
         // Adds the three Position Detection Pattern
         AddPositionDetectionPattern(geometry, bounds, symbolSize);
 
@@ -308,8 +253,7 @@ public class QRCode : Control
             ProcessRow(geometry, matrix, row, symbolSize);
         }
 
-        _oldQrCodeGeometry = _qrCodeGeometry;
-        _qrCodeGeometry = (geometry, 1); // start at 0% opacity
+        _qrCodeGeometry = geometry;
     }
 
     /// <summary>
@@ -345,11 +289,14 @@ public class QRCode : Control
             symbolSize.Width,
             symbolSize.Height
         );
-
-        if (ProcessSymbolIfSet(geometry, bitMatrix, row, column, symbolBounds))
-            return;
-
-        ProcessSymbolIfUnset(geometry, bitMatrix, row, column, symbolBounds);
+        if (IsValid(bitMatrix, column, row))
+        {
+            ProcessSymbolIfSet(geometry, bitMatrix, row, column, symbolBounds);
+        }
+        else
+        {
+            ProcessSymbolIfUnset(geometry, bitMatrix, row, column, symbolBounds);
+        }
     }
 
     /// <summary>
@@ -361,12 +308,8 @@ public class QRCode : Control
     /// <param name="column">The column of the symbol being processed</param>
     /// <param name="symbolBounds">The bounds of the symbol being processed</param>
     /// <returns>True if the symbol was processed, otherwise false</returns>
-    private bool ProcessSymbolIfSet(PathGeometry geometry, BitMatrix bitMatrix, int row, int column, Rect symbolBounds)
+    private void ProcessSymbolIfSet(PathGeometry geometry, BitMatrix bitMatrix, int row, int column, Rect symbolBounds)
     {
-        // If not filled, no action required
-        if (!IsValid(bitMatrix, column, row))
-            return false;
-
         var cornerRadius = symbolBounds.Size * SymbolCornerRatio;
         var cornerFlags = GetSetSymbolCornerFlags(bitMatrix, row, column);
         var figure = new PathFigure
@@ -453,7 +396,6 @@ public class QRCode : Control
         }
 
         geometry.Figures?.Add(figure);
-        return true;
     }
 
     /// <summary>
@@ -636,34 +578,10 @@ public class QRCode : Control
         // Validate bounds of the bit matrix
         if (x < 0 || y < 0 || x >= bitMatrix.Width || y >= bitMatrix.Height)
             return false;
-
-        var key = (x, y).GetHashCode();
-
-        lock (_setBitsTable)
-        {
-            if (_setBitsTable.ContainsKey(key))
-                return (bool)_setBitsTable[key]!;
-
-            // Top Left Marker
-            if (x < 8 && y < 8)
-                return (bool)(_setBitsTable[key] = false);
-            // Top Right Marker
-            if (x > bitMatrix.Width - 9 && y < 8)
-                return (bool)(_setBitsTable[key] = false);
-            // Bottom Left Marker
-            if (x < 8 && y > bitMatrix.Height - 9)
-                return (bool)(_setBitsTable[key] = false);
-
-            /*
-             * ToDo: You can add additional logic here to exclude an additional portion of data.
-             *  This is not supported in the example as careful consideration must be made to ensure
-             *  that the QRCode is still readable based on the ECC Level selected.  Additionally,
-             *  you may want to accept a path to render a logo in the center to make it fit with the
-             *  current design.
-             */
-
-            return (bool)(_setBitsTable[key] = bitMatrix[y, x]);
-        }
+        if (x < 8 && y < 8) return false;
+        if (x > bitMatrix.Width - 9 && y < 8) return false;
+        if (x < 8 && y > bitMatrix.Height - 9) return false;
+        return bitMatrix[y, x];
     }
 
     /// <summary>
@@ -736,23 +654,11 @@ public class QRCode : Control
         // Rounded corners
         context.PushClip(new RoundedRect(bounds, CornerRadius.TopLeft, CornerRadius.TopRight, CornerRadius.BottomRight,
             CornerRadius.BottomLeft));
-
-        if (_oldQrCodeGeometry is var (oldGeometry, _))
+        
+        if (_qrCodeGeometry is var newGeometry)
         {
-            // The foreground will show through as the qr code will be "cut out" of the background
-            context.DrawRectangle(Foreground, null, bounds);
-            // Render background over the foreground as the geometry has "cut outs" that allow the foreground to show through
-            context.DrawGeometry(Background, null, oldGeometry);
-        }
-
-        if (_qrCodeGeometry is var (newGeometry, newOpacity))
-        {
-            using var _ = context.PushOpacity(newOpacity);
-
-            // The foreground will show through as the qr code will be "cut out" of the background
-            context.DrawRectangle(Foreground, null, bounds);
-            // Render background over the foreground as the geometry has "cut outs" that allow the foreground to show through
-            context.DrawGeometry(Background, null, newGeometry);
+            context.DrawRectangle(Background, null, bounds);
+            context.DrawGeometry(Foreground, null, newGeometry);
         }
     }
     

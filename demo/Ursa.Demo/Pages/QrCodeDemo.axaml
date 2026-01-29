@@ -15,7 +15,8 @@
             CornerRadius="0"
             Data="{Binding #text.Text}"
             ErrorCorrection="{Binding #eccLevel.Value}"
-            SymbolCornerRatio="{Binding #cornerRatio.Value}" />
+            SymbolCornerRatio="{Binding #cornerRatio.Value}">
+        </u:QRCode>
         <u:Form Grid.Column="1" Width="300">
             <TextBox
                 Name="text"
