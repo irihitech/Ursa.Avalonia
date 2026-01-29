@@ -1,10 +1,8 @@
-using System.Collections;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Documents;
 using Avalonia.Controls.Primitives;
 using Avalonia.Media;
-using Avalonia.Threading;
 using Gma.QrCodeNet.Encoding;
 
 namespace Ursa.Controls;
@@ -159,9 +157,7 @@ public class QRCode : Control
     /// Defines the geometry of the currently displayed QRCode
     /// </summary>
     private PathGeometry? _qrCodeGeometry;
-
-    private Task? _transitionTask;
-
+    
     public QRCode()
     {
         // These properties change how the control is rendered, but not the data that's being displayed
@@ -223,7 +219,7 @@ public class QRCode : Control
     /// Raised whenever a property of the control changes that impacts the layout of the QRCode geometry
     /// </summary>
     /// <param name="qrCodeData">The QRCode Data with the underlying bit matrix</param>
-    private void OnLayoutChanged(Gma.QrCodeNet.Encoding.QrCode? qrCodeData)
+    private void OnLayoutChanged(QrCode? qrCodeData)
     {
         // Bounds of the entire control
         if (qrCodeData is null)
@@ -241,35 +237,23 @@ public class QRCode : Control
             (Width - Padding.Left - Padding.Right) / columnCount,
             (Height - Padding.Top - Padding.Bottom) / rowCount
         );
+        var cornerRatio = SymbolCornerRatio; 
 
         // QR Code Shape
         var geometry = new PathGeometry();
         
         // Adds the three Position Detection Pattern
-        AddPositionDetectionPattern(geometry, bounds, symbolSize);
+        AddPositionDetectionPattern(geometry, bounds, symbolSize, cornerRatio);
 
         for (var row = 0; row < matrix.Height; row++)
         {
-            ProcessRow(geometry, matrix, row, symbolSize);
+            for (int column = 0; column < matrix.Width; column++)
+            {
+                ProcessSymbol(geometry, matrix, row, column, symbolSize, cornerRatio);
+            }
         }
 
         _qrCodeGeometry = geometry;
-    }
-
-    /// <summary>
-    /// Processes a full row of the the bit matrix and adds geometry as needed
-    /// </summary>
-    /// <param name="geometry">Geometry of the QR Code</param>
-    /// <param name="bitMatrix">The bit matrix being processed</param>
-    /// <param name="row">The row to process</param>
-    /// <param name="symbolSize">The calculated size of each symbol</param>
-    private void ProcessRow(PathGeometry geometry, BitMatrix bitMatrix, int row, Size symbolSize)
-    {
-        // Loop through each item within the row
-        for (var column = 0; column < bitMatrix.Width; column++)
-        {
-            ProcessSymbol(geometry, bitMatrix, row, column, symbolSize);
-        }
     }
 
     /// <summary>
@@ -280,7 +264,14 @@ public class QRCode : Control
     /// <param name="row">The row to process</param>
     /// <param name="column">The column of the symbol being processed</param>
     /// <param name="symbolSize">The calculated size of each symbol</param>
-    private void ProcessSymbol(PathGeometry geometry, BitMatrix bitMatrix, int row, int column, Size symbolSize)
+    /// <param name="cornerRatio"></param>
+    private void ProcessSymbol(
+        PathGeometry geometry, 
+        BitMatrix bitMatrix, 
+        int row, 
+        int column, 
+        Size symbolSize, 
+        double cornerRatio)
     {
         // The full bounds of the symbol
         var symbolBounds = new Rect(
@@ -291,11 +282,11 @@ public class QRCode : Control
         );
         if (IsValid(bitMatrix, column, row))
         {
-            ProcessSymbolIfSet(geometry, bitMatrix, row, column, symbolBounds);
+            ProcessSymbolIfSet(geometry, bitMatrix, row, column, symbolBounds, cornerRatio);
         }
         else
         {
-            ProcessSymbolIfUnset(geometry, bitMatrix, row, column, symbolBounds);
+            ProcessSymbolIfUnset(geometry, bitMatrix, row, column, symbolBounds, cornerRatio);
         }
     }
 
@@ -307,10 +298,17 @@ public class QRCode : Control
     /// <param name="row">The row of the symbol being processed</param>
     /// <param name="column">The column of the symbol being processed</param>
     /// <param name="symbolBounds">The bounds of the symbol being processed</param>
+    /// <param name="cornerRatio"></param>
     /// <returns>True if the symbol was processed, otherwise false</returns>
-    private void ProcessSymbolIfSet(PathGeometry geometry, BitMatrix bitMatrix, int row, int column, Rect symbolBounds)
+    private static void ProcessSymbolIfSet(
+        PathGeometry geometry, 
+        BitMatrix bitMatrix, 
+        int row, 
+        int column, 
+        Rect symbolBounds, 
+        double cornerRatio)
     {
-        var cornerRadius = symbolBounds.Size * SymbolCornerRatio;
+        var cornerRadius = symbolBounds.Size * cornerRatio;
         var cornerFlags = GetSetSymbolCornerFlags(bitMatrix, row, column);
         var figure = new PathFigure
             { StartPoint = new Point(symbolBounds.Left, symbolBounds.Top + cornerRadius.Height) };
@@ -398,6 +396,7 @@ public class QRCode : Control
         geometry.Figures?.Add(figure);
     }
 
+    
     /// <summary>
     /// Gets the corner flags indicating how a set symbol is to be processed
     /// </summary>
@@ -405,7 +404,7 @@ public class QRCode : Control
     /// <param name="row">The row of the symbol being processed</param>
     /// <param name="column">The column of the symbol being processed</param>
     /// <returns>The corner flags for a set symbol</returns>
-    private CornerFlags GetSetSymbolCornerFlags(BitMatrix bitMatrix, int row, int column)
+    private static CornerFlags GetSetSymbolCornerFlags(BitMatrix bitMatrix, int row, int column)
     {
         var flags = CornerFlags.None;
 
@@ -432,8 +431,9 @@ public class QRCode : Control
     /// <param name="row">The row of the symbol being processed</param>
     /// <param name="column">The column of the symbol being processed</param>
     /// <param name="symbolBounds">The bounds of the symbol being processed</param>
-    private void ProcessSymbolIfUnset(PathGeometry geometry, BitMatrix bitMatrix, int row, int column,
-        Rect symbolBounds)
+    /// <param name="cornerRatio"></param>
+    private static void ProcessSymbolIfUnset(PathGeometry geometry, BitMatrix bitMatrix, int row, int column,
+        Rect symbolBounds, double cornerRatio)
     {
         // If filled, no action required
         if (IsValid(bitMatrix, column, row))
@@ -445,7 +445,7 @@ public class QRCode : Control
         if (cornerFlags == CornerFlags.None)
             return;
 
-        var cornerRadius = symbolBounds.Size * SymbolCornerRatio;
+        var cornerRadius = symbolBounds.Size * cornerRatio;
 
         // Top Left
         if ((cornerFlags & CornerFlags.TopLeft) != 0)
@@ -455,8 +455,8 @@ public class QRCode : Control
             geometry.Figures!.Add(new PathFigure
             {
                 StartPoint = start,
-                Segments = new PathSegments
-                {
+                Segments =
+                [
                     new LineSegment { Point = symbolBounds.TopLeft },
                     new LineSegment { Point = new Point(symbolBounds.Left + cornerRadius.Width, symbolBounds.Top) },
                     new ArcSegment
@@ -465,7 +465,7 @@ public class QRCode : Control
                         Point = start,
                         Size = cornerRadius
                     }
-                }
+                ]
             });
         }
 
@@ -477,8 +477,8 @@ public class QRCode : Control
             geometry.Figures!.Add(new PathFigure
             {
                 StartPoint = start,
-                Segments = new PathSegments
-                {
+                Segments =
+                [
                     new LineSegment { Point = symbolBounds.TopRight },
                     new LineSegment { Point = new Point(symbolBounds.Right, symbolBounds.Top + cornerRadius.Height) },
                     new ArcSegment
@@ -487,7 +487,7 @@ public class QRCode : Control
                         Point = start,
                         Size = cornerRadius
                     }
-                }
+                ]
             });
         }
 
@@ -499,8 +499,8 @@ public class QRCode : Control
             geometry.Figures!.Add(new PathFigure
             {
                 StartPoint = start,
-                Segments = new PathSegments
-                {
+                Segments =
+                [
                     new LineSegment { Point = symbolBounds.BottomRight },
                     new LineSegment { Point = new Point(symbolBounds.Right - cornerRadius.Width, symbolBounds.Bottom) },
                     new ArcSegment
@@ -509,7 +509,7 @@ public class QRCode : Control
                         Point = start,
                         Size = cornerRadius
                     }
-                }
+                ]
             });
         }
 
@@ -521,8 +521,8 @@ public class QRCode : Control
             geometry.Figures!.Add(new PathFigure
             {
                 StartPoint = start,
-                Segments = new PathSegments
-                {
+                Segments =
+                [
                     new LineSegment { Point = symbolBounds.BottomLeft },
                     new LineSegment { Point = new Point(symbolBounds.Left, symbolBounds.Bottom - cornerRadius.Height) },
                     new ArcSegment
@@ -531,7 +531,7 @@ public class QRCode : Control
                         Point = start,
                         Size = cornerRadius
                     }
-                }
+                ]
             });
         }
     }
@@ -543,7 +543,7 @@ public class QRCode : Control
     /// <param name="row">The row of the symbol being processed</param>
     /// <param name="column">The column of the symbol being processed</param>
     /// <returns>The corner flags for an unset symbol</returns>
-    private CornerFlags GetUnsetSymbolCornerFlags(BitMatrix bitMatrix, int row, int column)
+    private static CornerFlags GetUnsetSymbolCornerFlags(BitMatrix bitMatrix, int row, int column)
     {
         var flags = CornerFlags.None;
 
@@ -573,7 +573,7 @@ public class QRCode : Control
     /// <param name="x"></param>
     /// <param name="y"></param>
     /// <returns></returns>
-    private bool IsValid(BitMatrix bitMatrix, int x, int y)
+    private static bool IsValid(BitMatrix bitMatrix, int x, int y)
     {
         // Validate bounds of the bit matrix
         if (x < 0 || y < 0 || x >= bitMatrix.Width || y >= bitMatrix.Height)
@@ -590,7 +590,8 @@ public class QRCode : Control
     /// <param name="geometry">Geometry containing the QRCode Geometry</param>
     /// <param name="bounds">Bounds of the control itself</param>
     /// <param name="symbolSize">The size of each symbol</param>
-    private void AddPositionDetectionPattern(PathGeometry geometry, Rect bounds, Size symbolSize)
+    /// <param name="cornerRatio"></param>
+    private void AddPositionDetectionPattern(PathGeometry geometry, Rect bounds, Size symbolSize, double cornerRatio)
     {
         // Pre-calculations to reduce the amount of repeat math
         var dataBounds = bounds
@@ -625,11 +626,11 @@ public class QRCode : Control
                 geometry.Figures!.Add(new PathFigure
                 {
                     StartPoint = startPoint,
-                    Segments = new PathSegments
-                    {
+                    Segments =
+                    [
                         new ArcSegment { Size = arcSize, Point = endPoint },
                         new ArcSegment { Size = arcSize, Point = startPoint }
-                    }
+                    ]
                 });
 
                 // Adjusts the "rings" to make them progressively smaller with each loop
