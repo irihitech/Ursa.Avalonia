@@ -382,13 +382,17 @@ public partial class QRCode : Control
         var bounds = new Rect(0, 0, Width, Height);
 
         // Rounded corners
-        context.PushClip(new RoundedRect(bounds, CornerRadius.TopLeft, CornerRadius.TopRight, CornerRadius.BottomRight,
-            CornerRadius.BottomLeft));
-
-        if (_qrCodeGeometry is var newGeometry)
+        using (context.PushClip(new RoundedRect(bounds, 
+                   CornerRadius.TopLeft, 
+                   CornerRadius.TopRight,
+                   CornerRadius.BottomRight,
+                   CornerRadius.BottomLeft)))
         {
-            context.DrawRectangle(Background, null, bounds);
-            context.DrawGeometry(Foreground, null, newGeometry);
+            if (_qrCodeGeometry is var newGeometry)
+            {
+                context.DrawRectangle(Background, null, bounds);
+                context.DrawGeometry(Foreground, null, newGeometry);
+            }
         }
     }
 
