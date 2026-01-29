@@ -30,9 +30,9 @@
                 Name="cornerRatio"
                 u:FormItem.Label="Symbol Corner Ratio"
                 Minimum="0"
-                Maximum="1"
+                Maximum="0.5"
                 Value="0.5"
-                TickFrequency="0.1"
+                TickFrequency="0.05"
                 IsSnapToTickEnabled="True" />
         </u:Form>
     </Grid>

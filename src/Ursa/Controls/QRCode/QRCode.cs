@@ -291,13 +291,13 @@ public class QRCode : Control
         // The entire area is drawn here as the idea is to cover the control with the background brush and "carve" out the data showing the foreground
         geometry.Figures!.Add(new PathFigure
         {
-            Segments = new PathSegments
-            {
+            IsClosed = true,
+            Segments =
+            [
                 new LineSegment { Point = bounds.BottomLeft },
                 new LineSegment { Point = bounds.BottomRight },
                 new LineSegment { Point = bounds.TopRight }
-                // No need to have the additional line segment back to 0,0 as PathFigures are closed (IsClosed) by default and this segment will be assumed
-            }
+            ]
         });
 
         // Adds the three Position Detection Pattern
@@ -377,7 +377,7 @@ public class QRCode : Control
         {
             figure.Segments!.Add(new LineSegment { Point = symbolBounds.TopLeft });
             figure.Segments!.Add(new LineSegment
-                { Point = new Point(symbolBounds.Left + cornerRadius.Width, symbolBounds.Top) });
+                { Point = new Point(symbolBounds.Right - cornerRadius.Width, symbolBounds.Top) });
         }
         else
         {
@@ -387,14 +387,20 @@ public class QRCode : Control
                 Point = new Point(symbolBounds.Left + cornerRadius.Width, symbolBounds.Top),
                 Size = cornerRadius
             });
+            figure.Segments.Add(new LineSegment()
+            {
+                Point =  new Point(symbolBounds.Right - cornerRadius.Width, symbolBounds.Top),
+            });
         }
 
         // Top Right
         if ((cornerFlags & CornerFlags.TopRight) != 0)
         {
             figure.Segments!.Add(new LineSegment { Point = symbolBounds.TopRight });
-            figure.Segments!.Add(new LineSegment
-                { Point = new Point(symbolBounds.Right, symbolBounds.Top + cornerRadius.Height) });
+            figure.Segments.Add(new LineSegment()
+            {
+                Point = new Point(symbolBounds.Right, symbolBounds.Bottom - cornerRadius.Height),
+            });
         }
         else
         {
@@ -404,6 +410,10 @@ public class QRCode : Control
                 Point = new Point(symbolBounds.Right, symbolBounds.Top + cornerRadius.Height),
                 Size = cornerRadius
             });
+            figure.Segments.Add(new LineSegment()
+            {
+                Point = new Point(symbolBounds.Right, symbolBounds.Bottom - cornerRadius.Height),
+            });
         }
 
         // Bottom Right
@@ -411,7 +421,7 @@ public class QRCode : Control
         {
             figure.Segments!.Add(new LineSegment { Point = symbolBounds.BottomRight });
             figure.Segments!.Add(new LineSegment
-                { Point = new Point(symbolBounds.Right - cornerRadius.Width, symbolBounds.Bottom) });
+                { Point = new Point(symbolBounds.Left + cornerRadius.Width, symbolBounds.Bottom) });
         }
         else
         {
@@ -421,6 +431,8 @@ public class QRCode : Control
                 Point = new Point(symbolBounds.Right - cornerRadius.Width, symbolBounds.Bottom),
                 Size = cornerRadius
             });
+            figure.Segments!.Add(new LineSegment
+                { Point = new Point(symbolBounds.Left + cornerRadius.Width, symbolBounds.Bottom) });
         }
 
         // Bottom Left
@@ -434,9 +446,10 @@ public class QRCode : Control
             figure.Segments!.Add(new ArcSegment
             {
                 SweepDirection = SweepDirection.Clockwise,
-                Point = figure.StartPoint,
+                Point = new Point(symbolBounds.Left, symbolBounds.Bottom - cornerRadius.Height),
                 Size = cornerRadius
             });
+            figure.Segments!.Add(new LineSegment { Point = figure.StartPoint });
         }
 
         geometry.Figures?.Add(figure);
