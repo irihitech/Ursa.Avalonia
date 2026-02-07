@@ -299,8 +299,8 @@ public class CalendarViewTests
         };
         
         // Click on the first month button (January)
-        var yearButton = calendarView.FindDescendantOfType<CalendarYearButton>();
-        var position = yearButton?.TranslatePoint(new Point(6, 6), window);
+        var monthButton = calendarView.FindDescendantOfType<CalendarYearButton>();
+        var position = monthButton?.TranslatePoint(new Point(6, 6), window);
         Assert.NotNull(position);
         window.MouseUp(position.Value, MouseButton.Left);
         
@@ -372,8 +372,8 @@ public class CalendarViewTests
         };
         
         // Click on a month button
-        var yearButton = calendarView.FindDescendantOfType<CalendarYearButton>();
-        var position = yearButton?.TranslatePoint(new Point(6, 6), window);
+        var monthButton = calendarView.FindDescendantOfType<CalendarYearButton>();
+        var position = monthButton?.TranslatePoint(new Point(6, 6), window);
         Assert.NotNull(position);
         window.MouseUp(position.Value, MouseButton.Left);
         
