@@ -169,5 +169,12 @@
         <Style Selector="^ /template/ Border#Background:focus-within">
             <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
         </Style>
+
+        <Style Selector="^.Large">
+            <Setter Property="MinHeight" Value="{DynamicResource TextBoxLargeHeight}" />
+        </Style>
+        <Style Selector="^.Small">
+            <Setter Property="MinHeight" Value="{DynamicResource TextBoxSmallHeight}" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>
