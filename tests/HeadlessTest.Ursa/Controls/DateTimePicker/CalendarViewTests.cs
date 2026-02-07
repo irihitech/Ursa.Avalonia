@@ -276,5 +276,112 @@ public class CalendarViewTests
         Assert.Equal(25, (dayButton.DataContext as DateTime?)?.Day);
         
     }
+
+    [AvaloniaFact]
+    public void OnYearItemSelected_YearMode_WithMonthGranularity_SelectsMonthWithDayOne()
+    {
+        var window = new Window();
+        var calendarView = new CalendarView 
+        { 
+            Mode = CalendarViewMode.Year,
+            MinimalGranularity = CalendarMinimalGranularity.Month
+        };
+        window.Content = calendarView;
+        window.Show();
+        Dispatcher.UIThread.RunJobs();
+        calendarView.SyncContextDate(new CalendarContext(2023, 5));
+        Dispatcher.UIThread.RunJobs();
+        
+        DateTime? selectedDate = null;
+        calendarView.DateSelected += (sender, args) =>
+        {
+            selectedDate = args.Date;
+        };
+        
+        // Click on the first month button (January)
+        var yearButton = calendarView.FindDescendantOfType<CalendarYearButton>();
+        var position = yearButton?.TranslatePoint(new Point(6, 6), window);
+        Assert.NotNull(position);
+        window.MouseUp(position.Value, MouseButton.Left);
+        
+        // Should remain in Year mode
+        Assert.Equal(CalendarViewMode.Year, calendarView.Mode);
+        
+        // Should have selected January 1, 2023
+        Assert.NotNull(selectedDate);
+        Assert.Equal(2023, selectedDate.Value.Year);
+        Assert.Equal(1, selectedDate.Value.Month);
+        Assert.Equal(1, selectedDate.Value.Day);
+    }
+
+    [AvaloniaFact]
+    public void OnYearItemSelected_DecadeMode_WithYearGranularity_SelectsYearWithMonthAndDayOne()
+    {
+        var window = new Window();
+        var calendarView = new CalendarView 
+        { 
+            Mode = CalendarViewMode.Decade,
+            MinimalGranularity = CalendarMinimalGranularity.Year
+        };
+        window.Content = calendarView;
+        window.Show();
+        Dispatcher.UIThread.RunJobs();
+        calendarView.SyncContextDate(new CalendarContext(null, null, 2000, 2009));
+        Dispatcher.UIThread.RunJobs();
+        
+        DateTime? selectedDate = null;
+        calendarView.DateSelected += (sender, args) =>
+        {
+            selectedDate = args.Date;
+        };
+        
+        // Click on the first year button
+        var yearButton = calendarView.FindDescendantOfType<CalendarYearButton>();
+        var position = yearButton?.TranslatePoint(new Point(6, 6), window);
+        Assert.NotNull(position);
+        window.MouseUp(position.Value, MouseButton.Left);
+        
+        // Should remain in Decade mode
+        Assert.Equal(CalendarViewMode.Decade, calendarView.Mode);
+        
+        // Should have selected January 1 of the year
+        Assert.NotNull(selectedDate);
+        Assert.Equal(1, selectedDate.Value.Month);
+        Assert.Equal(1, selectedDate.Value.Day);
+    }
+
+    [AvaloniaFact]
+    public void OnYearItemSelected_YearMode_WithDayGranularity_SwitchesToMonthMode()
+    {
+        var window = new Window();
+        var calendarView = new CalendarView 
+        { 
+            Mode = CalendarViewMode.Year,
+            MinimalGranularity = CalendarMinimalGranularity.Day
+        };
+        window.Content = calendarView;
+        window.Show();
+        Dispatcher.UIThread.RunJobs();
+        calendarView.SyncContextDate(new CalendarContext(2023, 5));
+        Dispatcher.UIThread.RunJobs();
+        
+        DateTime? selectedDate = null;
+        calendarView.DateSelected += (sender, args) =>
+        {
+            selectedDate = args.Date;
+        };
+        
+        // Click on a month button
+        var yearButton = calendarView.FindDescendantOfType<CalendarYearButton>();
+        var position = yearButton?.TranslatePoint(new Point(6, 6), window);
+        Assert.NotNull(position);
+        window.MouseUp(position.Value, MouseButton.Left);
+        
+        // Should switch to Month mode (default behavior)
+        Assert.Equal(CalendarViewMode.Month, calendarView.Mode);
+        
+        // Should not have selected a date yet
+        Assert.Null(selectedDate);
+    }
     
 }
