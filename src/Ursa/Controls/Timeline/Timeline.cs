@@ -1,9 +1,11 @@
+using System.Collections.Specialized;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
 using Avalonia.Metadata;
+using Avalonia.VisualTree;
 
 namespace Ursa.Controls;
 
@@ -209,5 +211,16 @@ public class Timeline: ItemsControl
     {
         if (!target.IsSet(property))
             target.SetCurrentValue(property, value);
+    }
+    
+    internal void InvalidateContainers()
+    {
+        var timelineItems = this.GetVisualDescendants().OfType<TimelineItem>().ToList();
+        for (var i = 0; i < timelineItems.Count; i++)
+        {
+            bool isFirst = i == 0;
+            bool isLast = i == timelineItems.Count - 1;
+            timelineItems[i].SetEnd(isFirst, isLast);
+        }
     }
 }
