@@ -8,9 +8,9 @@
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
         <PackageVersion Include="xunit" Version="2.5.3"/>
         <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.3"/>
-        <PackageVersion Include="Avalonia.Headless.XUnit" Version="11.3.7" />
-        <PackageVersion Include="Avalonia.Skia" Version="11.3.7" />
+        <PackageVersion Include="Avalonia.Headless.XUnit" Version="12.0.999-12.0.999-cibuild0061987-alpha" />
+        <PackageVersion Include="Avalonia.Skia" Version="12.0.999-cibuild0061987-alpha" />
         <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-        <PackageVersion Include="Semi.Avalonia" Version="11.3.7" />
+        <PackageVersion Include="Semi.Avalonia" Version="12.0.0-nightly-20260210000416" />
     </ItemGroup>
 </Project>
