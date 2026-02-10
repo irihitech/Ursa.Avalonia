@@ -25,20 +25,20 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
     public static readonly StyledProperty<object?> SelectedItemProperty = AvaloniaProperty.Register<NavMenu, object?>(
         nameof(SelectedItem), defaultBindingMode: BindingMode.TwoWay);
 
-    public static readonly StyledProperty<IBinding?> IconBindingProperty =
-        AvaloniaProperty.Register<NavMenu, IBinding?>(
+    public static readonly StyledProperty<BindingBase?> IconBindingProperty =
+        AvaloniaProperty.Register<NavMenu, BindingBase?>(
             nameof(IconBinding));
 
-    public static readonly StyledProperty<IBinding?> HeaderBindingProperty =
-        AvaloniaProperty.Register<NavMenu, IBinding?>(
+    public static readonly StyledProperty<BindingBase?> HeaderBindingProperty =
+        AvaloniaProperty.Register<NavMenu, BindingBase?>(
             nameof(HeaderBinding));
 
-    public static readonly StyledProperty<IBinding?> SubMenuBindingProperty =
-        AvaloniaProperty.Register<NavMenu, IBinding?>(
+    public static readonly StyledProperty<BindingBase?> SubMenuBindingProperty =
+        AvaloniaProperty.Register<NavMenu, BindingBase?>(
             nameof(SubMenuBinding));
 
-    public static readonly StyledProperty<IBinding?> CommandBindingProperty =
-        AvaloniaProperty.Register<NavMenu, IBinding?>(
+    public static readonly StyledProperty<BindingBase?> CommandBindingProperty =
+        AvaloniaProperty.Register<NavMenu, BindingBase?>(
             nameof(CommandBinding));
 
     public static readonly StyledProperty<IDataTemplate?> HeaderTemplateProperty =
@@ -93,7 +93,7 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
 
     [AssignBinding]
     [InheritDataTypeFromItems(nameof(ItemsSource))]
-    public IBinding? IconBinding
+    public BindingBase? IconBinding
     {
         get => GetValue(IconBindingProperty);
         set => SetValue(IconBindingProperty, value);
@@ -101,7 +101,7 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
 
     [AssignBinding]
     [InheritDataTypeFromItems(nameof(ItemsSource))]
-    public IBinding? HeaderBinding
+    public BindingBase? HeaderBinding
     {
         get => GetValue(HeaderBindingProperty);
         set => SetValue(HeaderBindingProperty, value);
@@ -109,7 +109,7 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
 
     [AssignBinding]
     [InheritDataTypeFromItems(nameof(ItemsSource))]
-    public IBinding? SubMenuBinding
+    public BindingBase? SubMenuBinding
     {
         get => GetValue(SubMenuBindingProperty);
         set => SetValue(SubMenuBindingProperty, value);
@@ -117,7 +117,7 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
 
     [AssignBinding]
     [InheritDataTypeFromItems(nameof(ItemsSource))]
-    public IBinding? CommandBinding
+    public BindingBase? CommandBinding
     {
         get => GetValue(CommandBindingProperty);
         set => SetValue(CommandBindingProperty, value);

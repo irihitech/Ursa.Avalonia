@@ -15,34 +15,34 @@ public class Breadcrumb: ItemsControl
         new FuncTemplate<Panel?>(() => new StackPanel() { Orientation = Orientation.Horizontal });
     
     
-    public static readonly StyledProperty<IBinding?> IconBindingProperty = AvaloniaProperty.Register<Breadcrumb, IBinding?>(
+    public static readonly StyledProperty<BindingBase?> IconBindingProperty = AvaloniaProperty.Register<Breadcrumb, BindingBase?>(
         nameof(IconBinding));
 
     [AssignBinding]
     [InheritDataTypeFromItems(nameof(ItemsSource))]
-    public IBinding? IconBinding
+    public BindingBase? IconBinding
     {
         get => GetValue(IconBindingProperty);
         set => SetValue(IconBindingProperty, value);
     }
 
-    public static readonly StyledProperty<IBinding?> CommandBindingProperty = AvaloniaProperty.Register<Breadcrumb, IBinding?>(
+    public static readonly StyledProperty<BindingBase?> CommandBindingProperty = AvaloniaProperty.Register<Breadcrumb, BindingBase?>(
         nameof(CommandBinding));
 
     [AssignBinding]
     [InheritDataTypeFromItems(nameof(ItemsSource))]
-    public IBinding? CommandBinding
+    public BindingBase? CommandBinding
     {
         get => GetValue(CommandBindingProperty);
         set => SetValue(CommandBindingProperty, value);
     }
 
-    public static readonly StyledProperty<IBinding?> CommandParameterBindingProperty = AvaloniaProperty.Register<Breadcrumb, IBinding?>(
+    public static readonly StyledProperty<BindingBase?> CommandParameterBindingProperty = AvaloniaProperty.Register<Breadcrumb, BindingBase?>(
         nameof(CommandParameterBinding));
 
     [AssignBinding]
     [InheritDataTypeFromItems(nameof(ItemsSource))]
-    public IBinding? CommandParameterBinding
+    public BindingBase? CommandParameterBinding
     {
         get => GetValue(CommandParameterBindingProperty);
         set => SetValue(CommandParameterBindingProperty, value);
