@@ -378,11 +378,11 @@ public class NavMenuItem : HeaderedItemsControl
             ? _overflowPanel.Children
             : GetRealizedContainers();
 
-    internal void SelectItem(NavMenuItem item)
+    internal bool SelectItem(NavMenuItem item)
     {
         if (item == this && RootMenu?.CanChangeSelection(item) != true)
         {
-            return;
+            return false;
         }
         SetCurrentValue(IsSelectedProperty, item == this);
         SetCurrentValue(IsHighlightedProperty, true);
@@ -401,6 +401,7 @@ public class NavMenuItem : HeaderedItemsControl
         }
 
         _popup?.Close();
+        return true;
     }
 
     internal void ClearSelection()
@@ -414,8 +415,11 @@ public class NavMenuItem : HeaderedItemsControl
 
     private void SelectAndExecute()
     {
-        SelectItem(this);
-        Command?.Execute(CommandParameter);
+        bool canExecute = SelectItem(this);
+        if (canExecute)
+        {
+            Command?.Execute(CommandParameter);
+        }
     }
 
     private void ActivateMenuItem(RoutedEventArgs e)
