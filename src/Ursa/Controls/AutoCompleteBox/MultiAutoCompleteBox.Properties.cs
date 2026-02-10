@@ -317,11 +317,11 @@ public partial class MultiAutoCompleteBox
         /// the <see cref="AutoCompleteBox" />
         /// control.
         /// </summary>
-        /// <value>The <see cref="T:Avalonia.Data.IBinding" /> object used
+        /// <value>The <see cref="T:Avalonia.Data.BindingBase" /> object used
         /// when binding to a collection property.</value>
         [AssignBinding]
         [InheritDataTypeFromItems(nameof(ItemsSource))]
-        public IBinding? ValueMemberBinding
+        public BindingBase? ValueMemberBinding
         {
             get => _valueBindingEvaluator?.ValueBinding;
             set

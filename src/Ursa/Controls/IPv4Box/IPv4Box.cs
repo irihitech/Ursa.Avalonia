@@ -618,7 +618,7 @@ public class IPv4Box : TemplatedControl
     {
         IClipboard? clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
         if (clipboard is null) return;
-        var s = await clipboard.GetTextAsync();
+        var s = await clipboard.TryGetTextAsync();
         if (s is not null && IPAddress.TryParse(s, out var address))
         {
             IPAddress = address;

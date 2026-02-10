@@ -8,34 +8,34 @@ namespace Ursa.Controls;
 
 public class ButtonGroup: ItemsControl
 {
-    public static readonly StyledProperty<IBinding?> CommandBindingProperty = AvaloniaProperty.Register<ButtonGroup, IBinding?>(
+    public static readonly StyledProperty<BindingBase?> CommandBindingProperty = AvaloniaProperty.Register<ButtonGroup, BindingBase?>(
         nameof(CommandBinding));
 
     [AssignBinding]
     [InheritDataTypeFromItems(nameof(ItemsSource))]
-    public IBinding? CommandBinding
+    public BindingBase? CommandBinding
     {
         get => GetValue(CommandBindingProperty);
         set => SetValue(CommandBindingProperty, value);
     }
 
-    public static readonly StyledProperty<IBinding?> CommandParameterBindingProperty = AvaloniaProperty.Register<ButtonGroup, IBinding?>(
+    public static readonly StyledProperty<BindingBase?> CommandParameterBindingProperty = AvaloniaProperty.Register<ButtonGroup, BindingBase?>(
         nameof(CommandParameterBinding));
 
     [AssignBinding]
     [InheritDataTypeFromItems(nameof(ItemsSource))]
-    public IBinding? CommandParameterBinding
+    public BindingBase? CommandParameterBinding
     {
         get => GetValue(CommandParameterBindingProperty);
         set => SetValue(CommandParameterBindingProperty, value);
     }
     
-    public static readonly StyledProperty<IBinding?> ContentBindingProperty = AvaloniaProperty.Register<ButtonGroup, IBinding?>(
+    public static readonly StyledProperty<BindingBase?> ContentBindingProperty = AvaloniaProperty.Register<ButtonGroup, BindingBase?>(
         nameof(ContentBinding));
     
     [AssignBinding]
     [InheritDataTypeFromItems(nameof(ItemsSource))]
-    public IBinding? ContentBinding
+    public BindingBase? ContentBinding
     {
         get => GetValue(ContentBindingProperty);
         set => SetValue(ContentBindingProperty, value);

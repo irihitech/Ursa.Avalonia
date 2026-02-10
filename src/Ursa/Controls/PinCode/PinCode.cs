@@ -4,6 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
+using Avalonia.Input.Platform;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 using Irihi.Avalonia.Shared.Helpers;
@@ -166,7 +167,7 @@ public class PinCode : TemplatedControl
         {
             var clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
             if (clipboard is null) return;
-            var text = await clipboard.GetTextAsync();
+            var text = await clipboard.TryGetTextAsync();
             if (text is not null)
             {
                 var newText = text.Where(c => Valid(c, Mode)).Take(Count).ToArray();
