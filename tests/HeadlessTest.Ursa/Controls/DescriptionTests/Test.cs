@@ -1,7 +1,10 @@
 ﻿using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Headless.XUnit;
 using Avalonia.LogicalTree;
+using Avalonia.Threading;
+using HeadlessTest.Ursa.TestHelpers;
 using Ursa.Common;
 using Ursa.Controls;
 
@@ -179,5 +182,81 @@ public class Test
         {
             Assert.Equal(150, item.LabelWidth);
         }
+    }
+
+    [AvaloniaFact]
+    public void DescriptionItem_Colon_Visibility_When_ItemAlignment_Is_Plain()
+    {
+        // Test case 1: ItemAlignment=Plain with non-empty Label - colon should be visible
+        var itemWithLabel = new DescriptionsItem
+        {
+            Label = "Name",
+            Content = "John Doe",
+            ItemAlignment = ItemAlignment.Plain,
+            LabelPosition = Position.Left
+        };
+        var window1 = new Window { Content = itemWithLabel };
+        window1.Show();
+        Dispatcher.UIThread.RunJobs();
+
+        var colon1 = itemWithLabel.GetTemplateChildOfType<TextBlock>("PART_Colon");
+        Assert.NotNull(colon1);
+        Assert.True(colon1.IsVisible, "Colon should be visible when ItemAlignment=Plain and Label is not empty");
+
+        window1.Close();
+
+        // Test case 2: ItemAlignment=Plain with null Label - colon should be hidden
+        var itemWithoutLabel = new DescriptionsItem
+        {
+            Label = null,
+            Content = "John Doe",
+            ItemAlignment = ItemAlignment.Plain,
+            LabelPosition = Position.Left
+        };
+        var window2 = new Window { Content = itemWithoutLabel };
+        window2.Show();
+        Dispatcher.UIThread.RunJobs();
+
+        var colon2 = itemWithoutLabel.GetTemplateChildOfType<TextBlock>("PART_Colon");
+        Assert.NotNull(colon2);
+        Assert.False(colon2.IsVisible, "Colon should be hidden when ItemAlignment=Plain and Label is null");
+
+        window2.Close();
+
+        // Test case 3: ItemAlignment=Plain with empty string Label - colon should be hidden
+        var itemWithEmptyLabel = new DescriptionsItem
+        {
+            Label = string.Empty,
+            Content = "John Doe",
+            ItemAlignment = ItemAlignment.Plain,
+            LabelPosition = Position.Left
+        };
+        var window3 = new Window { Content = itemWithEmptyLabel };
+        window3.Show();
+        Dispatcher.UIThread.RunJobs();
+
+        var colon3 = itemWithEmptyLabel.GetTemplateChildOfType<TextBlock>("PART_Colon");
+        Assert.NotNull(colon3);
+        Assert.False(colon3.IsVisible, "Colon should be hidden when ItemAlignment=Plain and Label is empty string");
+
+        window3.Close();
+
+        // Test case 4: ItemAlignment=Center with Label - colon should be hidden (per existing style)
+        var itemWithCenterAlignment = new DescriptionsItem
+        {
+            Label = "Age",
+            Content = "30",
+            ItemAlignment = ItemAlignment.Center,
+            LabelPosition = Position.Left
+        };
+        var window4 = new Window { Content = itemWithCenterAlignment };
+        window4.Show();
+        Dispatcher.UIThread.RunJobs();
+
+        var colon4 = itemWithCenterAlignment.GetTemplateChildOfType<TextBlock>("PART_Colon");
+        Assert.NotNull(colon4);
+        Assert.False(colon4.IsVisible, "Colon should be hidden when ItemAlignment=Center (regardless of Label)");
+
+        window4.Close();
     }
 }

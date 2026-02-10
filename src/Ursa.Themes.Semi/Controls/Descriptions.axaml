@@ -103,6 +103,11 @@
                     <Setter Property="HorizontalAlignment" Value="Right" />
                 </Style>
             </Style>
+            <Style Selector="^[ItemAlignment=Plain]">
+                <Style Selector="^ /template/ TextBlock#PART_Colon">
+                    <Setter Property="IsVisible" Value="{TemplateBinding Label, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                </Style>
+            </Style>
         </Style>
         <Style Selector="^:vertical">
             <Setter Property="iri:ClassHelper.ClassSource" Value="{Binding $parent[u:Descriptions]}" />
