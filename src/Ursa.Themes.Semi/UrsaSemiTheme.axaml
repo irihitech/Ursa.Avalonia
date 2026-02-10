@@ -2,6 +2,8 @@
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:semi="https://irihi.tech/semi">
+    <semi:SemiTheme Locale="zh-CN"/>
+
     <Styles.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
@@ -16,7 +18,6 @@
                 <ResourceInclude Source="Controls/_index.axaml" />
                 <ResourceInclude Source="Themes/Shared/_index.axaml" />
                 <ResourceInclude Source="Locale/zh-cn.axaml" />
-                <ResourceInclude Source="Compatibles/_index.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Styles.Resources>

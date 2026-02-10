@@ -9,6 +9,7 @@
 
     <ItemGroup>
         <PackageReference Include="Avalonia"/>
+        <PackageReference Include="Semi.Avalonia"/>
     </ItemGroup>
 
     <ItemGroup>

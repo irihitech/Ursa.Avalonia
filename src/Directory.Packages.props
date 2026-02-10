@@ -9,5 +9,6 @@
         <PackageVersion Include="Irihi.Avalonia.Shared.Contracts" Version="0.4.0-nightly-20260206184422" />
         <PackageVersion Include="Prism.Core" Version="8.1.97"/>
         <PackageVersion Include="ReactiveUI.Avalonia" Version="11.3.0" />
+        <PackageVersion Include="Semi.Avalonia" Version="12.0.0-nightly-20260210000416" />
     </ItemGroup>
 </Project>
