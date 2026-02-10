@@ -4,6 +4,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Avalonia.VisualTree;
 
 namespace Ursa.Controls;
 
@@ -195,5 +196,12 @@ public class TimelineItem: HeaderedContentControl
         {
             SetCurrentValue(property, value);
         }
+    }
+
+    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnAttachedToVisualTree(e);
+        var parent = this.Parent as Timeline;
+        parent?.InvalidateContainers();
     }
 }
