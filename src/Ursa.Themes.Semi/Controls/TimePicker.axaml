@@ -127,6 +127,7 @@
                                 Grid.Column="0"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
+                                MinHeight="{TemplateBinding MinHeight}"
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
                                 InnerRightContent="{TemplateBinding InnerRightContent}"
