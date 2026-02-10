@@ -16,7 +16,6 @@
                 <ResourceInclude Source="Controls/_index.axaml" />
                 <ResourceInclude Source="Themes/Shared/_index.axaml" />
                 <ResourceInclude Source="Locale/zh-cn.axaml" />
-                <ResourceInclude Source="Compatibles/_index.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Styles.Resources>
