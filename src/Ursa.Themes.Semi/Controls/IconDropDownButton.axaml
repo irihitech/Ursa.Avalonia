@@ -12,14 +12,14 @@
             CornerRadius="{TemplateBinding CornerRadius}">
             <Grid
                 ColumnDefinitions="*, Auto"
-                ColumnSpacing="{StaticResource IconButtonInnerSpacing}">
+                ColumnSpacing="{DynamicResource IconButtonInnerSpacing}">
                 <ReversibleStackPanel
                     Name="{x:Static u:IconButton.PART_RootPanel}"
                     Grid.Column="0"
                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                     Orientation="Horizontal"
-                    Spacing="{StaticResource IconButtonInnerSpacing}">
+                    Spacing="{DynamicResource IconButtonInnerSpacing}">
                     <Panel Name="PART_IconRoot">
                         <Panel.IsVisible>
                             <MultiBinding Converter="{x:Static BoolConverters.Or}">
