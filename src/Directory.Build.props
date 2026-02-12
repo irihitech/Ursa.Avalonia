@@ -4,7 +4,7 @@
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
 
-        <Version>1.15.0</Version>
+        <Version>2.0.0-nightly-20260212200502</Version>
         <Authors>IRIHI Technology Co., Ltd.</Authors>
         <RepositoryUrl>https://github.com/irihitech/Ursa.Avalonia</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
