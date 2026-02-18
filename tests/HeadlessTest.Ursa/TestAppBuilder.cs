@@ -11,6 +11,7 @@ public class TestAppBuilder
     public static AppBuilder BuildAvaloniaApp() =>
         AppBuilder
             .Configure<App>()
+            .UseHarfBuzz()
             .UseHeadless(new AvaloniaHeadlessPlatformOptions());
 }
 
@@ -20,6 +21,7 @@ public class SkiaTestAppBuilder
         AppBuilder
             .Configure<App>()
             .UseSkia()
+            .UseHarfBuzz()
             .UseHeadless(new AvaloniaHeadlessPlatformOptions(){ UseHeadlessDrawing = false});
 }
 

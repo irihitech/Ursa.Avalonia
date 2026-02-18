@@ -6,17 +6,20 @@
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
+        <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+        <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="coverlet.collector"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk"/>
         <PackageReference Include="xunit.v3"/>
         <PackageReference Include="xunit.v3.runner.msbuild"/>
         <PackageReference Include="Avalonia.Headless.XUnit"/>
+        <PackageReference Include="Avalonia.HarfBuzz" />
         <PackageReference Include="Avalonia.Skia"/>
         <PackageReference Include="CommunityToolkit.Mvvm"/>
         <PackageReference Include="Semi.Avalonia"/>
+        <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" />
     </ItemGroup>
 
     <ItemGroup>

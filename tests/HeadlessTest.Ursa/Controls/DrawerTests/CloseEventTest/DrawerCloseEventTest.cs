@@ -8,7 +8,7 @@ namespace HeadlessTest.Ursa.Controls;
 public class DrawerCloseEventTest
 {
     [AvaloniaFact]
-    public async void Test()
+    public async Task Test()
     {
         UrsaWindow testWindow = new()
         {

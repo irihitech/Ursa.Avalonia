@@ -15,7 +15,7 @@ public class DrawerMeasureTest
     [InlineData(Position.Right)]
     [InlineData(Position.Top)]
     [InlineData(Position.Bottom)]
-    public async void Default_Drawer_Is_Constrained_When_Content_Is_Large(Position position)
+    public async Task Default_Drawer_Is_Constrained_When_Content_Is_Large(Position position)
     {
         var window = new UrsaWindow
         {
@@ -43,7 +43,7 @@ public class DrawerMeasureTest
     [InlineData(Position.Right)]
     [InlineData(Position.Top)]
     [InlineData(Position.Bottom)]
-    public async void Custom_Drawer_Is_Constrained_When_Content_Is_Large(Position position)
+    public async Task Custom_Drawer_Is_Constrained_When_Content_Is_Large(Position position)
     {
         var window = new UrsaWindow
         {
