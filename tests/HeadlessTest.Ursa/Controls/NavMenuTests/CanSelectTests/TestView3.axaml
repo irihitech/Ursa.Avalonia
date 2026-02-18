@@ -6,8 +6,8 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HeadlessTest.Ursa.Controls.NavMenuTests.CanSelectTests.TestView3">
     <u:NavMenu Name="Menu" ExpandWidth="400" IsHorizontalCollapsed="False" SelectionChanging="Menu_OnSelectionChanging">
-        <u:NavMenuItem Name="MenuItem1" Header="Item 1" Command="{Binding $parent[UserControl].OnMenuItemClicked}" />
-        <u:NavMenuItem Name="MenuItem2" Header="Item 2" Command="{Binding $parent[UserControl].OnMenuItemClicked}" />
-        <u:NavMenuItem Name="MenuItem3" Header="Item 3" Command="{Binding $parent[UserControl].OnMenuItemClicked}" />
+        <u:NavMenuItem Name="MenuItem1" Header="Item 1" Command="{ReflectionBinding $parent[UserControl].OnMenuItemClicked}" />
+        <u:NavMenuItem Name="MenuItem2" Header="Item 2" Command="{ReflectionBinding $parent[UserControl].OnMenuItemClicked}" />
+        <u:NavMenuItem Name="MenuItem3" Header="Item 3" Command="{ReflectionBinding $parent[UserControl].OnMenuItemClicked}" />
     </u:NavMenu>
 </UserControl>

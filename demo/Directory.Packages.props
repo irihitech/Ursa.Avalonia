@@ -1,7 +1,7 @@
 <Project>
     <PropertyGroup>
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-        <AvaloniaVersion>12.0.999-cibuild0061987-alpha</AvaloniaVersion>
+        <AvaloniaVersion>12.0.0-preview1</AvaloniaVersion>
         <SkiaSharpVersion>3.119.1</SkiaSharpVersion>
     </PropertyGroup>
 
@@ -21,7 +21,7 @@
         <PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.2.0"/>
 
         <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0"/>
-        <PackageVersion Include="Semi.Avalonia" Version="12.0.0-nightly-20260210000416"/>
+        <PackageVersion Include="Semi.Avalonia" Version="12.0.0-preview1"/>
         <!--<PackageVersion Include="Semi.Avalonia.DataGrid" Version="11.3.7.2" />-->
         <PackageVersion Include="Prism.DryIoc.Avalonia" Version="8.1.97.11072"/>
     </ItemGroup>
