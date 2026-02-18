@@ -14,6 +14,7 @@
         <PackageReference Include="xunit.v3"/>
         <PackageReference Include="xunit.v3.runner.msbuild"/>
         <PackageReference Include="Avalonia.Headless.XUnit"/>
+        <PackageReference Include="Avalonia.HarfBuzz" />
         <PackageReference Include="Avalonia.Skia"/>
         <PackageReference Include="CommunityToolkit.Mvvm"/>
         <PackageReference Include="Semi.Avalonia"/>

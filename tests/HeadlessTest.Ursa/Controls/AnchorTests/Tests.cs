@@ -239,7 +239,7 @@ public class Tests
     }
 
     [AvaloniaFact]
-    public async void Scroll_To_Bottom_Should_Handle_Edge_Case()
+    public async Task Scroll_To_Bottom_Should_Handle_Edge_Case()
     {
         var window = new Window()
         {
