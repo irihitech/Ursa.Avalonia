@@ -2,9 +2,9 @@ name: Test
 
 on:
   push:
-    branches: [ "main", "2.0" ]
+    branches: [ "main", "2.0", "12.0-preview" ]
   pull_request:
-    branches: [ "main", "2.0" ]
+    branches: [ "main", "2.0", "12.0-preview" ]
   workflow_dispatch:
     
 permissions:
@@ -32,9 +32,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
       - name: Unit Test
-        run: dotnet test tests/Test.Ursa --configuration Release --logger trx --collect:"XPlat Code Coverage;Format=cobertura" --results-directory ./TestResults/
+        run: dotnet test tests/Test.Ursa --configuration Release  -- --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml
       - name: Ursa Headless Test
-        run: dotnet test tests/HeadlessTest.Ursa --configuration Release --logger trx --collect:"XPlat Code Coverage;Format=cobertura" --results-directory ./TestResults/
+        run: dotnet test tests/HeadlessTest.Ursa --configuration Release  -- --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml
       - name: Combine Coverage Reports # This is because one report is produced per project, and we want one result for all of them.
         uses: danielpalme/ReportGenerator-GitHub-Action@v5.4.3
         with:
