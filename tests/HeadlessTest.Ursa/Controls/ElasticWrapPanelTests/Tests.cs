@@ -216,4 +216,66 @@ public class Tests
         window.UpdateLayout();
         Assert.Equal(4, panel2.LineCount); // 1 item per line, 4 items total = 4 lines
     }
+
+    [AvaloniaFact]
+    public void HiddenItem_IsSkipped_WithItemWidth()
+    {
+        var window = new Window();
+        var panel = new ElasticWrapPanel
+        {
+            Width = 400,
+            Height = 400,
+            Orientation = Orientation.Horizontal,
+            ItemWidth = 100,
+            IsFillHorizontal = true,
+        };
+
+        // Add 4 items: item[1] is hidden
+        for (int i = 0; i < 4; i++)
+        {
+            var rect = new Rectangle
+            {
+                Width = 100,
+                Height = 100,
+                IsVisible = i != 1,
+            };
+            panel.Children.Add(rect);
+        }
+
+        window.Content = panel;
+        window.Show();
+
+        // 3 visible items of width 100 fit on one line in a 400-wide panel
+        Assert.Equal(1, panel.LineCount);
+    }
+
+    [AvaloniaFact]
+    public void HiddenItem_IsSkipped_WithoutItemWidth()
+    {
+        var window = new Window();
+        var panel = new ElasticWrapPanel
+        {
+            Width = 400,
+            Height = 400,
+            Orientation = Orientation.Horizontal,
+        };
+
+        // Add 4 items: item[1] is hidden
+        for (int i = 0; i < 4; i++)
+        {
+            var rect = new Rectangle
+            {
+                Width = 100,
+                Height = 100,
+                IsVisible = i != 1,
+            };
+            panel.Children.Add(rect);
+        }
+
+        window.Content = panel;
+        window.Show();
+
+        // 3 visible items of width 100 fit on one line in a 400-wide panel
+        Assert.Equal(1, panel.LineCount);
+    }
 }
