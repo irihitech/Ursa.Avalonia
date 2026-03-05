@@ -173,6 +173,12 @@
             <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
                 <Setter Property="Foreground" Value="{DynamicResource ButtonSolidDisabledForeground}" />
             </Style>
+            <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter TextBlock">
+                <Setter Property="Foreground" Value="{DynamicResource ButtonSolidDisabledForeground}" />
+            </Style>
+            <Style Selector="^:disabled /template/ Panel#PART_IconRoot ContentPresenter TextBlock">
+                <Setter Property="Foreground" Value="{DynamicResource ButtonSolidDisabledForeground}" />
+            </Style>
             <Style Selector="^:disabled /template/ Border#PART_Background">
                 <Setter Property="Background" Value="{DynamicResource ButtonSolidDisabledBackground}" />
                 <Setter Property="BorderBrush" Value="{DynamicResource ButtonSolidDisabledBorderBrush}" />
