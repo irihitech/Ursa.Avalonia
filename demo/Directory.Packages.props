@@ -7,13 +7,11 @@
 
     <ItemGroup>
         <PackageVersion Include="Avalonia" Version="$(AvaloniaVersion)"/>
-        <!--
-        <PackageVersion Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)"/>
-        -->
         <PackageVersion Include="Avalonia.Desktop" Version="$(AvaloniaVersion)"/>
         <PackageVersion Include="Avalonia.iOS" Version="$(AvaloniaVersion)"/>
         <PackageVersion Include="Avalonia.Browser" Version="$(AvaloniaVersion)"/>
         <PackageVersion Include="Avalonia.Android" Version="$(AvaloniaVersion)"/>
+        <PackageVersion Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.0-beta3"/>
 
         <PackageVersion Include="SkiaSharp" Version="$(SkiaSharpVersion)"/>
         <PackageVersion Include="SkiaSharp.NativeAssets.WebAssembly" Version="$(SkiaSharpVersion)"/>
