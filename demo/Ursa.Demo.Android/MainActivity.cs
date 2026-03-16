@@ -9,9 +9,6 @@ namespace Ursa.Demo.Android;
     Theme = "@style/MyTheme.NoActionBar",
     Icon = "@drawable/icon",
     MainLauncher = true,
-    LaunchMode = LaunchMode.SingleTop, 
+    LaunchMode = LaunchMode.SingleTop,
     ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize | ConfigChanges.UiMode)]
-public class MainActivity : AvaloniaMainActivity<App>
-{
-
-}
+public class MainActivity : AvaloniaMainActivity;

@@ -2,9 +2,9 @@ name: Test
 
 on:
   push:
-    branches: [ "main", "2.0", "12.0-preview" ]
+    branches: [ "main", "2.0.0*" ]
   pull_request:
-    branches: [ "main", "2.0", "12.0-preview" ]
+    branches: [ "main", "2.0.0*" ]
   workflow_dispatch:
     
 permissions:
@@ -17,7 +17,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Ursa Unit Test
         run: dotnet test tests/Test.Ursa
       - name: Ursa Headless Test
@@ -30,13 +30,13 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Unit Test
         run: dotnet test tests/Test.Ursa --configuration Release  -- --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml
       - name: Ursa Headless Test
         run: dotnet test tests/HeadlessTest.Ursa --configuration Release  -- --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml
       - name: Combine Coverage Reports # This is because one report is produced per project, and we want one result for all of them.
-        uses: danielpalme/ReportGenerator-GitHub-Action@v5.4.3
+        uses: danielpalme/ReportGenerator-GitHub-Action@v5
         with:
           reports: '**/*.cobertura.xml' # REQUIRED # The coverage reports that should be parsed (separated by semicolon). Globbing is supported.
           targetdir: "${{ github.workspace }}" # REQUIRED # The directory where the generated report should be saved.
@@ -54,13 +54,13 @@ jobs:
           output: both
           thresholds: "10 30"
       - name: Add Coverage PR Comment
-        uses: marocchino/sticky-pull-request-comment@v2
+        uses: marocchino/sticky-pull-request-comment@v3
         if: (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)
         with:
           recreate: true
           path: code-coverage-results.md
       - name: Upload Test Result Files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-results
           path: |
@@ -68,7 +68,7 @@ jobs:
             ${{ github.workspace }}/**/CoverageReports/**/* 
           retention-days: 5
       - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v2.18.0
+        uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
           trx_files: "${{ github.workspace }}/**/*.trx"
