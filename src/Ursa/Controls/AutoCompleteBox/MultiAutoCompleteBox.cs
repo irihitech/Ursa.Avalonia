@@ -759,7 +759,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
             {
                 if (c is IFocusScope scope &&
                     c is Visual v &&
-                    v.GetVisualRoot() is Visual root &&
+                    v.GetPresentationSource()?.RootVisual is Visual root &&
                     root.IsVisible)
                     return scope;
 
