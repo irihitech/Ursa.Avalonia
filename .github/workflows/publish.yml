@@ -65,7 +65,7 @@ jobs:
       - name: Publish win-x64
         run: dotnet publish demo/Ursa.Demo.Desktop -r win-x64 -c Release -o publish --sc /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@7
+        uses: actions/upload-artifact@v7
         with:
           name: Ursa.Demo.Desktop.win-x64
           path: |
@@ -83,7 +83,7 @@ jobs:
       - name: Publish win-x64 AOT
         run: dotnet publish demo/Ursa.Demo.Desktop -r win-x64 -c Release -o publish
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@7
+        uses: actions/upload-artifact@v7
         with:
           name: Ursa.Demo.Desktop.win-x64.NativeAOT
           path: |
@@ -99,7 +99,7 @@ jobs:
       - name: Publish linux-x64
         run: dotnet publish demo/Ursa.Demo.Desktop -r linux-x64 -c Release -o publish --sc /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@7
+        uses: actions/upload-artifact@v7
         with:
           name: Ursa.Demo.Desktop.linux-x64
           path: |
@@ -117,7 +117,7 @@ jobs:
       - name: Publish linux-x64 AOT
         run: dotnet publish demo/Ursa.Demo.Desktop -r linux-x64 -c Release -o publish
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@7
+        uses: actions/upload-artifact@v7
         with:
           name: Ursa.Demo.Desktop.linux-x64.NativeAOT
           path: |
@@ -133,7 +133,7 @@ jobs:
       - name: Publish osx-arm64
         run: dotnet publish demo/Ursa.Demo.Desktop -r osx-arm64 -c Release -o publish --sc /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@7
+        uses: actions/upload-artifact@v7
         with:
           name: Ursa.Demo.Desktop.osx-arm64
           path: |
@@ -151,7 +151,7 @@ jobs:
       - name: Publish osx-arm64 AOT
         run: dotnet publish demo/Ursa.Demo.Desktop -r osx-arm64 -c Release -o publish
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@7
+        uses: actions/upload-artifact@v7
         with:
           name: Ursa.Demo.Desktop.osx-arm64.NativeAOT
           path: |
@@ -171,7 +171,7 @@ jobs:
       - name: Publish Android
         run: dotnet publish demo/Ursa.Demo.Android -c Release -f net10.0-android --no-restore -o publish /p:RuntimeIdentifier=android-arm64
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@7
+        uses: actions/upload-artifact@v7
         with:
           name: android-arm64
           path: publish/*Signed.apk

@@ -62,7 +62,7 @@ jobs:
         run: dotnet nuget push "nugets/*.nupkg" --api-key ${{ secrets.IRIHI_NUGET_API_KEY }} --source irihi.tech --skip-duplicate
 
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@7
+        uses: actions/upload-artifact@v7
         with:
           name: nugets
           path: nugets
