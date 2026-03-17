@@ -27,13 +27,19 @@
                         IsHitTestVisible="False" />
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
                     <VisualLayerManager Padding="{TemplateBinding OffScreenMargin, Mode=OneWay}">
-                        <ContentPresenter
-                            Name="PART_ContentPresenter"
-                            Margin="{TemplateBinding Padding}"
-                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Content="{TemplateBinding Content}"
-                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <Panel Margin="{TemplateBinding WindowDecorationMargin}">
+                            <ContentPresenter
+                                Name="PART_ContentPresenter"
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            <u:OverlayDialogHost 
+                                Name="{x:Static u:UrsaWindow.PART_DialogHost}"
+                                IsModalStatusReporter="True"
+                                IsTopLevel="True"/>
+                        </Panel>
                     </VisualLayerManager>
                 </Panel>
             </ControlTemplate>
