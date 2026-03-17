@@ -145,14 +145,14 @@
                 <Border Grid.Column="1" Grid.Row="3" Classes="SectionCard">
                     <StackPanel Spacing="6">
                         <TextBlock Text="MultiComboBox" Classes="SectionTitle" />
-                        <u:MultiComboBox Width="180" Watermark="Select..." ItemsSource="{Binding ComboBoxItems}" />
+                        <u:MultiComboBox Width="180" PlaceholderText="Select..." ItemsSource="{Binding ComboBoxItems}" />
                     </StackPanel>
                 </Border>
 
                 <Border Grid.Column="2" Grid.Row="3" Classes="SectionCard">
                     <StackPanel Spacing="6">
                         <TextBlock Text="TreeComboBox" Classes="SectionTitle" />
-                        <u:TreeComboBox Width="180" Watermark="Select...">
+                        <u:TreeComboBox Width="180" PlaceholderText="Select...">
                             <u:TreeComboBoxItem Header="Item 1">
                                 <u:TreeComboBoxItem Header="Sub 1" />
                                 <u:TreeComboBoxItem Header="Sub 2" />
@@ -166,14 +166,14 @@
                 <Border Grid.Column="0" Grid.Row="4" Classes="SectionCard">
                     <StackPanel Spacing="6">
                         <TextBlock Text="TagInput" Classes="SectionTitle" />
-                        <u:TagInput Width="180" Watermark="Add tags..." Tags="{Binding TagItems}" />
+                        <u:TagInput Width="180" PlaceholderText="Add tags..." Tags="{Binding TagItems}" />
                     </StackPanel>
                 </Border>
 
                 <Border Grid.Column="1" Grid.Row="4" Classes="SectionCard">
                     <StackPanel Spacing="6">
                         <TextBlock Text="MultiAutoComplete" Classes="SectionTitle" />
-                        <u:MultiAutoCompleteBox Width="180" Watermark="Type..." ItemsSource="{Binding AutoCompleteItems}">
+                        <u:MultiAutoCompleteBox Width="180" PlaceholderText="Type..." ItemsSource="{Binding AutoCompleteItems}">
                             <u:MultiAutoCompleteBox.ItemTemplate>
                                 <DataTemplate DataType="models:ControlData">
                                     <TextBlock Text="{Binding MenuHeader}" />

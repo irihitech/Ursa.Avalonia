@@ -43,7 +43,7 @@
                 ParsingNumberStyle="{Binding ParsingNumberStyle}"
                 ShowButtonSpinner="{Binding ShowButtonSpinner}"
                 Step="{Binding Step}"
-                Watermark="{Binding Watermark}"
+                PlaceholderText="{Binding PlaceholderText}"
                 Value="{Binding Value}" />
             <TextBox
                 Width="NaN"
@@ -64,7 +64,7 @@
                     Classes="ClearButton"
                     InnerLeftContent="Age"
                     Step="1"
-                    Watermark="Input Value"
+                    PlaceholderText="Input Value"
                     Value="2" />
                 <u:Divider Content="{Binding #inputDouble.Value, StringFormat='Double = {0}'}" />
                 <u:NumericDoubleUpDown
@@ -84,7 +84,7 @@
                     AllowDrag="True"
                     InnerLeftContent="Drag"
                     Step="1"
-                    Watermark="Input Value"
+                    PlaceholderText="Input Value"
                     Value="2" />
 
                 <!--  hex demo  -->
@@ -98,7 +98,7 @@
                     InnerLeftContent="HexNumber"
                     ParsingNumberStyle="HexNumber"
                     Step="1"
-                    Watermark="Input Value"
+                    PlaceholderText="Input Value"
                     Value="2" />
 
                 <!--  =================we should use AllowHexSpecifier  -->
@@ -112,7 +112,7 @@
                     InnerLeftContent="AllowHexSpecifier"
                     ParsingNumberStyle="AllowHexSpecifier"
                     Step="1"
-                    Watermark="AllowHexSpecifier"
+                    PlaceholderText="AllowHexSpecifier"
                     Value="2" />
 
                 <u:Divider Content="{Binding #Consolas_uint.Value, StringFormat='Font=Consolas {0}, hex={0:X}'}" />
@@ -125,22 +125,22 @@
                     InnerLeftContent="0x"
                     ParsingNumberStyle="AllowHexSpecifier"
                     Step="1"
-                    Watermark="AllowHexSpecifier"
+                    PlaceholderText="AllowHexSpecifier"
                     Value="2" />
                 <u:Divider Content="Sizes" />
                 <u:NumericUIntUpDown
                     Classes="Small"
                     Step="1"
-                    Watermark="Small"/>
+                    PlaceholderText="Small"/>
                 <u:NumericUIntUpDown
                     Classes="Large"
                     Step="1"
                     Margin="0 8 0 0"
-                    Watermark="Large"/>
+                    PlaceholderText="Large"/>
                 <u:Divider Content="Error" />
                 <u:NumericUIntUpDown
                     Step="1"
-                    Watermark="Validation Error">
+                    PlaceholderText="Validation Error">
                     <DataValidationErrors.Error>
                         <system:Exception/>
                     </DataValidationErrors.Error>
@@ -177,7 +177,7 @@
                 InnerRightContent="obj"
                 Text="{Binding InnerLeftContent}" />
 
-            <TextBox InnerLeftContent="Watermark" Text="{Binding Watermark}" />
+            <TextBox InnerLeftContent="PlaceholderText" Text="{Binding PlaceholderText}" />
 
             <TextBox
                 MinWidth="100"

@@ -12,15 +12,15 @@
         <TextBox
             HorizontalAlignment="Stretch"
             u:NumPad.Attach="True"
-            Watermark="Invoke NumPad" />
+            PlaceholderText="Invoke NumPad" />
         <TextBox
             HorizontalAlignment="Stretch"
             u:NumPad.Attach="True"
-            Watermark="Invoke NumPad" />
+            PlaceholderText="Invoke NumPad" />
         <TextBox
             HorizontalAlignment="Stretch"
             u:NumPad.Attach="True"
-            Watermark="Invoke NumPad" />
+            PlaceholderText="Invoke NumPad" />
         <u:IPv4Box
             Width="200"
             u:NumPad.Attach="True"
@@ -29,12 +29,12 @@
         <u:NumericIntUpDown
             HorizontalAlignment="Stretch"
             u:NumPad.Attach="True"
-            Watermark="Invoke u:NumericIntUpDown" />
+            PlaceholderText="Invoke u:NumericIntUpDown" />
 
         <NumericUpDown
             u:NumPad.Attach="True"
             ButtonSpinnerLocation="Left"
-            Watermark="NumericUpDown" />
+            PlaceholderText="NumericUpDown" />
 
         <Border Theme="{DynamicResource CardBorder}">
             <StackPanel>

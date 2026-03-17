@@ -14,7 +14,7 @@
         <TextBox
             Name="format"
             Text="yyyy-MM-dd"
-            Watermark="Display Format" />
+            PlaceholderText="Display Format" />
         <TextBlock Text="Default" />
         <u:DateRangePicker
             Width="360"

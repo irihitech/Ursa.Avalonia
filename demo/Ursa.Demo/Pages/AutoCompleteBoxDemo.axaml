@@ -31,7 +31,7 @@
         
         <u:AutoCompleteBox
             Name="box"
-            Watermark="Please select a Control"
+            PlaceholderText="Please select a Control"
             Classes="ClearButton"
             ValueMemberBinding="{ReflectionBinding MenuHeader}" />
         
@@ -46,7 +46,7 @@
             ValueMemberBinding="{ReflectionBinding MenuHeader}" />
         <u:AutoCompleteBox
             IsEnabled="False"
-            Watermark="Disabled"
+            PlaceholderText="Disabled"
             ValueMemberBinding="{ReflectionBinding MenuHeader}" />
         <u:AutoCompleteBox
             InnerLeftContent="https://"
