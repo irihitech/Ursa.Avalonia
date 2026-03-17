@@ -8,8 +8,9 @@
     xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
     x:DataType="vm:ApplicationViewModel">
     <Application.Styles>
-        <semi:SemiPopupAnimations/>
+        <semi:SemiTheme Locale="zh-CN" />
         <semi:UrsaSemiTheme Locale="zh-CN" />
+        <semi:SemiPopupAnimations />
         <!--This style is created to demonstrate Dialog StyleClass feature. This style is applied to Dialog Window-->
         <Style Selector="u|DefaultDialogWindow.Custom">
             <Style Selector="^ /template/ Button#PART_OKButton">
@@ -23,7 +24,7 @@
             <NativeMenuItem
                 Header="About Us"
                 Command="{Binding JumpToCommand}"
-                CommandParameter="{x:Static vm:MenuKeys.MenuKeyAboutUs}"/>
+                CommandParameter="{x:Static vm:MenuKeys.MenuKeyAboutUs}" />
         </NativeMenu>
     </NativeMenu.Menu>
 </Application>

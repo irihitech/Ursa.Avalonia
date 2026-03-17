@@ -5,7 +5,7 @@ using Avalonia.Controls.Notifications;
 using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
-using Ursa.Themes.Semi;
+using Semi.Avalonia;
 using Notification = Ursa.Controls.Notification;
 using WindowNotificationManager = Ursa.Controls.WindowNotificationManager;
 
@@ -96,10 +96,10 @@ public partial class MainViewViewModel : ViewModelBase
         new("Default", ThemeVariant.Default),
         new("Light", ThemeVariant.Light),
         new("Dark", ThemeVariant.Dark),
-        new("Aquatic", UrsaSemiTheme.Aquatic),
-        new("Desert", UrsaSemiTheme.Desert),
-        new("Dusk", UrsaSemiTheme.Dusk),
-        new("NightSky", UrsaSemiTheme.NightSky)
+        new("Aquatic", SemiTheme.Aquatic),
+        new("Desert", SemiTheme.Desert),
+        new("Dusk", SemiTheme.Dusk),
+        new("NightSky", SemiTheme.NightSky)
     ];
 
     [ObservableProperty] private ThemeItem? _selectedTheme;

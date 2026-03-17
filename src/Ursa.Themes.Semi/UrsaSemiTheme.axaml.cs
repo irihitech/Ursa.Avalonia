@@ -12,7 +12,7 @@ namespace Ursa.Themes.Semi;
 /// </summary>
 public class UrsaSemiTheme : Styles
 {
-    private static readonly Dictionary<CultureInfo, ResourceDictionary> _localeToResource = new()
+    private static readonly Dictionary<CultureInfo, ResourceDictionary> LocaleToResource = new()
     {
         { new CultureInfo("zh-CN"), new zh_cn() },
         { new CultureInfo("en-US"), new en_us() },
@@ -20,9 +20,7 @@ public class UrsaSemiTheme : Styles
         { new CultureInfo("ru-RU"), new ru_ru() },
     };
 
-    private static readonly ResourceDictionary _defaultResource = new zh_cn();
-
-    private CultureInfo? _locale;
+    private static readonly ResourceDictionary DefaultResource = new zh_cn();
 
     public UrsaSemiTheme(IServiceProvider? provider = null)
     {
@@ -31,32 +29,27 @@ public class UrsaSemiTheme : Styles
         Resources.MergedDictionaries.Add(new SizeAnimations.NavMenuSizeAnimations());
     }
 
-    public static ThemeVariant Aquatic => new(nameof(Aquatic), ThemeVariant.Dark);
-    public static ThemeVariant Desert => new(nameof(Desert), ThemeVariant.Light);
-    public static ThemeVariant Dusk => new(nameof(Dusk), ThemeVariant.Dark);
-    public static ThemeVariant NightSky => new(nameof(NightSky), ThemeVariant.Dark);
-
     public CultureInfo? Locale
     {
-        get => _locale;
+        get;
         set
         {
             try
             {
                 if (TryGetLocaleResource(value, out var resource) && resource is not null)
                 {
-                    _locale = value;
+                    field = value;
                     SetResources(this.Resources, resource);
                 }
                 else
                 {
-                    _locale = new CultureInfo("zh-CN");
-                    SetResources(Resources, _defaultResource);
+                    field = new CultureInfo("zh-CN");
+                    SetResources(Resources, DefaultResource);
                 }
             }
             catch
             {
-                _locale = CultureInfo.InvariantCulture;
+                field = CultureInfo.InvariantCulture;
             }
         }
     }
@@ -65,37 +58,37 @@ public class UrsaSemiTheme : Styles
     {
         if (Equals(locale, CultureInfo.InvariantCulture))
         {
-            resourceDictionary = _defaultResource;
+            resourceDictionary = DefaultResource;
             return true;
         }
 
         if (locale is null)
         {
-            resourceDictionary = _defaultResource;
+            resourceDictionary = DefaultResource;
             return false;
         }
 
-        if (_localeToResource.TryGetValue(locale, out var resource))
+        if (LocaleToResource.TryGetValue(locale, out var resource))
         {
             resourceDictionary = resource;
             return true;
         }
 
-        resourceDictionary = _defaultResource;
+        resourceDictionary = DefaultResource;
         return false;
     }
 
     public static void OverrideLocaleResources(Application application, CultureInfo? culture)
     {
         if (culture is null) return;
-        if (!_localeToResource.TryGetValue(culture, out var resources)) return;
+        if (!LocaleToResource.TryGetValue(culture, out var resources)) return;
         SetResources(application.Resources, resources);
     }
 
     public static void OverrideLocaleResources(StyledElement element, CultureInfo? culture)
     {
         if (culture is null) return;
-        if (!_localeToResource.TryGetValue(culture, out var resources)) return;
+        if (!LocaleToResource.TryGetValue(culture, out var resources)) return;
         SetResources(element.Resources, resources);
     }
 
