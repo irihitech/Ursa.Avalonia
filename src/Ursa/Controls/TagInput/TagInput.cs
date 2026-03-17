@@ -18,12 +18,12 @@ using Irihi.Avalonia.Shared.Helpers;
 namespace Ursa.Controls;
 
 [TemplatePart(PART_ItemsControl, typeof(ItemsControl))]
-[TemplatePart(PART_Watermark, typeof(Visual))]
+[TemplatePart(PART_Placeholder, typeof(Visual))]
 [PseudoClasses(PseudoClassName.PC_Empty)]
 public class TagInput : TemplatedControl
 {
     public const string PART_ItemsControl = "PART_ItemsControl";
-    public const string PART_Watermark = "PART_Watermark";
+    public const string PART_Placeholder = "PART_Placeholder";
 
     public static readonly StyledProperty<IList<string>> TagsProperty =
         AvaloniaProperty.Register<TagInput, IList<string>>(
@@ -207,7 +207,7 @@ public class TagInput : TemplatedControl
     {
         base.OnApplyTemplate(e);
         _itemsControl = e.NameScope.Find<ItemsControl>(PART_ItemsControl);
-        _watermark = e.NameScope.Find<Visual>(PART_Watermark);
+        _watermark = e.NameScope.Find<Visual>(PART_Placeholder);
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
