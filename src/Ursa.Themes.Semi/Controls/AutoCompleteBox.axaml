@@ -16,7 +16,8 @@
                         DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}"
                         InnerLeftContent="{TemplateBinding InnerLeftContent}"
                         InnerRightContent="{TemplateBinding InnerRightContent}"
-                        Watermark="{TemplateBinding Watermark}" />
+                        PlaceholderText="{TemplateBinding PlaceholderText}"
+                        PlaceholderForeground="{TemplateBinding PlaceholderForeground}" />
                     <Button
                         Name="PART_ClearButton"
                         HorizontalAlignment="Right"

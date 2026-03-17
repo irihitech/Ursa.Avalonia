@@ -32,7 +32,8 @@
                             Opacity="0.5"
                             IsVisible="False"
                             VerticalAlignment="Center"
-                            Text="{TemplateBinding Watermark}" />
+                            Foreground="{TemplateBinding PlaceholderForeground}"
+                            Text="{TemplateBinding PlaceholderText}" />
                         <ItemsControl
                             Name="PART_ItemsControl"
                             HorizontalAlignment="Stretch"

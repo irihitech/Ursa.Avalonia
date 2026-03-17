@@ -133,7 +133,8 @@
                                 InnerRightContent="{TemplateBinding InnerRightContent}"
                                 IsReadOnly="{TemplateBinding IsReadonly}"
                                 Theme="{DynamicResource LooklessTextBox}"
-                                Watermark="{TemplateBinding Watermark}" />
+                                PlaceholderText="{TemplateBinding PlaceholderText}"
+                                PlaceholderForeground="{TemplateBinding PlaceholderForeground}" />
                             <Button
                                 Name="ClearButton"
                                 Grid.Column="1"

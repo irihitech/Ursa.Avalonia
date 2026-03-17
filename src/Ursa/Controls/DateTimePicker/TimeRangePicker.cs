@@ -6,6 +6,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
@@ -36,13 +37,22 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         AvaloniaProperty.Register<TimeRangePicker, TimeSpan?>(
             nameof(EndTime), defaultBindingMode: BindingMode.TwoWay);
 
-    public static readonly StyledProperty<string?> StartWatermarkProperty =
+    public static readonly StyledProperty<string?> StartPlaceholderTextProperty =
         AvaloniaProperty.Register<TimeRangePicker, string?>(
-            nameof(StartWatermark));
+            nameof(StartPlaceholderText));
 
-    public static readonly StyledProperty<string?> EndWatermarkProperty =
+    public static readonly StyledProperty<string?> EndPlaceholderTextProperty =
         AvaloniaProperty.Register<TimeRangePicker, string?>(
-            nameof(EndWatermark));
+            nameof(EndPlaceholderText));
+
+    public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
+        AvaloniaProperty.Register<TimeRangePicker, IBrush?>(nameof(PlaceholderForeground));
+
+    [Obsolete("Use StartPlaceholderTextProperty instead.")]
+    public static readonly StyledProperty<string?> StartWatermarkProperty = StartPlaceholderTextProperty;
+
+    [Obsolete("Use EndPlaceholderTextProperty instead.")]
+    public static readonly StyledProperty<string?> EndWatermarkProperty = EndPlaceholderTextProperty;
 
     private Button? _button;
     private TimePickerPresenter? _endPresenter;
@@ -66,16 +76,36 @@ public class TimeRangePicker : TimePickerBase, IClearControl
     }
 
 
-    public string? EndWatermark
+    public string? EndPlaceholderText
     {
-        get => GetValue(EndWatermarkProperty);
-        set => SetValue(EndWatermarkProperty, value);
+        get => GetValue(EndPlaceholderTextProperty);
+        set => SetValue(EndPlaceholderTextProperty, value);
     }
 
+    public string? StartPlaceholderText
+    {
+        get => GetValue(StartPlaceholderTextProperty);
+        set => SetValue(StartPlaceholderTextProperty, value);
+    }
+
+    public IBrush? PlaceholderForeground
+    {
+        get => GetValue(PlaceholderForegroundProperty);
+        set => SetValue(PlaceholderForegroundProperty, value);
+    }
+
+    [Obsolete("Use EndPlaceholderText instead.")]
+    public string? EndWatermark
+    {
+        get => GetValue(EndPlaceholderTextProperty);
+        set => SetValue(EndPlaceholderTextProperty, value);
+    }
+
+    [Obsolete("Use StartPlaceholderText instead.")]
     public string? StartWatermark
     {
-        get => GetValue(StartWatermarkProperty);
-        set => SetValue(StartWatermarkProperty, value);
+        get => GetValue(StartPlaceholderTextProperty);
+        set => SetValue(StartPlaceholderTextProperty, value);
     }
 
     public TimeSpan? StartTime

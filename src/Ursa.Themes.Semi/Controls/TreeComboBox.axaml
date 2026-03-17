@@ -8,7 +8,7 @@
     <Design.PreviewWith>
         <StackPanel Height="300">
             <u:TreeComboBox
-                Watermark="Please Select"
+                PlaceholderText="Please Select"
                 Width="300"
                 MaxHeight="200">
                 <u:TreeComboBoxItem Header="Option 1">
@@ -61,11 +61,11 @@
                         Margin="{TemplateBinding Padding}"
                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                        Foreground="{TemplateBinding Foreground}"
+                        Foreground="{TemplateBinding PlaceholderForeground}"
                         IsVisible="{TemplateBinding SelectionBoxItem,
                                                     Converter={x:Static ObjectConverters.IsNull}}"
                         Opacity="0.3"
-                        Text="{TemplateBinding Watermark}"
+                        Text="{TemplateBinding PlaceholderText}"
                         TextTrimming="CharacterEllipsis" />
                     <ContentPresenter
                         Grid.Column="1"
