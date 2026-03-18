@@ -3,7 +3,6 @@
              x:Class="Sandbox.App"
              xmlns:local="using:Sandbox"
              xmlns:semi="https://irihi.tech/semi"
-             xmlns:u-semi="https://irihi.tech/ursa/themes/semi"
              RequestedThemeVariant="Default">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
@@ -13,6 +12,6 @@
 
     <Application.Styles>
         <semi:SemiTheme Locale="zh-CN" />
-        <u-semi:SemiTheme Locale="zh-CN" />
+        <semi:UrsaSemiTheme Locale="zh-CN" />
     </Application.Styles>
 </Application>

@@ -13,16 +13,15 @@ namespace Ursa.Themes.Semi.Legacy;
 [Obsolete("This is the legacy theme. Please use UrsaSemiTheme instead.")]
 public class SemiTheme : Styles
 {
-    private static readonly Dictionary<CultureInfo, ResourceDictionary> _localeToResource = new()
+    private static readonly Dictionary<CultureInfo, ResourceDictionary> LocaleToResource = new()
     {
         { new CultureInfo("zh-CN"), new zh_cn() },
         { new CultureInfo("en-US"), new en_us() },
         { new CultureInfo("fr-FR"), new fr_fr() },
+        { new CultureInfo("ru-RU"), new ru_ru() },
     };
 
-    private static readonly ResourceDictionary _defaultResource = new zh_cn();
-
-    private CultureInfo? _locale;
+    private static readonly ResourceDictionary DefaultResource = new zh_cn();
 
     public SemiTheme(IServiceProvider? provider = null)
     {
@@ -31,32 +30,27 @@ public class SemiTheme : Styles
         Resources.MergedDictionaries.Add(new SizeAnimations.NavMenuSizeAnimations());
     }
 
-    public static ThemeVariant Aquatic => new(nameof(Aquatic), ThemeVariant.Dark);
-    public static ThemeVariant Desert => new(nameof(Desert), ThemeVariant.Light);
-    public static ThemeVariant Dusk => new(nameof(Dusk), ThemeVariant.Dark);
-    public static ThemeVariant NightSky => new(nameof(NightSky), ThemeVariant.Dark);
-
     public CultureInfo? Locale
     {
-        get => _locale;
+        get;
         set
         {
             try
             {
                 if (TryGetLocaleResource(value, out var resource) && resource is not null)
                 {
-                    _locale = value;
-                    foreach (var kv in resource) Resources[kv.Key] = kv.Value;
+                    field = value;
+                    SetResources(this.Resources, resource);
                 }
                 else
                 {
-                    _locale = new CultureInfo("zh-CN");
-                    foreach (var kv in _defaultResource) Resources[kv.Key] = kv.Value;
+                    field = new CultureInfo("zh-CN");
+                    SetResources(Resources, DefaultResource);
                 }
             }
             catch
             {
-                _locale = CultureInfo.InvariantCulture;
+                field = CultureInfo.InvariantCulture;
             }
         }
     }
@@ -65,37 +59,49 @@ public class SemiTheme : Styles
     {
         if (Equals(locale, CultureInfo.InvariantCulture))
         {
-            resourceDictionary = _defaultResource;
+            resourceDictionary = DefaultResource;
             return true;
         }
 
         if (locale is null)
         {
-            resourceDictionary = _defaultResource;
+            resourceDictionary = DefaultResource;
             return false;
         }
 
-        if (_localeToResource.TryGetValue(locale, out var resource))
+        if (LocaleToResource.TryGetValue(locale, out var resource))
         {
             resourceDictionary = resource;
             return true;
         }
 
-        resourceDictionary = _defaultResource;
+        resourceDictionary = DefaultResource;
         return false;
     }
 
     public static void OverrideLocaleResources(Application application, CultureInfo? culture)
     {
         if (culture is null) return;
-        if (!_localeToResource.TryGetValue(culture, out var resources)) return;
-        foreach (var kv in resources) application.Resources[kv.Key] = kv.Value;
+        if (!LocaleToResource.TryGetValue(culture, out var resources)) return;
+        SetResources(application.Resources, resources);
     }
 
     public static void OverrideLocaleResources(StyledElement element, CultureInfo? culture)
     {
         if (culture is null) return;
-        if (!_localeToResource.TryGetValue(culture, out var resources)) return;
-        foreach (var kv in resources) element.Resources[kv.Key] = kv.Value;
+        if (!LocaleToResource.TryGetValue(culture, out var resources)) return;
+        SetResources(element.Resources, resources);
+    }
+
+    private static void SetResources(IResourceDictionary source, IResourceDictionary content)
+    {
+        if (source is ResourceDictionary resourceDictionary)
+        {
+             resourceDictionary.SetItems(content);
+        }
+        else
+        {
+            foreach (var kv in content) source[kv.Key] = kv.Value;
+        }
     }
 }
