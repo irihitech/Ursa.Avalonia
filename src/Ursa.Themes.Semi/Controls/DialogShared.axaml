@@ -23,17 +23,17 @@
                     Background="Transparent"
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <PathIcon
-                        Foreground="{DynamicResource SemiColorText1}"
+                        Foreground="{DynamicResource OverlayCloseButtonForeground}"
                         Theme="{StaticResource InnerPathIcon}"
                         Data="{DynamicResource SemiIconClose}" />
                 </Border>
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover /template/ Border">
-            <Setter Property="Background" Value="{DynamicResource SemiColorFill1}" />
+            <Setter Property="Background" Value="{DynamicResource OverlayCloseButtonPointeroverBackground}" />
         </Style>
         <Style Selector="^:pressed /template/ Border">
-            <Setter Property="Background" Value="{DynamicResource SemiColorFill2}" />
+            <Setter Property="Background" Value="{DynamicResource OverlayCloseButtonPressedBackground}" />
         </Style>
     </ControlTheme>
 

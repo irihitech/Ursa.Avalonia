@@ -1,4 +1,9 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StaticResource x:Key="TimelineHeaderForeground" ResourceKey="SemiColorText0" />
     <StaticResource x:Key="TimelineLineBrush" ResourceKey="SemiColorFill2" />
+    <StaticResource x:Key="TimelineDefaultDotFill" ResourceKey="SemiGrey6" />
+    <StaticResource x:Key="TimelineErrorDotFill" ResourceKey="SemiRed6" />
+    <StaticResource x:Key="TimelineOngoingDotFill" ResourceKey="SemiBlue6" />
+    <StaticResource x:Key="TimelineSuccessDotFill" ResourceKey="SemiGreen6" />
+    <StaticResource x:Key="TimelineWarningDotFill" ResourceKey="SemiOrange6" />
 </ResourceDictionary>

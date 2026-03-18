@@ -110,19 +110,19 @@
             <Setter Property="IsVisible" Value="True" />
         </Style>
         <Style Selector="^:empty-icon[Type=Default] /template/ Ellipse#PART_DefaultIcon">
-            <Setter Property="Fill" Value="{DynamicResource SemiGrey6}" />
+            <Setter Property="Fill" Value="{DynamicResource TimelineDefaultDotFill}" />
         </Style>
         <Style Selector="^:empty-icon[Type=Error] /template/ Ellipse#PART_DefaultIcon">
-            <Setter Property="Fill" Value="{DynamicResource SemiRed6}" />
+            <Setter Property="Fill" Value="{DynamicResource TimelineErrorDotFill}" />
         </Style>
         <Style Selector="^:empty-icon[Type=Ongoing] /template/ Ellipse#PART_DefaultIcon">
-            <Setter Property="Fill" Value="{DynamicResource SemiBlue6}" />
+            <Setter Property="Fill" Value="{DynamicResource TimelineOngoingDotFill}" />
         </Style>
         <Style Selector="^:empty-icon[Type=Success] /template/ Ellipse#PART_DefaultIcon">
-            <Setter Property="Fill" Value="{DynamicResource SemiGreen6}" />
+            <Setter Property="Fill" Value="{DynamicResource TimelineSuccessDotFill}" />
         </Style>
         <Style Selector="^:empty-icon[Type=Warning] /template/ Ellipse#PART_DefaultIcon">
-            <Setter Property="Fill" Value="{DynamicResource SemiOrange6}" />
+            <Setter Property="Fill" Value="{DynamicResource TimelineWarningDotFill}" />
         </Style>
         <Style Selector="^:all-left">
             <Style Selector="^ /template/ ContentPresenter#PART_Header">

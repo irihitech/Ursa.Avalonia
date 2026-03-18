@@ -1,3 +1,11 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StaticResource x:Key="OverlayDialogMaskBrush" ResourceKey="SemiColorOverlayBackground" />
+    <StaticResource x:Key="DialogBackground" ResourceKey="SemiColorBackground2" />
+    <StaticResource x:Key="DialogInfoIconForeground" ResourceKey="SemiBlue6" />
+    <StaticResource x:Key="DialogQuestionIconForeground" ResourceKey="SemiBlue6" />
+    <StaticResource x:Key="DialogWarningIconForeground" ResourceKey="SemiOrange6" />
+    <StaticResource x:Key="DialogExclamationIconForeground" ResourceKey="SemiYellow6" />
+    <StaticResource x:Key="DialogErrorIconForeground" ResourceKey="SemiRed6" />
+    <StaticResource x:Key="DialogSuccessIconForeground" ResourceKey="SemiGreen6" />
+    <StaticResource x:Key="DialogBoxShadow" ResourceKey="SemiShadowElevated" />
 </ResourceDictionary>
