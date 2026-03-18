@@ -107,15 +107,15 @@ public class TimeRangePicker : TimePickerBase, IClearControl
     [Obsolete("Use EndPlaceholderText instead.")]
     public string? EndWatermark
     {
-        get => GetValue(EndPlaceholderTextProperty);
-        set => SetValue(EndPlaceholderTextProperty, value);
+        get => EndPlaceholderText;
+        set => EndPlaceholderText = value;
     }
 
     [Obsolete("Use StartPlaceholderText instead.")]
     public string? StartWatermark
     {
-        get => GetValue(StartPlaceholderTextProperty);
-        set => SetValue(StartPlaceholderTextProperty, value);
+        get => StartPlaceholderText;
+        set => StartPlaceholderText = value;
     }
 
     public TimeSpan? StartTime

@@ -108,8 +108,8 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
     [Obsolete("Use PlaceholderText instead.")]
     public string? Watermark
     {
-        get => GetValue(PlaceholderTextProperty);
-        set => SetValue(PlaceholderTextProperty, value);
+        get => PlaceholderText;
+        set => PlaceholderText = value;
     }
 
     public static readonly StyledProperty<NumberFormatInfo?> NumberFormatProperty = AvaloniaProperty.Register<NumericUpDown, NumberFormatInfo?>(

@@ -417,8 +417,8 @@ public partial class MultiAutoCompleteBox
         [Obsolete("Use PlaceholderText instead.")]
         public string? Watermark
         {
-            get => GetValue(PlaceholderTextProperty);
-            set => SetValue(PlaceholderTextProperty, value);
+            get => PlaceholderText;
+            set => PlaceholderText = value;
         }
 
         /// <summary>

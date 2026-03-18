@@ -79,8 +79,8 @@ public class DateTimePicker : DatePickerBase
     [Obsolete("Use PlaceholderText instead.")]
     public string? Watermark
     {
-        get => GetValue(PlaceholderTextProperty);
-        set => SetValue(PlaceholderTextProperty, value);
+        get => PlaceholderText;
+        set => PlaceholderText = value;
     }
 
     public string PanelFormat
