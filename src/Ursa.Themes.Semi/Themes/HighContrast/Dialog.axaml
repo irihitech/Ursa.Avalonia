@@ -2,10 +2,4 @@
     <SolidColorBrush x:Key="OverlayDialogMaskBrush" Opacity="0.5" Color="#000000" />
     <StaticResource x:Key="DialogBackground" ResourceKey="SemiColorWindow" />
     <StaticResource x:Key="DialogInfoIconForeground" ResourceKey="SemiColorHotlight" />
-    <StaticResource x:Key="DialogQuestionIconForeground" ResourceKey="SemiColorHotlight" />
-    <StaticResource x:Key="DialogWarningIconForeground" ResourceKey="SemiColorHotlight" />
-    <StaticResource x:Key="DialogExclamationIconForeground" ResourceKey="SemiColorHotlight" />
-    <StaticResource x:Key="DialogErrorIconForeground" ResourceKey="SemiColorHotlight" />
-    <StaticResource x:Key="DialogSuccessIconForeground" ResourceKey="SemiColorHotlight" />
-    <BoxShadows x:Key="DialogBoxShadow">0 0 0 0 #00000000</BoxShadows>
 </ResourceDictionary>
