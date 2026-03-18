@@ -28,11 +28,12 @@
                     CornerRadius="{DynamicResource TextBoxDefaultCornerRadius}">
                     <Panel HorizontalAlignment="Stretch">
                         <TextBlock
-                            Name="{x:Static u:TagInput.PART_Watermark}"
+                            Name="{x:Static u:TagInput.PART_Placeholder}"
                             Opacity="0.5"
                             IsVisible="False"
                             VerticalAlignment="Center"
-                            Text="{TemplateBinding Watermark}" />
+                            Foreground="{TemplateBinding PlaceholderForeground}"
+                            Text="{TemplateBinding PlaceholderText}" />
                         <ItemsControl
                             Name="PART_ItemsControl"
                             HorizontalAlignment="Stretch"
@@ -50,7 +51,7 @@
                 </Border>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^:empty /template/ TextBlock#PART_Watermark">
+        <Style Selector="^:empty /template/ TextBlock#PART_Placeholder">
             <Setter Property="IsVisible" Value="True" />
         </Style>
         <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder">

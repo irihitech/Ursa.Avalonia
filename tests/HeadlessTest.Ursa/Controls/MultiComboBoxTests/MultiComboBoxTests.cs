@@ -27,7 +27,7 @@ public class MultiComboBoxTests
         Assert.NotNull(comboBox.SelectedItems);
         Assert.Empty(comboBox.SelectedItems);
         Assert.Null(comboBox.SelectedItemTemplate);
-        Assert.Null(comboBox.Watermark);
+        Assert.Null(comboBox.PlaceholderText);
         Assert.Null(comboBox.InnerLeftContent);
         Assert.Null(comboBox.InnerRightContent);
         Assert.Null(comboBox.PopupInnerTopContent);
@@ -83,20 +83,20 @@ public class MultiComboBoxTests
     }
 
     [AvaloniaFact]
-    public void MultiComboBox_Should_Set_Watermark_Property()
+    public void MultiComboBox_Should_Set_PlaceholderText_Property()
     {
         // Arrange
         var window = new Window();
         var comboBox = new UrsaControls.MultiComboBox();
-        var watermark = "Select items...";
+        var placeholderText = "Select items...";
         window.Content = comboBox;
         window.Show();
 
         // Act
-        comboBox.Watermark = watermark;
+        comboBox.PlaceholderText = placeholderText;
 
         // Assert
-        Assert.Equal(watermark, comboBox.Watermark);
+        Assert.Equal(placeholderText, comboBox.PlaceholderText);
     }
 
     [AvaloniaFact]

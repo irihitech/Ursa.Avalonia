@@ -66,20 +66,20 @@ public class NumericUpDownInteractionTests
     }
 
     [AvaloniaFact]
-    public void NumericUpDown_Should_Handle_Watermark_Property()
+    public void NumericUpDown_Should_Handle_PlaceholderText_Property()
     {
         var window = new Window();
         var numericUpDown = new NumericIntUpDown
         {
-            Watermark = "Enter a number"
+            PlaceholderText = "Enter a number"
         };
         window.Content = numericUpDown;
         window.Show();
         
-        Assert.Equal("Enter a number", numericUpDown.Watermark);
+        Assert.Equal("Enter a number", numericUpDown.PlaceholderText);
         
-        numericUpDown.Watermark = "Different placeholder";
-        Assert.Equal("Different placeholder", numericUpDown.Watermark);
+        numericUpDown.PlaceholderText = "Different placeholder";
+        Assert.Equal("Different placeholder", numericUpDown.PlaceholderText);
     }
 
     [AvaloniaFact]

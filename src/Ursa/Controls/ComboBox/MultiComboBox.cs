@@ -8,6 +8,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 using Avalonia.Metadata;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
@@ -56,8 +57,14 @@ public class MultiComboBox : SelectingItemsControl, IInnerContentControl, IPopup
         AvaloniaProperty.Register<MultiComboBox, IDataTemplate?>(
             nameof(SelectedItemTemplate));
 
-    public static readonly StyledProperty<string?> WatermarkProperty =
-        TextBox.WatermarkProperty.AddOwner<MultiComboBox>();
+    public static readonly StyledProperty<string?> PlaceholderTextProperty =
+        TextBox.PlaceholderTextProperty.AddOwner<MultiComboBox>();
+
+    public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
+        TextBox.PlaceholderForegroundProperty.AddOwner<MultiComboBox>();
+
+    [Obsolete("Use PlaceholderTextProperty instead.")]
+    public static readonly StyledProperty<string?> WatermarkProperty = PlaceholderTextProperty;
 
     public static readonly StyledProperty<object?> PopupInnerTopContentProperty =
         AvaloniaProperty.Register<MultiComboBox, object?>(
@@ -115,10 +122,23 @@ public class MultiComboBox : SelectingItemsControl, IInnerContentControl, IPopup
         set => SetValue(SelectedItemTemplateProperty, value);
     }
 
+    public string? PlaceholderText
+    {
+        get => GetValue(PlaceholderTextProperty);
+        set => SetValue(PlaceholderTextProperty, value);
+    }
+
+    public IBrush? PlaceholderForeground
+    {
+        get => GetValue(PlaceholderForegroundProperty);
+        set => SetValue(PlaceholderForegroundProperty, value);
+    }
+
+    [Obsolete("Use PlaceholderText instead.")]
     public string? Watermark
     {
-        get => GetValue(WatermarkProperty);
-        set => SetValue(WatermarkProperty, value);
+        get => PlaceholderText;
+        set => PlaceholderText = value;
     }
 
     public object? InnerLeftContent

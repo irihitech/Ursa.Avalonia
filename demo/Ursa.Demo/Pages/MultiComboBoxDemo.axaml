@@ -15,7 +15,7 @@
         <TextBlock>Binded ItemsSource</TextBlock>
         <StackPanel Orientation="Horizontal">
             <u:MultiComboBox
-                Watermark="Please Select"
+                PlaceholderText="Please Select"
                 Width="300"
                 MaxHeight="200"
                 SelectedItems="{Binding SelectedItems}"
@@ -24,7 +24,7 @@
             
             <u:MultiComboBox
                 Name="combo"
-                Watermark="Please Select"
+                PlaceholderText="Please Select"
                 Width="300"
                 InnerLeftContent="Left"
                 InnerRightContent="Right"
@@ -53,7 +53,7 @@
         
         <TextBlock>Items inside axaml (u:MultiComboBox's tag content)</TextBlock>
         <u:MultiComboBox
-            Watermark="Please Select"
+            PlaceholderText="Please Select"
             Width="300"
             MaxHeight="200">
             <u:MultiComboBoxItem>option 1</u:MultiComboBoxItem>

@@ -33,7 +33,8 @@
                                 InnerRightContent="{TemplateBinding InnerRightContent}"
                                 TextWrapping="NoWrap"
                                 Theme="{DynamicResource NonErrorTextBox}"
-                                Watermark="{TemplateBinding Watermark}" />
+                                PlaceholderText="{TemplateBinding PlaceholderText}"
+                                PlaceholderForeground="{TemplateBinding PlaceholderForeground}" />
                             <Panel
                                 Name="PART_DragPanel"
                                 HorizontalAlignment="Stretch"

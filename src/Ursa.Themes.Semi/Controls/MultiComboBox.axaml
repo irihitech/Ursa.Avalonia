@@ -58,11 +58,11 @@
                                     TextTrimming="CharacterEllipsis"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
-                                    Foreground="{TemplateBinding Foreground}"
+                                    Foreground="{TemplateBinding PlaceholderForeground}"
                                     IsHitTestVisible="False"
                                     IsVisible="False"
                                     Opacity="0.3"
-                                    Text="{TemplateBinding Watermark}" />
+                                    Text="{TemplateBinding PlaceholderText}" />
                                 <ScrollViewer
                                     Grid.Column="1"
                                     Grid.ColumnSpan="2"

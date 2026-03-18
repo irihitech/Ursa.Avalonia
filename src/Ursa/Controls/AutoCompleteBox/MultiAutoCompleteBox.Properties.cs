@@ -4,6 +4,7 @@ using Avalonia;
 using Avalonia.Controls.Templates;
 using Avalonia.Controls;
 using Avalonia.Data;
+using Avalonia.Media;
 using Avalonia.Metadata;
 
 namespace Ursa.Controls;
@@ -18,8 +19,14 @@ public partial class MultiAutoCompleteBox
                 defaultValue: 0,
                 defaultBindingMode:BindingMode.TwoWay));
 
-        public static readonly StyledProperty<string?> WatermarkProperty =
-            TextBox.WatermarkProperty.AddOwner<MultiAutoCompleteBox>();
+        public static readonly StyledProperty<string?> PlaceholderTextProperty =
+            TextBox.PlaceholderTextProperty.AddOwner<MultiAutoCompleteBox>();
+
+        public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
+            TextBox.PlaceholderForegroundProperty.AddOwner<MultiAutoCompleteBox>();
+
+        [Obsolete("Use PlaceholderTextProperty instead.")]
+        public static readonly StyledProperty<string?> WatermarkProperty = PlaceholderTextProperty;
 
         /// <summary>
         /// Identifies the <see cref="MinimumPrefixLength" /> property.
@@ -395,10 +402,23 @@ public partial class MultiAutoCompleteBox
             set => SetValue(FilterModeProperty, value);
         }
 
+        public string? PlaceholderText
+        {
+            get => GetValue(PlaceholderTextProperty);
+            set => SetValue(PlaceholderTextProperty, value);
+        }
+
+        public IBrush? PlaceholderForeground
+        {
+            get => GetValue(PlaceholderForegroundProperty);
+            set => SetValue(PlaceholderForegroundProperty, value);
+        }
+
+        [Obsolete("Use PlaceholderText instead.")]
         public string? Watermark
         {
-            get => GetValue(WatermarkProperty);
-            set => SetValue(WatermarkProperty, value);
+            get => PlaceholderText;
+            set => PlaceholderText = value;
         }
 
         /// <summary>

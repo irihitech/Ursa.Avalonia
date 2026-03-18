@@ -7,6 +7,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
@@ -28,9 +29,14 @@ public class DateTimePicker : DatePickerBase
         AvaloniaProperty.Register<DateTimePicker, DateTime?>(
             nameof(SelectedDate), defaultBindingMode: BindingMode.TwoWay);
 
-    public static readonly StyledProperty<string?> WatermarkProperty =
-        AvaloniaProperty.Register<DateTimePicker, string?>(
-            nameof(Watermark));
+    public static readonly StyledProperty<string?> PlaceholderTextProperty =
+        AvaloniaProperty.Register<DateTimePicker, string?>(nameof(PlaceholderText));
+
+    public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
+        AvaloniaProperty.Register<DateTimePicker, IBrush?>(nameof(PlaceholderForeground));
+
+    [Obsolete("Use PlaceholderTextProperty instead.")]
+    public static readonly StyledProperty<string?> WatermarkProperty = PlaceholderTextProperty;
 
     public static readonly StyledProperty<string> PanelFormatProperty = AvaloniaProperty.Register<TimePicker, string>(
         nameof(PanelFormat), "HH mm ss");
@@ -58,10 +64,23 @@ public class DateTimePicker : DatePickerBase
         set => SetValue(SelectedDateProperty, value);
     }
 
+    public string? PlaceholderText
+    {
+        get => GetValue(PlaceholderTextProperty);
+        set => SetValue(PlaceholderTextProperty, value);
+    }
+
+    public IBrush? PlaceholderForeground
+    {
+        get => GetValue(PlaceholderForegroundProperty);
+        set => SetValue(PlaceholderForegroundProperty, value);
+    }
+
+    [Obsolete("Use PlaceholderText instead.")]
     public string? Watermark
     {
-        get => GetValue(WatermarkProperty);
-        set => SetValue(WatermarkProperty, value);
+        get => PlaceholderText;
+        set => PlaceholderText = value;
     }
 
     public string PanelFormat

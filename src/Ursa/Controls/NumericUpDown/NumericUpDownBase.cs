@@ -9,6 +9,7 @@ using Avalonia.Data.Converters;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
+using Avalonia.Media;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
 
@@ -83,13 +84,32 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
         set => SetValue(InnerRightContentProperty, value);
     }
 
-    public static readonly StyledProperty<string?> WatermarkProperty = AvaloniaProperty.Register<NumericUpDown, string?>(
-        nameof(Watermark));
+    public static readonly StyledProperty<string?> PlaceholderTextProperty =
+        TextBox.PlaceholderTextProperty.AddOwner<NumericUpDown>();
 
+    public string? PlaceholderText
+    {
+        get => GetValue(PlaceholderTextProperty);
+        set => SetValue(PlaceholderTextProperty, value);
+    }
+
+    public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
+        TextBox.PlaceholderForegroundProperty.AddOwner<NumericUpDown>();
+
+    public IBrush? PlaceholderForeground
+    {
+        get => GetValue(PlaceholderForegroundProperty);
+        set => SetValue(PlaceholderForegroundProperty, value);
+    }
+
+    [Obsolete("Use PlaceholderTextProperty instead.")]
+    public static readonly StyledProperty<string?> WatermarkProperty = PlaceholderTextProperty;
+
+    [Obsolete("Use PlaceholderText instead.")]
     public string? Watermark
     {
-        get => GetValue(WatermarkProperty);
-        set => SetValue(WatermarkProperty, value);
+        get => PlaceholderText;
+        set => PlaceholderText = value;
     }
 
     public static readonly StyledProperty<NumberFormatInfo?> NumberFormatProperty = AvaloniaProperty.Register<NumericUpDown, NumberFormatInfo?>(

@@ -307,7 +307,7 @@ public class NumericUpDownFinalTests
             ShowButtonSpinner = false,
             AllowDrag = true,
             IsReadOnly = true,
-            Watermark = "Enter number"
+            PlaceholderText = "Enter number"
         };
         window.Content = numericUpDown;
         window.Show();
@@ -316,7 +316,7 @@ public class NumericUpDownFinalTests
         Assert.False(numericUpDown.ShowButtonSpinner);
         Assert.True(numericUpDown.AllowDrag);
         Assert.True(numericUpDown.IsReadOnly);
-        Assert.Equal("Enter number", numericUpDown.Watermark);
+        Assert.Equal("Enter number", numericUpDown.PlaceholderText);
     }
 
     [AvaloniaFact]

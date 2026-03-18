@@ -6,6 +6,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
@@ -26,8 +27,14 @@ public class TimePicker : TimePickerBase, IClearControl
         AvaloniaProperty.Register<TimePicker, TimeSpan?>(
             nameof(SelectedTime), defaultBindingMode: BindingMode.TwoWay);
 
-    public static readonly StyledProperty<string?> WatermarkProperty = AvaloniaProperty.Register<TimePicker, string?>(
-        nameof(Watermark));
+    public static readonly StyledProperty<string?> PlaceholderTextProperty = 
+        TextBox.PlaceholderTextProperty.AddOwner<TimePicker>();
+
+    public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
+        TextBox.PlaceholderForegroundProperty.AddOwner<TimePicker>();
+
+    [Obsolete("Use PlaceholderTextProperty instead.")]
+    public static readonly StyledProperty<string?> WatermarkProperty = PlaceholderTextProperty;
 
     private Button? _button;
 
@@ -47,10 +54,23 @@ public class TimePicker : TimePickerBase, IClearControl
             picker.OnDisplayFormatChanged(args));
     }
 
+    public string? PlaceholderText
+    {
+        get => GetValue(PlaceholderTextProperty);
+        set => SetValue(PlaceholderTextProperty, value);
+    }
+
+    public IBrush? PlaceholderForeground
+    {
+        get => GetValue(PlaceholderForegroundProperty);
+        set => SetValue(PlaceholderForegroundProperty, value);
+    }
+
+    [Obsolete("Use PlaceholderText instead.")]
     public string? Watermark
     {
-        get => GetValue(WatermarkProperty);
-        set => SetValue(WatermarkProperty, value);
+        get => PlaceholderText;
+        set => PlaceholderText = value;
     }
 
     public TimeSpan? SelectedTime

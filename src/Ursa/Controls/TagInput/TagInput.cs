@@ -10,6 +10,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 using Avalonia.Styling;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Helpers;
@@ -17,19 +18,25 @@ using Irihi.Avalonia.Shared.Helpers;
 namespace Ursa.Controls;
 
 [TemplatePart(PART_ItemsControl, typeof(ItemsControl))]
-[TemplatePart(PART_Watermark, typeof(Visual))]
+[TemplatePart(PART_Placeholder, typeof(Visual))]
 [PseudoClasses(PseudoClassName.PC_Empty)]
 public class TagInput : TemplatedControl
 {
     public const string PART_ItemsControl = "PART_ItemsControl";
-    public const string PART_Watermark = "PART_Watermark";
+    public const string PART_Placeholder = "PART_Placeholder";
 
     public static readonly StyledProperty<IList<string>> TagsProperty =
         AvaloniaProperty.Register<TagInput, IList<string>>(
             nameof(Tags));
 
-    public static readonly StyledProperty<string?> WatermarkProperty = TextBox.WatermarkProperty.AddOwner<TagInput>();
+    public static readonly StyledProperty<string?> PlaceholderTextProperty =
+        TextBox.PlaceholderTextProperty.AddOwner<TagInput>();
 
+    public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
+        TextBox.PlaceholderForegroundProperty.AddOwner<TagInput>();
+
+    [Obsolete("Use PlaceholderTextProperty instead.")]
+    public static readonly StyledProperty<string?> WatermarkProperty = PlaceholderTextProperty;
 
     public static readonly StyledProperty<bool> AcceptsReturnProperty =
         TextBox.AcceptsReturnProperty.AddOwner<TagInput>();
@@ -104,10 +111,23 @@ public class TagInput : TemplatedControl
         Tags = new ObservableCollection<string>();
     }
 
+    public string? PlaceholderText
+    {
+        get => GetValue(PlaceholderTextProperty);
+        set => SetValue(PlaceholderTextProperty, value);
+    }
+
+    public IBrush? PlaceholderForeground
+    {
+        get => GetValue(PlaceholderForegroundProperty);
+        set => SetValue(PlaceholderForegroundProperty, value);
+    }
+
+    [Obsolete("Use PlaceholderText instead.")]
     public string? Watermark
     {
-        get => GetValue(WatermarkProperty);
-        set => SetValue(WatermarkProperty, value);
+        get => PlaceholderText;
+        set => PlaceholderText = value;
     }
 
     public IList<string> Tags
@@ -187,7 +207,7 @@ public class TagInput : TemplatedControl
     {
         base.OnApplyTemplate(e);
         _itemsControl = e.NameScope.Find<ItemsControl>(PART_ItemsControl);
-        _watermark = e.NameScope.Find<Visual>(PART_Watermark);
+        _watermark = e.NameScope.Find<Visual>(PART_Placeholder);
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
@@ -277,13 +297,14 @@ public class TagInput : TemplatedControl
         {
             AddTags(_textBox.Text);
         }
-        else if (AcceptsReturn && args.Key==Key.Enter)
+        else if (AcceptsReturn && args.Key == Key.Enter)
         {
             var texts = _textBox.Text?.Split(["\r", "\n"], StringSplitOptions.RemoveEmptyEntries) ?? [];
             foreach (var text in texts)
             {
                 AddTags(text);
             }
+
             args.Handled = true;
         }
         else if (args.Key == Key.Delete || args.Key == Key.Back)
@@ -304,7 +325,7 @@ public class TagInput : TemplatedControl
         if (!string.IsNullOrEmpty(Separator))
             values = text.Split(new[] { Separator },
                 StringSplitOptions.RemoveEmptyEntries);
-        else if(_textBox.Text is not null)
+        else if (_textBox.Text is not null)
             values = new[] { _textBox.Text };
 
         if (!AllowDuplicates)
