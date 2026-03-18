@@ -47,6 +47,10 @@ public class CalendarView : TemplatedControl
     public static readonly StyledProperty<DayOfWeek> FirstDayOfWeekProperty =
         DatePickerBase.FirstDayOfWeekProperty.AddOwner<CalendarView>();
 
+    public static readonly StyledProperty<CalendarMinimalGranularity> MinimalGranularityProperty =
+        AvaloniaProperty.Register<CalendarView, CalendarMinimalGranularity>(
+            nameof(MinimalGranularity), CalendarMinimalGranularity.Day);
+
     private readonly Calendar _calendar = new GregorianCalendar();
     private Button? _fastNextButton;
 
@@ -114,6 +118,12 @@ public class CalendarView : TemplatedControl
     {
         get => GetValue(FirstDayOfWeekProperty);
         set => SetValue(FirstDayOfWeekProperty, value);
+    }
+
+    public CalendarMinimalGranularity MinimalGranularity
+    {
+        get => GetValue(MinimalGranularityProperty);
+        set => SetValue(MinimalGranularityProperty, value);
     }
     
     public static readonly RoutedEvent<CalendarDayButtonEventArgs> DateSelectedEvent =
@@ -463,6 +473,7 @@ public class CalendarView : TemplatedControl
     ///     2. Year -> Month: Set the date to the selected year and switch to Month mode.
     ///     3. Decade -> Year: Set the date to the selected year and switch to Year mode.
     ///     4. Century -> Decade: Set the date to the selected year and switch to Decade mode.
+    ///     5. When minimal granularity is reached, raise DateSelected event with appropriate date.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -476,11 +487,27 @@ public class CalendarView : TemplatedControl
         }
         else if (Mode == CalendarViewMode.Decade)
         {
+            // Check if Year is the minimal granularity
+            if (MinimalGranularity == CalendarMinimalGranularity.Year)
+            {
+                // Select the year with month=1 and day=1
+                var selectedDate = new DateTime(e.Context.Year!.Value, 1, 1);
+                RaiseEvent(new CalendarDayButtonEventArgs(selectedDate) { RoutedEvent = DateSelectedEvent, Source = this });
+                return;
+            }
             Mode = CalendarViewMode.Year;
             ContextDate = e.Context.Clone();
         }
         else if (Mode == CalendarViewMode.Year)
         {
+            // Check if Month is the minimal granularity
+            if (MinimalGranularity == CalendarMinimalGranularity.Month)
+            {
+                // Select the month with day=1
+                var selectedDate = new DateTime(ContextDate.Year!.Value, e.Context.Month!.Value, 1);
+                RaiseEvent(new CalendarDayButtonEventArgs(selectedDate) { RoutedEvent = DateSelectedEvent, Source = this });
+                return;
+            }
             Mode = CalendarViewMode.Month;
             ContextDate = ContextDate.With(null, e.Context.Month);
             UpdateDayButtons();
