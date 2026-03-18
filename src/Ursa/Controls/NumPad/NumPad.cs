@@ -4,6 +4,8 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.LogicalTree;
+using Avalonia.Threading;
+using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
@@ -22,6 +24,12 @@ public class NumPad : TemplatedControl
 
     public static readonly AttachedProperty<bool> AttachProperty =
         AvaloniaProperty.RegisterAttached<NumPad, InputElement, bool>("Attach");
+
+    /// <summary>
+    /// 附加属性，用于控制是否在显示NumPad时将光标移动到文本末尾
+    /// </summary>
+    public static readonly AttachedProperty<bool> MoveCaretToEndProperty =
+        AvaloniaProperty.RegisterAttached<Control, InputElement, bool>("MoveCaretToEnd");
 
     private static readonly Dictionary<Key, string> KeyInputMapping = new()
     {
@@ -67,6 +75,26 @@ public class NumPad : TemplatedControl
     public static void SetAttach(InputElement obj, bool value) => obj.SetValue(AttachProperty, value);
     public static bool GetAttach(InputElement obj) => obj.GetValue(AttachProperty);
 
+    /// <summary>
+    /// 设置MoveCaretToEnd附加属性的值
+    /// </summary>
+    /// <param name="element">要设置属性的Avalonia对象</param>
+    /// <param name="value">布尔值，true表示启用光标移动到末尾功能，false表示禁用</param>
+    public static void SetMoveCaretToEnd(AvaloniaObject element, bool value)
+    {
+        element.SetValue(MoveCaretToEndProperty, value);
+    }
+
+    /// <summary>
+    /// 获取MoveCaretToEnd附加属性的值
+    /// </summary>
+    /// <param name="element">要获取属性的Avalonia对象</param>
+    /// <returns>返回布尔值，true表示启用了光标移动到末尾功能，false表示未启用</returns>
+    public static bool GetMoveCaretToEnd(AvaloniaObject element)
+    {
+        return element.GetValue(MoveCaretToEndProperty);
+    }
+
     private static void OnAttachNumPad(InputElement input, AvaloniaPropertyChangedEventArgs<bool> args)
     {
         if (args.NewValue.Value)
@@ -106,12 +134,44 @@ public class NumPad : TemplatedControl
             Target = element,
             _targetInnerText = FindTextBoxInTarget(element)
         };
+        if (GetMoveCaretToEnd(element))
+            MoveCaretToEnd(element);
         var options = BuildPositionedOptions(element as Control) ?? new OverlayDialogOptions()
         {
             Buttons = DialogButton.None,
             OnDialogControlClosed = (object? _, object? _) => { numPad.Target?.Focus(); }
         };
         OverlayDialog.Show(numPad, new object(), options: options);
+    }
+
+    /// <summary>
+    /// 将光标移动到文本框的末尾位置
+    /// </summary>
+    /// <param name="element">输入元素，可以是TextBox或包含TextBox的容器</param>
+    private static void MoveCaretToEnd(InputElement element)
+    {
+        TextBox? textBox = null;
+
+        if (element is TextBox tb)
+        {
+            textBox = tb;
+        }
+        else
+        {
+            textBox = FindTextBoxInTarget(element);
+        }
+
+        if (textBox is null)
+            return;
+
+        // 确保在 UI 线程末尾执行，避免焦点竞争
+        Dispatcher.UIThread.Post(() =>
+        {
+            var length = textBox.Text?.Length ?? 0;
+            textBox.CaretIndex = length;
+            textBox.SelectionStart = length;
+            textBox.SelectionEnd = length;
+        });
     }
 
     public void ProcessClick(object o)
@@ -217,7 +277,8 @@ public class NumPad : TemplatedControl
                 HorizontalOffset = horizontalOffset,
                 VerticalOffset = rect.Bottom,
 
-                OnDialogControlClosed = (object? _, object? _) => target.Focus()
+                OnDialogControlClosed = (object? _, object? _) => target.Focus(),
+                LightDismissFilter = (visual) => LightDismissFilter(target, visual)
             };
         }
         else
@@ -233,9 +294,33 @@ public class NumPad : TemplatedControl
                 HorizontalOffset = horizontalOffset,
                 VerticalOffset = topLevel.Bounds.Height - rect.Top,
 
-                OnDialogControlClosed = (object? _, object? _) => target.Focus()
+                OnDialogControlClosed = (object? _, object? _) => target.Focus(),
+                LightDismissFilter = (visual) => LightDismissFilter(target, visual)
             };
         }
+    }
+
+    /// <summary>
+    /// LightDismiss过滤器函数，用于判断是否是目标控件点击了，避免点击目标控件导致NumPad关闭
+    /// </summary>
+    /// <param name="target">目标控件，通常是触发NumPad显示的控件</param>
+    /// <param name="visual">点击事件的可视化元素</param>
+    /// <returns>
+    /// 返回true表示点击发生在NumPad内部或目标控件内部，应该阻止关闭NumPad；
+    /// 返回false表示点击发生在外部，允许关闭NumPad
+    /// </returns>
+    private static bool LightDismissFilter(Control? target, Visual? visual)
+    {
+        if (visual == null)
+            return false;
+
+        // 在 NumPad 内
+        if (visual.FindAncestorOfType<NumPad>() != null)
+            return true;
+
+        // 在 target 内
+        return target is Visual targetVisual &&
+               (visual == targetVisual || targetVisual.IsVisualAncestorOf(visual));
     }
 
     private static Rect GetTargetRect(Control target)

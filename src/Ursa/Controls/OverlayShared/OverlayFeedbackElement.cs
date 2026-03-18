@@ -21,12 +21,12 @@ public abstract class OverlayFeedbackElement : ContentControl
             nameof(Closed), RoutingStrategies.Bubble);
 
     private bool _resizeDragging;
-
-    protected Panel? ContainerPanel;
     private Rect _resizeDragStartBounds;
     private Point _resizeDragStartPoint;
 
     private WindowEdge? _windowEdge;
+
+    protected Panel? ContainerPanel;
 
     static OverlayFeedbackElement()
     {
@@ -41,6 +41,13 @@ public abstract class OverlayFeedbackElement : ContentControl
         get => GetValue(IsClosedProperty);
         set => SetValue(IsClosedProperty, value);
     }
+
+    internal bool IsShowAsync { get; set; }
+
+    /// <summary>
+    /// 获取或设置LightDismiss过滤器函数
+    /// </summary>
+    internal Func<Visual?, bool>? LightDismissFilter { get; set; }
 
     private void OnClosed(ResultEventArgs args)
     {
@@ -74,8 +81,6 @@ public abstract class OverlayFeedbackElement : ContentControl
         base.OnDetachedFromLogicalTree(e);
         Content = null;
     }
-
-    internal bool IsShowAsync { get; set; }
 
     public Task<T?> ShowAsync<T>(CancellationToken? token = default)
     {

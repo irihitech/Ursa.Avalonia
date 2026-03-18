@@ -4,44 +4,46 @@ using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Media;
-using Ursa.Controls.OverlayShared;
 using Avalonia.Styling;
 using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Helpers;
 using Irihi.Avalonia.Shared.Shapes;
+using Ursa.Controls.OverlayShared;
 
 namespace Ursa.Controls;
 
-public partial class OverlayDialogHost: Canvas
+public partial class OverlayDialogHost : Canvas
 {
     private static readonly Animation MaskAppearAnimation;
     private static readonly Animation MaskDisappearAnimation;
 
-    private readonly List<DialogPair> _layers = new List<DialogPair>(10);
-    
-    private class DialogPair(PureRectangle? mask, OverlayFeedbackElement element, bool modal = true)
-    {
-        internal readonly PureRectangle? Mask = mask;
-        internal readonly OverlayFeedbackElement Element = element;
-        internal readonly bool Modal = modal;
-    }
-
-    private int _modalCount;
-
     public static readonly AttachedProperty<bool> IsModalStatusScopeProperty =
         AvaloniaProperty.RegisterAttached<OverlayDialogHost, Control, bool>("IsModalStatusScope");
-
-    public static void SetIsModalStatusScope(Control obj, bool value) => obj.SetValue(IsModalStatusScopeProperty, value);
-    internal static bool GetIsModalStatusScope(Control obj) => obj.GetValue(IsModalStatusScopeProperty);
 
     public static readonly AttachedProperty<bool> IsInModalStatusProperty =
         AvaloniaProperty.RegisterAttached<OverlayDialogHost, Control, bool>(nameof(IsInModalStatus));
 
-    internal static void SetIsInModalStatus(Control obj, bool value) => obj.SetValue(IsInModalStatusProperty, value);
-    public static bool GetIsInModalStatus(Control obj) => obj.GetValue(IsInModalStatusProperty);
+    public static readonly StyledProperty<bool> IsModalStatusReporterProperty =
+        AvaloniaProperty.Register<OverlayDialogHost, bool>(
+            nameof(IsModalStatusReporter));
 
-    public static readonly StyledProperty<bool> IsModalStatusReporterProperty = AvaloniaProperty.Register<OverlayDialogHost, bool>(
-        nameof(IsModalStatusReporter));
+    public static readonly StyledProperty<IBrush?> OverlayMaskBrushProperty =
+        AvaloniaProperty.Register<OverlayDialogHost, IBrush?>(
+            nameof(OverlayMaskBrush));
+
+    private readonly List<DialogPair> _layers = new List<DialogPair>(10);
+
+    private int _modalCount;
+
+    private IDisposable? _modalStatusSubscription;
+    private int? _toplevelHash;
+
+    static OverlayDialogHost()
+    {
+        ClipToBoundsProperty.OverrideDefaultValue<OverlayDialogHost>(true);
+        MaskAppearAnimation = CreateOpacityAnimation(true);
+        MaskDisappearAnimation = CreateOpacityAnimation(false);
+    }
 
     public bool IsModalStatusReporter
     {
@@ -54,47 +56,44 @@ public partial class OverlayDialogHost: Canvas
         get => GetValue(IsInModalStatusProperty);
         set => SetValue(IsInModalStatusProperty, value);
     }
-    
+
     public bool IsAnimationDisabled { get; set; }
     public bool IsTopLevel { get; set; }
-    
-    static OverlayDialogHost()
-    {
-        ClipToBoundsProperty.OverrideDefaultValue<OverlayDialogHost>(true);
-        MaskAppearAnimation = CreateOpacityAnimation(true);
-        MaskDisappearAnimation = CreateOpacityAnimation(false);
-    }
-    
-    private static Animation CreateOpacityAnimation(bool appear)
-    {
-        var animation = new Animation
-        {
-            FillMode = FillMode.Forward
-        };
-        var keyFrame1 = new KeyFrame{ Cue = new Cue(0.0) };
-        keyFrame1.Setters.Add(new Setter() { Property = OpacityProperty, Value = appear ? 0.0 : 1.0 });
-        var keyFrame2 = new KeyFrame{ Cue = new Cue(1.0) };
-        keyFrame2.Setters.Add(new Setter() { Property = OpacityProperty, Value = appear ? 1.0 : 0.0 });
-        animation.Children.Add(keyFrame1);
-        animation.Children.Add(keyFrame2);
-        animation.Duration = TimeSpan.FromSeconds(0.2);
-        return animation;
-    }
-    
+
     public string? HostId { get; set; }
-    
+
     public DataTemplates DialogDataTemplates { get; set; } = new DataTemplates();
-    
-    public static readonly StyledProperty<IBrush?> OverlayMaskBrushProperty =
-        AvaloniaProperty.Register<OverlayDialogHost, IBrush?>(
-            nameof(OverlayMaskBrush));
 
     public IBrush? OverlayMaskBrush
     {
         get => GetValue(OverlayMaskBrushProperty);
         set => SetValue(OverlayMaskBrushProperty, value);
     }
-    
+
+    public static void SetIsModalStatusScope(Control obj, bool value) =>
+        obj.SetValue(IsModalStatusScopeProperty, value);
+
+    internal static bool GetIsModalStatusScope(Control obj) => obj.GetValue(IsModalStatusScopeProperty);
+
+    internal static void SetIsInModalStatus(Control obj, bool value) => obj.SetValue(IsInModalStatusProperty, value);
+    public static bool GetIsInModalStatus(Control obj) => obj.GetValue(IsInModalStatusProperty);
+
+    private static Animation CreateOpacityAnimation(bool appear)
+    {
+        var animation = new Animation
+        {
+            FillMode = FillMode.Forward
+        };
+        var keyFrame1 = new KeyFrame { Cue = new Cue(0.0) };
+        keyFrame1.Setters.Add(new Setter() { Property = OpacityProperty, Value = appear ? 0.0 : 1.0 });
+        var keyFrame2 = new KeyFrame { Cue = new Cue(1.0) };
+        keyFrame2.Setters.Add(new Setter() { Property = OpacityProperty, Value = appear ? 1.0 : 0.0 });
+        animation.Children.Add(keyFrame1);
+        animation.Children.Add(keyFrame2);
+        animation.Duration = TimeSpan.FromSeconds(0.2);
+        return animation;
+    }
+
     private PureRectangle CreateOverlayMask(bool modal, bool canCloseOnClick)
     {
         PureRectangle rec = new()
@@ -107,18 +106,20 @@ public partial class OverlayDialogHost: Canvas
         {
             rec[!PureRectangle.BackgroundProperty] = this[!OverlayMaskBrushProperty];
         }
-        else if(canCloseOnClick) 
-        { 
+        else if (canCloseOnClick)
+        {
             rec.SetCurrentValue(PureRectangle.BackgroundProperty, Brushes.Transparent);
         }
+
         if (canCloseOnClick)
         {
             rec.AddHandler(PointerReleasedEvent, ClickMaskToCloseDialog);
         }
-        else if(IsTopLevel)
+        else if (IsTopLevel)
         {
             rec.AddHandler(PointerPressedEvent, DragMaskToMoveWindow);
         }
+
         return rec;
     }
 
@@ -128,8 +129,9 @@ public partial class OverlayDialogHost: Canvas
         {
             return;
         }
+
         if (sender is not PureRectangle mask) return;
-        if(TopLevel.GetTopLevel(mask) is Window window)
+        if (TopLevel.GetTopLevel(mask) is Window window)
         {
             window.BeginMoveDrag(e);
         }
@@ -140,12 +142,33 @@ public partial class OverlayDialogHost: Canvas
         if (sender is not PureRectangle border) return;
         var layer = _layers.FirstOrDefault(a => a.Mask == border);
         if (layer is null) return;
+
+        var dialog = layer.Element;
+        // 新增过滤逻辑
+
+        if (dialog.LightDismissFilter != null)
+        {
+            var topLevel = TopLevel.GetTopLevel(this);
+            if (topLevel == null)
+                return;
+
+            var point = e.GetPosition(topLevel);
+
+            // 临时关闭 Mask 命中能力
+            border.IsHitTestVisible = false;
+            var realVisual = topLevel.InputHitTest(point) as Visual;
+            border.IsHitTestVisible = true;
+            // 如果点击在 NumPad 或 Target 内
+            if (dialog.LightDismissFilter?.Invoke(realVisual) == true)
+                // 不处理，不标记 handled ,让事件继续传递给真实控件
+                return;
+        }
+
         border.RemoveHandler(PointerReleasedEvent, ClickMaskToCloseDialog);
         border.RemoveHandler(PointerPressedEvent, DragMaskToMoveWindow);
-        layer.Element.Close();
+        dialog.Close();
     }
-    private IDisposable? _modalStatusSubscription;
-    private int? _toplevelHash;
+
     protected sealed override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
@@ -162,21 +185,23 @@ public partial class OverlayDialogHost: Canvas
                     }
                 });
         }
+
         OverlayDialogManager.RegisterHost(this, HostId, _toplevelHash);
     }
-    
+
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
     {
-        while (_layers.Count>0)
+        while (_layers.Count > 0)
         {
             _layers[0].Element.Close();
         }
+
         _modalStatusSubscription?.Dispose();
         OverlayDialogManager.UnregisterHost(HostId, _toplevelHash);
         base.OnDetachedFromVisualTree(e);
     }
-    
-    
+
+
     protected sealed override void OnSizeChanged(SizeChangedEventArgs e)
     {
         base.OnSizeChanged(e);
@@ -187,6 +212,7 @@ public partial class OverlayDialogHost: Canvas
                 rect.Width = this.Bounds.Width;
                 rect.Height = this.Bounds.Height;
             }
+
             if (_layers[i].Element is DialogControlBase d)
             {
                 ResetDialogPosition(d, e.NewSize);
@@ -197,25 +223,26 @@ public partial class OverlayDialogHost: Canvas
             }
         }
     }
-    
+
     private void ResetZIndices()
     {
         int index = 0;
         for (int i = 0; i < _layers.Count; i++)
         {
-            if(_layers[i].Mask is { } mask)
+            if (_layers[i].Mask is { } mask)
             {
                 mask.ZIndex = index;
                 index++;
             }
-            if(_layers[i].Element is { } dialog)
+
+            if (_layers[i].Element is { } dialog)
             {
                 dialog.ZIndex = index;
                 index++;
             }
         }
     }
-    
+
     internal IDataTemplate? GetDataTemplate(object? o)
     {
         if (o is null) return null;
@@ -231,6 +258,7 @@ public partial class OverlayDialogHost: Canvas
                 break;
             }
         }
+
         return result;
     }
 
@@ -238,5 +266,12 @@ public partial class OverlayDialogHost: Canvas
     {
         var element = _layers.LastOrDefault(a => a.Element.Content?.GetType() == typeof(T));
         return element?.Element.Content is T t ? t : default;
+    }
+
+    private class DialogPair(PureRectangle? mask, OverlayFeedbackElement element, bool modal = true)
+    {
+        internal readonly OverlayFeedbackElement Element = element;
+        internal readonly PureRectangle? Mask = mask;
+        internal readonly bool Modal = modal;
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Ursa.Controls;
+﻿using Avalonia;
+
+namespace Ursa.Controls;
 
 public enum HorizontalPosition
 {
@@ -64,8 +66,13 @@ public class OverlayDialogOptions
     public int? TopLevelHashCode { get; set; }
 
     public bool CanResize { get; set; }
-    
+
     public string? StyleClass { get; set; }
+
+    /// <summary>
+    /// 获取或设置LightDismiss过滤器函数
+    /// </summary>
+    public Func<Visual?, bool>? LightDismissFilter { get; set; }
 
     /// <summary>
     /// </summary>
