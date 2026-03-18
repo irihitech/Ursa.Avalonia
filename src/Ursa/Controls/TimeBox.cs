@@ -360,7 +360,7 @@ public class TimeBox : TemplatedControl
         }
     }
 
-    protected override void OnLostFocus(RoutedEventArgs e)
+    protected override void OnLostFocus(FocusChangedEventArgs e)
     {
         for (int i = 0; i < 4; ++i)
         {

@@ -136,7 +136,7 @@ public class TimePicker : TimePickerBase, IClearControl
         if (IsFocused) SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
     }
 
-    private void OnTextBoxGetFocus(object? sender, GotFocusEventArgs e)
+    private void OnTextBoxGetFocus(object? sender, FocusChangedEventArgs e)
     {
         SetCurrentValue(IsDropdownOpenProperty, true);
     }
@@ -229,13 +229,13 @@ public class TimePicker : TimePickerBase, IClearControl
         if (property == SelectedTimeProperty) DataValidationErrors.SetError(this, error);
     }
 
-    protected override void OnGotFocus(GotFocusEventArgs e)
+    protected override void OnGotFocus(FocusChangedEventArgs e)
     {
         base.OnGotFocus(e);
         FocusChanged(IsKeyboardFocusWithin);
     }
 
-    protected override void OnLostFocus(RoutedEventArgs e)
+    protected override void OnLostFocus(FocusChangedEventArgs e)
     {
         base.OnLostFocus(e);
         FocusChanged(IsKeyboardFocusWithin);

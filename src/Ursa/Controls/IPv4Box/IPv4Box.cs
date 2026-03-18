@@ -331,7 +331,7 @@ public class IPv4Box : TemplatedControl
         e.Handled = true;
     }
 
-    protected override void OnLostFocus(RoutedEventArgs e)
+    protected override void OnLostFocus(FocusChangedEventArgs e)
     {
         base.OnLostFocus(e);
         if (IsTargetByNumPad)
@@ -354,7 +354,7 @@ public class IPv4Box : TemplatedControl
     }
 
 
-    protected override void OnGotFocus(GotFocusEventArgs e)
+    protected override void OnGotFocus(FocusChangedEventArgs e)
     {
         _currentActivePresenter = _firstText;
         if (_currentActivePresenter is null)

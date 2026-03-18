@@ -674,7 +674,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     ///     A <see cref="T:Avalonia.RoutedEventArgs" />
     ///     that contains the event data.
     /// </param>
-    protected override void OnGotFocus(GotFocusEventArgs e)
+    protected override void OnGotFocus(FocusChangedEventArgs e)
     {
         base.OnGotFocus(e);
         FocusChanged(HasFocus());
@@ -688,7 +688,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     ///     A <see cref="T:Avalonia.RoutedEventArgs" />
     ///     that contains the event data.
     /// </param>
-    protected override void OnLostFocus(RoutedEventArgs e)
+    protected override void OnLostFocus(FocusChangedEventArgs e)
     {
         base.OnLostFocus(e);
         FocusChanged(HasFocus());

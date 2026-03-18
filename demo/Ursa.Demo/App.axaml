@@ -5,6 +5,7 @@
     xmlns:semi="https://irihi.tech/semi"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:iri="https://irihi.tech/shared"
+    RequestedThemeVariant="Light"
     xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
     x:DataType="vm:ApplicationViewModel">
     <Application.Styles>

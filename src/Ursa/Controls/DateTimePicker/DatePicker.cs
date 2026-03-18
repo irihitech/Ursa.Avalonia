@@ -153,7 +153,7 @@ public class DatePicker: DatePickerBase, IClearControl
         }
     }
 
-    private void OnTextBoxGetFocus(object? sender, GotFocusEventArgs e)
+    private void OnTextBoxGetFocus(object? sender, FocusChangedEventArgs e)
     {
         if (_calendar is not null)
         {
@@ -211,13 +211,13 @@ public class DatePicker: DatePickerBase, IClearControl
         SetCurrentValue(SelectedDateProperty, null);
     }
     
-    protected override void OnGotFocus(GotFocusEventArgs e)
+    protected override void OnGotFocus(FocusChangedEventArgs e)
     {
         base.OnGotFocus(e);
         FocusChanged(IsKeyboardFocusWithin);
     }
 
-    protected override void OnLostFocus(RoutedEventArgs e)
+    protected override void OnLostFocus(FocusChangedEventArgs e)
     {
         base.OnLostFocus(e);
         FocusChanged(IsKeyboardFocusWithin);

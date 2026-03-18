@@ -63,7 +63,7 @@ public class AutoCompleteBox : Avalonia.Controls.AutoCompleteBox, IClearControl
         }
     }
 
-    protected override void OnGotFocus(GotFocusEventArgs e)
+    protected override void OnGotFocus(FocusChangedEventArgs e)
     {
         base.OnGotFocus(e);
         // If the focus is set by pointer navigation, it is handled by PointerPressed, do not open the dropdown.

@@ -251,7 +251,7 @@ public class PopConfirm : ContentControl
     }
 
     private bool _suppressButtonClickEvent;
-    private void OnMainElementGotFocus(object? sender, GotFocusEventArgs e)
+    private void OnMainElementGotFocus(object? sender, FocusChangedEventArgs e)
     {
         Debug.WriteLine("Got Focus");
         if (TriggerMode.HasFlag(PopConfirmTriggerMode.Click) && TriggerMode.HasFlag(PopConfirmTriggerMode.Focus))
