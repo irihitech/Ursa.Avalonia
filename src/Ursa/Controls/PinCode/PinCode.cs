@@ -7,6 +7,7 @@ using Avalonia.Input;
 using Avalonia.Input.Platform;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
+using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
@@ -162,7 +163,7 @@ public class PinCode : TemplatedControl
 
     protected async void OnPreviewKeyDown(KeyEventArgs e)
     {
-        var pasteKeys = Application.Current?.PlatformSettings?.HotkeyConfiguration.Paste;
+        var pasteKeys = this.GetPlatformSettings()?.HotkeyConfiguration.Paste;
         if (pasteKeys?.Any(a => a.Matches(e)) == true)
         {
             var clipboard = TopLevel.GetTopLevel(this)?.Clipboard;

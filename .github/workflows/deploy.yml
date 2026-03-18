@@ -16,7 +16,7 @@ jobs:
       - name: Setup .NET 10
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 10.0.x
+          dotnet-version: 10.0.201
 
       - name: Install wasm-tools
         run: dotnet workload install wasm-tools

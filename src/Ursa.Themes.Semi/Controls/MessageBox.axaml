@@ -41,14 +41,13 @@
         <Setter Property="WindowStartupLocation" Value="CenterOwner" />
         <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="1" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
-        <Setter Property="ExtendClientAreaChromeHints" Value="SystemChrome" />
-        <Setter Property="SystemDecorations">
+        <Setter Property="WindowDecorations">
             <OnPlatform>
                 <OnPlatform.Windows>
-                    <SystemDecorations>Full</SystemDecorations>
+                    <WindowDecorations>BorderOnly</WindowDecorations>
                 </OnPlatform.Windows>
                 <OnPlatform.Default>
-                    <SystemDecorations>BorderOnly</SystemDecorations>
+                    <WindowDecorations>BorderOnly</WindowDecorations>
                 </OnPlatform.Default>
             </OnPlatform>
         </Setter>
