@@ -45,8 +45,12 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         AvaloniaProperty.Register<TimeRangePicker, string?>(
             nameof(EndPlaceholderText));
 
-    public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
-        AvaloniaProperty.Register<TimeRangePicker, IBrush?>(nameof(PlaceholderForeground));
+    public static readonly StyledProperty<IBrush?> StartPlaceholderForegroundProperty =
+        AvaloniaProperty.Register<TimeRangePicker, IBrush?>(nameof(StartPlaceholderForeground));
+
+    public static readonly StyledProperty<IBrush?> EndPlaceholderForegroundProperty =
+        AvaloniaProperty.Register<TimeRangePicker, IBrush?>(nameof(EndPlaceholderForeground));
+
 
     [Obsolete("Use StartPlaceholderTextProperty instead.")]
     public static readonly StyledProperty<string?> StartWatermarkProperty = StartPlaceholderTextProperty;
@@ -88,10 +92,16 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         set => SetValue(StartPlaceholderTextProperty, value);
     }
 
-    public IBrush? PlaceholderForeground
+    public IBrush? StartPlaceholderForeground
     {
-        get => GetValue(PlaceholderForegroundProperty);
-        set => SetValue(PlaceholderForegroundProperty, value);
+        get => GetValue(StartPlaceholderForegroundProperty);
+        set => SetValue(StartPlaceholderForegroundProperty, value);
+    }
+
+    public IBrush? EndPlaceholderForeground
+    {
+        get => GetValue(EndPlaceholderForegroundProperty);
+        set => SetValue(EndPlaceholderForegroundProperty, value);
     }
 
     [Obsolete("Use EndPlaceholderText instead.")]
@@ -153,6 +163,7 @@ public class TimeRangePicker : TimePickerBase, IClearControl
             textBox.Text = null;
             return;
         }
+
         var date = new DateTime(1, 1, 1, time.Value.Hours, time.Value.Minutes, time.Value.Seconds);
         var text = date.ToString(DisplayFormat);
         textBox.Text = text;

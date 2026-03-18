@@ -23,7 +23,7 @@ public partial class MultiAutoCompleteBox
             TextBox.PlaceholderTextProperty.AddOwner<MultiAutoCompleteBox>();
 
         public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
-            AvaloniaProperty.Register<MultiAutoCompleteBox, IBrush?>(nameof(PlaceholderForeground));
+            TextBox.PlaceholderForegroundProperty.AddOwner<MultiAutoCompleteBox>();
 
         [Obsolete("Use PlaceholderTextProperty instead.")]
         public static readonly StyledProperty<string?> WatermarkProperty = PlaceholderTextProperty;

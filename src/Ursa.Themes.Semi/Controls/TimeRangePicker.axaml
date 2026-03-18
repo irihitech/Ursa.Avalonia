@@ -38,7 +38,7 @@
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
                                 IsReadOnly="{TemplateBinding IsReadonly}"
                                 PlaceholderText="{TemplateBinding StartPlaceholderText}"
-                                PlaceholderForeground="{TemplateBinding PlaceholderForeground}" />
+                                PlaceholderForeground="{TemplateBinding StartPlaceholderForeground}" />
                             <TextBlock
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
@@ -55,7 +55,7 @@
                                 InnerRightContent="{TemplateBinding InnerRightContent}"
                                 IsReadOnly="{TemplateBinding IsReadonly}"
                                 PlaceholderText="{TemplateBinding EndPlaceholderText}"
-                                PlaceholderForeground="{TemplateBinding PlaceholderForeground}" />
+                                PlaceholderForeground="{TemplateBinding EndPlaceholderForeground}" />
                             <Button
                                 Name="ClearButton"
                                 Grid.Column="3"

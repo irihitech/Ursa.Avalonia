@@ -37,8 +37,8 @@ public class DatePicker: DatePickerBase, IClearControl
         set => SetValue(SelectedDateProperty, value);
     }
 
-    public static readonly StyledProperty<string?> PlaceholderTextProperty = AvaloniaProperty.Register<DatePicker, string?>(
-        nameof(PlaceholderText));
+    public static readonly StyledProperty<string?> PlaceholderTextProperty = 
+        TextBox.PlaceholderTextProperty.AddOwner<DatePicker>();
 
     public string? PlaceholderText
     {
@@ -47,7 +47,7 @@ public class DatePicker: DatePickerBase, IClearControl
     }
 
     public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
-        AvaloniaProperty.Register<DatePicker, IBrush?>(nameof(PlaceholderForeground));
+        TextBox.PlaceholderForegroundProperty.AddOwner<DatePicker>();
 
     public IBrush? PlaceholderForeground
     {

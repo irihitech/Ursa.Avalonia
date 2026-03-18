@@ -29,14 +29,14 @@ public class TagInput : TemplatedControl
         AvaloniaProperty.Register<TagInput, IList<string>>(
             nameof(Tags));
 
-    public static readonly StyledProperty<string?> PlaceholderTextProperty = TextBox.PlaceholderTextProperty.AddOwner<TagInput>();
+    public static readonly StyledProperty<string?> PlaceholderTextProperty =
+        TextBox.PlaceholderTextProperty.AddOwner<TagInput>();
 
     public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
-        AvaloniaProperty.Register<TagInput, IBrush?>(nameof(PlaceholderForeground));
+        TextBox.PlaceholderForegroundProperty.AddOwner<TagInput>();
 
     [Obsolete("Use PlaceholderTextProperty instead.")]
     public static readonly StyledProperty<string?> WatermarkProperty = PlaceholderTextProperty;
-
 
     public static readonly StyledProperty<bool> AcceptsReturnProperty =
         TextBox.AcceptsReturnProperty.AddOwner<TagInput>();
@@ -297,13 +297,14 @@ public class TagInput : TemplatedControl
         {
             AddTags(_textBox.Text);
         }
-        else if (AcceptsReturn && args.Key==Key.Enter)
+        else if (AcceptsReturn && args.Key == Key.Enter)
         {
             var texts = _textBox.Text?.Split(["\r", "\n"], StringSplitOptions.RemoveEmptyEntries) ?? [];
             foreach (var text in texts)
             {
                 AddTags(text);
             }
+
             args.Handled = true;
         }
         else if (args.Key == Key.Delete || args.Key == Key.Back)
@@ -324,7 +325,7 @@ public class TagInput : TemplatedControl
         if (!string.IsNullOrEmpty(Separator))
             values = text.Split(new[] { Separator },
                 StringSplitOptions.RemoveEmptyEntries);
-        else if(_textBox.Text is not null)
+        else if (_textBox.Text is not null)
             values = new[] { _textBox.Text };
 
         if (!AllowDuplicates)

@@ -84,8 +84,8 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
         set => SetValue(InnerRightContentProperty, value);
     }
 
-    public static readonly StyledProperty<string?> PlaceholderTextProperty = AvaloniaProperty.Register<NumericUpDown, string?>(
-        nameof(PlaceholderText));
+    public static readonly StyledProperty<string?> PlaceholderTextProperty =
+        TextBox.PlaceholderTextProperty.AddOwner<NumericUpDown>();
 
     public string? PlaceholderText
     {
@@ -94,7 +94,7 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
     }
 
     public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
-        AvaloniaProperty.Register<NumericUpDown, IBrush?>(nameof(PlaceholderForeground));
+        TextBox.PlaceholderForegroundProperty.AddOwner<NumericUpDown>();
 
     public IBrush? PlaceholderForeground
     {

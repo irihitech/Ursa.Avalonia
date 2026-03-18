@@ -30,8 +30,7 @@ public class DateTimePicker : DatePickerBase
             nameof(SelectedDate), defaultBindingMode: BindingMode.TwoWay);
 
     public static readonly StyledProperty<string?> PlaceholderTextProperty =
-        AvaloniaProperty.Register<DateTimePicker, string?>(
-            nameof(PlaceholderText));
+        AvaloniaProperty.Register<DateTimePicker, string?>(nameof(PlaceholderText));
 
     public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
         AvaloniaProperty.Register<DateTimePicker, IBrush?>(nameof(PlaceholderForeground));

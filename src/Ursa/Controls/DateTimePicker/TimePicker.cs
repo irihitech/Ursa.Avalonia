@@ -27,11 +27,11 @@ public class TimePicker : TimePickerBase, IClearControl
         AvaloniaProperty.Register<TimePicker, TimeSpan?>(
             nameof(SelectedTime), defaultBindingMode: BindingMode.TwoWay);
 
-    public static readonly StyledProperty<string?> PlaceholderTextProperty = AvaloniaProperty.Register<TimePicker, string?>(
-        nameof(PlaceholderText));
+    public static readonly StyledProperty<string?> PlaceholderTextProperty = 
+        TextBox.PlaceholderTextProperty.AddOwner<TimePicker>();
 
     public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
-        AvaloniaProperty.Register<TimePicker, IBrush?>(nameof(PlaceholderForeground));
+        TextBox.PlaceholderForegroundProperty.AddOwner<TimePicker>();
 
     [Obsolete("Use PlaceholderTextProperty instead.")]
     public static readonly StyledProperty<string?> WatermarkProperty = PlaceholderTextProperty;

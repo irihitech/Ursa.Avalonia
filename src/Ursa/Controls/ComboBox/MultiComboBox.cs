@@ -61,7 +61,7 @@ public class MultiComboBox : SelectingItemsControl, IInnerContentControl, IPopup
         TextBox.PlaceholderTextProperty.AddOwner<MultiComboBox>();
 
     public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
-        AvaloniaProperty.Register<MultiComboBox, IBrush?>(nameof(PlaceholderForeground));
+        TextBox.PlaceholderForegroundProperty.AddOwner<MultiComboBox>();
 
     [Obsolete("Use PlaceholderTextProperty instead.")]
     public static readonly StyledProperty<string?> WatermarkProperty = PlaceholderTextProperty;

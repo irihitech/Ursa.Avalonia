@@ -43,7 +43,7 @@ public class TreeComboBox: ItemsControl, IClearControl, IInnerContentControl, IP
         TextBox.PlaceholderTextProperty.AddOwner<TreeComboBox>();
 
     public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
-        AvaloniaProperty.Register<TreeComboBox, IBrush?>(nameof(PlaceholderForeground));
+        TextBox.PlaceholderForegroundProperty.AddOwner<TreeComboBox>();
 
     [Obsolete("Use PlaceholderTextProperty instead.")]
     public static readonly StyledProperty<string?> WatermarkProperty = PlaceholderTextProperty;
