@@ -38,19 +38,13 @@ public class TimeRangePicker : TimePickerBase, IClearControl
             nameof(EndTime), defaultBindingMode: BindingMode.TwoWay);
 
     public static readonly StyledProperty<string?> StartPlaceholderTextProperty =
-        AvaloniaProperty.Register<TimeRangePicker, string?>(
-            nameof(StartPlaceholderText));
+        TextBox.PlaceholderTextProperty.AddOwner<TimeRangePicker>();
 
     public static readonly StyledProperty<string?> EndPlaceholderTextProperty =
-        AvaloniaProperty.Register<TimeRangePicker, string?>(
-            nameof(EndPlaceholderText));
+        TextBox.PlaceholderTextProperty.AddOwner<TimeRangePicker>();
 
-    public static readonly StyledProperty<IBrush?> StartPlaceholderForegroundProperty =
-        AvaloniaProperty.Register<TimeRangePicker, IBrush?>(nameof(StartPlaceholderForeground));
-
-    public static readonly StyledProperty<IBrush?> EndPlaceholderForegroundProperty =
-        AvaloniaProperty.Register<TimeRangePicker, IBrush?>(nameof(EndPlaceholderForeground));
-
+    public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
+        TextBox.PlaceholderForegroundProperty.AddOwner<TimeRangePicker>();
 
     [Obsolete("Use StartPlaceholderTextProperty instead.")]
     public static readonly StyledProperty<string?> StartWatermarkProperty = StartPlaceholderTextProperty;
@@ -80,42 +74,16 @@ public class TimeRangePicker : TimePickerBase, IClearControl
     }
 
 
-    public string? EndPlaceholderText
-    {
-        get => GetValue(EndPlaceholderTextProperty);
-        set => SetValue(EndPlaceholderTextProperty, value);
-    }
-
     public string? StartPlaceholderText
     {
         get => GetValue(StartPlaceholderTextProperty);
         set => SetValue(StartPlaceholderTextProperty, value);
     }
 
-    public IBrush? StartPlaceholderForeground
+    public string? EndPlaceholderText
     {
-        get => GetValue(StartPlaceholderForegroundProperty);
-        set => SetValue(StartPlaceholderForegroundProperty, value);
-    }
-
-    public IBrush? EndPlaceholderForeground
-    {
-        get => GetValue(EndPlaceholderForegroundProperty);
-        set => SetValue(EndPlaceholderForegroundProperty, value);
-    }
-
-    [Obsolete("Use EndPlaceholderText instead.")]
-    public string? EndWatermark
-    {
-        get => EndPlaceholderText;
-        set => EndPlaceholderText = value;
-    }
-
-    [Obsolete("Use StartPlaceholderText instead.")]
-    public string? StartWatermark
-    {
-        get => StartPlaceholderText;
-        set => StartPlaceholderText = value;
+        get => GetValue(EndPlaceholderTextProperty);
+        set => SetValue(EndPlaceholderTextProperty, value);
     }
 
     public TimeSpan? StartTime
@@ -128,6 +96,26 @@ public class TimeRangePicker : TimePickerBase, IClearControl
     {
         get => GetValue(EndTimeProperty);
         set => SetValue(EndTimeProperty, value);
+    }
+
+    public IBrush? PlaceholderForeground
+    {
+        get => GetValue(PlaceholderForegroundProperty);
+        set => SetValue(PlaceholderForegroundProperty, value);
+    }
+
+    [Obsolete("Use StartPlaceholderText instead.")]
+    public string? StartWatermark
+    {
+        get => StartPlaceholderText;
+        set => StartPlaceholderText = value;
+    }
+
+    [Obsolete("Use EndPlaceholderText instead.")]
+    public string? EndWatermark
+    {
+        get => EndPlaceholderText;
+        set => EndPlaceholderText = value;
     }
 
     public void Clear()
