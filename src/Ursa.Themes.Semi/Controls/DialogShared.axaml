@@ -5,54 +5,30 @@
         <StackPanel Orientation="Horizontal" Margin="20">
             <Button Theme="{DynamicResource CloseButton}" />
             <Button Theme="{DynamicResource OverlayCloseButton}" />
-            <Button Theme="{DynamicResource NotificationCloseButton}" />
-            <Button Theme="{DynamicResource ToastCloseButton}" />
         </StackPanel>
     </Design.PreviewWith>
 
-    <ControlTheme x:Key="OverlayCloseButton" TargetType="Button">
-        <Setter Property="CornerRadius" Value="3" />
+    <ControlTheme
+        x:Key="OverlayCloseButton"
+        BasedOn="{StaticResource CaptionButton}"
+        TargetType="Button">
         <Setter Property="Height" Value="24" />
         <Setter Property="Width" Value="24" />
-        <Setter Property="Padding" Value="4" />
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Template">
-            <ControlTemplate TargetType="Button">
-                <Border
-                    Padding="{TemplateBinding Padding}"
-                    Background="Transparent"
-                    CornerRadius="{TemplateBinding CornerRadius}">
-                    <PathIcon
-                        Foreground="{DynamicResource OverlayCloseButtonForeground}"
-                        Theme="{StaticResource InnerPathIcon}"
-                        Data="{DynamicResource SemiIconClose}" />
-                </Border>
-            </ControlTemplate>
-        </Setter>
-        <Style Selector="^:pointerover /template/ Border">
-            <Setter Property="Background" Value="{DynamicResource OverlayCloseButtonPointeroverBackground}" />
-        </Style>
-        <Style Selector="^:pressed /template/ Border">
-            <Setter Property="Background" Value="{DynamicResource OverlayCloseButtonPressedBackground}" />
-        </Style>
+        <Setter Property="Content" Value="{StaticResource SemiIconClose}" />
     </ControlTheme>
 
     <ControlTheme
         x:Key="CloseButton"
         BasedOn="{StaticResource OverlayCloseButton}"
         TargetType="Button">
-        <Style Selector="^:pointerover /template/ Border">
+        <Style Selector="^:pointerover">
+            <Setter Property="Foreground" Value="{DynamicResource CaptionButtonCloseForeground}" />
             <Setter Property="Background" Value="{DynamicResource CaptionButtonClosePointeroverBackground}" />
         </Style>
-        <Style Selector="^:pointerover /template/ PathIcon">
-            <Setter Property="Foreground" Value="White" />
-        </Style>
 
-        <Style Selector="^:pressed /template/ Border">
+        <Style Selector="^:pressed">
+            <Setter Property="Foreground" Value="{DynamicResource CaptionButtonCloseForeground}" />
             <Setter Property="Background" Value="{DynamicResource CaptionButtonClosePressedBackground}" />
-        </Style>
-        <Style Selector="^:pressed /template/ PathIcon">
-            <Setter Property="Foreground" Value="White" />
         </Style>
     </ControlTheme>
 

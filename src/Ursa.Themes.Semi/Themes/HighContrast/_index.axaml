@@ -8,7 +8,6 @@
         <ResourceInclude Source="Clock.axaml" />
         <ResourceInclude Source="DatePicker.axaml" />
         <ResourceInclude Source="Dialog.axaml" />
-        <ResourceInclude Source="DialogShared.axaml" />
         <ResourceInclude Source="Divider.axaml" />
         <ResourceInclude Source="Drawer.axaml" />
         <ResourceInclude Source="Form.axaml" />
