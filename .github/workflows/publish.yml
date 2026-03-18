@@ -62,6 +62,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.201
       - name: Publish win-x64
         run: dotnet publish demo/Ursa.Demo.Desktop -r win-x64 -c Release -o publish --sc /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
       - name: Upload a Build Artifact
@@ -78,6 +82,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.201
       - name: Enable Native AOT in .csproj
         run: sed -i 's#<!--<PublishAot>true</PublishAot>-->#<PublishAot>true</PublishAot>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
       - name: Publish win-x64 AOT
@@ -96,6 +104,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.201
       - name: Publish linux-x64
         run: dotnet publish demo/Ursa.Demo.Desktop -r linux-x64 -c Release -o publish --sc /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
       - name: Upload a Build Artifact
@@ -112,6 +124,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.201
       - name: Enable Native AOT in .csproj
         run: sed -i 's#<!--<PublishAot>true</PublishAot>-->#<PublishAot>true</PublishAot>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
       - name: Publish linux-x64 AOT
@@ -130,6 +146,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.201
       - name: Publish osx-arm64
         run: dotnet publish demo/Ursa.Demo.Desktop -r osx-arm64 -c Release -o publish --sc /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
       - name: Upload a Build Artifact
@@ -146,6 +166,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.201
       - name: Enable Native AOT in .csproj
         run: sed -i '' 's#<!--<PublishAot>true</PublishAot>-->#<PublishAot>true</PublishAot>#' demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj
       - name: Publish osx-arm64 AOT
@@ -164,6 +188,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.201
       - name: Install Android workload
         run: dotnet workload install android
       - name: Restore Dependencies
