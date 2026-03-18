@@ -1581,17 +1581,13 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     private void OnAdapterSelectionComplete(object? sender, RoutedEventArgs e)
     {
         SetCurrentValue(IsDropDownOpenProperty, false);
-
         // Completion will update the selected value
-        //UpdateTextCompletion(false);
-        _ = SelectedItems ?? throw new NullReferenceException("Selected Items collection must be initialized. ");
+        // UpdateTextCompletion(false);
         if (_adapter?.SelectedItem is null) return;
         SelectedItems?.Add(_adapter?.SelectedItem);
         UpdateTextValue(string.Empty, false);
-        
         // Text should not be selected
         ClearTextBoxSelection();
-
         TextBox!.Focus();
     }
 
@@ -1603,7 +1599,6 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     private void OnAdapterSelectionCanceled(object? sender, RoutedEventArgs e)
     {
         UpdateTextValue(SearchText);
-
         // Completion will update the selected value
         UpdateTextCompletion(false);
     }
