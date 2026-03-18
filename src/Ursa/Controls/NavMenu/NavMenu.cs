@@ -319,7 +319,8 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
         if (!_itemsPresenter.IsVisualAncestorOf(visual))
         {
             _isNavigatingMenu = true;
-            var next = KeyboardNavigationHandler.GetNext(element, direction);
+            // TODO12: Need to figure out a way to get next element. 
+            IInputElement? next = null; // KeyboardNavigationHandler.GetNext(element, direction);
             _isNavigatingMenu = false;
 
             if (_itemsPresenter.IsVisualAncestorOf(next as Visual))
@@ -335,7 +336,8 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
         else
         {
             _isNavigatingMenu = true;
-            var next = KeyboardNavigationHandler.GetNext(_itemsPresenter, direction);
+            // TODO12: Need to figure out a way to get next element.
+            IInputElement? next = null; //KeyboardNavigationHandler.GetNext(_itemsPresenter, direction);
             _isNavigatingMenu = false;
 
             if (element is NavMenuItem { Level: 1 } firstLevelItem) firstLevelItem.CloseAllOpenPopups();
