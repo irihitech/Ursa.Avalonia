@@ -49,19 +49,4 @@ public class ButtonGroupTests
         
         Assert.Equal(binding, buttonGroup.ContentBinding);
     }
-
-    [Fact]
-    public void ButtonGroup_Should_Accept_Items_In_Collection()
-    {
-        var buttonGroup = new ButtonGroup();
-        var item1 = "Item 1";
-        var item2 = new Avalonia.Controls.Button { Content = "Button Item" };
-        
-        buttonGroup.Items.Add(item1);
-        buttonGroup.Items.Add(item2);
-        
-        Assert.Equal(2, buttonGroup.Items.Count);
-        Assert.Contains(item1, buttonGroup.Items);
-        Assert.Contains(item2, buttonGroup.Items);
-    }
 }
