@@ -2,4 +2,7 @@
     <StaticResource x:Key="ClosableTagBackground" ResourceKey="SemiColorWindow" />
     <StaticResource x:Key="ClosableTagForeground" ResourceKey="SemiColorWindowText" />
     <StaticResource x:Key="ClosableTagBorder" ResourceKey="SemiColorWindowText" />
+    <StaticResource x:Key="ClosableTagCloseButtonForeground" ResourceKey="SemiColorGrayText" />
+    <StaticResource x:Key="ClosableTagCloseButtonPointeroverForeground" ResourceKey="SemiColorWindowText" />
+    <StaticResource x:Key="ClosableTagCloseButtonPressedForeground" ResourceKey="SemiColorWindowText" />
 </ResourceDictionary>

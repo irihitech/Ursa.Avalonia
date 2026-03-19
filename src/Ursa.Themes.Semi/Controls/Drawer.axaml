@@ -23,7 +23,7 @@
                         Padding="0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
-                        Background="{DynamicResource SemiColorBackground2}"
+                        Background="{DynamicResource DrawerBackground}"
                         BorderThickness="{TemplateBinding BorderThickness,
                                                           Converter={iri:ThicknessMixerConverter Left}}"
                         Classes="Shadow"
@@ -120,7 +120,7 @@
                         Padding="0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
-                        Background="{DynamicResource SemiColorBackground2}"
+                        Background="{DynamicResource DrawerBackground}"
                         BorderThickness="{TemplateBinding BorderThickness,
                                                           Converter={iri:ThicknessMixerConverter Left}}"
                         Classes="Shadow"

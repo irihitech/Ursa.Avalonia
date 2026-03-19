@@ -28,7 +28,7 @@
                         Padding="0"
                         HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                         VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                        Background="{DynamicResource SemiColorBackground2}"
+                        Background="{DynamicResource DialogBackground}"
                         Classes="Shadow"
                         ClipToBounds="False"
                         CornerRadius="{TemplateBinding CornerRadius}"
@@ -149,8 +149,8 @@
                         Padding="0"
                         HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                         VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                        Background="{DynamicResource SemiColorBackground2}"
-                        BoxShadow="0 0 8 0 #1A000000"
+                        Background="{DynamicResource DialogBackground}"
+                        BoxShadow="{DynamicResource DialogBoxShadow}"
                         Classes="Shadow"
                         ClipToBounds="False"
                         CornerRadius="{TemplateBinding CornerRadius}"
@@ -275,7 +275,7 @@
             <Style Selector="^ /template/ PathIcon#PART_Icon">
                 <Setter Property="IsVisible" Value="True" />
                 <Setter Property="Data" Value="{DynamicResource DialogInformationIconGlyph}" />
-                <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
+                <Setter Property="Foreground" Value="{DynamicResource DialogInfoIconForeground}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
@@ -294,7 +294,7 @@
             <Style Selector="^ /template/ PathIcon#PART_Icon">
                 <Setter Property="IsVisible" Value="True" />
                 <Setter Property="Data" Value="{DynamicResource DialogWarningIconGlyph}" />
-                <Setter Property="Foreground" Value="{DynamicResource SemiOrange6}" />
+                <Setter Property="Foreground" Value="{DynamicResource DialogWarningIconForeground}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="iri:ClassHelper.Classes" Value="Warning" />
@@ -316,7 +316,7 @@
             <Style Selector="^ /template/ PathIcon#PART_Icon">
                 <Setter Property="IsVisible" Value="True" />
                 <Setter Property="Data" Value="{DynamicResource DialogErrorIconGlyph}" />
-                <Setter Property="Foreground" Value="{DynamicResource SemiRed6}" />
+                <Setter Property="Foreground" Value="{DynamicResource DialogErrorIconForeground}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="iri:ClassHelper.Classes" Value="Danger" />
@@ -335,7 +335,7 @@
             <Style Selector="^ /template/ PathIcon#PART_Icon">
                 <Setter Property="IsVisible" Value="True" />
                 <Setter Property="Data" Value="{DynamicResource DialogQuestionIconGlyph}" />
-                <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
+                <Setter Property="Foreground" Value="{DynamicResource DialogQuestionIconForeground}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
@@ -354,7 +354,7 @@
             <Style Selector="^ /template/ PathIcon#PART_Icon">
                 <Setter Property="IsVisible" Value="True" />
                 <Setter Property="Data" Value="{DynamicResource DialogSuccessIconGlyph}" />
-                <Setter Property="Foreground" Value="{DynamicResource SemiGreen6}" />
+                <Setter Property="Foreground" Value="{DynamicResource DialogSuccessIconForeground}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="iri:ClassHelper.Classes" Value="Success" />
@@ -430,7 +430,7 @@
 
     <ControlTheme x:Key="{x:Type u:DialogWindow}" TargetType="u:DialogWindow">
         <Setter Property="Title" Value="{x:Null}" />
-        <Setter Property="Background" Value="{DynamicResource SemiColorBackground2}" />
+        <Setter Property="Background" Value="{DynamicResource DialogBackground}" />
         <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
@@ -492,7 +492,7 @@
 
     <ControlTheme x:Key="{x:Type u:DefaultDialogWindow}" TargetType="u:DefaultDialogWindow">
         <Setter Property="Title" Value="{x:Null}" />
-        <Setter Property="Background" Value="{DynamicResource SemiColorBackground2}" />
+        <Setter Property="Background" Value="{DynamicResource DialogBackground}" />
         <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
@@ -620,7 +620,7 @@
             <Style Selector="^ /template/ PathIcon#PART_Icon">
                 <Setter Property="IsVisible" Value="True" />
                 <Setter Property="Data" Value="{DynamicResource DialogInformationIconGlyph}" />
-                <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
+                <Setter Property="Foreground" Value="{DynamicResource DialogInfoIconForeground}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
@@ -639,7 +639,7 @@
             <Style Selector="^ /template/ PathIcon#PART_Icon">
                 <Setter Property="IsVisible" Value="True" />
                 <Setter Property="Data" Value="{DynamicResource DialogWarningIconGlyph}" />
-                <Setter Property="Foreground" Value="{DynamicResource SemiOrange6}" />
+                <Setter Property="Foreground" Value="{DynamicResource DialogWarningIconForeground}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="iri:ClassHelper.Classes" Value="Warning" />
@@ -661,7 +661,7 @@
             <Style Selector="^ /template/ PathIcon#PART_Icon">
                 <Setter Property="IsVisible" Value="True" />
                 <Setter Property="Data" Value="{DynamicResource DialogErrorIconGlyph}" />
-                <Setter Property="Foreground" Value="{DynamicResource SemiRed6}" />
+                <Setter Property="Foreground" Value="{DynamicResource DialogErrorIconForeground}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="iri:ClassHelper.Classes" Value="Danger" />
@@ -680,7 +680,7 @@
             <Style Selector="^ /template/ PathIcon#PART_Icon">
                 <Setter Property="IsVisible" Value="True" />
                 <Setter Property="Data" Value="{DynamicResource DialogQuestionIconGlyph}" />
-                <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
+                <Setter Property="Foreground" Value="{DynamicResource DialogQuestionIconForeground}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
@@ -699,7 +699,7 @@
             <Style Selector="^ /template/ PathIcon#PART_Icon">
                 <Setter Property="IsVisible" Value="True" />
                 <Setter Property="Data" Value="{DynamicResource DialogSuccessIconGlyph}" />
-                <Setter Property="Foreground" Value="{DynamicResource SemiGreen6}" />
+                <Setter Property="Foreground" Value="{DynamicResource DialogSuccessIconForeground}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="iri:ClassHelper.Classes" Value="Success" />

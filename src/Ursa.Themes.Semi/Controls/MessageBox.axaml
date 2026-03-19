@@ -31,7 +31,7 @@
     </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:MessageBoxWindow}" TargetType="u:MessageBoxWindow">
         <Setter Property="Title" Value="{x:Null}" />
-        <Setter Property="Background" Value="{DynamicResource SemiColorBackground3}" />
+        <Setter Property="Background" Value="{DynamicResource MessageBoxBackground}" />
         <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
@@ -153,32 +153,32 @@
         </Style>
         <Style Selector="^[MessageIcon=Asterisk] /template/ PathIcon#PART_Icon, ^[MessageIcon=Information] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
-            <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
+            <Setter Property="Foreground" Value="{DynamicResource DialogInfoIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource DialogInformationIconGlyph}" />
         </Style>
         <Style Selector="^[MessageIcon=Error] /template/ PathIcon#PART_Icon, ^[MessageIcon=Hand] /template/ PathIcon#PART_Icon, ^[MessageIcon=Stop] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
-            <Setter Property="Foreground" Value="{DynamicResource SemiRed6}" />
+            <Setter Property="Foreground" Value="{DynamicResource DialogErrorIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource DialogErrorIconGlyph}" />
         </Style>
         <Style Selector="^[MessageIcon=Exclamation] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
-            <Setter Property="Foreground" Value="{DynamicResource SemiYellow6}" />
+            <Setter Property="Foreground" Value="{DynamicResource DialogExclamationIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource DialogWarningIconGlyph}" />
         </Style>
         <Style Selector="^[MessageIcon=Question] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
-            <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
+            <Setter Property="Foreground" Value="{DynamicResource DialogQuestionIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource DialogQuestionIconGlyph}" />
         </Style>
         <Style Selector="^[MessageIcon=Warning] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
-            <Setter Property="Foreground" Value="{DynamicResource SemiOrange6}" />
+            <Setter Property="Foreground" Value="{DynamicResource DialogWarningIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource DialogWarningIconGlyph}" />
         </Style>
         <Style Selector="^[MessageIcon=Success] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
-            <Setter Property="Foreground" Value="{DynamicResource SemiGreen6}" />
+            <Setter Property="Foreground" Value="{DynamicResource DialogSuccessIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource DialogSuccessIconGlyph}" />
         </Style>
     </ControlTheme>
@@ -196,7 +196,7 @@
                     VerticalAlignment="Center"
                     Classes="Shadow"
                     ClipToBounds="False"
-                    Background="{DynamicResource SemiColorBackground3}"
+                    Background="{DynamicResource MessageBoxBackground}"
                     CornerRadius="{TemplateBinding CornerRadius}"
                     IsHitTestVisible="True"
                     Theme="{DynamicResource CardBorder}">
@@ -310,32 +310,32 @@
         </Style>
         <Style Selector="^[MessageIcon=Asterisk] /template/ PathIcon#PART_Icon, ^[MessageIcon=Information] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
-            <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
+            <Setter Property="Foreground" Value="{DynamicResource DialogInfoIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource DialogInformationIconGlyph}" />
         </Style>
         <Style Selector="^[MessageIcon=Error] /template/ PathIcon#PART_Icon, ^[MessageIcon=Hand] /template/ PathIcon#PART_Icon, ^[MessageIcon=Stop] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
-            <Setter Property="Foreground" Value="{DynamicResource SemiRed6}" />
+            <Setter Property="Foreground" Value="{DynamicResource DialogErrorIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource DialogErrorIconGlyph}" />
         </Style>
         <Style Selector="^[MessageIcon=Exclamation] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
-            <Setter Property="Foreground" Value="{DynamicResource SemiYellow6}" />
+            <Setter Property="Foreground" Value="{DynamicResource DialogExclamationIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource DialogWarningIconGlyph}" />
         </Style>
         <Style Selector="^[MessageIcon=Question] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
-            <Setter Property="Foreground" Value="{DynamicResource SemiBlue6}" />
+            <Setter Property="Foreground" Value="{DynamicResource DialogQuestionIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource DialogQuestionIconGlyph}" />
         </Style>
         <Style Selector="^[MessageIcon=Warning] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
-            <Setter Property="Foreground" Value="{DynamicResource SemiOrange6}" />
+            <Setter Property="Foreground" Value="{DynamicResource DialogWarningIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource DialogWarningIconGlyph}" />
         </Style>
         <Style Selector="^[MessageIcon=Success] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="True" />
-            <Setter Property="Foreground" Value="{DynamicResource SemiGreen6}" />
+            <Setter Property="Foreground" Value="{DynamicResource DialogSuccessIconForeground}" />
             <Setter Property="Data" Value="{DynamicResource DialogSuccessIconGlyph}" />
         </Style>
     </ControlTheme>

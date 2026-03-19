@@ -1,0 +1,5 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="OverlayDialogMaskBrush" Opacity="0.5" Color="#000000" />
+    <StaticResource x:Key="DialogBackground" ResourceKey="SemiColorWindow" />
+    <StaticResource x:Key="DialogInfoIconForeground" ResourceKey="SemiColorHotlight" />
+</ResourceDictionary>

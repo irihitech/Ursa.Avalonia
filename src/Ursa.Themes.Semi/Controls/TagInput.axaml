@@ -132,7 +132,7 @@
                             Width="12"
                             Height="12"
                             Margin="4,0,0,0"
-                            Foreground="{DynamicResource SemiColorText2}"
+                            Foreground="{DynamicResource ClosableTagCloseButtonForeground}"
                             Command="{TemplateBinding Command}"
                             CommandParameter="{TemplateBinding}"
                             Content="{StaticResource ClosableTagCloseIconGlyph}" />
@@ -148,10 +148,10 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^ /template/ Button#PART_CloseButton:pointerover">
-            <Setter Property="Foreground" Value="{DynamicResource SemiColorText1}" />
+            <Setter Property="Foreground" Value="{DynamicResource ClosableTagCloseButtonPointeroverForeground}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_CloseButton:pressed">
-            <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
+            <Setter Property="Foreground" Value="{DynamicResource ClosableTagCloseButtonPressedForeground}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
