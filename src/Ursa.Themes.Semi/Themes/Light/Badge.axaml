@@ -1,7 +1,7 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="BadgeBorderBrush" Color="White" />
-    <SolidColorBrush x:Key="BadgeForeground" Color="White" />
-    <SolidColorBrush x:Key="BadgeContentForeground" Color="#1C1F23" />
+    <StaticResource x:Key="BadgeBorderBrush" ResourceKey="SemiColorBackground1" />
+    <StaticResource x:Key="BadgeForeground" ResourceKey="SemiColorBackground2" />
+    <StaticResource x:Key="BadgeContentForeground" ResourceKey="SemiColorText0" />
     <!-- Solid -->
     <StaticResource x:Key="BadgePrimaryBadgeBackground" ResourceKey="SemiColorPrimary" />
     <StaticResource x:Key="BadgeSecondaryBadgeBackground" ResourceKey="SemiColorSecondary" />
@@ -23,7 +23,7 @@
     <StaticResource x:Key="BadgeLightDangerBadgeForeground" ResourceKey="SemiColorDanger" />
     <StaticResource x:Key="BadgeLightDangerBadgeBackground" ResourceKey="SemiColorDangerLight" />
     <!-- Inverted -->
-    <SolidColorBrush x:Key="BadgeInvertedBadgeBackground" Color="White" />
+    <StaticResource x:Key="BadgeInvertedBadgeBackground" ResourceKey="SemiColorBackground1" />
     <StaticResource x:Key="BadgeInvertedPrimaryBadgeForeground" ResourceKey="SemiColorPrimary" />
     <StaticResource x:Key="BadgeInvertedSecondaryBadgeForeground" ResourceKey="SemiColorSecondary" />
     <StaticResource x:Key="BadgeInvertedTertiaryBadgeForeground" ResourceKey="SemiColorTertiary" />
