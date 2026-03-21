@@ -25,12 +25,13 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         IsHitTestVisible="False" />
-                    <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
+                    <Panel Background="Transparent" />
                     <VisualLayerManager Padding="{TemplateBinding OffScreenMargin, Mode=OneWay}" Name="PART_VisualLayerManager">
-                        <Panel Margin="{TemplateBinding WindowDecorationMargin}">
+                        <Panel>
                             <ContentPresenter
+                                Margin="{TemplateBinding WindowDecorationMargin}" 
                                 Name="PART_ContentPresenter"
-                                Margin="{TemplateBinding Padding}"
+                                Padding="{TemplateBinding Padding}"
                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Content="{TemplateBinding Content}"
