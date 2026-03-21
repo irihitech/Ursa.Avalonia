@@ -334,7 +334,7 @@ public class TagInputTests
 
         // Act
         textBox.Text = "focus-lost-tag";
-        textBox.RaiseEvent(new RoutedEventArgs(InputElement.LostFocusEvent));
+        textBox.RaiseEvent(new FocusChangedEventArgs(InputElement.LostFocusEvent));
 
         // Assert
         Assert.Single(tagInput.Tags);
@@ -358,7 +358,7 @@ public class TagInputTests
 
         // Act
         textBox.Text = "will-be-cleared";
-        textBox.RaiseEvent(new RoutedEventArgs(InputElement.LostFocusEvent));
+        textBox.RaiseEvent(new FocusChangedEventArgs(InputElement.LostFocusEvent));
 
         // Assert
         Assert.Empty(tagInput.Tags);
