@@ -4,7 +4,7 @@ using Avalonia.Controls.Primitives;
 
 namespace Ursa.Controls;
 
-public class TitleBar: TemplatedControl
+public class TitleBar : TemplatedControl
 {
     public static readonly StyledProperty<object?> LeftContentProperty = AvaloniaProperty.Register<TitleBar, object?>(
         nameof(LeftContent));

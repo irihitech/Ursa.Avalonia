@@ -37,8 +37,8 @@
                                 ContentTemplate="{TemplateBinding ContentTemplate}" />
                             <u:TitleBar 
                                 Name="PART_TitleBar"
-                                DockPanel.Dock="Top"
                                 VerticalAlignment="Top"
+                                IsVisible="{TemplateBinding IsTitleBarVisible}"
                                 HorizontalAlignment="Stretch"
                                 LeftContent="{TemplateBinding LeftContent}"
                                 RightContent="{TemplateBinding RightContent}"

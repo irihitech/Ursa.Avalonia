@@ -2,7 +2,6 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Chrome;
 using Avalonia.Controls.Primitives;
-using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 
@@ -202,7 +201,11 @@ public class UrsaWindow : Window
         base.OnLoaded(e);
         var decorations = this.GetLogicalDescendants().OfType<WindowDrawnDecorations>().FirstOrDefault();
         var buttons = decorations?.GetLogicalDescendants().OfType<Button>().ToList();
-        var maxX = buttons?.MaxBy(a => a.Bounds.X);
+        Button? maxX = null;
+        if (buttons is { Count: > 0 })
+        {
+            maxX = buttons.MaxBy(a => a.Bounds.X);
+        }
         var marginRight = maxX?.Bounds.Right;
         var height = decorations?.TitleBarHeight;
         if (marginRight is not null && _titleBar is not null)
