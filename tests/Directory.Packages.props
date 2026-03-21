@@ -1,7 +1,7 @@
 <Project>
     <PropertyGroup>
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-        <AvaloniaVersion>12.0.0-preview2</AvaloniaVersion>
+        <AvaloniaVersion>12.0.0-rc1</AvaloniaVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,7 +12,7 @@
         <PackageVersion Include="Avalonia.HarfBuzz" Version="$(AvaloniaVersion)"/>
         <PackageVersion Include="Avalonia.Skia" Version="$(AvaloniaVersion)"/>
         <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0"/>
-        <PackageVersion Include="Semi.Avalonia" Version="12.0.0-preview2"/>
+        <PackageVersion Include="Semi.Avalonia" Version="12.0.0-rc1"/>
         <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="17.13.1"/>
     </ItemGroup>
 </Project>

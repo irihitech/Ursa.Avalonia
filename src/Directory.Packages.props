@@ -4,11 +4,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageVersion Include="Avalonia" Version="12.0.999-cibuild0063619-alpha"/>
-        <PackageVersion Include="Irihi.Avalonia.Shared" Version="0.4.0-preview1"/>
-        <PackageVersion Include="Irihi.Avalonia.Shared.Contracts" Version="0.4.0-preview1"/>
+        <PackageVersion Include="Avalonia" Version="12.0.0-rc1"/>
+        <PackageVersion Include="Irihi.Avalonia.Shared" Version="0.4.0-rc1"/>
+        <PackageVersion Include="Irihi.Avalonia.Shared.Contracts" Version="0.4.0-rc1"/>
         <PackageVersion Include="Prism.Core" Version="8.1.97"/>
         <PackageVersion Include="ReactiveUI.Avalonia" Version="11.3.0"/>
-        <PackageVersion Include="Semi.Avalonia" Version="12.0.0-preview2"/>
+        <PackageVersion Include="Semi.Avalonia" Version="12.0.0-rc1"/>
     </ItemGroup>
 </Project>

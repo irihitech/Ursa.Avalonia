@@ -26,7 +26,7 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         IsHitTestVisible="False" />
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
-                    <VisualLayerManager Padding="{TemplateBinding OffScreenMargin, Mode=OneWay}">
+                    <VisualLayerManager Padding="{TemplateBinding OffScreenMargin, Mode=OneWay}" Name="PART_VisualLayerManager">
                         <Panel Margin="{TemplateBinding WindowDecorationMargin}">
                             <ContentPresenter
                                 Name="PART_ContentPresenter"
