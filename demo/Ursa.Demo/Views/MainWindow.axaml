@@ -12,6 +12,7 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:CompileBindings="True"
+    ExtendClientAreaToDecorationsHint="True"
     x:DataType="viewModels:MainWindowViewModel"
     WindowStartupLocation="CenterScreen"
     Icon="/Assets/irihi.ico"

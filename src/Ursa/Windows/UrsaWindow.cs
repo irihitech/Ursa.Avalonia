@@ -1,6 +1,10 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Chrome;
 using Avalonia.Controls.Primitives;
+using Avalonia.Input;
+using Avalonia.Interactivity;
+using Avalonia.LogicalTree;
 
 namespace Ursa.Controls;
 
@@ -183,12 +187,30 @@ public class UrsaWindow : Window
         set => SetValue(TitleBarMarginProperty, value);
     }
     
+    private TitleBar? _titleBar;
     /// <inheritdoc/>
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
         var host = e.NameScope.Find<OverlayDialogHost>(PART_DialogHost);
         if (host is not null) LogicalChildren.Add(host);
+        _titleBar = e.NameScope.Find<TitleBar>("PART_TitleBar");
+    }
+
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        var decorations = this.GetLogicalDescendants().OfType<WindowDrawnDecorations>().FirstOrDefault();
+        var buttons = decorations?.GetLogicalDescendants().OfType<Button>().ToList();
+        var maxX = buttons?.MaxBy(a => a.Bounds.X);
+        var marginRight = maxX?.Bounds.Right;
+        var height = decorations?.TitleBarHeight;
+        if (marginRight is not null && _titleBar is not null)
+        {
+            _titleBar.Margin = new Thickness(_titleBar.Margin.Left, _titleBar.Margin.Top, marginRight.Value,
+                _titleBar.Margin.Bottom);
+            _titleBar.MinHeight = height ?? 0;
+        }
     }
 
     /// <summary>

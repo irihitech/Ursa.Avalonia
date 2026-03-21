@@ -59,6 +59,7 @@
         <ResourceInclude Source="Timeline.axaml" />
         <ResourceInclude Source="TimePicker.axaml" />
         <ResourceInclude Source="TimeRangePicker.axaml" />
+        <ResourceInclude Source="TitleBar.axaml" />
         <ResourceInclude Source="Toast.axaml" />
         <ResourceInclude Source="ToolBar.axaml" />
         <ResourceInclude Source="TreeComboBox.axaml" />

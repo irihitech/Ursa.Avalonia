@@ -29,13 +29,22 @@
                     <VisualLayerManager Padding="{TemplateBinding OffScreenMargin, Mode=OneWay}" Name="PART_VisualLayerManager">
                         <Panel>
                             <ContentPresenter
-                                Margin="{TemplateBinding WindowDecorationMargin}" 
                                 Name="PART_ContentPresenter"
                                 Padding="{TemplateBinding Padding}"
                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Content="{TemplateBinding Content}"
                                 ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            <u:TitleBar 
+                                Name="PART_TitleBar"
+                                DockPanel.Dock="Top"
+                                VerticalAlignment="Top"
+                                HorizontalAlignment="Stretch"
+                                LeftContent="{TemplateBinding LeftContent}"
+                                RightContent="{TemplateBinding RightContent}"
+                                CenterContent="{TemplateBinding TitleBarContent}"
+                                WindowDecorationProperties.ElementRole="User"
+                            />
                             <u:OverlayDialogHost 
                                 Name="{x:Static u:UrsaWindow.PART_DialogHost}"
                                 IsModalStatusReporter="True"
