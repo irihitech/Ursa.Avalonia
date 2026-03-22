@@ -17,7 +17,7 @@ public class LocalizationTest
     {
         var window = new UrsaWindow();
         window.Show();
-        MessageBox.ShowOverlayAsync("Hello World", button: MessageBoxButton.YesNo, toplevelHashCode: window.GetHashCode());
+        OverlayMessageBox.ShowAsync("Hello World", button: MessageBoxButton.YesNo, toplevelHashCode: window.GetHashCode());
         Task.Delay(100).Wait();
         Dispatcher.UIThread.RunJobs();
         var dialog = window.GetVisualDescendants().OfType<MessageBoxControl>().SingleOrDefault();
@@ -30,7 +30,7 @@ public class LocalizationTest
     {
         var window = new UrsaWindow();
         window.Show();
-        MessageBox.ShowOverlayAsync("Hello World", button: MessageBoxButton.YesNo, toplevelHashCode: window.GetHashCode());
+        OverlayMessageBox.ShowAsync("Hello World", button: MessageBoxButton.YesNo, toplevelHashCode: window.GetHashCode());
         Task.Delay(100).Wait();
         Dispatcher.UIThread.RunJobs();
         var dialog = window.GetVisualDescendants().OfType<MessageBoxControl>().SingleOrDefault();
@@ -46,7 +46,7 @@ public class LocalizationTest
     {
         var window = new UrsaWindow();
         window.Show();
-        MessageBox.ShowOverlayAsync("Hello World", button: MessageBoxButton.YesNo, toplevelHashCode: window.GetHashCode());
+        OverlayMessageBox.ShowAsync("Hello World", button: MessageBoxButton.YesNo, toplevelHashCode: window.GetHashCode());
         Task.Delay(100).Wait();
         Dispatcher.UIThread.RunJobs();
         var dialog = window.GetVisualDescendants().OfType<MessageBoxControl>().SingleOrDefault();
@@ -65,7 +65,7 @@ public class LocalizationTest
     {
         var window = new UrsaWindow();
         window.Show();
-        MessageBox.ShowOverlayAsync("Hello World", button: MessageBoxButton.YesNo, toplevelHashCode: window.GetHashCode());
+        OverlayMessageBox.ShowAsync("Hello World", button: MessageBoxButton.YesNo, toplevelHashCode: window.GetHashCode());
         Task.Delay(100).Wait();
         Dispatcher.UIThread.RunJobs();
         var dialog = window.GetVisualDescendants().OfType<MessageBoxControl>().SingleOrDefault();
