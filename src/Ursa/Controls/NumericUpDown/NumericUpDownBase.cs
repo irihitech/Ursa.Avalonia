@@ -17,15 +17,38 @@ namespace Ursa.Controls;
 [TemplatePart(PART_Spinner, typeof(ButtonSpinner))]
 [TemplatePart(PART_TextBox, typeof(TextBox))]
 [TemplatePart(PART_DragPanel, typeof(Panel))]
+[TemplatePart(PART_IncreaseButton, typeof(Button))] // 右侧加号按钮模板部件
+[TemplatePart(PART_DecreaseButton, typeof(Button))] // 左侧减号按钮模板部件
 public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerContentControl
 {
     public const string PART_Spinner = "PART_Spinner";
     public const string PART_TextBox = "PART_TextBox";
     public const string PART_DragPanel = "PART_DragPanel";
 
+    /// <summary>
+    /// 右侧加号按钮 Part
+    /// </summary>
+    public const string PART_IncreaseButton = "PART_IncreaseButton";
+
+    /// <summary>
+    /// 左侧减号按钮 Part
+    /// </summary>
+    public const string PART_DecreaseButton = "PART_DecreaseButton";
+
     protected ButtonSpinner? _spinner;
     protected TextBox? _textBox;
     protected internal Panel? _dragPanel;
+
+    /// <summary>
+    /// 分离模式下的加号按钮引用
+    /// </summary>
+    protected Button? _increaseButton;
+
+    /// <summary>
+    /// 分离模式下的减号按钮引用
+    /// </summary>
+    protected Button? _decreaseButton;
+
     private bool _isFocused;
 
     private Point? _point;
@@ -56,7 +79,8 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
     }
 
     public static readonly StyledProperty<HorizontalAlignment> HorizontalContentAlignmentProperty =
-       ContentControl.HorizontalContentAlignmentProperty.AddOwner<NumericUpDown>();
+        ContentControl.HorizontalContentAlignmentProperty.AddOwner<NumericUpDown>();
+
     public HorizontalAlignment HorizontalContentAlignment
     {
         get => GetValue(HorizontalContentAlignmentProperty);
@@ -83,8 +107,9 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
         set => SetValue(InnerRightContentProperty, value);
     }
 
-    public static readonly StyledProperty<string?> WatermarkProperty = AvaloniaProperty.Register<NumericUpDown, string?>(
-        nameof(Watermark));
+    public static readonly StyledProperty<string?> WatermarkProperty =
+        AvaloniaProperty.Register<NumericUpDown, string?>(
+            nameof(Watermark));
 
     public string? Watermark
     {
@@ -92,8 +117,9 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
         set => SetValue(WatermarkProperty, value);
     }
 
-    public static readonly StyledProperty<NumberFormatInfo?> NumberFormatProperty = AvaloniaProperty.Register<NumericUpDown, NumberFormatInfo?>(
-        nameof(NumberFormat), defaultValue: NumberFormatInfo.CurrentInfo);
+    public static readonly StyledProperty<NumberFormatInfo?> NumberFormatProperty =
+        AvaloniaProperty.Register<NumericUpDown, NumberFormatInfo?>(
+            nameof(NumberFormat), defaultValue: NumberFormatInfo.CurrentInfo);
 
     public NumberFormatInfo? NumberFormat
     {
@@ -101,8 +127,9 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
         set => SetValue(NumberFormatProperty, value);
     }
 
-    public static readonly StyledProperty<string> FormatStringProperty = AvaloniaProperty.Register<NumericUpDown, string>(
-        nameof(FormatString), string.Empty);
+    public static readonly StyledProperty<string> FormatStringProperty =
+        AvaloniaProperty.Register<NumericUpDown, string>(
+            nameof(FormatString), string.Empty);
 
     public string FormatString
     {
@@ -110,8 +137,9 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
         set => SetValue(FormatStringProperty, value);
     }
 
-    public static readonly StyledProperty<NumberStyles> ParsingNumberStyleProperty = AvaloniaProperty.Register<NumericUpDown, NumberStyles>(
-        nameof(ParsingNumberStyle), defaultValue: NumberStyles.Any);
+    public static readonly StyledProperty<NumberStyles> ParsingNumberStyleProperty =
+        AvaloniaProperty.Register<NumericUpDown, NumberStyles>(
+            nameof(ParsingNumberStyle), defaultValue: NumberStyles.Any);
 
     public NumberStyles ParsingNumberStyle
     {
@@ -119,8 +147,9 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
         set => SetValue(ParsingNumberStyleProperty, value);
     }
 
-    public static readonly StyledProperty<IValueConverter?> TextConverterProperty = AvaloniaProperty.Register<NumericUpDown, IValueConverter?>(
-        nameof(TextConverter));
+    public static readonly StyledProperty<IValueConverter?> TextConverterProperty =
+        AvaloniaProperty.Register<NumericUpDown, IValueConverter?>(
+            nameof(TextConverter));
 
     public IValueConverter? TextConverter
     {
@@ -146,6 +175,21 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
         set => SetValue(ShowButtonSpinnerProperty, value);
     }
 
+    /// <summary>
+    /// 是否使用左右分离按钮
+    /// </summary>
+    public static readonly StyledProperty<bool> IsSplitButtonSpinnerProperty =
+        AvaloniaProperty.Register<NumericUpDown, bool>(nameof(IsSplitButtonSpinner));
+
+    /// <summary>
+    /// 是否使用左右分离按钮
+    /// </summary>
+    public bool IsSplitButtonSpinner
+    {
+        get => GetValue(IsSplitButtonSpinnerProperty);
+        set => SetValue(IsSplitButtonSpinnerProperty, value);
+    }
+
     public event EventHandler<SpinEventArgs>? Spinned;
 
     static NumericUpDown()
@@ -156,11 +200,23 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
         IsReadOnlyProperty.Changed.AddClassHandler<NumericUpDown, bool>((o, args) => o.OnIsReadOnlyChanged(args));
         TextConverterProperty.Changed.AddClassHandler<NumericUpDown>((o, e) => o.OnFormatChange(e));
         AllowDragProperty.Changed.AddClassHandler<NumericUpDown, bool>((o, e) => o.OnAllowDragChange(e));
+
+        AllowSpinProperty.Changed.AddClassHandler<NumericUpDown, bool>((o, e) =>
+            o.OnSpinButtonStateRelatedPropertyChanged()); // 联动按钮状态
+        ShowButtonSpinnerProperty.Changed.AddClassHandler<NumericUpDown>((o, e) =>
+            o.OnSpinButtonStateRelatedPropertyChanged()); // 联动按钮状态
+        IsSplitButtonSpinnerProperty.Changed.AddClassHandler<NumericUpDown, bool>((o, e) =>
+            o.OnSpinButtonStateRelatedPropertyChanged()); // 切换左右按钮模式
     }
 
     private void OnAllowDragChange(AvaloniaPropertyChangedEventArgs<bool> args)
     {
         IsVisibleProperty.SetValue(args.NewValue.Value, _dragPanel);
+    }
+
+    private void OnSpinButtonStateRelatedPropertyChanged()
+    {
+        UpdateSplitButtonSpinnerState(); // 统一刷新 Spinner / 左右按钮显隐和启用状态
     }
 
     private void OnIsReadOnlyChanged(AvaloniaPropertyChangedEventArgs<bool> args)
@@ -188,7 +244,7 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
     {
         if (IsInitialized)
         {
-            SyncTextAndValue(false, null, true);//sync text update while OnFormatChange
+            SyncTextAndValue(false, null, true); //sync text update while OnFormatChange
         }
     }
 
@@ -199,15 +255,42 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
         PointerPressedEvent.RemoveHandler(OnDragPanelPointerPressed, _dragPanel);
         PointerMovedEvent.RemoveHandler(OnDragPanelPointerMoved, _dragPanel);
         PointerReleasedEvent.RemoveHandler(OnDragPanelPointerReleased, _dragPanel);
+
+        if (_increaseButton != null) // 解绑旧事件
+        {
+            _increaseButton.Click -= OnIncreaseButtonClick;
+        }
+
+        if (_decreaseButton != null) // 解绑旧事件
+        {
+            _decreaseButton.Click -= OnDecreaseButtonClick;
+        }
+
         _spinner = e.NameScope.Find<ButtonSpinner>(PART_Spinner);
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
         _dragPanel = e.NameScope.Find<Panel>(PART_DragPanel);
+
+        _increaseButton = e.NameScope.Find<Button>(PART_IncreaseButton); // 取模板按钮
+        _decreaseButton = e.NameScope.Find<Button>(PART_DecreaseButton); // 取模板按钮
+
         IsVisibleProperty.SetValue(AllowDrag, _dragPanel);
         TextBox.IsReadOnlyProperty.SetValue(IsReadOnly, _textBox);
         Spinner.SpinEvent.AddHandler(OnSpin, _spinner);
         PointerPressedEvent.AddHandler(OnDragPanelPointerPressed, _dragPanel);
         PointerMovedEvent.AddHandler(OnDragPanelPointerMoved, _dragPanel);
         PointerReleasedEvent.AddHandler(OnDragPanelPointerReleased, _dragPanel);
+
+        if (_increaseButton != null) // 绑定加号事件
+        {
+            _increaseButton.Click += OnIncreaseButtonClick;
+        }
+
+        if (_decreaseButton != null) // 绑定减号事件
+        {
+            _decreaseButton.Click += OnDecreaseButtonClick;
+        }
+
+        UpdateSplitButtonSpinnerState(); // 模板应用后立即刷新显示状态
     }
 
     protected override void OnLostFocus(RoutedEventArgs e)
@@ -218,6 +301,7 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
         {
             _dragPanel.IsVisible = true;
         }
+
         FocusChanged(IsKeyboardFocusWithin);
     }
 
@@ -240,7 +324,6 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
 
         if (hasFocus)
         {
-
             if (!wasFocused && _textBox != null)
             {
                 _textBox.Focus();
@@ -305,6 +388,7 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
         {
             return;
         }
+
         int d = GetDelta(delta.Value);
         if (d > 0)
         {
@@ -316,6 +400,7 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
             if (_canDecrease)
                 Decrease();
         }
+
         _point = point;
     }
 
@@ -351,6 +436,49 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
                     Decrease();
                 }
             }
+        }
+    }
+    private void OnIncreaseButtonClick(object? sender, RoutedEventArgs e)
+    {
+        if (!AllowSpin || IsReadOnly || !_canIncrease) // 统一校验
+        {
+            return;
+        }
+
+        Increase();
+    }
+
+    private void OnDecreaseButtonClick(object? sender, RoutedEventArgs e)
+    {
+        if (!AllowSpin || IsReadOnly || !_canDecrease) // 统一校验
+        {
+            return;
+        }
+
+        Decrease();
+    }
+
+    protected void UpdateSplitButtonSpinnerState()
+    {
+        var showSpinner = ShowButtonSpinner && !IsSplitButtonSpinner; // 原模式：显示 ButtonSpinner 自带按钮
+        var showSplitButtons = ShowButtonSpinner && IsSplitButtonSpinner; // 新模式：显示左右按钮
+
+        if (_spinner != null)
+        {
+            _spinner.IsVisible = true; // 外层容器始终保留，否则中间输入区会一起消失
+            _spinner.ShowButtonSpinner = showSpinner; // 仅控制右侧上下按钮是否显示
+        }
+
+        if (_increaseButton != null)
+        {
+            _increaseButton.IsVisible = showSplitButtons;
+            _increaseButton.IsEnabled = showSplitButtons && AllowSpin && !IsReadOnly && _canIncrease;
+        }
+
+        if (_decreaseButton != null)
+        {
+            _decreaseButton.IsVisible = showSplitButtons;
+            _decreaseButton.IsEnabled = showSplitButtons && AllowSpin && !IsReadOnly && _canDecrease;
         }
     }
 
@@ -420,7 +548,6 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
 
 #pragma warning disable AVP1002
     public static readonly StyledProperty<T?> ValueProperty = AvaloniaProperty.Register<NumericUpDownBase<T>, T?>(
-
         nameof(Value), defaultBindingMode: BindingMode.TwoWay, enableDataValidation: true, coerce: CoerceCurrentValue);
 
     private static T? CoerceCurrentValue(AvaloniaObject instance, T? arg2)
@@ -430,15 +557,18 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
         {
             return n.EmptyInputValue;
         }
+
         var value = arg2.Value;
-        if(value.CompareTo(n.Minimum) < 0)
+        if (value.CompareTo(n.Minimum) < 0)
         {
             return n.Minimum;
         }
+
         if (value.CompareTo(n.Maximum) > 0)
         {
             return n.Maximum;
         }
+
         return arg2.Value;
     }
 
@@ -467,6 +597,7 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
     }
 
     #region Max and Min Coerce
+
     private static T CoerceMaximum(AvaloniaObject instance, T value)
     {
         if (instance is NumericUpDownBase<T> n)
@@ -483,6 +614,7 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
         {
             return Minimum;
         }
+
         return value;
     }
 
@@ -502,6 +634,7 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
         {
             return Maximum;
         }
+
         return value;
     }
 
@@ -527,8 +660,9 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
     }
 
 
-    public static readonly StyledProperty<ICommand?> CommandProperty = AvaloniaProperty.Register<NumericUpDownBase<T>, ICommand?>(
-        nameof(Command));
+    public static readonly StyledProperty<ICommand?> CommandProperty =
+        AvaloniaProperty.Register<NumericUpDownBase<T>, ICommand?>(
+            nameof(Command));
 
     public ICommand? Command
     {
@@ -551,7 +685,6 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
         {
             DataValidationErrors.SetError(this, error);
         }
-        
     }
 
     private void InvokeCommand(object? cp)
@@ -591,6 +724,7 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
         {
             SetValidSpinDirection();
         }
+
         if (Value.HasValue)
         {
             SetCurrentValue(ValueProperty, Clamp(Value, Maximum, Minimum));
@@ -623,6 +757,7 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
         {
             _textBox.Text = ConvertValueToText(Value);
         }
+
         SetValidSpinDirection();
     }
 
@@ -632,14 +767,17 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
         {
             return null;
         }
+
         if (value.Value.CompareTo(max) > 0)
         {
             return max;
         }
+
         if (value.Value.CompareTo(min) < 0)
         {
             return min;
         }
+
         return value;
     }
 
@@ -653,7 +791,10 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
             if (Value is null)
             {
                 validDirection = ValidSpinDirections.Increase | ValidSpinDirections.Decrease;
+                _canIncrease = true; // 空值时允许增减
+                _canDecrease = true; // 空值时允许增减
             }
+
             if (Value.HasValue && Value.Value.CompareTo(Maximum) < 0)
             {
                 validDirection |= ValidSpinDirections.Increase;
@@ -666,15 +807,19 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
                 _canDecrease = true;
             }
         }
+
         if (_spinner != null)
         {
             _spinner.ValidSpinDirection = validDirection;
         }
+
+        UpdateSplitButtonSpinnerState(); // 同步左右按钮启用状态
     }
 
     private bool _isSyncingTextAndValue;
 
-    protected override bool SyncTextAndValue(bool fromTextToValue = false, string? text = null, bool forceTextUpdate = false)
+    protected override bool SyncTextAndValue(bool fromTextToValue = false, string? text = null,
+        bool forceTextUpdate = false)
     {
         if (_isSyncingTextAndValue) return true;
         _isSyncingTextAndValue = true;
@@ -690,6 +835,7 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
                     {
                         newValue = EmptyInputValue;
                     }
+
                     if (!Equals(newValue, Value))
                     {
                         if (Equals(Clamp(newValue, Maximum, Minimum), newValue))
@@ -723,10 +869,15 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
 
             if (_updateFromTextInput && !parsedTextIsValid)
             {
+                _canIncrease = false; // 输入非法时禁用左右按钮
+                _canDecrease = false; // 输入非法时禁用左右按钮
+
                 if (_spinner is not null)
                 {
                     _spinner.ValidSpinDirection = ValidSpinDirections.None;
                 }
+
+                UpdateSplitButtonSpinnerState(); // 同步左右按钮状态
             }
             else
             {
@@ -737,6 +888,7 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
         {
             _isSyncingTextAndValue = false;
         }
+
         return parsedTextIsValid;
     }
 
@@ -759,6 +911,7 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
 
             result = outputValue;
         }
+
         return result;
     }
 
@@ -789,6 +942,7 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
         {
             value = IsSet(MinimumProperty) ? Minimum : Zero;
         }
+
         SetCurrentValue(ValueProperty, Clamp(value, Maximum, Minimum));
     }
 

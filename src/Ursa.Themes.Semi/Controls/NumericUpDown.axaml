@@ -18,43 +18,96 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         ShowButtonSpinner="{TemplateBinding ShowButtonSpinner}">
-                        <Panel>
-                            <TextBox
-                                Name="PART_TextBox"
-                                Height="{TemplateBinding Height}"
-                                MinHeight="{TemplateBinding MinHeight}"
-                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                AcceptsReturn="False"
-                                CornerRadius="{TemplateBinding CornerRadius}"
-                                DataValidationErrors.Errors="{ReflectionBinding $parent[u:NumericUpDown].(DataValidationErrors.Errors)}"
-                                FontSize="{TemplateBinding FontSize}"
-                                Foreground="{TemplateBinding Foreground}"
-                                InnerLeftContent="{TemplateBinding InnerLeftContent}"
-                                InnerRightContent="{TemplateBinding InnerRightContent}"
-                                TextWrapping="NoWrap"
-                                Theme="{DynamicResource NonErrorTextBox}"
-                                Watermark="{TemplateBinding Watermark}" />
-                            <Panel
-                                Name="PART_DragPanel"
+                        <Grid ColumnDefinitions="Auto,*,Auto">
+                            <!-- 左侧减号按钮 -->
+                            <Button
+                                Name="PART_DecreaseButton"
+                                Grid.Column="0"
+                                MinWidth="32"
+                                Padding="10,0"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
-                                Background="Transparent"
-                                Cursor="SizeAll" />
-                            <Button
-                                Name="PART_ClearButton"
-                                Margin="0,0,8,0"
-                                HorizontalAlignment="Right"
-                                Command="{Binding $parent[u:NumericUpDown].Clear}"
+                                BorderThickness="0,0,1,0"
+                                CornerRadius="6,0,0,6"
+                                Command="{x:Null}"
+                                Content="−"
                                 Focusable="False"
-                                IsVisible="False"
-                                Content="{DynamicResource IconButtonClearData}"
-                                Theme="{DynamicResource InnerIconButton}" />
-                        </Panel>
+                                FontSize="16"
+                                IsVisible="False" />
+
+                            <!-- 中间输入区 -->
+                            <Panel Grid.Column="1">
+                                <TextBox
+                                    Name="PART_TextBox"
+                                    Height="{TemplateBinding Height}"
+                                    MinHeight="{TemplateBinding MinHeight}"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    AcceptsReturn="False"
+                                    CornerRadius="0"
+                                    DataValidationErrors.Errors="{ReflectionBinding $parent[u:NumericUpDown].(DataValidationErrors.Errors)}"
+                                    FontSize="{TemplateBinding FontSize}"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    InnerLeftContent="{TemplateBinding InnerLeftContent}"
+                                    InnerRightContent="{TemplateBinding InnerRightContent}"
+                                    TextWrapping="NoWrap"
+                                    Theme="{DynamicResource NonErrorTextBox}"
+                                    Watermark="{TemplateBinding Watermark}" />
+                                <Panel
+                                    Name="PART_DragPanel"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Background="Transparent"
+                                    Cursor="SizeAll" />
+                                <Button
+                                    Name="PART_ClearButton"
+                                    Margin="0,0,8,0"
+                                    CornerRadius="0,6,6,0"
+                                    HorizontalAlignment="Right"
+                                    Command="{Binding $parent[u:NumericUpDown].Clear}"
+                                    Focusable="False"
+                                    IsVisible="False"
+                                    Content="{DynamicResource IconButtonClearData}"
+                                    Theme="{DynamicResource InnerIconButton}" />
+                            </Panel>
+
+                            <!-- 右侧加号按钮 -->
+                            <Button
+                                Name="PART_IncreaseButton"
+                                Grid.Column="2"
+                                MinWidth="32"
+                                Padding="10,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                BorderThickness="1,0,0,0"
+                                Command="{x:Null}"
+                                Content="+"
+                                Focusable="False"
+                                FontSize="16"
+                                IsVisible="False" />
+                        </Grid>
                     </ButtonSpinner>
                 </DataValidationErrors>
             </ControlTemplate>
         </Setter>
+        <!-- 普通模式：TextBox 保持完整圆角 -->
+        <Style Selector="^[IsSplitButtonSpinner=False] /template/ TextBox#PART_TextBox">
+            <Setter Property="CornerRadius" Value="{DynamicResource NumericUpDownCornerRadius}" />
+        </Style>
 
+        <!-- Split 模式：中间输入框去掉圆角 -->
+        <Style Selector="^[IsSplitButtonSpinner=True] /template/ TextBox#PART_TextBox">
+            <Setter Property="CornerRadius" Value="0" />
+        </Style>
+
+        <!-- Split 模式：左按钮仅左侧圆角 -->
+        <Style Selector="^[IsSplitButtonSpinner=True] /template/ Button#PART_DecreaseButton">
+            <Setter Property="CornerRadius" Value="6,0,0,6" />
+        </Style>
+
+        <!-- Split 模式：右按钮仅右侧圆角 -->
+        <Style Selector="^[IsSplitButtonSpinner=True] /template/ Button#PART_IncreaseButton">
+            <Setter Property="CornerRadius" Value="0,6,6,0" />
+        </Style>
         <Style Selector="^.clearButton, ^.ClearButton">
             <Style Selector="^[IsReadOnly=False]:focus /template/ Button#PART_ClearButton">
                 <Setter Property="IsVisible" Value="True" />

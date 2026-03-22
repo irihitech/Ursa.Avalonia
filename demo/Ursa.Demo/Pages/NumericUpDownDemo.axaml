@@ -7,8 +7,8 @@
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="using:Ursa.Demo.ViewModels"
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="950"
+    d:DesignWidth="1000"
     x:CompileBindings="True"
     x:DataType="vm:NumericUpDownDemoViewModel"
     mc:Ignorable="d">
@@ -23,7 +23,7 @@
 
     <Grid ColumnDefinitions="*,*" RowDefinitions="100,*">
         <StackPanel Grid.ColumnSpan="2">
-            <u:Divider Content="Demo"/>
+            <u:Divider Content="Demo" />
             <u:NumericUIntUpDown
                 Name="numd"
                 Width="{Binding Width}"
@@ -131,18 +131,18 @@
                 <u:NumericUIntUpDown
                     Classes="Small"
                     Step="1"
-                    Watermark="Small"/>
+                    Watermark="Small" />
                 <u:NumericUIntUpDown
                     Classes="Large"
                     Step="1"
                     Margin="0 8 0 0"
-                    Watermark="Large"/>
+                    Watermark="Large" />
                 <u:Divider Content="Error" />
                 <u:NumericUIntUpDown
                     Step="1"
                     Watermark="Validation Error">
                     <DataValidationErrors.Error>
-                        <system:Exception/>
+                        <system:Exception />
                     </DataValidationErrors.Error>
                 </u:NumericUIntUpDown>
             </StackPanel>
@@ -170,7 +170,8 @@
             <Label Content="HorizontalAlignment" />
             <ComboBox ItemsSource="{Binding ArrayHorizontalAlignment}" SelectedItem="{Binding HorizontalAlignment}" />
             <Label Content="HorizontalContentAlignment" />
-            <ComboBox ItemsSource="{Binding ArrayHorizontalContentAlignment}" SelectedItem="{Binding HorizontalContentAlignment}" />
+            <ComboBox ItemsSource="{Binding ArrayHorizontalContentAlignment}"
+                      SelectedItem="{Binding HorizontalContentAlignment}" />
 
             <TextBox
                 InnerLeftContent="InnerLeftContent"
@@ -211,7 +212,8 @@
                 Value="{Binding Step}" />
 
             <CheckBox Content="IsEnable" IsChecked="{Binding IsEnable}" />
-
+            <Label Content="IsSplitButtonSpinner=True" />
+            <u:NumericUIntUpDown IsSplitButtonSpinner="True" Value="2" HorizontalContentAlignment="Center"/>
         </StackPanel>
     </Grid>
 </UserControl>
