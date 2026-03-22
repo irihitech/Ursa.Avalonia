@@ -428,7 +428,7 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type u:DialogWindow}" TargetType="u:DialogWindow">
+    <ControlTheme x:Key="{x:Type u:CustomDialogWindow}" TargetType="u:CustomDialogWindow">
         <Setter Property="Title" Value="{x:Null}" />
         <Setter Property="Background" Value="{DynamicResource DialogBackground}" />
         <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
@@ -445,7 +445,7 @@
         <Setter Property="WindowDecorations" Value="BorderOnly" />
         <Setter Property="CanResize" Value="False" />
         <Setter Property="Template">
-            <ControlTemplate TargetType="u:DialogWindow">
+            <ControlTemplate TargetType="u:CustomDialogWindow">
                 <Panel>
                     <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
                     <Border
@@ -463,7 +463,7 @@
                                 Content="{TemplateBinding Content}" />
                             <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
                                 <Panel
-                                    Name="{x:Static u:DialogWindow.PART_TitleArea}"
+                                    Name="{x:Static u:CustomDialogWindow.PART_TitleArea}"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"
                                     Background="Transparent" />
@@ -526,7 +526,7 @@
                                 Content="{TemplateBinding Content}" />
                             <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto">
                                 <Panel
-                                    Name="{x:Static u:DialogWindow.PART_TitleArea}"
+                                    Name="{x:Static u:CustomDialogWindow.PART_TitleArea}"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="3"
                                     Background="Transparent" />

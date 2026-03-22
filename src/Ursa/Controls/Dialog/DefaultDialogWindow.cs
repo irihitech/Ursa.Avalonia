@@ -12,7 +12,7 @@ namespace Ursa.Controls;
 [TemplatePart(PART_NoButton, typeof(Button))]
 [TemplatePart(PART_OKButton, typeof(Button))]
 [TemplatePart(PART_CancelButton, typeof(Button))]
-public class DefaultDialogWindow : DialogWindow
+public class DefaultDialogWindow : CustomDialogWindow
 {
     public const string PART_YesButton = "PART_YesButton";
     public const string PART_NoButton = "PART_NoButton";

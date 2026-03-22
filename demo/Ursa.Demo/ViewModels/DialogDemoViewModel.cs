@@ -69,7 +69,7 @@ public partial class DefaultWindowDialogDemoViewModel: ObservableObject
         {
             options.Position = new PixelPoint(X.Value, Y.Value);
         }
-        await Dialog.ShowModal<DefaultDemoDialog, DefaultDemoDialogViewModel>(new DefaultDemoDialogViewModel(), options: options);
+        await Dialog.ShowDefaultAsync<DefaultDemoDialog, DefaultDemoDialogViewModel>(new DefaultDemoDialogViewModel(), options: options);
     }
 }
 
@@ -118,7 +118,7 @@ public partial class CustomWindowDialogDemoViewModel: ObservableObject
 
         if (IsModal)
         {
-            await Dialog.ShowCustomModal<CustomDemoDialog, CustomDemoDialogViewModel, object>(new CustomDemoDialogViewModel(),
+            await Dialog.ShowCustomAsync<CustomDemoDialog, CustomDemoDialogViewModel, object>(new CustomDemoDialogViewModel(),
                 options: options);
         }
         else
