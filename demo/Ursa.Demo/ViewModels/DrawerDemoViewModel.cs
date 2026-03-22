@@ -51,11 +51,11 @@ public partial class DrawerDemoViewModel : ObservableObject
             var vm = new CustomDemoDialogViewModel();
             if (IsModal)
             {
-                await Drawer.ShowCustomModal<CustomDemoDialog, CustomDemoDialogViewModel, object?>(vm, hostId, options);
+                await OverlayDrawer.ShowCustomAsync<CustomDemoDialog, CustomDemoDialogViewModel, object?>(vm, hostId, options);
             }
             else
             {
-                Drawer.ShowCustom<CustomDemoDialog, CustomDemoDialogViewModel>(vm, hostId, options);
+                OverlayDrawer.ShowCustom<CustomDemoDialog, CustomDemoDialogViewModel>(vm, hostId, options);
             }
         }
         else
@@ -63,11 +63,11 @@ public partial class DrawerDemoViewModel : ObservableObject
             var vm = new DefaultDemoDialogViewModel();
             if (IsModal)
             {
-                await Drawer.ShowModal<DefaultDemoDialog, DefaultDemoDialogViewModel>(vm, hostId, options);
+                await OverlayDrawer.ShowDefaultAsync<DefaultDemoDialog, DefaultDemoDialogViewModel>(vm, hostId, options);
             }
             else
             {
-                Drawer.Show<DefaultDemoDialog, DefaultDemoDialogViewModel>(vm, hostId, options);
+                OverlayDrawer.ShowDefault<DefaultDemoDialog, DefaultDemoDialogViewModel>(vm, hostId, options);
             }
         }
         

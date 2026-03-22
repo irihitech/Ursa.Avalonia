@@ -12,13 +12,13 @@ public partial class TestWindow : UrsaWindow
 
     public void InvokeNormalDrawer()
     {
-        Drawer.ShowModal<NormalDialog, object>("Hello World",
+        OverlayDrawer.ShowDefaultAsync<NormalDialog, object>("Hello World",
             options: new DrawerOptions() { TopLevelHashCode = GetHashCode() });
     }
 
     public void InvokeFocusDrawer()
     {
-        Drawer.ShowModal<FocusDialog, object>("Hello World",
+        OverlayDrawer.ShowDefaultAsync<FocusDialog, object>("Hello World",
             options: new DrawerOptions() { TopLevelHashCode = GetHashCode() });
     }
     

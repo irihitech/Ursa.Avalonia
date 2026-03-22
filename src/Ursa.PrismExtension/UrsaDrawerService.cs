@@ -10,24 +10,24 @@ public class UrsaDrawerService(IContainerExtension container): IUrsaDrawerServic
     public void Show(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null)
     {
         var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
-        Drawer.Show(v, vm, hostId, options);
+        OverlayDrawer.ShowDefault(v, vm, hostId, options);
     }
 
     public void ShowCustom<TResult>(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null)
     {
         var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
-        Drawer.ShowCustom(v, vm, hostId, options);
+        OverlayDrawer.ShowCustom(v, vm, hostId, options);
     }
 
     public Task<DialogResult> ShowModal(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null)
     {
         var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
-        return Drawer.ShowModal(v, vm, hostId, options);
+        return OverlayDrawer.ShowDefaultAsync(v, vm, hostId, options);
     }
 
     public Task<TResult?> ShowCustomModal<TResult>(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null)
     {
         var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
-        return Drawer.ShowCustomModal<TResult?>(v, vm, hostId, options);
+        return OverlayDrawer.ShowCustomAsync<TResult?>(v, vm, hostId, options);
     }
 }

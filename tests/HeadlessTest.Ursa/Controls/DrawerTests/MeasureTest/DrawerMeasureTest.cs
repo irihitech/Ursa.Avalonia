@@ -29,7 +29,7 @@ public class DrawerMeasureTest
         };
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        _ = Drawer.ShowModal(textBlock, "hello world", null,
+        _ = OverlayDrawer.ShowDefaultAsync(textBlock, "hello world", null,
             new DrawerOptions { Position = position, TopLevelHashCode = window.GetHashCode() });
         await Task.Delay(TimeSpan.FromSeconds(0.1));
         var dialogControl = window.GetVisualDescendants().OfType<DefaultDrawerControl>().SingleOrDefault();
@@ -57,7 +57,7 @@ public class DrawerMeasureTest
         };
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        Drawer.ShowCustom(textBlock, "hello world", null,
+        OverlayDrawer.ShowCustom(textBlock, "hello world", null,
             new DrawerOptions { Position = position, TopLevelHashCode = window.GetHashCode() });
         await Task.Delay(TimeSpan.FromSeconds(0.1));
         var dialogControl = window.GetVisualDescendants().OfType<CustomDrawerControl>().SingleOrDefault();
