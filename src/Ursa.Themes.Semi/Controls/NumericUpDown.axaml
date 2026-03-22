@@ -79,6 +79,7 @@
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
                                 BorderThickness="1,0,0,0"
+                                CornerRadius="0,6,6,0"
                                 Command="{x:Null}"
                                 Content="+"
                                 Focusable="False"
