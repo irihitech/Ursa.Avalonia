@@ -8,97 +8,97 @@ namespace Ursa.Controls;
 
 public static class OverlayDrawer
 {
-    public static void ShowDefault<TView, TViewModel>(TViewModel vm, string? hostId = null, DrawerOptions? options = null)
+    public static void ShowStandard<TView, TViewModel>(TViewModel vm, string? hostId = null, DrawerOptions? options = null)
         where TView : Control, new()
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
-        var drawer = new DefaultDrawerControl
+        var drawer = new StandardDrawerControl
         {
             Content = new TView(),
             DataContext = vm
         };
-        ConfigureDefaultDrawer(drawer, options);
+        ConfigureStandardDrawer(drawer, options);
         host.AddDrawer(drawer);
     }
 
-    public static void ShowDefault(Control control, object? vm, string? hostId = null,
+    public static void ShowStandard(Control control, object? vm, string? hostId = null,
         DrawerOptions? options = null)
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
-        var drawer = new DefaultDrawerControl
+        var drawer = new StandardDrawerControl
         {
             Content = control,
             DataContext = vm
         };
-        ConfigureDefaultDrawer(drawer, options);
+        ConfigureStandardDrawer(drawer, options);
         host.AddDrawer(drawer);
     }
 
-    public static void ShowDefault(object? vm, string? hostId = null, DrawerOptions? options = null)
+    public static void ShowStandard(object? vm, string? hostId = null, DrawerOptions? options = null)
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
         var view = host.GetDataTemplate(vm)?.Build(vm);
         if (view is null) view = new ContentControl { Padding = new Thickness(24) };
         view.DataContext = vm;
-        var drawer = new DefaultDrawerControl
+        var drawer = new StandardDrawerControl
         {
             Content = view,
             DataContext = vm
         };
-        ConfigureDefaultDrawer(drawer, options);
+        ConfigureStandardDrawer(drawer, options);
         host.AddDrawer(drawer);
     }
 
-    public static Task<DialogResult> ShowDefaultAsync<TView, TViewModel>(TViewModel vm, string? hostId = null,
+    public static Task<DialogResult> ShowStandardAsync<TView, TViewModel>(TViewModel vm, string? hostId = null,
         DrawerOptions? options = null)
         where TView : Control, new()
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return Task.FromResult(DialogResult.None);
-        var drawer = new DefaultDrawerControl
+        var drawer = new StandardDrawerControl
         {
             Content = new TView(),
             DataContext = vm,
             [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
-        ConfigureDefaultDrawer(drawer, options);
+        ConfigureStandardDrawer(drawer, options);
         host.AddModalDrawer(drawer);
         return drawer.ShowAsync<DialogResult>();
     }
 
-    public static Task<DialogResult> ShowDefaultAsync(Control control, object? vm, string? hostId = null,
+    public static Task<DialogResult> ShowStandardAsync(Control control, object? vm, string? hostId = null,
         DrawerOptions? options = null)
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return Task.FromResult(DialogResult.None);
-        var drawer = new DefaultDrawerControl
+        var drawer = new StandardDrawerControl
         {
             Content = control,
             DataContext = vm,
             [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
-        ConfigureDefaultDrawer(drawer, options);
+        ConfigureStandardDrawer(drawer, options);
         host.AddModalDrawer(drawer);
         return drawer.ShowAsync<DialogResult>();
     }
 
-    public static Task<DialogResult> ShowDefaultAsync(object? vm, string? hostId = null, DrawerOptions? options = null)
+    public static Task<DialogResult> ShowStandardAsync(object? vm, string? hostId = null, DrawerOptions? options = null)
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return Task.FromResult(DialogResult.None);
         var view = host.GetDataTemplate(vm)?.Build(vm);
         if (view is null) view = new ContentControl { Padding = new Thickness(24) };
         view.DataContext = vm;
-        var drawer = new DefaultDrawerControl
+        var drawer = new StandardDrawerControl
         {
             Content = view,
             DataContext = vm,
             [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
-        ConfigureDefaultDrawer(drawer, options);
+        ConfigureStandardDrawer(drawer, options);
         host.AddModalDrawer(drawer);
         return drawer.ShowAsync<DialogResult>();
     }
@@ -225,7 +225,7 @@ public static class OverlayDrawer
         }
     }
 
-    private static void ConfigureDefaultDrawer(DefaultDrawerControl drawer, DrawerOptions? options)
+    private static void ConfigureStandardDrawer(StandardDrawerControl drawer, DrawerOptions? options)
     {
         options ??= DrawerOptions.Default;
         drawer.Position = options.Position;

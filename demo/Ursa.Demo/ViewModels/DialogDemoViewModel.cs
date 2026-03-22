@@ -69,7 +69,7 @@ public partial class DefaultWindowDialogDemoViewModel: ObservableObject
         {
             options.Position = new PixelPoint(X.Value, Y.Value);
         }
-        await Dialog.ShowDefaultAsync<DefaultDemoDialog, DefaultDemoDialogViewModel>(new DefaultDemoDialogViewModel(), options: options);
+        await Dialog.ShowStandardAsync<DefaultDemoDialog, DefaultDemoDialogViewModel>(new DefaultDemoDialogViewModel(), options: options);
     }
 }
 
@@ -181,11 +181,11 @@ public partial class DefaultOverlayDialogDemoViewModel : ObservableObject
         string? dialogHostId = IsLocal ? DialogDemoViewModel.LocalHost : null;
         if (IsModal)
         {
-            await OverlayDialog.ShowDefaultAsync<DefaultDemoDialog, DefaultDemoDialogViewModel>(new DefaultDemoDialogViewModel(), dialogHostId, options: options);
+            await OverlayDialog.ShowStandardAsync<DefaultDemoDialog, DefaultDemoDialogViewModel>(new DefaultDemoDialogViewModel(), dialogHostId, options: options);
         }
         else
         {
-            OverlayDialog.ShowDefault<DefaultDemoDialog, DefaultDemoDialogViewModel>(new DefaultDemoDialogViewModel(), dialogHostId, options: options);
+            OverlayDialog.ShowStandard<DefaultDemoDialog, DefaultDemoDialogViewModel>(new DefaultDemoDialogViewModel(), dialogHostId, options: options);
         }
     }
 }

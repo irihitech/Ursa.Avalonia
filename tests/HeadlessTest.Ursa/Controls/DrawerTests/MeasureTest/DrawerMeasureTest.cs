@@ -29,10 +29,10 @@ public class DrawerMeasureTest
         };
         window.Show();
         Dispatcher.UIThread.RunJobs();
-        _ = OverlayDrawer.ShowDefaultAsync(textBlock, "hello world", null,
+        _ = OverlayDrawer.ShowStandardAsync(textBlock, "hello world", null,
             new DrawerOptions { Position = position, TopLevelHashCode = window.GetHashCode() });
         await Task.Delay(TimeSpan.FromSeconds(0.1));
-        var dialogControl = window.GetVisualDescendants().OfType<DefaultDrawerControl>().SingleOrDefault();
+        var dialogControl = window.GetVisualDescendants().OfType<StandardDrawerControl>().SingleOrDefault();
         Assert.NotNull(dialogControl);
         Assert.True(dialogControl.Bounds.Width <= window.Bounds.Width);
         Assert.True(dialogControl.Bounds.Height <= window.Bounds.Height);

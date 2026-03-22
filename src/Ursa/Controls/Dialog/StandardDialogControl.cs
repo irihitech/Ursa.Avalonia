@@ -1,4 +1,4 @@
-﻿using Avalonia;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
@@ -8,31 +8,40 @@ using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-[TemplatePart(PART_YesButton, typeof(Button))]
-[TemplatePart(PART_NoButton, typeof(Button))]
 [TemplatePart(PART_OKButton, typeof(Button))]
 [TemplatePart(PART_CancelButton, typeof(Button))]
-public class DefaultDialogWindow : CustomDialogWindow
+[TemplatePart(PART_YesButton, typeof(Button))]
+[TemplatePart(PART_NoButton, typeof(Button))]
+public class StandardDialogControl : DialogControlBase
 {
-    public const string PART_YesButton = "PART_YesButton";
-    public const string PART_NoButton = "PART_NoButton";
     public const string PART_OKButton = "PART_OKButton";
     public const string PART_CancelButton = "PART_CancelButton";
+    public const string PART_YesButton = "PART_YesButton";
+    public const string PART_NoButton = "PART_NoButton";
+
+    public static readonly StyledProperty<string?> TitleProperty =
+        AvaloniaProperty.Register<StandardDialogControl, string?>(
+            nameof(Title));
 
     public static readonly StyledProperty<DialogButton> ButtonsProperty =
-        AvaloniaProperty.Register<DefaultDialogWindow, DialogButton>(
+        AvaloniaProperty.Register<StandardDialogControl, DialogButton>(
             nameof(Buttons));
 
     public static readonly StyledProperty<DialogMode> ModeProperty =
-        AvaloniaProperty.Register<DefaultDialogWindow, DialogMode>(
+        AvaloniaProperty.Register<StandardDialogControl, DialogMode>(
             nameof(Mode));
 
     private Button? _cancelButton;
     private Button? _noButton;
-    private Button? _okButton;
 
+    private Button? _okButton;
     private Button? _yesButton;
-    protected override Type StyleKeyOverride { get; } = typeof(DefaultDialogWindow);
+
+    public string? Title
+    {
+        get => GetValue(TitleProperty);
+        set => SetValue(TitleProperty, value);
+    }
 
     public DialogButton Buttons
     {
@@ -49,33 +58,19 @@ public class DefaultDialogWindow : CustomDialogWindow
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        Button.ClickEvent.RemoveHandler(OnDefaultClose, _okButton, _cancelButton, _yesButton, _noButton);
+        Button.ClickEvent.RemoveHandler(DefaultButtonsClose, _okButton, _cancelButton, _yesButton, _noButton);
         _okButton = e.NameScope.Find<Button>(PART_OKButton);
         _cancelButton = e.NameScope.Find<Button>(PART_CancelButton);
         _yesButton = e.NameScope.Find<Button>(PART_YesButton);
         _noButton = e.NameScope.Find<Button>(PART_NoButton);
-        Button.ClickEvent.AddHandler(OnDefaultClose, _okButton, _cancelButton, _yesButton, _noButton);
+        Button.ClickEvent.AddHandler(DefaultButtonsClose, _okButton, _cancelButton, _yesButton, _noButton);
         SetButtonVisibility();
     }
 
-    private void OnDefaultClose(object? sender, RoutedEventArgs e)
-    {
-        if (Equals(sender, _yesButton))
-            Close(DialogResult.Yes);
-        else if (Equals(sender, _noButton))
-            Close(DialogResult.No);
-        else if (Equals(sender, _okButton))
-            Close(DialogResult.OK);
-        else if (Equals(sender, _cancelButton))
-            Close(DialogResult.Cancel);
-    }
 
     private void SetButtonVisibility()
     {
-        // Close button should be hidden instead if invisible to retain layout. 
-        IsVisibleProperty.SetValue(true, _closeButton);
-        var closeButtonVisible =
-            IsCloseButtonVisible ?? (DataContext is IDialogContext || Buttons != DialogButton.YesNo);
+        var closeButtonVisible =  IsCloseButtonVisible ?? (DataContext is IDialogContext || Buttons != DialogButton.YesNo );
         IsHitTestVisibleProperty.SetValue(closeButtonVisible, _closeButton);
         if (!closeButtonVisible)
         {
@@ -105,7 +100,21 @@ public class DefaultDialogWindow : CustomDialogWindow
         }
     }
 
-    protected override void OnCloseButtonClicked(object? sender, RoutedEventArgs args)
+    private void DefaultButtonsClose(object? sender, RoutedEventArgs args)
+    {
+        if (sender is Button button)
+        {
+            if (button == _okButton)
+                OnElementClosing(this, DialogResult.OK);
+            else if (button == _cancelButton)
+                OnElementClosing(this, DialogResult.Cancel);
+            else if (button == _yesButton)
+                OnElementClosing(this, DialogResult.Yes);
+            else if (button == _noButton) OnElementClosing(this, DialogResult.No);
+        }
+    }
+
+    public override void Close()
     {
         if (DataContext is IDialogContext context)
         {
@@ -122,7 +131,7 @@ public class DefaultDialogWindow : CustomDialogWindow
                 DialogButton.YesNoCancel => DialogResult.Cancel,
                 _ => DialogResult.None
             };
-            Close(result);
+            OnElementClosing(this, result);
         }
     }
 }

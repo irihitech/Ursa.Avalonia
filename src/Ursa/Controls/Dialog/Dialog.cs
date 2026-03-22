@@ -74,16 +74,16 @@ public static partial class Dialog
     /// <typeparam name="TView"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
     /// <returns></returns>
-    public static void ShowDefault<TView, TViewModel>(TViewModel vm, Window? owner = null,
+    public static void ShowStandard<TView, TViewModel>(TViewModel vm, Window? owner = null,
         DialogOptions? options = null)
         where TView : Control, new()
     {
-        var window = new DefaultDialogWindow
+        var window = new StandardDialogWindow
         {
             Content = new TView(),
             DataContext = vm
         };
-        ConfigureDefaultDialogWindow(window, options);
+        ConfigureStandardDialogWindow(window, options);
         owner ??= GetMainWindow();
         if (owner is null) window.Show();
 
@@ -99,15 +99,15 @@ public static partial class Dialog
     /// <param name="owner"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static void ShowDefault(Control view, object? vm, Window? owner = null,
+    public static void ShowStandard(Control view, object? vm, Window? owner = null,
         DialogOptions? options = null)
     {
-        var window = new DefaultDialogWindow
+        var window = new StandardDialogWindow
         {
             Content = view,
             DataContext = vm
         };
-        ConfigureDefaultDialogWindow(window, options);
+        ConfigureStandardDialogWindow(window, options);
         owner ??= GetMainWindow();
         if (owner is null) window.Show();
 
@@ -124,16 +124,16 @@ public static partial class Dialog
     /// <typeparam name="TView"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
     /// <returns></returns>
-    public static Task<DialogResult> ShowDefaultAsync<TView, TViewModel>(TViewModel vm, Window? owner = null,
+    public static Task<DialogResult> ShowStandardAsync<TView, TViewModel>(TViewModel vm, Window? owner = null,
         DialogOptions? options = null)
         where TView : Control, new()
     {
-        var window = new DefaultDialogWindow
+        var window = new StandardDialogWindow
         {
             Content = new TView(),
             DataContext = vm
         };
-        ConfigureDefaultDialogWindow(window, options);
+        ConfigureStandardDialogWindow(window, options);
         owner ??= GetMainWindow();
         if (owner is null)
         {
@@ -153,15 +153,15 @@ public static partial class Dialog
     /// <param name="owner"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static Task<DialogResult> ShowDefaultAsync(Control view, object? vm, Window? owner = null,
+    public static Task<DialogResult> ShowStandardAsync(Control view, object? vm, Window? owner = null,
         DialogOptions? options = null)
     {
-        var window = new DefaultDialogWindow
+        var window = new StandardDialogWindow
         {
             Content = view,
             DataContext = vm
         };
-        ConfigureDefaultDialogWindow(window, options);
+        ConfigureStandardDialogWindow(window, options);
         owner ??= GetMainWindow();
         if (owner is null)
         {
@@ -278,7 +278,7 @@ public static partial class Dialog
     /// </summary>
     /// <param name="window"></param>
     /// <param name="options"></param>
-    private static void ConfigureDefaultDialogWindow(DefaultDialogWindow window, DialogOptions? options)
+    private static void ConfigureStandardDialogWindow(StandardDialogWindow window, DialogOptions? options)
     {
         options ??= DialogOptions.Default;
         window.WindowStartupLocation = options.StartupLocation;

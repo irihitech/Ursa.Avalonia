@@ -9,12 +9,12 @@
         x:Class="HeadlessTest.Ursa.Controls.DialogTests.StyleClassTests.TestWindow"
         Title="TestWindow">
     <u:UrsaWindow.Styles>
-        <Style Selector="u|DefaultDialogControl.Custom">
+        <Style Selector="u|StandardDialogControl.Custom">
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="Content" Value="CUSTOM"/>
             </Style>
         </Style>
-        <Style Selector="u|DefaultDialogControl.Custom2">
+        <Style Selector="u|StandardDialogControl.Custom2">
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="iri:ClassHelper.Classes" Value="Warning Small" />
             </Style>

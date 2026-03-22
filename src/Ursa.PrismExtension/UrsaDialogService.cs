@@ -15,7 +15,7 @@ public class UrsaDialogService(IContainerExtension container) : IUrsaDialogServi
     public Task<DialogResult> ShowModal(string viewName, object? vm, Window? owner = null, DialogOptions? options = null)
     {
         var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
-        return Dialog.ShowDefaultAsync(v, vm, owner, options);
+        return Dialog.ShowStandardAsync(v, vm, owner, options);
     }
     
     public Task<TResult?> ShowCustomModal<TResult>(string viewName, object? vm, Window? owner = null, DialogOptions? options = null)

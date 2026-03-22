@@ -4,43 +4,43 @@ namespace Ursa.Controls;
 
 public static partial class OverlayDialog
 {
-    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use Dialog.ShowDefault instead.")]
+    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use Dialog.ShowStandard instead.")]
     public static void Show<TView, TViewModel>(TViewModel vm, string? hostId = null,
         OverlayDialogOptions? options = null)
         where TView : Control, new()
     {
-        ShowDefault<TView, TViewModel>(vm, hostId, options);
+        ShowStandard<TView, TViewModel>(vm, hostId, options);
     }
 
 
-    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use Dialog.ShowDefault instead.")]
+    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use Dialog.ShowStandard instead.")]
     public static void Show(Control control, object? vm, string? hostId = null,
         OverlayDialogOptions? options = null)
     {
-        ShowDefault(control, vm, hostId, options);
+        ShowStandard(control, vm, hostId, options);
     }
 
 
-    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use Dialog.ShowDefault instead.")]
+    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use Dialog.ShowStandard instead.")]
     public static void Show(object? vm, string? hostId = null, OverlayDialogOptions? options = null)
     {
-        ShowDefault(vm, hostId, options);
+        ShowStandard(vm, hostId, options);
     }
 
 
-    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use Dialog.ShowDefaultAsync instead.")]
+    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use Dialog.ShowStandardAsync instead.")]
     public static Task<DialogResult> ShowModal<TView, TViewModel>(TViewModel vm, string? hostId = null,
         OverlayDialogOptions? options = null, CancellationToken? token = null)
         where TView : Control, new()
     {
-        return ShowDefaultAsync<TView, TViewModel>(vm, hostId, options, token);
+        return ShowStandardAsync<TView, TViewModel>(vm, hostId, options, token);
     }
 
-    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use Dialog.ShowDefaultAsync instead.")]
+    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use Dialog.ShowStandardAsync instead.")]
     public static Task<DialogResult> ShowModal(Control control, object? vm, string? hostId = null,
         OverlayDialogOptions? options = null, CancellationToken? token = null)
     {
-        return ShowDefaultAsync(control, vm, hostId, options, token);
+        return ShowStandardAsync(control, vm, hostId, options, token);
     }
 
     [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use Dialog.ShowCustomAsync instead.")]

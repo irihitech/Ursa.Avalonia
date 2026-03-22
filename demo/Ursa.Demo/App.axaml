@@ -13,7 +13,7 @@
         <semi:UrsaSemiTheme Locale="zh-CN" />
         <semi:SemiPopupAnimations />
         <!--This style is created to demonstrate Dialog StyleClass feature. This style is applied to Dialog Window-->
-        <Style Selector="u|DefaultDialogWindow.Custom">
+        <Style Selector="u|StandardDialogWindow.Custom">
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="Content" Value="CUSTOM" />
                 <Setter Property="iri:ClassHelper.Classes" Value="Warning" />

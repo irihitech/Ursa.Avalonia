@@ -9,48 +9,48 @@ namespace Ursa.Controls;
 
 public static partial class OverlayDialog
 {
-    public static void ShowDefault<TView, TViewModel>(TViewModel vm, string? hostId = null,
+    public static void ShowStandard<TView, TViewModel>(TViewModel vm, string? hostId = null,
         OverlayDialogOptions? options = null)
         where TView : Control, new()
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
-        var t = new DefaultDialogControl
+        var t = new StandardDialogControl
         {
             Content = new TView(),
             DataContext = vm
         };
-        ConfigureDefaultDialogControl(t, options);
+        ConfigureStandardDialogControl(t, options);
         host.AddDialog(t);
     }
     
-    public static void ShowDefault(Control control, object? vm, string? hostId = null,
+    public static void ShowStandard(Control control, object? vm, string? hostId = null,
         OverlayDialogOptions? options = null)
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
-        var t = new DefaultDialogControl
+        var t = new StandardDialogControl
         {
             Content = control,
             DataContext = vm
         };
-        ConfigureDefaultDialogControl(t, options);
+        ConfigureStandardDialogControl(t, options);
         host.AddDialog(t);
     }
 
-    public static void ShowDefault(object? vm, string? hostId = null, OverlayDialogOptions? options = null)
+    public static void ShowStandard(object? vm, string? hostId = null, OverlayDialogOptions? options = null)
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
         var view = host.GetDataTemplate(vm)?.Build(vm);
         if (view is null) view = new ContentControl();
         view.DataContext = vm;
-        var t = new DefaultDialogControl
+        var t = new StandardDialogControl
         {
             Content = view,
             DataContext = vm
         };
-        ConfigureDefaultDialogControl(t, options);
+        ConfigureStandardDialogControl(t, options);
         host.AddDialog(t);
     }
 
@@ -102,36 +102,36 @@ public static partial class OverlayDialog
     }
 
 
-    public static Task<DialogResult> ShowDefaultAsync<TView, TViewModel>(TViewModel vm, string? hostId = null,
+    public static Task<DialogResult> ShowStandardAsync<TView, TViewModel>(TViewModel vm, string? hostId = null,
         OverlayDialogOptions? options = null, CancellationToken? token = null)
         where TView : Control, new()
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return Task.FromResult(DialogResult.None);
-        var t = new DefaultDialogControl
+        var t = new StandardDialogControl
         {
             Content = new TView(),
             DataContext = vm,
             [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
-        ConfigureDefaultDialogControl(t, options);
+        ConfigureStandardDialogControl(t, options);
         host.AddModalDialog(t);
         return t.ShowAsync<DialogResult>(token);
     }
 
 
-    public static Task<DialogResult> ShowDefaultAsync(Control control, object? vm, string? hostId = null,
+    public static Task<DialogResult> ShowStandardAsync(Control control, object? vm, string? hostId = null,
         OverlayDialogOptions? options = null, CancellationToken? token = null)
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return Task.FromResult(DialogResult.None);
-        var t = new DefaultDialogControl
+        var t = new StandardDialogControl
         {
             Content = control,
             DataContext = vm,
             [KeyboardNavigation.TabNavigationProperty] = KeyboardNavigationMode.Cycle
         };
-        ConfigureDefaultDialogControl(t, options);
+        ConfigureStandardDialogControl(t, options);
         host.AddModalDialog(t);
         return t.ShowAsync<DialogResult>(token);
     }
@@ -227,7 +227,7 @@ public static partial class OverlayDialog
         DialogControlBase.SetCanDragMove(control, options.CanDragMove);
     }
 
-    private static void ConfigureDefaultDialogControl(DefaultDialogControl control, OverlayDialogOptions? options)
+    private static void ConfigureStandardDialogControl(StandardDialogControl control, OverlayDialogOptions? options)
     {
         options ??= new OverlayDialogOptions();
         control.IsFullScreen = options.FullScreen;

@@ -1,47 +1,42 @@
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
+using Ursa.EventArgs;
 
 namespace Ursa.Controls;
 
-[TemplatePart(PART_OKButton, typeof(Button))]
-[TemplatePart(PART_CancelButton, typeof(Button))]
 [TemplatePart(PART_YesButton, typeof(Button))]
 [TemplatePart(PART_NoButton, typeof(Button))]
-public class DefaultDialogControl : DialogControlBase
+[TemplatePart(PART_OKButton, typeof(Button))]
+[TemplatePart(PART_CancelButton, typeof(Button))]
+public class StandardDrawerControl : DrawerControlBase
 {
-    public const string PART_OKButton = "PART_OKButton";
-    public const string PART_CancelButton = "PART_CancelButton";
     public const string PART_YesButton = "PART_YesButton";
     public const string PART_NoButton = "PART_NoButton";
-
-    public static readonly StyledProperty<string?> TitleProperty =
-        AvaloniaProperty.Register<DefaultDialogControl, string?>(
-            nameof(Title));
+    public const string PART_OKButton = "PART_OKButton";
+    public const string PART_CancelButton = "PART_CancelButton";
 
     public static readonly StyledProperty<DialogButton> ButtonsProperty =
-        AvaloniaProperty.Register<DefaultDialogControl, DialogButton>(
-            nameof(Buttons));
+        AvaloniaProperty.Register<StandardDrawerControl, DialogButton>(
+            nameof(Buttons), DialogButton.OKCancel);
 
     public static readonly StyledProperty<DialogMode> ModeProperty =
-        AvaloniaProperty.Register<DefaultDialogControl, DialogMode>(
-            nameof(Mode));
+        AvaloniaProperty.Register<StandardDrawerControl, DialogMode>(
+            nameof(Mode), DialogMode.None);
+
+    public static readonly StyledProperty<string?> TitleProperty =
+        AvaloniaProperty.Register<StandardDrawerControl, string?>(
+            nameof(Title));
 
     private Button? _cancelButton;
     private Button? _noButton;
-
     private Button? _okButton;
-    private Button? _yesButton;
 
-    public string? Title
-    {
-        get => GetValue(TitleProperty);
-        set => SetValue(TitleProperty, value);
-    }
+    private Button? _yesButton;
 
     public DialogButton Buttons
     {
@@ -55,22 +50,28 @@ public class DefaultDialogControl : DialogControlBase
         set => SetValue(ModeProperty, value);
     }
 
+    public string? Title
+    {
+        get => GetValue(TitleProperty);
+        set => SetValue(TitleProperty, value);
+    }
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        Button.ClickEvent.RemoveHandler(DefaultButtonsClose, _okButton, _cancelButton, _yesButton, _noButton);
-        _okButton = e.NameScope.Find<Button>(PART_OKButton);
-        _cancelButton = e.NameScope.Find<Button>(PART_CancelButton);
+        Button.ClickEvent.RemoveHandler(OnDefaultButtonClick, _yesButton, _noButton, _okButton, _cancelButton);
         _yesButton = e.NameScope.Find<Button>(PART_YesButton);
         _noButton = e.NameScope.Find<Button>(PART_NoButton);
-        Button.ClickEvent.AddHandler(DefaultButtonsClose, _okButton, _cancelButton, _yesButton, _noButton);
+        _okButton = e.NameScope.Find<Button>(PART_OKButton);
+        _cancelButton = e.NameScope.Find<Button>(PART_CancelButton);
+        Button.ClickEvent.AddHandler(OnDefaultButtonClick, _yesButton, _noButton, _okButton, _cancelButton);
         SetButtonVisibility();
     }
 
-
     private void SetButtonVisibility()
     {
-        var closeButtonVisible =  IsCloseButtonVisible ?? (DataContext is IDialogContext || Buttons != DialogButton.YesNo );
+        var closeButtonVisible =
+            IsCloseButtonVisible ?? (DataContext is IDialogContext || Buttons != DialogButton.YesNo);
         IsHitTestVisibleProperty.SetValue(closeButtonVisible, _closeButton);
         if (!closeButtonVisible)
         {
@@ -100,7 +101,7 @@ public class DefaultDialogControl : DialogControlBase
         }
     }
 
-    private void DefaultButtonsClose(object? sender, RoutedEventArgs args)
+    private void OnDefaultButtonClick(object? sender, RoutedEventArgs e)
     {
         if (sender is Button button)
         {
@@ -131,7 +132,12 @@ public class DefaultDialogControl : DialogControlBase
                 DialogButton.YesNoCancel => DialogResult.Cancel,
                 _ => DialogResult.None
             };
-            OnElementClosing(this, result);
+            RaiseEvent(new ResultEventArgs(ClosedEvent, result));
         }
+    }
+
+    protected internal override void AnchorAndUpdatePositionInfo()
+    {
+        // throw new NotImplementedException();
     }
 }

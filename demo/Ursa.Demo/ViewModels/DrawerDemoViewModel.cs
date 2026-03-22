@@ -63,11 +63,11 @@ public partial class DrawerDemoViewModel : ObservableObject
             var vm = new DefaultDemoDialogViewModel();
             if (IsModal)
             {
-                await OverlayDrawer.ShowDefaultAsync<DefaultDemoDialog, DefaultDemoDialogViewModel>(vm, hostId, options);
+                await OverlayDrawer.ShowStandardAsync<DefaultDemoDialog, DefaultDemoDialogViewModel>(vm, hostId, options);
             }
             else
             {
-                OverlayDrawer.ShowDefault<DefaultDemoDialog, DefaultDemoDialogViewModel>(vm, hostId, options);
+                OverlayDrawer.ShowStandard<DefaultDemoDialog, DefaultDemoDialogViewModel>(vm, hostId, options);
             }
         }
         

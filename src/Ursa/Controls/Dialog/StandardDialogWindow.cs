@@ -5,7 +5,6 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
-using Ursa.EventArgs;
 
 namespace Ursa.Controls;
 
@@ -13,7 +12,7 @@ namespace Ursa.Controls;
 [TemplatePart(PART_NoButton, typeof(Button))]
 [TemplatePart(PART_OKButton, typeof(Button))]
 [TemplatePart(PART_CancelButton, typeof(Button))]
-public class DefaultDrawerControl : DrawerControlBase
+public class StandardDialogWindow : CustomDialogWindow
 {
     public const string PART_YesButton = "PART_YesButton";
     public const string PART_NoButton = "PART_NoButton";
@@ -21,22 +20,19 @@ public class DefaultDrawerControl : DrawerControlBase
     public const string PART_CancelButton = "PART_CancelButton";
 
     public static readonly StyledProperty<DialogButton> ButtonsProperty =
-        AvaloniaProperty.Register<DefaultDrawerControl, DialogButton>(
-            nameof(Buttons), DialogButton.OKCancel);
+        AvaloniaProperty.Register<StandardDialogWindow, DialogButton>(
+            nameof(Buttons));
 
     public static readonly StyledProperty<DialogMode> ModeProperty =
-        AvaloniaProperty.Register<DefaultDrawerControl, DialogMode>(
-            nameof(Mode), DialogMode.None);
-
-    public static readonly StyledProperty<string?> TitleProperty =
-        AvaloniaProperty.Register<DefaultDrawerControl, string?>(
-            nameof(Title));
+        AvaloniaProperty.Register<StandardDialogWindow, DialogMode>(
+            nameof(Mode));
 
     private Button? _cancelButton;
     private Button? _noButton;
     private Button? _okButton;
 
     private Button? _yesButton;
+    protected override Type StyleKeyOverride { get; } = typeof(StandardDialogWindow);
 
     public DialogButton Buttons
     {
@@ -50,26 +46,34 @@ public class DefaultDrawerControl : DrawerControlBase
         set => SetValue(ModeProperty, value);
     }
 
-    public string? Title
-    {
-        get => GetValue(TitleProperty);
-        set => SetValue(TitleProperty, value);
-    }
-
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        Button.ClickEvent.RemoveHandler(OnDefaultButtonClick, _yesButton, _noButton, _okButton, _cancelButton);
-        _yesButton = e.NameScope.Find<Button>(PART_YesButton);
-        _noButton = e.NameScope.Find<Button>(PART_NoButton);
+        Button.ClickEvent.RemoveHandler(OnDefaultClose, _okButton, _cancelButton, _yesButton, _noButton);
         _okButton = e.NameScope.Find<Button>(PART_OKButton);
         _cancelButton = e.NameScope.Find<Button>(PART_CancelButton);
-        Button.ClickEvent.AddHandler(OnDefaultButtonClick, _yesButton, _noButton, _okButton, _cancelButton);
+        _yesButton = e.NameScope.Find<Button>(PART_YesButton);
+        _noButton = e.NameScope.Find<Button>(PART_NoButton);
+        Button.ClickEvent.AddHandler(OnDefaultClose, _okButton, _cancelButton, _yesButton, _noButton);
         SetButtonVisibility();
+    }
+
+    private void OnDefaultClose(object? sender, RoutedEventArgs e)
+    {
+        if (Equals(sender, _yesButton))
+            Close(DialogResult.Yes);
+        else if (Equals(sender, _noButton))
+            Close(DialogResult.No);
+        else if (Equals(sender, _okButton))
+            Close(DialogResult.OK);
+        else if (Equals(sender, _cancelButton))
+            Close(DialogResult.Cancel);
     }
 
     private void SetButtonVisibility()
     {
+        // Close button should be hidden instead if invisible to retain layout. 
+        IsVisibleProperty.SetValue(true, _closeButton);
         var closeButtonVisible =
             IsCloseButtonVisible ?? (DataContext is IDialogContext || Buttons != DialogButton.YesNo);
         IsHitTestVisibleProperty.SetValue(closeButtonVisible, _closeButton);
@@ -101,21 +105,7 @@ public class DefaultDrawerControl : DrawerControlBase
         }
     }
 
-    private void OnDefaultButtonClick(object? sender, RoutedEventArgs e)
-    {
-        if (sender is Button button)
-        {
-            if (button == _okButton)
-                OnElementClosing(this, DialogResult.OK);
-            else if (button == _cancelButton)
-                OnElementClosing(this, DialogResult.Cancel);
-            else if (button == _yesButton)
-                OnElementClosing(this, DialogResult.Yes);
-            else if (button == _noButton) OnElementClosing(this, DialogResult.No);
-        }
-    }
-
-    public override void Close()
+    protected override void OnCloseButtonClicked(object? sender, RoutedEventArgs args)
     {
         if (DataContext is IDialogContext context)
         {
@@ -132,12 +122,7 @@ public class DefaultDrawerControl : DrawerControlBase
                 DialogButton.YesNoCancel => DialogResult.Cancel,
                 _ => DialogResult.None
             };
-            RaiseEvent(new ResultEventArgs(ClosedEvent, result));
+            Close(result);
         }
-    }
-
-    protected internal override void AnchorAndUpdatePositionInfo()
-    {
-        // throw new NotImplementedException();
     }
 }

@@ -10,7 +10,7 @@ public class UrsaDrawerService(IContainerExtension container): IUrsaDrawerServic
     public void Show(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null)
     {
         var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
-        OverlayDrawer.ShowDefault(v, vm, hostId, options);
+        OverlayDrawer.ShowStandard(v, vm, hostId, options);
     }
 
     public void ShowCustom<TResult>(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null)
@@ -22,7 +22,7 @@ public class UrsaDrawerService(IContainerExtension container): IUrsaDrawerServic
     public Task<DialogResult> ShowModal(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null)
     {
         var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
-        return OverlayDrawer.ShowDefaultAsync(v, vm, hostId, options);
+        return OverlayDrawer.ShowStandardAsync(v, vm, hostId, options);
     }
 
     public Task<TResult?> ShowCustomModal<TResult>(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null)

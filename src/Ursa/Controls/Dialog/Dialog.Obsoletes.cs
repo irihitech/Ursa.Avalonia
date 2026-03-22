@@ -18,7 +18,7 @@ public static partial class Dialog
         DialogOptions? options = null)
         where TView : Control, new()
     {
-        return ShowDefaultAsync<TView, TViewModel>(vm, owner, options);
+        return ShowStandardAsync<TView, TViewModel>(vm, owner, options);
     }
     
     /// <summary>
@@ -33,7 +33,7 @@ public static partial class Dialog
     public static Task<DialogResult> ShowModal(Control view, object? vm, Window? owner = null,
         DialogOptions? options = null)
     {
-        return ShowDefaultAsync(view, vm, owner, options);
+        return ShowStandardAsync(view, vm, owner, options);
     }
     
     /// <summary>

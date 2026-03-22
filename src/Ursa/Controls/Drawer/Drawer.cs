@@ -8,45 +8,45 @@ namespace Ursa.Controls;
 [Obsolete("Use OverlayDrawer instead. This will be removed in Ursa2.0 lifecycle.")]
 public static class Drawer
 {
-    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use OverlayDrawer.ShowDefault instead. ")]
+    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use OverlayDrawer.ShowStandard instead. ")]
     public static void Show<TView, TViewModel>(TViewModel vm, string? hostId = null, DrawerOptions? options = null)
         where TView : Control, new()
     {
-        OverlayDrawer.ShowDefault<TView, TViewModel>(vm, hostId, options);
+        OverlayDrawer.ShowStandard<TView, TViewModel>(vm, hostId, options);
     }
 
-    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use OverlayDrawer.ShowDefault instead. ")]
+    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use OverlayDrawer.ShowStandard instead. ")]
     public static void Show(Control control, object? vm, string? hostId = null,
         DrawerOptions? options = null)
     {
-        OverlayDrawer.ShowDefault(control, vm, hostId, options);
+        OverlayDrawer.ShowStandard(control, vm, hostId, options);
     }
 
-    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use OverlayDrawer.ShowDefault instead. ")]
+    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use OverlayDrawer.ShowStandard instead. ")]
     public static void Show(object? vm, string? hostId = null, DrawerOptions? options = null)
     {
-        OverlayDrawer.ShowDefault(vm, hostId, options);
+        OverlayDrawer.ShowStandard(vm, hostId, options);
     }
 
-    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use OverlayDrawer.ShowDefaultAsync instead. ")]
+    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use OverlayDrawer.ShowStandardAsync instead. ")]
     public static Task<DialogResult> ShowModal<TView, TViewModel>(TViewModel vm, string? hostId = null,
         DrawerOptions? options = null)
         where TView : Control, new()
     {
-        return OverlayDrawer.ShowDefaultAsync<TView, TViewModel>(vm, hostId, options);
+        return OverlayDrawer.ShowStandardAsync<TView, TViewModel>(vm, hostId, options);
     }
 
-    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use OverlayDrawer.ShowDefaultAsync instead. ")]
+    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use OverlayDrawer.ShowStandardAsync instead. ")]
     public static Task<DialogResult> ShowModal(Control control, object? vm, string? hostId = null,
         DrawerOptions? options = null)
     {
-        return OverlayDrawer.ShowDefaultAsync(control, vm, hostId, options);
+        return OverlayDrawer.ShowStandardAsync(control, vm, hostId, options);
     }
 
-    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use OverlayDrawer.ShowDefaultAsync instead. ")]
+    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use OverlayDrawer.ShowStandardAsync instead. ")]
     public static Task<DialogResult> ShowModal(object? vm, string? hostId = null, DrawerOptions? options = null)
     {
-        return OverlayDrawer.ShowDefaultAsync(vm, hostId, options);
+        return OverlayDrawer.ShowStandardAsync(vm, hostId, options);
     }
 
     [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use OverlayDrawer.ShowCustom instead. ")]
