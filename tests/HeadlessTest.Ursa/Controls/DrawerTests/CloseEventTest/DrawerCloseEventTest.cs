@@ -16,7 +16,7 @@ public class DrawerCloseEventTest
         };
         testWindow.Show();
         DrawerCloseTestPopupControl level1 = new();
-        _ = OverlayDialog.ShowCustomModal<object>(level1, new DrawerCloseTestPopupControlVM(), "root");
+        _ = OverlayDialog.ShowCustomAsync<object>(level1, new DrawerCloseTestPopupControlVM(), "root");
         level1.OpenPopup();
         var level2 = level1.Popup;
         Assert.NotNull(level2);
@@ -48,7 +48,7 @@ public class DrawerCloseEventTest
         Assert.Equal(level2.LResult, level2.RResult);
         Assert.Equal(level3.LResult, level3.RResult);
 
-        _ = OverlayDialog.ShowCustomModal<object>(level1, new DrawerCloseTestPopupControlVM(), "root");
+        _ = OverlayDialog.ShowCustomAsync<object>(level1, new DrawerCloseTestPopupControlVM(), "root");
         level1.OpenPopup();
         level2 = level1.Popup;
         Assert.NotNull(level2);

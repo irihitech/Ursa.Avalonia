@@ -181,11 +181,11 @@ public partial class DefaultOverlayDialogDemoViewModel : ObservableObject
         string? dialogHostId = IsLocal ? DialogDemoViewModel.LocalHost : null;
         if (IsModal)
         {
-            await OverlayDialog.ShowModal<DefaultDemoDialog, DefaultDemoDialogViewModel>(new DefaultDemoDialogViewModel(), dialogHostId, options: options);
+            await OverlayDialog.ShowDefaultAsync<DefaultDemoDialog, DefaultDemoDialogViewModel>(new DefaultDemoDialogViewModel(), dialogHostId, options: options);
         }
         else
         {
-            OverlayDialog.Show<DefaultDemoDialog, DefaultDemoDialogViewModel>(new DefaultDemoDialogViewModel(), dialogHostId, options: options);
+            OverlayDialog.ShowDefault<DefaultDemoDialog, DefaultDemoDialogViewModel>(new DefaultDemoDialogViewModel(), dialogHostId, options: options);
         }
     }
 }
@@ -234,7 +234,7 @@ public partial class CustomOverlayDialogDemoViewModel: ObservableObject
         var dialogHostId = IsLocal ? DialogDemoViewModel.LocalHost : null;
         if (IsModal)
         {
-            await OverlayDialog.ShowCustomModal<CustomDemoDialog, CustomDemoDialogViewModel, object>(new CustomDemoDialogViewModel(), dialogHostId, options: options);
+            await OverlayDialog.ShowCustomAsync<CustomDemoDialog, CustomDemoDialogViewModel, object>(new CustomDemoDialogViewModel(), dialogHostId, options: options);
         }
         else
         {

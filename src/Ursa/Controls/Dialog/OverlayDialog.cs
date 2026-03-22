@@ -3,107 +3,95 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Layout;
 using Ursa.Common;
+using Ursa.Controls.OverlayShared;
 
 namespace Ursa.Controls;
 
-public static class OverlayDialog
+public static partial class OverlayDialog
 {
-    public static void Show<TView, TViewModel>(TViewModel vm, string? hostId = null,
+    public static void ShowDefault<TView, TViewModel>(TViewModel vm, string? hostId = null,
         OverlayDialogOptions? options = null)
         where TView : Control, new()
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
-        var t = new DefaultDialogControl()
+        var t = new DefaultDialogControl
         {
             Content = new TView(),
-            DataContext = vm,
+            DataContext = vm
         };
         ConfigureDefaultDialogControl(t, options);
         host.AddDialog(t);
     }
     
-    public static void Show(Control control, object? vm, string? hostId = null,
+    public static void ShowDefault(Control control, object? vm, string? hostId = null,
         OverlayDialogOptions? options = null)
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
-        var t = new DefaultDialogControl()
+        var t = new DefaultDialogControl
         {
             Content = control,
-            DataContext = vm,
+            DataContext = vm
         };
         ConfigureDefaultDialogControl(t, options);
-
-        if (options?.OnDialogControlClosed != null)
-        {
-            t.AddHandler(OverlayShared.OverlayFeedbackElement.ClosedEvent, options.OnDialogControlClosed);
-
-            t.AddHandler(OverlayShared.OverlayFeedbackElement.ClosedEvent, (s, _) =>
-            {
-                if (s is not DialogControlBase dc) return;
-                dc.RemoveHandler(OverlayShared.OverlayFeedbackElement.ClosedEvent, options.OnDialogControlClosed);
-            });
-        }
-
         host.AddDialog(t);
-        
     }
 
-    public static void Show(object? vm, string? hostId = null, OverlayDialogOptions? options = null)
+    public static void ShowDefault(object? vm, string? hostId = null, OverlayDialogOptions? options = null)
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
         var view = host.GetDataTemplate(vm)?.Build(vm);
         if (view is null) view = new ContentControl();
         view.DataContext = vm;
-        var t = new DefaultDialogControl()
+        var t = new DefaultDialogControl
         {
             Content = view,
-            DataContext = vm,
+            DataContext = vm
         };
         ConfigureDefaultDialogControl(t, options);
         host.AddDialog(t);
     }
-    
+
     public static void ShowCustom<TView, TViewModel>(TViewModel vm, string? hostId = null,
         OverlayDialogOptions? options = null)
-        where TView: Control, new()
+        where TView : Control, new()
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
-        var t = new CustomDialogControl()
+        var t = new CustomDialogControl
         {
             Content = new TView(),
-            DataContext = vm,
+            DataContext = vm
         };
         ConfigureCustomDialogControl(t, options);
         host.AddDialog(t);
     }
-    
+
     public static void ShowCustom(Control control, object? vm, string? hostId = null,
         OverlayDialogOptions? options = null)
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
-        var t = new CustomDialogControl()
+        var t = new CustomDialogControl
         {
             Content = control,
-            DataContext = vm,
+            DataContext = vm
         };
         ConfigureCustomDialogControl(t, options);
         host.AddDialog(t);
     }
-    
+
     public static void ShowCustom(object? vm, string? hostId = null,
         OverlayDialogOptions? options = null)
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return;
         var view = host.GetDataTemplate(vm)?.Build(vm);
-        if (view is null) view = new ContentControl() { Padding = new Thickness(24) };
+        if (view is null) view = new ContentControl { Padding = new Thickness(24) };
         view.DataContext = vm;
-        var t = new CustomDialogControl()
+        var t = new CustomDialogControl
         {
             Content = view,
             DataContext = vm,
@@ -112,14 +100,15 @@ public static class OverlayDialog
         ConfigureCustomDialogControl(t, options);
         host.AddDialog(t);
     }
-    
-    public static Task<DialogResult> ShowModal<TView, TViewModel>(TViewModel vm, string? hostId = null,
-        OverlayDialogOptions? options = null, CancellationToken? token = default)
-        where TView: Control, new()
+
+
+    public static Task<DialogResult> ShowDefaultAsync<TView, TViewModel>(TViewModel vm, string? hostId = null,
+        OverlayDialogOptions? options = null, CancellationToken? token = null)
+        where TView : Control, new()
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return Task.FromResult(DialogResult.None);
-        var t = new DefaultDialogControl()
+        var t = new DefaultDialogControl
         {
             Content = new TView(),
             DataContext = vm,
@@ -129,13 +118,14 @@ public static class OverlayDialog
         host.AddModalDialog(t);
         return t.ShowAsync<DialogResult>(token);
     }
-    
-    public static Task<DialogResult> ShowModal(Control control, object? vm, string? hostId = null,
-        OverlayDialogOptions? options = null, CancellationToken? token = default)
+
+
+    public static Task<DialogResult> ShowDefaultAsync(Control control, object? vm, string? hostId = null,
+        OverlayDialogOptions? options = null, CancellationToken? token = null)
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return Task.FromResult(DialogResult.None);
-        var t = new DefaultDialogControl()
+        var t = new DefaultDialogControl
         {
             Content = control,
             DataContext = vm,
@@ -145,14 +135,15 @@ public static class OverlayDialog
         host.AddModalDialog(t);
         return t.ShowAsync<DialogResult>(token);
     }
-    
-    public static Task<TResult?> ShowCustomModal<TView, TViewModel, TResult>(TViewModel vm, string? hostId = null,
-        OverlayDialogOptions? options = null, CancellationToken? token = default)
-        where TView: Control, new()
+
+
+    public static Task<TResult?> ShowCustomAsync<TView, TViewModel, TResult>(TViewModel vm, string? hostId = null,
+        OverlayDialogOptions? options = null, CancellationToken? token = null)
+        where TView : Control, new()
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return Task.FromResult(default(TResult));
-        var t = new CustomDialogControl()
+        var t = new CustomDialogControl
         {
             Content = new TView(),
             DataContext = vm,
@@ -162,13 +153,14 @@ public static class OverlayDialog
         host.AddModalDialog(t);
         return t.ShowAsync<TResult?>(token);
     }
-    
-    public static Task<TResult?> ShowCustomModal<TResult>(Control control, object? vm, string? hostId = null,
-        OverlayDialogOptions? options = null, CancellationToken? token = default)
+
+
+    public static Task<TResult?> ShowCustomAsync<TResult>(Control control, object? vm, string? hostId = null,
+        OverlayDialogOptions? options = null, CancellationToken? token = null)
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return Task.FromResult(default(TResult));
-        var t = new CustomDialogControl()
+        var t = new CustomDialogControl
         {
             Content = control,
             DataContext = vm,
@@ -178,16 +170,23 @@ public static class OverlayDialog
         host.AddModalDialog(t);
         return t.ShowAsync<TResult?>(token);
     }
-    
+
+    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use Dialog.ShowCustomAsync instead.")]
     public static Task<TResult?> ShowCustomModal<TResult>(object? vm, string? hostId = null,
-        OverlayDialogOptions? options = null, CancellationToken? token = default)
+        OverlayDialogOptions? options = null, CancellationToken? token = null)
+    {
+        return ShowCustomAsync<TResult>(vm, hostId, options, token);
+    }
+
+    public static Task<TResult?> ShowCustomAsync<TResult>(object? vm, string? hostId = null,
+        OverlayDialogOptions? options = null, CancellationToken? token = null)
     {
         var host = OverlayDialogManager.GetHost(hostId, options?.TopLevelHashCode);
         if (host is null) return Task.FromResult(default(TResult));
         var view = host.GetDataTemplate(vm)?.Build(vm);
-        if (view is null) view = new ContentControl() { Padding = new Thickness(24) };
+        if (view is null) view = new ContentControl { Padding = new Thickness(24) };
         view.DataContext = vm;
-        var t = new CustomDialogControl()
+        var t = new CustomDialogControl
         {
             Content = view,
             DataContext = vm,
@@ -197,7 +196,7 @@ public static class OverlayDialog
         host.AddModalDialog(t);
         return t.ShowAsync<TResult?>(token);
     }
-    
+
     private static void ConfigureCustomDialogControl(CustomDialogControl control, OverlayDialogOptions? options)
     {
         options ??= OverlayDialogOptions.Default;
@@ -207,6 +206,7 @@ public static class OverlayDialog
             control.HorizontalAlignment = HorizontalAlignment.Stretch;
             control.VerticalAlignment = VerticalAlignment.Stretch;
         }
+
         control.HorizontalAnchor = options.HorizontalAnchor;
         control.VerticalAnchor = options.VerticalAnchor;
         control.ActualHorizontalAnchor = options.HorizontalAnchor;
@@ -223,12 +223,13 @@ public static class OverlayDialog
             var styles = options.StyleClass!.Split(Constants.SpaceSeparator, StringSplitOptions.RemoveEmptyEntries);
             control.Classes.AddRange(styles);
         }
+
         DialogControlBase.SetCanDragMove(control, options.CanDragMove);
     }
-    
+
     private static void ConfigureDefaultDialogControl(DefaultDialogControl control, OverlayDialogOptions? options)
     {
-        if (options is null) options = new OverlayDialogOptions();
+        options ??= new OverlayDialogOptions();
         control.IsFullScreen = options.FullScreen;
         if (options.FullScreen)
         {
@@ -249,15 +250,26 @@ public static class OverlayDialog
         control.CanLightDismiss = options.CanLightDismiss;
         control.IsCloseButtonVisible = options.IsCloseButtonVisible;
         control.CanResize = options.CanResize;
+        if (options.OnDialogControlClosed != null)
+        {
+            control.AddHandler(OverlayFeedbackElement.ClosedEvent, options.OnDialogControlClosed);
+            control.AddHandler(OverlayFeedbackElement.ClosedEvent, (s, _) =>
+            {
+                if (s is not DialogControlBase dc) return;
+                dc.RemoveHandler(OverlayFeedbackElement.ClosedEvent, options.OnDialogControlClosed);
+            });
+        }
+
         if (!string.IsNullOrWhiteSpace(options.StyleClass))
         {
             var styles = options.StyleClass!.Split(Constants.SpaceSeparator, StringSplitOptions.RemoveEmptyEntries);
             control.Classes.AddRange(styles);
         }
+
         DialogControlBase.SetCanDragMove(control, options.CanDragMove);
     }
 
-    internal static T? Recall<T>(string? hostId) where T: Control
+    internal static T? Recall<T>(string? hostId) where T : Control
     {
         var host = OverlayDialogManager.GetHost(hostId, null);
         if (host is null) return null;

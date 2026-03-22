@@ -24,13 +24,13 @@ public partial class TestWindow : UrsaWindow
     
     public void InvokeNormalDialog()
     {
-        OverlayDialog.ShowModal<NormalDialog, object>("Hello World",
+        OverlayDialog.ShowDefaultAsync<NormalDialog, object>("Hello World",
             options: new OverlayDialogOptions() { TopLevelHashCode = GetHashCode() });
     }
 
     public void InvokeFocusDialog()
     {
-        OverlayDialog.ShowModal<FocusDialog, object>("Hello World",
+        OverlayDialog.ShowDefaultAsync<FocusDialog, object>("Hello World",
             options: new OverlayDialogOptions() { TopLevelHashCode = GetHashCode() });
     }
 }

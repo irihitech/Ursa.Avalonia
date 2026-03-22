@@ -19,7 +19,7 @@ public partial class UrsaWindowWithCloseInference : UrsaWindow
 
     protected override async Task<bool> CanClose()
     {
-        var result = await OverlayDialog.ShowModal(TextBox, DialogViewModel);
+        var result = await OverlayDialog.ShowDefaultAsync(TextBox, DialogViewModel);
         return result == DialogResult.Yes;
     }
 }

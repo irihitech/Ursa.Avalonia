@@ -9,7 +9,7 @@ public class UrsaOverlayDialogService(IContainerExtension container): IUrsaOverl
     public void Show(string viewName, object? vm, string? hostId = null, OverlayDialogOptions? options = null)
     {
         var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
-        OverlayDialog.Show(v, vm, hostId, options);
+        OverlayDialog.ShowDefault(v, vm, hostId, options);
     }
 
     public void ShowCustom(string viewName, object? vm, string? hostId = null, OverlayDialogOptions? options = null)
@@ -21,12 +21,12 @@ public class UrsaOverlayDialogService(IContainerExtension container): IUrsaOverl
     public Task<DialogResult> ShowModal(string viewName, object? vm, string? hostId = null, OverlayDialogOptions? options = null)
     {
         var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
-        return OverlayDialog.ShowModal(v, vm, hostId, options);
+        return OverlayDialog.ShowDefaultAsync(v, vm, hostId, options);
     }
     
     public Task<TResult?> ShowCustomModal<TResult>(string viewName, object? vm, string? hostId = null, OverlayDialogOptions? options = null)
     {
         var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
-        return OverlayDialog.ShowCustomModal<TResult>(v, vm, hostId, options);
+        return OverlayDialog.ShowCustomAsync<TResult>(v, vm, hostId, options);
     }
 }

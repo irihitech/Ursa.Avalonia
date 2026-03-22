@@ -17,7 +17,7 @@ public partial class TestWindow : UrsaWindow
     
     private void Button_OnClick(object? sender, RoutedEventArgs e)
     {
-        OverlayDialog.Show(TextBox, DialogViewModel);
+        OverlayDialog.ShowDefault(TextBox, DialogViewModel);
     }
 }
 
