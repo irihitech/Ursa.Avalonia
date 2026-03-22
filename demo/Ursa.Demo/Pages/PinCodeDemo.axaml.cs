@@ -13,6 +13,6 @@ public partial class PinCodeDemo : UserControl
     private async void VerificationCode_OnComplete(object? _, PinCodeCompleteEventArgs e)
     {
         var text = string.Join(string.Empty, e.Code);
-        await MessageBox.ShowOverlayAsync(text);
+        await OverlayMessageBox.ShowAsync(text);
     }
 }

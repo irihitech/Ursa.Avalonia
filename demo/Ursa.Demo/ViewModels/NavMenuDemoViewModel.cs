@@ -105,7 +105,7 @@ public class MenuItem
 
     private async Task OnNavigate()
     {
-        await MessageBox.ShowOverlayAsync(Header??string.Empty, "Navigation Result");
+        await OverlayMessageBox.ShowAsync(Header??string.Empty, "Navigation Result");
     }
 
     public ObservableCollection<MenuItem> Children { get; set; } = new ObservableCollection<MenuItem>();

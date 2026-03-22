@@ -30,7 +30,7 @@ public partial class BreadcrumbDemoItem: ObservableObject
     {
         Command = new AsyncRelayCommand(async () =>
         {
-            await MessageBox.ShowOverlayAsync(Section ?? string.Empty);
+            await OverlayMessageBox.ShowAsync(Section ?? string.Empty);
         });
     }
 }
