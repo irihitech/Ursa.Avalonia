@@ -9,4 +9,8 @@ public interface IUrsaDrawerService
     public void ShowCustom<TResult>(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null);
     public Task<DialogResult> ShowModal(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null);
     public Task<TResult?> ShowCustomModal<TResult>(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null);
+    
+    public void ShowStandard(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null);
+    public Task<DialogResult> ShowStandardAsync(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null);
+    public Task<TResult?> ShowCustomAsync<TResult>(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null);
 }
