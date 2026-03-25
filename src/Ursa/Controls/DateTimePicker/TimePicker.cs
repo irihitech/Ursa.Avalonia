@@ -5,7 +5,6 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Input;
-using Avalonia.Interactivity;
 using Avalonia.Media;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
@@ -16,12 +15,10 @@ namespace Ursa.Controls;
 [TemplatePart(PART_TextBox, typeof(TextBox))]
 [TemplatePart(PartNames.PART_Popup, typeof(Popup))]
 [TemplatePart(PART_Presenter, typeof(TimePickerPresenter))]
-[TemplatePart(PART_Button, typeof(Button))]
 public class TimePicker : TimePickerBase, IClearControl
 {
     public const string PART_TextBox = "PART_TextBox";
     public const string PART_Presenter = "PART_Presenter";
-    public const string PART_Button = "PART_Button";
 
     public static readonly StyledProperty<TimeSpan?> SelectedTimeProperty =
         AvaloniaProperty.Register<TimePicker, TimeSpan?>(
@@ -35,9 +32,7 @@ public class TimePicker : TimePickerBase, IClearControl
 
     [Obsolete("Use PlaceholderTextProperty instead.")]
     public static readonly StyledProperty<string?> WatermarkProperty = PlaceholderTextProperty;
-
-    private Button? _button;
-
+    
     private bool _isFocused;
     private Popup? _popup;
     private TimePickerPresenter? _presenter;
@@ -107,17 +102,14 @@ public class TimePicker : TimePickerBase, IClearControl
 
         GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _textBox);
         TextBox.TextChangedEvent.RemoveHandler(OnTextChanged, _textBox);
-        Button.ClickEvent.RemoveHandler(OnButtonClick, _button);
         TimePickerPresenter.SelectedTimeChangedEvent.RemoveHandler(OnPresenterTimeChanged, _presenter);
 
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
         _popup = e.NameScope.Find<Popup>(PartNames.PART_Popup);
         _presenter = e.NameScope.Find<TimePickerPresenter>(PART_Presenter);
-        _button = e.NameScope.Find<Button>(PART_Button);
 
         GotFocusEvent.AddHandler(OnTextBoxGetFocus, _textBox);
         TextBox.TextChangedEvent.AddHandler(OnTextChanged, _textBox);
-        Button.ClickEvent.AddHandler(OnButtonClick, _button);
         TimePickerPresenter.SelectedTimeChangedEvent.AddHandler(OnPresenterTimeChanged, _presenter);
         
         _presenter?.SyncTime(SelectedTime);
@@ -129,11 +121,6 @@ public class TimePicker : TimePickerBase, IClearControl
         if (!IsInitialized) return;
         if (_suppressTextPresenterEvent) return;
         SetCurrentValue(SelectedTimeProperty, e.NewTime);
-    }
-
-    private void OnButtonClick(object? sender, RoutedEventArgs e)
-    {
-        if (IsFocused) SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
     }
 
     private void OnTextBoxGetFocus(object? sender, FocusChangedEventArgs e)

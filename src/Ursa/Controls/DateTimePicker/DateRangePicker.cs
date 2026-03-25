@@ -9,11 +9,9 @@ using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
-using Calendar = Avalonia.Controls.Calendar;
 
 namespace Ursa.Controls;
 
-[TemplatePart(PART_Button, typeof(Button))]
 [TemplatePart(PART_Popup, typeof(Popup))]
 [TemplatePart(PART_StartCalendar, typeof(CalendarView))]
 [TemplatePart(PART_EndCalendar, typeof(CalendarView))]
@@ -22,7 +20,6 @@ namespace Ursa.Controls;
 [PseudoClasses(PseudoClassName.PC_Empty)]
 public class DateRangePicker : DatePickerBase, IClearControl
 {
-    public const string PART_Button = "PART_Button";
     public const string PART_Popup = "PART_Popup";
     public const string PART_StartCalendar = "PART_StartCalendar";
     public const string PART_EndCalendar = "PART_EndCalendar";
@@ -40,8 +37,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
     public static readonly StyledProperty<bool> EnableMonthSyncProperty =
         AvaloniaProperty.Register<DateRangePicker, bool>(
             nameof(EnableMonthSync));
-
-    private Button? _button;
+    
     private CalendarView? _endCalendar;
     private TextBox? _endTextBox;
     private DateTime? _previewEnd;
@@ -125,7 +121,6 @@ public class DateRangePicker : DatePickerBase, IClearControl
         GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _startTextBox, _endTextBox);
         TextBox.TextChangedEvent.RemoveHandler(OnTextChanged, _startTextBox, _endTextBox);
         PointerPressedEvent.RemoveHandler(OnTextBoxPointerPressed, _startTextBox, _endTextBox);
-        Button.ClickEvent.RemoveHandler(OnButtonClick, _button);
         LostFocusEvent.RemoveHandler(OnTextBoxLostFocus, _startTextBox, _endTextBox);
         if (_startCalendar != null)
         {
@@ -140,15 +135,13 @@ public class DateRangePicker : DatePickerBase, IClearControl
             _endCalendar.DatePreviewed -= OnDatePreviewed;
             _endCalendar.ContextDateChanged -= OnContextDateChanged;
         }
-
-        _button = e.NameScope.Find<Button>(PART_Button);
+        
         _popup = e.NameScope.Find<Popup>(PART_Popup);
         _startCalendar = e.NameScope.Find<CalendarView>(PART_StartCalendar);
         _endCalendar = e.NameScope.Find<CalendarView>(PART_EndCalendar);
         _startTextBox = e.NameScope.Find<TextBox>(PART_StartTextBox);
         _endTextBox = e.NameScope.Find<TextBox>(PART_EndTextBox);
-
-        Button.ClickEvent.AddHandler(OnButtonClick, RoutingStrategies.Bubble, true, _button);
+        
         GotFocusEvent.AddHandler(OnTextBoxGetFocus, _startTextBox, _endTextBox);
         TextBox.TextChangedEvent.AddHandler(OnTextChanged, _startTextBox, _endTextBox);
         PointerPressedEvent.AddHandler(OnTextBoxPointerPressed, RoutingStrategies.Tunnel, false, _startTextBox,
@@ -277,13 +270,6 @@ public class DateRangePicker : DatePickerBase, IClearControl
                 SetCurrentValue(IsDropdownOpenProperty, false);
             }
         }
-    }
-
-    private void OnButtonClick(object? sender, RoutedEventArgs e)
-    {
-        SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
-        _startTextBox?.Focus();
-        // _start = true;
     }
 
     private void OnTextBoxPointerPressed(object? sender, PointerPressedEventArgs e)

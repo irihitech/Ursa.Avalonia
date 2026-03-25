@@ -13,17 +13,14 @@ using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-[TemplatePart(PART_Button, typeof(Button))]
 [TemplatePart(PART_Popup, typeof(Popup))]
 [TemplatePart(PART_TextBox, typeof(TextBox))]
 [TemplatePart(PART_Calendar, typeof(CalendarView))]
 public class DatePicker: DatePickerBase, IClearControl
 {
-    public const string PART_Button = "PART_Button";
     public const string PART_Popup = "PART_Popup";
     public const string PART_TextBox = "PART_TextBox";
     public const string PART_Calendar = "PART_Calendar";
-    private Button? _button;
     private TextBox? _textBox;
     private CalendarView? _calendar;
     private Popup? _popup;
@@ -83,15 +80,12 @@ public class DatePicker: DatePickerBase, IClearControl
 
         GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _textBox);
         TextBox.TextChangedEvent.RemoveHandler(OnTextChanged, _textBox);
-        Button.ClickEvent.RemoveHandler(OnButtonClick, _button);
         CalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _calendar);
         
-        _button = e.NameScope.Find<Button>(PART_Button);
         _popup = e.NameScope.Find<Popup>(PART_Popup);
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
         _calendar = e.NameScope.Find<CalendarView>(PART_Calendar);
         
-        Button.ClickEvent.AddHandler(OnButtonClick, RoutingStrategies.Bubble, false, _button);
         GotFocusEvent.AddHandler(OnTextBoxGetFocus, _textBox);
         TextBox.TextChangedEvent.AddHandler(OnTextChanged, _textBox);
         CalendarView.DateSelectedEvent.AddHandler(OnDateSelected, RoutingStrategies.Bubble, true, _calendar);
@@ -102,14 +96,6 @@ public class DatePicker: DatePickerBase, IClearControl
     {
         SetCurrentValue(SelectedDateProperty, e.Date);
         SetCurrentValue(IsDropdownOpenProperty, false);
-    }
-
-    private void OnButtonClick(object? sender, RoutedEventArgs e)
-    {
-        if(IsFocused)
-        {
-            SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
-        }
     }
     
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

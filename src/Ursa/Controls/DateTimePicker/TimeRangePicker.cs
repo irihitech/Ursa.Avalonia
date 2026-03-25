@@ -5,7 +5,6 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Input;
-using Avalonia.Interactivity;
 using Avalonia.Media;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
@@ -18,7 +17,6 @@ namespace Ursa.Controls;
 [TemplatePart(PartNames.PART_Popup, typeof(Popup))]
 [TemplatePart(PART_StartPresenter, typeof(TimePickerPresenter))]
 [TemplatePart(PART_EndPresenter, typeof(TimePickerPresenter))]
-[TemplatePart(PART_Button, typeof(Button))]
 [PseudoClasses(PseudoClassName.PC_Empty)]
 public class TimeRangePicker : TimePickerBase, IClearControl
 {
@@ -26,7 +24,6 @@ public class TimeRangePicker : TimePickerBase, IClearControl
     public const string PART_EndTextBox = "PART_EndTextBox";
     public const string PART_StartPresenter = "PART_StartPresenter";
     public const string PART_EndPresenter = "PART_EndPresenter";
-    public const string PART_Button = "PART_Button";
 
 
     public static readonly StyledProperty<TimeSpan?> StartTimeProperty =
@@ -51,8 +48,7 @@ public class TimeRangePicker : TimePickerBase, IClearControl
 
     [Obsolete("Use EndPlaceholderTextProperty instead.")]
     public static readonly StyledProperty<string?> EndWatermarkProperty = EndPlaceholderTextProperty;
-
-    private Button? _button;
+    
     private TimePickerPresenter? _endPresenter;
     private TextBox? _endTextBox;
     private bool _isFocused;
@@ -163,7 +159,6 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         base.OnApplyTemplate(e);
 
         GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _startTextBox, _endTextBox);
-        Button.ClickEvent.RemoveHandler(OnButtonClick, _button);
         TimePickerPresenter.SelectedTimeChangedEvent.RemoveHandler(OnPresenterTimeChanged, _startPresenter,
             _endPresenter);
         TextBox.TextChangedEvent.RemoveHandler(OnTextChanged, _startTextBox, _endTextBox);
@@ -173,10 +168,8 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         _endTextBox = e.NameScope.Find<TextBox>(PART_EndTextBox);
         _startPresenter = e.NameScope.Find<TimePickerPresenter>(PART_StartPresenter);
         _endPresenter = e.NameScope.Find<TimePickerPresenter>(PART_EndPresenter);
-        _button = e.NameScope.Find<Button>(PART_Button);
 
         GotFocusEvent.AddHandler(OnTextBoxGetFocus, _startTextBox, _endTextBox);
-        Button.ClickEvent.AddHandler(OnButtonClick, _button);
         TimePickerPresenter.SelectedTimeChangedEvent.AddHandler(OnPresenterTimeChanged, _startPresenter, _endPresenter);
         TextBox.TextChangedEvent.AddHandler(OnTextChanged, _startTextBox, _endTextBox);
 
@@ -234,11 +227,6 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         if (!IsInitialized) return;
         if (_suppressTextPresenterEvent) return;
         SetCurrentValue(Equals(sender, _startPresenter) ? StartTimeProperty : EndTimeProperty, e.NewTime);
-    }
-
-    private void OnButtonClick(object? sender, RoutedEventArgs e)
-    {
-        SetCurrentValue(IsDropdownOpenProperty, !IsDropdownOpen);
     }
 
     private void OnTextBoxGetFocus(object? sender, FocusChangedEventArgs e)
