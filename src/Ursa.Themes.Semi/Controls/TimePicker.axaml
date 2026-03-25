@@ -144,13 +144,13 @@
                                 Focusable="False"
                                 IsVisible="False"
                                 Theme="{DynamicResource InnerIconButton}" />
-                            <Button
-                                Name="{x:Static u:TimePicker.PART_Button}"
+                            <PathIcon
+                                Name="PART_Button"
                                 Grid.Column="1"
                                 Margin="8,0"
-                                Content="{DynamicResource TimePickerIconGlyph}"
+                                Data="{DynamicResource TimePickerIconGlyph}"
                                 Focusable="False"
-                                Theme="{DynamicResource InnerIconButton}" />
+                                Theme="{DynamicResource InnerPathIcon}" />
                             <Popup
                                 Name="{x:Static iri:PartNames.PART_Popup}"
                                 Grid.Column="0"
