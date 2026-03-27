@@ -77,7 +77,6 @@ public class DatePicker: DatePickerBase, IClearControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-
         GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _textBox);
         TextBox.TextChangedEvent.RemoveHandler(OnTextChanged, _textBox);
         CalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _calendar);
@@ -144,6 +143,7 @@ public class DatePicker: DatePickerBase, IClearControl
         if (_calendar is not null)
         {
             var date = SelectedDate ?? DateTime.Today;
+            _calendar.Mode = CalendarViewMode.Month;
             _calendar.ContextDate = _calendar.ContextDate.With(year: date.Year, month: date.Month);
             _calendar.UpdateDayButtons();
         }
@@ -160,8 +160,11 @@ public class DatePicker: DatePickerBase, IClearControl
             {
                 e.Handled = true;
             }
+            else
+            {
+                SetCurrentValue(IsDropdownOpenProperty, true);
+            }
         }
-        
     }
 
     protected override void OnKeyDown(KeyEventArgs e)
@@ -208,11 +211,11 @@ public class DatePicker: DatePickerBase, IClearControl
         base.OnLostFocus(e);
         FocusChanged(IsKeyboardFocusWithin);
         var top = TopLevel.GetTopLevel(this);
-        var element = top?.FocusManager?.GetFocusedElement();
-        if (element is Visual v && _popup?.IsInsidePopup(v) == true)return;
-        if (Equals(element, _textBox))return;
+        var element = top?.FocusManager.GetFocusedElement();
+        // Element in popup is stealing the focus. 
+        if (element is Visual v && _popup?.IsInsidePopup(v) == true) return;
+        if (Equals(element, _textBox)) return;
         CommitInput(true);
-        SetCurrentValue(IsDropdownOpenProperty, false);
     }
 
     private bool _isFocused;
