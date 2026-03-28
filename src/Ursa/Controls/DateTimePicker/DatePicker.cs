@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Controls;
@@ -140,14 +141,7 @@ public class DatePicker: DatePickerBase, IClearControl
 
     private void OnTextBoxGetFocus(object? sender, FocusChangedEventArgs e)
     {
-        if (_calendar is not null)
-        {
-            var date = SelectedDate ?? DateTime.Today;
-            _calendar.Mode = CalendarViewMode.Month;
-            _calendar.ContextDate = _calendar.ContextDate.With(year: date.Year, month: date.Month);
-            _calendar.UpdateDayButtons();
-        }
-        SetCurrentValue(IsDropdownOpenProperty, true);
+        
     }
     
     /// <inheritdoc/>
@@ -203,7 +197,13 @@ public class DatePicker: DatePickerBase, IClearControl
     protected override void OnGotFocus(FocusChangedEventArgs e)
     {
         base.OnGotFocus(e);
-        FocusChanged(IsKeyboardFocusWithin);
+        if (_calendar is not null)
+        {
+            var date = SelectedDate ?? DateTime.Today;
+            _calendar.ContextDate = _calendar.ContextDate.With(year: date.Year, month: date.Month);
+            _calendar.UpdateDayButtons();
+        }
+        SetCurrentValue(IsDropdownOpenProperty, true);
     }
 
     protected override void OnLostFocus(FocusChangedEventArgs e)
@@ -213,7 +213,13 @@ public class DatePicker: DatePickerBase, IClearControl
         var top = TopLevel.GetTopLevel(this);
         var element = top?.FocusManager.GetFocusedElement();
         // Element in popup is stealing the focus. 
-        if (element is Visual v && _popup?.IsInsidePopup(v) == true) return;
+        var newElement = e.NewFocusedElement;
+        Debug.WriteLine(newElement?.GetType().FullName);
+        if (element is Visual v && _popup?.IsInsidePopup(v) == true)
+        {
+            Debug.WriteLine("TRUE");
+            return;
+        }
         if (Equals(element, _textBox)) return;
         CommitInput(true);
     }
