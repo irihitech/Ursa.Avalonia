@@ -44,11 +44,6 @@ public class IconDropDownButton : DropDownButton
         set => SetValue(IconPlacementProperty, value);
     }
 
-    static IconDropDownButton()
-    {
-        ReversibleStackPanelUtils.EnsureBugFixed();
-    }
-
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);

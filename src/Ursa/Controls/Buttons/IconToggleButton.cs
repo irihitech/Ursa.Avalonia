@@ -43,11 +43,6 @@ public class IconToggleButton : ToggleButton
         set => SetValue(IconPlacementProperty, value);
     }
 
-    static IconToggleButton()
-    {
-        ReversibleStackPanelUtils.EnsureBugFixed();
-    }
-
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
