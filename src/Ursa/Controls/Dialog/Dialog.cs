@@ -85,7 +85,11 @@ public static partial class Dialog
         };
         ConfigureStandardDialogWindow(window, options);
         owner ??= GetMainWindow();
-        if (owner is null) window.Show();
+        if (owner is null)
+        {
+            window.Show();
+            return;
+        }
 
         window.Icon = owner.Icon;
         window.Show(owner);
@@ -109,8 +113,11 @@ public static partial class Dialog
         };
         ConfigureStandardDialogWindow(window, options);
         owner ??= GetMainWindow();
-        if (owner is null) window.Show();
-
+        if (owner is null)
+        {
+            window.Show();
+            return;
+        }
         window.Icon = owner.Icon;
         window.Show(owner);
     }

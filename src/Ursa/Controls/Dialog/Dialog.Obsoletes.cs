@@ -13,7 +13,7 @@ public static partial class Dialog
     /// <typeparam name="TView"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
     /// <returns></returns>
-    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use Dialog.ShowDefaultAsync instead.")]
+    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use Dialog.ShowStandardAsync instead.")]
     public static Task<DialogResult> ShowModal<TView, TViewModel>(TViewModel vm, Window? owner = null,
         DialogOptions? options = null)
         where TView : Control, new()
@@ -29,7 +29,7 @@ public static partial class Dialog
     /// <param name="owner"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use Dialog.ShowDefaultAsync instead.")]
+    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use Dialog.ShowStandardAsync instead.")]
     public static Task<DialogResult> ShowModal(Control view, object? vm, Window? owner = null,
         DialogOptions? options = null)
     {

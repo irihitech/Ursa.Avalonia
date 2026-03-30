@@ -8,7 +8,7 @@ public interface IUrsaDialogService
     public void ShowStandard(string viewName, object? vm, Window? owner = null);
     public void ShowCustom(string viewName, object? vm, Window? owner = null, DialogOptions? options = null);
 
-    [Obsolete("Use ShowAsync instead")]
+    [Obsolete("Use ShowStandardAsync instead")]
     public Task<DialogResult> ShowModal(string viewName, object? vm, Window? owner = null,
         DialogOptions? options = null);
 

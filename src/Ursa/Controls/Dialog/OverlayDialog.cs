@@ -171,13 +171,6 @@ public static partial class OverlayDialog
         return t.ShowAsync<TResult?>(token);
     }
 
-    [Obsolete("This will be removed in Ursa2.0 lifecycle. Please Use Dialog.ShowCustomAsync instead.")]
-    public static Task<TResult?> ShowCustomModal<TResult>(object? vm, string? hostId = null,
-        OverlayDialogOptions? options = null, CancellationToken? token = null)
-    {
-        return ShowCustomAsync<TResult>(vm, hostId, options, token);
-    }
-
     public static Task<TResult?> ShowCustomAsync<TResult>(object? vm, string? hostId = null,
         OverlayDialogOptions? options = null, CancellationToken? token = null)
     {

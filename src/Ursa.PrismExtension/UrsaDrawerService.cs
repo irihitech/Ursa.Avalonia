@@ -50,6 +50,6 @@ internal class UrsaDrawerService(IContainerExtension container) : IUrsaDrawerSer
         DrawerOptions? options = null)
     {
         var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
-        return OverlayDrawer.ShowCustomAsync<TResult?>(v, vm, hostId, options);
+        return OverlayDrawer.ShowCustomAsync<TResult>(v, vm, hostId, options);
     }
 }
