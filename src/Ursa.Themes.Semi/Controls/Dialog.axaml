@@ -168,7 +168,7 @@
                                         Margin="24,8"
                                         Content="{TemplateBinding Content}" />
                                 </ScrollViewer>
-                                <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto">
+                                <Grid Name="PART_Header" Grid.Row="0" ColumnDefinitions="Auto, *, Auto">
                                     <Panel
                                         Name="{x:Static u:DialogControlBase.PART_TitleArea}"
                                         Grid.Column="0"
@@ -201,6 +201,7 @@
                                         Theme="{DynamicResource OverlayCloseButton}" />
                                 </Grid>
                                 <Grid
+                                    Name="PART_Footer"
                                     Grid.Row="2"
                                     Margin="24,0,24,24"
                                     HorizontalAlignment="Right"
