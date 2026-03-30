@@ -44,11 +44,6 @@ public class IconSplitButton : SplitButton
         set => SetValue(IconPlacementProperty, value);
     }
 
-    static IconSplitButton()
-    {
-        ReversibleStackPanelUtils.EnsureBugFixed();
-    }
-
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);

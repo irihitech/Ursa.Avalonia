@@ -44,11 +44,6 @@ public class IconRepeatButton : RepeatButton
         set => SetValue(IconPlacementProperty, value);
     }
 
-    static IconRepeatButton()
-    {
-        ReversibleStackPanelUtils.EnsureBugFixed();
-    }
-
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);

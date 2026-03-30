@@ -44,11 +44,6 @@ public class IconToggleSplitButton : ToggleSplitButton
         set => SetValue(IconPlacementProperty, value);
     }
 
-    static IconToggleSplitButton()
-    {
-        ReversibleStackPanelUtils.EnsureBugFixed();
-    }
-
     protected override Type StyleKeyOverride => GetType();
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
