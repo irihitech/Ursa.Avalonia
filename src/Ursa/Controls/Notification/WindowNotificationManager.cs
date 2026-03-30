@@ -133,9 +133,13 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
             Content = content,
             NotificationType = type,
             ShowIcon = showIcon,
-            ShowClose = showClose,
-            [!NotificationCard.PositionProperty] = this[!PositionProperty]
+            ShowClose = showClose
         };
+
+        // Store the subscription to dispose of it later
+        var bindingSubscription = notificationControl.Bind(
+            NotificationCard.PositionProperty,
+            this.GetObservable(PositionProperty));
 
         // Add style classes if any
         if (classes is not null)
@@ -149,6 +153,9 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
         notificationControl.MessageClosed += (sender, _) =>
         {
             onClose?.Invoke();
+
+            // Explicitly unsubscribe to allow GC to collect the control
+            bindingSubscription.Dispose();
 
             _items?.Remove(sender);
         };
