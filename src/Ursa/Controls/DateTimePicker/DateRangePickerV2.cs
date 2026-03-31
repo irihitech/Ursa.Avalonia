@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
+using Avalonia.Input;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
 
@@ -52,8 +53,8 @@ public class DateRangePickerV2: DatePickerBase, IClearControl
     {
         base.OnApplyTemplate(e);
 
-        _startCalendar?.AddHandler(CalendarView.DateSelectedEvent, OnStartDateSelected);
-        _endCalendar?.AddHandler(CalendarView.DateSelectedEvent, OnEndDateSelected);
+        _startCalendar?.RemoveHandler(CalendarView.DateSelectedEvent, OnStartDateSelected);
+        _endCalendar?.RemoveHandler(CalendarView.DateSelectedEvent, OnEndDateSelected);
         
         _startCalendar = e.NameScope.Find<CalendarView>(PART_StartCalendar);
         _endCalendar = e.NameScope.Find<CalendarView>(PART_EndCalendar);
@@ -61,22 +62,58 @@ public class DateRangePickerV2: DatePickerBase, IClearControl
         _endTextBox = e.NameScope.Find<TextBox>(PART_EndTextBox);
         _popup = e.NameScope.Find<Popup>(PART_Popup);
         
+        _startCalendar?.AddHandler(CalendarView.DateSelectedEvent, OnStartDateSelected);
+        _endCalendar?.AddHandler(CalendarView.DateSelectedEvent, OnEndDateSelected);
+        _startTextBox?.AddHandler(GotFocusEvent, OnTextBoxGotFocus);
+        
+
+
     }
 
+    private void OnTextBoxGotFocus(object? sender, FocusChangedEventArgs e)
+    {
+        SetCurrentValue(IsDropdownOpenProperty, true);
+    }
+
+
+    private void OnStartDateSelected(object? sender, CalendarDayButtonEventArgs e)
+    {
+        SetValue(SelectedStartDateProperty, e.Date);
+        //_popup?.Close();
+    }
+    
+    
     private void OnEndDateSelected(object? sender, CalendarDayButtonEventArgs e)
     {
         SetValue(SelectedEndDateProperty, e.Date);
         _endTextBox?.Focus();
     }
 
-    private void OnStartDateSelected(object? sender, CalendarDayButtonEventArgs e)
+    protected override void OnLostFocus(FocusChangedEventArgs e)
     {
-        SetValue(SelectedStartDateProperty, e.Date);
-        _popup?.Close();
+        base.OnLostFocus(e);
+        var newItem = e.NewFocusedElement;
+        if (newItem == _endCalendar)
+        {
+            return;
+        }
+        else
+        {
+            SetCurrentValue(IsDropdownOpenProperty, false);
+        }
+    }
+
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    {
+        base.OnPointerPressed(e);
+        //SetCurrentValue(IsDropdownOpenProperty, true);
+        _startTextBox?.Focus();
+        //SetCurrentValue(IsDropdownOpenProperty, true);
     }
 
     public void Clear()
     {
-        throw new NotImplementedException();
+        SetCurrentValue(SelectedStartDateProperty, null);
+        SetCurrentValue(SelectedEndDateProperty, null);
     }
 }

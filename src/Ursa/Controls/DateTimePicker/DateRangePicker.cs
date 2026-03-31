@@ -398,6 +398,10 @@ public class DateRangePicker : DatePickerBase, IClearControl
             {
                 e.Handled = true;
             }
+            else
+            {
+                _startTextBox?.Focus();
+            }
         }
     }
 
@@ -466,13 +470,16 @@ public class DateRangePicker : DatePickerBase, IClearControl
     {
         base.OnLostFocus(e);
         FocusChanged(IsKeyboardFocusWithin);
-        var top = TopLevel.GetTopLevel(this);
-        var element = top?.FocusManager?.GetFocusedElement();
+        var element = e.NewFocusedElement;
         if (element is Visual v && _popup?.IsInsidePopup(v)==true)
         {
             return;
         }
 
+        if (element == this)
+        {
+            return;
+        }
         if (Equals(element, _startTextBox) || Equals(element, _endTextBox))
         {
             return;
