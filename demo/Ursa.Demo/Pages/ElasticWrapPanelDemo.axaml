@@ -80,6 +80,11 @@
                         Minimum="-10"
                         Value="{Binding LineSpacing}" />
                 </u:FormItem>
+                <u:FormItem>
+                    <u:FormItem.Label>
+                        <CheckBox Content="KeepAspectRatio" IsChecked="{Binding KeepAspectRatio}" />
+                    </u:FormItem.Label>
+                </u:FormItem>
             </u:FormGroup>
             <u:FormGroup Header="FixToRB Extension" IsEnabled="{Binding #FixToRBTabItem.IsSelected}">
                 <u:FormItem>
@@ -126,7 +131,8 @@
                                             ItemWidth="{Binding ItemWidth}"
                                             ItemSpacing="{Binding ItemSpacing}"
                                             LineSpacing="{Binding LineSpacing}"
-                                            Orientation="{Binding SelectedOrientation}">
+                                            Orientation="{Binding SelectedOrientation}"
+                                            KeepAspectRatio="{Binding KeepAspectRatio}">
                             <Border Background="{DynamicResource SemiRed5Color}" />
                             <Border Background="{DynamicResource SemiPink5Color}" />
                             <Border Background="{DynamicResource SemiPurple5Color}" />
@@ -150,6 +156,7 @@
                             <u:ElasticWrapPanel Grid.Row="0"
                                                 IsFillHorizontal="{Binding IsFillHorizontal}"
                                                 IsFillVertical="{Binding IsFillVertical}"
+                                                KeepAspectRatio="{Binding KeepAspectRatio}"
                                                 ItemHeight="{Binding ItemHeight}"
                                                 ItemWidth="{Binding ItemWidth}"
                                                 ItemSpacing="{Binding ItemSpacing}"
@@ -183,6 +190,7 @@
                                           VerticalScrollBarVisibility="{Binding VerticalVisibility}">
                                 <u:ElasticWrapPanel IsFillHorizontal="{Binding IsFillHorizontal}"
                                                     IsFillVertical="{Binding IsFillVertical}"
+                                                    KeepAspectRatio="{Binding KeepAspectRatio}"
                                                     ItemHeight="{Binding ItemHeight}"
                                                     ItemWidth="{Binding ItemWidth}"
                                                     ItemSpacing="{Binding ItemSpacing}"
@@ -245,6 +253,7 @@
                                         <u:Divider HorizontalContentAlignment="Left" Content="ElasticWrapPanel" />
                                         <u:ElasticWrapPanel IsFillHorizontal="{Binding IsFillHorizontal}"
                                                             IsFillVertical="{Binding IsFillVertical}"
+                                                            KeepAspectRatio="{Binding KeepAspectRatio}"
                                                             ItemHeight="{Binding ItemHeight}"
                                                             ItemWidth="{Binding ItemWidth}"
                                                             ItemSpacing="{Binding ItemSpacing}"
@@ -311,6 +320,7 @@
                                         <u:Divider HorizontalContentAlignment="Left" Content="ElasticWrapPanel" />
                                         <u:ElasticWrapPanel IsFillHorizontal="{Binding IsFillHorizontal}"
                                                             IsFillVertical="{Binding IsFillVertical}"
+                                                            KeepAspectRatio="{Binding KeepAspectRatio}"
                                                             ItemHeight="{Binding ItemHeight}"
                                                             ItemWidth="{Binding ItemWidth}"
                                                             ItemSpacing="{Binding ItemSpacing}"

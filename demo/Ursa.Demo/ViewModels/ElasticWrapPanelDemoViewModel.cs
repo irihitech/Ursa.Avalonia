@@ -12,6 +12,7 @@ public partial class ElasticWrapPanelDemoViewModel : ObservableObject
 
     [ObservableProperty] private bool _isFillHorizontal;
     [ObservableProperty] private bool _isFillVertical;
+    [ObservableProperty] private bool _keepAspectRatio;
     [ObservableProperty] private double _itemWidth = 40d;
     [ObservableProperty] private double _itemHeight = 40d;
     [ObservableProperty] private double _itemSpacing;

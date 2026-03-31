@@ -13,7 +13,7 @@ public class ElasticWrapPanel : WrapPanel
     static ElasticWrapPanel()
     {
         AffectsMeasure<ElasticWrapPanel>(IsFillHorizontalProperty, IsFillVerticalProperty, ItemSpacingProperty, LineSpacingProperty);
-        AffectsArrange<ElasticWrapPanel>(IsFillHorizontalProperty, IsFillVerticalProperty, ItemSpacingProperty, LineSpacingProperty);
+        AffectsArrange<ElasticWrapPanel>(IsFillHorizontalProperty, IsFillVerticalProperty, ItemSpacingProperty, LineSpacingProperty, KeepAspectRatioProperty);
     }
 
     #region AttachedProperty
@@ -58,6 +58,15 @@ public class ElasticWrapPanel : WrapPanel
 
     public static readonly StyledProperty<bool> IsFillVerticalProperty =
         AvaloniaProperty.Register<ElasticWrapPanel, bool>(nameof(IsFillVertical));
+
+    public bool KeepAspectRatio
+    {
+        get => GetValue(KeepAspectRatioProperty);
+        set => SetValue(KeepAspectRatioProperty, value);
+    }
+
+    public static readonly StyledProperty<bool> KeepAspectRatioProperty =
+        AvaloniaProperty.Register<ElasticWrapPanel, bool>(nameof(KeepAspectRatio));
 
     private int _lineCount;
 
@@ -394,6 +403,7 @@ public class ElasticWrapPanel : WrapPanel
                 }
             }
 
+            bool keepAspectRatio = KeepAspectRatio;
             bool isHorizontal = Orientation == Orientation.Horizontal;
             int lineIndex = 0;
             foreach (var uvCollection in lineUVCollection)
@@ -401,6 +411,7 @@ public class ElasticWrapPanel : WrapPanel
                 double u = 0;
                 var lineUIEles = uvCollection.UICollection.Keys.ToList();
                 double linevV = isAdaptV ? adaptVLength : uvCollection.LineV;
+                double maxScaledV = 0;
                 int itemIndex = 0;
                 foreach (var child in lineUIEles)
                 {
@@ -408,7 +419,23 @@ public class ElasticWrapPanel : WrapPanel
 
                     double layoutSlotU = childSize.UVSize.U + childSize.ULengthCount * adaptULength;
                     double layoutSlotV = isAdaptV ? linevV : childSize.UVSize.V;
-                    if (ElasticWrapPanel.GetIsFixToRB(child) == false)
+
+                    bool isFixToRB = GetIsFixToRB(child);
+                    if (isFixToRB && itemSetSize.U > 0)
+                    {
+                        layoutSlotU = childSize.ULengthCount * itemSetSize.U +
+                                      childSize.ULengthCount * adaptULength;
+                        double leaveULength = uvFinalSize.U - u;
+                        layoutSlotU = Min(leaveULength, layoutSlotU);
+                    }
+
+                    if (keepAspectRatio && isFillU && childSize.UVSize.U > 0 && childSize.UVSize.V > 0)
+                    {
+                        double scaleU = layoutSlotU / childSize.UVSize.U;
+                        layoutSlotV = childSize.UVSize.V * scaleU;
+                    }
+
+                    if (!isFixToRB)
                     {
                         child.Arrange(new Rect(
                             isHorizontal ? u : accumulatedV,
@@ -418,14 +445,6 @@ public class ElasticWrapPanel : WrapPanel
                     }
                     else
                     {
-                        if (itemSetSize.U > 0)
-                        {
-                            layoutSlotU = childSize.ULengthCount * itemSetSize.U +
-                                          childSize.ULengthCount * adaptULength;
-                            double leaveULength = uvFinalSize.U - u;
-                            layoutSlotU = Min(leaveULength, layoutSlotU);
-                        }
-
                         child.Arrange(new Rect(
                             isHorizontal ? Max(0, uvFinalSize.U - layoutSlotU) : accumulatedV,
                             isHorizontal ? accumulatedV : Max(0, uvFinalSize.U - layoutSlotU),
@@ -433,6 +452,7 @@ public class ElasticWrapPanel : WrapPanel
                             isHorizontal ? layoutSlotV : layoutSlotU));
                     }
 
+                    maxScaledV = Max(maxScaledV, layoutSlotV);
                     u += layoutSlotU;
                     if (itemIndex < lineUIEles.Count - 1)
                     {
@@ -441,7 +461,7 @@ public class ElasticWrapPanel : WrapPanel
                     itemIndex++;
                 }
 
-                accumulatedV += linevV;
+                accumulatedV += (keepAspectRatio && isFillU) ? maxScaledV : linevV;
                 if (lineIndex < lineUVCollection.Count - 1)
                 {
                     accumulatedV += lineSpacing;
