@@ -16,7 +16,7 @@ public class Test
         ursaWindow.InvokeNormalDrawer();
         Dispatcher.UIThread.RunJobs();
         await Task.Delay(500);
-        var dialog = ursaWindow.GetVisualDescendants().OfType<DefaultDrawerControl>().FirstOrDefault();
+        var dialog = ursaWindow.GetVisualDescendants().OfType<StandardDrawerControl>().FirstOrDefault();
         Assert.NotNull(dialog);
         var border = dialog.GetVisualDescendants().OfType<Border>().FirstOrDefault(a=>a.Name == "PART_Root");
         var text = dialog.GetVisualDescendants().OfType<TextBox>().FirstOrDefault();
@@ -32,7 +32,7 @@ public class Test
         ursaWindow.InvokeFocusDrawer();
         Dispatcher.UIThread.RunJobs();
         await Task.Delay(500);
-        var dialog = ursaWindow.GetVisualDescendants().OfType<DefaultDrawerControl>().FirstOrDefault();
+        var dialog = ursaWindow.GetVisualDescendants().OfType<StandardDrawerControl>().FirstOrDefault();
         Assert.NotNull(dialog);
         var border = dialog.GetVisualDescendants().OfType<Border>().FirstOrDefault(a=>a.Name == "PART_Root");
         var text = dialog.GetVisualDescendants().OfType<TextBox>().FirstOrDefault();
@@ -48,7 +48,7 @@ public class Test
         ursaWindow.InvokeNormalDialog();
         Dispatcher.UIThread.RunJobs();
         await Task.Delay(100);
-        var dialog = ursaWindow.GetVisualDescendants().OfType<DefaultDialogControl>().FirstOrDefault();
+        var dialog = ursaWindow.GetVisualDescendants().OfType<StandardDialogControl>().FirstOrDefault();
         Assert.NotNull(dialog);
         var border = dialog.GetVisualDescendants().OfType<Border>().FirstOrDefault(a=>a.Name == "PART_Border");
         var text = dialog.GetVisualDescendants().OfType<TextBox>().FirstOrDefault();
@@ -64,7 +64,7 @@ public class Test
         ursaWindow.InvokeFocusDialog();
         Dispatcher.UIThread.RunJobs();
         await Task.Delay(100);
-        var dialog = ursaWindow.GetVisualDescendants().OfType<DefaultDialogControl>().FirstOrDefault();
+        var dialog = ursaWindow.GetVisualDescendants().OfType<StandardDialogControl>().FirstOrDefault();
         Assert.NotNull(dialog);
         var border = dialog.GetVisualDescendants().OfType<Border>().FirstOrDefault(a=>a.Name == "PART_Border");
         var text = dialog.GetVisualDescendants().OfType<TextBox>().FirstOrDefault();

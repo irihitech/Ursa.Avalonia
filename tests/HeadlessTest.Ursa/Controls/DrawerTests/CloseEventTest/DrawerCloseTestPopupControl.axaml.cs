@@ -20,7 +20,7 @@ public partial class DrawerCloseTestPopupControl : UserControl
     {
         var vm = new DrawerCloseTestPopupControlVM();
         LResult = vm.Result;
-        RResult = await Drawer.ShowCustomModal<int>(Popup = new(), vm, _hostid);
+        RResult = await OverlayDrawer.ShowCustomAsync<int>(Popup = new(), vm, _hostid);
     }
 
     public void ClosePopup()

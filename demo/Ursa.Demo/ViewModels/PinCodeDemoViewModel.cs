@@ -23,6 +23,6 @@ public partial class PinCodeDemoViewModel: ObservableObject
     {
         if (obj is null) return;
         var code = string.Join("", obj);
-        await MessageBox.ShowOverlayAsync(code);
+        await OverlayMessageBox.ShowAsync(code);
     }
 }

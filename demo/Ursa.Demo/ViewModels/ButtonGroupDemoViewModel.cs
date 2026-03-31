@@ -30,6 +30,6 @@ public class ButtonItem
 
     private async Task Invoke()
     {
-        await MessageBox.ShowOverlayAsync("Hello " + Name);
+        await OverlayMessageBox.ShowAsync("Hello " + Name);
     }
 }

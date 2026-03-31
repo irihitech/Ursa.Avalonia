@@ -111,7 +111,7 @@ public class NumPad : TemplatedControl
             Buttons = DialogButton.None,
             OnDialogControlClosed = (object? _, object? _) => { numPad.Target?.Focus(); }
         };
-        OverlayDialog.Show(numPad, new object(), options: options);
+        OverlayDialog.ShowStandard(numPad, new object(), options: options);
     }
 
     public void ProcessClick(object o)

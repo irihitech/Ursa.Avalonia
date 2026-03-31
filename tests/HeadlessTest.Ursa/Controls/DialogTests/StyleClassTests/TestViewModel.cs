@@ -8,7 +8,7 @@ public class TestViewModel: ObservableObject
 {
     public void InvokeDialog(string? classes, int? hash)
     {
-        OverlayDialog.Show<TextBlock, string>("Hello World", options: new OverlayDialogOptions()
+        OverlayDialog.ShowStandard<TextBlock, string>("Hello World", options: new OverlayDialogOptions()
         {
             Buttons = DialogButton.OKCancel,
             StyleClass = classes,

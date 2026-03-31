@@ -62,6 +62,7 @@ public static class MessageBox
         return result;
     }
 
+    [Obsolete("Use OverlayMessageBox.ShowAsync instead.")]
     public static async Task<MessageBoxResult> ShowOverlayAsync(
         string message,
         string? title = null,
@@ -91,3 +92,4 @@ public static class MessageBox
         return result;
     }
 }
+

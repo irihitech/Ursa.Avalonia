@@ -100,7 +100,7 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type u:DefaultDrawerControl}" TargetType="u:DefaultDrawerControl">
+    <ControlTheme x:Key="{x:Type u:StandardDrawerControl}" TargetType="u:StandardDrawerControl">
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="MinWidth" Value="96" />
@@ -111,7 +111,7 @@
         <Setter Property="BorderThickness" Value="{DynamicResource DrawerBorderThickness}" />
         <Setter Property="CornerRadius" Value="{DynamicResource DrawerCornerRadius}" />
         <Setter Property="Template">
-            <ControlTemplate TargetType="u:DefaultDrawerControl">
+            <ControlTemplate TargetType="u:StandardDrawerControl">
                 <Panel>
                     <Border
                         Name="PART_Root"
@@ -166,10 +166,10 @@
                                     Margin="24,0,24,24"
                                     HorizontalAlignment="Right"
                                     Orientation="Horizontal">
-                                    <Button Name="{x:Static u:DefaultDialogControl.PART_CancelButton}" Margin="8,0,0,0" />
-                                    <Button Name="{x:Static u:DefaultDialogControl.PART_NoButton}" Margin="8,0,0,0" />
-                                    <Button Name="{x:Static u:DefaultDialogControl.PART_YesButton}" Margin="8,0,0,0" />
-                                    <Button Name="{x:Static u:DefaultDialogControl.PART_OKButton}" Margin="8,0,0,0" />
+                                    <Button Name="{x:Static u:StandardDialogControl.PART_CancelButton}" Margin="8,0,0,0" />
+                                    <Button Name="{x:Static u:StandardDialogControl.PART_NoButton}" Margin="8,0,0,0" />
+                                    <Button Name="{x:Static u:StandardDialogControl.PART_YesButton}" Margin="8,0,0,0" />
+                                    <Button Name="{x:Static u:StandardDialogControl.PART_OKButton}" Margin="8,0,0,0" />
                                 </StackPanel>
                             </Grid>
                         </Border>

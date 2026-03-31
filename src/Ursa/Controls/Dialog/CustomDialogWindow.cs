@@ -11,7 +11,7 @@ namespace Ursa.Controls;
 
 [TemplatePart(PART_CloseButton, typeof(Button))]
 [TemplatePart(PART_TitleArea, typeof(Panel))]
-public class DialogWindow : Window
+public class CustomDialogWindow : Window
 {
     public const string PART_CloseButton = "PART_CloseButton";
     public const string PART_TitleArea = "PART_TitleArea";
@@ -20,7 +20,7 @@ public class DialogWindow : Window
 
     private Panel? _titleArea;
 
-    public static readonly StyledProperty<bool> IsManagedResizerVisibleProperty = AvaloniaProperty.Register<DialogWindow, bool>(
+    public static readonly StyledProperty<bool> IsManagedResizerVisibleProperty = AvaloniaProperty.Register<CustomDialogWindow, bool>(
         nameof(IsManagedResizerVisible));
 
     public bool IsManagedResizerVisible
@@ -29,16 +29,16 @@ public class DialogWindow : Window
         set => SetValue(IsManagedResizerVisibleProperty, value);
     }
 
-    static DialogWindow()
+    static CustomDialogWindow()
     {
-        DataContextProperty.Changed.AddClassHandler<DialogWindow, object?>((window, e) =>
+        DataContextProperty.Changed.AddClassHandler<CustomDialogWindow, object?>((window, e) =>
             window.OnDataContextChange(e));
     }
 
     public bool CanDragMove { get; set; } = true;
     internal bool? IsCloseButtonVisible { get; set; }
 
-    protected override Type StyleKeyOverride { get; } = typeof(DialogWindow);
+    protected override Type StyleKeyOverride { get; } = typeof(CustomDialogWindow);
 
 
     private void OnDataContextChange(AvaloniaPropertyChangedEventArgs<object?> args)

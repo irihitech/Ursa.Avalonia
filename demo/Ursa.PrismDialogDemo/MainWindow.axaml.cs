@@ -24,7 +24,7 @@ public partial class MainWindow : Window
     // ReSharper disable once UnusedParameter.Local
     private void OverlayDialogButton_OnClick(object? sender, RoutedEventArgs _)
     {
-        _overlayDialogService.ShowModal("Default", null, null, new OverlayDialogOptions()
+        _overlayDialogService.ShowStandardAsync("Default", null, null, new OverlayDialogOptions()
         {
             Title = "This is dialog title"
         });
@@ -33,7 +33,7 @@ public partial class MainWindow : Window
     // ReSharper disable once UnusedParameter.Local
     private void AloneDialogButton_OnClick(object? sender, RoutedEventArgs _)
     {
-        _aloneDialogService.ShowModal("Default", null, null, new DialogOptions()
+        _aloneDialogService.ShowStandardAsync("Default", null, null, new DialogOptions()
         {
             Title = "This is dialog title"
         });
@@ -42,7 +42,7 @@ public partial class MainWindow : Window
     // ReSharper disable once UnusedParameter.Local
     private void DrawerButton_OnClick(object? sender, RoutedEventArgs _)
     {
-        _drawerService.ShowModal("Default", null, null, new DrawerOptions()
+        _drawerService.ShowStandardAsync("Default", null, null, new DrawerOptions()
         {
             Title = "This is dialog title"
         });

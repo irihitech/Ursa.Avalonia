@@ -5,29 +5,51 @@ using Ursa.Controls.Options;
 
 namespace Ursa.PrismExtension;
 
-public class UrsaDrawerService(IContainerExtension container): IUrsaDrawerService 
+internal class UrsaDrawerService(IContainerExtension container) : IUrsaDrawerService
 {
+    [Obsolete("Use ShowStandard instead")]
     public void Show(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null)
     {
-        var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
-        Drawer.Show(v, vm, hostId, options);
+        ShowStandard(viewName, vm, hostId, options);
     }
 
     public void ShowCustom<TResult>(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null)
     {
         var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
-        Drawer.ShowCustom(v, vm, hostId, options);
+        OverlayDrawer.ShowCustom(v, vm, hostId, options);
     }
 
-    public Task<DialogResult> ShowModal(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null)
+    [Obsolete("Use ShowStandardAsync instead")]
+    public Task<DialogResult> ShowModal(string viewName, object? vm, string? hostId = null,
+        DrawerOptions? options = null)
     {
-        var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
-        return Drawer.ShowModal(v, vm, hostId, options);
+        return ShowStandardAsync(viewName, vm, hostId, options);
     }
 
-    public Task<TResult?> ShowCustomModal<TResult>(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null)
+    [Obsolete("Use ShowCustomAsync instead")]
+    public Task<TResult?> ShowCustomModal<TResult>(string viewName, object? vm, string? hostId = null,
+        DrawerOptions? options = null)
+    {
+        return ShowCustomAsync<TResult>(viewName, vm, hostId, options);
+    }
+
+    public void ShowStandard(string viewName, object? vm, string? hostId = null, DrawerOptions? options = null)
     {
         var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
-        return Drawer.ShowCustomModal<TResult?>(v, vm, hostId, options);
+        OverlayDrawer.ShowStandard(v, vm, hostId, options);
+    }
+
+    public Task<DialogResult> ShowStandardAsync(string viewName, object? vm, string? hostId = null,
+        DrawerOptions? options = null)
+    {
+        var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
+        return OverlayDrawer.ShowStandardAsync(v, vm, hostId, options);
+    }
+
+    public Task<TResult?> ShowCustomAsync<TResult>(string viewName, object? vm, string? hostId = null,
+        DrawerOptions? options = null)
+    {
+        var v = container.Resolve<Control>(UrsaDialogServiceExtension.UrsaDialogViewPrefix + viewName);
+        return OverlayDrawer.ShowCustomAsync<TResult>(v, vm, hostId, options);
     }
 }
