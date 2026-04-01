@@ -7,6 +7,7 @@ using Avalonia.Data;
 using Avalonia.Input;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -52,16 +53,18 @@ public class DateRangePickerV2: DatePickerBase, IClearControl
 
     private readonly DateRangePickerStatus _status = new();
 
+    static DateRangePickerV2()
+    {
+        SelectedStartDateProperty.Changed.AddClassHandler<DateRangePickerV2, DateTime?>((picker, args) => picker.OnSelectionChanged());
+        SelectedEndDateProperty.Changed.AddClassHandler<DateRangePickerV2, DateTime?>((picker, args) => picker.OnSelectionChanged());
+    }
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-
-        _startCalendar?.RemoveHandler(CalendarView.DateSelectedEvent, OnDateSelected);
-        _endCalendar?.RemoveHandler(CalendarView.DateSelectedEvent, OnDateSelected);
-        _startCalendar?.RemoveHandler(CalendarView.DatePreviewedEvent, OnDatePreviewed);
-        _endCalendar?.RemoveHandler(CalendarView.DatePreviewedEvent, OnDatePreviewed);
-        _startTextBox?.RemoveHandler(GotFocusEvent, OnTextBoxGotFocus);
-        _endTextBox?.RemoveHandler(GotFocusEvent, OnTextBoxGotFocus);
+        CalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _startCalendar, _endCalendar);
+        CalendarView.DatePreviewedEvent.RemoveHandler(OnDatePreviewed, _startCalendar, _endCalendar);
+        GotFocusEvent.RemoveHandler(OnTextBoxGotFocus, _startTextBox, _endTextBox);
         
         _startCalendar = e.NameScope.Find<CalendarView>(PART_StartCalendar);
         _endCalendar = e.NameScope.Find<CalendarView>(PART_EndCalendar);
@@ -69,21 +72,10 @@ public class DateRangePickerV2: DatePickerBase, IClearControl
         _endTextBox = e.NameScope.Find<TextBox>(PART_EndTextBox);
         _popup = e.NameScope.Find<Popup>(PART_Popup);
         
-        _startCalendar?.AddHandler(CalendarView.DateSelectedEvent, OnDateSelected);
-        _endCalendar?.AddHandler(CalendarView.DateSelectedEvent, OnDateSelected);
-        _startCalendar?.AddHandler(CalendarView.DatePreviewedEvent, OnDatePreviewed);
-        _endCalendar?.AddHandler(CalendarView.DatePreviewedEvent, OnDatePreviewed);
-        _startTextBox?.AddHandler(GotFocusEvent, OnTextBoxGotFocus);
-        _endTextBox?.AddHandler(GotFocusEvent, OnTextBoxGotFocus);
-        
-
-
-    }
-
-    private void OnEndDatePreviewed(object? sender, CalendarDayButtonEventArgs e)
-    {
-        _startCalendar?.MarkDates(SelectedStartDate, SelectedEndDate, null, e.Date);
-        _endCalendar?.MarkDates(SelectedStartDate, SelectedEndDate, null, e.Date);
+        CalendarView.DateSelectedEvent.AddHandler(OnDateSelected, _startCalendar, _endCalendar);
+        CalendarView.DatePreviewedEvent.AddHandler(OnDatePreviewed, _startCalendar, _endCalendar);
+        GotFocusEvent.AddHandler(OnTextBoxGotFocus, _startTextBox, _endTextBox);
+        SyncDatesToTexts();
     }
 
     private void OnDatePreviewed(object? sender, CalendarDayButtonEventArgs e)
@@ -110,6 +102,7 @@ public class DateRangePickerV2: DatePickerBase, IClearControl
     private void OnTextBoxGotFocus(object? sender, FocusChangedEventArgs e)
     {
         SetCurrentValue(IsDropdownOpenProperty, true);
+        SetCalendarContextDate();
         if (Equals(sender, _startTextBox))
         {
             _status.Push(Status.Start);
@@ -127,35 +120,39 @@ public class DateRangePickerV2: DatePickerBase, IClearControl
     {
         if (_status is { Current: Status.Start, Previous: Status.None })
         {
-            SetCurrentValue(SelectedStartDateProperty, e.Date);
             // User make first selection: Start.
+            SetCurrentValue(SelectedStartDateProperty, e.Date);
+            if (SelectedEndDate != null && e.Date > SelectedEndDate)
+            {
+                SetCurrentValue(SelectedEndDateProperty, null);
+            }
             _status.Push(Status.End);
             _endTextBox?.Focus();
-            return;
         }
         else if (_status.Current == Status.Start && _status.Previous == Status.End)
         {
+            // User make second selection: Start. 
             SetCurrentValue(SelectedStartDateProperty, e.Date);
-            // User make second selection: End.
             _status.Reset();
             SetCurrentValue(IsDropdownOpenProperty, false);
-            return;
         }
         else if (_status.Current == Status.End && _status.Previous == Status.None)
         {
-            SetCurrentValue(SelectedEndDateProperty, e.Date);
             // User make first selection: End.
+            SetCurrentValue(SelectedEndDateProperty, e.Date);
+            if (SelectedStartDate != null && e.Date < SelectedStartDate)
+            {
+                SetCurrentValue(SelectedStartDateProperty, null);
+            }
             _status.Push(Status.Start);
             _startTextBox?.Focus();
-            return;
         }
         else if(_status.Current == Status.End && _status.Previous == Status.Start)
         {
+            // User make second selection: End.
             SetCurrentValue(SelectedEndDateProperty, e.Date);
-            // User make second selection: End
             _status.Reset();
             SetCurrentValue(IsDropdownOpenProperty, false);
-            return;
         }
     }
 
@@ -181,6 +178,37 @@ public class DateRangePickerV2: DatePickerBase, IClearControl
         }
     }
 
+    private void OnSelectionChanged()
+    {
+        SyncDatesToTexts();
+        PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedStartDate is null && SelectedEndDate is null);
+    }
+
+    private void SyncDatesToTexts()
+    {
+        _startTextBox?.SetCurrentValue(TextBox.TextProperty,
+            SelectedStartDate is not null
+                ? SelectedStartDate.Value.ToString(DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT)
+                : string.Empty);
+
+        _endTextBox?.SetCurrentValue(TextBox.TextProperty,
+            SelectedEndDate is not null
+                ? SelectedEndDate.Value.ToString(DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT)
+                : string.Empty);
+    }
+
+    private void SetCalendarContextDate()
+    {
+        var startDate = SelectedStartDate ?? DateTime.Today;
+        _startCalendar?.SyncContextDate(new  CalendarContext(startDate.Year, startDate.Month));
+        var endDate = SelectedEndDate ?? startDate;
+        if(endDate.Year == startDate.Year && endDate.Month == startDate.Month)
+        {
+            endDate = endDate.AddMonths(1);
+        }
+        _endCalendar?.SyncContextDate(new CalendarContext(endDate.Year, endDate.Month));
+    }
+
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
         base.OnPointerPressed(e);
@@ -196,6 +224,7 @@ public class DateRangePickerV2: DatePickerBase, IClearControl
         else
         {
             SetCurrentValue(IsDropdownOpenProperty, true);
+            SetCalendarContextDate();
         }
     }
 

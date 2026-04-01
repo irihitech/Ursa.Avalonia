@@ -232,7 +232,7 @@
                                 Name="ClearButton"
                                 Grid.Column="3"
                                 Margin="8,0"
-                                Command="{Binding $parent[u:DateRangePicker].Clear}"
+                                Command="{Binding $parent[u:DateRangePickerV2].Clear}"
                                 Content="{DynamicResource IconButtonClearData}"
                                 Focusable="False"
                                 IsVisible="False"
