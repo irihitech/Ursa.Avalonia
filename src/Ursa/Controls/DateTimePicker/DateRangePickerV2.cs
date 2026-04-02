@@ -89,10 +89,6 @@ public class DateRangePickerV2 : DatePickerBase, IClearControl
     private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e)
     {
         CommitInput();
-        if (_status is { Current: Status.End, Previous: Status.Start })
-        {
-            SetCurrentValue(IsDropdownOpenProperty, false);
-        }
     }
 
     private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e)
