@@ -297,6 +297,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
     {
         SetCurrentValue(SelectedStartDateProperty, null);
         SetCurrentValue(SelectedEndDateProperty, null);
+        _status.Reset();
     }
 
     private record DateRangePickerStatus
