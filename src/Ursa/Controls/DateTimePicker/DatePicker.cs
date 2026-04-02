@@ -78,7 +78,6 @@ public class DatePicker: DatePickerBase, IClearControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _textBox);
         TextBox.TextChangedEvent.RemoveHandler(OnTextChanged, _textBox);
         CalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _calendar);
         
@@ -86,7 +85,6 @@ public class DatePicker: DatePickerBase, IClearControl
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
         _calendar = e.NameScope.Find<CalendarView>(PART_Calendar);
         
-        GotFocusEvent.AddHandler(OnTextBoxGetFocus, _textBox);
         TextBox.TextChangedEvent.AddHandler(OnTextChanged, _textBox);
         CalendarView.DateSelectedEvent.AddHandler(OnDateSelected, RoutingStrategies.Bubble, true, _calendar);
         SyncSelectedDateToText(SelectedDate);
@@ -137,11 +135,6 @@ public class DatePicker: DatePickerBase, IClearControl
         {
             CommitInput(!fromText);
         }
-    }
-
-    private void OnTextBoxGetFocus(object? sender, FocusChangedEventArgs e)
-    {
-        
     }
     
     /// <inheritdoc/>

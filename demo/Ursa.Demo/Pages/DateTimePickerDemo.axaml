@@ -25,6 +25,13 @@
                 Classes="ClearButton"
                 DisplayFormat="{Binding #formatBox.Text}"
                 PanelFormat="{Binding #panelBox.Text}" />
+            
+            <u:DateTimePickerV2
+                MinWidth="100"
+                u:FormItem.NoLabel="True"
+                Classes="ClearButton"
+                DisplayFormat="{Binding #formatBox.Text}"
+                PanelFormat="{Binding #panelBox.Text}" />
         </u:Form>
     </StackPanel>
 </UserControl>
