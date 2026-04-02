@@ -26,7 +26,7 @@
                 DisplayFormat="{Binding #formatBox.Text}"
                 PanelFormat="{Binding #panelBox.Text}" />
             
-            <u:DateTimePickerV2
+            <u:DateTimePicker
                 MinWidth="100"
                 u:FormItem.NoLabel="True"
                 Classes="ClearButton"

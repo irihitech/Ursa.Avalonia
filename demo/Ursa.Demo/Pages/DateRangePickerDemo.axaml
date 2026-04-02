@@ -34,7 +34,7 @@
             SelectedEndDate="{Binding EndDate}"
             SelectedStartDate="{Binding StartDate}" />
         
-        <u:DateRangePickerV2
+        <u:DateRangePicker
             Width="360"
             Classes="ClearButton"
             DisplayFormat="{Binding #format.Text}"
