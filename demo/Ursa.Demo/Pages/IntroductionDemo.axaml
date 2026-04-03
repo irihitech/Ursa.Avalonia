@@ -214,7 +214,7 @@
                 <Border Grid.Column="2" Classes="SectionCard">
                     <StackPanel Spacing="6">
                         <TextBlock Text="TimeRangePicker" Classes="SectionTitle" />
-                        <u:TimeRangePicker Width="220" StartTime="{Binding StartTime}" EndTime="{Binding EndTime}" />
+                        <u:TimeRangePicker Width="220" SelectedStartTime="{Binding StartTime}" SelectedEndTime="{Binding EndTime}" />
                     </StackPanel>
                 </Border>
             </Grid>

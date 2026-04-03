@@ -155,7 +155,7 @@ public class DatePicker : DatePickerBase, IClearControl
             }
             else
             {
-                SetCurrentValue(IsDropdownOpenProperty, true);
+                _textBox?.Focus();
             }
         }
     }
@@ -214,7 +214,8 @@ public class DatePicker : DatePickerBase, IClearControl
 
     private void CommitInput()
     {
-        if (DateTime.TryParseExact(_textBox?.Text, DisplayFormat, CultureInfo.CurrentUICulture, DateTimeStyles.None,
+        var format = DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT;
+        if (DateTime.TryParseExact(_textBox?.Text, format, CultureInfo.CurrentUICulture, DateTimeStyles.None,
                 out var date))
         {
             SetCurrentValue(SelectedDateProperty, date);

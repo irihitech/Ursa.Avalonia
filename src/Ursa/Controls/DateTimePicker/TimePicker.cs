@@ -90,8 +90,16 @@ public class TimePicker : TimePickerBase, IClearControl
     {
         base.OnPointerPressed(e);
         if (!e.Handled && e.Source is Visual source)
+        {
             if (_popup?.IsInsidePopup(source) == true)
+            {
                 e.Handled = true;
+            }
+            else
+            {
+                _textBox?.Focus();
+            }
+        }
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
