@@ -78,7 +78,6 @@ public class DatePicker : DatePickerBase, IClearControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        //TextBox.TextChangedEvent.RemoveHandler(OnTextChanged, _textBox);
         CalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _calendar);
         GotFocusEvent.RemoveHandler(OnTextBoxGotFocus, _textBox);
         LostFocusEvent.RemoveHandler(OnTextBoxLostFocus, _textBox);
@@ -87,8 +86,7 @@ public class DatePicker : DatePickerBase, IClearControl
         _popup = e.NameScope.Find<Popup>(PART_Popup);
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
         _calendar = e.NameScope.Find<CalendarView>(PART_Calendar);
-
-        //TextBox.TextChangedEvent.AddHandler(OnTextChanged, _textBox);
+        
         CalendarView.DateSelectedEvent.AddHandler(OnDateSelected, RoutingStrategies.Bubble, true, _calendar);
         GotFocusEvent.AddHandler(OnTextBoxGotFocus, _textBox);
         LostFocusEvent.AddHandler(OnTextBoxLostFocus, _textBox);
@@ -142,27 +140,6 @@ public class DatePicker : DatePickerBase, IClearControl
         {
             _textBox?.SetValue(TextBox.TextProperty, date.Value.ToString(DisplayFormat ?? "yyyy-MM-dd"));
             _calendar?.MarkDates(startDate: date.Value, endDate: date.Value);
-        }
-    }
-
-    private void SetSelectedDate(bool fromText = false)
-    {
-        if (string.IsNullOrEmpty(_textBox?.Text))
-        {
-            SetCurrentValue(SelectedDateProperty, null);
-            _calendar?.ClearSelection();
-        }
-        else if (DisplayFormat is null || DisplayFormat.Length == 0)
-        {
-            if (DateTime.TryParse(_textBox?.Text, out var defaultTime))
-            {
-                SetCurrentValue(SelectedDateProperty, defaultTime);
-                _calendar?.MarkDates(startDate: defaultTime, endDate: defaultTime);
-            }
-        }
-        else
-        {
-            CommitInput();
         }
     }
 
@@ -232,6 +209,7 @@ public class DatePicker : DatePickerBase, IClearControl
 
         if (Equals(element, _textBox)) return;
         CommitInput();
+        SetCurrentValue(IsDropdownOpenProperty, false);
     }
 
     private void CommitInput()

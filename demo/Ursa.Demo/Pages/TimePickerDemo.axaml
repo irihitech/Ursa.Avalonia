@@ -47,6 +47,7 @@
         <TextBlock Text="Binding"/>
         <u:TimePicker
             Width="300"
+            Classes="ClearButton"
             HorizontalAlignment="Left"
             SelectedTime="{Binding Time}"
             DisplayFormat="{Binding #displayFormat.Text}"

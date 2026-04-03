@@ -203,7 +203,7 @@
             <Style Selector="^:pointerover /template/ Button#ClearButton">
                 <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNotNull}}" />
             </Style>
-            <Style Selector="^:pointerover /template/ Button#PART_Button">
+            <Style Selector="^:pointerover /template/ PathIcon#PART_Button">
                 <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNull}}" />
             </Style>
         </Style>
