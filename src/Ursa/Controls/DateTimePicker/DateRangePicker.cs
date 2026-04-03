@@ -53,7 +53,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
     private TextBox? _endTextBox;
     private Popup? _popup;
 
-    private readonly DateRangePickerStatus _status = new();
+    private readonly RangePickerStatus _status = new();
 
     static DateRangePicker()
     {
@@ -305,31 +305,5 @@ public class DateRangePicker : DatePickerBase, IClearControl
         SetCurrentValue(SelectedStartDateProperty, null);
         SetCurrentValue(SelectedEndDateProperty, null);
         _status.Reset();
-    }
-
-    private record DateRangePickerStatus
-    {
-        public Status Previous { get; private set; }
-        public Status Current { get; private set; }
-
-        public void Reset()
-        {
-            Previous = Status.None;
-            Current = Status.None;
-        }
-
-        public void Push(Status status)
-        {
-            if (Current == status) return;
-            Previous = Current;
-            Current = status;
-        }
-    }
-
-    private enum Status : byte
-    {
-        None,
-        Start,
-        End,
     }
 }

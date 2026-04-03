@@ -77,7 +77,6 @@
                         <Popup
                             Name="{x:Static iri:PartNames.PART_Popup}"
                             IsLightDismissEnabled="True"
-                            OverlayDismissEventPassThrough="True"
                             OverlayInputPassThroughElement="{Binding ElementName=PART_Grid}"
                             IsOpen="{TemplateBinding IsDropdownOpen,
                                                      Mode=TwoWay}"

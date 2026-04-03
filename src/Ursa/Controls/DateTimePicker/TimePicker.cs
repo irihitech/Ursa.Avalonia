@@ -204,13 +204,11 @@ public class TimePicker : TimePickerBase, IClearControl
     {
         _presenter?.Confirm();
         SetCurrentValue(IsDropdownOpenProperty, false);
-        Focus();
     }
 
     public void Dismiss()
     {
         SetCurrentValue(IsDropdownOpenProperty, false);
-        Focus();
     }
 
     protected override void UpdateDataValidation(AvaloniaProperty property, BindingValueType state, Exception? error)
