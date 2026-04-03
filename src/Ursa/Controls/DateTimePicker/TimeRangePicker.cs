@@ -27,13 +27,19 @@ public class TimeRangePicker : TimePickerBase, IClearControl
     public const string PART_EndPresenter = "PART_EndPresenter";
 
 
-    public static readonly StyledProperty<TimeSpan?> StartTimeProperty =
+    public static readonly StyledProperty<TimeSpan?> SelectedStartTimeProperty =
         AvaloniaProperty.Register<TimeRangePicker, TimeSpan?>(
-            nameof(StartTime), defaultBindingMode: BindingMode.TwoWay);
+            nameof(SelectedStartTime), defaultBindingMode: BindingMode.TwoWay);
 
-    public static readonly StyledProperty<TimeSpan?> EndTimeProperty =
+    public static readonly StyledProperty<TimeSpan?> SelectedEndTimeProperty =
         AvaloniaProperty.Register<TimeRangePicker, TimeSpan?>(
-            nameof(EndTime), defaultBindingMode: BindingMode.TwoWay);
+            nameof(SelectedEndTime), defaultBindingMode: BindingMode.TwoWay);
+
+    [Obsolete("Use SelectedStartTimeProperty instead.")]
+    public static readonly StyledProperty<TimeSpan?> StartTimeProperty = SelectedStartTimeProperty;
+
+    [Obsolete("Use SelectedEndTimeProperty instead.")]
+    public static readonly StyledProperty<TimeSpan?> EndTimeProperty = SelectedEndTimeProperty;
 
     public static readonly StyledProperty<string?> StartPlaceholderTextProperty =
         TextBox.PlaceholderTextProperty.AddOwner<TimeRangePicker>();
@@ -61,9 +67,9 @@ public class TimeRangePicker : TimePickerBase, IClearControl
 
     static TimeRangePicker()
     {
-        StartTimeProperty.Changed.AddClassHandler<TimeRangePicker, TimeSpan?>((picker, args) =>
+        SelectedStartTimeProperty.Changed.AddClassHandler<TimeRangePicker, TimeSpan?>((picker, args) =>
             picker.OnSelectionChanged(args));
-        EndTimeProperty.Changed.AddClassHandler<TimeRangePicker, TimeSpan?>((picker, args) =>
+        SelectedEndTimeProperty.Changed.AddClassHandler<TimeRangePicker, TimeSpan?>((picker, args) =>
             picker.OnSelectionChanged(args, false));
         DisplayFormatProperty.Changed.AddClassHandler<TimeRangePicker, string?>((picker, args) =>
             picker.OnDisplayFormatChanged(args));
@@ -82,16 +88,16 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         set => SetValue(EndPlaceholderTextProperty, value);
     }
 
-    public TimeSpan? StartTime
+    public TimeSpan? SelectedStartTime
     {
-        get => GetValue(StartTimeProperty);
-        set => SetValue(StartTimeProperty, value);
+        get => GetValue(SelectedStartTimeProperty);
+        set => SetValue(SelectedStartTimeProperty, value);
     }
 
-    public TimeSpan? EndTime
+    public TimeSpan? SelectedEndTime
     {
-        get => GetValue(EndTimeProperty);
-        set => SetValue(EndTimeProperty, value);
+        get => GetValue(SelectedEndTimeProperty);
+        set => SetValue(SelectedEndTimeProperty, value);
     }
 
     public IBrush? PlaceholderForeground
@@ -116,23 +122,23 @@ public class TimeRangePicker : TimePickerBase, IClearControl
 
     public void Clear()
     {
-        SetCurrentValue(StartTimeProperty, null);
-        SetCurrentValue(EndTimeProperty, null);
+        SetCurrentValue(SelectedStartTimeProperty, null);
+        SetCurrentValue(SelectedEndTimeProperty, null);
         _startPresenter?.SyncTime(null);
         _endPresenter?.SyncTime(null);
     }
 
     private void OnDisplayFormatChanged(AvaloniaPropertyChangedEventArgs<string?> args)
     {
-        if (_startTextBox is not null) SyncTimeToText(StartTime);
-        if (_endTextBox is not null) SyncTimeToText(EndTime, false);
+        if (_startTextBox is not null) SyncTimeToText(SelectedStartTime);
+        if (_endTextBox is not null) SyncTimeToText(SelectedEndTime, false);
     }
 
     private void OnSelectionChanged(AvaloniaPropertyChangedEventArgs<TimeSpan?> args, bool start = true)
     {
         SyncTimeToText(args.NewValue.Value, start);
         //SyncTimeToText(args.NewValue.Value);
-        PseudoClasses.Set(PseudoClassName.PC_Empty, StartTime is null && EndTime is null);
+        PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedStartTime is null && SelectedEndTime is null);
     }
 
     private void SyncTimeToText(TimeSpan? time, bool start = true)
@@ -148,7 +154,7 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         var date = new DateTime(1, 1, 1, time.Value.Hours, time.Value.Minutes, time.Value.Seconds);
         var text = date.ToString(DisplayFormat);
         textBox.Text = text;
-        PseudoClasses.Set(PseudoClassName.PC_Empty, StartTime is null && EndTime is null);
+        PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedStartTime is null && SelectedEndTime is null);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -172,10 +178,10 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _startTextBox, _endTextBox);
         LostFocusEvent.AddHandler(OnTextBoxLostFocus, _startTextBox, _endTextBox); 
 
-        _startPresenter?.SyncTime(StartTime);
-        _endPresenter?.SyncTime(EndTime);
-        SyncTimeToText(StartTime);
-        SyncTimeToText(EndTime, false);
+        _startPresenter?.SyncTime(SelectedStartTime);
+        _endPresenter?.SyncTime(SelectedEndTime);
+        SyncTimeToText(SelectedStartTime);
+        SyncTimeToText(SelectedEndTime, false);
     }
 
     private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e)
@@ -204,19 +210,19 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         {
             _status.Push(Status.End);
         }
-        _startPresenter?.SyncTime(StartTime);
-        _endPresenter?.SyncTime(EndTime);
+        _startPresenter?.SyncTime(SelectedStartTime);
+        _endPresenter?.SyncTime(SelectedEndTime);
     }
 
     private void OnTimeSelected(object? sender, TimeChangedEventArgs e)
     {
         if (Equals(sender, _startPresenter))
         {
-            SetCurrentValue(StartTimeProperty, e.NewTime);
+            SetCurrentValue(SelectedStartTimeProperty, e.NewTime);
         }
         else if (Equals(sender, _endPresenter))
         {
-            SetCurrentValue(EndTimeProperty, e.NewTime);
+            SetCurrentValue(SelectedEndTimeProperty, e.NewTime);
         }
     }
 
@@ -300,26 +306,26 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         if (string.IsNullOrWhiteSpace(_startTextBox?.Text))
         {
             startDate = null;
-            SetCurrentValue(StartTimeProperty, startDate);
+            SetCurrentValue(SelectedStartTimeProperty, startDate);
         }
         else if (TimeSpan.TryParseExact(_startTextBox?.Text, format, CultureInfo.CurrentUICulture, out var start))
         {
             startDate = start;
-            SetCurrentValue(StartTimeProperty, startDate);
+            SetCurrentValue(SelectedStartTimeProperty, startDate);
         }
         TimeSpan? endDate = null;
         if (string.IsNullOrWhiteSpace(_endTextBox?.Text))
         {
             endDate = null;
-            SetCurrentValue(EndTimeProperty, endDate);
+            SetCurrentValue(SelectedEndTimeProperty, endDate);
         }
         else if (TimeSpan.TryParseExact(_endTextBox?.Text, format, CultureInfo.CurrentUICulture, out var end))
         {
             endDate = end;
-            SetCurrentValue(EndTimeProperty, endDate);
+            SetCurrentValue(SelectedEndTimeProperty, endDate);
         }
-        _startPresenter?.SyncTime(StartTime);
-        _endPresenter?.SyncTime(EndTime);
+        _startPresenter?.SyncTime(SelectedStartTime);
+        _endPresenter?.SyncTime(SelectedEndTime);
     }
     
     protected override void OnPointerPressed(PointerPressedEventArgs e)
@@ -344,7 +350,7 @@ public class TimeRangePicker : TimePickerBase, IClearControl
     protected override void UpdateDataValidation(AvaloniaProperty property, BindingValueType state, Exception? error)
     {
         base.UpdateDataValidation(property, state, error);
-        if (property == StartTimeProperty || property == EndTimeProperty)
+        if (property == SelectedStartTimeProperty || property == SelectedEndTimeProperty)
             DataValidationErrors.SetError(this, error);
     }
 }
