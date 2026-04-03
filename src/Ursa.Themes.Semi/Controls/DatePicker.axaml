@@ -57,14 +57,14 @@
                                 Focusable="False"
                                 IsVisible="False"
                                 Theme="{DynamicResource InnerIconButton}" />
-                            <Button
+                            <PathIcon
                                 Name="PART_Button"
                                 Grid.Column="1"
                                 Margin="8,0"
                                 IsVisible="{Binding !#ClearButton.IsVisible}"
-                                Content="{DynamicResource CalendarDatePickerIconGlyph}"
+                                Data="{DynamicResource CalendarDatePickerIconGlyph}"
                                 Focusable="False"
-                                Theme="{DynamicResource InnerIconButton}" />
+                                Theme="{DynamicResource InnerPathIcon}" />
                             <Popup
                                 Name="PART_Popup"
                                 Grid.Column="0"
@@ -125,9 +125,6 @@
         </Style>
 
         <!--  Focused State  -->
-        <Style Selector="^:focus /template/ Border#Background">
-            <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
-        </Style>
         <Style Selector="^:focus-within /template/ Border#Background">
             <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
         </Style>

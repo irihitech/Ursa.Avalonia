@@ -65,19 +65,18 @@
                                 Focusable="False"
                                 IsVisible="False"
                                 Theme="{DynamicResource InnerIconButton}" />
-                            <Button
-                                Name="{x:Static u:TimePicker.PART_Button}"
+                            <PathIcon
+                                Name="PART_Button"
                                 Grid.Column="3"
                                 Margin="8,0"
-                                Content="{DynamicResource TimePickerIconGlyph}"
+                                Data="{DynamicResource TimePickerIconGlyph}"
                                 Focusable="False"
                                 IsVisible="{Binding !#ClearButton.IsVisible}"
-                                Theme="{DynamicResource InnerIconButton}" />
+                                Theme="{DynamicResource InnerPathIcon}" />
                         </Grid>
                         <Popup
                             Name="{x:Static iri:PartNames.PART_Popup}"
                             IsLightDismissEnabled="True"
-                            OverlayDismissEventPassThrough="True"
                             OverlayInputPassThroughElement="{Binding ElementName=PART_Grid}"
                             IsOpen="{TemplateBinding IsDropdownOpen,
                                                      Mode=TwoWay}"

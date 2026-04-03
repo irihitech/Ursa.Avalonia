@@ -24,5 +24,6 @@
             Name="singlePicker"
             Width="200"
             Classes="ClearButton" />
+        <u:CalendarView />
     </StackPanel>
 </UserControl>

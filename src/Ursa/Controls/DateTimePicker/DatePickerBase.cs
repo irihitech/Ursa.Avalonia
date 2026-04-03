@@ -8,9 +8,12 @@ namespace Ursa.Controls;
 
 public class DatePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent
 {
+    protected const string DEFAULT_DATE_DISPLAY_FORMAT = "yyyy-MM-dd";
+    protected const string DEFAULT_DATETIME_DISPLAY_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    
     public static readonly StyledProperty<string?> DisplayFormatProperty =
         AvaloniaProperty.Register<TimePicker, string?>(
-            nameof(DisplayFormat), "yyyy-MM-dd");
+            nameof(DisplayFormat), DEFAULT_DATE_DISPLAY_FORMAT);
     
     public static readonly StyledProperty<AvaloniaList<DateRange>> BlackoutDatesProperty =
         AvaloniaProperty.Register<DatePickerBase, AvaloniaList<DateRange>>(nameof(BlackoutDates));

@@ -144,13 +144,13 @@
                                 Focusable="False"
                                 IsVisible="False"
                                 Theme="{DynamicResource InnerIconButton}" />
-                            <Button
-                                Name="{x:Static u:TimePicker.PART_Button}"
+                            <PathIcon
+                                Name="PART_Button"
                                 Grid.Column="1"
                                 Margin="8,0"
-                                Content="{DynamicResource TimePickerIconGlyph}"
+                                Data="{DynamicResource TimePickerIconGlyph}"
                                 Focusable="False"
-                                Theme="{DynamicResource InnerIconButton}" />
+                                Theme="{DynamicResource InnerPathIcon}" />
                             <Popup
                                 Name="{x:Static iri:PartNames.PART_Popup}"
                                 Grid.Column="0"
@@ -203,7 +203,7 @@
             <Style Selector="^:pointerover /template/ Button#ClearButton">
                 <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNotNull}}" />
             </Style>
-            <Style Selector="^:pointerover /template/ Button#PART_Button">
+            <Style Selector="^:pointerover /template/ PathIcon#PART_Button">
                 <Setter Property="IsVisible" Value="{Binding $parent[u:TimePicker].SelectedTime, Converter={x:Static ObjectConverters.IsNull}}" />
             </Style>
         </Style>

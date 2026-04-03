@@ -217,12 +217,14 @@
                             <Button
                                 Name="{x:Static u:CalendarView.PART_YearButton}"
                                 Grid.Column="0"
+                                Classes="Tertiary"
                                 HorizontalContentAlignment="Center"
                                 Foreground="{TemplateBinding Foreground}"
                                 Theme="{DynamicResource BorderlessButton}" />
                             <Button
                                 Name="{x:Static u:CalendarView.PART_MonthButton}"
                                 Grid.Column="1"
+                                Classes="Tertiary"
                                 HorizontalContentAlignment="Center"
                                 Foreground="{TemplateBinding Foreground}"
                                 Theme="{DynamicResource BorderlessButton}" />
@@ -230,6 +232,8 @@
                                 Name="{x:Static u:CalendarView.PART_HeaderButton}"
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2"
+                                Classes="Tertiary"
+                                Theme="{DynamicResource BorderlessButton}"
                                 HorizontalAlignment="Stretch"
                                 HorizontalContentAlignment="Center"
                                 IsVisible="True" />

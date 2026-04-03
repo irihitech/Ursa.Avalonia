@@ -29,8 +29,8 @@
         <TextBlock Text="Initialized by Binding"/>
         <u:TimeRangePicker
             Width="300"
-            StartTime="{Binding StartTime}"
-            EndTime="{Binding EndTime}"
+            SelectedStartTime="{Binding StartTime}"
+            SelectedEndTime="{Binding EndTime}"
             DisplayFormat="{Binding #displayFormat.Text}"
             PanelFormat="{Binding #panelFormat.Text}" />
         

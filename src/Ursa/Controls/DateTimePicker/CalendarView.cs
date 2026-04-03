@@ -126,7 +126,16 @@ public class CalendarView : TemplatedControl
         remove => RemoveHandler(DateSelectedEvent, value);
     }
     
-    public event EventHandler<CalendarDayButtonEventArgs>? DatePreviewed;
+    public static readonly RoutedEvent<CalendarDayButtonEventArgs> DatePreviewedEvent =
+        RoutedEvent.Register<TimePickerPresenter, CalendarDayButtonEventArgs>(
+            nameof(DatePreviewed), RoutingStrategies.Bubble);
+    
+    public event EventHandler<CalendarDayButtonEventArgs>? DatePreviewed
+    {
+        add => AddHandler(DatePreviewedEvent, value);
+        remove => RemoveHandler(DatePreviewedEvent, value);
+    }
+    
     internal event EventHandler<CalendarContext>? ContextDateChanged; 
 
     private void OnFirstDayOfWeekChanged(AvaloniaPropertyChangedEventArgs<DayOfWeek> args)
@@ -416,7 +425,7 @@ public class CalendarView : TemplatedControl
 
     private void OnCellDatePreviewed(object? sender, CalendarDayButtonEventArgs e)
     {
-        DatePreviewed?.Invoke(this, e);
+        RaiseEvent(new CalendarDayButtonEventArgs(e.Date) { RoutedEvent = DatePreviewedEvent, Source = this });
     }
 
     private void OnCellDateSelected(object? sender, CalendarDayButtonEventArgs e)
@@ -598,7 +607,7 @@ public class CalendarView : TemplatedControl
     protected override void OnPointerExited(PointerEventArgs e)
     {
         base.OnPointerExited(e);
-        DatePreviewed?.Invoke(this, new CalendarDayButtonEventArgs(null));
+        RaiseEvent(new CalendarDayButtonEventArgs(null) { RoutedEvent = DatePreviewedEvent, Source = this });
     }
 
     private bool _dateContextSyncing;

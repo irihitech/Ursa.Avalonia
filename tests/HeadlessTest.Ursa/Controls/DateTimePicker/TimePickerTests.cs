@@ -43,7 +43,7 @@ public class TimePickerTests
         window.Content = picker;
         window.Show();
 
-        var button = picker.GetTemplateChildOfType<Button>(TimePicker.PART_Button);
+        var button = picker.GetTemplateChildOfType<PathIcon>("PART_Button");
         var position = button?.TranslatePoint(new Point(5, 5), window);
         Assert.NotNull(position);
         
