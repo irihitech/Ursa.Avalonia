@@ -227,4 +227,10 @@ public class DatePicker : DatePickerBase, IClearControl
             _calendar?.MarkDates(startDate: date, endDate: date);
         }
     }
+
+    protected override void UpdateDataValidation(AvaloniaProperty property, BindingValueType state, Exception? error)
+    {
+        base.UpdateDataValidation(property, state, error);
+        if (property == SelectedDateProperty) DataValidationErrors.SetError(this, error);
+    }
 }

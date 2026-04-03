@@ -306,4 +306,11 @@ public class DateRangePicker : DatePickerBase, IClearControl
         SetCurrentValue(SelectedEndDateProperty, null);
         _status.Reset();
     }
+
+    protected override void UpdateDataValidation(AvaloniaProperty property, BindingValueType state, Exception? error)
+    {
+        base.UpdateDataValidation(property, state, error);
+        if (property == SelectedStartDateProperty || property == SelectedEndDateProperty)
+            DataValidationErrors.SetError(this, error);
+    }
 }
