@@ -90,9 +90,8 @@ public class DateTimePicker : DatePickerBase, IClearControl
 
     static DateTimePicker()
     {
-        FocusableProperty.OverrideDefaultValue<DateTimePicker>(true);
         DisplayFormatProperty.OverrideDefaultValue<DateTimePicker>(CultureInfo.InvariantCulture.DateTimeFormat
-            .FullDateTimePattern);
+                                                                              .FullDateTimePattern);
         SelectedDateProperty.Changed.AddClassHandler<DateTimePicker, DateTime?>((o, e) => o.OnSelectionChanged(e));
     }
 
@@ -126,7 +125,9 @@ public class DateTimePicker : DatePickerBase, IClearControl
 
         TimePickerPresenter.SelectedTimeChangedEvent.RemoveHandler(OnTimeSelected, _timePickerPresenter);
         CalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _calendar);
+        GotFocusEvent.RemoveHandler(OnTextBoxGotFocus, _textBox);
         PointerPressedEvent.RemoveHandler(OnTextBoxPressed, _textBox);
+        LostFocusEvent.RemoveHandler(OnTextBoxLostFocus, _textBox);
 
         _popup = e.NameScope.Find<Popup>(PART_Popup);
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
@@ -135,12 +136,24 @@ public class DateTimePicker : DatePickerBase, IClearControl
 
         TimePickerPresenter.SelectedTimeChangedEvent.AddHandler(OnTimeSelected, _timePickerPresenter);
         CalendarView.DateSelectedEvent.AddHandler(OnDateSelected, _calendar);
+        GotFocusEvent.AddHandler(OnTextBoxGotFocus, _textBox);
         PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _textBox);
+        LostFocusEvent.AddHandler(OnTextBoxLostFocus, _textBox);
+    }
+
+    private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e)
+    {
+        CommitInput();
+    }
+
+    private void OnTextBoxGotFocus(object? sender, FocusChangedEventArgs e)
+    {
+        InitializePopupOpen();
     }
 
     private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e)
     {
-        InitializePopupOpen(sender as TextBox);
+        InitializePopupOpen();
     }
 
     private void CommitInput()
@@ -208,20 +221,18 @@ public class DateTimePicker : DatePickerBase, IClearControl
         }
     }
 
-    private void InitializePopupOpen(TextBox? sender)
+    private void InitializePopupOpen()
     {
-        if (sender is null) return;
         SetCurrentValue(IsDropdownOpenProperty, true);
         SetCalendarContextDate();
-        _calendar?.MarkDates(SelectedDate?.Date, SelectedDate?.Date);
-        var time = SelectedDate?.TimeOfDay;
-        _timePickerPresenter?.SyncTime(time);
     }
 
     private void SetCalendarContextDate()
     {
         var startDate = SelectedDate ?? DateTime.Today;
         _calendar?.SyncContextDate(new CalendarContext(startDate.Year, startDate.Month));
+        var time = SelectedDate?.TimeOfDay;
+        _timePickerPresenter?.SyncTime(time);
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
@@ -235,7 +246,7 @@ public class DateTimePicker : DatePickerBase, IClearControl
             }
             else
             {
-                InitializePopupOpen(_textBox);
+                InitializePopupOpen();
             }
         }
     }
@@ -255,10 +266,10 @@ public class DateTimePicker : DatePickerBase, IClearControl
             {
                 return;
             }
+
             CommitInput();
             SetCurrentValue(IsDropdownOpenProperty, false);
         }
-        
     }
 
     public void Clear()

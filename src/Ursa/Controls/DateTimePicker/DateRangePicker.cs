@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
@@ -89,6 +90,11 @@ public class DateRangePicker : DatePickerBase, IClearControl
     private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e)
     {
         CommitInput();
+       //Debug.WriteLine(_status);
+       if (_status.Current == Status.End && _status.Previous == Status.Start && sender == _endTextBox && _endTextBox?.IsFocused == true)
+       {
+           SetCurrentValue(IsDropdownOpenProperty, false);
+       }
     }
 
     private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e)
@@ -191,7 +197,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
         {
             return;
         }
-        else if (newItem is Visual visual)
+        if (newItem is Visual visual)
         {
             var insidePopup = _popup?.IsInsidePopup(visual);
             if (insidePopup == true)
@@ -203,6 +209,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
         {
             SetCurrentValue(IsDropdownOpenProperty, false);
         }
+        CommitInput();
     }
 
     private void OnSelectionChanged()
