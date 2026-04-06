@@ -63,7 +63,7 @@ public class TimeRangePicker : TimePickerBase, IClearControl
     private TimePickerPresenter? _startPresenter;
 
     private TextBox? _startTextBox;
-    private RangePickerStatus _status = new();
+    private readonly RangePickerStatus _status = new();
 
     static TimeRangePicker()
     {
@@ -99,6 +99,20 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         get => GetValue(SelectedEndTimeProperty);
         set => SetValue(SelectedEndTimeProperty, value);
     }
+    
+    [Obsolete("Use SelectedStartTime instead.")]
+    public TimeSpan? StartTime
+    {
+        get => SelectedStartTime;
+        set => SelectedStartTime = value;
+    }
+    
+    [Obsolete("Use SelectedEndTime instead.")]
+    public TimeSpan? EndTime
+    {
+        get => SelectedEndTime;
+        set => SelectedEndTime = value;
+    }
 
     public IBrush? PlaceholderForeground
     {
@@ -128,7 +142,7 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         _endPresenter?.SyncTime(null);
     }
 
-    private void OnDisplayFormatChanged(AvaloniaPropertyChangedEventArgs<string?> args)
+    private void OnDisplayFormatChanged(AvaloniaPropertyChangedEventArgs<string?> _)
     {
         if (_startTextBox is not null) SyncTimeToText(SelectedStartTime);
         if (_endTextBox is not null) SyncTimeToText(SelectedEndTime, false);
@@ -309,7 +323,7 @@ public class TimeRangePicker : TimePickerBase, IClearControl
 
     private void CommitInput()
     {
-        TimeSpan? startDate = null;
+        TimeSpan? startDate;
         var format = this.DisplayFormat ?? DEFAULT_TIME_DISPLAY_FORMAT;
         if (string.IsNullOrWhiteSpace(_startTextBox?.Text))
         {
@@ -321,7 +335,11 @@ public class TimeRangePicker : TimePickerBase, IClearControl
             startDate = start;
             SetCurrentValue(SelectedStartTimeProperty, startDate);
         }
-        TimeSpan? endDate = null;
+        else
+        {
+            SetCurrentValue(SelectedStartTimeProperty, null);
+        }
+        TimeSpan? endDate;
         if (string.IsNullOrWhiteSpace(_endTextBox?.Text))
         {
             endDate = null;
@@ -331,6 +349,10 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         {
             endDate = end;
             SetCurrentValue(SelectedEndTimeProperty, endDate);
+        }
+        else
+        {
+            SetCurrentValue(SelectedEndTimeProperty, null);
         }
         _startPresenter?.SyncTime(SelectedStartTime);
         _endPresenter?.SyncTime(SelectedEndTime);

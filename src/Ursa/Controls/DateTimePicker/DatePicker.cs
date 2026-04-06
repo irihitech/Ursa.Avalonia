@@ -231,6 +231,11 @@ public class DatePicker : DatePickerBase, IClearControl
 
             _calendar?.MarkDates(startDate: date, endDate: date);
         }
+        else
+        {
+             SetCurrentValue(SelectedDateProperty, null);
+             _calendar?.ClearSelection();
+        }
     }
 
     protected override void UpdateDataValidation(AvaloniaProperty property, BindingValueType state, Exception? error)

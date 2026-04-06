@@ -262,6 +262,11 @@ public class DateRangePicker : DatePickerBase, IClearControl
             startDate = start;
             SetCurrentValue(SelectedStartDateProperty, startDate);
         }
+        else
+        {
+            startDate = null;
+            SetCurrentValue(SelectedStartDateProperty, startDate);
+        }
 
         DateTime? endDate;
         if (string.IsNullOrWhiteSpace(_endTextBox?.Text))
@@ -273,6 +278,11 @@ public class DateRangePicker : DatePickerBase, IClearControl
                      out var end))
         {
             endDate = end;
+            SetCurrentValue(SelectedEndDateProperty, endDate);
+        }
+        else
+        {
+            endDate = null;
             SetCurrentValue(SelectedEndDateProperty, endDate);
         }
 

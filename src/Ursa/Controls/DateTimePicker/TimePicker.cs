@@ -256,6 +256,7 @@ public class TimePicker : TimePickerBase, IClearControl
         }
         else
         {
+            SetCurrentValue(SelectedTimeProperty, null);
             _presenter?.SyncTime(null);
         }
     }

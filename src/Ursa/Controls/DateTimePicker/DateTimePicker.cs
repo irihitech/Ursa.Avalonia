@@ -171,12 +171,9 @@ public class DateTimePicker : DatePickerBase, IClearControl
         {
             SetCurrentValue(SelectedDateProperty, date);
         }
-        else if (DisplayFormat is null || DisplayFormat.Length == 0)
+        else
         {
-            if (DateTime.TryParse(_textBox?.Text, out var defaultTime))
-            {
-                SetCurrentValue(SelectedDateProperty, defaultTime);
-            }
+            SetCurrentValue(SelectedDateProperty, null);
         }
     }
 
