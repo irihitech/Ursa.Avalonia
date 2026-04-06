@@ -12,7 +12,7 @@ public class DatePickerBase : TemplatedControl, IInnerContentControl, IPopupInne
     protected const string DEFAULT_DATETIME_DISPLAY_FORMAT = "yyyy-MM-dd HH:mm:ss";
     
     public static readonly StyledProperty<string?> DisplayFormatProperty =
-        AvaloniaProperty.Register<TimePicker, string?>(
+        AvaloniaProperty.Register<DatePickerBase, string?>(
             nameof(DisplayFormat), DEFAULT_DATE_DISPLAY_FORMAT);
     
     public static readonly StyledProperty<AvaloniaList<DateRange>> BlackoutDatesProperty =

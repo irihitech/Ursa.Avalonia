@@ -117,7 +117,7 @@ public class CalendarView : TemplatedControl
     }
     
     public static readonly RoutedEvent<CalendarDayButtonEventArgs> DateSelectedEvent =
-        RoutedEvent.Register<TimePickerPresenter, CalendarDayButtonEventArgs>(
+        RoutedEvent.Register<CalendarView, CalendarDayButtonEventArgs>(
             nameof(DateSelected), RoutingStrategies.Bubble);
     
     public event EventHandler<CalendarDayButtonEventArgs> DateSelected
@@ -127,7 +127,7 @@ public class CalendarView : TemplatedControl
     }
     
     public static readonly RoutedEvent<CalendarDayButtonEventArgs> DatePreviewedEvent =
-        RoutedEvent.Register<TimePickerPresenter, CalendarDayButtonEventArgs>(
+        RoutedEvent.Register<CalendarView, CalendarDayButtonEventArgs>(
             nameof(DatePreviewed), RoutingStrategies.Bubble);
     
     public event EventHandler<CalendarDayButtonEventArgs>? DatePreviewed

@@ -76,7 +76,7 @@ public class TimePicker : TimePickerBase, IClearControl
     public void Clear()
     {
         SetCurrentValue(SelectedTimeProperty, null);
-        Focus(NavigationMethod.Pointer);
+        _presenter?.SyncTime(null);
     }
 
     private void OnDisplayFormatChanged(AvaloniaPropertyChangedEventArgs<string?> _)
@@ -242,9 +242,11 @@ public class TimePicker : TimePickerBase, IClearControl
     private void CommitInput()
     {
         var format = DisplayFormat ?? DEFAULT_TIME_DISPLAY_FORMAT;
-        if (string.IsNullOrEmpty(_textBox?.Text))
+        if (string.IsNullOrWhiteSpace(_textBox?.Text))
         {
             _presenter?.SyncTime(null);
+            SetCurrentValue(SelectedTimeProperty, null);
+            return;
         }
         else if (DateTime.TryParseExact(_textBox?.Text, format, CultureInfo.CurrentUICulture, DateTimeStyles.None,
                 out var time))

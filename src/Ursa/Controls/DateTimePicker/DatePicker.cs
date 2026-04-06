@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Globalization;
-using System.Runtime.CompilerServices;
+﻿using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -214,6 +212,12 @@ public class DatePicker : DatePickerBase, IClearControl
 
     private void CommitInput()
     {
+        if (string.IsNullOrWhiteSpace(_textBox?.Text))
+        {
+            SetCurrentValue(SelectedDateProperty, null);
+            _calendar?.ClearSelection();
+            return;
+        }
         var format = DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT;
         if (DateTime.TryParseExact(_textBox?.Text, format, CultureInfo.CurrentUICulture, DateTimeStyles.None,
                 out var date))

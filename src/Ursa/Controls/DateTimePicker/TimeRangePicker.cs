@@ -136,8 +136,16 @@ public class TimeRangePicker : TimePickerBase, IClearControl
 
     private void OnSelectionChanged(AvaloniaPropertyChangedEventArgs<TimeSpan?> args, bool start = true)
     {
-        SyncTimeToText(args.NewValue.Value, start);
-        //SyncTimeToText(args.NewValue.Value);
+        var time = args.NewValue.Value;
+        SyncTimeToText(time, start);
+        if (start)
+        {
+            _startPresenter?.SyncTime(time);
+        }
+        else
+        {
+            _endPresenter?.SyncTime(time);
+        }
         PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedStartTime is null && SelectedEndTime is null);
     }
 
@@ -187,7 +195,7 @@ public class TimeRangePicker : TimePickerBase, IClearControl
     private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e)
     {
         CommitInput();
-        if (_status.Current == Status.End && _status.Previous == Status.Start && sender == _endTextBox && _endTextBox?.IsFocused == true)
+        if (_status is { Current: Status.End, Previous: Status.Start } && Equals(sender, _endTextBox) && _endTextBox?.IsFocused == true)
         {
             SetCurrentValue(IsDropdownOpenProperty, false);
         }

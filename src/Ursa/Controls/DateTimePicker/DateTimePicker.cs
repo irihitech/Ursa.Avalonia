@@ -139,6 +139,8 @@ public class DateTimePicker : DatePickerBase, IClearControl
         GotFocusEvent.AddHandler(OnTextBoxGotFocus, _textBox);
         PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _textBox);
         LostFocusEvent.AddHandler(OnTextBoxLostFocus, _textBox);
+        
+        SyncDateToText();
     }
 
     private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e)
@@ -259,7 +261,7 @@ public class DateTimePicker : DatePickerBase, IClearControl
         {
             return;
         }
-        else if (newItem is Visual visual)
+        if (newItem is Visual visual)
         {
             var insidePopup = _popup?.IsInsidePopup(visual);
             if (insidePopup == true)

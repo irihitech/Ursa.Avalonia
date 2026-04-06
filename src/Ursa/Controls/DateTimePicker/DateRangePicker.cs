@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
@@ -90,8 +89,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
     private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e)
     {
         CommitInput();
-       //Debug.WriteLine(_status);
-       if (_status.Current == Status.End && _status.Previous == Status.Start && sender == _endTextBox && _endTextBox?.IsFocused == true)
+       if (_status is { Current: Status.End, Previous: Status.Start } && Equals(sender, _endTextBox) && _endTextBox?.IsFocused == true)
        {
            SetCurrentValue(IsDropdownOpenProperty, false);
        }
@@ -215,6 +213,8 @@ public class DateRangePicker : DatePickerBase, IClearControl
     private void OnSelectionChanged()
     {
         SyncDatesToTexts();
+        _startCalendar?.MarkDates(SelectedStartDate, SelectedEndDate);
+        _endCalendar?.MarkDates(SelectedStartDate, SelectedEndDate);
         PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedStartDate is null && SelectedEndDate is null);
     }
 
@@ -249,7 +249,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
     /// </summary>
     private void CommitInput()
     {
-        DateTime? startDate = null;
+        DateTime? startDate;
         var format = this.DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT;
         if (string.IsNullOrWhiteSpace(_startTextBox?.Text))
         {
@@ -263,7 +263,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
             SetCurrentValue(SelectedStartDateProperty, startDate);
         }
 
-        DateTime? endDate = null;
+        DateTime? endDate;
         if (string.IsNullOrWhiteSpace(_endTextBox?.Text))
         {
             endDate = null;

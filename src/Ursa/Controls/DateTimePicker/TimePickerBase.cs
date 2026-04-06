@@ -11,7 +11,7 @@ public abstract class TimePickerBase : TemplatedControl, IInnerContentControl, I
     
     public static readonly StyledProperty<string?> DisplayFormatProperty =
         AvaloniaProperty.Register<TimePicker, string?>(
-            nameof(DisplayFormat), "HH:mm:ss");
+            nameof(DisplayFormat), DEFAULT_TIME_DISPLAY_FORMAT);
 
     public static readonly StyledProperty<string> PanelFormatProperty = AvaloniaProperty.Register<TimePicker, string>(
         nameof(PanelFormat), "HH mm ss");
