@@ -174,7 +174,7 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         }
 
         var date = new DateTime(1, 1, 1, time.Value.Hours, time.Value.Minutes, time.Value.Seconds);
-        var text = date.ToString(DisplayFormat);
+        var text = date.ToString(DisplayFormat ?? DEFAULT_TIME_DISPLAY_FORMAT);
         textBox.Text = text;
         PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedStartTime is null && SelectedEndTime is null);
     }

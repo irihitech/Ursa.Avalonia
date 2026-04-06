@@ -120,7 +120,6 @@ public class TimePicker : TimePickerBase, IClearControl
         LostFocusEvent.AddHandler(OnTextBoxLostFocus, _textBox);
         PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _textBox);
         
-        // _presenter?.SyncTime(SelectedTime);
         SyncTimeToText(SelectedTime);
     }
 
