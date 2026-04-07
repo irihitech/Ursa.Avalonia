@@ -204,7 +204,7 @@
 
             <u:NumericUIntUpDown InnerLeftContent="Min" Value="{Binding Minimum}" />
             
-            <u:NumericUIntUpDown Classes="Split" PlaceholderText="Split" />
+            <u:NumericUIntUpDown Classes="Split" PlaceholderText="Split" Margin="0 8" />
 
             <Label Content="{Binding Step, StringFormat='Step {0}'}" />
             <Slider
