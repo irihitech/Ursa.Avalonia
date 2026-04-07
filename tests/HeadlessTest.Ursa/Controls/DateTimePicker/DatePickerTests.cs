@@ -175,9 +175,9 @@ public class DatePickerTests
         window.MouseDown(new Point(10, 10), MouseButton.Left);
         Dispatcher.UIThread.RunJobs();
         var popup = picker.GetTemplateChildOfType<Popup>(DatePicker.PART_Popup);
-        var calendar = popup?.GetLogicalDescendants().OfType<CalendarView>().FirstOrDefault();
-        calendar?.RaiseEvent(new CalendarDayButtonEventArgs(new DateTime(2025, 2, 17))
-            { RoutedEvent = CalendarView.DateSelectedEvent }); 
+        var calendar = popup?.GetLogicalDescendants().OfType<DatePickerCalendarView>().FirstOrDefault();
+        calendar?.RaiseEvent(new DatePickerCalendarDayButtonEventArgs(new DateTime(2025, 2, 17))
+            { RoutedEvent = DatePickerCalendarView.DateSelectedEvent }); 
         Dispatcher.UIThread.RunJobs();
         var textBox = picker.GetTemplateChildOfType<TextBox>(DatePicker.PART_TextBox);
         Assert.NotNull(textBox);
@@ -202,9 +202,9 @@ public class DatePickerTests
         window.MouseDown(new Point(10, 10), MouseButton.Left);
         Dispatcher.UIThread.RunJobs();
         var popup = picker.GetTemplateChildOfType<Popup>(DatePicker.PART_Popup);
-        var calendar = popup?.GetLogicalDescendants().OfType<CalendarView>().FirstOrDefault();
-        calendar?.RaiseEvent(new CalendarDayButtonEventArgs(new DateTime(2025, 2, 17))
-            { RoutedEvent = CalendarView.DateSelectedEvent }); 
+        var calendar = popup?.GetLogicalDescendants().OfType<DatePickerCalendarView>().FirstOrDefault();
+        calendar?.RaiseEvent(new DatePickerCalendarDayButtonEventArgs(new DateTime(2025, 2, 17))
+            { RoutedEvent = DatePickerCalendarView.DateSelectedEvent }); 
         Dispatcher.UIThread.RunJobs();
         var textBox = picker.GetTemplateChildOfType<TextBox>(DatePicker.PART_TextBox);
         Assert.NotNull(textBox);
@@ -355,9 +355,9 @@ public class DatePickerTests
         Dispatcher.UIThread.RunJobs();
         Assert.True(picker.IsDropdownOpen);
         var popup = picker.GetTemplateChildOfType<Popup>(DatePicker.PART_Popup);
-        var calendar = popup?.GetLogicalDescendants().OfType<CalendarView>().FirstOrDefault();
+        var calendar = popup?.GetLogicalDescendants().OfType<DatePickerCalendarView>().FirstOrDefault();
         Assert.NotNull(calendar);
-        var nextButton = calendar.GetTemplateChildOfType<Button>(CalendarView.PART_NextButton);
+        var nextButton = calendar.GetTemplateChildOfType<Button>(DatePickerCalendarView.PART_NextButton);
         Assert.NotNull(nextButton);
         var position = nextButton.TranslatePoint(new Point(5, 5), window);
         Assert.NotNull(position);

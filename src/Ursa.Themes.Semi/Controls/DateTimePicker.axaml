@@ -82,7 +82,7 @@
                                     BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
                                     CornerRadius="{DynamicResource CalendarCornerRadius}">
                                     <Grid ColumnDefinitions="*, *">
-                                        <u:CalendarView
+                                        <u:DatePickerCalendarView
                                             Name="{x:Static u:DateTimePicker.PART_Calendar}"
                                             BorderThickness="0"
                                             CornerRadius="{Binding $parent[Border].CornerRadius}"

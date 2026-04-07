@@ -22,7 +22,7 @@ namespace Ursa.Controls;
 [TemplatePart(PART_MonthGrid, typeof(Grid))]
 [TemplatePart(PART_YearGrid, typeof(Grid))]
 [PseudoClasses(PC_Month)]
-public class CalendarView : TemplatedControl
+public class DatePickerCalendarView : TemplatedControl
 {
     public const string PART_FastNextButton = "PART_FastNextButton";
     public const string PART_FastPreviousButton = "PART_FastPreviousButton";
@@ -37,15 +37,15 @@ public class CalendarView : TemplatedControl
 
     private const string ShortestDayName = "ShortestDayName";
 
-    internal static readonly DirectProperty<CalendarView, CalendarViewMode> ModeProperty =
-        AvaloniaProperty.RegisterDirect<CalendarView, CalendarViewMode>(
+    internal static readonly DirectProperty<DatePickerCalendarView, DatePickerCalendarViewMode> ModeProperty =
+        AvaloniaProperty.RegisterDirect<DatePickerCalendarView, DatePickerCalendarViewMode>(
             nameof(Mode), o => o.Mode, (o, v) => o.Mode = v);
 
     public static readonly StyledProperty<bool> IsTodayHighlightedProperty =
-        DatePickerBase.IsTodayHighlightedProperty.AddOwner<CalendarView>();
+        DatePickerBase.IsTodayHighlightedProperty.AddOwner<DatePickerCalendarView>();
 
     public static readonly StyledProperty<DayOfWeek> FirstDayOfWeekProperty =
-        DatePickerBase.FirstDayOfWeekProperty.AddOwner<CalendarView>();
+        DatePickerBase.FirstDayOfWeekProperty.AddOwner<DatePickerCalendarView>();
 
     private readonly Calendar _calendar = new GregorianCalendar();
     private Button? _fastNextButton;
@@ -54,7 +54,7 @@ public class CalendarView : TemplatedControl
 
     private Button? _headerButton;
 
-    private CalendarViewMode _mode;
+    private DatePickerCalendarViewMode _mode;
     private Button? _monthButton;
     private Grid? _monthGrid;
     private Button? _nextButton;
@@ -67,19 +67,19 @@ public class CalendarView : TemplatedControl
     private DateTime? _previewStart;
     private DateTime? _previewEnd;
 
-    static CalendarView()
+    static DatePickerCalendarView()
     {
-        FirstDayOfWeekProperty.Changed.AddClassHandler<CalendarView, DayOfWeek>((view, args) =>
+        FirstDayOfWeekProperty.Changed.AddClassHandler<DatePickerCalendarView, DayOfWeek>((view, args) =>
             view.OnFirstDayOfWeekChanged(args));
-        ModeProperty.Changed.AddClassHandler<CalendarView, CalendarViewMode>((view, args) =>
+        ModeProperty.Changed.AddClassHandler<DatePickerCalendarView, DatePickerCalendarViewMode>((view, args) =>
         {
-            view.PseudoClasses.Set(PC_Month, args.NewValue.Value == CalendarViewMode.Month);
+            view.PseudoClasses.Set(PC_Month, args.NewValue.Value == DatePickerCalendarViewMode.Month);
         });
-        ContextDateProperty.Changed.AddClassHandler<CalendarView, CalendarContext>((view, args) =>
+        ContextDateProperty.Changed.AddClassHandler<DatePickerCalendarView, DatePickerCalendarContext>((view, args) =>
             view.OnContextDateChanged(args));
     }
 
-    private void OnContextDateChanged(AvaloniaPropertyChangedEventArgs<CalendarContext> args)
+    private void OnContextDateChanged(AvaloniaPropertyChangedEventArgs<DatePickerCalendarContext> args)
     {
         if (!_dateContextSyncing)
         {
@@ -87,18 +87,18 @@ public class CalendarView : TemplatedControl
         }
     }
 
-    internal CalendarViewMode Mode
+    internal DatePickerCalendarViewMode Mode
     {
         get => _mode;
         set => SetAndRaise(ModeProperty, ref _mode, value);
     }
 
-    private CalendarContext _contextDate = new();
+    private DatePickerCalendarContext _contextDate = new();
 
-    internal static readonly DirectProperty<CalendarView, CalendarContext> ContextDateProperty = AvaloniaProperty.RegisterDirect<CalendarView, CalendarContext>(
+    internal static readonly DirectProperty<DatePickerCalendarView, DatePickerCalendarContext> ContextDateProperty = AvaloniaProperty.RegisterDirect<DatePickerCalendarView, DatePickerCalendarContext>(
         nameof(ContextDate), o => o.ContextDate, (o, v) => o.ContextDate = v);
 
-    internal CalendarContext ContextDate
+    internal DatePickerCalendarContext ContextDate
     {
         get => _contextDate;
         set => SetAndRaise(ContextDateProperty, ref _contextDate, value);
@@ -116,27 +116,27 @@ public class CalendarView : TemplatedControl
         set => SetValue(FirstDayOfWeekProperty, value);
     }
     
-    public static readonly RoutedEvent<CalendarDayButtonEventArgs> DateSelectedEvent =
-        RoutedEvent.Register<CalendarView, CalendarDayButtonEventArgs>(
+    public static readonly RoutedEvent<DatePickerCalendarDayButtonEventArgs> DateSelectedEvent =
+        RoutedEvent.Register<DatePickerCalendarView, DatePickerCalendarDayButtonEventArgs>(
             nameof(DateSelected), RoutingStrategies.Bubble);
     
-    public event EventHandler<CalendarDayButtonEventArgs> DateSelected
+    public event EventHandler<DatePickerCalendarDayButtonEventArgs> DateSelected
     {
         add => AddHandler(DateSelectedEvent, value);
         remove => RemoveHandler(DateSelectedEvent, value);
     }
     
-    public static readonly RoutedEvent<CalendarDayButtonEventArgs> DatePreviewedEvent =
-        RoutedEvent.Register<CalendarView, CalendarDayButtonEventArgs>(
+    public static readonly RoutedEvent<DatePickerCalendarDayButtonEventArgs> DatePreviewedEvent =
+        RoutedEvent.Register<DatePickerCalendarView, DatePickerCalendarDayButtonEventArgs>(
             nameof(DatePreviewed), RoutingStrategies.Bubble);
     
-    public event EventHandler<CalendarDayButtonEventArgs>? DatePreviewed
+    public event EventHandler<DatePickerCalendarDayButtonEventArgs>? DatePreviewed
     {
         add => AddHandler(DatePreviewedEvent, value);
         remove => RemoveHandler(DatePreviewedEvent, value);
     }
     
-    internal event EventHandler<CalendarContext>? ContextDateChanged; 
+    internal event EventHandler<DatePickerCalendarContext>? ContextDateChanged; 
 
     private void OnFirstDayOfWeekChanged(AvaloniaPropertyChangedEventArgs<DayOfWeek> args)
     {
@@ -174,8 +174,8 @@ public class CalendarView : TemplatedControl
         Button.ClickEvent.AddHandler(OnNext, _nextButton);
         Button.ClickEvent.AddHandler(OnFastNext, _fastNextButton);
 
-        ContextDate = new CalendarContext(DateTime.Today.Year, DateTime.Today.Month);
-        PseudoClasses.Set(PC_Month, Mode == CalendarViewMode.Month);
+        ContextDate = new DatePickerCalendarContext(DateTime.Today.Year, DateTime.Today.Month);
+        PseudoClasses.Set(PC_Month, Mode == DatePickerCalendarViewMode.Month);
         InitializeGridButtons();
         UpdateDayButtons();
         UpdateYearButtons();
@@ -183,7 +183,7 @@ public class CalendarView : TemplatedControl
 
     private void OnFastNext(object? sender, RoutedEventArgs e)
     {
-        if (Mode == CalendarViewMode.Month)
+        if (Mode == DatePickerCalendarViewMode.Month)
         {
             ContextDate = ContextDate.With(year: ContextDate.Year + 1);
             UpdateDayButtons();
@@ -192,22 +192,22 @@ public class CalendarView : TemplatedControl
 
     private void OnNext(object? sender, RoutedEventArgs e)
     {
-        if (Mode == CalendarViewMode.Month)
+        if (Mode == DatePickerCalendarViewMode.Month)
         {
             ContextDate = ContextDate.NextMonth();
             UpdateDayButtons();
         }
-        else if (Mode == CalendarViewMode.Year)
+        else if (Mode == DatePickerCalendarViewMode.Year)
         {
             ContextDate = ContextDate.NextYear();
             UpdateYearButtons();
         }
-        else if (Mode == CalendarViewMode.Decade)
+        else if (Mode == DatePickerCalendarViewMode.Decade)
         {
             ContextDate = ContextDate.With(startYear: ContextDate.StartYear + 10, endYear: ContextDate.EndYear + 10);
             UpdateYearButtons();
         }
-        else if (Mode == CalendarViewMode.Century)
+        else if (Mode == DatePickerCalendarViewMode.Century)
         {
             ContextDate = ContextDate.With(startYear: ContextDate.StartYear + 100, endYear: ContextDate.EndYear + 100);
             UpdateYearButtons();
@@ -216,22 +216,22 @@ public class CalendarView : TemplatedControl
 
     private void OnPrevious(object? sender, RoutedEventArgs e)
     {
-        if (Mode == CalendarViewMode.Month)
+        if (Mode == DatePickerCalendarViewMode.Month)
         {
             ContextDate = ContextDate.PreviousMonth();
             UpdateDayButtons();
         }
-        else if (Mode == CalendarViewMode.Year)
+        else if (Mode == DatePickerCalendarViewMode.Year)
         {
             ContextDate = ContextDate.With(year: ContextDate.Year - 1);
             UpdateYearButtons();
         }
-        else if (Mode == CalendarViewMode.Decade)
+        else if (Mode == DatePickerCalendarViewMode.Decade)
         {
             ContextDate = ContextDate.With(startYear: ContextDate.StartYear - 10, endYear: ContextDate.EndYear - 10);
             UpdateYearButtons();
         }
-        else if (Mode == CalendarViewMode.Century)
+        else if (Mode == DatePickerCalendarViewMode.Century)
         {
             ContextDate = ContextDate.With(startYear: ContextDate.StartYear - 100, endYear: ContextDate.EndYear - 100);
             UpdateYearButtons();
@@ -240,7 +240,7 @@ public class CalendarView : TemplatedControl
 
     private void OnFastPrevious(object? sender, RoutedEventArgs e)
     {
-        if (Mode == CalendarViewMode.Month)
+        if (Mode == DatePickerCalendarViewMode.Month)
         {
             ContextDate = ContextDate.PreviousYear();
             UpdateDayButtons();
@@ -255,10 +255,10 @@ public class CalendarView : TemplatedControl
     private void OnHeaderButtonClick(object? sender, RoutedEventArgs e)
     {
         // Header button should be hidden in Month mode.
-        if (Mode == CalendarViewMode.Month) return;
-        if (Mode == CalendarViewMode.Year)
+        if (Mode == DatePickerCalendarViewMode.Month) return;
+        if (Mode == DatePickerCalendarViewMode.Year)
         {
-            Mode = CalendarViewMode.Decade;
+            Mode = DatePickerCalendarViewMode.Decade;
             var range = DateTimeHelper.GetDecadeViewRangeByYear(ContextDate.Year!.Value);
             _dateContextSyncing = true;
             ContextDate =  ContextDate.With(startYear: range.start, endYear: range.end);
@@ -267,9 +267,9 @@ public class CalendarView : TemplatedControl
             return;
         }
 
-        if (Mode == CalendarViewMode.Decade)
+        if (Mode == DatePickerCalendarViewMode.Decade)
         {
-            Mode = CalendarViewMode.Century;
+            Mode = DatePickerCalendarViewMode.Century;
             var range = DateTimeHelper.GetCenturyViewRangeByYear(ContextDate.StartYear!.Value);
             _dateContextSyncing = true;
             ContextDate = ContextDate.With(startYear: range.start, endYear: range.end);
@@ -304,11 +304,11 @@ public class CalendarView : TemplatedControl
         for (var i = 2; i < DateTimeHelper.NumberOfWeeksPerMonth + 2; i++)
         for (var j = 0; j < DateTimeHelper.NumberOfDaysPerWeek; j++)
         {
-            var cell = new CalendarDayButton();
+            var cell = new DatePickerCalendarDayButton();
             cell.SetValue(Grid.RowProperty, i);
             cell.SetValue(Grid.ColumnProperty, j);
-            cell.AddHandler(CalendarDayButton.DateSelectedEvent, OnCellDateSelected);
-            cell.AddHandler(CalendarDayButton.DatePreviewedEvent, OnCellDatePreviewed);
+            cell.AddHandler(DatePickerCalendarDayButton.DateSelectedEvent, OnCellDateSelected);
+            cell.AddHandler(DatePickerCalendarDayButton.DatePreviewedEvent, OnCellDatePreviewed);
             children.Add(cell);
         }
 
@@ -317,17 +317,17 @@ public class CalendarView : TemplatedControl
         // Generate month/year buttons. 
         for (var i = 0; i < 12; i++)
         {
-            var button = new CalendarYearButton();
+            var button = new DatePickerCalendarYearButton();
             Grid.SetRow(button, i / 3);
             Grid.SetColumn(button, i % 3);
-            button.AddHandler(CalendarYearButton.ItemSelectedEvent, OnYearItemSelected);
+            button.AddHandler(DatePickerCalendarYearButton.ItemSelectedEvent, OnYearItemSelected);
             _yearGrid?.Children.Add(button);
         }
     }
 
     internal void UpdateDayButtons()
     {
-        if (_monthGrid is null || Mode != CalendarViewMode.Month) return;
+        if (_monthGrid is null || Mode != DatePickerCalendarViewMode.Month) return;
         var children = _monthGrid.Children;
         var info = DateTimeHelper.GetCurrentDateTimeFormatInfo();
         var date = new DateTime(ContextDate.Year ?? ContextDate.StartYear!.Value, ContextDate.Month!.Value, 1);
@@ -336,7 +336,7 @@ public class CalendarView : TemplatedControl
         for (var i = 7; i < children.Count; i++)
         {
             var day = dateToSet;
-            var cell = children[i] as CalendarDayButton;
+            var cell = children[i] as DatePickerCalendarDayButton;
             if (cell is null) continue;
             cell.DataContext = day;
             if (IsTodayHighlighted) cell.IsToday = day == DateTime.Today;
@@ -354,36 +354,36 @@ public class CalendarView : TemplatedControl
         if (_yearGrid is null) return;
         var mode = Mode;
         var contextDate = ContextDate;
-        if (mode == CalendarViewMode.Century && contextDate.StartYear.HasValue)
+        if (mode == DatePickerCalendarViewMode.Century && contextDate.StartYear.HasValue)
         {
             var range = DateTimeHelper.GetCenturyViewRangeByYear(contextDate.StartYear.Value);
             var start = range.start - 10;
             for (var i = 0; i < 12; i++)
             {
-                var child = _yearGrid.Children[i] as CalendarYearButton;
-                child?.SetContext(CalendarViewMode.Century,
-                    new CalendarContext(startYear: start, endYear: start + 10));
+                var child = _yearGrid.Children[i] as DatePickerCalendarYearButton;
+                child?.SetContext(DatePickerCalendarViewMode.Century,
+                    new DatePickerCalendarContext(startYear: start, endYear: start + 10));
                 start += 10;
             }
         }
-        else if (mode == CalendarViewMode.Decade && contextDate.StartYear.HasValue)
+        else if (mode == DatePickerCalendarViewMode.Decade && contextDate.StartYear.HasValue)
         {
             var range = DateTimeHelper.GetDecadeViewRangeByYear(contextDate.StartYear.Value);
             var year = range.start - 1;
             for (var i = 0; i < 12; i++)
             {
-                var child = _yearGrid.Children[i] as CalendarYearButton;
-                child?.SetContext(CalendarViewMode.Decade,
-                    new CalendarContext(year: year));
+                var child = _yearGrid.Children[i] as DatePickerCalendarYearButton;
+                child?.SetContext(DatePickerCalendarViewMode.Decade,
+                    new DatePickerCalendarContext(year: year));
                 year++;
             }
         }
-        else if (mode == CalendarViewMode.Year)
+        else if (mode == DatePickerCalendarViewMode.Year)
         {
             for (var i = 0; i < 12; i++)
             {
-                var child = _yearGrid.Children[i] as CalendarYearButton;
-                child?.SetContext(CalendarViewMode.Year, new CalendarContext(month: i + 1));
+                var child = _yearGrid.Children[i] as DatePickerCalendarYearButton;
+                child?.SetContext(DatePickerCalendarViewMode.Year, new DatePickerCalendarContext(month: i + 1));
             }
         }
         UpdateHeaderButtons();
@@ -394,7 +394,7 @@ public class CalendarView : TemplatedControl
         if (_monthGrid is null) return;
         var children = _monthGrid.Children;
         for (var i = 7; i < children.Count; i++)
-            if (children[i] is CalendarDayButton { DataContext: DateTime d } button)
+            if (children[i] is DatePickerCalendarDayButton { DataContext: DateTime d } button)
                 button.IsNotCurrentMonth = d.Month != ContextDate.Month;
     }
 
@@ -423,19 +423,19 @@ public class CalendarView : TemplatedControl
         return i == 0 ? DateTimeHelper.NumberOfDaysPerWeek : i;
     }
 
-    private void OnCellDatePreviewed(object? sender, CalendarDayButtonEventArgs e)
+    private void OnCellDatePreviewed(object? sender, DatePickerCalendarDayButtonEventArgs e)
     {
-        RaiseEvent(new CalendarDayButtonEventArgs(e.Date) { RoutedEvent = DatePreviewedEvent, Source = this });
+        RaiseEvent(new DatePickerCalendarDayButtonEventArgs(e.Date) { RoutedEvent = DatePreviewedEvent, Source = this });
     }
 
-    private void OnCellDateSelected(object? sender, CalendarDayButtonEventArgs e)
+    private void OnCellDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
     {
         if (e.Date.HasValue && e.Date.Value.Month != ContextDate.Month)
         {
             ContextDate = ContextDate.With(year: e.Date.Value.Year, month: e.Date.Value.Month);
             UpdateDayButtons();
         }
-        RaiseEvent(new CalendarDayButtonEventArgs(e.Date) { RoutedEvent = DateSelectedEvent, Source = this });
+        RaiseEvent(new DatePickerCalendarDayButtonEventArgs(e.Date) { RoutedEvent = DateSelectedEvent, Source = this });
     }
 
     /// <summary>
@@ -445,7 +445,7 @@ public class CalendarView : TemplatedControl
     /// <param name="e"></param>
     private void OnHeaderMonthButtonClick(object? sender, RoutedEventArgs e)
     {
-        SetCurrentValue(ModeProperty, CalendarViewMode.Year);
+        SetCurrentValue(ModeProperty, DatePickerCalendarViewMode.Year);
         UpdateYearButtons();
     }
 
@@ -457,7 +457,7 @@ public class CalendarView : TemplatedControl
     private void OnHeaderYearButtonClick(object? sender, RoutedEventArgs e)
     {
         if (_yearGrid is null) return;
-        SetCurrentValue(ModeProperty, CalendarViewMode.Decade);
+        SetCurrentValue(ModeProperty, DatePickerCalendarViewMode.Decade);
         var range = DateTimeHelper.GetDecadeViewRangeByYear(ContextDate.Year!.Value);
         _dateContextSyncing = true;
         ContextDate = ContextDate.With(startYear: range.start, endYear: range.end);
@@ -475,26 +475,26 @@ public class CalendarView : TemplatedControl
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void OnYearItemSelected(object? sender, CalendarYearButtonEventArgs e)
+    private void OnYearItemSelected(object? sender, DatePickerCalendarYearButtonEventArgs e)
     {
         if (_yearGrid is null) return;
-        if (Mode == CalendarViewMode.Century)
+        if (Mode == DatePickerCalendarViewMode.Century)
         {
-            Mode = CalendarViewMode.Decade;
+            Mode = DatePickerCalendarViewMode.Decade;
             ContextDate = e.Context.With(year: null);
         }
-        else if (Mode == CalendarViewMode.Decade)
+        else if (Mode == DatePickerCalendarViewMode.Decade)
         {
-            Mode = CalendarViewMode.Year;
+            Mode = DatePickerCalendarViewMode.Year;
             ContextDate = e.Context.Clone();
         }
-        else if (Mode == CalendarViewMode.Year)
+        else if (Mode == DatePickerCalendarViewMode.Year)
         {
-            Mode = CalendarViewMode.Month;
+            Mode = DatePickerCalendarViewMode.Month;
             ContextDate = ContextDate.With(null, e.Context.Month);
             UpdateDayButtons();
         }
-        else if (Mode == CalendarViewMode.Month)
+        else if (Mode == DatePickerCalendarViewMode.Month)
         {
             return;
         }
@@ -504,7 +504,7 @@ public class CalendarView : TemplatedControl
 
     private void UpdateHeaderButtons()
     {
-        if (Mode == CalendarViewMode.Century)
+        if (Mode == DatePickerCalendarViewMode.Century)
         {
             IsVisibleProperty.SetValue(true, _headerButton, _yearGrid);
             IsVisibleProperty.SetValue(false, _yearButton, _monthButton, _monthGrid, _fastPreviousButton,
@@ -512,7 +512,7 @@ public class CalendarView : TemplatedControl
             _headerButton?.SetValue(ContentControl.ContentProperty,
                 ContextDate.StartYear + "-" + ContextDate.EndYear);
         }
-        else if (Mode == CalendarViewMode.Decade)
+        else if (Mode == DatePickerCalendarViewMode.Decade)
         {
             IsVisibleProperty.SetValue(true, _headerButton, _yearGrid);
             IsVisibleProperty.SetValue(false, _yearButton, _monthButton, _monthGrid, _fastPreviousButton,
@@ -520,14 +520,14 @@ public class CalendarView : TemplatedControl
             _headerButton?.SetValue(ContentControl.ContentProperty,
                 ContextDate.StartYear + "-" + ContextDate.EndYear);
         }
-        else if (Mode == CalendarViewMode.Year)
+        else if (Mode == DatePickerCalendarViewMode.Year)
         {
             IsVisibleProperty.SetValue(true, _headerButton, _yearGrid);
             IsVisibleProperty.SetValue(false, _yearButton, _monthButton, _monthGrid, _fastPreviousButton,
                 _fastNextButton);
             _headerButton?.SetValue(ContentControl.ContentProperty, ContextDate.Year);
         }
-        else if (Mode == CalendarViewMode.Month)
+        else if (Mode == DatePickerCalendarViewMode.Month)
         {
             IsVisibleProperty.SetValue(false, _headerButton, _yearGrid);
             IsVisibleProperty.SetValue(true, _yearButton, _monthButton, _monthGrid, _fastPreviousButton,
@@ -559,7 +559,7 @@ public class CalendarView : TemplatedControl
         DateTime rangeEnd = DateTimeHelper.Max(end, previewEnd);
         foreach (var child in _monthGrid.Children)
         {
-            if (child is not CalendarDayButton { DataContext: DateTime d } button) continue;
+            if (child is not DatePickerCalendarDayButton { DataContext: DateTime d } button) continue;
             button.ResetSelection();
             if(d.Month != ContextDate.Month) continue;
             if (d < rangeEnd && d > rangeStart) button.IsInRange = true;
@@ -588,7 +588,7 @@ public class CalendarView : TemplatedControl
         if (_monthGrid?.Children is null) return;
         foreach (var child in _monthGrid.Children)
         {
-            if (child is not CalendarDayButton button) continue;
+            if (child is not DatePickerCalendarDayButton button) continue;
             if (start)
             {
                 button.IsPreviewStartDate = false;
@@ -607,7 +607,7 @@ public class CalendarView : TemplatedControl
     protected override void OnPointerExited(PointerEventArgs e)
     {
         base.OnPointerExited(e);
-        RaiseEvent(new CalendarDayButtonEventArgs(null) { RoutedEvent = DatePreviewedEvent, Source = this });
+        RaiseEvent(new DatePickerCalendarDayButtonEventArgs(null) { RoutedEvent = DatePreviewedEvent, Source = this });
     }
 
     private bool _dateContextSyncing;
@@ -615,7 +615,7 @@ public class CalendarView : TemplatedControl
     /// Used for syncing the context date for DateRangePicker. mark a flag to avoid infinitely loop. 
     /// </summary>
     /// <param name="context"></param>
-    internal void SyncContextDate(CalendarContext? context)
+    internal void SyncContextDate(DatePickerCalendarContext? context)
     {
         if (context is null) return;
         _dateContextSyncing = true;

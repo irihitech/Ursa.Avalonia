@@ -8,15 +8,15 @@ using Ursa.Controls;
 
 namespace HeadlessTest.Ursa.Controls.DateTimePicker;
 
-public class CalendarYearButtonTests
+public class DatePickerCalendarYearButtonTests
 {
     [AvaloniaFact]
     public void SetContext_YearMode_SetsContentToAbbreviatedMonthName()
     {
         CultureInfo.CurrentCulture = new CultureInfo("en-US");
-        var button = new CalendarYearButton();
-        var context = new CalendarContext(null, 5);
-        button.SetContext(CalendarViewMode.Year, context);
+        var button = new DatePickerCalendarYearButton();
+        var context = new DatePickerCalendarContext(null, 5);
+        button.SetContext(DatePickerCalendarViewMode.Year, context);
         Assert.Equal("May", button.Content);
     }
     
@@ -24,45 +24,45 @@ public class CalendarYearButtonTests
     public void SetContext_YearMode_SetsContentToAbbreviatedMonthName_Chinese()
     {
         CultureInfo.CurrentCulture = new CultureInfo("zh-CN");
-        var button = new CalendarYearButton();
-        var context = new CalendarContext(null, 5);
-        button.SetContext(CalendarViewMode.Year, context);
+        var button = new DatePickerCalendarYearButton();
+        var context = new DatePickerCalendarContext(null, 5);
+        button.SetContext(DatePickerCalendarViewMode.Year, context);
         Assert.Equal("5月", button.Content);
     }
 
     [AvaloniaFact]
     public void SetContext_DecadeMode_SetsContentToYear()
     {
-        var button = new CalendarYearButton();
-        var context = new CalendarContext(2023);
-        button.SetContext(CalendarViewMode.Decade, context);
+        var button = new DatePickerCalendarYearButton();
+        var context = new DatePickerCalendarContext(2023);
+        button.SetContext(DatePickerCalendarViewMode.Decade, context);
         Assert.Equal("2023", button.Content);
     }
 
     [AvaloniaFact]
     public void SetContext_CenturyMode_SetsContentToYearRange()
     {
-        var button = new CalendarYearButton();
-        var context = new CalendarContext(null, null, 1900, 1999);
-        button.SetContext(CalendarViewMode.Century, context);
+        var button = new DatePickerCalendarYearButton();
+        var context = new DatePickerCalendarContext(null, null, 1900, 1999);
+        button.SetContext(DatePickerCalendarViewMode.Century, context);
         Assert.Equal("1900-1999", button.Content);
     }
 
     [AvaloniaFact]
     public void SetContext_InvalidYear_DisablesButton()
     {
-        var button = new CalendarYearButton();
-        var context = new CalendarContext(null, null, -1);
-        button.SetContext(CalendarViewMode.Decade, context);
+        var button = new DatePickerCalendarYearButton();
+        var context = new DatePickerCalendarContext(null, null, -1);
+        button.SetContext(DatePickerCalendarViewMode.Decade, context);
         Assert.False(button.IsEnabled);
     }
     
     [AvaloniaFact]
     public void SetContext_Month_Mode_DisablesButton()
     {
-        var button = new CalendarYearButton();
-        var context = new CalendarContext(1, 1);
-        button.SetContext(CalendarViewMode.Month, context);
+        var button = new DatePickerCalendarYearButton();
+        var context = new DatePickerCalendarContext(1, 1);
+        button.SetContext(DatePickerCalendarViewMode.Month, context);
         Assert.False(button.IsEnabled);
     }
     
@@ -70,12 +70,12 @@ public class CalendarYearButtonTests
     public void OnPointerReleased_RaisesItemSelectedEvent()
     {
 
-        var button = new CalendarYearButton();
-        var context = new CalendarContext(2023, 5);
-        button.SetContext(CalendarViewMode.Year, context);
+        var button = new DatePickerCalendarYearButton();
+        var context = new DatePickerCalendarContext(2023, 5);
+        button.SetContext(DatePickerCalendarViewMode.Year, context);
         int eventRaised = 0;
-        CalendarContext? eventContext = null;
-        void OnItemSelected( object? sender, CalendarYearButtonEventArgs args)
+        DatePickerCalendarContext? eventContext = null;
+        void OnItemSelected( object? sender, DatePickerCalendarYearButtonEventArgs args)
         {
             eventRaised++;
             eventContext = args.Context;

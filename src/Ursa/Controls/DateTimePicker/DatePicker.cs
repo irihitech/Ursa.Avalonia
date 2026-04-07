@@ -14,14 +14,14 @@ namespace Ursa.Controls;
 
 [TemplatePart(PART_Popup, typeof(Popup))]
 [TemplatePart(PART_TextBox, typeof(TextBox))]
-[TemplatePart(PART_Calendar, typeof(CalendarView))]
+[TemplatePart(PART_Calendar, typeof(DatePickerCalendarView))]
 public class DatePicker : DatePickerBase, IClearControl
 {
     public const string PART_Popup = "PART_Popup";
     public const string PART_TextBox = "PART_TextBox";
     public const string PART_Calendar = "PART_Calendar";
     private TextBox? _textBox;
-    private CalendarView? _calendar;
+    private DatePickerCalendarView? _calendar;
     private Popup? _popup;
 
     public static readonly StyledProperty<DateTime?> SelectedDateProperty =
@@ -76,16 +76,16 @@ public class DatePicker : DatePickerBase, IClearControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        CalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _calendar);
+        DatePickerCalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _calendar);
         GotFocusEvent.RemoveHandler(OnTextBoxGotFocus, _textBox);
         LostFocusEvent.RemoveHandler(OnTextBoxLostFocus, _textBox);
         PointerPressedEvent.RemoveHandler(OnTextBoxPressed, _textBox);
 
         _popup = e.NameScope.Find<Popup>(PART_Popup);
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
-        _calendar = e.NameScope.Find<CalendarView>(PART_Calendar);
+        _calendar = e.NameScope.Find<DatePickerCalendarView>(PART_Calendar);
         
-        CalendarView.DateSelectedEvent.AddHandler(OnDateSelected, RoutingStrategies.Bubble, true, _calendar);
+        DatePickerCalendarView.DateSelectedEvent.AddHandler(OnDateSelected, RoutingStrategies.Bubble, true, _calendar);
         GotFocusEvent.AddHandler(OnTextBoxGotFocus, _textBox);
         LostFocusEvent.AddHandler(OnTextBoxLostFocus, _textBox);
         PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _textBox);
@@ -117,11 +117,11 @@ public class DatePicker : DatePickerBase, IClearControl
     private void SetCalendarContextDate()
     {
         var date = SelectedDate ?? DateTime.Today;
-        _calendar?.SyncContextDate(new CalendarContext(date.Year, date.Month));
+        _calendar?.SyncContextDate(new DatePickerCalendarContext(date.Year, date.Month));
         _calendar?.UpdateDayButtons();
     }
 
-    private void OnDateSelected(object? sender, CalendarDayButtonEventArgs e)
+    private void OnDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
     {
         SetCurrentValue(SelectedDateProperty, e.Date);
         SetCurrentValue(IsDropdownOpenProperty, false);

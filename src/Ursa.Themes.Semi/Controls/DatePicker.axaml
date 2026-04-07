@@ -81,7 +81,7 @@
                                     BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
                                     BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
                                     CornerRadius="{DynamicResource CalendarCornerRadius}">
-                                    <u:CalendarView
+                                    <u:DatePickerCalendarView
                                         Name="PART_Calendar"
                                         BorderThickness="0"
                                         CornerRadius="{Binding $parent[Border].CornerRadius}"

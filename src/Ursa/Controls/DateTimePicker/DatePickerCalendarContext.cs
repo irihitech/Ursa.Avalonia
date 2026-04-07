@@ -1,6 +1,6 @@
 namespace Ursa.Controls;
 
-internal sealed class CalendarContext(int? year = null, int? month = null, int? startYear = null, int? endYear = null): IComparable<CalendarContext>
+internal sealed class DatePickerCalendarContext(int? year = null, int? month = null, int? startYear = null, int? endYear = null): IComparable<DatePickerCalendarContext>
 {
     public int? Year { get; } = year;
     public int? Month { get; } = month;
@@ -8,22 +8,22 @@ internal sealed class CalendarContext(int? year = null, int? month = null, int? 
     public int? EndYear { get; } = endYear;
 
 
-    public CalendarContext Clone()
+    public DatePickerCalendarContext Clone()
     {
-        return new CalendarContext(Year, Month, StartYear, EndYear);
+        return new DatePickerCalendarContext(Year, Month, StartYear, EndYear);
     }
 
-    public static CalendarContext Today()
+    public static DatePickerCalendarContext Today()
     {
-        return new CalendarContext(DateTime.Today.Year, DateTime.Today.Month);
+        return new DatePickerCalendarContext(DateTime.Today.Year, DateTime.Today.Month);
     }
 
-    public CalendarContext With(int? year = null, int? month = null, int? startYear = null, int? endYear = null)
+    public DatePickerCalendarContext With(int? year = null, int? month = null, int? startYear = null, int? endYear = null)
     {
-        return new CalendarContext(year ?? Year, month ?? Month, startYear ?? StartYear, endYear ?? EndYear);
+        return new DatePickerCalendarContext(year ?? Year, month ?? Month, startYear ?? StartYear, endYear ?? EndYear);
     }
 
-    public CalendarContext NextMonth()
+    public DatePickerCalendarContext NextMonth()
     {
         var year = Year;
         var month = Month;
@@ -41,10 +41,10 @@ internal sealed class CalendarContext(int? year = null, int? month = null, int? 
         {
             month = 1;
         }
-        return new CalendarContext(year, month, StartYear, EndYear);
+        return new DatePickerCalendarContext(year, month, StartYear, EndYear);
     }
 
-    public CalendarContext PreviousMonth()
+    public DatePickerCalendarContext PreviousMonth()
     {
         var year = Year;
         var month = Month;
@@ -61,20 +61,20 @@ internal sealed class CalendarContext(int? year = null, int? month = null, int? 
         {
             month = 1;
         }
-        return new CalendarContext(year, month, StartYear, EndYear);
+        return new DatePickerCalendarContext(year, month, StartYear, EndYear);
     }
 
-    public CalendarContext NextYear()
+    public DatePickerCalendarContext NextYear()
     {
-        return new CalendarContext(Year + 1, Month, StartYear, EndYear);
+        return new DatePickerCalendarContext(Year + 1, Month, StartYear, EndYear);
     }
 
-    public CalendarContext PreviousYear()
+    public DatePickerCalendarContext PreviousYear()
     {
-        return new CalendarContext(Year - 1, Month, StartYear, EndYear);
+        return new DatePickerCalendarContext(Year - 1, Month, StartYear, EndYear);
     }
 
-    public int CompareTo(CalendarContext? other)
+    public int CompareTo(DatePickerCalendarContext? other)
     {
         if (ReferenceEquals(this, other)) return 0;
         if (ReferenceEquals(null, other)) return 1;

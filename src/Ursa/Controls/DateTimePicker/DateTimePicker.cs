@@ -15,7 +15,7 @@ namespace Ursa.Controls;
 
 [TemplatePart(PART_Popup, typeof(Popup))]
 [TemplatePart(PART_TextBox, typeof(TextBox))]
-[TemplatePart(PART_Calendar, typeof(CalendarView))]
+[TemplatePart(PART_Calendar, typeof(DatePickerCalendarView))]
 [TemplatePart(PART_TimePicker, typeof(TimePickerPresenter))]
 [PseudoClasses(PseudoClassName.PC_Empty)]
 public class DateTimePicker : DatePickerBase, IClearControl
@@ -83,7 +83,7 @@ public class DateTimePicker : DatePickerBase, IClearControl
         set => SetValue(NeedConfirmationProperty, value);
     }
 
-    private CalendarView? _calendar;
+    private DatePickerCalendarView? _calendar;
     private TextBox? _textBox;
     private Popup? _popup;
     private TimePickerPresenter? _timePickerPresenter;
@@ -124,18 +124,18 @@ public class DateTimePicker : DatePickerBase, IClearControl
         base.OnApplyTemplate(e);
 
         TimePickerPresenter.SelectedTimeChangedEvent.RemoveHandler(OnTimeSelected, _timePickerPresenter);
-        CalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _calendar);
+        DatePickerCalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _calendar);
         GotFocusEvent.RemoveHandler(OnTextBoxGotFocus, _textBox);
         PointerPressedEvent.RemoveHandler(OnTextBoxPressed, _textBox);
         LostFocusEvent.RemoveHandler(OnTextBoxLostFocus, _textBox);
 
         _popup = e.NameScope.Find<Popup>(PART_Popup);
         _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
-        _calendar = e.NameScope.Find<CalendarView>(PART_Calendar);
+        _calendar = e.NameScope.Find<DatePickerCalendarView>(PART_Calendar);
         _timePickerPresenter = e.NameScope.Find<TimePickerPresenter>(PART_TimePicker);
 
         TimePickerPresenter.SelectedTimeChangedEvent.AddHandler(OnTimeSelected, _timePickerPresenter);
-        CalendarView.DateSelectedEvent.AddHandler(OnDateSelected, _calendar);
+        DatePickerCalendarView.DateSelectedEvent.AddHandler(OnDateSelected, _calendar);
         GotFocusEvent.AddHandler(OnTextBoxGotFocus, _textBox);
         PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _textBox);
         LostFocusEvent.AddHandler(OnTextBoxLostFocus, _textBox);
@@ -177,7 +177,7 @@ public class DateTimePicker : DatePickerBase, IClearControl
         }
     }
 
-    private void OnDateSelected(object? sender, CalendarDayButtonEventArgs e)
+    private void OnDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
     {
         if (SelectedDate is null)
         {
@@ -229,7 +229,7 @@ public class DateTimePicker : DatePickerBase, IClearControl
     private void SetCalendarContextDate()
     {
         var startDate = SelectedDate ?? DateTime.Today;
-        _calendar?.SyncContextDate(new CalendarContext(startDate.Year, startDate.Month));
+        _calendar?.SyncContextDate(new DatePickerCalendarContext(startDate.Year, startDate.Month));
         var time = SelectedDate?.TimeOfDay;
         _timePickerPresenter?.SyncTime(time);
     }

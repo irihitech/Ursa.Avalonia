@@ -8,13 +8,13 @@ using Ursa.Controls;
 
 namespace HeadlessTest.Ursa.Controls.DateTimePicker;
 
-public class CalendarDayButtonTests
+public class DatePickerCalendarDayButtonTests
 {
     [AvaloniaFact]
     public void OnPointerReleased_RaisesDateSelectedEvent()
     {
         Window window = new Window();
-        var button = new CalendarDayButton();
+        var button = new DatePickerCalendarDayButton();
         var date = new DateTime(2023, 5, 15);
         button.DataContext = date;
         window.Content = button;
@@ -23,7 +23,7 @@ public class CalendarDayButtonTests
         int eventRaised = 0;
         DateTime? eventContext = null;
 
-        void OnMouseClick(object? sender, CalendarDayButtonEventArgs args)
+        void OnMouseClick(object? sender, DatePickerCalendarDayButtonEventArgs args)
         {
             eventRaised++;
             eventContext = args.Date;
@@ -44,7 +44,7 @@ public class CalendarDayButtonTests
     public void OnPointerEntered_RaisesDatePreviewedEvent()
     {
         Window window = new Window();
-        var button = new CalendarDayButton();
+        var button = new DatePickerCalendarDayButton();
         var date = new DateTime(2023, 5, 15);
         button.DataContext = date;
         window.Content = button;
@@ -53,7 +53,7 @@ public class CalendarDayButtonTests
         int eventRaised = 0;
         DateTime? eventContext = null;
 
-        void OnMouseEnter(object? sender, CalendarDayButtonEventArgs args)
+        void OnMouseEnter(object? sender, DatePickerCalendarDayButtonEventArgs args)
         {
             eventRaised++;
             eventContext = args.Date;

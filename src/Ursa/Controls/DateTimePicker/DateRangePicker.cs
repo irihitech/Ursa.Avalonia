@@ -13,8 +13,8 @@ using Irihi.Avalonia.Shared.Helpers;
 namespace Ursa.Controls;
 
 [TemplatePart(PART_Popup, typeof(Popup))]
-[TemplatePart(PART_StartCalendar, typeof(CalendarView))]
-[TemplatePart(PART_EndCalendar, typeof(CalendarView))]
+[TemplatePart(PART_StartCalendar, typeof(DatePickerCalendarView))]
+[TemplatePart(PART_EndCalendar, typeof(DatePickerCalendarView))]
 [TemplatePart(PART_StartTextBox, typeof(TextBox))]
 [TemplatePart(PART_EndTextBox, typeof(TextBox))]
 [PseudoClasses(PseudoClassName.PC_Empty)]
@@ -46,8 +46,8 @@ public class DateRangePicker : DatePickerBase, IClearControl
         set => SetValue(SelectedEndDateProperty, value);
     }
 
-    private CalendarView? _startCalendar;
-    private CalendarView? _endCalendar;
+    private DatePickerCalendarView? _startCalendar;
+    private DatePickerCalendarView? _endCalendar;
     private TextBox? _startTextBox;
     private TextBox? _endTextBox;
     private Popup? _popup;
@@ -65,20 +65,20 @@ public class DateRangePicker : DatePickerBase, IClearControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        CalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _startCalendar, _endCalendar);
-        CalendarView.DatePreviewedEvent.RemoveHandler(OnDatePreviewed, _startCalendar, _endCalendar);
+        DatePickerCalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _startCalendar, _endCalendar);
+        DatePickerCalendarView.DatePreviewedEvent.RemoveHandler(OnDatePreviewed, _startCalendar, _endCalendar);
         GotFocusEvent.RemoveHandler(OnTextBoxGotFocus, _startTextBox, _endTextBox);
         PointerPressedEvent.RemoveHandler(OnTextBoxPressed, _startTextBox, _endTextBox);
         LostFocusEvent.RemoveHandler(OnTextBoxLostFocus, _startTextBox, _endTextBox);
 
-        _startCalendar = e.NameScope.Find<CalendarView>(PART_StartCalendar);
-        _endCalendar = e.NameScope.Find<CalendarView>(PART_EndCalendar);
+        _startCalendar = e.NameScope.Find<DatePickerCalendarView>(PART_StartCalendar);
+        _endCalendar = e.NameScope.Find<DatePickerCalendarView>(PART_EndCalendar);
         _startTextBox = e.NameScope.Find<TextBox>(PART_StartTextBox);
         _endTextBox = e.NameScope.Find<TextBox>(PART_EndTextBox);
         _popup = e.NameScope.Find<Popup>(PART_Popup);
 
-        CalendarView.DateSelectedEvent.AddHandler(OnDateSelected, _startCalendar, _endCalendar);
-        CalendarView.DatePreviewedEvent.AddHandler(OnDatePreviewed, _startCalendar, _endCalendar);
+        DatePickerCalendarView.DateSelectedEvent.AddHandler(OnDateSelected, _startCalendar, _endCalendar);
+        DatePickerCalendarView.DatePreviewedEvent.AddHandler(OnDatePreviewed, _startCalendar, _endCalendar);
         GotFocusEvent.AddHandler(OnTextBoxGotFocus, _startTextBox, _endTextBox);
         PointerPressedEvent.AddHandler(OnTextBoxPressed, strategies: RoutingStrategies.Tunnel, handledEventsToo: true,
             _startTextBox, _endTextBox);
@@ -100,7 +100,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
         InitializePopupOpen(sender as TextBox);
     }
 
-    private void OnDatePreviewed(object? sender, CalendarDayButtonEventArgs e)
+    private void OnDatePreviewed(object? sender, DatePickerCalendarDayButtonEventArgs e)
     {
         if (_status.Current == Status.Start)
         {
@@ -145,7 +145,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
     }
 
 
-    private void OnDateSelected(object? sender, CalendarDayButtonEventArgs e)
+    private void OnDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
     {
         if (_status is { Current: Status.Start, Previous: Status.None })
         {
@@ -234,14 +234,14 @@ public class DateRangePicker : DatePickerBase, IClearControl
     private void SetCalendarContextDate()
     {
         var startDate = SelectedStartDate ?? DateTime.Today;
-        _startCalendar?.SyncContextDate(new CalendarContext(startDate.Year, startDate.Month));
+        _startCalendar?.SyncContextDate(new DatePickerCalendarContext(startDate.Year, startDate.Month));
         var endDate = SelectedEndDate ?? startDate;
         if (endDate.Year == startDate.Year && endDate.Month == startDate.Month)
         {
             endDate = endDate.AddMonths(1);
         }
 
-        _endCalendar?.SyncContextDate(new CalendarContext(endDate.Year, endDate.Month));
+        _endCalendar?.SyncContextDate(new DatePickerCalendarContext(endDate.Year, endDate.Month));
     }
 
     /// <summary>

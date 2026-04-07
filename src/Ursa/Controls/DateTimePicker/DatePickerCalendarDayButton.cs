@@ -10,7 +10,7 @@ namespace Ursa.Controls;
 [PseudoClasses(PseudoClassName.PC_Pressed, PseudoClassName.PC_Selected,
     PC_StartDate, PC_EndDate, PC_PreviewStartDate, PC_PreviewEndDate, PC_InRange, PC_Today, PC_Blackout,
     PC_NotCurrentMonth)]
-public class CalendarDayButton : ContentControl
+public class DatePickerCalendarDayButton : ContentControl
 {
     public const string PC_StartDate = ":start-date";
     public const string PC_EndDate = ":end-date";
@@ -26,12 +26,12 @@ public class CalendarDayButton : ContentControl
         PseudoClassName.PC_Selected, PC_StartDate, PC_EndDate, PC_PreviewStartDate,  PC_PreviewEndDate, PC_InRange
     ];
 
-    public static readonly RoutedEvent<CalendarDayButtonEventArgs> DateSelectedEvent =
-        RoutedEvent.Register<CalendarDayButton, CalendarDayButtonEventArgs>(
+    public static readonly RoutedEvent<DatePickerCalendarDayButtonEventArgs> DateSelectedEvent =
+        RoutedEvent.Register<DatePickerCalendarDayButton, DatePickerCalendarDayButtonEventArgs>(
             nameof(DateSelected), RoutingStrategies.Bubble);
 
-    public static readonly RoutedEvent<CalendarDayButtonEventArgs> DatePreviewedEvent =
-        RoutedEvent.Register<CalendarDayButton, CalendarDayButtonEventArgs>(
+    public static readonly RoutedEvent<DatePickerCalendarDayButtonEventArgs> DatePreviewedEvent =
+        RoutedEvent.Register<DatePickerCalendarDayButton, DatePickerCalendarDayButtonEventArgs>(
             nameof(DatePreviewed), RoutingStrategies.Bubble);
 
     private bool _isBlackout;
@@ -52,9 +52,9 @@ public class CalendarDayButton : ContentControl
 
     private bool _isToday;
 
-    static CalendarDayButton()
+    static DatePickerCalendarDayButton()
     {
-        PressedMixin.Attach<CalendarDayButton>();
+        PressedMixin.Attach<DatePickerCalendarDayButton>();
     }
 
     // internal CalendarDisplayControl? Owner { get; set; }
@@ -156,13 +156,13 @@ public class CalendarDayButton : ContentControl
         }
     }
 
-    public event EventHandler<CalendarDayButtonEventArgs> DateSelected
+    public event EventHandler<DatePickerCalendarDayButtonEventArgs> DateSelected
     {
         add => AddHandler(DateSelectedEvent, value);
         remove => RemoveHandler(DateSelectedEvent, value);
     }
 
-    public event EventHandler<CalendarDayButtonEventArgs> DatePreviewed
+    public event EventHandler<DatePickerCalendarDayButtonEventArgs> DatePreviewed
     {
         add => AddHandler(DatePreviewedEvent, value);
         remove => RemoveHandler(DatePreviewedEvent, value);
@@ -172,14 +172,14 @@ public class CalendarDayButton : ContentControl
     {
         base.OnPointerReleased(e);
         if (DataContext is DateTime d)
-            RaiseEvent(new CalendarDayButtonEventArgs(d) { RoutedEvent = DateSelectedEvent, Source = this });
+            RaiseEvent(new DatePickerCalendarDayButtonEventArgs(d) { RoutedEvent = DateSelectedEvent, Source = this });
     }
 
     protected override void OnPointerEntered(PointerEventArgs e)
     {
         base.OnPointerEntered(e);
         if (DataContext is DateTime d)
-            RaiseEvent(new CalendarDayButtonEventArgs(d) { RoutedEvent = DatePreviewedEvent, Source = this });
+            RaiseEvent(new DatePickerCalendarDayButtonEventArgs(d) { RoutedEvent = DatePreviewedEvent, Source = this });
     }
 
     internal void ResetSelection()
