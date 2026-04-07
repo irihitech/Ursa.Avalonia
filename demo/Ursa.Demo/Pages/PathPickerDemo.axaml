@@ -138,8 +138,8 @@
                         UsePickerType="{Binding #UsePickerType.Value}">
                         <u:PathPicker.ButtonContent>
                             <StackPanel Orientation="Horizontal" Spacing="4">
-                                <PathIcon Data="{DynamicResource FolderRegular}" />
-                                <TextBlock Text="Browse" />
+                                <PathIcon Data="{DynamicResource SemiIconSearch}" Height="16" Width="16" VerticalAlignment="Center" />
+                                <TextBlock Text="Browse" VerticalAlignment="Center" />
                             </StackPanel>
                         </u:PathPicker.ButtonContent>
                     </u:PathPicker>
