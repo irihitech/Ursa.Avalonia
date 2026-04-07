@@ -71,16 +71,19 @@
                                 <Button
                                     Name="PART_FullScreenButton"
                                     Theme="{StaticResource CaptionButton}"
+                                    IsVisible="{Binding $parent[u:UrsaWindow].IsFullScreenButtonVisible}"
                                     Content="{StaticResource WindowExpandGlyph}"
                                     WindowDecorationProperties.ElementRole="FullScreenButton" />
                                 <Button
                                     Name="PART_MinimizeButton"
                                     Theme="{StaticResource CaptionButton}"
+                                    IsVisible="{Binding $parent[u:UrsaWindow].IsMinimizeButtonVisible}"
                                     Content="{StaticResource WindowMinimizeGlyph}"
                                     WindowDecorationProperties.ElementRole="MinimizeButton" />
                                 <Button
                                     Name="PART_MaximizeButton"
                                     Theme="{StaticResource CaptionButton}"
+                                    IsVisible="{Binding $parent[u:UrsaWindow].IsRestoreButtonVisible}"
                                     Content="{StaticResource WindowMaximizeGlyph}"
                                     WindowDecorationProperties.ElementRole="MaximizeButton" />
                                 <Button
