@@ -196,11 +196,15 @@ public class UrsaWindow : Window
         var host = e.NameScope.Find<OverlayDialogHost>(PART_DialogHost);
         if (host is not null) LogicalChildren.Add(host);
         _titleBar = e.NameScope.Find<TitleBar>("PART_TitleBar");
-        // TODO: To be removed.
-        // TODO: This is a hack to get around the issue that decoration cannot be specified for a specific Window theme. 
+        // TODO: To be removed after https://github.com/AvaloniaUI/Avalonia/pull/21061 merged. 
+        // TODO(ursa#window-drawn-decorations-theme-workaround): Remove this workaround once Avalonia
+        // supports specifying window decorations for a specific Window theme directly. This applies
+        // a theme resource to WindowDrawnDecorations manually because that cannot currently be done
+        // through the Window theme itself.
         if (this.TryFindResource(KEY_URSAWINDOW_DRAWN_DECORATIONS, out var themeResource))
         {
             var decorations = this.GetLogicalDescendants().OfType<WindowDrawnDecorations>().FirstOrDefault();
+            if (themeResource is not ControlTheme theme || theme.TargetType != typeof(WindowDrawnDecorations)) return;
             decorations?.Theme = themeResource as ControlTheme;
             decorations?.ApplyStyling();
         }

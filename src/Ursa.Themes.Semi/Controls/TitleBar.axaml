@@ -29,7 +29,6 @@
         </Setter>
     </ControlTheme>
     
-    <!--Add the theme here to fix fullscreen button placement issue, will be removed after Semi release. -->
     <ControlTheme x:Key="{x:Static u:UrsaWindow.KEY_URSAWINDOW_DRAWN_DECORATIONS}" TargetType="WindowDrawnDecorations">
         <Setter Property="DefaultTitleBarHeight" Value="32" />
         <Setter Property="DefaultFrameThickness" Value="1" />
