@@ -4,6 +4,7 @@ using Avalonia.Controls.Chrome;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
+using Avalonia.Styling;
 
 namespace Ursa.Controls;
 
@@ -12,6 +13,7 @@ namespace Ursa.Controls;
 /// </summary>
 public class UrsaWindow : Window
 {
+    public const string KEY_URSAWINDOW_DRAWN_DECORATIONS = "KEY_URSAWINDOW_DRAWN_DECORATIONS";
     /// <summary>
     /// The name of the dialog host part in the control template.
     /// </summary>
@@ -194,6 +196,14 @@ public class UrsaWindow : Window
         var host = e.NameScope.Find<OverlayDialogHost>(PART_DialogHost);
         if (host is not null) LogicalChildren.Add(host);
         _titleBar = e.NameScope.Find<TitleBar>("PART_TitleBar");
+        // TODO: To be removed.
+        // TODO: This is a hack to get around the issue that decoration cannot be specified for a specific Window theme. 
+        if (this.TryFindResource(KEY_URSAWINDOW_DRAWN_DECORATIONS, out var themeResource))
+        {
+            var decorations = this.GetLogicalDescendants().OfType<WindowDrawnDecorations>().FirstOrDefault();
+            decorations?.Theme = themeResource as ControlTheme;
+            decorations?.ApplyStyling();
+        }
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
