@@ -159,6 +159,8 @@ public partial class PathPicker : TemplatedControl
     }
 
     private bool _twoConvertLock;
+    private bool _syncingButtonContent;
+    private bool _buttonContentExplicitlySet;
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
@@ -166,10 +168,17 @@ public partial class PathPicker : TemplatedControl
 
         if (change.Property == TitleProperty)
         {
-            if (!IsSet(ButtonContentProperty))
+            if (!_buttonContentExplicitlySet)
             {
+                _syncingButtonContent = true;
                 SetCurrentValue(ButtonContentProperty, change.GetNewValue<string>());
+                _syncingButtonContent = false;
             }
+        }
+
+        if (change.Property == ButtonContentProperty && !_syncingButtonContent)
+        {
+            _buttonContentExplicitlySet = true;
         }
 
         if (_twoConvertLock) return;
