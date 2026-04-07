@@ -8,6 +8,7 @@
     <ControlTheme x:Key="{x:Type u:TagInput}" TargetType="u:TagInput">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="MinHeight" Value="{DynamicResource TextBoxDefaultHeight}" />
+        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="ItemTemplate">
             <DataTemplate>
@@ -19,7 +20,6 @@
                 <Border
                     Name="PART_RootBorder"
                     MinHeight="30"
-                    Padding="{DynamicResource TextBoxContentPadding}"
                     VerticalAlignment="Stretch"
                     Background="{DynamicResource TextBoxDefaultBackground}"
                     BorderBrush="{DynamicResource TextBoxDefaultBorderBrush}"
@@ -28,7 +28,7 @@
                     <Panel HorizontalAlignment="Stretch">
                         <TextBlock
                             Name="{x:Static u:TagInput.PART_Placeholder}"
-                            Opacity="0.5"
+                            Margin="{DynamicResource TextBoxContentPadding}"
                             IsVisible="False"
                             VerticalAlignment="Center"
                             Foreground="{TemplateBinding PlaceholderForeground}"
@@ -42,7 +42,7 @@
                                 <ItemsPanelTemplate>
                                     <u:WrapPanelWithTrailingItem TrailingWrapWidth="24" >
                                         <u:WrapPanelWithTrailingItem.TrailingItem>
-                                            <TextBox VerticalAlignment="Center" Theme="{DynamicResource TagInputTextBoxTheme}" />
+                                            <TextBox VerticalAlignment="Center" MinHeight="24" Margin="{DynamicResource TextBoxContentPadding}" Theme="{DynamicResource TagInputTextBoxTheme}" />
                                         </u:WrapPanelWithTrailingItem.TrailingItem>
                                     </u:WrapPanelWithTrailingItem>
                                 </ItemsPanelTemplate>

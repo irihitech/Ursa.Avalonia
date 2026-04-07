@@ -173,7 +173,7 @@ public class TagInput : TemplatedControl
     {
         base.OnApplyTemplate(e);
         _itemsControl = e.NameScope.Find<ItemsControl>(PART_ItemsControl);
-        _watermark = e.NameScope.Find<Visual>(PART_Placeholder);
+        // _watermark = e.NameScope.Find<Visual>(PART_Placeholder);
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
@@ -229,10 +229,13 @@ public class TagInput : TemplatedControl
         if (Tags.Count >= MaxCount) return;
         string[] values = [];
         if (!string.IsNullOrEmpty(Separator))
-            values = text.Split(new[] { Separator },
-                StringSplitOptions.RemoveEmptyEntries);
-        else if (_textBox.Text is not null)
-            values = new[] { _textBox.Text };
+        {
+            values = text.Split(new[] { Separator }, StringSplitOptions.RemoveEmptyEntries);
+        }
+        else if (InputTextBox?.Text is not null)
+        {
+            values = [InputTextBox.Text];
+        }
 
         if (!AllowDuplicates)
             values = values.Distinct().Except(Tags).ToArray();
