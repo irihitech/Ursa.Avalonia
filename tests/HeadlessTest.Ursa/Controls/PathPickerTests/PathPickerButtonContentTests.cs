@@ -7,7 +7,7 @@ namespace HeadlessTest.Ursa.Controls.PathPickerTests;
 public class PathPickerButtonContentTests
 {
     [AvaloniaFact]
-    public void ButtonContent_IsNull_ByDefault_WhenTitleNotSet()
+    public void ButtonContent_IsNull_ByDefault()
     {
         var picker = new PathPicker();
         var window = new Window { Content = picker };
@@ -17,7 +17,7 @@ public class PathPickerButtonContentTests
     }
 
     [AvaloniaFact]
-    public void ButtonContent_SyncsWith_Title_WhenNotExplicitlySet()
+    public void ButtonContent_SyncsWithTitle_WhenNotExplicitlySet()
     {
         var picker = new PathPicker();
         var window = new Window { Content = picker };
