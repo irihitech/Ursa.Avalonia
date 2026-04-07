@@ -46,6 +46,9 @@ public partial class PathPicker : TemplatedControl
     public static readonly StyledProperty<string> TitleProperty = AvaloniaProperty.Register<PathPicker, string>(
         nameof(Title), string.Empty);
 
+    public static readonly StyledProperty<object?> ButtonContentProperty =
+        AvaloniaProperty.Register<PathPicker, object?>(nameof(ButtonContent));
+
     public static readonly StyledProperty<string> DefaultFileExtensionProperty =
         AvaloniaProperty.Register<PathPicker, string>(
             nameof(DefaultFileExtension), string.Empty);
@@ -131,6 +134,12 @@ public partial class PathPicker : TemplatedControl
         set => SetValue(TitleProperty, value);
     }
 
+    public object? ButtonContent
+    {
+        get => GetValue(ButtonContentProperty);
+        set => SetValue(ButtonContentProperty, value);
+    }
+
     public string FileFilter
     {
         get => GetValue(FileFilterProperty);
@@ -154,6 +163,15 @@ public partial class PathPicker : TemplatedControl
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
+
+        if (change.Property == TitleProperty)
+        {
+            if (!IsSet(ButtonContentProperty))
+            {
+                SetCurrentValue(ButtonContentProperty, change.GetNewValue<string>());
+            }
+        }
+
         if (_twoConvertLock) return;
         if (change.Property == SelectedPathsProperty)
         {
