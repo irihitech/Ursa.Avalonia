@@ -199,7 +199,14 @@ public class NavMenuItem : HeaderedItemsControl
     {
         base.OnLoaded(e);
         var root = ItemsPanelRoot;
-        if (root is OverflowStackPanel stack) stack.OverflowPanel = _overflowPanel;
+        if (root is OverflowStackPanel stack)
+        {
+            stack.OverflowPanel = _overflowPanel;
+            if (IsHorizontalCollapsed)
+            {
+                stack.MoveChildrenToOverflowPanel();
+            }
+        }
     }
 
     protected override void OnKeyDown(KeyEventArgs e)
