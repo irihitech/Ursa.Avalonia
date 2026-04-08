@@ -185,12 +185,13 @@ public class UrsaWindow : Window
     }
     
     private TitleBar? _titleBar;
+    private OverlayDialogHost? _dialogHost;
     /// <inheritdoc/>
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        var host = e.NameScope.Find<OverlayDialogHost>(PART_DialogHost);
-        if (host is not null) LogicalChildren.Add(host);
+        _dialogHost = e.NameScope.Find<OverlayDialogHost>(PART_DialogHost);
+        if (_dialogHost is not null) LogicalChildren.Add(_dialogHost);
         _titleBar = e.NameScope.Find<TitleBar>("PART_TitleBar");
         // TODO: To be removed after https://github.com/AvaloniaUI/Avalonia/pull/21061 merged. 
         // TODO(ursa#window-drawn-decorations-theme-workaround): Remove this workaround once Avalonia
@@ -224,6 +225,8 @@ public class UrsaWindow : Window
                 _titleBar.Margin.Bottom);
             _titleBar.MinHeight = height ?? 0;
         }
+        var dialogHostPadding = new Thickness(0, height ?? 0, 0, 0);
+        _dialogHost?.SafePadding = dialogHostPadding;
     }
 
     /// <summary>
