@@ -118,8 +118,10 @@ public abstract class DialogControlBase : OverlayFeedbackElement
         var p = e.GetPosition(this);
         var left = Canvas.GetLeft(this) + p.X - _moveDragStartPoint.X;
         var top = Canvas.GetTop(this) + p.Y - _moveDragStartPoint.Y;
-        left = MathHelpers.SafeClamp(left, 0, ContainerPanel.Bounds.Width - Bounds.Width);
-        top = MathHelpers.SafeClamp(top, 0, ContainerPanel.Bounds.Height - Bounds.Height);
+        Thickness safePadding = default;
+        if (ContainerPanel is OverlayDialogHost h) safePadding = h.SafePadding;
+        left = MathHelpers.SafeClamp(left, safePadding.Left, ContainerPanel.Bounds.Width - safePadding.Right - Bounds.Width);
+        top = MathHelpers.SafeClamp(top, safePadding.Top, ContainerPanel.Bounds.Height - safePadding.Bottom - Bounds.Height);
         Canvas.SetLeft(this, left);
         Canvas.SetTop(this, top);
     }
@@ -245,42 +247,57 @@ public abstract class DialogControlBase : OverlayFeedbackElement
         ActualVerticalAnchor = VerticalPosition.Center;
         double left = Canvas.GetLeft(this);
         double top = Canvas.GetTop(this);
-        double right = ContainerPanel.Bounds.Width - left - Bounds.Width;
-        double bottom = ContainerPanel.Bounds.Height - top - Bounds.Height;
         if (ContainerPanel is OverlayDialogHost h)
         {
             var snapThickness = h.SnapThickness;
-            if(top < snapThickness.Top)
+            var safePadding = h.SafePadding;
+            var safeTop = safePadding.Top;
+            var safeBottom = safePadding.Bottom;
+            var safeLeft = safePadding.Left;
+            var safeRight = safePadding.Right;
+            var containerWidth = ContainerPanel.Bounds.Width;
+            var containerHeight = ContainerPanel.Bounds.Height;
+
+            if (top - safeTop < snapThickness.Top)
             {
-                Canvas.SetTop(this, 0);
+                Canvas.SetTop(this, safeTop);
                 ActualVerticalAnchor = VerticalPosition.Top;
                 VerticalOffsetRatio = 0;
             }
-            if(bottom < snapThickness.Bottom)
+            if (containerHeight - safeBottom - top - Bounds.Height < snapThickness.Bottom)
             {
-                Canvas.SetTop(this, ContainerPanel.Bounds.Height - Bounds.Height);
+                Canvas.SetTop(this, containerHeight - safeBottom - Bounds.Height);
                 ActualVerticalAnchor = VerticalPosition.Bottom;
                 VerticalOffsetRatio = 1;
             }
-            if(left < snapThickness.Left)
+            if (left - safeLeft < snapThickness.Left)
             {
-                Canvas.SetLeft(this, 0);
+                Canvas.SetLeft(this, safeLeft);
                 ActualHorizontalAnchor = HorizontalPosition.Left;
                 HorizontalOffsetRatio = 0;
             }
-            if(right < snapThickness.Right)
+            if (containerWidth - safeRight - left - Bounds.Width < snapThickness.Right)
             {
-                Canvas.SetLeft(this, ContainerPanel.Bounds.Width - this.Bounds.Width);
+                Canvas.SetLeft(this, containerWidth - safeRight - this.Bounds.Width);
                 ActualHorizontalAnchor = HorizontalPosition.Right;
                 HorizontalOffsetRatio = 1;
             }
-        }
-        left = Canvas.GetLeft(this);
-        top = Canvas.GetTop(this);
-        right = ContainerPanel.Bounds.Width - left - Bounds.Width;
-        bottom = ContainerPanel.Bounds.Height - top - Bounds.Height;
 
-        HorizontalOffsetRatio = (left + right) == 0 ? 0 : left / (left + right);
-        VerticalOffsetRatio = (top + bottom) == 0 ? 0 : top / (top + bottom);
+            left = Canvas.GetLeft(this);
+            top = Canvas.GetTop(this);
+            var effectiveLeft = left - safeLeft;
+            var effectiveRight = containerWidth - safeRight - left - Bounds.Width;
+            var effectiveTop = top - safeTop;
+            var effectiveBottom = containerHeight - safeBottom - top - Bounds.Height;
+            HorizontalOffsetRatio = (effectiveLeft + effectiveRight) == 0 ? 0 : effectiveLeft / (effectiveLeft + effectiveRight);
+            VerticalOffsetRatio = (effectiveTop + effectiveBottom) == 0 ? 0 : effectiveTop / (effectiveTop + effectiveBottom);
+        }
+        else
+        {
+            double right = ContainerPanel.Bounds.Width - left - Bounds.Width;
+            double bottom = ContainerPanel.Bounds.Height - top - Bounds.Height;
+            HorizontalOffsetRatio = (left + right) == 0 ? 0 : left / (left + right);
+            VerticalOffsetRatio = (top + bottom) == 0 ? 0 : top / (top + bottom);
+        }
     }
 }

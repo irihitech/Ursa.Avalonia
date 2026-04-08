@@ -94,6 +94,15 @@ public partial class OverlayDialogHost: Canvas
         get => GetValue(OverlayMaskBrushProperty);
         set => SetValue(OverlayMaskBrushProperty, value);
     }
+
+    public static readonly StyledProperty<Thickness> SafePaddingProperty =
+        AvaloniaProperty.Register<OverlayDialogHost, Thickness>(nameof(SafePadding));
+
+    public Thickness SafePadding
+    {
+        get => GetValue(SafePaddingProperty);
+        set => SetValue(SafePaddingProperty, value);
+    }
     
     private PureRectangle CreateOverlayMask(bool modal, bool canCloseOnClick)
     {

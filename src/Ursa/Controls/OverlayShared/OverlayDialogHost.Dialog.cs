@@ -14,29 +14,32 @@ public partial class OverlayDialogHost
 {
     public Thickness SnapThickness { get; set; } = new(0);
 
-    private static void ResetDialogPosition(DialogControlBase control, Size newSize)
+    private void ResetDialogPosition(DialogControlBase control, Size newSize)
     {
-        control.MaxWidth = newSize.Width;
-        control.MaxHeight = newSize.Height;
+        var safePadding = SafePadding;
+        var safeWidth = newSize.Width - safePadding.Left - safePadding.Right;
+        var safeHeight = newSize.Height - safePadding.Top - safePadding.Bottom;
+        control.MaxWidth = safeWidth;
+        control.MaxHeight = safeHeight;
         if (control.IsFullScreen)
         {
-            control.Width = newSize.Width;
-            control.Height = newSize.Height;
-            SetLeft(control, 0);
-            SetTop(control, 0);
+            control.Width = safeWidth;
+            control.Height = safeHeight;
+            SetLeft(control, safePadding.Left);
+            SetTop(control, safePadding.Top);
             return;
         }
 
-        var width = newSize.Width - control.Bounds.Width;
-        var height = newSize.Height - control.Bounds.Height;
+        var width = safeWidth - control.Bounds.Width;
+        var height = safeHeight - control.Bounds.Height;
         var newLeft = width * control.HorizontalOffsetRatio ?? 0;
         var newTop = height * control.VerticalOffsetRatio ?? 0;
         if (control.ActualHorizontalAnchor == HorizontalPosition.Left) newLeft = 0;
-        if (control.ActualHorizontalAnchor == HorizontalPosition.Right) newLeft = newSize.Width - control.Bounds.Width;
+        if (control.ActualHorizontalAnchor == HorizontalPosition.Right) newLeft = safeWidth - control.Bounds.Width;
         if (control.ActualVerticalAnchor == VerticalPosition.Top) newTop = 0;
-        if (control.ActualVerticalAnchor == VerticalPosition.Bottom) newTop = newSize.Height - control.Bounds.Height;
-        SetLeft(control, Math.Max(0.0, newLeft));
-        SetTop(control, Math.Max(0.0, newTop));
+        if (control.ActualVerticalAnchor == VerticalPosition.Bottom) newTop = safeHeight - control.Bounds.Height;
+        SetLeft(control, safePadding.Left + Math.Max(0.0, newLeft));
+        SetTop(control, safePadding.Top + Math.Max(0.0, newTop));
     }
 
     internal void AddDialog(DialogControlBase control)
@@ -46,15 +49,18 @@ public partial class OverlayDialogHost
         if (mask is not null) Children.Add(mask);
         Children.Add(control);
         _layers.Add(new DialogPair(mask, control, false));
+        var safePadding = SafePadding;
+        var safeWidth = Bounds.Width - safePadding.Left - safePadding.Right;
+        var safeHeight = Bounds.Height - safePadding.Top - safePadding.Bottom;
         if (control.IsFullScreen)
         {
-            control.Width = Bounds.Width;
-            control.Height = Bounds.Height;
+            control.Width = safeWidth;
+            control.Height = safeHeight;
         }
 
-        control.MaxWidth = Bounds.Width;
-        control.MaxHeight = Bounds.Height;
-        control.Measure(Bounds.Size);
+        control.MaxWidth = safeWidth;
+        control.MaxHeight = safeHeight;
+        control.Measure(new Size(safeWidth, safeHeight));
         control.Arrange(new Rect(control.DesiredSize));
         SetToPosition(control);
         control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDialogControlClosing);
@@ -103,15 +109,18 @@ public partial class OverlayDialogHost
         ResetZIndices();
         Children.Add(mask);
         Children.Add(control);
+        var safePadding = SafePadding;
+        var safeWidth = Bounds.Width - safePadding.Left - safePadding.Right;
+        var safeHeight = Bounds.Height - safePadding.Top - safePadding.Bottom;
         if (control.IsFullScreen)
         {
-            control.Width = Bounds.Width;
-            control.Height = Bounds.Height;
+            control.Width = safeWidth;
+            control.Height = safeHeight;
         }
 
-        control.MaxWidth = Bounds.Width;
-        control.MaxHeight = Bounds.Height;
-        control.Measure(Bounds.Size);
+        control.MaxWidth = safeWidth;
+        control.MaxHeight = safeHeight;
+        control.Measure(new Size(safeWidth, safeHeight));
         control.Arrange(new Rect(control.DesiredSize));
         SetToPosition(control);
         control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDialogControlClosing);
@@ -175,12 +184,15 @@ public partial class OverlayDialogHost
 
     private double GetLeftPosition(DialogControlBase control)
     {
+        var safePadding = SafePadding;
+        var safeLeft = safePadding.Left;
+        var safeWidth = Bounds.Width - safePadding.Left - safePadding.Right;
         var offset = Math.Max(0, control.HorizontalOffset ?? 0);
-        var left = Bounds.Width - control.Bounds.Width;
+        var left = safeWidth - control.Bounds.Width;
         if (control.HorizontalAnchor == HorizontalPosition.Center)
         {
             left *= 0.5;
-            left = MathHelpers.SafeClamp(left, 0, Bounds.Width * 0.5);
+            left = MathHelpers.SafeClamp(left, 0, safeWidth * 0.5);
         }
         else if (control.HorizontalAnchor == HorizontalPosition.Left)
         {
@@ -188,22 +200,25 @@ public partial class OverlayDialogHost
         }
         else if (control.HorizontalAnchor == HorizontalPosition.Right)
         {
-            var leftOffset = Bounds.Width - control.Bounds.Width - offset;
+            var leftOffset = safeWidth - control.Bounds.Width - offset;
             leftOffset = Math.Max(0, leftOffset);
             if (control.HorizontalOffset.HasValue) left = MathHelpers.SafeClamp(left, 0, leftOffset);
         }
 
-        return left;
+        return safeLeft + left;
     }
 
     private double GetTopPosition(DialogControlBase control)
     {
+        var safePadding = SafePadding;
+        var safeTop = safePadding.Top;
+        var safeHeight = Bounds.Height - safePadding.Top - safePadding.Bottom;
         var offset = Math.Max(0, control.VerticalOffset ?? 0);
-        var top = Bounds.Height - control.Bounds.Height;
+        var top = safeHeight - control.Bounds.Height;
         if (control.VerticalAnchor == VerticalPosition.Center)
         {
             top *= 0.5;
-            top = MathHelpers.SafeClamp(top, 0, Bounds.Height * 0.5);
+            top = MathHelpers.SafeClamp(top, 0, safeHeight * 0.5);
         }
         else if (control.VerticalAnchor == VerticalPosition.Top)
         {
@@ -211,10 +226,10 @@ public partial class OverlayDialogHost
         }
         else if (control.VerticalAnchor == VerticalPosition.Bottom)
         {
-            var topOffset = Math.Max(0, Bounds.Height - control.Bounds.Height - offset);
+            var topOffset = Math.Max(0, safeHeight - control.Bounds.Height - offset);
             top = MathHelpers.SafeClamp(top, 0, topOffset);
         }
 
-        return top;
+        return safeTop + top;
     }
 }
