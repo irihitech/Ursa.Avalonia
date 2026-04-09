@@ -42,10 +42,7 @@ public class TagInput : TemplatedControl
 
     public static readonly StyledProperty<int> MaxCountProperty =
         AvaloniaProperty.Register<TagInput, int>(nameof(MaxCount), int.MaxValue);
-
-    public static readonly StyledProperty<ControlTheme> InputThemeProperty =
-        AvaloniaProperty.Register<TagInput, ControlTheme>(nameof(InputTheme));
-
+    
     public static readonly StyledProperty<IDataTemplate?> ItemTemplateProperty =
         AvaloniaProperty.Register<TagInput, IDataTemplate?>(nameof(ItemTemplate));
 
@@ -95,6 +92,7 @@ public class TagInput : TemplatedControl
         set => SetValue(AcceptsReturnProperty, value);
     }
 
+    [Obsolete("Use PlaceholderText property instead.")]
     public string? Watermark
     {
         get => PlaceholderText;
@@ -111,12 +109,6 @@ public class TagInput : TemplatedControl
     {
         get => GetValue(MaxCountProperty);
         set => SetValue(MaxCountProperty, value);
-    }
-
-    public ControlTheme InputTheme
-    {
-        get => GetValue(InputThemeProperty);
-        set => SetValue(InputThemeProperty, value);
     }
 
     [InheritDataTypeFromItems(nameof(Tags))]
@@ -173,18 +165,21 @@ public class TagInput : TemplatedControl
     {
         base.OnApplyTemplate(e);
         _itemsControl = e.NameScope.Find<ItemsControl>(PART_ItemsControl);
-        // _watermark = e.NameScope.Find<Visual>(PART_Placeholder);
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
     {
         base.OnLoaded(e);
         InputTextBox = (_itemsControl?.ItemsPanelRoot as WrapPanelWithTrailingItem)?.TrailingItem as TextBox;
-        InputTextBox?.AddHandler(KeyDownEvent, OnTextBoxKeyDown, RoutingStrategies.Tunnel);
-        InputTextBox?.AddHandler(LostFocusEvent, OnTextBox_LostFocus, RoutingStrategies.Bubble);
-        if (InputTextBox != null) InputTextBox[!AcceptsReturnProperty] = this[!AcceptsReturnProperty];
-        InputTextBox?.GetObservable(TextBox.TextProperty).Subscribe(_ => CheckEmpty());
-        _presenter = InputTextBox?.GetTemplateChildren().OfType<TextPresenter>().FirstOrDefault();
+        if (InputTextBox is null) return;
+        
+        InputTextBox.AddHandler(KeyDownEvent, OnTextBoxKeyDown, RoutingStrategies.Tunnel);
+        InputTextBox.AddHandler(LostFocusEvent, OnTextBox_LostFocus, RoutingStrategies.Bubble);
+        
+        InputTextBox[~AcceptsReturnProperty] = this[~AcceptsReturnProperty];
+        InputTextBox.GetObservable(TextBox.TextProperty).Subscribe(_ => CheckEmpty());
+        
+        _presenter = InputTextBox.GetTemplateChildren().OfType<TextPresenter>().FirstOrDefault();
         _presenter?.GetObservable(TextPresenter.PreeditTextProperty).Subscribe(_ => CheckEmpty());
     }
 
@@ -232,9 +227,9 @@ public class TagInput : TemplatedControl
         {
             values = text.Split(new[] { Separator }, StringSplitOptions.RemoveEmptyEntries);
         }
-        else if (InputTextBox?.Text is not null)
+        else
         {
-            values = [InputTextBox.Text];
+            values = [text];
         }
 
         if (!AllowDuplicates)
