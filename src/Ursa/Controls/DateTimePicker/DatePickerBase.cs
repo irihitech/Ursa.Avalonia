@@ -50,6 +50,9 @@ public class DatePickerBase : TemplatedControl, IInnerContentControl, IPopupInne
     public static readonly StyledProperty<bool> IsReadonlyProperty = AvaloniaProperty.Register<DatePickerBase, bool>(
         nameof(IsReadonly));
 
+    public static readonly StyledProperty<DateTimeKind> DefaultDateKindProperty =
+        AvaloniaProperty.Register<DatePickerBase, DateTimeKind>(nameof(DefaultDateKind), DateTimeKind.Unspecified);
+
     public AvaloniaList<DateRange> BlackoutDates
     {
         get => GetValue(BlackoutDatesProperty);
@@ -78,6 +81,18 @@ public class DatePickerBase : TemplatedControl, IInnerContentControl, IPopupInne
     {
         get => GetValue(IsReadonlyProperty);
         set => SetValue(IsReadonlyProperty, value);
+    }
+
+    public DateTimeKind DefaultDateKind
+    {
+        get => GetValue(DefaultDateKindProperty);
+        set => SetValue(DefaultDateKindProperty, value);
+    }
+
+    protected DateTime? ApplyDateKind(DateTime? date)
+    {
+        if (date is null) return null;
+        return DateTime.SpecifyKind(date.Value, DefaultDateKind);
     }
 
     public bool IsDropdownOpen

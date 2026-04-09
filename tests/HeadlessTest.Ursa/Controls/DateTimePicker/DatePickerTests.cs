@@ -235,7 +235,7 @@ public class DatePickerTests
         Assert.Equal("2025-02-18", textBox?.Text);
     }
     
-    /*
+    
     [AvaloniaFact]
     public void Set_Valid_TextBox_Text_Updates_SelectedDate()
     {
@@ -251,14 +251,15 @@ public class DatePickerTests
         window.Show();
         Dispatcher.UIThread.RunJobs();
         var textBox = picker.GetTemplateChildOfType<TextBox>(DatePicker.PART_TextBox);
-        textBox?.RaiseEvent(new TextChangedEventArgs(TextBox.TextChangedEvent));
+        textBox?.Focus();
         Dispatcher.UIThread.RunJobs();
         Assert.Null(picker.SelectedDate);
         textBox?.SetValue(TextBox.TextProperty, "2025-02-18");
+        window.KeyPressQwerty(PhysicalKey.Enter, RawInputModifiers.None);
         Dispatcher.UIThread.RunJobs();
         Assert.Equal(new DateTime(2025, 2, 18), picker.SelectedDate);
     }
-    
+    /*
     [AvaloniaFact]
     public void Set_Invalid_TextBox_Text_Clears_SelectedDate()
     {

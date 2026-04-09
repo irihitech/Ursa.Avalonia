@@ -150,7 +150,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
         if (_status is { Current: Status.Start, Previous: Status.None })
         {
             // User make first selection: Start.
-            SetCurrentValue(SelectedStartDateProperty, e.Date);
+            SetCurrentValue(SelectedStartDateProperty, ApplyDateKind(e.Date));
             if (SelectedEndDate != null && e.Date > SelectedEndDate)
             {
                 SetCurrentValue(SelectedEndDateProperty, null);
@@ -161,15 +161,15 @@ public class DateRangePicker : DatePickerBase, IClearControl
         }
         else if (_status is { Current: Status.Start, Previous: Status.End })
         {
-            // User make second selection: Start. 
-            SetCurrentValue(SelectedStartDateProperty, e.Date);
+            // User make second selection: Start.
+            SetCurrentValue(SelectedStartDateProperty, ApplyDateKind(e.Date));
             _status.Reset();
             SetCurrentValue(IsDropdownOpenProperty, false);
         }
         else if (_status is { Current: Status.End, Previous: Status.None })
         {
             // User make first selection: End.
-            SetCurrentValue(SelectedEndDateProperty, e.Date);
+            SetCurrentValue(SelectedEndDateProperty, ApplyDateKind(e.Date));
             if (SelectedStartDate != null && e.Date < SelectedStartDate)
             {
                 SetCurrentValue(SelectedStartDateProperty, null);
@@ -181,7 +181,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
         else if (_status is { Current: Status.End, Previous: Status.Start })
         {
             // User make second selection: End.
-            SetCurrentValue(SelectedEndDateProperty, e.Date);
+            SetCurrentValue(SelectedEndDateProperty, ApplyDateKind(e.Date));
             _status.Reset();
             SetCurrentValue(IsDropdownOpenProperty, false);
         }
@@ -260,7 +260,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
                      out var start))
         {
             startDate = start;
-            SetCurrentValue(SelectedStartDateProperty, startDate);
+            SetCurrentValue(SelectedStartDateProperty, ApplyDateKind(startDate));
         }
         else
         {
@@ -278,7 +278,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
                      out var end))
         {
             endDate = end;
-            SetCurrentValue(SelectedEndDateProperty, endDate);
+            SetCurrentValue(SelectedEndDateProperty, ApplyDateKind(endDate));
         }
         else
         {

@@ -169,7 +169,7 @@ public class DateTimePicker : DatePickerBase, IClearControl
         if (DateTime.TryParseExact(_textBox?.Text, format, CultureInfo.CurrentUICulture, DateTimeStyles.None,
                 out var date))
         {
-            SetCurrentValue(SelectedDateProperty, date);
+            SetCurrentValue(SelectedDateProperty, ApplyDateKind(date));
         }
         else
         {
@@ -185,7 +185,7 @@ public class DateTimePicker : DatePickerBase, IClearControl
             var date = e.Date.Value;
             var time = DateTime.Now.TimeOfDay;
             SetCurrentValue(SelectedDateProperty,
-                new DateTime(date.Year, date.Month, date.Day, time.Hours, time.Minutes, time.Seconds));
+                ApplyDateKind(new DateTime(date.Year, date.Month, date.Day, time.Hours, time.Minutes, time.Seconds)));
         }
         else
         {
@@ -193,8 +193,8 @@ public class DateTimePicker : DatePickerBase, IClearControl
             if (e.Date is null) return;
             var date = e.Date.Value;
             SetCurrentValue(SelectedDateProperty,
-                new DateTime(date.Year, date.Month, date.Day, selectedDate.Value.Hour, selectedDate.Value.Minute,
-                    selectedDate.Value.Second));
+                ApplyDateKind(new DateTime(date.Year, date.Month, date.Day, selectedDate.Value.Hour, selectedDate.Value.Minute,
+                    selectedDate.Value.Second)));
         }
     }
 
@@ -206,7 +206,7 @@ public class DateTimePicker : DatePickerBase, IClearControl
             var time = e.NewTime.Value;
             var date = DateTime.Today;
             SetCurrentValue(SelectedDateProperty,
-                new DateTime(date.Year, date.Month, date.Day, time.Hours, time.Minutes, time.Seconds));
+                ApplyDateKind(new DateTime(date.Year, date.Month, date.Day, time.Hours, time.Minutes, time.Seconds)));
         }
         else
         {
@@ -214,9 +214,9 @@ public class DateTimePicker : DatePickerBase, IClearControl
             if (e.NewTime is null) return;
             var time = e.NewTime.Value;
             SetCurrentValue(SelectedDateProperty,
-                new DateTime(selectedDate.Value.Year, selectedDate.Value.Month, selectedDate.Value.Day, time.Hours,
+                ApplyDateKind(new DateTime(selectedDate.Value.Year, selectedDate.Value.Month, selectedDate.Value.Day, time.Hours,
                     time.Minutes,
-                    time.Seconds));
+                    time.Seconds)));
         }
     }
 

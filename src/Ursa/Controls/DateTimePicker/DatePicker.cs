@@ -123,7 +123,7 @@ public class DatePicker : DatePickerBase, IClearControl
 
     private void OnDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
     {
-        SetCurrentValue(SelectedDateProperty, e.Date);
+        SetCurrentValue(SelectedDateProperty, ApplyDateKind(e.Date));
         SetCurrentValue(IsDropdownOpenProperty, false);
     }
     
@@ -222,7 +222,7 @@ public class DatePicker : DatePickerBase, IClearControl
         if (DateTime.TryParseExact(_textBox?.Text, format, CultureInfo.CurrentUICulture, DateTimeStyles.None,
                 out var date))
         {
-            SetCurrentValue(SelectedDateProperty, date);
+            SetCurrentValue(SelectedDateProperty, ApplyDateKind(date));
             if (_calendar is not null)
             {
                 _calendar.ContextDate = _calendar.ContextDate.With(year: date.Year, month: date.Month);
