@@ -10,6 +10,7 @@
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="MinHeight" Value="{DynamicResource TextBoxDefaultHeight}" />
         <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
         <Setter Property="ItemTemplate">
             <DataTemplate>
                 <u:ClosableTag Command="{Binding $parent[u:TagInput].Close}" Content="{ReflectionBinding}" />

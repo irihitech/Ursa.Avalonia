@@ -13,6 +13,7 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Padding" Value="8 0" />
         <Setter Property="MinHeight" Value="{DynamicResource CalendarDatePickerDefaultHeight}" />
+        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:DatePicker">
                 <DataValidationErrors>

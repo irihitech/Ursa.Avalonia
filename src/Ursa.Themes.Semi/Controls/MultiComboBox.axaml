@@ -24,6 +24,7 @@
         <Setter Property="MinHeight" Value="32" />
         <Setter Property="Padding" Value="12 4" />
         <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:MultiComboBox">
                 <DataValidationErrors>

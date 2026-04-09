@@ -35,6 +35,7 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="MinHeight" Value="{DynamicResource ComboBoxDefaultHeight}" />
         <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:TreeComboBox">
                 <Grid MinWidth="{TemplateBinding MinHeight}" ColumnDefinitions="Auto, *, Auto, Auto">
