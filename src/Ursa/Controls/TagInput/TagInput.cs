@@ -246,7 +246,7 @@ public class TagInput : TemplatedControl
 
     public void Close(object o)
     {
-        if (o is not Control presenter) return;
+        if (o is not ClosableTag presenter) return;
         var index = _itemsControl?.IndexFromContainer(presenter);
         if (index is >= 0 && index < Tags.Count)
             Tags.RemoveAt(index.Value);
