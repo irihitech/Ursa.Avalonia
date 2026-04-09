@@ -5,7 +5,7 @@ using Avalonia.Headless.XUnit;
 using Avalonia.Threading;
 using TimePickerPresenter = Ursa.Controls.TimePickerPresenter;
 
-namespace HeadlessTest.Ursa.Controls.DateTimePicker;
+namespace HeadlessTest.Ursa.Controls.DateAndTimePickerTests;
 
 public class TimePickerPresenterTests
 {

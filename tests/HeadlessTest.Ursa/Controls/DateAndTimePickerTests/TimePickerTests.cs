@@ -8,7 +8,7 @@ using Avalonia.Threading;
 using HeadlessTest.Ursa.TestHelpers;
 using TimePicker = Ursa.Controls.TimePicker;
 
-namespace HeadlessTest.Ursa.Controls.DateTimePicker;
+namespace HeadlessTest.Ursa.Controls.DateAndTimePickerTests;
 
 public class TimePickerTests
 {

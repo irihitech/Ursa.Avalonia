@@ -158,6 +158,23 @@ public class DateTimePicker : DatePickerBase, IClearControl
         InitializePopupOpen();
     }
 
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        base.OnKeyDown(e);
+        switch (e.Key)
+        {
+            case Key.Enter:
+                CommitInput();
+                SetCurrentValue(IsDropdownOpenProperty, false);
+                e.Handled = true;
+                break;
+            case Key.Down when e.KeyModifiers.HasFlag(KeyModifiers.Alt):
+                InitializePopupOpen();
+                e.Handled = true;
+                break;
+        }
+    }
+
     private void CommitInput()
     {
         var format = this.DisplayFormat ?? DEFAULT_DATETIME_DISPLAY_FORMAT;

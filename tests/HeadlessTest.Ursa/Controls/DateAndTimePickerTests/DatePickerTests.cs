@@ -11,7 +11,7 @@ using HeadlessTest.Ursa.TestHelpers;
 using Ursa.Controls;
 using DatePicker = Ursa.Controls.DatePicker;
 
-namespace HeadlessTest.Ursa.Controls.DateTimePicker;
+namespace HeadlessTest.Ursa.Controls.DateAndTimePickerTests;
 
 public class DatePickerTests
 {
@@ -258,6 +258,109 @@ public class DatePickerTests
         window.KeyPressQwerty(PhysicalKey.Enter, RawInputModifiers.None);
         Dispatcher.UIThread.RunJobs();
         Assert.Equal(new DateTime(2025, 2, 18), picker.SelectedDate);
+    }
+
+    [AvaloniaFact]
+    public void DefaultDateKind_Utc_Applied_When_Calendar_Date_Selected()
+    {
+        var window = new Window();
+        var picker = new DatePicker()
+        {
+            Width = 300,
+            DisplayFormat = "yyyy-MM-dd",
+            DefaultDateKind = DateTimeKind.Utc,
+            HorizontalAlignment = HorizontalAlignment.Left,
+            VerticalAlignment = VerticalAlignment.Top
+        };
+        window.Content = picker;
+        window.Show();
+        Dispatcher.UIThread.RunJobs();
+        window.MouseDown(new Point(10, 10), MouseButton.Left);
+        Dispatcher.UIThread.RunJobs();
+        var popup = picker.GetTemplateChildOfType<Popup>(DatePicker.PART_Popup);
+        var calendar = popup?.GetLogicalDescendants().OfType<DatePickerCalendarView>().FirstOrDefault();
+        calendar?.RaiseEvent(new DatePickerCalendarDayButtonEventArgs(new DateTime(2025, 2, 17))
+            { RoutedEvent = DatePickerCalendarView.DateSelectedEvent });
+        Dispatcher.UIThread.RunJobs();
+        Assert.NotNull(picker.SelectedDate);
+        Assert.Equal(DateTimeKind.Utc, picker.SelectedDate!.Value.Kind);
+        Assert.Equal(new DateTime(2025, 2, 17, 0, 0, 0, DateTimeKind.Utc), picker.SelectedDate!.Value);
+    }
+
+    [AvaloniaFact]
+    public void DefaultDateKind_Local_Applied_When_Calendar_Date_Selected()
+    {
+        var window = new Window();
+        var picker = new DatePicker()
+        {
+            Width = 300,
+            DisplayFormat = "yyyy-MM-dd",
+            DefaultDateKind = DateTimeKind.Local,
+            HorizontalAlignment = HorizontalAlignment.Left,
+            VerticalAlignment = VerticalAlignment.Top
+        };
+        window.Content = picker;
+        window.Show();
+        Dispatcher.UIThread.RunJobs();
+        window.MouseDown(new Point(10, 10), MouseButton.Left);
+        Dispatcher.UIThread.RunJobs();
+        var popup = picker.GetTemplateChildOfType<Popup>(DatePicker.PART_Popup);
+        var calendar = popup?.GetLogicalDescendants().OfType<DatePickerCalendarView>().FirstOrDefault();
+        calendar?.RaiseEvent(new DatePickerCalendarDayButtonEventArgs(new DateTime(2025, 3, 10))
+            { RoutedEvent = DatePickerCalendarView.DateSelectedEvent });
+        Dispatcher.UIThread.RunJobs();
+        Assert.NotNull(picker.SelectedDate);
+        Assert.Equal(DateTimeKind.Local, picker.SelectedDate!.Value.Kind);
+    }
+
+    [AvaloniaFact]
+    public void DefaultDateKind_Utc_Applied_When_Text_Parsed()
+    {
+        var window = new Window();
+        var picker = new DatePicker()
+        {
+            Width = 300,
+            DisplayFormat = "yyyy-MM-dd",
+            DefaultDateKind = DateTimeKind.Utc,
+            HorizontalAlignment = HorizontalAlignment.Left,
+            VerticalAlignment = VerticalAlignment.Top
+        };
+        window.Content = picker;
+        window.Show();
+        Dispatcher.UIThread.RunJobs();
+        var textBox = picker.GetTemplateChildOfType<TextBox>(DatePicker.PART_TextBox);
+        textBox?.Focus();
+        Dispatcher.UIThread.RunJobs();
+        textBox?.SetValue(TextBox.TextProperty, "2025-06-15");
+        window.KeyPressQwerty(PhysicalKey.Enter, RawInputModifiers.None);
+        Dispatcher.UIThread.RunJobs();
+        Assert.NotNull(picker.SelectedDate);
+        Assert.Equal(DateTimeKind.Utc, picker.SelectedDate!.Value.Kind);
+        Assert.Equal(new DateTime(2025, 6, 15, 0, 0, 0, DateTimeKind.Utc), picker.SelectedDate!.Value);
+    }
+
+    [AvaloniaFact]
+    public void DefaultDateKind_Unspecified_Is_Default()
+    {
+        var window = new Window();
+        var picker = new DatePicker()
+        {
+            Width = 300,
+            DisplayFormat = "yyyy-MM-dd",
+            HorizontalAlignment = HorizontalAlignment.Left,
+            VerticalAlignment = VerticalAlignment.Top
+        };
+        window.Content = picker;
+        window.Show();
+        Dispatcher.UIThread.RunJobs();
+        var textBox = picker.GetTemplateChildOfType<TextBox>(DatePicker.PART_TextBox);
+        textBox?.Focus();
+        Dispatcher.UIThread.RunJobs();
+        textBox?.SetValue(TextBox.TextProperty, "2025-06-15");
+        window.KeyPressQwerty(PhysicalKey.Enter, RawInputModifiers.None);
+        Dispatcher.UIThread.RunJobs();
+        Assert.NotNull(picker.SelectedDate);
+        Assert.Equal(DateTimeKind.Unspecified, picker.SelectedDate!.Value.Kind);
     }
     /*
     [AvaloniaFact]
