@@ -10,6 +10,7 @@
                     <ContentPresenter
                         Name="PART_LeftContentPresenter"
                         Margin="8,0"
+                        IsVisible="{TemplateBinding LeftContent, Converter={x:Static ObjectConverters.IsNotNull}}"
                         VerticalAlignment="Center"
                         Content="{TemplateBinding LeftContent}"
                         DockPanel.Dock="Left" />
@@ -17,6 +18,7 @@
                         Name="PART_RightContentPresenter"
                         Margin="8,0"
                         VerticalAlignment="Center"
+                        IsVisible="{TemplateBinding RightContent, Converter={x:Static ObjectConverters.IsNotNull}}"
                         Content="{TemplateBinding RightContent}"
                         DockPanel.Dock="Right" />
                     <ContentPresenter
