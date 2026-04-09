@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using Avalonia;
 using Avalonia.Collections;
 using Avalonia.Controls;
@@ -64,14 +65,13 @@ public class TagInput : TemplatedControl
 
     private ItemsControl? _itemsControl;
     private TextPresenter? _presenter;
+    private IDisposable? _tagsSubscription;
 
     internal TextBox? InputTextBox;
 
     public TagInput()
     {
-        var tags = new ObservableCollection<string>();
-        Tags = tags;
-        tags.GetWeakCollectionChangedObservable().Subscribe(_ => CheckEmpty());
+        Tags = new ObservableCollection<string>();
     }
 
     public string? PlaceholderText
@@ -158,6 +158,21 @@ public class TagInput : TemplatedControl
             case LostFocusBehavior.Clear:
                 if (InputTextBox is not null) InputTextBox.Text = string.Empty;
                 break;
+        }
+    }
+
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+        if (change.Property == TagsProperty)
+        {
+            _tagsSubscription?.Dispose();
+            _tagsSubscription = null;
+            if (Tags is INotifyCollectionChanged observable)
+            {
+                _tagsSubscription = observable.GetWeakCollectionChangedObservable().Subscribe(_ => CheckEmpty());
+            }
+            CheckEmpty();
         }
     }
 
