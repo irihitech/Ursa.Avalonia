@@ -10,11 +10,6 @@
         <Setter Property="MinHeight" Value="{DynamicResource TextBoxDefaultHeight}" />
         <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
         <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="ItemTemplate">
-            <DataTemplate>
-                <u:ClosableTag x:DataType="x:String" Command="{Binding $parent[u:TagInput].Close}" Content="{Binding Path=.}" />
-            </DataTemplate>
-        </Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:TagInput">
                 <Border
@@ -33,12 +28,13 @@
                             VerticalAlignment="Center"
                             Foreground="{TemplateBinding PlaceholderForeground}"
                             Text="{TemplateBinding PlaceholderText}" />
-                        <ItemsControl
+                        <u:MultiComboBoxSelectedItemList
                             Name="PART_ItemsControl"
                             HorizontalAlignment="Stretch"
+                            RemoveCommand="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Close}"
                             ItemTemplate="{TemplateBinding ItemTemplate}"
                             ItemsSource="{TemplateBinding Tags}">
-                            <ItemsControl.ItemsPanel>
+                            <u:MultiComboBoxSelectedItemList.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <u:WrapPanelWithTrailingItem TrailingWrapWidth="24" >
                                         <u:WrapPanelWithTrailingItem.TrailingItem>
@@ -46,8 +42,8 @@
                                         </u:WrapPanelWithTrailingItem.TrailingItem>
                                     </u:WrapPanelWithTrailingItem>
                                 </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                        </ItemsControl>
+                            </u:MultiComboBoxSelectedItemList.ItemsPanel>
+                        </u:MultiComboBoxSelectedItemList>
                     </Panel>
                 </Border>
             </ControlTemplate>
