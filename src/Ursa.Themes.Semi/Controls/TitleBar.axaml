@@ -21,7 +21,7 @@
                         DockPanel.Dock="Right" />
                     <ContentPresenter
                         Name="PART_ContentPresenter"
-                        HorizontalAlignment="Center"
+                        HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         Content="{TemplateBinding CenterContent}" />
                 </DockPanel>
