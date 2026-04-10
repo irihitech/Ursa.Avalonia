@@ -33,6 +33,7 @@ jobs:
       Ursa_Themes_Semi: ${{ inputs.Ursa_Themes_Semi }}
       PrismExtension: ${{ inputs.PrismExtension }}
       ReactiveUIExtension: ${{ inputs.ReactiveUIExtension }}
+    secrets: inherit
 
   publish:
     uses: ./.github/workflows/publish.yml

@@ -40,6 +40,9 @@ on:
       ReactiveUIExtension:
         default: false
         type: boolean
+    secrets:
+      NUGET_ORG_API_KEY:
+        required: false
 
 jobs:
   Pack_to_NuGet:
