@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Pack Ursa
         if: ${{ inputs.Ursa }}
@@ -69,10 +69,10 @@ jobs:
 
       - name: Upload to NuGet
         if: ${{ inputs.Upload_to_NuGet }}
-        run: dotnet nuget push "nugets/*.nupkg" --api-key "${{ secrets.NUGET_ORG_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
+        run: dotnet nuget push "nugets/*.nupkg" --api-key ${{ secrets.NUGET_ORG_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: nugets
           path: nugets
