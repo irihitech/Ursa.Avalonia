@@ -4,11 +4,11 @@ namespace Ursa.Controls;
 
 public class TimeChangedEventArgs:RoutedEventArgs
 {
-    public TimeSpan? OldTime { get; }
+    public TimeOnly? OldTime { get; }
 
-    public TimeSpan? NewTime { get; }
+    public TimeOnly? NewTime { get; }
 
-    public TimeChangedEventArgs(TimeSpan? oldTime, TimeSpan? newTime)
+    public TimeChangedEventArgs(TimeOnly? oldTime, TimeOnly? newTime)
     {
         this.OldTime = oldTime;
         this.NewTime = newTime;

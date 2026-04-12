@@ -264,7 +264,7 @@ public class DatePickerCalendarViewTests
         Assert.NotNull(dayHeader);
         Assert.NotNull(dayButton);
         Assert.Equal('S', dayHeader.Text?[0]);
-        Assert.Equal(30, (dayButton.DataContext as DateTime?)?.Day);
+        Assert.Equal(30, (dayButton.DataContext as DateOnly?)?.Day);
         
         calendarView.FirstDayOfWeek = DayOfWeek.Tuesday;
         
@@ -273,7 +273,7 @@ public class DatePickerCalendarViewTests
         Assert.NotNull(dayHeader);
         Assert.NotNull(dayButton);
         Assert.Equal('T', dayHeader.Text?[0]);
-        Assert.Equal(25, (dayButton.DataContext as DateTime?)?.Day);
+        Assert.Equal(25, (dayButton.DataContext as DateOnly?)?.Day);
         
     }
     

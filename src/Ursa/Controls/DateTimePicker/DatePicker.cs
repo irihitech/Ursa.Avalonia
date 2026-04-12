@@ -101,7 +101,8 @@ public class DatePicker : DatePickerBase, IClearControl
     {
         SetCurrentValue(IsDropdownOpenProperty, true);
         SetCalendarContextDate();
-        _calendar?.MarkDates(SelectedDate?.Date, SelectedDate?.Date);
+        var selectedDate = SelectedDate.ToDateOnly();
+        _calendar?.MarkDates(selectedDate, selectedDate);
     }
 
     private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e)
@@ -123,7 +124,7 @@ public class DatePicker : DatePickerBase, IClearControl
 
     private void OnDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
     {
-        SetCurrentValue(SelectedDateProperty, e.Date);
+        SetCurrentValue(SelectedDateProperty, e.Date.ToDateTime(TimeOnly.MinValue));
         SetCurrentValue(IsDropdownOpenProperty, false);
     }
     
@@ -137,7 +138,8 @@ public class DatePicker : DatePickerBase, IClearControl
         else
         {
             _textBox?.SetValue(TextBox.TextProperty, date.Value.ToString(DisplayFormat ?? "yyyy-MM-dd"));
-            _calendar?.MarkDates(startDate: date.Value, endDate: date.Value);
+            var selectedDate = date.ToDateOnly();
+            _calendar?.MarkDates(startDate: selectedDate, endDate: selectedDate);
         }
     }
 
@@ -229,7 +231,8 @@ public class DatePicker : DatePickerBase, IClearControl
                 _calendar.UpdateDayButtons();
             }
 
-            _calendar?.MarkDates(startDate: date, endDate: date);
+            var selectedDate = date.ToDateOnly();
+            _calendar?.MarkDates(startDate: selectedDate, endDate: selectedDate);
         }
         else
         {

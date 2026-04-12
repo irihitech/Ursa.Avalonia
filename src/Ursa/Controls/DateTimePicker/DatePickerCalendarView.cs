@@ -1,4 +1,3 @@
-﻿using System.Diagnostics;
 using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
@@ -8,7 +7,6 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Irihi.Avalonia.Shared.Helpers;
-using Calendar = System.Globalization.Calendar;
 
 namespace Ursa.Controls;
 
@@ -47,7 +45,6 @@ public class DatePickerCalendarView : TemplatedControl
     public static readonly StyledProperty<DayOfWeek> FirstDayOfWeekProperty =
         DatePickerBase.FirstDayOfWeekProperty.AddOwner<DatePickerCalendarView>();
 
-    private readonly Calendar _calendar = new GregorianCalendar();
     private Button? _fastNextButton;
 
     private Button? _fastPreviousButton;
@@ -62,10 +59,10 @@ public class DatePickerCalendarView : TemplatedControl
     private Button? _yearButton;
     private Grid? _yearGrid;
 
-    private DateTime? _start;
-    private DateTime? _end;
-    private DateTime? _previewStart;
-    private DateTime? _previewEnd;
+    private DateOnly? _start;
+    private DateOnly? _end;
+    private DateOnly? _previewStart;
+    private DateOnly? _previewEnd;
 
     static DatePickerCalendarView()
     {
@@ -174,7 +171,8 @@ public class DatePickerCalendarView : TemplatedControl
         Button.ClickEvent.AddHandler(OnNext, _nextButton);
         Button.ClickEvent.AddHandler(OnFastNext, _fastNextButton);
 
-        ContextDate = new DatePickerCalendarContext(DateTime.Today.Year, DateTime.Today.Month);
+        var today = DateTime.Today.ToDateOnly();
+        ContextDate = new DatePickerCalendarContext(today.Year, today.Month);
         PseudoClasses.Set(PC_Month, Mode == DatePickerCalendarViewMode.Month);
         InitializeGridButtons();
         UpdateDayButtons();
@@ -330,16 +328,17 @@ public class DatePickerCalendarView : TemplatedControl
         if (_monthGrid is null || Mode != DatePickerCalendarViewMode.Month) return;
         var children = _monthGrid.Children;
         var info = DateTimeHelper.GetCurrentDateTimeFormatInfo();
-        var date = new DateTime(ContextDate.Year ?? ContextDate.StartYear!.Value, ContextDate.Month!.Value, 1);
+        var date = new DateOnly(ContextDate.Year ?? ContextDate.StartYear!.Value, ContextDate.Month!.Value, 1);
         var dayBefore = PreviousMonthDays(date);
         var dateToSet = date.GetFirstDayOfMonth().AddDays(-dayBefore);
+        var today = DateTime.Today.ToDateOnly();
         for (var i = 7; i < children.Count; i++)
         {
             var day = dateToSet;
             var cell = children[i] as DatePickerCalendarDayButton;
             if (cell is null) continue;
             cell.DataContext = day;
-            if (IsTodayHighlighted) cell.IsToday = day == DateTime.Today;
+            if (IsTodayHighlighted) cell.IsToday = day == today;
             cell.Content = day.Day.ToString(info);
             dateToSet = dateToSet.AddDays(1);
         }
@@ -394,7 +393,7 @@ public class DatePickerCalendarView : TemplatedControl
         if (_monthGrid is null) return;
         var children = _monthGrid.Children;
         for (var i = 7; i < children.Count; i++)
-            if (children[i] is DatePickerCalendarDayButton { DataContext: DateTime d } button)
+            if (children[i] is DatePickerCalendarDayButton { DataContext: DateOnly d } button)
                 button.IsNotCurrentMonth = d.Month != ContextDate.Month;
     }
 
@@ -414,10 +413,10 @@ public class DatePickerCalendarView : TemplatedControl
             }
     }
 
-    private int PreviousMonthDays(DateTime date)
+    private int PreviousMonthDays(DateOnly date)
     {
         var firstDay = date.GetFirstDayOfMonth();
-        var dayOfWeek = _calendar.GetDayOfWeek(firstDay);
+        var dayOfWeek = firstDay.DayOfWeek;
         var firstDayOfWeek = FirstDayOfWeek;
         var i = (dayOfWeek - firstDayOfWeek + DateTimeHelper.NumberOfDaysPerWeek) % DateTimeHelper.NumberOfDaysPerWeek;
         return i == 0 ? DateTimeHelper.NumberOfDaysPerWeek : i;
@@ -544,22 +543,22 @@ public class DatePickerCalendarView : TemplatedControl
         IsEnabledProperty.SetValue(canNext, _nextButton, _fastNextButton);
     }
     
-    internal void MarkDates(DateTime? startDate = null, DateTime? endDate = null, DateTime? previewStartDate = null, DateTime? previewEndDate = null)
+    internal void MarkDates(DateOnly? startDate = null, DateOnly? endDate = null, DateOnly? previewStartDate = null, DateOnly? previewEndDate = null)
     {
         _start = startDate;
         _end = endDate;
         _previewStart = previewStartDate;
         _previewEnd = previewEndDate;
         if (_monthGrid?.Children is null) return;
-        DateTime start = startDate ?? DateTime.MaxValue;
-        DateTime end = endDate ?? DateTime.MinValue;
-        DateTime previewStart = previewStartDate ?? DateTime.MaxValue;
-        DateTime previewEnd = previewEndDate ?? DateTime.MinValue;
-        DateTime rangeStart = DateTimeHelper.Min(start, previewStart);
-        DateTime rangeEnd = DateTimeHelper.Max(end, previewEnd);
+        var start = startDate ?? DateOnly.MaxValue;
+        var end = endDate ?? DateOnly.MinValue;
+        var previewStart = previewStartDate ?? DateOnly.MaxValue;
+        var previewEnd = previewEndDate ?? DateOnly.MinValue;
+        var rangeStart = start < previewStart ? start : previewStart;
+        var rangeEnd = end > previewEnd ? end : previewEnd;
         foreach (var child in _monthGrid.Children)
         {
-            if (child is not DatePickerCalendarDayButton { DataContext: DateTime d } button) continue;
+            if (child is not DatePickerCalendarDayButton { DataContext: DateOnly d } button) continue;
             button.ResetSelection();
             if(d.Month != ContextDate.Month) continue;
             if (d < rangeEnd && d > rangeStart) button.IsInRange = true;

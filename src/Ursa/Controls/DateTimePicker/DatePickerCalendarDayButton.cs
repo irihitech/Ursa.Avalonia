@@ -171,14 +171,14 @@ public class DatePickerCalendarDayButton : ContentControl
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
     {
         base.OnPointerReleased(e);
-        if (DataContext is DateTime d)
+        if (DataContext is DateOnly d)
             RaiseEvent(new DatePickerCalendarDayButtonEventArgs(d) { RoutedEvent = DateSelectedEvent, Source = this });
     }
 
     protected override void OnPointerEntered(PointerEventArgs e)
     {
         base.OnPointerEntered(e);
-        if (DataContext is DateTime d)
+        if (DataContext is DateOnly d)
             RaiseEvent(new DatePickerCalendarDayButtonEventArgs(d) { RoutedEvent = DatePreviewedEvent, Source = this });
     }
 

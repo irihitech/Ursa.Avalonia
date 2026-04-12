@@ -75,7 +75,7 @@ public class TimePickerPresenter : TemplatedControl
     private bool _surpressTimeEvent = true;
     private Control? _thirdSeparator;
     private bool _use12Clock;
-    internal TimeSpan? TimeHolder;
+    internal TimeOnly? TimeHolder;
 
     static TimePickerPresenter()
     {
@@ -230,11 +230,11 @@ public class TimePickerPresenter : TemplatedControl
     {
         if (_surpressTimeEvent) return;
         if (!_use12Clock && Equals(sender, _ampmSelector)) return;
-        var time = TimeHolder ?? DateTime.Now.TimeOfDay;
-        var hour = _hourSelector?.SelectedValue ?? time.Hours;
-        var minute = _minuteSelector?.SelectedValue ?? time.Minutes;
-        var second = _secondSelector?.SelectedValue ?? time.Seconds;
-        var ampm = _ampmSelector?.SelectedValue ?? (time.Hours >= 12 ? 1 : 0);
+        var time = TimeHolder ?? DateTime.Now.ToTimeOnly();
+        var hour = _hourSelector?.SelectedValue ?? time.Hour;
+        var minute = _minuteSelector?.SelectedValue ?? time.Minute;
+        var second = _secondSelector?.SelectedValue ?? time.Second;
+        var ampm = _ampmSelector?.SelectedValue ?? (time.Hour >= 12 ? 1 : 0);
         if (_use12Clock)
         {
             hour = ampm switch
@@ -254,7 +254,7 @@ public class TimePickerPresenter : TemplatedControl
             SetIfChanged(_ampmSelector, ampm);
         }
 
-        var newTime = new TimeSpan(hour, minute, second);
+        var newTime = new TimeOnly(hour, minute, second);
         if (NeedsConfirmation)
         {
             TimeHolder = newTime;
@@ -272,19 +272,19 @@ public class TimePickerPresenter : TemplatedControl
         OnPanelSelectionChanged(null, System.EventArgs.Empty);
     }
 
-    private void UpdatePanelsFromSelectedTime(TimeSpan? time)
+    private void UpdatePanelsFromSelectedTime(TimeOnly? time)
     {
         if (time is null) return;
         if (_hourSelector is not null)
         {
-            var index = _use12Clock ? time.Value.Hours % 12 : time.Value.Hours;
+            var index = _use12Clock ? time.Value.Hour % 12 : time.Value.Hour;
             if (_use12Clock && index == 0) index = 12;
             SetIfChanged(_hourSelector, index, true);
         }
 
-        SetIfChanged(_minuteSelector, time.Value.Minutes, true);
-        SetIfChanged(_secondSelector, time.Value.Seconds, true);
-        var ampm = time.Value.Hours switch
+        SetIfChanged(_minuteSelector, time.Value.Minute, true);
+        SetIfChanged(_secondSelector, time.Value.Second, true);
+        var ampm = time.Value.Hour switch
         {
             >= 12 => 1,
             _ => 0
@@ -340,7 +340,7 @@ public class TimePickerPresenter : TemplatedControl
         panel.SelectionChanged += OnPanelSelectionChanged;
     }
 
-    internal void SyncTime(TimeSpan? time)
+    internal void SyncTime(TimeOnly? time)
     {
         _surpressTimeEvent = true;
         TimeHolder = time;

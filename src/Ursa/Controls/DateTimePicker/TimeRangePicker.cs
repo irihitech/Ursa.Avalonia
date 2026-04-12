@@ -154,11 +154,11 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         SyncTimeToText(time, start);
         if (start)
         {
-            _startPresenter?.SyncTime(time);
+            _startPresenter?.SyncTime(time.ToTimeOnly());
         }
         else
         {
-            _endPresenter?.SyncTime(time);
+            _endPresenter?.SyncTime(time.ToTimeOnly());
         }
         PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedStartTime is null && SelectedEndTime is null);
     }
@@ -173,8 +173,7 @@ public class TimeRangePicker : TimePickerBase, IClearControl
             return;
         }
 
-        var date = new DateTime(1, 1, 1, time.Value.Hours, time.Value.Minutes, time.Value.Seconds);
-        var text = date.ToString(DisplayFormat ?? DEFAULT_TIME_DISPLAY_FORMAT);
+        var text = TimeOnly.FromTimeSpan(time.Value).ToString(DisplayFormat ?? DEFAULT_TIME_DISPLAY_FORMAT);
         textBox.Text = text;
         PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedStartTime is null && SelectedEndTime is null);
     }
@@ -200,8 +199,8 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _startTextBox, _endTextBox);
         LostFocusEvent.AddHandler(OnTextBoxLostFocus, _startTextBox, _endTextBox); 
 
-        _startPresenter?.SyncTime(SelectedStartTime);
-        _endPresenter?.SyncTime(SelectedEndTime);
+        _startPresenter?.SyncTime(SelectedStartTime.ToTimeOnly());
+        _endPresenter?.SyncTime(SelectedEndTime.ToTimeOnly());
         SyncTimeToText(SelectedStartTime);
         SyncTimeToText(SelectedEndTime, false);
     }
@@ -232,19 +231,19 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         {
             _status.Push(Status.End);
         }
-        _startPresenter?.SyncTime(SelectedStartTime);
-        _endPresenter?.SyncTime(SelectedEndTime);
+        _startPresenter?.SyncTime(SelectedStartTime.ToTimeOnly());
+        _endPresenter?.SyncTime(SelectedEndTime.ToTimeOnly());
     }
 
     private void OnTimeSelected(object? sender, TimeChangedEventArgs e)
     {
         if (Equals(sender, _startPresenter))
         {
-            SetCurrentValue(SelectedStartTimeProperty, e.NewTime);
+            SetCurrentValue(SelectedStartTimeProperty, e.NewTime.ToTimeSpan());
         }
         else if (Equals(sender, _endPresenter))
         {
-            SetCurrentValue(SelectedEndTimeProperty, e.NewTime);
+            SetCurrentValue(SelectedEndTimeProperty, e.NewTime.ToTimeSpan());
         }
     }
 
@@ -330,9 +329,9 @@ public class TimeRangePicker : TimePickerBase, IClearControl
             startDate = null;
             SetCurrentValue(SelectedStartTimeProperty, startDate);
         }
-        else if (TimeSpan.TryParseExact(_startTextBox?.Text, format, CultureInfo.CurrentUICulture, out var start))
+        else if (TimeOnly.TryParseExact(_startTextBox?.Text, format, CultureInfo.CurrentUICulture, DateTimeStyles.None, out var start))
         {
-            startDate = start;
+            startDate = start.ToTimeSpan();
             SetCurrentValue(SelectedStartTimeProperty, startDate);
         }
         else
@@ -345,17 +344,17 @@ public class TimeRangePicker : TimePickerBase, IClearControl
             endDate = null;
             SetCurrentValue(SelectedEndTimeProperty, endDate);
         }
-        else if (TimeSpan.TryParseExact(_endTextBox?.Text, format, CultureInfo.CurrentUICulture, out var end))
+        else if (TimeOnly.TryParseExact(_endTextBox?.Text, format, CultureInfo.CurrentUICulture, DateTimeStyles.None, out var end))
         {
-            endDate = end;
+            endDate = end.ToTimeSpan();
             SetCurrentValue(SelectedEndTimeProperty, endDate);
         }
         else
         {
             SetCurrentValue(SelectedEndTimeProperty, null);
         }
-        _startPresenter?.SyncTime(SelectedStartTime);
-        _endPresenter?.SyncTime(SelectedEndTime);
+        _startPresenter?.SyncTime(SelectedStartTime.ToTimeOnly());
+        _endPresenter?.SyncTime(SelectedEndTime.ToTimeOnly());
     }
     
     protected override void OnPointerPressed(PointerPressedEventArgs e)

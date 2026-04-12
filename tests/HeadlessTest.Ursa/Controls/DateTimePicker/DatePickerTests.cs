@@ -176,7 +176,7 @@ public class DatePickerTests
         Dispatcher.UIThread.RunJobs();
         var popup = picker.GetTemplateChildOfType<Popup>(DatePicker.PART_Popup);
         var calendar = popup?.GetLogicalDescendants().OfType<DatePickerCalendarView>().FirstOrDefault();
-        calendar?.RaiseEvent(new DatePickerCalendarDayButtonEventArgs(new DateTime(2025, 2, 17))
+        calendar?.RaiseEvent(new DatePickerCalendarDayButtonEventArgs(new DateOnly(2025, 2, 17))
             { RoutedEvent = DatePickerCalendarView.DateSelectedEvent }); 
         Dispatcher.UIThread.RunJobs();
         var textBox = picker.GetTemplateChildOfType<TextBox>(DatePicker.PART_TextBox);
@@ -203,7 +203,7 @@ public class DatePickerTests
         Dispatcher.UIThread.RunJobs();
         var popup = picker.GetTemplateChildOfType<Popup>(DatePicker.PART_Popup);
         var calendar = popup?.GetLogicalDescendants().OfType<DatePickerCalendarView>().FirstOrDefault();
-        calendar?.RaiseEvent(new DatePickerCalendarDayButtonEventArgs(new DateTime(2025, 2, 17))
+        calendar?.RaiseEvent(new DatePickerCalendarDayButtonEventArgs(new DateOnly(2025, 2, 17))
             { RoutedEvent = DatePickerCalendarView.DateSelectedEvent }); 
         Dispatcher.UIThread.RunJobs();
         var textBox = picker.GetTemplateChildOfType<TextBox>(DatePicker.PART_TextBox);

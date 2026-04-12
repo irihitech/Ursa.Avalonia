@@ -25,7 +25,7 @@ public class TimePickerPresenterTests
     public void TimePickerPresenter_SetTime_ShouldUpdateTimeProperty()
     {
         var presenter = new TimePickerPresenter();
-        var time = new TimeSpan(10, 30, 45);
+        var time = new TimeOnly(10, 30, 45);
 
         presenter.TimeHolder = time;
 
@@ -81,9 +81,9 @@ public class TimePickerPresenterTests
     public void TimePickerPresenter_Confirm_ShouldSetTimeProperty()
     {
         var presenter = new TimePickerPresenter { NeedsConfirmation = true };
-        var time = new TimeSpan(10, 30, 45);
+        var time = new TimeOnly(10, 30, 45);
         var eventRaised = 0;
-        TimeSpan? eventResult = null;
+        TimeOnly? eventResult = null;
         presenter.SelectedTimeChanged += (o, e) =>
         {
             eventRaised++;
@@ -104,8 +104,8 @@ public class TimePickerPresenterTests
     public void TimePickerPresenter_SyncTime_Should_Not_RaiseEvent()
     {
         var presenter = new TimePickerPresenter();
-        var oldTime = new TimeSpan(10, 30, 45);
-        var newTime = new TimeSpan(11, 45, 30);
+        var oldTime = new TimeOnly(10, 30, 45);
+        var newTime = new TimeOnly(11, 45, 30);
         presenter.SyncTime(oldTime);
         var eventRaised = false;
         presenter.SelectedTimeChanged += (sender, args) =>
@@ -119,7 +119,7 @@ public class TimePickerPresenterTests
 
     [AvaloniaTheory]
     [MemberData(nameof(GetSelectionMemberData))]
-    public void TimePickerPresenter_Time_Updated_When_Panel_Selection_Changed(string format, int hourSelection, int minuteSelection, int secondSelection, int amSelection, TimeSpan expectedTime)
+    public void TimePickerPresenter_Time_Updated_When_Panel_Selection_Changed(string format, int hourSelection, int minuteSelection, int secondSelection, int amSelection, TimeOnly expectedTime)
     {
         var window = new Window();
         var presenter = new TimePickerPresenter();
@@ -127,7 +127,7 @@ public class TimePickerPresenterTests
         window.Show();
         Dispatcher.UIThread.RunJobs();
         presenter.PanelFormat = format;
-        TimeSpan? eventResult = null;
+        TimeOnly? eventResult = null;
         presenter.SelectedTimeChanged += (o, e) =>
         {
             eventResult = e.NewTime;
@@ -154,7 +154,7 @@ public class TimePickerPresenterTests
     
     [AvaloniaTheory]
     [MemberData(nameof(GetSelectionMemberData))]
-    public void TimePickerPresenter_TimeHolder_Updated_When_Panel_Selection_Changed(string format, int hourSelection, int minuteSelection, int secondSelection, int amSelection, TimeSpan expectedTime)
+    public void TimePickerPresenter_TimeHolder_Updated_When_Panel_Selection_Changed(string format, int hourSelection, int minuteSelection, int secondSelection, int amSelection, TimeOnly expectedTime)
     {
         var window = new Window();
         var presenter = new TimePickerPresenter(){NeedsConfirmation = true};
@@ -184,12 +184,12 @@ public class TimePickerPresenterTests
 
     public static IEnumerable<object[]> GetSelectionMemberData()
     {
-        yield return new object[] { "hh mm ss t", 1, 1, 1, 1, new TimeSpan(0, 13, 1, 1) };
-        yield return new object[] { "HH mm ss t", 12, 30, 45, 0, new TimeSpan(0, 12,30,45)};
-        yield return new object[] { "HH mm ss t", 12, 0, 0, 1, new TimeSpan(0, 12,0,0)};
-        yield return new object[] { "HH mm ss t", 13, 0, 0, 1, new TimeSpan(0, 13,0,0)};
-        yield return new object[] { "hh mm ss t", 9, 0, 0, 0, new TimeSpan(0, 9,0,0)};
-        yield return new object[] { "hh mm ss t", 9, 0, 0, 1, new TimeSpan(0, 21,0,0)};
-        yield return new object[] { "HH mm ss t", 0, 0, 0, 0, new TimeSpan(0, 0,0,0)};
+        yield return new object[] { "hh mm ss t", 1, 1, 1, 1, new TimeOnly(13, 1, 1) };
+        yield return new object[] { "HH mm ss t", 12, 30, 45, 0, new TimeOnly(12, 30, 45) };
+        yield return new object[] { "HH mm ss t", 12, 0, 0, 1, new TimeOnly(12, 0, 0) };
+        yield return new object[] { "HH mm ss t", 13, 0, 0, 1, new TimeOnly(13, 0, 0) };
+        yield return new object[] { "hh mm ss t", 9, 0, 0, 0, new TimeOnly(9, 0, 0) };
+        yield return new object[] { "hh mm ss t", 9, 0, 0, 1, new TimeOnly(21, 0, 0) };
+        yield return new object[] { "HH mm ss t", 0, 0, 0, 0, new TimeOnly(0, 0, 0) };
     }
 }

@@ -15,13 +15,13 @@ public class DatePickerCalendarDayButtonTests
     {
         Window window = new Window();
         var button = new DatePickerCalendarDayButton();
-        var date = new DateTime(2023, 5, 15);
+        var date = new DateOnly(2023, 5, 15);
         button.DataContext = date;
         window.Content = button;
         window.Show();
         Dispatcher.UIThread.RunJobs();
         int eventRaised = 0;
-        DateTime? eventContext = null;
+        DateOnly? eventContext = null;
 
         void OnMouseClick(object? sender, DatePickerCalendarDayButtonEventArgs args)
         {
@@ -45,13 +45,13 @@ public class DatePickerCalendarDayButtonTests
     {
         Window window = new Window();
         var button = new DatePickerCalendarDayButton();
-        var date = new DateTime(2023, 5, 15);
+        var date = new DateOnly(2023, 5, 15);
         button.DataContext = date;
         window.Content = button;
         window.Show();
         Dispatcher.UIThread.RunJobs();
         int eventRaised = 0;
-        DateTime? eventContext = null;
+        DateOnly? eventContext = null;
 
         void OnMouseEnter(object? sender, DatePickerCalendarDayButtonEventArgs args)
         {

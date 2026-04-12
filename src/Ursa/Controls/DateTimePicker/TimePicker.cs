@@ -136,14 +136,14 @@ public class TimePicker : TimePickerBase, IClearControl
     private void InitializePopupOpen()
     {
         SetCurrentValue(IsDropdownOpenProperty, true);
-        _presenter?.SyncTime(SelectedTime);
+        _presenter?.SyncTime(SelectedTime.ToTimeOnly());
     }
 
     private void OnPresenterTimeChanged(object? sender, TimeChangedEventArgs e)
     {
         if (!IsInitialized) return;
         if (_suppressTextPresenterEvent) return;
-        SetCurrentValue(SelectedTimeProperty, e.NewTime);
+        SetCurrentValue(SelectedTimeProperty, e.NewTime.ToTimeSpan());
     }
 
     private void OnTextBoxGetFocus(object? sender, FocusChangedEventArgs e)
@@ -188,7 +188,7 @@ public class TimePicker : TimePickerBase, IClearControl
     {
         if (_textBox is null) return;
         _suppressTextPresenterEvent = true;
-        _presenter?.SyncTime(args.NewValue.Value);
+        _presenter?.SyncTime(args.NewValue.Value.ToTimeOnly());
         SyncTimeToText(args.NewValue.Value);
         _suppressTextPresenterEvent = false;
     }
@@ -202,8 +202,7 @@ public class TimePicker : TimePickerBase, IClearControl
             return;
         }
 
-        var date = new DateTime(1, 1, 1, time.Value.Hours, time.Value.Minutes, time.Value.Seconds);
-        var text = date.ToString(DisplayFormat);
+        var text = TimeOnly.FromTimeSpan(time.Value).ToString(DisplayFormat);
         _textBox.Text = text;
     }
 
@@ -247,11 +246,11 @@ public class TimePicker : TimePickerBase, IClearControl
             SetCurrentValue(SelectedTimeProperty, null);
             return;
         }
-        else if (DateTime.TryParseExact(_textBox?.Text, format, CultureInfo.CurrentUICulture, DateTimeStyles.None,
+        else if (TimeOnly.TryParseExact(_textBox?.Text, format, CultureInfo.CurrentUICulture, DateTimeStyles.None,
                 out var time))
         {
-            SetCurrentValue(SelectedTimeProperty, time.TimeOfDay);
-            _presenter?.SyncTime(time.TimeOfDay);
+            SetCurrentValue(SelectedTimeProperty, time.ToTimeSpan());
+            _presenter?.SyncTime(time);
         }
         else
         {
