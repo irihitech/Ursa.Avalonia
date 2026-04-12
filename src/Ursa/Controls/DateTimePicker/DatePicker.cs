@@ -124,7 +124,7 @@ public class DatePicker : DatePickerBase, IClearControl
 
     private void OnDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
     {
-        SetCurrentValue(SelectedDateProperty, e.Date.ToDateTime(TimeOnly.MinValue));
+        SetCurrentValue(SelectedDateProperty, e.Date?.ToDateTime(TimeOnly.MinValue));
         SetCurrentValue(IsDropdownOpenProperty, false);
     }
     

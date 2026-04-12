@@ -85,11 +85,6 @@ internal static class DateTimeHelper
         return time.HasValue ? TimeOnly.FromTimeSpan(time.Value) : null;
     }
 
-    public static DateTime? ToDateTime(this DateOnly? date, TimeOnly time)
-    {
-        return date.HasValue ? date.Value.ToDateTime(time) : null;
-    }
-
     public static TimeSpan? ToTimeSpan(this TimeOnly? time)
     {
         return time?.ToTimeSpan();

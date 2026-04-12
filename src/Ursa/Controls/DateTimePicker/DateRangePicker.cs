@@ -150,7 +150,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
         if (_status is { Current: Status.Start, Previous: Status.None })
         {
             // User make first selection: Start.
-            SetCurrentValue(SelectedStartDateProperty, e.Date.ToDateTime(TimeOnly.MinValue));
+            SetCurrentValue(SelectedStartDateProperty, e.Date?.ToDateTime(TimeOnly.MinValue));
             if (SelectedEndDate.ToDateOnly() is { } selectedEndDate && e.Date is { } selectedDate && selectedDate > selectedEndDate)
             {
                 SetCurrentValue(SelectedEndDateProperty, null);
@@ -162,14 +162,14 @@ public class DateRangePicker : DatePickerBase, IClearControl
         else if (_status is { Current: Status.Start, Previous: Status.End })
         {
             // User make second selection: Start. 
-            SetCurrentValue(SelectedStartDateProperty, e.Date.ToDateTime(TimeOnly.MinValue));
+            SetCurrentValue(SelectedStartDateProperty, e.Date?.ToDateTime(TimeOnly.MinValue));
             _status.Reset();
             SetCurrentValue(IsDropdownOpenProperty, false);
         }
         else if (_status is { Current: Status.End, Previous: Status.None })
         {
             // User make first selection: End.
-            SetCurrentValue(SelectedEndDateProperty, e.Date.ToDateTime(TimeOnly.MinValue));
+            SetCurrentValue(SelectedEndDateProperty, e.Date?.ToDateTime(TimeOnly.MinValue));
             if (SelectedStartDate.ToDateOnly() is { } selectedStartDate && e.Date is { } selectedDate && selectedDate < selectedStartDate)
             {
                 SetCurrentValue(SelectedStartDateProperty, null);
@@ -181,7 +181,7 @@ public class DateRangePicker : DatePickerBase, IClearControl
         else if (_status is { Current: Status.End, Previous: Status.Start })
         {
             // User make second selection: End.
-            SetCurrentValue(SelectedEndDateProperty, e.Date.ToDateTime(TimeOnly.MinValue));
+            SetCurrentValue(SelectedEndDateProperty, e.Date?.ToDateTime(TimeOnly.MinValue));
             _status.Reset();
             SetCurrentValue(IsDropdownOpenProperty, false);
         }
