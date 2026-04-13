@@ -119,7 +119,8 @@ public class TimelineItem: HeaderedContentControl
     {
         IconProperty.Changed.AddClassHandler<TimelineItem, object?>((item, args) => { item.OnIconChanged(args); });
         PositionProperty.Changed.AddClassHandler<TimelineItem, TimelineItemPosition>((item, args) => { item.OnModeChanged(args); });
-        AffectsMeasure<TimelineItem>(LeftWidthProperty, RightWidthProperty, IconWidthProperty);
+        AffectsMeasure<TimelineItem>(LeftWidthProperty, RightWidthProperty, IconWidthProperty, PositionProperty);
+        AffectsArrange<TimelineItem>(LeftWidthProperty, RightWidthProperty, IconWidthProperty, PositionProperty);
     }
 
     private void OnModeChanged(AvaloniaPropertyChangedEventArgs<TimelineItemPosition> args)
@@ -156,40 +157,7 @@ public class TimelineItem: HeaderedContentControl
         PseudoClasses.Set(PC_First, start);
         PseudoClasses.Set(PC_Last, end);
     }
-
-    internal (double left, double mid, double right) GetWidth()
-    {
-        if (_headerPresenter is null) return new ValueTuple<double, double, double>(0, 0, 0);
-        double header = _headerPresenter?.DesiredSize.Width ?? 0;
-        double icon = _iconPresenter?.DesiredSize.Width ?? 0;
-        double content = _contentPresenter?.DesiredSize.Width ?? 0;
-        double time = _timePresenter?.DesiredSize.Width ?? 0;
-        double max = Math.Max(header, content);
-        if (Position == TimelineItemPosition.Left)
-        {
-            max = Math.Max(max, time);
-            return (0, icon, max);
-        }
-        if (Position == TimelineItemPosition.Right)
-        {
-            max = Math.Max(max, time);
-            return (max    , icon, 0);
-        }
-        if (Position == TimelineItemPosition.Separate)
-        {
-            return (time, icon, max);
-        }
-        return new ValueTuple<double, double, double>(0, 0, 0);
-    }
-
-    internal void SetWidth(double? left, double? mid, double? right)
-    {
-        if (_rootGrid is null) return;
-        _rootGrid.ColumnDefinitions[0].Width = new GridLength(left??0);
-        _rootGrid.ColumnDefinitions[1].Width = new GridLength(mid??0);
-        _rootGrid.ColumnDefinitions[2].Width = new GridLength(right??0);
-    }
-
+    
     internal void SetIfUnset<T>(AvaloniaProperty<T> property, T value)
     {
         if (!IsSet(property))

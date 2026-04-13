@@ -23,7 +23,8 @@
             </selectors:TimelineIconTemplateSelector>
         </ResourceDictionary>
     </UserControl.Resources>
-    <WrapPanel>
+    <StackPanel>
+        <u:EnumSelector EnumType="{x:Type u:TimelineDisplayMode}" Name="mode" Value="{x:Static u:TimelineDisplayMode.Right}" />
         <u:Timeline
             HorizontalAlignment="Left"
             ContentMemberBinding="{Binding Description}"
@@ -31,27 +32,9 @@
             IconMemberBinding="{Binding ItemType}"
             IconTemplate="{StaticResource IconSelector}"
             ItemsSource="{Binding Items}"
-            Mode="Alternate"
+            Mode="{Binding #mode.Value}"
             TimeMemberBinding="{Binding Time}" />
-        <u:Timeline
-            HorizontalAlignment="Left"
-            ContentMemberBinding="{Binding Description}"
-            HeaderMemberBinding="{Binding Header}"
-            IconMemberBinding="{Binding ItemType}"
-            IconTemplate="{StaticResource IconSelector}"
-            ItemsSource="{Binding Items}"
-            Mode="Left"
-            TimeMemberBinding="{Binding Time}" />
-        <u:Timeline
-            HorizontalAlignment="Left"
-            ContentMemberBinding="{Binding Description}"
-            HeaderMemberBinding="{Binding Header}"
-            IconMemberBinding="{Binding ItemType}"
-            IconTemplate="{StaticResource IconSelector}"
-            ItemsSource="{Binding Items}"
-            Mode="Right"
-            TimeMemberBinding="{Binding Time}" />
-        <u:Timeline HorizontalAlignment="Left" Mode="Alternate">
+        <u:Timeline HorizontalAlignment="Left" Mode="{Binding #mode.Value}">
             <u:TimelineItem
                 Content="Step 1"
                 Header="第一步"
@@ -79,5 +62,5 @@
                 TimeFormat="yyyy-MM-dd"
                 Type="Error" />
         </u:Timeline>
-    </WrapPanel>
+    </StackPanel>
 </UserControl>

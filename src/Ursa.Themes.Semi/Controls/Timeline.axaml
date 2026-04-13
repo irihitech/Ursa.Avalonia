@@ -3,8 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
-        <StackPanel Width="100" Spacing="20">
-            <u:Timeline>
+        <StackPanel Spacing="20">
+            <u:Timeline Mode="Right">
                 <u:TimelineItem Content="Hello" />
                 <u:TimelineItem Content="World" />
                 <u:TimelineItem Content="!" />
@@ -13,7 +13,8 @@
         </StackPanel>
     </Design.PreviewWith>
     <u:TimelineFormatConverter x:Key="FormatConverter" />
-    <ControlTheme x:Key="{x:Type u:Timeline}" TargetType="u:Timeline">
+    <ControlTheme x:Key="{x:Type u:Timeline}" TargetType="u:Timeline" >
+        <Setter Property="Grid.IsSharedSizeScope" Value="True" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Timeline">
                 <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
@@ -28,8 +29,13 @@
             <ControlTemplate TargetType="u:TimelineItem">
                 <Grid
                     Name="PART_RootGrid"
-                    ColumnDefinitions="Auto, Auto, Auto"
-                    RowDefinitions="Auto, Auto, Auto">
+                    RowDefinitions="Auto, Auto, Auto"
+                    >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="Left" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="Center" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="Right" />
+                    </Grid.ColumnDefinitions>
                     <!--  Icon and Axis  -->
                     <Grid
                         Name="PART_IconAxisRoot"
@@ -54,7 +60,7 @@
                         </Panel>
                         <Rectangle
                             Grid.Row="1"
-                            Width="2"
+                            Width="1"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Stretch"
                             Classes="end"

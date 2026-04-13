@@ -10,7 +10,7 @@ namespace Ursa.Controls;
 
 public class Timeline: ItemsControl
 {
-    private static readonly FuncTemplate<Panel?> DefaultPanel = new((Func<Panel>)(() => new TimelinePanel()));
+    private static readonly FuncTemplate<Panel?> DefaultPanel = new((Func<Panel>)(() => new StackPanel()));
     
     public static readonly StyledProperty<BindingBase?> IconMemberBindingProperty = AvaloniaProperty.Register<Timeline, BindingBase?>(
         nameof(IconMemberBinding));
@@ -99,16 +99,7 @@ public class Timeline: ItemsControl
     static Timeline()
     {
         ItemsPanelProperty.OverrideDefaultValue<Timeline>(DefaultPanel);
-        ModeProperty.Changed.AddClassHandler<Timeline, TimelineDisplayMode>((t, e) => { t.OnDisplayModeChanged(e); });
-    }
-
-    private void OnDisplayModeChanged(AvaloniaPropertyChangedEventArgs<TimelineDisplayMode> e)
-    {
-        if (this.ItemsPanelRoot is TimelinePanel panel)
-        {
-            panel.Mode = e.NewValue.Value;
-            SetItemMode();
-        }
+        ModeProperty.Changed.AddClassHandler<Timeline>((s, e) => s.InvalidateContainers());
     }
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
@@ -129,6 +120,7 @@ public class Timeline: ItemsControl
         if (container is TimelineItem t)
         {
             bool start = index == 0;
+            SetTimelineItemPosition(t, Mode, index);
             bool end = index == ItemCount - 1;
             t.SetEnd(start, end);
             if (IconMemberBinding is not null)
@@ -147,69 +139,11 @@ public class Timeline: ItemsControl
             {
                 t.Bind(TimelineItem.TimeProperty, TimeMemberBinding);
             }
-
             t.SetIfUnset(TimelineItem.TimeFormatProperty, TimeFormat);
             t.SetIfUnset(TimelineItem.IconTemplateProperty, IconTemplate);
             t.SetIfUnset(HeaderedContentControl.HeaderTemplateProperty, ItemTemplate);
             t.SetIfUnset(ContentControl.ContentTemplateProperty, DescriptionTemplate);
         }
-
-    }
-
-    protected override Size ArrangeOverride(Size finalSize)
-    {
-        var panel = this.ItemsPanelRoot as TimelinePanel;
-        if (panel is not null)
-        {
-            panel.Mode = this.Mode;
-        }
-        SetItemMode();
-        return base.ArrangeOverride(finalSize);
-    }
-
-    private void SetItemMode()
-    {
-        if (ItemsPanelRoot is TimelinePanel panel)
-        {
-            var items = panel.Children.OfType<TimelineItem>();
-            if (Mode == TimelineDisplayMode.Left)
-            {
-                foreach (var item in items)
-                {
-                    SetIfUnset(item, TimelineItem.PositionProperty, TimelineItemPosition.Left);
-                }
-            }
-            else if (Mode == TimelineDisplayMode.Right)
-            {
-                foreach (var item in items)
-                {
-                    SetIfUnset(item, TimelineItem.PositionProperty, TimelineItemPosition.Right);
-                }
-            }
-            else if (Mode == TimelineDisplayMode.Center)
-            {
-                foreach (var item in items)
-                {
-                    SetIfUnset(item, TimelineItem.PositionProperty, TimelineItemPosition.Separate);
-                }
-            }
-            else if (Mode == TimelineDisplayMode.Alternate)
-            {
-                var left = false;
-                foreach (var item in items)
-                {
-                    SetIfUnset(item, TimelineItem.PositionProperty,
-                        left ? TimelineItemPosition.Left : TimelineItemPosition.Right);
-                    left = !left;
-                }
-            }
-        }
-    }
-    
-    private void SetIfUnset<T>(AvaloniaObject target, StyledProperty<T> property, T value)
-    {
-        if (!target.IsSet(property))
-            target.SetCurrentValue(property, value);
     }
     
     internal void InvalidateContainers()
@@ -220,6 +154,28 @@ public class Timeline: ItemsControl
             bool isFirst = i == 0;
             bool isLast = i == timelineItems.Count - 1;
             timelineItems[i].SetEnd(isFirst, isLast);
+            SetTimelineItemPosition(timelineItems[i], Mode, i);
+        }
+        InvalidateMeasure();
+        InvalidateArrange();
+    }
+
+    private void SetTimelineItemPosition(TimelineItem item, TimelineDisplayMode mode, int index)
+    {
+        switch (mode)
+        {
+            case TimelineDisplayMode.Left:
+                item.Position = TimelineItemPosition.Left;
+                break;
+            case  TimelineDisplayMode.Right:
+                item.Position =  TimelineItemPosition.Right;
+                break;
+            case TimelineDisplayMode.Center:
+                item.Position = TimelineItemPosition.Separate;
+                break;
+            case TimelineDisplayMode.Alternate:
+                item.Position = index % 2 == 0 ? TimelineItemPosition.Left : TimelineItemPosition.Right;
+                break;
         }
     }
 }
