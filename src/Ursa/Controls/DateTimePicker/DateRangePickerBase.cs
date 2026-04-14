@@ -18,7 +18,7 @@ namespace Ursa.Controls;
 [TemplatePart(PART_StartTextBox, typeof(TextBox))]
 [TemplatePart(PART_EndTextBox, typeof(TextBox))]
 [PseudoClasses(PseudoClassName.PC_Empty)]
-public abstract class DateRangePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent
+public abstract class DateRangePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent, IClearControl
 {
     public const string PART_Popup = "PART_Popup";
     public const string PART_StartCalendar = "PART_StartCalendar";
@@ -302,4 +302,6 @@ public abstract class DateRangePickerBase : TemplatedControl, IInnerContentContr
 
     /// <summary>Sets the selected end date from a calendar-picked <see cref="DateOnly"/> (or clears it when <see langword="null"/>).</summary>
     protected abstract void SetSelectedEndDate(DateOnly? date);
+
+    public abstract void Clear();
 }

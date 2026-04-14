@@ -6,7 +6,7 @@ using Irihi.Avalonia.Shared.Contracts;
 
 namespace Ursa.Controls;
 
-public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T : struct
+public abstract class DatePickerBase<T> : DatePickerBase where T : struct
 {
     public static readonly StyledProperty<T?> SelectedDateProperty =
         AvaloniaProperty.Register<DatePickerBase<T>, T?>(
@@ -96,7 +96,7 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
             SyncToUI();
     }
 
-    public void Clear() => SetCurrentValue(SelectedDateProperty, (T?)null);
+    public override void Clear() => SetCurrentValue(SelectedDateProperty, (T?)null);
 
     protected override void UpdateDataValidation(AvaloniaProperty property, BindingValueType state, Exception? error)
     {

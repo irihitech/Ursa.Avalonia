@@ -7,7 +7,7 @@ using Irihi.Avalonia.Shared.Contracts;
 
 namespace Ursa.Controls;
 
-public abstract class DateRangePickerBase<T> : DateRangePickerBase, IClearControl where T : struct
+public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : struct
 {
     public static readonly StyledProperty<T?> SelectedStartDateProperty =
         AvaloniaProperty.Register<DateRangePickerBase<T>, T?>(
@@ -95,7 +95,7 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase, IClearContro
         }
     }
 
-    public void Clear()
+    public override void Clear()
     {
         SetCurrentValue(SelectedStartDateProperty, (T?)null);
         SetCurrentValue(SelectedEndDateProperty, (T?)null);

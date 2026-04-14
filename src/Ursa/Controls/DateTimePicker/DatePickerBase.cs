@@ -9,12 +9,13 @@ using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
 
+
 namespace Ursa.Controls;
 
 [TemplatePart(PART_Popup, typeof(Popup))]
 [TemplatePart(PART_TextBox, typeof(TextBox))]
 [TemplatePart(PART_Calendar, typeof(DatePickerCalendarView))]
-public abstract class DatePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent
+public abstract class DatePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent, IClearControl
 {
     public const string PART_Popup = "PART_Popup";
     public const string PART_TextBox = "PART_TextBox";
@@ -231,4 +232,6 @@ public abstract class DatePickerBase : TemplatedControl, IInnerContentControl, I
         CommitInput();
         SetCurrentValue(IsDropdownOpenProperty, false);
     }
+
+    public abstract void Clear();
 }
