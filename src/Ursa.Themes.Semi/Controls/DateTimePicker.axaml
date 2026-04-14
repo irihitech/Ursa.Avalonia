@@ -1,8 +1,9 @@
 <ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:u="https://irihi.tech/ursa">
-    <ControlTheme x:Key="{x:Type u:DateTimePicker}" TargetType="u:DateTimePicker">
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:iri="https://irihi.tech/shared">
+    <ControlTheme x:Key="{x:Type u:DateTimePickerBase}" TargetType="u:DateTimePickerBase">
         <Setter Property="Background" Value="{DynamicResource CalendarDatePickerBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource CalendarDatePickerForeground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerBorderBrush}" />
@@ -15,7 +16,7 @@
         <Setter Property="MinHeight" Value="{DynamicResource CalendarDatePickerDefaultHeight}" />
         <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
         <Setter Property="Template">
-            <ControlTemplate TargetType="u:DateTimePicker">
+            <ControlTemplate TargetType="u:DateTimePickerBase">
                 <DataValidationErrors>
                     <Panel
                         x:Name="LayoutRoot"
@@ -53,7 +54,7 @@
                                 Name="ClearButton"
                                 Grid.Column="1"
                                 Margin="8 0"
-                                Command="{Binding $parent[u:DateTimePicker].Clear}"
+                                Command="{Binding $parent[iri:IClearControl].Clear}"
                                 Content="{DynamicResource IconButtonClearData}"
                                 Focusable="False"
                                 IsVisible="False"
@@ -84,7 +85,7 @@
                                     CornerRadius="{DynamicResource CalendarCornerRadius}">
                                     <Grid ColumnDefinitions="*, *">
                                         <u:DatePickerCalendarView
-                                            Name="{x:Static u:DateTimePicker.PART_Calendar}"
+                                            Name="{x:Static u:DateTimePickerBase.PART_Calendar}"
                                             BorderThickness="0"
                                             CornerRadius="{Binding $parent[Border].CornerRadius}"
                                             FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
@@ -92,7 +93,7 @@
                                             IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
                                         <u:TimePickerPresenter
                                             Grid.Column="1"
-                                            Name="{x:Static u:DateTimePicker.PART_TimePicker}"
+                                            Name="{x:Static u:DateTimePickerBase.PART_TimePicker}"
                                             FontSize="{DynamicResource DefaultFontSize}"
                                             NeedsConfirmation="{TemplateBinding NeedConfirmation}"
                                             PanelFormat="{TemplateBinding PanelFormat}" />

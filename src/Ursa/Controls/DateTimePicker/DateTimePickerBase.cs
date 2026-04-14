@@ -6,6 +6,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
@@ -61,6 +62,21 @@ public abstract class DateTimePickerBase : TemplatedControl, IInnerContentContro
 
     public static readonly StyledProperty<bool> IsReadonlyProperty =
         AvaloniaProperty.Register<DateTimePickerBase, bool>(nameof(IsReadonly));
+
+    public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
+        TextBox.PlaceholderForegroundProperty.AddOwner<DateTimePickerBase>();
+
+    public static readonly StyledProperty<string?> PlaceholderTextProperty =
+        TextBox.PlaceholderTextProperty.AddOwner<DateTimePickerBase>();
+
+    [Obsolete("Use PlaceholderTextProperty instead.")]
+    public static readonly StyledProperty<string?> WatermarkProperty = PlaceholderTextProperty;
+
+    public static readonly StyledProperty<string> PanelFormatProperty =
+        AvaloniaProperty.Register<DateTimePickerBase, string>(nameof(PanelFormat), "HH mm ss");
+
+    public static readonly StyledProperty<bool> NeedConfirmationProperty =
+        AvaloniaProperty.Register<DateTimePickerBase, bool>(nameof(NeedConfirmation));
 
     protected TextBox? _textBox;
     protected DatePickerCalendarView? _calendar;
@@ -131,6 +147,37 @@ public abstract class DateTimePickerBase : TemplatedControl, IInnerContentContro
     {
         get => GetValue(DisplayFormatProperty);
         set => SetValue(DisplayFormatProperty, value);
+    }
+
+    public string? PlaceholderText
+    {
+        get => GetValue(PlaceholderTextProperty);
+        set => SetValue(PlaceholderTextProperty, value);
+    }
+
+    [Obsolete("Use PlaceholderText instead.")]
+    public string? Watermark
+    {
+        get => PlaceholderText;
+        set => PlaceholderText = value;
+    }
+
+    public IBrush? PlaceholderForeground
+    {
+        get => GetValue(PlaceholderForegroundProperty);
+        set => SetValue(PlaceholderForegroundProperty, value);
+    }
+
+    public string PanelFormat
+    {
+        get => GetValue(PanelFormatProperty);
+        set => SetValue(PanelFormatProperty, value);
+    }
+
+    public bool NeedConfirmation
+    {
+        get => GetValue(NeedConfirmationProperty);
+        set => SetValue(NeedConfirmationProperty, value);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)

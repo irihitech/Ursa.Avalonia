@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:iri="https://irihi.tech/shared">
-    <ControlTheme x:Key="{x:Type u:DateRangePicker}" TargetType="u:DateRangePicker">
+    <ControlTheme x:Key="{x:Type u:DateRangePickerBase}" TargetType="u:DateRangePickerBase">
         <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
@@ -11,7 +11,7 @@
         <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
         <Setter Property="MinHeight" Value="32" />
         <Setter Property="Template">
-            <ControlTemplate TargetType="u:DateRangePicker">
+            <ControlTemplate TargetType="u:DateRangePickerBase">
                 <DataValidationErrors>
                     <Panel
                         Name="LayoutRoot"
@@ -26,7 +26,7 @@
                             CornerRadius="{TemplateBinding CornerRadius}" />
                         <Grid ColumnDefinitions="*, Auto, * Auto" Name="PART_PassThroughElement">
                             <TextBox
-                                Name="{x:Static u:DateRangePicker.PART_StartTextBox}"
+                                Name="{x:Static u:DateRangePickerBase.PART_StartTextBox}"
                                 Grid.Column="0"
                                 MinHeight="{TemplateBinding MinHeight}"
                                 HorizontalAlignment="Stretch"
@@ -42,7 +42,7 @@
                                 VerticalAlignment="Center"
                                 Text="~" />
                             <TextBox
-                                Name="{x:Static u:DateRangePicker.PART_EndTextBox}"
+                                Name="{x:Static u:DateRangePickerBase.PART_EndTextBox}"
                                 Grid.Column="2"
                                 MinHeight="{TemplateBinding MinHeight}"
                                 HorizontalAlignment="Stretch"
@@ -57,7 +57,7 @@
                                 Name="ClearButton"
                                 Grid.Column="3"
                                 Margin="8,0"
-                                Command="{Binding $parent[u:DateRangePicker].Clear}"
+                                Command="{Binding $parent[iri:IClearControl].Clear}"
                                 Content="{DynamicResource IconButtonClearData}"
                                 Focusable="False"
                                 IsVisible="False"
@@ -115,7 +115,7 @@
                                                                     Converter={x:Static ObjectConverters.IsNotNull}}" />
                                     <Grid ColumnDefinitions="*, *">
                                         <u:DatePickerCalendarView
-                                            Name="{x:Static u:DateRangePicker.PART_StartCalendar}"
+                                            Name="{x:Static u:DateRangePickerBase.PART_StartCalendar}"
                                             Grid.Column="0"
                                             Margin="8"
                                             BorderThickness="0"
@@ -124,7 +124,7 @@
                                             FontSize="{DynamicResource DefaultFontSize}"
                                             IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
                                         <u:DatePickerCalendarView
-                                            Name="{x:Static u:DateRangePicker.PART_EndCalendar}"
+                                            Name="{x:Static u:DateRangePickerBase.PART_EndCalendar}"
                                             Grid.Column="1"
                                             Margin="8"
                                             BorderThickness="0"
