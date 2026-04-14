@@ -18,33 +18,13 @@ namespace Ursa.Controls;
 [TemplatePart(PART_StartTextBox, typeof(TextBox))]
 [TemplatePart(PART_EndTextBox, typeof(TextBox))]
 [PseudoClasses(PseudoClassName.PC_Empty)]
-public class DateRangePicker : DatePickerBase, IClearControl
+public class DateRangePicker : DateRangePickerBase<DateTime>, IClearControl
 {
     public const string PART_Popup = "PART_Popup";
     public const string PART_StartCalendar = "PART_StartCalendar";
     public const string PART_EndCalendar = "PART_EndCalendar";
     public const string PART_StartTextBox = "PART_StartTextBox";
     public const string PART_EndTextBox = "PART_EndTextBox";
-
-    public static readonly StyledProperty<DateTime?> SelectedStartDateProperty =
-        AvaloniaProperty.Register<DateRangePicker, DateTime?>(
-            nameof(SelectedStartDate), defaultBindingMode: BindingMode.TwoWay);
-
-    public static readonly StyledProperty<DateTime?> SelectedEndDateProperty =
-        AvaloniaProperty.Register<DateRangePicker, DateTime?>(
-            nameof(SelectedEndDate), defaultBindingMode: BindingMode.TwoWay);
-
-    public DateTime? SelectedStartDate
-    {
-        get => GetValue(SelectedStartDateProperty);
-        set => SetValue(SelectedStartDateProperty, value);
-    }
-
-    public DateTime? SelectedEndDate
-    {
-        get => GetValue(SelectedEndDateProperty);
-        set => SetValue(SelectedEndDateProperty, value);
-    }
 
     private DatePickerCalendarView? _startCalendar;
     private DatePickerCalendarView? _endCalendar;

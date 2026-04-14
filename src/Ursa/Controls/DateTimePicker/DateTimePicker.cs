@@ -18,16 +18,12 @@ namespace Ursa.Controls;
 [TemplatePart(PART_Calendar, typeof(DatePickerCalendarView))]
 [TemplatePart(PART_TimePicker, typeof(TimePickerPresenter))]
 [PseudoClasses(PseudoClassName.PC_Empty)]
-public class DateTimePicker : DatePickerBase, IClearControl
+public class DateTimePicker : DateTimePickerBase<DateTime>, IClearControl
 {
     public const string PART_Popup = "PART_Popup";
     public const string PART_TextBox = "PART_TextBox";
     public const string PART_Calendar = "PART_Calendar";
     public const string PART_TimePicker = "PART_TimePicker";
-
-    public static readonly StyledProperty<DateTime?> SelectedDateProperty =
-        AvaloniaProperty.Register<DateTimePicker, DateTime?>(
-            nameof(SelectedDate), defaultBindingMode: BindingMode.TwoWay);
 
     public static readonly StyledProperty<string?> PlaceholderTextProperty =
         AvaloniaProperty.Register<DateTimePicker, string?>(nameof(PlaceholderText));
@@ -45,12 +41,6 @@ public class DateTimePicker : DatePickerBase, IClearControl
     public static readonly StyledProperty<bool> NeedConfirmationProperty =
         AvaloniaProperty.Register<DateTimePicker, bool>(
             nameof(NeedConfirmation));
-
-    public DateTime? SelectedDate
-    {
-        get => GetValue(SelectedDateProperty);
-        set => SetValue(SelectedDateProperty, value);
-    }
 
     public string? PlaceholderText
     {
