@@ -25,10 +25,10 @@ public abstract class DatePickerBase<T> : DatePickerBase where T : struct
     protected abstract T FromDateOnly(DateOnly date);
 
     /// <summary>Parses a text string with the given format into a <typeparamref name="T"/> value, or <see langword="null"/> on failure.</summary>
-    protected abstract T? Parse(string text, string format);
+    protected abstract T? Parse(string? text, string? format);
 
     /// <summary>Formats a <typeparamref name="T"/> value to a display string using the given format.</summary>
-    protected abstract string Format(T value, string format);
+    protected abstract string? Format(T? value, string? format);
 
     /// <summary>Returns today as a <see cref="DateOnly"/> for use as the calendar context when no date is selected.</summary>
     protected virtual DateOnly GetToday() => DateOnly.FromDateTime(DateTime.Today);
@@ -47,7 +47,7 @@ public abstract class DatePickerBase<T> : DatePickerBase where T : struct
         }
         else
         {
-            _textBox?.SetValue(TextBox.TextProperty, Format(SelectedDate.Value, DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT));
+            _textBox?.SetValue(TextBox.TextProperty, Format(SelectedDate, DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT));
             var dateOnly = ToDateOnly(SelectedDate);
             if (dateOnly.HasValue)
                 _calendar?.MarkDates(startDate: dateOnly.Value, endDate: dateOnly.Value);
@@ -64,7 +64,7 @@ public abstract class DatePickerBase<T> : DatePickerBase where T : struct
         }
 
         var format = DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT;
-        var parsed = Parse(_textBox!.Text, format);
+        var parsed = Parse(_textBox?.Text, format);
         if (parsed.HasValue)
         {
             SetCurrentValue(SelectedDateProperty, parsed);

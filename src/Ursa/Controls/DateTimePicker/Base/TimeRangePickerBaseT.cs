@@ -34,10 +34,10 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
     protected abstract T FromTimeOnly(TimeOnly time);
 
     /// <summary>Parses a text string with the given format into a <typeparamref name="T"/> value, or <see langword="null"/> on failure.</summary>
-    protected abstract T? Parse(string text, string format);
+    protected abstract T? Parse(string? text, string? format);
 
     /// <summary>Formats a <typeparamref name="T"/> value to a display string using the given format.</summary>
-    protected abstract string Format(T value, string format);
+    protected abstract string? Format(T? value, string? format);
 
     protected override TimeOnly? GetSelectedStartTimeOnly() => ToTimeOnly(SelectedStartTime);
     protected override TimeOnly? GetSelectedEndTimeOnly() => ToTimeOnly(SelectedEndTime);
@@ -57,10 +57,8 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
     protected override void SyncToUI()
     {
         var format = DisplayFormat ?? DEFAULT_TIME_DISPLAY_FORMAT;
-        _startTextBox?.SetCurrentValue(TextBox.TextProperty,
-            SelectedStartTime.HasValue ? Format(SelectedStartTime.Value, format) : null);
-        _endTextBox?.SetCurrentValue(TextBox.TextProperty,
-            SelectedEndTime.HasValue ? Format(SelectedEndTime.Value, format) : null);
+        _startTextBox?.SetCurrentValue(TextBox.TextProperty, Format(SelectedStartTime, format));
+        _endTextBox?.SetCurrentValue(TextBox.TextProperty, Format(SelectedEndTime, format));
         _startPresenter?.SyncTime(GetSelectedStartTimeOnly());
         _endPresenter?.SyncTime(GetSelectedEndTimeOnly());
     }
@@ -72,12 +70,12 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
         if (string.IsNullOrWhiteSpace(_startTextBox?.Text))
             SetCurrentValue(SelectedStartTimeProperty, (T?)null);
         else
-            SetCurrentValue(SelectedStartTimeProperty, Parse(_startTextBox!.Text, format));
+            SetCurrentValue(SelectedStartTimeProperty, Parse(_startTextBox?.Text, format));
 
         if (string.IsNullOrWhiteSpace(_endTextBox?.Text))
             SetCurrentValue(SelectedEndTimeProperty, (T?)null);
         else
-            SetCurrentValue(SelectedEndTimeProperty, Parse(_endTextBox!.Text, format));
+            SetCurrentValue(SelectedEndTimeProperty, Parse(_endTextBox?.Text, format));
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)

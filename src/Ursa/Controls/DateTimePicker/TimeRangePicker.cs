@@ -32,11 +32,11 @@ public class TimeRangePicker : TimeRangePickerBase<TimeSpan>
 
     protected override TimeSpan FromTimeOnly(TimeOnly time) => time.ToTimeSpan();
 
-    protected override TimeSpan? Parse(string text, string format) =>
+    protected override TimeSpan? Parse(string? text, string? format) =>
         TimeOnly.TryParseExact(text, format, CultureInfo.CurrentUICulture, DateTimeStyles.None, out var time)
             ? time.ToTimeSpan()
             : null;
 
-    protected override string Format(TimeSpan value, string format) =>
-        TimeOnly.FromTimeSpan(value).ToString(format);
+    protected override string? Format(TimeSpan? value, string? format) =>
+        value.HasValue ? TimeOnly.FromTimeSpan(value.Value).ToString(format) : null;
 }

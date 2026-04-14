@@ -36,10 +36,10 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
     protected abstract T FromDateOnly(DateOnly date);
 
     /// <summary>Parses a text string with the given format into a <typeparamref name="T"/> value, or <see langword="null"/> on failure.</summary>
-    protected abstract T? Parse(string text, string format);
+    protected abstract T? Parse(string? text, string? format);
 
     /// <summary>Formats a <typeparamref name="T"/> value to a display string using the given format.</summary>
-    protected abstract string Format(T value, string format);
+    protected abstract string? Format(T? value, string? format);
 
     protected override DateOnly? GetStartDateOnly() => ToDateOnly(SelectedStartDate);
 
@@ -54,13 +54,9 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
     protected override void SyncToUI()
     {
         _startTextBox?.SetCurrentValue(TextBox.TextProperty,
-            SelectedStartDate.HasValue
-                ? Format(SelectedStartDate.Value, DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT)
-                : string.Empty);
+            Format(SelectedStartDate, DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT) ?? string.Empty);
         _endTextBox?.SetCurrentValue(TextBox.TextProperty,
-            SelectedEndDate.HasValue
-                ? Format(SelectedEndDate.Value, DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT)
-                : string.Empty);
+            Format(SelectedEndDate, DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT) ?? string.Empty);
     }
 
     protected override void CommitInput()
@@ -70,12 +66,12 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
         if (string.IsNullOrWhiteSpace(_startTextBox?.Text))
             SetCurrentValue(SelectedStartDateProperty, (T?)null);
         else
-            SetCurrentValue(SelectedStartDateProperty, Parse(_startTextBox.Text, format));
+            SetCurrentValue(SelectedStartDateProperty, Parse(_startTextBox?.Text, format));
 
         if (string.IsNullOrWhiteSpace(_endTextBox?.Text))
             SetCurrentValue(SelectedEndDateProperty, (T?)null);
         else
-            SetCurrentValue(SelectedEndDateProperty, Parse(_endTextBox.Text, format));
+            SetCurrentValue(SelectedEndDateProperty, Parse(_endTextBox?.Text, format));
 
         _startCalendar?.MarkDates(GetStartDateOnly(), GetEndDateOnly());
         _endCalendar?.MarkDates(GetStartDateOnly(), GetEndDateOnly());

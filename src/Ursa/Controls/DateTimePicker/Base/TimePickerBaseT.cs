@@ -23,19 +23,17 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
     protected abstract T FromTimeOnly(TimeOnly time);
 
     /// <summary>Parses a text string with the given format into a <typeparamref name="T"/> value, or <see langword="null"/> on failure.</summary>
-    protected abstract T? Parse(string text, string format);
+    protected abstract T? Parse(string? text, string? format);
 
     /// <summary>Formats a <typeparamref name="T"/> value to a display string using the given format.</summary>
-    protected abstract string Format(T value, string format);
+    protected abstract string? Format(T? value, string? format);
 
     protected override TimeOnly? GetSelectedTimeOnly() => ToTimeOnly(SelectedTime);
 
     protected override void SyncToUI()
     {
         _textBox?.SetValue(TextBox.TextProperty,
-            SelectedTime.HasValue
-                ? Format(SelectedTime.Value, DisplayFormat ?? DEFAULT_TIME_DISPLAY_FORMAT)
-                : null);
+            Format(SelectedTime, DisplayFormat ?? DEFAULT_TIME_DISPLAY_FORMAT));
         _presenter?.SyncTime(GetSelectedTimeOnly());
     }
 
@@ -49,7 +47,7 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
             return;
         }
 
-        var parsed = Parse(_textBox!.Text, format);
+        var parsed = Parse(_textBox?.Text, format);
         if (parsed.HasValue)
         {
             SetCurrentValue(SelectedTimeProperty, parsed);

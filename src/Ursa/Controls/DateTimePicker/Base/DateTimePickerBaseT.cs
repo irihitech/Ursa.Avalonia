@@ -29,10 +29,10 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
     protected abstract T CombineDateTime(DateOnly date, TimeOnly time);
 
     /// <summary>Parses a text string with the given format into a <typeparamref name="T"/> value, or <see langword="null"/> on failure.</summary>
-    protected abstract T? Parse(string text, string format);
+    protected abstract T? Parse(string? text, string? format);
 
     /// <summary>Formats a <typeparamref name="T"/> value to a display string using the given format.</summary>
-    protected abstract string Format(T value, string format);
+    protected abstract string? Format(T? value, string? format);
 
     /// <summary>Returns today as a <see cref="DateOnly"/> for calendar context fallback.</summary>
     protected virtual DateOnly GetToday() => DateOnly.FromDateTime(DateTime.Today);
@@ -58,7 +58,7 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
         }
         else
         {
-            _textBox?.SetValue(TextBox.TextProperty, Format(SelectedDate.Value, DisplayFormat ?? DEFAULT_DATETIME_DISPLAY_FORMAT));
+            _textBox?.SetValue(TextBox.TextProperty, Format(SelectedDate, DisplayFormat ?? DEFAULT_DATETIME_DISPLAY_FORMAT));
             var dateOnly = ToDateOnly(SelectedDate);
             if (dateOnly.HasValue)
                 _calendar?.MarkDates(dateOnly.Value, dateOnly.Value);
@@ -74,7 +74,7 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
             SetCurrentValue(SelectedDateProperty, (T?)null);
             return;
         }
-        var parsed = Parse(_textBox!.Text, format);
+        var parsed = Parse(_textBox?.Text, format);
         SetCurrentValue(SelectedDateProperty, parsed);
     }
 
