@@ -1,20 +1,36 @@
 using Avalonia;
 using Avalonia.Collections;
+using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
+using Avalonia.Input;
+using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Contracts;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-public class DatePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent
+[TemplatePart(PART_Popup, typeof(Popup))]
+[TemplatePart(PART_TextBox, typeof(TextBox))]
+[TemplatePart(PART_Calendar, typeof(DatePickerCalendarView))]
+public abstract class DatePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent
 {
+    public const string PART_Popup = "PART_Popup";
+    public const string PART_TextBox = "PART_TextBox";
+    public const string PART_Calendar = "PART_Calendar";
+
     protected const string DEFAULT_DATE_DISPLAY_FORMAT = "yyyy-MM-dd";
     protected const string DEFAULT_DATETIME_DISPLAY_FORMAT = "yyyy-MM-dd HH:mm:ss";
-    
+
+    protected TextBox? _textBox;
+    protected DatePickerCalendarView? _calendar;
+    protected Popup? _popup;
+
     public static readonly StyledProperty<string?> DisplayFormatProperty =
         AvaloniaProperty.Register<DatePickerBase, string?>(
             nameof(DisplayFormat), DEFAULT_DATE_DISPLAY_FORMAT);
-    
+
     public static readonly StyledProperty<AvaloniaList<DateRange>> BlackoutDatesProperty =
         AvaloniaProperty.Register<DatePickerBase, AvaloniaList<DateRange>>(nameof(BlackoutDates));
 
@@ -29,26 +45,22 @@ public class DatePickerBase : TemplatedControl, IInnerContentControl, IPopupInne
         AvaloniaProperty.Register<DatePickerBase, bool>(nameof(IsTodayHighlighted), true);
 
     public static readonly StyledProperty<object?> InnerLeftContentProperty =
-        AvaloniaProperty.Register<DatePickerBase, object?>(
-            nameof(InnerLeftContent));
+        AvaloniaProperty.Register<DatePickerBase, object?>(nameof(InnerLeftContent));
 
     public static readonly StyledProperty<object?> InnerRightContentProperty =
-        AvaloniaProperty.Register<DatePickerBase, object?>(
-            nameof(InnerRightContent));
-    
+        AvaloniaProperty.Register<DatePickerBase, object?>(nameof(InnerRightContent));
+
     public static readonly StyledProperty<object?> PopupInnerTopContentProperty =
-        AvaloniaProperty.Register<DatePickerBase, object?>(
-            nameof(PopupInnerTopContent));
+        AvaloniaProperty.Register<DatePickerBase, object?>(nameof(PopupInnerTopContent));
 
     public static readonly StyledProperty<object?> PopupInnerBottomContentProperty =
-        AvaloniaProperty.Register<DatePickerBase, object?>(
-            nameof(PopupInnerBottomContent));
+        AvaloniaProperty.Register<DatePickerBase, object?>(nameof(PopupInnerBottomContent));
 
-    public static readonly StyledProperty<bool> IsDropdownOpenProperty = AvaloniaProperty.Register<DatePickerBase, bool>(
-        nameof(IsDropdownOpen), defaultBindingMode: BindingMode.TwoWay);
+    public static readonly StyledProperty<bool> IsDropdownOpenProperty =
+        AvaloniaProperty.Register<DatePickerBase, bool>(nameof(IsDropdownOpen), defaultBindingMode: BindingMode.TwoWay);
 
-    public static readonly StyledProperty<bool> IsReadonlyProperty = AvaloniaProperty.Register<DatePickerBase, bool>(
-        nameof(IsReadonly));
+    public static readonly StyledProperty<bool> IsReadonlyProperty =
+        AvaloniaProperty.Register<DatePickerBase, bool>(nameof(IsReadonly));
 
     public AvaloniaList<DateRange> BlackoutDates
     {
@@ -109,10 +121,114 @@ public class DatePickerBase : TemplatedControl, IInnerContentControl, IPopupInne
         get => GetValue(PopupInnerBottomContentProperty);
         set => SetValue(PopupInnerBottomContentProperty, value);
     }
-    
+
     public string? DisplayFormat
     {
         get => GetValue(DisplayFormatProperty);
         set => SetValue(DisplayFormatProperty, value);
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+
+        DatePickerCalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _calendar);
+        GotFocusEvent.RemoveHandler(OnTextBoxGotFocus, _textBox);
+        LostFocusEvent.RemoveHandler(OnTextBoxLostFocus, _textBox);
+        PointerPressedEvent.RemoveHandler(OnTextBoxPressed, _textBox);
+
+        _popup = e.NameScope.Find<Popup>(PART_Popup);
+        _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
+        _calendar = e.NameScope.Find<DatePickerCalendarView>(PART_Calendar);
+
+        DatePickerCalendarView.DateSelectedEvent.AddHandler(OnDateSelected, RoutingStrategies.Bubble, true, _calendar);
+        GotFocusEvent.AddHandler(OnTextBoxGotFocus, _textBox);
+        LostFocusEvent.AddHandler(OnTextBoxLostFocus, _textBox);
+        PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _textBox);
+
+        SyncToUI();
+    }
+
+    private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e) => InitializePopupOpen();
+    private void OnTextBoxGotFocus(object? sender, FocusChangedEventArgs e) => InitializePopupOpen();
+    private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e) => CommitInput();
+
+    private void InitializePopupOpen()
+    {
+        SetCurrentValue(IsDropdownOpenProperty, true);
+        var date = GetCalendarContextDate();
+        _calendar?.SyncContextDate(new DatePickerCalendarContext(date.Year, date.Month));
+        _calendar?.UpdateDayButtons();
+        var selectedDate = GetSelectedDateOnly();
+        _calendar?.MarkDates(selectedDate, selectedDate);
+    }
+
+    private void OnDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
+    {
+        OnCalendarDateSelected(e.Date);
+        SetCurrentValue(IsDropdownOpenProperty, false);
+    }
+
+    /// <summary>Synchronises the current selected value to the text box and calendar UI.</summary>
+    protected abstract void SyncToUI();
+
+    /// <summary>Parses the text box content and commits the result to the selected-date property.</summary>
+    protected abstract void CommitInput();
+
+    /// <summary>Returns the date component of the currently selected value, for calendar marking.</summary>
+    protected abstract DateOnly? GetSelectedDateOnly();
+
+    /// <summary>Returns the date to show in the calendar when it opens.</summary>
+    protected abstract DateOnly GetCalendarContextDate();
+
+    /// <summary>Called when the user picks a day on the calendar popup.</summary>
+    protected abstract void OnCalendarDateSelected(DateOnly? date);
+
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    {
+        base.OnPointerPressed(e);
+        if (!e.Handled && e.Source is Visual source)
+        {
+            if (_popup?.IsInsidePopup(source) == true)
+                e.Handled = true;
+            else
+                _textBox?.Focus();
+        }
+    }
+
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        switch (e.Key)
+        {
+            case Key.Escape:
+                SetCurrentValue(IsDropdownOpenProperty, false);
+                e.Handled = true;
+                return;
+            case Key.Down:
+                SetCurrentValue(IsDropdownOpenProperty, true);
+                e.Handled = true;
+                return;
+            case Key.Tab:
+                SetCurrentValue(IsDropdownOpenProperty, false);
+                return;
+            case Key.Enter:
+                SetCurrentValue(IsDropdownOpenProperty, false);
+                CommitInput();
+                e.Handled = true;
+                return;
+            default:
+                base.OnKeyDown(e);
+                break;
+        }
+    }
+
+    protected override void OnLostFocus(FocusChangedEventArgs e)
+    {
+        base.OnLostFocus(e);
+        var element = e.NewFocusedElement;
+        if (Equals(element, _textBox)) return;
+        if (element is Visual v && _popup?.IsInsidePopup(v) == true) return;
+        CommitInput();
+        SetCurrentValue(IsDropdownOpenProperty, false);
     }
 }

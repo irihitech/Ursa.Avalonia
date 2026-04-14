@@ -1,33 +1,14 @@
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
-using Avalonia.Input;
-using Avalonia.Interactivity;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
-using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-[TemplatePart(PART_Popup, typeof(Popup))]
-[TemplatePart(PART_TextBox, typeof(TextBox))]
-[TemplatePart(PART_Calendar, typeof(DatePickerCalendarView))]
-[TemplatePart(PART_TimePicker, typeof(TimePickerPresenter))]
-[PseudoClasses(PseudoClassName.PC_Empty)]
 public abstract class DateTimePickerBase<T> : DateTimePickerBase, IClearControl where T : struct
 {
-    public const string PART_Popup = "PART_Popup";
-    public const string PART_TextBox = "PART_TextBox";
-    public const string PART_Calendar = "PART_Calendar";
-    public const string PART_TimePicker = "PART_TimePicker";
-
-    private TextBox? _textBox;
-    private DatePickerCalendarView? _calendar;
-    private Popup? _popup;
-    private TimePickerPresenter? _timePickerPresenter;
-
     public static readonly StyledProperty<T?> SelectedDateProperty =
         AvaloniaProperty.Register<DateTimePickerBase<T>, T?>(
             nameof(SelectedDate), defaultBindingMode: BindingMode.TwoWay);
@@ -59,81 +40,18 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase, IClearControl 
     /// <summary>Returns the current time for use when no time component is available.</summary>
     protected virtual TimeOnly GetCurrentTime() => TimeOnly.FromDateTime(DateTime.Now);
 
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    protected override DateOnly? GetSelectedDateOnly() =>
+        SelectedDate.HasValue ? ToDateOnly(SelectedDate.Value) : null;
+
+    protected override TimeOnly? GetSelectedTimeOnly() =>
+        SelectedDate.HasValue ? ToTimeOnly(SelectedDate.Value) : null;
+
+    protected override DateOnly GetCalendarContextDate() =>
+        GetSelectedDateOnly() ?? GetToday();
+
+    protected override void SyncToUI()
     {
-        base.OnPropertyChanged(change);
-        if (change.Property == SelectedDateProperty)
-        {
-            SyncDateToText();
-            PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedDate is null);
-        }
-    }
-
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
-    {
-        base.OnApplyTemplate(e);
-
-        TimePickerPresenter.SelectedTimeChangedEvent.RemoveHandler(OnTimeSelected, _timePickerPresenter);
-        DatePickerCalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _calendar);
-        GotFocusEvent.RemoveHandler(OnTextBoxGotFocus, _textBox);
-        PointerPressedEvent.RemoveHandler(OnTextBoxPressed, _textBox);
-        LostFocusEvent.RemoveHandler(OnTextBoxLostFocus, _textBox);
-
-        _popup = e.NameScope.Find<Popup>(PART_Popup);
-        _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
-        _calendar = e.NameScope.Find<DatePickerCalendarView>(PART_Calendar);
-        _timePickerPresenter = e.NameScope.Find<TimePickerPresenter>(PART_TimePicker);
-
-        TimePickerPresenter.SelectedTimeChangedEvent.AddHandler(OnTimeSelected, _timePickerPresenter);
-        DatePickerCalendarView.DateSelectedEvent.AddHandler(OnDateSelected, _calendar);
-        GotFocusEvent.AddHandler(OnTextBoxGotFocus, _textBox);
-        PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _textBox);
-        LostFocusEvent.AddHandler(OnTextBoxLostFocus, _textBox);
-
-        SyncDateToText();
-    }
-
-    private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e) => CommitInput();
-
-    private void OnTextBoxGotFocus(object? sender, FocusChangedEventArgs e) => InitializePopupOpen();
-
-    private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e) => InitializePopupOpen();
-
-    private void InitializePopupOpen()
-    {
-        SetCurrentValue(IsDropdownOpenProperty, true);
-        SetCalendarContextDate();
-    }
-
-    private void SetCalendarContextDate()
-    {
-        var dateOnly = SelectedDate.HasValue ? ToDateOnly(SelectedDate.Value) : null;
-        var date = dateOnly ?? GetToday();
-        _calendar?.SyncContextDate(new DatePickerCalendarContext(date.Year, date.Month));
-        var time = SelectedDate.HasValue ? ToTimeOnly(SelectedDate.Value) : null;
-        _timePickerPresenter?.SyncTime(time);
-    }
-
-    private void OnDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
-    {
-        if (e.Date is null) return;
-        var time = SelectedDate.HasValue
-            ? ToTimeOnly(SelectedDate.Value) ?? GetCurrentTime()
-            : GetCurrentTime();
-        SetCurrentValue(SelectedDateProperty, (T?)CombineDateTime(e.Date.Value, time));
-    }
-
-    private void OnTimeSelected(object? sender, TimeChangedEventArgs e)
-    {
-        if (e.NewTime is null) return;
-        var date = (SelectedDate.HasValue ? ToDateOnly(SelectedDate.Value) : null) ?? GetToday();
-        SetCurrentValue(SelectedDateProperty, (T?)CombineDateTime(date, e.NewTime.Value));
-    }
-
-    private void SyncDateToText()
-    {
-        var value = SelectedDate;
-        if (value is null)
+        if (SelectedDate is null)
         {
             _textBox?.SetValue(TextBox.TextProperty, null);
             _calendar?.ClearSelection();
@@ -141,40 +59,15 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase, IClearControl 
         }
         else
         {
-            _textBox?.SetValue(TextBox.TextProperty, Format(value.Value, DisplayFormat ?? DEFAULT_DATETIME_DISPLAY_FORMAT));
-            var dateOnly = ToDateOnly(value.Value);
+            _textBox?.SetValue(TextBox.TextProperty, Format(SelectedDate.Value, DisplayFormat ?? DEFAULT_DATETIME_DISPLAY_FORMAT));
+            var dateOnly = ToDateOnly(SelectedDate.Value);
             if (dateOnly.HasValue)
                 _calendar?.MarkDates(dateOnly.Value, dateOnly.Value);
-            _timePickerPresenter?.SyncTime(ToTimeOnly(value.Value));
+            _timePickerPresenter?.SyncTime(ToTimeOnly(SelectedDate.Value));
         }
     }
 
-    protected override void OnPointerPressed(PointerPressedEventArgs e)
-    {
-        base.OnPointerPressed(e);
-        if (!e.Handled && e.Source is Visual source)
-        {
-            if (_popup?.IsInsidePopup(source) == true)
-                e.Handled = true;
-            else
-                InitializePopupOpen();
-        }
-    }
-
-    protected override void OnLostFocus(FocusChangedEventArgs e)
-    {
-        base.OnLostFocus(e);
-        var newItem = e.NewFocusedElement;
-        if (Equals(newItem, _textBox)) return;
-        if (newItem is Visual visual)
-        {
-            if (_popup?.IsInsidePopup(visual) == true) return;
-            CommitInput();
-            SetCurrentValue(IsDropdownOpenProperty, false);
-        }
-    }
-
-    private void CommitInput()
+    protected override void CommitInput()
     {
         var format = DisplayFormat ?? DEFAULT_DATETIME_DISPLAY_FORMAT;
         if (string.IsNullOrWhiteSpace(_textBox?.Text))
@@ -184,6 +77,30 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase, IClearControl 
         }
         var parsed = Parse(_textBox!.Text, format);
         SetCurrentValue(SelectedDateProperty, parsed);
+    }
+
+    protected override void OnCalendarDateSelected(DateOnly date)
+    {
+        var time = SelectedDate.HasValue
+            ? ToTimeOnly(SelectedDate.Value) ?? GetCurrentTime()
+            : GetCurrentTime();
+        SetCurrentValue(SelectedDateProperty, (T?)CombineDateTime(date, time));
+    }
+
+    protected override void OnTimePickerTimeSelected(TimeOnly time)
+    {
+        var date = GetSelectedDateOnly() ?? GetToday();
+        SetCurrentValue(SelectedDateProperty, (T?)CombineDateTime(date, time));
+    }
+
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+        if (change.Property == SelectedDateProperty)
+        {
+            SyncToUI();
+            PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedDate is null);
+        }
     }
 
     public void Clear() => SetCurrentValue(SelectedDateProperty, (T?)null);
