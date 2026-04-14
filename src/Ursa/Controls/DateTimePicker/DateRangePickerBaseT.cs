@@ -1,10 +1,37 @@
 using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
+using Avalonia.Controls.Primitives;
 using Avalonia.Data;
+using Avalonia.Input;
+using Avalonia.Interactivity;
+using Irihi.Avalonia.Shared.Common;
+using Irihi.Avalonia.Shared.Contracts;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-public abstract class DateRangePickerBase<T> : DatePickerBase where T : struct
+[TemplatePart(PART_Popup, typeof(Popup))]
+[TemplatePart(PART_StartCalendar, typeof(DatePickerCalendarView))]
+[TemplatePart(PART_EndCalendar, typeof(DatePickerCalendarView))]
+[TemplatePart(PART_StartTextBox, typeof(TextBox))]
+[TemplatePart(PART_EndTextBox, typeof(TextBox))]
+[PseudoClasses(PseudoClassName.PC_Empty)]
+public abstract class DateRangePickerBase<T> : DateRangePickerBase, IClearControl where T : struct
 {
+    public const string PART_Popup = "PART_Popup";
+    public const string PART_StartCalendar = "PART_StartCalendar";
+    public const string PART_EndCalendar = "PART_EndCalendar";
+    public const string PART_StartTextBox = "PART_StartTextBox";
+    public const string PART_EndTextBox = "PART_EndTextBox";
+
+    private DatePickerCalendarView? _startCalendar;
+    private DatePickerCalendarView? _endCalendar;
+    private TextBox? _startTextBox;
+    private TextBox? _endTextBox;
+    private Popup? _popup;
+    private readonly RangePickerStatus _status = new();
+
     public static readonly StyledProperty<T?> SelectedStartDateProperty =
         AvaloniaProperty.Register<DateRangePickerBase<T>, T?>(
             nameof(SelectedStartDate), defaultBindingMode: BindingMode.TwoWay);
@@ -23,5 +50,223 @@ public abstract class DateRangePickerBase<T> : DatePickerBase where T : struct
     {
         get => GetValue(SelectedEndDateProperty);
         set => SetValue(SelectedEndDateProperty, value);
+    }
+
+    /// <summary>Converts a <typeparamref name="T"/> value to <see cref="DateOnly"/> for calendar operations.</summary>
+    protected abstract DateOnly? ToDateOnly(T value);
+
+    /// <summary>Creates a <typeparamref name="T"/> value from a <see cref="DateOnly"/> (at day start).</summary>
+    protected abstract T FromDateOnly(DateOnly date);
+
+    /// <summary>Parses a text string with the given format into a <typeparamref name="T"/> value, or <see langword="null"/> on failure.</summary>
+    protected abstract T? Parse(string text, string format);
+
+    /// <summary>Formats a <typeparamref name="T"/> value to a display string using the given format.</summary>
+    protected abstract string Format(T value, string format);
+
+    private DateOnly? GetDateOnly(T? value) => value.HasValue ? ToDateOnly(value.Value) : null;
+
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+        if (change.Property == SelectedStartDateProperty || change.Property == SelectedEndDateProperty)
+            OnSelectionChanged();
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+
+        DatePickerCalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _startCalendar, _endCalendar);
+        DatePickerCalendarView.DatePreviewedEvent.RemoveHandler(OnDatePreviewed, _startCalendar, _endCalendar);
+        GotFocusEvent.RemoveHandler(OnTextBoxGotFocus, _startTextBox, _endTextBox);
+        PointerPressedEvent.RemoveHandler(OnTextBoxPressed, _startTextBox, _endTextBox);
+        LostFocusEvent.RemoveHandler(OnTextBoxLostFocus, _startTextBox, _endTextBox);
+
+        _startCalendar = e.NameScope.Find<DatePickerCalendarView>(PART_StartCalendar);
+        _endCalendar = e.NameScope.Find<DatePickerCalendarView>(PART_EndCalendar);
+        _startTextBox = e.NameScope.Find<TextBox>(PART_StartTextBox);
+        _endTextBox = e.NameScope.Find<TextBox>(PART_EndTextBox);
+        _popup = e.NameScope.Find<Popup>(PART_Popup);
+
+        DatePickerCalendarView.DateSelectedEvent.AddHandler(OnDateSelected, _startCalendar, _endCalendar);
+        DatePickerCalendarView.DatePreviewedEvent.AddHandler(OnDatePreviewed, _startCalendar, _endCalendar);
+        GotFocusEvent.AddHandler(OnTextBoxGotFocus, _startTextBox, _endTextBox);
+        PointerPressedEvent.AddHandler(OnTextBoxPressed,
+            strategies: RoutingStrategies.Tunnel, handledEventsToo: true, _startTextBox, _endTextBox);
+        LostFocusEvent.AddHandler(OnTextBoxLostFocus, _startTextBox, _endTextBox);
+
+        SyncDatesToTexts();
+    }
+
+    private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e)
+    {
+        CommitInput();
+        if (_status is { Current: Status.End, Previous: Status.Start }
+            && Equals(sender, _endTextBox) && _endTextBox?.IsFocused == true)
+        {
+            SetCurrentValue(IsDropdownOpenProperty, false);
+        }
+    }
+
+    private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e) =>
+        InitializePopupOpen(sender as TextBox);
+
+    private void OnTextBoxGotFocus(object? sender, FocusChangedEventArgs e) =>
+        InitializePopupOpen(sender as TextBox);
+
+    private void InitializePopupOpen(TextBox? sender)
+    {
+        if (sender is null) return;
+        SetCurrentValue(IsDropdownOpenProperty, true);
+        SetCalendarContextDate();
+        if (Equals(sender, _startTextBox))
+            _status.Push(Status.Start);
+        else if (Equals(sender, _endTextBox))
+            _status.Push(Status.End);
+        _startCalendar?.MarkDates(GetDateOnly(SelectedStartDate), GetDateOnly(SelectedEndDate));
+        _endCalendar?.MarkDates(GetDateOnly(SelectedStartDate), GetDateOnly(SelectedEndDate));
+    }
+
+    private void OnDatePreviewed(object? sender, DatePickerCalendarDayButtonEventArgs e)
+    {
+        if (_status.Current == Status.Start)
+        {
+            _startCalendar?.MarkDates(GetDateOnly(SelectedStartDate), GetDateOnly(SelectedEndDate), e.Date);
+            _endCalendar?.MarkDates(GetDateOnly(SelectedStartDate), GetDateOnly(SelectedEndDate), e.Date);
+        }
+        else if (_status.Current == Status.End)
+        {
+            _startCalendar?.MarkDates(GetDateOnly(SelectedStartDate), GetDateOnly(SelectedEndDate), null, e.Date);
+            _endCalendar?.MarkDates(GetDateOnly(SelectedStartDate), GetDateOnly(SelectedEndDate), null, e.Date);
+        }
+        else
+        {
+            _startCalendar?.ClearSelection();
+            _endCalendar?.ClearSelection();
+        }
+    }
+
+    private void OnDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
+    {
+        if (_status is { Current: Status.Start, Previous: Status.None })
+        {
+            SetCurrentValue(SelectedStartDateProperty, e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
+            if (GetDateOnly(SelectedEndDate) is { } endDate && e.Date is { } start && start > endDate)
+                SetCurrentValue(SelectedEndDateProperty, (T?)null);
+            _status.Push(Status.End);
+            _endTextBox?.Focus();
+        }
+        else if (_status is { Current: Status.Start, Previous: Status.End })
+        {
+            SetCurrentValue(SelectedStartDateProperty, e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
+            _status.Reset();
+            SetCurrentValue(IsDropdownOpenProperty, false);
+        }
+        else if (_status is { Current: Status.End, Previous: Status.None })
+        {
+            SetCurrentValue(SelectedEndDateProperty, e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
+            if (GetDateOnly(SelectedStartDate) is { } startDate && e.Date is { } end && end < startDate)
+                SetCurrentValue(SelectedStartDateProperty, (T?)null);
+            _status.Push(Status.Start);
+            _startTextBox?.Focus();
+        }
+        else if (_status is { Current: Status.End, Previous: Status.Start })
+        {
+            SetCurrentValue(SelectedEndDateProperty, e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
+            _status.Reset();
+            SetCurrentValue(IsDropdownOpenProperty, false);
+        }
+    }
+
+    private void OnSelectionChanged()
+    {
+        SyncDatesToTexts();
+        _startCalendar?.MarkDates(GetDateOnly(SelectedStartDate), GetDateOnly(SelectedEndDate));
+        _endCalendar?.MarkDates(GetDateOnly(SelectedStartDate), GetDateOnly(SelectedEndDate));
+        PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedStartDate is null && SelectedEndDate is null);
+    }
+
+    private void SyncDatesToTexts()
+    {
+        _startTextBox?.SetCurrentValue(TextBox.TextProperty,
+            SelectedStartDate.HasValue
+                ? Format(SelectedStartDate.Value, DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT)
+                : string.Empty);
+        _endTextBox?.SetCurrentValue(TextBox.TextProperty,
+            SelectedEndDate.HasValue
+                ? Format(SelectedEndDate.Value, DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT)
+                : string.Empty);
+    }
+
+    private void SetCalendarContextDate()
+    {
+        var startDateOnly = GetDateOnly(SelectedStartDate) ?? DateOnly.FromDateTime(DateTime.Today);
+        _startCalendar?.SyncContextDate(new DatePickerCalendarContext(startDateOnly.Year, startDateOnly.Month));
+        var endDateOnly = GetDateOnly(SelectedEndDate) ?? startDateOnly;
+        if (endDateOnly.Year == startDateOnly.Year && endDateOnly.Month == startDateOnly.Month)
+            endDateOnly = endDateOnly.AddMonths(1);
+        _endCalendar?.SyncContextDate(new DatePickerCalendarContext(endDateOnly.Year, endDateOnly.Month));
+    }
+
+    private void CommitInput()
+    {
+        var format = DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT;
+
+        if (string.IsNullOrWhiteSpace(_startTextBox?.Text))
+            SetCurrentValue(SelectedStartDateProperty, (T?)null);
+        else
+            SetCurrentValue(SelectedStartDateProperty, Parse(_startTextBox.Text, format));
+
+        if (string.IsNullOrWhiteSpace(_endTextBox?.Text))
+            SetCurrentValue(SelectedEndDateProperty, (T?)null);
+        else
+            SetCurrentValue(SelectedEndDateProperty, Parse(_endTextBox.Text, format));
+
+        _startCalendar?.MarkDates(GetDateOnly(SelectedStartDate), GetDateOnly(SelectedEndDate));
+        _endCalendar?.MarkDates(GetDateOnly(SelectedStartDate), GetDateOnly(SelectedEndDate));
+    }
+
+    protected override void OnLostFocus(FocusChangedEventArgs e)
+    {
+        base.OnLostFocus(e);
+        var newItem = e.NewFocusedElement;
+        if (Equals(newItem, _endTextBox) || Equals(newItem, _startTextBox)) return;
+        if (newItem is Visual visual)
+        {
+            if (_popup?.IsInsidePopup(visual) == true) return;
+        }
+        else
+        {
+            SetCurrentValue(IsDropdownOpenProperty, false);
+        }
+        CommitInput();
+    }
+
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    {
+        base.OnPointerPressed(e);
+        if (e.Source is Visual source && _popup?.IsInsidePopup(source) == true) return;
+        if (_startTextBox?.IsFocused == false)
+            _startTextBox?.Focus();
+        else
+        {
+            SetCurrentValue(IsDropdownOpenProperty, true);
+            SetCalendarContextDate();
+        }
+    }
+
+    public void Clear()
+    {
+        SetCurrentValue(SelectedStartDateProperty, (T?)null);
+        SetCurrentValue(SelectedEndDateProperty, (T?)null);
+        _status.Reset();
+    }
+
+    protected override void UpdateDataValidation(AvaloniaProperty property, BindingValueType state, Exception? error)
+    {
+        base.UpdateDataValidation(property, state, error);
+        if (property == SelectedStartDateProperty || property == SelectedEndDateProperty)
+            DataValidationErrors.SetError(this, error);
     }
 }
