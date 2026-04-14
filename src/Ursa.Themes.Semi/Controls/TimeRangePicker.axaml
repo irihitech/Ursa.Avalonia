@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:iri="https://irihi.tech/shared">
-    <ControlTheme x:Key="{x:Type u:TimeRangePicker}" TargetType="u:TimeRangePicker">
+    <ControlTheme x:Key="{x:Type u:TimeRangePickerBase}" TargetType="u:TimeRangePickerBase">
         <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
@@ -12,7 +12,7 @@
         <Setter Property="MinHeight" Value="32" />
         <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
         <Setter Property="Template">
-            <ControlTemplate TargetType="u:TimeRangePicker">
+            <ControlTemplate TargetType="u:TimeRangePickerBase">
                 <DataValidationErrors>
                     <Panel
                         x:Name="LayoutRoot"
@@ -27,7 +27,7 @@
                             CornerRadius="{TemplateBinding CornerRadius}" />
                         <Grid ColumnDefinitions="*, Auto, * Auto" Name="PART_Grid">
                             <TextBox
-                                Name="{x:Static u:TimeRangePicker.PART_StartTextBox}"
+                                Name="{x:Static u:TimeRangePickerBase.PART_StartTextBox}"
                                 Grid.Column="0"
                                 MinHeight="{TemplateBinding MinHeight}"
                                 HorizontalAlignment="Stretch"
@@ -45,7 +45,7 @@
                                 VerticalAlignment="Center"
                                 Text="~" />
                             <TextBox
-                                Name="{x:Static u:TimeRangePicker.PART_EndTextBox}"
+                                Name="{x:Static u:TimeRangePickerBase.PART_EndTextBox}"
                                 Grid.Column="2"
                                 MinHeight="{TemplateBinding MinHeight}"
                                 HorizontalAlignment="Stretch"
@@ -61,7 +61,7 @@
                                 Name="ClearButton"
                                 Grid.Column="3"
                                 Margin="8,0"
-                                Command="{Binding $parent[u:TimeRangePicker].Clear}"
+                                Command="{Binding $parent[iri:IClearControl].Clear}"
                                 Content="{DynamicResource IconButtonClearData}"
                                 Focusable="False"
                                 IsVisible="False"
@@ -96,7 +96,7 @@
                                         <Button
                                             Margin="8"
                                             HorizontalAlignment="Right"
-                                            Command="{Binding $parent[u:TimeRangePicker].Confirm}"
+                                            Command="{Binding $parent[u:TimeRangePickerBase].Confirm}"
                                             Content="{DynamicResource STRING_DATE_TIME_CONFIRM}" />
                                     </StackPanel>
                                     <ContentPresenter
@@ -136,7 +136,7 @@
                                             Margin="8 0"
                                             Height="1" />
                                         <u:TimePickerPresenter
-                                            Name="{x:Static u:TimeRangePicker.PART_StartPresenter}"
+                                            Name="{x:Static u:TimeRangePickerBase.PART_StartPresenter}"
                                             Grid.Row="2"
                                             Grid.Column="0"
                                             NeedsConfirmation="{TemplateBinding NeedConfirmation}"
@@ -149,7 +149,7 @@
                                             VerticalAlignment="Stretch"
                                             Fill="{DynamicResource DateTimePickerSeparatorBackground}" />
                                         <u:TimePickerPresenter
-                                            Name="{x:Static u:TimeRangePicker.PART_EndPresenter}"
+                                            Name="{x:Static u:TimeRangePickerBase.PART_EndPresenter}"
                                             Grid.Row="2"
                                             Grid.Column="2"
                                             NeedsConfirmation="{TemplateBinding NeedConfirmation}"

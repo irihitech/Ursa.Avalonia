@@ -1,39 +1,12 @@
-﻿using System.Globalization;
+using System.Globalization;
 using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.Metadata;
-using Avalonia.Controls.Primitives;
 using Avalonia.Data;
-using Avalonia.Input;
-using Avalonia.Interactivity;
-using Avalonia.Media;
-using Irihi.Avalonia.Shared.Common;
-using Irihi.Avalonia.Shared.Contracts;
-using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-[TemplatePart(PART_StartTextBox, typeof(TextBox))]
-[TemplatePart(PART_EndTextBox, typeof(TextBox))]
-[TemplatePart(PartNames.PART_Popup, typeof(Popup))]
-[TemplatePart(PART_StartPresenter, typeof(TimePickerPresenter))]
-[TemplatePart(PART_EndPresenter, typeof(TimePickerPresenter))]
-[PseudoClasses(PseudoClassName.PC_Empty)]
-public class TimeRangePicker : TimePickerBase, IClearControl
+public class TimeRangePicker : TimeRangePickerBase<TimeSpan>
 {
-    public const string PART_StartTextBox = "PART_StartTextBox";
-    public const string PART_EndTextBox = "PART_EndTextBox";
-    public const string PART_StartPresenter = "PART_StartPresenter";
-    public const string PART_EndPresenter = "PART_EndPresenter";
-
-
-    public static readonly StyledProperty<TimeSpan?> SelectedStartTimeProperty =
-        AvaloniaProperty.Register<TimeRangePicker, TimeSpan?>(
-            nameof(SelectedStartTime), defaultBindingMode: BindingMode.TwoWay, enableDataValidation: true);
-
-    public static readonly StyledProperty<TimeSpan?> SelectedEndTimeProperty =
-        AvaloniaProperty.Register<TimeRangePicker, TimeSpan?>(
-            nameof(SelectedEndTime), defaultBindingMode: BindingMode.TwoWay, enableDataValidation: true);
+    protected override Type StyleKeyOverride { get; } = typeof(TimeRangePickerBase);
 
     [Obsolete("Use SelectedStartTimeProperty instead.")]
     public static readonly StyledProperty<TimeSpan?> StartTimeProperty = SelectedStartTimeProperty;
@@ -41,72 +14,13 @@ public class TimeRangePicker : TimePickerBase, IClearControl
     [Obsolete("Use SelectedEndTimeProperty instead.")]
     public static readonly StyledProperty<TimeSpan?> EndTimeProperty = SelectedEndTimeProperty;
 
-    public static readonly StyledProperty<string?> StartPlaceholderTextProperty =
-        TextBox.PlaceholderTextProperty.AddOwner<TimeRangePicker>();
-
-    public static readonly StyledProperty<string?> EndPlaceholderTextProperty =
-        TextBox.PlaceholderTextProperty.AddOwner<TimeRangePicker>();
-
-    public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
-        TextBox.PlaceholderForegroundProperty.AddOwner<TimeRangePicker>();
-
-    [Obsolete("Use StartPlaceholderTextProperty instead.")]
-    public static readonly StyledProperty<string?> StartWatermarkProperty = StartPlaceholderTextProperty;
-
-    [Obsolete("Use EndPlaceholderTextProperty instead.")]
-    public static readonly StyledProperty<string?> EndWatermarkProperty = EndPlaceholderTextProperty;
-
-    private TimePickerPresenter? _endPresenter;
-    private TextBox? _endTextBox;
-    private bool _isFocused;
-    private Popup? _popup;
-    private TimePickerPresenter? _startPresenter;
-
-    private TextBox? _startTextBox;
-    private readonly RangePickerStatus _status = new();
-
-    static TimeRangePicker()
-    {
-        SelectedStartTimeProperty.Changed.AddClassHandler<TimeRangePicker, TimeSpan?>((picker, args) =>
-            picker.OnSelectionChanged(args));
-        SelectedEndTimeProperty.Changed.AddClassHandler<TimeRangePicker, TimeSpan?>((picker, args) =>
-            picker.OnSelectionChanged(args, false));
-        DisplayFormatProperty.Changed.AddClassHandler<TimeRangePicker, string?>((picker, args) =>
-            picker.OnDisplayFormatChanged(args));
-    }
-
-
-    public string? StartPlaceholderText
-    {
-        get => GetValue(StartPlaceholderTextProperty);
-        set => SetValue(StartPlaceholderTextProperty, value);
-    }
-
-    public string? EndPlaceholderText
-    {
-        get => GetValue(EndPlaceholderTextProperty);
-        set => SetValue(EndPlaceholderTextProperty, value);
-    }
-
-    public TimeSpan? SelectedStartTime
-    {
-        get => GetValue(SelectedStartTimeProperty);
-        set => SetValue(SelectedStartTimeProperty, value);
-    }
-
-    public TimeSpan? SelectedEndTime
-    {
-        get => GetValue(SelectedEndTimeProperty);
-        set => SetValue(SelectedEndTimeProperty, value);
-    }
-    
     [Obsolete("Use SelectedStartTime instead.")]
     public TimeSpan? StartTime
     {
         get => SelectedStartTime;
         set => SelectedStartTime = value;
     }
-    
+
     [Obsolete("Use SelectedEndTime instead.")]
     public TimeSpan? EndTime
     {
@@ -114,265 +28,15 @@ public class TimeRangePicker : TimePickerBase, IClearControl
         set => SelectedEndTime = value;
     }
 
-    public IBrush? PlaceholderForeground
-    {
-        get => GetValue(PlaceholderForegroundProperty);
-        set => SetValue(PlaceholderForegroundProperty, value);
-    }
+    protected override TimeOnly? ToTimeOnly(TimeSpan? value) => value.HasValue ? TimeOnly.FromTimeSpan(value.Value) : null;
 
-    [Obsolete("Use StartPlaceholderText instead.")]
-    public string? StartWatermark
-    {
-        get => StartPlaceholderText;
-        set => StartPlaceholderText = value;
-    }
+    protected override TimeSpan FromTimeOnly(TimeOnly time) => time.ToTimeSpan();
 
-    [Obsolete("Use EndPlaceholderText instead.")]
-    public string? EndWatermark
-    {
-        get => EndPlaceholderText;
-        set => EndPlaceholderText = value;
-    }
+    protected override TimeSpan? Parse(string text, string format) =>
+        TimeOnly.TryParseExact(text, format, CultureInfo.CurrentUICulture, DateTimeStyles.None, out var time)
+            ? time.ToTimeSpan()
+            : null;
 
-    public void Clear()
-    {
-        SetCurrentValue(SelectedStartTimeProperty, null);
-        SetCurrentValue(SelectedEndTimeProperty, null);
-        _startPresenter?.SyncTime(null);
-        _endPresenter?.SyncTime(null);
-    }
-
-    private void OnDisplayFormatChanged(AvaloniaPropertyChangedEventArgs<string?> _)
-    {
-        if (_startTextBox is not null) SyncTimeToText(SelectedStartTime);
-        if (_endTextBox is not null) SyncTimeToText(SelectedEndTime, false);
-    }
-
-    private void OnSelectionChanged(AvaloniaPropertyChangedEventArgs<TimeSpan?> args, bool start = true)
-    {
-        var time = args.NewValue.Value;
-        SyncTimeToText(time, start);
-        if (start)
-        {
-            _startPresenter?.SyncTime(time.ToTimeOnly());
-        }
-        else
-        {
-            _endPresenter?.SyncTime(time.ToTimeOnly());
-        }
-        PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedStartTime is null && SelectedEndTime is null);
-    }
-
-    private void SyncTimeToText(TimeSpan? time, bool start = true)
-    {
-        var textBox = start ? _startTextBox : _endTextBox;
-        if (textBox is null) return;
-        if (time is null)
-        {
-            textBox.Text = null;
-            return;
-        }
-
-        var text = TimeOnly.FromTimeSpan(time.Value).ToString(DisplayFormat ?? DEFAULT_TIME_DISPLAY_FORMAT);
-        textBox.Text = text;
-        PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedStartTime is null && SelectedEndTime is null);
-    }
-
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
-    {
-        base.OnApplyTemplate(e);
-        
-        TimePickerPresenter.SelectedTimeChangedEvent.RemoveHandler(OnTimeSelected, _startPresenter,
-            _endPresenter);
-        GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _startTextBox, _endTextBox);
-        PointerPressedEvent.RemoveHandler(OnTextBoxPressed, _startTextBox, _endTextBox);
-        LostFocusEvent.RemoveHandler(OnTextBoxLostFocus, _startTextBox, _endTextBox);
-
-        _popup = e.NameScope.Find<Popup>(PartNames.PART_Popup);
-        _startTextBox = e.NameScope.Find<TextBox>(PART_StartTextBox);
-        _endTextBox = e.NameScope.Find<TextBox>(PART_EndTextBox);
-        _startPresenter = e.NameScope.Find<TimePickerPresenter>(PART_StartPresenter);
-        _endPresenter = e.NameScope.Find<TimePickerPresenter>(PART_EndPresenter);
-        
-        TimePickerPresenter.SelectedTimeChangedEvent.AddHandler(OnTimeSelected, _startPresenter, _endPresenter);
-        GotFocusEvent.AddHandler(OnTextBoxGetFocus, _startTextBox, _endTextBox);
-        PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _startTextBox, _endTextBox);
-        LostFocusEvent.AddHandler(OnTextBoxLostFocus, _startTextBox, _endTextBox); 
-
-        _startPresenter?.SyncTime(SelectedStartTime.ToTimeOnly());
-        _endPresenter?.SyncTime(SelectedEndTime.ToTimeOnly());
-        SyncTimeToText(SelectedStartTime);
-        SyncTimeToText(SelectedEndTime, false);
-    }
-
-    private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e)
-    {
-        CommitInput();
-        if (_status is { Current: Status.End, Previous: Status.Start } && Equals(sender, _endTextBox) && _endTextBox?.IsFocused == true)
-        {
-            SetCurrentValue(IsDropdownOpenProperty, false);
-        }
-    }
-
-    private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e)
-    {
-        InitializePopupOpen(sender as TextBox);
-    }
-
-    private void InitializePopupOpen(TextBox? sender)
-    {
-        if (sender is null) return;
-        SetCurrentValue(IsDropdownOpenProperty, true);
-        if (Equals(sender, _startTextBox))
-        {
-            _status.Push(Status.Start);
-        }
-        else if (Equals(sender, _endTextBox))
-        {
-            _status.Push(Status.End);
-        }
-        _startPresenter?.SyncTime(SelectedStartTime.ToTimeOnly());
-        _endPresenter?.SyncTime(SelectedEndTime.ToTimeOnly());
-    }
-
-    private void OnTimeSelected(object? sender, TimeChangedEventArgs e)
-    {
-        if (Equals(sender, _startPresenter))
-        {
-            SetCurrentValue(SelectedStartTimeProperty, e.NewTime.ToTimeSpan());
-        }
-        else if (Equals(sender, _endPresenter))
-        {
-            SetCurrentValue(SelectedEndTimeProperty, e.NewTime.ToTimeSpan());
-        }
-    }
-
-    private void OnTextBoxGetFocus(object? sender, FocusChangedEventArgs e)
-    {
-        InitializePopupOpen(sender as TextBox);
-    }
-
-    protected override void OnKeyDown(KeyEventArgs e)
-    {
-        if (e.Key == Key.Escape)
-        {
-            SetCurrentValue(IsDropdownOpenProperty, false);
-            e.Handled = true;
-            return;
-        }
-
-        if (e.Key == Key.Down)
-        {
-            SetCurrentValue(IsDropdownOpenProperty, true);
-            e.Handled = true;
-            return;
-        }
-
-        if (e.Key == Key.Tab)
-        {
-            if (Equals(e.Source, _endTextBox)) SetCurrentValue(IsDropdownOpenProperty, false);
-            return;
-        }
-
-        if (e.Key == Key.Enter)
-        {
-            SetCurrentValue(IsDropdownOpenProperty, false);
-            CommitInput();
-            e.Handled = true;
-            return;
-        }
-
-        base.OnKeyDown(e);
-    }
-
-    public void Confirm()
-    {
-        _startPresenter?.Confirm();
-        _endPresenter?.Confirm();
-        SetCurrentValue(IsDropdownOpenProperty, false);
-    }
-
-    public void Dismiss()
-    {
-        SetCurrentValue(IsDropdownOpenProperty, false);
-    }
-
-    protected override void OnLostFocus(FocusChangedEventArgs e)
-    {
-        base.OnLostFocus(e);
-        FocusChanged(IsKeyboardFocusWithin);
-        var element = e.NewFocusedElement;
-        if (Equals(element, _endTextBox) || Equals(element, _startTextBox))
-        {
-            return;
-        }
-        if (element is Visual v && _popup?.IsInsidePopup(v) == true) return;
-        CommitInput();
-        SetCurrentValue(IsDropdownOpenProperty, false);
-    }
-
-    private void FocusChanged(bool hasFocus)
-    {
-        var wasFocused = _isFocused;
-        _isFocused = hasFocus;
-        if (hasFocus)
-            if (!wasFocused && _startTextBox != null)
-                _startTextBox.Focus();
-    }
-
-    private void CommitInput()
-    {
-        TimeSpan? startDate;
-        var format = this.DisplayFormat ?? DEFAULT_TIME_DISPLAY_FORMAT;
-        if (string.IsNullOrWhiteSpace(_startTextBox?.Text))
-        {
-            startDate = null;
-            SetCurrentValue(SelectedStartTimeProperty, startDate);
-        }
-        else if (TimeOnly.TryParseExact(_startTextBox?.Text, format, CultureInfo.CurrentUICulture, DateTimeStyles.None, out var start))
-        {
-            startDate = start.ToTimeSpan();
-            SetCurrentValue(SelectedStartTimeProperty, startDate);
-        }
-        else
-        {
-            SetCurrentValue(SelectedStartTimeProperty, null);
-        }
-        TimeSpan? endDate;
-        if (string.IsNullOrWhiteSpace(_endTextBox?.Text))
-        {
-            endDate = null;
-            SetCurrentValue(SelectedEndTimeProperty, endDate);
-        }
-        else if (TimeOnly.TryParseExact(_endTextBox?.Text, format, CultureInfo.CurrentUICulture, DateTimeStyles.None, out var end))
-        {
-            endDate = end.ToTimeSpan();
-            SetCurrentValue(SelectedEndTimeProperty, endDate);
-        }
-        else
-        {
-            SetCurrentValue(SelectedEndTimeProperty, null);
-        }
-        _startPresenter?.SyncTime(SelectedStartTime.ToTimeOnly());
-        _endPresenter?.SyncTime(SelectedEndTime.ToTimeOnly());
-    }
-    
-    protected override void OnPointerPressed(PointerPressedEventArgs e)
-    {
-        base.OnPointerPressed(e);
-        if (e.Source is Visual source)
-        {
-            var inPopup = _popup?.IsInsidePopup(source);
-            if (inPopup is true) return;
-        }
-
-        if (_startTextBox?.IsFocused == false)
-        {
-            _startTextBox?.Focus();
-        }
-        else
-        {
-            SetCurrentValue(IsDropdownOpenProperty, true);
-        }
-    }
+    protected override string Format(TimeSpan value, string format) =>
+        TimeOnly.FromTimeSpan(value).ToString(format);
 }
