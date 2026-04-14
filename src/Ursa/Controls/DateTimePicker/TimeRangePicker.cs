@@ -29,11 +29,11 @@ public class TimeRangePicker : TimePickerBase, IClearControl
 
     public static readonly StyledProperty<TimeSpan?> SelectedStartTimeProperty =
         AvaloniaProperty.Register<TimeRangePicker, TimeSpan?>(
-            nameof(SelectedStartTime), defaultBindingMode: BindingMode.TwoWay);
+            nameof(SelectedStartTime), defaultBindingMode: BindingMode.TwoWay, enableDataValidation: true);
 
     public static readonly StyledProperty<TimeSpan?> SelectedEndTimeProperty =
         AvaloniaProperty.Register<TimeRangePicker, TimeSpan?>(
-            nameof(SelectedEndTime), defaultBindingMode: BindingMode.TwoWay);
+            nameof(SelectedEndTime), defaultBindingMode: BindingMode.TwoWay, enableDataValidation: true);
 
     [Obsolete("Use SelectedStartTimeProperty instead.")]
     public static readonly StyledProperty<TimeSpan?> StartTimeProperty = SelectedStartTimeProperty;

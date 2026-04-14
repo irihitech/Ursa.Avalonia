@@ -10,7 +10,7 @@ public abstract class DatePickerBase<T> : DatePickerBase where T : struct
 {
     public static readonly StyledProperty<T?> SelectedDateProperty =
         AvaloniaProperty.Register<DatePickerBase<T>, T?>(
-            nameof(SelectedDate), defaultBindingMode: BindingMode.TwoWay);
+            nameof(SelectedDate), defaultBindingMode: BindingMode.TwoWay, enableDataValidation: true);
 
     public T? SelectedDate
     {

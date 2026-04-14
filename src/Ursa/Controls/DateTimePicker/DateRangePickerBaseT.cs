@@ -11,11 +11,11 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
 {
     public static readonly StyledProperty<T?> SelectedStartDateProperty =
         AvaloniaProperty.Register<DateRangePickerBase<T>, T?>(
-            nameof(SelectedStartDate), defaultBindingMode: BindingMode.TwoWay);
+            nameof(SelectedStartDate), defaultBindingMode: BindingMode.TwoWay, enableDataValidation: true);
 
     public static readonly StyledProperty<T?> SelectedEndDateProperty =
         AvaloniaProperty.Register<DateRangePickerBase<T>, T?>(
-            nameof(SelectedEndDate), defaultBindingMode: BindingMode.TwoWay);
+            nameof(SelectedEndDate), defaultBindingMode: BindingMode.TwoWay, enableDataValidation: true);
 
     public T? SelectedStartDate
     {

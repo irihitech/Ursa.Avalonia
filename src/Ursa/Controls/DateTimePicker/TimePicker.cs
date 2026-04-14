@@ -23,7 +23,7 @@ public class TimePicker : TimePickerBase, IClearControl
 
     public static readonly StyledProperty<TimeSpan?> SelectedTimeProperty =
         AvaloniaProperty.Register<TimePicker, TimeSpan?>(
-            nameof(SelectedTime), defaultBindingMode: BindingMode.TwoWay);
+            nameof(SelectedTime), defaultBindingMode: BindingMode.TwoWay, enableDataValidation: true);
 
     public static readonly StyledProperty<string?> PlaceholderTextProperty =
         TextBox.PlaceholderTextProperty.AddOwner<TimePicker>();
