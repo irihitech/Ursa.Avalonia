@@ -8,33 +8,7 @@ namespace Ursa.Controls;
 
 public class DatePicker : DatePickerBase<DateTime>
 {
-    public static readonly StyledProperty<string?> PlaceholderTextProperty =
-        TextBox.PlaceholderTextProperty.AddOwner<DatePicker>();
-
-    public string? PlaceholderText
-    {
-        get => GetValue(PlaceholderTextProperty);
-        set => SetValue(PlaceholderTextProperty, value);
-    }
-
-    public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
-        TextBox.PlaceholderForegroundProperty.AddOwner<DatePicker>();
-
-    public IBrush? PlaceholderForeground
-    {
-        get => GetValue(PlaceholderForegroundProperty);
-        set => SetValue(PlaceholderForegroundProperty, value);
-    }
-
-    [Obsolete("Use PlaceholderTextProperty instead.")]
-    public static readonly StyledProperty<string?> WatermarkProperty = PlaceholderTextProperty;
-
-    [Obsolete("Use PlaceholderText instead.")]
-    public string? Watermark
-    {
-        get => PlaceholderText;
-        set => PlaceholderText = value;
-    }
+    protected override Type StyleKeyOverride { get; } =  typeof(DatePickerBase);
 
     protected override DateOnly? ToDateOnly(DateTime? value) => value?.ToDateOnly();
 

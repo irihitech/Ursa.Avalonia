@@ -1,8 +1,9 @@
 <ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:u="https://irihi.tech/ursa">
-    <ControlTheme x:Key="{x:Type u:DatePicker}" TargetType="u:DatePicker">
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:iri="https://irihi.tech/shared">
+    <ControlTheme x:Key="{x:Type u:DatePickerBase}" TargetType="u:DatePickerBase">
         <Setter Property="Background" Value="{DynamicResource CalendarDatePickerBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource CalendarDatePickerForeground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerBorderBrush}" />
@@ -15,7 +16,7 @@
         <Setter Property="MinHeight" Value="{DynamicResource CalendarDatePickerDefaultHeight}" />
         <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
         <Setter Property="Template">
-            <ControlTemplate TargetType="u:DatePicker">
+            <ControlTemplate TargetType="u:DatePickerBase">
                 <DataValidationErrors>
                     <Panel
                         x:Name="LayoutRoot"
@@ -53,7 +54,7 @@
                                 Name="ClearButton"
                                 Grid.Column="1"
                                 Margin="8,0"
-                                Command="{Binding $parent[u:DatePicker].Clear}"
+                                Command="{Binding $parent[iri:IClearControl].Clear}"
                                 Content="{DynamicResource IconButtonClearData}"
                                 Focusable="False"
                                 IsVisible="False"

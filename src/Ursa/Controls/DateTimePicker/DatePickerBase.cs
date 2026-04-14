@@ -6,6 +6,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
 
@@ -63,6 +64,34 @@ public abstract class DatePickerBase : TemplatedControl, IInnerContentControl, I
     public static readonly StyledProperty<bool> IsReadonlyProperty =
         AvaloniaProperty.Register<DatePickerBase, bool>(nameof(IsReadonly));
 
+    public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
+        TextBox.PlaceholderForegroundProperty.AddOwner<DatePickerBase>();
+    
+    public static readonly StyledProperty<string?> PlaceholderTextProperty =
+        TextBox.PlaceholderTextProperty.AddOwner<DatePickerBase>();
+
+    public string? PlaceholderText
+    {
+        get => GetValue(PlaceholderTextProperty);
+        set => SetValue(PlaceholderTextProperty, value);
+    }
+
+    [Obsolete("Use PlaceholderTextProperty instead.")]
+    public static readonly StyledProperty<string?> WatermarkProperty = PlaceholderTextProperty;
+
+    [Obsolete("Use PlaceholderText instead.")]
+    public string? Watermark
+    {
+        get => PlaceholderText;
+        set => PlaceholderText = value;
+    }
+
+    public IBrush? PlaceholderForeground
+    {
+        get => GetValue(PlaceholderForegroundProperty);
+        set => SetValue(PlaceholderForegroundProperty, value);
+    }
+    
     public AvaloniaList<DateRange> BlackoutDates
     {
         get => GetValue(BlackoutDatesProperty);
