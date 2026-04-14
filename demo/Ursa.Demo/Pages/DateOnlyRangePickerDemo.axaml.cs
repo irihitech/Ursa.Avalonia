@@ -1,0 +1,11 @@
+using Avalonia.Controls;
+
+namespace Ursa.Demo.Pages;
+
+public partial class DateOnlyRangePickerDemo : UserControl
+{
+    public DateOnlyRangePickerDemo()
+    {
+        InitializeComponent();
+    }
+}
