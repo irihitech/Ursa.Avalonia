@@ -217,14 +217,6 @@ public class TimePicker : TimePickerBase, IClearControl
         SetCurrentValue(IsDropdownOpenProperty, false);
     }
 
-    protected override void UpdateDataValidation(AvaloniaProperty property, BindingValueType state, Exception? error)
-    {
-        base.UpdateDataValidation(property, state, error);
-        if (property == SelectedTimeProperty) DataValidationErrors.SetError(this, error);
-    }
-    
-    
-
     protected override void OnLostFocus(FocusChangedEventArgs e)
     {
         base.OnLostFocus(e);

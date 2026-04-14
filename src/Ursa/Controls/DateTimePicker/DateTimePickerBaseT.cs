@@ -104,10 +104,4 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
     }
 
     public override void Clear() => SetCurrentValue(SelectedDateProperty, (T?)null);
-
-    protected override void UpdateDataValidation(AvaloniaProperty property, BindingValueType state, Exception? error)
-    {
-        base.UpdateDataValidation(property, state, error);
-        if (property == SelectedDateProperty) DataValidationErrors.SetError(this, error);
-    }
 }

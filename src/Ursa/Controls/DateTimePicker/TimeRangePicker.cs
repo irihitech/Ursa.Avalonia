@@ -375,11 +375,4 @@ public class TimeRangePicker : TimePickerBase, IClearControl
             SetCurrentValue(IsDropdownOpenProperty, true);
         }
     }
-
-    protected override void UpdateDataValidation(AvaloniaProperty property, BindingValueType state, Exception? error)
-    {
-        base.UpdateDataValidation(property, state, error);
-        if (property == SelectedStartTimeProperty || property == SelectedEndTimeProperty)
-            DataValidationErrors.SetError(this, error);
-    }
 }

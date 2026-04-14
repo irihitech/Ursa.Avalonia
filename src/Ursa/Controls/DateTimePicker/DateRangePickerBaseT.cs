@@ -101,11 +101,4 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
         SetCurrentValue(SelectedEndDateProperty, (T?)null);
         ResetStatus();
     }
-
-    protected override void UpdateDataValidation(AvaloniaProperty property, BindingValueType state, Exception? error)
-    {
-        base.UpdateDataValidation(property, state, error);
-        if (property == SelectedStartDateProperty || property == SelectedEndDateProperty)
-            DataValidationErrors.SetError(this, error);
-    }
 }
