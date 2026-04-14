@@ -30,7 +30,7 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
     }
 
     /// <summary>Converts a <typeparamref name="T"/> value to <see cref="DateOnly"/> for calendar operations.</summary>
-    protected abstract DateOnly? ToDateOnly(T value);
+    protected abstract DateOnly? ToDateOnly(T? value);
 
     /// <summary>Creates a <typeparamref name="T"/> value from a <see cref="DateOnly"/> (at day start).</summary>
     protected abstract T FromDateOnly(DateOnly date);
@@ -41,11 +41,9 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
     /// <summary>Formats a <typeparamref name="T"/> value to a display string using the given format.</summary>
     protected abstract string Format(T value, string format);
 
-    protected override DateOnly? GetStartDateOnly() =>
-        SelectedStartDate.HasValue ? ToDateOnly(SelectedStartDate.Value) : null;
+    protected override DateOnly? GetStartDateOnly() => ToDateOnly(SelectedStartDate);
 
-    protected override DateOnly? GetEndDateOnly() =>
-        SelectedEndDate.HasValue ? ToDateOnly(SelectedEndDate.Value) : null;
+    protected override DateOnly? GetEndDateOnly() => ToDateOnly(SelectedEndDate);
 
     protected override void SetSelectedStartDate(DateOnly? date) =>
         SetCurrentValue(SelectedStartDateProperty, date.HasValue ? (T?)FromDateOnly(date.Value) : null);

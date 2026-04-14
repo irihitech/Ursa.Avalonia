@@ -36,7 +36,7 @@ public class DatePicker : DatePickerBase<DateTime>
         set => PlaceholderText = value;
     }
 
-    protected override DateOnly? ToDateOnly(DateTime value) => value.ToDateOnly();
+    protected override DateOnly? ToDateOnly(DateTime? value) => value?.ToDateOnly();
 
     protected override DateTime FromDateOnly(DateOnly date) => date.ToDateTime(TimeOnly.MinValue);
 

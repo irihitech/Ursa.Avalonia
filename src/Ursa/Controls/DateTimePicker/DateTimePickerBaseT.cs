@@ -20,7 +20,7 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
     }
 
     /// <summary>Extracts the date component from a <typeparamref name="T"/> value.</summary>
-    protected abstract DateOnly? ToDateOnly(T value);
+    protected abstract DateOnly? ToDateOnly(T? value);
 
     /// <summary>Extracts the time component from a <typeparamref name="T"/> value.</summary>
     protected abstract TimeOnly? ToTimeOnly(T value);
@@ -40,8 +40,7 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
     /// <summary>Returns the current time for use when no time component is available.</summary>
     protected virtual TimeOnly GetCurrentTime() => TimeOnly.FromDateTime(DateTime.Now);
 
-    protected override DateOnly? GetSelectedDateOnly() =>
-        SelectedDate.HasValue ? ToDateOnly(SelectedDate.Value) : null;
+    protected override DateOnly? GetSelectedDateOnly() => ToDateOnly(SelectedDate);
 
     protected override TimeOnly? GetSelectedTimeOnly() =>
         SelectedDate.HasValue ? ToTimeOnly(SelectedDate.Value) : null;
@@ -60,7 +59,7 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
         else
         {
             _textBox?.SetValue(TextBox.TextProperty, Format(SelectedDate.Value, DisplayFormat ?? DEFAULT_DATETIME_DISPLAY_FORMAT));
-            var dateOnly = ToDateOnly(SelectedDate.Value);
+            var dateOnly = ToDateOnly(SelectedDate);
             if (dateOnly.HasValue)
                 _calendar?.MarkDates(dateOnly.Value, dateOnly.Value);
             _timePickerPresenter?.SyncTime(ToTimeOnly(SelectedDate.Value));

@@ -60,7 +60,7 @@ public class DateTimePicker : DateTimePickerBase<DateTime>
         set => SetValue(NeedConfirmationProperty, value);
     }
 
-    protected override DateOnly? ToDateOnly(DateTime value) => value.ToDateOnly();
+    protected override DateOnly? ToDateOnly(DateTime? value) => value?.ToDateOnly();
 
     protected override TimeOnly? ToTimeOnly(DateTime value) => value.ToTimeOnly();
 

@@ -4,7 +4,7 @@ namespace Ursa.Controls;
 
 public class DateRangePicker : DateRangePickerBase<DateTime>
 {
-    protected override DateOnly? ToDateOnly(DateTime value) => value.ToDateOnly();
+    protected override DateOnly? ToDateOnly(DateTime? value) => value?.ToDateOnly();
 
     protected override DateTime FromDateOnly(DateOnly date) => date.ToDateTime(TimeOnly.MinValue);
 

@@ -19,7 +19,7 @@ public abstract class DatePickerBase<T> : DatePickerBase where T : struct
     }
 
     /// <summary>Converts a <typeparamref name="T"/> value to <see cref="DateOnly"/> for calendar operations.</summary>
-    protected abstract DateOnly? ToDateOnly(T value);
+    protected abstract DateOnly? ToDateOnly(T? value);
 
     /// <summary>Creates a <typeparamref name="T"/> value from a calendar-selected <see cref="DateOnly"/>.</summary>
     protected abstract T FromDateOnly(DateOnly date);
@@ -33,8 +33,7 @@ public abstract class DatePickerBase<T> : DatePickerBase where T : struct
     /// <summary>Returns today as a <see cref="DateOnly"/> for use as the calendar context when no date is selected.</summary>
     protected virtual DateOnly GetToday() => DateOnly.FromDateTime(DateTime.Today);
 
-    protected override DateOnly? GetSelectedDateOnly() =>
-        SelectedDate.HasValue ? ToDateOnly(SelectedDate.Value) : null;
+    protected override DateOnly? GetSelectedDateOnly() => ToDateOnly(SelectedDate);
 
     protected override DateOnly GetCalendarContextDate() =>
         GetSelectedDateOnly() ?? GetToday();
@@ -49,7 +48,7 @@ public abstract class DatePickerBase<T> : DatePickerBase where T : struct
         else
         {
             _textBox?.SetValue(TextBox.TextProperty, Format(SelectedDate.Value, DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT));
-            var dateOnly = ToDateOnly(SelectedDate.Value);
+            var dateOnly = ToDateOnly(SelectedDate);
             if (dateOnly.HasValue)
                 _calendar?.MarkDates(startDate: dateOnly.Value, endDate: dateOnly.Value);
         }
@@ -69,7 +68,7 @@ public abstract class DatePickerBase<T> : DatePickerBase where T : struct
         if (parsed.HasValue)
         {
             SetCurrentValue(SelectedDateProperty, parsed);
-            var dateOnly = ToDateOnly(parsed.Value);
+            var dateOnly = ToDateOnly(parsed);
             if (dateOnly.HasValue && _calendar is not null)
             {
                 _calendar.ContextDate = _calendar.ContextDate.With(year: dateOnly.Value.Year, month: dateOnly.Value.Month);
