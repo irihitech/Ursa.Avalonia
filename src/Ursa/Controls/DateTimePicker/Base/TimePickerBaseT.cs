@@ -5,6 +5,7 @@ using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
 
@@ -57,6 +58,7 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
         PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _textBox);
 
         SyncTimeToText();
+        PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedTime is null);
     }
 
     private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e) => InitializePopupOpen();
@@ -172,7 +174,10 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
     {
         base.OnPropertyChanged(change);
         if (change.Property == SelectedTimeProperty)
+        {
             SyncTimeToText();
+            PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedTime is null);
+        }
         else if (change.Property == DisplayFormatProperty && _textBox is not null)
             SyncTimeToText();
     }

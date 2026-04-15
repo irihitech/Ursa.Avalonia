@@ -76,6 +76,7 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
         LostFocusEvent.AddHandler(OnTextBoxLostFocus, _startTextBox, _endTextBox);
 
         SyncDateToText();
+        PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedStartDate is null && SelectedEndDate is null);
     }
 
     private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e)

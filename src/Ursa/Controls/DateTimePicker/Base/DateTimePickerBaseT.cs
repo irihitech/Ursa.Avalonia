@@ -71,6 +71,7 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
         LostFocusEvent.AddHandler(OnTextBoxLostFocus, _textBox);
 
         SyncDateToText();
+        PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedDate is null);
     }
 
     private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e) => CommitInput();

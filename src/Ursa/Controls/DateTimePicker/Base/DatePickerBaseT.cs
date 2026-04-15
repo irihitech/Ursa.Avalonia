@@ -5,6 +5,7 @@ using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
 
@@ -60,6 +61,7 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
         PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _textBox);
 
         SyncDateToText();
+        PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedDate is null);
     }
 
     private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e) => InitializePopupOpen();
@@ -179,7 +181,10 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
     {
         base.OnPropertyChanged(change);
         if (change.Property == SelectedDateProperty)
+        {
             SyncDateToText();
+            PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedDate is null);
+        }
     }
 
     public override void Clear() => SetCurrentValue(SelectedDateProperty, null);

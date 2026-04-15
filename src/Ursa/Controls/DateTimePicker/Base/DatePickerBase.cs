@@ -5,6 +5,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Media;
+using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
 
@@ -14,7 +15,8 @@ namespace Ursa.Controls;
 [TemplatePart(PART_Popup, typeof(Popup))]
 [TemplatePart(PART_TextBox, typeof(TextBox))]
 [TemplatePart(PART_Calendar, typeof(DatePickerCalendarView))]
-public abstract class DatePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent, IClearControl
+[PseudoClasses(PseudoClassName.PC_Empty)]
+public abstract class DatePickerBase: TemplatedControl, IInnerContentControl, IPopupInnerContent, IClearControl
 {
     public const string PART_Popup = "PART_Popup";
     public const string PART_TextBox = "PART_TextBox";

@@ -74,6 +74,7 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
         LostFocusEvent.AddHandler(OnTextBoxLostFocus, _startTextBox, _endTextBox);
 
         SyncToUI();
+        PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedStartTime is null && SelectedEndTime is null);
     }
 
     private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e)
