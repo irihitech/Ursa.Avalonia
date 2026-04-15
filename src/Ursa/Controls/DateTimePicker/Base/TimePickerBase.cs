@@ -3,29 +3,21 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
-using Avalonia.Input;
-using Avalonia.Interactivity;
 using Avalonia.Media;
-using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
-using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
 [TemplatePart(PART_TextBox, typeof(TextBox))]
 [TemplatePart(PART_Popup, typeof(Popup))]
 [TemplatePart(PART_Presenter, typeof(TimePickerPresenter))]
-public abstract class TimePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent, IClearControl
+public abstract class TimePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent
 {
     public const string PART_TextBox = "PART_TextBox";
     public const string PART_Popup = "PART_Popup";
     public const string PART_Presenter = "PART_Presenter";
 
     protected const string DEFAULT_TIME_DISPLAY_FORMAT = "HH:mm:ss";
-
-    protected Popup? _popup;
-    protected TimePickerPresenter? _presenter;
-    protected TextBox? _textBox;
 
     public static readonly StyledProperty<string?> DisplayFormatProperty =
         AvaloniaProperty.Register<TimePickerBase, string?>(
@@ -139,109 +131,6 @@ public abstract class TimePickerBase : TemplatedControl, IInnerContentControl, I
         set => SetValue(PopupInnerBottomContentProperty, value);
     }
 
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
-    {
-        base.OnApplyTemplate(e);
-
-        TimePickerPresenter.SelectedTimeChangedEvent.RemoveHandler(OnPresenterTimeChangedCore, _presenter);
-        GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _textBox);
-        LostFocusEvent.RemoveHandler(OnTextBoxLostFocus, _textBox);
-        PointerPressedEvent.RemoveHandler(OnTextBoxPressed, _textBox);
-
-        _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
-        _popup = e.NameScope.Find<Popup>(PART_Popup);
-        _presenter = e.NameScope.Find<TimePickerPresenter>(PART_Presenter);
-
-        TimePickerPresenter.SelectedTimeChangedEvent.AddHandler(OnPresenterTimeChangedCore, _presenter);
-        GotFocusEvent.AddHandler(OnTextBoxGetFocus, _textBox);
-        LostFocusEvent.AddHandler(OnTextBoxLostFocus, _textBox);
-        PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _textBox);
-
-        SyncToUI();
-    }
-
-    private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e) => InitializePopupOpen();
-    private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e) => CommitInput();
-    private void OnTextBoxGetFocus(object? sender, FocusChangedEventArgs e) => InitializePopupOpen();
-
-    private void InitializePopupOpen()
-    {
-        SetCurrentValue(IsDropdownOpenProperty, true);
-        _presenter?.SyncTime(GetSelectedTimeOnly());
-    }
-
-    private void OnPresenterTimeChangedCore(object? sender, TimeChangedEventArgs e)
-    {
-        if (!IsInitialized) return;
-        OnPresenterTimeSelected(e.NewTime);
-    }
-
-    protected override void OnPointerPressed(PointerPressedEventArgs e)
-    {
-        base.OnPointerPressed(e);
-        if (!e.Handled && e.Source is Visual source)
-        {
-            if (_popup?.IsInsidePopup(source) == true)
-                e.Handled = true;
-            else
-                _textBox?.Focus();
-        }
-    }
-
-    protected override void OnKeyDown(KeyEventArgs e)
-    {
-        if (e.Key == Key.Escape)
-        {
-            SetCurrentValue(IsDropdownOpenProperty, false);
-            e.Handled = true;
-            return;
-        }
-
-        if (e.Key == Key.Down)
-        {
-            SetCurrentValue(IsDropdownOpenProperty, true);
-            e.Handled = true;
-            return;
-        }
-
-        if (e.Key == Key.Tab)
-        {
-            SetCurrentValue(IsDropdownOpenProperty, false);
-            return;
-        }
-
-        if (e.Key == Key.Enter)
-        {
-            CommitInput();
-            SetCurrentValue(IsDropdownOpenProperty, false);
-            e.Handled = true;
-            return;
-        }
-
-        base.OnKeyDown(e);
-    }
-
-    protected override void OnLostFocus(FocusChangedEventArgs e)
-    {
-        base.OnLostFocus(e);
-        var element = e.NewFocusedElement;
-        if (Equals(element, _textBox)) return;
-        if (element is Visual v && _popup?.IsInsidePopup(v) == true) return;
-        CommitInput();
-        SetCurrentValue(IsDropdownOpenProperty, false);
-    }
-
-    public void Confirm()
-    {
-        _presenter?.Confirm();
-        SetCurrentValue(IsDropdownOpenProperty, false);
-    }
-
-    public void Dismiss() => SetCurrentValue(IsDropdownOpenProperty, false);
-
-    protected abstract void SyncToUI();
-    protected abstract void CommitInput();
-    protected abstract TimeOnly? GetSelectedTimeOnly();
-    protected abstract void OnPresenterTimeSelected(TimeOnly? time);
-    public abstract void Clear();
+    public abstract void Confirm();
+    public abstract void Dismiss();
 }

@@ -4,8 +4,6 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
-using Avalonia.Input;
-using Avalonia.Interactivity;
 using Avalonia.Media;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
@@ -18,7 +16,7 @@ namespace Ursa.Controls;
 [TemplatePart(PART_Calendar, typeof(DatePickerCalendarView))]
 [TemplatePart(PART_TimePicker, typeof(TimePickerPresenter))]
 [PseudoClasses(PseudoClassName.PC_Empty)]
-public abstract class DateTimePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent, IClearControl
+public abstract class DateTimePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent
 {
     public const string PART_Popup = "PART_Popup";
     public const string PART_TextBox = "PART_TextBox";
@@ -77,11 +75,6 @@ public abstract class DateTimePickerBase : TemplatedControl, IInnerContentContro
 
     public static readonly StyledProperty<bool> NeedConfirmationProperty =
         AvaloniaProperty.Register<DateTimePickerBase, bool>(nameof(NeedConfirmation));
-
-    protected TextBox? _textBox;
-    protected DatePickerCalendarView? _calendar;
-    protected Popup? _popup;
-    protected TimePickerPresenter? _timePickerPresenter;
 
     public AvaloniaList<DateRange> BlackoutDates
     {
@@ -179,100 +172,4 @@ public abstract class DateTimePickerBase : TemplatedControl, IInnerContentContro
         get => GetValue(NeedConfirmationProperty);
         set => SetValue(NeedConfirmationProperty, value);
     }
-
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
-    {
-        base.OnApplyTemplate(e);
-
-        TimePickerPresenter.SelectedTimeChangedEvent.RemoveHandler(OnTimeSelected, _timePickerPresenter);
-        DatePickerCalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _calendar);
-        GotFocusEvent.RemoveHandler(OnTextBoxGotFocus, _textBox);
-        PointerPressedEvent.RemoveHandler(OnTextBoxPressed, _textBox);
-        LostFocusEvent.RemoveHandler(OnTextBoxLostFocus, _textBox);
-
-        _popup = e.NameScope.Find<Popup>(PART_Popup);
-        _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
-        _calendar = e.NameScope.Find<DatePickerCalendarView>(PART_Calendar);
-        _timePickerPresenter = e.NameScope.Find<TimePickerPresenter>(PART_TimePicker);
-
-        TimePickerPresenter.SelectedTimeChangedEvent.AddHandler(OnTimeSelected, _timePickerPresenter);
-        DatePickerCalendarView.DateSelectedEvent.AddHandler(OnDateSelected, _calendar);
-        GotFocusEvent.AddHandler(OnTextBoxGotFocus, _textBox);
-        PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _textBox);
-        LostFocusEvent.AddHandler(OnTextBoxLostFocus, _textBox);
-
-        SyncToUI();
-    }
-
-    private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e) => CommitInput();
-    private void OnTextBoxGotFocus(object? sender, FocusChangedEventArgs e) => InitializePopupOpen();
-    private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e) => InitializePopupOpen();
-
-    private void InitializePopupOpen()
-    {
-        SetCurrentValue(IsDropdownOpenProperty, true);
-        var date = GetCalendarContextDate();
-        _calendar?.SyncContextDate(new DatePickerCalendarContext(date.Year, date.Month));
-        _timePickerPresenter?.SyncTime(GetSelectedTimeOnly());
-    }
-
-    private void OnDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
-    {
-        if (e.Date is null) return;
-        OnCalendarDateSelected(e.Date.Value);
-    }
-
-    private void OnTimeSelected(object? sender, TimeChangedEventArgs e)
-    {
-        if (e.NewTime is null) return;
-        OnTimePickerTimeSelected(e.NewTime.Value);
-    }
-
-    /// <summary>Synchronises the current selected value to the text box, calendar, and time picker UI.</summary>
-    protected abstract void SyncToUI();
-
-    /// <summary>Parses the text box content and commits the result to the selected-date property.</summary>
-    protected abstract void CommitInput();
-
-    /// <summary>Returns the date component of the currently selected value, for calendar marking.</summary>
-    protected abstract DateOnly? GetSelectedDateOnly();
-
-    /// <summary>Returns the time component of the currently selected value, for time picker sync.</summary>
-    protected abstract TimeOnly? GetSelectedTimeOnly();
-
-    /// <summary>Returns the date to show in the calendar when it opens.</summary>
-    protected abstract DateOnly GetCalendarContextDate();
-
-    /// <summary>Called when the user picks a day on the calendar popup.</summary>
-    protected abstract void OnCalendarDateSelected(DateOnly date);
-
-    /// <summary>Called when the user picks a time in the time picker popup.</summary>
-    protected abstract void OnTimePickerTimeSelected(TimeOnly time);
-
-    protected override void OnPointerPressed(PointerPressedEventArgs e)
-    {
-        base.OnPointerPressed(e);
-        if (!e.Handled && e.Source is Visual source)
-        {
-            if (_popup?.IsInsidePopup(source) == true)
-                e.Handled = true;
-            else
-                InitializePopupOpen();
-        }
-    }
-
-    protected override void OnLostFocus(FocusChangedEventArgs e)
-    {
-        base.OnLostFocus(e);
-        var newItem = e.NewFocusedElement;
-        if (Equals(newItem, _textBox)) return;
-        if (newItem is Visual visual)
-        {
-            if (_popup?.IsInsidePopup(visual) == true) return;
-            CommitInput();
-            SetCurrentValue(IsDropdownOpenProperty, false);
-        }
-    }
-
-    public abstract void Clear();
 }

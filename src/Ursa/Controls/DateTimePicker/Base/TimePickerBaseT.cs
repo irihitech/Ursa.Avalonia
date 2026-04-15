@@ -1,10 +1,16 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Data;
+using Avalonia.Input;
+using Avalonia.Interactivity;
+using Avalonia.Media;
+using Irihi.Avalonia.Shared.Contracts;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-public abstract class TimePickerBase<T> : TimePickerBase where T : struct
+public abstract class TimePickerBase<T> : TimePickerBase, IClearControl where T : struct
 {
     public static readonly StyledProperty<T?> SelectedTimeProperty =
         AvaloniaProperty.Register<TimePickerBase<T>, T?>(
@@ -15,6 +21,10 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
         get => GetValue(SelectedTimeProperty);
         set => SetValue(SelectedTimeProperty, value);
     }
+
+    protected Popup? _popup;
+    protected TimePickerPresenter? _presenter;
+    protected TextBox? _textBox;
 
     /// <summary>Converts a <typeparamref name="T"/> value to <see cref="TimeOnly"/> for presenter sync.</summary>
     protected abstract TimeOnly? ToTimeOnly(T? value);
@@ -28,16 +38,52 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
     /// <summary>Formats a <typeparamref name="T"/> value to a display string using the given format.</summary>
     protected abstract string? Format(T? value, string? format);
 
-    protected override TimeOnly? GetSelectedTimeOnly() => ToTimeOnly(SelectedTime);
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
 
-    protected override void SyncToUI()
+        TimePickerPresenter.SelectedTimeChangedEvent.RemoveHandler(OnPresenterTimeChangedCore, _presenter);
+        GotFocusEvent.RemoveHandler(OnTextBoxGetFocus, _textBox);
+        LostFocusEvent.RemoveHandler(OnTextBoxLostFocus, _textBox);
+        PointerPressedEvent.RemoveHandler(OnTextBoxPressed, _textBox);
+
+        _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
+        _popup = e.NameScope.Find<Popup>(PART_Popup);
+        _presenter = e.NameScope.Find<TimePickerPresenter>(PART_Presenter);
+
+        TimePickerPresenter.SelectedTimeChangedEvent.AddHandler(OnPresenterTimeChangedCore, _presenter);
+        GotFocusEvent.AddHandler(OnTextBoxGetFocus, _textBox);
+        LostFocusEvent.AddHandler(OnTextBoxLostFocus, _textBox);
+        PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _textBox);
+
+        SyncToUI();
+    }
+
+    private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e) => InitializePopupOpen();
+    private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e) => CommitInput();
+    private void OnTextBoxGetFocus(object? sender, FocusChangedEventArgs e) => InitializePopupOpen();
+
+    private void InitializePopupOpen()
+    {
+        SetCurrentValue(IsDropdownOpenProperty, true);
+        _presenter?.SyncTime(ToTimeOnly(SelectedTime));
+    }
+
+    private void OnPresenterTimeChangedCore(object? sender, TimeChangedEventArgs e)
+    {
+        if (!IsInitialized) return;
+        SetCurrentValue(SelectedTimeProperty,
+            e.NewTime.HasValue ? (T?)FromTimeOnly(e.NewTime.Value) : (T?)null);
+    }
+
+    private void SyncToUI()
     {
         _textBox?.SetValue(TextBox.TextProperty,
             Format(SelectedTime, DisplayFormat ?? DEFAULT_TIME_DISPLAY_FORMAT));
-        _presenter?.SyncTime(GetSelectedTimeOnly());
+        _presenter?.SyncTime(ToTimeOnly(SelectedTime));
     }
 
-    protected override void CommitInput()
+    private void CommitInput()
     {
         var format = DisplayFormat ?? DEFAULT_TIME_DISPLAY_FORMAT;
         if (string.IsNullOrWhiteSpace(_textBox?.Text))
@@ -59,11 +105,68 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
         }
     }
 
-    protected override void OnPresenterTimeSelected(TimeOnly? time)
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
-        SetCurrentValue(SelectedTimeProperty,
-            time.HasValue ? (T?)FromTimeOnly(time.Value) : (T?)null);
+        base.OnPointerPressed(e);
+        if (!e.Handled && e.Source is Visual source)
+        {
+            if (_popup?.IsInsidePopup(source) == true)
+                e.Handled = true;
+            else
+                _textBox?.Focus();
+        }
     }
+
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        if (e.Key == Key.Escape)
+        {
+            SetCurrentValue(IsDropdownOpenProperty, false);
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.Down)
+        {
+            SetCurrentValue(IsDropdownOpenProperty, true);
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.Tab)
+        {
+            SetCurrentValue(IsDropdownOpenProperty, false);
+            return;
+        }
+
+        if (e.Key == Key.Enter)
+        {
+            CommitInput();
+            SetCurrentValue(IsDropdownOpenProperty, false);
+            e.Handled = true;
+            return;
+        }
+
+        base.OnKeyDown(e);
+    }
+
+    protected override void OnLostFocus(FocusChangedEventArgs e)
+    {
+        base.OnLostFocus(e);
+        var element = e.NewFocusedElement;
+        if (Equals(element, _textBox)) return;
+        if (element is Visual v && _popup?.IsInsidePopup(v) == true) return;
+        CommitInput();
+        SetCurrentValue(IsDropdownOpenProperty, false);
+    }
+
+    public override void Confirm()
+    {
+        _presenter?.Confirm();
+        SetCurrentValue(IsDropdownOpenProperty, false);
+    }
+
+    public override void Dismiss() => SetCurrentValue(IsDropdownOpenProperty, false);
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
@@ -74,7 +177,7 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
             SyncToUI();
     }
 
-    public override void Clear()
+    public void Clear()
     {
         SetCurrentValue(SelectedTimeProperty, (T?)null);
         _presenter?.SyncTime(null);

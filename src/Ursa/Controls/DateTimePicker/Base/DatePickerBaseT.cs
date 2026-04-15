@@ -2,11 +2,15 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
+using Avalonia.Input;
+using Avalonia.Interactivity;
+using Avalonia.Media;
 using Irihi.Avalonia.Shared.Contracts;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-public abstract class DatePickerBase<T> : DatePickerBase where T : struct
+public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T : struct
 {
     public static readonly StyledProperty<T?> SelectedDateProperty =
         AvaloniaProperty.Register<DatePickerBase<T>, T?>(
@@ -17,6 +21,10 @@ public abstract class DatePickerBase<T> : DatePickerBase where T : struct
         get => GetValue(SelectedDateProperty);
         set => SetValue(SelectedDateProperty, value);
     }
+
+    protected TextBox? _textBox;
+    protected DatePickerCalendarView? _calendar;
+    protected Popup? _popup;
 
     /// <summary>Converts a <typeparamref name="T"/> value to <see cref="DateOnly"/> for calendar operations.</summary>
     protected abstract DateOnly? ToDateOnly(T? value);
@@ -33,12 +41,50 @@ public abstract class DatePickerBase<T> : DatePickerBase where T : struct
     /// <summary>Returns today as a <see cref="DateOnly"/> for use as the calendar context when no date is selected.</summary>
     protected virtual DateOnly GetToday() => DateOnly.FromDateTime(DateTime.Today);
 
-    protected override DateOnly? GetSelectedDateOnly() => ToDateOnly(SelectedDate);
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
 
-    protected override DateOnly GetCalendarContextDate() =>
-        GetSelectedDateOnly() ?? GetToday();
+        DatePickerCalendarView.DateSelectedEvent.RemoveHandler(OnDateSelected, _calendar);
+        GotFocusEvent.RemoveHandler(OnTextBoxGotFocus, _textBox);
+        LostFocusEvent.RemoveHandler(OnTextBoxLostFocus, _textBox);
+        PointerPressedEvent.RemoveHandler(OnTextBoxPressed, _textBox);
 
-    protected override void SyncToUI()
+        _popup = e.NameScope.Find<Popup>(PART_Popup);
+        _textBox = e.NameScope.Find<TextBox>(PART_TextBox);
+        _calendar = e.NameScope.Find<DatePickerCalendarView>(PART_Calendar);
+
+        DatePickerCalendarView.DateSelectedEvent.AddHandler(OnDateSelected, RoutingStrategies.Bubble, true, _calendar);
+        GotFocusEvent.AddHandler(OnTextBoxGotFocus, _textBox);
+        LostFocusEvent.AddHandler(OnTextBoxLostFocus, _textBox);
+        PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _textBox);
+
+        SyncToUI();
+    }
+
+    private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e) => InitializePopupOpen();
+    private void OnTextBoxGotFocus(object? sender, FocusChangedEventArgs e) => InitializePopupOpen();
+    private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e) => CommitInput();
+
+    private void InitializePopupOpen()
+    {
+        SetCurrentValue(IsDropdownOpenProperty, true);
+        var date = GetCalendarContextDate();
+        _calendar?.SyncContextDate(new DatePickerCalendarContext(date.Year, date.Month));
+        _calendar?.UpdateDayButtons();
+        var selectedDate = ToDateOnly(SelectedDate);
+        _calendar?.MarkDates(selectedDate, selectedDate);
+    }
+
+    private void OnDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
+    {
+        SetCurrentValue(SelectedDateProperty, e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
+        SetCurrentValue(IsDropdownOpenProperty, false);
+    }
+
+    private DateOnly GetCalendarContextDate() => ToDateOnly(SelectedDate) ?? GetToday();
+
+    private void SyncToUI()
     {
         if (SelectedDate is null)
         {
@@ -54,7 +100,7 @@ public abstract class DatePickerBase<T> : DatePickerBase where T : struct
         }
     }
 
-    protected override void CommitInput()
+    private void CommitInput()
     {
         if (string.IsNullOrWhiteSpace(_textBox?.Text))
         {
@@ -83,9 +129,52 @@ public abstract class DatePickerBase<T> : DatePickerBase where T : struct
         }
     }
 
-    protected override void OnCalendarDateSelected(DateOnly? date)
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
-        SetCurrentValue(SelectedDateProperty, date.HasValue ? (T?)FromDateOnly(date.Value) : null);
+        base.OnPointerPressed(e);
+        if (!e.Handled && e.Source is Visual source)
+        {
+            if (_popup?.IsInsidePopup(source) == true)
+                e.Handled = true;
+            else
+                _textBox?.Focus();
+        }
+    }
+
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        switch (e.Key)
+        {
+            case Key.Escape:
+                SetCurrentValue(IsDropdownOpenProperty, false);
+                e.Handled = true;
+                return;
+            case Key.Down:
+                SetCurrentValue(IsDropdownOpenProperty, true);
+                e.Handled = true;
+                return;
+            case Key.Tab:
+                SetCurrentValue(IsDropdownOpenProperty, false);
+                return;
+            case Key.Enter:
+                SetCurrentValue(IsDropdownOpenProperty, false);
+                CommitInput();
+                e.Handled = true;
+                return;
+            default:
+                base.OnKeyDown(e);
+                break;
+        }
+    }
+
+    protected override void OnLostFocus(FocusChangedEventArgs e)
+    {
+        base.OnLostFocus(e);
+        var element = e.NewFocusedElement;
+        if (Equals(element, _textBox)) return;
+        if (element is Visual v && _popup?.IsInsidePopup(v) == true) return;
+        CommitInput();
+        SetCurrentValue(IsDropdownOpenProperty, false);
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
@@ -95,5 +184,5 @@ public abstract class DatePickerBase<T> : DatePickerBase where T : struct
             SyncToUI();
     }
 
-    public override void Clear() => SetCurrentValue(SelectedDateProperty, (T?)null);
+    public void Clear() => SetCurrentValue(SelectedDateProperty, (T?)null);
 }
