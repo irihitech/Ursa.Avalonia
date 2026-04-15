@@ -16,4 +16,12 @@ public class TimeOnlyPicker : TimePickerBase<TimeOnly>
             : null;
 
     protected override string? Format(TimeOnly? value, string? format) => value?.ToString(format);
+    
+    /// <summary>
+    /// Note: This need to be kept as is to make sure XAML binding to base class won't fail. 
+    /// </summary>
+    public override void Clear()
+    {
+        base.Clear();
+    }
 }

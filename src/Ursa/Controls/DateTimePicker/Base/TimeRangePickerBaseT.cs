@@ -11,7 +11,7 @@ using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-public abstract class TimeRangePickerBase<T> : TimeRangePickerBase, IClearControl where T : struct
+public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : struct
 {
     public static readonly StyledProperty<T?> SelectedStartTimeProperty =
         AvaloniaProperty.Register<TimeRangePickerBase<T>, T?>(
@@ -223,7 +223,7 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase, IClearContro
         }
     }
 
-    public void Clear()
+    public override void Clear()
     {
         SetCurrentValue(SelectedStartTimeProperty, (T?)null);
         SetCurrentValue(SelectedEndTimeProperty, (T?)null);

@@ -16,7 +16,7 @@ namespace Ursa.Controls;
 [TemplatePart(PART_Calendar, typeof(DatePickerCalendarView))]
 [TemplatePart(PART_TimePicker, typeof(TimePickerPresenter))]
 [PseudoClasses(PseudoClassName.PC_Empty)]
-public abstract class DateTimePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent
+public abstract class DateTimePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent, IClearControl
 {
     public const string PART_Popup = "PART_Popup";
     public const string PART_TextBox = "PART_TextBox";
@@ -172,4 +172,6 @@ public abstract class DateTimePickerBase : TemplatedControl, IInnerContentContro
         get => GetValue(NeedConfirmationProperty);
         set => SetValue(NeedConfirmationProperty, value);
     }
+
+    public abstract void Clear();
 }

@@ -15,7 +15,7 @@ namespace Ursa.Controls;
 [TemplatePart(PART_StartPresenter, typeof(TimePickerPresenter))]
 [TemplatePart(PART_EndPresenter, typeof(TimePickerPresenter))]
 [PseudoClasses(PseudoClassName.PC_Empty)]
-public abstract class TimeRangePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent
+public abstract class TimeRangePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent, IClearControl
 {
     public const string PART_StartTextBox = "PART_StartTextBox";
     public const string PART_EndTextBox = "PART_EndTextBox";
@@ -158,4 +158,5 @@ public abstract class TimeRangePickerBase : TemplatedControl, IInnerContentContr
 
     public abstract void Confirm();
     public abstract void Dismiss();
+    public abstract void Clear();
 }

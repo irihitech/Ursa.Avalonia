@@ -11,7 +11,7 @@ using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-public abstract class DateRangePickerBase<T> : DateRangePickerBase, IClearControl where T : struct
+public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : struct
 {
     public static readonly StyledProperty<T?> SelectedStartDateProperty =
         AvaloniaProperty.Register<DateRangePickerBase<T>, T?>(
@@ -75,7 +75,7 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase, IClearContro
             strategies: RoutingStrategies.Tunnel, handledEventsToo: true, _startTextBox, _endTextBox);
         LostFocusEvent.AddHandler(OnTextBoxLostFocus, _startTextBox, _endTextBox);
 
-        SyncToUI();
+        SyncDateToText();
     }
 
     private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e)
@@ -201,7 +201,7 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase, IClearContro
         }
     }
 
-    private void SyncToUI()
+    private void SyncDateToText()
     {
         _startTextBox?.SetCurrentValue(TextBox.TextProperty,
             Format(SelectedStartDate, DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT) ?? string.Empty);
@@ -232,14 +232,14 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase, IClearContro
         base.OnPropertyChanged(change);
         if (change.Property == SelectedStartDateProperty || change.Property == SelectedEndDateProperty)
         {
-            SyncToUI();
+            SyncDateToText();
             _startCalendar?.MarkDates(ToDateOnly(SelectedStartDate), ToDateOnly(SelectedEndDate));
             _endCalendar?.MarkDates(ToDateOnly(SelectedStartDate), ToDateOnly(SelectedEndDate));
             PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedStartDate is null && SelectedEndDate is null);
         }
     }
 
-    public void Clear()
+    public override void Clear()
     {
         SetCurrentValue(SelectedStartDateProperty, (T?)null);
         SetCurrentValue(SelectedEndDateProperty, (T?)null);

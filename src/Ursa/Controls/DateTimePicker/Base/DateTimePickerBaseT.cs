@@ -11,7 +11,7 @@ using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-public abstract class DateTimePickerBase<T> : DateTimePickerBase, IClearControl where T : struct
+public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struct
 {
     public static readonly StyledProperty<T?> SelectedDateProperty =
         AvaloniaProperty.Register<DateTimePickerBase<T>, T?>(
@@ -70,7 +70,7 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase, IClearControl 
         PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _textBox);
         LostFocusEvent.AddHandler(OnTextBoxLostFocus, _textBox);
 
-        SyncToUI();
+        SyncDateToText();
     }
 
     private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e) => CommitInput();
@@ -108,7 +108,7 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase, IClearControl 
 
     private DateOnly GetCalendarContextDate() => GetSelectedDateOnly() ?? GetToday();
 
-    private void SyncToUI()
+    private void SyncDateToText()
     {
         if (SelectedDate is null)
         {
@@ -168,10 +168,10 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase, IClearControl 
         base.OnPropertyChanged(change);
         if (change.Property == SelectedDateProperty)
         {
-            SyncToUI();
+            SyncDateToText();
             PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedDate is null);
         }
     }
 
-    public void Clear() => SetCurrentValue(SelectedDateProperty, (T?)null);
+    public override void Clear() => SetCurrentValue(SelectedDateProperty, (T?)null);
 }

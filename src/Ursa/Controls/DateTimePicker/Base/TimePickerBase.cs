@@ -11,7 +11,7 @@ namespace Ursa.Controls;
 [TemplatePart(PART_TextBox, typeof(TextBox))]
 [TemplatePart(PART_Popup, typeof(Popup))]
 [TemplatePart(PART_Presenter, typeof(TimePickerPresenter))]
-public abstract class TimePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent
+public abstract class TimePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent, IClearControl
 {
     public const string PART_TextBox = "PART_TextBox";
     public const string PART_Popup = "PART_Popup";
@@ -133,4 +133,5 @@ public abstract class TimePickerBase : TemplatedControl, IInnerContentControl, I
 
     public abstract void Confirm();
     public abstract void Dismiss();
+    public abstract void Clear();
 }

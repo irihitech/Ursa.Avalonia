@@ -39,4 +39,12 @@ public class TimeRangePicker : TimeRangePickerBase<TimeSpan>
 
     protected override string? Format(TimeSpan? value, string? format) =>
         value.HasValue ? TimeOnly.FromTimeSpan(value.Value).ToString(format) : null;
+    
+    /// <summary>
+    /// Note: This need to be kept as is to make sure XAML binding to base class won't fail. 
+    /// </summary>
+    public override void Clear()
+    {
+        base.Clear();
+    }
 }

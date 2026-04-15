@@ -10,7 +10,7 @@ using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
-public abstract class TimePickerBase<T> : TimePickerBase, IClearControl where T : struct
+public abstract class TimePickerBase<T> : TimePickerBase where T : struct
 {
     public static readonly StyledProperty<T?> SelectedTimeProperty =
         AvaloniaProperty.Register<TimePickerBase<T>, T?>(
@@ -56,7 +56,7 @@ public abstract class TimePickerBase<T> : TimePickerBase, IClearControl where T 
         LostFocusEvent.AddHandler(OnTextBoxLostFocus, _textBox);
         PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _textBox);
 
-        SyncToUI();
+        SyncTimeToText();
     }
 
     private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e) => InitializePopupOpen();
@@ -76,7 +76,7 @@ public abstract class TimePickerBase<T> : TimePickerBase, IClearControl where T 
             e.NewTime.HasValue ? (T?)FromTimeOnly(e.NewTime.Value) : (T?)null);
     }
 
-    private void SyncToUI()
+    private void SyncTimeToText()
     {
         _textBox?.SetValue(TextBox.TextProperty,
             Format(SelectedTime, DisplayFormat ?? DEFAULT_TIME_DISPLAY_FORMAT));
@@ -172,12 +172,12 @@ public abstract class TimePickerBase<T> : TimePickerBase, IClearControl where T 
     {
         base.OnPropertyChanged(change);
         if (change.Property == SelectedTimeProperty)
-            SyncToUI();
+            SyncTimeToText();
         else if (change.Property == DisplayFormatProperty && _textBox is not null)
-            SyncToUI();
+            SyncTimeToText();
     }
 
-    public void Clear()
+    public override void Clear()
     {
         SetCurrentValue(SelectedTimeProperty, (T?)null);
         _presenter?.SyncTime(null);

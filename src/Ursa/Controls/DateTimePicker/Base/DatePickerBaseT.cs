@@ -59,7 +59,7 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
         LostFocusEvent.AddHandler(OnTextBoxLostFocus, _textBox);
         PointerPressedEvent.AddHandler(OnTextBoxPressed, RoutingStrategies.Tunnel, true, _textBox);
 
-        SyncToUI();
+        SyncDateToText();
     }
 
     private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e) => InitializePopupOpen();
@@ -69,7 +69,7 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
     private void InitializePopupOpen()
     {
         SetCurrentValue(IsDropdownOpenProperty, true);
-        var date = GetCalendarContextDate();
+        var date = ToDateOnly(SelectedDate) ?? GetToday();
         _calendar?.SyncContextDate(new DatePickerCalendarContext(date.Year, date.Month));
         _calendar?.UpdateDayButtons();
         var selectedDate = ToDateOnly(SelectedDate);
@@ -82,9 +82,7 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
         SetCurrentValue(IsDropdownOpenProperty, false);
     }
 
-    private DateOnly GetCalendarContextDate() => ToDateOnly(SelectedDate) ?? GetToday();
-
-    private void SyncToUI()
+    private void SyncDateToText()
     {
         if (SelectedDate is null)
         {
@@ -181,8 +179,8 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
     {
         base.OnPropertyChanged(change);
         if (change.Property == SelectedDateProperty)
-            SyncToUI();
+            SyncDateToText();
     }
 
-    public void Clear() => SetCurrentValue(SelectedDateProperty, (T?)null);
+    public override void Clear() => SetCurrentValue(SelectedDateProperty, null);
 }
