@@ -103,8 +103,14 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
     private void InitializePopupOpen(TextBox? sender)
     {
         if (sender is null) return;
-        _pendingStartDate = ToDateOnly(SelectedStartDate);
-        _pendingEndDate = ToDateOnly(SelectedEndDate);
+        if (!IsDropdownOpen)
+        {
+            // Only reset pending values when actually opening from closed state.
+            // If the popup is already open (e.g. focus moves between text boxes
+            // programmatically after a date is picked), preserve what was chosen.
+            _pendingStartDate = ToDateOnly(SelectedStartDate);
+            _pendingEndDate = ToDateOnly(SelectedEndDate);
+        }
         SetCurrentValue(IsDropdownOpenProperty, true);
         SetCalendarContextDate();
         if (Equals(sender, _startTextBox))
