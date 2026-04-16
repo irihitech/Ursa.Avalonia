@@ -15,6 +15,17 @@
             Name="format"
             Text="yyyy-MM-dd"
             PlaceholderText="Display Format" />
+
+        <TextBlock Text="Need Confirmation" />
+        <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
+        <TextBlock Text="{Binding #confirmPicker.SelectedStartDate, StringFormat='Start: {0}'}" />
+        <TextBlock Text="{Binding #confirmPicker.SelectedEndDate, StringFormat='End: {0}'}" />
+        <u:DateRangePicker
+            Name="confirmPicker"
+            Width="360"
+            DisplayFormat="{Binding #format.Text}"
+            NeedConfirmation="{Binding #needConfirm.IsChecked}" />
+
         <TextBlock Text="Default" />
         <u:DateRangePicker
             Width="360"

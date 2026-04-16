@@ -22,6 +22,17 @@
             InnerLeftContent="Panel Format"
             Text="tt HH mm ss" />
 
+        <TextBlock Text="Need Confirmation" />
+        <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
+        <TextBlock Text="{Binding #confirmPicker.SelectedStartTime, StringFormat='Start: {0}'}" />
+        <TextBlock Text="{Binding #confirmPicker.SelectedEndTime, StringFormat='End: {0}'}" />
+        <u:TimeOnlyRangePicker
+            Name="confirmPicker"
+            Width="300"
+            DisplayFormat="{Binding #displayFormat.Text}"
+            NeedConfirmation="{Binding #needConfirm.IsChecked}"
+            PanelFormat="{Binding #panelFormat.Text}" />
+
         <TextBlock Text="Default" />
         <u:TimeOnlyRangePicker
             Width="300"
