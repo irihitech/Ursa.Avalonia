@@ -174,4 +174,6 @@ public abstract class DateTimePickerBase : TemplatedControl, IInnerContentContro
     }
 
     public abstract void Clear();
+    public abstract void Confirm();
+    public abstract void Dismiss();
 }

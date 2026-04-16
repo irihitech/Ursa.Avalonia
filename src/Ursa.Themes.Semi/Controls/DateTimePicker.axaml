@@ -95,7 +95,6 @@
                                             Grid.Column="1"
                                             Name="{x:Static u:DateTimePickerBase.PART_TimePicker}"
                                             FontSize="{DynamicResource DefaultFontSize}"
-                                            NeedsConfirmation="{TemplateBinding NeedConfirmation}"
                                             PanelFormat="{TemplateBinding PanelFormat}" />
                                     </Grid>
                                 </Border>

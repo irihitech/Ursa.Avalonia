@@ -26,6 +26,7 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
     protected TextBox? _textBox;
     protected DatePickerCalendarView? _calendar;
     protected Popup? _popup;
+    protected DateOnly? _pendingDate;
 
     /// <summary>Converts a <typeparamref name="T"/> value to <see cref="DateOnly"/> for calendar operations.</summary>
     protected abstract DateOnly? ToDateOnly(T? value);
@@ -70,6 +71,7 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
 
     private void InitializePopupOpen()
     {
+        _pendingDate = ToDateOnly(SelectedDate);
         SetCurrentValue(IsDropdownOpenProperty, true);
         var date = ToDateOnly(SelectedDate) ?? GetToday();
         _calendar?.SyncContextDate(new DatePickerCalendarContext(date.Year, date.Month));
@@ -80,8 +82,16 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
 
     private void OnDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
     {
-        SetCurrentValue(SelectedDateProperty, e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
-        SetCurrentValue(IsDropdownOpenProperty, false);
+        if (NeedConfirmation)
+        {
+            _pendingDate = e.Date;
+            _calendar?.MarkDates(_pendingDate, _pendingDate);
+        }
+        else
+        {
+            SetCurrentValue(SelectedDateProperty, e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
+            SetCurrentValue(IsDropdownOpenProperty, false);
+        }
     }
 
     private void SyncDateToText()
@@ -188,4 +198,14 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
     }
 
     public override void Clear() => SetCurrentValue(SelectedDateProperty, null);
+
+    public override void Confirm()
+    {
+        if (NeedConfirmation)
+            SetCurrentValue(SelectedDateProperty,
+                _pendingDate.HasValue ? (T?)FromDateOnly(_pendingDate.Value) : (T?)null);
+        SetCurrentValue(IsDropdownOpenProperty, false);
+    }
+
+    public override void Dismiss() => SetCurrentValue(IsDropdownOpenProperty, false);
 }

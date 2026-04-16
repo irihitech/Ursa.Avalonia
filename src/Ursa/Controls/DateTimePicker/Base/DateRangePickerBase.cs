@@ -62,6 +62,9 @@ public abstract class DateRangePickerBase : TemplatedControl, IInnerContentContr
     public static readonly StyledProperty<bool> IsReadonlyProperty =
         AvaloniaProperty.Register<DateRangePickerBase, bool>(nameof(IsReadonly));
 
+    public static readonly StyledProperty<bool> NeedConfirmationProperty =
+        AvaloniaProperty.Register<DateRangePickerBase, bool>(nameof(NeedConfirmation));
+
     public AvaloniaList<DateRange> BlackoutDates
     {
         get => GetValue(BlackoutDatesProperty);
@@ -90,6 +93,12 @@ public abstract class DateRangePickerBase : TemplatedControl, IInnerContentContr
     {
         get => GetValue(IsReadonlyProperty);
         set => SetValue(IsReadonlyProperty, value);
+    }
+
+    public bool NeedConfirmation
+    {
+        get => GetValue(NeedConfirmationProperty);
+        set => SetValue(NeedConfirmationProperty, value);
     }
 
     public bool IsDropdownOpen
@@ -129,4 +138,6 @@ public abstract class DateRangePickerBase : TemplatedControl, IInnerContentContr
     }
 
     public abstract void Clear();
+    public abstract void Confirm();
+    public abstract void Dismiss();
 }
