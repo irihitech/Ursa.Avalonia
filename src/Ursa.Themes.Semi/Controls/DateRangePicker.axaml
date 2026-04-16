@@ -90,13 +90,15 @@
                                 BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
                                 CornerRadius="{DynamicResource CalendarCornerRadius}">
                                 <DockPanel>
+                                    <!--
                                     <StackPanel DockPanel.Dock="Bottom" IsVisible="{TemplateBinding NeedConfirmation}">
                                         <Button
                                             Margin="8"
                                             HorizontalAlignment="Right"
-                                            Command="{Binding $parent[u:DateRangePickerBase].Confirm}"
+                                            Command="{Binding $parent[u:TimeRangePicker].Confirm}"
                                             Content="{DynamicResource STRING_DATE_TIME_CONFIRM}" />
                                     </StackPanel>
+                                    -->
                                     <ContentPresenter
                                         Name="PART_PopupHeader"
                                         Margin="8,8,8,0"

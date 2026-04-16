@@ -39,8 +39,6 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
     private TextBox? _endTextBox;
     private Popup? _popup;
     private readonly RangePickerStatus _status = new();
-    private DateOnly? _pendingStartDate;
-    private DateOnly? _pendingEndDate;
 
     /// <summary>Converts a <typeparamref name="T"/> value to <see cref="DateOnly"/> for calendar operations.</summary>
     protected abstract DateOnly? ToDateOnly(T? value);
@@ -97,41 +95,30 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
     private void OnTextBoxGotFocus(object? sender, FocusChangedEventArgs e) =>
         InitializePopupOpen(sender as TextBox);
 
-    private DateOnly? EffectiveStartDate => NeedConfirmation ? _pendingStartDate : ToDateOnly(SelectedStartDate);
-    private DateOnly? EffectiveEndDate => NeedConfirmation ? _pendingEndDate : ToDateOnly(SelectedEndDate);
-
     private void InitializePopupOpen(TextBox? sender)
     {
         if (sender is null) return;
-        if (!IsDropdownOpen)
-        {
-            // Only reset pending values when actually opening from closed state.
-            // If the popup is already open (e.g. focus moves between text boxes
-            // programmatically after a date is picked), preserve what was chosen.
-            _pendingStartDate = ToDateOnly(SelectedStartDate);
-            _pendingEndDate = ToDateOnly(SelectedEndDate);
-        }
         SetCurrentValue(IsDropdownOpenProperty, true);
         SetCalendarContextDate();
         if (Equals(sender, _startTextBox))
             _status.Push(Status.Start);
         else if (Equals(sender, _endTextBox))
             _status.Push(Status.End);
-        _startCalendar?.MarkDates(EffectiveStartDate, EffectiveEndDate);
-        _endCalendar?.MarkDates(EffectiveStartDate, EffectiveEndDate);
+        _startCalendar?.MarkDates(ToDateOnly(SelectedStartDate), ToDateOnly(SelectedEndDate));
+        _endCalendar?.MarkDates(ToDateOnly(SelectedStartDate), ToDateOnly(SelectedEndDate));
     }
 
     private void OnDatePreviewed(object? sender, DatePickerCalendarDayButtonEventArgs e)
     {
         if (_status.Current == Status.Start)
         {
-            _startCalendar?.MarkDates(EffectiveStartDate, EffectiveEndDate, e.Date);
-            _endCalendar?.MarkDates(EffectiveStartDate, EffectiveEndDate, e.Date);
+            _startCalendar?.MarkDates(ToDateOnly(SelectedStartDate), ToDateOnly(SelectedEndDate), e.Date);
+            _endCalendar?.MarkDates(ToDateOnly(SelectedStartDate), ToDateOnly(SelectedEndDate), e.Date);
         }
         else if (_status.Current == Status.End)
         {
-            _startCalendar?.MarkDates(EffectiveStartDate, EffectiveEndDate, null, e.Date);
-            _endCalendar?.MarkDates(EffectiveStartDate, EffectiveEndDate, null, e.Date);
+            _startCalendar?.MarkDates(ToDateOnly(SelectedStartDate), ToDateOnly(SelectedEndDate), null, e.Date);
+            _endCalendar?.MarkDates(ToDateOnly(SelectedStartDate), ToDateOnly(SelectedEndDate), null, e.Date);
         }
         else
         {
@@ -142,71 +129,37 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
 
     private void OnDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
     {
-        if (NeedConfirmation)
+        if (_status is { Current: Status.Start, Previous: Status.None })
         {
-            if (_status is { Current: Status.Start, Previous: Status.None })
-            {
-                _pendingStartDate = e.Date;
-                if (_pendingEndDate is { } endDate && e.Date is { } start && start > endDate)
-                    _pendingEndDate = null;
-                _status.Push(Status.End);
-                _endTextBox?.Focus();
-            }
-            else if (_status is { Current: Status.Start, Previous: Status.End })
-            {
-                _pendingStartDate = e.Date;
-                _status.Reset();
-            }
-            else if (_status is { Current: Status.End, Previous: Status.None })
-            {
-                _pendingEndDate = e.Date;
-                if (_pendingStartDate is { } startDate && e.Date is { } end && end < startDate)
-                    _pendingStartDate = null;
-                _status.Push(Status.Start);
-                _startTextBox?.Focus();
-            }
-            else if (_status is { Current: Status.End, Previous: Status.Start })
-            {
-                _pendingEndDate = e.Date;
-                _status.Reset();
-            }
-            _startCalendar?.MarkDates(EffectiveStartDate, EffectiveEndDate);
-            _endCalendar?.MarkDates(EffectiveStartDate, EffectiveEndDate);
+            SetCurrentValue(SelectedStartDateProperty,
+                e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
+            if (ToDateOnly(SelectedEndDate) is { } endDate && e.Date is { } start && start > endDate)
+                SetCurrentValue(SelectedEndDateProperty, (T?)null);
+            _status.Push(Status.End);
+            _endTextBox?.Focus();
         }
-        else
+        else if (_status is { Current: Status.Start, Previous: Status.End })
         {
-            if (_status is { Current: Status.Start, Previous: Status.None })
-            {
-                SetCurrentValue(SelectedStartDateProperty,
-                    e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
-                if (ToDateOnly(SelectedEndDate) is { } endDate && e.Date is { } start && start > endDate)
-                    SetCurrentValue(SelectedEndDateProperty, (T?)null);
-                _status.Push(Status.End);
-                _endTextBox?.Focus();
-            }
-            else if (_status is { Current: Status.Start, Previous: Status.End })
-            {
-                SetCurrentValue(SelectedStartDateProperty,
-                    e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
-                _status.Reset();
-                SetCurrentValue(IsDropdownOpenProperty, false);
-            }
-            else if (_status is { Current: Status.End, Previous: Status.None })
-            {
-                SetCurrentValue(SelectedEndDateProperty,
-                    e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
-                if (ToDateOnly(SelectedStartDate) is { } startDate && e.Date is { } end && end < startDate)
-                    SetCurrentValue(SelectedStartDateProperty, (T?)null);
-                _status.Push(Status.Start);
-                _startTextBox?.Focus();
-            }
-            else if (_status is { Current: Status.End, Previous: Status.Start })
-            {
-                SetCurrentValue(SelectedEndDateProperty,
-                    e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
-                _status.Reset();
-                SetCurrentValue(IsDropdownOpenProperty, false);
-            }
+            SetCurrentValue(SelectedStartDateProperty,
+                e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
+            _status.Reset();
+            SetCurrentValue(IsDropdownOpenProperty, false);
+        }
+        else if (_status is { Current: Status.End, Previous: Status.None })
+        {
+            SetCurrentValue(SelectedEndDateProperty,
+                e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
+            if (ToDateOnly(SelectedStartDate) is { } startDate && e.Date is { } end && end < startDate)
+                SetCurrentValue(SelectedStartDateProperty, (T?)null);
+            _status.Push(Status.Start);
+            _startTextBox?.Focus();
+        }
+        else if (_status is { Current: Status.End, Previous: Status.Start })
+        {
+            SetCurrentValue(SelectedEndDateProperty,
+                e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
+            _status.Reset();
+            SetCurrentValue(IsDropdownOpenProperty, false);
         }
     }
 
@@ -286,20 +239,6 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
             PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedStartDate is null && SelectedEndDate is null);
         }
     }
-
-    public override void Confirm()
-    {
-        if (NeedConfirmation)
-        {
-            SetCurrentValue(SelectedStartDateProperty,
-                _pendingStartDate.HasValue ? (T?)FromDateOnly(_pendingStartDate.Value) : (T?)null);
-            SetCurrentValue(SelectedEndDateProperty,
-                _pendingEndDate.HasValue ? (T?)FromDateOnly(_pendingEndDate.Value) : (T?)null);
-        }
-        SetCurrentValue(IsDropdownOpenProperty, false);
-    }
-
-    public override void Dismiss() => SetCurrentValue(IsDropdownOpenProperty, false);
 
     public override void Clear()
     {
