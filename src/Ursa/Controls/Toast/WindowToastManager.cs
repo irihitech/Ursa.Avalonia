@@ -138,4 +138,27 @@ public class WindowToastManager : WindowMessageManager, IToastManager
 
         toastControl.Close();
     }
+
+    /// <inheritdoc/>
+    public void Close(IToast toast)
+    {
+        Dispatcher.UIThread.VerifyAccess();
+
+        _items?.OfType<ToastCard>()
+            .FirstOrDefault(i => i.Content == toast)
+            ?.Close();
+    }
+
+    /// <inheritdoc/>
+    public void CloseAll()
+    {
+        Dispatcher.UIThread.VerifyAccess();
+
+        var items = _items?.OfType<ToastCard>().ToList();
+        if (items is null) return;
+        foreach (var item in items)
+        {
+            item.Close();
+        }
+    }
 }

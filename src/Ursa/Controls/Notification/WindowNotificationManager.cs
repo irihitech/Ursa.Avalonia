@@ -175,6 +175,29 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
         notificationControl.Close();
     }
 
+    /// <inheritdoc/>
+    public void Close(INotification notification)
+    {
+        Dispatcher.UIThread.VerifyAccess();
+
+        _items?.OfType<NotificationCard>()
+            .FirstOrDefault(i => i.Content == notification)
+            ?.Close();
+    }
+
+    /// <inheritdoc/>
+    public void CloseAll()
+    {
+        Dispatcher.UIThread.VerifyAccess();
+
+        var items = _items?.OfType<NotificationCard>().ToList();
+        if (items is null) return;
+        foreach (var item in items)
+        {
+            item.Close();
+        }
+    }
+
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
