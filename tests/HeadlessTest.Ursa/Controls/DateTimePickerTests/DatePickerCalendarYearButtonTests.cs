@@ -6,7 +6,7 @@ using Avalonia.Headless.XUnit;
 using Avalonia.Input;
 using Ursa.Controls;
 
-namespace HeadlessTest.Ursa.Controls.DateTimePicker;
+namespace HeadlessTest.Ursa.Controls.DateTimePickerTests;
 
 public class DatePickerCalendarYearButtonTests
 {

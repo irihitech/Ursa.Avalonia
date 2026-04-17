@@ -11,7 +11,7 @@ using HeadlessTest.Ursa.TestHelpers;
 using Ursa.Controls;
 using DatePicker = Ursa.Controls.DatePicker;
 
-namespace HeadlessTest.Ursa.Controls.DateTimePicker;
+namespace HeadlessTest.Ursa.Controls.DateTimePickerTests;
 
 public class DatePickerTests
 {

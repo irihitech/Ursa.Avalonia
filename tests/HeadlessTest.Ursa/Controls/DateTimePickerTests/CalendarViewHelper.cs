@@ -3,7 +3,7 @@ using Avalonia.Controls.Templates;
 using Avalonia.Interactivity;
 using Ursa.Controls;
 
-namespace HeadlessTest.Ursa.Controls.DateTimePicker;
+namespace HeadlessTest.Ursa.Controls.DateTimePickerTests;
 
 internal static class CalendarViewHelper
 {
