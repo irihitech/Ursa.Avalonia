@@ -14,7 +14,6 @@ public class TimePickerPresenterTests
     {
         var presenter = new TimePickerPresenter();
 
-        Assert.False(presenter.NeedsConfirmation);
         Assert.Equal(1, presenter.MinuteIncrement);
         Assert.Equal(1, presenter.SecondIncrement);
         Assert.Null(presenter.TimeHolder);
@@ -78,9 +77,9 @@ public class TimePickerPresenterTests
     
 
     [AvaloniaFact]
-    public void TimePickerPresenter_Confirm_ShouldSetTimeProperty()
+    public void TimePickerPresenter_Confirm_IsObsolete_ButStillFiresEvent()
     {
-        var presenter = new TimePickerPresenter { NeedsConfirmation = true };
+        var presenter = new TimePickerPresenter();
         var time = new TimeOnly(10, 30, 45);
         var eventRaised = 0;
         TimeOnly? eventResult = null;
@@ -90,12 +89,10 @@ public class TimePickerPresenterTests
             eventResult = e.NewTime;
         };
         presenter.TimeHolder = time;
-        Assert.Null(eventResult);
-        Assert.Equal(0, eventRaised);
-
+        // Confirm on the presenter now fires a backward-compat event with TimeHolder value
+#pragma warning disable CS0618
         presenter.Confirm();
-
-        Assert.Equal(time, presenter.TimeHolder);
+#pragma warning restore CS0618
         Assert.Equal(time, eventResult);
         Assert.Equal(1, eventRaised);
     }
@@ -157,7 +154,7 @@ public class TimePickerPresenterTests
     public void TimePickerPresenter_TimeHolder_Updated_When_Panel_Selection_Changed(string format, int hourSelection, int minuteSelection, int secondSelection, int amSelection, TimeOnly expectedTime)
     {
         var window = new Window();
-        var presenter = new TimePickerPresenter(){NeedsConfirmation = true};
+        var presenter = new TimePickerPresenter();
         window.Content = presenter;
         window.Show();
         Dispatcher.UIThread.RunJobs();

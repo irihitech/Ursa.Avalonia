@@ -27,6 +27,8 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
     protected DatePickerCalendarView? _calendar;
     protected Popup? _popup;
     protected TimePickerPresenter? _timePickerPresenter;
+    protected DateOnly? _pendingDate;
+    protected TimeOnly? _pendingTime;
 
     /// <summary>Extracts the date component from a <typeparamref name="T"/> value.</summary>
     protected abstract DateOnly? ToDateOnly(T? value);
@@ -80,6 +82,8 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
 
     private void InitializePopupOpen()
     {
+        _pendingDate = GetSelectedDateOnly();
+        _pendingTime = GetSelectedTimeOnly();
         SetCurrentValue(IsDropdownOpenProperty, true);
         var date = GetCalendarContextDate();
         _calendar?.SyncContextDate(new DatePickerCalendarContext(date.Year, date.Month));
@@ -89,17 +93,32 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
     private void OnDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
     {
         if (e.Date is null) return;
-        var time = SelectedDate.HasValue
-            ? ToTimeOnly(SelectedDate.Value) ?? GetCurrentTime()
-            : GetCurrentTime();
-        SetCurrentValue(SelectedDateProperty, (T?)CombineDateTime(e.Date.Value, time));
+        if (NeedConfirmation)
+        {
+            _pendingDate = e.Date;
+            _calendar?.MarkDates(e.Date.Value, e.Date.Value);
+        }
+        else
+        {
+            var time = SelectedDate.HasValue
+                ? ToTimeOnly(SelectedDate.Value) ?? GetCurrentTime()
+                : GetCurrentTime();
+            SetCurrentValue(SelectedDateProperty, (T?)CombineDateTime(e.Date.Value, time));
+        }
     }
 
     private void OnTimeSelected(object? sender, TimeChangedEventArgs e)
     {
         if (e.NewTime is null) return;
-        var date = GetSelectedDateOnly() ?? GetToday();
-        SetCurrentValue(SelectedDateProperty, (T?)CombineDateTime(date, e.NewTime.Value));
+        if (NeedConfirmation)
+        {
+            _pendingTime = e.NewTime;
+        }
+        else
+        {
+            var date = GetSelectedDateOnly() ?? GetToday();
+            SetCurrentValue(SelectedDateProperty, (T?)CombineDateTime(date, e.NewTime.Value));
+        }
     }
 
     private DateOnly? GetSelectedDateOnly() => ToDateOnly(SelectedDate);
@@ -175,4 +194,22 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
     }
 
     public override void Clear() => SetCurrentValue(SelectedDateProperty, (T?)null);
+
+    public override void Confirm()
+    {
+        if (NeedConfirmation)
+        {
+            var hasPendingSelection = _pendingDate is not null || _pendingTime is not null;
+            var hasExistingSelection = SelectedDate is not null;
+            if (hasPendingSelection || hasExistingSelection)
+            {
+                var date = _pendingDate ?? GetSelectedDateOnly() ?? GetToday();
+                var time = _pendingTime ?? GetSelectedTimeOnly() ?? GetCurrentTime();
+                SetCurrentValue(SelectedDateProperty, (T?)CombineDateTime(date, time));
+            }
+        }
+        SetCurrentValue(IsDropdownOpenProperty, false);
+    }
+
+    public override void Dismiss() => SetCurrentValue(IsDropdownOpenProperty, false);
 }

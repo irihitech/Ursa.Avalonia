@@ -38,10 +38,6 @@ public class TimePickerPresenter : TemplatedControl
     public const string PART_ThirdSeparator = "PART_ThirdSeparator";
 
 
-    public static readonly StyledProperty<bool> NeedsConfirmationProperty =
-        AvaloniaProperty.Register<TimePickerPresenter, bool>(
-            nameof(NeedsConfirmation));
-
     public static readonly StyledProperty<int> MinuteIncrementProperty =
         AvaloniaProperty.Register<TimePickerPresenter, int>(
             nameof(MinuteIncrement), 1);
@@ -85,8 +81,9 @@ public class TimePickerPresenter : TemplatedControl
 
     public bool NeedsConfirmation
     {
-        get => GetValue(NeedsConfirmationProperty);
-        set => SetValue(NeedsConfirmationProperty, value);
+        get => false;
+        [Obsolete("NeedsConfirmation on TimePickerPresenter is obsolete. Set NeedConfirmation on the picker control instead.")]
+        set { }
     }
 
     public int MinuteIncrement
@@ -255,15 +252,9 @@ public class TimePickerPresenter : TemplatedControl
         }
 
         var newTime = new TimeOnly(hour, minute, second);
-        if (NeedsConfirmation)
-        {
-            TimeHolder = newTime;
-        }
-        else
-        {
-            if (_surpressTimeEvent) return;
-            RaiseEvent(new TimeChangedEventArgs(null, newTime) { RoutedEvent = SelectedTimeChangedEvent });
-        }
+        TimeHolder = newTime;
+        if (_surpressTimeEvent) return;
+        RaiseEvent(new TimeChangedEventArgs(null, newTime) { RoutedEvent = SelectedTimeChangedEvent });
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
@@ -326,10 +317,10 @@ public class TimePickerPresenter : TemplatedControl
         }
     }
 
+    [Obsolete("Confirm() on TimePickerPresenter is obsolete. Call Confirm() on the picker control instead.")]
     public void Confirm()
     {
-        if (NeedsConfirmation)
-            RaiseEvent(new TimeChangedEventArgs(null, TimeHolder) { RoutedEvent = SelectedTimeChangedEvent });
+        RaiseEvent(new TimeChangedEventArgs(null, TimeHolder) { RoutedEvent = SelectedTimeChangedEvent });
     }
 
     private void SetIfChanged(DateTimePickerPanel? panel, int index, bool surpress = false)
