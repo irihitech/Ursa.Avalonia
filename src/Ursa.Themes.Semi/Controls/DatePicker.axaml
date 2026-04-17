@@ -83,13 +83,22 @@
                                     BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
                                     BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
                                     CornerRadius="{DynamicResource CalendarCornerRadius}">
-                                    <u:DatePickerCalendarView
-                                        Name="PART_Calendar"
-                                        BorderThickness="0"
-                                        CornerRadius="{Binding $parent[Border].CornerRadius}"
-                                        FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
-                                        FontSize="{DynamicResource DefaultFontSize}"
-                                        IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
+                                    <DockPanel>
+                                            <StackPanel DockPanel.Dock="Bottom" IsVisible="{TemplateBinding NeedConfirmation}">
+                                                <Button
+                                                    Margin="8"
+                                                    HorizontalAlignment="Right"
+                                                    Command="{Binding $parent[u:DatePickerBase].Confirm}"
+                                                    Content="{DynamicResource STRING_DATE_TIME_CONFIRM}" />
+                                            </StackPanel>
+                                            <u:DatePickerCalendarView
+                                                Name="PART_Calendar"
+                                                BorderThickness="0"
+                                                CornerRadius="{Binding $parent[Border].CornerRadius}"
+                                                FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
+                                                FontSize="{DynamicResource DefaultFontSize}"
+                                                IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
+                                        </DockPanel>
                                 </Border>
                             </Popup>
                         </Grid>

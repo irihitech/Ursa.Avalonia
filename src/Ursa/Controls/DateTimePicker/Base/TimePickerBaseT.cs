@@ -26,6 +26,7 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
     protected Popup? _popup;
     protected TimePickerPresenter? _presenter;
     protected TextBox? _textBox;
+    protected TimeOnly? _pendingTime;
 
     /// <summary>Converts a <typeparamref name="T"/> value to <see cref="TimeOnly"/> for presenter sync.</summary>
     protected abstract TimeOnly? ToTimeOnly(T? value);
@@ -67,6 +68,7 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
 
     private void InitializePopupOpen()
     {
+        _pendingTime = ToTimeOnly(SelectedTime);
         SetCurrentValue(IsDropdownOpenProperty, true);
         _presenter?.SyncTime(ToTimeOnly(SelectedTime));
     }
@@ -74,8 +76,11 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
     private void OnPresenterTimeChangedCore(object? sender, TimeChangedEventArgs e)
     {
         if (!IsInitialized) return;
-        SetCurrentValue(SelectedTimeProperty,
-            e.NewTime.HasValue ? (T?)FromTimeOnly(e.NewTime.Value) : (T?)null);
+        if (NeedConfirmation)
+            _pendingTime = e.NewTime;
+        else
+            SetCurrentValue(SelectedTimeProperty,
+                e.NewTime.HasValue ? (T?)FromTimeOnly(e.NewTime.Value) : (T?)null);
     }
 
     private void SyncTimeToText()
@@ -164,7 +169,8 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
 
     public override void Confirm()
     {
-        _presenter?.Confirm();
+        if (NeedConfirmation && _pendingTime.HasValue)
+            SetCurrentValue(SelectedTimeProperty, (T?)FromTimeOnly(_pendingTime.Value));
         SetCurrentValue(IsDropdownOpenProperty, false);
     }
 

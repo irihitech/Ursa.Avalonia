@@ -83,21 +83,29 @@
                                     BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
                                     BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
                                     CornerRadius="{DynamicResource CalendarCornerRadius}">
-                                    <Grid ColumnDefinitions="*, *">
-                                        <u:DatePickerCalendarView
-                                            Name="{x:Static u:DateTimePickerBase.PART_Calendar}"
-                                            BorderThickness="0"
-                                            CornerRadius="{Binding $parent[Border].CornerRadius}"
-                                            FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
-                                            FontSize="{DynamicResource DefaultFontSize}"
-                                            IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
-                                        <u:TimePickerPresenter
-                                            Grid.Column="1"
-                                            Name="{x:Static u:DateTimePickerBase.PART_TimePicker}"
-                                            FontSize="{DynamicResource DefaultFontSize}"
-                                            NeedsConfirmation="{TemplateBinding NeedConfirmation}"
-                                            PanelFormat="{TemplateBinding PanelFormat}" />
-                                    </Grid>
+                                    <DockPanel>
+                                        <StackPanel DockPanel.Dock="Bottom" IsVisible="{TemplateBinding NeedConfirmation}">
+                                            <Button
+                                                Margin="8"
+                                                HorizontalAlignment="Right"
+                                                Command="{Binding $parent[u:DateTimePickerBase].Confirm}"
+                                                Content="{DynamicResource STRING_DATE_TIME_CONFIRM}" />
+                                        </StackPanel>
+                                        <Grid ColumnDefinitions="*, *">
+                                            <u:DatePickerCalendarView
+                                                Name="{x:Static u:DateTimePickerBase.PART_Calendar}"
+                                                BorderThickness="0"
+                                                CornerRadius="{Binding $parent[Border].CornerRadius}"
+                                                FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
+                                                FontSize="{DynamicResource DefaultFontSize}"
+                                                IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
+                                            <u:TimePickerPresenter
+                                                Grid.Column="1"
+                                                Name="{x:Static u:DateTimePickerBase.PART_TimePicker}"
+                                                FontSize="{DynamicResource DefaultFontSize}"
+                                                PanelFormat="{TemplateBinding PanelFormat}" />
+                                        </Grid>
+                                    </DockPanel>
                                 </Border>
                             </Popup>
                         </Grid>

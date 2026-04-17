@@ -40,6 +40,8 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
     private Popup? _popup;
     private bool _isFocused;
     private readonly RangePickerStatus _status = new();
+    private TimeOnly? _pendingStartTime;
+    private TimeOnly? _pendingEndTime;
 
     /// <summary>Converts a <typeparamref name="T"/> value to <see cref="TimeOnly"/> for presenter sync.</summary>
     protected abstract TimeOnly? ToTimeOnly(T? value);
@@ -96,6 +98,8 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
     private void InitializePopupOpen(TextBox? sender)
     {
         if (sender is null) return;
+        _pendingStartTime = ToTimeOnly(SelectedStartTime);
+        _pendingEndTime = ToTimeOnly(SelectedEndTime);
         SetCurrentValue(IsDropdownOpenProperty, true);
         if (Equals(sender, _startTextBox))
             _status.Push(Status.Start);
@@ -107,12 +111,22 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
 
     private void OnTimeSelectedCore(object? sender, TimeChangedEventArgs e)
     {
-        if (Equals(sender, _startPresenter))
-            SetCurrentValue(SelectedStartTimeProperty,
-                e.NewTime.HasValue ? (T?)FromTimeOnly(e.NewTime.Value) : (T?)null);
-        else if (Equals(sender, _endPresenter))
-            SetCurrentValue(SelectedEndTimeProperty,
-                e.NewTime.HasValue ? (T?)FromTimeOnly(e.NewTime.Value) : (T?)null);
+        if (NeedConfirmation)
+        {
+            if (Equals(sender, _startPresenter))
+                _pendingStartTime = e.NewTime;
+            else if (Equals(sender, _endPresenter))
+                _pendingEndTime = e.NewTime;
+        }
+        else
+        {
+            if (Equals(sender, _startPresenter))
+                SetCurrentValue(SelectedStartTimeProperty,
+                    e.NewTime.HasValue ? (T?)FromTimeOnly(e.NewTime.Value) : (T?)null);
+            else if (Equals(sender, _endPresenter))
+                SetCurrentValue(SelectedEndTimeProperty,
+                    e.NewTime.HasValue ? (T?)FromTimeOnly(e.NewTime.Value) : (T?)null);
+        }
     }
 
     protected override void OnKeyDown(KeyEventArgs e)
@@ -150,8 +164,13 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
 
     public override void Confirm()
     {
-        _startPresenter?.Confirm();
-        _endPresenter?.Confirm();
+        if (NeedConfirmation)
+        {
+            if (_pendingStartTime.HasValue)
+                SetCurrentValue(SelectedStartTimeProperty, (T?)FromTimeOnly(_pendingStartTime.Value));
+            if (_pendingEndTime.HasValue)
+                SetCurrentValue(SelectedEndTimeProperty, (T?)FromTimeOnly(_pendingEndTime.Value));
+        }
         SetCurrentValue(IsDropdownOpenProperty, false);
     }
 

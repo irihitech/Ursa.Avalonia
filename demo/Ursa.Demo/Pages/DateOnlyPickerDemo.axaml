@@ -12,6 +12,16 @@
     mc:Ignorable="d">
     <StackPanel Margin="20" HorizontalAlignment="Left">
         <TextBox Name="format" InnerLeftContent="Display Format" Text="yyyy-MM-dd" />
+
+        <TextBlock Text="Need Confirmation" />
+        <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
+        <TextBlock Text="{Binding #confirmPicker.SelectedDate, StringFormat='Selected: {0}'}" />
+        <u:DateOnlyPicker
+            Name="confirmPicker"
+            Width="200"
+            DisplayFormat="{Binding #format.Text}"
+            NeedConfirmation="{Binding #needConfirm.IsChecked}" />
+
         <TextBlock Text="Default" />
         <u:DateOnlyPicker Width="200" DisplayFormat="{Binding #format.Text}" />
         <TextBlock Text="Binding" />

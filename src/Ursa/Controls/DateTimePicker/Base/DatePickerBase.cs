@@ -59,6 +59,9 @@ public abstract class DatePickerBase: TemplatedControl, IInnerContentControl, IP
     public static readonly StyledProperty<bool> IsReadonlyProperty =
         AvaloniaProperty.Register<DatePickerBase, bool>(nameof(IsReadonly));
 
+    public static readonly StyledProperty<bool> NeedConfirmationProperty =
+        AvaloniaProperty.Register<DatePickerBase, bool>(nameof(NeedConfirmation));
+
     public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
         TextBox.PlaceholderForegroundProperty.AddOwner<DatePickerBase>();
     
@@ -117,6 +120,12 @@ public abstract class DatePickerBase: TemplatedControl, IInnerContentControl, IP
         set => SetValue(IsReadonlyProperty, value);
     }
 
+    public bool NeedConfirmation
+    {
+        get => GetValue(NeedConfirmationProperty);
+        set => SetValue(NeedConfirmationProperty, value);
+    }
+
     public bool IsDropdownOpen
     {
         get => GetValue(IsDropdownOpenProperty);
@@ -154,4 +163,6 @@ public abstract class DatePickerBase: TemplatedControl, IInnerContentControl, IP
     }
 
     public abstract void Clear();
+    public abstract void Confirm();
+    public abstract void Dismiss();
 }
