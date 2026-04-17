@@ -199,9 +199,14 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
     {
         if (NeedConfirmation)
         {
-            var date = _pendingDate ?? GetSelectedDateOnly() ?? GetToday();
-            var time = _pendingTime ?? GetSelectedTimeOnly() ?? GetCurrentTime();
-            SetCurrentValue(SelectedDateProperty, (T?)CombineDateTime(date, time));
+            var hasPendingSelection = _pendingDate is not null || _pendingTime is not null;
+            var hasExistingSelection = SelectedDate is not null;
+            if (hasPendingSelection || hasExistingSelection)
+            {
+                var date = _pendingDate ?? GetSelectedDateOnly() ?? GetToday();
+                var time = _pendingTime ?? GetSelectedTimeOnly() ?? GetCurrentTime();
+                SetCurrentValue(SelectedDateProperty, (T?)CombineDateTime(date, time));
+            }
         }
         SetCurrentValue(IsDropdownOpenProperty, false);
     }
