@@ -34,14 +34,8 @@ public interface IMessage
     Action? OnClick { get; }
 
     /// <summary>
-    /// Gets an Action to be run when the message is closed.
-    /// </summary>
-    Action? OnClose { get; }
-
-    /// <summary>
     /// Gets an Action to be run when the message is closed, receiving the <see cref="MessageCloseReason"/>
     /// that describes why the message was closed.
-    /// Defaults to <see langword="null"/> to ensure backward compatibility for existing implementations of <see cref="IMessage"/>.
     /// </summary>
-    Action<MessageCloseReason>? OnCloseWithReason => null;
+    Action<MessageCloseReason>? OnClose { get; }
 }

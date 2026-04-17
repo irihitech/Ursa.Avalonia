@@ -52,7 +52,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
     {
         Show(content, content.Type, content.Expiration,
             content.ShowIcon, content.ShowClose,
-            content.OnClick, content.OnClose, onCloseWithReason: content.OnCloseWithReason);
+            content.OnClick, content.OnClose);
     }
 
     /// <inheritdoc/>
@@ -62,7 +62,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
         {
             Show(toast, toast.Type, toast.Expiration,
                 toast.ShowIcon, toast.ShowClose,
-                toast.OnClick, toast.OnClose, onCloseWithReason: toast.OnCloseWithReason);
+                toast.OnClick, toast.OnClose);
         }
         else
         {
@@ -79,9 +79,8 @@ public class WindowToastManager : WindowMessageManager, IToastManager
     /// <param name="showIcon">whether to show the icon</param>
     /// <param name="showClose">whether to show the close button</param>
     /// <param name="onClick">an Action to be run when the toast is clicked</param>
-    /// <param name="onClose">an Action to be run when the toast is closed</param>
+    /// <param name="onClose">an Action to be run when the toast is closed, receiving the <see cref="MessageCloseReason"/></param>
     /// <param name="classes">style classes to apply</param>
-    /// <param name="onCloseWithReason">an Action to be run when the toast is closed, receiving the <see cref="MessageCloseReason"/></param>
     public async void Show(
         object content,
         NotificationType type,
@@ -89,9 +88,8 @@ public class WindowToastManager : WindowMessageManager, IToastManager
         bool showIcon = true,
         bool showClose = true,
         Action? onClick = null,
-        Action? onClose = null,
-        string[]? classes = null,
-        Action<MessageCloseReason>? onCloseWithReason = null)
+        Action<MessageCloseReason>? onClose = null,
+        string[]? classes = null)
     {
         Dispatcher.UIThread.VerifyAccess();
 
@@ -114,8 +112,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
 
         toastControl.MessageClosed += (sender, _) =>
         {
-            onClose?.Invoke();
-            onCloseWithReason?.Invoke(((MessageCard)sender!).CloseReason);
+            onClose?.Invoke(((MessageCard)sender!).CloseReason);
 
             _items?.Remove(sender);
         };

@@ -87,7 +87,7 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
     {
         Show(content, content.Type, content.Expiration,
             content.ShowIcon, content.ShowClose,
-            content.OnClick, content.OnClose, onCloseWithReason: content.OnCloseWithReason);
+            content.OnClick, content.OnClose);
     }
 
     /// <inheritdoc/>
@@ -97,7 +97,7 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
         {
             Show(notification, notification.Type, notification.Expiration,
                 notification.ShowIcon, notification.ShowClose,
-                notification.OnClick, notification.OnClose, onCloseWithReason: notification.OnCloseWithReason);
+                notification.OnClick, notification.OnClose);
         }
         else
         {
@@ -114,9 +114,8 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
     /// <param name="showIcon">whether to show the icon</param>
     /// <param name="showClose">whether to show the close button</param>
     /// <param name="onClick">an Action to be run when the notification is clicked</param>
-    /// <param name="onClose">an Action to be run when the notification is closed</param>
+    /// <param name="onClose">an Action to be run when the notification is closed, receiving the <see cref="MessageCloseReason"/></param>
     /// <param name="classes">style classes to apply</param>
-    /// <param name="onCloseWithReason">an Action to be run when the notification is closed, receiving the <see cref="MessageCloseReason"/></param>
     public async void Show(
         object content,
         NotificationType type,
@@ -124,9 +123,8 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
         bool showIcon = true,
         bool showClose = true,
         Action? onClick = null,
-        Action? onClose = null,
-        string[]? classes = null,
-        Action<MessageCloseReason>? onCloseWithReason = null)
+        Action<MessageCloseReason>? onClose = null,
+        string[]? classes = null)
     {
         Dispatcher.UIThread.VerifyAccess();
 
@@ -150,8 +148,7 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
 
         notificationControl.MessageClosed += (sender, _) =>
         {
-            onClose?.Invoke();
-            onCloseWithReason?.Invoke(((MessageCard)sender!).CloseReason);
+            onClose?.Invoke(((MessageCard)sender!).CloseReason);
 
             _items?.Remove(sender);
         };
