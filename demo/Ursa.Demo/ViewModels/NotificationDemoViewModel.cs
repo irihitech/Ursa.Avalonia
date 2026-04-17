@@ -2,6 +2,7 @@
 using Avalonia.Controls.Notifications;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Ursa.Controls;
 using Notification = Ursa.Controls.Notification;
 using WindowNotificationManager = Ursa.Controls.WindowNotificationManager;
 
@@ -13,6 +14,8 @@ public partial class NotificationDemoViewModel : ObservableObject
 
     [ObservableProperty] private bool _showIcon = true;
     [ObservableProperty] private bool _showClose = true;
+
+    [ObservableProperty] private MessageCloseReason? _reason;
 
     [RelayCommand]
     public void ChangePosition(object obj)
@@ -33,7 +36,8 @@ public partial class NotificationDemoViewModel : ObservableObject
             new Notification("Welcome", "This is message"),
             showIcon: ShowIcon,
             showClose: ShowClose,
-            type: notificationType);
+            type: notificationType,
+            onClose: OnClose);
     }
 
     [RelayCommand]
@@ -46,6 +50,12 @@ public partial class NotificationDemoViewModel : ObservableObject
             showIcon: ShowIcon,
             showClose: ShowClose,
             type: notificationType,
+            onClose: OnClose,
             classes: ["Light"]);
+    }
+
+    private void OnClose(MessageCloseReason reason)
+    {
+        Reason = reason;
     }
 }

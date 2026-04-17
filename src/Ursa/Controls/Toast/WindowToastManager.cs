@@ -110,10 +110,9 @@ public class WindowToastManager : WindowMessageManager, IToastManager
             }
         }
 
-        toastControl.MessageClosed += (sender, _) =>
+        toastControl.MessageClosed += (sender, args) =>
         {
-            onClose?.Invoke(((MessageCard)sender!).CloseReason);
-
+            onClose?.Invoke(args.Reason);
             _items?.Remove(sender);
         };
 

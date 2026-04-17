@@ -146,10 +146,9 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
             }
         }
 
-        notificationControl.MessageClosed += (sender, _) =>
+        notificationControl.MessageClosed += (sender, args) =>
         {
-            onClose?.Invoke(((MessageCard)sender!).CloseReason);
-
+            onClose?.Invoke(args.Reason);
             _items?.Remove(sender);
         };
 
