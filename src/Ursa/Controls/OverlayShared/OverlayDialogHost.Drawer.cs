@@ -5,7 +5,6 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Styling;
 using Avalonia.VisualTree;
-using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Shapes;
 using Ursa.Common;
 using Ursa.Controls.OverlayShared;
@@ -173,8 +172,8 @@ public partial class OverlayDialogHost
         }
 
         var targetProperty = position == Position.Left || position == Position.Right
-            ? Canvas.LeftProperty
-            : Canvas.TopProperty;
+            ? LeftProperty
+            : TopProperty;
         var animation = new Animation
         {
             Easing = new CubicEaseOut(),

@@ -1,4 +1,3 @@
-using System;
 using Gma.QrCodeNet.Encoding.DataEncodation.InputRecognition;
 using Gma.QrCodeNet.Encoding.Terminate;
 using Gma.QrCodeNet.Encoding.Versions;

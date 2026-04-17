@@ -9,9 +9,8 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.Metadata;
 using Avalonia.Media;
-using Avalonia.Styling;
+using Avalonia.Metadata;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Helpers;
 

@@ -6,7 +6,6 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
-using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 

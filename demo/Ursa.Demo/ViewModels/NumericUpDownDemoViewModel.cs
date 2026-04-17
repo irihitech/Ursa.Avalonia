@@ -1,8 +1,8 @@
-﻿using Avalonia.Layout;
+﻿using System;
+using System.Globalization;
+using Avalonia.Layout;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Globalization;
 
 namespace Ursa.Demo.ViewModels;
 

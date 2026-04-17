@@ -2,7 +2,6 @@ using Avalonia;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.VisualTree;
-using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
 using Irihi.Avalonia.Shared.Shapes;
 using Ursa.Controls.OverlayShared;

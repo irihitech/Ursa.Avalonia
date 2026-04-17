@@ -7,7 +7,6 @@ using Avalonia.Data;
 using Avalonia.Media;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
-using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 

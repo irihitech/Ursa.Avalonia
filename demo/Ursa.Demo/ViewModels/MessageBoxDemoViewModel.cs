@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Avalonia.Markup.Xaml.MarkupExtensions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;

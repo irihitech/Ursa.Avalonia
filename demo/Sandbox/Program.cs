@@ -1,5 +1,5 @@
-﻿using Avalonia;
-using System;
+﻿using System;
+using Avalonia;
 
 namespace Sandbox;
 

@@ -1,5 +1,3 @@
-using System.Linq;
-
 namespace Gma.QrCodeNet.Encoding.Masking.Scoring;
 
 internal static class MatrixScoreCalculator

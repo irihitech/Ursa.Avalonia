@@ -1,7 +1,5 @@
-using System;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Irihi.Avalonia.Shared.Contracts;
 
 namespace Ursa.Demo.Dialogs;
 

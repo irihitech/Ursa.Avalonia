@@ -14,8 +14,7 @@
                 <u:ControlClassesInput 
                     Name="classInput"
                     u:FormItem.Label="Control Classes"
-                    Width="240">
-                </u:ControlClassesInput>
+                    Width="240" />
                 <u:EnumSelector 
                     Name="placement"
                     Width="240"

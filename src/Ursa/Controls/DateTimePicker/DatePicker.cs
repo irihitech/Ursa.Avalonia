@@ -1,8 +1,5 @@
 using System.Globalization;
 using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Data;
-using Avalonia.Media;
 
 namespace Ursa.Controls;
 

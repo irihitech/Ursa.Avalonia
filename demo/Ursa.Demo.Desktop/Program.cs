@@ -1,8 +1,8 @@
-﻿using Avalonia;
+﻿using System;
+using System.Runtime.Versioning;
+using Avalonia;
 using Avalonia.Dialogs;
 using Avalonia.Media;
-using System;
-using System.Runtime.Versioning;
 
 namespace Ursa.Demo.Desktop;
 

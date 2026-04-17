@@ -1,7 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Controls.Primitives;
 using Ursa.Common;
 
 namespace Ursa.Controls;

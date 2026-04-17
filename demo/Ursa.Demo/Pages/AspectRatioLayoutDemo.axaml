@@ -10,9 +10,8 @@
         <StackPanel
             Grid.Row="0">
             <u:NumericDoubleUpDown InnerLeftContent="AspectRatioTolerance"
-                                   Value="{Binding  #AspectRatioLayout.AspectRatioTolerance}">
-            </u:NumericDoubleUpDown>
-            <TextBlock Text="{Binding #AspectRatioLayout.AspectRatioValue,StringFormat='AspectRatioValue: {0}'}"></TextBlock>
+                                   Value="{Binding  #AspectRatioLayout.AspectRatioTolerance}" />
+            <TextBlock Text="{Binding #AspectRatioLayout.AspectRatioValue,StringFormat='AspectRatioValue: {0}'}" />
         </StackPanel>
 
         <u:AspectRatioLayout Name="AspectRatioLayout" Grid.Row="1"
@@ -33,45 +32,45 @@
                 <TextBlock
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].StartAspectRatioValue,StringFormat='StartAspectRatioValue {0}'}"></Run>
-                    <LineBreak></LineBreak>
-                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].EndAspectRatioValue,StringFormat='EndAspectRatioValue {0}'}"></Run>
+                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].StartAspectRatioValue,StringFormat='StartAspectRatioValue {0}'}" />
+                    <LineBreak />
+                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].EndAspectRatioValue,StringFormat='EndAspectRatioValue {0}'}" />
                 </TextBlock>
             </u:AspectRatioLayoutItem>
             <u:AspectRatioLayoutItem StartAspectRatioValue="2" EndAspectRatioValue="2.4">
                 <TextBlock
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].StartAspectRatioValue,StringFormat='StartAspectRatioValue {0}'}"></Run>
-                    <LineBreak></LineBreak>
-                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].EndAspectRatioValue,StringFormat='EndAspectRatioValue {0}'}"></Run>
+                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].StartAspectRatioValue,StringFormat='StartAspectRatioValue {0}'}" />
+                    <LineBreak />
+                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].EndAspectRatioValue,StringFormat='EndAspectRatioValue {0}'}" />
                 </TextBlock>
             </u:AspectRatioLayoutItem> 
             <u:AspectRatioLayoutItem StartAspectRatioValue="2" EndAspectRatioValue="2.6">
                 <TextBlock
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].StartAspectRatioValue,StringFormat='StartAspectRatioValue {0}'}"></Run>
-                    <LineBreak></LineBreak>
-                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].EndAspectRatioValue,StringFormat='EndAspectRatioValue {0}'}"></Run>
+                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].StartAspectRatioValue,StringFormat='StartAspectRatioValue {0}'}" />
+                    <LineBreak />
+                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].EndAspectRatioValue,StringFormat='EndAspectRatioValue {0}'}" />
                 </TextBlock>
             </u:AspectRatioLayoutItem> 
             <u:AspectRatioLayoutItem StartAspectRatioValue="2" EndAspectRatioValue="2.8">
                 <TextBlock
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].StartAspectRatioValue,StringFormat='StartAspectRatioValue {0}'}"></Run>
-                    <LineBreak></LineBreak>
-                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].EndAspectRatioValue,StringFormat='EndAspectRatioValue {0}'}"></Run>
+                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].StartAspectRatioValue,StringFormat='StartAspectRatioValue {0}'}" />
+                    <LineBreak />
+                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].EndAspectRatioValue,StringFormat='EndAspectRatioValue {0}'}" />
                 </TextBlock>
             </u:AspectRatioLayoutItem> 
             <u:AspectRatioLayoutItem StartAspectRatioValue="1.3" EndAspectRatioValue="1.5">
                 <TextBlock
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].StartAspectRatioValue,StringFormat='StartAspectRatioValue {0}'}"></Run>
-                    <LineBreak></LineBreak>
-                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].EndAspectRatioValue,StringFormat='EndAspectRatioValue {0}'}"></Run>
+                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].StartAspectRatioValue,StringFormat='StartAspectRatioValue {0}'}" />
+                    <LineBreak />
+                    <Run Text="{Binding $parent[u:AspectRatioLayoutItem].EndAspectRatioValue,StringFormat='EndAspectRatioValue {0}'}" />
                 </TextBlock>
             </u:AspectRatioLayoutItem>
         </u:AspectRatioLayout>

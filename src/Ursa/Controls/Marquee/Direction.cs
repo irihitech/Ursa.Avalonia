@@ -1,5 +1,3 @@
-using Avalonia.Controls;
-
 namespace Ursa.Controls;
 
 public enum Direction

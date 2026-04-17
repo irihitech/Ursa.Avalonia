@@ -1,8 +1,8 @@
+using System.Text;
 using Avalonia;
 using Avalonia.Controls.Presenters;
 using Avalonia.Input.TextInput;
 using Avalonia.Media.TextFormatting;
-using System.Text;
 
 namespace Ursa.Controls;
 

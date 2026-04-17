@@ -2,11 +2,11 @@
 // This source is subject to the Microsoft Public License (Ms-PL) and MIT License.
 // All other rights reserved.
 
+using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
-using System.Collections;
 using Avalonia;
 using Avalonia.Collections;
 using Avalonia.Controls;

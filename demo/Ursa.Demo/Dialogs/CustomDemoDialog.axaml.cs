@@ -1,8 +1,6 @@
-using System;
 using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Notifications;
 using Avalonia.Controls.Primitives;
 using Avalonia.VisualTree;
 using Ursa.Controls;

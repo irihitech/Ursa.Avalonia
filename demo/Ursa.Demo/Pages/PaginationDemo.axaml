@@ -15,19 +15,19 @@
     </Design.DataContext>
     <StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Current Page: "></TextBlock>
+            <TextBlock Text="Current Page: " />
             <TextBlock Text="{Binding #page.CurrentPage}" />
         </StackPanel>
         <ToggleSwitch Name="pageSizeSelector" Content="Show Page Size Selector" />
-        <ToggleSwitch Name="quickJumperSelector" Content="Show Quick Jumper"></ToggleSwitch>
+        <ToggleSwitch Name="quickJumperSelector" Content="Show Quick Jumper" />
         <u:Pagination
             Name="page"
             PageSizeOptions="10, 20, 50, 100"
             CurrentPage="5"
             ShowQuickJump="{Binding #quickJumperSelector.IsChecked}"
             ShowPageSizeSelector="{Binding #pageSizeSelector.IsChecked}"
-			Command="{Binding LoadPageCommand}"
-			CommandParameter="{Binding $self.CurrentPage}"
+            Command="{Binding LoadPageCommand}"
+            CommandParameter="{Binding $self.CurrentPage}"
             TotalCount="600" />
         
         <TextBlock Text="Tiny Pagination"/>

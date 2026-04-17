@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using Avalonia.Controls;
-using Ursa.Controls;
+﻿using Avalonia.Controls;
 
 namespace Ursa.Demo.Pages;
 

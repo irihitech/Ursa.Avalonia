@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.ObjectModel;
 using Avalonia;
-using Avalonia.Controls.Templates;
 using Avalonia.Controls;
+using Avalonia.Controls.Templates;
 using Avalonia.Data;
 using Avalonia.Media;
 using Avalonia.Metadata;
@@ -12,7 +12,7 @@ namespace Ursa.Controls;
 public partial class MultiAutoCompleteBox
     {
         /// <summary>
-        /// Defines see <see cref="TextBox.CaretIndex"/> property.
+        /// Defines see <see cref="Avalonia.Controls.TextBox.CaretIndex"/> property.
         /// </summary>
         public static readonly StyledProperty<int> CaretIndexProperty =
             TextBox.CaretIndexProperty.AddOwner<MultiAutoCompleteBox>(new(
@@ -20,7 +20,9 @@ public partial class MultiAutoCompleteBox
                 defaultBindingMode:BindingMode.TwoWay));
 
         public static readonly StyledProperty<string?> PlaceholderTextProperty =
+#pragma warning disable AVP1013
             TextBox.PlaceholderTextProperty.AddOwner<MultiAutoCompleteBox>();
+#pragma warning restore AVP1013
 
         public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
             TextBox.PlaceholderForegroundProperty.AddOwner<MultiAutoCompleteBox>();
@@ -199,7 +201,7 @@ public partial class MultiAutoCompleteBox
             AvaloniaProperty.Register<MultiAutoCompleteBox, IDataTemplate?>(nameof(SelectedItemTemplate));
 
         /// <summary>
-        /// Gets or sets the <see cref="T:Avalonia.DataTemplate" /> used to display each item in SelectedItems. 
+        /// Gets or sets the <see cref="T:IDataTemplate" /> used to display each item in SelectedItems. 
         /// </summary>
         [InheritDataTypeFromItems(nameof(SelectedItems))]
         public IDataTemplate? SelectedItemTemplate

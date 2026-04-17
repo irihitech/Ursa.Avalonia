@@ -6,6 +6,7 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
+
 namespace Ursa.Demo.ViewModels;
 
 public class NavMenuDemoViewModel: ObservableObject

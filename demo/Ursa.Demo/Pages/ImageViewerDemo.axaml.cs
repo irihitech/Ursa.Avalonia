@@ -1,4 +1,6 @@
 using Avalonia.Controls;
+using Avalonia.Interactivity;
+using Avalonia.Media;
 
 namespace Ursa.Demo.Pages;
 
@@ -9,9 +11,9 @@ public partial class ImageViewerDemo : UserControl
         InitializeComponent();
     }
 
-    Avalonia.Media.IImage? oldImg;
+    IImage? oldImg;
 
-    private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    private void Button_Click(object? sender, RoutedEventArgs e)
     {
         if(viewer.Source!=null)
         {

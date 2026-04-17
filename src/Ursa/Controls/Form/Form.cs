@@ -86,7 +86,7 @@ public class Form: ItemsControl
         {
             formItem.ContentTemplate = ItemTemplate;
         }
-        if (container is FormGroup group && !group.IsSet(FormGroup.ItemTemplateProperty))
+        if (container is FormGroup group && !group.IsSet(ItemTemplateProperty))
         {
             group.ItemTemplate = ItemTemplate;
         }

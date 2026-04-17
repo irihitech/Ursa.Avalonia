@@ -1,6 +1,6 @@
-using Foundation;
 using Avalonia;
 using Avalonia.iOS;
+using Foundation;
 
 namespace Ursa.Demo.iOS;
 

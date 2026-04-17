@@ -1,8 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Layout;
-using Avalonia.Utilities;
 using Irihi.Avalonia.Shared.Helpers;
 using static System.Math;
 
@@ -408,7 +406,7 @@ public class ElasticWrapPanel : WrapPanel
 
                     double layoutSlotU = childSize.UVSize.U + childSize.ULengthCount * adaptULength;
                     double layoutSlotV = isAdaptV ? linevV : childSize.UVSize.V;
-                    if (ElasticWrapPanel.GetIsFixToRB(child) == false)
+                    if (GetIsFixToRB(child) == false)
                     {
                         child.Arrange(new Rect(
                             isHorizontal ? u : accumulatedV,

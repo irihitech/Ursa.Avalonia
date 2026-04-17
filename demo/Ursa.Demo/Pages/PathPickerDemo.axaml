@@ -64,7 +64,7 @@
                         u:FormItem.Label="Style Class" >
                         <u:ControlClassesInput.Styles>
                             <Style Selector="u|ControlClassesInput /template/ u|TagInput">
-                                <Setter Property="PlaceholderText" Value="Available: Top"></Setter>
+                                <Setter Property="PlaceholderText" Value="Available: Top" />
                             </Style>
                         </u:ControlClassesInput.Styles>
                     </u:ControlClassesInput>

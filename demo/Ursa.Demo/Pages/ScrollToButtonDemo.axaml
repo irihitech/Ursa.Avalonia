@@ -19,9 +19,9 @@
             <Setter Property="Background">
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0, 0" EndPoint="2000, 2000">
-                        <GradientStop Color="{DynamicResource SemiPurple9Color}" Offset="0.0"></GradientStop>
-                        <GradientStop Color="{DynamicResource SemiPurple5Color}" Offset="0.5"></GradientStop>
-                        <GradientStop Color="{DynamicResource SemiPurple1Color}" Offset="1.0"></GradientStop>
+                        <GradientStop Color="{DynamicResource SemiPurple9Color}" Offset="0.0" />
+                        <GradientStop Color="{DynamicResource SemiPurple5Color}" Offset="0.5" />
+                        <GradientStop Color="{DynamicResource SemiPurple1Color}" Offset="1.0" />
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>

@@ -7,7 +7,7 @@ using Ursa.Helpers;
 
 namespace Ursa.Themes.Semi.SizeAnimations;
 
-public partial class DefaultSizeAnimations : ResourceDictionary
+public class DefaultSizeAnimations : ResourceDictionary
 {
     public const string WidthAnimationGeneratorKey = "WidthAnimationGenerator";
     public const string HeightAnimationGeneratorKey = "HeightAnimationGenerator";

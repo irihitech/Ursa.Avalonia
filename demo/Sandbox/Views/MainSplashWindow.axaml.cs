@@ -1,10 +1,5 @@
-using System;
 using System.Threading.Tasks;
-using System.Timers;
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
-using Avalonia.Threading;
 using Sandbox.ViewModels;
 using Ursa.Controls;
 

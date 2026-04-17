@@ -4,6 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Styling;
 using Ursa.Themes.Semi.Locale;
+using Ursa.Themes.Semi.SizeAnimations;
 
 namespace Ursa.Themes.Semi.Legacy;
 
@@ -29,8 +30,8 @@ public class SemiTheme : Styles
     public SemiTheme(IServiceProvider? provider = null)
     {
         AvaloniaXamlLoader.Load(provider, this);
-        Resources.MergedDictionaries.Add(new SizeAnimations.DefaultSizeAnimations());
-        Resources.MergedDictionaries.Add(new SizeAnimations.NavMenuSizeAnimations());
+        Resources.MergedDictionaries.Add(new DefaultSizeAnimations());
+        Resources.MergedDictionaries.Add(new NavMenuSizeAnimations());
     }
 
     public CultureInfo? Locale

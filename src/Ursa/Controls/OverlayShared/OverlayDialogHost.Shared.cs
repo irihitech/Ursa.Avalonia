@@ -4,11 +4,11 @@ using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Media;
-using Ursa.Controls.OverlayShared;
 using Avalonia.Styling;
 using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Helpers;
 using Irihi.Avalonia.Shared.Shapes;
+using Ursa.Controls.OverlayShared;
 
 namespace Ursa.Controls;
 

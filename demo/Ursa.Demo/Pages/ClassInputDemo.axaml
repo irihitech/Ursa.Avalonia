@@ -10,7 +10,7 @@
         <Button u:ControlClassesInput.Source="{Binding #input}" Content="Hello Panda" />
         <Button u:ControlClassesInput.Source="{Binding #input}" Content="Hello Panda" />
         <Button u:ControlClassesInput.Source="{Binding #input}" Content="Hello Panda" />
-        <TextBox u:ControlClassesInput.Source="{Binding #input}" Width="100" Text="100"></TextBox>
-        <ProgressBar u:ControlClassesInput.Source="{Binding #input}" Width="200" Value="20" ShowProgressText="True"></ProgressBar>
+        <TextBox u:ControlClassesInput.Source="{Binding #input}" Width="100" Text="100" />
+        <ProgressBar u:ControlClassesInput.Source="{Binding #input}" Width="200" Value="20" ShowProgressText="True" />
     </StackPanel>
 </UserControl>

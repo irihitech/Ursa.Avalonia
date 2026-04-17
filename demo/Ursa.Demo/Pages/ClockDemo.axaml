@@ -12,7 +12,7 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid RowDefinitions="Auto, *">
-        <ToggleSwitch Content="Smooth" Name="smooth"></ToggleSwitch>
-        <u:Clock Grid.Row="1" HorizontalAlignment="Left" IsSmooth="{Binding #smooth.IsChecked}" Time="{Binding Time}"></u:Clock>
+        <ToggleSwitch Content="Smooth" Name="smooth" />
+        <u:Clock Grid.Row="1" HorizontalAlignment="Left" IsSmooth="{Binding #smooth.IsChecked}" Time="{Binding Time}" />
     </Grid>
 </UserControl>

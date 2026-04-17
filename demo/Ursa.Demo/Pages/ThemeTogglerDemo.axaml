@@ -8,19 +8,19 @@
              x:Class="Ursa.Demo.Pages.ThemeTogglerDemo">
     <Grid ColumnDefinitions="Auto, *">
         <StackPanel Grid.Column="0">
-            <TextBlock Text="Global"></TextBlock>
+            <TextBlock Text="Global" />
             <u:ThemeToggleButton/>
-            <TextBlock Text="Global Indicator"></TextBlock>
+            <TextBlock Text="Global Indicator" />
             <u:ThemeToggleButton Mode="Indicator"/>
-            <TextBlock Text="Target To Scope"></TextBlock>
-            <u:ThemeToggleButton TargetScope="{Binding #scope}"></u:ThemeToggleButton>
+            <TextBlock Text="Target To Scope" />
+            <u:ThemeToggleButton TargetScope="{Binding #scope}" />
         </StackPanel>
         <ThemeVariantScope Grid.Column="1" Name="scope" RequestedThemeVariant="Dark">
             <Border Theme="{DynamicResource CardBorder}">
                 <StackPanel>
-                    <Button Content="Hello World"></Button>
-                    <Calendar></Calendar>
-                    <u:ThemeToggleButton></u:ThemeToggleButton>
+                    <Button Content="Hello World" />
+                    <Calendar />
+                    <u:ThemeToggleButton />
                 </StackPanel>
             </Border>
         </ThemeVariantScope>

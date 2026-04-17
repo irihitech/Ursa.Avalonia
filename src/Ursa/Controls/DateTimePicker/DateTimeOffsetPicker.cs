@@ -61,7 +61,7 @@ public class DateTimeOffsetPicker : DateTimePickerBase<DateTimeOffset>
         else if (change.Property == SelectedOffsetProperty && SelectedDate.HasValue)
         {
             var newOffset = GetCurrentOffset();
-            SetCurrentValue(DateTimePickerBase<DateTimeOffset>.SelectedDateProperty,
+            SetCurrentValue(SelectedDateProperty,
                 (DateTimeOffset?)new DateTimeOffset(SelectedDate.Value.DateTime, newOffset));
         }
     }
