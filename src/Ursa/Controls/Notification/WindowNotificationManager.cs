@@ -87,7 +87,7 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
     {
         Show(content, content.Type, content.Expiration,
             content.ShowIcon, content.ShowClose,
-            content.OnClick, content.OnClose);
+            content.OnClick, content.OnClose, onCloseWithReason: content.OnCloseWithReason);
     }
 
     /// <inheritdoc/>
@@ -97,7 +97,7 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
         {
             Show(notification, notification.Type, notification.Expiration,
                 notification.ShowIcon, notification.ShowClose,
-                notification.OnClick, notification.OnClose);
+                notification.OnClick, notification.OnClose, onCloseWithReason: notification.OnCloseWithReason);
         }
         else
         {
@@ -116,6 +116,7 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
     /// <param name="onClick">an Action to be run when the notification is clicked</param>
     /// <param name="onClose">an Action to be run when the notification is closed</param>
     /// <param name="classes">style classes to apply</param>
+    /// <param name="onCloseWithReason">an Action to be run when the notification is closed, receiving the <see cref="MessageCloseReason"/></param>
     public async void Show(
         object content,
         NotificationType type,
@@ -124,7 +125,8 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
         bool showClose = true,
         Action? onClick = null,
         Action? onClose = null,
-        string[]? classes = null)
+        string[]? classes = null,
+        Action<MessageCloseReason>? onCloseWithReason = null)
     {
         Dispatcher.UIThread.VerifyAccess();
 
@@ -149,6 +151,7 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
         notificationControl.MessageClosed += (sender, _) =>
         {
             onClose?.Invoke();
+            onCloseWithReason?.Invoke(((MessageCard)sender!).CloseReason);
 
             _items?.Remove(sender);
         };
@@ -161,7 +164,7 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
 
             if (_items?.OfType<NotificationCard>().Count(i => !i.IsClosing) > MaxItems)
             {
-                _items.OfType<NotificationCard>().First(i => !i.IsClosing).Close();
+                _items.OfType<NotificationCard>().First(i => !i.IsClosing).Close(MessageCloseReason.Displaced);
             }
         });
 
@@ -172,7 +175,7 @@ public class WindowNotificationManager : WindowMessageManager, INotificationMana
 
         await Task.Delay(expiration ?? TimeSpan.FromSeconds(3));
 
-        notificationControl.Close();
+        notificationControl.Close(MessageCloseReason.Timeout);
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)

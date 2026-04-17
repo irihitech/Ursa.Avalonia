@@ -52,7 +52,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
     {
         Show(content, content.Type, content.Expiration,
             content.ShowIcon, content.ShowClose,
-            content.OnClick, content.OnClose);
+            content.OnClick, content.OnClose, onCloseWithReason: content.OnCloseWithReason);
     }
 
     /// <inheritdoc/>
@@ -62,7 +62,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
         {
             Show(toast, toast.Type, toast.Expiration,
                 toast.ShowIcon, toast.ShowClose,
-                toast.OnClick, toast.OnClose);
+                toast.OnClick, toast.OnClose, onCloseWithReason: toast.OnCloseWithReason);
         }
         else
         {
@@ -81,6 +81,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
     /// <param name="onClick">an Action to be run when the toast is clicked</param>
     /// <param name="onClose">an Action to be run when the toast is closed</param>
     /// <param name="classes">style classes to apply</param>
+    /// <param name="onCloseWithReason">an Action to be run when the toast is closed, receiving the <see cref="MessageCloseReason"/></param>
     public async void Show(
         object content,
         NotificationType type,
@@ -89,7 +90,8 @@ public class WindowToastManager : WindowMessageManager, IToastManager
         bool showClose = true,
         Action? onClick = null,
         Action? onClose = null,
-        string[]? classes = null)
+        string[]? classes = null,
+        Action<MessageCloseReason>? onCloseWithReason = null)
     {
         Dispatcher.UIThread.VerifyAccess();
 
@@ -113,6 +115,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
         toastControl.MessageClosed += (sender, _) =>
         {
             onClose?.Invoke();
+            onCloseWithReason?.Invoke(((MessageCard)sender!).CloseReason);
 
             _items?.Remove(sender);
         };
@@ -125,7 +128,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
 
             if (_items?.OfType<ToastCard>().Count(i => !i.IsClosing) > MaxItems)
             {
-                _items.OfType<ToastCard>().First(i => !i.IsClosing).Close();
+                _items.OfType<ToastCard>().First(i => !i.IsClosing).Close(MessageCloseReason.Displaced);
             }
         });
 
@@ -136,6 +139,6 @@ public class WindowToastManager : WindowMessageManager, IToastManager
 
         await Task.Delay(expiration ?? TimeSpan.FromSeconds(3));
 
-        toastControl.Close();
+        toastControl.Close(MessageCloseReason.Timeout);
     }
 }

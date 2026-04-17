@@ -34,6 +34,11 @@ public abstract class MessageCard : ContentControl
     }
 
     /// <summary>
+    /// Gets the reason the message was closed.
+    /// </summary>
+    public MessageCloseReason CloseReason { get; private set; } = MessageCloseReason.UserAction;
+
+    /// <summary>
     /// Determines if the message is already closing.
     /// </summary>
     public bool IsClosing
@@ -155,16 +160,26 @@ public abstract class MessageCard : ContentControl
     }
 
     /// <summary>
-    /// Closes the <see cref="MessageCard"/>.
+    /// Closes the <see cref="MessageCard"/> with the specified <see cref="MessageCloseReason"/>.
     /// </summary>
-    public void Close()
+    /// <param name="reason">The reason the message is being closed.</param>
+    public void Close(MessageCloseReason reason)
     {
         if (IsClosing)
         {
             return;
         }
 
+        CloseReason = reason;
         IsClosing = true;
+    }
+
+    /// <summary>
+    /// Closes the <see cref="MessageCard"/>.
+    /// </summary>
+    public void Close()
+    {
+        Close(MessageCloseReason.UserAction);
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
