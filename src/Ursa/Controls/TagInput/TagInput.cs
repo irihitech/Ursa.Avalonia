@@ -25,8 +25,8 @@ public class TagInput : TemplatedControl
     public const string PART_ItemsControl = "PART_ItemsControl";
     public const string PART_Placeholder = "PART_Placeholder";
 
-    public static readonly StyledProperty<IList<string>> TagsProperty =
-        AvaloniaProperty.Register<TagInput, IList<string>>(
+    public static readonly StyledProperty<IList<string>?> TagsProperty =
+        AvaloniaProperty.Register<TagInput, IList<string>?>(
             nameof(Tags));
 
     public static readonly StyledProperty<string?> PlaceholderTextProperty =
@@ -99,7 +99,7 @@ public class TagInput : TemplatedControl
         set => PlaceholderText = value;
     }
 
-    public IList<string> Tags
+    public IList<string>? Tags
     {
         get => GetValue(TagsProperty);
         set => SetValue(TagsProperty, value);
@@ -201,7 +201,7 @@ public class TagInput : TemplatedControl
     private void CheckEmpty()
     {
         if (string.IsNullOrWhiteSpace(_presenter?.PreeditText) && string.IsNullOrEmpty(InputTextBox?.Text) &&
-            Tags.Count == 0)
+            (Tags is null || Tags.Count == 0))
             PseudoClasses.Set(PseudoClassName.PC_Empty, true);
         else
             PseudoClasses.Set(PseudoClassName.PC_Empty, false);
@@ -227,7 +227,7 @@ public class TagInput : TemplatedControl
         {
             if (string.IsNullOrEmpty(InputTextBox?.Text))
             {
-                if (Tags.Count == 0) return;
+                if (Tags is null || Tags.Count == 0) return;
                 Tags.RemoveAt(Tags.Count - 1);
             }
         }
@@ -236,6 +236,7 @@ public class TagInput : TemplatedControl
     private void AddTags(string? text)
     {
         if (!(text?.Length > 0)) return;
+        if (Tags is null) return;
         if (Tags.Count >= MaxCount) return;
         string[] values = [];
         if (!string.IsNullOrEmpty(Separator))
@@ -257,6 +258,7 @@ public class TagInput : TemplatedControl
     public void Close(object o)
     {
         if (o is not ClosableTag presenter) return;
+        if (Tags is null) return;
         var index = _itemsControl?.IndexFromContainer(presenter);
         if (index is >= 0 && index < Tags.Count)
             Tags.RemoveAt(index.Value);
