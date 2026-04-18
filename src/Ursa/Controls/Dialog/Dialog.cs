@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Controls.Primitives;
 using Ursa.Common;
 
 namespace Ursa.Controls;
@@ -265,6 +266,8 @@ public static partial class Dialog
         window.CanDragMove = options.CanDragMove;
         window.CanResize = options.CanResize;
         window.IsManagedResizerVisible = options.CanResize;
+        ScrollViewer.SetHorizontalScrollBarVisibility(window, options.HorizontalScrollBarVisibility);
+        ScrollViewer.SetVerticalScrollBarVisibility(window, options.VerticalScrollBarVisibility);
         if (options.StartupLocation == WindowStartupLocation.Manual)
         {
             if (options.Position is not null)
@@ -297,6 +300,8 @@ public static partial class Dialog
         window.CanDragMove = options.CanDragMove;
         window.IsManagedResizerVisible = options.CanResize;
         window.CanResize = options.CanResize;
+        ScrollViewer.SetHorizontalScrollBarVisibility(window, options.HorizontalScrollBarVisibility);
+        ScrollViewer.SetVerticalScrollBarVisibility(window, options.VerticalScrollBarVisibility);
         if (options.StartupLocation == WindowStartupLocation.Manual)
         {
             if (options.Position is not null)

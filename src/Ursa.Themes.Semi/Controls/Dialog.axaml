@@ -444,6 +444,8 @@
         <Setter Property="MinHeight" Value="{DynamicResource DialogMinHeight}" />
         <Setter Property="WindowDecorations" Value="BorderOnly" />
         <Setter Property="CanResize" Value="False" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:CustomDialogWindow">
                 <Panel>
@@ -457,10 +459,13 @@
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
                     <VisualLayerManager>
                         <Grid RowDefinitions="Auto, *">
-                            <ContentPresenter
+                            <ScrollViewer
                                 Grid.Row="0"
                                 Grid.RowSpan="2"
-                                Content="{TemplateBinding Content}" />
+                                HorizontalScrollBarVisibility="{Binding (ScrollViewer.HorizontalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}"
+                                VerticalScrollBarVisibility="{Binding (ScrollViewer.VerticalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}">
+                                <ContentPresenter Content="{TemplateBinding Content}" />
+                            </ScrollViewer>
                             <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
                                 <Panel
                                     Name="{x:Static u:CustomDialogWindow.PART_TitleArea}"
@@ -506,6 +511,8 @@
         <Setter Property="MinHeight" Value="{DynamicResource DialogMinHeight}" />
         <Setter Property="WindowDecorations" Value="BorderOnly" />
         <Setter Property="CanResize" Value="False" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:StandardDialogWindow">
                 <Panel>
@@ -519,11 +526,15 @@
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
                     <VisualLayerManager>
                         <Grid RowDefinitions="Auto, *, Auto">
-                            <ContentPresenter
-                                Name="PART_ContentPresenter"
+                            <ScrollViewer
                                 Grid.Row="1"
                                 Margin="24,8"
-                                Content="{TemplateBinding Content}" />
+                                HorizontalScrollBarVisibility="{Binding (ScrollViewer.HorizontalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}"
+                                VerticalScrollBarVisibility="{Binding (ScrollViewer.VerticalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}">
+                                <ContentPresenter
+                                    Name="PART_ContentPresenter"
+                                    Content="{TemplateBinding Content}" />
+                            </ScrollViewer>
                             <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto">
                                 <Panel
                                     Name="{x:Static u:CustomDialogWindow.PART_TitleArea}"

@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Layout;
 using Ursa.Common;
@@ -211,6 +212,8 @@ public static partial class OverlayDialog
         control.IsCloseButtonVisible = options.IsCloseButtonVisible;
         control.CanLightDismiss = options.CanLightDismiss;
         control.CanResize = options.CanResize;
+        ScrollViewer.SetHorizontalScrollBarVisibility(control, options.HorizontalScrollBarVisibility);
+        ScrollViewer.SetVerticalScrollBarVisibility(control, options.VerticalScrollBarVisibility);
         if (!string.IsNullOrWhiteSpace(options.StyleClass))
         {
             var styles = options.StyleClass!.Split(Constants.SpaceSeparator, StringSplitOptions.RemoveEmptyEntries);
@@ -243,6 +246,8 @@ public static partial class OverlayDialog
         control.CanLightDismiss = options.CanLightDismiss;
         control.IsCloseButtonVisible = options.IsCloseButtonVisible;
         control.CanResize = options.CanResize;
+        ScrollViewer.SetHorizontalScrollBarVisibility(control, options.HorizontalScrollBarVisibility);
+        ScrollViewer.SetVerticalScrollBarVisibility(control, options.VerticalScrollBarVisibility);
         if (options.OnDialogControlClosed != null)
         {
             control.AddHandler(OverlayFeedbackElement.ClosedEvent, options.OnDialogControlClosed);
