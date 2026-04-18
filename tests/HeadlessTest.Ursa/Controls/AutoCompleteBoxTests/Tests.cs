@@ -21,6 +21,7 @@ public class Tests
             VerticalAlignment = VerticalAlignment.Top,
             Width = 100,
             Height = 100,
+            ItemsSource = new List<string> {"Hello", "World"}
         };
         var textBox = new TextBox()
         {

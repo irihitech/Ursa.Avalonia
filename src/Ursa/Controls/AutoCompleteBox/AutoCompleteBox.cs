@@ -87,6 +87,11 @@ public class AutoCompleteBox : Avalonia.Controls.AutoCompleteBox, IClearControl
             var value = change.GetNewValue<string?>();
             PseudoClasses.Set(PseudoClassName.PC_Empty, string.IsNullOrEmpty(value));
         }
+
+        if (change.Property == IsDropDownOpenProperty && change.GetNewValue<bool>() == false)
+        {
+            
+        }
     }
 
     protected override void OnLostFocus(FocusChangedEventArgs e)
