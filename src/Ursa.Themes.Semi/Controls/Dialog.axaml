@@ -536,7 +536,7 @@
                                     Name="PART_ContentPresenter"
                                     Content="{TemplateBinding Content}" />
                             </ScrollViewer>
-                            <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto">
+                            <Grid Name="PART_Header" Grid.Row="0" ColumnDefinitions="Auto, *, Auto">
                                 <Panel
                                     Name="{x:Static u:CustomDialogWindow.PART_TitleArea}"
                                     Grid.Column="0"
@@ -570,6 +570,7 @@
                             </Grid>
                             <StackPanel
                                 Grid.Row="2"
+                                Name="PART_Footer"
                                 Margin="24,0,24,24"
                                 HorizontalAlignment="Right"
                                 Orientation="Horizontal">
