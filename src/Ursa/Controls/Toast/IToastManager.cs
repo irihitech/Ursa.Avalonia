@@ -14,4 +14,15 @@ public interface IToastManager
     /// </summary>
     /// <param name="toast">The toast to be displayed.</param>
     void Show(IToast toast);
+
+    /// <summary>
+    /// Closes a specific toast.
+    /// </summary>
+    /// <param name="toast">The toast to close.</param>
+    void Close(IToast toast);
+
+    /// <summary>
+    /// Closes all currently visible toasts.
+    /// </summary>
+    void CloseAll();
 }
