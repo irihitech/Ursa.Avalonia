@@ -26,7 +26,7 @@ public class Notification : INotification, INotifyPropertyChanged
     /// Use <see cref="TimeSpan.Zero"/> for notifications that will remain open.</param>
     /// <param name="showClose">A value indicating whether the notification should show a close button.</param>
     /// <param name="onClick">An Action to call when the notification is clicked.</param>
-    /// <param name="onClose">An Action to call when the notification is closed.</param>
+    /// <param name="onClose">An Action to call when the notification is closed, receiving the close reason.</param>
     public Notification(
         string? title,
         string? content,
@@ -34,7 +34,7 @@ public class Notification : INotification, INotifyPropertyChanged
         TimeSpan? expiration = null,
         bool showClose = true,
         Action? onClick = null,
-        Action? onClose = null)
+        Action<MessageCloseReason>? onClose = null)
     {
         Title = title;
         Content = content;
@@ -97,7 +97,7 @@ public class Notification : INotification, INotifyPropertyChanged
     public Action? OnClick { get; set; }
 
     /// <inheritdoc/>
-    public Action? OnClose { get; set; }
+    public Action<MessageCloseReason>? OnClose { get; set; }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

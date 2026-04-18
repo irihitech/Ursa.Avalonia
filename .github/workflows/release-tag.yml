@@ -33,6 +33,7 @@ jobs:
       Ursa_Themes_Semi: ${{ inputs.Ursa_Themes_Semi }}
       PrismExtension: ${{ inputs.PrismExtension }}
       ReactiveUIExtension: ${{ inputs.ReactiveUIExtension }}
+    secrets: inherit
 
   publish:
     uses: ./.github/workflows/publish.yml
@@ -60,7 +61,7 @@ jobs:
         run: ls -R
 
       - name: Release
-        uses: softprops/action-gh-release@v2.6.1
+        uses: softprops/action-gh-release@v3
         if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
         with:
           generate_release_notes: true

@@ -10,6 +10,7 @@
                     <ContentPresenter
                         Name="PART_LeftContentPresenter"
                         Margin="8,0"
+                        IsVisible="{TemplateBinding LeftContent, Converter={x:Static ObjectConverters.IsNotNull}}"
                         VerticalAlignment="Center"
                         Content="{TemplateBinding LeftContent}"
                         DockPanel.Dock="Left" />
@@ -17,11 +18,12 @@
                         Name="PART_RightContentPresenter"
                         Margin="8,0"
                         VerticalAlignment="Center"
+                        IsVisible="{TemplateBinding RightContent, Converter={x:Static ObjectConverters.IsNotNull}}"
                         Content="{TemplateBinding RightContent}"
                         DockPanel.Dock="Right" />
                     <ContentPresenter
                         Name="PART_ContentPresenter"
-                        HorizontalAlignment="Center"
+                        HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         Content="{TemplateBinding CenterContent}" />
                 </DockPanel>
@@ -29,8 +31,7 @@
         </Setter>
     </ControlTheme>
     
-    <!--Add the theme here to fix fullscreen button placement issue, will be removed after Semi release. -->
-    <ControlTheme x:Key="{x:Type WindowDrawnDecorations}" TargetType="WindowDrawnDecorations">
+    <ControlTheme x:Key="{x:Static u:UrsaWindow.KEY_URSAWINDOW_DRAWN_DECORATIONS}" TargetType="WindowDrawnDecorations">
         <Setter Property="DefaultTitleBarHeight" Value="32" />
         <Setter Property="DefaultFrameThickness" Value="1" />
         <Setter Property="DefaultShadowThickness" Value="8" />
@@ -72,16 +73,19 @@
                                 <Button
                                     Name="PART_FullScreenButton"
                                     Theme="{StaticResource CaptionButton}"
+                                    IsVisible="{Binding $parent[u:UrsaWindow].IsFullScreenButtonVisible}"
                                     Content="{StaticResource WindowExpandGlyph}"
                                     WindowDecorationProperties.ElementRole="FullScreenButton" />
                                 <Button
                                     Name="PART_MinimizeButton"
                                     Theme="{StaticResource CaptionButton}"
+                                    IsVisible="{Binding $parent[u:UrsaWindow].IsMinimizeButtonVisible}"
                                     Content="{StaticResource WindowMinimizeGlyph}"
                                     WindowDecorationProperties.ElementRole="MinimizeButton" />
                                 <Button
                                     Name="PART_MaximizeButton"
                                     Theme="{StaticResource CaptionButton}"
+                                    IsVisible="{Binding $parent[u:UrsaWindow].IsRestoreButtonVisible}"
                                     Content="{StaticResource WindowMaximizeGlyph}"
                                     WindowDecorationProperties.ElementRole="MaximizeButton" />
                                 <Button

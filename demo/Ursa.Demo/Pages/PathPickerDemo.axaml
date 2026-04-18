@@ -122,6 +122,28 @@
                         Theme="{DynamicResource ListPathPicker}"
                         UsePickerType="{Binding #UsePickerType.Value}" />
                 </HeaderedContentControl>
+                <HeaderedContentControl Header="Custom ButtonContent (Icon + Text)">
+                    <u:PathPicker
+                        Title="{Binding #Title.Text}"
+                        AllowMultiple="{Binding #AllowMultiple.IsChecked}"
+                        Command="{Binding SelectedCommand}"
+                        DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
+                        FileFilter="{Binding #FileFilter.Text}"
+                        IsClearSelectionOnCancel="{Binding #IsClearSelectionOnCancel.IsChecked}"
+                        IsOmitCommandOnCancel="{Binding #IsOmitCommandOnCancel.IsChecked}"
+                        SelectedPaths="{Binding Paths, Mode=OneWayToSource}"
+                        SelectedPathsText="{Binding Path, Mode=OneWayToSource}"
+                        SuggestedFileName="{Binding #SuggestedFileName.Text}"
+                        SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
+                        UsePickerType="{Binding #UsePickerType.Value}">
+                        <u:PathPicker.ButtonContent>
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <PathIcon Data="{DynamicResource SemiIconSearch}" Height="16" Width="16" VerticalAlignment="Center" />
+                                <TextBlock Text="Browse" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </u:PathPicker.ButtonContent>
+                    </u:PathPicker>
+                </HeaderedContentControl>
             </StackPanel>
         </ScrollViewer>
         <ScrollViewer

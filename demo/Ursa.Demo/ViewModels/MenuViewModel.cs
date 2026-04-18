@@ -56,11 +56,15 @@ public class MenuViewModel : ViewModelBase
                 MenuHeader = "Date & Time", Children = new ObservableCollection<MenuItemViewModel>
                 {
                     new() { MenuHeader = "Date Picker", Key = MenuKeys.MenuKeyDatePicker },
+                    new() { MenuHeader = "Date Only Picker", Key = MenuKeys.MenuKeyDateOnlyPicker },
                     new() { MenuHeader = "Date Range Picker", Key = MenuKeys.MenuKeyDateRangePicker },
+                    new() { MenuHeader = "Date Only Range Picker", Key = MenuKeys.MenuKeyDateOnlyRangePicker },
                     new() { MenuHeader = "Date Time Picker", Key = MenuKeys.MenuKeyDateTimePicker },
                     new() { MenuHeader = "Time Box", Key = MenuKeys.MenuKeyTimeBox },
                     new() { MenuHeader = "Time Picker", Key = MenuKeys.MenuKeyTimePicker },
+                    new() { MenuHeader = "Time Only Picker", Key = MenuKeys.MenuKeyTimeOnlyPicker },
                     new() { MenuHeader = "Time Range Picker", Key = MenuKeys.MenuKeyTimeRangePicker },
+                    new() { MenuHeader = "Time Only Range Picker", Key = MenuKeys.MenuKeyTimeOnlyRangePicker },
                     new() { MenuHeader = "Clock", Key = MenuKeys.MenuKeyClock }
                 }
             },
@@ -116,6 +120,8 @@ public static class MenuKeys
     public const string MenuKeyButtonGroup = "ButtonGroup";
     public const string MenuKeyClassInput = "Class Input";
     public const string MenuKeyClock = "Clock";
+    public const string MenuKeyDateOnlyPicker = "DateOnlyPicker";
+    public const string MenuKeyDateOnlyRangePicker = "DateOnlyRangePicker";
     public const string MenuKeyDatePicker = "DatePicker";
     public const string MenuKeyDateRangePicker = "DateRangePicker";
     public const string MenuKeyDateTimePicker = "DateTimePicker";
@@ -154,6 +160,8 @@ public static class MenuKeys
     public const string MenuKeyThemeToggler = "ThemeToggler";
     public const string MenuKeyTimeBox = "TimeBox";
     public const string MenuKeyTimeline = "Timeline";
+    public const string MenuKeyTimeOnlyPicker = "TimeOnlyPicker";
+    public const string MenuKeyTimeOnlyRangePicker = "TimeOnlyRangePicker";
     public const string MenuKeyTimePicker = "TimePicker";
     public const string MenuKeyTimeRangePicker = "TimeRangePicker";
     public const string MenuKeyToast = "Toast";

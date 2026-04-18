@@ -43,5 +43,10 @@
             <Button Content="Warning" Classes="Warning" />
             <Button Content="Error" Classes="Danger" />
         </StackPanel>
+      
+      <TextBlock>
+        <Run Text="Close Reason: " />
+        <Run Text="{Binding Reason}" />
+      </TextBlock>
     </StackPanel>
 </UserControl>

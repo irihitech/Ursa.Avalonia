@@ -79,7 +79,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
     /// <param name="showIcon">whether to show the icon</param>
     /// <param name="showClose">whether to show the close button</param>
     /// <param name="onClick">an Action to be run when the toast is clicked</param>
-    /// <param name="onClose">an Action to be run when the toast is closed</param>
+    /// <param name="onClose">an Action to be run when the toast is closed, receiving the <see cref="MessageCloseReason"/></param>
     /// <param name="classes">style classes to apply</param>
     public async void Show(
         object content,
@@ -88,7 +88,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
         bool showIcon = true,
         bool showClose = true,
         Action? onClick = null,
-        Action? onClose = null,
+        Action<MessageCloseReason>? onClose = null,
         string[]? classes = null)
     {
         Dispatcher.UIThread.VerifyAccess();
@@ -110,10 +110,9 @@ public class WindowToastManager : WindowMessageManager, IToastManager
             }
         }
 
-        toastControl.MessageClosed += (sender, _) =>
+        toastControl.MessageClosed += (sender, args) =>
         {
-            onClose?.Invoke();
-
+            onClose?.Invoke(args.Reason);
             _items?.Remove(sender);
         };
 
@@ -125,7 +124,7 @@ public class WindowToastManager : WindowMessageManager, IToastManager
 
             if (_items?.OfType<ToastCard>().Count(i => !i.IsClosing) > MaxItems)
             {
-                _items.OfType<ToastCard>().First(i => !i.IsClosing).Close();
+                _items.OfType<ToastCard>().First(i => !i.IsClosing).Close(MessageCloseReason.Displaced);
             }
         });
 
@@ -136,6 +135,29 @@ public class WindowToastManager : WindowMessageManager, IToastManager
 
         await Task.Delay(expiration ?? TimeSpan.FromSeconds(3));
 
-        toastControl.Close();
+        toastControl.Close(MessageCloseReason.Timeout);
+    }
+
+    /// <inheritdoc/>
+    public void Close(IToast toast)
+    {
+        Dispatcher.UIThread.VerifyAccess();
+
+        _items?.OfType<ToastCard>()
+            .FirstOrDefault(i => i.Content == toast)
+            ?.Close();
+    }
+
+    /// <inheritdoc/>
+    public void CloseAll()
+    {
+        Dispatcher.UIThread.VerifyAccess();
+
+        var items = _items?.OfType<ToastCard>().ToList();
+        if (items is null) return;
+        foreach (var item in items)
+        {
+            item.Close();
+        }
     }
 }

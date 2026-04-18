@@ -1,4 +1,6 @@
-﻿namespace Ursa.Controls;
+﻿using Avalonia.Controls.Primitives;
+
+namespace Ursa.Controls;
 
 public enum HorizontalPosition
 {
@@ -66,6 +68,16 @@ public class OverlayDialogOptions
     public bool CanResize { get; set; }
     
     public string? StyleClass { get; set; }
+
+    /// <summary>
+    /// Visibility of the horizontal scrollbar inside the dialog content area. Default is <see cref="ScrollBarVisibility.Auto"/>.
+    /// </summary>
+    public ScrollBarVisibility HorizontalScrollBarVisibility { get; set; } = ScrollBarVisibility.Auto;
+
+    /// <summary>
+    /// Visibility of the vertical scrollbar inside the dialog content area. Default is <see cref="ScrollBarVisibility.Auto"/>.
+    /// </summary>
+    public ScrollBarVisibility VerticalScrollBarVisibility { get; set; } = ScrollBarVisibility.Auto;
 
     /// <summary>
     /// </summary>

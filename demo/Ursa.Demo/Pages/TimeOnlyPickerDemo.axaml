@@ -1,0 +1,54 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.TimeOnlyPickerDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="viewModels:TimeOnlyPickerDemoViewModel"
+    mc:Ignorable="d">
+    <StackPanel HorizontalAlignment="Left">
+        <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
+
+        <TextBlock Text="{Binding #picker.SelectedTime}" />
+
+        <TextBox
+            Name="displayFormat"
+            Width="300"
+            InnerLeftContent="Display Format"
+            Text="HH:mm:ss" />
+        <TextBox
+            Name="panelFormat"
+            Width="300"
+            InnerLeftContent="Panel Format"
+            Text="tt HH mm ss" />
+
+        <u:TimeOnlyPicker
+            Name="picker"
+            Width="200"
+            HorizontalAlignment="Left"
+            DisplayFormat="{Binding #displayFormat.Text}"
+            NeedConfirmation="{Binding #needConfirm.IsChecked}"
+            PanelFormat="{Binding #panelFormat.Text}" />
+
+        <u:TimeOnlyPicker
+            Width="300"
+            HorizontalAlignment="Left"
+            Classes="ClearButton"
+            DisplayFormat="{Binding #displayFormat.Text}"
+            NeedConfirmation="True"
+            PanelFormat="{Binding #panelFormat.Text}" />
+
+        <TextBlock Text="Binding" />
+        <u:TimeOnlyPicker
+            Width="300"
+            Classes="ClearButton"
+            HorizontalAlignment="Left"
+            SelectedTime="{Binding Time}"
+            DisplayFormat="{Binding #displayFormat.Text}"
+            PanelFormat="{Binding #panelFormat.Text}" />
+    </StackPanel>
+</UserControl>

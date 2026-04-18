@@ -34,7 +34,8 @@ public interface IMessage
     Action? OnClick { get; }
 
     /// <summary>
-    /// Gets an Action to be run when the message is closed.
+    /// Gets an Action to be run when the message is closed, receiving the <see cref="MessageCloseReason"/>
+    /// that describes why the message was closed.
     /// </summary>
-    Action? OnClose { get; }
+    Action<MessageCloseReason>? OnClose { get; }
 }

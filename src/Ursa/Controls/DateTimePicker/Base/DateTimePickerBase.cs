@@ -1,0 +1,179 @@
+using Avalonia;
+using Avalonia.Collections;
+using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
+using Avalonia.Controls.Primitives;
+using Avalonia.Data;
+using Avalonia.Media;
+using Irihi.Avalonia.Shared.Common;
+using Irihi.Avalonia.Shared.Contracts;
+using Irihi.Avalonia.Shared.Helpers;
+
+namespace Ursa.Controls;
+
+[TemplatePart(PART_Popup, typeof(Popup))]
+[TemplatePart(PART_TextBox, typeof(TextBox))]
+[TemplatePart(PART_Calendar, typeof(DatePickerCalendarView))]
+[TemplatePart(PART_TimePicker, typeof(TimePickerPresenter))]
+[PseudoClasses(PseudoClassName.PC_Empty)]
+public abstract class DateTimePickerBase : TemplatedControl, IInnerContentControl, IPopupInnerContent, IClearControl
+{
+    public const string PART_Popup = "PART_Popup";
+    public const string PART_TextBox = "PART_TextBox";
+    public const string PART_Calendar = "PART_Calendar";
+    public const string PART_TimePicker = "PART_TimePicker";
+
+    protected const string DEFAULT_DATETIME_DISPLAY_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
+    public static readonly StyledProperty<string?> DisplayFormatProperty =
+        AvaloniaProperty.Register<DateTimePickerBase, string?>(
+            nameof(DisplayFormat), DEFAULT_DATETIME_DISPLAY_FORMAT);
+
+    public static readonly StyledProperty<AvaloniaList<DateRange>> BlackoutDatesProperty =
+        AvaloniaProperty.Register<DateTimePickerBase, AvaloniaList<DateRange>>(nameof(BlackoutDates));
+
+    public static readonly StyledProperty<IDateSelector?> BlackoutDateRuleProperty =
+        AvaloniaProperty.Register<DateTimePickerBase, IDateSelector?>(nameof(BlackoutDateRule));
+
+    public static readonly StyledProperty<DayOfWeek> FirstDayOfWeekProperty =
+        AvaloniaProperty.Register<DateTimePickerBase, DayOfWeek>(
+            nameof(FirstDayOfWeek), DateTimeHelper.GetCurrentDateTimeFormatInfo().FirstDayOfWeek);
+
+    public static readonly StyledProperty<bool> IsTodayHighlightedProperty =
+        AvaloniaProperty.Register<DateTimePickerBase, bool>(nameof(IsTodayHighlighted), true);
+
+    public static readonly StyledProperty<object?> InnerLeftContentProperty =
+        AvaloniaProperty.Register<DateTimePickerBase, object?>(nameof(InnerLeftContent));
+
+    public static readonly StyledProperty<object?> InnerRightContentProperty =
+        AvaloniaProperty.Register<DateTimePickerBase, object?>(nameof(InnerRightContent));
+
+    public static readonly StyledProperty<object?> PopupInnerTopContentProperty =
+        AvaloniaProperty.Register<DateTimePickerBase, object?>(nameof(PopupInnerTopContent));
+
+    public static readonly StyledProperty<object?> PopupInnerBottomContentProperty =
+        AvaloniaProperty.Register<DateTimePickerBase, object?>(nameof(PopupInnerBottomContent));
+
+    public static readonly StyledProperty<bool> IsDropdownOpenProperty =
+        AvaloniaProperty.Register<DateTimePickerBase, bool>(
+            nameof(IsDropdownOpen), defaultBindingMode: BindingMode.TwoWay);
+
+    public static readonly StyledProperty<bool> IsReadonlyProperty =
+        AvaloniaProperty.Register<DateTimePickerBase, bool>(nameof(IsReadonly));
+
+    public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
+        TextBox.PlaceholderForegroundProperty.AddOwner<DateTimePickerBase>();
+
+    public static readonly StyledProperty<string?> PlaceholderTextProperty =
+        TextBox.PlaceholderTextProperty.AddOwner<DateTimePickerBase>();
+
+    [Obsolete("Use PlaceholderTextProperty instead.")]
+    public static readonly StyledProperty<string?> WatermarkProperty = PlaceholderTextProperty;
+
+    public static readonly StyledProperty<string> PanelFormatProperty =
+        AvaloniaProperty.Register<DateTimePickerBase, string>(nameof(PanelFormat), "HH mm ss");
+
+    public static readonly StyledProperty<bool> NeedConfirmationProperty =
+        AvaloniaProperty.Register<DateTimePickerBase, bool>(nameof(NeedConfirmation));
+
+    public AvaloniaList<DateRange> BlackoutDates
+    {
+        get => GetValue(BlackoutDatesProperty);
+        set => SetValue(BlackoutDatesProperty, value);
+    }
+
+    public IDateSelector? BlackoutDateRule
+    {
+        get => GetValue(BlackoutDateRuleProperty);
+        set => SetValue(BlackoutDateRuleProperty, value);
+    }
+
+    public DayOfWeek FirstDayOfWeek
+    {
+        get => GetValue(FirstDayOfWeekProperty);
+        set => SetValue(FirstDayOfWeekProperty, value);
+    }
+
+    public bool IsTodayHighlighted
+    {
+        get => GetValue(IsTodayHighlightedProperty);
+        set => SetValue(IsTodayHighlightedProperty, value);
+    }
+
+    public bool IsReadonly
+    {
+        get => GetValue(IsReadonlyProperty);
+        set => SetValue(IsReadonlyProperty, value);
+    }
+
+    public bool IsDropdownOpen
+    {
+        get => GetValue(IsDropdownOpenProperty);
+        set => SetValue(IsDropdownOpenProperty, value);
+    }
+
+    public object? InnerLeftContent
+    {
+        get => GetValue(InnerLeftContentProperty);
+        set => SetValue(InnerLeftContentProperty, value);
+    }
+
+    public object? InnerRightContent
+    {
+        get => GetValue(InnerRightContentProperty);
+        set => SetValue(InnerRightContentProperty, value);
+    }
+
+    public object? PopupInnerTopContent
+    {
+        get => GetValue(PopupInnerTopContentProperty);
+        set => SetValue(PopupInnerTopContentProperty, value);
+    }
+
+    public object? PopupInnerBottomContent
+    {
+        get => GetValue(PopupInnerBottomContentProperty);
+        set => SetValue(PopupInnerBottomContentProperty, value);
+    }
+
+    public string? DisplayFormat
+    {
+        get => GetValue(DisplayFormatProperty);
+        set => SetValue(DisplayFormatProperty, value);
+    }
+
+    public string? PlaceholderText
+    {
+        get => GetValue(PlaceholderTextProperty);
+        set => SetValue(PlaceholderTextProperty, value);
+    }
+
+    [Obsolete("Use PlaceholderText instead.")]
+    public string? Watermark
+    {
+        get => PlaceholderText;
+        set => PlaceholderText = value;
+    }
+
+    public IBrush? PlaceholderForeground
+    {
+        get => GetValue(PlaceholderForegroundProperty);
+        set => SetValue(PlaceholderForegroundProperty, value);
+    }
+
+    public string PanelFormat
+    {
+        get => GetValue(PanelFormatProperty);
+        set => SetValue(PanelFormatProperty, value);
+    }
+
+    public bool NeedConfirmation
+    {
+        get => GetValue(NeedConfirmationProperty);
+        set => SetValue(NeedConfirmationProperty, value);
+    }
+
+    public abstract void Clear();
+    public abstract void Confirm();
+    public abstract void Dismiss();
+}

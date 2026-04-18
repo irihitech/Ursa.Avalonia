@@ -5,7 +5,7 @@
     xmlns:iri="https://irihi.tech/shared">
     <Design.PreviewWith>
         <StackPanel Margin="20">
-            <u:PathPicker Title="Hello World" Width="300" />
+            <u:PathPicker Title="Hello World" ButtonContent="Hello World" Width="300" />
         </StackPanel>
     </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:PathPicker}" TargetType="u:PathPicker">
@@ -17,7 +17,7 @@
                         Name="{x:Static u:PathPicker.PART_Button}"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
-                        Content="{TemplateBinding Title}"
+                        Content="{TemplateBinding ButtonContent}"
                         DockPanel.Dock="Right" />
                     <TextBox
                         Name="PART_TextBox"
@@ -64,7 +64,7 @@
                     Name="{x:Static u:PathPicker.PART_Button}"
                     HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                     VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                    Content="{TemplateBinding Title}" />
+                    Content="{TemplateBinding ButtonContent}" />
             </ControlTemplate>
         </Setter>
         <Style Selector="^ /template/ Button#PART_Button:pressed">
@@ -85,7 +85,7 @@
                         <Button
                             Name="PART_Button"
                             HorizontalAlignment="Stretch"
-                            Content="{TemplateBinding Title}"
+                            Content="{TemplateBinding ButtonContent}"
                             CornerRadius="{TemplateBinding CornerRadius,
                                                            Converter={iri:CornerRadiusMixerConverter Left}}" />
                     </Expander.Header>

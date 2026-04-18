@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Ursa.Common;
 using Ursa.Controls.Options;
@@ -206,6 +207,8 @@ public static class OverlayDrawer
         drawer.IsCloseButtonVisible = options.IsCloseButtonVisible;
         drawer.CanLightDismiss = options.CanLightDismiss;
         drawer.CanResize = options.CanResize;
+        ScrollViewer.SetHorizontalScrollBarVisibility(drawer, options.HorizontalScrollBarVisibility);
+        ScrollViewer.SetVerticalScrollBarVisibility(drawer, options.VerticalScrollBarVisibility);
         if (options.Position == Position.Left || options.Position == Position.Right)
         {
             if(options.MinWidth is not null) drawer.MinWidth = options.MinWidth.Value;
@@ -234,6 +237,8 @@ public static class OverlayDrawer
         drawer.Buttons = options.Buttons;
         drawer.Title = options.Title;
         drawer.CanResize = options.CanResize;
+        ScrollViewer.SetHorizontalScrollBarVisibility(drawer, options.HorizontalScrollBarVisibility);
+        ScrollViewer.SetVerticalScrollBarVisibility(drawer, options.VerticalScrollBarVisibility);
         if (options.Position == Position.Left || options.Position == Position.Right)
         {
             if(options.MinWidth is not null) drawer.MinWidth = options.MinWidth.Value;

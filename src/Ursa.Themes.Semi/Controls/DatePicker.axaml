@@ -1,8 +1,9 @@
 <ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:u="https://irihi.tech/ursa">
-    <ControlTheme x:Key="{x:Type u:DatePicker}" TargetType="u:DatePicker">
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:iri="https://irihi.tech/shared">
+    <ControlTheme x:Key="{x:Type u:DatePickerBase}" TargetType="u:DatePickerBase">
         <Setter Property="Background" Value="{DynamicResource CalendarDatePickerBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource CalendarDatePickerForeground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerBorderBrush}" />
@@ -13,8 +14,9 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Padding" Value="8 0" />
         <Setter Property="MinHeight" Value="{DynamicResource CalendarDatePickerDefaultHeight}" />
+        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
         <Setter Property="Template">
-            <ControlTemplate TargetType="u:DatePicker">
+            <ControlTemplate TargetType="u:DatePickerBase">
                 <DataValidationErrors>
                     <Panel
                         x:Name="LayoutRoot"
@@ -52,19 +54,19 @@
                                 Name="ClearButton"
                                 Grid.Column="1"
                                 Margin="8,0"
-                                Command="{Binding $parent[u:DatePicker].Clear}"
+                                Command="{Binding $parent[iri:IClearControl].Clear}"
                                 Content="{DynamicResource IconButtonClearData}"
                                 Focusable="False"
                                 IsVisible="False"
                                 Theme="{DynamicResource InnerIconButton}" />
-                            <Button
+                            <PathIcon
                                 Name="PART_Button"
                                 Grid.Column="1"
                                 Margin="8,0"
                                 IsVisible="{Binding !#ClearButton.IsVisible}"
-                                Content="{DynamicResource CalendarDatePickerIconGlyph}"
+                                Data="{DynamicResource CalendarDatePickerIconGlyph}"
                                 Focusable="False"
-                                Theme="{DynamicResource InnerIconButton}" />
+                                Theme="{DynamicResource InnerPathIcon}" />
                             <Popup
                                 Name="PART_Popup"
                                 Grid.Column="0"
@@ -81,13 +83,22 @@
                                     BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
                                     BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
                                     CornerRadius="{DynamicResource CalendarCornerRadius}">
-                                    <u:CalendarView
-                                        Name="PART_Calendar"
-                                        BorderThickness="0"
-                                        CornerRadius="{Binding $parent[Border].CornerRadius}"
-                                        FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
-                                        FontSize="{DynamicResource DefaultFontSize}"
-                                        IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
+                                    <DockPanel>
+                                            <StackPanel DockPanel.Dock="Bottom" IsVisible="{TemplateBinding NeedConfirmation}">
+                                                <Button
+                                                    Margin="8"
+                                                    HorizontalAlignment="Right"
+                                                    Command="{Binding $parent[u:DatePickerBase].Confirm}"
+                                                    Content="{DynamicResource STRING_DATE_TIME_CONFIRM}" />
+                                            </StackPanel>
+                                            <u:DatePickerCalendarView
+                                                Name="PART_Calendar"
+                                                BorderThickness="0"
+                                                CornerRadius="{Binding $parent[Border].CornerRadius}"
+                                                FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
+                                                FontSize="{DynamicResource DefaultFontSize}"
+                                                IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}" />
+                                        </DockPanel>
                                 </Border>
                             </Popup>
                         </Grid>
@@ -98,8 +109,8 @@
         </Setter>
 
         <Style Selector="^.clearButton, ^.ClearButton">
-            <Style Selector="^:pointerover /template/ Button#ClearButton">
-                <Setter Property="IsVisible" Value="{Binding $parent[u:DatePicker].SelectedDate, Converter={x:Static ObjectConverters.IsNotNull}}" />
+            <Style Selector="^:not(:empty):pointerover /template/ Button#ClearButton">
+                <Setter Property="IsVisible" Value="True" />
             </Style>
         </Style>
 
@@ -125,9 +136,6 @@
         </Style>
 
         <!--  Focused State  -->
-        <Style Selector="^:focus /template/ Border#Background">
-            <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
-        </Style>
         <Style Selector="^:focus-within /template/ Border#Background">
             <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
         </Style>

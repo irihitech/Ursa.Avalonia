@@ -232,7 +232,7 @@
                 <Setter Property="IsVisible" Value="False" />
             </Style>
             <Style Selector="^ /template/ ItemsPresenter#PART_ItemsPresenter">
-                <Setter Property="IsVisible" Value="False" />
+                <Setter Property="Opacity" Value="0.0" />
             </Style>
         </Style>
         <Style Selector="^:horizontal-collapsed:not(:first-level)">

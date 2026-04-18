@@ -1,17 +1,18 @@
-﻿<ResourceDictionary
+<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:iri="https://irihi.tech/shared">
-    <ControlTheme x:Key="{x:Type u:TimeRangePicker}" TargetType="u:TimeRangePicker">
+    <ControlTheme x:Key="{x:Type u:TimeRangePickerBase}" TargetType="u:TimeRangePickerBase">
         <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
         <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
         <Setter Property="MinHeight" Value="32" />
+        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
         <Setter Property="Template">
-            <ControlTemplate TargetType="u:TimeRangePicker">
+            <ControlTemplate TargetType="u:TimeRangePickerBase">
                 <DataValidationErrors>
                     <Panel
                         x:Name="LayoutRoot"
@@ -26,7 +27,7 @@
                             CornerRadius="{TemplateBinding CornerRadius}" />
                         <Grid ColumnDefinitions="*, Auto, * Auto" Name="PART_Grid">
                             <TextBox
-                                Name="{x:Static u:TimeRangePicker.PART_StartTextBox}"
+                                Name="{x:Static u:TimeRangePickerBase.PART_StartTextBox}"
                                 Grid.Column="0"
                                 MinHeight="{TemplateBinding MinHeight}"
                                 HorizontalAlignment="Stretch"
@@ -44,7 +45,7 @@
                                 VerticalAlignment="Center"
                                 Text="~" />
                             <TextBox
-                                Name="{x:Static u:TimeRangePicker.PART_EndTextBox}"
+                                Name="{x:Static u:TimeRangePickerBase.PART_EndTextBox}"
                                 Grid.Column="2"
                                 MinHeight="{TemplateBinding MinHeight}"
                                 HorizontalAlignment="Stretch"
@@ -60,24 +61,23 @@
                                 Name="ClearButton"
                                 Grid.Column="3"
                                 Margin="8,0"
-                                Command="{Binding $parent[u:TimeRangePicker].Clear}"
+                                Command="{Binding $parent[iri:IClearControl].Clear}"
                                 Content="{DynamicResource IconButtonClearData}"
                                 Focusable="False"
                                 IsVisible="False"
                                 Theme="{DynamicResource InnerIconButton}" />
-                            <Button
-                                Name="{x:Static u:TimePicker.PART_Button}"
+                            <PathIcon
+                                Name="PART_Button"
                                 Grid.Column="3"
                                 Margin="8,0"
-                                Content="{DynamicResource TimePickerIconGlyph}"
+                                Data="{DynamicResource TimePickerIconGlyph}"
                                 Focusable="False"
                                 IsVisible="{Binding !#ClearButton.IsVisible}"
-                                Theme="{DynamicResource InnerIconButton}" />
+                                Theme="{DynamicResource InnerPathIcon}" />
                         </Grid>
                         <Popup
                             Name="{x:Static iri:PartNames.PART_Popup}"
                             IsLightDismissEnabled="True"
-                            OverlayDismissEventPassThrough="True"
                             OverlayInputPassThroughElement="{Binding ElementName=PART_Grid}"
                             IsOpen="{TemplateBinding IsDropdownOpen,
                                                      Mode=TwoWay}"
@@ -96,7 +96,7 @@
                                         <Button
                                             Margin="8"
                                             HorizontalAlignment="Right"
-                                            Command="{Binding $parent[u:TimeRangePicker].Confirm}"
+                                            Command="{Binding $parent[u:TimeRangePickerBase].Confirm}"
                                             Content="{DynamicResource STRING_DATE_TIME_CONFIRM}" />
                                     </StackPanel>
                                     <ContentPresenter
@@ -136,10 +136,9 @@
                                             Margin="8 0"
                                             Height="1" />
                                         <u:TimePickerPresenter
-                                            Name="{x:Static u:TimeRangePicker.PART_StartPresenter}"
+                                            Name="{x:Static u:TimeRangePickerBase.PART_StartPresenter}"
                                             Grid.Row="2"
                                             Grid.Column="0"
-                                            NeedsConfirmation="{TemplateBinding NeedConfirmation}"
                                             PanelFormat="{TemplateBinding PanelFormat}" />
                                         <Rectangle
                                             Grid.Row="2"
@@ -149,10 +148,9 @@
                                             VerticalAlignment="Stretch"
                                             Fill="{DynamicResource DateTimePickerSeparatorBackground}" />
                                         <u:TimePickerPresenter
-                                            Name="{x:Static u:TimeRangePicker.PART_EndPresenter}"
+                                            Name="{x:Static u:TimeRangePickerBase.PART_EndPresenter}"
                                             Grid.Row="2"
                                             Grid.Column="2"
-                                            NeedsConfirmation="{TemplateBinding NeedConfirmation}"
                                             PanelFormat="{TemplateBinding PanelFormat}" />
                                     </Grid>
                                 </DockPanel>

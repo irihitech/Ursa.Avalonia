@@ -22,7 +22,7 @@ public abstract class MessageCard : ContentControl
 
     static MessageCard()
     {
-        CloseOnClickProperty.Changed.AddClassHandler<Button>(OnCloseOnClickPropertyChanged);
+        CloseOnClickProperty.Changed.AddClassHandler<Button, bool>(OnCloseOnClickPropertyChanged);
     }
 
     /// <summary>
@@ -32,6 +32,11 @@ public abstract class MessageCard : ContentControl
     {
         UpdateNotificationType();
     }
+
+    /// <summary>
+    /// Gets the reason the message was closed.
+    /// </summary>
+    private MessageCloseReason _closeReason = MessageCloseReason.UserAction;
 
     /// <summary>
     /// Determines if the message is already closing.
@@ -99,14 +104,14 @@ public abstract class MessageCard : ContentControl
     /// <summary>
     /// Defines the <see cref="MessageClosed"/> event.
     /// </summary>
-    public static readonly RoutedEvent<RoutedEventArgs> MessageClosedEvent =
-        RoutedEvent.Register<MessageCard, RoutedEventArgs>(nameof(MessageClosed), RoutingStrategies.Bubble);
+    public static readonly RoutedEvent<MessageClosedEventArgs> MessageClosedEvent =
+        RoutedEvent.Register<MessageCard, MessageClosedEventArgs>(nameof(MessageClosed), RoutingStrategies.Bubble);
 
 
     /// <summary>
     /// Raised when the <see cref="MessageCard"/> has closed.
     /// </summary>
-    public event EventHandler<RoutedEventArgs>? MessageClosed
+    public event EventHandler<MessageClosedEventArgs>? MessageClosed
     {
         add => AddHandler(MessageClosedEvent, value);
         remove => RemoveHandler(MessageClosedEvent, value);
@@ -130,10 +135,9 @@ public abstract class MessageCard : ContentControl
     public static readonly AttachedProperty<bool> CloseOnClickProperty =
         AvaloniaProperty.RegisterAttached<MessageCard, Button, bool>("CloseOnClick", defaultValue: false);
 
-    private static void OnCloseOnClickPropertyChanged(AvaloniaObject d, AvaloniaPropertyChangedEventArgs e)
+    private static void OnCloseOnClickPropertyChanged(Button button, AvaloniaPropertyChangedEventArgs<bool> e)
     {
-        var button = (Button)d;
-        var value = (bool)e.NewValue!;
+        var value = e.GetNewValue<bool>();
         if (value)
         {
             button.Click += Button_Click;
@@ -155,15 +159,17 @@ public abstract class MessageCard : ContentControl
     }
 
     /// <summary>
-    /// Closes the <see cref="MessageCard"/>.
+    /// Closes the <see cref="MessageCard"/> with the specified <see cref="MessageCloseReason"/>.
     /// </summary>
-    public void Close()
+    /// <param name="reason">The reason the message is being closed.</param>
+    public void Close(MessageCloseReason reason = MessageCloseReason.UserAction)
     {
         if (IsClosing)
         {
             return;
         }
 
+        _closeReason = reason;
         IsClosing = true;
     }
 
@@ -183,12 +189,14 @@ public abstract class MessageCard : ContentControl
 
         if (e.Property == IsClosedProperty)
         {
+            // Notice that we are not setting IsClosed directly, we set IsClosing and then move to IsClosed with Animation. 
+            // So this logic is not visible in csharp part. 
             if (!IsClosing && !IsClosed)
             {
                 return;
             }
 
-            RaiseEvent(new RoutedEventArgs(MessageClosedEvent));
+            RaiseEvent(new MessageClosedEventArgs(_closeReason) { RoutedEvent = MessageClosedEvent });
         }
     }
 

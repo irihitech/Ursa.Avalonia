@@ -33,5 +33,12 @@
             DisplayFormat="{Binding #format.Text}"
             SelectedEndDate="{Binding EndDate}"
             SelectedStartDate="{Binding StartDate}" />
+        
+        <u:DateRangePicker
+            Width="360"
+            Classes="ClearButton"
+            DisplayFormat="{Binding #format.Text}"
+            SelectedEndDate="{Binding EndDate}"
+            SelectedStartDate="{Binding StartDate}" />
     </StackPanel>
 </UserControl>
