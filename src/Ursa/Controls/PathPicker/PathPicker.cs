@@ -273,6 +273,7 @@ public partial class PathPicker : TemplatedControl
         {
             if (TopLevel.GetTopLevel(this)?.StorageProvider is not { } storageProvider) return;
             _button?.SetValue(IsEnabledProperty, false);
+            IReadOnlyList<IStorageItem> storageItems = [];
             switch (UsePickerType)
             {
                 case UsePickerTypes.OpenFile:
@@ -285,6 +286,7 @@ public partial class PathPicker : TemplatedControl
                         FileTypeFilter = ParseFileTypes(FileFilter)
                     };
                     var resFiles = await storageProvider.OpenFilePickerAsync(filePickerOpenOptions);
+                    storageItems = resFiles;
                     UpdateSelectedPaths(resFiles.Select(x => x.TryGetLocalPath()).ToArray());
                     break;
                 case UsePickerTypes.SaveFile:
@@ -298,9 +300,9 @@ public partial class PathPicker : TemplatedControl
                         DefaultExtension = DefaultFileExtension
                     };
 
-                    var path = (await storageProvider.SaveFilePickerAsync(filePickerSaveOptions))
-                        ?.TryGetLocalPath();
-                    UpdateSelectedPaths([path]);
+                    var savedFile = await storageProvider.SaveFilePickerAsync(filePickerSaveOptions);
+                    storageItems = savedFile is not null ? [savedFile] : [];
+                    UpdateSelectedPaths([savedFile?.TryGetLocalPath()]);
                     break;
                 case UsePickerTypes.OpenFolder:
                     FolderPickerOpenOptions folderPickerOpenOptions = new()
@@ -312,15 +314,16 @@ public partial class PathPicker : TemplatedControl
                         SuggestedFileName = SuggestedFileName
                     };
                     var resFolder = await storageProvider.OpenFolderPickerAsync(folderPickerOpenOptions);
+                    storageItems = resFolder;
                     UpdateSelectedPaths(resFolder.Select(x => x.TryGetLocalPath()).ToArray());
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
             this.PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedPaths.Count == 0);
-            if (SelectedPaths.Count != 0 || IsOmitCommandOnCancel is false)
+            if (storageItems.Count != 0 || IsOmitCommandOnCancel is false)
             {
-                Command?.Execute(SelectedPaths);
+                Command?.Execute(storageItems);
             }
         }
         catch (Exception exception)
