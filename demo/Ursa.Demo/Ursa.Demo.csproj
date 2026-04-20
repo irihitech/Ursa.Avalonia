@@ -23,7 +23,6 @@
         </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm"/>
         <PackageReference Include="Semi.Avalonia"/>
-        <PackageReference Include="SkiaSharp"/>
     </ItemGroup>
 
     <ItemGroup>
