@@ -6,55 +6,84 @@ namespace Test.Ursa.DateTimePicker;
 public class OffsetDefinitionTests
 {
     // -------------------------------------------------------------------------
-    // Static singletons
+    // OffsetValue struct  static factories
     // -------------------------------------------------------------------------
 
     [Fact]
-    public void Utc_Singleton_HasUtcKind()
+    public void OffsetValue_Utc_FlagsAreCorrect()
     {
-        Assert.Equal(OffsetDefinitionKind.Utc, OffsetDefinition.Utc.Kind);
+        Assert.True(OffsetValue.Utc.IsUtc);
+        Assert.False(OffsetValue.Utc.IsLocal);
+        Assert.False(OffsetValue.Utc.IsFixed);
     }
 
     [Fact]
-    public void Local_Singleton_HasLocalKind()
+    public void OffsetValue_Local_FlagsAreCorrect()
     {
-        Assert.Equal(OffsetDefinitionKind.Local, OffsetDefinition.Local.Kind);
+        Assert.True(OffsetValue.Local.IsLocal);
+        Assert.False(OffsetValue.Local.IsUtc);
+        Assert.False(OffsetValue.Local.IsFixed);
     }
 
     [Fact]
-    public void Fixed_Factory_SetsOffsetCorrectly()
+    public void OffsetValue_Fixed_FlagsAndOffsetAreCorrect()
     {
-        var def = OffsetDefinition.Fixed(TimeSpan.FromHours(8));
-        Assert.Equal(OffsetDefinitionKind.Fixed, def.Kind);
-        Assert.Equal(TimeSpan.FromHours(8), def.Offset);
+        var val = OffsetValue.Fixed(TimeSpan.FromHours(8));
+        Assert.True(val.IsFixed);
+        Assert.False(val.IsUtc);
+        Assert.False(val.IsLocal);
+        Assert.Equal(TimeSpan.FromHours(8), val.FixedOffset);
     }
 
     // -------------------------------------------------------------------------
-    // Parse — named keywords
+    // OffsetValue  equality
+    // -------------------------------------------------------------------------
+
+    [Fact]
+    public void OffsetValue_EqualityOperator_SameValues_AreEqual()
+    {
+        Assert.True(OffsetValue.Utc == OffsetValue.Utc);
+        Assert.True(OffsetValue.Local == OffsetValue.Local);
+        Assert.True(OffsetValue.Fixed(TimeSpan.FromHours(8)) == OffsetValue.Fixed(TimeSpan.FromHours(8)));
+    }
+
+    [Fact]
+    public void OffsetValue_InequalityOperator_DifferentKinds_AreNotEqual()
+    {
+        Assert.True(OffsetValue.Utc != OffsetValue.Local);
+        Assert.True(OffsetValue.Utc != OffsetValue.Fixed(TimeSpan.Zero));
+    }
+
+    [Fact]
+    public void OffsetValue_InequalityOperator_DifferentFixedOffsets_AreNotEqual()
+    {
+        Assert.True(OffsetValue.Fixed(TimeSpan.FromHours(8)) != OffsetValue.Fixed(TimeSpan.FromHours(9)));
+    }
+
+    // -------------------------------------------------------------------------
+    // OffsetValue.Parse  named keywords
     // -------------------------------------------------------------------------
 
     [Theory]
     [InlineData("UTC")]
     [InlineData("utc")]
     [InlineData("Utc")]
-    public void Parse_UtcVariants_ReturnsUtcKind(string input)
+    public void OffsetValue_Parse_UtcVariants_IsUtc(string input)
     {
-        var def = OffsetDefinition.Parse(input);
-        Assert.Equal(OffsetDefinitionKind.Utc, def.Kind);
+        Assert.True(OffsetValue.Parse(input).IsUtc);
     }
 
     [Theory]
     [InlineData("Local")]
     [InlineData("local")]
     [InlineData("LOCAL")]
-    public void Parse_LocalVariants_ReturnsLocalKind(string input)
+    public void OffsetValue_Parse_LocalVariants_IsLocal(string input)
     {
-        var def = OffsetDefinition.Parse(input);
-        Assert.Equal(OffsetDefinitionKind.Local, def.Kind);
+        Assert.True(OffsetValue.Parse(input).IsLocal);
     }
 
     // -------------------------------------------------------------------------
-    // Parse — fixed offset strings
+    // OffsetValue.Parse  fixed offset strings
     // -------------------------------------------------------------------------
 
     [Theory]
@@ -62,32 +91,32 @@ public class OffsetDefinitionTests
     [InlineData("+00:00", 0, 0)]
     [InlineData("+05:30", 5, 30)]
     [InlineData("+14:00", 14, 0)]
-    public void Parse_PositiveOffsetString_ReturnsCorrectFixedOffset(string input, int hours, int minutes)
+    public void OffsetValue_Parse_PositiveOffset_ReturnsCorrectFixed(string input, int hours, int minutes)
     {
-        var def = OffsetDefinition.Parse(input);
-        Assert.Equal(OffsetDefinitionKind.Fixed, def.Kind);
-        Assert.Equal(TimeSpan.FromHours(hours) + TimeSpan.FromMinutes(minutes), def.Offset);
+        var val = OffsetValue.Parse(input);
+        Assert.True(val.IsFixed);
+        Assert.Equal(TimeSpan.FromHours(hours) + TimeSpan.FromMinutes(minutes), val.FixedOffset);
     }
 
     [Theory]
     [InlineData("-05:00", -5, 0)]
     [InlineData("-05:30", -5, -30)]
     [InlineData("-12:00", -12, 0)]
-    public void Parse_NegativeOffsetString_ReturnsCorrectFixedOffset(string input, int hours, int minutes)
+    public void OffsetValue_Parse_NegativeOffset_ReturnsCorrectFixed(string input, int hours, int minutes)
     {
-        var def = OffsetDefinition.Parse(input);
-        Assert.Equal(OffsetDefinitionKind.Fixed, def.Kind);
-        Assert.Equal(TimeSpan.FromHours(hours) + TimeSpan.FromMinutes(minutes), def.Offset);
+        var val = OffsetValue.Parse(input);
+        Assert.True(val.IsFixed);
+        Assert.Equal(TimeSpan.FromHours(hours) + TimeSpan.FromMinutes(minutes), val.FixedOffset);
     }
 
     [Theory]
     [InlineData("08:00", 8, 0)]
     [InlineData("5:30", 5, 30)]
-    public void Parse_NoSignOffsetString_ReturnsPositiveFixedOffset(string input, int hours, int minutes)
+    public void OffsetValue_Parse_NoSignOffset_ReturnsPositiveFixed(string input, int hours, int minutes)
     {
-        var def = OffsetDefinition.Parse(input);
-        Assert.Equal(OffsetDefinitionKind.Fixed, def.Kind);
-        Assert.Equal(TimeSpan.FromHours(hours) + TimeSpan.FromMinutes(minutes), def.Offset);
+        var val = OffsetValue.Parse(input);
+        Assert.True(val.IsFixed);
+        Assert.Equal(TimeSpan.FromHours(hours) + TimeSpan.FromMinutes(minutes), val.FixedOffset);
     }
 
     [Theory]
@@ -95,75 +124,77 @@ public class OffsetDefinitionTests
     [InlineData("8", 8)]
     [InlineData("14", 14)]
     [InlineData("+8", 8)]
-    public void Parse_IntegerHours_ReturnsCorrectFixedOffset(string input, int expectedHours)
+    public void OffsetValue_Parse_IntegerHours_ReturnsCorrectFixed(string input, int expectedHours)
     {
-        var def = OffsetDefinition.Parse(input);
-        Assert.Equal(OffsetDefinitionKind.Fixed, def.Kind);
-        Assert.Equal(TimeSpan.FromHours(expectedHours), def.Offset);
+        var val = OffsetValue.Parse(input);
+        Assert.True(val.IsFixed);
+        Assert.Equal(TimeSpan.FromHours(expectedHours), val.FixedOffset);
     }
 
     [Theory]
     [InlineData("-8", -8)]
     [InlineData("-12", -12)]
-    public void Parse_NegativeIntegerHours_ReturnsCorrectFixedOffset(string input, int expectedHours)
+    public void OffsetValue_Parse_NegativeIntegerHours_ReturnsCorrectFixed(string input, int expectedHours)
     {
-        var def = OffsetDefinition.Parse(input);
-        Assert.Equal(OffsetDefinitionKind.Fixed, def.Kind);
-        Assert.Equal(TimeSpan.FromHours(expectedHours), def.Offset);
+        var val = OffsetValue.Parse(input);
+        Assert.True(val.IsFixed);
+        Assert.Equal(TimeSpan.FromHours(expectedHours), val.FixedOffset);
     }
 
     [Theory]
-    [InlineData("  +08:00  ")]
-    [InlineData("  UTC  ")]
-    [InlineData("  local  ")]
-    public void Parse_WithSurroundingWhitespace_ParsesSuccessfully(string input)
+    [InlineData("  +08:00  ", false, false, true)]
+    [InlineData("  UTC  ", true, false, false)]
+    [InlineData("  local  ", false, true, false)]
+    public void OffsetValue_Parse_WithSurroundingWhitespace_ParsesSuccessfully(
+        string input, bool isUtc, bool isLocal, bool isFixed)
     {
-        var def = OffsetDefinition.Parse(input);
-        Assert.NotNull(def);
+        var val = OffsetValue.Parse(input);
+        Assert.Equal(isUtc, val.IsUtc);
+        Assert.Equal(isLocal, val.IsLocal);
+        Assert.Equal(isFixed, val.IsFixed);
     }
 
     [Theory]
     [InlineData("invalid")]
     [InlineData("GMT+8")]
     [InlineData("")]
-    public void Parse_InvalidInput_ThrowsFormatException(string input)
+    public void OffsetValue_Parse_InvalidInput_ThrowsFormatException(string input)
     {
-        Assert.Throws<FormatException>(() => OffsetDefinition.Parse(input));
+        Assert.Throws<FormatException>(() => OffsetValue.Parse(input));
     }
 
     // -------------------------------------------------------------------------
-    // Resolve
+    // OffsetValue.Resolve
     // -------------------------------------------------------------------------
 
     [Fact]
-    public void Resolve_Utc_ReturnsZero()
+    public void OffsetValue_Resolve_Utc_ReturnsZero()
     {
-        Assert.Equal(TimeSpan.Zero, OffsetDefinition.Utc.Resolve());
+        Assert.Equal(TimeSpan.Zero, OffsetValue.Utc.Resolve());
     }
 
     [Fact]
-    public void Resolve_Fixed_ReturnsConfiguredOffset()
+    public void OffsetValue_Resolve_Fixed_ReturnsConfiguredOffset()
     {
         var offset = TimeSpan.FromHours(9);
-        var def = OffsetDefinition.Fixed(offset);
-        Assert.Equal(offset, def.Resolve());
+        Assert.Equal(offset, OffsetValue.Fixed(offset).Resolve());
     }
 
     [Fact]
-    public void Resolve_Local_ReturnsCurrentLocalOffset()
+    public void OffsetValue_Resolve_Local_ReturnsCurrentLocalOffset()
     {
         var expected = TimeZoneInfo.Local.GetUtcOffset(DateTime.Now);
-        Assert.Equal(expected, OffsetDefinition.Local.Resolve());
+        Assert.Equal(expected, OffsetValue.Local.Resolve());
     }
 
     // -------------------------------------------------------------------------
-    // ToString
+    // OffsetValue.ToString
     // -------------------------------------------------------------------------
 
     [Fact]
-    public void ToString_Utc_ReturnsUTC()
+    public void OffsetValue_ToString_Utc_ReturnsUTC()
     {
-        Assert.Equal("UTC", OffsetDefinition.Utc.ToString());
+        Assert.Equal("UTC", OffsetValue.Utc.ToString());
     }
 
     [Theory]
@@ -172,40 +203,128 @@ public class OffsetDefinitionTests
     [InlineData(0, 0, "+00:00")]
     [InlineData(-5, -30, "-05:30")]
     [InlineData(-12, 0, "-12:00")]
-    public void ToString_Fixed_ReturnsFormattedOffset(int hours, int minutes, string expected)
+    public void OffsetValue_ToString_Fixed_ReturnsFormattedOffset(int hours, int minutes, string expected)
     {
-        var def = OffsetDefinition.Fixed(TimeSpan.FromHours(hours) + TimeSpan.FromMinutes(minutes));
-        Assert.Equal(expected, def.ToString());
+        var val = OffsetValue.Fixed(TimeSpan.FromHours(hours) + TimeSpan.FromMinutes(minutes));
+        Assert.Equal(expected, val.ToString());
     }
 
     [Fact]
-    public void ToString_Local_StartsWithLocal()
+    public void OffsetValue_ToString_Local_MatchesPattern()
     {
-        Assert.StartsWith("Local", OffsetDefinition.Local.ToString());
+        Assert.Matches(@"^Local \([+-]\d{2}:\d{2}\)$", OffsetValue.Local.ToString());
+    }
+
+    // -------------------------------------------------------------------------
+    // OffsetDefinition class  static singletons and factory
+    // -------------------------------------------------------------------------
+
+    [Fact]
+    public void OffsetDefinition_Utc_Singleton_HasUtcOffset()
+    {
+        Assert.True(OffsetDefinition.Utc.Offset.IsUtc);
     }
 
     [Fact]
-    public void ToString_Local_ContainsOffsetInParentheses()
+    public void OffsetDefinition_Local_Singleton_HasLocalOffset()
     {
-        var result = OffsetDefinition.Local.ToString();
-        Assert.Matches(@"^Local \([+-]\d{2}:\d{2}\)$", result);
+        Assert.True(OffsetDefinition.Local.Offset.IsLocal);
+    }
+
+    [Fact]
+    public void OffsetDefinition_Fixed_Factory_HasFixedOffsetValue()
+    {
+        var def = OffsetDefinition.Fixed(TimeSpan.FromHours(8));
+        Assert.True(def.Offset.IsFixed);
+        Assert.Equal(TimeSpan.FromHours(8), def.Offset.FixedOffset);
+    }
+
+    [Fact]
+    public void OffsetDefinition_DefaultConstructor_OffsetIsDefaultUtc()
+    {
+        var def = new OffsetDefinition();
+        Assert.True(def.Offset.IsUtc);
+    }
+
+    // -------------------------------------------------------------------------
+    // OffsetDefinition.Resolve (delegates to OffsetValue)
+    // -------------------------------------------------------------------------
+
+    [Fact]
+    public void OffsetDefinition_Resolve_Utc_ReturnsZero()
+    {
+        Assert.Equal(TimeSpan.Zero, OffsetDefinition.Utc.Resolve());
+    }
+
+    [Fact]
+    public void OffsetDefinition_Resolve_Fixed_ReturnsConfiguredOffset()
+    {
+        var offset = TimeSpan.FromHours(9);
+        Assert.Equal(offset, OffsetDefinition.Fixed(offset).Resolve());
+    }
+
+    [Fact]
+    public void OffsetDefinition_Resolve_Local_ReturnsCurrentLocalOffset()
+    {
+        var expected = TimeZoneInfo.Local.GetUtcOffset(DateTime.Now);
+        Assert.Equal(expected, OffsetDefinition.Local.Resolve());
+    }
+
+    // -------------------------------------------------------------------------
+    // OffsetDefinition.ToString (delegates to OffsetValue)
+    // -------------------------------------------------------------------------
+
+    [Fact]
+    public void OffsetDefinition_ToString_Utc_ReturnsUTC()
+    {
+        Assert.Equal("UTC", OffsetDefinition.Utc.ToString());
+    }
+
+    [Fact]
+    public void OffsetDefinition_ToString_Local_MatchesPattern()
+    {
+        Assert.Matches(@"^Local \([+-]\d{2}:\d{2}\)$", OffsetDefinition.Local.ToString());
+    }
+
+    // -------------------------------------------------------------------------
+    // OffsetValueConverter
+    // -------------------------------------------------------------------------
+
+    [Fact]
+    public void OffsetValueConverter_CanConvertFromString_ReturnsTrue()
+    {
+        var converter = TypeDescriptor.GetConverter(typeof(OffsetValue));
+        Assert.True(converter.CanConvertFrom(typeof(string)));
+    }
+
+    [Fact]
+    public void OffsetValueConverter_ConvertFrom_UTC_IsUtc()
+    {
+        var converter = TypeDescriptor.GetConverter(typeof(OffsetValue));
+        var result = Assert.IsType<OffsetValue>(converter.ConvertFrom("UTC"));
+        Assert.True(result.IsUtc);
+    }
+
+    [Fact]
+    public void OffsetValueConverter_ConvertFrom_Local_IsLocal()
+    {
+        var converter = TypeDescriptor.GetConverter(typeof(OffsetValue));
+        var result = Assert.IsType<OffsetValue>(converter.ConvertFrom("Local"));
+        Assert.True(result.IsLocal);
+    }
+
+    [Fact]
+    public void OffsetValueConverter_ConvertFrom_FixedOffset_IsFixed()
+    {
+        var converter = TypeDescriptor.GetConverter(typeof(OffsetValue));
+        var result = Assert.IsType<OffsetValue>(converter.ConvertFrom("+08:00"));
+        Assert.True(result.IsFixed);
+        Assert.Equal(TimeSpan.FromHours(8), result.FixedOffset);
     }
 
     // -------------------------------------------------------------------------
     // OffsetDefinitionConverter (single item TypeConverter)
     // -------------------------------------------------------------------------
-
-    [Theory]
-    [InlineData("UTC", OffsetDefinitionKind.Utc)]
-    [InlineData("Local", OffsetDefinitionKind.Local)]
-    [InlineData("+08:00", OffsetDefinitionKind.Fixed)]
-    public void OffsetDefinitionConverter_ConvertFrom_ReturnsCorrectKind(string input, OffsetDefinitionKind expectedKind)
-    {
-        var converter = TypeDescriptor.GetConverter(typeof(OffsetDefinition));
-        var result = converter.ConvertFrom(input);
-        var def = Assert.IsType<OffsetDefinition>(result);
-        Assert.Equal(expectedKind, def.Kind);
-    }
 
     [Fact]
     public void OffsetDefinitionConverter_CanConvertFromString_ReturnsTrue()
@@ -214,9 +333,41 @@ public class OffsetDefinitionTests
         Assert.True(converter.CanConvertFrom(typeof(string)));
     }
 
+    [Fact]
+    public void OffsetDefinitionConverter_ConvertFrom_UTC_IsUtc()
+    {
+        var converter = TypeDescriptor.GetConverter(typeof(OffsetDefinition));
+        var def = Assert.IsType<OffsetDefinition>(converter.ConvertFrom("UTC"));
+        Assert.True(def.Offset.IsUtc);
+    }
+
+    [Fact]
+    public void OffsetDefinitionConverter_ConvertFrom_Local_IsLocal()
+    {
+        var converter = TypeDescriptor.GetConverter(typeof(OffsetDefinition));
+        var def = Assert.IsType<OffsetDefinition>(converter.ConvertFrom("Local"));
+        Assert.True(def.Offset.IsLocal);
+    }
+
+    [Fact]
+    public void OffsetDefinitionConverter_ConvertFrom_FixedOffset_IsFixed()
+    {
+        var converter = TypeDescriptor.GetConverter(typeof(OffsetDefinition));
+        var def = Assert.IsType<OffsetDefinition>(converter.ConvertFrom("+08:00"));
+        Assert.True(def.Offset.IsFixed);
+        Assert.Equal(TimeSpan.FromHours(8), def.Offset.FixedOffset);
+    }
+
     // -------------------------------------------------------------------------
     // OffsetDefinitionsConverter (collection TypeConverter)
     // -------------------------------------------------------------------------
+
+    [Fact]
+    public void OffsetDefinitionsConverter_CanConvertFromString_ReturnsTrue()
+    {
+        var converter = TypeDescriptor.GetConverter(typeof(OffsetDefinitions));
+        Assert.True(converter.CanConvertFrom(typeof(string)));
+    }
 
     [Fact]
     public void OffsetDefinitionsConverter_SingleItem_ReturnsSingleDefinition()
@@ -224,7 +375,7 @@ public class OffsetDefinitionTests
         var converter = TypeDescriptor.GetConverter(typeof(OffsetDefinitions));
         var result = Assert.IsType<OffsetDefinitions>(converter.ConvertFrom("UTC"));
         Assert.Single(result);
-        Assert.Equal(OffsetDefinitionKind.Utc, result[0].Kind);
+        Assert.True(result[0].Offset.IsUtc);
     }
 
     [Fact]
@@ -233,17 +384,10 @@ public class OffsetDefinitionTests
         var converter = TypeDescriptor.GetConverter(typeof(OffsetDefinitions));
         var result = Assert.IsType<OffsetDefinitions>(converter.ConvertFrom("UTC, Local, +08:00"));
         Assert.Equal(3, result.Count);
-        Assert.Equal(OffsetDefinitionKind.Utc, result[0].Kind);
-        Assert.Equal(OffsetDefinitionKind.Local, result[1].Kind);
-        Assert.Equal(OffsetDefinitionKind.Fixed, result[2].Kind);
-        Assert.Equal(TimeSpan.FromHours(8), result[2].Offset);
-    }
-
-    [Fact]
-    public void OffsetDefinitionsConverter_CanConvertFromString_ReturnsTrue()
-    {
-        var converter = TypeDescriptor.GetConverter(typeof(OffsetDefinitions));
-        Assert.True(converter.CanConvertFrom(typeof(string)));
+        Assert.True(result[0].Offset.IsUtc);
+        Assert.True(result[1].Offset.IsLocal);
+        Assert.True(result[2].Offset.IsFixed);
+        Assert.Equal(TimeSpan.FromHours(8), result[2].Offset.FixedOffset);
     }
 
     // -------------------------------------------------------------------------
