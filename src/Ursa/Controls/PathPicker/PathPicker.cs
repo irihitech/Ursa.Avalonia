@@ -185,7 +185,7 @@ public partial class PathPicker : TemplatedControl
         if (change.Property == SelectedPathsProperty)
         {
             _twoConvertLock = true;
-            SetCurrentValue(SelectedPathsProperty, string.Join(Environment.NewLine, SelectedPaths));
+            SetCurrentValue(SelectedPathsTextProperty , string.Join(Environment.NewLine, SelectedPaths));
             _twoConvertLock = false;
         }
 
