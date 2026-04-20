@@ -1,0 +1,65 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.DateTimeOffsetPickerDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
+    d:DesignHeight="600"
+    d:DesignWidth="800"
+    x:DataType="vm:DateTimeOffsetPickerDemoViewModel"
+    mc:Ignorable="d">
+    <ScrollViewer>
+        <StackPanel Margin="20" HorizontalAlignment="Left" Spacing="8">
+
+            <ToggleSwitch Name="showOffset" Content="Show Offset Selection" IsChecked="True" />
+            <ToggleSwitch Name="needConfirm" Content="Need Confirmation" />
+
+            <TextBlock Text="Default (Local offset)" />
+            <u:DateTimeOffsetPicker
+                Width="360"
+                NeedConfirmation="{Binding #needConfirm.IsChecked}"
+                ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
+
+            <TextBlock Text="UTC, Local, Beijing, New York" />
+            <u:DateTimeOffsetPicker
+                Width="360"
+                NeedConfirmation="{Binding #needConfirm.IsChecked}"
+                ShowOffsetSelection="{Binding #showOffset.IsChecked}">
+                <u:DateTimeOffsetPicker.OffsetDefinitions>
+                    <u:OffsetDefinitions>
+                        <u:OffsetDefinition Offset="UTC" />
+                        <u:OffsetDefinition Offset="Local" />
+                        <u:OffsetDefinition Offset="+08:00" DisplayName="Beijing (CST)" />
+                        <u:OffsetDefinition Offset="-05:00" DisplayName="New York (EST)" />
+                    </u:OffsetDefinitions>
+                </u:DateTimeOffsetPicker.OffsetDefinitions>
+            </u:DateTimeOffsetPicker>
+
+            <TextBlock Text="Binding" />
+            <TextBlock Text="{Binding SelectedDateTime, StringFormat='Selected: {0:yyyy-MM-dd HH:mm:ss zzz}'}" />
+            <u:DateTimeOffsetPicker
+                Width="360"
+                NeedConfirmation="{Binding #needConfirm.IsChecked}"
+                SelectedDate="{Binding SelectedDateTime, Mode=TwoWay}"
+                ShowOffsetSelection="{Binding #showOffset.IsChecked}">
+                <u:DateTimeOffsetPicker.OffsetDefinitions>
+                    <u:OffsetDefinitions>
+                        <u:OffsetDefinition Offset="UTC" />
+                        <u:OffsetDefinition Offset="Local" />
+                        <u:OffsetDefinition Offset="+08:00" DisplayName="Beijing (CST)" />
+                        <u:OffsetDefinition Offset="-05:00" DisplayName="New York (EST)" />
+                    </u:OffsetDefinitions>
+                </u:DateTimeOffsetPicker.OffsetDefinitions>
+            </u:DateTimeOffsetPicker>
+
+            <TextBlock Text="Clear Button" />
+            <u:DateTimeOffsetPicker
+                Width="360"
+                Classes="ClearButton"
+                ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

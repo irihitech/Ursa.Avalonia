@@ -39,7 +39,7 @@ public class DateOffsetRangePicker : DateRangePickerBase<DateTimeOffset>
         SetCurrentValue(OffsetDefinitionsProperty, [OffsetDefinition.Local]);
     }
 
-    protected override Type StyleKeyOverride { get; } = typeof(DateRangePickerBase);
+
 
     private TimeSpan GetCurrentOffset()
     {

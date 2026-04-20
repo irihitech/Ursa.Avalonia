@@ -34,7 +34,7 @@ public class DateTimeOffsetPicker : DateTimePickerBase<DateTimeOffset>
         set => SetValue(ShowOffsetSelectionProperty, value);
     }
 
-    protected override Type StyleKeyOverride { get; } = typeof(DateTimePickerBase);
+
 
     static DateTimeOffsetPicker()
     {

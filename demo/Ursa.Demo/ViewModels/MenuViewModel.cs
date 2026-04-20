@@ -60,6 +60,9 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = "Date Range Picker", Key = MenuKeys.MenuKeyDateRangePicker },
                     new() { MenuHeader = "Date Only Range Picker", Key = MenuKeys.MenuKeyDateOnlyRangePicker },
                     new() { MenuHeader = "Date Time Picker", Key = MenuKeys.MenuKeyDateTimePicker },
+                    new() { MenuHeader = "Date Offset Picker", Key = MenuKeys.MenuKeyDateOffsetPicker, Status = "New" },
+                    new() { MenuHeader = "Date Offset Range Picker", Key = MenuKeys.MenuKeyDateOffsetRangePicker, Status = "New" },
+                    new() { MenuHeader = "DateTime Offset Picker", Key = MenuKeys.MenuKeyDateTimeOffsetPicker, Status = "New" },
                     new() { MenuHeader = "Time Box", Key = MenuKeys.MenuKeyTimeBox },
                     new() { MenuHeader = "Time Picker", Key = MenuKeys.MenuKeyTimePicker },
                     new() { MenuHeader = "Time Only Picker", Key = MenuKeys.MenuKeyTimeOnlyPicker },
@@ -125,6 +128,9 @@ public static class MenuKeys
     public const string MenuKeyDatePicker = "DatePicker";
     public const string MenuKeyDateRangePicker = "DateRangePicker";
     public const string MenuKeyDateTimePicker = "DateTimePicker";
+    public const string MenuKeyDateOffsetPicker = "DateOffsetPicker";
+    public const string MenuKeyDateOffsetRangePicker = "DateOffsetRangePicker";
+    public const string MenuKeyDateTimeOffsetPicker = "DateTimeOffsetPicker";
     public const string MenuKeyDescriptions = "Descriptions";
     public const string MenuKeyDialog = "Dialog";
     public const string MenuKeyDisableContainer = "DisableContainer";

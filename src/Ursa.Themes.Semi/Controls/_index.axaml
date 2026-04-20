@@ -10,9 +10,12 @@
         <ResourceInclude Source="Calendar.axaml" />
         <ResourceInclude Source="Clock.axaml" />
         <ResourceInclude Source="ControlClassesInput.axaml" />
+        <ResourceInclude Source="DateOffsetPicker.axaml" />
+        <ResourceInclude Source="DateOffsetRangePicker.axaml" />
         <ResourceInclude Source="DatePicker.axaml" />
         <ResourceInclude Source="DateRangePicker.axaml" />
         <ResourceInclude Source="DateTimePicker.axaml" />
+        <ResourceInclude Source="DateTimeOffsetPicker.axaml" />
         <ResourceInclude Source="Descriptions.axaml" />
         <ResourceInclude Source="Dialog.axaml" />
         <ResourceInclude Source="DialogShared.axaml" />
