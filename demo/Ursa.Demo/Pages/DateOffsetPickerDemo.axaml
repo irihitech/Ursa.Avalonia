@@ -54,7 +54,9 @@
             <u:DateOffsetPicker
                 Width="280"
                 Classes="ClearButton"
+                OffsetDefinitions="Utc, Local, +8:00, -5:00"
                 ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
+
 
         </StackPanel>
     </ScrollViewer>

@@ -30,8 +30,8 @@ public readonly struct OffsetValue : IEquatable<OffsetValue>
     /// <summary>The fixed offset value. Only meaningful when <see cref="IsFixed"/> is true.</summary>
     public TimeSpan FixedOffset => _fixedOffset;
 
-    public static readonly OffsetValue Utc = new(OffsetDefinitionKind.Utc, default);
-    public static readonly OffsetValue Local = new(OffsetDefinitionKind.Local, default);
+    public static readonly OffsetValue Utc = new(OffsetDefinitionKind.Utc, TimeSpan.Zero);
+    public static readonly OffsetValue Local = new(OffsetDefinitionKind.Local, TimeSpan.Zero);
     public static OffsetValue Fixed(TimeSpan offset) => new(OffsetDefinitionKind.Fixed, offset);
 
     /// <summary>Resolves to a concrete <see cref="TimeSpan"/> at call time.</summary>
@@ -60,10 +60,10 @@ public readonly struct OffsetValue : IEquatable<OffsetValue>
         bool negative = trimmed.StartsWith('-');
         var stripped = trimmed.TrimStart('+').TrimStart('-');
 
-        if (TimeSpan.TryParseExact(stripped, new[] { @"hh\:mm", @"h\:mm" }, null, out var ts))
+        if (TimeSpan.TryParseExact(stripped, [@"hh\:mm", @"h\:mm"], null, out var ts))
             return Fixed(negative ? -ts : ts);
 
-        if (int.TryParse(stripped, out var hours) && hours >= 0 && hours <= 14)
+        if (int.TryParse(stripped, out var hours) && hours is >= 0 and <= 14)
             return Fixed(TimeSpan.FromHours(negative ? -hours : hours));
 
         throw new FormatException(
@@ -117,6 +117,12 @@ public class OffsetDefinition
 
     public TimeSpan Resolve() => Offset.Resolve();
 
+    /// <summary>
+    /// Parses a string into an <see cref="OffsetDefinition"/>.
+    /// Accepts the same formats as <see cref="OffsetValue.Parse"/>: "UTC", "Local", "+08:00", "8", etc.
+    /// </summary>
+    public static OffsetDefinition Parse(string s) => new() { Offset = OffsetValue.Parse(s.Trim()) };
+
     public override string ToString() => DisplayName ?? Offset.ToString();
 }
 
@@ -130,6 +136,13 @@ public class OffsetDefinitions : AvaloniaList<OffsetDefinition>
     public OffsetDefinitions() { }
 
     public OffsetDefinitions(IEnumerable<OffsetDefinition> items) : base(items) { }
+
+    /// <summary>
+    /// Parses a comma-separated string into an <see cref="OffsetDefinitions"/> collection.
+    /// Each entry is parsed by <see cref="OffsetDefinition.Parse"/>: e.g. "UTC, Local, +08:00".
+    /// </summary>
+    public static OffsetDefinitions Parse(string s) =>
+        new(s.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(OffsetDefinition.Parse));
 }
 
 public class OffsetValueConverter : TypeConverter
@@ -147,9 +160,7 @@ public class OffsetDefinitionConverter : TypeConverter
         sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
 
     public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value) =>
-        value is string s
-            ? new OffsetDefinition { Offset = OffsetValue.Parse(s) }
-            : base.ConvertFrom(context, culture, value);
+        value is string s ? OffsetDefinition.Parse(s) : base.ConvertFrom(context, culture, value);
 }
 
 public class OffsetDefinitionsConverter : TypeConverter
@@ -160,8 +171,7 @@ public class OffsetDefinitionsConverter : TypeConverter
     public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
     {
         if (value is string s)
-            return new OffsetDefinitions(
-                s.Split(',').Select(item => new OffsetDefinition { Offset = OffsetValue.Parse(item) }));
+            return OffsetDefinitions.Parse(s);
         return base.ConvertFrom(context, culture, value);
     }
 }
