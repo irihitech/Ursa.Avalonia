@@ -24,10 +24,20 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}" />
-                        <Grid ColumnDefinitions="*, Auto, * Auto" Name="PART_PassThroughElement">
+                        <Grid ColumnDefinitions="Auto, *, Auto, *, Auto" Name="PART_PassThroughElement">
+                            <ComboBox
+                                Name="PART_OffsetComboBox"
+                                Grid.Column="0"
+                                VerticalAlignment="Stretch"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                CornerRadius="0"
+                                IsVisible="{TemplateBinding ShowOffsetSelection}"
+                                ItemsSource="{TemplateBinding OffsetDefinitions}"
+                                SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedOffset, Mode=TwoWay}" />
                             <TextBox
                                 Name="{x:Static u:DateRangePickerBase.PART_StartTextBox}"
-                                Grid.Column="0"
+                                Grid.Column="1"
                                 MinHeight="{TemplateBinding MinHeight}"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
@@ -38,12 +48,12 @@
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
                                 IsReadOnly="{TemplateBinding IsReadonly}" />
                             <TextBlock
-                                Grid.Column="1"
+                                Grid.Column="2"
                                 VerticalAlignment="Center"
                                 Text="~" />
                             <TextBox
                                 Name="{x:Static u:DateRangePickerBase.PART_EndTextBox}"
-                                Grid.Column="2"
+                                Grid.Column="3"
                                 MinHeight="{TemplateBinding MinHeight}"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
@@ -55,7 +65,7 @@
                                 IsReadOnly="{TemplateBinding IsReadonly}" />
                             <Button
                                 Name="ClearButton"
-                                Grid.Column="3"
+                                Grid.Column="4"
                                 Margin="8,0"
                                 Command="{Binding $parent[iri:IClearControl].Clear}"
                                 Content="{DynamicResource IconButtonClearData}"
@@ -64,7 +74,7 @@
                                 Theme="{DynamicResource InnerIconButton}" />
                             <PathIcon
                                 Name="PART_Button"
-                                Grid.Column="3"
+                                Grid.Column="4"
                                 Margin="8,0"
                                 Data="{DynamicResource CalendarDatePickerIconGlyph}"
                                 Focusable="False"

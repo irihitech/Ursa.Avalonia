@@ -1,11 +1,19 @@
 using System.Globalization;
 using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
+using Avalonia.Controls.Primitives;
 using Avalonia.Data;
+using Avalonia.Input;
+using Avalonia.VisualTree;
 
 namespace Ursa.Controls;
 
+[TemplatePart(PART_OffsetComboBox, typeof(ComboBox))]
 public class DateOffsetPicker : DatePickerBase<DateTimeOffset>
 {
+    public const string PART_OffsetComboBox = "PART_OffsetComboBox";
+
     public static readonly StyledProperty<OffsetDefinitions?> OffsetDefinitionsProperty =
         AvaloniaProperty.Register<DateOffsetPicker, OffsetDefinitions?>(nameof(OffsetDefinitions));
 
@@ -34,12 +42,37 @@ public class DateOffsetPicker : DatePickerBase<DateTimeOffset>
         set => SetValue(ShowOffsetSelectionProperty, value);
     }
 
+    private ComboBox? _offsetComboBox;
+
     public DateOffsetPicker()
     {
         SetCurrentValue(OffsetDefinitionsProperty, [OffsetDefinition.Local]);
     }
 
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+        if (change.Property == OffsetDefinitionsProperty)
+        {
+            var definitions = change.GetNewValue<OffsetDefinitions?>();
+            if (definitions is not null && (SelectedOffset is null || !definitions.Contains(SelectedOffset)))
+                SetCurrentValue(SelectedOffsetProperty, definitions.FirstOrDefault());
+        }
+    }
 
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+        _offsetComboBox = e.NameScope.Find<ComboBox>(PART_OffsetComboBox);
+    }
+
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    {
+        if (_offsetComboBox is not null && e.Source is Visual source &&
+            (ReferenceEquals(source, _offsetComboBox) || _offsetComboBox.IsVisualAncestorOf(source)))
+            return;
+        base.OnPointerPressed(e);
+    }
 
     private TimeSpan GetCurrentOffset()
     {
