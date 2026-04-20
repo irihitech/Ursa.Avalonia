@@ -34,6 +34,11 @@ public class DateOffsetPicker : DatePickerBase<DateTimeOffset>
         set => SetValue(ShowOffsetSelectionProperty, value);
     }
 
+    public DateOffsetPicker()
+    {
+        SetCurrentValue(OffsetDefinitionsProperty, [OffsetDefinition.Local]);
+    }
+
     protected override Type StyleKeyOverride { get; } = typeof(DatePickerBase);
 
     private TimeSpan GetCurrentOffset()

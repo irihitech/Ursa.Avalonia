@@ -42,6 +42,11 @@ public class DateTimeOffsetPicker : DateTimePickerBase<DateTimeOffset>
             CultureInfo.InvariantCulture.DateTimeFormat.FullDateTimePattern);
     }
 
+    public DateTimeOffsetPicker()
+    {
+        SetCurrentValue(OffsetDefinitionsProperty, [OffsetDefinition.Local]);
+    }
+
     private TimeSpan GetCurrentOffset()
     {
         var definition = ShowOffsetSelection

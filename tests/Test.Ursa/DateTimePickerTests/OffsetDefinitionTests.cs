@@ -271,7 +271,7 @@ public class OffsetDefinitionTests
     }
 
     // -------------------------------------------------------------------------
-    // OffsetDefinition.ToString (delegates to OffsetValue)
+    // OffsetDefinition.ToString (delegates to OffsetValue, or DisplayName)
     // -------------------------------------------------------------------------
 
     [Fact]
@@ -284,6 +284,20 @@ public class OffsetDefinitionTests
     public void OffsetDefinition_ToString_Local_MatchesPattern()
     {
         Assert.Matches(@"^Local \([+-]\d{2}:\d{2}\)$", OffsetDefinition.Local.ToString());
+    }
+
+    [Fact]
+    public void OffsetDefinition_ToString_WithDisplayName_ReturnsDisplayName()
+    {
+        var def = new OffsetDefinition { Offset = OffsetValue.Fixed(TimeSpan.FromHours(8)), DisplayName = "Beijing" };
+        Assert.Equal("Beijing", def.ToString());
+    }
+
+    [Fact]
+    public void OffsetDefinition_ToString_NullDisplayName_FallsBackToOffset()
+    {
+        var def = new OffsetDefinition { Offset = OffsetValue.Fixed(TimeSpan.FromHours(8)), DisplayName = null };
+        Assert.Equal("+08:00", def.ToString());
     }
 
     // -------------------------------------------------------------------------

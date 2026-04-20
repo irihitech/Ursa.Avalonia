@@ -101,6 +101,12 @@ public class OffsetDefinition
 {
     public OffsetValue Offset { get; set; }
 
+    /// <summary>
+    /// Optional display name shown in the UI. When <see langword="null"/>, falls back to
+    /// the formatted offset string (e.g. "UTC", "Local (+08:00)", "+05:30").
+    /// </summary>
+    public string? DisplayName { get; set; }
+
     public OffsetDefinition() { }
 
     private OffsetDefinition(OffsetValue offset) => Offset = offset;
@@ -111,7 +117,7 @@ public class OffsetDefinition
 
     public TimeSpan Resolve() => Offset.Resolve();
 
-    public override string ToString() => Offset.ToString();
+    public override string ToString() => DisplayName ?? Offset.ToString();
 }
 
 /// <summary>
