@@ -97,7 +97,7 @@ public readonly struct OffsetValue : IEquatable<OffsetValue>
 /// Set <see cref="Offset"/> as a XAML attribute: <c>Offset="UTC"</c>, <c>Offset="Local"</c>, <c>Offset="+08:00"</c>.
 /// </summary>
 [TypeConverter(typeof(OffsetDefinitionConverter))]
-public class OffsetDefinition
+public class OffsetDefinition : IEquatable<OffsetDefinition>
 {
     public OffsetValue Offset { get; set; }
 
@@ -124,6 +124,22 @@ public class OffsetDefinition
     public static OffsetDefinition Parse(string s) => new() { Offset = OffsetValue.Parse(s.Trim()) };
 
     public override string ToString() => DisplayName ?? Offset.ToString();
+
+    public bool Equals(OffsetDefinition? other)
+    {
+        if (other is null) return false;
+        if (ReferenceEquals(this, other)) return true;
+        return Offset == other.Offset;
+    }
+
+    public override bool Equals(object? obj) => Equals(obj as OffsetDefinition);
+
+    public override int GetHashCode() => Offset.GetHashCode();
+
+    public static bool operator ==(OffsetDefinition? left, OffsetDefinition? right) =>
+        left is null ? right is null : left.Equals(right);
+
+    public static bool operator !=(OffsetDefinition? left, OffsetDefinition? right) => !(left == right);
 }
 
 /// <summary>
