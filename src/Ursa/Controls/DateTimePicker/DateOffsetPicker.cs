@@ -58,6 +58,12 @@ public class DateOffsetPicker : DatePickerBase<DateTimeOffset>
             if (definitions is not null && (SelectedOffset is null || !definitions.Contains(SelectedOffset)))
                 SetCurrentValue(SelectedOffsetProperty, definitions.FirstOrDefault());
         }
+        else if (change.Property == SelectedOffsetProperty && SelectedDate.HasValue)
+        {
+            var newOffset = GetCurrentOffset();
+            SetCurrentValue(DatePickerBase<DateTimeOffset>.SelectedDateProperty,
+                (DateTimeOffset?)new DateTimeOffset(SelectedDate.Value.DateTime, newOffset));
+        }
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
