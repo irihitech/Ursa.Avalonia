@@ -18,33 +18,35 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:DateOffsetPicker">
                 <DataValidationErrors>
-                    <Panel
+                    <Grid
                         x:Name="LayoutRoot"
+                        ColumnDefinitions="Auto, *"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">
+                        <ComboBox
+                            Name="PART_OffsetComboBox"
+                            Grid.Column="0"
+                            VerticalAlignment="Stretch"
+                            CornerRadius="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter Left}}"
+                            IsVisible="{TemplateBinding ShowOffsetSelection}"
+                            ItemsSource="{TemplateBinding OffsetDefinitions}"
+                            SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedOffset, Mode=TwoWay}" />
                         <Border
                             x:Name="Background"
+                            Grid.Column="1"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
+                            BackgroundSizing="OuterBorderEdge"
                             CornerRadius="{TemplateBinding CornerRadius}" />
                         <Grid
+                            Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
-                            ColumnDefinitions="Auto, *, Auto">
-                            <ComboBox
-                                Name="PART_OffsetComboBox"
-                                Grid.Column="0"
-                                VerticalAlignment="Stretch"
-                                Background="Transparent"
-                                BorderThickness="0"
-                                CornerRadius="0"
-                                IsVisible="{TemplateBinding ShowOffsetSelection}"
-                                ItemsSource="{TemplateBinding OffsetDefinitions}"
-                                SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedOffset, Mode=TwoWay}" />
+                            ColumnDefinitions="*, Auto">
                             <TextBox
                                 Name="PART_TextBox"
-                                Grid.Column="1"
+                                Grid.Column="0"
                                 Grid.ColumnSpan="2"
                                 MinHeight="{TemplateBinding MinHeight}"
                                 HorizontalAlignment="Stretch"
@@ -62,7 +64,7 @@
                                 PlaceholderForeground="{TemplateBinding PlaceholderForeground}" />
                             <Button
                                 Name="ClearButton"
-                                Grid.Column="2"
+                                Grid.Column="1"
                                 Margin="8,0"
                                 Command="{Binding $parent[iri:IClearControl].Clear}"
                                 Content="{DynamicResource IconButtonClearData}"
@@ -71,7 +73,7 @@
                                 Theme="{DynamicResource InnerIconButton}" />
                             <PathIcon
                                 Name="PART_Button"
-                                Grid.Column="2"
+                                Grid.Column="1"
                                 Margin="8,0"
                                 IsVisible="{Binding !#ClearButton.IsVisible}"
                                 Data="{DynamicResource CalendarDatePickerIconGlyph}"
@@ -79,7 +81,7 @@
                                 Theme="{DynamicResource InnerPathIcon}" />
                             <Popup
                                 Name="PART_Popup"
-                                Grid.Column="1"
+                                Grid.Column="0"
                                 HorizontalOffset="-4"
                                 IsLightDismissEnabled="True"
                                 IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsDropdownOpen, Mode=TwoWay}"
@@ -112,11 +114,14 @@
                                 </Border>
                             </Popup>
                         </Grid>
-
-                    </Panel>
+                    </Grid>
                 </DataValidationErrors>
             </ControlTemplate>
         </Setter>
+        
+        <Style Selector="^[ShowOffsetSelection=True] /template/ Border#Background">
+            <Setter Property="CornerRadius" Value="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter Right}}" />
+        </Style>
 
         <Style Selector="^.clearButton, ^.ClearButton">
             <Style Selector="^:not(:empty):pointerover /template/ Button#ClearButton">

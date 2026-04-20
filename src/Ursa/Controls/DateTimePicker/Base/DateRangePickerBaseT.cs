@@ -182,10 +182,7 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
         {
             if (_popup?.IsInsidePopup(visual) == true) return;
         }
-        else
-        {
-            SetCurrentValue(IsDropdownOpenProperty, false);
-        }
+        SetCurrentValue(IsDropdownOpenProperty, false);
         CommitInput();
     }
 
