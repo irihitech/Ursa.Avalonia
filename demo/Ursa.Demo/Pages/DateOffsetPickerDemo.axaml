@@ -18,11 +18,13 @@
             <TextBlock Text="Default (Local offset)" />
             <u:DateOffsetPicker
                 Width="280"
+                DisplayFormat="yyyy-MM-dd"
                 ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
 
             <TextBlock Text="UTC, Local, Beijing, New York" />
             <u:DateOffsetPicker
                 Width="280"
+                DisplayFormat="yyyy-MM-dd"
                 ShowOffsetSelection="{Binding #showOffset.IsChecked}">
                 <u:DateOffsetPicker.OffsetDefinitions>
                     <u:OffsetDefinitions>
@@ -38,6 +40,7 @@
             <TextBlock Text="{Binding SelectedDate, StringFormat='Selected: {0:yyyy-MM-dd zzz}'}" />
             <u:DateOffsetPicker
                 Width="280"
+                DisplayFormat="yyyy-MM-dd"
                 SelectedDate="{Binding SelectedDate, Mode=TwoWay}"
                 ShowOffsetSelection="{Binding #showOffset.IsChecked}">
                 <u:DateOffsetPicker.OffsetDefinitions>
@@ -54,6 +57,7 @@
             <u:DateOffsetPicker
                 Width="280"
                 Classes="ClearButton"
+                DisplayFormat="yyyy-MM-dd"
                 OffsetDefinitions="Utc, Local, +8:00, -5:00"
                 ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
 
