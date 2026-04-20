@@ -185,8 +185,7 @@ public partial class PathPicker : TemplatedControl
         if (change.Property == SelectedPathsProperty)
         {
             _twoConvertLock = true;
-
-            SelectedPathsText = string.Join(Environment.NewLine, SelectedPaths);
+            SetCurrentValue(SelectedPathsProperty, string.Join(Environment.NewLine, SelectedPaths));
             _twoConvertLock = false;
         }
 
@@ -273,7 +272,7 @@ public partial class PathPicker : TemplatedControl
         {
             if (TopLevel.GetTopLevel(this)?.StorageProvider is not { } storageProvider) return;
             _button?.SetValue(IsEnabledProperty, false);
-            IReadOnlyList<IStorageItem> storageItems = [];
+            IReadOnlyList<IStorageItem> storageItems;
             switch (UsePickerType)
             {
                 case UsePickerTypes.OpenFile:
@@ -287,7 +286,7 @@ public partial class PathPicker : TemplatedControl
                     };
                     var resFiles = await storageProvider.OpenFilePickerAsync(filePickerOpenOptions);
                     storageItems = resFiles;
-                    UpdateSelectedPaths(resFiles.Select(x => x.TryGetLocalPath()).ToArray());
+                    UpdateSelectedPaths(resFiles);
                     break;
                 case UsePickerTypes.SaveFile:
                     FilePickerSaveOptions filePickerSaveOptions = new()
@@ -302,7 +301,7 @@ public partial class PathPicker : TemplatedControl
 
                     var savedFile = await storageProvider.SaveFilePickerAsync(filePickerSaveOptions);
                     storageItems = savedFile is not null ? [savedFile] : [];
-                    UpdateSelectedPaths([savedFile?.TryGetLocalPath()]);
+                    UpdateSelectedPaths(storageItems);
                     break;
                 case UsePickerTypes.OpenFolder:
                     FolderPickerOpenOptions folderPickerOpenOptions = new()
@@ -315,7 +314,7 @@ public partial class PathPicker : TemplatedControl
                     };
                     var resFolder = await storageProvider.OpenFolderPickerAsync(folderPickerOpenOptions);
                     storageItems = resFolder;
-                    UpdateSelectedPaths(resFolder.Select(x => x.TryGetLocalPath()).ToArray());
+                    UpdateSelectedPaths(resFolder);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -336,10 +335,9 @@ public partial class PathPicker : TemplatedControl
         }
     }
 
-    private void UpdateSelectedPaths(IReadOnlyList<string?> newList)
+    private void UpdateSelectedPaths(IReadOnlyList<IStorageItem> newList)
     {
-        var nonNullList = newList.Where(x => x is not null).Select(x => x!).ToList();
-        if (nonNullList.Count != 0 || IsClearSelectionOnCancel && nonNullList.Count == 0)
-            SelectedPaths = nonNullList;
+        if (newList.Count != 0 || IsClearSelectionOnCancel)
+            SelectedPaths = newList.Select(x => x.TryGetLocalPath() ?? x.Name).ToArray();
     }
 }
