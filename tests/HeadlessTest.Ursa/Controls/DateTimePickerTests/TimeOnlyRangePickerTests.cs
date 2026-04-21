@@ -8,6 +8,7 @@ using Avalonia.Layout;
 using Avalonia.Threading;
 using HeadlessTest.Ursa.TestHelpers;
 using Ursa.Controls;
+using TimePickerPresenter = Ursa.Controls.TimePickerPresenter;
 
 namespace HeadlessTest.Ursa.Controls.DateTimePickerTests;
 
