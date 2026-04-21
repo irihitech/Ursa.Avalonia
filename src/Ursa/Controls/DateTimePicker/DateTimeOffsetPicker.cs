@@ -44,12 +44,6 @@ public class DateTimeOffsetPicker : DateTimePickerBase<DateTimeOffset>
 
     private ComboBox? _offsetComboBox;
 
-    static DateTimeOffsetPicker()
-    {
-        DisplayFormatProperty.OverrideDefaultValue<DateTimeOffsetPicker>(
-            CultureInfo.InvariantCulture.DateTimeFormat.FullDateTimePattern);
-    }
-
     public DateTimeOffsetPicker()
     {
         SetCurrentValue(OffsetDefinitionsProperty, [OffsetDefinition.Local]);

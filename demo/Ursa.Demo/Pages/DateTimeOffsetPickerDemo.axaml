@@ -19,14 +19,12 @@
             <TextBlock Text="Default (Local offset)" />
             <u:DateTimeOffsetPicker
                 Width="360"
-                DisplayFormat="yyyy-MM-dd HH:mm:ss"
                 NeedConfirmation="{Binding #needConfirm.IsChecked}"
                 ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
 
             <TextBlock Text="UTC, Local, Beijing, New York" />
             <u:DateTimeOffsetPicker
                 Width="360"
-                DisplayFormat="yyyy-MM-dd HH:mm:ss"
                 NeedConfirmation="{Binding #needConfirm.IsChecked}"
                 ShowOffsetSelection="{Binding #showOffset.IsChecked}">
                 <u:DateTimeOffsetPicker.OffsetDefinitions>
@@ -43,7 +41,6 @@
             <TextBlock Text="{Binding SelectedDateTime, StringFormat='Selected: {0:yyyy-MM-dd HH:mm:ss zzz}'}" />
             <u:DateTimeOffsetPicker
                 Width="360"
-                DisplayFormat="yyyy-MM-dd HH:mm:ss"
                 NeedConfirmation="{Binding #needConfirm.IsChecked}"
                 SelectedDate="{Binding SelectedDateTime, Mode=TwoWay}"
                 ShowOffsetSelection="{Binding #showOffset.IsChecked}">
@@ -61,7 +58,6 @@
             <u:DateTimeOffsetPicker
                 Width="360"
                 Classes="ClearButton"
-                DisplayFormat="yyyy-MM-dd HH:mm:ss"
                 ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
 
         </StackPanel>
