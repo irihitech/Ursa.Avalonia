@@ -5,6 +5,7 @@ using Avalonia.Headless;
 using Avalonia.Headless.XUnit;
 using Avalonia.Input;
 using Avalonia.Layout;
+using Avalonia.LogicalTree;
 using Avalonia.Threading;
 using HeadlessTest.Ursa.TestHelpers;
 using Ursa.Controls;
@@ -157,7 +158,13 @@ public class TimeOnlyPickerTests
         window.Show();
         Dispatcher.UIThread.RunJobs();
 
-        var presenter = picker.GetTemplateChildOfType<TimePickerPresenter>(TimePickerBase.PART_Presenter);
+        // Open popup so the presenter becomes part of the visual/logical tree
+        window.MouseDown(new Point(10, 10), MouseButton.Left);
+        Dispatcher.UIThread.RunJobs();
+        Assert.True(picker.IsDropdownOpen);
+
+        var popup = picker.GetTemplateChildOfType<Popup>(TimePickerBase.PART_Popup);
+        var presenter = popup?.GetLogicalDescendants().OfType<TimePickerPresenter>().FirstOrDefault();
         Assert.NotNull(presenter);
 
         var newTime = new TimeOnly(10, 20, 30);

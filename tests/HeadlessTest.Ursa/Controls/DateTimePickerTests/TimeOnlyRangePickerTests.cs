@@ -5,6 +5,7 @@ using Avalonia.Headless;
 using Avalonia.Headless.XUnit;
 using Avalonia.Input;
 using Avalonia.Layout;
+using Avalonia.LogicalTree;
 using Avalonia.Threading;
 using HeadlessTest.Ursa.TestHelpers;
 using Ursa.Controls;
@@ -142,7 +143,9 @@ public class TimeOnlyRangePickerTests
         window.MouseDown(position.Value, MouseButton.Left);
         Dispatcher.UIThread.RunJobs();
 
-        var startPresenter = picker.GetTemplateChildOfType<TimePickerPresenter>(TimeRangePickerBase.PART_StartPresenter);
+        var popup = picker.GetTemplateChildOfType<Popup>(TimeRangePickerBase.PART_Popup);
+        var startPresenter = popup?.GetLogicalDescendants().OfType<TimePickerPresenter>()
+            .FirstOrDefault(p => p.Name == TimeRangePickerBase.PART_StartPresenter);
         Assert.NotNull(startPresenter);
 
         var newTime = new TimeOnly(9, 15, 0);
@@ -169,7 +172,9 @@ public class TimeOnlyRangePickerTests
         window.MouseDown(position.Value, MouseButton.Left);
         Dispatcher.UIThread.RunJobs();
 
-        var endPresenter = picker.GetTemplateChildOfType<TimePickerPresenter>(TimeRangePickerBase.PART_EndPresenter);
+        var popup = picker.GetTemplateChildOfType<Popup>(TimeRangePickerBase.PART_Popup);
+        var endPresenter = popup?.GetLogicalDescendants().OfType<TimePickerPresenter>()
+            .FirstOrDefault(p => p.Name == TimeRangePickerBase.PART_EndPresenter);
         Assert.NotNull(endPresenter);
 
         var newTime = new TimeOnly(18, 45, 0);
