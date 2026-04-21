@@ -1,0 +1,21 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    x:Class="Ursa.Themes.Semi.Locale.pl_pl"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <x:String x:Key="STRING_MENU_BRING_TO_FRONT">Przenieś na wierzch</x:String>
+    <x:String x:Key="STRING_MENU_BRING_FORWARD">Przenieś do przodu</x:String>
+    <x:String x:Key="STRING_MENU_SEND_BACKWARD">Przenieś do tyłu</x:String>
+    <x:String x:Key="STRING_MENU_SEND_TO_BACK">Przenieś na spód</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_OK">OK</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_CANCEL">Anuluj</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_YES">Tak</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_NO">Nie</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_CLOSE">Zamknij</x:String>
+    <x:String x:Key="STRING_PAGINATION_JUMP_TO">Idź do strony</x:String>
+    <x:String x:Key="STRING_PAGINATION_PAGE"> </x:String>
+    <x:String x:Key="STRING_THEME_TOGGLE_DARK">Ciemny</x:String>
+    <x:String x:Key="STRING_THEME_TOGGLE_LIGHT">Jasny</x:String>
+    <x:String x:Key="STRING_THEME_TOGGLE_SYSTEM">Systemowy</x:String>
+    <x:String x:Key="STRING_DATE_TIME_CONFIRM">Potwierdź</x:String>
+    <x:String x:Key="STRING_DATE_TIME_START_TIME">Czas rozpoczęcia</x:String>
+    <x:String x:Key="STRING_DATE_TIME_END_TIME">Czas zakończenia</x:String>
+</ResourceDictionary>
