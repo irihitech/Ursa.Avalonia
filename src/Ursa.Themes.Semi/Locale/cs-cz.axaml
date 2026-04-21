@@ -1,0 +1,21 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    x:Class="Ursa.Themes.Semi.Locale.cs_cz"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <x:String x:Key="STRING_MENU_BRING_TO_FRONT">Přenést do popředí</x:String>
+    <x:String x:Key="STRING_MENU_BRING_FORWARD">Přenést blíž</x:String>
+    <x:String x:Key="STRING_MENU_SEND_BACKWARD">Odsunout dál</x:String>
+    <x:String x:Key="STRING_MENU_SEND_TO_BACK">Odsunout do pozadí</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_OK">OK</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_CANCEL">Zrušit</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_YES">Ano</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_NO">Ne</x:String>
+    <x:String x:Key="STRING_MENU_DIALOG_CLOSE">Zavřít</x:String>
+    <x:String x:Key="STRING_PAGINATION_JUMP_TO">Přejít na stránku</x:String>
+    <x:String x:Key="STRING_PAGINATION_PAGE"> </x:String>
+    <x:String x:Key="STRING_THEME_TOGGLE_DARK">Tmavý</x:String>
+    <x:String x:Key="STRING_THEME_TOGGLE_LIGHT">Světlý</x:String>
+    <x:String x:Key="STRING_THEME_TOGGLE_SYSTEM">Systémový</x:String>
+    <x:String x:Key="STRING_DATE_TIME_CONFIRM">Potvrdit</x:String>
+    <x:String x:Key="STRING_DATE_TIME_START_TIME">Čas zahájení</x:String>
+    <x:String x:Key="STRING_DATE_TIME_END_TIME">Čas ukončení</x:String>
+</ResourceDictionary>

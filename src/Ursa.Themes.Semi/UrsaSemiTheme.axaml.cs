@@ -16,8 +16,11 @@ public class UrsaSemiTheme : Styles
     {
         { new CultureInfo("zh-CN"), new zh_cn() },
         { new CultureInfo("en-US"), new en_us() },
+        { new CultureInfo("de-DE"), new de_de() },
         { new CultureInfo("fr-FR"), new fr_fr() },
         { new CultureInfo("ru-RU"), new ru_ru() },
+        { new CultureInfo("pl-PL"), new pl_pl() },
+        { new CultureInfo("cs-CZ"), new cs_cz() },
     };
 
     private static readonly ResourceDictionary DefaultResource = new zh_cn();
