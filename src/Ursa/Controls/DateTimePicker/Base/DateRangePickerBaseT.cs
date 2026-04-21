@@ -173,6 +173,39 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
         _endCalendar?.SyncContextDate(new DatePickerCalendarContext(endDateOnly.Year, endDateOnly.Month));
     }
 
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        if (e.Key == Key.Escape)
+        {
+            SetCurrentValue(IsDropdownOpenProperty, false);
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.Down)
+        {
+            SetCurrentValue(IsDropdownOpenProperty, true);
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.Tab)
+        {
+            if (Equals(e.Source, _endTextBox)) SetCurrentValue(IsDropdownOpenProperty, false);
+            return;
+        }
+
+        if (e.Key == Key.Enter)
+        {
+            SetCurrentValue(IsDropdownOpenProperty, false);
+            CommitInput();
+            e.Handled = true;
+            return;
+        }
+
+        base.OnKeyDown(e);
+    }
+
     protected override void OnLostFocus(FocusChangedEventArgs e)
     {
         base.OnLostFocus(e);
