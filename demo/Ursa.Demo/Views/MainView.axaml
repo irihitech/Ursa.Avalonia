@@ -2,7 +2,7 @@
     x:Class="Ursa.Demo.Views.MainView"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="clr-namespace:Ursa.Demo.Converters"
+    xmlns:dataTemplates="clr-namespace:Ursa.Demo.DataTemplates"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:iri="https://irihi.tech/shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -17,9 +17,6 @@
     <Design.DataContext>
         <vm:MainViewViewModel />
     </Design.DataContext>
-    <UserControl.Resources>
-        <converters:IconNameToPathConverter x:Key="IconConverter" />
-    </UserControl.Resources>
     <Panel>
         <Panel.Styles>
             <Style Selector="Grid.Blur">
@@ -52,7 +49,7 @@
                                 Height="16"
                                 ActiveForeground="{DynamicResource SemiBlue5}"
                                 ActiveStrokeBrush="{DynamicResource SemiBlue5}"
-                                Data="{Binding Converter={StaticResource IconConverter}}"
+                                Data="{Binding Converter={dataTemplates:IconNameToPathConverter}}"
                                 Foreground="{DynamicResource SemiGrey5}"
                                 IsActive="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=u:NavMenuItem}, Path=IsHighlighted, Mode=TwoWay}"
                                 StrokeBrush="{DynamicResource SemiGrey5}" />
@@ -119,7 +116,7 @@
                 Margin="12,36,12,12"
                 Content="{Binding Content}">
                 <ContentControl.ContentTemplate>
-                    <converters:ViewLocator />
+                    <dataTemplates:ViewLocator />
                 </ContentControl.ContentTemplate>
             </ContentControl>
         </Grid>

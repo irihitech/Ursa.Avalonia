@@ -2,7 +2,7 @@ using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 
-namespace Ursa.Demo.Converters;
+namespace Ursa.Demo.DataTemplates;
 
 public class ViewLocator: IDataTemplate
 {

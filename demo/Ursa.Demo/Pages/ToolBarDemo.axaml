@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:template="using:Ursa.Demo.Converters"
+    xmlns:dataTemplates="using:Ursa.Demo.DataTemplates"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="using:Ursa.Demo.ViewModels"
     d:DesignHeight="450"
@@ -15,6 +15,7 @@
     <Grid ColumnDefinitions="Auto, Auto, *" RowDefinitions="Auto, Auto, *">
         <u:EnumSelector Name="Orientation" EnumType="Orientation" />
         <u:ToolBar
+            Grid.Row="0" Grid.Column="0"
             DockPanel.Dock="Top"
             Header="Hello World"
             Orientation="{Binding #Orientation.Value}">
@@ -44,11 +45,12 @@
             </u:ToolBar.Styles>
         </u:ToolBar>
         <u:ToolBar
+            Grid.Row="0" Grid.Column="0"
             DockPanel.Dock="Top"
             ItemsSource="{Binding Items}"
             Orientation="{Binding #Orientation.Value}">
             <u:ToolBar.ItemTemplate>
-                <template:ToolBarItemTemplateSelector />
+                <dataTemplates:ToolBarItemTemplateSelector />
             </u:ToolBar.ItemTemplate>
             <u:ToolBar.Styles>
                 <Style Selector="u|ToolBar[Orientation=Vertical]">

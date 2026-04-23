@@ -5,7 +5,7 @@ using Avalonia.Data;
 using Ursa.Controls;
 using Ursa.Demo.ViewModels;
 
-namespace Ursa.Demo.Converters;
+namespace Ursa.Demo.DataTemplates;
 
 public class ToolBarItemTemplateSelector: IDataTemplate
 {

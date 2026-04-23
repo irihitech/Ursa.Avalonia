@@ -1,12 +1,12 @@
 using System;
 using System.Globalization;
 using Avalonia;
-using Avalonia.Data.Converters;
 using Avalonia.Media;
+using Irihi.Avalonia.Shared.Converters;
 
-namespace Ursa.Demo.Converters;
+namespace Ursa.Demo.DataTemplates;
 
-public class IconNameToPathConverter: IValueConverter
+public class IconNameToPathConverter: MarkupValueConverter
 {
     private readonly string[] _paths =
     [
@@ -18,7 +18,7 @@ public class IconNameToPathConverter: IValueConverter
         "M16.67,4H15V2H9V4H7.33A1.33,1.33 0 0,0 6,5.33V20.67C6,21.4 6.6,22 7.33,22H16.67A1.33,1.33 0 0,0 18,20.67V5.33C18,4.6 17.4,4 16.67,4Z",
         "M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12S17.5 2 12 2M12.5 13H11V7H12.5V11.3L16.2 9.2L17 10.5L12.5 13Z"
     ];
-    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public override object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is int i)
         {
@@ -34,7 +34,7 @@ public class IconNameToPathConverter: IValueConverter
         return AvaloniaProperty.UnsetValue; 
     }
 
-    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public override object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         return AvaloniaProperty.UnsetValue;
     }

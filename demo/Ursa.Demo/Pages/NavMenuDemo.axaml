@@ -2,7 +2,7 @@
     x:Class="Ursa.Demo.Pages.NavMenuDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="clr-namespace:Ursa.Demo.Converters"
+    xmlns:converters="clr-namespace:Ursa.Demo.DataTemplates"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
@@ -13,9 +13,6 @@
     x:CompileBindings="True"
     x:DataType="vm:NavMenuDemoViewModel"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <converters:IconNameToPathConverter x:Key="IconConverter" />
-    </UserControl.Resources>
     <Grid
         HorizontalAlignment="Left"
         ColumnDefinitions="Auto, Auto"
@@ -53,7 +50,7 @@
                             Height="16"
                             ActiveForeground="{DynamicResource SemiBlue5}"
                             ActiveStrokeBrush="{DynamicResource SemiBlue5}"
-                            Data="{Binding Converter={StaticResource IconConverter}}"
+                            Data="{Binding Converter={converters:IconNameToPathConverter}}"
                             Foreground="{DynamicResource SemiGrey5}"
                             IsActive="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=u:NavMenuItem}, Path=IsHighlighted, Mode=TwoWay}"
                             StrokeBrush="{DynamicResource SemiGrey5}" />

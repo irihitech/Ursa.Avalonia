@@ -2,7 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using Ursa.Demo.ViewModels;
 
-namespace Ursa.Demo.Converters;
+namespace Ursa.Demo.DataTemplates;
 
 public class FormDataTemplateSelector: ResourceDictionary, IDataTemplate
 {
