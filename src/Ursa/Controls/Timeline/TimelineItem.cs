@@ -71,29 +71,29 @@ public class TimelineItem: HeaderedContentControl
     
     public static readonly DirectProperty<TimelineItem, double> LeftWidthProperty = AvaloniaProperty.RegisterDirect<TimelineItem, double>(
         nameof(LeftWidth), o => o.LeftWidth, (o, v) => o.LeftWidth = v);
-    private double _leftWidth;
+
     public double LeftWidth
     {
-        get => _leftWidth;
-        set => SetAndRaise(LeftWidthProperty, ref _leftWidth, value);
+        get;
+        set => SetAndRaise(LeftWidthProperty, ref field, value);
     }
-    
+
     public static readonly DirectProperty<TimelineItem, double> IconWidthProperty = AvaloniaProperty.RegisterDirect<TimelineItem, double>(
         nameof(IconWidth), o => o.IconWidth, (o, v) => o.IconWidth = v);
-    private double _iconWidth;
+
     public double IconWidth
     {
-        get => _iconWidth;
-        set => SetAndRaise(IconWidthProperty, ref _iconWidth, value);
+        get;
+        set => SetAndRaise(IconWidthProperty, ref field, value);
     }
-    
+
     public static readonly DirectProperty<TimelineItem, double> RightWidthProperty = AvaloniaProperty.RegisterDirect<TimelineItem, double>(
         nameof(RightWidth), o => o.RightWidth, (o, v) => o.RightWidth = v);
-    private double _rightWidth;
+
     public double RightWidth
     {
-        get => _rightWidth;
-        set => SetAndRaise(RightWidthProperty, ref _rightWidth, value);
+        get;
+        set => SetAndRaise(RightWidthProperty, ref field, value);
     }
 
     public static readonly StyledProperty<DateTime> TimeProperty = AvaloniaProperty.Register<TimelineItem, DateTime>(

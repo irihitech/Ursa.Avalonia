@@ -49,25 +49,22 @@ public class EnumSelector: TemplatedControl
         set => SetValue(ValueProperty, value);
     }
 
-    private EnumItemTuple? _selectedValue;
-
     public static readonly DirectProperty<EnumSelector, EnumItemTuple?> SelectedValueProperty = AvaloniaProperty.RegisterDirect<EnumSelector, EnumItemTuple?>(
         nameof(SelectedValue), o => o.SelectedValue, (o, v) => o.SelectedValue = v);
 
     public EnumItemTuple? SelectedValue
     {
-        get => _selectedValue;
-        private set => SetAndRaise(SelectedValueProperty, ref _selectedValue, value);
+        get;
+        private set => SetAndRaise(SelectedValueProperty, ref field, value);
     }
-    
+
     public static readonly DirectProperty<EnumSelector, IList<EnumItemTuple>?> ValuesProperty = AvaloniaProperty.RegisterDirect<EnumSelector, IList<EnumItemTuple>?>(
         nameof(Values), o => o.Values);
-    
-    private IList<EnumItemTuple>? _values;
+
     public IList<EnumItemTuple>? Values
     {
-        get => _values;
-        private set => SetAndRaise(ValuesProperty, ref _values, value);
+        get;
+        private set => SetAndRaise(ValuesProperty, ref field, value);
     }
 
     public static readonly StyledProperty<bool> DisplayDescriptionProperty = AvaloniaProperty.Register<EnumSelector, bool>(

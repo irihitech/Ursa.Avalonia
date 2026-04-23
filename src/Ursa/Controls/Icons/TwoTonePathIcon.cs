@@ -22,7 +22,7 @@ public class TwoTonePathIcon: TemplatedControl
         set => SetValue(StrokeBrushProperty, value);
     }
     
-    public static readonly StyledProperty<Geometry> DataProperty = AvaloniaProperty.Register<PathIcon, Geometry>(
+    public static readonly StyledProperty<Geometry> DataProperty = AvaloniaProperty.Register<TwoTonePathIcon, Geometry>(
         nameof(Data));
 
     public Geometry Data

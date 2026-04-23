@@ -80,7 +80,7 @@
                     HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                     VerticalAlignment="{TemplateBinding VerticalAlignment}"
                     CornerRadius="{TemplateBinding CornerRadius}"
-                    Theme="{StaticResource INTERNAL_PathPickerExpander}">
+                    Theme="{DynamicResource INTERNAL_PathPickerExpander}">
                     <Expander.Header>
                         <Button
                             Name="PART_Button"

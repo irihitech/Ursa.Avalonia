@@ -46,11 +46,11 @@ public class TreeComboBoxItem: HeaderedItemsControl, ISelectable
 
     public static readonly DirectProperty<TreeComboBoxItem, int> LevelProperty = AvaloniaProperty.RegisterDirect<TreeComboBoxItem, int>(
         nameof(Level), o => o.Level, (o, v) => o.Level = v);
-    private int _level;
+
     public int Level
     {
-        get => _level;
-        protected set => SetAndRaise(LevelProperty, ref _level, value);
+        get;
+        protected set => SetAndRaise(LevelProperty, ref field, value);
     }
 
     static TreeComboBoxItem()

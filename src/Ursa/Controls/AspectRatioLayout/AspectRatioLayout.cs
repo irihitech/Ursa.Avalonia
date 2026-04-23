@@ -17,8 +17,6 @@ public class AspectRatioLayout : TransitioningContentControl
         AvaloniaProperty.Register<AspectRatioLayout, double>(
             nameof(AspectRatioTolerance), 0.2);
 
-    private AspectRatioMode _currentAspectRatioMode;
-
     public static readonly DirectProperty<AspectRatioLayout, AspectRatioMode> CurrentAspectRatioModeProperty =
         AvaloniaProperty.RegisterDirect<AspectRatioLayout, AspectRatioMode>(
             nameof(CurrentAspectRatioMode), o => o.CurrentAspectRatioMode);
@@ -38,13 +36,13 @@ public class AspectRatioLayout : TransitioningContentControl
 
     public AspectRatioLayout()
     {
-        Items = new List<AspectRatioLayoutItem>();
+        SetCurrentValue(ItemsProperty, []);
     }
 
     public AspectRatioMode CurrentAspectRatioMode
     {
         get => GetValue(CurrentAspectRatioModeProperty);
-        set => SetAndRaise(CurrentAspectRatioModeProperty, ref _currentAspectRatioMode, value);
+        set => SetAndRaise(CurrentAspectRatioModeProperty, ref field, value);
     }
 
     public static readonly StyledProperty<double> AspectRatioValueProperty =
@@ -118,7 +116,7 @@ public class AspectRatioLayout : TransitioningContentControl
                 CurrentAspectRatioMode = GetScaleMode(n);
             }
 
-            AspectRatioValue = GetAspectRatio(Bounds);
+            SetCurrentValue(AspectRatioValueProperty, GetAspectRatio(Bounds));
             var c =
                 Items
                     .Where(x => x.IsUseAspectRatioRange)

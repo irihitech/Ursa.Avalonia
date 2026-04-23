@@ -29,7 +29,6 @@ public abstract class DialogControlBase : OverlayFeedbackElement
 
     protected internal Button? _closeButton;
 
-    private bool _isFullScreen;
     private Panel? _titleArea;
     private bool _moveDragging;
     private Point _moveDragStartPoint;
@@ -61,8 +60,8 @@ public abstract class DialogControlBase : OverlayFeedbackElement
 
     public bool IsFullScreen
     {
-        get => _isFullScreen;
-        set => SetAndRaise(IsFullScreenProperty, ref _isFullScreen, value);
+        get;
+        set => SetAndRaise(IsFullScreenProperty, ref field, value);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Avalonia;
 using Avalonia.Collections;
 using Avalonia.Controls;
@@ -63,6 +64,8 @@ public abstract class DatePickerBase: TemplatedControl, IInnerContentControl, IP
     public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
         TextBox.PlaceholderForegroundProperty.AddOwner<DatePickerBase>();
     
+    [SuppressMessage("AvaloniaProperty", "AVP1013",
+        Justification = "Obsolete property alias for backward compatibility.")]
     public static readonly StyledProperty<string?> PlaceholderTextProperty =
         TextBox.PlaceholderTextProperty.AddOwner<DatePickerBase>();
 
@@ -76,6 +79,8 @@ public abstract class DatePickerBase: TemplatedControl, IInnerContentControl, IP
     public static readonly StyledProperty<string?> WatermarkProperty = PlaceholderTextProperty;
 
     [Obsolete("Use PlaceholderText instead.")]
+    [SuppressMessage("AvaloniaProperty", "AVP1012",
+        Justification = "Obsolete property alias for backward compatibility.")]
     public string? Watermark
     {
         get => PlaceholderText;

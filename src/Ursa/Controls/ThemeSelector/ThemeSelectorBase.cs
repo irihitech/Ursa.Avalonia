@@ -78,7 +78,7 @@ public abstract class ThemeSelectorBase: TemplatedControl
 
     protected virtual void SyncThemeFromScope(ThemeVariant? theme)
     {
-        SelectedTheme = theme;
+        SetCurrentValue(SelectedThemeProperty, theme);
     }
 
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
@@ -96,11 +96,11 @@ public abstract class ThemeSelectorBase: TemplatedControl
         }
         else if (this.GetLogicalAncestors().FirstOrDefault(a => a is ThemeVariantScope) is ThemeVariantScope scope)
         {
-            TargetScope = scope;
-            TargetScope.ActualThemeVariantChanged += OnScopeThemeChanged;
+            SetCurrentValue(TargetScopeProperty, scope);
+            TargetScope?.ActualThemeVariantChanged += OnScopeThemeChanged;
             SyncThemeFromScope(Mode == ThemeSelectorMode.Controller
-                ? TargetScope.RequestedThemeVariant
-                : TargetScope.ActualThemeVariant);
+                ? TargetScope?.RequestedThemeVariant
+                : TargetScope?.ActualThemeVariant);
         }
         else if (_application is not null)
         {

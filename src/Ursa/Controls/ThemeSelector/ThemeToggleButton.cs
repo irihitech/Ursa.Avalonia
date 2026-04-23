@@ -59,14 +59,15 @@ public class ThemeToggleButton: ThemeSelectorBase
                 null => true
             };
         }
-        
-        SelectedTheme = _state switch
+
+        var selectedTheme = _state switch
         {
             true => ThemeVariant.Light,
             false => ThemeVariant.Dark,
             null => ThemeVariant.Default
         };
-        
+        SetCurrentValue(SelectedThemeProperty, selectedTheme);
+
         PseudoClasses.Set(PC_Light, SelectedTheme == ThemeVariant.Light);
         PseudoClasses.Set(PC_Dark, SelectedTheme == ThemeVariant.Dark);
         PseudoClasses.Set(PC_Default, SelectedTheme == ThemeVariant.Default);

@@ -230,7 +230,7 @@ public class TimeBox : TemplatedControl
             return;
         }
 
-        if (e.Key is Key.Enter or Key.Return)
+        if (e.Key is Key.Enter)
         {
             ParseTimeSpan(ShowLeadingZero);
             SetTimeSpanInternal();
@@ -591,12 +591,12 @@ public class TimeBox : TemplatedControl
     {
         try
         {
-            //Time = new TimeSpan(0, _values[0], _values[1], _values[2], _values[3] * 10);
-            Time = new TimeSpan(0, _values[0], _values[1], _values[2], _values[3]);
+            var timeSpan = new TimeSpan(0, _values[0], _values[1], _values[2], _values[3]);
+            SetCurrentValue(TimeProperty, timeSpan);
         }
         catch
         {
-            Time = TimeSpan.Zero;
+            SetCurrentValue(TimeProperty, TimeSpan.Zero);
         }
     }
 
@@ -622,7 +622,7 @@ public class TimeBox : TemplatedControl
             else
             {
                 int caretIndex = _presenters[index].CaretIndex;
-                var newText = string.Empty;
+                string newText;
                 if (caretIndex == 0)
                 {
                     newText = oldText.Substring(1, oldText.Length - 1);

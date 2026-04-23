@@ -7,7 +7,7 @@ internal struct QRCodeVersion
 	{
 		VersionNum = versionNum;
 		TotalCodewords = totalCodewords;
-		ECBlocks = new ErrorCorrectionBlocks[] { ecblocksL, ecblocksM, ecblocksQ, ecblocksH };
+		ECBlocks = [ecblocksL, ecblocksM, ecblocksQ, ecblocksH];
 		DimensionForVersion = 17 + (versionNum * 4);
 	}
 

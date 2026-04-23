@@ -60,12 +60,11 @@ public class PinCode : TemplatedControl
     public static readonly DirectProperty<PinCode, IList<string>> DigitsProperty = AvaloniaProperty.RegisterDirect<PinCode, IList<string>>(
         nameof(Digits), o => o.Digits);
 
-    private IList<string> _digits = [];
     public IList<string> Digits
     {
-        get => _digits;
-        private set => SetAndRaise(DigitsProperty, ref _digits, value);
-    }
+        get;
+        private set => SetAndRaise(DigitsProperty, ref field, value);
+    } = [];
 
     public static readonly RoutedEvent<PinCodeCompleteEventArgs> CompleteEvent =
         RoutedEvent.Register<PinCode, PinCodeCompleteEventArgs>(
@@ -233,7 +232,7 @@ public class PinCode : TemplatedControl
             _currentIndex = MathHelpers.SafeClamp(_currentIndex, 0, Count - 1);
             _itemsControl?.ContainerFromIndex(_currentIndex)?.Focus();
         }
-        else if (e.Key is Key.Enter or Key.Return)
+        else if (e.Key is Key.Enter)
         {
             CompleteCommand?.Execute(Digits);
             RaiseEvent(new PinCodeCompleteEventArgs(Digits, CompleteEvent));

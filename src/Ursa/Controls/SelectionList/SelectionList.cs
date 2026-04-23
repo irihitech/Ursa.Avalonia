@@ -4,7 +4,6 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Selection;
-using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Rendering.Composition;
@@ -17,7 +16,6 @@ namespace Ursa.Controls;
 public class SelectionList : SelectingItemsControl
 {
     public const string PART_Indicator = "PART_Indicator";
-    private static readonly FuncTemplate<Panel?> DefaultPanel = new(() => new StackPanel());
 
     public static readonly StyledProperty<Control?> IndicatorProperty =
         AvaloniaProperty.Register<SelectionList, Control?>(

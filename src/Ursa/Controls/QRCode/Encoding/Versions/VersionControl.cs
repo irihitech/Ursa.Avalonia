@@ -7,7 +7,7 @@ internal static class VersionControl
 	private const int NumBitsModeIndicator = 4;
 	private const string DefaultEncoding = QRCodeConstantVariable.DefaultEncoding;
 
-	private static readonly int[] VERSION_GROUP = new int[] { 9, 26, 40 };
+	private static readonly int[] VERSION_GROUP = [9, 26, 40];
 
 	/// <summary>
 	/// Determine which version to use

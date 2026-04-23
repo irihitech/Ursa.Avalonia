@@ -6,6 +6,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Styling;
 using Avalonia.VisualTree;
+using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
 
 namespace Ursa.Controls;
@@ -81,7 +82,7 @@ public class Anchor : ItemsControl
             var to = TargetContainer.Offset.Y + targetPosition.Value.Y - TopOffset;
             if (to > TargetContainer.Extent.Height - TargetContainer.Bounds.Height)
                 to = TargetContainer.Extent.Height - TargetContainer.Bounds.Height;
-            if (from == to) return;
+            if (MathHelpers.AreClose(from,to)) return;
             var animation = new Animation
             {
                 Duration = TimeSpan.FromSeconds(0.3),

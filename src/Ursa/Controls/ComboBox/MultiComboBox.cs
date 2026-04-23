@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Specialized;
+using System.Diagnostics.CodeAnalysis;
 using Avalonia;
 using Avalonia.Collections;
 using Avalonia.Controls;
@@ -57,6 +58,8 @@ public class MultiComboBox : SelectingItemsControl, IInnerContentControl, IPopup
         AvaloniaProperty.Register<MultiComboBox, IDataTemplate?>(
             nameof(SelectedItemTemplate));
 
+    [SuppressMessage("AvaloniaProperty", "AVP1013",
+        Justification = "Obsolete property alias for backward compatibility.")]
     public static readonly StyledProperty<string?> PlaceholderTextProperty =
         TextBox.PlaceholderTextProperty.AddOwner<MultiComboBox>();
 
@@ -87,7 +90,7 @@ public class MultiComboBox : SelectingItemsControl, IInnerContentControl, IPopup
 
     public MultiComboBox()
     {
-        SelectedItems = new AvaloniaList<object>();
+        SetCurrentValue(SelectedItemsProperty, new AvaloniaList<object>());
         if (SelectedItems is INotifyCollectionChanged c) c.CollectionChanged += OnSelectedItemsCollectionChanged;
     }
 
@@ -135,6 +138,8 @@ public class MultiComboBox : SelectingItemsControl, IInnerContentControl, IPopup
     }
 
     [Obsolete("Use PlaceholderText instead.")]
+    [SuppressMessage("AvaloniaProperty", "AVP1012",
+        Justification = "Obsolete property alias for backward compatibility.")]
     public string? Watermark
     {
         get => PlaceholderText;

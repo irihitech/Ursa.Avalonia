@@ -85,6 +85,7 @@
                         </Grid>
                         <Popup
                             Name="{x:Static iri:PartNames.PART_Popup}"
+                            Grid.Column="0"
                             OverlayInputPassThroughElement="{Binding #PART_PassThroughElement}"
                             HorizontalOffset="-4"
                             IsLightDismissEnabled="True"

@@ -26,8 +26,8 @@ public static class OverlayMessageBox
         };
         if (!string.IsNullOrWhiteSpace(styleClass))
         {
-            var styles = styleClass!.Split(Constants.SpaceSeparator, StringSplitOptions.RemoveEmptyEntries);
-            messageControl.Classes.AddRange(styles!);
+            var styles = styleClass.Split(Constants.SpaceSeparator, StringSplitOptions.RemoveEmptyEntries);
+            messageControl.Classes.AddRange(styles);
         }
 
         host.AddModalDialog(messageControl);

@@ -8,6 +8,7 @@ using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
+#pragma warning disable AVP1002
 
 public abstract class TimePickerBase<T> : TimePickerBase where T : struct
 {

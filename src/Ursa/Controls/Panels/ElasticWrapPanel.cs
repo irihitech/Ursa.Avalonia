@@ -57,15 +57,13 @@ public class ElasticWrapPanel : WrapPanel
     public static readonly StyledProperty<bool> IsFillVerticalProperty =
         AvaloniaProperty.Register<ElasticWrapPanel, bool>(nameof(IsFillVertical));
 
-    private int _lineCount;
-
     public static readonly DirectProperty<ElasticWrapPanel, int> LineCountProperty = AvaloniaProperty.RegisterDirect<ElasticWrapPanel, int>(
         nameof(LineCount), o => o.LineCount);
 
     public int LineCount
     {
-        get => _lineCount;
-        private set => SetAndRaise(LineCountProperty, ref _lineCount, value);
+        get;
+        private set => SetAndRaise(LineCountProperty, ref field, value);
     }
 
     #endregion

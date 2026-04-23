@@ -63,8 +63,8 @@ public class FormItem: ContentControl
     static FormItem()
     {
         NoLabelProperty.AffectsPseudoClass<FormItem>(PC_NoLabel);
-        LabelProperty.Changed.AddClassHandler<FormItem>((o, e) => o.SetLabelTarget());
-        ContentProperty.Changed.AddClassHandler<FormItem>((o, e) => o.SetLabelTarget());
+        LabelProperty.Changed.AddClassHandler<FormItem>((o, _) => o.SetLabelTarget());
+        ContentProperty.Changed.AddClassHandler<FormItem>((o, _) => o.SetLabelTarget());
     }
 
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
@@ -76,13 +76,13 @@ public class FormItem: ContentControl
             _formSubscriptions.Clear();
             var labelSubscription = form
                 .GetObservable(Form.LabelWidthProperty)
-                .Subscribe(new AnonymousObserver<GridLength>(length => { LabelWidth = length.IsAbsolute ? length.Value : double.NaN; }));
+                .Subscribe(new AnonymousObserver<GridLength>(length => { SetCurrentValue(LabelWidthProperty, length.IsAbsolute ? length.Value : double.NaN); }));
             var positionSubscription = form
                 .GetObservable(Form.LabelPositionProperty)
                 .Subscribe(new AnonymousObserver<Position>(position => { PseudoClasses.Set(PC_Horizontal, position == Position.Left);}));
             var alignmentSubscription = form
                 .GetObservable(Form.LabelAlignmentProperty)
-                .Subscribe(new AnonymousObserver<HorizontalAlignment>(alignment => { LabelAlignment = alignment; }));
+                .Subscribe(new AnonymousObserver<HorizontalAlignment>(alignment => { SetCurrentValue(LabelAlignmentProperty, alignment); }));
             _formSubscriptions.Add(labelSubscription);
             _formSubscriptions.Add(positionSubscription);
             _formSubscriptions.Add(alignmentSubscription);

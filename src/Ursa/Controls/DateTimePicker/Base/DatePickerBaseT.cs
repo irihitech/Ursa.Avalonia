@@ -9,6 +9,7 @@ using Irihi.Avalonia.Shared.Contracts;
 using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
+#pragma warning disable AVP1002
 
 public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T : struct
 {

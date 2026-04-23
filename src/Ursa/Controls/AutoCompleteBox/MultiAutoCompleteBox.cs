@@ -144,7 +144,6 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     /// </summary>
     private bool _popupHasOpened;
 
-    private string? _searchText = string.Empty;
     private bool _settingItemTemplateFromValueMemberBinding;
 
     /// <summary>
@@ -512,11 +511,11 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
 
     /// <summary>
     ///     Returns the
-    ///     <see cref="T:Avalonia.Controls.ISelectionAdapter" /> part, if
+    ///     <see cref="T:ISelectionAdapter" /> part, if
     ///     possible.
     /// </summary>
     /// <returns>
-    ///     A <see cref="T:Avalonia.Controls.ISelectionAdapter" /> object,
+    ///     A <see cref="T:ISelectionAdapter" /> object,
     ///     if possible. Otherwise, null.
     /// </returns>
     protected virtual ISelectionAdapter? GetSelectionAdapterPart(INameScope nameScope)

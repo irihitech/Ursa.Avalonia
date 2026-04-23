@@ -74,9 +74,9 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
     public static readonly RoutedEvent<SelectionChangedEventArgs> SelectionChangedEvent =
         RoutedEvent.Register<NavMenu, SelectionChangedEventArgs>(nameof(SelectionChanged), RoutingStrategies.Bubble);
 
-    private ItemsPresenter? _itemsPresenter = null;
-    private bool _isSelectionFromUI = false;
-    private bool _isNavigatingMenu = false;
+    private ItemsPresenter? _itemsPresenter;
+    private bool _isSelectionFromUI;
+    private bool _isNavigatingMenu;
 
     static NavMenu()
     {
@@ -294,9 +294,9 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
         }
 
         if (item.DataContext is not null && item.DataContext != DataContext)
-            SelectedItem = item.DataContext;
+            SetCurrentValue(SelectedItemProperty, item.DataContext);
         else
-            SelectedItem = item;
+            SetCurrentValue(SelectedItemProperty, item);
         item.BringIntoView();
         _isSelectionFromUI = false;
     }
@@ -509,7 +509,7 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
 
     internal bool CanChangeSelection(NavMenuItem item)
     {
-        object? newSelection = null;
+        object? newSelection;
         if (item.DataContext is not null && item.DataContext != DataContext)
             newSelection = item.DataContext;
         else

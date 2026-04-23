@@ -23,8 +23,6 @@ public class AnchorItem : HeaderedItemsControl, ISelectable
         AvaloniaProperty.RegisterDirect<AnchorItem, int>(
             nameof(Level), o => o.Level, (o, v) => o.Level = v);
 
-    private int _level;
-
     private Anchor? _root;
 
     static AnchorItem()
@@ -36,8 +34,8 @@ public class AnchorItem : HeaderedItemsControl, ISelectable
 
     public int Level
     {
-        get => _level;
-        set => SetAndRaise(LevelProperty, ref _level, value);
+        get;
+        set => SetAndRaise(LevelProperty, ref field, value);
     }
 
     public string? AnchorId

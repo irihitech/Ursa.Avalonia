@@ -46,17 +46,14 @@ public class RatingCharacter : TemplatedControl
 
     internal bool IsLast { get; set; }
 
-    private bool _isHalf;
-
     internal bool IsHalf
     {
-        get => _isHalf;
+        get;
         set
         {
             if (!AllowHalf) return;
-            _isHalf = value;
-            if (_icon is null) return;
-            _icon.Width = value ? Bounds.Width * 0.5 : Bounds.Width;
+            field = value;
+            _icon?.Width = value ? Bounds.Width * 0.5 : Bounds.Width;
         }
     }
 
@@ -106,9 +103,6 @@ public class RatingCharacter : TemplatedControl
 
     internal void ApplyRatio()
     {
-        if (_icon is not null)
-        {
-            _icon.Width = Bounds.Width * Ratio;
-        }
+        _icon?.Width = Bounds.Width * Ratio;
     }
 }

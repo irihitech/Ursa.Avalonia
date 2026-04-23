@@ -5,17 +5,17 @@ using Avalonia.Data;
 using Avalonia.Styling;
 
 namespace Ursa.Controls;
+#pragma warning disable AVP1002
 
 public abstract class NumberDisplayerBase : TemplatedControl
 {
     public static readonly DirectProperty<NumberDisplayerBase, string?> InternalTextProperty = AvaloniaProperty.RegisterDirect<NumberDisplayerBase, string?>(
         nameof(InternalText), o => o.InternalText, (o, v) => o.InternalText = v);
-    private string? _internalText;
-    
+
     public string? InternalText
     {
-        get => _internalText;
-        set => SetAndRaise(InternalTextProperty, ref _internalText, value);
+        get;
+        set => SetAndRaise(InternalTextProperty, ref field, value);
     }
 
     public static readonly StyledProperty<TimeSpan> DurationProperty = AvaloniaProperty.Register<NumberDisplayerBase, TimeSpan>(
@@ -51,9 +51,7 @@ public abstract class NumberDisplayer<T>: NumberDisplayerBase
     private Animation? _animation;
     private CancellationTokenSource _cts = new ();
     
-#pragma warning disable AVP1002
     public static readonly StyledProperty<T?> ValueProperty = AvaloniaProperty.Register<NumberDisplayer<T>, T?>(
-#pragma warning restore AVP1002
         nameof(Value), defaultBindingMode:BindingMode.TwoWay);
 
     public T? Value
@@ -62,9 +60,7 @@ public abstract class NumberDisplayer<T>: NumberDisplayerBase
         set => SetValue(ValueProperty, value);
     }
 
-#pragma warning disable AVP1002
     private static readonly StyledProperty<T?> InternalValueProperty = AvaloniaProperty.Register<NumberDisplayer<T>, T?>(
-#pragma warning restore AVP1002
         nameof(InternalValue), defaultBindingMode:BindingMode.TwoWay);
 
     private T? InternalValue

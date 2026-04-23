@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -58,9 +59,13 @@ public abstract class TimeRangePickerBase : TemplatedControl, IInnerContentContr
     public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
         TextBox.PlaceholderForegroundProperty.AddOwner<TimeRangePickerBase>();
 
+    [SuppressMessage("AvaloniaProperty", "AVP1013",
+        Justification = "Obsolete property alias for backward compatibility.")]
     public static readonly StyledProperty<string?> StartPlaceholderTextProperty =
         TextBox.PlaceholderTextProperty.AddOwner<TimeRangePickerBase>();
 
+    [SuppressMessage("AvaloniaProperty", "AVP1013",
+        Justification = "Obsolete property alias for backward compatibility.")]
     public static readonly StyledProperty<string?> EndPlaceholderTextProperty =
         TextBox.PlaceholderTextProperty.AddOwner<TimeRangePickerBase>();
 

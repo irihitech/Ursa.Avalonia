@@ -22,7 +22,7 @@ public class MessageBoxControl : DialogControlBase
     public const string PART_CancelButton = "PART_CancelButton";
 
     public static readonly StyledProperty<MessageBoxIcon> MessageIconProperty =
-        AvaloniaProperty.Register<MessageBoxWindow, MessageBoxIcon>(
+        AvaloniaProperty.Register<MessageBoxControl, MessageBoxIcon>(
             nameof(MessageIcon));
 
     public static readonly StyledProperty<MessageBoxButton> ButtonsProperty =

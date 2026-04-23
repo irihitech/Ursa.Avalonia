@@ -15,7 +15,7 @@ public class SelectionListItem: ContentControl, ISelectable
         FocusableProperty.OverrideDefaultValue<SelectionListItem>(true);
     }
 
-    public static readonly StyledProperty<bool> IsSelectedProperty = SelectingItemsControl.IsSelectedProperty.AddOwner<ListBoxItem>();
+    public static readonly StyledProperty<bool> IsSelectedProperty = SelectingItemsControl.IsSelectedProperty.AddOwner<SelectionListItem>();
 
     public bool IsSelected
     {

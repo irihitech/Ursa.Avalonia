@@ -21,10 +21,6 @@ public class MessageBoxWindow(MessageBoxButton buttons) : Window
     public const string PART_OKButton = "PART_OKButton";
     public const string PART_CancelButton = "PART_CancelButton";
 
-    public static readonly StyledProperty<MessageBoxIcon> MessageIconProperty =
-        AvaloniaProperty.Register<MessageBoxWindow, MessageBoxIcon>(
-            nameof(MessageIcon));
-
     private Button? _closeButton;
     
     private Button? _cancelButton;
@@ -37,6 +33,9 @@ public class MessageBoxWindow(MessageBoxButton buttons) : Window
     }
 
     protected override Type StyleKeyOverride => typeof(MessageBoxWindow);
+
+    public static readonly StyledProperty<MessageBoxIcon> MessageIconProperty = 
+        AvaloniaProperty.Register<MessageBoxWindow, MessageBoxIcon>(nameof(MessageIcon));
 
     public MessageBoxIcon MessageIcon
     {

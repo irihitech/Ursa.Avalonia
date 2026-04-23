@@ -104,7 +104,7 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
             {
                 return;
             }
-            Gesture = new KeyGesture(e.Key);
+            SetCurrentValue(GestureProperty, new KeyGesture(e.Key));
         }
         KeyGesture gesture;
         switch (e.KeyModifiers)
@@ -119,7 +119,7 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
                 gesture = new KeyGesture(e.Key, e.KeyModifiers);
                 break;
         }
-        Gesture = gesture;
+        SetCurrentValue(GestureProperty, gesture);
         e.Handled = true;
     }
 

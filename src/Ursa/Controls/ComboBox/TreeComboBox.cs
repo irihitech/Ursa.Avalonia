@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -39,6 +40,8 @@ public class TreeComboBox: ItemsControl, IClearControl, IInnerContentControl, IP
         set => SetValue(MaxDropDownHeightProperty, value);
     }
 
+    [SuppressMessage("AvaloniaProperty", "AVP1013",
+        Justification = "Obsolete property alias for backward compatibility.")]
     public static readonly StyledProperty<string?> PlaceholderTextProperty =
         TextBox.PlaceholderTextProperty.AddOwner<TreeComboBox>();
 
@@ -106,14 +109,12 @@ public class TreeComboBox: ItemsControl, IClearControl, IInnerContentControl, IP
 
     public static readonly DirectProperty<TreeComboBox, object?> SelectionBoxItemProperty = AvaloniaProperty.RegisterDirect<TreeComboBox, object?>(
         nameof(SelectionBoxItem), o => o.SelectionBoxItem);
-    private object? _selectionBoxItem;
+
     public object? SelectionBoxItem
     {
-        get => _selectionBoxItem;
-        protected set => SetAndRaise(SelectionBoxItemProperty, ref _selectionBoxItem, value);
+        get;
+        protected set => SetAndRaise(SelectionBoxItemProperty, ref field, value);
     }
-
-    private object? _selectedItem;
 
     public static readonly DirectProperty<TreeComboBox, object?> SelectedItemProperty =
         AvaloniaProperty.RegisterDirect<TreeComboBox, object?>(
@@ -122,8 +123,8 @@ public class TreeComboBox: ItemsControl, IClearControl, IInnerContentControl, IP
 
     public object? SelectedItem
     {
-        get => _selectedItem;
-        set => SetAndRaise(SelectedItemProperty, ref _selectedItem, value);
+        get;
+        set => SetAndRaise(SelectedItemProperty, ref field, value);
     }
 
     public static readonly StyledProperty<object?> InnerLeftContentProperty = AvaloniaProperty.Register<TreeComboBox, object?>(
@@ -263,11 +264,11 @@ public class TreeComboBox: ItemsControl, IClearControl, IInnerContentControl, IP
                 }
                 this.SelectedItem = item;
                 container.IsSelected = true;
-                IsDropDownOpen = false;
+                SetCurrentValue(IsDropDownOpenProperty, false);
             }
             else
             {
-                IsDropDownOpen = !IsDropDownOpen;
+                SetCurrentValue(IsDropDownOpenProperty, !IsDropDownOpen);
             }
             
         }

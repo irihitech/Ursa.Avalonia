@@ -12,11 +12,6 @@ namespace Ursa.Controls;
 public class MultiAutoCompleteSelectionAdapter : ISelectionAdapter
 {
     /// <summary>
-    ///     The SelectingItemsControl instance.
-    /// </summary>
-    private SelectingItemsControl? _selector;
-
-    /// <summary>
     ///     Initializes a new instance of the
     ///     <see cref="T:Avalonia.Controls.Utils.SelectingItemsControlSelectionAdapter" />
     ///     class.
@@ -27,7 +22,7 @@ public class MultiAutoCompleteSelectionAdapter : ISelectionAdapter
 
     /// <summary>
     ///     Initializes a new instance of the
-    ///     <see cref="T:Avalonia.Controls.Utils.SelectingItemsControlSelectionAdapterr" />
+    ///     <see cref="T:Avalonia.Controls.Utils.SelectingItemsControlSelectionAdapter" />
     ///     class with the specified
     ///     <see cref="T:Avalonia.Controls.Primitives.SelectingItemsControl" />
     ///     control.
@@ -62,23 +57,15 @@ public class MultiAutoCompleteSelectionAdapter : ISelectionAdapter
     /// </value>
     public SelectingItemsControl? SelectorControl
     {
-        get => _selector;
+        get;
 
         set
         {
-            if (_selector != null)
-            {
-                _selector.SelectionChanged -= OnSelectionChanged;
-                _selector.PointerReleased -= OnSelectorPointerReleased;
-            }
-
-            _selector = value;
-
-            if (_selector != null)
-            {
-                _selector.SelectionChanged += OnSelectionChanged;
-                _selector.PointerReleased += OnSelectorPointerReleased;
-            }
+            field?.SelectionChanged -= OnSelectionChanged;
+            field?.PointerReleased -= OnSelectorPointerReleased;
+            field = value;
+            field?.SelectionChanged += OnSelectionChanged;
+            field?.PointerReleased += OnSelectorPointerReleased;
         }
     }
 

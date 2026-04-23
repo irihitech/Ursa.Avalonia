@@ -158,7 +158,7 @@ public class IPv4Box : TemplatedControl
         _currentActivePresenter ??= _presenters[0];
         var keymap = this.GetPlatformSettings()?.HotkeyConfiguration;
         bool Match(List<KeyGesture> gestures) => gestures.Any(g => g.Matches(e));
-        if (e.Key is Key.Enter or Key.Return)
+        if (e.Key is Key.Enter)
         {
             ParseBytes(ShowLeadingZero);
             SetIPAddressInternal();
@@ -455,14 +455,14 @@ public class IPv4Box : TemplatedControl
         _secondByte = null;
         _thirdByte = null;
         _fourthByte = null;
-        IPAddress = null;
+        SetCurrentValue(IPAddressProperty, null);
     }
 
     private void SetIPAddressInternal()
     {
         if (_firstByte is null && _secondByte is null && _thirdByte is null && _fourthByte is null)
         {
-            IPAddress = null;
+            SetCurrentValue(IPAddressProperty, null);
             return;
         }
         long address = 0;
@@ -472,11 +472,11 @@ public class IPv4Box : TemplatedControl
         address += ((long?)_fourthByte ?? 0) << 24;
         try
         {
-            IPAddress = new IPAddress(address);
+            SetCurrentValue(IPAddressProperty, new IPAddress(address));
         }
         catch
         {
-            IPAddress = null;
+            SetCurrentValue(IPAddressProperty, null);
         }
     }
 
@@ -512,7 +512,7 @@ public class IPv4Box : TemplatedControl
             else
             {
                 var index = presenter.CaretIndex;
-                var newText = string.Empty;
+                string newText;
                 if (index == 0)
                 {
                     newText = oldText.Substring(1, oldText.Length - 1);
@@ -621,7 +621,7 @@ public class IPv4Box : TemplatedControl
         var s = await clipboard.TryGetTextAsync();
         if (s is not null && IPAddress.TryParse(s, out var address))
         {
-            IPAddress = address;
+            SetCurrentValue(IPAddressProperty, address);
         }
     }
 

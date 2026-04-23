@@ -35,7 +35,7 @@ public class Rating : TemplatedControl
         AvaloniaProperty.Register<Rating, double>(nameof(DefaultValue));
 
     public static readonly StyledProperty<double> SizeProperty =
-        AvaloniaProperty.Register<RatingCharacter, double>(nameof(Size));
+        AvaloniaProperty.Register<Rating, double>(nameof(Size));
 
     public static readonly StyledProperty<IDataTemplate?> ItemTemplateProperty =
         AvaloniaProperty.Register<Rating, IDataTemplate?>(nameof(ItemTemplate));
@@ -92,12 +92,10 @@ public class Rating : TemplatedControl
         AvaloniaProperty.RegisterDirect<Rating, AvaloniaList<RatingCharacter>>(
             nameof(Items), o => o.Items);
 
-    private AvaloniaList<RatingCharacter> _items = null!;
-
     public AvaloniaList<RatingCharacter> Items
     {
-        get => _items;
-        private set => SetAndRaise(ItemsProperty, ref _items, value);
+        get;
+        private set => SetAndRaise(ItemsProperty, ref field, value);
     }
 
     public Rating()

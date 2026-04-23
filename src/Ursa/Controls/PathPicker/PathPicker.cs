@@ -95,8 +95,6 @@ public partial class PathPicker : TemplatedControl
 
     private Button? _button;
 
-    private IReadOnlyList<string> _selectedPaths = [];
-
     public bool AllowMultiple
     {
         get => GetValue(AllowMultipleProperty);
@@ -111,9 +109,9 @@ public partial class PathPicker : TemplatedControl
 
     public IReadOnlyList<string> SelectedPaths
     {
-        get => _selectedPaths;
-        private set => SetAndRaise(SelectedPathsProperty, ref _selectedPaths, value);
-    }
+        get;
+        private set => SetAndRaise(SelectedPathsProperty, ref field, value);
+    } = [];
 
     public string SuggestedFileName
     {

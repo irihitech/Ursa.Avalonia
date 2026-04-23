@@ -38,39 +38,32 @@ public class ImageViewer: TemplatedControl
         set => SetValue(SourceProperty, value);
     }
 
-    private double _scale  = 1;
-
     public static readonly DirectProperty<ImageViewer, double> ScaleProperty = AvaloniaProperty.RegisterDirect<ImageViewer, double>(
         nameof(Scale), o => o.Scale, (o,v)=> o.Scale = v, unsetValue: 1);
 
     public double Scale
     {
-        get => _scale;
-        set => SetAndRaise(ScaleProperty, ref _scale, value);
-    }
+        get;
+        set => SetAndRaise(ScaleProperty, ref field, value);
+    } = 1;
 
     public static readonly DirectProperty<ImageViewer, double> MinScaleProperty = AvaloniaProperty.RegisterDirect<ImageViewer, double>(
         nameof(MinScale), o => o.MinScale, (o, v) => o.MinScale = v, unsetValue: 0.1);
 
     public double MinScale
     {
-        get => _minScale;
-        set => SetAndRaise(ScaleProperty, ref _minScale, value);
-    }
-    private double _minScale = 1;
-
-    private double _translateX;
+        get;
+        set => SetAndRaise(ScaleProperty, ref field, value);
+    } = 1;
 
     public static readonly DirectProperty<ImageViewer, double> TranslateXProperty = AvaloniaProperty.RegisterDirect<ImageViewer, double>(
         nameof(TranslateX), o => o.TranslateX, (o,v)=>o.TranslateX = v, unsetValue: 0);
 
     public double TranslateX
     {
-        get => _translateX;
-        set => SetAndRaise(TranslateXProperty, ref _translateX, value);
+        get;
+        set => SetAndRaise(TranslateXProperty, ref field, value);
     }
-
-    private double _translateY;
 
     public static readonly DirectProperty<ImageViewer, double> TranslateYProperty =
         AvaloniaProperty.RegisterDirect<ImageViewer, double>(
@@ -78,8 +71,8 @@ public class ImageViewer: TemplatedControl
 
     public double TranslateY
     {
-        get => _translateY;
-        set => SetAndRaise(TranslateYProperty, ref _translateY, value);
+        get;
+        set => SetAndRaise(TranslateYProperty, ref field, value);
     }
 
     public static readonly StyledProperty<double> SmallChangeProperty = AvaloniaProperty.Register<ImageViewer, double>(
@@ -149,10 +142,6 @@ public class ImageViewer: TemplatedControl
     {
         if(!IsLoaded) return;
         IImage image = args.GetNewValue<IImage>();
-        if(image is null)
-        {
-            return;
-        }
         Size size = image.Size;
         double width = this.Bounds.Width;
         double height = this.Bounds.Height;

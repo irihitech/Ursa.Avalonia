@@ -70,7 +70,6 @@ public class Pagination : TemplatedControl
     private StackPanel? _buttonPanel;
     private PaginationButton? _nextButton;
 
-    private int _pageCount;
     private PaginationButton? _previousButton;
     private NumericIntUpDown? _quickJumpInput;
 
@@ -127,8 +126,8 @@ public class Pagination : TemplatedControl
     /// </summary>
     public int PageCount
     {
-        get => _pageCount;
-        private set => SetAndRaise(PageCountProperty, ref _pageCount, value);
+        get;
+        private set => SetAndRaise(PageCountProperty, ref field, value);
     }
 
     public AvaloniaList<int> PageSizeOptions
@@ -203,7 +202,8 @@ public class Pagination : TemplatedControl
         var residue = TotalCount % args.NewValue.Value;
         if (residue > 0) pageCount++;
         PageCount = pageCount;
-        if (CurrentPage > PageCount) CurrentPage = null;
+        if (CurrentPage > PageCount) 
+            SetCurrentValue(CurrentPageProperty, null);
         UpdateButtonsByCurrentPage(CurrentPage);
     }
 
@@ -224,13 +224,13 @@ public class Pagination : TemplatedControl
         LostFocusEvent.AddHandler(OnQuickJumpInputLostFocus, _quickJumpInput);
 
         InitializePanelButtons();
-        CurrentPage = MathHelpers.SafeClamp(CurrentPage ?? 1, 1, PageCount);
+        SetCurrentValue(CurrentPageProperty, MathHelpers.SafeClamp(CurrentPage ?? 1, 1, PageCount));
         UpdateButtonsByCurrentPage(CurrentPage);
     }
 
     private void OnQuickJumpInputKeyDown(object? sender, KeyEventArgs e)
     {
-        if (e.Key is Key.Enter or Key.Return) SyncQuickJumperValue();
+        if (e.Key is Key.Enter) SyncQuickJumperValue();
     }
 
     private void OnQuickJumpInputLostFocus(object? sender, RoutedEventArgs e)
@@ -281,7 +281,7 @@ public class Pagination : TemplatedControl
             else if (pageButton.IsFastBackward)
                 AddCurrentPage(5);
             else
-                CurrentPage = pageButton.Page;
+                SetCurrentValue(CurrentPageProperty, pageButton.Page);
         }
 
         InvokeCommand();

@@ -245,7 +245,7 @@ public class PopConfirm : ContentControl
 
     private void OnMainElementLostFocus(object? sender, RoutedEventArgs e)
     {
-        var newFocus = TopLevel.GetTopLevel(this)?.FocusManager?.GetFocusedElement();
+        var newFocus = TopLevel.GetTopLevel(this)?.FocusManager.GetFocusedElement();
         if (newFocus is Visual v && _popup?.IsInsidePopup(v) == true) return;
         SetCurrentValue(IsDropdownOpenProperty, false);
     }

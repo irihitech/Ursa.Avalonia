@@ -29,7 +29,7 @@ public class PaginationButton: RepeatButton
         PseudoClasses.Set(PC_Right, isRight);
         IsFastForward = isLeft;
         IsFastBackward = isRight;
-        Page = page;
+        SetCurrentValue(PageProperty, page);
     }
 
     internal void SetSelected(bool isSelected)

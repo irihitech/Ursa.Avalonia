@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Diagnostics.CodeAnalysis;
 using Avalonia;
 using Avalonia.Collections;
 using Avalonia.Controls;
@@ -28,6 +29,8 @@ public class TagInput : TemplatedControl
         AvaloniaProperty.Register<TagInput, IList<string>?>(
             nameof(Tags));
 
+    [SuppressMessage("AvaloniaProperty", "AVP1013",
+        Justification = "Obsolete property alias for backward compatibility.")]
     public static readonly StyledProperty<string?> PlaceholderTextProperty =
         TextBox.PlaceholderTextProperty.AddOwner<TagInput>();
 
@@ -42,7 +45,7 @@ public class TagInput : TemplatedControl
 
     public static readonly StyledProperty<int> MaxCountProperty =
         AvaloniaProperty.Register<TagInput, int>(nameof(MaxCount), int.MaxValue);
-    
+
     public static readonly StyledProperty<IDataTemplate?> ItemTemplateProperty =
         AvaloniaProperty.Register<TagInput, IDataTemplate?>(nameof(ItemTemplate));
 
@@ -70,7 +73,7 @@ public class TagInput : TemplatedControl
 
     public TagInput()
     {
-        Tags = new ObservableCollection<string>();
+        SetCurrentValue(TagsProperty, new ObservableCollection<string>());
     }
 
     public string? PlaceholderText
@@ -84,7 +87,7 @@ public class TagInput : TemplatedControl
         get => GetValue(PlaceholderForegroundProperty);
         set => SetValue(PlaceholderForegroundProperty, value);
     }
-    
+
     public bool AcceptsReturn
     {
         get => GetValue(AcceptsReturnProperty);
@@ -92,6 +95,8 @@ public class TagInput : TemplatedControl
     }
 
     [Obsolete("Use PlaceholderText property instead.")]
+    [SuppressMessage("AvaloniaProperty", "AVP1012",
+        Justification = "Obsolete property alias for backward compatibility.")]
     public string? Watermark
     {
         get => PlaceholderText;
@@ -171,6 +176,7 @@ public class TagInput : TemplatedControl
             {
                 _tagsSubscription = observable.GetWeakCollectionChangedObservable().Subscribe(_ => CheckEmpty());
             }
+
             CheckEmpty();
         }
     }
@@ -186,13 +192,13 @@ public class TagInput : TemplatedControl
         base.OnLoaded(e);
         InputTextBox = (_itemsControl?.ItemsPanelRoot as WrapPanelWithTrailingItem)?.TrailingItem as TextBox;
         if (InputTextBox is null) return;
-        
+
         InputTextBox.AddHandler(KeyDownEvent, OnTextBoxKeyDown, RoutingStrategies.Tunnel);
         InputTextBox.AddHandler(LostFocusEvent, OnTextBox_LostFocus, RoutingStrategies.Bubble);
-        
+
         InputTextBox[~AcceptsReturnProperty] = this[~AcceptsReturnProperty];
         InputTextBox.GetObservable(TextBox.TextProperty).Subscribe(_ => CheckEmpty());
-        
+
         _presenter = InputTextBox.GetTemplateChildren().OfType<TextPresenter>().FirstOrDefault();
         _presenter?.GetObservable(TextPresenter.PreeditTextProperty).Subscribe(_ => CheckEmpty());
     }
@@ -237,10 +243,10 @@ public class TagInput : TemplatedControl
         if (!(text?.Length > 0)) return;
         if (Tags is null) return;
         if (Tags.Count >= MaxCount) return;
-        string[] values = [];
+        string[] values;
         if (!string.IsNullOrEmpty(Separator))
         {
-            values = text.Split(new[] { Separator }, StringSplitOptions.RemoveEmptyEntries);
+            values = text.Split([Separator], StringSplitOptions.RemoveEmptyEntries);
         }
         else
         {

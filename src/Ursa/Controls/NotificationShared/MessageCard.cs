@@ -18,8 +18,6 @@ public abstract class MessageCard : ContentControl
     public const string PC_Warning = ":warning";
     public const string PC_Error = ":error";
 
-    private bool _isClosing;
-
     static MessageCard()
     {
         CloseOnClickProperty.Changed.AddClassHandler<Button, bool>(OnCloseOnClickPropertyChanged);
@@ -43,8 +41,8 @@ public abstract class MessageCard : ContentControl
     /// </summary>
     public bool IsClosing
     {
-        get => _isClosing;
-        private set => SetAndRaise(IsClosingProperty, ref _isClosing, value);
+        get;
+        private set => SetAndRaise(IsClosingProperty, ref field, value);
     }
 
     /// <summary>

@@ -119,7 +119,7 @@ public class TimePickerPresenter : TemplatedControl
     private void UpdatePanelLayout(string? panelFormat)
     {
         if (panelFormat is null) return;
-        var parts = panelFormat.Split(new[] { ' ', '-', ':' }, StringSplitOptions.RemoveEmptyEntries);
+        var parts = panelFormat.Split([' ', '-', ':'], StringSplitOptions.RemoveEmptyEntries);
         var panels = new List<Control?>();
         foreach (var part in parts)
         {

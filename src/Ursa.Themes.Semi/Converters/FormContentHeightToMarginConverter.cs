@@ -6,7 +6,6 @@ namespace Ursa.Themes.Semi.Converters;
 
 public class FormContentHeightToMarginConverter : MarkupValueConverter
 {
-    public static FormContentHeightToMarginConverter Instance = new();
     public double Threshold { get; set; }
 
     public FormContentHeightToMarginConverter()
@@ -21,7 +20,7 @@ public class FormContentHeightToMarginConverter : MarkupValueConverter
         Threshold = threshold;
     }
 
-    public override object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public override object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is not double d) return new Thickness(0);
         return d > Threshold ? new Thickness(0, 8, 8, 0) : new Thickness(0, 0, 8, 0);

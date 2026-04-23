@@ -32,16 +32,16 @@ public class ControlClassesInput: TemplatedControl
         set => SetValue(SeparatorProperty, value);
     }
 
-
-    private ObservableCollection<string>? _targetClasses;
-
-    internal static readonly DirectProperty<ControlClassesInput, ObservableCollection<string>?> TargetClassesProperty = AvaloniaProperty.RegisterDirect<ControlClassesInput, ObservableCollection<string>?>(
-        nameof(TargetClasses), o => o.TargetClasses, (o, v) => o.TargetClasses = v);
+    internal static readonly DirectProperty<ControlClassesInput, ObservableCollection<string>?> TargetClassesProperty =
+        AvaloniaProperty.RegisterDirect<ControlClassesInput, ObservableCollection<string>?>(
+            nameof(TargetClasses),
+            o => o.TargetClasses,
+            (o, v) => o.TargetClasses = v);
 
     public ObservableCollection<string>? TargetClasses
     {
-        get => _targetClasses;
-        set => SetAndRaise(TargetClassesProperty, ref _targetClasses, value);
+        get;
+        set => SetAndRaise(TargetClassesProperty, ref field, value);
     }
 
     public static readonly AttachedProperty<ControlClassesInput?> SourceProperty =
@@ -58,11 +58,11 @@ public class ControlClassesInput: TemplatedControl
 
     public ControlClassesInput()
     {
-        TargetClasses = new ObservableCollection<string>();
+        TargetClasses = [];
     }
 
-    private List<StyledElement> _targets = new();
-    
+    private List<StyledElement> _targets = [];
+
     private static void HandleSourceChange(StyledElement arg1, AvaloniaPropertyChangedEventArgs<ControlClassesInput?> arg2)
     {
         var newControl = arg2.NewValue.Value;
@@ -74,13 +74,13 @@ public class ControlClassesInput: TemplatedControl
             newControl._targets.Remove(oldControl);
         }
     }
-    
+
     private void OnClassesChanged(AvaloniaPropertyChangedEventArgs<ObservableCollection<string>?> args)
     {
         var newValue = args.NewValue.Value;
         if (newValue is null)
         {
-            SaveHistory(new List<string>(), true);
+            SaveHistory([], true);
         }
         else
         {
@@ -88,15 +88,15 @@ public class ControlClassesInput: TemplatedControl
             SaveHistory(classes, true);
             if (newValue is INotifyCollectionChanged incc)
             {
-                incc.CollectionChanged+=InccOnCollectionChanged;
+                incc.CollectionChanged += InccOnCollectionChanged;
             }
         }
     }
 
     private void InccOnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
-        if(_disableHistory) return;
-        SaveHistory(TargetClasses?.ToList() ?? new List<string>(), true);
+        if (_disableHistory) return;
+        SaveHistory(TargetClasses?.ToList() ?? [], true);
     }
 
     private void SaveHistory(List<string> strings, bool fromInput)
@@ -107,6 +107,7 @@ public class ControlClassesInput: TemplatedControl
         {
             _history.RemoveFirst();
         }
+
         SetClassesToTarget(fromInput);
     }
 
@@ -115,7 +116,7 @@ public class ControlClassesInput: TemplatedControl
         List<string> strings;
         if (_history.Count == 0)
         {
-            strings = new List<string>();
+            strings = [];
         }
         else
         {
@@ -126,10 +127,8 @@ public class ControlClassesInput: TemplatedControl
         {
             SetCurrentValue(TargetClassesProperty, new ObservableCollection<string>(strings));
         }
-        if (Target is not null)
-        {
-            Target.Classes.Replace(strings);
-        }
+
+        Target?.Classes.Replace(strings);
         foreach (var target in _targets)
         {
             target.Classes.Replace(strings);
@@ -148,6 +147,7 @@ public class ControlClassesInput: TemplatedControl
         {
             TargetClasses?.Add(value);
         }
+
         _disableHistory = false;
         SetClassesToTarget(false);
     }
@@ -164,6 +164,7 @@ public class ControlClassesInput: TemplatedControl
         {
             TargetClasses?.Add(value);
         }
+
         _disableHistory = false;
         SetClassesToTarget(false);
     }

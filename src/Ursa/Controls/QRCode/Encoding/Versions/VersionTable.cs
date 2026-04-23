@@ -28,9 +28,9 @@ public static class VersionTable
 
 	private static QRCodeVersion[] Initialize()
 	{
-		return new QRCodeVersion[]
-		{
-				new QRCodeVersion(
+		return
+        [
+            new QRCodeVersion(
 					1,
 					26,
 					new ErrorCorrectionBlocks(7, new ErrorCorrectionBlock(1, 19)),
@@ -309,7 +309,7 @@ public static class VersionTable
 					new ErrorCorrectionBlocks(750, new ErrorCorrectionBlock(19, 118), new ErrorCorrectionBlock(6, 119)),
 					new ErrorCorrectionBlocks(1372, new ErrorCorrectionBlock(18, 47), new ErrorCorrectionBlock(31, 48)),
 					new ErrorCorrectionBlocks(2040, new ErrorCorrectionBlock(34, 24), new ErrorCorrectionBlock(34, 25)),
-					new ErrorCorrectionBlocks(2430, new ErrorCorrectionBlock(20, 15), new ErrorCorrectionBlock(61, 16))),
-		};
+					new ErrorCorrectionBlocks(2430, new ErrorCorrectionBlock(20, 15), new ErrorCorrectionBlock(61, 16)))
+        ];
 	}
 }

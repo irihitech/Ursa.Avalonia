@@ -50,11 +50,6 @@ public class Clock : TemplatedControl
         AvaloniaProperty.RegisterDirect<Clock, double>(
             nameof(SecondAngle), o => o.SecondAngle, (o, v) => o.SecondAngle = v);
 
-    private double _hourAngle;
-    private double _minuteAngle;
-
-    private double _secondAngle;
-
     static Clock()
     {
         TimeProperty.Changed.AddClassHandler<Clock, DateTime>((clock, args) => clock.OnTimeChanged(args));
@@ -119,20 +114,20 @@ public class Clock : TemplatedControl
 
     public double HourAngle
     {
-        get => _hourAngle;
-        private set => SetAndRaise(HourAngleProperty, ref _hourAngle, value);
+        get;
+        private set => SetAndRaise(HourAngleProperty, ref field, value);
     }
 
     public double MinuteAngle
     {
-        get => _minuteAngle;
-        private set => SetAndRaise(MinuteAngleProperty, ref _minuteAngle, value);
+        get;
+        private set => SetAndRaise(MinuteAngleProperty, ref field, value);
     }
 
     public double SecondAngle
     {
-        get => _secondAngle;
-        private set => SetAndRaise(SecondAngleProperty, ref _secondAngle, value);
+        get;
+        private set => SetAndRaise(SecondAngleProperty, ref field, value);
     }
 
     private Animation _secondsAnimation = new Animation()

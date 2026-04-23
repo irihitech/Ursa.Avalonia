@@ -50,7 +50,6 @@ public class DatePickerCalendarView : TemplatedControl
 
     private Button? _headerButton;
 
-    private DatePickerCalendarViewMode _mode;
     private Button? _monthButton;
     private Grid? _monthGrid;
     private Button? _nextButton;
@@ -85,20 +84,18 @@ public class DatePickerCalendarView : TemplatedControl
 
     internal DatePickerCalendarViewMode Mode
     {
-        get => _mode;
-        set => SetAndRaise(ModeProperty, ref _mode, value);
+        get;
+        set => SetAndRaise(ModeProperty, ref field, value);
     }
-
-    private DatePickerCalendarContext _contextDate = new();
 
     internal static readonly DirectProperty<DatePickerCalendarView, DatePickerCalendarContext> ContextDateProperty = AvaloniaProperty.RegisterDirect<DatePickerCalendarView, DatePickerCalendarContext>(
         nameof(ContextDate), o => o.ContextDate, (o, v) => o.ContextDate = v);
 
     internal DatePickerCalendarContext ContextDate
     {
-        get => _contextDate;
-        set => SetAndRaise(ContextDateProperty, ref _contextDate, value);
-    }
+        get;
+        set => SetAndRaise(ContextDateProperty, ref field, value);
+    } = new();
 
     public bool IsTodayHighlighted
     {

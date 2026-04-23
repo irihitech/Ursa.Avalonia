@@ -88,7 +88,7 @@ public partial class OverlayDialogHost
             if (layer.Modal)
             {
                 _modalCount--;
-                IsInModalStatus = _modalCount > 0;
+                SetCurrentValue(IsInModalStatusProperty, _modalCount > 0);
                 if (!IsAnimationDisabled) await MaskDisappearAnimation.RunAsync(layer.Mask);
             }
         }
@@ -136,7 +136,7 @@ public partial class OverlayDialogHost
 
         element?.Focus();
         _modalCount++;
-        IsInModalStatus = _modalCount > 0;
+        SetCurrentValue(IsInModalStatusProperty, _modalCount > 0);
         control.IsClosed = false;
         // control.Focus();
     }

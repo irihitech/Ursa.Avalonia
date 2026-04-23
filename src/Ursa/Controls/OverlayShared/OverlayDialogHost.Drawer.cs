@@ -1,7 +1,6 @@
 using Avalonia;
 using Avalonia.Animation;
 using Avalonia.Animation.Easings;
-using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Styling;
 using Avalonia.VisualTree;
@@ -70,7 +69,7 @@ public partial class OverlayDialogHost
         control.Arrange(new Rect(control.DesiredSize));
         SetDrawerPosition(control);
         _modalCount++;
-        IsInModalStatus = _modalCount > 0;
+        SetCurrentValue(IsInModalStatusProperty, _modalCount > 0);
         control.AddHandler(OverlayFeedbackElement.ClosedEvent, OnDrawerControlClosing);
         var animation = CreateAnimation(control.Bounds.Size, control.Position);
         if (IsAnimationDisabled)
@@ -206,7 +205,7 @@ public partial class OverlayDialogHost
             if (layer.Mask is not null)
             {
                 _modalCount--;
-                IsInModalStatus = _modalCount > 0;
+                SetCurrentValue(IsInModalStatusProperty, _modalCount > 0);
                 layer.Mask.RemoveHandler(PointerPressedEvent, ClickMaskToCloseDialog);
                 layer.Mask.RemoveHandler(PointerReleasedEvent, DragMaskToMoveWindow);
                 if (!IsAnimationDisabled)

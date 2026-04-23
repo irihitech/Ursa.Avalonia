@@ -19,12 +19,10 @@ namespace Ursa.Controls;
 )]
 public class NotificationCard : MessageCard
 {
-    private NotificationPosition _position;
-
     public NotificationPosition Position
     {
-        get => _position;
-        set => SetAndRaise(PositionProperty, ref _position, value);
+        get;
+        set => SetAndRaise(PositionProperty, ref field, value);
     }
 
     public static readonly DirectProperty<NotificationCard, NotificationPosition> PositionProperty =

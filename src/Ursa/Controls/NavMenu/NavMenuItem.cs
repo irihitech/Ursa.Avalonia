@@ -72,10 +72,8 @@ public class NavMenuItem : HeaderedItemsControl
     public static readonly StyledProperty<bool> IsSeparatorProperty = AvaloniaProperty.Register<NavMenuItem, bool>(
         nameof(IsSeparator));
 
-    private bool _isHighlighted;
-    private int _level;
     private Panel? _overflowPanel;
-    private bool _isPointerDown = false;
+    private bool _isPointerDown;
     private Popup? _popup;
 
     static NavMenuItem()
@@ -124,8 +122,8 @@ public class NavMenuItem : HeaderedItemsControl
 
     public bool IsHighlighted
     {
-        get => _isHighlighted;
-        private set => SetAndRaise(IsHighlightedProperty, ref _isHighlighted, value);
+        get;
+        private set => SetAndRaise(IsHighlightedProperty, ref field, value);
     }
 
     public bool IsHorizontalCollapsed
@@ -148,8 +146,8 @@ public class NavMenuItem : HeaderedItemsControl
 
     public int Level
     {
-        get => _level;
-        set => SetAndRaise(LevelProperty, ref _level, value);
+        get;
+        set => SetAndRaise(LevelProperty, ref field, value);
     }
 
     public bool IsSeparator
@@ -278,9 +276,9 @@ public class NavMenuItem : HeaderedItemsControl
                 ? ApplyToSubtree(f)
                 : f;
 
-            static Func<NavMenuItem, bool> ApplyToSubtree(Func<NavMenuItem, bool> f) => i => Subtree(i)
+            static Func<NavMenuItem, bool> ApplyToSubtree(Func<NavMenuItem, bool> func) => i => Subtree(i)
                 .ToList()
-                .Select(i => f(i))
+                .Select(func)
                 .Aggregate(false, (p, c) => p || c);
 
             static IEnumerable<NavMenuItem> Subtree(NavMenuItem item)
@@ -372,7 +370,7 @@ public class NavMenuItem : HeaderedItemsControl
     public int CollapsedAwareIndexFromContainer(NavMenuItem container) =>
         IsHorizontalCollapsed && _overflowPanel is not null
             ? _overflowPanel.Children.IndexOf(container)
-            : IndexFromContainer((Control)container);
+            : IndexFromContainer(container);
 
     public object? CollapsedAwareItemFromContainer(NavMenuItem container)
     {
