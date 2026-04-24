@@ -1,11 +1,7 @@
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Headless.XUnit;
-using Avalonia.Input;
-using Avalonia.LogicalTree;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
-using Ursa.EventArgs;
 
 namespace HeadlessTest.Ursa.Controls.OverlayShared.OverlayFeedbackElementTests;
 

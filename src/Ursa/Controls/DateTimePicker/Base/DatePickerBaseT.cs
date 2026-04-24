@@ -89,7 +89,7 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
         }
         else
         {
-            SetCurrentValue(SelectedDateProperty, e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
+            SetCurrentValue(SelectedDateProperty, e.Date.HasValue ? FromDateOnly(e.Date.Value) : null);
             SetCurrentValue(IsDropdownOpenProperty, false);
         }
     }
@@ -114,7 +114,7 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
     {
         if (string.IsNullOrWhiteSpace(_textBox?.Text))
         {
-            SetCurrentValue(SelectedDateProperty, (T?)null);
+            SetCurrentValue(SelectedDateProperty, null);
             _calendar?.ClearSelection();
             return;
         }
@@ -134,7 +134,7 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
         }
         else
         {
-            SetCurrentValue(SelectedDateProperty, (T?)null);
+            SetCurrentValue(SelectedDateProperty, null);
             _calendar?.ClearSelection();
         }
     }
@@ -203,7 +203,7 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
     {
         if (NeedConfirmation)
             SetCurrentValue(SelectedDateProperty,
-                _pendingDate.HasValue ? (T?)FromDateOnly(_pendingDate.Value) : (T?)null);
+                _pendingDate.HasValue ? FromDateOnly(_pendingDate.Value) : null);
         SetCurrentValue(IsDropdownOpenProperty, false);
     }
 

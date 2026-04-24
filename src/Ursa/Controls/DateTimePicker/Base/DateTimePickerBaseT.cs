@@ -102,7 +102,7 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
             var time = SelectedDate.HasValue
                 ? ToTimeOnly(SelectedDate.Value) ?? GetCurrentTime()
                 : GetCurrentTime();
-            SetCurrentValue(SelectedDateProperty, (T?)CombineDateTime(e.Date.Value, time));
+            SetCurrentValue(SelectedDateProperty, CombineDateTime(e.Date.Value, time));
         }
     }
 
@@ -116,7 +116,7 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
         else
         {
             var date = GetSelectedDateOnly() ?? GetToday();
-            SetCurrentValue(SelectedDateProperty, (T?)CombineDateTime(date, e.NewTime.Value));
+            SetCurrentValue(SelectedDateProperty, CombineDateTime(date, e.NewTime.Value));
         }
     }
 
@@ -150,7 +150,7 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
         var format = DisplayFormat ?? DEFAULT_DATETIME_DISPLAY_FORMAT;
         if (string.IsNullOrWhiteSpace(_textBox?.Text))
         {
-            SetCurrentValue(SelectedDateProperty, (T?)null);
+            SetCurrentValue(SelectedDateProperty, null);
             return;
         }
         var parsed = Parse(_textBox?.Text, format);
@@ -192,7 +192,7 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
         }
     }
 
-    public override void Clear() => SetCurrentValue(SelectedDateProperty, (T?)null);
+    public override void Clear() => SetCurrentValue(SelectedDateProperty, null);
 
     public override void Confirm()
     {
@@ -204,7 +204,7 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
             {
                 var date = _pendingDate ?? GetSelectedDateOnly() ?? GetToday();
                 var time = _pendingTime ?? GetSelectedTimeOnly() ?? GetCurrentTime();
-                SetCurrentValue(SelectedDateProperty, (T?)CombineDateTime(date, time));
+                SetCurrentValue(SelectedDateProperty, CombineDateTime(date, time));
             }
         }
         SetCurrentValue(IsDropdownOpenProperty, false);

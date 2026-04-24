@@ -25,7 +25,7 @@ internal sealed class Polynomial
 
 			if (firstNonZeroIndex == coefficientsLength)
 			{
-				Coefficients = new int[] { 0 };
+				Coefficients = [0];
 			}
 			else
 			{
@@ -129,7 +129,7 @@ internal sealed class Polynomial
 		}
 		if (IsMonomialZero || other.IsMonomialZero)
 		{
-			return new Polynomial(GField, new int[] { 0 });
+			return new Polynomial(GField, [0]);
 		}
 
 		int[] aCoefficients = Coefficients;
@@ -158,7 +158,7 @@ internal sealed class Polynomial
 	{
 		if (scalar == 0)
 		{
-			return new Polynomial(GField, new int[] { 0 });
+			return new Polynomial(GField, [0]);
 		}
 		else if (scalar == 1)
 		{
@@ -203,7 +203,7 @@ internal sealed class Polynomial
 
 		if (aLength < bLength)
 		{
-			return new PolyDivideStruct(new Polynomial(GField, new int[] { 0 }), this);
+			return new PolyDivideStruct(new Polynomial(GField, [0]), this);
 		}
 		else
 		{

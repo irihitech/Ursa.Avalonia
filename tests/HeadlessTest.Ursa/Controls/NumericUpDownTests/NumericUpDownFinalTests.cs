@@ -1,6 +1,5 @@
 using Avalonia.Controls;
 using Avalonia.Headless.XUnit;
-using Avalonia.Threading;
 using Ursa.Controls;
 
 namespace HeadlessTest.Ursa.Controls.NumericUpDownTests;

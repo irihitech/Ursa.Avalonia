@@ -85,7 +85,9 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
     }
 
     public static readonly StyledProperty<string?> PlaceholderTextProperty =
+#pragma warning disable AVP1013
         TextBox.PlaceholderTextProperty.AddOwner<NumericUpDown>();
+#pragma warning restore AVP1013
 
     public string? PlaceholderText
     {
@@ -109,7 +111,7 @@ public abstract class NumericUpDown : TemplatedControl, IClearControl, IInnerCon
     public string? Watermark
     {
         get => PlaceholderText;
-        set => PlaceholderText = value;
+        set => SetValue(PlaceholderTextProperty, value);
     }
 
     public static readonly StyledProperty<NumberFormatInfo?> NumberFormatProperty = AvaloniaProperty.Register<NumericUpDown, NumberFormatInfo?>(

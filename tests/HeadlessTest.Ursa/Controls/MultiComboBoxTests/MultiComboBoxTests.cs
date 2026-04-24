@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
-using Avalonia.Controls.Templates;
 using Avalonia.Headless.XUnit;
 using Avalonia.Threading;
 using UrsaControls = Ursa.Controls;

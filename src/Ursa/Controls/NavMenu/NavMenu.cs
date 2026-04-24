@@ -436,15 +436,15 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
     public NavMenuItem? GetContainerForItem(object? item)
     {
         if (item == null) return null;
-        return GetContainerForItem(this, item);
+        return GetContainerForItemInternal(this, item);
 
-        static NavMenuItem? GetContainerForItem(ItemsControl control, object item)
+        static NavMenuItem? GetContainerForItemInternal(ItemsControl control, object item)
         {
             if (ContainerFromItem(control, item) is NavMenuItem container) return container;
 
             var children = GetRealizedContainers(control);
             foreach (var child in children)
-                if (GetContainerForItem(child, item) is { } childContainer) return childContainer;
+                if (GetContainerForItemInternal(child, item) is { } childContainer) return childContainer;
 
             return null;
         }

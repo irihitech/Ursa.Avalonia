@@ -121,10 +121,10 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
         {
             if (Equals(sender, _startPresenter))
                 SetCurrentValue(SelectedStartTimeProperty,
-                    e.NewTime.HasValue ? (T?)FromTimeOnly(e.NewTime.Value) : (T?)null);
+                    e.NewTime.HasValue ? FromTimeOnly(e.NewTime.Value) : null);
             else if (Equals(sender, _endPresenter))
                 SetCurrentValue(SelectedEndTimeProperty,
-                    e.NewTime.HasValue ? (T?)FromTimeOnly(e.NewTime.Value) : (T?)null);
+                    e.NewTime.HasValue ? FromTimeOnly(e.NewTime.Value) : null);
         }
     }
 
@@ -166,9 +166,9 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
         if (NeedConfirmation)
         {
             if (_pendingStartTime.HasValue)
-                SetCurrentValue(SelectedStartTimeProperty, (T?)FromTimeOnly(_pendingStartTime.Value));
+                SetCurrentValue(SelectedStartTimeProperty, FromTimeOnly(_pendingStartTime.Value));
             if (_pendingEndTime.HasValue)
-                SetCurrentValue(SelectedEndTimeProperty, (T?)FromTimeOnly(_pendingEndTime.Value));
+                SetCurrentValue(SelectedEndTimeProperty, FromTimeOnly(_pendingEndTime.Value));
         }
         SetCurrentValue(IsDropdownOpenProperty, false);
     }
@@ -218,12 +218,12 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
         var format = DisplayFormat ?? DEFAULT_TIME_DISPLAY_FORMAT;
 
         if (string.IsNullOrWhiteSpace(_startTextBox?.Text))
-            SetCurrentValue(SelectedStartTimeProperty, (T?)null);
+            SetCurrentValue(SelectedStartTimeProperty, null);
         else
             SetCurrentValue(SelectedStartTimeProperty, Parse(_startTextBox?.Text, format));
 
         if (string.IsNullOrWhiteSpace(_endTextBox?.Text))
-            SetCurrentValue(SelectedEndTimeProperty, (T?)null);
+            SetCurrentValue(SelectedEndTimeProperty, null);
         else
             SetCurrentValue(SelectedEndTimeProperty, Parse(_endTextBox?.Text, format));
     }
@@ -244,8 +244,8 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
 
     public override void Clear()
     {
-        SetCurrentValue(SelectedStartTimeProperty, (T?)null);
-        SetCurrentValue(SelectedEndTimeProperty, (T?)null);
+        SetCurrentValue(SelectedStartTimeProperty, null);
+        SetCurrentValue(SelectedEndTimeProperty, null);
         _startPresenter?.SyncTime(null);
         _endPresenter?.SyncTime(null);
         _status.Reset();

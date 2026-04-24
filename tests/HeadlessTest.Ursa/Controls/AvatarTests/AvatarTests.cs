@@ -1,9 +1,5 @@
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Headless.XUnit;
-using Avalonia.Media;
-using Avalonia.Media.Imaging;
-using Avalonia.Platform;
 using UrsaControls = Ursa.Controls;
 
 namespace HeadlessTest.Ursa.Controls.AvatarTests;

@@ -1,11 +1,8 @@
-﻿using System.Collections.ObjectModel;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Headless.XUnit;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
-using HeadlessTest.Ursa.TestHelpers;
 using Ursa.Controls;
-using AutoCompleteBox = Avalonia.Controls.AutoCompleteBox;
 
 namespace HeadlessTest.Ursa.Controls.AutoCompleteBoxTests;
 

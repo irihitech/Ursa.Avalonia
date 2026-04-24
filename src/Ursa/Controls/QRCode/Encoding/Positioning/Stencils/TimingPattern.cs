@@ -13,9 +13,9 @@ internal class TimingPattern : PatternStencilBase
 	{
 		// -8 is for skipping position detection patterns (size 7), and two horizontal/vertical
 		// separation patterns (size 1). Thus, 8 = 7 + 1.
-		for (int i = 8; i < matrix.Width - 8; ++i)
+		for (var i = 8; i < matrix.Width - 8; ++i)
 		{
-			bool value = (sbyte)((i + 1) % 2) == 1;
+			var value = (sbyte)((i + 1) % 2) == 1;
 
 			// Horizontal line.
 			if (matrix.MStatus(6, i) == MatrixStatus.None)

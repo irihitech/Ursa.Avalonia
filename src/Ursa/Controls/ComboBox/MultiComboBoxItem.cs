@@ -77,7 +77,7 @@ public class MultiComboBoxItem: ContentControl
             {
                 if (p.Pointer.Type == PointerType.Mouse)
                 {
-                    this.IsSelected = !this.IsSelected;
+                    SetCurrentValue(IsSelectedProperty, !IsSelected);
                     e.Handled = true;
                 }
                 else
@@ -97,7 +97,7 @@ public class MultiComboBoxItem: ContentControl
             var point = e.GetCurrentPoint(this);
             if (new Rect(Bounds.Size).ContainsExclusive(point.Position) && e.Pointer.Type == PointerType.Touch)
             {
-                this.IsSelected = !this.IsSelected;
+                SetCurrentValue(IsSelectedProperty, !IsSelected);
                 e.Handled = true;
             }
         }

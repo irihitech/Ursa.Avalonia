@@ -131,32 +131,32 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
         if (_status is { Current: Status.Start, Previous: Status.None })
         {
             SetCurrentValue(SelectedStartDateProperty,
-                e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
+                e.Date.HasValue ? FromDateOnly(e.Date.Value) : null);
             if (ToDateOnly(SelectedEndDate) is { } endDate && e.Date is { } start && start > endDate)
-                SetCurrentValue(SelectedEndDateProperty, (T?)null);
+                SetCurrentValue(SelectedEndDateProperty, null);
             _status.Push(Status.End);
             _endTextBox?.Focus();
         }
         else if (_status is { Current: Status.Start, Previous: Status.End })
         {
             SetCurrentValue(SelectedStartDateProperty,
-                e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
+                e.Date.HasValue ? FromDateOnly(e.Date.Value) : null);
             _status.Reset();
             SetCurrentValue(IsDropdownOpenProperty, false);
         }
         else if (_status is { Current: Status.End, Previous: Status.None })
         {
             SetCurrentValue(SelectedEndDateProperty,
-                e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
+                e.Date.HasValue ? FromDateOnly(e.Date.Value) : null);
             if (ToDateOnly(SelectedStartDate) is { } startDate && e.Date is { } end && end < startDate)
-                SetCurrentValue(SelectedStartDateProperty, (T?)null);
+                SetCurrentValue(SelectedStartDateProperty, null);
             _status.Push(Status.Start);
             _startTextBox?.Focus();
         }
         else if (_status is { Current: Status.End, Previous: Status.Start })
         {
             SetCurrentValue(SelectedEndDateProperty,
-                e.Date.HasValue ? (T?)FromDateOnly(e.Date.Value) : null);
+                e.Date.HasValue ? FromDateOnly(e.Date.Value) : null);
             _status.Reset();
             SetCurrentValue(IsDropdownOpenProperty, false);
         }
@@ -244,12 +244,12 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
         var format = DisplayFormat ?? DEFAULT_DATE_DISPLAY_FORMAT;
 
         if (string.IsNullOrWhiteSpace(_startTextBox?.Text))
-            SetCurrentValue(SelectedStartDateProperty, (T?)null);
+            SetCurrentValue(SelectedStartDateProperty, null);
         else
             SetCurrentValue(SelectedStartDateProperty, Parse(_startTextBox?.Text, format));
 
         if (string.IsNullOrWhiteSpace(_endTextBox?.Text))
-            SetCurrentValue(SelectedEndDateProperty, (T?)null);
+            SetCurrentValue(SelectedEndDateProperty, null);
         else
             SetCurrentValue(SelectedEndDateProperty, Parse(_endTextBox?.Text, format));
 
@@ -271,8 +271,8 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
 
     public override void Clear()
     {
-        SetCurrentValue(SelectedStartDateProperty, (T?)null);
-        SetCurrentValue(SelectedEndDateProperty, (T?)null);
+        SetCurrentValue(SelectedStartDateProperty, null);
+        SetCurrentValue(SelectedEndDateProperty, null);
         _status.Reset();
     }
 }

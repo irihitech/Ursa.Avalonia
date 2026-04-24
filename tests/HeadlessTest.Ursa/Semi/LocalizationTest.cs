@@ -4,7 +4,6 @@ using Avalonia.Controls;
 using Avalonia.Headless.XUnit;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
-using Semi.Avalonia.Locale;
 using Ursa.Controls;
 using Ursa.Themes.Semi;
 

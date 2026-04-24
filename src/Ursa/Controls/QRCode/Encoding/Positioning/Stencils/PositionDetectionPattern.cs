@@ -25,7 +25,7 @@ internal class PositionDetectionPattern : PatternStencilBase
 
 	public override void ApplyTo(TriStateMatrix matrix)
 	{
-		MatrixSize size = GetSizeOfSquareWithSeparators();
+		var size = GetSizeOfSquareWithSeparators();
 
 		MatrixPoint leftTopCorner = new(0, 0);
 		CopyTo(matrix, new MatrixRectangle(new MatrixPoint(1, 1), size), leftTopCorner, MatrixStatus.NoMask);

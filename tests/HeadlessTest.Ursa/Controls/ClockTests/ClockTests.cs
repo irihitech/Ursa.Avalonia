@@ -1,10 +1,7 @@
-using System;
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Headless.XUnit;
 using Avalonia.Media;
-using HeadlessTest.Ursa.TestHelpers;
 using UrsaControls = Ursa.Controls;
 
 namespace HeadlessTest.Ursa.Controls.ClockTests;

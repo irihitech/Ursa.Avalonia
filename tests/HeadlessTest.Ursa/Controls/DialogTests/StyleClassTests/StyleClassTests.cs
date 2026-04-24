@@ -3,7 +3,6 @@ using Avalonia.Headless.XUnit;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 using Ursa.Controls;
-using Xunit;
 
 namespace HeadlessTest.Ursa.Controls.DialogTests.StyleClassTests;
 

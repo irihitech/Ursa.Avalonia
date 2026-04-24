@@ -14,7 +14,7 @@ internal sealed class GeneratorPolynomial
 		Gfield = gfield;
 		CacheGenerator = new List<Polynomial>(10)
 			{
-				new Polynomial(Gfield, new int[] { 1 })
+				new Polynomial(Gfield, [1])
 			};
 	}
 
@@ -50,7 +50,8 @@ internal sealed class GeneratorPolynomial
 
 				for (int d = currentCacheLength; d <= degree; d++)
 				{
-					Polynomial nextGenerator = lastGenerator.Multiply(new Polynomial(Gfield, new int[] { 1, Gfield.Exponent(d - 1) }));
+					Polynomial nextGenerator = lastGenerator.Multiply(new Polynomial(Gfield, [1, Gfield.Exponent(d - 1)
+                    ]));
 					CacheGenerator.Add(nextGenerator);
 					lastGenerator = nextGenerator;
 				}

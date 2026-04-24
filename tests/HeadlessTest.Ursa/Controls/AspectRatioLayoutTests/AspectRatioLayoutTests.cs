@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Headless.XUnit;
 using UrsaControls = Ursa.Controls;

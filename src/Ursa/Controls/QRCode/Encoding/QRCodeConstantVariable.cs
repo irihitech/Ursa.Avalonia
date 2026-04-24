@@ -33,20 +33,20 @@ internal static class QRCodeConstantVariable
 
 	internal const int PositionStencilWidth = 7;
 
-	internal static bool[] PadeOdd = new bool[]
-	{
-			true, true, true, false,
+	internal static bool[] PadeOdd =
+    [
+        true, true, true, false,
 			true, true, false, false
-	};
+    ];
 
-	internal static bool[] PadeEven = new bool[]
-	{
-			false, false, false, true,
+	internal static bool[] PadeEven =
+    [
+        false, false, false, true,
 			false, false, false, true
-	};
+    ];
 
 	/// <summary>
 	/// URL:http://en.wikipedia.org/wiki/Byte-order_mark
 	/// </summary>
-	public static byte[] UTF8ByteOrderMark => new byte[] { 0xEF, 0xBB, 0xBF };
+	public static byte[] UTF8ByteOrderMark => [0xEF, 0xBB, 0xBF];
 }

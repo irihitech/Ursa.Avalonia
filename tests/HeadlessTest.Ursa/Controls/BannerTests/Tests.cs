@@ -1,12 +1,9 @@
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Shapes;
 using Avalonia.Controls.Templates;
 using Avalonia.Headless;
 using Avalonia.Headless.XUnit;
 using Avalonia.Input;
-using Avalonia.Media;
-using Avalonia.VisualTree;
 using UrsaControls = Ursa.Controls;
 
 namespace HeadlessTest.Ursa.Controls.BannerTests;

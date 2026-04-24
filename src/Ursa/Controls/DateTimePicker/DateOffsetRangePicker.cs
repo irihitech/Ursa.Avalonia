@@ -63,10 +63,10 @@ public class DateOffsetRangePicker : DateRangePickerBase<DateTimeOffset>
             var newOffset = GetCurrentOffset();
             if (SelectedStartDate.HasValue)
                 SetCurrentValue(SelectedStartDateProperty,
-                    (DateTimeOffset?)new DateTimeOffset(SelectedStartDate.Value.DateTime, newOffset));
+                    new DateTimeOffset(SelectedStartDate.Value.DateTime, newOffset));
             if (SelectedEndDate.HasValue)
                 SetCurrentValue(SelectedEndDateProperty,
-                    (DateTimeOffset?)new DateTimeOffset(SelectedEndDate.Value.DateTime, newOffset));
+                    new DateTimeOffset(SelectedEndDate.Value.DateTime, newOffset));
         }
     }
 

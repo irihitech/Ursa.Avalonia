@@ -1,6 +1,4 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+﻿using Avalonia.Controls;
 using Ursa.Controls;
 
 namespace HeadlessTest.Ursa.Controls.NavMenuTests.CanSelectTests;

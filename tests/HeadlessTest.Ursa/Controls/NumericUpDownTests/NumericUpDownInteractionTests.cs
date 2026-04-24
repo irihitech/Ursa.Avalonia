@@ -1,7 +1,5 @@
 using Avalonia.Controls;
 using Avalonia.Headless.XUnit;
-using Avalonia.Input;
-using Avalonia.Threading;
 using Ursa.Controls;
 using System.Windows.Input;
 
