@@ -41,7 +41,7 @@ public class AspectRatioLayout : TransitioningContentControl
 
     public AspectRatioMode CurrentAspectRatioMode
     {
-        get => GetValue(CurrentAspectRatioModeProperty);
+        get;
         set => SetAndRaise(CurrentAspectRatioModeProperty, ref field, value);
     }
 
