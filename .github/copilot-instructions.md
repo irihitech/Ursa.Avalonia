@@ -86,7 +86,7 @@ Ursa.Avalonia is an enterprise-level UI library for building cross-platform appl
 
 ### Working with Themes
 - Semi theme implementation is in `src/Ursa.Themes.Semi/`
-- Reference theme in applications: `xmlns:u-semi="https://irihi.tech/ursa/themes/semi"`
+- Reference theme in applications: `xmlns:semi="https://irihi.tech/semi"`
 - Theme must be included after Semi base theme in App.axaml
 
 ### CI/CD Integration

@@ -42,12 +42,11 @@ dotnet add package Irihi.Ursa.Themes.Semi
 ```xaml
 <Application...
     xmlns:semi="https://irihi.tech/semi"
-    xmlns:u-semi="https://irihi.tech/ursa/themes/semi"
     ....>
 
     <Application.Styles>
         <semi:SemiTheme Locale="zh-CN" />
-        <u-semi:SemiTheme Locale="zh-CN"/>
+        <semi:UrsaSemiTheme Locale="zh-CN"/>
     </Application.Styles>
     ...
 ```
