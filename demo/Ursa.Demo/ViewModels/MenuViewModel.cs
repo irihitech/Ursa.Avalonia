@@ -94,6 +94,7 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = "Descriptions", Key = MenuKeys.MenuKeyDescriptions, Status = "New" },
                     new() { MenuHeader = "Disable Container", Key = MenuKeys.MenuKeyDisableContainer },
                     new() { MenuHeader = "Divider", Key = MenuKeys.MenuKeyDivider },
+                    new() { MenuHeader = "GroupBox", Key = MenuKeys.MenuKeyGroupBox, Status = "New" },
                     new() { MenuHeader = "DualBadge", Key = MenuKeys.MenuKeyDualBadge },
                     new() { MenuHeader = "ImageViewer", Key = MenuKeys.MenuKeyImageViewer },
                     new() { MenuHeader = "ElasticWrapPanel", Key = MenuKeys.MenuKeyElasticWrapPanel },
@@ -140,6 +141,7 @@ public static class MenuKeys
     public const string MenuKeyElasticWrapPanel = "ElasticWrapPanel";
     public const string MenuKeyEnumSelector = "EnumSelector";
     public const string MenuKeyForm = "Form";
+    public const string MenuKeyGroupBox = "GroupBox";
     public const string MenuKeyIconButton = "IconButton";
     public const string MenuKeyImageViewer = "ImageViewer";
     public const string MenuKeyIpBox = "IPv4Box";

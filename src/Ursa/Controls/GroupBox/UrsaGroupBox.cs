@@ -11,7 +11,7 @@ public class UrsaGroupBox: HeaderedContentControl
     
     /// <summary>
     /// Gets or sets the extra space (in device-independent pixels) added on each side of
-    /// the <see cref="Header"/> control within the border gap.  Defaults to 4.
+    /// the <see cref="HeaderedContentControl.Header"/> control within the border gap.  Defaults to 4.
     /// </summary>
     public double HeaderSpacing
     {

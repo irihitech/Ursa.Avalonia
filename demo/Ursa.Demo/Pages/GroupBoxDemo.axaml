@@ -1,0 +1,125 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.GroupBoxDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <ScrollViewer Margin="16">
+        <StackPanel Spacing="24">
+
+            <!--  Basic UrsaGroupBox with text header  -->
+            <u:UrsaGroupBox>
+                <u:UrsaGroupBox.Header>
+                    <TextBlock
+                        Margin="4,0"
+                        FontWeight="SemiBold"
+                        Text="Connection Settings" />
+                </u:UrsaGroupBox.Header>
+                <StackPanel Margin="0,4,0,0" Spacing="8">
+                    <TextBlock Text="Host: localhost" />
+                    <TextBlock Text="Port: 5432" />
+                    <TextBlock Text="Database: mydb" />
+                </StackPanel>
+            </u:UrsaGroupBox>
+
+            <!--  Larger corner radius  -->
+            <u:UrsaGroupBox
+                BorderBrush="SteelBlue"
+                BorderThickness="2"
+                CornerRadius="12">
+                <u:UrsaGroupBox.Header>
+                    <TextBlock
+                        Margin="4,0"
+                        FontWeight="Bold"
+                        Foreground="SteelBlue"
+                        Text="Appearance" />
+                </u:UrsaGroupBox.Header>
+                <StackPanel Margin="0,4,0,0" Spacing="8">
+                    <TextBlock Text="Font size: 14" />
+                    <TextBlock Text="Accent colour: SteelBlue" />
+                </StackPanel>
+            </u:UrsaGroupBox>
+
+            <!--  No header — plain rounded border  -->
+            <u:UrsaGroupBox
+                BorderThickness="1"
+                CornerRadius="8">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="This UrsaGroupBox has no header." TextWrapping="Wrap" />
+                    <TextBlock Text="The border is drawn as a complete rounded rectangle." TextWrapping="Wrap" />
+                </StackPanel>
+            </u:UrsaGroupBox>
+
+            <!--  Asymmetric corner radius  -->
+            <u:UrsaGroupBox
+                BorderBrush="Coral"
+                BorderThickness="2"
+                CornerRadius="16,4,16,4">
+                <u:UrsaGroupBox.Header>
+                    <TextBlock
+                        Margin="4,0"
+                        FontWeight="SemiBold"
+                        Foreground="Coral"
+                        Text="Asymmetric Corners" />
+                </u:UrsaGroupBox.Header>
+                <TextBlock
+                    Margin="0,4,0,0"
+                    Text="TopLeft=16  TopRight=4  BottomRight=16  BottomLeft=4"
+                    TextWrapping="Wrap" />
+            </u:UrsaGroupBox>
+
+            <!--  With background fill  -->
+            <u:UrsaGroupBox
+                Background="#1A9B59D3"
+                BorderBrush="MediumPurple"
+                BorderThickness="1.5"
+                CornerRadius="6">
+                <u:UrsaGroupBox.Header>
+                    <TextBlock
+                        Margin="4,0"
+                        FontWeight="SemiBold"
+                        Foreground="MediumPurple"
+                        Text="With Background" />
+                </u:UrsaGroupBox.Header>
+                <StackPanel Margin="0,4,0,0" Spacing="8">
+                    <TextBlock Text="The interior of this border has a semi-transparent fill." TextWrapping="Wrap" />
+                    <Button HorizontalAlignment="Left" Content="Click Me" />
+                </StackPanel>
+            </u:UrsaGroupBox>
+
+            <!--  Rich header control  -->
+            <u:UrsaGroupBox
+                Height="300"
+                BorderBrush="ForestGreen"
+                BorderThickness="8,8,24,24"
+                CornerRadius="48"
+                HeaderSpacing="12">
+                <u:UrsaGroupBox.Header>
+                    <StackPanel
+                        Margin="4,0"
+                        Orientation="Horizontal"
+                        Spacing="6">
+                        <Ellipse
+                            Width="8"
+                            Height="8"
+                            Fill="ForestGreen" />
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Foreground="ForestGreen"
+                            Text="Online" />
+                    </StackPanel>
+                </u:UrsaGroupBox.Header>
+                <StackPanel>
+                    <TextBlock Margin="0,4,0,0" Text="The header can be any Avalonia Control, not just text." />
+                    <Calendar />
+                </StackPanel>
+            </u:UrsaGroupBox>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
+

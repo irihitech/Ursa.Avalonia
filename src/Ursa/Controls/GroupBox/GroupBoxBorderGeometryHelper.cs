@@ -7,7 +7,7 @@ namespace Ursa.Controls;
 /// Provides static geometry-generation helpers used by <see cref="GroupBoxBorder"/> to build
 /// the fill, border-ring, and clip <see cref="StreamGeometry"/> objects.
 /// </summary>
-internal static class GroupBoxBorderGeometry
+internal static class GroupBoxBorderGeometryHelper
 {
     /// <summary>
     /// Returns the per-corner outer radii for a border ring whose inner radii are

@@ -1,6 +1,5 @@
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Media;
 
 namespace Ursa.Controls;
@@ -38,23 +37,12 @@ public class GroupBoxBorder : Decorator
     // -------------------------------------------------------------------------
     // Static constructor — wire up invalidation
     // -------------------------------------------------------------------------
-
     static GroupBoxBorder()
     {
-        // Visual-only changes
-        AffectsRender<GroupBoxBorder>(
-            BackgroundProperty,
-            BorderBrushProperty);
-
-        // Layout + visual changes (CornerRadius now affects header X placement)
-        AffectsMeasure<GroupBoxBorder>(
-            BorderThicknessProperty,
-            PaddingProperty,
-            HeaderSpacingProperty,
+        AffectsRender<GroupBoxBorder>(BackgroundProperty, BorderBrushProperty);
+        AffectsMeasure<GroupBoxBorder>(BorderThicknessProperty, PaddingProperty, HeaderSpacingProperty,
             CornerRadiusProperty);
 
-        // Default padding of 8 gives a comfortable inner margin out-of-the-box.
-        PaddingProperty.OverrideDefaultValue<GroupBoxBorder>(new Thickness(8));
     }
 
     // -------------------------------------------------------------------------
@@ -166,8 +154,7 @@ public class GroupBoxBorder : Decorator
         if (change.Property == ChildProperty)
         {
             var oldChild = change.GetOldValue<Control?>();
-            if (oldChild is not null)
-                oldChild.Clip = null;
+            oldChild?.Clip = null;
         }
     }
 
@@ -298,17 +285,17 @@ public class GroupBoxBorder : Decorator
             width: Math.Max(0, finalSize.Width - bt.Left - bt.Right),
             height: Math.Max(0, finalSize.Height - innerTopY - bt.Bottom));
 
-        var outerCr = GroupBoxBorderGeometry.ComputeOuterCornerRadius(cr, bt);
+        var outerCr = GroupBoxBorderGeometryHelper.ComputeOuterCornerRadius(cr, bt);
 
-        _fillGeometry = GroupBoxBorderGeometry.BuildRoundedRectGeometry(innerRect, cr, closeAtStart: true);
+        _fillGeometry = GroupBoxBorderGeometryHelper.BuildRoundedRectGeometry(innerRect, cr, closeAtStart: true);
         _borderGeometry = hasGap ?
-            GroupBoxBorderGeometry.BuildGapBorderRing(outerRect, innerRect, outerCr, cr, gapStart, gapEnd, bt.Top) :
-            GroupBoxBorderGeometry.BuildClosedBorderRing(outerRect, innerRect, outerCr, cr);
+            GroupBoxBorderGeometryHelper.BuildGapBorderRing(outerRect, innerRect, outerCr, cr, gapStart, gapEnd, bt.Top) :
+            GroupBoxBorderGeometryHelper.BuildClosedBorderRing(outerRect, innerRect, outerCr, cr);
 
         if (child is not null)
         {
             // Express the inner boundary in child-local coordinates for the clip.
-            _clipGeometry = GroupBoxBorderGeometry.BuildRoundedRectGeometry(
+            _clipGeometry = GroupBoxBorderGeometryHelper.BuildRoundedRectGeometry(
                 new Rect(
                     innerRect.X - childLeft,
                     innerRect.Y - childTopY,

@@ -56,6 +56,7 @@ public partial class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyElasticWrapPanel => new ElasticWrapPanelDemoViewModel(),
             MenuKeys.MenuKeyEnumSelector => new EnumSelectorDemoViewModel(),
             MenuKeys.MenuKeyForm => new FormDemoViewModel(),
+            MenuKeys.MenuKeyGroupBox => new GroupBoxDemoViewModel(),
             MenuKeys.MenuKeyIconButton => new IconButtonDemoViewModel(),
             MenuKeys.MenuKeyImageViewer => new ImageViewerDemoViewModel(),
             MenuKeys.MenuKeyIpBox => new IPv4BoxDemoViewModel(),
