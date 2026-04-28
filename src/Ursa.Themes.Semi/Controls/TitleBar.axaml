@@ -9,18 +9,22 @@
                 <DockPanel>
                     <ContentPresenter
                         Name="PART_LeftContentPresenter"
-                        Margin="8,0"
+                        TabIndex="1"
+                        KeyboardNavigation.TabNavigation="Local"
                         IsVisible="{TemplateBinding LeftContent, Converter={x:Static ObjectConverters.IsNotNull}}"
                         Content="{TemplateBinding LeftContent}"
                         DockPanel.Dock="Left" />
                     <ContentPresenter
                         Name="PART_RightContentPresenter"
-                        Margin="8,0"
+                        TabIndex="3"
+                        KeyboardNavigation.TabNavigation="Local"
                         IsVisible="{TemplateBinding RightContent, Converter={x:Static ObjectConverters.IsNotNull}}"
                         Content="{TemplateBinding RightContent}"
                         DockPanel.Dock="Right" />
                     <ContentPresenter
                         Name="PART_ContentPresenter"
+                        TabIndex="2"
+                        KeyboardNavigation.TabNavigation="Local"
                         HorizontalAlignment="Stretch"
                         Content="{TemplateBinding CenterContent}" />
                 </DockPanel>
