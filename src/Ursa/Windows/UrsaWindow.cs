@@ -193,18 +193,6 @@ public class UrsaWindow : Window
         _dialogHost = e.NameScope.Find<OverlayDialogHost>(PART_DialogHost);
         if (_dialogHost is not null) LogicalChildren.Add(_dialogHost);
         _titleBar = e.NameScope.Find<TitleBar>("PART_TitleBar");
-        // TODO: To be removed after https://github.com/AvaloniaUI/Avalonia/pull/21061 merged. 
-        // TODO(ursa#window-drawn-decorations-theme-workaround): Remove this workaround once Avalonia
-        // supports specifying window decorations for a specific Window theme directly. This applies
-        // a theme resource to WindowDrawnDecorations manually because that cannot currently be done
-        // through the Window theme itself.
-        if (this.TryFindResource(KEY_URSAWINDOW_DRAWN_DECORATIONS, out var themeResource))
-        {
-            var decorations = this.GetLogicalDescendants().OfType<WindowDrawnDecorations>().FirstOrDefault();
-            if (themeResource is not ControlTheme theme || theme.TargetType != typeof(WindowDrawnDecorations)) return;
-            decorations?.Theme = themeResource as ControlTheme;
-            decorations?.ApplyStyling();
-        }
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
@@ -225,8 +213,6 @@ public class UrsaWindow : Window
                 _titleBar.Margin.Bottom);
             _titleBar.MinHeight = height ?? 0;
         }
-        var dialogHostPadding = new Thickness(0, height ?? 0, 0, 0);
-        _dialogHost?.SafePadding = dialogHostPadding;
     }
 
     /// <summary>

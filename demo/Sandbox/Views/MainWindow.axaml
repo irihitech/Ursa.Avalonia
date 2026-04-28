@@ -7,6 +7,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Sandbox.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+        ExtendClientAreaToDecorationsHint="True"
         Icon="/Assets/avalonia-logo.ico"
         Title="Sandbox">
     <Design.DataContext>
