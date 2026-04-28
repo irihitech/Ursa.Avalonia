@@ -1,0 +1,25 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <ControlTheme x:Key="{x:Type u:UrsaGroupBox}" TargetType="u:UrsaGroupBox">
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderCardBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource ThicknessCardBorderThickness}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:UrsaGroupBox">
+                <u:GroupBoxBorder
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    HeaderSpacing="{TemplateBinding HeaderSpacing}">
+                    <u:GroupBoxBorder.Header>
+                        <ContentPresenter Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                    </u:GroupBoxBorder.Header>
+                    <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+                </u:GroupBoxBorder>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>
+

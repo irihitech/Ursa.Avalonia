@@ -25,6 +25,7 @@
         <ResourceInclude Source="DualBadge.axaml" />
         <ResourceInclude Source="EnumSelector.axaml" />
         <ResourceInclude Source="Form.axaml" />
+        <ResourceInclude Source="GroupBox.axaml" />
         <ResourceInclude Source="IconButton.axaml" />
         <ResourceInclude Source="IconDropDownButton.axaml" />
         <ResourceInclude Source="IconRepeatButton.axaml" />

@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Media;
 
 namespace Ursa.Controls;
@@ -12,21 +13,19 @@ public class GroupBoxBorder : Decorator
 
     /// <summary>Defines the <see cref="Background"/> property.</summary>
     public static readonly StyledProperty<IBrush?> BackgroundProperty =
-        AvaloniaProperty.Register<GroupBoxBorder, IBrush?>(nameof(Background));
+        Border.BackgroundProperty.AddOwner<GroupBoxBorder>();
 
     /// <summary>Defines the <see cref="BorderBrush"/> property.</summary>
     public static readonly StyledProperty<IBrush?> BorderBrushProperty =
-        AvaloniaProperty.Register<GroupBoxBorder, IBrush?>(nameof(BorderBrush));
+        Border.BorderBrushProperty.AddOwner<GroupBoxBorder>();
 
     /// <summary>Defines the <see cref="BorderThickness"/> property.</summary>
     public static readonly StyledProperty<Thickness> BorderThicknessProperty =
-        AvaloniaProperty.Register<GroupBoxBorder, Thickness>(
-            nameof(BorderThickness), new Thickness(1));
+        Border.BorderThicknessProperty.AddOwner<GroupBoxBorder>();
 
     /// <summary>Defines the <see cref="CornerRadius"/> property.</summary>
     public static readonly StyledProperty<CornerRadius> CornerRadiusProperty =
-        AvaloniaProperty.Register<GroupBoxBorder, CornerRadius>(
-            nameof(CornerRadius), new CornerRadius(4));
+        Border.CornerRadiusProperty.AddOwner<GroupBoxBorder>();
 
     /// <summary>Defines the <see cref="Header"/> property.</summary>
     public static readonly StyledProperty<Control?> HeaderProperty =
