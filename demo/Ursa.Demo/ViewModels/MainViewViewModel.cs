@@ -80,6 +80,7 @@ public partial class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeySkeleton => new SkeletonDemoViewModel(),
             MenuKeys.MenuKeyTagInput => new TagInputDemoViewModel(),
             MenuKeys.MenuKeyThemeToggler => new ThemeTogglerDemoViewModel(),
+            MenuKeys.MenuKeyThemeVariantMapper => new ThemeVariantMapperDemoViewModel(),
             MenuKeys.MenuKeyTimeBox => new TimeBoxDemoViewModel(),
             MenuKeys.MenuKeyTimeline => new TimelineDemoViewModel(),
             MenuKeys.MenuKeyTimePicker => new TimePickerDemoViewModel(),
