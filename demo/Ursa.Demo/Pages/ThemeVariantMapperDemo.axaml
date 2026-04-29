@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:semi="https://irihi.tech/semi"
     xmlns:u="https://irihi.tech/ursa"
     d:DesignHeight="450"
     d:DesignWidth="800"
@@ -11,36 +12,36 @@
     <ScrollViewer Margin="16">
         <StackPanel Spacing="24">
 
-            <TextBlock Text="ThemeVariantMapper" FontSize="22" FontWeight="Bold" Margin="0,0,0,4"/>
-            <TextBlock TextWrapping="Wrap"
-                       Text="ThemeVariantMapper listens to its parent's ActualThemeVariant and applies a user-defined mapping. The first matching entry in its Mappings collection is used; if no entry matches, the parent's theme is inherited unchanged."/>
+            <TextBlock
+                Margin="0,0,0,4"
+                FontSize="22"
+                FontWeight="Bold"
+                Text="ThemeVariantMapper" />
+            <TextBlock Text="ThemeVariantMapper listens to its parent's ActualThemeVariant and applies a user-defined mapping. The first matching entry in its Mappings collection is used; if no entry matches, the parent's theme is inherited unchanged." TextWrapping="Wrap" />
 
-            <!-- Invert Light ↔ Dark -->
-            <TextBlock Text="Example 1 — Invert Light ↔ Dark" FontWeight="SemiBold" FontSize="14"/>
-            <TextBlock TextWrapping="Wrap"
-                       Text="The outer ThemeVariantScope forces Light. The ThemeVariantMapper inside it maps Light → Dark, so its children render in Dark mode even though the outer scope is Light."/>
+            <!--  Invert Light ↔ Dark  -->
+            <TextBlock
+                FontSize="14"
+                FontWeight="SemiBold"
+                Text="Example 1 — Invert Light ↔ Dark" />
+            <TextBlock Text="The outer ThemeVariantScope forces Light. The ThemeVariantMapper inside it maps Light → Dark, so its children render in Dark mode even though the outer scope is Light." TextWrapping="Wrap" />
 
             <ThemeVariantScope RequestedThemeVariant="Light">
-                <Border Theme="{DynamicResource CardBorder}" >
+                <Border Theme="{DynamicResource CardBorder}">
                     <StackPanel Spacing="8">
-                        <TextBlock Text="[Parent scope: Light]"
-                                   Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
-                                   FontStyle="Italic"/>
+                        <TextBlock FontStyle="Italic" Text="[Parent scope: Light]" />
 
                         <u:ThemeVariantMapper>
                             <u:ThemeVariantMapper.Mappings>
-                                <u:ThemeVariantMapping Source="Light" Target="Dark"/>
-                                <u:ThemeVariantMapping Source="Dark"  Target="Light"/>
+                                <u:ThemeVariantMapping Source="Light" Target="Dark" />
+                                <u:ThemeVariantMapping Source="Dark" Target="Light" />
                             </u:ThemeVariantMapper.Mappings>
 
                             <Border Theme="{DynamicResource CardBorder}">
                                 <StackPanel Spacing="6">
-                                    <TextBlock Text="[ThemeVariantMapper: Light → Dark]"
-                                               Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
-                                               FontWeight="SemiBold"/>
-                                    <TextBlock Text="This content renders in Dark mode."
-                                               Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
-                                    <Button Content="Dark-mode Button"/>
+                                    <TextBlock FontWeight="SemiBold" Text="[ThemeVariantMapper: Light → Dark]" />
+                                    <TextBlock Text="This content renders in Dark mode." />
+                                    <Button Content="Dark-mode Button" />
                                 </StackPanel>
                             </Border>
                         </u:ThemeVariantMapper>
@@ -49,36 +50,32 @@
                 </Border>
             </ThemeVariantScope>
 
-            <!-- Only map Dark, pass Light through -->
-            <TextBlock Text="Example 2 — Map only Dark → Light, leave Light unchanged" FontWeight="SemiBold" FontSize="14"/>
-            <TextBlock TextWrapping="Wrap"
-                       Text="The outer scope forces Dark. The mapper only has a Dark → Light mapping, so its child renders in Light mode. A sibling without the mapper stays in Dark mode."/>
+            <!--  Only map Dark, pass Light through  -->
+            <TextBlock
+                FontSize="14"
+                FontWeight="SemiBold"
+                Text="Example 2 — Map only Dark → Light, leave Light unchanged" />
+            <TextBlock Text="The outer scope forces Dark. The mapper only has a Dark → Light mapping, so its child renders in Light mode. A sibling without the mapper stays in Dark mode." TextWrapping="Wrap" />
 
             <ThemeVariantScope RequestedThemeVariant="Dark">
                 <Border Theme="{DynamicResource CardBorder}">
                     <StackPanel Spacing="12">
-                        <TextBlock Text="[Parent scope: Dark]"
-                                   Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
-                                   FontStyle="Italic"/>
-                        <!-- Without mapper — stays Dark -->
+                        <TextBlock FontStyle="Italic" Text="[Parent scope: Dark]" />
+                        <!--  Without mapper — stays Dark  -->
                         <Border Theme="{DynamicResource CardBorder}">
-                            <TextBlock Text="No mapper — inherits Dark from parent."
-                                       Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+                            <TextBlock Text="No mapper — inherits Dark from parent." />
                         </Border>
 
-                        <!-- With mapper Dark → Light -->
+                        <!--  With mapper Dark → Light  -->
                         <u:ThemeVariantMapper>
                             <u:ThemeVariantMapper.Mappings>
-                                <u:ThemeVariantMapping Source="Dark" Target="Light"/>
+                                <u:ThemeVariantMapping Source="Dark" Target="Light" />
                             </u:ThemeVariantMapper.Mappings>
                             <Border Theme="{DynamicResource CardBorder}">
                                 <StackPanel Spacing="6">
-                                    <TextBlock Text="[ThemeVariantMapper: Dark → Light]"
-                                               Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
-                                               FontWeight="SemiBold"/>
-                                    <TextBlock Text="This content renders in Light mode inside a Dark parent."
-                                               Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
-                                    <Button Content="Light-mode Button"/>
+                                    <TextBlock FontWeight="SemiBold" Text="[ThemeVariantMapper: Dark → Light]" />
+                                    <TextBlock Text="This content renders in Light mode inside a Dark parent." />
+                                    <Button Content="Light-mode Button" />
                                 </StackPanel>
                             </Border>
                         </u:ThemeVariantMapper>
@@ -88,51 +85,57 @@
             </ThemeVariantScope>
 
 
-            <!-- Dynamic theme switching -->
-            <TextBlock Text="Example 3 — Dynamic parent theme switching" FontWeight="SemiBold" FontSize="14"/>
-            <TextBlock TextWrapping="Wrap"
-                       Text="Use the buttons below to change the parent scope's requested theme at runtime. The inner ThemeVariantMapper (Light ↔ Dark) will react immediately."/>
+            <!--  Dynamic theme switching  -->
+            <TextBlock
+                FontSize="14"
+                FontWeight="SemiBold"
+                Text="Example 3 — Dynamic parent theme switching" />
+            <TextBlock Text="Use the buttons below to change the parent scope's requested theme at runtime. The inner ThemeVariantMapper will react immediately." TextWrapping="Wrap" />
+            <StackPanel>
+                <TextBlock Text="Mapping rule: " />
+                <TextBlock Text="Light -&gt; NightSky" />
+                <TextBlock Text="Dark -&gt; Desert" />
+            </StackPanel>
 
             <StackPanel Spacing="10">
-                <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
-                    <TextBlock Text="Set parent to:" VerticalAlignment="Center"/>
-                    <Button Content="Light"   Click="OnSetLight"/>
-                    <Button Content="Dark"    Click="OnSetDark"/>
-                    <Button Content="Default" Click="OnSetDefault"/>
+                <StackPanel
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal"
+                    Spacing="8">
+                    <TextBlock VerticalAlignment="Center" Text="Set parent to:" />
+                    <Button Click="OnSetLight" Content="Light" />
+                    <Button Click="OnSetDark" Content="Dark" />
+                    <Button Click="OnSetDefault" Content="Default" />
                 </StackPanel>
 
                 <ThemeVariantScope x:Name="DynamicParentScope">
                     <Border Theme="{DynamicResource CardBorder}">
                         <StackPanel Spacing="12">
-                            <TextBlock FontStyle="Italic"
-                                       Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}">
-                                <Run Text="[Parent scope — ActualThemeVariant: "/>
-                                <Run Text="{Binding #DynamicParentScope.ActualThemeVariant}"/>
-                                <Run Text="]"/>
+                            <TextBlock FontStyle="Italic">
+                                <Run Text="[Parent scope — ActualThemeVariant: " />
+                                <Run Text="{Binding #DynamicParentScope.ActualThemeVariant}" />
+                                <Run Text="]" />
                             </TextBlock>
 
                             <u:ThemeVariantMapper x:Name="DynamicMapper">
                                 <u:ThemeVariantMapper.Mappings>
-                                    <u:ThemeVariantMapping Source="Light" Target="Dark"/>
-                                    <u:ThemeVariantMapping Source="Dark"  Target="Light"/>
+                                    <u:ThemeVariantMapping Source="Light" Target="{x:Static semi:SemiTheme.NightSky}" />
+                                    <u:ThemeVariantMapping Source="Dark" Target="{x:Static semi:SemiTheme.Desert}" />
                                 </u:ThemeVariantMapper.Mappings>
 
                                 <Border Theme="{DynamicResource CardBorder}">
                                     <StackPanel Spacing="6">
-                                        <TextBlock FontStyle="Italic"
-                                                   FontWeight="SemiBold"
-                                                   Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}">
-                                            <Run Text="[ThemeVariantMapper (Light ↔ Dark) — ActualThemeVariant: "/>
-                                            <Run Text="{Binding #DynamicMapper.ActualThemeVariant}"/>
-                                            <Run Text="]"/>
+                                        <TextBlock FontStyle="Italic" FontWeight="SemiBold">
+                                            <Run Text="[ThemeVariantMapper — ActualThemeVariant: " />
+                                            <Run Text="{Binding #DynamicMapper.ActualThemeVariant}" />
+                                            <Run Text="]" />
                                         </TextBlock>
-                                        <TextBlock Text="This content follows the mapped theme."
-                                                   Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
-                                        <Button Content="Mapped-theme Button"/>
+                                        <TextBlock Text="This content follows the mapped theme." />
+                                        <Button Content="Mapped-theme Button" />
                                     </StackPanel>
                                 </Border>
                             </u:ThemeVariantMapper>
-                            
+
                         </StackPanel>
                     </Border>
                 </ThemeVariantScope>

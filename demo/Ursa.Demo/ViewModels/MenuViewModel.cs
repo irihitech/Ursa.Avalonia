@@ -34,7 +34,6 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = "Selection List", Key = MenuKeys.MenuKeySelectionList },
                     new() { MenuHeader = "TagInput", Key = MenuKeys.MenuKeyTagInput },
                     new() { MenuHeader = "Theme Toggler", Key = MenuKeys.MenuKeyThemeToggler },
-                    new() { MenuHeader = "Theme Variant Mapper", Key = MenuKeys.MenuKeyThemeVariantMapper, Status = "New" },
                     new() { MenuHeader = "TreeComboBox", Key = MenuKeys.MenuKeyTreeComboBox, Status = "Updated" },
                 }
             },
@@ -102,6 +101,7 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = "Number Displayer", Key = MenuKeys.MenuKeyNumberDisplayer, Status = "Updated" },
                     new() { MenuHeader = "Qr Code", Key = MenuKeys.MenuKeyQrCode, Status = "New" },
                     new() { MenuHeader = "Scroll To", Key = MenuKeys.MenuKeyScrollToButton },
+                    new() { MenuHeader = "Theme Variant Mapper", Key = MenuKeys.MenuKeyThemeVariantMapper, Status = "New" },
                     new() { MenuHeader = "Timeline", Key = MenuKeys.MenuKeyTimeline },
                     new() { MenuHeader = "TwoTonePathIcon", Key = MenuKeys.MenuKeyTwoTonePathIcon }
                 }
