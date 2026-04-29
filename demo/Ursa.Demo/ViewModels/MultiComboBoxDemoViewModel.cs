@@ -4,10 +4,23 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public class MultiComboBoxDemoViewModel: ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "MultiComboBox",
+        Description = "MultiComboBox allows selecting multiple items from a dropdown list.",
+        Breadcrumbs = ["Buttons & Inputs", "MultiComboBox"],
+        Tags = ["MultiComboBox", "ComboBox", "Selection"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/MultiComboBoxDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/MultiComboBoxDemoViewModel.cs",
+        InlineXamlSupport = true,
+        MvvmSupport = true,
+    };
+
     public ObservableCollection<string> Items { get; set; }
     
     public ObservableCollection<string> SelectedItems { get; set; }

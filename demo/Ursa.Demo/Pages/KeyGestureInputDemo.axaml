@@ -10,8 +10,10 @@
     d:DesignWidth="800"
     x:CompileBindings="True"
     x:DataType="vm:KeyGestureInputDemoViewModel"
-    mc:Ignorable="d">
-    <StackPanel Margin="20">
+    mc:Ignorable="d"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    <StackPanel Margin="20" Spacing="20">
+        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <TextBlock Text="Accept all keys" />
         <u:KeyGestureInput HorizontalAlignment="Left" />
         <TextBlock Text="Accept only A,B and C" />

@@ -1,9 +1,21 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public partial class BannerDemoViewModel : ViewModelBase
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "Banner",
+        Description = "Banner displays a prominent informational or alert message bar.",
+        Breadcrumbs = ["Layout & Display", "Banner"],
+        Tags = ["Banner", "Alert", "Message"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/BannerDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/BannerDemoViewModel.cs",
+        InlineXamlSupport = true,
+    };
+
     private string? _oldTitle = string.Empty;
     private string? _oldContent = string.Empty;
     [ObservableProperty] private string? _title = "Welcome to Ursa";

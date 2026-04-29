@@ -7,8 +7,12 @@
     xmlns:u="https://irihi.tech/ursa"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    mc:Ignorable="d">
-    <StackPanel Spacing="20">
+    mc:Ignorable="d"
+    x:DataType="viewModels:DividerDemoViewModel"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
+    <StackPanel Spacing="20" Margin="20">
+        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <u:Divider>Center</u:Divider>
         <u:Divider HorizontalContentAlignment="Left">Left</u:Divider>
         <u:Divider HorizontalContentAlignment="Right">Right</u:Divider>

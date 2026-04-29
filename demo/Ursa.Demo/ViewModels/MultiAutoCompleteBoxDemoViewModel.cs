@@ -4,10 +4,23 @@ using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Ursa.Demo.Models;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public class MultiAutoCompleteBoxDemoViewModel : ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "MultiAutoCompleteBox",
+        Description = "MultiAutoCompleteBox supports selecting multiple items with auto-complete suggestions.",
+        Breadcrumbs = ["Buttons & Inputs", "Multi AutoCompleteBox"],
+        Tags = ["MultiAutoCompleteBox", "AutoComplete", "Input"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/MultiAutoCompleteBoxDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/MultiAutoCompleteBoxDemoViewModel.cs",
+        InlineXamlSupport = true,
+        MvvmSupport = true,
+    };
+
     public ObservableCollection<ControlData> Items { get; set; }
     public ObservableCollection<ControlData> SelectedItems { get; set; }
     public AutoCompleteFilterPredicate<object> FilterPredicate { get; set; }

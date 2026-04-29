@@ -10,8 +10,10 @@
     d:DesignWidth="800"
     x:CompileBindings="True"
     x:DataType="vm:EnumSelectorDemoViewModel"
-    mc:Ignorable="d">
-    <StackPanel>
+    mc:Ignorable="d"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    <StackPanel Margin="20" Spacing="20">
+        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <ToggleSwitch Name="description" Content="Show Description" />
         <TextBlock Text="Select Type" />
         <ComboBox

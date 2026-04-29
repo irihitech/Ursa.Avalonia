@@ -9,8 +9,10 @@
              d:DesignWidth="800"
              x:CompileBindings="True"
              x:DataType="vm:RatingDemoViewModel"
-             mc:Ignorable="d">
-    <StackPanel Spacing="20">
+             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    <StackPanel Spacing="20" Margin="20">
+        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <Grid ColumnDefinitions="*, 300">
             <Grid Grid.Column="0">
                 <StackPanel HorizontalAlignment="Center">

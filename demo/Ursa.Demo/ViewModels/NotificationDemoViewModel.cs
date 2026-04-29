@@ -6,10 +6,22 @@ using Ursa.Controls;
 using Notification = Ursa.Controls.Notification;
 using WindowNotificationManager = Ursa.Controls.WindowNotificationManager;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public partial class NotificationDemoViewModel : ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "Notification",
+        Description = "Notification shows informational messages in a non-blocking overlay.",
+        Breadcrumbs = ["Dialog & Feedbacks", "Notification"],
+        Tags = ["Notification", "Alert", "Toast"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/NotificationDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/NotificationDemoViewModel.cs",
+        InlineXamlSupport = true,
+    };
+
     public WindowNotificationManager? NotificationManager { get; set; }
 
     [ObservableProperty] private bool _showIcon = true;

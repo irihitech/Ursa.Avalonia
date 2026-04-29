@@ -4,10 +4,22 @@ using System.Net;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Ursa.Demo.Models;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public partial class IntroductionDemoViewModel : ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "Introduction",
+        Description = "Introduction provides an overview of the Ursa control library and its features.",
+        Breadcrumbs = ["Introduction"],
+        Tags = ["Introduction"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/IntroductionDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/IntroductionDemoViewModel.cs",
+        InlineXamlSupport = true,
+    };
+
     public ObservableCollection<string> ButtonGroupItems { get; set; } = new()
     {
         "Avalonia", "WPF", "Xamarin"

@@ -6,10 +6,23 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public partial class PinCodeDemoViewModel: ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "PinCode",
+        Description = "PinCode is an input control for entering PIN or verification codes.",
+        Breadcrumbs = ["Buttons & Inputs", "PinCode"],
+        Tags = ["PinCode", "Input", "Password"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/PinCodeDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/PinCodeDemoViewModel.cs",
+        InlineXamlSupport = true,
+        MvvmSupport = true,
+    };
+
     public ICommand CompleteCommand { get; set; }
     [ObservableProperty] private List<Exception>? _error;
 

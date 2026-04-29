@@ -1,10 +1,23 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public partial class DescriptionsDemoViewModel : ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "Descriptions",
+        Description = "Descriptions presents key-value data in a structured label-content layout.",
+        Breadcrumbs = ["Layout & Display", "Descriptions"],
+        Tags = ["Descriptions", "Label", "Value"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DescriptionsDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/DescriptionsDemoViewModel.cs",
+        InlineXamlSupport = true,
+        MvvmSupport = true,
+    };
+
     public ObservableCollection<DescriptionItemViewModel> Items { get; set; }
     public ObservableCollection<DescriptionItemViewModel> Items2 { get; set; }
 

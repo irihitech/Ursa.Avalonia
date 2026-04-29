@@ -9,160 +9,164 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:DataType="vm:PathPickerDemoViewModel"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    <DockPanel>
+    <controls:PageMetadataView DockPanel.Dock="Top" DataContext="{Binding PageMetadata}"/>
     <Grid ColumnDefinitions="*,*" RowDefinitions="7*,3*">
-        <ScrollViewer Grid.Row="0" Grid.Column="0">
-            <StackPanel>
-                <HeaderedContentControl
-                    Content="PathPicker aggregates a file selector and provides a Command property. The Command is triggered solely after opening the file selector and selecting a file, whereupon the Command receives an IReadOnlyList&lt;string&gt; parameter."
-                    Header="Functionality and Usage"
-                    Theme="{DynamicResource GroupBox}" />
-                <u:Form
-                    HorizontalAlignment="Stretch"
-                    LabelAlignment="Left"
-                    LabelPosition="Left"
-                    LabelWidth="*">
-                    <TextBox
-                        Name="Title"
-                        u:FormItem.Label="Title"
-                        Text="选择文件" />
-                    <TextBox
-                        Name="SuggestedFileName"
-                        u:FormItem.Label="SuggestedFileName"
-                        PlaceholderText="filename(not have file extension)" />
-                    <TextBox
-                        Name="SuggestedStartPath"
-                        u:FormItem.Label="SuggestedStartPath"
-                        PlaceholderText="D:\Win7 Help\win-x64" />
-                    <TextBox
-                        Name="FileFilter"
-                        u:FormItem.Label="FileFilter"
-                        PlaceholderText="[Name,Pattern] like this [123,*.exe,*.pdb] or [All][ImageAll][11,*.txt]" />
-                    <TextBox
-                        Name="DefaultFileExtension"
-                        u:FormItem.Label="DefaultFileExtension"
-                        PlaceholderText="json" />
-                    <CheckBox
-                        Name="AllowMultiple"
-                        u:FormItem.NoLabel="True"
-                        Content="AllowMultiple" />
-                    <CheckBox
-                        Name="IsOmitCommandOnCancel"
-                        u:FormItem.NoLabel="True"
-                        Content="Do not trigger the command after unselecting." />
-                    <CheckBox
-                        Name="IsClearSelectionOnCancel"
-                        u:FormItem.NoLabel="True"
-                        Content="Clear the selection when unselecting." />
-                    <u:EnumSelector
-                        Name="UsePickerType"
-                        u:FormItem.Label="UsePickerType"
-                        EnumType="u:UsePickerTypes" />
-                    <u:ControlClassesInput
-                        Name="ClassInput"
-                        HorizontalAlignment="Left"
-                        u:FormItem.Label="Style Class" >
-                        <u:ControlClassesInput.Styles>
-                            <Style Selector="u|ControlClassesInput /template/ u|TagInput">
-                                <Setter Property="PlaceholderText" Value="Available: Top" />
-                            </Style>
-                        </u:ControlClassesInput.Styles>
-                    </u:ControlClassesInput>
+            <ScrollViewer Grid.Row="0" Grid.Column="0">
+                <StackPanel>
+                    <HeaderedContentControl
+                        Content="PathPicker aggregates a file selector and provides a Command property. The Command is triggered solely after opening the file selector and selecting a file, whereupon the Command receives an IReadOnlyList&lt;string&gt; parameter."
+                        Header="Functionality and Usage"
+                        Theme="{DynamicResource GroupBox}" />
+                    <u:Form
+                        HorizontalAlignment="Stretch"
+                        LabelAlignment="Left"
+                        LabelPosition="Left"
+                        LabelWidth="*">
+                        <TextBox
+                            Name="Title"
+                            u:FormItem.Label="Title"
+                            Text="选择文件" />
+                        <TextBox
+                            Name="SuggestedFileName"
+                            u:FormItem.Label="SuggestedFileName"
+                            PlaceholderText="filename(not have file extension)" />
+                        <TextBox
+                            Name="SuggestedStartPath"
+                            u:FormItem.Label="SuggestedStartPath"
+                            PlaceholderText="D:\Win7 Help\win-x64" />
+                        <TextBox
+                            Name="FileFilter"
+                            u:FormItem.Label="FileFilter"
+                            PlaceholderText="[Name,Pattern] like this [123,*.exe,*.pdb] or [All][ImageAll][11,*.txt]" />
+                        <TextBox
+                            Name="DefaultFileExtension"
+                            u:FormItem.Label="DefaultFileExtension"
+                            PlaceholderText="json" />
+                        <CheckBox
+                            Name="AllowMultiple"
+                            u:FormItem.NoLabel="True"
+                            Content="AllowMultiple" />
+                        <CheckBox
+                            Name="IsOmitCommandOnCancel"
+                            u:FormItem.NoLabel="True"
+                            Content="Do not trigger the command after unselecting." />
+                        <CheckBox
+                            Name="IsClearSelectionOnCancel"
+                            u:FormItem.NoLabel="True"
+                            Content="Clear the selection when unselecting." />
+                        <u:EnumSelector
+                            Name="UsePickerType"
+                            u:FormItem.Label="UsePickerType"
+                            EnumType="u:UsePickerTypes" />
+                        <u:ControlClassesInput
+                            Name="ClassInput"
+                            HorizontalAlignment="Left"
+                            u:FormItem.Label="Style Class" >
+                            <u:ControlClassesInput.Styles>
+                                <Style Selector="u|ControlClassesInput /template/ u|TagInput">
+                                    <Setter Property="PlaceholderText" Value="Available: Top" />
+                                </Style>
+                            </u:ControlClassesInput.Styles>
+                        </u:ControlClassesInput>
                     
-                </u:Form>
-            </StackPanel>
-        </ScrollViewer>
-        <ScrollViewer Grid.Row="1" Grid.Column="0">
-            <StackPanel Spacing="2">
-                <HeaderedContentControl Header="Default">
-                    <u:PathPicker
-                        Title="{Binding #Title.Text}"
-                        u:ControlClassesInput.Source="{Binding #ClassInput}"
-                        AllowMultiple="{Binding #AllowMultiple.IsChecked, Mode=TwoWay}"
-                        Command="{Binding SelectedCommand}"
-                        DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
-                        FileFilter="{Binding #FileFilter.Text}"
-                        IsClearSelectionOnCancel="{Binding #IsClearSelectionOnCancel.IsChecked}"
-                        IsOmitCommandOnCancel="{Binding #IsOmitCommandOnCancel.IsChecked}"
-                        SelectedPaths="{Binding Paths, Mode=OneWayToSource}"
-                        SelectedPathsText="{Binding Path, Mode=OneWayToSource}"
-                        SuggestedFileName="{Binding #SuggestedFileName.Text}"
-                        SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
-                        UsePickerType="{Binding #UsePickerType.Value}" />
-                </HeaderedContentControl>
-                <HeaderedContentControl Header="ButtonPathPicker">
-                    <u:PathPicker
-                        Title="{Binding #Title.Text}"
-                        AllowMultiple="{Binding #AllowMultiple.IsChecked}"
-                        Command="{Binding SelectedCommand}"
-                        DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
-                        FileFilter="{Binding #FileFilter.Text}"
-                        IsClearSelectionOnCancel="{Binding #IsClearSelectionOnCancel.IsChecked}"
-                        IsOmitCommandOnCancel="{Binding #IsOmitCommandOnCancel.IsChecked}"
-                        SelectedPaths="{Binding Paths, Mode=OneWayToSource}"
-                        SelectedPathsText="{Binding Path, Mode=OneWayToSource}"
-                        SuggestedFileName="{Binding #SuggestedFileName.Text}"
-                        SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
-                        Theme="{DynamicResource ButtonPathPicker}"
-                        UsePickerType="{Binding #UsePickerType.Value}" />
-                </HeaderedContentControl>
-                <HeaderedContentControl Header="ListPathPicker">
-                    <u:PathPicker
-                        Title="{Binding #Title.Text}"
-                        AllowMultiple="{Binding #AllowMultiple.IsChecked}"
-                        Command="{Binding SelectedCommand}"
-                        DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
-                        FileFilter="{Binding #FileFilter.Text}"
-                        IsClearSelectionOnCancel="{Binding #IsClearSelectionOnCancel.IsChecked}"
-                        IsOmitCommandOnCancel="{Binding #IsOmitCommandOnCancel.IsChecked}"
-                        SelectedPaths="{Binding Paths, Mode=OneWayToSource}"
-                        SelectedPathsText="{Binding Path, Mode=OneWayToSource}"
-                        SuggestedFileName="{Binding #SuggestedFileName.Text}"
-                        SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
-                        Theme="{DynamicResource ListPathPicker}"
-                        UsePickerType="{Binding #UsePickerType.Value}" />
-                </HeaderedContentControl>
-                <HeaderedContentControl Header="Custom ButtonContent (Icon + Text)">
-                    <u:PathPicker
-                        Title="{Binding #Title.Text}"
-                        AllowMultiple="{Binding #AllowMultiple.IsChecked}"
-                        Command="{Binding SelectedCommand}"
-                        DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
-                        FileFilter="{Binding #FileFilter.Text}"
-                        IsClearSelectionOnCancel="{Binding #IsClearSelectionOnCancel.IsChecked}"
-                        IsOmitCommandOnCancel="{Binding #IsOmitCommandOnCancel.IsChecked}"
-                        SelectedPaths="{Binding Paths, Mode=OneWayToSource}"
-                        SelectedPathsText="{Binding Path, Mode=OneWayToSource}"
-                        SuggestedFileName="{Binding #SuggestedFileName.Text}"
-                        SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
-                        UsePickerType="{Binding #UsePickerType.Value}">
-                        <u:PathPicker.ButtonContent>
-                            <StackPanel Orientation="Horizontal" Spacing="4">
-                                <PathIcon Data="{DynamicResource SemiIconSearch}" Height="16" Width="16" VerticalAlignment="Center" />
-                                <TextBlock Text="Browse" VerticalAlignment="Center" />
-                            </StackPanel>
-                        </u:PathPicker.ButtonContent>
-                    </u:PathPicker>
-                </HeaderedContentControl>
-            </StackPanel>
-        </ScrollViewer>
-        <ScrollViewer
-            Grid.Row="0"
-            Grid.RowSpan="2"
-            Grid.Column="1">
-            <StackPanel Spacing="1">
-                <TextBlock Text="{Binding CommandTriggerCount, StringFormat='Command Trigger Count:{0}'}" />
-                <HeaderedContentControl Header="SelectedPathsText">
-                    <TextBox
-                        Name="SelectedPath"
-                        u:FormItem.Label="SelectedPath"
-                        IsReadOnly="True"
-                        Text="{Binding Path}" />
-                </HeaderedContentControl>
-                <HeaderedContentControl Header="SelectedPaths">
-                    <ListBox Name="SelectedPaths" ItemsSource="{Binding Paths}" />
-                </HeaderedContentControl>
-            </StackPanel>
-        </ScrollViewer>
-    </Grid>
+                    </u:Form>
+                </StackPanel>
+            </ScrollViewer>
+            <ScrollViewer Grid.Row="1" Grid.Column="0">
+                <StackPanel Spacing="2">
+                    <HeaderedContentControl Header="Default">
+                        <u:PathPicker
+                            Title="{Binding #Title.Text}"
+                            u:ControlClassesInput.Source="{Binding #ClassInput}"
+                            AllowMultiple="{Binding #AllowMultiple.IsChecked, Mode=TwoWay}"
+                            Command="{Binding SelectedCommand}"
+                            DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
+                            FileFilter="{Binding #FileFilter.Text}"
+                            IsClearSelectionOnCancel="{Binding #IsClearSelectionOnCancel.IsChecked}"
+                            IsOmitCommandOnCancel="{Binding #IsOmitCommandOnCancel.IsChecked}"
+                            SelectedPaths="{Binding Paths, Mode=OneWayToSource}"
+                            SelectedPathsText="{Binding Path, Mode=OneWayToSource}"
+                            SuggestedFileName="{Binding #SuggestedFileName.Text}"
+                            SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
+                            UsePickerType="{Binding #UsePickerType.Value}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Header="ButtonPathPicker">
+                        <u:PathPicker
+                            Title="{Binding #Title.Text}"
+                            AllowMultiple="{Binding #AllowMultiple.IsChecked}"
+                            Command="{Binding SelectedCommand}"
+                            DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
+                            FileFilter="{Binding #FileFilter.Text}"
+                            IsClearSelectionOnCancel="{Binding #IsClearSelectionOnCancel.IsChecked}"
+                            IsOmitCommandOnCancel="{Binding #IsOmitCommandOnCancel.IsChecked}"
+                            SelectedPaths="{Binding Paths, Mode=OneWayToSource}"
+                            SelectedPathsText="{Binding Path, Mode=OneWayToSource}"
+                            SuggestedFileName="{Binding #SuggestedFileName.Text}"
+                            SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
+                            Theme="{DynamicResource ButtonPathPicker}"
+                            UsePickerType="{Binding #UsePickerType.Value}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Header="ListPathPicker">
+                        <u:PathPicker
+                            Title="{Binding #Title.Text}"
+                            AllowMultiple="{Binding #AllowMultiple.IsChecked}"
+                            Command="{Binding SelectedCommand}"
+                            DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
+                            FileFilter="{Binding #FileFilter.Text}"
+                            IsClearSelectionOnCancel="{Binding #IsClearSelectionOnCancel.IsChecked}"
+                            IsOmitCommandOnCancel="{Binding #IsOmitCommandOnCancel.IsChecked}"
+                            SelectedPaths="{Binding Paths, Mode=OneWayToSource}"
+                            SelectedPathsText="{Binding Path, Mode=OneWayToSource}"
+                            SuggestedFileName="{Binding #SuggestedFileName.Text}"
+                            SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
+                            Theme="{DynamicResource ListPathPicker}"
+                            UsePickerType="{Binding #UsePickerType.Value}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Header="Custom ButtonContent (Icon + Text)">
+                        <u:PathPicker
+                            Title="{Binding #Title.Text}"
+                            AllowMultiple="{Binding #AllowMultiple.IsChecked}"
+                            Command="{Binding SelectedCommand}"
+                            DefaultFileExtension="{Binding #DefaultFileExtension.Text}"
+                            FileFilter="{Binding #FileFilter.Text}"
+                            IsClearSelectionOnCancel="{Binding #IsClearSelectionOnCancel.IsChecked}"
+                            IsOmitCommandOnCancel="{Binding #IsOmitCommandOnCancel.IsChecked}"
+                            SelectedPaths="{Binding Paths, Mode=OneWayToSource}"
+                            SelectedPathsText="{Binding Path, Mode=OneWayToSource}"
+                            SuggestedFileName="{Binding #SuggestedFileName.Text}"
+                            SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
+                            UsePickerType="{Binding #UsePickerType.Value}">
+                            <u:PathPicker.ButtonContent>
+                                <StackPanel Orientation="Horizontal" Spacing="4">
+                                    <PathIcon Data="{DynamicResource SemiIconSearch}" Height="16" Width="16" VerticalAlignment="Center" />
+                                    <TextBlock Text="Browse" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </u:PathPicker.ButtonContent>
+                        </u:PathPicker>
+                    </HeaderedContentControl>
+                </StackPanel>
+            </ScrollViewer>
+            <ScrollViewer
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Grid.Column="1">
+                <StackPanel Spacing="1">
+                    <TextBlock Text="{Binding CommandTriggerCount, StringFormat='Command Trigger Count:{0}'}" />
+                    <HeaderedContentControl Header="SelectedPathsText">
+                        <TextBox
+                            Name="SelectedPath"
+                            u:FormItem.Label="SelectedPath"
+                            IsReadOnly="True"
+                            Text="{Binding Path}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Header="SelectedPaths">
+                        <ListBox Name="SelectedPaths" ItemsSource="{Binding Paths}" />
+                    </HeaderedContentControl>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+</DockPanel>
 </UserControl>

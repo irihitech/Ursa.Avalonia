@@ -4,10 +4,22 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public partial class ToastDemoViewModel : ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "Toast",
+        Description = "Toast displays brief, auto-dismissing notification messages.",
+        Breadcrumbs = ["Dialog & Feedbacks", "Toast"],
+        Tags = ["Toast", "Notification", "Message"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ToastDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/ToastDemoViewModel.cs",
+        InlineXamlSupport = true,
+    };
+
     public WindowToastManager? ToastManager { get; set; }
 
     [ObservableProperty] private bool _showIcon = true;

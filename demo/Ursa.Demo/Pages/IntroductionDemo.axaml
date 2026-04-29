@@ -10,7 +10,8 @@
     x:DataType="vm:IntroductionDemoViewModel"
     d:DesignHeight="800"
     d:DesignWidth="1600"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <Design.DataContext>
         <vm:IntroductionDemoViewModel />
     </Design.DataContext>
@@ -37,6 +38,7 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel Margin="12" Spacing="8">
+            <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
             <!-- Welcome Banner -->
             <u:Banner
                 Classes="Bordered"

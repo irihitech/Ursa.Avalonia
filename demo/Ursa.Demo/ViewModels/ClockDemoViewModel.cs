@@ -2,10 +2,22 @@
 using System.Timers;
 using CommunityToolkit.Mvvm.ComponentModel;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public partial class ClockDemoViewModel: ObservableObject, IDisposable
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "Clock",
+        Description = "Clock displays a visual analog or digital clock.",
+        Breadcrumbs = ["Date & Time", "Clock"],
+        Tags = ["Clock", "Time", "Display"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ClockDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/ClockDemoViewModel.cs",
+        InlineXamlSupport = true,
+    };
+
     private Timer _timer;
     
     [ObservableProperty] private DateTime _time;

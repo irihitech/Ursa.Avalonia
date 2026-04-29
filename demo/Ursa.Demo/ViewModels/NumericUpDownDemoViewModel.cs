@@ -4,10 +4,23 @@ using Avalonia.Layout;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public partial class NumericUpDownDemoViewModel : ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "NumericUpDown",
+        Description = "NumericUpDown is a numeric input control with increment and decrement buttons.",
+        Breadcrumbs = ["Buttons & Inputs", "Numeric UpDown"],
+        Tags = ["NumericUpDown", "Input", "Number"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/NumericUpDownDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/NumericUpDownDemoViewModel.cs",
+        InlineXamlSupport = true,
+        MvvmSupport = true,
+    };
+
 
 
     private double _oldWidth = 300;

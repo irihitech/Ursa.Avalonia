@@ -7,8 +7,12 @@
     xmlns:u="https://irihi.tech/ursa"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    mc:Ignorable="d">
-    <StackPanel HorizontalAlignment="Left" Spacing="20">
+    mc:Ignorable="d"
+    x:DataType="viewModels:DisableContainerDemoViewModel"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
+    <StackPanel HorizontalAlignment="Left" Spacing="20" Margin="20">
+        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <ToggleSwitch Name="s" IsChecked="True" />
         <u:DisableContainer DisabledTip="This is disabled. ">
             <Button IsEnabled="{Binding #s.IsChecked}">Hello World!</Button>

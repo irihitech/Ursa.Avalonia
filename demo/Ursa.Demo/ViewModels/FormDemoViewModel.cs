@@ -4,10 +4,23 @@ using System.ComponentModel.DataAnnotations;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Irihi.Avalonia.Shared.Contracts;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public partial class FormDemoViewModel : ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "Form",
+        Description = "Form is a layout container for grouping labeled input controls.",
+        Breadcrumbs = ["Buttons & Inputs", "Form"],
+        Tags = ["Form", "Layout", "Label"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/FormDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/FormDemoViewModel.cs",
+        InlineXamlSupport = true,
+        MvvmSupport = true,
+    };
+
     [ObservableProperty] private DataModel _model;
 
     public FormDemoViewModel()

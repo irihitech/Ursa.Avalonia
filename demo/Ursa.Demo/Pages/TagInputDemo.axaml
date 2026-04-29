@@ -10,8 +10,10 @@
     x:CompileBindings="True"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    mc:Ignorable="d">
-    <StackPanel>
+    mc:Ignorable="d"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    <StackPanel Margin="20" Spacing="20">
+        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <u:TagInput
             Name="labels"
             Margin="20"

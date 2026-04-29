@@ -7,7 +7,10 @@
     xmlns:u="https://irihi.tech/ursa"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    x:DataType="viewModels:ImageViewerDemoViewModel"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
     <UserControl.Resources>
         <SolidColorBrush
             x:Key="MaskBackground"
@@ -15,7 +18,8 @@
             Color="Red" />
         <SolidColorBrush x:Key="MaskBorder" Color="Red" />
     </UserControl.Resources>
-    <StackPanel>
+    <StackPanel Margin="20" Spacing="20">
+        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <u:Banner
             Content="Setting the Scale before loading has no effect."
             Header="Notice"

@@ -9,10 +9,23 @@ using Avalonia.Interactivity;
 using Avalonia.Layout;
 using CommunityToolkit.Mvvm.ComponentModel;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public partial class EnumSelectorDemoViewModel : ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "EnumSelector",
+        Description = "EnumSelector provides a dropdown for selecting enum values.",
+        Breadcrumbs = ["Buttons & Inputs", "Enum Selector"],
+        Tags = ["EnumSelector", "Enum", "Selector"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/EnumSelectorDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/EnumSelectorDemoViewModel.cs",
+        InlineXamlSupport = true,
+        MvvmSupport = true,
+    };
+
     [ObservableProperty] private Type? _selectedType;
     [ObservableProperty] private object? _value;
 

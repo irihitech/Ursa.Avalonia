@@ -9,8 +9,10 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:DataType="viewModels:DateOnlyPickerDemoViewModel"
-    mc:Ignorable="d">
-    <StackPanel Margin="20" HorizontalAlignment="Left">
+    mc:Ignorable="d"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    <StackPanel Margin="20" HorizontalAlignment="Left" Spacing="20">
+        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <TextBox Name="format" InnerLeftContent="Display Format" Text="yyyy-MM-dd" />
 
         <TextBlock Text="Need Confirmation" />

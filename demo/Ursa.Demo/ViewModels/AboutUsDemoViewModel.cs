@@ -6,10 +6,21 @@ using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public partial class AboutUsDemoViewModel : ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "About Us",
+        Description = "About Us displays information about the Ursa library and its creators.",
+        Breadcrumbs = ["About Us"],
+        Tags = ["AboutUs"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/AboutUsDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/AboutUsDemoViewModel.cs",
+    };
+
     public ICommand NavigateCommand { get; set; }
 
     internal ILauncher? Launcher { get; set; }

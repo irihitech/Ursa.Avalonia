@@ -7,8 +7,10 @@
              mc:Ignorable="d" d:DesignWidth="800"
              d:DesignHeight="450"
              x:DataType="viewModels:PopConfirmDemoViewModel"
-             x:Class="Ursa.Demo.Pages.PopConfirmDemo">
-    <StackPanel HorizontalAlignment="Left">
+             x:Class="Ursa.Demo.Pages.PopConfirmDemo"
+             xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    <StackPanel HorizontalAlignment="Left" Margin="20" Spacing="20">
+        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <Border Theme="{DynamicResource CardBorder}">
             <u:Form>
                 <u:ControlClassesInput 

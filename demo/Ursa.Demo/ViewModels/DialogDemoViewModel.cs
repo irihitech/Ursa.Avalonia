@@ -8,10 +8,23 @@ using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
 using Ursa.Demo.Dialogs;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public partial class DialogDemoViewModel: ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "Dialog",
+        Description = "Dialog displays modal overlay windows for user interaction.",
+        Breadcrumbs = ["Dialog & Feedbacks", "Dialog"],
+        Tags = ["Dialog", "Modal", "Overlay"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DialogDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/DialogDemoViewModel.cs",
+        InlineXamlSupport = true,
+        MvvmSupport = true,
+    };
+
     public const string LocalHost = "LocalHost";
     public DefaultWindowDialogDemoViewModel DefaultWindowDialogDemoViewModel { get; set; } = new();
     public CustomWindowDialogDemoViewModel CustomWindowDialogDemoViewModel { get; set; } = new();

@@ -5,10 +5,22 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public class PopConfirmDemoViewModel : ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "PopConfirm",
+        Description = "PopConfirm shows a confirmation popup before executing an action.",
+        Breadcrumbs = ["Dialog & Feedbacks", "PopConfirm"],
+        Tags = ["PopConfirm", "Confirm", "Popup"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/PopConfirmDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/PopConfirmDemoViewModel.cs",
+        InlineXamlSupport = true,
+    };
+
     public PopConfirmDemoViewModel()
     {
         AsyncConfirmCommand = new AsyncRelayCommand(OnConfirmAsync);

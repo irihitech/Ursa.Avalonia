@@ -2,10 +2,23 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Ursa.Demo.Models;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public class AutoCompleteBoxDemoViewModel : ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "AutoCompleteBox",
+        Description = "AutoCompleteBox provides suggestions as the user types in a text field.",
+        Breadcrumbs = ["Buttons & Inputs", "AutoCompleteBox"],
+        Tags = ["AutoCompleteBox", "Input", "Search"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/AutoCompleteBoxDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/AutoCompleteBoxDemoViewModel.cs",
+        InlineXamlSupport = true,
+        MvvmSupport = true,
+    };
+
     public AutoCompleteBoxDemoViewModel()
     {
         Controls = new ObservableCollection<ControlData>(GetControlData());

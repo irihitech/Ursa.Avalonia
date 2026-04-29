@@ -7,12 +7,14 @@
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
     x:DataType="vm:BannerDemoViewModel"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <Design.DataContext>
         <vm:BannerDemoViewModel />
     </Design.DataContext>
     <ScrollViewer>
         <StackPanel Spacing="20">
+            <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
             <u:Banner
                 Name="banner"
                 Classes.Bordered="{Binding Bordered}"

@@ -7,8 +7,12 @@
     xmlns:u="https://irihi.tech/ursa"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    mc:Ignorable="d">
-    <StackPanel HorizontalAlignment="Left">
+    mc:Ignorable="d"
+    x:DataType="viewModels:NumPadDemoViewModel"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
+    <StackPanel HorizontalAlignment="Left" Margin="20" Spacing="20">
+        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <TextBox
             HorizontalAlignment="Stretch"
             u:NumPad.Attach="True"

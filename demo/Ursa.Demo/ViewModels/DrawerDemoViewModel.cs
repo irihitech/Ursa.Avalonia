@@ -7,10 +7,23 @@ using Ursa.Controls;
 using Ursa.Controls.Options;
 using Ursa.Demo.Dialogs;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public partial class DrawerDemoViewModel : ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "Drawer",
+        Description = "Drawer is a panel that slides in from the edge of the screen.",
+        Breadcrumbs = ["Dialog & Feedbacks", "Drawer"],
+        Tags = ["Drawer", "Panel", "Overlay"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DrawerDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/DrawerDemoViewModel.cs",
+        InlineXamlSupport = true,
+        MvvmSupport = true,
+    };
+
     public ICommand ShowDialogCommand { get; set; }
 
     [ObservableProperty] private Position _position;

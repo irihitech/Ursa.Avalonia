@@ -2,10 +2,22 @@
 using Avalonia.Layout;
 using CommunityToolkit.Mvvm.ComponentModel;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public partial class ElasticWrapPanelDemoViewModel : ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "ElasticWrapPanel",
+        Description = "ElasticWrapPanel is a panel that wraps children with elastic spacing distribution.",
+        Breadcrumbs = ["Layout & Display", "ElasticWrapPanel"],
+        Tags = ["ElasticWrapPanel", "Panel", "Layout"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ElasticWrapPanelDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/ElasticWrapPanelDemoViewModel.cs",
+        InlineXamlSupport = true,
+    };
+
     [ObservableProperty] private Orientation _selectedOrientation = Orientation.Horizontal;
     [ObservableProperty] private ScrollBarVisibility _horizontalVisibility = ScrollBarVisibility.Auto;
     [ObservableProperty] private ScrollBarVisibility _verticalVisibility = ScrollBarVisibility.Auto;

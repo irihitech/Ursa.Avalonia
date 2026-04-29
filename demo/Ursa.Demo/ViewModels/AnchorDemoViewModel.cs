@@ -2,10 +2,23 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public partial class AnchorDemoViewModel : ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "Anchor",
+        Description = "Anchor provides a table of contents navigation linked to page sections.",
+        Breadcrumbs = ["Navigation & Menus", "Anchor"],
+        Tags = ["Anchor", "Navigation", "Scroll"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/AnchorDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/AnchorDemoViewModel.cs",
+        InlineXamlSupport = true,
+        MvvmSupport = true,
+    };
+
     public List<AnchorItemViewModel> AnchorItems { get; } = new()
     {
         new AnchorItemViewModel { AnchorId = "anchor1", Header = "Anchor 1" },

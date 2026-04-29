@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:u="https://irihi.tech/ursa"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Ursa.Demo.Pages.ClassInputDemo">
-    <StackPanel HorizontalAlignment="Left" Spacing="20">
+             x:Class="Ursa.Demo.Pages.ClassInputDemo"
+             x:DataType="viewModels:ClassInputDemoViewModel"
+             xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+             xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
+    <StackPanel HorizontalAlignment="Left" Spacing="20" Margin="20">
+        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <u:ControlClassesInput Name="input" Separator=" " />
         <Button u:ControlClassesInput.Source="{Binding #input}" Content="Hello Panda" />
         <Button u:ControlClassesInput.Source="{Binding #input}" Content="Hello Panda" />

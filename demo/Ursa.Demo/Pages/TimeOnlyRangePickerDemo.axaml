@@ -9,8 +9,10 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:DataType="viewModels:TimeOnlyRangePickerDemoViewModel"
-    mc:Ignorable="d">
-    <StackPanel HorizontalAlignment="Left">
+    mc:Ignorable="d"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    <StackPanel HorizontalAlignment="Left" Margin="20" Spacing="20">
+        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <TextBox
             Name="displayFormat"
             Width="300"

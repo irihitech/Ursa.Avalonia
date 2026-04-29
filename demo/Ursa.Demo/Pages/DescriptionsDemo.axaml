@@ -7,13 +7,15 @@
              xmlns:common="clr-namespace:Ursa.Common;assembly=Ursa"
              mc:Ignorable="d" d:DesignWidth="800"
              x:DataType="vm:DescriptionsDemoViewModel"
-             x:Class="Ursa.Demo.Pages.DescriptionsDemo">
+             x:Class="Ursa.Demo.Pages.DescriptionsDemo"
+             xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <Design.DataContext>
         <vm:DescriptionsDemoViewModel />
     </Design.DataContext>
 
     <ScrollViewer>
         <StackPanel Spacing="20">
+            <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
             <TextBlock Text="Descriptions support different orientations and item alignments. " />
             <u:Form LabelPosition="Left">
                 <u:EnumSelector

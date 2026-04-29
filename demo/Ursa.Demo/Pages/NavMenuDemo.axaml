@@ -12,107 +12,111 @@
     d:DesignWidth="800"
     x:CompileBindings="True"
     x:DataType="vm:NavMenuDemoViewModel"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    <DockPanel>
+    <controls:PageMetadataView DockPanel.Dock="Top" DataContext="{Binding PageMetadata}"/>
     <Grid
-        HorizontalAlignment="Left"
-        ColumnDefinitions="Auto, Auto"
-        RowDefinitions="Auto, Auto, *">
-        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-            <ToggleSwitch Name="collapse" OnContent="Collapse" OffContent="Expand" />
-            <Button HorizontalAlignment="Left" Command="{Binding RandomCommand}" Content="Random a selection" />
-            <TextBlock Text="{Binding SelectedMenuItem.Header}" />
-        </StackPanel>
-        <Border
-            Grid.Row="2"
-            Grid.Column="0"
-            Padding="0"
             HorizontalAlignment="Left"
-            Theme="{DynamicResource CardBorder}">
+            ColumnDefinitions="Auto, Auto"
+            RowDefinitions="Auto, Auto, *">
+            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                <ToggleSwitch Name="collapse" OnContent="Collapse" OffContent="Expand" />
+                <Button HorizontalAlignment="Left" Command="{Binding RandomCommand}" Content="Random a selection" />
+                <TextBlock Text="{Binding SelectedMenuItem.Header}" />
+            </StackPanel>
+            <Border
+                Grid.Row="2"
+                Grid.Column="0"
+                Padding="0"
+                HorizontalAlignment="Left"
+                Theme="{DynamicResource CardBorder}">
+                <u:NavMenu
+                    Name="menu"
+                    ExpandWidth="400"
+                    HeaderBinding="{Binding Header}"
+                    IconBinding="{Binding IconIndex}"
+                    IsHorizontalCollapsed="{Binding #collapse.IsChecked, Mode=OneWay}"
+                    ItemsSource="{Binding MenuItems}"
+                    SelectedItem="{Binding SelectedMenuItem}"
+                    SubMenuBinding="{Binding Children}"
+                    Classes="enable_animation">
+                    <u:NavMenu.Styles>
+                        <Style x:DataType="vm:MenuItem" Selector="u|NavMenuItem">
+                            <Setter Property="IsSeparator" Value="{Binding IsSeparator}" />
+                        </Style>
+                    </u:NavMenu.Styles>
+                    <u:NavMenu.IconTemplate>
+                        <DataTemplate DataType="{x:Type x:Int32}">
+                            <u:TwoTonePathIcon
+                                Width="16"
+                                Height="16"
+                                ActiveForeground="{DynamicResource SemiBlue5}"
+                                ActiveStrokeBrush="{DynamicResource SemiBlue5}"
+                                Data="{Binding Converter={converters:IconNameToPathConverter}}"
+                                Foreground="{DynamicResource SemiGrey5}"
+                                IsActive="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=u:NavMenuItem}, Path=IsHighlighted, Mode=TwoWay}"
+                                StrokeBrush="{DynamicResource SemiGrey5}" />
+                        </DataTemplate>
+                    </u:NavMenu.IconTemplate>
+                    <u:NavMenu.Header>
+                        <Grid HorizontalAlignment="Center" ColumnDefinitions="Auto, Auto">
+                            <Panel
+                                VerticalAlignment="Center"
+                                u:NavMenu.CanToggle="True"
+                                Margin="4 12"
+                                Background="Transparent"
+                                DockPanel.Dock="Left">
+                                <iri:IrihiLogo Width="32" Fill="{DynamicResource SemiGrey7}" />
+                            </Panel>
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Classes="H5"
+                                IsVisible="{Binding !#menu.IsHorizontalCollapsed}"
+                                Text="Ursa Avalonia"
+                                Theme="{DynamicResource TitleTextBlock}" />
+                        </Grid>
+                    </u:NavMenu.Header>
+                </u:NavMenu>
+            </Border>
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="{ReflectionBinding #menu2.SelectedItem.Header}" />
             <u:NavMenu
-                Name="menu"
-                ExpandWidth="400"
-                HeaderBinding="{Binding Header}"
-                IconBinding="{Binding IconIndex}"
-                IsHorizontalCollapsed="{Binding #collapse.IsChecked, Mode=OneWay}"
-                ItemsSource="{Binding MenuItems}"
-                SelectedItem="{Binding SelectedMenuItem}"
-                SubMenuBinding="{Binding Children}"
-                Classes="enable_animation">
-                <u:NavMenu.Styles>
-                    <Style x:DataType="vm:MenuItem" Selector="u|NavMenuItem">
-                        <Setter Property="IsSeparator" Value="{Binding IsSeparator}" />
-                    </Style>
-                </u:NavMenu.Styles>
-                <u:NavMenu.IconTemplate>
-                    <DataTemplate DataType="{x:Type x:Int32}">
-                        <u:TwoTonePathIcon
-                            Width="16"
-                            Height="16"
-                            ActiveForeground="{DynamicResource SemiBlue5}"
-                            ActiveStrokeBrush="{DynamicResource SemiBlue5}"
-                            Data="{Binding Converter={converters:IconNameToPathConverter}}"
-                            Foreground="{DynamicResource SemiGrey5}"
-                            IsActive="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=u:NavMenuItem}, Path=IsHighlighted, Mode=TwoWay}"
-                            StrokeBrush="{DynamicResource SemiGrey5}" />
-                    </DataTemplate>
-                </u:NavMenu.IconTemplate>
-                <u:NavMenu.Header>
-                    <Grid HorizontalAlignment="Center" ColumnDefinitions="Auto, Auto">
-                        <Panel
-                            VerticalAlignment="Center"
-                            u:NavMenu.CanToggle="True"
-                            Margin="4 12"
-                            Background="Transparent"
-                            DockPanel.Dock="Left">
-                            <iri:IrihiLogo Width="32" Fill="{DynamicResource SemiGrey7}" />
-                        </Panel>
-                        <TextBlock
-                            Grid.Column="1"
-                            VerticalAlignment="Center"
-                            Classes="H5"
-                            IsVisible="{Binding !#menu.IsHorizontalCollapsed}"
-                            Text="Ursa Avalonia"
-                            Theme="{DynamicResource TitleTextBlock}" />
-                    </Grid>
-                </u:NavMenu.Header>
+                Name="menu2"
+                Grid.Row="2"
+                Grid.Column="1"
+                IsHorizontalCollapsed="{Binding #collapse.IsChecked}">
+                <u:NavMenuItem Header="Menu 1">
+                    <u:NavMenuItem.Icon>
+                        <Rectangle
+                            Width="10"
+                            Height="10"
+                            Fill="Red" />
+                    </u:NavMenuItem.Icon>
+                    <u:NavMenuItem Header="Sub Menu 1" />
+                    <u:NavMenuItem Header="Sub Menu 2" />
+                    <u:NavMenuItem Header="Sub Menu 3" />
+                </u:NavMenuItem>
+                <u:NavMenuItem Header="Menu 2">
+                    <u:NavMenuItem.Icon>
+                        <Rectangle
+                            Width="10"
+                            Height="10"
+                            Fill="Red" />
+                    </u:NavMenuItem.Icon>
+                </u:NavMenuItem>
+                <u:NavMenuItem Header="Menu 3">
+                    <u:NavMenuItem.Icon>
+                        <Rectangle
+                            Width="10"
+                            Height="10"
+                            Fill="Red" />
+                    </u:NavMenuItem.Icon>
+                </u:NavMenuItem>
             </u:NavMenu>
-        </Border>
-        <TextBlock
-            Grid.Row="1"
-            Grid.Column="1"
-            Text="{ReflectionBinding #menu2.SelectedItem.Header}" />
-        <u:NavMenu
-            Name="menu2"
-            Grid.Row="2"
-            Grid.Column="1"
-            IsHorizontalCollapsed="{Binding #collapse.IsChecked}">
-            <u:NavMenuItem Header="Menu 1">
-                <u:NavMenuItem.Icon>
-                    <Rectangle
-                        Width="10"
-                        Height="10"
-                        Fill="Red" />
-                </u:NavMenuItem.Icon>
-                <u:NavMenuItem Header="Sub Menu 1" />
-                <u:NavMenuItem Header="Sub Menu 2" />
-                <u:NavMenuItem Header="Sub Menu 3" />
-            </u:NavMenuItem>
-            <u:NavMenuItem Header="Menu 2">
-                <u:NavMenuItem.Icon>
-                    <Rectangle
-                        Width="10"
-                        Height="10"
-                        Fill="Red" />
-                </u:NavMenuItem.Icon>
-            </u:NavMenuItem>
-            <u:NavMenuItem Header="Menu 3">
-                <u:NavMenuItem.Icon>
-                    <Rectangle
-                        Width="10"
-                        Height="10"
-                        Fill="Red" />
-                </u:NavMenuItem.Icon>
-            </u:NavMenuItem>
-        </u:NavMenu>
-    </Grid>
+        </Grid>
+</DockPanel>
 </UserControl>

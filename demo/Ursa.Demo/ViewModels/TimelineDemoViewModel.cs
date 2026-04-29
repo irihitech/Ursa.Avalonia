@@ -2,10 +2,23 @@ using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Ursa.Controls;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public class TimelineDemoViewModel: ViewModelBase
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "Timeline",
+        Description = "Timeline presents a sequence of events in chronological vertical order.",
+        Breadcrumbs = ["Layout & Display", "Timeline"],
+        Tags = ["Timeline", "History", "Steps"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/TimelineDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/TimelineDemoViewModel.cs",
+        InlineXamlSupport = true,
+        MvvmSupport = true,
+    };
+
     public TimelineItemViewModel[] Items { get; } =
     {
         new()

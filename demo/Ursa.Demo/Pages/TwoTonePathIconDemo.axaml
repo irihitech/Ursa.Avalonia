@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:u="https://irihi.tech/ursa"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Ursa.Demo.Pages.TwoTonePathIconDemo">
-    <StackPanel>
+             x:Class="Ursa.Demo.Pages.TwoTonePathIconDemo"
+             x:DataType="viewModels:TwoTonePathIconDemoViewModel"
+             xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+             xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
+    <StackPanel Margin="20" Spacing="20">
+        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <TextBlock Text="Size" />
         <Slider Name="width" Minimum="0" Maximum="100" Value="20" Width="300" />
         <ToggleSwitch Name="active" Content="Active" />

@@ -4,10 +4,23 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public class BreadcrumbDemoViewModel: ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "Breadcrumb",
+        Description = "Breadcrumb displays a navigation trail showing the current page location.",
+        Breadcrumbs = ["Navigation & Menus", "Breadcrumb"],
+        Tags = ["Breadcrumb", "Navigation", "Path"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/BreadcrumbDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/BreadcrumbDemoViewModel.cs",
+        InlineXamlSupport = true,
+        MvvmSupport = true,
+    };
+
     public ObservableCollection<BreadcrumbDemoItem> Items1 { get; set; } =
     [
         new BreadcrumbDemoItem { Section = "Home", Icon = "Home" },

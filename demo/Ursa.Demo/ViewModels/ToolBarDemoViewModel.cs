@@ -4,10 +4,22 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
 
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public partial class ToolBarDemoViewModel : ObservableObject
 {
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "ToolBar",
+        Description = "ToolBar is a container for grouping action buttons and controls.",
+        Breadcrumbs = ["Navigation & Menus", "ToolBar"],
+        Tags = ["ToolBar", "Navigation", "Button"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ToolBarDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/ToolBarDemoViewModel.cs",
+        InlineXamlSupport = true,
+    };
+
     public ObservableCollection<ToolBarItemViewModel> Items { get; set; }
 
     public ToolBarDemoViewModel()
