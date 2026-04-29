@@ -78,7 +78,7 @@
                             <Panel Name="PART_TitleBar"
                                    VerticalAlignment="Top"
                                    Height="{TemplateBinding TitleBarHeight}"
-                                   Background="{TemplateBinding TitleBarBackground}"
+                                   Background="{DynamicResource TitleBarBackground}"
                                    IsVisible="{TemplateBinding HasTitleBar}"
                                    WindowDecorationProperties.ElementRole="TitleBar" />
                         </Panel>
