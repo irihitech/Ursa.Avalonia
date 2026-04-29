@@ -10,7 +10,7 @@
              d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.AutoCompleteBoxDemo"
              xmlns:controls="clr-namespace:Ursa.Demo.Controls">
-    <StackPanel HorizontalAlignment="Left" Spacing="20" Margin="20">
+    <StackPanel HorizontalAlignment="Stretch" Spacing="20" Margin="20">
         <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <StackPanel.Styles>
             <Style Selector="u|AutoCompleteBox">

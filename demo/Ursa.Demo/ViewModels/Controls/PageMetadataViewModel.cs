@@ -15,4 +15,9 @@ public partial class PageMetadataViewModel: ObservableObject
     [ObservableProperty] private bool? _mvvmSupport;
     [ObservableProperty] private bool? _inlineXamlSupport;
     [ObservableProperty] private bool? _avaloniaExclusive;
+
+    public PageMetadataViewModel()
+    {
+        AvaloniaExclusive = false;
+    }
 }

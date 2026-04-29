@@ -14,7 +14,7 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <ScrollViewer>
-        <StackPanel HorizontalAlignment="Left" Margin="24  0 0 0 ">
+        <StackPanel HorizontalAlignment="Stretch" Margin="24  0 0 0 ">
             <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
             <u:Divider Content="Simple Form"/>
             <u:Form LabelPosition="Left" LabelWidth="*">

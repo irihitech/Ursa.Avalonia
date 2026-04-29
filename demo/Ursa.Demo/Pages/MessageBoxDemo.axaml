@@ -17,7 +17,7 @@
             <Setter Property="Margin" Value="8" />
         </Style>
     </UserControl.Styles>
-    <StackPanel HorizontalAlignment="Left" Margin="20" Spacing="20">
+    <StackPanel HorizontalAlignment="Stretch" Margin="20" Spacing="20">
         <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <ComboBox ItemsSource="{Binding Icons}" SelectedItem="{Binding SelectedIcon}" />
         <ToggleSwitch Content="Try Long Message" IsChecked="{Binding UseLong}" />

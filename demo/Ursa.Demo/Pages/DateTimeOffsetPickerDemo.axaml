@@ -12,11 +12,12 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <ScrollViewer>
-        <StackPanel Margin="20" HorizontalAlignment="Left" Spacing="8">
+        <StackPanel Margin="20" Spacing="8">
 
             <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
 
-            <ToggleSwitch Name="showOffset" Content="Show Offset Selection" IsChecked="True" />
+            <StackPanel HorizontalAlignment="Left">
+                <ToggleSwitch Name="showOffset" Content="Show Offset Selection" IsChecked="True" />
             <ToggleSwitch Name="needConfirm" Content="Need Confirmation" />
 
             <TextBlock Text="Default (Local offset)" />
@@ -62,6 +63,7 @@
                 Width="360"
                 Classes="ClearButton"
                 ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
+            </StackPanel>
 
         </StackPanel>
     </ScrollViewer>

@@ -38,7 +38,6 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel Margin="12" Spacing="8">
-            <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
             <!-- Welcome Banner -->
             <u:Banner
                 Classes="Bordered"
@@ -175,7 +174,7 @@
                 <Border Grid.Column="1" Grid.Row="4" Classes="SectionCard">
                     <StackPanel Spacing="6">
                         <TextBlock Text="MultiAutoComplete" Classes="SectionTitle" />
-                        <u:MultiAutoCompleteBox Width="180" PlaceholderText="Type..." ItemsSource="{Binding AutoCompleteItems}">
+                        <u:MultiAutoCompleteBox Width="180" PlaceholderText="Type..." ItemsSource="{Binding AutoCompleteItems}" SelectedItems="{Binding AutoCompleteSelectedItems}">
                             <u:MultiAutoCompleteBox.ItemTemplate>
                                 <DataTemplate DataType="models:ControlData">
                                     <TextBlock Text="{Binding MenuHeader}" />

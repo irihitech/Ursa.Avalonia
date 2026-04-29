@@ -9,10 +9,11 @@
              x:DataType="vm:MultiAutoCompleteBoxDemoViewModel"
              x:Class="Ursa.Demo.Pages.MultiAutoCompleteBoxDemo"
              xmlns:controls="clr-namespace:Ursa.Demo.Controls">
-    <StackPanel Spacing="20" HorizontalAlignment="Left" Margin="20">
+    <StackPanel Spacing="20" HorizontalAlignment="Stretch" Margin="20">
         <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <TextBlock Text="Multi-AutoCompleteBox"/>
         <u:MultiAutoCompleteBox ItemsSource="{Binding Items}" 
+                                HorizontalAlignment="Left"
                                 MaxWidth="400"
                                 InnerLeftContent="Controls"
                                 SelectedItems="{Binding SelectedItems}"

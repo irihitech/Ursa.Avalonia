@@ -11,31 +11,32 @@
     x:DataType="viewModels:DatePickerDemoViewModel"
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
-    <StackPanel Margin="20" HorizontalAlignment="Left" Spacing="20">
+    <StackPanel Margin="20" HorizontalAlignment="Stretch" Spacing="20">
         <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
-        <TextBox Name="format" InnerLeftContent="Display Format" Text="yyyy-MM-dd" />
+        <StackPanel HorizontalAlignment="Left">
+            <TextBox Name="format" InnerLeftContent="Display Format" Text="yyyy-MM-dd" />
 
-        <TextBlock Text="Need Confirmation" />
-        <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
-        <TextBlock Text="{Binding #confirmPicker.SelectedDate, StringFormat='Selected: {0}'}" />
-        <u:DatePicker
-            Name="confirmPicker"
-            Width="200"
-            DisplayFormat="{Binding #format.Text}"
-            NeedConfirmation="{Binding #needConfirm.IsChecked}" />
+            <TextBlock Text="Need Confirmation" />
+            <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
+            <TextBlock Text="{Binding #confirmPicker.SelectedDate, StringFormat='Selected: {0}'}" />
+            <u:DatePicker
+                Name="confirmPicker"
+                Width="200"
+                DisplayFormat="{Binding #format.Text}"
+                NeedConfirmation="{Binding #needConfirm.IsChecked}" />
 
-        <TextBlock Text="Default" />
-        <u:DatePicker Width="200" DisplayFormat="{Binding #format.Text}" />
-        <TextBlock Text="Binding" />
-        <u:DatePicker
-            Width="200"
-            DisplayFormat="{Binding #format.Text}"
-            SelectedDate="{Binding SelectedDate, Mode=TwoWay}" />
-        <TextBlock Text="Clear Button" />
-        <u:DatePicker
-            Name="singlePicker"
-            Width="200"
-            Classes="ClearButton" />
-        <u:DatePickerCalendarView />
+            <TextBlock Text="Default" />
+            <u:DatePicker Width="200" DisplayFormat="{Binding #format.Text}" />
+            <TextBlock Text="Binding" />
+            <u:DatePicker
+                Width="200"
+                DisplayFormat="{Binding #format.Text}"
+                SelectedDate="{Binding SelectedDate, Mode=TwoWay}" />
+            <TextBlock Text="Clear Button" />
+            <u:DatePicker
+                Name="singlePicker"
+                Width="200"
+                Classes="ClearButton" />
+        </StackPanel>
     </StackPanel>
 </UserControl>

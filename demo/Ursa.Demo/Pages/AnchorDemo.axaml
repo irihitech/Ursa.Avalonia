@@ -2,6 +2,7 @@
     x:Class="Ursa.Demo.Pages.AnchorDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
@@ -9,11 +10,10 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:DataType="viewModels:AnchorDemoViewModel"
-    mc:Ignorable="d"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    mc:Ignorable="d">
     <DockPanel>
-    <controls:PageMetadataView DockPanel.Dock="Top" DataContext="{Binding PageMetadata}"/>
-    <TabControl>
+        <controls:PageMetadataView DataContext="{Binding PageMetadata}" DockPanel.Dock="Top" />
+        <TabControl>
             <TabItem Header="XAML Inline">
                 <Grid ColumnDefinitions="*, Auto">
                     <ScrollViewer
@@ -28,23 +28,23 @@
                                 </Style>
                             </StackPanel.Styles>
                             <Border
-                                u:Anchor.Id="a1"
                                 Height="300"
                                 HorizontalAlignment="Stretch"
+                                u:Anchor.Id="a1"
                                 Background="{DynamicResource SemiRed2}">
                                 <TextBlock Text="Border 1" />
                             </Border>
                             <Border
-                                u:Anchor.Id="a2"
                                 Height="300"
                                 HorizontalAlignment="Stretch"
+                                u:Anchor.Id="a2"
                                 Background="{DynamicResource SemiPink1}">
                                 <TextBlock Text="Border 2" />
                             </Border>
                             <Border
-                                u:Anchor.Id="a3"
                                 Height="300"
                                 HorizontalAlignment="Stretch"
+                                u:Anchor.Id="a3"
                                 Background="{DynamicResource SemiPurple1}">
                                 <TextBlock Text="Border 3" />
                             </Border>
@@ -55,23 +55,23 @@
                                 <TextBlock u:Anchor.Id="a4" Text="Border 4" />
                             </Border>
                             <Border
-                                u:Anchor.Id="a5"
                                 Height="300"
                                 HorizontalAlignment="Stretch"
+                                u:Anchor.Id="a5"
                                 Background="{DynamicResource SemiIndigo1}">
                                 <TextBlock Text="Border 5" />
                             </Border>
                             <Border
-                                u:Anchor.Id="a6"
                                 Height="300"
                                 HorizontalAlignment="Stretch"
+                                u:Anchor.Id="a6"
                                 Background="{DynamicResource SemiBlue1}">
                                 <TextBlock Text="Border 6" />
                             </Border>
                             <Border
-                                u:Anchor.Id="a7"
                                 Height="300"
                                 HorizontalAlignment="Stretch"
+                                u:Anchor.Id="a7"
                                 Background="{DynamicResource SemiLightBlue1}">
                                 <TextBlock Text="Border 7" />
                             </Border>
@@ -82,14 +82,14 @@
                         Width="200"
                         Margin="24"
                         TargetContainer="{Binding ElementName=container1}">
-                        <u:AnchorItem Header="Rectangle 1" AnchorId="a1">
-                            <u:AnchorItem Header="Rectangle 2" AnchorId="a2" />
-                            <u:AnchorItem Header="Rectangle 3" AnchorId="a3" />
+                        <u:AnchorItem AnchorId="a1" Header="Rectangle 1">
+                            <u:AnchorItem AnchorId="a2" Header="Rectangle 2" />
+                            <u:AnchorItem AnchorId="a3" Header="Rectangle 3" />
                         </u:AnchorItem>
-                        <u:AnchorItem Header="Rectangle 4" AnchorId="a4" />
-                        <u:AnchorItem Header="Rectangle 5" AnchorId="a5">
-                            <u:AnchorItem Header="Rectangle 6" AnchorId="a6" />
-                            <u:AnchorItem Header="Rectangle 7" AnchorId="a7" />
+                        <u:AnchorItem AnchorId="a4" Header="Rectangle 4" />
+                        <u:AnchorItem AnchorId="a5" Header="Rectangle 5">
+                            <u:AnchorItem AnchorId="a6" Header="Rectangle 6" />
+                            <u:AnchorItem AnchorId="a7" Header="Rectangle 7" />
                         </u:AnchorItem>
                     </u:Anchor>
                 </Grid>
@@ -221,9 +221,9 @@
             </TabItem>
             <TabItem Header="Appearance">
                 <StackPanel
+                    Margin="8"
                     Orientation="Horizontal"
-                    Spacing="100"
-                    Margin="8">
+                    Spacing="100">
                     <u:Anchor>
                         <u:AnchorItem Header="组件" />
                         <u:AnchorItem Header="设计语言" />
@@ -265,5 +265,5 @@
                 </StackPanel>
             </TabItem>
         </TabControl>
-</DockPanel>
+    </DockPanel>
 </UserControl>

@@ -9,17 +9,6 @@ namespace Ursa.Demo.ViewModels;
 
 public partial class IntroductionDemoViewModel : ObservableObject
 {
-    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
-    {
-        Title = "Introduction",
-        Description = "Introduction provides an overview of the Ursa control library and its features.",
-        Breadcrumbs = ["Introduction"],
-        Tags = ["Introduction"],
-        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/IntroductionDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/IntroductionDemoViewModel.cs",
-        InlineXamlSupport = true,
-    };
-
     public ObservableCollection<string> ButtonGroupItems { get; set; } = new()
     {
         "Avalonia", "WPF", "Xamarin"
@@ -37,6 +26,8 @@ public partial class IntroductionDemoViewModel : ObservableObject
         new() { MenuHeader = "Button", Chinese = "按钮" },
         new() { MenuHeader = "Dialog", Chinese = "对话框" },
     };
+
+    public ObservableCollection<ControlData> AutoCompleteSelectedItems { get; set; } = [];
 
     public ObservableCollection<string> TagItems { get; set; } = new()
     {

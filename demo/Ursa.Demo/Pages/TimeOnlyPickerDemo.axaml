@@ -11,46 +11,48 @@
     x:DataType="viewModels:TimeOnlyPickerDemoViewModel"
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
-    <StackPanel HorizontalAlignment="Left" Margin="20" Spacing="20">
+    <StackPanel Margin="20" Spacing="20">
         <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
-        <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
+        <StackPanel HorizontalAlignment="Left" Spacing="20">
+            <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
 
-        <TextBlock Text="{Binding #picker.SelectedTime}" />
+            <TextBlock Text="{Binding #picker.SelectedTime}" />
 
-        <TextBox
-            Name="displayFormat"
-            Width="300"
-            InnerLeftContent="Display Format"
-            Text="HH:mm:ss" />
-        <TextBox
-            Name="panelFormat"
-            Width="300"
-            InnerLeftContent="Panel Format"
-            Text="tt HH mm ss" />
+            <TextBox
+                Name="displayFormat"
+                Width="300"
+                InnerLeftContent="Display Format"
+                Text="HH:mm:ss" />
+            <TextBox
+                Name="panelFormat"
+                Width="300"
+                InnerLeftContent="Panel Format"
+                Text="tt HH mm ss" />
 
-        <u:TimeOnlyPicker
-            Name="picker"
-            Width="200"
-            HorizontalAlignment="Left"
-            DisplayFormat="{Binding #displayFormat.Text}"
-            NeedConfirmation="{Binding #needConfirm.IsChecked}"
-            PanelFormat="{Binding #panelFormat.Text}" />
+            <u:TimeOnlyPicker
+                Name="picker"
+                Width="200"
+                HorizontalAlignment="Left"
+                DisplayFormat="{Binding #displayFormat.Text}"
+                NeedConfirmation="{Binding #needConfirm.IsChecked}"
+                PanelFormat="{Binding #panelFormat.Text}" />
 
-        <u:TimeOnlyPicker
-            Width="300"
-            HorizontalAlignment="Left"
-            Classes="ClearButton"
-            DisplayFormat="{Binding #displayFormat.Text}"
-            NeedConfirmation="True"
-            PanelFormat="{Binding #panelFormat.Text}" />
+            <u:TimeOnlyPicker
+                Width="300"
+                HorizontalAlignment="Left"
+                Classes="ClearButton"
+                DisplayFormat="{Binding #displayFormat.Text}"
+                NeedConfirmation="True"
+                PanelFormat="{Binding #panelFormat.Text}" />
 
-        <TextBlock Text="Binding" />
-        <u:TimeOnlyPicker
-            Width="300"
-            Classes="ClearButton"
-            HorizontalAlignment="Left"
-            SelectedTime="{Binding Time}"
-            DisplayFormat="{Binding #displayFormat.Text}"
-            PanelFormat="{Binding #panelFormat.Text}" />
+            <TextBlock Text="Binding" />
+            <u:TimeOnlyPicker
+                Width="300"
+                Classes="ClearButton"
+                HorizontalAlignment="Left"
+                SelectedTime="{Binding Time}"
+                DisplayFormat="{Binding #displayFormat.Text}"
+                PanelFormat="{Binding #panelFormat.Text}" />
+        </StackPanel>
     </StackPanel>
 </UserControl>

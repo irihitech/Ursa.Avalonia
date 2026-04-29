@@ -40,7 +40,7 @@
         </Style>
     </Control.Styles>
     <ScrollViewer>
-        <StackPanel Margin="20" Spacing="8" HorizontalAlignment="Left">
+        <StackPanel Margin="20" Spacing="8" HorizontalAlignment="Stretch">
 
             <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
 

@@ -2,6 +2,7 @@
     x:Class="Ursa.Demo.Pages.DateOffsetPickerDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
@@ -9,61 +10,67 @@
     d:DesignHeight="600"
     d:DesignWidth="800"
     x:DataType="vm:DateOffsetPickerDemoViewModel"
-    mc:Ignorable="d"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel Margin="20" HorizontalAlignment="Left" Spacing="8">
+        <StackPanel
+            Margin="20"
+            HorizontalAlignment="Stretch"
+            Spacing="8">
 
-            <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
+            <controls:PageMetadataView DataContext="{Binding PageMetadata}" />
 
-            <ToggleSwitch Name="showOffset" Content="Show Offset Selection" IsChecked="True" />
+            <StackPanel HorizontalAlignment="Left">
+                <ToggleSwitch
+                    Name="showOffset"
+                    Content="Show Offset Selection"
+                    IsChecked="True" />
 
-            <TextBlock Text="Default (Local offset)" />
-            <u:DateOffsetPicker
-                Width="280"
-                DisplayFormat="yyyy-MM-dd"
-                ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
+                <TextBlock Text="Default (Local offset)" />
+                <u:DateOffsetPicker
+                    Width="280"
+                    DisplayFormat="yyyy-MM-dd"
+                    ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
 
-            <TextBlock Text="UTC, Local, Beijing, New York" />
-            <u:DateOffsetPicker
-                Width="280"
-                DisplayFormat="yyyy-MM-dd"
-                ShowOffsetSelection="{Binding #showOffset.IsChecked}">
-                <u:DateOffsetPicker.OffsetDefinitions>
-                    <u:OffsetDefinitions>
-                        <u:OffsetDefinition Offset="UTC" />
-                        <u:OffsetDefinition Offset="Local" />
-                        <u:OffsetDefinition Offset="+08:00" DisplayName="Beijing (CST)" />
-                        <u:OffsetDefinition Offset="-05:00" DisplayName="New York (EST)" />
-                    </u:OffsetDefinitions>
-                </u:DateOffsetPicker.OffsetDefinitions>
-            </u:DateOffsetPicker>
+                <TextBlock Text="UTC, Local, Beijing, New York" />
+                <u:DateOffsetPicker
+                    Width="280"
+                    DisplayFormat="yyyy-MM-dd"
+                    ShowOffsetSelection="{Binding #showOffset.IsChecked}">
+                    <u:DateOffsetPicker.OffsetDefinitions>
+                        <u:OffsetDefinitions>
+                            <u:OffsetDefinition Offset="UTC" />
+                            <u:OffsetDefinition Offset="Local" />
+                            <u:OffsetDefinition DisplayName="Beijing (CST)" Offset="+08:00" />
+                            <u:OffsetDefinition DisplayName="New York (EST)" Offset="-05:00" />
+                        </u:OffsetDefinitions>
+                    </u:DateOffsetPicker.OffsetDefinitions>
+                </u:DateOffsetPicker>
 
-            <TextBlock Text="Binding" />
-            <TextBlock Text="{Binding SelectedDate, StringFormat='Selected: {0:yyyy-MM-dd zzz}'}" />
-            <u:DateOffsetPicker
-                Width="280"
-                DisplayFormat="yyyy-MM-dd"
-                SelectedDate="{Binding SelectedDate, Mode=TwoWay}"
-                ShowOffsetSelection="{Binding #showOffset.IsChecked}">
-                <u:DateOffsetPicker.OffsetDefinitions>
-                    <u:OffsetDefinitions>
-                        <u:OffsetDefinition Offset="UTC" />
-                        <u:OffsetDefinition Offset="Local" />
-                        <u:OffsetDefinition Offset="+08:00" DisplayName="Beijing (CST)" />
-                        <u:OffsetDefinition Offset="-05:00" DisplayName="New York (EST)" />
-                    </u:OffsetDefinitions>
-                </u:DateOffsetPicker.OffsetDefinitions>
-            </u:DateOffsetPicker>
+                <TextBlock Text="Binding" />
+                <TextBlock Text="{Binding SelectedDate, StringFormat='Selected: {0:yyyy-MM-dd zzz}'}" />
+                <u:DateOffsetPicker
+                    Width="280"
+                    DisplayFormat="yyyy-MM-dd"
+                    SelectedDate="{Binding SelectedDate, Mode=TwoWay}"
+                    ShowOffsetSelection="{Binding #showOffset.IsChecked}">
+                    <u:DateOffsetPicker.OffsetDefinitions>
+                        <u:OffsetDefinitions>
+                            <u:OffsetDefinition Offset="UTC" />
+                            <u:OffsetDefinition Offset="Local" />
+                            <u:OffsetDefinition DisplayName="Beijing (CST)" Offset="+08:00" />
+                            <u:OffsetDefinition DisplayName="New York (EST)" Offset="-05:00" />
+                        </u:OffsetDefinitions>
+                    </u:DateOffsetPicker.OffsetDefinitions>
+                </u:DateOffsetPicker>
 
-            <TextBlock Text="Clear Button" />
-            <u:DateOffsetPicker
-                Width="280"
-                Classes="ClearButton"
-                DisplayFormat="yyyy-MM-dd"
-                OffsetDefinitions="Utc, Local, +8:00, -5:00"
-                ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
-
+                <TextBlock Text="Clear Button" />
+                <u:DateOffsetPicker
+                    Width="280"
+                    Classes="ClearButton"
+                    DisplayFormat="yyyy-MM-dd"
+                    OffsetDefinitions="Utc, Local, +8:00, -5:00"
+                    ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
+            </StackPanel>
 
         </StackPanel>
     </ScrollViewer>

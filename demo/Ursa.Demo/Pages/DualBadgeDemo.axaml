@@ -2,15 +2,15 @@
     x:Class="Ursa.Demo.Pages.DualBadgeDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    mc:Ignorable="d"
     x:DataType="viewModels:DualBadgeDemoViewModel"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
-    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
+    mc:Ignorable="d">
 
     <UserControl.Styles>
         <Style Selector="u|DualBadge">
@@ -19,112 +19,147 @@
     </UserControl.Styles>
 
     <ScrollViewer>
-        <StackPanel HorizontalAlignment="Left" Spacing="20">
-            <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
-            <TextBlock Text="Flat:" />
-            <StackPanel Orientation="Horizontal">
-                <u:DualBadge Content="35k" />
-                <u:DualBadge Content="35k" Icon="{StaticResource SemiIconDownload}" />
-                <u:DualBadge Content="35k" Header="downloads" />
-                <u:DualBadge Content="35k" Header="downloads" Icon="{StaticResource SemiIconDownload}" />
-            </StackPanel>
+        <StackPanel Spacing="20">
+            <controls:PageMetadataView DataContext="{Binding PageMetadata}" />
+            <StackPanel HorizontalAlignment="Left" Spacing="20">
+                <TextBlock Text="Flat:" />
+                <StackPanel Orientation="Horizontal">
+                    <u:DualBadge Content="35k" />
+                    <u:DualBadge Content="35k" Icon="{StaticResource SemiIconDownload}" />
+                    <u:DualBadge Content="35k" Header="downloads" />
+                    <u:DualBadge
+                        Content="35k"
+                        Header="downloads"
+                        Icon="{StaticResource SemiIconDownload}" />
+                </StackPanel>
 
-            <TextBlock Text="FlatSquare:" />
-            <StackPanel Orientation="Horizontal">
-                <u:DualBadge Classes="FlatSquare" Content="35k" />
-                <u:DualBadge Classes="FlatSquare" Content="35k" Icon="{StaticResource SemiIconDownload}" />
-                <u:DualBadge Classes="FlatSquare" Content="35k" Header="downloads" />
-                <u:DualBadge Classes="FlatSquare" Content="35k" Header="downloads" Icon="{StaticResource SemiIconDownload}" />
-            </StackPanel>
+                <TextBlock Text="FlatSquare:" />
+                <StackPanel Orientation="Horizontal">
+                    <u:DualBadge Classes="FlatSquare" Content="35k" />
+                    <u:DualBadge
+                        Classes="FlatSquare"
+                        Content="35k"
+                        Icon="{StaticResource SemiIconDownload}" />
+                    <u:DualBadge
+                        Classes="FlatSquare"
+                        Content="35k"
+                        Header="downloads" />
+                    <u:DualBadge
+                        Classes="FlatSquare"
+                        Content="35k"
+                        Header="downloads"
+                        Icon="{StaticResource SemiIconDownload}" />
+                </StackPanel>
 
-            <TextBlock Text="Plastic:" />
-            <StackPanel Orientation="Horizontal">
-                <u:DualBadge Classes="Plastic" Content="35k" />
-                <u:DualBadge Classes="Plastic" Content="35k" Icon="{StaticResource SemiIconDownload}" />
-                <u:DualBadge Classes="Plastic" Content="35k" Header="downloads" />
-                <u:DualBadge Classes="Plastic" Content="35k" Header="downloads" Icon="{StaticResource SemiIconDownload}" />
-            </StackPanel>
+                <TextBlock Text="Plastic:" />
+                <StackPanel Orientation="Horizontal">
+                    <u:DualBadge Classes="Plastic" Content="35k" />
+                    <u:DualBadge
+                        Classes="Plastic"
+                        Content="35k"
+                        Icon="{StaticResource SemiIconDownload}" />
+                    <u:DualBadge
+                        Classes="Plastic"
+                        Content="35k"
+                        Header="downloads" />
+                    <u:DualBadge
+                        Classes="Plastic"
+                        Content="35k"
+                        Header="downloads"
+                        Icon="{StaticResource SemiIconDownload}" />
+                </StackPanel>
 
-            <TextBlock Text="ForTheBadge:" />
-            <StackPanel Orientation="Horizontal">
-                <u:DualBadge Classes="ForTheBadge" Content="35K" />
-                <u:DualBadge Classes="ForTheBadge" Content="35K" Icon="{StaticResource SemiIconDownload}" />
-                <u:DualBadge Classes="ForTheBadge" Content="35K" Header="DOWNLOADS" />
-                <u:DualBadge Classes="ForTheBadge" Content="35K" Header="DOWNLOADS" Icon="{StaticResource SemiIconDownload}" />
-            </StackPanel>
+                <TextBlock Text="ForTheBadge:" />
+                <StackPanel Orientation="Horizontal">
+                    <u:DualBadge Classes="ForTheBadge" Content="35K" />
+                    <u:DualBadge
+                        Classes="ForTheBadge"
+                        Content="35K"
+                        Icon="{StaticResource SemiIconDownload}" />
+                    <u:DualBadge
+                        Classes="ForTheBadge"
+                        Content="35K"
+                        Header="DOWNLOADS" />
+                    <u:DualBadge
+                        Classes="ForTheBadge"
+                        Content="35K"
+                        Header="DOWNLOADS"
+                        Icon="{StaticResource SemiIconDownload}" />
+                </StackPanel>
 
-            <WrapPanel>
-                <u:DualBadge Classes="Red">Red</u:DualBadge>
-                <u:DualBadge Classes="Pink">Pink</u:DualBadge>
-                <u:DualBadge Classes="Purple">Purple</u:DualBadge>
-                <u:DualBadge Classes="Violet">Violet</u:DualBadge>
-                <u:DualBadge Classes="Indigo">Indigo</u:DualBadge>
-                <u:DualBadge Classes="Blue">Blue</u:DualBadge>
-                <u:DualBadge Classes="LightBlue">LightBlue</u:DualBadge>
-                <u:DualBadge Classes="Cyan">Cyan</u:DualBadge>
-                <u:DualBadge Classes="Teal">Teal</u:DualBadge>
-                <u:DualBadge Classes="Green">Green</u:DualBadge>
-                <u:DualBadge Classes="LightGreen">LightGreen</u:DualBadge>
-                <u:DualBadge Classes="Lime">Lime</u:DualBadge>
-                <u:DualBadge Classes="Yellow">Yellow</u:DualBadge>
-                <u:DualBadge Classes="Amber">Amber</u:DualBadge>
-                <u:DualBadge Classes="Orange">Orange</u:DualBadge>
-                <u:DualBadge Classes="Grey">Grey</u:DualBadge>
-            </WrapPanel>
-            <WrapPanel>
-                <u:DualBadge Classes="FlatSquare Red">Red</u:DualBadge>
-                <u:DualBadge Classes="FlatSquare Pink">Pink</u:DualBadge>
-                <u:DualBadge Classes="FlatSquare Purple">Purple</u:DualBadge>
-                <u:DualBadge Classes="FlatSquare Violet">Violet</u:DualBadge>
-                <u:DualBadge Classes="FlatSquare Indigo">Indigo</u:DualBadge>
-                <u:DualBadge Classes="FlatSquare Blue">Blue</u:DualBadge>
-                <u:DualBadge Classes="FlatSquare LightBlue">LightBlue</u:DualBadge>
-                <u:DualBadge Classes="FlatSquare Cyan">Cyan</u:DualBadge>
-                <u:DualBadge Classes="FlatSquare Teal">Teal</u:DualBadge>
-                <u:DualBadge Classes="FlatSquare Green">Green</u:DualBadge>
-                <u:DualBadge Classes="FlatSquare LightGreen">LightGreen</u:DualBadge>
-                <u:DualBadge Classes="FlatSquare Lime">Lime</u:DualBadge>
-                <u:DualBadge Classes="FlatSquare Yellow">Yellow</u:DualBadge>
-                <u:DualBadge Classes="FlatSquare Amber">Amber</u:DualBadge>
-                <u:DualBadge Classes="FlatSquare Orange">Orange</u:DualBadge>
-                <u:DualBadge Classes="FlatSquare Grey">Grey</u:DualBadge>
-            </WrapPanel>
-            <WrapPanel>
-                <u:DualBadge Classes="Plastic Red">Red</u:DualBadge>
-                <u:DualBadge Classes="Plastic Pink">Pink</u:DualBadge>
-                <u:DualBadge Classes="Plastic Purple">Purple</u:DualBadge>
-                <u:DualBadge Classes="Plastic Violet">Violet</u:DualBadge>
-                <u:DualBadge Classes="Plastic Indigo">Indigo</u:DualBadge>
-                <u:DualBadge Classes="Plastic Blue">Blue</u:DualBadge>
-                <u:DualBadge Classes="Plastic LightBlue">LightBlue</u:DualBadge>
-                <u:DualBadge Classes="Plastic Cyan">Cyan</u:DualBadge>
-                <u:DualBadge Classes="Plastic Teal">Teal</u:DualBadge>
-                <u:DualBadge Classes="Plastic Green">Green</u:DualBadge>
-                <u:DualBadge Classes="Plastic LightGreen">LightGreen</u:DualBadge>
-                <u:DualBadge Classes="Plastic Lime">Lime</u:DualBadge>
-                <u:DualBadge Classes="Plastic Yellow">Yellow</u:DualBadge>
-                <u:DualBadge Classes="Plastic Amber">Amber</u:DualBadge>
-                <u:DualBadge Classes="Plastic Orange">Orange</u:DualBadge>
-                <u:DualBadge Classes="Plastic Grey">Grey</u:DualBadge>
-            </WrapPanel>
-            <WrapPanel>
-                <u:DualBadge Classes="ForTheBadge Red">Red</u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge Pink">Pink</u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge Purple">Purple</u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge Violet">Violet</u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge Indigo">Indigo</u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge Blue">Blue</u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge LightBlue">LightBlue</u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge Cyan">Cyan</u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge Teal">Teal</u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge Green">Green</u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge LightGreen">LightGreen</u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge Lime">Lime</u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge Yellow">Yellow</u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge Amber">Amber</u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge Orange">Orange</u:DualBadge>
-                <u:DualBadge Classes="ForTheBadge Grey">Grey</u:DualBadge>
-            </WrapPanel>
+                <WrapPanel>
+                    <u:DualBadge Classes="Red">Red</u:DualBadge>
+                    <u:DualBadge Classes="Pink">Pink</u:DualBadge>
+                    <u:DualBadge Classes="Purple">Purple</u:DualBadge>
+                    <u:DualBadge Classes="Violet">Violet</u:DualBadge>
+                    <u:DualBadge Classes="Indigo">Indigo</u:DualBadge>
+                    <u:DualBadge Classes="Blue">Blue</u:DualBadge>
+                    <u:DualBadge Classes="LightBlue">LightBlue</u:DualBadge>
+                    <u:DualBadge Classes="Cyan">Cyan</u:DualBadge>
+                    <u:DualBadge Classes="Teal">Teal</u:DualBadge>
+                    <u:DualBadge Classes="Green">Green</u:DualBadge>
+                    <u:DualBadge Classes="LightGreen">LightGreen</u:DualBadge>
+                    <u:DualBadge Classes="Lime">Lime</u:DualBadge>
+                    <u:DualBadge Classes="Yellow">Yellow</u:DualBadge>
+                    <u:DualBadge Classes="Amber">Amber</u:DualBadge>
+                    <u:DualBadge Classes="Orange">Orange</u:DualBadge>
+                    <u:DualBadge Classes="Grey">Grey</u:DualBadge>
+                </WrapPanel>
+                <WrapPanel>
+                    <u:DualBadge Classes="FlatSquare Red">Red</u:DualBadge>
+                    <u:DualBadge Classes="FlatSquare Pink">Pink</u:DualBadge>
+                    <u:DualBadge Classes="FlatSquare Purple">Purple</u:DualBadge>
+                    <u:DualBadge Classes="FlatSquare Violet">Violet</u:DualBadge>
+                    <u:DualBadge Classes="FlatSquare Indigo">Indigo</u:DualBadge>
+                    <u:DualBadge Classes="FlatSquare Blue">Blue</u:DualBadge>
+                    <u:DualBadge Classes="FlatSquare LightBlue">LightBlue</u:DualBadge>
+                    <u:DualBadge Classes="FlatSquare Cyan">Cyan</u:DualBadge>
+                    <u:DualBadge Classes="FlatSquare Teal">Teal</u:DualBadge>
+                    <u:DualBadge Classes="FlatSquare Green">Green</u:DualBadge>
+                    <u:DualBadge Classes="FlatSquare LightGreen">LightGreen</u:DualBadge>
+                    <u:DualBadge Classes="FlatSquare Lime">Lime</u:DualBadge>
+                    <u:DualBadge Classes="FlatSquare Yellow">Yellow</u:DualBadge>
+                    <u:DualBadge Classes="FlatSquare Amber">Amber</u:DualBadge>
+                    <u:DualBadge Classes="FlatSquare Orange">Orange</u:DualBadge>
+                    <u:DualBadge Classes="FlatSquare Grey">Grey</u:DualBadge>
+                </WrapPanel>
+                <WrapPanel>
+                    <u:DualBadge Classes="Plastic Red">Red</u:DualBadge>
+                    <u:DualBadge Classes="Plastic Pink">Pink</u:DualBadge>
+                    <u:DualBadge Classes="Plastic Purple">Purple</u:DualBadge>
+                    <u:DualBadge Classes="Plastic Violet">Violet</u:DualBadge>
+                    <u:DualBadge Classes="Plastic Indigo">Indigo</u:DualBadge>
+                    <u:DualBadge Classes="Plastic Blue">Blue</u:DualBadge>
+                    <u:DualBadge Classes="Plastic LightBlue">LightBlue</u:DualBadge>
+                    <u:DualBadge Classes="Plastic Cyan">Cyan</u:DualBadge>
+                    <u:DualBadge Classes="Plastic Teal">Teal</u:DualBadge>
+                    <u:DualBadge Classes="Plastic Green">Green</u:DualBadge>
+                    <u:DualBadge Classes="Plastic LightGreen">LightGreen</u:DualBadge>
+                    <u:DualBadge Classes="Plastic Lime">Lime</u:DualBadge>
+                    <u:DualBadge Classes="Plastic Yellow">Yellow</u:DualBadge>
+                    <u:DualBadge Classes="Plastic Amber">Amber</u:DualBadge>
+                    <u:DualBadge Classes="Plastic Orange">Orange</u:DualBadge>
+                    <u:DualBadge Classes="Plastic Grey">Grey</u:DualBadge>
+                </WrapPanel>
+                <WrapPanel>
+                    <u:DualBadge Classes="ForTheBadge Red">Red</u:DualBadge>
+                    <u:DualBadge Classes="ForTheBadge Pink">Pink</u:DualBadge>
+                    <u:DualBadge Classes="ForTheBadge Purple">Purple</u:DualBadge>
+                    <u:DualBadge Classes="ForTheBadge Violet">Violet</u:DualBadge>
+                    <u:DualBadge Classes="ForTheBadge Indigo">Indigo</u:DualBadge>
+                    <u:DualBadge Classes="ForTheBadge Blue">Blue</u:DualBadge>
+                    <u:DualBadge Classes="ForTheBadge LightBlue">LightBlue</u:DualBadge>
+                    <u:DualBadge Classes="ForTheBadge Cyan">Cyan</u:DualBadge>
+                    <u:DualBadge Classes="ForTheBadge Teal">Teal</u:DualBadge>
+                    <u:DualBadge Classes="ForTheBadge Green">Green</u:DualBadge>
+                    <u:DualBadge Classes="ForTheBadge LightGreen">LightGreen</u:DualBadge>
+                    <u:DualBadge Classes="ForTheBadge Lime">Lime</u:DualBadge>
+                    <u:DualBadge Classes="ForTheBadge Yellow">Yellow</u:DualBadge>
+                    <u:DualBadge Classes="ForTheBadge Amber">Amber</u:DualBadge>
+                    <u:DualBadge Classes="ForTheBadge Orange">Orange</u:DualBadge>
+                    <u:DualBadge Classes="ForTheBadge Grey">Grey</u:DualBadge>
+                </WrapPanel>
+            </StackPanel>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

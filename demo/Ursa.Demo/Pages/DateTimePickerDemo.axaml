@@ -13,35 +13,36 @@
     mc:Ignorable="d">
     <StackPanel
         Margin="20"
-        HorizontalAlignment="Left"
         Spacing="20">
         <controls:PageMetadataView DataContext="{Binding PageMetadata}" />
-        <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
-        <u:Form>
-            <TextBox
-                Name="formatBox"
-                Width="300"
-                u:FormItem.Label="DisplayFormat"
-                Text="yyyy年MM月dd日 HH时mm分ss秒" />
-            <TextBox
-                Name="panelBox"
-                u:FormItem.Label="Panel"
-                Text="hh mm ss" />
-            <TextBlock u:FormItem.Label="Selected" Text="{Binding #confirmPicker.SelectedDate}" />
-            <u:DateTimePicker
-                Name="confirmPicker"
-                MinWidth="100"
-                u:FormItem.Label="Need Confirmation"
-                Classes="ClearButton"
-                DisplayFormat="{Binding #formatBox.Text}"
-                NeedConfirmation="{Binding #needConfirm.IsChecked}"
-                PanelFormat="{Binding #panelBox.Text}" />
-            <u:DateTimePicker
-                MinWidth="100"
-                u:FormItem.NoLabel="True"
-                Classes="ClearButton"
-                DisplayFormat="{Binding #formatBox.Text}"
-                PanelFormat="{Binding #panelBox.Text}" />
-        </u:Form>
+        <StackPanel HorizontalAlignment="Left">
+            <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
+            <u:Form>
+                <TextBox
+                    Name="formatBox"
+                    Width="300"
+                    u:FormItem.Label="DisplayFormat"
+                    Text="yyyy年MM月dd日 HH时mm分ss秒" />
+                <TextBox
+                    Name="panelBox"
+                    u:FormItem.Label="Panel"
+                    Text="hh mm ss" />
+                <TextBlock u:FormItem.Label="Selected" Text="{Binding #confirmPicker.SelectedDate}" />
+                <u:DateTimePicker
+                    Name="confirmPicker"
+                    MinWidth="100"
+                    u:FormItem.Label="Need Confirmation"
+                    Classes="ClearButton"
+                    DisplayFormat="{Binding #formatBox.Text}"
+                    NeedConfirmation="{Binding #needConfirm.IsChecked}"
+                    PanelFormat="{Binding #panelBox.Text}" />
+                <u:DateTimePicker
+                    MinWidth="100"
+                    u:FormItem.NoLabel="True"
+                    Classes="ClearButton"
+                    DisplayFormat="{Binding #formatBox.Text}"
+                    PanelFormat="{Binding #panelBox.Text}" />
+            </u:Form>
+        </StackPanel>
     </StackPanel>
 </UserControl>
