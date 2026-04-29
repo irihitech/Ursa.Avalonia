@@ -94,7 +94,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
 
     /// <summary>
     ///     Gets or sets the DispatcherTimer used for the MinimumPopulateDelay
-    ///     condition for auto completion.
+    ///     condition for autocompletion.
     /// </summary>
     private DispatcherTimer? _delayTimer;
 
@@ -233,7 +233,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         }
     }
 
-    private void OnTextBoxKeyDown(object sender, KeyEventArgs e)
+    private void OnTextBoxKeyDown(object? sender, KeyEventArgs e)
     {
         if (e.Key is Key.Back or Key.Delete && string.IsNullOrEmpty(TextBox?.Text)) 
         {
@@ -447,7 +447,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     /// <param name="e">Event arguments.</param>
     private void OnFilterModePropertyChanged(AvaloniaPropertyChangedEventArgs e)
     {
-        AutoCompleteFilterMode mode = (AutoCompleteFilterMode)e.NewValue!;
+        var mode = (AutoCompleteFilterMode)e.NewValue!;
 
         // Sets the filter predicate for the new value
         SetCurrentValue(TextFilterProperty, AutoCompleteSearch.GetFilter(mode));
@@ -521,7 +521,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     protected virtual ISelectionAdapter? GetSelectionAdapterPart(INameScope nameScope)
     {
         ISelectionAdapter? adapter = null;
-        SelectingItemsControl? selector = nameScope.Find<SelectingItemsControl>(ElementSelector);
+        var selector = nameScope.Find<SelectingItemsControl>(ElementSelector);
         if (selector != null)
         {
             // Check if it is already an IItemsSelector
@@ -547,7 +547,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
 
         // Set the template parts. Individual part setters remove and add
         // any event handlers.
-        Popup? popup = e.NameScope.Find<Popup>(ElementPopup);
+        var popup = e.NameScope.Find<Popup>(ElementPopup);
         if (popup != null)
         {
             DropDownPopup = popup;
@@ -597,7 +597,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
 
     /// <summary>
     ///     Provides handling for the
-    ///     <see cref="E:Avalonia.InputElement.KeyDown" /> event.
+    ///     <see cref="E:Avalonia.Controls.Control.KeyDown" /> event.
     /// </summary>
     /// <param name="e">
     ///     A <see cref="T:Avalonia.Input.KeyEventArgs" />
@@ -667,10 +667,10 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
 
     /// <summary>
     ///     Provides handling for the
-    ///     <see cref="E:Avalonia.UIElement.GotFocus" /> event.
+    ///     <see cref="E:Avalonia.Controls.Control.GotFocus" /> event.
     /// </summary>
     /// <param name="e">
-    ///     A <see cref="T:Avalonia.RoutedEventArgs" />
+    ///     A <see cref="T:Avalonia.Input.FocusChangedEventArgs" />
     ///     that contains the event data.
     /// </param>
     protected override void OnGotFocus(FocusChangedEventArgs e)
@@ -681,10 +681,10 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
 
     /// <summary>
     ///     Provides handling for the
-    ///     <see cref="E:Avalonia.UIElement.LostFocus" /> event.
+    ///     <see cref="E:Avalonia.Controls.Control.LostFocus" /> event.
     /// </summary>
     /// <param name="e">
-    ///     A <see cref="T:Avalonia.RoutedEventArgs" />
+    ///     A <see cref="T:Avalonia.Input.FocusChangedEventArgs" />
     ///     that contains the event data.
     /// </param>
     protected override void OnLostFocus(FocusChangedEventArgs e)
@@ -739,7 +739,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
             // Check if we still have focus in the parent's focus scope
             // Add a special check for ListBoxItem because it should be closed when focus switch to dropdown. 
             if (GetFocusScope() is not null &&
-                (TopLevel.GetTopLevel(this)?.FocusManager?.GetFocusedElement() is not { } focused ||
+                (TopLevel.GetTopLevel(this)?.FocusManager.GetFocusedElement() is not { } focused ||
                  (!Equals(focused, this) && focused is not ListBoxItem && focused is Visual v && !this.IsVisualAncestorOf(v))))
                 SetCurrentValue(IsDropDownOpenProperty, false);
 
@@ -893,7 +893,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     /// </summary>
     /// <param name="e">
     ///     A
-    ///     <see cref="T:Avalonia.Controls.CancelEventArgs" />
+    ///     <see cref="T:System.ComponentModel.CancelEventArgs" />
     ///     that contains the event data.
     /// </param>
     protected virtual void OnDropDownOpening(CancelEventArgs e)
@@ -923,7 +923,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     /// </summary>
     /// <param name="e">
     ///     A
-    ///     <see cref="T:Avalonia.Controls.CancelEventArgs" />
+    ///     <see cref="T:System.ComponentModel.CancelEventArgs" />
     ///     that contains the event data.
     /// </param>
     protected virtual void OnDropDownClosing(CancelEventArgs e)
@@ -1034,7 +1034,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         // client needs to directly update the ItemsSource collection or
         // call the Populate method on the control to continue the
         // display process if Cancel is set to true.
-        PopulatingEventArgs populating = new PopulatingEventArgs(SearchText);
+        var populating = new PopulatingEventArgs(SearchText);
         OnPopulating(populating);
         if (!populating.Cancel) PopulateComplete();
     }
@@ -1323,8 +1323,8 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
 
                 if (!inResults)
                 {
-                    if (stringFiltering)
-                        inResults = textFilter!(text, FormatValue(item));
+                    if (stringFiltering && textFilter is not null)
+                        inResults = textFilter(text, FormatValue(item));
                     else if (objectFiltering) inResults = itemFilter!(text, item);
                 }
 
@@ -1410,7 +1410,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
     /// <summary>
     ///     Notifies the
     ///     <see cref="T:Avalonia.Controls.AutoCompleteBox" /> that the
-    ///     <see cref="P:Avalonia.Controls.AutoCompleteBox.Items" />
+    ///     <see cref="P:Avalonia.Controls.AutoCompleteBox.ItemsSource" />
     ///     property has been set and the data can be filtered to provide
     ///     possible matches in the drop-down.
     /// </summary>
@@ -1431,7 +1431,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
         RefreshView();
 
         // Fire the Populated event containing the read-only view data.
-        PopulatedEventArgs populated = new PopulatedEventArgs(new ReadOnlyCollection<object>(_view!));
+        var populated = new PopulatedEventArgs(new ReadOnlyCollection<object>(_view!));
         OnPopulated(populated);
 
         if (SelectionAdapter != null && !Equals(SelectionAdapter.ItemsSource, _view)) SelectionAdapter.ItemsSource = _view;
@@ -1536,7 +1536,7 @@ public partial class MultiAutoCompleteBox : TemplatedControl, IInnerContentContr
             return null;
 
         if (view?.Count > 0)
-            foreach (object o in view)
+            foreach (var o in view)
                 if (predicate(searchText, FormatValue(o)))
                     return o;
 
