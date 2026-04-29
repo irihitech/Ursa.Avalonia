@@ -19,16 +19,19 @@
         <File Path=".github/workflows/remove-old-artifacts.yml"/>
         <File Path=".github/workflows/test.yml"/>
     </Folder>
-    <Folder Name="/Solution Items/"/>
-    <Folder Name="/Solution Items/Demo/">
-        <File Path="demo/Directory.Packages.props"/>
+    <Folder Name="/Solution Items/">
+        <File Path="Directory.Packages.props"/>
+        <File Path="global.json"/>
+        <File Path="Nuget.Config"/>
     </Folder>
-    <Folder Name="/Solution Items/Package/">
-        <File Path="src/Directory.Packages.props"/>
+    <Folder Name="/Solution Items/Demo/">
+        <File Path="demo/Directory.Build.targets"/>
+    </Folder>
+    <Folder Name="/Solution Items/Src/">
         <File Path="src/Directory.Build.props"/>
     </Folder>
     <Folder Name="/Solution Items/Tests/">
-        <File Path="tests/Directory.Packages.props"/>
+        <File Path="tests/Directory.Build.targets"/>
     </Folder>
     <Folder Name="/Tests/">
         <Project Path="tests/HeadlessTest.Ursa/HeadlessTest.Ursa.csproj"/>

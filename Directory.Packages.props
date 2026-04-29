@@ -1,0 +1,34 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageVersionOverrideEnabled>true</CentralPackageVersionOverrideEnabled>
+    <AvaloniaVersion>12.0.2</AvaloniaVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--src-->
+    <PackageVersion Include="Avalonia" Version="$(AvaloniaVersion)"/>
+    <PackageVersion Include="Irihi.Avalonia.Shared" Version="0.4.0"/>
+    <PackageVersion Include="Irihi.Avalonia.Shared.Contracts" Version="0.4.0"/>
+    <PackageVersion Include="Semi.Avalonia" Version="12.0.1"/>
+    <PackageVersion Include="Prism.Core" Version="8.1.97"/>
+    <PackageVersion Include="ReactiveUI.Avalonia" Version="11.3.0"/>
+    <!--test-->
+    <PackageVersion Include="Avalonia.HarfBuzz" Version="$(AvaloniaVersion)"/>
+    <PackageVersion Include="Avalonia.Headless.XUnit" Version="$(AvaloniaVersion)"/>
+    <PackageVersion Include="Avalonia.Skia" Version="$(AvaloniaVersion)"/>
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
+    <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="17.13.1"/>
+    <PackageVersion Include="xunit.v3" Version="3.2.1"/>
+    <PackageVersion Include="xunit.v3.runner.msbuild" Version="3.2.1"/>
+    <!--demo-->
+    <PackageVersion Include="Avalonia.Android" Version="$(AvaloniaVersion)"/>
+    <PackageVersion Include="Avalonia.Browser" Version="$(AvaloniaVersion)"/>
+    <PackageVersion Include="Avalonia.Desktop" Version="$(AvaloniaVersion)"/>
+    <PackageVersion Include="Avalonia.iOS" Version="$(AvaloniaVersion)"/>
+    <PackageVersion Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.1"/>
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.2"/>
+    <PackageVersion Include="Prism.DryIoc.Avalonia" Version="8.1.97.11072"/>
+    <PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.2.0.2"/>
+  </ItemGroup>
+</Project>

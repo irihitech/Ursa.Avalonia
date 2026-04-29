@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <AvaloniaVersion>12.0.2</AvaloniaVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Avalonia" VersionOverride="$(AvaloniaVersion)"/>
+    <PackageReference Update="Avalonia.Android" VersionOverride="$(AvaloniaVersion)"/>
+    <PackageReference Update="Avalonia.Browser" VersionOverride="$(AvaloniaVersion)"/>
+    <PackageReference Update="Avalonia.Desktop" VersionOverride="$(AvaloniaVersion)"/>
+    <PackageReference Update="Avalonia.iOS" VersionOverride="$(AvaloniaVersion)"/>
+  </ItemGroup>
+</Project>

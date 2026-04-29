@@ -11,7 +11,7 @@ namespace Ursa.Themes.Semi;
 /// <summary>
 ///     Notice: Don't set Locale if your app is in InvariantGlobalization mode.
 /// </summary>
-public class UrsaSemiTheme : Styles
+public partial class UrsaSemiTheme : Styles
 {
     private static readonly Dictionary<CultureInfo, ResourceDictionary> LocaleToResource = new()
     {
