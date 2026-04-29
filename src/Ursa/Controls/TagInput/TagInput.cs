@@ -199,7 +199,7 @@ public class TagInput : TemplatedControl
         InputTextBox[~AcceptsReturnProperty] = this[~AcceptsReturnProperty];
         InputTextBox.GetObservable(TextBox.TextProperty).Subscribe(_ => CheckEmpty());
 
-        _presenter = InputTextBox.GetTemplateChildren().OfType<TextPresenter>().FirstOrDefault();
+        _presenter = InputTextBox.GetTemplateDescendants().OfType<TextPresenter>().FirstOrDefault();
         _presenter?.GetObservable(TextPresenter.PreeditTextProperty).Subscribe(_ => CheckEmpty());
     }
 

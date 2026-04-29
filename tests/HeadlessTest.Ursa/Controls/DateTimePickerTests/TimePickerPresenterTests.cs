@@ -53,10 +53,10 @@ public class TimePickerPresenterTests
         
         Assert.Equal(format, presenter.PanelFormat);
         
-        var hourPanel = presenter.GetTemplateChildren().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_HourScrollPanel);
-        var minutePanel = presenter.GetTemplateChildren().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_MinuteScrollPanel);
-        var secondPanel = presenter.GetTemplateChildren().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_SecondScrollPanel);
-        var amPanel = presenter.GetTemplateChildren().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_AmPmScrollPanel);
+        var hourPanel = presenter.GetTemplateDescendants().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_HourScrollPanel) as Control;
+        var minutePanel = presenter.GetTemplateDescendants().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_MinuteScrollPanel) as Control;
+        var secondPanel = presenter.GetTemplateDescendants().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_SecondScrollPanel) as Control;
+        var amPanel = presenter.GetTemplateDescendants().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_AmPmScrollPanel) as Control;
 
         Assert.NotNull(hourPanel);
         Assert.NotNull(minutePanel);
@@ -131,10 +131,10 @@ public class TimePickerPresenterTests
         };
         Dispatcher.UIThread.RunJobs();
         
-        var hourPanel = presenter.GetTemplateChildren().OfType<DateTimePickerPanel>().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_HourSelector);
-        var minutePanel = presenter.GetTemplateChildren().OfType<DateTimePickerPanel>().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_MinuteSelector);
-        var secondPanel = presenter.GetTemplateChildren().OfType<DateTimePickerPanel>().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_SecondSelector);
-        var amPanel = presenter.GetTemplateChildren().OfType<DateTimePickerPanel>().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_AmPmSelector);
+        var hourPanel = presenter.GetTemplateDescendants().OfType<DateTimePickerPanel>().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_HourSelector);
+        var minutePanel = presenter.GetTemplateDescendants().OfType<DateTimePickerPanel>().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_MinuteSelector);
+        var secondPanel = presenter.GetTemplateDescendants().OfType<DateTimePickerPanel>().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_SecondSelector);
+        var amPanel = presenter.GetTemplateDescendants().OfType<DateTimePickerPanel>().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_AmPmSelector);
         
         Assert.NotNull(hourPanel);
         Assert.NotNull(minutePanel);
@@ -161,10 +161,10 @@ public class TimePickerPresenterTests
         presenter.PanelFormat = format;
         Dispatcher.UIThread.RunJobs();
         
-        var hourPanel = presenter.GetTemplateChildren().OfType<DateTimePickerPanel>().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_HourSelector);
-        var minutePanel = presenter.GetTemplateChildren().OfType<DateTimePickerPanel>().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_MinuteSelector);
-        var secondPanel = presenter.GetTemplateChildren().OfType<DateTimePickerPanel>().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_SecondSelector);
-        var amPanel = presenter.GetTemplateChildren().OfType<DateTimePickerPanel>().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_AmPmSelector);
+        var hourPanel = presenter.GetTemplateDescendants().OfType<DateTimePickerPanel>().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_HourSelector);
+        var minutePanel = presenter.GetTemplateDescendants().OfType<DateTimePickerPanel>().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_MinuteSelector);
+        var secondPanel = presenter.GetTemplateDescendants().OfType<DateTimePickerPanel>().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_SecondSelector);
+        var amPanel = presenter.GetTemplateDescendants().OfType<DateTimePickerPanel>().FirstOrDefault(a => a.Name == TimePickerPresenter.PART_AmPmSelector);
         
         Assert.NotNull(hourPanel);
         Assert.NotNull(minutePanel);

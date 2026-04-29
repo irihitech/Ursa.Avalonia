@@ -28,7 +28,7 @@ public class Tests
         
         Assert.True(banner.IsVisible);
 
-        var closeButton = banner.GetTemplateChildren().OfType<Button>()
+        var closeButton = banner.GetTemplateDescendants().OfType<Button>()
                                 .FirstOrDefault(a => a.Name == UrsaControls.Banner.PART_CloseButton);
 
         Assert.NotNull(closeButton);
@@ -64,7 +64,7 @@ public class Tests
         
         Assert.True(banner.IsVisible);
 
-        var closeButton = banner.GetTemplateChildren().OfType<Button>()
+        var closeButton = banner.GetTemplateDescendants().OfType<Button>()
                                 .FirstOrDefault(a => a.Name == UrsaControls.Banner.PART_CloseButton);
 
         Assert.NotNull(closeButton);

@@ -156,7 +156,7 @@ public class NumPad : TemplatedControl
         if (target is TemplatedControl templatedControl && templatedControl.IsInitialized)
         {
             // 尝试通过模板查找 PART_TextBox
-            if (templatedControl.GetTemplateChildren().FirstOrDefault(c => c is TextBox) is TextBox partTextBox)
+            if (templatedControl.GetTemplateDescendants().FirstOrDefault(c => c is TextBox) is TextBox partTextBox)
                 return partTextBox;
         }
 

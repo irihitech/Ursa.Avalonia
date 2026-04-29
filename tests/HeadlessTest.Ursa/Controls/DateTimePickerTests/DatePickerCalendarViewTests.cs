@@ -256,7 +256,7 @@ public class DatePickerCalendarViewTests
         Dispatcher.UIThread.RunJobs();
         calendarView.SyncContextDate(new DatePickerCalendarContext(2023, 5));
         Dispatcher.UIThread.RunJobs();
-        var monthGrid = calendarView.GetTemplateChildren()
+        var monthGrid = calendarView.GetTemplateDescendants()
                                     .FirstOrDefault(a => a is Grid && a.Name == DatePickerCalendarView.PART_MonthGrid) as Grid;
         Assert.NotNull(monthGrid);
         var dayHeader = monthGrid.Children.OfType<TextBlock>().FirstOrDefault();

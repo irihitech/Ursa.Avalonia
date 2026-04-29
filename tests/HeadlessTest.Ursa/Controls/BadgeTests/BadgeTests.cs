@@ -23,7 +23,7 @@ public class BadgeTests
 
         Assert.True(badge.IsVisible);
 
-        var badgeContainer = badge.GetTemplateChildren().OfType<Border>()
+        var badgeContainer = badge.GetTemplateDescendants().OfType<Border>()
             .FirstOrDefault(a => a.Name == UrsaControls.Badge.PART_BadgeContainer);
 
         Assert.NotNull(badgeContainer);
@@ -56,7 +56,7 @@ public class BadgeTests
 
         Assert.True(badge.IsVisible);
 
-        var header = badge.GetTemplateChildren().OfType<ContentPresenter>()
+        var header = badge.GetTemplateDescendants().OfType<ContentPresenter>()
             .FirstOrDefault(a => a.Name == UrsaControls.Badge.PART_HeaderPresenter);
 
         Assert.NotNull(header);

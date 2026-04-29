@@ -70,7 +70,7 @@ public class AutoCompleteBox : Avalonia.Controls.AutoCompleteBox, IClearControl
         base.OnGotFocus(e);
         // If the focus is set by pointer navigation, it is handled by PointerPressed, do not open the dropdown.
         if (e.NavigationMethod == NavigationMethod.Pointer) return;
-        if (!this.GetTemplateChildren().Contains(e.Source)) return;
+        if (!this.GetTemplateDescendants().Contains(e.Source)) return;
         // If the focus is set by keyboard navigation, open the dropdown.
         if (!_closeBySelectionFlag && IsDropDownOpen == false)
         {
