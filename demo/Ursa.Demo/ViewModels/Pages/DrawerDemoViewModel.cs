@@ -20,8 +20,9 @@ public partial class DrawerDemoViewModel : ObservableObject
         Tags = ["Drawer", "Panel", "Overlay"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DrawerDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/DrawerDemoViewModel.cs",
-        InlineXamlSupport = true,
+        InlineXamlSupport = false,
         MvvmSupport = true,
+        AvaloniaExclusive = true,
     };
 
     public ICommand ShowDialogCommand { get; set; }

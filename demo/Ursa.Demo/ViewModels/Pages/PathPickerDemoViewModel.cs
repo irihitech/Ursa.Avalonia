@@ -18,6 +18,7 @@ public partial class PathPickerDemoViewModel : ViewModelBase
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/PathPickerDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
+        AvaloniaExclusive = true,
     };
 
     [ObservableProperty] private string? _path;

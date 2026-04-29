@@ -21,8 +21,9 @@ public partial class DialogDemoViewModel: ObservableObject
         Tags = ["Dialog", "Modal", "Overlay"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DialogDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/DialogDemoViewModel.cs",
-        InlineXamlSupport = true,
+        InlineXamlSupport = false,
         MvvmSupport = true,
+        AvaloniaExclusive = true,
     };
 
     public const string LocalHost = "LocalHost";

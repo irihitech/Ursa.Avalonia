@@ -17,7 +17,7 @@ public class MultiComboBoxDemoViewModel: ObservableObject
         Tags = ["MultiComboBox", "ComboBox", "Selection"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/MultiComboBoxDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/MultiComboBoxDemoViewModel.cs",
-        InlineXamlSupport = true,
+        InlineXamlSupport = false,
         MvvmSupport = true,
     };
 

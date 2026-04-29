@@ -17,7 +17,7 @@ public class MultiAutoCompleteBoxDemoViewModel : ObservableObject
         Tags = ["MultiAutoCompleteBox", "AutoComplete", "Input"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/MultiAutoCompleteBoxDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/MultiAutoCompleteBoxDemoViewModel.cs",
-        InlineXamlSupport = true,
+        InlineXamlSupport = false,
         MvvmSupport = true,
     };
 

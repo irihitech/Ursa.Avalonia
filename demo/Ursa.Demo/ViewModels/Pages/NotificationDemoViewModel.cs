@@ -19,7 +19,9 @@ public partial class NotificationDemoViewModel : ObservableObject
         Tags = ["Notification", "Alert", "Toast"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/NotificationDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/NotificationDemoViewModel.cs",
-        InlineXamlSupport = true,
+        InlineXamlSupport = false,
+        MvvmSupport = true,
+        AvaloniaExclusive = true,
     };
 
     public WindowNotificationManager? NotificationManager { get; set; }

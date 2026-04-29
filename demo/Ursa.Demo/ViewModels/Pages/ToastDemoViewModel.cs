@@ -17,7 +17,9 @@ public partial class ToastDemoViewModel : ObservableObject
         Tags = ["Toast", "Notification", "Message"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ToastDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/ToastDemoViewModel.cs",
-        InlineXamlSupport = true,
+        InlineXamlSupport = false,
+        MvvmSupport = true,
+        AvaloniaExclusive = true,
     };
 
     public WindowToastManager? ToastManager { get; set; }
