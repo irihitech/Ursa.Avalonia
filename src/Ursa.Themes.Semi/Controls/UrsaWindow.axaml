@@ -78,7 +78,8 @@
                             <Panel Name="PART_TitleBar"
                                    VerticalAlignment="Top"
                                    Height="{TemplateBinding TitleBarHeight}"
-                                   IsVisible="True"
+                                   Background="{TemplateBinding TitleBarBackground}"
+                                   IsVisible="{TemplateBinding HasTitleBar}"
                                    WindowDecorationProperties.ElementRole="TitleBar" />
                         </Panel>
                     </WindowDrawnDecorationsContent.Underlay>
