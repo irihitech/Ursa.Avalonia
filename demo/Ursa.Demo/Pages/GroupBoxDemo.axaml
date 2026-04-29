@@ -12,14 +12,8 @@
         <StackPanel Spacing="24">
 
             <!--  Basic UrsaGroupBox with text header  -->
-            <u:UrsaGroupBox>
-                <u:UrsaGroupBox.Header>
-                    <TextBlock
-                        Margin="4,0"
-                        FontWeight="SemiBold"
-                        Text="Connection Settings" />
-                </u:UrsaGroupBox.Header>
-                <StackPanel Margin="0,4,0,0" Spacing="8">
+            <u:UrsaGroupBox Header="Connection Settings" HeaderSpacing="12">
+                <StackPanel Spacing="8">
                     <TextBlock Text="Host: localhost" />
                     <TextBlock Text="Port: 5432" />
                     <TextBlock Text="Database: mydb" />
@@ -28,17 +22,17 @@
 
             <!--  Larger corner radius  -->
             <u:UrsaGroupBox
-                BorderBrush="SteelBlue"
+                BorderBrush="{DynamicResource SemiColorSecondary}"
                 BorderThickness="2"
-                CornerRadius="12">
+                CornerRadius="12"
+                HeaderSpacing="12">
                 <u:UrsaGroupBox.Header>
                     <TextBlock
-                        Margin="4,0"
-                        FontWeight="Bold"
-                        Foreground="SteelBlue"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource SemiColorSecondary}"
                         Text="Appearance" />
                 </u:UrsaGroupBox.Header>
-                <StackPanel Margin="0,4,0,0" Spacing="8">
+                <StackPanel Spacing="8">
                     <TextBlock Text="Font size: 14" />
                     <TextBlock Text="Accent colour: SteelBlue" />
                 </StackPanel>
@@ -56,36 +50,35 @@
 
             <!--  Asymmetric corner radius  -->
             <u:UrsaGroupBox
-                BorderBrush="Coral"
+                BorderBrush="{DynamicResource SemiColorWarning}"
                 BorderThickness="2"
-                CornerRadius="16,4,16,4">
+                CornerRadius="16,4,16,4"
+                HeaderSpacing="12">
                 <u:UrsaGroupBox.Header>
                     <TextBlock
-                        Margin="4,0"
                         FontWeight="SemiBold"
-                        Foreground="Coral"
+                        Foreground="{DynamicResource SemiColorWarning}"
                         Text="Asymmetric Corners" />
                 </u:UrsaGroupBox.Header>
                 <TextBlock
-                    Margin="0,4,0,0"
                     Text="TopLeft=16  TopRight=4  BottomRight=16  BottomLeft=4"
                     TextWrapping="Wrap" />
             </u:UrsaGroupBox>
 
             <!--  With background fill  -->
             <u:UrsaGroupBox
-                Background="#1A9B59D3"
-                BorderBrush="MediumPurple"
+                Background="{DynamicResource SemiColorDangerLight}"
+                BorderBrush="{DynamicResource SemiColorDanger}"
                 BorderThickness="1.5"
-                CornerRadius="6">
+                CornerRadius="6"
+                HeaderSpacing="12">
                 <u:UrsaGroupBox.Header>
                     <TextBlock
-                        Margin="4,0"
                         FontWeight="SemiBold"
-                        Foreground="MediumPurple"
+                        Foreground="{DynamicResource SemiColorDanger}"
                         Text="With Background" />
                 </u:UrsaGroupBox.Header>
-                <StackPanel Margin="0,4,0,0" Spacing="8">
+                <StackPanel Spacing="8">
                     <TextBlock Text="The interior of this border has a semi-transparent fill." TextWrapping="Wrap" />
                     <Button HorizontalAlignment="Left" Content="Click Me" />
                 </StackPanel>
@@ -94,22 +87,21 @@
             <!--  Rich header control  -->
             <u:UrsaGroupBox
                 Height="300"
-                BorderBrush="ForestGreen"
+                BorderBrush="{DynamicResource SemiColorSuccess}"
                 BorderThickness="8,8,24,24"
                 CornerRadius="48"
                 HeaderSpacing="12">
                 <u:UrsaGroupBox.Header>
                     <StackPanel
-                        Margin="4,0"
                         Orientation="Horizontal"
                         Spacing="6">
                         <Ellipse
                             Width="8"
                             Height="8"
-                            Fill="ForestGreen" />
+                            Fill="{DynamicResource SemiColorSuccess}" />
                         <TextBlock
                             FontWeight="SemiBold"
-                            Foreground="ForestGreen"
+                            Foreground="{DynamicResource SemiColorSuccess}"
                             Text="Online" />
                     </StackPanel>
                 </u:UrsaGroupBox.Header>
