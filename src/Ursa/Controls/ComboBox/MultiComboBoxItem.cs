@@ -114,7 +114,7 @@ public class MultiComboBoxItem: ContentControl
         _updateInternal = true;
         if (_parent?.ItemsPanelRoot is VirtualizingPanel)
         {
-            IsSelected =  _parent?.SelectedItems?.Contains(DataContext) ?? false;
+            SetCurrentValue(IsSelectedProperty, _parent?.SelectedItems?.Contains(DataContext) ?? false);
         }
         _updateInternal = false;
     }

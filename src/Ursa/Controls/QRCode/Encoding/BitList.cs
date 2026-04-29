@@ -12,8 +12,8 @@ internal sealed class BitList : IEnumerable<bool>
 
 	internal BitList(IEnumerable<byte> byteArray)
 	{
-		Count = byteArray.Count();
 		List = byteArray.ToList();
+        Count = List.Count;
 	}
 
 	internal List<byte> List { get; }

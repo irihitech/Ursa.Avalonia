@@ -5,7 +5,7 @@ namespace Ursa.Controls;
 
 public class AspectRatioLayoutItem : ContentControl
 {
-    public static readonly StyledProperty<AspectRatioMode> AcceptScaleModeProperty =
+    public static readonly StyledProperty<AspectRatioMode> AcceptAspectRatioModeProperty =
         AvaloniaProperty.Register<AspectRatioLayoutItem, AspectRatioMode>(
             nameof(AcceptAspectRatioMode));
 
@@ -36,7 +36,7 @@ public class AspectRatioLayoutItem : ContentControl
 
     public AspectRatioMode AcceptAspectRatioMode
     {
-        get => GetValue(AcceptScaleModeProperty);
-        set => SetValue(AcceptScaleModeProperty, value);
+        get => GetValue(AcceptAspectRatioModeProperty);
+        set => SetValue(AcceptAspectRatioModeProperty, value);
     }
 }
