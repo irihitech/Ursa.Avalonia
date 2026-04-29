@@ -6,12 +6,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="clr-namespace:Ursa.Demo.ViewModels;assembly=Ursa.Demo"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:CompileBindings="True"
     x:DataType="vm:ButtonGroupDemoViewModel"
     mc:Ignorable="d">
     <StackPanel Margin="20" Spacing="20">
+        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <u:ButtonGroup
             Classes="Primary Solid"
             CommandBinding="{Binding InvokeCommand}"

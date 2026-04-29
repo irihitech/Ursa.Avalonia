@@ -12,4 +12,7 @@ public partial class PageMetadataViewModel: ObservableObject
     [ObservableProperty] private string? _sourceUrl;
     [ObservableProperty] private string? _themeUrl;
     [ObservableProperty] private string[]? _tags;
+    [ObservableProperty] private bool? _mvvmSupport;
+    [ObservableProperty] private bool? _inlineXamlSupport;
+    [ObservableProperty] private bool? _avaloniaExclusive;
 }

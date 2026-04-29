@@ -1,47 +1,84 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:u="https://irihi.tech/ursa"
-             xmlns:controls="clr-namespace:Ursa.Demo.ViewModels.Controls"
-             xmlns:converters="clr-namespace:Ursa.Demo.DataTemplates"
-             mc:Ignorable="d" d:DesignWidth="800"
-             d:DesignHeight="200"
-             x:DataType="controls:PageMetadataViewModel"
-             x:CompileBindings="True"
-             x:Class="Ursa.Demo.Controls.PageMetadataView">
+<UserControl
+    x:Class="Ursa.Demo.Controls.PageMetadataView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Ursa.Demo.ViewModels.Controls"
+    xmlns:converters="clr-namespace:Ursa.Demo.DataTemplates"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    d:DesignHeight="200"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="controls:PageMetadataViewModel"
+    mc:Ignorable="d">
     <UserControl.Resources>
         <converters:StringToUriConverter x:Key="StringToUriConverter" />
     </UserControl.Resources>
-    <Border Theme="{DynamicResource CardBorder}">
-        <StackPanel Spacing="8" Margin="16">
+    <Border
+        Margin="4"
+        Padding="16"
+        Classes="Shadow"
+        Theme="{DynamicResource CardBorder}">
+        <StackPanel Spacing="8">
+            <DockPanel>
+                <!--  Breadcrumbs  -->
+                <u:Breadcrumb
+                    DockPanel.Dock="Left"
+                    IsVisible="{Binding Breadcrumbs, Converter={x:Static ObjectConverters.IsNotNull}}"
+                    ItemsSource="{Binding Breadcrumbs}">
+                    <u:Breadcrumb.Styles>
+                        <Style Selector="u|BreadcrumbItem">
+                            <Setter Property="IsReadOnly" Value="True" />
+                        </Style>
+                    </u:Breadcrumb.Styles>
+                </u:Breadcrumb>
 
-            <!-- Breadcrumbs -->
-            <u:Breadcrumb
-                ItemsSource="{Binding Breadcrumbs}"
-                IsVisible="{Binding Breadcrumbs, Converter={x:Static ObjectConverters.IsNotNull}}">
-                <u:Breadcrumb.Styles>
-                    <Style Selector="u|BreadcrumbItem">
-                        <Setter Property="IsReadOnly" Value="True" />
-                    </Style>
-                </u:Breadcrumb.Styles>
-            </u:Breadcrumb>
+                <!--  Source links  -->
+                <StackPanel
+                    Margin="0,8,0,0"
+                    DockPanel.Dock="Right"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Spacing="8">
+                    <HyperlinkButton
+                        Content="Demo View"
+                        Classes="WithIcon Underline"
+                        IsVisible="{Binding DemoViewUrl, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                        NavigateUri="{Binding DemoViewUrl, Converter={StaticResource StringToUriConverter}}" />
+                    <HyperlinkButton
+                        Content="Demo ViewModel"
+                        Classes="WithIcon Underline"
+                        IsVisible="{Binding DemoViewModelUrl, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                        NavigateUri="{Binding DemoViewModelUrl, Converter={StaticResource StringToUriConverter}}" />
+                    <HyperlinkButton
+                        Content="Source Code"
+                        Classes="WithIcon Underline"
+                        IsVisible="{Binding SourceUrl, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                        NavigateUri="{Binding SourceUrl, Converter={StaticResource StringToUriConverter}}" />
+                    <HyperlinkButton
+                        Content="Theme Source Code"
+                        Classes="WithIcon Underline"
+                        IsVisible="{Binding ThemeUrl, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                        NavigateUri="{Binding ThemeUrl, Converter={StaticResource StringToUriConverter}}" />
+                </StackPanel>
+            </DockPanel>
 
-            <!-- Title -->
+            <!--  Title  -->
             <TextBlock
+                Classes="H2"
+                IsVisible="{Binding Title, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                 Text="{Binding Title}"
-                Classes="H3"
-                Theme="{DynamicResource TitleTextBlock}"
-                IsVisible="{Binding Title, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                Theme="{DynamicResource TitleTextBlock}" />
 
-            <!-- Description -->
+            <!--  Description  -->
             <TextBlock
-                Text="{Binding Description}"
                 Classes="Secondary"
-                TextWrapping="Wrap"
-                IsVisible="{Binding Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                IsVisible="{Binding Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                Text="{Binding Description}"
+                TextWrapping="Wrap" />
 
-            <!-- Tags -->
+            <!--  Tags  -->
             <ItemsControl ItemsSource="{Binding Tags}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -50,33 +87,32 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label
-                            Theme="{DynamicResource TagLabel}"
-                            Content="{Binding .}" />
+                        <Label Content="{Binding .}" Theme="{DynamicResource TagLabel}" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
-            <!-- Source links -->
-            <StackPanel Orientation="Horizontal" Spacing="8">
-                <HyperlinkButton
-                    Content="View"
-                    NavigateUri="{Binding DemoViewUrl, Converter={StaticResource StringToUriConverter}}"
-                    IsVisible="{Binding DemoViewUrl, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
-                <HyperlinkButton
-                    Content="ViewModel"
-                    NavigateUri="{Binding DemoViewModelUrl, Converter={StaticResource StringToUriConverter}}"
-                    IsVisible="{Binding DemoViewModelUrl, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
-                <HyperlinkButton
-                    Content="Source"
-                    NavigateUri="{Binding SourceUrl, Converter={StaticResource StringToUriConverter}}"
-                    IsVisible="{Binding SourceUrl, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
-                <HyperlinkButton
-                    Content="Theme"
-                    NavigateUri="{Binding ThemeUrl, Converter={StaticResource StringToUriConverter}}"
-                    IsVisible="{Binding ThemeUrl, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+            <!--  Special Flags  -->
+            <StackPanel
+                Margin="0,8,0,0"
+                Orientation="Horizontal"
+                Spacing="8">
+                <Label
+                    Classes="Blue"
+                    Content="MVVM Support"
+                    IsVisible="{Binding MvvmSupport}"
+                    Theme="{DynamicResource TagLabel}" />
+                <Label
+                    Classes="Orange"
+                    Content="Inline XAML Support"
+                    IsVisible="{Binding InlineXamlSupport}"
+                    Theme="{DynamicResource TagLabel}" />
+                <Label
+                    Classes="Indigo"
+                    Content="Require Avalonia Exclusive ViewModel"
+                    IsVisible="{Binding AvaloniaExclusive}"
+                    Theme="{DynamicResource TagLabel}" />
             </StackPanel>
-
         </StackPanel>
     </Border>
 </UserControl>

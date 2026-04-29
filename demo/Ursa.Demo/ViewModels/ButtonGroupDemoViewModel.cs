@@ -3,11 +3,23 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
+using Ursa.Demo.ViewModels.Controls;
 
 namespace Ursa.Demo.ViewModels;
 
 public class ButtonGroupDemoViewModel: ViewModelBase
 {
+    public PageMetadataViewModel  PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = "ButtonGroup",
+        Description = "A ButtonGroup is a control that groups multiple buttons together. ",
+        Breadcrumbs = ["Input", "Button Group"],
+        Tags = ["ButtonGroup",  "Button", "Command", "Collection" ],
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/ButtonGroupDemoViewModel.cs",
+        InlineXamlSupport = true,
+        AvaloniaExclusive = false,
+        MvvmSupport = true,
+    };
     public ObservableCollection<ButtonItem> Items { get; set; } = new ()
     {
         new ButtonItem(){Name = "Ding" },
