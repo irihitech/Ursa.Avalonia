@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Avalonia.Controls.Notifications;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -16,7 +16,7 @@ public partial class ToastDemoViewModel : ObservableObject
         Breadcrumbs = ["Dialog & Feedbacks", "Toast"],
         Tags = ["Toast", "Notification", "Message"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ToastDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/ToastDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/ToastDemoViewModel.cs",
         InlineXamlSupport = false,
         MvvmSupport = true,
         AvaloniaExclusive = true,

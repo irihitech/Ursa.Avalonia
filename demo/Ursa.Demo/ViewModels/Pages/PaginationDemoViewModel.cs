@@ -15,7 +15,7 @@ public class PaginationDemoViewModel : ViewModelBase
         Breadcrumbs = ["Navigation & Menus", "Pagination"],
         Tags = ["Pagination", "Navigation", "Page"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/PaginationDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/PaginationDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/PaginationDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

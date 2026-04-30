@@ -1,4 +1,4 @@
-﻿using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels
 {
     public class SkeletonDemoViewModel : ViewModelBase
@@ -10,7 +10,7 @@ namespace Ursa.Demo.ViewModels
         Breadcrumbs = ["Dialog & Feedbacks", "Skeleton"],
         Tags = ["Skeleton", "Loading", "Placeholder"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/SkeletonDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/SkeletonDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/SkeletonDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

@@ -12,7 +12,7 @@ public partial class BannerDemoViewModel : ViewModelBase
         Breadcrumbs = ["Layout & Display", "Banner"],
         Tags = ["Banner", "Alert", "Message"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/BannerDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/BannerDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/BannerDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

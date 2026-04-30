@@ -13,7 +13,7 @@ public partial class TreeComboBoxDemoViewModel: ObservableObject
         Breadcrumbs = ["Buttons & Inputs", "TreeComboBox"],
         Tags = ["TreeComboBox", "ComboBox", "Tree"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/TreeComboBoxDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/TreeComboBoxDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/TreeComboBoxDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

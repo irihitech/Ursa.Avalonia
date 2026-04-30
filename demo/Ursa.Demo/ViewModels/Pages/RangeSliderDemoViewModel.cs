@@ -14,7 +14,7 @@ public partial class RangeSliderDemoViewModel: ObservableObject
         Breadcrumbs = ["Buttons & Inputs", "RangeSlider"],
         Tags = ["RangeSlider", "Slider", "Range"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/RangeSliderDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/RangeSliderDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/RangeSliderDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

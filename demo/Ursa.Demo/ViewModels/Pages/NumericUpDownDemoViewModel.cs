@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using Avalonia.Layout;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -16,7 +16,7 @@ public partial class NumericUpDownDemoViewModel : ObservableObject
         Breadcrumbs = ["Buttons & Inputs", "Numeric UpDown"],
         Tags = ["NumericUpDown", "Input", "Number"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/NumericUpDownDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/NumericUpDownDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/NumericUpDownDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

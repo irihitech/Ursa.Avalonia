@@ -14,7 +14,7 @@ public partial class AnchorDemoViewModel : ObservableObject
         Breadcrumbs = ["Navigation & Menus", "Anchor"],
         Tags = ["Anchor", "Navigation", "Scroll"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/AnchorDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/AnchorDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/AnchorDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

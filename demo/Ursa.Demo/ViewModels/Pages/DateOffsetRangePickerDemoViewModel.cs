@@ -13,7 +13,7 @@ public partial class DateOffsetRangePickerDemoViewModel : ObservableObject
         Breadcrumbs = ["Date & Time", "Date Offset Range Picker"],
         Tags = ["DateOffsetRangePicker", "Date", "Range"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DateOffsetRangePickerDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/DateOffsetRangePickerDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/DateOffsetRangePickerDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

@@ -10,7 +10,7 @@ public class DividerDemoViewModel: ViewModelBase
         Breadcrumbs = ["Layout & Display", "Divider"],
         Tags = ["Divider", "Separator", "Layout"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DividerDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/DividerDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/DividerDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

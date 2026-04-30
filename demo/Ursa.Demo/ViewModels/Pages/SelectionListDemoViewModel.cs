@@ -13,7 +13,7 @@ public partial class SelectionListDemoViewModel: ObservableObject
         Breadcrumbs = ["Buttons & Inputs", "Selection List"],
         Tags = ["SelectionList", "List", "Selection"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/SelectionListDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/SelectionListDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/SelectionListDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

@@ -17,7 +17,7 @@ public class PopConfirmDemoViewModel : ObservableObject
         Breadcrumbs = ["Dialog & Feedbacks", "PopConfirm"],
         Tags = ["PopConfirm", "Confirm", "Popup"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/PopConfirmDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/PopConfirmDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/PopConfirmDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

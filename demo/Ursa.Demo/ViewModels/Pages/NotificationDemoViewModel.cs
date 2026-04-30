@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Avalonia.Controls.Notifications;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -18,7 +18,7 @@ public partial class NotificationDemoViewModel : ObservableObject
         Breadcrumbs = ["Dialog & Feedbacks", "Notification"],
         Tags = ["Notification", "Alert", "Toast"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/NotificationDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/NotificationDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/NotificationDemoViewModel.cs",
         InlineXamlSupport = false,
         MvvmSupport = true,
         AvaloniaExclusive = true,

@@ -14,7 +14,7 @@ public partial class BadgeDemoViewModel: ViewModelBase
         Breadcrumbs = ["Layout & Display", "Badge"],
         Tags = ["Badge", "Label", "Status"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/BadgeDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/BadgeDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/BadgeDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -16,7 +16,7 @@ public class MultiComboBoxDemoViewModel: ObservableObject
         Breadcrumbs = ["Buttons & Inputs", "MultiComboBox"],
         Tags = ["MultiComboBox", "ComboBox", "Selection"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/MultiComboBoxDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/MultiComboBoxDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/MultiComboBoxDemoViewModel.cs",
         InlineXamlSupport = false,
         MvvmSupport = true,
     };

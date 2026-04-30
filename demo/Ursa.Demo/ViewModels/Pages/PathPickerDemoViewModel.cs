@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -15,7 +15,7 @@ public partial class PathPickerDemoViewModel : ViewModelBase
         Breadcrumbs = ["Buttons & Inputs", "PathPicker"],
         Tags = ["PathPicker", "Input", "File"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/PathPickerDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/PathPickerDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/PathPickerDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
         AvaloniaExclusive = true,

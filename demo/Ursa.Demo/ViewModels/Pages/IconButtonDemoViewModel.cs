@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Ursa.Common;
 
 using Ursa.Demo.ViewModels.Controls;
@@ -13,7 +13,7 @@ public partial class IconButtonDemoViewModel : ObservableObject
         Breadcrumbs = ["Buttons & Inputs", "Icon Button"],
         Tags = ["IconButton", "Button", "Icon"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/IconButtonDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/IconButtonDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/IconButtonDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

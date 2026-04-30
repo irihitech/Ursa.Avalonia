@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
@@ -13,7 +13,7 @@ public partial class DatePickerDemoViewModel: ObservableObject
         Breadcrumbs = ["Date & Time", "Date Picker"],
         Tags = ["DatePicker", "Date", "Input"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DatePickerDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/DatePickerDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/DatePickerDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
@@ -12,7 +12,7 @@ public partial class RatingDemoViewModel : ViewModelBase
         Breadcrumbs = ["Buttons & Inputs", "Rating"],
         Tags = ["Rating", "Star", "Input"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/RatingDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/RatingDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/RatingDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

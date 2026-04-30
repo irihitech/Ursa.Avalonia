@@ -14,7 +14,7 @@ public class ScrollToButtonDemoViewModel: ObservableObject
         Breadcrumbs = ["Layout & Display", "Scroll To"],
         Tags = ["ScrollToButton", "Scroll", "Button"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ScrollToButtonDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/ScrollToButtonDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/ScrollToButtonDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

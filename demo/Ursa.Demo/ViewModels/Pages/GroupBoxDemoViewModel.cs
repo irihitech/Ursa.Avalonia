@@ -10,7 +10,7 @@ public class GroupBoxDemoViewModel : ViewModelBase
         Breadcrumbs = ["Layout & Display", "GroupBox"],
         Tags = ["GroupBox", "Container", "Layout"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/GroupBoxDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/GroupBoxDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/GroupBoxDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

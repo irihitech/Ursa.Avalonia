@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
@@ -12,7 +12,7 @@ public class DisableContainerDemoViewModel: ObservableObject
         Breadcrumbs = ["Layout & Display", "Disable Container"],
         Tags = ["DisableContainer", "Container", "Disable"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DisableContainerDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/DisableContainerDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/DisableContainerDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

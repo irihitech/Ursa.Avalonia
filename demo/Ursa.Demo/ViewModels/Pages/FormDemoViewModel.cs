@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -16,7 +16,7 @@ public partial class FormDemoViewModel : ObservableObject
         Breadcrumbs = ["Buttons & Inputs", "Form"],
         Tags = ["Form", "Layout", "Label"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/FormDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/FormDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/FormDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

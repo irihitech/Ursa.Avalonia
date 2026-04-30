@@ -20,7 +20,7 @@ public partial class DialogDemoViewModel: ObservableObject
         Breadcrumbs = ["Dialog & Feedbacks", "Dialog"],
         Tags = ["Dialog", "Modal", "Overlay"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DialogDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/DialogDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/DialogDemoViewModel.cs",
         InlineXamlSupport = false,
         MvvmSupport = true,
         AvaloniaExclusive = true,

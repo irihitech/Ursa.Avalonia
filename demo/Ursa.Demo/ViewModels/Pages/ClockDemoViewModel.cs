@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Timers;
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -14,7 +14,7 @@ public partial class ClockDemoViewModel: ObservableObject, IDisposable
         Breadcrumbs = ["Date & Time", "Clock"],
         Tags = ["Clock", "Time", "Display"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ClockDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/ClockDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/ClockDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

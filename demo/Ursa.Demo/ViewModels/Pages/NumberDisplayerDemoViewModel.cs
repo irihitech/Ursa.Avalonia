@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -15,7 +15,7 @@ public partial class NumberDisplayerDemoViewModel: ObservableObject
         Breadcrumbs = ["Layout & Display", "Number Displayer"],
         Tags = ["NumberDisplayer", "Number", "Animation"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/NumberDisplayerDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/NumberDisplayerDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/NumberDisplayerDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

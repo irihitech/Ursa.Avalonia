@@ -14,7 +14,7 @@ public partial class IPv4BoxDemoViewModel: ObservableObject
         Breadcrumbs = ["Buttons & Inputs", "IPv4Box"],
         Tags = ["IPv4Box", "Input", "IP"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/IPv4BoxDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/IPv4BoxDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/IPv4BoxDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

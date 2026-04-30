@@ -15,7 +15,7 @@ public class ButtonGroupDemoViewModel: ViewModelBase
         Description = "A ButtonGroup is a control that groups multiple buttons together. ",
         Breadcrumbs = ["Input", "Button Group"],
         Tags = ["ButtonGroup",  "Button", "Command", "Collection" ],
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/ButtonGroupDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/ButtonGroupDemoViewModel.cs",
         InlineXamlSupport = true,
         AvaloniaExclusive = false,
         MvvmSupport = true,

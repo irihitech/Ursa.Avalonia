@@ -13,7 +13,7 @@ public partial class TimeRangePickerDemoViewModel: ObservableObject
         Breadcrumbs = ["Date & Time", "Time Range Picker"],
         Tags = ["TimeRangePicker", "Time", "Range"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/TimeRangePickerDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/TimeRangePickerDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/TimeRangePickerDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

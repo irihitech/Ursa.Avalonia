@@ -10,7 +10,7 @@ public class LoadingDemoViewModel: ViewModelBase
         Breadcrumbs = ["Dialog & Feedbacks", "Loading"],
         Tags = ["Loading", "Spinner", "Progress"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/LoadingDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/LoadingDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/LoadingDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

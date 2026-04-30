@@ -16,7 +16,7 @@ public class BreadcrumbDemoViewModel: ObservableObject
         Breadcrumbs = ["Navigation & Menus", "Breadcrumb"],
         Tags = ["Breadcrumb", "Navigation", "Path"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/BreadcrumbDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/BreadcrumbDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/BreadcrumbDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
@@ -12,7 +12,7 @@ public class ClassInputDemoViewModel: ObservableObject
         Breadcrumbs = ["Buttons & Inputs", "Class Input"],
         Tags = ["ClassInput", "Input", "CSS"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ClassInputDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/ClassInputDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/ClassInputDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

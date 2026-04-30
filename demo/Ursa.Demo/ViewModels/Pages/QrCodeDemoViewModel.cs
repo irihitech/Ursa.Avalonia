@@ -12,7 +12,7 @@ public class QrCodeDemoViewModel: ObservableObject
         Breadcrumbs = ["Layout & Display", "Qr Code"],
         Tags = ["QrCode", "Code", "Image"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/QrCodeDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/QrCodeDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/QrCodeDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

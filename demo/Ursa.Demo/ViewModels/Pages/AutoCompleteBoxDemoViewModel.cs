@@ -14,7 +14,7 @@ public class AutoCompleteBoxDemoViewModel : ObservableObject
         Breadcrumbs = ["Buttons & Inputs", "AutoCompleteBox"],
         Tags = ["AutoCompleteBox", "Input", "Search"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/AutoCompleteBoxDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/AutoCompleteBoxDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/AutoCompleteBoxDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

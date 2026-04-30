@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
@@ -13,7 +13,7 @@ public partial class TimePickerDemoViewModel: ObservableObject
         Breadcrumbs = ["Date & Time", "Time Picker"],
         Tags = ["TimePicker", "Time", "Input"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/TimePickerDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/TimePickerDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/TimePickerDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

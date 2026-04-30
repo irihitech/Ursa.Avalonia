@@ -14,7 +14,7 @@ public class TimelineDemoViewModel: ViewModelBase
         Breadcrumbs = ["Layout & Display", "Timeline"],
         Tags = ["Timeline", "History", "Steps"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/TimelineDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/TimelineDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/TimelineDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

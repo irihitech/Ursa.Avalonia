@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -16,7 +16,7 @@ public class MultiAutoCompleteBoxDemoViewModel : ObservableObject
         Breadcrumbs = ["Buttons & Inputs", "Multi AutoCompleteBox"],
         Tags = ["MultiAutoCompleteBox", "AutoComplete", "Input"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/MultiAutoCompleteBoxDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/MultiAutoCompleteBoxDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/MultiAutoCompleteBoxDemoViewModel.cs",
         InlineXamlSupport = false,
         MvvmSupport = true,
     };

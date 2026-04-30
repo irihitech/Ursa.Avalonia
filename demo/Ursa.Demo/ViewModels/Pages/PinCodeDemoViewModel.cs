@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -18,7 +18,7 @@ public partial class PinCodeDemoViewModel: ObservableObject
         Breadcrumbs = ["Buttons & Inputs", "PinCode"],
         Tags = ["PinCode", "Input", "Password"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/PinCodeDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/PinCodeDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/PinCodeDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

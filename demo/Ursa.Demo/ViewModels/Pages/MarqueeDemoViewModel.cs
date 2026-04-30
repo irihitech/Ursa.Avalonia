@@ -10,7 +10,7 @@ public class MarqueeDemoViewModel: ViewModelBase
         Breadcrumbs = ["Layout & Display", "Marquee"],
         Tags = ["Marquee", "Scroll", "Text"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/MarqueeDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/MarqueeDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/MarqueeDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

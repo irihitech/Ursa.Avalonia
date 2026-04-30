@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
@@ -13,7 +13,7 @@ public partial class DescriptionsDemoViewModel : ObservableObject
         Breadcrumbs = ["Layout & Display", "Descriptions"],
         Tags = ["Descriptions", "Label", "Value"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DescriptionsDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/DescriptionsDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/DescriptionsDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

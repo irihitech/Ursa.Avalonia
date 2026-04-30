@@ -12,7 +12,7 @@ public class ImageViewerDemoViewModel: ObservableObject
         Breadcrumbs = ["Layout & Display", "ImageViewer"],
         Tags = ["ImageViewer", "Image", "Zoom"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ImageViewerDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/ImageViewerDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/ImageViewerDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

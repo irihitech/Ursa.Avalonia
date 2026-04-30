@@ -1,4 +1,4 @@
-﻿using Avalonia.Controls.Primitives;
+using Avalonia.Controls.Primitives;
 using Avalonia.Layout;
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -14,7 +14,7 @@ public partial class ElasticWrapPanelDemoViewModel : ObservableObject
         Breadcrumbs = ["Layout & Display", "ElasticWrapPanel"],
         Tags = ["ElasticWrapPanel", "Panel", "Layout"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ElasticWrapPanelDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/ElasticWrapPanelDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/ElasticWrapPanelDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

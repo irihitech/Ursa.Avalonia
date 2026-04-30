@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -19,7 +19,7 @@ public class NavMenuDemoViewModel: ObservableObject
         Breadcrumbs = ["Navigation & Menus", "Nav Menu"],
         Tags = ["NavMenu", "Navigation", "Menu"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/NavMenuDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/NavMenuDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/NavMenuDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

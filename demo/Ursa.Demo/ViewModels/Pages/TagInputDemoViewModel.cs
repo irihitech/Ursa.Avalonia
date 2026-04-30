@@ -12,7 +12,7 @@ public class TagInputDemoViewModel: ViewModelBase
         Breadcrumbs = ["Buttons & Inputs", "TagInput"],
         Tags = ["TagInput", "Input", "Tag"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/TagInputDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/TagInputDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/TagInputDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

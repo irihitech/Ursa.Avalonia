@@ -13,7 +13,7 @@ public partial class TimeOnlyPickerDemoViewModel : ObservableObject
         Breadcrumbs = ["Date & Time", "Time Only Picker"],
         Tags = ["TimeOnlyPicker", "Time", "Input"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/TimeOnlyPickerDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/TimeOnlyPickerDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/TimeOnlyPickerDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

@@ -19,7 +19,7 @@ public partial class DrawerDemoViewModel : ObservableObject
         Breadcrumbs = ["Dialog & Feedbacks", "Drawer"],
         Tags = ["Drawer", "Panel", "Overlay"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DrawerDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/DrawerDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/DrawerDemoViewModel.cs",
         InlineXamlSupport = false,
         MvvmSupport = true,
         AvaloniaExclusive = true,

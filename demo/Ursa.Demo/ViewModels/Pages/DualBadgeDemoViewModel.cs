@@ -1,4 +1,4 @@
-﻿using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public class DualBadgeDemoViewModel : ViewModelBase
@@ -10,7 +10,7 @@ public class DualBadgeDemoViewModel : ViewModelBase
         Breadcrumbs = ["Layout & Display", "DualBadge"],
         Tags = ["DualBadge", "Badge", "Label"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DualBadgeDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/DualBadgeDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/DualBadgeDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

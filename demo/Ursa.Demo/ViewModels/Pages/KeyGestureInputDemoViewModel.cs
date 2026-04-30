@@ -14,7 +14,7 @@ public class KeyGestureInputDemoViewModel: ObservableObject
         Breadcrumbs = ["Buttons & Inputs", "KeyGestureInput"],
         Tags = ["KeyGestureInput", "Input", "HotKey"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/KeyGestureInputDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/KeyGestureInputDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/KeyGestureInputDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

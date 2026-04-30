@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 using Ursa.Demo.ViewModels.Controls;
@@ -13,7 +13,7 @@ public partial class AvatarDemoViewModel : ViewModelBase
         Breadcrumbs = ["Layout & Display", "Avatar"],
         Tags = ["Avatar", "Profile", "Image"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/AvatarDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/AvatarDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/AvatarDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

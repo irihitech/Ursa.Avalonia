@@ -1,4 +1,4 @@
-﻿using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public class NumPadDemoViewModel
@@ -10,7 +10,7 @@ public class NumPadDemoViewModel
         Breadcrumbs = ["Buttons & Inputs", "NumPad"],
         Tags = ["NumPad", "Input", "Number"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/NumPadDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/NumPadDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/NumPadDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

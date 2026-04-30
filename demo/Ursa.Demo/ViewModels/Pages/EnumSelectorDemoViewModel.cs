@@ -21,7 +21,7 @@ public partial class EnumSelectorDemoViewModel : ObservableObject
         Breadcrumbs = ["Buttons & Inputs", "Enum Selector"],
         Tags = ["EnumSelector", "Enum", "Selector"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/EnumSelectorDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/EnumSelectorDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/EnumSelectorDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

@@ -1,4 +1,4 @@
-﻿using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
 public class AspectRatioLayoutDemoViewModel : ViewModelBase
@@ -10,7 +10,7 @@ public class AspectRatioLayoutDemoViewModel : ViewModelBase
         Breadcrumbs = ["Layout & Display", "AspectRatioLayout"],
         Tags = ["AspectRatioLayout", "Layout", "Ratio"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/AspectRatioLayoutDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/AspectRatioLayoutDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/AspectRatioLayoutDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 

@@ -13,7 +13,7 @@ public partial class DateOnlyRangePickerDemoViewModel : ObservableObject
         Breadcrumbs = ["Date & Time", "Date Only Range Picker"],
         Tags = ["DateOnlyRangePicker", "Date", "Range"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DateOnlyRangePickerDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/DateOnlyRangePickerDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/DateOnlyRangePickerDemoViewModel.cs",
         InlineXamlSupport = true,
         MvvmSupport = true,
     };

@@ -10,7 +10,7 @@ public class ThemeVariantMapperDemoViewModel : ViewModelBase
         Breadcrumbs = ["Layout & Display", "Theme Variant Mapper"],
         Tags = ["ThemeVariantMapper", "Theme", "Color"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ThemeVariantMapperDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/ThemeVariantMapperDemoViewModel.cs",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/ThemeVariantMapperDemoViewModel.cs",
         InlineXamlSupport = true,
     };
 
