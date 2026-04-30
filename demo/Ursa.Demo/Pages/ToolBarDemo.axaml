@@ -18,7 +18,7 @@
     <Grid ColumnDefinitions="Auto, Auto, *" RowDefinitions="Auto, Auto, *">
             <u:EnumSelector Name="Orientation" EnumType="Orientation" />
             <u:ToolBar
-                Grid.Row="0" Grid.Column="0"
+                Grid.Row="0" Grid.Column="1"
                 DockPanel.Dock="Top"
                 Header="Hello World"
                 Orientation="{Binding #Orientation.Value}">
@@ -48,7 +48,7 @@
                 </u:ToolBar.Styles>
             </u:ToolBar>
             <u:ToolBar
-                Grid.Row="0" Grid.Column="0"
+                Grid.Row="1" Grid.Column="1"
                 DockPanel.Dock="Top"
                 ItemsSource="{Binding Items}"
                 Orientation="{Binding #Orientation.Value}">
