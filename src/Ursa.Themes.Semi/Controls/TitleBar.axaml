@@ -6,30 +6,34 @@
     <ControlTheme x:Key="{x:Type u:TitleBar}" TargetType="u:TitleBar">
         <Setter Property="Template">
             <ControlTemplate TargetType="u:TitleBar">
-                <DockPanel>
+                <DockPanel Background="Transparent" WindowDecorationProperties.ElementRole="TitleBar">
                     <ContentPresenter
                         Name="PART_LeftContentPresenter"
-                        TabIndex="1"
-                        KeyboardNavigation.TabNavigation="Local"
-                        IsVisible="{TemplateBinding LeftContent, Converter={x:Static ObjectConverters.IsNotNull}}"
                         Content="{TemplateBinding LeftContent}"
-                        WindowDecorationProperties.ElementRole="User"
-                        DockPanel.Dock="Left" />
+                        DockPanel.Dock="Left"
+                        IsVisible="{TemplateBinding LeftContent,
+                                                    Converter={x:Static ObjectConverters.IsNotNull}}"
+                        KeyboardNavigation.TabNavigation="Local"
+                        TabIndex="1"
+                        WindowDecorationProperties.ElementRole="User" />
                     <ContentPresenter
                         Name="PART_RightContentPresenter"
-                        TabIndex="3"
-                        KeyboardNavigation.TabNavigation="Local"
-                        IsVisible="{TemplateBinding RightContent, Converter={x:Static ObjectConverters.IsNotNull}}"
                         Content="{TemplateBinding RightContent}"
-                        WindowDecorationProperties.ElementRole="User"
-                        DockPanel.Dock="Right" />
+                        DockPanel.Dock="Right"
+                        IsVisible="{TemplateBinding RightContent,
+                                                    Converter={x:Static ObjectConverters.IsNotNull}}"
+                        KeyboardNavigation.TabNavigation="Local"
+                        TabIndex="3"
+                        WindowDecorationProperties.ElementRole="User" />
                     <ContentPresenter
                         Name="PART_ContentPresenter"
-                        TabIndex="2"
-                        KeyboardNavigation.TabNavigation="Local"
                         HorizontalAlignment="Stretch"
-                        WindowDecorationProperties.ElementRole="User"
-                        Content="{TemplateBinding CenterContent}" />
+                        Content="{TemplateBinding CenterContent}"
+                        IsVisible="{TemplateBinding CenterContent,
+                                                    Converter={x:Static ObjectConverters.IsNotNull}}"
+                        KeyboardNavigation.TabNavigation="Local"
+                        TabIndex="2"
+                        WindowDecorationProperties.ElementRole="User" />
                 </DockPanel>
             </ControlTemplate>
         </Setter>
