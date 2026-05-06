@@ -31,11 +31,13 @@ class Program
     // Avalonia configuration, don't remove; also used by visual designer.
     public static AppBuilder BuildAvaloniaApp()
         => AppBuilder.Configure<App>()
-            .UseManagedSystemDialogs()
-            .UsePlatformDetect()
-            .With(new Win32PlatformOptions())
+                     .UseManagedSystemDialogs()
+                     .UsePlatformDetect()
+                     .With(new Win32PlatformOptions())
 #pragma warning disable AVALONIA_X11_CSD
-            .With(new X11PlatformOptions(){ EnableDrawnDecorations = true})
+#pragma warning disable AVALONIA_X11_FORCE_CSD
+                     .With(new X11PlatformOptions() { EnableDrawnDecorations = true, ForceDrawnDecorations = true })
+#pragma warning restore AVALONIA_X11_FORCE_CSD
 #pragma warning restore AVALONIA_X11_CSD
-            .LogToTrace();
+                     .LogToTrace();
 }

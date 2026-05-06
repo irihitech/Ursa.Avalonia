@@ -9,6 +9,7 @@
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
+        <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="36" />
         <Setter Property="u:OverlayDialogHost.IsModalStatusScope" Value="True" />
         <Setter Property="IsMinimizeButtonVisible" Value="{OnPlatform {x:True},macOS={x:False}}" />
         <Setter Property="IsRestoreButtonVisible" Value="{OnPlatform {x:True},macOS={x:False}}" />
