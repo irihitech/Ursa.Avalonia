@@ -25,5 +25,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Ursa.Demo\Ursa.Demo.csproj"/>
+<!--        <ProjectReference Include="..\Ursa.Demo.Fonts\Ursa.Demo.Fonts.csproj"/>-->
     </ItemGroup>
 </Project>

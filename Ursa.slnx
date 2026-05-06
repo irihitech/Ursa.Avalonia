@@ -6,6 +6,7 @@
         </Project>
         <Project Path="demo/Ursa.Demo.Browser/Ursa.Demo.Browser.csproj"/>
         <Project Path="demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj"/>
+        <Project Path="demo/Ursa.Demo.Fonts/Ursa.Demo.Fonts.csproj"/>
         <Project Path="demo/Ursa.Demo.iOS/Ursa.Demo.iOS.csproj"/>
         <Project Path="demo/Ursa.Demo/Ursa.Demo.csproj"/>
         <Project Path="demo/Ursa.PrismDialogDemo/Ursa.PrismDialogDemo.csproj"/>

@@ -8,6 +8,9 @@
     RequestedThemeVariant="Light"
     xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
     x:DataType="vm:ApplicationViewModel">
+    <Application.Resources>
+        <!-- <FontFamily x:Key="SemiFontFamilyRegular"> </FontFamily> -->
+    </Application.Resources>
     <Application.Styles>
         <semi:SemiTheme Locale="zh-CN" />
         <semi:UrsaSemiTheme Locale="zh-CN" />

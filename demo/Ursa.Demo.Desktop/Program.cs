@@ -3,6 +3,7 @@ using System.Runtime.Versioning;
 using Avalonia;
 using Avalonia.Dialogs;
 using Avalonia.Media;
+// using Ursa.Demo.Fonts;
 
 namespace Ursa.Demo.Desktop;
 
@@ -18,13 +19,13 @@ class Program
     public static void Main(string[] args) => BuildAvaloniaApp()
         .With(new FontManagerOptions
         {
-            FontFallbacks = new[]
-            {
+            FontFallbacks =
+            [
                 new FontFallback
                 {
                     FontFamily = new FontFamily("Microsoft YaHei")
                 }
-            }
+            ]
         })
         .StartWithClassicDesktopLifetime(args);
 
@@ -34,5 +35,6 @@ class Program
             .UseManagedSystemDialogs()
             .UsePlatformDetect()
             .With(new Win32PlatformOptions())
+            // .WithSourceHanSansCNFont()
             .LogToTrace();
 }
