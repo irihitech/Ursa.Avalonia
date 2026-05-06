@@ -34,5 +34,8 @@ class Program
             .UseManagedSystemDialogs()
             .UsePlatformDetect()
             .With(new Win32PlatformOptions())
+#pragma warning disable AVALONIA_X11_CSD
+            .With(new X11PlatformOptions(){ EnableDrawnDecorations = true})
+#pragma warning restore AVALONIA_X11_CSD
             .LogToTrace();
 }
