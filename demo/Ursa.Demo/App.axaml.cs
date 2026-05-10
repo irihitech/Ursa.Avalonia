@@ -15,7 +15,7 @@ public partial class App : Application
         this.AttachDeveloperTools();
 #endif
         DataContext = new ApplicationViewModel();
-        // Resources["SemiFontFamilyRegular"] = null;
+        Resources.Add("DefaultFontFamily", null);
     }
 
     public override void OnFrameworkInitializationCompleted()

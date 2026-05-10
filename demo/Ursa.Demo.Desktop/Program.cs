@@ -3,9 +3,10 @@ using System.Runtime.Versioning;
 using Avalonia;
 using Avalonia.Dialogs;
 using Avalonia.Media;
-// using Ursa.Demo.Fonts;
+using Ursa.Demo.Fonts;
 
 namespace Ursa.Demo.Desktop;
+#pragma warning disable AVALONIA_X11_CSD, AVALONIA_X11_FORCE_CSD
 
 [SupportedOSPlatform("windows")]
 [SupportedOSPlatform("linux")]
@@ -17,16 +18,6 @@ class Program
     // yet and stuff might break.
     [STAThread]
     public static void Main(string[] args) => BuildAvaloniaApp()
-        .With(new FontManagerOptions
-        {
-            FontFallbacks =
-            [
-                new FontFallback
-                {
-                    FontFamily = new FontFamily("Microsoft YaHei")
-                }
-            ]
-        })
         .StartWithClassicDesktopLifetime(args);
 
     // Avalonia configuration, don't remove; also used by visual designer.
@@ -35,6 +26,7 @@ class Program
             .UseManagedSystemDialogs()
             .UsePlatformDetect()
             .With(new Win32PlatformOptions())
-            // .WithSourceHanSansCNFont()
+            .With(new X11PlatformOptions { EnableDrawnDecorations = true, ForceDrawnDecorations = true })
+            .WithSourceHanSansCNFont()
             .LogToTrace();
 }
