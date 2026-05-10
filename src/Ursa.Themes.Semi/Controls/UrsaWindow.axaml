@@ -14,7 +14,7 @@
         <Setter Property="IsRestoreButtonVisible" Value="{OnPlatform {x:True},macOS={x:False}}" />
         <Setter Property="IsCloseButtonVisible" Value="{OnPlatform {x:True},macOS={x:False}}" />
         <Setter Property="WindowDecorationsTheme" Value="{DynamicResource KEY_URSAWINDOW_DRAWN_DECORATIONS}" />
-        <Setter Property="WindowDecorations" Value="{OnPlatform {x:Static WindowDecorations.Full},Linux={x:Static WindowDecorations.None}}" />
+        <Setter Property="WindowDecorations" Value="{x:Static WindowDecorations.Full}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:UrsaWindow">
                 <Panel>
@@ -60,7 +60,7 @@
     <ControlTheme x:Key="{x:Static u:UrsaWindow.KEY_URSAWINDOW_DRAWN_DECORATIONS}" TargetType="WindowDrawnDecorations">
         <Setter Property="DefaultTitleBarHeight" Value="32" />
         <Setter Property="DefaultFrameThickness" Value="1" />
-        <Setter Property="DefaultShadowThickness" Value="8" />
+        <!-- <Setter Property="DefaultShadowThickness" Value="8" /> -->
         <Setter Property="Template">
             <WindowDrawnDecorationsTemplate>
                 <WindowDrawnDecorationsContent>
