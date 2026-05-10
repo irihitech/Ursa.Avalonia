@@ -16,7 +16,7 @@ public partial class WindowDialogDemoViewModel : ObservableObject
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = "Window Dialog",
-        Description = "Window Dialog displays modal or non-modal windows for user interaction.",
+        Description = "Window Dialog displays modal windows for user interaction.",
         Breadcrumbs = ["Dialog & Feedbacks", "Window Dialog"],
         Tags = ["Dialog", "Modal", "Window"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/WindowDialogDemo.axaml",

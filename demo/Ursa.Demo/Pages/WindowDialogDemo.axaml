@@ -16,7 +16,7 @@
         <controls:PageMetadataView DockPanel.Dock="Top" DataContext="{Binding PageMetadata}" />
         <ScrollViewer>
             <TabControl TabStripPlacement="Left">
-                <TabItem Header="Default Window Dialog">
+                <TabItem Header="Standard Window Dialog">
                     <u:Form
                         Width="300"
                         Margin="16,0"
