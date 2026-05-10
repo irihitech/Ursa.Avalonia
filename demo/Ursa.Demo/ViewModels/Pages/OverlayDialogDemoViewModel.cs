@@ -1,144 +1,31 @@
-using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Avalonia;
-using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
 using Ursa.Demo.Dialogs;
-
 using Ursa.Demo.ViewModels.Controls;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class DialogDemoViewModel: ObservableObject
+public partial class OverlayDialogDemoViewModel : ObservableObject
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "Dialog",
-        Description = "Dialog displays modal overlay windows for user interaction.",
-        Breadcrumbs = ["Dialog & Feedbacks", "Dialog"],
+        Title = "Overlay Dialog",
+        Description = "Overlay Dialog displays dialogs as overlays within the application window.",
+        Breadcrumbs = ["Dialog & Feedbacks", "Overlay Dialog"],
         Tags = ["Dialog", "Modal", "Overlay"],
-        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DialogDemo.axaml",
-        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/DialogDemoViewModel.cs",
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/OverlayDialogDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/OverlayDialogDemoViewModel.cs",
         InlineXamlSupport = false,
         MvvmSupport = true,
         AvaloniaExclusive = true,
     };
 
     public const string LocalHost = "LocalHost";
-    public DefaultWindowDialogDemoViewModel DefaultWindowDialogDemoViewModel { get; set; } = new();
-    public CustomWindowDialogDemoViewModel CustomWindowDialogDemoViewModel { get; set; } = new();
     public DefaultOverlayDialogDemoViewModel DefaultOverlayDialogDemoViewModel { get; set; } = new();
     public CustomOverlayDialogDemoViewModel CustomOverlayDialogDemoViewModel { get; set; } = new();
-}
-
-public partial class DefaultWindowDialogDemoViewModel: ObservableObject
-{
-    [ObservableProperty] private WindowStartupLocation _location;
-    [ObservableProperty] private int? _x;
-    [ObservableProperty] private int? _y;
-    [ObservableProperty] private string? _title;
-    [ObservableProperty] private DialogMode _mode;
-    [ObservableProperty] private DialogButton _button;
-    [ObservableProperty] private bool _showInTaskBar;
-    [ObservableProperty] private bool? _isCloseButtonVisible;
-    [ObservableProperty] private bool _canDragMove;
-    [ObservableProperty] private bool _canResize;
-    [ObservableProperty] private string? _styleClass;
-
-    public ICommand ShowDialogCommand { get; }
-
-    public DefaultWindowDialogDemoViewModel()
-    {
-        ShowDialogCommand = new AsyncRelayCommand(ShowDialog);
-        Mode = DialogMode.None;
-        Button = DialogButton.OKCancel;
-        Location = WindowStartupLocation.CenterScreen;
-        CanDragMove = true;
-    }
-
-    private async Task ShowDialog()
-    {
-        if(OperatingSystem.IsBrowser() || OperatingSystem.IsAndroid() || OperatingSystem.IsIOS())
-        {
-            await OverlayMessageBox.ShowAsync("Window dialogs are not supported on this platform. Please use overlay dialogs instead.");
-            return;
-        }
-        var options = new DialogOptions()
-        {
-            Title = Title,
-            Mode = Mode,
-            Button = Button,
-            ShowInTaskBar = ShowInTaskBar,
-            IsCloseButtonVisible = IsCloseButtonVisible,
-            StartupLocation = Location,
-            CanDragMove = CanDragMove,
-            CanResize = CanResize,
-            StyleClass = StyleClass,
-        };
-        if (X.HasValue && Y.HasValue)
-        {
-            options.Position = new PixelPoint(X.Value, Y.Value);
-        }
-        await Dialog.ShowStandardAsync<DefaultDemoDialog, DefaultDemoDialogViewModel>(new DefaultDemoDialogViewModel(), options: options);
-    }
-}
-
-public partial class CustomWindowDialogDemoViewModel: ObservableObject
-{
-    [ObservableProperty] private WindowStartupLocation _location;
-    [ObservableProperty] private int? _x;
-    [ObservableProperty] private int? _y;
-    [ObservableProperty] private string? _title;
-    [ObservableProperty] private bool _showInTaskBar;
-    [ObservableProperty] private bool? _isCloseButtonVisible;
-    [ObservableProperty] private bool _isModal;
-    [ObservableProperty] private bool _canDragMove;
-    [ObservableProperty] private bool _canResize;
-
-    public ICommand ShowDialogCommand { get; }
-
-    public CustomWindowDialogDemoViewModel()
-    {
-        ShowDialogCommand = new AsyncRelayCommand(ShowDialog);
-        Location = WindowStartupLocation.CenterScreen;
-        IsModal = true;
-        CanDragMove = true;
-    }
-
-    private async Task ShowDialog()
-    {
-        if(OperatingSystem.IsBrowser() || OperatingSystem.IsAndroid() || OperatingSystem.IsIOS())
-        {
-            await OverlayMessageBox.ShowAsync("Window dialogs are not supported on this platform. Please use overlay dialogs instead.");
-            return;
-        }
-        var options = new DialogOptions()
-        {
-            Title = Title,
-            ShowInTaskBar = ShowInTaskBar,
-            IsCloseButtonVisible = IsCloseButtonVisible,
-            StartupLocation = Location,
-            CanDragMove = CanDragMove,
-            CanResize = CanResize,
-        };
-        if (X.HasValue && Y.HasValue)
-        {
-            options.Position = new PixelPoint(X.Value, Y.Value);
-        }
-
-        if (IsModal)
-        {
-            await Dialog.ShowCustomAsync<CustomDemoDialog, CustomDemoDialogViewModel, object>(new CustomDemoDialogViewModel(),
-                options: options);
-        }
-        else
-        {
-            Dialog.ShowCustom<CustomDemoDialog, CustomDemoDialogViewModel>(new CustomDemoDialogViewModel(),
-                options: options);
-        }
-    }
 }
 
 public partial class DefaultOverlayDialogDemoViewModel : ObservableObject
@@ -190,7 +77,7 @@ public partial class DefaultOverlayDialogDemoViewModel : ObservableObject
             CanResize = CanResize,
             StyleClass = StyleClass,
         };
-        string? dialogHostId = IsLocal ? DialogDemoViewModel.LocalHost : null;
+        string? dialogHostId = IsLocal ? OverlayDialogDemoViewModel.LocalHost : null;
         if (IsModal)
         {
             await OverlayDialog.ShowStandardAsync<DefaultDemoDialog, DefaultDemoDialogViewModel>(new DefaultDemoDialogViewModel(), dialogHostId, options: options);
@@ -202,7 +89,7 @@ public partial class DefaultOverlayDialogDemoViewModel : ObservableObject
     }
 }
 
-public partial class CustomOverlayDialogDemoViewModel: ObservableObject
+public partial class CustomOverlayDialogDemoViewModel : ObservableObject
 {
     [ObservableProperty] private HorizontalPosition _horizontalAnchor;
     [ObservableProperty] private VerticalPosition _verticalAnchor;
@@ -216,7 +103,7 @@ public partial class CustomOverlayDialogDemoViewModel: ObservableObject
     [ObservableProperty] private bool _isModal;
     [ObservableProperty] private bool _isLocal;
     [ObservableProperty] private bool _canResize;
-    
+
     public ICommand ShowDialogCommand { get; }
 
     public CustomOverlayDialogDemoViewModel()
@@ -227,7 +114,7 @@ public partial class CustomOverlayDialogDemoViewModel: ObservableObject
         CanDragMove = true;
         IsModal = true;
     }
-    
+
     private async Task ShowDialog()
     {
         var options = new OverlayDialogOptions()
@@ -243,7 +130,7 @@ public partial class CustomOverlayDialogDemoViewModel: ObservableObject
             IsCloseButtonVisible = IsCloseButtonVisible,
             CanResize = CanResize,
         };
-        var dialogHostId = IsLocal ? DialogDemoViewModel.LocalHost : null;
+        var dialogHostId = IsLocal ? OverlayDialogDemoViewModel.LocalHost : null;
         if (IsModal)
         {
             await OverlayDialog.ShowCustomAsync<CustomDemoDialog, CustomDemoDialogViewModel, object>(new CustomDemoDialogViewModel(), dialogHostId, options: options);

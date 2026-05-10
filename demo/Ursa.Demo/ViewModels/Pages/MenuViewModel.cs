@@ -41,7 +41,8 @@ public class MenuViewModel : ViewModelBase
             {
                 MenuHeader = "Dialog & Feedbacks", Children = new ObservableCollection<MenuItemViewModel>()
                 {
-                    new() { MenuHeader = "Dialog", Key = MenuKeys.MenuKeyDialog, Status = "Updated" },
+                    new() { MenuHeader = "Window Dialog", Key = MenuKeys.MenuKeyWindowDialog },
+                    new() { MenuHeader = "Overlay Dialog", Key = MenuKeys.MenuKeyOverlayDialog },
                     new() { MenuHeader = "Drawer", Key = MenuKeys.MenuKeyDrawer, Status = "Updated" },
                     new() { MenuHeader = "Loading", Key = MenuKeys.MenuKeyLoading },
                     new() { MenuHeader = "Message Box", Key = MenuKeys.MenuKeyMessageBox, Status = "Updated" },
@@ -134,6 +135,8 @@ public static class MenuKeys
     public const string MenuKeyDateOffsetRangePicker = "DateOffsetRangePicker";
     public const string MenuKeyDateTimeOffsetPicker = "DateTimeOffsetPicker";
     public const string MenuKeyDescriptions = "Descriptions";
+    public const string MenuKeyWindowDialog = "WindowDialog";
+    public const string MenuKeyOverlayDialog = "OverlayDialog";
     public const string MenuKeyDialog = "Dialog";
     public const string MenuKeyDisableContainer = "DisableContainer";
     public const string MenuKeyDivider = "Divider";
