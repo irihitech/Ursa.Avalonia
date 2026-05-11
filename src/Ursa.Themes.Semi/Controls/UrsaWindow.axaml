@@ -10,9 +10,6 @@
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
         <Setter Property="u:OverlayDialogHost.IsModalStatusScope" Value="True" />
-        <Setter Property="IsMinimizeButtonVisible" Value="{OnPlatform {x:True},macOS={x:False}}" />
-        <Setter Property="IsRestoreButtonVisible" Value="{OnPlatform {x:True},macOS={x:False}}" />
-        <Setter Property="IsCloseButtonVisible" Value="{OnPlatform {x:True},macOS={x:False}}" />
         <Setter Property="WindowDecorationsTheme" Value="{DynamicResource KEY_URSAWINDOW_DRAWN_DECORATIONS}" />
         <Setter Property="WindowDecorations" Value="{x:Static WindowDecorations.Full}" />
         <Setter Property="Template">
@@ -26,7 +23,8 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         IsHitTestVisible="False" />
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
-                    <VisualLayerManager Padding="{TemplateBinding OffScreenMargin, Mode=OneWay}" Name="PART_VisualLayerManager">
+                    <VisualLayerManager Padding="{TemplateBinding OffScreenMargin, Mode=OneWay}"
+                                        Name="PART_VisualLayerManager">
                         <Panel>
                             <ContentPresenter
                                 Name="PART_ContentPresenter"
@@ -35,7 +33,7 @@
                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Content="{TemplateBinding Content}"
                                 ContentTemplate="{TemplateBinding ContentTemplate}" />
-                            <u:TitleBar 
+                            <u:TitleBar
                                 Name="PART_TitleBar"
                                 VerticalAlignment="Top"
                                 IsVisible="{TemplateBinding IsTitleBarVisible}"
@@ -43,20 +41,19 @@
                                 LeftContent="{TemplateBinding LeftContent}"
                                 RightContent="{TemplateBinding RightContent}"
                                 CenterContent="{TemplateBinding TitleBarContent}"
-                                WindowDecorationProperties.ElementRole="TitleBar"
-                            />
-                            <u:OverlayDialogHost 
+                                WindowDecorationProperties.ElementRole="TitleBar" />
+                            <u:OverlayDialogHost
                                 Name="{x:Static u:UrsaWindow.PART_DialogHost}"
                                 SafePadding="{TemplateBinding WindowDecorationMargin}"
                                 IsModalStatusReporter="True"
-                                IsTopLevel="True"/>
+                                IsTopLevel="True" />
                         </Panel>
                     </VisualLayerManager>
                 </Panel>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
-    
+
     <ControlTheme x:Key="{x:Static u:UrsaWindow.KEY_URSAWINDOW_DRAWN_DECORATIONS}" TargetType="WindowDrawnDecorations">
         <Setter Property="DefaultTitleBarHeight" Value="32" />
         <Setter Property="DefaultFrameThickness" Value="1" />
@@ -117,6 +114,7 @@
                                 <Button
                                     Name="PART_CloseButton"
                                     Theme="{StaticResource CaptionButton}"
+                                    IsVisible="{Binding $parent[u:UrsaWindow].IsCloseButtonVisible}"
                                     Content="{StaticResource WindowCloseIconGlyph}"
                                     WindowDecorationProperties.ElementRole="CloseButton" />
                             </StackPanel>
@@ -134,11 +132,13 @@
                                 <Button
                                     Name="PART_PopoverFullScreenButton"
                                     Theme="{StaticResource CaptionButton}"
+                                    IsVisible="{Binding $parent[u:UrsaWindow].IsFullScreenButtonVisible}"
                                     Content="{StaticResource WindowCollapseGlyph}"
                                     WindowDecorationProperties.ElementRole="FullScreenButton" />
                                 <Button
                                     Name="PART_PopoverCloseButton"
                                     Theme="{StaticResource CaptionButton}"
+                                    IsVisible="{Binding $parent[u:UrsaWindow].IsCloseButtonVisible}"
                                     Content="{StaticResource WindowCloseIconGlyph}"
                                     WindowDecorationProperties.ElementRole="CloseButton" />
                             </StackPanel>

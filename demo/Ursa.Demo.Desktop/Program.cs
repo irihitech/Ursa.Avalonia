@@ -26,7 +26,7 @@ class Program
             .UseManagedSystemDialogs()
             .UsePlatformDetect()
             .With(new Win32PlatformOptions())
-            .With(new X11PlatformOptions { EnableDrawnDecorations = true, ForceDrawnDecorations = true })
+            .With(new X11PlatformOptions { EnableDrawnDecorations = true })
             .WithSourceHanSansCNFont()
             .LogToTrace();
 }
