@@ -23,8 +23,9 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         IsHitTestVisible="False" />
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
-                    <VisualLayerManager Padding="{TemplateBinding OffScreenMargin, Mode=OneWay}"
-                                        Name="PART_VisualLayerManager">
+                    <VisualLayerManager
+                        Name="PART_VisualLayerManager"
+                        Padding="{TemplateBinding OffScreenMargin, Mode=OneWay}">
                         <Panel>
                             <ContentPresenter
                                 Name="PART_ContentPresenter"
@@ -56,7 +57,7 @@
 
     <ControlTheme x:Key="{x:Static u:UrsaWindow.KEY_URSAWINDOW_DRAWN_DECORATIONS}" TargetType="WindowDrawnDecorations">
         <Setter Property="DefaultTitleBarHeight" Value="32" />
-        <Setter Property="DefaultFrameThickness" Value="8" />
+        <Setter Property="DefaultFrameThickness" Value="4" />
         <!-- <Setter Property="DefaultShadowThickness" Value="8" /> -->
         <Setter Property="Template">
             <WindowDrawnDecorationsTemplate>
@@ -193,16 +194,16 @@
 
         <!-- Hide caption buttons when the platform does not support the action -->
         <Style Selector="^:not(:has-minimize) /template/ Button#PART_MinimizeButton">
-            <Setter Property="IsVisible" Value="False"/>
+            <Setter Property="IsVisible" Value="False" />
         </Style>
         <Style Selector="^:not(:has-maximize) /template/ Button#PART_MaximizeButton">
-            <Setter Property="IsVisible" Value="False"/>
+            <Setter Property="IsVisible" Value="False" />
         </Style>
         <Style Selector="^:not(:has-fullscreen) /template/ Button#PART_FullScreenButton">
-            <Setter Property="IsVisible" Value="False"/>
+            <Setter Property="IsVisible" Value="False" />
         </Style>
         <Style Selector="^:not(:has-fullscreen) /template/ Button#PART_PopoverFullScreenButton">
-            <Setter Property="IsVisible" Value="False"/>
+            <Setter Property="IsVisible" Value="False" />
         </Style>
 
         <!--  Fullscreen: hide overlay and titlebar (popover takes over)  -->

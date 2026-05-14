@@ -1,6 +1,8 @@
+using System;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Semi.Avalonia;
 using Ursa.Demo.ViewModels;
 using Ursa.Demo.Views;
 
@@ -15,26 +17,28 @@ public partial class App : Application
         this.AttachDeveloperTools();
 #endif
         DataContext = new ApplicationViewModel();
-        Resources.Add("DefaultFontFamily", null);
+        if (OperatingSystem.IsLinux())
+        {
+            Resources.Add("DefaultFontFamily", null);
+        }
     }
 
     public override void OnFrameworkInitializationCompleted()
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MvvmSplashWindow()
-            {
-                DataContext = new SplashViewModel()
-            };
+            desktop.MainWindow = new MvvmSplashWindow { DataContext = new SplashViewModel() };
         }
-        else if (ApplicationLifetime is ISingleViewApplicationLifetime singleView)
+        else if (ApplicationLifetime is IActivityApplicationLifetime applicationLifetime)
         {
-            singleView.MainView = new SingleView()
-            {
-                DataContext = new MainViewViewModel(),
-            };
+            applicationLifetime.MainViewFactory = () => new SingleView { DataContext = new MainViewViewModel() };
+        }
+        else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
+        {
+            singleViewPlatform.MainView = new SingleView { DataContext = new MainViewViewModel() };
         }
 
+        this.RegisterFollowSystemTheme();
         base.OnFrameworkInitializationCompleted();
     }
 }
