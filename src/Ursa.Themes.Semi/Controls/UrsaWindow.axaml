@@ -94,25 +94,21 @@
                                 <Button
                                     Name="PART_FullScreenButton"
                                     Theme="{StaticResource CaptionButton}"
-                                    IsVisible="{Binding $parent[u:UrsaWindow].IsFullScreenButtonVisible}"
                                     Content="{StaticResource WindowExpandGlyph}"
                                     WindowDecorationProperties.ElementRole="FullScreenButton" />
                                 <Button
                                     Name="PART_MinimizeButton"
                                     Theme="{StaticResource CaptionButton}"
-                                    IsVisible="{Binding $parent[u:UrsaWindow].IsMinimizeButtonVisible}"
                                     Content="{StaticResource WindowMinimizeGlyph}"
                                     WindowDecorationProperties.ElementRole="MinimizeButton" />
                                 <Button
                                     Name="PART_MaximizeButton"
                                     Theme="{StaticResource CaptionButton}"
-                                    IsVisible="{Binding $parent[u:UrsaWindow].IsRestoreButtonVisible}"
                                     Content="{StaticResource WindowMaximizeGlyph}"
                                     WindowDecorationProperties.ElementRole="MaximizeButton" />
                                 <Button
                                     Name="PART_CloseButton"
                                     Theme="{StaticResource CaptionButton}"
-                                    IsVisible="{Binding $parent[u:UrsaWindow].IsCloseButtonVisible}"
                                     Content="{StaticResource WindowCloseIconGlyph}"
                                     WindowDecorationProperties.ElementRole="CloseButton" />
                             </StackPanel>
@@ -130,13 +126,11 @@
                                 <Button
                                     Name="PART_PopoverFullScreenButton"
                                     Theme="{StaticResource CaptionButton}"
-                                    IsVisible="{Binding $parent[u:UrsaWindow].IsFullScreenButtonVisible}"
                                     Content="{StaticResource WindowCollapseGlyph}"
                                     WindowDecorationProperties.ElementRole="FullScreenButton" />
                                 <Button
                                     Name="PART_PopoverCloseButton"
                                     Theme="{StaticResource CaptionButton}"
-                                    IsVisible="{Binding $parent[u:UrsaWindow].IsCloseButtonVisible}"
                                     Content="{StaticResource WindowCloseIconGlyph}"
                                     WindowDecorationProperties.ElementRole="CloseButton" />
                             </StackPanel>
@@ -192,18 +186,37 @@
             </Style>
         </Style>
 
-        <!-- Hide caption buttons when the platform does not support the action -->
-        <Style Selector="^:not(:has-minimize) /template/ Button#PART_MinimizeButton">
-            <Setter Property="IsVisible" Value="False" />
-        </Style>
-        <Style Selector="^:not(:has-maximize) /template/ Button#PART_MaximizeButton">
-            <Setter Property="IsVisible" Value="False" />
-        </Style>
-        <Style Selector="^:not(:has-fullscreen) /template/ Button#PART_FullScreenButton">
-            <Setter Property="IsVisible" Value="False" />
-        </Style>
-        <Style Selector="^:not(:has-fullscreen) /template/ Button#PART_PopoverFullScreenButton">
-            <Setter Property="IsVisible" Value="False" />
+        <!-- caption buttons: visibility bound to UrsaWindow properties, and fallback to collapsed if the decoration doesn't support that button -->
+        <Style Selector="^">
+            <Style Selector="^ /template/ Button#PART_CloseButton,^ /template/ Button#PART_PopoverCloseButton">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:UrsaWindow].IsCloseButtonVisible}" />
+            </Style>
+
+            <Style Selector="^:has-minimize /template/ Button#PART_MinimizeButton">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:UrsaWindow].IsMinimizeButtonVisible}" />
+            </Style>
+            <Style Selector="^:has-maximize /template/ Button#PART_MaximizeButton">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:UrsaWindow].IsRestoreButtonVisible}" />
+            </Style>
+            <Style Selector="^:has-fullscreen /template/ Button#PART_FullScreenButton">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:UrsaWindow].IsFullScreenButtonVisible}" />
+            </Style>
+            <Style Selector="^:has-fullscreen /template/ Button#PART_PopoverFullScreenButton">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:UrsaWindow].IsFullScreenButtonVisible}" />
+            </Style>
+
+            <Style Selector="^:not(:has-minimize) /template/ Button#PART_MinimizeButton">
+                <Setter Property="IsVisible" Value="False" />
+            </Style>
+            <Style Selector="^:not(:has-maximize) /template/ Button#PART_MaximizeButton">
+                <Setter Property="IsVisible" Value="False" />
+            </Style>
+            <Style Selector="^:not(:has-fullscreen) /template/ Button#PART_FullScreenButton">
+                <Setter Property="IsVisible" Value="False" />
+            </Style>
+            <Style Selector="^:not(:has-fullscreen) /template/ Button#PART_PopoverFullScreenButton">
+                <Setter Property="IsVisible" Value="False" />
+            </Style>
         </Style>
 
         <!--  Fullscreen: hide overlay and titlebar (popover takes over)  -->
