@@ -1,6 +1,9 @@
+using System.Globalization;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Irihi.Lolita;
+using Ursa.Demo.Localizations;
 using Ursa.Demo.ViewModels;
 using Ursa.Demo.Views;
 
@@ -33,7 +36,7 @@ public partial class App : Application
                 DataContext = new MainViewViewModel(),
             };
         }
-
         base.OnFrameworkInitializationCompleted();
+        LanguageManager.Instance.UpdateCulture(new CultureInfo("zh-Hans"));
     }
 }

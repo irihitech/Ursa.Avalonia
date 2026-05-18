@@ -14,5 +14,6 @@
         <u:ThemeToggleButton
             IsThreeState="True"
             Mode="Controller" />
+        <ToggleSwitch Theme="{DynamicResource SimpleToggleSwitch}" OnContent="A" OffContent="文" IsCheckedChanged="ToggleButton_OnIsCheckedChanged" />
     </StackPanel>
 </UserControl>

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
@@ -14,7 +15,7 @@ public enum ControlStatus
 
 public class MenuItemViewModel: ViewModelBase
 {
-    public string? MenuHeader { get; set; }
+    public IObservable<string?>? MenuHeader { get; set; }
     public string? MenuIconName { get; set; }
     public string? Key { get; set; }
     public string? Status { get; set; }

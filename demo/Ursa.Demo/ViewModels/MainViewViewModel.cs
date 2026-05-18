@@ -6,6 +6,7 @@ using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using Semi.Avalonia;
+using Ursa.Demo.Localizations;
 using Notification = Ursa.Controls.Notification;
 using WindowNotificationManager = Ursa.Controls.WindowNotificationManager;
 
@@ -130,13 +131,13 @@ public partial class MainViewViewModel : ViewModelBase
         }
     }
 
-    [ObservableProperty] private string? _footerText = "Settings";
+    [ObservableProperty] private IObservable<string?>? _footerText = LanguageManager.Instance.Menu_Header_Settings;
 
     [ObservableProperty] private bool _isCollapsed;
 
     partial void OnIsCollapsedChanged(bool value)
     {
-        FooterText = value ? null : "Settings";
+        FooterText = value ? null : LanguageManager.Instance.Menu_Header_Settings;
     }
 }
 

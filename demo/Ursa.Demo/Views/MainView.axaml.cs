@@ -1,6 +1,9 @@
+using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Ursa.Controls;
+using Ursa.Demo.Localizations;
 using Ursa.Demo.ViewModels;
 
 namespace Ursa.Demo.Views;

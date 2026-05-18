@@ -9,6 +9,7 @@
 
     <ItemGroup>
         <AvaloniaResource Include="Assets\**"/>
+        <AdditionalFiles Include="Localizations\*.resx"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -23,7 +24,8 @@
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm"/>
-        <PackageReference Include="Semi.Avalonia"/>
+        <PackageReference Include="Semi.Avalonia" />
+        <PackageReference Include="Irihi.Lolita" />
     </ItemGroup>
 
     <ItemGroup>
