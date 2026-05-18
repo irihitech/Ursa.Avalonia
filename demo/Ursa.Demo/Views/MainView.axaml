@@ -34,7 +34,7 @@
                     ExpandWidth="300"
                     SubMenuBinding="{Binding Children}"
                     HeaderBinding="{Binding}"
-                    IconBinding="{Binding MenuHeader}"
+                    IconBinding="{Binding MenuHeader^}"
                     IsHorizontalCollapsed="{Binding IsCollapsed, Mode=TwoWay}"
                     ItemsSource="{Binding Menus.MenuItems}">
                     <u:NavMenu.Styles>
@@ -58,7 +58,7 @@
                     <u:NavMenu.HeaderTemplate>
                         <DataTemplate x:DataType="vm:MenuItemViewModel">
                             <StackPanel Orientation="Horizontal" Spacing="{StaticResource SemiSpacingExtraTight}">
-                                <TextBlock HorizontalAlignment="Left" Text="{Binding MenuHeader}" />
+                                <TextBlock HorizontalAlignment="Left" Text="{Binding MenuHeader^}" />
                                 <Label
                                     Theme="{StaticResource TagLabel}"
                                     Classes="Purple"
@@ -90,7 +90,7 @@
                             HorizontalAlignment="Stretch"
                             Classes="Tertiary"
                             Icon="{StaticResource SemiIconSetting}"
-                            Content="{Binding FooterText}"
+                            Content="{Binding FooterText^}"
                             RenderTransform="{x:Null}"
                             ToolTip.Tip="Settings"
                             FontWeight="Normal"

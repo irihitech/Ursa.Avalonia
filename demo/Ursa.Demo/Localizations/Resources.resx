@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Menu_Header_Introduction" xml:space="preserve">
+    <value>Introduction</value>
+  </data>
+  <data name="Menu_Header_AboutUs" xml:space="preserve">
+    <value>About Us</value>
+  </data>
+
+  <!-- Category headers -->
+  <data name="Menu_Category_Controls" xml:space="preserve">
+    <value>Controls</value>
+  </data>
+  <data name="Menu_Category_ButtonsAndInputs" xml:space="preserve">
+    <value>Buttons &amp; Inputs</value>
+  </data>
+  <data name="Menu_Category_DialogAndFeedbacks" xml:space="preserve">
+    <value>Dialog &amp; Feedbacks</value>
+  </data>
+  <data name="Menu_Category_DateAndTime" xml:space="preserve">
+    <value>Date &amp; Time</value>
+  </data>
+  <data name="Menu_Category_NavigationAndMenus" xml:space="preserve">
+    <value>Navigation &amp; Menus</value>
+  </data>
+  <data name="Menu_Category_LayoutAndDisplay" xml:space="preserve">
+    <value>Layout &amp; Display</value>
+  </data>
+
+  <!-- Buttons & Inputs -->
+  <data name="Menu_Header_ButtonGroup" xml:space="preserve">
+    <value>Button Group</value>
+  </data>
+  <data name="Menu_Header_IconButton" xml:space="preserve">
+    <value>Icon Button</value>
+  </data>
+  <data name="Menu_Header_AutoCompleteBox" xml:space="preserve">
+    <value>AutoCompleteBox</value>
+  </data>
+  <data name="Menu_Header_ClassInput" xml:space="preserve">
+    <value>Class Input</value>
+  </data>
+  <data name="Menu_Header_EnumSelector" xml:space="preserve">
+    <value>Enum Selector</value>
+  </data>
+  <data name="Menu_Header_Form" xml:space="preserve">
+    <value>Form</value>
+  </data>
+  <data name="Menu_Header_KeyGestureInput" xml:space="preserve">
+    <value>KeyGestureInput</value>
+  </data>
+  <data name="Menu_Header_IPv4Box" xml:space="preserve">
+    <value>IPv4Box</value>
+  </data>
+  <data name="Menu_Header_MultiComboBox" xml:space="preserve">
+    <value>MultiComboBox</value>
+  </data>
+  <data name="Menu_Header_MultiAutoCompleteBox" xml:space="preserve">
+    <value>Multi AutoCompleteBox</value>
+  </data>
+  <data name="Menu_Header_NumericUpDown" xml:space="preserve">
+    <value>Numeric UpDown</value>
+  </data>
+  <data name="Menu_Header_NumPad" xml:space="preserve">
+    <value>NumPad</value>
+  </data>
+  <data name="Menu_Header_PathPicker" xml:space="preserve">
+    <value>PathPicker</value>
+  </data>
+  <data name="Menu_Header_PinCode" xml:space="preserve">
+    <value>PinCode</value>
+  </data>
+  <data name="Menu_Header_RangeSlider" xml:space="preserve">
+    <value>RangeSlider</value>
+  </data>
+  <data name="Menu_Header_Rating" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="Menu_Header_SelectionList" xml:space="preserve">
+    <value>Selection List</value>
+  </data>
+  <data name="Menu_Header_TagInput" xml:space="preserve">
+    <value>TagInput</value>
+  </data>
+  <data name="Menu_Header_ThemeToggler" xml:space="preserve">
+    <value>Theme Toggler</value>
+  </data>
+  <data name="Menu_Header_TreeComboBox" xml:space="preserve">
+    <value>TreeComboBox</value>
+  </data>
+
+  <!-- Dialog & Feedbacks -->
+  <data name="Menu_Header_WindowDialog" xml:space="preserve">
+    <value>Window Dialog</value>
+  </data>
+  <data name="Menu_Header_OverlayDialog" xml:space="preserve">
+    <value>Overlay Dialog</value>
+  </data>
+  <data name="Menu_Header_Drawer" xml:space="preserve">
+    <value>Drawer</value>
+  </data>
+  <data name="Menu_Header_Loading" xml:space="preserve">
+    <value>Loading</value>
+  </data>
+  <data name="Menu_Header_MessageBox" xml:space="preserve">
+    <value>Message Box</value>
+  </data>
+  <data name="Menu_Header_Notification" xml:space="preserve">
+    <value>Notification</value>
+  </data>
+  <data name="Menu_Header_PopConfirm" xml:space="preserve">
+    <value>PopConfirm</value>
+  </data>
+  <data name="Menu_Header_Toast" xml:space="preserve">
+    <value>Toast</value>
+  </data>
+  <data name="Menu_Header_Skeleton" xml:space="preserve">
+    <value>Skeleton</value>
+  </data>
+
+  <!-- Date & Time -->
+  <data name="Menu_Header_DatePicker" xml:space="preserve">
+    <value>Date Picker</value>
+  </data>
+  <data name="Menu_Header_DateOnlyPicker" xml:space="preserve">
+    <value>Date Only Picker</value>
+  </data>
+  <data name="Menu_Header_DateRangePicker" xml:space="preserve">
+    <value>Date Range Picker</value>
+  </data>
+  <data name="Menu_Header_DateOnlyRangePicker" xml:space="preserve">
+    <value>Date Only Range Picker</value>
+  </data>
+  <data name="Menu_Header_DateTimePicker" xml:space="preserve">
+    <value>Date Time Picker</value>
+  </data>
+  <data name="Menu_Header_DateOffsetPicker" xml:space="preserve">
+    <value>Date Offset Picker</value>
+  </data>
+  <data name="Menu_Header_DateOffsetRangePicker" xml:space="preserve">
+    <value>Date Offset Range Picker</value>
+  </data>
+  <data name="Menu_Header_DateTimeOffsetPicker" xml:space="preserve">
+    <value>DateTime Offset Picker</value>
+  </data>
+  <data name="Menu_Header_TimeBox" xml:space="preserve">
+    <value>Time Box</value>
+  </data>
+  <data name="Menu_Header_TimePicker" xml:space="preserve">
+    <value>Time Picker</value>
+  </data>
+  <data name="Menu_Header_TimeOnlyPicker" xml:space="preserve">
+    <value>Time Only Picker</value>
+  </data>
+  <data name="Menu_Header_TimeRangePicker" xml:space="preserve">
+    <value>Time Range Picker</value>
+  </data>
+  <data name="Menu_Header_TimeOnlyRangePicker" xml:space="preserve">
+    <value>Time Only Range Picker</value>
+  </data>
+  <data name="Menu_Header_Clock" xml:space="preserve">
+    <value>Clock</value>
+  </data>
+
+  <!-- Navigation & Menus -->
+  <data name="Menu_Header_Anchor" xml:space="preserve">
+    <value>Anchor</value>
+  </data>
+  <data name="Menu_Header_Breadcrumb" xml:space="preserve">
+    <value>Breadcrumb</value>
+  </data>
+  <data name="Menu_Header_NavMenu" xml:space="preserve">
+    <value>Nav Menu</value>
+  </data>
+  <data name="Menu_Header_Pagination" xml:space="preserve">
+    <value>Pagination</value>
+  </data>
+  <data name="Menu_Header_ToolBar" xml:space="preserve">
+    <value>ToolBar</value>
+  </data>
+
+  <!-- Layout & Display -->
+  <data name="Menu_Header_AspectRatioLayout" xml:space="preserve">
+    <value>AspectRatioLayout</value>
+  </data>
+  <data name="Menu_Header_Avatar" xml:space="preserve">
+    <value>Avatar</value>
+  </data>
+  <data name="Menu_Header_Badge" xml:space="preserve">
+    <value>Badge</value>
+  </data>
+  <data name="Menu_Header_Banner" xml:space="preserve">
+    <value>Banner</value>
+  </data>
+  <data name="Menu_Header_Descriptions" xml:space="preserve">
+    <value>Descriptions</value>
+  </data>
+  <data name="Menu_Header_DisableContainer" xml:space="preserve">
+    <value>Disable Container</value>
+  </data>
+  <data name="Menu_Header_Divider" xml:space="preserve">
+    <value>Divider</value>
+  </data>
+  <data name="Menu_Header_GroupBox" xml:space="preserve">
+    <value>GroupBox</value>
+  </data>
+  <data name="Menu_Header_DualBadge" xml:space="preserve">
+    <value>DualBadge</value>
+  </data>
+  <data name="Menu_Header_ImageViewer" xml:space="preserve">
+    <value>ImageViewer</value>
+  </data>
+  <data name="Menu_Header_ElasticWrapPanel" xml:space="preserve">
+    <value>ElasticWrapPanel</value>
+  </data>
+  <data name="Menu_Header_Marquee" xml:space="preserve">
+    <value>Marquee</value>
+  </data>
+  <data name="Menu_Header_NumberDisplayer" xml:space="preserve">
+    <value>Number Displayer</value>
+  </data>
+  <data name="Menu_Header_QrCode" xml:space="preserve">
+    <value>Qr Code</value>
+  </data>
+  <data name="Menu_Header_ScrollTo" xml:space="preserve">
+    <value>Scroll To</value>
+  </data>
+  <data name="Menu_Header_ThemeVariantMapper" xml:space="preserve">
+    <value>Theme Variant Mapper</value>
+  </data>
+  <data name="Menu_Header_Timeline" xml:space="preserve">
+    <value>Timeline</value>
+  </data>
+  <data name="Menu_Header_TwoTonePathIcon" xml:space="preserve">
+    <value>TwoTonePathIcon</value>
+  </data>
+  <data name="Menu_Header_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+</root>
