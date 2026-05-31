@@ -255,4 +255,10 @@
   <data name="Menu_Header_Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="Main_Banner_Title" xml:space="preserve">
+    <value>Welcome to Ursa</value>
+  </data>
+  <data name="Main_Banner_Description" xml:space="preserve">
+    <value>Aesthetic revolution of productivity</value>
+  </data>
 </root>

@@ -1,6 +1,6 @@
-using Irihi.Lolita;
+using Irihi.Lingua;
 
 namespace Ursa.Demo.Localizations;
 
-[LolitaManager("Resources.resx")]
+[LinguaManager("Resources.resx")]
 public partial class LanguageManager;

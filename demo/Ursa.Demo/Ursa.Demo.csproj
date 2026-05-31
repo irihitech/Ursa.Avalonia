@@ -24,7 +24,7 @@
         </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm"/>
         <PackageReference Include="Semi.Avalonia" />
-        <PackageReference Include="Irihi.Lolita" />
+        <PackageReference Include="Irihi.Lingua" />
     </ItemGroup>
 
     <ItemGroup>
