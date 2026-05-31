@@ -29,6 +29,6 @@
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageVersion Include="Prism.DryIoc.Avalonia" Version="8.1.97.11072" />
     <PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.2.0.2" />
-    <PackageVersion Include="Irihi.Lolita" Version="0.1.2" />
+    <PackageVersion Include="Irihi.Lingua" Version="0.2.0" />
   </ItemGroup>
 </Project>

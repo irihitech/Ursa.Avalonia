@@ -11,7 +11,8 @@
     d:DesignHeight="800"
     d:DesignWidth="1600"
     mc:Ignorable="d"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations">
     <Design.DataContext>
         <vm:IntroductionDemoViewModel />
     </Design.DataContext>
@@ -41,8 +42,8 @@
             <!-- Welcome Banner -->
             <u:Banner
                 Classes="Bordered"
-                Content="Aesthetic revolution of productivity. Explore Ursa controls below."
-                Header="Welcome to Ursa.Avalonia!"
+                Content="{Translate {x:Static localizations:LanguageManager+Keys.Main_Banner_Description}}"
+                Header="{Translate {x:Static localizations:LanguageManager+Keys.Main_Banner_Title}}"
                 Type="Information" />
 
             <!-- Marquee -->

@@ -248,4 +248,10 @@
   <data name="Menu_Header_Settings" xml:space="preserve">
     <value>设置</value>
   </data>
+  <data name="Main_Banner_Title" xml:space="preserve">
+    <value>欢迎使用Ursa</value>
+  </data>
+  <data name="Main_Banner_Description" xml:space="preserve">
+    <value>聚焦生产力的美学进化</value>
+  </data>
 </root>
