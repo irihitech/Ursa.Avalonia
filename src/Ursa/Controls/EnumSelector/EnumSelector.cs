@@ -1,3 +1,4 @@
+using System.Collections;
 using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls.Primitives;
@@ -36,7 +37,7 @@ public class EnumSelector: TemplatedControl
         if (o is not EnumSelector selector) return null;
         if (!selector.IsInitialized) return value;
         if (value is null) return null;
-        if (value.GetType() != selector.EnumType) return null;
+        if (selector.EnumType is not null && value.GetType() != selector.EnumType) return null;
         var first = selector.Values?.FirstOrDefault(a => Equals(a.Value, value));
         if (first is null) return null;
         return value;
@@ -75,12 +76,22 @@ public class EnumSelector: TemplatedControl
         get => GetValue(DisplayDescriptionProperty);
         set => SetValue(DisplayDescriptionProperty, value);
     }
+
+    public static readonly StyledProperty<IList?> EnumValuesProperty = AvaloniaProperty.Register<EnumSelector, IList?>(
+        nameof(EnumValues));
+
+    public IList? EnumValues
+    {
+        get => GetValue(EnumValuesProperty);
+        set => SetValue(EnumValuesProperty, value);
+    }
     
     static EnumSelector()
     {
         EnumTypeProperty.Changed.AddClassHandler<EnumSelector, Type?>((o, e) => o.OnTypeChanged(e));
         SelectedValueProperty.Changed.AddClassHandler<EnumSelector, EnumItemTuple?>((o, e) => o.OnSelectedValueChanged(e));
         ValueProperty.Changed.AddClassHandler<EnumSelector, object?>((o, e) => o.OnValueChanged(e));
+        EnumValuesProperty.Changed.AddClassHandler<EnumSelector, IList?>((o, e) => o.OnEnumValuesChanged(e));
     }
 
     private void OnValueChanged(AvaloniaPropertyChangedEventArgs<object?> args)
@@ -130,12 +141,20 @@ public class EnumSelector: TemplatedControl
         SetCurrentValue(SelectedValueProperty, first);
     }
 
-    // netstandard 2.0 does not support Enum.GetValuesAsUnderlyingType, which is used for native aot compilation
-#if NET
+    private void OnEnumValuesChanged(AvaloniaPropertyChangedEventArgs<IList?> args)
+    {
+        Values?.Clear();
+        Values = GenerateItemTuple();
+        var first = Values?.FirstOrDefault(a => Equals(a.Value, this.Value));
+        SetCurrentValue(SelectedValueProperty, first);
+    }
+
     private List<EnumItemTuple> GenerateItemTuple()
     {
         if (EnumType is null) return new List<EnumItemTuple>();
         var values = Enum.GetValuesAsUnderlyingType(EnumType);
+        var enumValues = EnumValues;
+        values = GetValidValues(values, enumValues, EnumType);
         List<EnumItemTuple> list = new();
         foreach (var value in values)
         {
@@ -158,33 +177,23 @@ public class EnumSelector: TemplatedControl
 
         return list;
     }
-#else
-    private List<EnumItemTuple> GenerateItemTuple()
+
+    private static Array GetValidValues(Array values, IList? enumValues, Type enumType)
     {
-        if (EnumType is null) return new List<EnumItemTuple>();
-        var values = Enum.GetValues(EnumType);
-        List<EnumItemTuple> list = new();
+        if (enumValues is null || enumValues.Count == 0) return values;
+        var result = new List<object>();
         foreach (var value in values)
         {
-            if (value.GetType() == EnumType)
+            var enumValue = Enum.ToObject(enumType, value);
+            foreach (var item in enumValues)
             {
-                var displayName = value.ToString();
-                if(displayName is null) continue;
-                var field = EnumType.GetField(displayName);
-                var description = field?.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault();
-                if (description is not null)
+                if (Equals(item, enumValue))
                 {
-                    displayName = ((DescriptionAttribute) description).Description;
+                    result.Add(value);
+                    break;
                 }
-                list.Add(new EnumItemTuple()
-                {
-                    DisplayName = displayName,
-                    Value = value
-                });
             }
         }
-
-        return list;
+        return result.ToArray();
     }
-#endif
 }
