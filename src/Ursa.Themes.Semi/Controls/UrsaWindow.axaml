@@ -10,11 +10,8 @@
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
         <Setter Property="u:OverlayDialogHost.IsModalStatusScope" Value="True" />
-        <Setter Property="IsMinimizeButtonVisible" Value="{OnPlatform {x:True},macOS={x:False}}" />
-        <Setter Property="IsRestoreButtonVisible" Value="{OnPlatform {x:True},macOS={x:False}}" />
-        <Setter Property="IsCloseButtonVisible" Value="{OnPlatform {x:True},macOS={x:False}}" />
         <Setter Property="WindowDecorationsTheme" Value="{DynamicResource KEY_URSAWINDOW_DRAWN_DECORATIONS}" />
-        <Setter Property="WindowDecorations" Value="{OnPlatform {x:Static WindowDecorations.Full},Linux={x:Static WindowDecorations.None}}" />
+        <Setter Property="WindowDecorations" Value="{x:Static WindowDecorations.Full}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:UrsaWindow">
                 <Panel>
@@ -26,7 +23,9 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         IsHitTestVisible="False" />
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
-                    <VisualLayerManager Padding="{TemplateBinding OffScreenMargin, Mode=OneWay}" Name="PART_VisualLayerManager">
+                    <VisualLayerManager
+                        Name="PART_VisualLayerManager"
+                        Padding="{TemplateBinding OffScreenMargin, Mode=OneWay}">
                         <Panel>
                             <ContentPresenter
                                 Name="PART_ContentPresenter"
@@ -35,7 +34,7 @@
                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Content="{TemplateBinding Content}"
                                 ContentTemplate="{TemplateBinding ContentTemplate}" />
-                            <u:TitleBar 
+                            <u:TitleBar
                                 Name="PART_TitleBar"
                                 VerticalAlignment="Top"
                                 IsVisible="{TemplateBinding IsTitleBarVisible}"
@@ -43,37 +42,35 @@
                                 LeftContent="{TemplateBinding LeftContent}"
                                 RightContent="{TemplateBinding RightContent}"
                                 CenterContent="{TemplateBinding TitleBarContent}"
-                                WindowDecorationProperties.ElementRole="TitleBar"
-                            />
-                            <u:OverlayDialogHost 
+                                WindowDecorationProperties.ElementRole="TitleBar" />
+                            <u:OverlayDialogHost
                                 Name="{x:Static u:UrsaWindow.PART_DialogHost}"
                                 SafePadding="{TemplateBinding WindowDecorationMargin}"
                                 IsModalStatusReporter="True"
-                                IsTopLevel="True"/>
+                                IsTopLevel="True" />
                         </Panel>
                     </VisualLayerManager>
                 </Panel>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
-    
+
     <ControlTheme x:Key="{x:Static u:UrsaWindow.KEY_URSAWINDOW_DRAWN_DECORATIONS}" TargetType="WindowDrawnDecorations">
         <Setter Property="DefaultTitleBarHeight" Value="32" />
-        <Setter Property="DefaultFrameThickness" Value="1" />
-        <Setter Property="DefaultShadowThickness" Value="8" />
+        <Setter Property="DefaultFrameThickness" Value="4" />
+        <!-- <Setter Property="DefaultShadowThickness" Value="8" /> -->
         <Setter Property="Template">
             <WindowDrawnDecorationsTemplate>
                 <WindowDrawnDecorationsContent>
                     <WindowDrawnDecorationsContent.Underlay>
                         <!--  Full-size: covers shadow area + frame + behind client area  -->
-                        <Panel>
+                        <Panel Name="PART_UnderlayWrapper">
                             <Border
                                 Name="PART_WindowBorder"
-                                Margin="{TemplateBinding ShadowThickness}"
                                 Background="{DynamicResource WindowBackground}"
                                 BorderBrush="{DynamicResource WindowBorderBrush}"
-                                BorderThickness="1"
-                                BoxShadow="{DynamicResource WindowBorderShadow}" />
+                                BorderThickness="{TemplateBinding FrameThickness}"
+                                IsHitTestVisible="False" />
                             <!-- Titlebar: background, title text, and drag area live in underlay -->
                             <Panel Name="PART_TitleBar"
                                    VerticalAlignment="Top"
@@ -93,25 +90,20 @@
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
                                 IsVisible="{TemplateBinding HasTitleBar}"
-                                Orientation="Horizontal"
-                                Spacing="2"
-                                TextElement.FontSize="10">
+                                Orientation="Horizontal">
                                 <Button
                                     Name="PART_FullScreenButton"
                                     Theme="{StaticResource CaptionButton}"
-                                    IsVisible="{Binding $parent[u:UrsaWindow].IsFullScreenButtonVisible}"
                                     Content="{StaticResource WindowExpandGlyph}"
                                     WindowDecorationProperties.ElementRole="FullScreenButton" />
                                 <Button
                                     Name="PART_MinimizeButton"
                                     Theme="{StaticResource CaptionButton}"
-                                    IsVisible="{Binding $parent[u:UrsaWindow].IsMinimizeButtonVisible}"
                                     Content="{StaticResource WindowMinimizeGlyph}"
                                     WindowDecorationProperties.ElementRole="MinimizeButton" />
                                 <Button
                                     Name="PART_MaximizeButton"
                                     Theme="{StaticResource CaptionButton}"
-                                    IsVisible="{Binding $parent[u:UrsaWindow].IsRestoreButtonVisible}"
                                     Content="{StaticResource WindowMaximizeGlyph}"
                                     WindowDecorationProperties.ElementRole="MaximizeButton" />
                                 <Button
@@ -143,7 +135,7 @@
                                     WindowDecorationProperties.ElementRole="CloseButton" />
                             </StackPanel>
                             <TextBlock
-                                Margin="12,0"
+                                Margin="12,0,0,0"
                                 VerticalAlignment="Center"
                                 Text="{TemplateBinding Title}" />
                         </DockPanel>
@@ -191,6 +183,39 @@
             </Style>
             <Style Selector="^ /template/ StackPanel#PART_OverlayPanel">
                 <Setter Property="Margin" Value="0,1,1,0" />
+            </Style>
+        </Style>
+
+        <!-- caption buttons: visibility bound to UrsaWindow properties, and fallback to collapsed if the decoration doesn't support that button -->
+        <Style Selector="^">
+            <Style Selector="^ /template/ Button#PART_CloseButton,^ /template/ Button#PART_PopoverCloseButton">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:UrsaWindow].IsCloseButtonVisible}" />
+            </Style>
+
+            <Style Selector="^:has-minimize /template/ Button#PART_MinimizeButton">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:UrsaWindow].IsMinimizeButtonVisible}" />
+            </Style>
+            <Style Selector="^:has-maximize /template/ Button#PART_MaximizeButton">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:UrsaWindow].IsRestoreButtonVisible}" />
+            </Style>
+            <Style Selector="^:has-fullscreen /template/ Button#PART_FullScreenButton">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:UrsaWindow].IsFullScreenButtonVisible}" />
+            </Style>
+            <Style Selector="^:has-fullscreen /template/ Button#PART_PopoverFullScreenButton">
+                <Setter Property="IsVisible" Value="{Binding $parent[u:UrsaWindow].IsFullScreenButtonVisible}" />
+            </Style>
+
+            <Style Selector="^:not(:has-minimize) /template/ Button#PART_MinimizeButton">
+                <Setter Property="IsVisible" Value="False" />
+            </Style>
+            <Style Selector="^:not(:has-maximize) /template/ Button#PART_MaximizeButton">
+                <Setter Property="IsVisible" Value="False" />
+            </Style>
+            <Style Selector="^:not(:has-fullscreen) /template/ Button#PART_FullScreenButton">
+                <Setter Property="IsVisible" Value="False" />
+            </Style>
+            <Style Selector="^:not(:has-fullscreen) /template/ Button#PART_PopoverFullScreenButton">
+                <Setter Property="IsVisible" Value="False" />
             </Style>
         </Style>
 
