@@ -185,15 +185,8 @@ public class EnumSelector: TemplatedControl
         foreach (var item in enumValues)
         {
             if (item is null) continue;
-            var underlyingValue = Convert.ChangeType(item, Enum.GetUnderlyingType(enumType));
-            foreach (var v in values)
-            {
-                if (Equals(v, underlyingValue))
-                {
-                    result.Add(v);
-                    break;
-                }
-            }
+            if(item.GetType()!=enumType) continue;
+            result.Add(item);
         }
         return result.ToArray();
     }
