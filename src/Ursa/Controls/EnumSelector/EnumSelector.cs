@@ -182,14 +182,15 @@ public class EnumSelector: TemplatedControl
     {
         if (enumValues is null || enumValues.Count == 0) return values;
         var result = new List<object>();
-        foreach (var value in values)
+        foreach (var item in enumValues)
         {
-            var enumValue = Enum.ToObject(enumType, value);
-            foreach (var item in enumValues)
+            if (item is null) continue;
+            var underlyingValue = Convert.ChangeType(item, Enum.GetUnderlyingType(enumType));
+            foreach (var v in values)
             {
-                if (Equals(item, enumValue))
+                if (Equals(v, underlyingValue))
                 {
-                    result.Add(value);
+                    result.Add(v);
                     break;
                 }
             }
