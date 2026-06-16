@@ -63,5 +63,23 @@
         </u:EnumSelector>
         
         <TextBlock Text="{Binding Value3}" />
+        
+        <u:Divider Content="Custom EnumValues with custom display names. " />
+                
+        <u:EnumSelector
+            Width="200"
+            EnumType="{x:Type system:DayOfWeek}"
+            DisplayDescription="True"
+            Value="{Binding Value3}" >
+            <u:EnumSelector.EnumValues>
+                <collections:AvaloniaList x:TypeArguments="u:EnumItemTuple">
+                    <u:EnumItemTuple Value="{x:Static system:DayOfWeek.Saturday}" DisplayName="星期六" />
+                    <u:EnumItemTuple Value="{x:Static system:DayOfWeek.Sunday}" DisplayName="星期日" />
+                    <u:EnumItemTuple Value="{x:Static system:DayOfWeek.Monday}" DisplayName="星期一" />
+                </collections:AvaloniaList>
+            </u:EnumSelector.EnumValues>
+        </u:EnumSelector>
+        
+        <TextBlock Text="{Binding Value3}" />
     </StackPanel>
 </UserControl>

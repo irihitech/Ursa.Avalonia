@@ -3,13 +3,22 @@ using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
+using Irihi.Avalonia.Shared.Common;
 
 namespace Ursa.Controls;
 
-public class EnumItemTuple
+public class EnumItemTuple: IRIHI_ObservableBase
 {
-    public string? DisplayName { get; set; }
-    public object? Value { get; set; }
+    public string? DisplayName
+    {
+        get;
+        set => SetProperty(ref field, value);
+    }
+
+    public object? Value {  
+        get;
+        set => SetProperty(ref field, value);
+    }
 }
 
 public class EnumSelector: TemplatedControl
@@ -151,6 +160,9 @@ public class EnumSelector: TemplatedControl
 
     private List<EnumItemTuple> GenerateItemTuple()
     {
+        // Add a special case when user explictly set EnumValues as tuple list, then we take it directly. 
+        if (EnumValues is IList<EnumItemTuple> enumList) return enumList.ToList();
+        
         if (EnumType is null) return new List<EnumItemTuple>();
         var values = Enum.GetValuesAsUnderlyingType(EnumType);
         var enumValues = EnumValues;
