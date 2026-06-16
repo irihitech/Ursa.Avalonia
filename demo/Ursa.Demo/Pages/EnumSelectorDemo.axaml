@@ -13,7 +13,7 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
-    xmlns:collections="clr-namespace:Avalonia.Collections;assembly=Avalonia.Base">
+    xmlns:generic="clr-namespace:System.Collections.Generic;assembly=System.Collections">
     <StackPanel Margin="20" Spacing="20">
         <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <ToggleSwitch Name="description" Content="Show Description" />
@@ -54,11 +54,11 @@
             EnumType="{x:Type system:DayOfWeek}"
             Value="{Binding Value3}" >
             <u:EnumSelector.EnumValues>
-                <collections:AvaloniaList x:TypeArguments="system:DayOfWeek">
+                <generic:List x:TypeArguments="system:DayOfWeek">
                     <system:DayOfWeek>Saturday</system:DayOfWeek>
                     <system:DayOfWeek>Sunday</system:DayOfWeek>
                     <system:DayOfWeek>Monday</system:DayOfWeek>
-                </collections:AvaloniaList>
+                </generic:List>
             </u:EnumSelector.EnumValues>
         </u:EnumSelector>
         
@@ -72,11 +72,11 @@
             DisplayDescription="True"
             Value="{Binding Value3}" >
             <u:EnumSelector.EnumValues>
-                <collections:AvaloniaList x:TypeArguments="u:EnumItemTuple">
+                <generic:List x:TypeArguments="u:EnumItemTuple">
                     <u:EnumItemTuple Value="{x:Static system:DayOfWeek.Saturday}" DisplayName="星期六" />
                     <u:EnumItemTuple Value="{x:Static system:DayOfWeek.Sunday}" DisplayName="星期日" />
                     <u:EnumItemTuple Value="{x:Static system:DayOfWeek.Monday}" DisplayName="星期一" />
-                </collections:AvaloniaList>
+                </generic:List>
             </u:EnumSelector.EnumValues>
         </u:EnumSelector>
         
