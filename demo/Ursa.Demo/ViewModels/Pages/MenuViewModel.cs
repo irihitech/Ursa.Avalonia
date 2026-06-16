@@ -99,6 +99,7 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = "DualBadge", Key = MenuKeys.MenuKeyDualBadge },
                     new() { MenuHeader = "ImageViewer", Key = MenuKeys.MenuKeyImageViewer, Status = "WIP" },
                     new() { MenuHeader = "ElasticWrapPanel", Key = MenuKeys.MenuKeyElasticWrapPanel },
+                    new() { MenuHeader = "VirtualizingUniformGrid", Key = MenuKeys.MenuKeyVirtualizingUniformGrid, Status = "New" },
                     new() { MenuHeader = "Marquee", Key = MenuKeys.MenuKeyMarquee },
                     new() { MenuHeader = "Number Displayer", Key = MenuKeys.MenuKeyNumberDisplayer },
                     new() { MenuHeader = "Qr Code", Key = MenuKeys.MenuKeyQrCode },
@@ -143,6 +144,7 @@ public static class MenuKeys
     public const string MenuKeyDrawer = "Drawer";
     public const string MenuKeyDualBadge = "DualBadge";
     public const string MenuKeyElasticWrapPanel = "ElasticWrapPanel";
+    public const string MenuKeyVirtualizingUniformGrid = "VirtualizingUniformGrid";
     public const string MenuKeyEnumSelector = "EnumSelector";
     public const string MenuKeyForm = "Form";
     public const string MenuKeyGroupBox = "GroupBox";
