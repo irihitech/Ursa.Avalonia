@@ -25,7 +25,7 @@ public partial class VirtualizingUniformGridDemoViewModel : ObservableObject
 
     public VirtualizingUniformGridDemoViewModel()
     {
-        GenerateItems(1000);
+        GenerateItems(100000);
     }
 
     private void GenerateItems(int count)

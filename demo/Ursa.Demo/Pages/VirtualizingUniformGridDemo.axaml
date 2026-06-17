@@ -105,7 +105,7 @@
                         <ItemsPanelTemplate>
                             <u:VirtualizingUniformGrid 
                                 Columns="{Binding Columns}"
-                                ItemHeight="60"   
+                                ItemHeight="70"   
                                 CacheLength="0.5" />
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
