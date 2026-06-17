@@ -31,7 +31,6 @@ public partial class VirtualizingUniformGridDemoViewModel : ObservableObject
     private void GenerateItems(int count)
     {
         Items.Clear();
-        var app = Application.Current;
         for (int i = 0; i < count; i++)
         {
             Items.Add(new GridItem
@@ -56,7 +55,7 @@ public partial class VirtualizingUniformGridDemoViewModel : ObservableObject
     [ObservableProperty] private double _itemWidth = double.NaN;
     [ObservableProperty] private double _itemHeight = double.NaN;
     [ObservableProperty] private bool _uniformItemHeight = true;
-    [ObservableProperty] private int _itemCount = 1000;
+    [ObservableProperty] private int _itemCount = 100000;
 
     [ObservableProperty] private bool _autoWidth = true;
     [ObservableProperty] private bool _autoHeight = true;

@@ -78,7 +78,6 @@
                     <u:FormItem Label="Item Count">
                         <u:NumericIntUpDown
                             Minimum="0"
-                            Maximum="10000"
                             Value="{Binding ItemCount}" />
                     </u:FormItem>
                 </u:FormGroup>
