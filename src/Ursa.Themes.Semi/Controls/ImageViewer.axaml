@@ -3,12 +3,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
     <ControlTheme x:Key="{x:Type u:ImageViewer}" TargetType="u:ImageViewer">
-        <Setter Property="Background" Value="LightGray" />
+        <Setter Property="Background" Value="{DynamicResource SemiGrey1}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="{x:Type u:ImageViewer}">
                 <VisualLayerManager Name="{x:Static u:ImageViewer.PART_Layer}">
                     <Border Background="{TemplateBinding Background}" ClipToBounds="True">
                         <u:ImageViewerPresenter
+                            ClipToBounds="False"
                             Name="{x:Static u:ImageViewer.PART_Image}"
                             Source="{TemplateBinding Source}"
                             Stretch="{TemplateBinding Stretch}"

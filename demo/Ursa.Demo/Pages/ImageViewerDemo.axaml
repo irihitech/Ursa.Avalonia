@@ -9,7 +9,8 @@
     d:DesignWidth="800"
     mc:Ignorable="d"
     x:DataType="viewModels:ImageViewerDemoViewModel"
-    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
+    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <UserControl.Resources>
         <SolidColorBrush
             x:Key="MaskBackground"
@@ -17,16 +18,23 @@
             Color="Red" />
         <SolidColorBrush x:Key="MaskBorder" Color="Red" />
     </UserControl.Resources>
-    <Grid ColumnDefinitions="*,Auto" Margin="8">
+    <Grid RowDefinitions="Auto, *" ColumnDefinitions="*,Auto" Margin="8">
+        <controls:PageMetadataView
+            Grid.ColumnSpan="2" 
+            DataContext="{Binding PageMetadata}"/>
         <!-- Main viewer -->
-        <u:ImageViewer x:Name="Viewer"
-                              Source="../Assets/3x.png"
+        <u:ImageViewer Grid.Row="1" x:Name="Viewer"
+                              Source="{Binding Source}"
                               Grid.Column="0"/>
 
         <!-- Side panel with controls and info -->
-        <Border Grid.Column="1" Width="220" Padding="12"
-                Background="{DynamicResource SystemControlBackgroundBaseLowBrush}">
+        <Border Grid.Row="1" Grid.Column="1" Width="220" Padding="12" >
             <StackPanel Spacing="12">
+                <u:PathPicker AllowMultiple="False" 
+                              UsePickerType="OpenFile" 
+                              DefaultFileExtension="[,.jpg, .png]" 
+                              ButtonContent="Select"
+                              Command="{Binding OpenFileCommand}" />
                 <TextBlock Text="ImageViewer Demo" FontSize="16" FontWeight="Bold"/>
 
                 <StackPanel Spacing="4">
@@ -43,17 +51,16 @@
                 <Slider x:Name="ZoomSlider"
                         Minimum="0.1" Maximum="5.0"
                         Value="{Binding #Viewer.Zoom, Mode=TwoWay}"/>
-
+                <Slider x:Name="OffsetXSlider"
+                        Minimum="-1000"
+                        Maximum="1000"
+                        Value="{Binding #Viewer.OffsetX, Mode=TwoWay}"/>
+                <Slider x:Name="OffsetYSlider"
+                        Minimum="-1000"
+                        Maximum="1000"
+                        Value="{Binding #Viewer.OffsetY, Mode=TwoWay}"/>
+                <Button Content="Reset Picture" Command="{Binding ResetImageCommand}" />
                 <Button Content="Reset View" Click="ResetView_Click"/>
-
-                <Separator/>
-
-                <StackPanel Spacing="4">
-                    <TextBlock Text="Image info" FontWeight="SemiBold"/>
-                    <TextBlock Text="600 × 400 px"/>
-                    <TextBlock Text="Checkerboard pattern"/>
-                    <TextBlock Text="Centered crosshair"/>
-                </StackPanel>
             </StackPanel>
         </Border>
     </Grid>

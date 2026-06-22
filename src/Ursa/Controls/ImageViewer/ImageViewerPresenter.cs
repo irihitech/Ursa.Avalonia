@@ -243,7 +243,7 @@ public class ImageViewerPresenter : Control
         base.Render(context);
 
         context.FillRectangle(
-            new SolidColorBrush(Color.Parse("#FF2D2D2D")),
+            Brushes.Transparent,
             new Rect(Bounds.Size));
 
         var source = Source;
