@@ -1,5 +1,6 @@
 using System.Collections;
 using System.ComponentModel;
+using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
@@ -7,17 +8,24 @@ using Irihi.Avalonia.Shared.Common;
 
 namespace Ursa.Controls;
 
-public class EnumItemTuple: IRIHI_ObservableBase
+public class EnumItemTuple: AvaloniaObject
 {
+    public static readonly StyledProperty<string?> DisplayNameProperty = AvaloniaProperty.Register<EnumItemTuple, string?>(
+        nameof(DisplayName));
+
     public string? DisplayName
     {
-        get;
-        set => SetProperty(ref field, value);
+        get => GetValue(DisplayNameProperty);
+        set => SetValue(DisplayNameProperty, value);
     }
 
-    public object? Value {  
-        get;
-        set => SetProperty(ref field, value);
+    public static readonly StyledProperty<object?> ValueProperty = AvaloniaProperty.Register<EnumItemTuple, object?>(
+        nameof(Value));
+
+    public object? Value
+    {
+        get => GetValue(ValueProperty);
+        set => SetValue(ValueProperty, value);
     }
 }
 
