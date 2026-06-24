@@ -4,6 +4,7 @@ using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
+using Avalonia.Metadata;
 using Irihi.Avalonia.Shared.Common;
 
 namespace Ursa.Controls;
