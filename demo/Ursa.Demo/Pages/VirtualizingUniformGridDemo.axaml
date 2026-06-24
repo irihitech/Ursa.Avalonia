@@ -32,7 +32,7 @@
                             Value="{Binding Columns}" />
                     </u:FormItem>
                     <u:FormItem Label="CacheLength">
-                        <u:NumericDoubleUpDown
+                        <u:NumericDecimalUpDown
                             Minimum="0"
                             Maximum="2"
                             Step="0.1"
@@ -69,7 +69,7 @@
                             AllowDrag="True"
                             Step="1"
                             Maximum="1000"
-                            Minimum="0"
+                            Minimum="10"
                             IsEnabled="{Binding !AutoHeight}"
                             Value="{Binding ItemHeight}" />
                     </u:FormItem>
@@ -82,34 +82,33 @@
                     </u:FormItem>
                 </u:FormGroup>
             </u:Form>
-            <Border Margin="8,0,0,0" Theme="{DynamicResource CardBorder}">
-                <ListBox x:Name="GridItems"
-                              Margin="4"
-                              ItemsSource="{Binding Items}">
-                    <ListBox.ItemTemplate>
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding Items}">
+                    <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="viewModels:GridItem">
-                            <Border Margin="2" CornerRadius="4"
-                                    Background="{Binding Color}">
-                                <StackPanel VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        Margin="4">
-                                    <TextBlock Text="{Binding Label}"
-                                            FontSize="11"
-                                            HorizontalAlignment="Center" />
-                                </StackPanel>
+                            <Border
+                                CornerRadius="4"
+                                Background="{Binding Color}">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Text="{Binding Label}"
+                                    FontSize="12" />
                             </Border>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
-                    <ListBox.ItemsPanel>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <u:VirtualizingUniformGrid 
+                            <u:VirtualizingUniformGrid
                                 Columns="{Binding Columns}"
-                                ItemHeight="70"   
-                                CacheLength="0.5" />
+                                ItemWidth="{Binding ItemWidth}"
+                                ItemHeight="{Binding ItemHeight}"
+                                UniformItemHeight="{Binding UniformItemHeight}"
+                                CacheLength="{Binding CacheLength}" />
                         </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                </ListBox>
-            </Border>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
         </DockPanel>
     </DockPanel>
 </UserControl>
