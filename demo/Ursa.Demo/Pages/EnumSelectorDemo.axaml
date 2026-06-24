@@ -14,6 +14,7 @@
     xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:generic="clr-namespace:System.Collections.Generic;assembly=System.Collections">
+    <ScrollViewer>
     <StackPanel Margin="20" Spacing="20">
         <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <ToggleSwitch Name="description" Content="Show Description" />
@@ -82,4 +83,5 @@
         
         <TextBlock Text="{Binding Value3}" />
     </StackPanel>
+    </ScrollViewer>
 </UserControl>

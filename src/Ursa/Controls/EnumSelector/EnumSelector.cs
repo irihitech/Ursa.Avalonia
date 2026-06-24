@@ -22,6 +22,7 @@ public class EnumItemTuple: AvaloniaObject
     public static readonly StyledProperty<object?> ValueProperty = AvaloniaProperty.Register<EnumItemTuple, object?>(
         nameof(Value));
 
+    [Content]
     public object? Value
     {
         get => GetValue(ValueProperty);
@@ -97,6 +98,7 @@ public class EnumSelector: TemplatedControl
     public static readonly StyledProperty<IList?> EnumValuesProperty = AvaloniaProperty.Register<EnumSelector, IList?>(
         nameof(EnumValues));
 
+    [Content]
     public IList? EnumValues
     {
         get => GetValue(EnumValuesProperty);
