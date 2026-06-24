@@ -38,7 +38,7 @@ public partial class ImageViewerDemoViewModel: ObservableObject
 
     private async Task OnOpenFile(IStorageFile[]? obj)
     {
-        if (obj == null) return;
+        if (obj == null || obj.Length == 0) return;
         var stream = await obj.First().OpenReadAsync();
         var bitmap = new Bitmap(stream);
         Source = bitmap;
