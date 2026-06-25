@@ -1,0 +1,114 @@
+<UserControl x:Class="Ursa.Demo.Pages.VirtualizingUniformGridDemo"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+             xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+             d:DesignHeight="800"
+             d:DesignWidth="800"
+             x:CompileBindings="True"
+             x:DataType="viewModels:VirtualizingUniformGridDemoViewModel"
+             mc:Ignorable="d">
+    <UserControl.Styles>
+        <Style Selector="u|FormItem">
+            <Setter Property="Width" Value="320" />
+        </Style>
+    </UserControl.Styles>
+    <DockPanel>
+        <controls:PageMetadataView DockPanel.Dock="Top" DataContext="{Binding PageMetadata}" />
+        <DockPanel>
+            <u:Form DockPanel.Dock="Left"
+                    LabelAlignment="Left"
+                    LabelPosition="Left"
+                    LabelWidth="*"
+                    Margin="4 0">
+                <u:FormGroup Header="Grid Settings">
+                    <u:FormItem Label="Columns">
+                        <u:NumericIntUpDown
+                            Minimum="1"
+                            Maximum="12"
+                            Value="{Binding Columns}" />
+                    </u:FormItem>
+                    <u:FormItem Label="CacheLength">
+                        <u:NumericDecimalUpDown
+                            Minimum="0"
+                            Maximum="2"
+                            Step="0.1"
+                            Value="{Binding CacheLength}" />
+                    </u:FormItem>
+                    <u:FormItem>
+                        <u:FormItem.Label>
+                            <CheckBox Content="UniformItemHeight" IsChecked="{Binding UniformItemHeight}" />
+                        </u:FormItem.Label>
+                    </u:FormItem>
+                </u:FormGroup>
+                <u:FormGroup Header="Item Size">
+                    <u:FormItem>
+                        <u:FormItem.Label>
+                            <CheckBox Content="Auto Width" IsChecked="{Binding AutoWidth}" />
+                        </u:FormItem.Label>
+                    </u:FormItem>
+                    <u:FormItem Label="ItemWidth">
+                        <u:NumericDoubleUpDown
+                            AllowDrag="True"
+                            Step="1"
+                            Maximum="1000"
+                            Minimum="0"
+                            IsEnabled="{Binding !AutoWidth}"
+                            Value="{Binding ItemWidth}" />
+                    </u:FormItem>
+                    <u:FormItem>
+                        <u:FormItem.Label>
+                            <CheckBox Content="Auto Height" IsChecked="{Binding AutoHeight}" />
+                        </u:FormItem.Label>
+                    </u:FormItem>
+                    <u:FormItem Label="ItemHeight">
+                        <u:NumericDoubleUpDown
+                            AllowDrag="True"
+                            Step="1"
+                            Maximum="1000"
+                            Minimum="10"
+                            IsEnabled="{Binding !AutoHeight}"
+                            Value="{Binding ItemHeight}" />
+                    </u:FormItem>
+                </u:FormGroup>
+                <u:FormGroup Header="Data">
+                    <u:FormItem Label="Item Count">
+                        <u:NumericIntUpDown
+                            Minimum="0"
+                            Value="{Binding ItemCount}" />
+                    </u:FormItem>
+                </u:FormGroup>
+            </u:Form>
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding Items}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="viewModels:GridItem">
+                            <Border
+                                CornerRadius="4"
+                                Background="{Binding Color}">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Text="{Binding Label}"
+                                    FontSize="12" />
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <u:VirtualizingUniformGrid
+                                Columns="{Binding Columns}"
+                                ItemWidth="{Binding ItemWidth}"
+                                ItemHeight="{Binding ItemHeight}"
+                                UniformItemHeight="{Binding UniformItemHeight}"
+                                CacheLength="{Binding CacheLength}" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+        </DockPanel>
+    </DockPanel>
+</UserControl>

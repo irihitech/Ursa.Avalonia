@@ -55,6 +55,7 @@ public partial class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyDrawer => new DrawerDemoViewModel(),
             MenuKeys.MenuKeyDualBadge => new DualBadgeDemoViewModel(),
             MenuKeys.MenuKeyElasticWrapPanel => new ElasticWrapPanelDemoViewModel(),
+            MenuKeys.MenuKeyVirtualizingUniformGrid => new VirtualizingUniformGridDemoViewModel(),
             MenuKeys.MenuKeyEnumSelector => new EnumSelectorDemoViewModel(),
             MenuKeys.MenuKeyForm => new FormDemoViewModel(),
             MenuKeys.MenuKeyGroupBox => new GroupBoxDemoViewModel(),

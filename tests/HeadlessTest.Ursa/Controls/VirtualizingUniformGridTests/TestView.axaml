@@ -1,0 +1,64 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:virtualizingUniformGridTests="clr-namespace:HeadlessTest.Ursa.Controls.VirtualizingUniformGridTests"
+             xmlns:u="https://irihi.tech/ursa"
+             mc:Ignorable="d" d:DesignWidth="800"
+             d:DesignHeight="450"
+             x:DataType="virtualizingUniformGridTests:TestViewModel"
+             x:Class="HeadlessTest.Ursa.Controls.VirtualizingUniformGridTests.TestView">
+    <Design.DataContext>
+        <virtualizingUniformGridTests:TestViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,*">
+
+        <Border Grid.Row="0" Padding="12,8" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}">
+            <StackPanel Orientation="Horizontal" Spacing="16">
+                <TextBlock Text="Virtualizing Uniform Grid Demo"
+                           FontSize="18" FontWeight="Bold"
+                           VerticalAlignment="Center" />
+                <StackPanel Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
+                    <TextBlock Text="Columns:" VerticalAlignment="Center" />
+                    <TextBox Text="{Binding Columns, Mode=TwoWay}"
+                             Width="60" />
+                </StackPanel>
+                <TextBlock Text="{Binding Items.Count, StringFormat='{}{0:N0} items'}"
+                           VerticalAlignment="Center" Opacity="0.7" />
+                <TextBlock Text="Selection + keyboard navigation supported (ListBox)"
+                           VerticalAlignment="Center" Opacity="0.5" FontStyle="Italic" />
+            </StackPanel>
+        </Border>
+
+        <ListBox Grid.Row="1" ItemsSource="{Binding Items}"
+                 Name="list"
+                 x:FieldModifier="public"
+                 SelectionMode="Single">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <u:VirtualizingUniformGrid 
+                        Columns="{Binding Columns}"
+                        ItemHeight="60"                          
+                        CacheLength="0.5" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="virtualizingUniformGridTests:GridItem">
+                    <Border Margin="2" CornerRadius="4"
+                            Background="{Binding Color}">
+                        <StackPanel VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Margin="4">
+                            <TextBlock Text="{Binding Label}"
+                                       FontSize="11"
+                                       HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>
+
