@@ -11,7 +11,10 @@
     x:CompileBindings="True"
     x:DataType="vm:EnumSelectorDemoViewModel"
     mc:Ignorable="d"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:generic="clr-namespace:System.Collections.Generic;assembly=System.Collections">
+    <ScrollViewer>
     <StackPanel Margin="20" Spacing="20">
         <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <ToggleSwitch Name="description" Content="Show Description" />
@@ -35,5 +38,50 @@
             DisplayDescription="{Binding #description.IsChecked}"
             EnumType="{Binding SelectedType}"
             Value="{Binding Value}" />
+        <u:Divider Content="Custom EnumValues" />
+        <u:EnumSelector
+            Width="200"
+            EnumType="{x:Type system:DayOfWeek}"
+            EnumValues="{Binding CustomEnumValues}"
+            Value="{Binding Value2}" />
+
+        
+        <TextBlock Text="{Binding Value2}" />
+        
+        <u:Divider Content="Custom EnumValues in XAML" />
+                
+        <u:EnumSelector
+            Width="200"
+            EnumType="{x:Type system:DayOfWeek}"
+            Value="{Binding Value3}" >
+            <u:EnumSelector.EnumValues>
+                <generic:List x:TypeArguments="system:DayOfWeek">
+                    <system:DayOfWeek>Saturday</system:DayOfWeek>
+                    <system:DayOfWeek>Sunday</system:DayOfWeek>
+                    <system:DayOfWeek>Monday</system:DayOfWeek>
+                </generic:List>
+            </u:EnumSelector.EnumValues>
+        </u:EnumSelector>
+        
+        <TextBlock Text="{Binding Value3}" />
+        
+        <u:Divider Content="Custom EnumValues with custom display names. " />
+                
+        <u:EnumSelector
+            Width="200"
+            EnumType="{x:Type system:DayOfWeek}"
+            DisplayDescription="True"
+            Value="{Binding Value3}" >
+            <u:EnumSelector.EnumValues>
+                <generic:List x:TypeArguments="u:EnumItemTuple">
+                    <u:EnumItemTuple Value="{x:Static system:DayOfWeek.Saturday}" DisplayName="星期六" />
+                    <u:EnumItemTuple Value="{x:Static system:DayOfWeek.Sunday}" DisplayName="星期日" />
+                    <u:EnumItemTuple Value="{x:Static system:DayOfWeek.Monday}" DisplayName="星期一" />
+                </generic:List>
+            </u:EnumSelector.EnumValues>
+        </u:EnumSelector>
+        
+        <TextBlock Text="{Binding Value3}" />
     </StackPanel>
+    </ScrollViewer>
 </UserControl>

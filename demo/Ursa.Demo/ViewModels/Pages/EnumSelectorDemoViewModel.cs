@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Avalonia.Animation;
@@ -28,6 +30,15 @@ public partial class EnumSelectorDemoViewModel : ObservableObject
 
     [ObservableProperty] private Type? _selectedType;
     [ObservableProperty] private object? _value;
+    [ObservableProperty] private object? _value2;
+    [ObservableProperty] private object? _value3;
+
+    public IList CustomEnumValues { get; set; } = new List<object>
+    {
+        DayOfWeek.Monday,
+        DayOfWeek.Wednesday,
+        DayOfWeek.Friday,
+    };
 
     public ObservableCollection<Type?> Types { get; set; } =
     [
