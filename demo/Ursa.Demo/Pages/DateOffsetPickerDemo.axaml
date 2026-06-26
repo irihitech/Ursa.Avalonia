@@ -76,7 +76,7 @@
                 <u:DateOffsetPicker
                     Width="280"
                     DisplayFormat="yyyy-MM-dd"
-                    IsReadonly="{Binding #readonlyToggle.IsChecked}"
+                    IsReadOnly="{Binding #readonlyToggle.IsChecked}"
                     SelectedDate="2025-06-26+08:00"
                     ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
             </StackPanel>

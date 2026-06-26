@@ -37,7 +37,7 @@
                                 CornerRadius="3 0 0 3"
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
-                                IsReadOnly="{TemplateBinding IsReadonly}"
+                                IsReadOnly="{TemplateBinding IsReadOnly}"
                                 PlaceholderText="{TemplateBinding StartPlaceholderText}"
                                 PlaceholderForeground="{TemplateBinding PlaceholderForeground}" />
                             <TextBlock
@@ -54,7 +54,7 @@
                                 CornerRadius="0"
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerRightContent="{TemplateBinding InnerRightContent}"
-                                IsReadOnly="{TemplateBinding IsReadonly}"
+                                IsReadOnly="{TemplateBinding IsReadOnly}"
                                 PlaceholderText="{TemplateBinding EndPlaceholderText}"
                                 PlaceholderForeground="{TemplateBinding PlaceholderForeground}" />
                             <Button

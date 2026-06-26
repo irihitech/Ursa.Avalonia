@@ -58,8 +58,8 @@ public abstract class DateRangePickerBase : TemplatedControl, IInnerContentContr
         AvaloniaProperty.Register<DateRangePickerBase, bool>(
             nameof(IsDropdownOpen), defaultBindingMode: BindingMode.TwoWay);
 
-    public static readonly StyledProperty<bool> IsReadonlyProperty =
-        AvaloniaProperty.Register<DateRangePickerBase, bool>(nameof(IsReadonly));
+    public static readonly StyledProperty<bool> IsReadOnlyProperty =
+        AvaloniaProperty.Register<DateRangePickerBase, bool>(nameof(IsReadOnly));
 
     public AvaloniaList<DateRange> BlackoutDates
     {
@@ -85,10 +85,10 @@ public abstract class DateRangePickerBase : TemplatedControl, IInnerContentContr
         set => SetValue(IsTodayHighlightedProperty, value);
     }
 
-    public bool IsReadonly
+    public bool IsReadOnly
     {
-        get => GetValue(IsReadonlyProperty);
-        set => SetValue(IsReadonlyProperty, value);
+        get => GetValue(IsReadOnlyProperty);
+        set => SetValue(IsReadOnlyProperty, value);
     }
 
     public bool IsDropdownOpen

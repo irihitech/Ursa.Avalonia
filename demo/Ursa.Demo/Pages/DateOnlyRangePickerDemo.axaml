@@ -47,7 +47,7 @@
             <u:DateOnlyRangePicker
                 Width="360"
                 DisplayFormat="{Binding #format.Text}"
-                IsReadonly="{Binding #readonlyToggle.IsChecked}"
+                IsReadOnly="{Binding #readonlyToggle.IsChecked}"
                 SelectedEndDate="2025-06-30"
                 SelectedStartDate="2025-06-26" />
         </StackPanel>

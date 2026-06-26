@@ -48,7 +48,7 @@
                                 FontSize="{TemplateBinding FontSize}"
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
-                                IsReadOnly="{TemplateBinding IsReadonly}" />
+                                IsReadOnly="{TemplateBinding IsReadOnly}" />
                             <TextBlock
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
@@ -64,7 +64,7 @@
                                 FontSize="{TemplateBinding FontSize}"
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerRightContent="{TemplateBinding InnerRightContent}"
-                                IsReadOnly="{TemplateBinding IsReadonly}" />
+                                IsReadOnly="{TemplateBinding IsReadOnly}" />
                             <Button
                                 Name="ClearButton"
                                 Grid.Column="3"
@@ -175,7 +175,7 @@
 
         
         <!--  ReadOnly State  -->
-        <Style Selector="^[IsReadonly=True] /template/ ComboBox#PART_OffsetComboBox">
+        <Style Selector="^[IsReadOnly=True] /template/ ComboBox#PART_OffsetComboBox">
             <Setter Property="IsEnabled" Value="False" />
         </Style>
 <!--  Focused State  -->

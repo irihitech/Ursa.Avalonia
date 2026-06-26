@@ -53,8 +53,8 @@ public abstract class TimeRangePickerBase : TemplatedControl, IInnerContentContr
         AvaloniaProperty.Register<TimeRangePickerBase, bool>(
             nameof(IsDropdownOpen), defaultBindingMode: BindingMode.TwoWay);
 
-    public static readonly StyledProperty<bool> IsReadonlyProperty =
-        AvaloniaProperty.Register<TimeRangePickerBase, bool>(nameof(IsReadonly));
+    public static readonly StyledProperty<bool> IsReadOnlyProperty =
+        AvaloniaProperty.Register<TimeRangePickerBase, bool>(nameof(IsReadOnly));
 
     public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
         TextBox.PlaceholderForegroundProperty.AddOwner<TimeRangePickerBase>();
@@ -123,10 +123,10 @@ public abstract class TimeRangePickerBase : TemplatedControl, IInnerContentContr
         set => SetValue(IsDropdownOpenProperty, value);
     }
 
-    public bool IsReadonly
+    public bool IsReadOnly
     {
-        get => GetValue(IsReadonlyProperty);
-        set => SetValue(IsReadonlyProperty, value);
+        get => GetValue(IsReadOnlyProperty);
+        set => SetValue(IsReadOnlyProperty, value);
     }
 
     public IBrush? PlaceholderForeground

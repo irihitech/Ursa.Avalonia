@@ -59,7 +59,7 @@
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
                                 InnerRightContent="{TemplateBinding InnerRightContent}"
-                                IsReadOnly="{TemplateBinding IsReadonly}"
+                                IsReadOnly="{TemplateBinding IsReadOnly}"
                                 Theme="{DynamicResource LooklessTextBox}"
                                 PlaceholderText="{TemplateBinding PlaceholderText}"
                                 PlaceholderForeground="{TemplateBinding PlaceholderForeground}" />
@@ -153,7 +153,7 @@
 
         
         <!--  ReadOnly State  -->
-        <Style Selector="^[IsReadonly=True] /template/ ComboBox#PART_OffsetComboBox">
+        <Style Selector="^[IsReadOnly=True] /template/ ComboBox#PART_OffsetComboBox">
             <Setter Property="IsEnabled" Value="False" />
         </Style>
 <!--  Focused State  -->

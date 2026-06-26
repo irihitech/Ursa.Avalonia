@@ -80,7 +80,7 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
 
     private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e)
     {
-        if (IsReadonly) return;
+        if (IsReadOnly) return;
         CommitInput();
         if (_status is { Current: Status.End, Previous: Status.Start }
             && Equals(sender, _endTextBox) && _endTextBox?.IsFocused == true)
@@ -91,13 +91,13 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
 
     private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e)
     {
-        if (IsReadonly) return;
+        if (IsReadOnly) return;
         InitializePopupOpen(sender as TextBox);
     }
 
     private void OnTextBoxGotFocus(object? sender, FocusChangedEventArgs e)
     {
-        if (IsReadonly) return;
+        if (IsReadOnly) return;
         InitializePopupOpen(sender as TextBox);
     }
 
@@ -181,7 +181,7 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
 
     protected override void OnKeyDown(KeyEventArgs e)
     {
-        if (IsReadonly)
+        if (IsReadOnly)
         {
             base.OnKeyDown(e);
             return;
@@ -220,7 +220,7 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
 
     protected override void OnLostFocus(FocusChangedEventArgs e)
     {
-        if (IsReadonly) return;
+        if (IsReadOnly) return;
         base.OnLostFocus(e);
         var newItem = e.NewFocusedElement;
         if (Equals(newItem, _endTextBox) || Equals(newItem, _startTextBox)) return;
@@ -234,7 +234,7 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
-        if (IsReadonly) return;
+        if (IsReadOnly) return;
         base.OnPointerPressed(e);
         if (e.Source is Visual source && _popup?.IsInsidePopup(source) == true) return;
         if (_startTextBox?.IsFocused == false)

@@ -58,8 +58,8 @@ public abstract class DateTimePickerBase : TemplatedControl, IInnerContentContro
         AvaloniaProperty.Register<DateTimePickerBase, bool>(
             nameof(IsDropdownOpen), defaultBindingMode: BindingMode.TwoWay);
 
-    public static readonly StyledProperty<bool> IsReadonlyProperty =
-        AvaloniaProperty.Register<DateTimePickerBase, bool>(nameof(IsReadonly));
+    public static readonly StyledProperty<bool> IsReadOnlyProperty =
+        AvaloniaProperty.Register<DateTimePickerBase, bool>(nameof(IsReadOnly));
 
     public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
         TextBox.PlaceholderForegroundProperty.AddOwner<DateTimePickerBase>();
@@ -102,10 +102,10 @@ public abstract class DateTimePickerBase : TemplatedControl, IInnerContentContro
         set => SetValue(IsTodayHighlightedProperty, value);
     }
 
-    public bool IsReadonly
+    public bool IsReadOnly
     {
-        get => GetValue(IsReadonlyProperty);
-        set => SetValue(IsReadonlyProperty, value);
+        get => GetValue(IsReadOnlyProperty);
+        set => SetValue(IsReadOnlyProperty, value);
     }
 
     public bool IsDropdownOpen

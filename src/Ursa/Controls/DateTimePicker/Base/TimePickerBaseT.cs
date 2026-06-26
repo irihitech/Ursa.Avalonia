@@ -63,19 +63,19 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
 
     private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e)
     {
-        if (IsReadonly) return;
+        if (IsReadOnly) return;
         InitializePopupOpen();
     }
 
     private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e)
     {
-        if (IsReadonly) return;
+        if (IsReadOnly) return;
         CommitInput();
     }
 
     private void OnTextBoxGetFocus(object? sender, FocusChangedEventArgs e)
     {
-        if (IsReadonly) return;
+        if (IsReadOnly) return;
         InitializePopupOpen();
     }
 
@@ -127,7 +127,7 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
-        if (IsReadonly) return;
+        if (IsReadOnly) return;
         base.OnPointerPressed(e);
         if (!e.Handled && e.Source is Visual source)
         {
@@ -140,7 +140,7 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
 
     protected override void OnKeyDown(KeyEventArgs e)
     {
-        if (IsReadonly)
+        if (IsReadOnly)
         {
             base.OnKeyDown(e);
             return;
@@ -179,7 +179,7 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
 
     protected override void OnLostFocus(FocusChangedEventArgs e)
     {
-        if (IsReadonly) return;
+        if (IsReadOnly) return;
         base.OnLostFocus(e);
         var element = e.NewFocusedElement;
         if (Equals(element, _textBox)) return;

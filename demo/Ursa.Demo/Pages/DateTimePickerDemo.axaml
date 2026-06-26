@@ -49,7 +49,7 @@
             <u:DateTimePicker
                 MinWidth="100"
                 DisplayFormat="{Binding #formatBox.Text}"
-                IsReadonly="{Binding #readonlyToggle.IsChecked}"
+                IsReadOnly="{Binding #readonlyToggle.IsChecked}"
                 PanelFormat="{Binding #panelBox.Text}"
                 SelectedDate="2025-06-26 10:30:00" />
         </StackPanel>

@@ -43,7 +43,7 @@
             <u:DateOnlyPicker
                 Width="200"
                 DisplayFormat="{Binding #format.Text}"
-                IsReadonly="{Binding #readonlyToggle.IsChecked}"
+                IsReadOnly="{Binding #readonlyToggle.IsChecked}"
                 SelectedDate="2025-06-26" />
         </StackPanel>
     </StackPanel>

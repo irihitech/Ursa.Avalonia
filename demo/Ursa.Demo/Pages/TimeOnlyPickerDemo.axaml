@@ -60,7 +60,7 @@
                 Width="200"
                 HorizontalAlignment="Left"
                 DisplayFormat="{Binding #displayFormat.Text}"
-                IsReadonly="{Binding #readonlyToggle.IsChecked}"
+                IsReadOnly="{Binding #readonlyToggle.IsChecked}"
                 PanelFormat="{Binding #panelFormat.Text}"
                 SelectedTime="10:30:00" />
         </StackPanel>
