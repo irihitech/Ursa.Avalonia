@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Avalonia;
 using Avalonia.Collections;
 using Avalonia.Controls;
@@ -61,6 +62,9 @@ public abstract class DateRangePickerBase : TemplatedControl, IInnerContentContr
     public static readonly StyledProperty<bool> IsReadOnlyProperty =
         AvaloniaProperty.Register<DateRangePickerBase, bool>(nameof(IsReadOnly));
 
+    [Obsolete("Use IsReadOnlyProperty instead.")]
+    public static readonly StyledProperty<bool> IsReadonlyProperty = IsReadOnlyProperty;
+
     public AvaloniaList<DateRange> BlackoutDates
     {
         get => GetValue(BlackoutDatesProperty);
@@ -86,6 +90,14 @@ public abstract class DateRangePickerBase : TemplatedControl, IInnerContentContr
     }
 
     public bool IsReadOnly
+    {
+        get => GetValue(IsReadOnlyProperty);
+        set => SetValue(IsReadOnlyProperty, value);
+    }
+
+    [Obsolete("Use IsReadOnly instead.")]
+    [SuppressMessage("AvaloniaProperty", "AVP1012", Justification = "Obsolete property alias for backward compatibility.")]
+    public bool IsReadonly
     {
         get => GetValue(IsReadOnlyProperty);
         set => SetValue(IsReadOnlyProperty, value);

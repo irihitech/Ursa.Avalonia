@@ -58,6 +58,9 @@ public abstract class DatePickerBase: TemplatedControl, IInnerContentControl, IP
     public static readonly StyledProperty<bool> IsReadOnlyProperty =
         AvaloniaProperty.Register<DatePickerBase, bool>(nameof(IsReadOnly));
 
+    [Obsolete("Use IsReadOnlyProperty instead.")]
+    public static readonly StyledProperty<bool> IsReadonlyProperty = IsReadOnlyProperty;
+
     public static readonly StyledProperty<bool> NeedConfirmationProperty =
         AvaloniaProperty.Register<DatePickerBase, bool>(nameof(NeedConfirmation));
 
@@ -118,6 +121,14 @@ public abstract class DatePickerBase: TemplatedControl, IInnerContentControl, IP
     }
 
     public bool IsReadOnly
+    {
+        get => GetValue(IsReadOnlyProperty);
+        set => SetValue(IsReadOnlyProperty, value);
+    }
+
+    [Obsolete("Use IsReadOnly instead.")]
+    [SuppressMessage("AvaloniaProperty", "AVP1012", Justification = "Obsolete property alias for backward compatibility.")]
+    public bool IsReadonly
     {
         get => GetValue(IsReadOnlyProperty);
         set => SetValue(IsReadOnlyProperty, value);

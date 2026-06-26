@@ -61,6 +61,9 @@ public abstract class DateTimePickerBase : TemplatedControl, IInnerContentContro
     public static readonly StyledProperty<bool> IsReadOnlyProperty =
         AvaloniaProperty.Register<DateTimePickerBase, bool>(nameof(IsReadOnly));
 
+    [Obsolete("Use IsReadOnlyProperty instead.")]
+    public static readonly StyledProperty<bool> IsReadonlyProperty = IsReadOnlyProperty;
+
     public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
         TextBox.PlaceholderForegroundProperty.AddOwner<DateTimePickerBase>();
 
@@ -103,6 +106,14 @@ public abstract class DateTimePickerBase : TemplatedControl, IInnerContentContro
     }
 
     public bool IsReadOnly
+    {
+        get => GetValue(IsReadOnlyProperty);
+        set => SetValue(IsReadOnlyProperty, value);
+    }
+
+    [Obsolete("Use IsReadOnly instead.")]
+    [SuppressMessage("AvaloniaProperty", "AVP1012", Justification = "Obsolete property alias for backward compatibility.")]
+    public bool IsReadonly
     {
         get => GetValue(IsReadOnlyProperty);
         set => SetValue(IsReadOnlyProperty, value);

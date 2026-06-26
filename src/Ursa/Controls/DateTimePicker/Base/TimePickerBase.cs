@@ -52,6 +52,9 @@ public abstract class TimePickerBase: TemplatedControl, IInnerContentControl, IP
     public static readonly StyledProperty<bool> IsReadOnlyProperty =
         AvaloniaProperty.Register<TimePickerBase, bool>(nameof(IsReadOnly));
 
+    [Obsolete("Use IsReadOnlyProperty instead.")]
+    public static readonly StyledProperty<bool> IsReadonlyProperty = IsReadOnlyProperty;
+
     public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
         TextBox.PlaceholderForegroundProperty.AddOwner<TimePickerBase>();
 
@@ -85,6 +88,14 @@ public abstract class TimePickerBase: TemplatedControl, IInnerContentControl, IP
     }
 
     public bool IsReadOnly
+    {
+        get => GetValue(IsReadOnlyProperty);
+        set => SetValue(IsReadOnlyProperty, value);
+    }
+
+    [Obsolete("Use IsReadOnly instead.")]
+    [SuppressMessage("AvaloniaProperty", "AVP1012", Justification = "Obsolete property alias for backward compatibility.")]
+    public bool IsReadonly
     {
         get => GetValue(IsReadOnlyProperty);
         set => SetValue(IsReadOnlyProperty, value);
