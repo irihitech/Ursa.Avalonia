@@ -46,6 +46,7 @@
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
                                 InnerRightContent="{TemplateBinding InnerRightContent}"
+                                IsReadOnly="{TemplateBinding IsReadonly}"
                                 Theme="{DynamicResource LooklessTextBox}"
                                 PlaceholderText="{TemplateBinding PlaceholderText}"
                                 PlaceholderForeground="{TemplateBinding PlaceholderForeground}" />
