@@ -151,7 +151,12 @@
             </Style>
         </Style>
 
-        <!--  Focused State  -->
+        
+        <!--  ReadOnly State  -->
+        <Style Selector="^[IsReadonly=True] /template/ ComboBox#PART_OffsetComboBox">
+            <Setter Property="IsEnabled" Value="False" />
+        </Style>
+<!--  Focused State  -->
         <Style Selector="^:focus-within /template/ Border#Background">
             <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
         </Style>
