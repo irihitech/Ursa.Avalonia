@@ -70,6 +70,15 @@
                     DisplayFormat="yyyy-MM-dd"
                     OffsetDefinitions="Utc, Local, +8:00, -5:00"
                     ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
+
+                <TextBlock Text="IsReadOnly" />
+                <ToggleSwitch Name="readonlyToggle" Content="Read Only" />
+                <u:DateOffsetPicker
+                    Width="280"
+                    DisplayFormat="yyyy-MM-dd"
+                    IsReadonly="{Binding #readonlyToggle.IsChecked}"
+                    SelectedDate="2025-06-26+08:00"
+                    ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
             </StackPanel>
 
         </StackPanel>

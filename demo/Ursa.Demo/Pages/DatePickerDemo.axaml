@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="Ursa.Demo.Pages.DatePickerDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -37,6 +37,14 @@
                 Name="singlePicker"
                 Width="200"
                 Classes="ClearButton" />
+
+            <TextBlock Text="IsReadOnly" />
+            <ToggleSwitch Name="readonlyToggle" Content="Read Only" />
+            <u:DatePicker
+                Width="200"
+                DisplayFormat="{Binding #format.Text}"
+                IsReadonly="{Binding #readonlyToggle.IsChecked}"
+                SelectedDate="2025-06-26" />
         </StackPanel>
     </StackPanel>
 </UserControl>

@@ -63,6 +63,14 @@
                 Width="360"
                 Classes="ClearButton"
                 ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
+
+            <TextBlock Text="IsReadOnly" />
+            <ToggleSwitch Name="readonlyToggle" Content="Read Only" />
+            <u:DateTimeOffsetPicker
+                Width="360"
+                IsReadonly="{Binding #readonlyToggle.IsChecked}"
+                SelectedDate="2025-06-26T10:30:00+08:00"
+                ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
             </StackPanel>
 
         </StackPanel>

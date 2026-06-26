@@ -75,9 +75,23 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
         PseudoClasses.Set(PseudoClassName.PC_Empty, SelectedDate is null);
     }
 
-    private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e) => CommitInput();
-    private void OnTextBoxGotFocus(object? sender, FocusChangedEventArgs e) => InitializePopupOpen();
-    private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e) => InitializePopupOpen();
+    private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e)
+    {
+        if (IsReadonly) return;
+        CommitInput();
+    }
+
+    private void OnTextBoxGotFocus(object? sender, FocusChangedEventArgs e)
+    {
+        if (IsReadonly) return;
+        InitializePopupOpen();
+    }
+
+    private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e)
+    {
+        if (IsReadonly) return;
+        InitializePopupOpen();
+    }
 
     private void InitializePopupOpen()
     {
@@ -159,6 +173,7 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
+        if (IsReadonly) return;
         base.OnPointerPressed(e);
         if (!e.Handled && e.Source is Visual source)
         {
@@ -169,8 +184,15 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
         }
     }
 
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        if (IsReadonly) return;
+        base.OnKeyDown(e);
+    }
+
     protected override void OnLostFocus(FocusChangedEventArgs e)
     {
+        if (IsReadonly) return;
         base.OnLostFocus(e);
         var newItem = e.NewFocusedElement;
         if (Equals(newItem, _textBox)) return;

@@ -37,6 +37,14 @@
                 Width="200"
                 Classes="ClearButton"
                 DisplayFormat="{Binding #format.Text}" />
+
+            <TextBlock Text="IsReadOnly" />
+            <ToggleSwitch Name="readonlyToggle" Content="Read Only" />
+            <u:DateOnlyPicker
+                Width="200"
+                DisplayFormat="{Binding #format.Text}"
+                IsReadonly="{Binding #readonlyToggle.IsChecked}"
+                SelectedDate="2025-06-26" />
         </StackPanel>
     </StackPanel>
 </UserControl>
