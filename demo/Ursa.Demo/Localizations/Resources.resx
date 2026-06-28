@@ -261,4 +261,7 @@
   <data name="Main_Banner_Description" xml:space="preserve">
     <value>Aesthetic revolution of productivity</value>
   </data>
+  <data name="Menu_Header_VirtualizingUniformGrid" xml:space="preserve">
+    <value>Virtualizing UniformGrid</value>
+  </data>
 </root>
