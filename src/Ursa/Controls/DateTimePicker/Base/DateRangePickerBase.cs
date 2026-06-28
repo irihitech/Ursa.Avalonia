@@ -4,6 +4,7 @@ using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Media;
 using Avalonia.Data;
 using Irihi.Avalonia.Shared.Common;
 using Irihi.Avalonia.Shared.Contracts;
@@ -61,6 +62,15 @@ public abstract class DateRangePickerBase : TemplatedControl, IInnerContentContr
 
     public static readonly StyledProperty<bool> IsReadOnlyProperty =
         AvaloniaProperty.Register<DateRangePickerBase, bool>(nameof(IsReadOnly));
+
+    public static readonly StyledProperty<string?> StartPlaceholderTextProperty =
+        AvaloniaProperty.Register<DateRangePickerBase, string?>(nameof(StartPlaceholderText));
+
+    public static readonly StyledProperty<string?> EndPlaceholderTextProperty =
+        AvaloniaProperty.Register<DateRangePickerBase, string?>(nameof(EndPlaceholderText));
+
+    public static readonly StyledProperty<IBrush?> PlaceholderForegroundProperty =
+        TextBox.PlaceholderForegroundProperty.AddOwner<DateRangePickerBase>();
 
     [Obsolete("Use IsReadOnlyProperty instead.")]
     public static readonly StyledProperty<bool> IsReadonlyProperty = IsReadOnlyProperty;
@@ -137,6 +147,24 @@ public abstract class DateRangePickerBase : TemplatedControl, IInnerContentContr
     {
         get => GetValue(DisplayFormatProperty);
         set => SetValue(DisplayFormatProperty, value);
+    }
+
+    public string? StartPlaceholderText
+    {
+        get => GetValue(StartPlaceholderTextProperty);
+        set => SetValue(StartPlaceholderTextProperty, value);
+    }
+
+    public string? EndPlaceholderText
+    {
+        get => GetValue(EndPlaceholderTextProperty);
+        set => SetValue(EndPlaceholderTextProperty, value);
+    }
+
+    public IBrush? PlaceholderForeground
+    {
+        get => GetValue(PlaceholderForegroundProperty);
+        set => SetValue(PlaceholderForegroundProperty, value);
     }
 
     public abstract void Clear();

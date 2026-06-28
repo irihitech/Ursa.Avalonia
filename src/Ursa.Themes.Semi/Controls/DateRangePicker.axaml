@@ -10,6 +10,9 @@
         <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
         <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
         <Setter Property="MinHeight" Value="32" />
+        <Setter Property="StartPlaceholderText" Value="Start date" />
+        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
+        <Setter Property="EndPlaceholderText" Value="End date" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:DateRangePickerBase">
                 <DataValidationErrors>
@@ -36,6 +39,8 @@
                                 FontSize="{TemplateBinding FontSize}"
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
+                                PlaceholderText="{TemplateBinding StartPlaceholderText}"
+                                PlaceholderForeground="{TemplateBinding PlaceholderForeground}"
                                 IsReadOnly="{TemplateBinding IsReadOnly}" />
                             <TextBlock
                                 Grid.Column="1"
@@ -51,6 +56,8 @@
                                 CornerRadius="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter None}}"
                                 FontSize="{TemplateBinding FontSize}"
                                 Foreground="{TemplateBinding Foreground}"
+                                PlaceholderText="{TemplateBinding EndPlaceholderText}"
+                                PlaceholderForeground="{TemplateBinding PlaceholderForeground}"
                                 InnerRightContent="{TemplateBinding InnerRightContent}"
                                 IsReadOnly="{TemplateBinding IsReadOnly}" />
                             <Button
