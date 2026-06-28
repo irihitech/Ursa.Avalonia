@@ -254,4 +254,7 @@
   <data name="Main_Banner_Description" xml:space="preserve">
     <value>聚焦生产力的美学进化</value>
   </data>
+  <data name="Menu_Header_VirtualizingUniformGrid" xml:space="preserve">
+    <value>虚拟化UniformGrid</value>
+  </data>
 </root>

@@ -102,6 +102,7 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = lang.Menu_Header_DualBadge, Key = MenuKeys.MenuKeyDualBadge },
                     new() { MenuHeader = lang.Menu_Header_ImageViewer, Key = MenuKeys.MenuKeyImageViewer, Status = "WIP" },
                     new() { MenuHeader = lang.Menu_Header_ElasticWrapPanel, Key = MenuKeys.MenuKeyElasticWrapPanel },
+                    new() { MenuHeader = lang.Menu_Header_VirtualizingUniformGrid, Key = MenuKeys.MenuKeyVirtualizingUniformGrid, Status = "New" },
                     new() { MenuHeader = lang.Menu_Header_Marquee, Key = MenuKeys.MenuKeyMarquee },
                     new() { MenuHeader = lang.Menu_Header_NumberDisplayer, Key = MenuKeys.MenuKeyNumberDisplayer },
                     new() { MenuHeader = lang.Menu_Header_QrCode, Key = MenuKeys.MenuKeyQrCode },
@@ -184,6 +185,7 @@ public static class MenuKeys
     public const string MenuKeyToolBar = "ToolBar";
     public const string MenuKeyTreeComboBox = "TreeComboBox";
     public const string MenuKeyTwoTonePathIcon = "TwoTonePathIcon";
+    public const string MenuKeyVirtualizingUniformGrid = "VirtualizingUniformGrid";
     public const string MenuKeyAspectRatioLayout = "AspectRatioLayout";
     public const string MenuKeyPathPicker = "PathPicker";
     public const string MenuKeyAnchor = "Anchor";
