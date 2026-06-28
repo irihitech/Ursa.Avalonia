@@ -36,7 +36,7 @@
                                 FontSize="{TemplateBinding FontSize}"
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
-                                IsReadOnly="{TemplateBinding IsReadonly}" />
+                                IsReadOnly="{TemplateBinding IsReadOnly}" />
                             <TextBlock
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
@@ -52,7 +52,7 @@
                                 FontSize="{TemplateBinding FontSize}"
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerRightContent="{TemplateBinding InnerRightContent}"
-                                IsReadOnly="{TemplateBinding IsReadonly}" />
+                                IsReadOnly="{TemplateBinding IsReadOnly}" />
                             <Button
                                 Name="ClearButton"
                                 Grid.Column="3"

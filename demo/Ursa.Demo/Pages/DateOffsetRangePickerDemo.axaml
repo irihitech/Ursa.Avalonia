@@ -71,6 +71,16 @@
                     Classes="ClearButton"
                     DisplayFormat="yyyy-MM-dd"
                     ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
+
+                <TextBlock Text="IsReadOnly" />
+                <ToggleSwitch Name="readonlyToggle" Content="Read Only" />
+                <u:DateOffsetRangePicker
+                    Width="400"
+                    DisplayFormat="yyyy-MM-dd"
+                    IsReadOnly="{Binding #readonlyToggle.IsChecked}"
+                    SelectedEndDate="2025-06-30+08:00"
+                    SelectedStartDate="2025-06-26+08:00"
+                    ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
             </StackPanel>
 
         </StackPanel>

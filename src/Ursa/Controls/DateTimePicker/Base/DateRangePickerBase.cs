@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Avalonia;
 using Avalonia.Collections;
 using Avalonia.Controls;
@@ -58,8 +59,11 @@ public abstract class DateRangePickerBase : TemplatedControl, IInnerContentContr
         AvaloniaProperty.Register<DateRangePickerBase, bool>(
             nameof(IsDropdownOpen), defaultBindingMode: BindingMode.TwoWay);
 
-    public static readonly StyledProperty<bool> IsReadonlyProperty =
-        AvaloniaProperty.Register<DateRangePickerBase, bool>(nameof(IsReadonly));
+    public static readonly StyledProperty<bool> IsReadOnlyProperty =
+        AvaloniaProperty.Register<DateRangePickerBase, bool>(nameof(IsReadOnly));
+
+    [Obsolete("Use IsReadOnlyProperty instead.")]
+    public static readonly StyledProperty<bool> IsReadonlyProperty = IsReadOnlyProperty;
 
     public AvaloniaList<DateRange> BlackoutDates
     {
@@ -85,10 +89,18 @@ public abstract class DateRangePickerBase : TemplatedControl, IInnerContentContr
         set => SetValue(IsTodayHighlightedProperty, value);
     }
 
+    public bool IsReadOnly
+    {
+        get => GetValue(IsReadOnlyProperty);
+        set => SetValue(IsReadOnlyProperty, value);
+    }
+
+    [Obsolete("Use IsReadOnly instead.")]
+    [SuppressMessage("AvaloniaProperty", "AVP1012", Justification = "Obsolete property alias for backward compatibility.")]
     public bool IsReadonly
     {
-        get => GetValue(IsReadonlyProperty);
-        set => SetValue(IsReadonlyProperty, value);
+        get => GetValue(IsReadOnlyProperty);
+        set => SetValue(IsReadOnlyProperty, value);
     }
 
     public bool IsDropdownOpen

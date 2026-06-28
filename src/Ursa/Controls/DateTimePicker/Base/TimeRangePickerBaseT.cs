@@ -80,6 +80,7 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
 
     private void OnTextBoxLostFocus(object? sender, FocusChangedEventArgs e)
     {
+        if (IsReadOnly) return;
         CommitInput();
         if (_status is { Current: Status.End, Previous: Status.Start }
             && Equals(sender, _endTextBox) && _endTextBox?.IsFocused == true)
@@ -88,11 +89,17 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
         }
     }
 
-    private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e) =>
+    private void OnTextBoxPressed(object? sender, PointerPressedEventArgs e)
+    {
+        if (IsReadOnly) return;
         InitializePopupOpen(sender as TextBox);
+    }
 
-    private void OnTextBoxGetFocus(object? sender, FocusChangedEventArgs e) =>
+    private void OnTextBoxGetFocus(object? sender, FocusChangedEventArgs e)
+    {
+        if (IsReadOnly) return;
         InitializePopupOpen(sender as TextBox);
+    }
 
     private void InitializePopupOpen(TextBox? sender)
     {
@@ -130,6 +137,12 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
 
     protected override void OnKeyDown(KeyEventArgs e)
     {
+        if (IsReadOnly)
+        {
+            base.OnKeyDown(e);
+            return;
+        }
+
         if (e.Key == Key.Escape)
         {
             SetCurrentValue(IsDropdownOpenProperty, false);
@@ -177,6 +190,7 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
 
     protected override void OnLostFocus(FocusChangedEventArgs e)
     {
+        if (IsReadOnly) return;
         base.OnLostFocus(e);
         FocusChanged(IsKeyboardFocusWithin);
         var element = e.NewFocusedElement;
@@ -196,6 +210,7 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
+        if (IsReadOnly) return;
         base.OnPointerPressed(e);
         if (e.Source is Visual source && _popup?.IsInsidePopup(source) == true) return;
         if (_startTextBox?.IsFocused == false)

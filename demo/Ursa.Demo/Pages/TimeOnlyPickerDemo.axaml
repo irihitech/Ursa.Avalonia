@@ -53,6 +53,16 @@
                 SelectedTime="{Binding Time}"
                 DisplayFormat="{Binding #displayFormat.Text}"
                 PanelFormat="{Binding #panelFormat.Text}" />
+
+            <TextBlock Text="IsReadOnly" />
+            <ToggleSwitch Name="readonlyToggle" Content="Read Only" />
+            <u:TimeOnlyPicker
+                Width="200"
+                HorizontalAlignment="Left"
+                DisplayFormat="{Binding #displayFormat.Text}"
+                IsReadOnly="{Binding #readonlyToggle.IsChecked}"
+                PanelFormat="{Binding #panelFormat.Text}"
+                SelectedTime="10:30:00" />
         </StackPanel>
     </StackPanel>
 </UserControl>

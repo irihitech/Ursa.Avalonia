@@ -43,6 +43,15 @@
                 DisplayFormat="{Binding #format.Text}"
                 SelectedEndDate="{Binding EndDate}"
                 SelectedStartDate="{Binding StartDate}" />
+
+            <TextBlock Text="IsReadOnly" />
+            <ToggleSwitch Name="readonlyToggle" Content="Read Only" />
+            <u:DateRangePicker
+                Width="360"
+                DisplayFormat="{Binding #format.Text}"
+                IsReadOnly="{Binding #readonlyToggle.IsChecked}"
+                SelectedEndDate="2025-06-30"
+                SelectedStartDate="2025-06-26" />
         </StackPanel>
     </StackPanel>
 </UserControl>

@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="Ursa.Demo.Pages.TimePickerDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -55,6 +55,16 @@
                 SelectedTime="{Binding Time}"
                 DisplayFormat="{Binding #displayFormat.Text}"
                 PanelFormat="{Binding #panelFormat.Text}" />
+
+            <TextBlock Text="IsReadOnly" />
+            <ToggleSwitch Name="readonlyToggle" Content="Read Only" />
+            <u:TimePicker
+                Width="200"
+                HorizontalAlignment="Left"
+                DisplayFormat="{Binding #displayFormat.Text}"
+                IsReadOnly="{Binding #readonlyToggle.IsChecked}"
+                PanelFormat="{Binding #panelFormat.Text}"
+                SelectedTime="10:30:00" />
         </StackPanel>
     </StackPanel>
 </UserControl>
