@@ -3,23 +3,25 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
     <ControlTheme x:Key="{x:Type u:ImageViewer}" TargetType="u:ImageViewer">
-        <Setter Property="Background" Value="LightGray" />
+        <Setter Property="Background" Value="{DynamicResource SemiGrey1}" />
+        <Setter Property="Focusable" Value="True" />
+
         <Setter Property="Template">
             <ControlTemplate TargetType="{x:Type u:ImageViewer}">
                 <VisualLayerManager Name="{x:Static u:ImageViewer.PART_Layer}">
                     <Border Background="{TemplateBinding Background}" ClipToBounds="True">
-                        <Image
+                        <u:ImageViewerPresenter
+                            ClipToBounds="False"
                             Name="{x:Static u:ImageViewer.PART_Image}"
                             Source="{TemplateBinding Source}"
-                            Stretch="Uniform">
-                            <Image.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleX="{Binding Scale, RelativeSource={RelativeSource TemplatedParent}}" ScaleY="{Binding Scale, RelativeSource={RelativeSource TemplatedParent}}" />
-                                    <TranslateTransform X="{Binding TranslateX, RelativeSource={RelativeSource TemplatedParent}}" Y="{Binding TranslateY, RelativeSource={RelativeSource TemplatedParent}}" />
-                                    <RotateTransform Angle="0" />
-                                </TransformGroup>
-                            </Image.RenderTransform>
-                        </Image>
+                            Stretch="{TemplateBinding Stretch}"
+                            StretchDirection="{TemplateBinding StretchDirection}"
+                            BlendMode="{TemplateBinding BlendMode}"
+                            Zoom="{TemplateBinding Zoom}"
+                            OffsetX="{TemplateBinding OffsetX}"
+                            OffsetY="{TemplateBinding OffsetY}"
+                            >
+                        </u:ImageViewerPresenter>
                     </Border>
                 </VisualLayerManager>
             </ControlTemplate>
