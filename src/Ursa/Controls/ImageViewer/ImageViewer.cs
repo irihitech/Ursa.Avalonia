@@ -345,6 +345,11 @@ public class ImageViewer: TemplatedControl
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
         base.OnPointerPressed(e);
+        var point = e.GetCurrentPoint(this);
+        if (point.Properties.IsLeftButtonPressed)
+        {
+            PseudoClasses.Set(PC_Moving, true);
+        }
         _gesture.PointerPressed(e, this);
     }
 
@@ -357,12 +362,14 @@ public class ImageViewer: TemplatedControl
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
     {
         base.OnPointerReleased(e);
+        PseudoClasses.Set(PC_Moving, false);
         _gesture.PointerReleased(e, this);
     }
 
     protected override void OnPointerCaptureLost(PointerCaptureLostEventArgs e)
     {
         base.OnPointerCaptureLost(e);
+        PseudoClasses.Set(PC_Moving, false);
         _gesture.PointerCaptureLost();
     }
 
