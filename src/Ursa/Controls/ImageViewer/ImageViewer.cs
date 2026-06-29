@@ -442,7 +442,9 @@ public class ImageViewer: TemplatedControl
 
     protected override void OnKeyDown(KeyEventArgs e)
     {
-        double step = e.KeyModifiers is KeyModifiers.Control or KeyModifiers.Meta ? LargeChange : SmallChange;
+        double step = e.KeyModifiers.HasFlag(KeyModifiers.Control) || e.KeyModifiers.HasFlag(KeyModifiers.Meta) ?
+            LargeChange :
+            SmallChange;
         switch (e.Key)
         {
             case Key.Left:
