@@ -4,6 +4,8 @@
     xmlns:u="https://irihi.tech/ursa">
     <ControlTheme x:Key="{x:Type u:ImageViewer}" TargetType="u:ImageViewer">
         <Setter Property="Background" Value="{DynamicResource SemiGrey1}" />
+        <Setter Property="Focusable" Value="True" />
+
         <Setter Property="Template">
             <ControlTemplate TargetType="{x:Type u:ImageViewer}">
                 <VisualLayerManager Name="{x:Static u:ImageViewer.PART_Layer}">
