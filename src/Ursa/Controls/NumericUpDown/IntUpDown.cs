@@ -99,6 +99,16 @@ public class NumericDoubleUpDown : NumericUpDownBase<double>
     protected override double? Add(double? a, double? b) => a + b;
 
     protected override double? Minus(double? a, double? b) => a - b;
+
+    protected override double? CoerceCurrentValue(double? value)
+    {
+        if (value.HasValue && double.IsNaN(value.Value))
+        {
+            return value;
+        }
+        return base.CoerceCurrentValue(value);
+    }
+
     public override void Clear()
     {
         base.Clear();
@@ -328,6 +338,16 @@ public class NumericFloatUpDown : NumericUpDownBase<float>
     protected override float? Add(float? a, float? b) => a + b;
 
     protected override float? Minus(float? a, float? b) => a - b;
+
+    protected override float? CoerceCurrentValue(float? value)
+    {
+        if (value.HasValue && float.IsNaN(value.Value))
+        {
+            return value;
+        }
+        return base.CoerceCurrentValue(value);
+    }
+
     public override void Clear()
     {
         base.Clear();
