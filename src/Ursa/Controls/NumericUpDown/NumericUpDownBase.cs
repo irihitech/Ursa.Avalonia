@@ -445,23 +445,30 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
 
         nameof(Value), defaultBindingMode: BindingMode.TwoWay, enableDataValidation: true, coerce: CoerceCurrentValue);
 
-    private static T? CoerceCurrentValue(AvaloniaObject instance, T? arg2)
+    private static T? CoerceCurrentValue(AvaloniaObject instance, T? value)
     {
-        if (instance is not NumericUpDownBase<T> { IsInitialized: true } n) return arg2;
-        if (arg2 is null)
+        if (instance is NumericUpDownBase<T> { IsInitialized: true } n)
         {
-            return n.EmptyInputValue;
+            return n.CoerceCurrentValue(value);
         }
-        var value = arg2.Value;
-        if(value.CompareTo(n.Minimum) < 0)
+        return value;
+    }
+
+    protected virtual T? CoerceCurrentValue(T? value)
+    {
+        if (value is null)
         {
-            return n.Minimum;
+            return EmptyInputValue;
         }
-        if (value.CompareTo(n.Maximum) > 0)
+        if (value.Value.CompareTo(Minimum) < 0)
         {
-            return n.Maximum;
+            return Minimum;
         }
-        return arg2.Value;
+        if (value.Value.CompareTo(Maximum) > 0)
+        {
+            return Maximum;
+        }
+        return value;
     }
 
     public T? Value
