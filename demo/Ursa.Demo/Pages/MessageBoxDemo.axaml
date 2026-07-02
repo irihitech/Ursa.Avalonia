@@ -23,7 +23,6 @@
         <ToggleSwitch Content="Try Long Message" IsChecked="{Binding UseLong}" />
         <ToggleSwitch Content="Show Title" IsChecked="{Binding UseTitle}" />
         <ToggleSwitch Content="Overlay" IsChecked="{Binding UseOverlay}" />
-        <ToggleSwitch Content="Use Observable" IsChecked="{Binding UseObservable}" />
         <Button Command="{Binding DefaultMessageBoxCommand}" Content="Default" />
         <Button Command="{Binding ObservableDemoCommand}" Content="Observable Demo" />
         <Button Command="{Binding OkCommand}" Content="OK" />

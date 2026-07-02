@@ -86,15 +86,6 @@ public class MessageBoxDemoViewModel: ObservableObject
         set => SetProperty(ref _useOverlay, value);
     }
 
-    private bool _useObservable;
-
-    public bool UseObservable
-    {
-        get => _useObservable;
-        set => SetProperty(ref _useObservable, value);
-    }
-    
-
     public MessageBoxDemoViewModel()
     {
         DefaultMessageBoxCommand = new AsyncRelayCommand(OnDefaultMessageAsync);
@@ -153,23 +144,6 @@ public class MessageBoxDemoViewModel: ObservableObject
 
     private async Task Show(MessageBoxButton button)
     {
-        if (UseObservable)
-        {
-            var messageObs = CreateReturnObservable(_message);
-            IObservable<string>? titleObs = string.IsNullOrEmpty(_title)
-                ? null
-                : CreateReturnObservable(_title);
-            if (UseOverlay)
-            {
-                Result = await OverlayMessageBox.ShowAsync(messageObs, titleObs, icon: SelectedIcon, button: button);
-            }
-            else
-            {
-                Result = await MessageBox.ShowAsync(messageObs, titleObs, icon: SelectedIcon, button: button);
-            }
-            return;
-        }
-
         if (UseOverlay)
         {
             Result = await OverlayMessageBox.ShowAsync(_message, _title, icon: SelectedIcon, button:button);
