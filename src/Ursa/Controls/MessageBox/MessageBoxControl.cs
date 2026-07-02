@@ -33,6 +33,25 @@ public class MessageBoxControl : DialogControlBase
         AvaloniaProperty.Register<MessageBoxControl, string?>(
             nameof(Title));
 
+    /// <summary>
+    /// Observable source for the message title. When set, the control subscribes to this
+    /// observable and forwards each value to the <see cref="Title"/> property.
+    /// The previous subscription is automatically disposed.
+    /// </summary>
+    public static readonly StyledProperty<IObservable<string>?> TitleSourceProperty =
+        AvaloniaProperty.Register<MessageBoxControl, IObservable<string>?>(nameof(TitleSource));
+
+    /// <summary>
+    /// Observable source for the message content. When set, the control subscribes to this
+    /// observable and forwards each value to the <see cref="ContentControl.Content"/> property.
+    /// The previous subscription is automatically disposed.
+    /// </summary>
+    public static readonly StyledProperty<IObservable<string>?> ContentSourceProperty =
+        AvaloniaProperty.Register<MessageBoxControl, IObservable<string>?>(nameof(ContentSource));
+
+    private IDisposable? _titleSourceSubscription;
+    private IDisposable? _contentSourceSubscription;
+
     private Button? _cancelButton;
     private Button? _noButton;
     private Button? _okButton;
@@ -42,6 +61,24 @@ public class MessageBoxControl : DialogControlBase
     static MessageBoxControl()
     {
         ButtonsProperty.Changed.AddClassHandler<MessageBoxControl>((o, _) => { o.SetButtonVisibility(); });
+        TitleSourceProperty.Changed.AddClassHandler<MessageBoxControl>((o, e) =>
+        {
+            o._titleSourceSubscription?.Dispose();
+            o._titleSourceSubscription = null;
+            if (e.NewValue is IObservable<string> observable)
+            {
+                o._titleSourceSubscription = observable.Subscribe(s => o.Title = s);
+            }
+        });
+        ContentSourceProperty.Changed.AddClassHandler<MessageBoxControl>((o, e) =>
+        {
+            o._contentSourceSubscription?.Dispose();
+            o._contentSourceSubscription = null;
+            if (e.NewValue is IObservable<string> observable)
+            {
+                o._contentSourceSubscription = observable.Subscribe(s => o.Content = s);
+            }
+        });
     }
 
     public MessageBoxIcon MessageIcon
@@ -60,6 +97,18 @@ public class MessageBoxControl : DialogControlBase
     {
         get => GetValue(TitleProperty);
         set => SetValue(TitleProperty, value);
+    }
+
+    public IObservable<string>? TitleSource
+    {
+        get => GetValue(TitleSourceProperty);
+        set => SetValue(TitleSourceProperty, value);
+    }
+
+    public IObservable<string>? ContentSource
+    {
+        get => GetValue(ContentSourceProperty);
+        set => SetValue(ContentSourceProperty, value);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -86,6 +135,13 @@ public class MessageBoxControl : DialogControlBase
             _ => null
         };
         defaultButton?.Focus();
+    }
+
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+        _titleSourceSubscription?.Dispose();
+        _contentSourceSubscription?.Dispose();
     }
 
     private void DefaultButtonsClose(object? sender, RoutedEventArgs e)

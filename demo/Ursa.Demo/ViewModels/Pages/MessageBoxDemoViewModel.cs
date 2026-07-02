@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -31,6 +32,7 @@ public class MessageBoxDemoViewModel: ObservableObject
     private string? _title;
 
     public ICommand DefaultMessageBoxCommand { get; set; }
+    public ICommand ObservableDemoCommand { get; set; }
     public ICommand OkCommand { get; set; }
     public ICommand YesNoCommand { get; set; }
     public ICommand YesNoCancelCommand { get; set; }
@@ -83,12 +85,20 @@ public class MessageBoxDemoViewModel: ObservableObject
         get => _useOverlay;
         set => SetProperty(ref _useOverlay, value);
     }
-    
+
+    private bool _useObservable;
+
+    public bool UseObservable
+    {
+        get => _useObservable;
+        set => SetProperty(ref _useObservable, value);
+    }
     
 
     public MessageBoxDemoViewModel()
     {
         DefaultMessageBoxCommand = new AsyncRelayCommand(OnDefaultMessageAsync);
+        ObservableDemoCommand = new AsyncRelayCommand(OnObservableDemoAsync);
         OkCommand = new AsyncRelayCommand(OnOkAsync);
         YesNoCommand = new AsyncRelayCommand(OnYesNoAsync);
         YesNoCancelCommand = new AsyncRelayCommand(OnYesNoCancelAsync);
@@ -101,15 +111,24 @@ public class MessageBoxDemoViewModel: ObservableObject
 
     private async Task OnDefaultMessageAsync()
     {
+        await Show(MessageBoxButton.OK);
+    }
+
+    private async Task OnObservableDemoAsync()
+    {
+        // Demonstrate dynamic observable: title updates every second, 5 ticks total
+        var titleObs = CreateIntervalObservable(TimeSpan.FromSeconds(1), 5, i => $"Observing... {i + 1}s");
+        var messageObs = CreateReturnObservable(
+            "This message is delivered via IObservable<string>.\nWatch the title change every second.");
+
         if (UseOverlay)
         {
-            Result = await OverlayMessageBox.ShowAsync(_message, _title, icon: SelectedIcon);
+            Result = await OverlayMessageBox.ShowAsync(messageObs, titleObs, icon: SelectedIcon);
         }
         else
         {
-            Result = await MessageBox.ShowAsync(_message, _title, icon: SelectedIcon);
+            Result = await MessageBox.ShowAsync(messageObs, titleObs, icon: SelectedIcon);
         }
-        
     }
     
     private async Task OnOkAsync()
@@ -134,6 +153,23 @@ public class MessageBoxDemoViewModel: ObservableObject
 
     private async Task Show(MessageBoxButton button)
     {
+        if (UseObservable)
+        {
+            var messageObs = CreateReturnObservable(_message);
+            IObservable<string>? titleObs = string.IsNullOrEmpty(_title)
+                ? null
+                : CreateReturnObservable(_title);
+            if (UseOverlay)
+            {
+                Result = await OverlayMessageBox.ShowAsync(messageObs, titleObs, icon: SelectedIcon, button: button);
+            }
+            else
+            {
+                Result = await MessageBox.ShowAsync(messageObs, titleObs, icon: SelectedIcon, button: button);
+            }
+            return;
+        }
+
         if (UseOverlay)
         {
             Result = await OverlayMessageBox.ShowAsync(_message, _title, icon: SelectedIcon, button:button);
@@ -149,4 +185,85 @@ public class MessageBoxDemoViewModel: ObservableObject
             Result = await MessageBox.ShowAsync(_message, _title, icon: SelectedIcon, button:button);
         }
     }
+
+    #region Minimal Observable Helpers (no System.Reactive required)
+
+    private static IObservable<T> CreateReturnObservable<T>(T value)
+    {
+        return new ReturnObservable<T>(value);
+    }
+
+    private static IObservable<T> CreateIntervalObservable<T>(TimeSpan interval, int count, Func<int, T> selector)
+    {
+        return new IntervalObservable<T>(interval, count, selector);
+    }
+
+    private sealed class ReturnObservable<T>(T value) : IObservable<T>
+    {
+        public IDisposable Subscribe(IObserver<T> observer)
+        {
+            observer.OnNext(value);
+            observer.OnCompleted();
+            return EmptyDisposable.Instance;
+        }
+    }
+
+    private sealed class IntervalObservable<T> : IObservable<T>
+    {
+        private readonly TimeSpan _interval;
+        private readonly int _count;
+        private readonly Func<int, T> _selector;
+
+        public IntervalObservable(TimeSpan interval, int count, Func<int, T> selector)
+        {
+            _interval = interval;
+            _count = count;
+            _selector = selector;
+        }
+
+        public IDisposable Subscribe(IObserver<T> observer)
+        {
+            if (_count <= 0)
+            {
+                observer.OnCompleted();
+                return EmptyDisposable.Instance;
+            }
+
+            var cts = new CancellationTokenSource();
+            _ = RunAsync(observer, cts.Token);
+            return new CancellationDisposable(cts);
+        }
+
+        private async Task RunAsync(IObserver<T> observer, CancellationToken ct)
+        {
+            try
+            {
+                for (int i = 0; i < _count; i++)
+                {
+                    await Task.Delay(_interval, ct);
+                    if (ct.IsCancellationRequested) return;
+                    observer.OnNext(_selector(i));
+                }
+                observer.OnCompleted();
+            }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                observer.OnError(ex);
+            }
+        }
+    }
+
+    private sealed class EmptyDisposable : IDisposable
+    {
+        public static readonly EmptyDisposable Instance = new();
+        public void Dispose() { }
+    }
+
+    private sealed class CancellationDisposable(CancellationTokenSource cts) : IDisposable
+    {
+        public void Dispose() => cts.Cancel();
+    }
+
+    #endregion
 }

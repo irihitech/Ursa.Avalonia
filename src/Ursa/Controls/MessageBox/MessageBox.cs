@@ -62,6 +62,60 @@ public static class MessageBox
         return result;
     }
 
+    public static async Task<MessageBoxResult> ShowAsync(
+        IObservable<string> message,
+        IObservable<string>? title = null,
+        MessageBoxIcon icon = MessageBoxIcon.None,
+        MessageBoxButton button = MessageBoxButton.OK,
+        string? styleClass = null)
+    {
+        var messageWindow = new MessageBoxWindow(button)
+        {
+            ContentSource = message,
+            TitleSource = title,
+            MessageIcon = icon
+        };
+        if (!string.IsNullOrWhiteSpace(styleClass))
+        {
+            var styles = styleClass.Split(Constants.SpaceSeparator, StringSplitOptions.RemoveEmptyEntries);
+            messageWindow.Classes.AddRange(styles);
+        }
+        var lifetime = Application.Current?.ApplicationLifetime;
+        if (lifetime is not IClassicDesktopStyleApplicationLifetime classLifetime) return MessageBoxResult.None;
+        var main = classLifetime.MainWindow;
+        if (main is null)
+        {
+            messageWindow.Show();
+            return MessageBoxResult.None;
+        }
+
+        var result = await messageWindow.ShowDialog<MessageBoxResult>(main);
+        return result;
+    }
+
+    public static async Task<MessageBoxResult> ShowAsync(
+        Window owner,
+        IObservable<string> message,
+        IObservable<string> title,
+        MessageBoxIcon icon = MessageBoxIcon.None,
+        MessageBoxButton button = MessageBoxButton.OK,
+        string? styleClass = null)
+    {
+        var messageWindow = new MessageBoxWindow(button)
+        {
+            ContentSource = message,
+            TitleSource = title,
+            MessageIcon = icon
+        };
+        if (!string.IsNullOrWhiteSpace(styleClass))
+        {
+            var styles = styleClass.Split(Constants.SpaceSeparator, StringSplitOptions.RemoveEmptyEntries);
+            messageWindow.Classes.AddRange(styles);
+        }
+        var result = await messageWindow.ShowDialog<MessageBoxResult>(owner);
+        return result;
+    }
+
     [Obsolete("Use OverlayMessageBox.ShowAsync instead.")]
     public static async Task<MessageBoxResult> ShowOverlayAsync(
         string message,
@@ -92,4 +146,3 @@ public static class MessageBox
         return result;
     }
 }
-

@@ -43,6 +43,66 @@ public class MessageBoxWindow(MessageBoxButton buttons) : Window
         set => SetValue(MessageIconProperty, value);
     }
 
+    /// <summary>
+    /// Observable source for the message title. When set, the control subscribes to this
+    /// observable and forwards each value to the <see cref="Window.Title"/> property.
+    /// The previous subscription is automatically disposed.
+    /// </summary>
+    public static readonly StyledProperty<IObservable<string>?> TitleSourceProperty =
+        AvaloniaProperty.Register<MessageBoxWindow, IObservable<string>?>(nameof(TitleSource));
+
+    /// <summary>
+    /// Observable source for the message content. When set, the control subscribes to this
+    /// observable and forwards each value to the <see cref="ContentControl.Content"/> property.
+    /// The previous subscription is automatically disposed.
+    /// </summary>
+    public static readonly StyledProperty<IObservable<string>?> ContentSourceProperty =
+        AvaloniaProperty.Register<MessageBoxWindow, IObservable<string>?>(nameof(ContentSource));
+
+    private IDisposable? _titleSourceSubscription;
+    private IDisposable? _contentSourceSubscription;
+
+    static MessageBoxWindow()
+    {
+        TitleSourceProperty.Changed.AddClassHandler<MessageBoxWindow>((o, e) =>
+        {
+            o._titleSourceSubscription?.Dispose();
+            o._titleSourceSubscription = null;
+            if (e.NewValue is IObservable<string> observable)
+            {
+                o._titleSourceSubscription = observable.Subscribe(s => o.Title = s);
+            }
+        });
+        ContentSourceProperty.Changed.AddClassHandler<MessageBoxWindow>((o, e) =>
+        {
+            o._contentSourceSubscription?.Dispose();
+            o._contentSourceSubscription = null;
+            if (e.NewValue is IObservable<string> observable)
+            {
+                o._contentSourceSubscription = observable.Subscribe(s => o.Content = s);
+            }
+        });
+    }
+
+    public IObservable<string>? TitleSource
+    {
+        get => GetValue(TitleSourceProperty);
+        set => SetValue(TitleSourceProperty, value);
+    }
+
+    public IObservable<string>? ContentSource
+    {
+        get => GetValue(ContentSourceProperty);
+        set => SetValue(ContentSourceProperty, value);
+    }
+
+    protected override void OnClosed(System.EventArgs e)
+    {
+        _titleSourceSubscription?.Dispose();
+        _contentSourceSubscription?.Dispose();
+        base.OnClosed(e);
+    }
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);

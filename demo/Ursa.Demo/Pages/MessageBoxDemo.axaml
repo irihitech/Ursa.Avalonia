@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="Ursa.Demo.Pages.MessageBoxDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -23,7 +23,9 @@
         <ToggleSwitch Content="Try Long Message" IsChecked="{Binding UseLong}" />
         <ToggleSwitch Content="Show Title" IsChecked="{Binding UseTitle}" />
         <ToggleSwitch Content="Overlay" IsChecked="{Binding UseOverlay}" />
+        <ToggleSwitch Content="Use Observable" IsChecked="{Binding UseObservable}" />
         <Button Command="{Binding DefaultMessageBoxCommand}" Content="Default" />
+        <Button Command="{Binding ObservableDemoCommand}" Content="Observable Demo" />
         <Button Command="{Binding OkCommand}" Content="OK" />
         <Button Command="{Binding OkCancelCommand}" Content="OKCancel" />
         <Button Command="{Binding YesNoCommand}" Content="YesNo" />
