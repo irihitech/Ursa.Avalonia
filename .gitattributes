@@ -1,0 +1,17 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Shell scripts must be LF
+*.sh text eol=lf
+
+# Windows batch files must be CRLF
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.ico binary
+*.snupkg binary
+*.nupkg binary
+*.mp3 binary
