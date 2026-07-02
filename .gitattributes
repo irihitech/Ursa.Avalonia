@@ -12,7 +12,6 @@
 *.png binary
 *.jpg binary
 *.ico binary
-*.svg binary
 *.snupkg binary
 *.nupkg binary
 *.mp3 binary
