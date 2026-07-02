@@ -444,4 +444,64 @@ public class NumericUpDownCoreTests
         result = (string?)formatMethod.Invoke(numericUpDown, new object?[] { null });
         Assert.Null(result);
     }
+
+    [AvaloniaFact]
+    public void NumericDoubleUpDown_Should_Preserve_NaN_Without_Coercion()
+    {
+        var window = new Window();
+        var numericUpDown = new NumericDoubleUpDown
+        {
+            Minimum = -100,
+            Maximum = 100
+        };
+        window.Content = numericUpDown;
+        window.Show();
+
+        Dispatcher.UIThread.RunJobs();
+
+        // Setting NaN should be preserved, not clamped to Maximum
+        numericUpDown.Value = double.NaN;
+        Dispatcher.UIThread.RunJobs();
+
+        Assert.True(double.IsNaN(numericUpDown.Value!.Value));
+
+        // Normal values outside range should still be coerced
+        numericUpDown.Value = 200;
+        Dispatcher.UIThread.RunJobs();
+        Assert.Equal(100, numericUpDown.Value);
+
+        numericUpDown.Value = -200;
+        Dispatcher.UIThread.RunJobs();
+        Assert.Equal(-100, numericUpDown.Value);
+    }
+
+    [AvaloniaFact]
+    public void NumericFloatUpDown_Should_Preserve_NaN_Without_Coercion()
+    {
+        var window = new Window();
+        var numericUpDown = new NumericFloatUpDown
+        {
+            Minimum = -100,
+            Maximum = 100
+        };
+        window.Content = numericUpDown;
+        window.Show();
+
+        Dispatcher.UIThread.RunJobs();
+
+        // Setting NaN should be preserved, not clamped to Maximum
+        numericUpDown.Value = float.NaN;
+        Dispatcher.UIThread.RunJobs();
+
+        Assert.True(float.IsNaN(numericUpDown.Value!.Value));
+
+        // Normal values outside range should still be coerced
+        numericUpDown.Value = 200;
+        Dispatcher.UIThread.RunJobs();
+        Assert.Equal(100, numericUpDown.Value);
+
+        numericUpDown.Value = -200;
+        Dispatcher.UIThread.RunJobs();
+        Assert.Equal(-100, numericUpDown.Value);
+    }
 }
