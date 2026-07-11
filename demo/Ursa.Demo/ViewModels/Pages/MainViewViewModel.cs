@@ -98,6 +98,7 @@ public partial class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyPathPicker => new PathPickerDemoViewModel(),
             MenuKeys.MenuKeyAnchor => new AnchorDemoViewModel(),
             MenuKeys.MenuKeyMultiAutoCompleteBox => new MultiAutoCompleteBoxDemoViewModel(),
+            MenuKeys.MenuKeyProportionalCanvas => new ProportionalCanvasDemoViewModel(),
             _ => throw new ArgumentOutOfRangeException(nameof(s), s, null)
         };
     }

@@ -106,7 +106,8 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = "Scroll To", Key = MenuKeys.MenuKeyScrollToButton },
                     new() { MenuHeader = "Theme Variant Mapper", Key = MenuKeys.MenuKeyThemeVariantMapper, Status = "New" },
                     new() { MenuHeader = "Timeline", Key = MenuKeys.MenuKeyTimeline },
-                    new() { MenuHeader = "TwoTonePathIcon", Key = MenuKeys.MenuKeyTwoTonePathIcon }
+                    new() { MenuHeader = "TwoTonePathIcon", Key = MenuKeys.MenuKeyTwoTonePathIcon },
+                    new() { MenuHeader = "Proportional Canvas", Key = MenuKeys.MenuKeyProportionalCanvas, Status = "New" },
                 }
             },
         };
@@ -187,4 +188,5 @@ public static class MenuKeys
     public const string MenuKeyPathPicker = "PathPicker";
     public const string MenuKeyAnchor = "Anchor";
     public const string MenuKeyMultiAutoCompleteBox = "MultiAutoCompleteBox";
+    public const string MenuKeyProportionalCanvas = "ProportionalCanvas";
 }
