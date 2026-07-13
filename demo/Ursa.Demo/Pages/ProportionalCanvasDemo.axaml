@@ -11,185 +11,191 @@
     xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
     xmlns:u="https://irihi.tech/ursa">
-    <StackPanel Spacing="20" Margin="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
-        <StackPanel Spacing="16">
+    <ScrollViewer>
+        <StackPanel Spacing="20" Margin="20">
+            <controls:PageMetadataView DataContext="{Binding PageMetadata}" />
+            <StackPanel Spacing="16">
 
-            <!-- ── Controls ────────────────────────────────────────────── -->
-            <TextBlock Text="ProportionalCanvas Demo" FontSize="20" FontWeight="Bold"/>
+                <!-- ── Controls ────────────────────────────────────────────── -->
+                <TextBlock Text="ProportionalCanvas Demo" FontSize="20" FontWeight="Bold" />
 
-            <TextBlock Text="Use the sliders to resize the canvas. Children with % suffix scale proportionally; plain numbers stay at fixed pixel positions."
-                       TextWrapping="Wrap"/>
+                <TextBlock Text="Use the sliders to resize the canvas. Children with % suffix scale proportionally; plain numbers stay at fixed pixel positions."
+                           TextWrapping="Wrap" />
 
-            <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto,Auto" Margin="0,8">
-                <TextBlock Text="Width:" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0,0,8,0"/>
-                <Slider Minimum="100" Maximum="800"
-                        Value="{Binding CanvasWidth}"
-                        Width="200"
-                        Grid.Row="0" Grid.Column="1"/>
-                <TextBlock Text="{Binding CanvasWidth, StringFormat='{}{0:F0} px'}"
-                           VerticalAlignment="Center" Margin="8,0,0,0"
-                           Grid.Row="0" Grid.Column="2"/>
+                <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto,Auto" Margin="0,8">
+                    <TextBlock Text="Width:" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0,0,8,0" />
+                    <Slider Minimum="100" Maximum="800"
+                            Value="{Binding CanvasWidth}"
+                            Width="200"
+                            Grid.Row="0" Grid.Column="1" />
+                    <TextBlock Text="{Binding CanvasWidth, StringFormat='{}{0:F0} px'}"
+                               VerticalAlignment="Center" Margin="8,0,0,0"
+                               Grid.Row="0" Grid.Column="2" />
 
-                <TextBlock Text="Height:" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="0,4,8,0"/>
-                <Slider Minimum="100" Maximum="600"
-                        Value="{Binding CanvasHeight}"
-                        Width="200"
-                        Grid.Row="1" Grid.Column="1"/>
-                <TextBlock Text="{Binding CanvasHeight, StringFormat='{}{0:F0} px'}"
-                           VerticalAlignment="Center" Margin="8,4,0,0"
-                           Grid.Row="1" Grid.Column="2"/>
-            </Grid>
+                    <TextBlock Text="Height:" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="0,4,8,0" />
+                    <Slider Minimum="100" Maximum="600"
+                            Value="{Binding CanvasHeight}"
+                            Width="200"
+                            Grid.Row="1" Grid.Column="1" />
+                    <TextBlock Text="{Binding CanvasHeight, StringFormat='{}{0:F0} px'}"
+                               VerticalAlignment="Center" Margin="8,4,0,0"
+                               Grid.Row="1" Grid.Column="2" />
+                </Grid>
 
-            <!-- ── ProportionalCanvas ──────────────────────────────────── -->
-            <Border BorderBrush="{DynamicResource SemiColorBorder}" BorderThickness="1" HorizontalAlignment="Left">
-                <u:ProportionalCanvas Width="{Binding CanvasWidth}"
-                            Height="{Binding CanvasHeight}"
-                            Background="{DynamicResource SemiColorBg0}"
-                            ClipToBounds="True">
+                <!-- ── ProportionalCanvas ──────────────────────────────────── -->
+                <Border BorderBrush="{DynamicResource SemiColorBorder}" BorderThickness="1" HorizontalAlignment="Left">
+                    <u:ProportionalCanvas Width="{Binding CanvasWidth}"
+                                          Height="{Binding CanvasHeight}"
+                                          Background="{DynamicResource SemiColorBackground1}"
+                                          ClipToBounds="True">
 
-                    <!-- ① Absolute position: 30px from left, 20px from top -->
-                    <Border u:ProportionalCanvas.Left="30"
-                            u:ProportionalCanvas.Top="20"
-                            Width="130" Height="36"
-                            Background="{DynamicResource SemiRed4}" CornerRadius="4"
-                            Opacity="0.5">
-                        <TextBlock Text="Absolute&#x0a;(30, 20) px"
-                                   FontSize="11"
-                                   TextAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
+                        <!-- ① Absolute position: 30px from left, 20px from top -->
+                        <Border u:ProportionalCanvas.Left="30"
+                                u:ProportionalCanvas.Top="20"
+                                Width="130" Height="36"
+                                Background="{DynamicResource SemiRed4}" CornerRadius="4"
+                                Opacity="0.5">
+                            <TextBlock Text="Left + Top&#x0a;(30, 20) px"
+                                       FontSize="11"
+                                       TextAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
 
-                    <!-- ② Proportional (25%, 10%) -->
-                    <Border u:ProportionalCanvas.Left="25%"
-                            u:ProportionalCanvas.Top="10%"
-                            Width="120" Height="36"
-                            Background="{DynamicResource SemiTeal4}" CornerRadius="4"
-                            Opacity="0.5">
-                        <TextBlock Text="25%, 10%"
-                                   FontSize="11"
-                                   TextAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
+                        <!-- ② Top-left corner: 25% from left, 10% from top -->
+                        <Border u:ProportionalCanvas.Left="25%"
+                                u:ProportionalCanvas.Top="10%"
+                                Width="120" Height="36"
+                                Background="{DynamicResource SemiTeal4}" CornerRadius="4"
+                                Opacity="0.5">
+                            <TextBlock Text="Left + Top&#x0a;(25%, 10%)"
+                                       FontSize="11"
+                                       TextAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
 
-                    <!-- ③ Right-anchored: 20% from right, 15% from top -->
-                    <Border u:ProportionalCanvas.Right="20%"
-                            u:ProportionalCanvas.Top="15%"
-                            Width="120" Height="36"
-                            Background="{DynamicResource SemiBlue4}" CornerRadius="4"
-                            Opacity="0.5">
-                        <TextBlock Text="Right&#x0a;(20% from right)"
-                                   FontSize="11"
-                                   TextAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
+                        <!-- ③ Top-right corner: 20% from right, 15% from top -->
+                        <Border u:ProportionalCanvas.Right="20%"
+                                u:ProportionalCanvas.Top="15%"
+                                Width="120" Height="36"
+                                Background="{DynamicResource SemiBlue4}" CornerRadius="4"
+                                Opacity="0.5">
+                            <TextBlock Text="Right + Top&#x0a;(20%, 15%)"
+                                       FontSize="11"
+                                       TextAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
 
-                    <!-- ④ Bottom-anchored: 30% from left, 20% from bottom -->
-                    <Border u:ProportionalCanvas.Left="30%"
-                            u:ProportionalCanvas.Bottom="20%"
-                            Width="120" Height="36"
-                            Background="{DynamicResource SemiAmber4}" CornerRadius="4"
-                            Opacity="0.5">
-                        <TextBlock Text="Bottom&#x0a;(20% from bottom)"
-                                   FontSize="11"
-                                   TextAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
+                        <!-- ④ Bottom-left corner: 30% from left, 20% from bottom -->
+                        <Border u:ProportionalCanvas.Left="30%"
+                                u:ProportionalCanvas.Bottom="20%"
+                                Width="120" Height="36"
+                                Background="{DynamicResource SemiAmber4}" CornerRadius="4"
+                                Opacity="0.5">
+                            <TextBlock Text="Left + Bottom&#x0a;(30%, 20%)"
+                                       FontSize="11"
+                                       TextAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
 
-                    <!-- ⑤ Bottom-right corner: 10% from right, 10% from bottom -->
-                    <Border u:ProportionalCanvas.Right="10%"
-                            u:ProportionalCanvas.Bottom="10%"
-                            Width="140" Height="36"
-                            Background="{DynamicResource SemiPurple4}" CornerRadius="4"
-                            Opacity="0.5">
-                        <TextBlock Text="Right + Bottom&#x0a;(10%, 10%)"
-                                   FontSize="11"
-                                   TextAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
+                        <!-- ⑤ Bottom-right corner: 10% from right, 10% from bottom -->
+                        <Border u:ProportionalCanvas.Right="10%"
+                                u:ProportionalCanvas.Bottom="10%"
+                                Width="140" Height="36"
+                                Background="{DynamicResource SemiPurple4}" CornerRadius="4"
+                                Opacity="0.5">
+                            <TextBlock Text="Right + Bottom&#x0a;(10%, 10%)"
+                                       FontSize="11"
+                                       TextAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
 
-                    <!-- ⑥ Stretch horizontally: Left=5%,Right=5%, Top=40% -->
-                    <Border u:ProportionalCanvas.Left="5%"
-                            u:ProportionalCanvas.Right="5%"
-                            u:ProportionalCanvas.Top="40%"
-                            Height="36"
-                            Background="{DynamicResource SemiGreen4}" CornerRadius="4"
-                            Opacity="0.5">
-                        <TextBlock Text="← Stretch H (5%–95%) →"
-                                   FontSize="11"
-                                   TextAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
+                        <!-- ⑥ Stretch horizontally: Left=5%, Right=5%, Top=40% -->
+                        <Border u:ProportionalCanvas.Left="5%"
+                                u:ProportionalCanvas.Right="5%"
+                                u:ProportionalCanvas.Top="40%"
+                                Height="36"
+                                Background="{DynamicResource SemiGreen4}" CornerRadius="4"
+                                Opacity="0.5">
+                            <TextBlock Text="← Stretch H →&#x0a;(5%–95%)"
+                                       FontSize="11"
+                                       TextAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
 
-                    <!-- ⑦ Stretch vertically: Left=60%,Top=5%,Bottom=20% -->
-                    <Border u:ProportionalCanvas.Left="60%"
-                            u:ProportionalCanvas.Top="5%"
-                            u:ProportionalCanvas.Bottom="20%"
-                            Width="130"
-                            Background="{DynamicResource SemiRed5}" CornerRadius="4"
-                            Opacity="0.5">
-                        <TextBlock Text="↕ Stretch V&#x0a;(5%–80%)"
-                                   FontSize="11"
-                                   TextAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
+                        <!-- ⑦ Stretch vertically: Left=20%, Top=5%, Bottom=20% -->
+                        <Border u:ProportionalCanvas.Left="20%"
+                                u:ProportionalCanvas.Top="5%"
+                                u:ProportionalCanvas.Bottom="20%"
+                                Width="130"
+                                Background="{DynamicResource SemiRed5}" CornerRadius="4"
+                                Opacity="0.5">
+                            <TextBlock Text="↕ Stretch V&#x0a;(5%–80%)"
+                                       FontSize="11"
+                                       TextAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
 
-                    <!-- ⑧ All four sides -->
-                    <Border u:ProportionalCanvas.Left="60%"
-                            u:ProportionalCanvas.Right="10%"
-                            u:ProportionalCanvas.Top="55%"
-                            u:ProportionalCanvas.Bottom="10%"
-                            Background="{DynamicResource SemiGrey4}" CornerRadius="4"
-                            Opacity="0.5">
-                        <TextBlock Text="All 4 Sides&#x0a;(60%→90%, 55%→90%)"
-                                   FontSize="11"
-                                   TextAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
+                        <!-- ⑧ All four sides -->
+                        <Border u:ProportionalCanvas.Left="60%"
+                                u:ProportionalCanvas.Right="10%"
+                                u:ProportionalCanvas.Top="55%"
+                                u:ProportionalCanvas.Bottom="10%"
+                                Background="{DynamicResource SemiGrey4}" CornerRadius="4"
+                                Opacity="0.5">
+                            <TextBlock Text="All 4 Sides&#x0a;(↔: 60%-90%, ↕: 55%-90%)"
+                                       FontSize="11"
+                                       TextAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
 
-                    <!-- ⑨ Mixed: X=60% relative, Y=60px absolute -->
-                    <Border u:ProportionalCanvas.Left="60%"
-                            u:ProportionalCanvas.Top="60"
-                            Width="150" Height="36"
-                            Background="{DynamicResource SemiLightGreen4}" CornerRadius="4"
-                            Opacity="0.5">
-                        <TextBlock Text="Mixed&#x0a;X: 60%&#x0a;Y: 60 px"
-                                   FontSize="10"
-                                   TextAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
+                        <!-- ⑨ Mixed: Left=40% relative, Top=80px absolute -->
+                        <Border u:ProportionalCanvas.Left="40%"
+                                u:ProportionalCanvas.Top="80"
+                                Width="150" Height="36"
+                                Background="{DynamicResource SemiLightGreen4}" CornerRadius="4"
+                                Opacity="0.5">
+                            <TextBlock Text="Mixed&#x0a;Left: 40%, Top: 80 px"
+                                       FontSize="11"
+                                       TextAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
 
-                    <!-- Grid lines (25% intervals) -->
-                    <Line u:ProportionalCanvas.Left="25%"
-                          u:ProportionalCanvas.Top="0%"
-                          u:ProportionalCanvas.Bottom="0%"
-                          Stroke="{DynamicResource SemiColorBorder}" StrokeThickness="1"
-                          StartPoint="0,0" EndPoint="0,20"/>
-                    <Line u:ProportionalCanvas.Left="50%"
-                          u:ProportionalCanvas.Top="0%"
-                          u:ProportionalCanvas.Bottom="0%"
-                          Stroke="{DynamicResource SemiColorBorder}" StrokeThickness="1"
-                          StartPoint="0,0" EndPoint="0,20"/>
-                    <Line u:ProportionalCanvas.Left="75%"
-                          u:ProportionalCanvas.Top="0%"
-                          u:ProportionalCanvas.Bottom="0%"
-                          Stroke="{DynamicResource SemiColorBorder}" StrokeThickness="1"
-                          StartPoint="0,0" EndPoint="0,20"/>
+                        <!-- Grid lines (25% intervals) -->
+                        <Line u:ProportionalCanvas.Left="25%"
+                              Stroke="{DynamicResource SemiColorBorder}" StrokeThickness="1"
+                              StartPoint="0,0" EndPoint="0,20" />
+                        <Line u:ProportionalCanvas.Left="50%"
+                              Stroke="{DynamicResource SemiColorBorder}" StrokeThickness="1"
+                              StartPoint="0,0" EndPoint="0,20" />
+                        <Line u:ProportionalCanvas.Left="75%"
+                              Stroke="{DynamicResource SemiColorBorder}" StrokeThickness="1"
+                              StartPoint="0,0" EndPoint="0,20" />
 
-                </u:ProportionalCanvas>
-            </Border>
+                        <Line u:ProportionalCanvas.Top="25%"
+                              Stroke="{DynamicResource SemiColorBorder}" StrokeThickness="1"
+                              StartPoint="0,0" EndPoint="20,0" />
+                        <Line u:ProportionalCanvas.Top="50%"
+                              Stroke="{DynamicResource SemiColorBorder}" StrokeThickness="1"
+                              StartPoint="0,0" EndPoint="20,0" />
+                        <Line u:ProportionalCanvas.Top="75%"
+                              Stroke="{DynamicResource SemiColorBorder}" StrokeThickness="1"
+                              StartPoint="0,0" EndPoint="20,0" />
 
-            <!-- ── Legend ──────────────────────────────────────────────── -->
-            <Border Theme="{DynamicResource CardBorder}" CornerRadius="4" Padding="12">
-                <StackPanel Spacing="4">
-                    <TextBlock Text="How it works" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                    <TextBlock Text="• Left / Top / Right / Bottom attached properties accept a RelativeScalar value."
-                               TextWrapping="Wrap" FontSize="13"/>
-                    <TextBlock Text="• Plain number (e.g. &quot;30&quot;) → Absolute pixels."
-                               TextWrapping="Wrap" FontSize="13"/>
-                    <TextBlock Text="• Number with % suffix (e.g. &quot;25%&quot;) → Percentage of panel width/height."
-                               TextWrapping="Wrap" FontSize="13"/>
-                    <TextBlock Text="• Left + Right both set → child width stretches to fill the gap."
-                               TextWrapping="Wrap" FontSize="13"/>
-                    <TextBlock Text="• Top + Bottom both set → child height stretches to fill the gap."
-                               TextWrapping="Wrap" FontSize="13"/>
-                    <TextBlock Text="• XAML syntax: u:ProportionalCanvas.Left=&quot;25%&quot;  or  Left=&quot;30&quot;"
-                               TextWrapping="Wrap" FontSize="13"
-                               FontFamily="Cascadia Code,Consolas,monospace"/>
-                </StackPanel>
-            </Border>
+                    </u:ProportionalCanvas>
+                </Border>
 
+                <!-- ── Legend ──────────────────────────────────────────────── -->
+                <Border Theme="{DynamicResource CardBorder}" CornerRadius="4" Padding="12">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="How it works" FontWeight="SemiBold" Margin="0,0,0,4" />
+                        <TextBlock Text="• Left / Top / Right / Bottom attached properties accept a RelativeScalar value."
+                                   TextWrapping="Wrap" FontSize="13" />
+                        <TextBlock Text="• Plain number (e.g. &quot;30&quot;) → Absolute pixels."
+                                   TextWrapping="Wrap" FontSize="13" />
+                        <TextBlock Text="• Number with % suffix (e.g. &quot;25%&quot;) → Percentage of panel width/height."
+                                   TextWrapping="Wrap" FontSize="13" />
+                        <TextBlock Text="• Left + Right both set → child width stretches to fill the gap."
+                                   TextWrapping="Wrap" FontSize="13" />
+                        <TextBlock Text="• Top + Bottom both set → child height stretches to fill the gap."
+                                   TextWrapping="Wrap" FontSize="13" />
+                        <TextBlock Text="• XAML syntax: u:ProportionalCanvas.Left=&quot;25%&quot; or Left=&quot;30&quot;"
+                                   TextWrapping="Wrap" FontSize="13"
+                                   FontFamily="Cascadia Code,Consolas,monospace" />
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
         </StackPanel>
-    </StackPanel>
+    </ScrollViewer>
 </UserControl>

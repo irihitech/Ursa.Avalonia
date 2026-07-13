@@ -45,7 +45,7 @@ namespace Ursa.Controls;
 /// </remarks>
 public class ProportionalCanvas : Panel
 {
-    // ── Sentinel value for "unset" ────────────────────────────────────────
+    #region Sentinel value for "unset"
 
     /// <summary>
     /// A special <see cref="RelativeScalar"/> used as the default value for all four
@@ -54,7 +54,9 @@ public class ProportionalCanvas : Panel
     /// </summary>
     internal static readonly RelativeScalar UnsetValue = new(double.NaN, RelativeUnit.Absolute);
 
-    // ── Attached properties ───────────────────────────────────────────────
+    #endregion
+
+    #region Attached properties
 
     /// <summary>
     /// Defines the <c>ProportionalCanvas.Left</c> attached property.
@@ -84,7 +86,9 @@ public class ProportionalCanvas : Panel
         AvaloniaProperty.RegisterAttached<ProportionalCanvas, Control, RelativeScalar>(
             "Bottom", UnsetValue, true);
 
-    // ── Attached property accessors ───────────────────────────────────────
+    #endregion
+
+    #region Attached property accessors
 
     /// <summary>Gets the value of the <c>ProportionalCanvas.Left</c> attached property.</summary>
     public static RelativeScalar GetLeft(Control element) => element.GetValue(LeftProperty);
@@ -110,7 +114,9 @@ public class ProportionalCanvas : Panel
     /// <summary>Sets the value of the <c>ProportionalCanvas.Bottom</c> attached property.</summary>
     public static void SetBottom(Control element, RelativeScalar value) => element.SetValue(BottomProperty, value);
 
-    // ── Helpers ──────────────────────────────────────────────────────────
+    #endregion
+
+    #region Helpers
 
     /// <summary>Returns <see langword="true"/> when the <paramref name="value"/>
     /// is a real, user-set value (not the <see cref="UnsetValue"/> sentinel).</summary>
@@ -131,7 +137,9 @@ public class ProportionalCanvas : Panel
             : scalar.Scalar;
     }
 
-    // ── Layout ──────────────────────────────────────────────────────────
+    #endregion
+
+    #region Layout
 
     /// <inheritdoc/>
     protected override Size MeasureOverride(Size availableSize)
@@ -240,4 +248,6 @@ public class ProportionalCanvas : Panel
 
         return finalSize;
     }
+
+    #endregion
 }
