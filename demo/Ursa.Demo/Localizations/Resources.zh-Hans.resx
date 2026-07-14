@@ -230,6 +230,9 @@
   <data name="Menu_Header_NumberDisplayer" xml:space="preserve">
     <value>数字显示器</value>
   </data>
+  <data name="Menu_Header_ProportionalCanvas" xml:space="preserve">
+    <value>比例画布</value>
+  </data>
   <data name="Menu_Header_QrCode" xml:space="preserve">
     <value>二维码</value>
   </data>

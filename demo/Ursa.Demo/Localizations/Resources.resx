@@ -237,6 +237,9 @@
   <data name="Menu_Header_NumberDisplayer" xml:space="preserve">
     <value>Number Displayer</value>
   </data>
+  <data name="Menu_Header_ProportionalCanvas" xml:space="preserve">
+    <value>Proportional Canvas</value>
+  </data>
   <data name="Menu_Header_QrCode" xml:space="preserve">
     <value>Qr Code</value>
   </data>

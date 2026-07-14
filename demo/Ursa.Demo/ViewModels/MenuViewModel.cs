@@ -103,6 +103,7 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = lang.Menu_Header_ImageViewer, Key = MenuKeys.MenuKeyImageViewer, Status = "WIP" },
                     new() { MenuHeader = lang.Menu_Header_ElasticWrapPanel, Key = MenuKeys.MenuKeyElasticWrapPanel },
                     new() { MenuHeader = lang.Menu_Header_VirtualizingUniformGrid, Key = MenuKeys.MenuKeyVirtualizingUniformGrid, Status = "New" },
+                    new() { MenuHeader = lang.Menu_Header_ProportionalCanvas, Key = MenuKeys.MenuKeyProportionalCanvas, Status = "New" },
                     new() { MenuHeader = lang.Menu_Header_Marquee, Key = MenuKeys.MenuKeyMarquee },
                     new() { MenuHeader = lang.Menu_Header_NumberDisplayer, Key = MenuKeys.MenuKeyNumberDisplayer },
                     new() { MenuHeader = lang.Menu_Header_QrCode, Key = MenuKeys.MenuKeyQrCode },
@@ -141,7 +142,7 @@ public static class MenuKeys
     public const string MenuKeyDescriptions = "Descriptions";
     public const string MenuKeyWindowDialog = "WindowDialog";
     public const string MenuKeyOverlayDialog = "OverlayDialog";
-    public const string MenuKeyDialog = "Dialog";
+    public const string MenuKeyProportionalCanvas = "Proportional Canvas";
     public const string MenuKeyDisableContainer = "DisableContainer";
     public const string MenuKeyDivider = "Divider";
     public const string MenuKeyDrawer = "Drawer";
