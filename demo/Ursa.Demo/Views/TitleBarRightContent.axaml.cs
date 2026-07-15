@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Ursa.Demo.Localizations;
 
@@ -22,10 +21,9 @@ public partial class TitleBarRightContent : UserControl
         await launcher.LaunchUriAsync(new Uri("https://github.com/irihitech/Ursa.Avalonia"));
     }
 
-    private void ToggleButton_OnIsCheckedChanged(object? sender, RoutedEventArgs e)
+    private void LangSwitchButton_Clicked(object? sender, RoutedEventArgs e)
     {
-        if (sender is not ToggleButton toggleButton) return;
-        var isChecked = toggleButton.IsChecked ?? false;
-        LanguageManager.Instance.UpdateCulture(isChecked ? new CultureInfo("zh-Hans") : CultureInfo.InvariantCulture);
+        var condition = string.Equals(LanguageManager.Instance.CurrentCulture.TwoLetterISOLanguageName, "zh");
+        LanguageManager.Instance.UpdateCulture(condition ? CultureInfo.InvariantCulture : new CultureInfo("zh-Hans"));
     }
 }

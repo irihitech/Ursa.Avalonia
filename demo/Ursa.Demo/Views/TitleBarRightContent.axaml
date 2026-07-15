@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:u="https://irihi.tech/ursa"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Ursa.Demo.Views.TitleBarRightContent">
+             x:Class="Ursa.Demo.Views.TitleBarRightContent"
+             xmlns:localizations="clr-namespace:Ursa.Demo.Localizations">
     <StackPanel Orientation="Horizontal">
         <u:IconButton
             Theme="{StaticResource BorderlessIconButton}"
@@ -14,6 +15,11 @@
         <u:ThemeToggleButton
             IsThreeState="True"
             Mode="Controller" />
-        <ToggleSwitch Theme="{DynamicResource SimpleToggleSwitch}" OnContent="文" OffContent="A" IsCheckedChanged="ToggleButton_OnIsCheckedChanged" />
+        <u:IconButton
+            Theme="{StaticResource BorderlessIconButton}"
+            Classes="Tertiary"
+            Icon="{StaticResource SemiIconLanguage}"
+            Content="{Translate {x:Static localizations:LanguageManager+Keys.Lang_Switch_Content}}" 
+            Click="LangSwitchButton_Clicked"/>
     </StackPanel>
 </UserControl>
