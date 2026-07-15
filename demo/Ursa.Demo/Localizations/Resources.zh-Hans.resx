@@ -17,6 +17,9 @@
   <data name="Lang_Switch_ToolTip" xml:space="preserve">
     <value>Switch to English</value>
   </data>
+  <data name="Menu_Header_Introduction" xml:space="preserve">
+    <value>介绍 Introduction</value>
+  </data>
   <data name="Menu_Header_AboutUs" xml:space="preserve">
     <value>关于我们 AboutUs</value>
   </data>
