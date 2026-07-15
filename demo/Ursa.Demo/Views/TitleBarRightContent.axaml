@@ -19,7 +19,9 @@
             Theme="{StaticResource BorderlessIconButton}"
             Classes="Tertiary"
             Icon="{StaticResource SemiIconLanguage}"
-            Content="{Translate {x:Static localizations:LanguageManager+Keys.Lang_Switch_Content}}" 
-            Click="LangSwitchButton_Clicked"/>
+            Content="{Translate {x:Static localizations:LanguageManager+Keys.Lang_Switch_Content}}"
+            ToolTip.Tip="{Translate {x:Static localizations:LanguageManager+Keys.Lang_Switch_ToolTip}}"
+            Click="LangSwitchButton_Clicked" >
+        </u:IconButton>
     </StackPanel>
 </UserControl>
