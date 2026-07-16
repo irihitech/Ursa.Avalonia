@@ -376,6 +376,80 @@ public class Tests
         Assert.False(sut.IsMeasureValid);
     }
 
+    [AvaloniaFact]
+    public void Columns_Property_Changed_Invalidates_Measure()
+    {
+        var sut = new VirtualizingUniformGrid { Columns = 2 };
+        sut.Children.Add(new Border());
+        sut.Measure(new Size(200, 200));
+        Assert.True(sut.IsMeasureValid);
+
+        sut.Columns = 3;
+        Assert.False(sut.IsMeasureValid);
+    }
+
+    [AvaloniaFact]
+    public void ItemWidth_Property_Changed_Invalidates_Measure()
+    {
+        var sut = new VirtualizingUniformGrid { Columns = 2 };
+        sut.Children.Add(new Border());
+        sut.Measure(new Size(200, 200));
+        Assert.True(sut.IsMeasureValid);
+
+        sut.ItemWidth = 50;
+        Assert.False(sut.IsMeasureValid);
+    }
+
+    [AvaloniaFact]
+    public void ItemHeight_Property_Changed_Invalidates_Measure()
+    {
+        var sut = new VirtualizingUniformGrid { Columns = 2 };
+        sut.Children.Add(new Border());
+        sut.Measure(new Size(200, 200));
+        Assert.True(sut.IsMeasureValid);
+
+        sut.ItemHeight = 80;
+        Assert.False(sut.IsMeasureValid);
+    }
+
+    [AvaloniaFact]
+    public void UniformItemHeight_Property_Changed_Invalidates_Measure()
+    {
+        var sut = new VirtualizingUniformGrid { Columns = 2 };
+        sut.Children.Add(new Border());
+        sut.Measure(new Size(200, 200));
+        Assert.True(sut.IsMeasureValid);
+
+        sut.UniformItemHeight = false;
+        Assert.False(sut.IsMeasureValid);
+    }
+
+    [AvaloniaFact]
+    public void Columns_Change_Affects_Layout()
+    {
+        var sut = new VirtualizingUniformGrid { Columns = 2 };
+        var b0 = new Border();
+        var b1 = new Border();
+        var b2 = new Border();
+        sut.Children.Add(b0);
+        sut.Children.Add(b1);
+        sut.Children.Add(b2);
+
+        sut.Measure(new Size(300, 300));
+        sut.Arrange(new Rect(0, 0, 300, 300));
+        // 3 items / 2 cols = 2 rows. cellW=150, cellH=150.
+        Assert.Equal(new Rect(0, 0, 150, 150), b0.Bounds);
+
+        // Change columns to 3 and re-layout.
+        sut.Columns = 3;
+        sut.Measure(new Size(300, 300));
+        sut.Arrange(new Rect(0, 0, 300, 300));
+        // 3 items / 3 cols = 1 row. cellW=100, cellH=100.
+        Assert.Equal(new Rect(0, 0, 100, 100), b0.Bounds);
+        Assert.Equal(new Rect(100, 0, 100, 100), b1.Bounds);
+        Assert.Equal(new Rect(200, 0, 100, 100), b2.Bounds);
+    }
+
     // =================================================================
     //  Non-uniform item height (UniformItemHeight = false)
     // =================================================================
