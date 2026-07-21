@@ -363,6 +363,9 @@
   <data name="Page_Title_Marquee" xml:space="preserve">
     <value>跑马灯 Marquee</value>
   </data>
+  <data name="Page_Title_MarkdownLine" xml:space="preserve">
+    <value>Markdown 行 MarkdownLine</value>
+  </data>
   <data name="Page_Title_MessageBox" xml:space="preserve">
     <value>消息框 MessageBox</value>
   </data>
@@ -567,6 +570,9 @@
   </data>
   <data name="Page_Description_Marquee" xml:space="preserve">
     <value>跑马灯在水平方向连续滚动文本或内容。</value>
+  </data>
+  <data name="Page_Description_MarkdownLine" xml:space="preserve">
+    <value>轻量级 TextBlock，支持渲染有限的内联 Markdown 格式子集。</value>
   </data>
   <data name="Page_Description_MessageBox" xml:space="preserve">
     <value>消息框显示带有消息和操作按钮的模态对话框。</value>

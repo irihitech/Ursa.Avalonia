@@ -11,56 +11,68 @@
     d:DesignWidth="850"
     x:DataType="viewModels:MarkdownLineDemoViewModel"
     mc:Ignorable="d">
-    <ScrollViewer u:ScrollTo.Direction="Bottom" HorizontalScrollBarVisibility="Auto">
-        <StackPanel Margin="24" ClipToBounds="False">
+    <ScrollViewer u:ScrollTo.Direction="Bottom"
+                  HorizontalScrollBarVisibility="Auto">
+        <StackPanel HorizontalAlignment="Left">
 
-            <StackPanel HorizontalAlignment="Left">
-                <controls:PageMetadataView DataContext="{Binding PageMetadata}" />
+            <!-- 基础格式 -->
+            <Border Theme="{DynamicResource CardBorder}"
+                    Margin="0,8">
+                <StackPanel Spacing="8">
+                    <TextBlock Classes="h6"
+                               Text="Basic Formatting" />
+                    <u:MarkdownLine
+                        Markdown="**Bold text** and *italic text* and ~~strikethrough~~" />
+                    <u:MarkdownLine
+                        Markdown="__Bold (underscore)__ and _italic (underscore)_" />
+                    <u:MarkdownLine
+                        Markdown="`inline code` with monospace font" />
+                </StackPanel>
+            </Border>
 
-                <!-- 基础格式 -->
-                <Border Theme="{DynamicResource CardBorder}" Margin="0,8">
-                    <StackPanel Spacing="8">
-                        <TextBlock Classes="h6" Text="Basic Formatting" />
-                        <u:MarkdownLine Markdown="**Bold text** and *italic text* and ~~strikethrough~~" />
-                        <u:MarkdownLine Markdown="__Bold (underscore)__ and _italic (underscore)_" />
-                        <u:MarkdownLine Markdown="`inline code` with monospace font" />
-                    </StackPanel>
-                </Border>
+            <!-- 混合格式 -->
+            <Border Theme="{DynamicResource CardBorder}"
+                    Margin="0,8">
+                <StackPanel Spacing="8">
+                    <TextBlock Classes="h6"
+                               Text="Mixed Formatting" />
+                    <u:MarkdownLine
+                        Markdown="**Bold *and italic* together**" />
+                    <u:MarkdownLine
+                        Markdown="~~Strikethrough **and bold**~~" />
+                    <u:MarkdownLine
+                        Markdown="`code **not parsed** inside code`" />
+                    <u:MarkdownLine
+                        Markdown="**Bold with `inline code` inside**" />
+                </StackPanel>
+            </Border>
 
-                <!-- 混合格式 -->
-                <Border Theme="{DynamicResource CardBorder}" Margin="0,8">
-                    <StackPanel Spacing="8">
-                        <TextBlock Classes="h6" Text="Mixed Formatting" />
-                        <u:MarkdownLine Markdown="**Bold *and italic* together**" />
-                        <u:MarkdownLine Markdown="~~Strikethrough **and bold**~~" />
-                        <u:MarkdownLine Markdown="`code **not parsed** inside code`" />
-                        <u:MarkdownLine Markdown="**Bold with `inline code` inside**" />
-                    </StackPanel>
-                </Border>
+            <!-- 长文本 -->
+            <Border Theme="{DynamicResource CardBorder}"
+                    Margin="0,8">
+                <StackPanel Spacing="8">
+                    <TextBlock Classes="h6"
+                               Text="Long Text Wrapping" />
+                    <u:MarkdownLine
+                        MaxWidth="400"
+                        Markdown="This is a **very long** line of text that demonstrates `code` wrapping behavior. ~~Old pricing~~ *New pricing* is now available." />
+                </StackPanel>
+            </Border>
 
-                <!-- 长文本 -->
-                <Border Theme="{DynamicResource CardBorder}" Margin="0,8">
-                    <StackPanel Spacing="8">
-                        <TextBlock Classes="h6" Text="Long Text Wrapping" />
-                        <u:MarkdownLine
-                            MaxWidth="400"
-                            Markdown="This is a **very long** line of text that demonstrates `code` wrapping behavior. ~~Old pricing~~ *New pricing* is now available." />
-                    </StackPanel>
-                </Border>
-
-                <!-- 自定义 CodeBackground -->
-                <Border Theme="{DynamicResource CardBorder}" Margin="0,8">
-                    <StackPanel Spacing="8">
-                        <TextBlock Classes="h6" Text="Custom Code Background" />
-                        <u:MarkdownLine
-                            CodeBackground="{DynamicResource SemiColorPrimaryLight}"
-                            Markdown="`Highlighted code` with a custom background color" />
-                        <u:MarkdownLine
-                            CodeBackground="Transparent"
-                            Markdown="`Plain code` with transparent background" />
-                    </StackPanel>
-                </Border>
-            </StackPanel>
+            <!-- 自定义 CodeBackground -->
+            <Border Theme="{DynamicResource CardBorder}"
+                    Margin="0,8">
+                <StackPanel Spacing="8">
+                    <TextBlock Classes="h6"
+                               Text="Custom Code Background" />
+                    <u:MarkdownLine
+                        CodeBackground="{DynamicResource SemiColorPrimaryLight}"
+                        Markdown="`Highlighted code` with a custom background color" />
+                    <u:MarkdownLine
+                        CodeBackground="Transparent"
+                        Markdown="`Plain code` with transparent background" />
+                </StackPanel>
+            </Border>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

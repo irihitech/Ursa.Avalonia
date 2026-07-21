@@ -377,6 +377,9 @@
   <data name="Page_Title_Marquee" xml:space="preserve">
     <value>Marquee</value>
   </data>
+  <data name="Page_Title_MarkdownLine" xml:space="preserve">
+    <value>MarkdownLine</value>
+  </data>
   <data name="Page_Title_MessageBox" xml:space="preserve">
     <value>MessageBox</value>
   </data>
@@ -581,6 +584,9 @@
   </data>
   <data name="Page_Description_Marquee" xml:space="preserve">
     <value>Marquee scrolls text or content continuously in a horizontal direction.</value>
+  </data>
+  <data name="Page_Description_MarkdownLine" xml:space="preserve">
+    <value>A lightweight TextBlock that renders a limited subset of inline Markdown formatting.</value>
   </data>
   <data name="Page_Description_MessageBox" xml:space="preserve">
     <value>MessageBox shows a modal dialog with a message and action buttons.</value>
