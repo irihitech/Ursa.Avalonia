@@ -20,9 +20,6 @@
     </UserControl.Resources>
     <Grid RowDefinitions="Auto, *"
           ColumnDefinitions="*,Auto">
-        <controls:PageMetadataView
-            Grid.ColumnSpan="2"
-            DataContext="{Binding PageMetadata}" />
         <!-- Main viewer -->
         <u:ImageViewer Grid.Row="1" x:Name="Viewer"
                        Source="{Binding Source}"

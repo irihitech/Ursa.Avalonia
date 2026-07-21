@@ -14,7 +14,6 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <StackPanel Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <u:Breadcrumb>
             <TextBlock Text="Hello" />
             <u:BreadcrumbItem Content="World" IsReadOnly="True" />

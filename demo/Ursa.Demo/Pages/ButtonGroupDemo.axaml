@@ -13,7 +13,6 @@
     x:DataType="vm:ButtonGroupDemoViewModel"
     mc:Ignorable="d">
     <StackPanel Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <u:ButtonGroup
             Classes="Primary Solid"
             CommandBinding="{Binding InvokeCommand}"

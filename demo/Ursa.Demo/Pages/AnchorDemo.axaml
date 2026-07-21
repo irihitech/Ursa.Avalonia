@@ -12,7 +12,6 @@
     x:DataType="viewModels:AnchorDemoViewModel"
     mc:Ignorable="d">
     <DockPanel>
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}" DockPanel.Dock="Top" />
         <TabControl>
             <TabItem Header="XAML Inline">
                 <Grid ColumnDefinitions="*, Auto">

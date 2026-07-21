@@ -15,7 +15,6 @@
         <viewModels:PaginationDemoViewModel />
     </Design.DataContext>
     <StackPanel Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Current Page: " />
             <TextBlock Text="{Binding #page.CurrentPage}" />

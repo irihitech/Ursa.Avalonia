@@ -10,8 +10,6 @@
              xmlns:controls="clr-namespace:Ursa.Demo.Controls"
              xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
     <DockPanel>
-        <controls:PageMetadataView DockPanel.Dock="Top"
-                                   DataContext="{Binding PageMetadata}" />
         <Grid ColumnDefinitions="Auto, *">
             <StackPanel Grid.Column="0">
                 <TextBlock Text="Global" />

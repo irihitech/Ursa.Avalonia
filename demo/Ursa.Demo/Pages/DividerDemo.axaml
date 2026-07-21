@@ -12,7 +12,6 @@
     xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
     <StackPanel Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <u:Divider>Center</u:Divider>
         <u:Divider HorizontalContentAlignment="Left">Left</u:Divider>
         <u:Divider HorizontalContentAlignment="Right">Right</u:Divider>

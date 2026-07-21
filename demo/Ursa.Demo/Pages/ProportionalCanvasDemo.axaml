@@ -13,7 +13,6 @@
     xmlns:u="https://irihi.tech/ursa">
     <ScrollViewer>
         <StackPanel Spacing="20">
-            <controls:PageMetadataView DataContext="{Binding PageMetadata}" />
             <StackPanel Spacing="16">
 
                 <!-- ── Controls ────────────────────────────────────────────── -->

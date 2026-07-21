@@ -14,8 +14,6 @@
     <ScrollViewer>
         <StackPanel Spacing="8">
 
-            <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
-
             <StackPanel HorizontalAlignment="Left">
                 <ToggleSwitch Name="showOffset" Content="Show Offset Selection" IsChecked="True" />
             <ToggleSwitch Name="needConfirm" Content="Need Confirmation" />

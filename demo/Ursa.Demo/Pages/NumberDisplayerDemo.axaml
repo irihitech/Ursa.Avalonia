@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="Ursa.Demo.Pages.NumberDisplayerDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -13,7 +13,6 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <StackPanel Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <Button Command="{Binding IncreaseCommand}" HorizontalAlignment="Left">Change</Button>
         <u:Int32Displayer Value="{Binding Value}" />
         <u:Int64Displayer Value="{Binding LongValue}" />

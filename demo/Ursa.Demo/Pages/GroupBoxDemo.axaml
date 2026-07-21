@@ -14,8 +14,6 @@
     <ScrollViewer >
         <StackPanel Spacing="24">
 
-            <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
-
             <!--  Basic UrsaGroupBox with text header  -->
             <u:UrsaGroupBox Header="Connection Settings" HeaderSpacing="12">
                 <StackPanel Spacing="8">

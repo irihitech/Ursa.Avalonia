@@ -16,8 +16,6 @@
             HorizontalAlignment="Stretch"
             Spacing="8">
 
-            <controls:PageMetadataView DataContext="{Binding PageMetadata}" />
-
             <StackPanel HorizontalAlignment="Left">
                 <ToggleSwitch
                     Name="showOffset"

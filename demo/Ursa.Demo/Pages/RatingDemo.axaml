@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Ursa.Demo.Pages.RatingDemo"
+<UserControl x:Class="Ursa.Demo.Pages.RatingDemo"
              xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,7 +12,6 @@
              mc:Ignorable="d"
              xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <StackPanel Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <Grid ColumnDefinitions="*, 300">
             <Grid Grid.Column="0">
                 <StackPanel HorizontalAlignment="Center">

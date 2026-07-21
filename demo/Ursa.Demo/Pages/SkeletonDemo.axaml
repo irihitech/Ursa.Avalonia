@@ -15,7 +15,6 @@
         <vm:SkeletonDemoViewModel />
     </Design.DataContext>
     <StackPanel Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <ToggleSwitch Name="loading" Content="Loading" />
         <ToggleSwitch Name="active" Content="Active" />
         <Grid

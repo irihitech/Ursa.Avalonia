@@ -12,8 +12,6 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <DockPanel>
-        <controls:PageMetadataView DockPanel.Dock="Top"
-                                   DataContext="{Binding PageMetadata}" />
         <Grid ColumnDefinitions="*,*"
               RowDefinitions="7*,3*">
             <ScrollViewer Grid.Row="0" Grid.Column="0">

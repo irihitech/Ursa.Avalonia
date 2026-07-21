@@ -13,7 +13,6 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <StackPanel HorizontalAlignment="Stretch" Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <u:SelectionList
             Width="600"
             HorizontalAlignment="Center"

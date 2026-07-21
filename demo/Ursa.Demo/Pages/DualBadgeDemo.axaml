@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="Ursa.Demo.Pages.DualBadgeDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -20,7 +20,6 @@
 
     <ScrollViewer>
         <StackPanel Spacing="20">
-            <controls:PageMetadataView DataContext="{Binding PageMetadata}" />
             <StackPanel HorizontalAlignment="Left" Spacing="20">
                 <TextBlock Text="Flat:" />
                 <StackPanel Orientation="Horizontal">

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Ursa.Demo.Pages.ElasticWrapPanelDemo"
+<UserControl x:Class="Ursa.Demo.Pages.ElasticWrapPanelDemo"
              xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -28,8 +28,6 @@
         </Style>
     </UserControl.Styles>
     <DockPanel>
-        <controls:PageMetadataView DockPanel.Dock="Top"
-                                   DataContext="{Binding PageMetadata}" />
         <DockPanel>
             <u:Form DockPanel.Dock="Left"
                     LabelAlignment="Left"

@@ -17,7 +17,6 @@
         </Style>
     </UserControl.Styles>
     <DockPanel>
-        <controls:PageMetadataView DockPanel.Dock="Top" DataContext="{Binding PageMetadata}" />
         <DockPanel>
             <u:Form DockPanel.Dock="Left"
                     LabelAlignment="Left"

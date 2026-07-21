@@ -16,7 +16,6 @@
         <StackPanel Margin="24" ClipToBounds="False">
 
             <StackPanel HorizontalAlignment="Left">
-                <controls:PageMetadataView DataContext="{Binding PageMetadata}" />
 
                 <StackPanel.Styles>
                     <Style Selector="u|Badge">

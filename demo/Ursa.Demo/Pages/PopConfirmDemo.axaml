@@ -10,7 +10,6 @@
              x:Class="Ursa.Demo.Pages.PopConfirmDemo"
              xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <StackPanel HorizontalAlignment="Stretch" Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <Border Theme="{DynamicResource CardBorder}">
             <u:Form>
                 <u:ControlClassesInput 

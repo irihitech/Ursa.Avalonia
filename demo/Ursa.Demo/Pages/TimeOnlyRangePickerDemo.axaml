@@ -12,7 +12,6 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <StackPanel Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <StackPanel Spacing="20" HorizontalAlignment="Left">
             <TextBox
                 Name="displayFormat"

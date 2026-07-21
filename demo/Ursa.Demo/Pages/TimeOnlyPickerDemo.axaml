@@ -12,7 +12,6 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <StackPanel Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <StackPanel HorizontalAlignment="Left" Spacing="20">
             <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
 

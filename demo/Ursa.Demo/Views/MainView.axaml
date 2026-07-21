@@ -29,7 +29,7 @@
             <Border
                 Padding="8,4"
                 DockPanel.Dock="Left"
-                Margin="0 36 0 0"
+                Margin="4 36 4 4"
                 VerticalAlignment="Stretch"
                 Theme="{DynamicResource CardBorder}">
                 <u:NavMenu

@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="Ursa.Demo.Pages.NavMenuDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -15,8 +15,6 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <DockPanel>
-        <controls:PageMetadataView DockPanel.Dock="Top"
-                                   DataContext="{Binding PageMetadata}" />
         <Grid
             HorizontalAlignment="Left"
             ColumnDefinitions="Auto, Auto"

@@ -16,7 +16,7 @@
         <converters:StringToUriConverter x:Key="StringToUriConverter" />
     </UserControl.Resources>
     <Border
-        Margin="4"
+        Margin="0"
         Padding="16"
         Theme="{DynamicResource CardBorder}">
         <StackPanel Spacing="8">

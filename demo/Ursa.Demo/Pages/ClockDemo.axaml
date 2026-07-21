@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="Ursa.Demo.Pages.ClockDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -13,8 +13,6 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <DockPanel>
-        <controls:PageMetadataView DockPanel.Dock="Top"
-                                   DataContext="{Binding PageMetadata}" />
         <Grid RowDefinitions="Auto, *">
             <ToggleSwitch Content="Smooth" Name="smooth" />
             <u:Clock Grid.Row="1"

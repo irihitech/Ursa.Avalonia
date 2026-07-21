@@ -14,8 +14,6 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <DockPanel>
-        <controls:PageMetadataView DockPanel.Dock="Top"
-                                   DataContext="{Binding PageMetadata}" />
         <Grid ColumnDefinitions="Auto, *">
             <u:Form Width="300" Grid.Column="0"
                     LabelPosition="Top">

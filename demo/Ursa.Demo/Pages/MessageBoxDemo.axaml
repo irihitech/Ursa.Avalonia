@@ -18,7 +18,6 @@
         </Style>
     </UserControl.Styles>
     <StackPanel HorizontalAlignment="Stretch" Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <ComboBox ItemsSource="{Binding Icons}" SelectedItem="{Binding SelectedIcon}" />
         <ToggleSwitch Content="Try Long Message" IsChecked="{Binding UseLong}" />
         <ToggleSwitch Content="Show Title" IsChecked="{Binding UseTitle}" />

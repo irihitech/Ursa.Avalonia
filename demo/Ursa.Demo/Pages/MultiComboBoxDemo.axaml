@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="Ursa.Demo.Pages.MultiComboBoxDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -13,7 +13,6 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <StackPanel Orientation="Vertical" Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <TextBlock>Binded ItemsSource</TextBlock>
         <StackPanel Orientation="Horizontal">
             <u:MultiComboBox

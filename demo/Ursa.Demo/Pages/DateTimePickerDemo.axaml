@@ -13,7 +13,6 @@
     mc:Ignorable="d">
     <StackPanel
         Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}" />
         <StackPanel HorizontalAlignment="Left">
             <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
             <u:Form>

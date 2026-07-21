@@ -12,7 +12,6 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <StackPanel HorizontalAlignment="Stretch" Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <StackPanel HorizontalAlignment="Left">
             <TextBox Name="format" InnerLeftContent="Display Format" Text="yyyy-MM-dd" />
 
