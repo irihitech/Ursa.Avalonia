@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Avalonia.Layout;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
@@ -23,6 +24,20 @@ public partial class ToolBarDemoViewModel : ObservableObject, IPageMetadataProvi
     };
 
     public ObservableCollection<ToolBarItemViewModel> Items { get; set; }
+    [ObservableProperty] public partial Orientation PanelOrientation { get; set; } = Orientation.Vertical;
+    [ObservableProperty] public partial Orientation ToolBarOrientation { get; set; } = Orientation.Horizontal;
+
+    partial void OnToolBarOrientationChanged(Orientation value)
+    {
+        if (value == Orientation.Horizontal)
+        {
+            PanelOrientation = Orientation.Vertical;
+        }
+        else
+        {
+            PanelOrientation = Orientation.Horizontal;
+        }
+    }
 
     public ToolBarDemoViewModel()
     {

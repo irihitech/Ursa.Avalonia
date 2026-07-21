@@ -11,15 +11,15 @@
     d:DesignWidth="800"
     x:CompileBindings="True"
     x:DataType="vm:ToolBarDemoViewModel"
-    mc:Ignorable="d"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    mc:Ignorable="d">
     <DockPanel>
-        <Grid ColumnDefinitions="Auto, Auto, *"
-              RowDefinitions="Auto, Auto, *">
-            <u:EnumSelector Name="Orientation"
-                            EnumType="Orientation" />
+        <u:EnumSelector Name="Orientation"
+                        DockPanel.Dock="Top"
+                        Value="{Binding ToolBarOrientation}"
+                        EnumType="Orientation" />
+        <StackPanel
+            Orientation="{Binding PanelOrientation}">
             <u:ToolBar
-                Grid.Row="0" Grid.Column="1"
                 DockPanel.Dock="Top"
                 Header="Hello World"
                 Orientation="{Binding #Orientation.Value}">
@@ -28,7 +28,7 @@
                 <u:ToolBarSeparator />
                 <TextBox Width="100"
                          VerticalAlignment="Center" />
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <RadioButton Content="A"
                                  VerticalAlignment="Center" />
                     <RadioButton Content="B"
@@ -39,139 +39,69 @@
                 <Button u:ToolBar.OverflowMode="AsNeeded"
                         Content="Button 3" />
                 <ToggleButton Content="Toggle" />
-                <u:ToolBar.Styles>
-                    <Style
-                        Selector="u|ToolBar[Orientation=Vertical]">
-                        <Setter Property="Grid.Row"
-                                Value="1" />
-                        <Setter Property="Grid.Column"
-                                Value="1" />
-                        <Setter Property="Grid.RowSpan"
-                                Value="2" />
-                        <Setter Property="Grid.ColumnSpan"
-                                Value="1" />
-                    </Style>
-                    <Style
-                        Selector="u|ToolBar[Orientation=Horizontal]">
-                        <Setter Property="Grid.Row"
-                                Value="1" />
-                        <Setter Property="Grid.Column"
-                                Value="1" />
-                        <Setter Property="Grid.RowSpan"
-                                Value="1" />
-                        <Setter Property="Grid.ColumnSpan"
-                                Value="3" />
-                    </Style>
-                </u:ToolBar.Styles>
             </u:ToolBar>
             <u:ToolBar
-                Grid.Row="1" Grid.Column="1"
                 DockPanel.Dock="Top"
                 ItemsSource="{Binding Items}"
                 Orientation="{Binding #Orientation.Value}">
                 <u:ToolBar.ItemTemplate>
                     <dataTemplates:ToolBarItemTemplateSelector />
                 </u:ToolBar.ItemTemplate>
-                <u:ToolBar.Styles>
-                    <Style
-                        Selector="u|ToolBar[Orientation=Vertical]">
-                        <Setter Property="Grid.Row"
-                                Value="1" />
-                        <Setter Property="Grid.Column"
-                                Value="0" />
-                        <Setter Property="Grid.RowSpan"
-                                Value="2" />
-                        <Setter Property="Grid.ColumnSpan"
-                                Value="1" />
-                    </Style>
-                    <Style
-                        Selector="u|ToolBar[Orientation=Horizontal]">
-                        <Setter Property="Grid.Row"
-                                Value="0" />
-                        <Setter Property="Grid.Column"
-                                Value="1" />
-                        <Setter Property="Grid.RowSpan"
-                                Value="1" />
-                        <Setter Property="Grid.ColumnSpan"
-                                Value="3" />
-                    </Style>
-                </u:ToolBar.Styles>
             </u:ToolBar>
-            <Grid
-                Grid.Row="2"
-                Grid.Column="2"
-                RowDefinitions="Auto, *">
-                <u:ToolBar Margin="16">
-                    <ToggleButton Name="bold">
-                        <PathIcon
-                            Theme="{StaticResource InnerPathIcon}"
-                            Data="{DynamicResource SemiIconBold}" />
-                    </ToggleButton>
-                    <ToggleButton Name="italic">
-                        <PathIcon
-                            Theme="{StaticResource InnerPathIcon}"
-                            Data="{DynamicResource SemiIconItalic}" />
-                    </ToggleButton>
-                    <u:ToolBarSeparator />
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock
-                            Margin="8,0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Text="Font Size" />
-                        <ComboBox
-                            Name="size"
-                            Width="90"
-                            SelectedIndex="0">
-                            <x:Double>8</x:Double>
-                            <x:Double>16</x:Double>
-                            <x:Double>32</x:Double>
-                        </ComboBox>
-                    </StackPanel>
-                    <u:ToolBar.Styles>
-                        <Style
-                            Selector="u|ToolBar[Orientation=Horizontal]">
-                            <Setter Property="Grid.Row"
-                                    Value="2" />
-                            <Setter Property="Grid.Column"
-                                    Value="1" />
-                            <Setter Property="Grid.RowSpan"
-                                    Value="1" />
-                            <Setter
-                                Property="Grid.ColumnSpan"
-                                Value="3" />
-                        </Style>
-                    </u:ToolBar.Styles>
-
-                </u:ToolBar>
-                <TextBlock
-                    Grid.Row="1"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Classes.Bold="{Binding #bold.IsChecked}"
-                    Classes.Italic="{Binding #italic.IsChecked}"
-                    FontSize="{Binding #size.SelectedItem}"
-                    Text="Hello Ursa Avalonia">
-                    <TextBlock.Styles>
-                        <Style Selector="TextBlock">
-                            <Setter Property="FontWeight"
-                                    Value="Regular" />
-                            <Setter Property="FontSize"
-                                    Value="8" />
-                            <Setter Property="FontStyle"
-                                    Value="Normal" />
-                        </Style>
-                        <Style Selector="TextBlock.Bold">
-                            <Setter Property="FontWeight"
-                                    Value="Bold" />
-                        </Style>
-                        <Style Selector="TextBlock.Italic">
-                            <Setter Property="FontStyle"
-                                    Value="Italic" />
-                        </Style>
-                    </TextBlock.Styles>
-                </TextBlock>
-            </Grid>
-        </Grid>
+            <u:ToolBar Margin="16" Orientation="{Binding #Orientation.Value}">
+                <ToggleButton Name="bold">
+                    <PathIcon
+                        Theme="{StaticResource InnerPathIcon}"
+                        Data="{DynamicResource SemiIconBold}" />
+                </ToggleButton>
+                <ToggleButton Name="italic">
+                    <PathIcon
+                        Theme="{StaticResource InnerPathIcon}"
+                        Data="{DynamicResource SemiIconItalic}" />
+                </ToggleButton>
+                <u:ToolBarSeparator />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="8,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Font Size" />
+                    <ComboBox
+                        Name="size"
+                        Width="90"
+                        SelectedIndex="0">
+                        <x:Double>8</x:Double>
+                        <x:Double>16</x:Double>
+                        <x:Double>32</x:Double>
+                    </ComboBox>
+                </StackPanel>
+            </u:ToolBar>
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Classes.Bold="{Binding #bold.IsChecked}"
+                Classes.Italic="{Binding #italic.IsChecked}"
+                FontSize="{Binding #size.SelectedItem}"
+                Text="Hello Ursa Avalonia">
+                <TextBlock.Styles>
+                    <Style Selector="TextBlock">
+                        <Setter Property="FontWeight"
+                                Value="Regular" />
+                        <Setter Property="FontSize"
+                                Value="8" />
+                        <Setter Property="FontStyle"
+                                Value="Normal" />
+                    </Style>
+                    <Style Selector="TextBlock.Bold">
+                        <Setter Property="FontWeight"
+                                Value="Bold" />
+                    </Style>
+                    <Style Selector="TextBlock.Italic">
+                        <Setter Property="FontStyle"
+                                Value="Italic" />
+                    </Style>
+                </TextBlock.Styles>
+            </TextBlock>
+        </StackPanel>
     </DockPanel>
 </UserControl>

@@ -33,6 +33,7 @@ public class ToolBarItemTemplateSelector: IDataTemplate
             {
                 [!ContentControl.ContentProperty] = new Binding() { Path = "Content" },
                 [!ToggleButton.IsCheckedProperty] = new Binding() { Path = "IsChecked" },
+                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
                 [!ToolBar.OverflowModeProperty] = new Binding(){Path = nameof(ToolBarItemViewModel.OverflowMode)},
             };
         }
