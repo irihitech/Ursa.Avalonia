@@ -26,6 +26,7 @@
         <Grid Classes.Blur="{Binding $parent[u:UrsaWindow].(u:OverlayDialogHost.IsInModalStatus)}" ColumnDefinitions="Auto, *">
             <Border
                 Padding="8,4"
+                Margin="0 36 0 0"
                 VerticalAlignment="Stretch"
                 Theme="{DynamicResource CardBorder}">
                 <u:NavMenu
@@ -74,7 +75,7 @@
                         </DataTemplate>
                     </u:NavMenu.HeaderTemplate>
                     <u:NavMenu.Header>
-                        <DockPanel Margin="8 32 8 8" HorizontalAlignment="Center" >
+                        <DockPanel Margin="8 16 8 8" HorizontalAlignment="Center" >
                             <Panel
                                 VerticalAlignment="Center"
                                 u:NavMenu.CanToggle="True"

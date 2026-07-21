@@ -18,27 +18,9 @@
     <Border
         Margin="4"
         Padding="16"
-        Classes="Shadow"
         Theme="{DynamicResource CardBorder}">
         <StackPanel Spacing="8">
-            <DockPanel>
-                <!--  Breadcrumbs  -->
-                <u:Breadcrumb
-                    DockPanel.Dock="Left"
-                    IsVisible="{Binding Breadcrumbs, Converter={x:Static ObjectConverters.IsNotNull}}"
-                    ItemsSource="{Binding Breadcrumbs}">
-                    <u:Breadcrumb.ItemTemplate>
-                        <DataTemplate x:DataType="controls:BreadcrumbItemData">
-                            <TextBlock Text="{Binding Header^}" />
-                        </DataTemplate>
-                    </u:Breadcrumb.ItemTemplate>
-                    <u:Breadcrumb.Styles>
-                        <Style Selector="u|BreadcrumbItem">
-                            <Setter Property="IsReadOnly" Value="True" />
-                        </Style>
-                    </u:Breadcrumb.Styles>
-                </u:Breadcrumb>
-
+            <DockPanel IsVisible="False">
                 <!--  Source links  -->
                 <StackPanel
                     Margin="0,8,0,0"
@@ -71,7 +53,7 @@
 
             <!--  Title  -->
             <TextBlock
-                Classes="H2"
+                Classes="H4"
                 IsVisible="{Binding Title^, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                 Text="{Binding Title^}"
                 Theme="{DynamicResource TitleTextBlock}" />
