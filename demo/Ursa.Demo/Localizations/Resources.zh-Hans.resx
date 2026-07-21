@@ -23,7 +23,6 @@
   <data name="Menu_Header_AboutUs" xml:space="preserve">
     <value>关于我们 AboutUs</value>
   </data>
-
   <!-- Category headers -->
   <data name="Menu_Category_Controls" xml:space="preserve">
     <value>控件</value>
@@ -43,7 +42,6 @@
   <data name="Menu_Category_LayoutAndDisplay" xml:space="preserve">
     <value>布局与展示</value>
   </data>
-
   <!-- Buttons & Inputs -->
   <data name="Menu_Header_ButtonGroup" xml:space="preserve">
     <value>按钮组 ButtonGroup</value>
@@ -105,7 +103,6 @@
   <data name="Menu_Header_TreeComboBox" xml:space="preserve">
     <value>树形下拉框 TreeComboBox</value>
   </data>
-
   <!-- Dialog & Feedbacks -->
   <data name="Menu_Header_WindowDialog" xml:space="preserve">
     <value>窗口对话框 WindowDialog</value>
@@ -134,7 +131,6 @@
   <data name="Menu_Header_Skeleton" xml:space="preserve">
     <value>骨架屏 Skeleton</value>
   </data>
-
   <!-- Date & Time -->
   <data name="Menu_Header_DatePicker" xml:space="preserve">
     <value>日期选择器 DatePicker</value>
@@ -178,7 +174,6 @@
   <data name="Menu_Header_Clock" xml:space="preserve">
     <value>时钟 Clock</value>
   </data>
-
   <!-- Navigation & Menus -->
   <data name="Menu_Header_Anchor" xml:space="preserve">
     <value>锚点 Anchor</value>
@@ -195,7 +190,6 @@
   <data name="Menu_Header_ToolBar" xml:space="preserve">
     <value>工具栏 ToolBar</value>
   </data>
-
   <!-- Layout & Display -->
   <data name="Menu_Header_AspectRatioLayout" xml:space="preserve">
     <value>宽高比布局 AspectRatioLayout</value>
@@ -268,412 +262,412 @@
   </data>
   <!-- Page Titles -->
   <data name="Page_Title_Anchor" xml:space="preserve">
-    <value>Anchor</value>
+    <value>锚点 Anchor</value>
   </data>
   <data name="Page_Title_AspectRatioLayout" xml:space="preserve">
-    <value>AspectRatioLayout</value>
+    <value>宽高比布局 AspectRatioLayout</value>
   </data>
   <data name="Page_Title_AutoCompleteBox" xml:space="preserve">
-    <value>AutoCompleteBox</value>
+    <value>自动完成框 AutoCompleteBox</value>
   </data>
   <data name="Page_Title_Avatar" xml:space="preserve">
-    <value>Avatar</value>
+    <value>头像 Avatar</value>
   </data>
   <data name="Page_Title_Badge" xml:space="preserve">
-    <value>Badge</value>
+    <value>徽标 Badge</value>
   </data>
   <data name="Page_Title_Banner" xml:space="preserve">
-    <value>Banner</value>
+    <value>横幅 Banner</value>
   </data>
   <data name="Page_Title_Breadcrumb" xml:space="preserve">
-    <value>Breadcrumb</value>
+    <value>面包屑 Breadcrumb</value>
   </data>
   <data name="Page_Title_ButtonGroup" xml:space="preserve">
-    <value>ButtonGroup</value>
+    <value>按钮组 ButtonGroup</value>
   </data>
   <data name="Page_Title_ClassInput" xml:space="preserve">
-    <value>ClassInput</value>
+    <value>类输入框 ClassInput</value>
   </data>
   <data name="Page_Title_Clock" xml:space="preserve">
-    <value>Clock</value>
+    <value>时钟 Clock</value>
   </data>
   <data name="Page_Title_DateOffsetPicker" xml:space="preserve">
-    <value>DateOffsetPicker</value>
+    <value>日期偏移选择器 DateOffsetPicker</value>
   </data>
   <data name="Page_Title_DateOffsetRangePicker" xml:space="preserve">
-    <value>DateOffsetRangePicker</value>
+    <value>日期偏移范围选择器 DateOffsetRangePicker</value>
   </data>
   <data name="Page_Title_DateOnlyPicker" xml:space="preserve">
-    <value>DateOnlyPicker</value>
+    <value>纯日期选择器 DateOnlyPicker</value>
   </data>
   <data name="Page_Title_DateOnlyRangePicker" xml:space="preserve">
-    <value>DateOnlyRangePicker</value>
+    <value>纯日期范围选择器 DateOnlyRangePicker</value>
   </data>
   <data name="Page_Title_DatePicker" xml:space="preserve">
-    <value>DatePicker</value>
+    <value>日期选择器 DatePicker</value>
   </data>
   <data name="Page_Title_DateRangePicker" xml:space="preserve">
-    <value>DateRangePicker</value>
+    <value>日期范围选择器 DateRangePicker</value>
   </data>
   <data name="Page_Title_DateTimeOffsetPicker" xml:space="preserve">
-    <value>DateTimeOffsetPicker</value>
+    <value>日期时间偏移选择器 DateTimeOffsetPicker</value>
   </data>
   <data name="Page_Title_DateTimePicker" xml:space="preserve">
-    <value>DateTimePicker</value>
+    <value>日期时间选择器 DateTimePicker</value>
   </data>
   <data name="Page_Title_Descriptions" xml:space="preserve">
-    <value>Descriptions</value>
+    <value>描述列表 Descriptions</value>
   </data>
   <data name="Page_Title_DisableContainer" xml:space="preserve">
-    <value>DisableContainer</value>
+    <value>禁用容器 DisableContainer</value>
   </data>
   <data name="Page_Title_Divider" xml:space="preserve">
-    <value>Divider</value>
+    <value>分割线 Divider</value>
   </data>
   <data name="Page_Title_Drawer" xml:space="preserve">
-    <value>Drawer</value>
+    <value>抽屉 Drawer</value>
   </data>
   <data name="Page_Title_DualBadge" xml:space="preserve">
-    <value>DualBadge</value>
+    <value>双徽标 DualBadge</value>
   </data>
   <data name="Page_Title_ElasticWrapPanel" xml:space="preserve">
-    <value>ElasticWrapPanel</value>
+    <value>弹性换行面板 ElasticWrapPanel</value>
   </data>
   <data name="Page_Title_EnumSelector" xml:space="preserve">
-    <value>EnumSelector</value>
+    <value>枚举选择器 EnumSelector</value>
   </data>
   <data name="Page_Title_Form" xml:space="preserve">
-    <value>Form</value>
+    <value>表单 Form</value>
   </data>
   <data name="Page_Title_GroupBox" xml:space="preserve">
-    <value>GroupBox</value>
+    <value>分组框 GroupBox</value>
   </data>
   <data name="Page_Title_IconButton" xml:space="preserve">
-    <value>IconButton</value>
+    <value>图标按钮 IconButton</value>
   </data>
   <data name="Page_Title_ImageViewer" xml:space="preserve">
-    <value>ImageViewer</value>
+    <value>图片查看器 ImageViewer</value>
   </data>
   <data name="Page_Title_IPv4Box" xml:space="preserve">
-    <value>IPv4Box</value>
+    <value>IPv4 输入框 IPv4Box</value>
   </data>
   <data name="Page_Title_KeyGestureInput" xml:space="preserve">
-    <value>KeyGestureInput</value>
+    <value>快捷键输入 KeyGestureInput</value>
   </data>
   <data name="Page_Title_Loading" xml:space="preserve">
-    <value>Loading</value>
+    <value>加载 Loading</value>
   </data>
   <data name="Page_Title_Marquee" xml:space="preserve">
-    <value>Marquee</value>
+    <value>跑马灯 Marquee</value>
   </data>
   <data name="Page_Title_MessageBox" xml:space="preserve">
-    <value>MessageBox</value>
+    <value>消息框 MessageBox</value>
   </data>
   <data name="Page_Title_MultiAutoCompleteBox" xml:space="preserve">
-    <value>MultiAutoCompleteBox</value>
+    <value>多选自动完成框 MultiAutoCompleteBox</value>
   </data>
   <data name="Page_Title_MultiComboBox" xml:space="preserve">
-    <value>MultiComboBox</value>
+    <value>多选下拉框 MultiComboBox</value>
   </data>
   <data name="Page_Title_NavMenu" xml:space="preserve">
-    <value>NavMenu</value>
+    <value>导航菜单 NavMenu</value>
   </data>
   <data name="Page_Title_Notification" xml:space="preserve">
-    <value>Notification</value>
+    <value>通知 Notification</value>
   </data>
   <data name="Page_Title_NumberDisplayer" xml:space="preserve">
-    <value>NumberDisplayer</value>
+    <value>数字显示器 NumberDisplayer</value>
   </data>
   <data name="Page_Title_NumericUpDown" xml:space="preserve">
-    <value>NumericUpDown</value>
+    <value>数字输入框 NumericUpDown</value>
   </data>
   <data name="Page_Title_NumPad" xml:space="preserve">
-    <value>NumPad</value>
+    <value>数字键盘 NumPad</value>
   </data>
   <data name="Page_Title_OverlayDialog" xml:space="preserve">
-    <value>Overlay Dialog</value>
+    <value>悬浮对话框 OverlayDialog</value>
   </data>
   <data name="Page_Title_Pagination" xml:space="preserve">
-    <value>Pagination</value>
+    <value>分页 Pagination</value>
   </data>
   <data name="Page_Title_PathPicker" xml:space="preserve">
-    <value>PathPicker</value>
+    <value>路径选择器 PathPicker</value>
   </data>
   <data name="Page_Title_PinCode" xml:space="preserve">
-    <value>PinCode</value>
+    <value>密码输入 PinCode</value>
   </data>
   <data name="Page_Title_PopConfirm" xml:space="preserve">
-    <value>PopConfirm</value>
+    <value>气泡确认 PopConfirm</value>
   </data>
   <data name="Page_Title_ProportionalCanvas" xml:space="preserve">
-    <value>Proportional Canvas</value>
+    <value>比例画布 ProportionalCanvas</value>
   </data>
   <data name="Page_Title_QrCode" xml:space="preserve">
-    <value>QrCode</value>
+    <value>二维码 QrCode</value>
   </data>
   <data name="Page_Title_RangeSlider" xml:space="preserve">
-    <value>RangeSlider</value>
+    <value>范围滑块 RangeSlider</value>
   </data>
   <data name="Page_Title_Rating" xml:space="preserve">
-    <value>Rating</value>
+    <value>评分 Rating</value>
   </data>
   <data name="Page_Title_ScrollToButton" xml:space="preserve">
-    <value>ScrollToButton</value>
+    <value>滚动到 ScrollToButton</value>
   </data>
   <data name="Page_Title_SelectionList" xml:space="preserve">
-    <value>SelectionList</value>
+    <value>选择列表 SelectionList</value>
   </data>
   <data name="Page_Title_Skeleton" xml:space="preserve">
-    <value>Skeleton</value>
+    <value>骨架屏 Skeleton</value>
   </data>
   <data name="Page_Title_TagInput" xml:space="preserve">
-    <value>TagInput</value>
+    <value>标签输入 TagInput</value>
   </data>
   <data name="Page_Title_ThemeToggler" xml:space="preserve">
-    <value>ThemeToggler</value>
+    <value>主题切换 ThemeToggler</value>
   </data>
   <data name="Page_Title_ThemeVariantMapper" xml:space="preserve">
-    <value>ThemeVariantMapper</value>
+    <value>主题变体映射 ThemeVariantMapper</value>
   </data>
   <data name="Page_Title_TimeBox" xml:space="preserve">
-    <value>TimeBox</value>
+    <value>时间输入框 TimeBox</value>
   </data>
   <data name="Page_Title_Timeline" xml:space="preserve">
-    <value>Timeline</value>
+    <value>时间轴 Timeline</value>
   </data>
   <data name="Page_Title_TimeOnlyPicker" xml:space="preserve">
-    <value>TimeOnlyPicker</value>
+    <value>纯时间选择器 TimeOnlyPicker</value>
   </data>
   <data name="Page_Title_TimeOnlyRangePicker" xml:space="preserve">
-    <value>TimeOnlyRangePicker</value>
+    <value>纯时间范围选择器 TimeOnlyRangePicker</value>
   </data>
   <data name="Page_Title_TimePicker" xml:space="preserve">
-    <value>TimePicker</value>
+    <value>时间选择器 TimePicker</value>
   </data>
   <data name="Page_Title_TimeRangePicker" xml:space="preserve">
-    <value>TimeRangePicker</value>
+    <value>时间范围选择器 TimeRangePicker</value>
   </data>
   <data name="Page_Title_Toast" xml:space="preserve">
-    <value>Toast</value>
+    <value>提示 Toast</value>
   </data>
   <data name="Page_Title_ToolBar" xml:space="preserve">
-    <value>ToolBar</value>
+    <value>工具栏 ToolBar</value>
   </data>
   <data name="Page_Title_TreeComboBox" xml:space="preserve">
-    <value>TreeComboBox</value>
+    <value>树形下拉框 TreeComboBox</value>
   </data>
   <data name="Page_Title_TwoTonePathIcon" xml:space="preserve">
-    <value>TwoTonePathIcon</value>
+    <value>双色路径图标 TwoTonePathIcon</value>
   </data>
   <data name="Page_Title_VirtualizingUniformGrid" xml:space="preserve">
-    <value>VirtualizingUniformGrid</value>
+    <value>虚拟化UniformGrid VirtualizingUniformGrid</value>
   </data>
   <data name="Page_Title_WindowDialog" xml:space="preserve">
-    <value>Window Dialog</value>
+    <value>窗口对话框 WindowDialog</value>
   </data>
   <!-- Page Descriptions -->
   <data name="Page_Description_Anchor" xml:space="preserve">
-    <value>Anchor provides a table of contents navigation linked to page sections.</value>
+    <value>锚点提供链接到页面各部分的目录导航。</value>
   </data>
   <data name="Page_Description_AspectRatioLayout" xml:space="preserve">
-    <value>AspectRatioLayout maintains a fixed aspect ratio for its child content.</value>
+    <value>宽高比布局为其子内容保持固定的宽高比。</value>
   </data>
   <data name="Page_Description_AutoCompleteBox" xml:space="preserve">
-    <value>AutoCompleteBox provides suggestions as the user types in a text field.</value>
+    <value>自动完成框在用户输入时提供建议选项。</value>
   </data>
   <data name="Page_Description_Avatar" xml:space="preserve">
-    <value>Avatar displays a user profile image or initials in a circular container.</value>
+    <value>头像在圆形容器中显示用户头像图片或首字母。</value>
   </data>
   <data name="Page_Description_Badge" xml:space="preserve">
-    <value>Badge displays a small count or status indicator on another element.</value>
+    <value>徽标在另一个元素上显示小型计数或状态指示器。</value>
   </data>
   <data name="Page_Description_Banner" xml:space="preserve">
-    <value>Banner displays a prominent informational or alert message bar.</value>
+    <value>横幅显示显眼的信息或警告消息条。</value>
   </data>
   <data name="Page_Description_Breadcrumb" xml:space="preserve">
-    <value>Breadcrumb displays a navigation trail showing the current page location.</value>
+    <value>面包屑显示当前页面位置的导航路径。</value>
   </data>
   <data name="Page_Description_ButtonGroup" xml:space="preserve">
-    <value>A ButtonGroup is a control that groups multiple buttons together. </value>
+    <value>按钮组是将多个按钮组合在一起的控件。</value>
   </data>
   <data name="Page_Description_ClassInput" xml:space="preserve">
-    <value>ClassInput allows users to input CSS class names interactively.</value>
+    <value>类输入框允许用户交互式输入 CSS 类名。</value>
   </data>
   <data name="Page_Description_Clock" xml:space="preserve">
-    <value>Clock displays a visual analog or digital clock.</value>
+    <value>时钟显示可视化模拟或数字时钟。</value>
   </data>
   <data name="Page_Description_DateOffsetPicker" xml:space="preserve">
-    <value>DateOffsetPicker selects a date with timezone offset support.</value>
+    <value>日期偏移选择器支持带时区偏移的日期选择。</value>
   </data>
   <data name="Page_Description_DateOffsetRangePicker" xml:space="preserve">
-    <value>DateOffsetRangePicker selects a date range with timezone offset support.</value>
+    <value>日期偏移范围选择器支持带时区偏移的日期范围选择。</value>
   </data>
   <data name="Page_Description_DateOnlyPicker" xml:space="preserve">
-    <value>DateOnlyPicker is a date picker that works with the DateOnly type.</value>
+    <value>纯日期选择器使用 DateOnly 类型进行日期选择。</value>
   </data>
   <data name="Page_Description_DateOnlyRangePicker" xml:space="preserve">
-    <value>DateOnlyRangePicker selects a date range using the DateOnly type.</value>
+    <value>纯日期范围选择器使用 DateOnly 类型选择日期范围。</value>
   </data>
   <data name="Page_Description_DatePicker" xml:space="preserve">
-    <value>DatePicker allows users to select a date from a calendar popup.</value>
+    <value>日期选择器允许用户从日历弹出窗口中选择日期。</value>
   </data>
   <data name="Page_Description_DateRangePicker" xml:space="preserve">
-    <value>DateRangePicker allows selecting a start and end date range.</value>
+    <value>日期范围选择器允许选择开始和结束日期范围。</value>
   </data>
   <data name="Page_Description_DateTimeOffsetPicker" xml:space="preserve">
-    <value>DateTimeOffsetPicker selects a DateTimeOffset including timezone information.</value>
+    <value>日期时间偏移选择器选择包含时区信息的 DateTimeOffset。</value>
   </data>
   <data name="Page_Description_DateTimePicker" xml:space="preserve">
-    <value>DateTimePicker allows selecting both date and time values.</value>
+    <value>日期时间选择器允许同时选择日期和时间值。</value>
   </data>
   <data name="Page_Description_Descriptions" xml:space="preserve">
-    <value>Descriptions presents key-value data in a structured label-content layout.</value>
+    <value>描述列表以结构化的标签-内容布局呈现键值数据。</value>
   </data>
   <data name="Page_Description_DisableContainer" xml:space="preserve">
-    <value>DisableContainer wraps content to visually and functionally disable child elements.</value>
+    <value>禁用容器包裹内容，使子元素在视觉和功能上被禁用。</value>
   </data>
   <data name="Page_Description_Divider" xml:space="preserve">
-    <value>Divider renders a horizontal or vertical separator line between content.</value>
+    <value>分割线在内容之间呈现水平或垂直分隔线。</value>
   </data>
   <data name="Page_Description_Drawer" xml:space="preserve">
-    <value>Drawer is a panel that slides in from the edge of the screen.</value>
+    <value>抽屉是从屏幕边缘滑入的面板。</value>
   </data>
   <data name="Page_Description_DualBadge" xml:space="preserve">
-    <value>DualBadge shows a two-part badge with header and value sections.</value>
+    <value>双徽标显示带有标题和值部分的两部分徽章。</value>
   </data>
   <data name="Page_Description_ElasticWrapPanel" xml:space="preserve">
-    <value>ElasticWrapPanel is a panel that wraps children with elastic spacing distribution.</value>
+    <value>弹性换行面板以弹性间距分布换行排列子元素。</value>
   </data>
   <data name="Page_Description_EnumSelector" xml:space="preserve">
-    <value>EnumSelector provides a dropdown for selecting enum values.</value>
+    <value>枚举选择器提供用于选择枚举值的下拉菜单。</value>
   </data>
   <data name="Page_Description_Form" xml:space="preserve">
-    <value>Form is a layout container for grouping labeled input controls.</value>
+    <value>表单是用于分组带标签输入控件的布局容器。</value>
   </data>
   <data name="Page_Description_GroupBox" xml:space="preserve">
-    <value>GroupBox groups related controls together with an optional title border.</value>
+    <value>分组框将相关控件组合在一起，带有可选标题边框。</value>
   </data>
   <data name="Page_Description_IconButton" xml:space="preserve">
-    <value>IconButton is a button that displays an icon alongside optional text.</value>
+    <value>图标按钮是同时显示图标和可选文本的按钮。</value>
   </data>
   <data name="Page_Description_ImageViewer" xml:space="preserve">
-    <value>ImageViewer displays images with pan, zoom, and fit-to-window capabilities.</value>
+    <value>图片查看器支持平移、缩放和适应窗口功能显示图像。</value>
   </data>
   <data name="Page_Description_IPv4Box" xml:space="preserve">
-    <value>IPv4Box is a specialized input for entering IPv4 addresses.</value>
+    <value>IPv4 输入框是专门用于输入 IPv4 地址的控件。</value>
   </data>
   <data name="Page_Description_KeyGestureInput" xml:space="preserve">
-    <value>KeyGestureInput captures keyboard shortcut gestures from user input.</value>
+    <value>快捷键输入捕获用户输入的键盘快捷键手势。</value>
   </data>
   <data name="Page_Description_Loading" xml:space="preserve">
-    <value>Loading displays a spinner or progress indicator during async operations.</value>
+    <value>加载在异步操作期间显示旋转器或进度指示器。</value>
   </data>
   <data name="Page_Description_Marquee" xml:space="preserve">
-    <value>Marquee scrolls text or content continuously in a horizontal direction.</value>
+    <value>跑马灯在水平方向连续滚动文本或内容。</value>
   </data>
   <data name="Page_Description_MessageBox" xml:space="preserve">
-    <value>MessageBox shows a modal dialog with a message and action buttons.</value>
+    <value>消息框显示带有消息和操作按钮的模态对话框。</value>
   </data>
   <data name="Page_Description_MultiAutoCompleteBox" xml:space="preserve">
-    <value>MultiAutoCompleteBox supports selecting multiple items with auto-complete suggestions.</value>
+    <value>多选自动完成框支持选择多个项目并提供自动完成建议。</value>
   </data>
   <data name="Page_Description_MultiComboBox" xml:space="preserve">
-    <value>MultiComboBox allows selecting multiple items from a dropdown list.</value>
+    <value>多选下拉框允许从下拉列表中选择多个项目。</value>
   </data>
   <data name="Page_Description_NavMenu" xml:space="preserve">
-    <value>NavMenu is a vertical or horizontal navigation menu with hierarchical items.</value>
+    <value>导航菜单是具有层级项目的垂直或水平导航菜单。</value>
   </data>
   <data name="Page_Description_Notification" xml:space="preserve">
-    <value>Notification shows informational messages in a non-blocking overlay.</value>
+    <value>通知以非阻塞浮层形式显示信息性消息。</value>
   </data>
   <data name="Page_Description_NumberDisplayer" xml:space="preserve">
-    <value>NumberDisplayer animates number transitions with smooth digit rolling effects.</value>
+    <value>数字显示器以流畅的数字滚动效果动画显示数字变化。</value>
   </data>
   <data name="Page_Description_NumericUpDown" xml:space="preserve">
-    <value>NumericUpDown is a numeric input control with increment and decrement buttons.</value>
+    <value>数字输入框是带有增加和减少按钮的数值输入控件。</value>
   </data>
   <data name="Page_Description_NumPad" xml:space="preserve">
-    <value>NumPad is a numeric keypad control for entering numbers.</value>
+    <value>数字键盘是用于输入数字的控件。</value>
   </data>
   <data name="Page_Description_OverlayDialog" xml:space="preserve">
-    <value>Overlay Dialog displays dialogs as overlays within the application window.</value>
+    <value>悬浮对话框在应用程序窗口内以覆盖形式显示对话框。</value>
   </data>
   <data name="Page_Description_Pagination" xml:space="preserve">
-    <value>Pagination provides controls to navigate between pages of content.</value>
+    <value>分页提供在页面内容之间导航的控件。</value>
   </data>
   <data name="Page_Description_PathPicker" xml:space="preserve">
-    <value>PathPicker allows users to select file or folder paths from the filesystem.</value>
+    <value>路径选择器允许用户从文件系统中选择文件或文件夹路径。</value>
   </data>
   <data name="Page_Description_PinCode" xml:space="preserve">
-    <value>PinCode is an input control for entering PIN or verification codes.</value>
+    <value>密码输入是用于输入 PIN 或验证码的控件。</value>
   </data>
   <data name="Page_Description_PopConfirm" xml:space="preserve">
-    <value>PopConfirm shows a confirmation popup before executing an action.</value>
+    <value>气泡确认在执行操作前显示确认弹出框。</value>
   </data>
   <data name="Page_Description_ProportionalCanvas" xml:space="preserve">
-    <value>ProportionalCanvas is a layout panel that arranges child elements proportionally within the available space.</value>
+    <value>比例画布在可用空间内按比例排列子元素的布局面板。</value>
   </data>
   <data name="Page_Description_QrCode" xml:space="preserve">
-    <value>QrCode generates and displays QR code images from text or URL input.</value>
+    <value>二维码从文本或 URL 输入生成并显示 QR 码图像。</value>
   </data>
   <data name="Page_Description_RangeSlider" xml:space="preserve">
-    <value>RangeSlider allows selecting a value range with two draggable thumbs.</value>
+    <value>范围滑块允许使用两个可拖动的滑块选择数值范围。</value>
   </data>
   <data name="Page_Description_Rating" xml:space="preserve">
-    <value>Rating displays and collects star-based rating values from users.</value>
+    <value>评分显示并收集用户的星级评分值。</value>
   </data>
   <data name="Page_Description_ScrollToButton" xml:space="preserve">
-    <value>ScrollToButton is a floating button that scrolls the viewport to a target element.</value>
+    <value>滚动到按钮是滚动视口到目标元素的浮动按钮。</value>
   </data>
   <data name="Page_Description_SelectionList" xml:space="preserve">
-    <value>SelectionList presents a list of items for single or multiple selection.</value>
+    <value>选择列表呈现供单选或多选的项目列表。</value>
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
-    <value>Skeleton shows placeholder loading animations for content areas.</value>
+    <value>骨架屏为内容区域显示占位加载动画。</value>
   </data>
   <data name="Page_Description_TagInput" xml:space="preserve">
-    <value>TagInput allows users to enter and manage multiple tag values.</value>
+    <value>标签输入允许用户输入和管理多个标签值。</value>
   </data>
   <data name="Page_Description_ThemeToggler" xml:space="preserve">
-    <value>ThemeToggler provides a control to switch between light and dark themes.</value>
+    <value>主题切换提供在明暗主题之间切换的控件。</value>
   </data>
   <data name="Page_Description_ThemeVariantMapper" xml:space="preserve">
-    <value>ThemeVariantMapper maps values between light and dark theme variants.</value>
+    <value>主题变体映射在明暗主题变体之间映射值。</value>
   </data>
   <data name="Page_Description_TimeBox" xml:space="preserve">
-    <value>TimeBox is a text input control for entering time values directly.</value>
+    <value>时间输入框是直接输入时间值的文本输入控件。</value>
   </data>
   <data name="Page_Description_Timeline" xml:space="preserve">
-    <value>Timeline presents a sequence of events in chronological vertical order.</value>
+    <value>时间轴以垂直顺序呈现事件的时间序列。</value>
   </data>
   <data name="Page_Description_TimeOnlyPicker" xml:space="preserve">
-    <value>TimeOnlyPicker selects time values using the TimeOnly type.</value>
+    <value>纯时间选择器使用 TimeOnly 类型选择时间值。</value>
   </data>
   <data name="Page_Description_TimeOnlyRangePicker" xml:space="preserve">
-    <value>TimeOnlyRangePicker selects a time range using the TimeOnly type.</value>
+    <value>纯时间范围选择器使用 TimeOnly 类型选择时间范围。</value>
   </data>
   <data name="Page_Description_TimePicker" xml:space="preserve">
-    <value>TimePicker allows selecting a time value from a popup panel.</value>
+    <value>时间选择器允许从弹出面板中选择时间值。</value>
   </data>
   <data name="Page_Description_TimeRangePicker" xml:space="preserve">
-    <value>TimeRangePicker allows selecting a start and end time range.</value>
+    <value>时间范围选择器允许选择开始和结束时间范围。</value>
   </data>
   <data name="Page_Description_Toast" xml:space="preserve">
-    <value>Toast displays brief, auto-dismissing notification messages.</value>
+    <value>提示显示简短、自动消失的通知消息。</value>
   </data>
   <data name="Page_Description_ToolBar" xml:space="preserve">
-    <value>ToolBar is a container for grouping action buttons and controls.</value>
+    <value>工具栏是用于分组操作按钮和控件的容器。</value>
   </data>
   <data name="Page_Description_TreeComboBox" xml:space="preserve">
-    <value>TreeComboBox is a combo box that displays items in a hierarchical tree structure.</value>
+    <value>树形下拉框以下拉树形结构显示项目的组合框。</value>
   </data>
   <data name="Page_Description_TwoTonePathIcon" xml:space="preserve">
-    <value>TwoTonePathIcon renders path icons with two distinct fill colors.</value>
+    <value>双色路径图标以两种不同填充颜色渲染路径图标。</value>
   </data>
   <data name="Page_Description_VirtualizingUniformGrid" xml:space="preserve">
-    <value>A virtualizing panel that arranges items in a uniform grid with a fixed number of columns. Only items that are currently visible (plus a buffer area) are realized; off-screen containers are recycled.</value>
+    <value>虚拟化面板，以固定列数的统一网格排列项目。仅当前可见项目（加上缓冲区）被创建，离屏容器被回收。</value>
   </data>
   <data name="Page_Description_WindowDialog" xml:space="preserve">
-    <value>Window Dialog displays modal windows for user interaction.</value>
+    <value>窗口对话框显示用于用户交互的模态窗口。</value>
   </data>
 </root>
