@@ -1,3 +1,4 @@
+using CommunityToolkit.Mvvm.ComponentModel;
 using Ursa.Demo.Localizations;
 using Ursa.Demo.ViewModels.Controls;
 
@@ -15,4 +16,6 @@ public partial class MarkdownLineDemoViewModel : ViewModelBase, IPageMetadataPro
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/MarkdownLineDemoViewModel.cs",
         InlineXamlSupport = true,
     };
+
+    [ObservableProperty] private string? _markdown = "**Try** *editing* `this` ~~text~~!";
 }
