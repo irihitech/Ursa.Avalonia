@@ -57,14 +57,20 @@
                     </u:NavMenu.IconTemplate>
                     <u:NavMenu.HeaderTemplate>
                         <DataTemplate x:DataType="vm:MenuItemViewModel">
-                            <StackPanel Orientation="Horizontal" Spacing="{StaticResource SemiSpacingExtraTight}">
-                                <TextBlock HorizontalAlignment="Left" Text="{Binding MenuHeader^}" />
+                            <DockPanel HorizontalSpacing="{StaticResource SemiSpacingExtraTight}" HorizontalAlignment="Left">
                                 <Label
                                     Theme="{StaticResource TagLabel}"
                                     Classes="Purple"
+                                    DockPanel.Dock="Right"
                                     Content="{Binding Status}"
                                     IsVisible="{Binding Status, Converter={x:Static ObjectConverters.IsNotNull}}" />
-                            </StackPanel>
+                                <TextBlock 
+                                    HorizontalAlignment="Left" 
+                                    Text="{Binding MenuHeader^}"
+                                    ToolTip.Tip="{Binding MenuHeader^}"
+                                    TextTrimming="CharacterEllipsis" />
+                                
+                            </DockPanel>
                         </DataTemplate>
                     </u:NavMenu.HeaderTemplate>
                     <u:NavMenu.Header>
