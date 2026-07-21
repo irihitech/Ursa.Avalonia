@@ -11,7 +11,7 @@
     x:DataType="viewModels:DisableContainerDemoViewModel"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
-    <StackPanel Spacing="20" Margin="20">
+    <StackPanel Spacing="20">
         <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <StackPanel HorizontalAlignment="Left">
             <ToggleSwitch Name="s" IsChecked="True" />

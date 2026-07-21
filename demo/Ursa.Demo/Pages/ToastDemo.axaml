@@ -12,7 +12,7 @@
     <Design.DataContext>
         <vm:ToastDemoViewModel />
     </Design.DataContext>
-    <StackPanel Spacing="20" Margin="20">
+    <StackPanel Spacing="20">
         <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <StackPanel Orientation="Horizontal">
             <ToggleSwitch IsChecked="{Binding ShowIcon}" Content="ShowIcon" />

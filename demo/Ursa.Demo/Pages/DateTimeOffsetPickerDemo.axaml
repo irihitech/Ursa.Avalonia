@@ -12,7 +12,7 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <ScrollViewer>
-        <StackPanel Margin="20" Spacing="8">
+        <StackPanel Spacing="8">
 
             <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
 

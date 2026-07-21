@@ -12,7 +12,7 @@
     x:DataType="vm:MultiComboBoxDemoViewModel"
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
-    <StackPanel Orientation="Vertical" Margin="20" Spacing="20">
+    <StackPanel Orientation="Vertical" Spacing="20">
         <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <TextBlock>Binded ItemsSource</TextBlock>
         <StackPanel Orientation="Horizontal">

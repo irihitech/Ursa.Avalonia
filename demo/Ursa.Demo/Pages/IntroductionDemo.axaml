@@ -38,7 +38,7 @@
     </UserControl.Styles>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <StackPanel Margin="12" Spacing="8">
+        <StackPanel Spacing="8">
             <!-- Welcome Banner -->
             <u:Banner
                 Classes="Bordered"

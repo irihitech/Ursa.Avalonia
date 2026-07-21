@@ -18,7 +18,7 @@
             <Setter Property="Command" Value="{Binding ClickCommand}" />
         </Style>
     </UserControl.Styles>
-    <StackPanel Margin="20" Spacing="20">
+    <StackPanel Spacing="20">
         <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
             <u:Avatar />

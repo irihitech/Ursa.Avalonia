@@ -12,7 +12,7 @@
     x:DataType="vm:KeyGestureInputDemoViewModel"
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
-    <StackPanel Margin="20" Spacing="20">
+    <StackPanel Spacing="20">
         <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <TextBlock Text="Accept all keys" />
         <u:KeyGestureInput HorizontalAlignment="Left" />

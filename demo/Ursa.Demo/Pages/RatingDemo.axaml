@@ -11,7 +11,7 @@
              x:DataType="vm:RatingDemoViewModel"
              mc:Ignorable="d"
              xmlns:controls="clr-namespace:Ursa.Demo.Controls">
-    <StackPanel Spacing="20" Margin="20">
+    <StackPanel Spacing="20">
         <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
         <Grid ColumnDefinitions="*, 300">
             <Grid Grid.Column="0">
