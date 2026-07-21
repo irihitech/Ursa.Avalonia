@@ -20,6 +20,7 @@ public partial class MainViewViewModel : ViewModelBase
     public MenuViewModel Menus { get; set; } = new MenuViewModel();
     
     [ObservableProperty] public partial IReadOnlyList<BreadcrumbItemData>? NavigationKeys { get; set; }
+    [ObservableProperty] public partial PageMetadataViewModel? PageMetadata { get; set; }
 
     [ObservableProperty] private object? _content;
 
@@ -108,10 +109,12 @@ public partial class MainViewViewModel : ViewModelBase
         };
         if (Content is IPageMetadataProvider provider)
         {
+            PageMetadata = provider.PageMetadata;
             NavigationKeys = provider.PageMetadata.Breadcrumbs;
         }
         else
         {
+            PageMetadata = null;
             NavigationKeys = null;
         }
     }
