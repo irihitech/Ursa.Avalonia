@@ -9,7 +9,7 @@ using CommunityToolkit.Mvvm.Input;
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-public partial class ImageViewerDemoViewModel: ObservableObject
+public partial class ImageViewerDemoViewModel: ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {

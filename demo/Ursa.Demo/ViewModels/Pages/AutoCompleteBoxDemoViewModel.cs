@@ -5,7 +5,7 @@ using Ursa.Demo.Models;
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-public class AutoCompleteBoxDemoViewModel : ObservableObject
+public class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {

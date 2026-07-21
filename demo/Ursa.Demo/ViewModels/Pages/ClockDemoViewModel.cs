@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-public partial class ClockDemoViewModel: ObservableObject, IDisposable
+public partial class ClockDemoViewModel: ObservableObject, IPageMetadataProvider, IDisposable
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {

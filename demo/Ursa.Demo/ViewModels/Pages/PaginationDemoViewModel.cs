@@ -6,7 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-public class PaginationDemoViewModel : ViewModelBase
+public class PaginationDemoViewModel : ViewModelBase, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {

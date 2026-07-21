@@ -11,7 +11,7 @@ using Ursa.Demo.ViewModels.Controls;
 
 namespace Ursa.Demo.ViewModels;
 
-public partial class WindowDialogDemoViewModel : ObservableObject
+public partial class WindowDialogDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {

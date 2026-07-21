@@ -7,7 +7,7 @@ using Ursa.Controls;
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-public class BreadcrumbDemoViewModel: ObservableObject
+public class BreadcrumbDemoViewModel: ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {

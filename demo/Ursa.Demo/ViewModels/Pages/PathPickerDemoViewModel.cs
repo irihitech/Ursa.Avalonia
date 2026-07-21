@@ -6,7 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-public partial class PathPickerDemoViewModel : ViewModelBase
+public partial class PathPickerDemoViewModel : ViewModelBase, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {

@@ -1,7 +1,7 @@
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-public class AspectRatioLayoutDemoViewModel : ViewModelBase
+public class AspectRatioLayoutDemoViewModel : ViewModelBase, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {

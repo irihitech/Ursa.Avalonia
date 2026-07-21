@@ -1,7 +1,7 @@
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-public class DateTimePickerDemoViewModel
+public class DateTimePickerDemoViewModel : IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {

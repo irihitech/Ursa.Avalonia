@@ -9,7 +9,7 @@ using Ursa.Controls;
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-public partial class PinCodeDemoViewModel: ObservableObject
+public partial class PinCodeDemoViewModel: ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {

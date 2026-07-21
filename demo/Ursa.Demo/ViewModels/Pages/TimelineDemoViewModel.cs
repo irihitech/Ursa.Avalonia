@@ -5,7 +5,7 @@ using Ursa.Controls;
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-public class TimelineDemoViewModel: ViewModelBase
+public class TimelineDemoViewModel: ViewModelBase, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {

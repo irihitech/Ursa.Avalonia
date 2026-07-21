@@ -1,7 +1,7 @@
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-public class ThemeVariantMapperDemoViewModel : ViewModelBase
+public class ThemeVariantMapperDemoViewModel : ViewModelBase, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {

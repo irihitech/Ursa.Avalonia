@@ -9,7 +9,7 @@ using WindowNotificationManager = Ursa.Controls.WindowNotificationManager;
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-public partial class NotificationDemoViewModel : ObservableObject
+public partial class NotificationDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {

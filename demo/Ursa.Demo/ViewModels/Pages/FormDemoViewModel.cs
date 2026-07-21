@@ -7,7 +7,7 @@ using Irihi.Avalonia.Shared.Contracts;
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-public partial class FormDemoViewModel : ObservableObject
+public partial class FormDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {

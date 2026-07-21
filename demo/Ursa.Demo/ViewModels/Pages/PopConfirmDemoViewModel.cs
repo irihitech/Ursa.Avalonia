@@ -8,7 +8,7 @@ using Ursa.Controls;
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-public class PopConfirmDemoViewModel : ObservableObject
+public class PopConfirmDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {

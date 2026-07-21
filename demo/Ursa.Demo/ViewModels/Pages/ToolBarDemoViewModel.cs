@@ -7,7 +7,7 @@ using Ursa.Controls;
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-public partial class ToolBarDemoViewModel : ObservableObject
+public partial class ToolBarDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {

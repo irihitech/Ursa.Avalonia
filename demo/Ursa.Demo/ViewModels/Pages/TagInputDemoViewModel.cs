@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-public class TagInputDemoViewModel: ViewModelBase
+public class TagInputDemoViewModel: ViewModelBase, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {

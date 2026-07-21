@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Controls.Notifications;
@@ -16,6 +17,8 @@ public partial class MainViewViewModel : ViewModelBase
 {
     public WindowNotificationManager? NotificationManager { get; set; }
     public MenuViewModel Menus { get; set; } = new MenuViewModel();
+    
+    public List<IObservable<string>>? NavigationKeys { get; set; } = new List<IObservable<string>>();
 
     [ObservableProperty] private object? _content;
 
