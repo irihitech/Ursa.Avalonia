@@ -1,12 +1,33 @@
+using System;
+using System.Collections.Generic;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Ursa.Demo.ViewModels.Controls;
 
 public partial class PageMetadataViewModel: ObservableObject
 {
-    [ObservableProperty] private string? _title;
-    [ObservableProperty] private string? _description;
-    [ObservableProperty] private string[]? _breadcrumbs;
+    private IObservable<string?>? _title;
+    private IObservable<string?>? _description;
+    private IReadOnlyList<BreadcrumbItemData>? _breadcrumbs;
+
+    public IObservable<string?>? Title
+    {
+        get => _title;
+        set => SetProperty(ref _title, value);
+    }
+
+    public IObservable<string?>? Description
+    {
+        get => _description;
+        set => SetProperty(ref _description, value);
+    }
+
+    public IReadOnlyList<BreadcrumbItemData>? Breadcrumbs
+    {
+        get => _breadcrumbs;
+        set => SetProperty(ref _breadcrumbs, value);
+    }
+
     [ObservableProperty] private string? _demoViewUrl;
     [ObservableProperty] private string? _demoViewModelUrl;
     [ObservableProperty] private string? _sourceUrl;

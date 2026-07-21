@@ -27,6 +27,11 @@
                     DockPanel.Dock="Left"
                     IsVisible="{Binding Breadcrumbs, Converter={x:Static ObjectConverters.IsNotNull}}"
                     ItemsSource="{Binding Breadcrumbs}">
+                    <u:Breadcrumb.ItemTemplate>
+                        <DataTemplate x:DataType="controls:BreadcrumbItemData">
+                            <TextBlock Text="{Binding Header^}" />
+                        </DataTemplate>
+                    </u:Breadcrumb.ItemTemplate>
                     <u:Breadcrumb.Styles>
                         <Style Selector="u|BreadcrumbItem">
                             <Setter Property="IsReadOnly" Value="True" />
@@ -67,15 +72,15 @@
             <!--  Title  -->
             <TextBlock
                 Classes="H2"
-                IsVisible="{Binding Title, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                Text="{Binding Title}"
+                IsVisible="{Binding Title^, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                Text="{Binding Title^}"
                 Theme="{DynamicResource TitleTextBlock}" />
 
             <!--  Description  -->
             <TextBlock
                 Classes="Secondary"
-                IsVisible="{Binding Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                Text="{Binding Description}"
+                IsVisible="{Binding Description^, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                Text="{Binding Description^}"
                 TextWrapping="Wrap" />
 
             <!--  Tags  -->
