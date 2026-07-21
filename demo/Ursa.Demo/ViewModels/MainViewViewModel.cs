@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using Semi.Avalonia;
 using Ursa.Demo.Localizations;
+using Ursa.Demo.ViewModels.Controls;
 using Notification = Ursa.Controls.Notification;
 using WindowNotificationManager = Ursa.Controls.WindowNotificationManager;
 
@@ -18,7 +19,7 @@ public partial class MainViewViewModel : ViewModelBase
     public WindowNotificationManager? NotificationManager { get; set; }
     public MenuViewModel Menus { get; set; } = new MenuViewModel();
     
-    public List<IObservable<string>>? NavigationKeys { get; set; } = new List<IObservable<string>>();
+    [ObservableProperty] public partial IReadOnlyList<BreadcrumbItemData>? NavigationKeys { get; set; }
 
     [ObservableProperty] private object? _content;
 
@@ -105,6 +106,14 @@ public partial class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyProportionalCanvas => new ProportionalCanvasDemoViewModel(),
             _ => throw new ArgumentOutOfRangeException(nameof(s), s, null)
         };
+        if (Content is IPageMetadataProvider provider)
+        {
+            NavigationKeys = provider.PageMetadata.Breadcrumbs;
+        }
+        else
+        {
+            NavigationKeys = null;
+        }
     }
 
     public ObservableCollection<ThemeItem> Themes { get; } =

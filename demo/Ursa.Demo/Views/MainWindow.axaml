@@ -19,6 +19,15 @@
     IsFullScreenButtonVisible="{OnPlatform {x:True}, macOS={x:False}}"
     IsManagedResizerVisible="{OnPlatform {x:False}, Linux={x:True}}"
     mc:Ignorable="d">
+    <u:UrsaWindow.TitleBarContent>
+        <u:Breadcrumb ItemsSource="{Binding BreadcrumbItems}">
+            <u:Breadcrumb.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Header^}" />
+                </DataTemplate>
+            </u:Breadcrumb.ItemTemplate>
+        </u:Breadcrumb>
+    </u:UrsaWindow.TitleBarContent>
     <u:UrsaWindow.RightContent>
         <views:TitleBarRightContent />
     </u:UrsaWindow.RightContent>
@@ -31,5 +40,5 @@
             </Style>
         </Style>
     </u:UrsaWindow.Styles>
-    <views:MainView />
+    <views:MainView DataContext="{Binding MainViewViewModel}" />
 </u:UrsaWindow>
