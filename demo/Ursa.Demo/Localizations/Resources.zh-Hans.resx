@@ -227,6 +227,9 @@
   <data name="Menu_Header_Marquee" xml:space="preserve">
     <value>跑马灯 Marquee</value>
   </data>
+  <data name="Menu_Header_MarkdownLine" xml:space="preserve">
+    <value>Markdown 行 MarkdownLine</value>
+  </data>
   <data name="Menu_Header_NumberDisplayer" xml:space="preserve">
     <value>数字显示器 NumberDisplayer</value>
   </data>

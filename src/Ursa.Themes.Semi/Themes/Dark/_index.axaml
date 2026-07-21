@@ -15,6 +15,7 @@
         <ResourceInclude Source="DualBadge.axaml" />
         <ResourceInclude Source="Form.axaml" />
         <ResourceInclude Source="Loading.axaml" />
+        <ResourceInclude Source="MarkdownLine.axaml" />
         <ResourceInclude Source="MessageBox.axaml" />
         <ResourceInclude Source="NavigationMenu.axaml" />
         <ResourceInclude Source="NotificationShared.axaml" />

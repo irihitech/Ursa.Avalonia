@@ -1,0 +1,20 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <Design.PreviewWith>
+        <u:MarkdownLine
+            Markdown="**Bold** *italic* `code` ~~strike~~"
+            Margin="20" />
+    </Design.PreviewWith>
+
+    <ControlTheme x:Key="{x:Type u:MarkdownLine}" TargetType="{x:Type u:MarkdownLine}">
+        <Setter Property="Foreground" Value="{DynamicResource TextBlockDefaultForeground}" />
+        <Setter Property="FontSize" Value="{DynamicResource TextBlockFontSize}" />
+        <Setter Property="Cursor" Value="Ibeam" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource TextBlockSelectionBackground}" />
+        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource TextBlockSelectionForeground}" />
+        <Setter Property="CodeBackground" Value="{DynamicResource TextBlockCodeBackground}" />
+        <Setter Property="CodeFontFamily" Value="{DynamicResource CodeFontFamily}"></Setter>
+    </ControlTheme>
+</ResourceDictionary>

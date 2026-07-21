@@ -105,6 +105,7 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = lang.Menu_Header_VirtualizingUniformGrid, Key = MenuKeys.MenuKeyVirtualizingUniformGrid, Status = "New" },
                     new() { MenuHeader = lang.Menu_Header_ProportionalCanvas, Key = MenuKeys.MenuKeyProportionalCanvas, Status = "New" },
                     new() { MenuHeader = lang.Menu_Header_Marquee, Key = MenuKeys.MenuKeyMarquee },
+                    new() { MenuHeader = lang.Menu_Header_MarkdownLine, Key = MenuKeys.MenuKeyMarkdownLine, Status = "New" },
                     new() { MenuHeader = lang.Menu_Header_NumberDisplayer, Key = MenuKeys.MenuKeyNumberDisplayer },
                     new() { MenuHeader = lang.Menu_Header_QrCode, Key = MenuKeys.MenuKeyQrCode },
                     new() { MenuHeader = lang.Menu_Header_ScrollTo, Key = MenuKeys.MenuKeyScrollToButton },
@@ -157,6 +158,7 @@ public static class MenuKeys
     public const string MenuKeyKeyGestureInput = "KeyGestureInput";
     public const string MenuKeyLoading = "Loading";
     public const string MenuKeyMarquee = "Marquee";
+    public const string MenuKeyMarkdownLine = "MarkdownLine";
     public const string MenuKeyMessageBox = "MessageBox";
     public const string MenuKeyMultiComboBox = "MultiComboBox";
     public const string MenuKeyNavMenu = "NavMenu";

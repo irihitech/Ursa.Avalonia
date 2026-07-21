@@ -240,6 +240,9 @@
   <data name="Menu_Header_Marquee" xml:space="preserve">
     <value>Marquee</value>
   </data>
+  <data name="Menu_Header_MarkdownLine" xml:space="preserve">
+    <value>MarkdownLine</value>
+  </data>
   <data name="Menu_Header_NumberDisplayer" xml:space="preserve">
     <value>Number Displayer</value>
   </data>
