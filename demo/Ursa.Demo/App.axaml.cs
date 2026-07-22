@@ -13,6 +13,7 @@ public partial class App : Application
 {
     public override void Initialize()
     {
+        LanguageManager.Instance.UpdateCulture(new CultureInfo("zh-CN"));
         AvaloniaXamlLoader.Load(this);
 #if DEBUG
         this.AttachDeveloperTools();
@@ -37,6 +38,5 @@ public partial class App : Application
             };
         }
         base.OnFrameworkInitializationCompleted();
-        LanguageManager.Instance.UpdateCulture(new CultureInfo("zh-Hans"));
     }
 }

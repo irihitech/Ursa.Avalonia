@@ -5,7 +5,8 @@
              xmlns:u="https://irihi.tech/ursa"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Views.TitleBarRightContent"
-             xmlns:localizations="clr-namespace:Ursa.Demo.Localizations">
+             xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
+             xmlns:lingua="https://irihi.tech/lingua">
     <StackPanel Orientation="Horizontal">
         <u:IconButton
             Theme="{StaticResource BorderlessIconButton}"
@@ -15,13 +16,24 @@
         <u:ThemeToggleButton
             IsThreeState="True"
             Mode="Controller" />
-        <u:IconButton
-            Theme="{StaticResource BorderlessIconButton}"
-            Classes="Tertiary"
-            Icon="{StaticResource SemiIconLanguage}"
-            Content="{Translate {x:Static localizations:LanguageManager+Keys.Lang_Switch_Content}}"
-            ToolTip.Tip="{Translate {x:Static localizations:LanguageManager+Keys.Lang_Switch_ToolTip}}"
-            Click="LangSwitchButton_Clicked" >
-        </u:IconButton>
+        <lingua:CulturePicker CultureChanged="CulturePicker_OnCultureChanged">
+            <lingua:CulturePicker.Styles>
+                <Style Selector="ComboBox">
+                    <Setter Property="Background" Value="Transparent" />
+                </Style>
+            </lingua:CulturePicker.Styles>
+            <lingua:CulturePicker.Managers>
+                <x:Static Member="localizations:LanguageManager.Instance" />
+            </lingua:CulturePicker.Managers>
+            <lingua:CulturePicker.Cultures>
+                <lingua:LinguaCulture Culture="en-US" DisplayName="English" ShortDisplayName="EN" />
+                <lingua:LinguaCulture Culture="zh-CN" DisplayName="简体中文" ShortDisplayName="中" />
+                <lingua:LinguaCulture Culture="cs-CZ" DisplayName="Čeština" ShortDisplayName="CS" />
+                <lingua:LinguaCulture Culture="de-DE" DisplayName="Deutsch" ShortDisplayName="DE" />
+                <lingua:LinguaCulture Culture="fr-FR" DisplayName="Français" ShortDisplayName="FR" />
+                <lingua:LinguaCulture Culture="pl-PL" DisplayName="Polski" ShortDisplayName="PL" />
+                <lingua:LinguaCulture Culture="ru-RU" DisplayName="Русский" ShortDisplayName="RU" />
+            </lingua:CulturePicker.Cultures>
+        </lingua:CulturePicker>
     </StackPanel>
 </UserControl>

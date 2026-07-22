@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Lang_Switch_Content" xml:space="preserve">
+    <value>EN</value>
+  </data>
+  <data name="Lang_Switch_ToolTip" xml:space="preserve">
+    <value>Переключить на английский</value>
+  </data>
+  <data name="Menu_Header_Introduction" xml:space="preserve">
+    <value>Введение Introduction</value>
+  </data>
+  <data name="Menu_Header_AboutUs" xml:space="preserve">
+    <value>О нас AboutUs</value>
+  </data>
+
+  <!-- Category headers -->
+  <data name="Menu_Category_Controls" xml:space="preserve">
+    <value>Элементы управления</value>
+  </data>
+  <data name="Menu_Category_ButtonsAndInputs" xml:space="preserve">
+    <value>Кнопки и ввод</value>
+  </data>
+  <data name="Menu_Category_DialogAndFeedbacks" xml:space="preserve">
+    <value>Диалоги и обратная связь</value>
+  </data>
+  <data name="Menu_Category_DateAndTime" xml:space="preserve">
+    <value>Дата и время</value>
+  </data>
+  <data name="Menu_Category_NavigationAndMenus" xml:space="preserve">
+    <value>Навигация и меню</value>
+  </data>
+  <data name="Menu_Category_LayoutAndDisplay" xml:space="preserve">
+    <value>Макет и отображение</value>
+  </data>
+
+  <!-- Buttons &amp; Inputs -->
+  <data name="Menu_Header_ButtonGroup" xml:space="preserve">
+    <value>Группа кнопок ButtonGroup</value>
+  </data>
+  <data name="Menu_Header_IconButton" xml:space="preserve">
+    <value>Кнопка с иконкой IconButton</value>
+  </data>
+  <data name="Menu_Header_AutoCompleteBox" xml:space="preserve">
+    <value>Автозаполнение AutoCompleteBox</value>
+  </data>
+  <data name="Menu_Header_ClassInput" xml:space="preserve">
+    <value>Ввод класса ClassInput</value>
+  </data>
+  <data name="Menu_Header_EnumSelector" xml:space="preserve">
+    <value>Выбор перечисления EnumSelector</value>
+  </data>
+  <data name="Menu_Header_Form" xml:space="preserve">
+    <value>Форма Form</value>
+  </data>
+  <data name="Menu_Header_KeyGestureInput" xml:space="preserve">
+    <value>Ввод жестов клавиш KeyGestureInput</value>
+  </data>
+  <data name="Menu_Header_IPv4Box" xml:space="preserve">
+    <value>Ввод IPv4 IPv4Box</value>
+  </data>
+  <data name="Menu_Header_MultiComboBox" xml:space="preserve">
+    <value>Множественный выбор MultiComboBox</value>
+  </data>
+  <data name="Menu_Header_MultiAutoCompleteBox" xml:space="preserve">
+    <value>Множественное автозаполнение MultiAutoCompleteBox</value>
+  </data>
+  <data name="Menu_Header_NumericUpDown" xml:space="preserve">
+    <value>Числовой ввод NumericUpDown</value>
+  </data>
+  <data name="Menu_Header_NumPad" xml:space="preserve">
+    <value>Цифровая клавиатура NumPad</value>
+  </data>
+  <data name="Menu_Header_PathPicker" xml:space="preserve">
+    <value>Выбор пути PathPicker</value>
+  </data>
+  <data name="Menu_Header_PinCode" xml:space="preserve">
+    <value>ПИН-код PinCode</value>
+  </data>
+  <data name="Menu_Header_RangeSlider" xml:space="preserve">
+    <value>Ползунок диапазона RangeSlider</value>
+  </data>
+  <data name="Menu_Header_Rating" xml:space="preserve">
+    <value>Рейтинг Rating</value>
+  </data>
+  <data name="Menu_Header_SelectionList" xml:space="preserve">
+    <value>Список выбора SelectionList</value>
+  </data>
+  <data name="Menu_Header_TagInput" xml:space="preserve">
+    <value>Ввод тегов TagInput</value>
+  </data>
+  <data name="Menu_Header_ThemeToggler" xml:space="preserve">
+    <value>Переключатель темы ThemeToggler</value>
+  </data>
+  <data name="Menu_Header_TreeComboBox" xml:space="preserve">
+    <value>Древовидный выбор TreeComboBox</value>
+  </data>
+
+  <!-- Dialog &amp; Feedbacks -->
+  <data name="Menu_Header_WindowDialog" xml:space="preserve">
+    <value>Оконный диалог WindowDialog</value>
+  </data>
+  <data name="Menu_Header_OverlayDialog" xml:space="preserve">
+    <value>Наложенный диалог OverlayDialog</value>
+  </data>
+  <data name="Menu_Header_Drawer" xml:space="preserve">
+    <value>Панель Drawer</value>
+  </data>
+  <data name="Menu_Header_Loading" xml:space="preserve">
+    <value>Загрузка Loading</value>
+  </data>
+  <data name="Menu_Header_MessageBox" xml:space="preserve">
+    <value>Окно сообщения MessageBox</value>
+  </data>
+  <data name="Menu_Header_Notification" xml:space="preserve">
+    <value>Уведомление Notification</value>
+  </data>
+  <data name="Menu_Header_PopConfirm" xml:space="preserve">
+    <value>Всплывающее подтверждение PopConfirm</value>
+  </data>
+  <data name="Menu_Header_Toast" xml:space="preserve">
+    <value>Уведомление Toast</value>
+  </data>
+  <data name="Menu_Header_Skeleton" xml:space="preserve">
+    <value>Скелетон Skeleton</value>
+  </data>
+
+  <!-- Date &amp; Time -->
+  <data name="Menu_Header_DatePicker" xml:space="preserve">
+    <value>Выбор даты DatePicker</value>
+  </data>
+  <data name="Menu_Header_DateOnlyPicker" xml:space="preserve">
+    <value>Выбор только даты DateOnlyPicker</value>
+  </data>
+  <data name="Menu_Header_DateRangePicker" xml:space="preserve">
+    <value>Выбор диапазона дат DateRangePicker</value>
+  </data>
+  <data name="Menu_Header_DateOnlyRangePicker" xml:space="preserve">
+    <value>Выбор диапазона только дат DateOnlyRangePicker</value>
+  </data>
+  <data name="Menu_Header_DateTimePicker" xml:space="preserve">
+    <value>Выбор даты и времени DateTimePicker</value>
+  </data>
+  <data name="Menu_Header_DateOffsetPicker" xml:space="preserve">
+    <value>Выбор даты со смещением DateOffsetPicker</value>
+  </data>
+  <data name="Menu_Header_DateOffsetRangePicker" xml:space="preserve">
+    <value>Выбор диапазона дат со смещением DateOffsetRangePicker</value>
+  </data>
+  <data name="Menu_Header_DateTimeOffsetPicker" xml:space="preserve">
+    <value>Выбор DateTimeOffset DateTimeOffsetPicker</value>
+  </data>
+  <data name="Menu_Header_TimeBox" xml:space="preserve">
+    <value>Ввод времени TimeBox</value>
+  </data>
+  <data name="Menu_Header_TimePicker" xml:space="preserve">
+    <value>Выбор времени TimePicker</value>
+  </data>
+  <data name="Menu_Header_TimeOnlyPicker" xml:space="preserve">
+    <value>Выбор только времени TimeOnlyPicker</value>
+  </data>
+  <data name="Menu_Header_TimeRangePicker" xml:space="preserve">
+    <value>Выбор диапазона времени TimeRangePicker</value>
+  </data>
+  <data name="Menu_Header_TimeOnlyRangePicker" xml:space="preserve">
+    <value>Выбор диапазона только времени TimeOnlyRangePicker</value>
+  </data>
+  <data name="Menu_Header_Clock" xml:space="preserve">
+    <value>Часы Clock</value>
+  </data>
+
+  <!-- Navigation &amp; Menus -->
+  <data name="Menu_Header_Anchor" xml:space="preserve">
+    <value>Якорь Anchor</value>
+  </data>
+  <data name="Menu_Header_Breadcrumb" xml:space="preserve">
+    <value>Хлебные крошки Breadcrumb</value>
+  </data>
+  <data name="Menu_Header_NavMenu" xml:space="preserve">
+    <value>Меню навигации NavMenu</value>
+  </data>
+  <data name="Menu_Header_Pagination" xml:space="preserve">
+    <value>Пагинация Pagination</value>
+  </data>
+  <data name="Menu_Header_ToolBar" xml:space="preserve">
+    <value>Панель инструментов ToolBar</value>
+  </data>
+
+  <!-- Layout &amp; Display -->
+  <data name="Menu_Header_AspectRatioLayout" xml:space="preserve">
+    <value>Макет с соотношением сторон AspectRatioLayout</value>
+  </data>
+  <data name="Menu_Header_Avatar" xml:space="preserve">
+    <value>Аватар Avatar</value>
+  </data>
+  <data name="Menu_Header_Badge" xml:space="preserve">
+    <value>Значок Badge</value>
+  </data>
+  <data name="Menu_Header_Banner" xml:space="preserve">
+    <value>Баннер Banner</value>
+  </data>
+  <data name="Menu_Header_Descriptions" xml:space="preserve">
+    <value>Описания Descriptions</value>
+  </data>
+  <data name="Menu_Header_DisableContainer" xml:space="preserve">
+    <value>Отключающий контейнер DisableContainer</value>
+  </data>
+  <data name="Menu_Header_Divider" xml:space="preserve">
+    <value>Разделитель Divider</value>
+  </data>
+  <data name="Menu_Header_GroupBox" xml:space="preserve">
+    <value>Групповая рамка GroupBox</value>
+  </data>
+  <data name="Menu_Header_DualBadge" xml:space="preserve">
+    <value>Двойной значок DualBadge</value>
+  </data>
+  <data name="Menu_Header_ImageViewer" xml:space="preserve">
+    <value>Просмотр изображений ImageViewer</value>
+  </data>
+  <data name="Menu_Header_ElasticWrapPanel" xml:space="preserve">
+    <value>Эластичная панель переноса ElasticWrapPanel</value>
+  </data>
+  <data name="Menu_Header_Marquee" xml:space="preserve">
+    <value>Бегущая строка Marquee</value>
+  </data>
+  <data name="Menu_Header_MarkdownLine" xml:space="preserve">
+    <value>Строка Markdown MarkdownLine</value>
+  </data>
+  <data name="Menu_Header_NumberDisplayer" xml:space="preserve">
+    <value>Отображение чисел NumberDisplayer</value>
+  </data>
+  <data name="Menu_Header_ProportionalCanvas" xml:space="preserve">
+    <value>Пропорциональный холст ProportionalCanvas</value>
+  </data>
+  <data name="Menu_Header_QrCode" xml:space="preserve">
+    <value>QR-код QrCode</value>
+  </data>
+  <data name="Menu_Header_ScrollTo" xml:space="preserve">
+    <value>Прокрутить к ScrollTo</value>
+  </data>
+  <data name="Menu_Header_ThemeVariantMapper" xml:space="preserve">
+    <value>Преобразователь вариантов темы ThemeVariantMapper</value>
+  </data>
+  <data name="Menu_Header_Timeline" xml:space="preserve">
+    <value>Временная шкала Timeline</value>
+  </data>
+  <data name="Menu_Header_TwoTonePathIcon" xml:space="preserve">
+    <value>Двухцветная иконка пути TwoTonePathIcon</value>
+  </data>
+  <data name="Menu_Header_Settings" xml:space="preserve">
+    <value>Настройки Settings</value>
+  </data>
+  <data name="Main_Banner_Title" xml:space="preserve">
+    <value>Добро пожаловать в Ursa</value>
+  </data>
+  <data name="Main_Banner_Description" xml:space="preserve">
+    <value>Эстетическая революция продуктивности</value>
+  </data>
+  <data name="Menu_Header_VirtualizingUniformGrid" xml:space="preserve">
+    <value>Виртуализированная UniformGrid VirtualizingUniformGrid</value>
+  </data>
+
+  <!-- Page Titles -->
+  <data name="Page_Title_Anchor" xml:space="preserve">
+    <value>Якорь Anchor</value>
+  </data>
+  <data name="Page_Title_AspectRatioLayout" xml:space="preserve">
+    <value>Макет с соотношением сторон AspectRatioLayout</value>
+  </data>
+  <data name="Page_Title_AutoCompleteBox" xml:space="preserve">
+    <value>Автозаполнение AutoCompleteBox</value>
+  </data>
+  <data name="Page_Title_Avatar" xml:space="preserve">
+    <value>Аватар Avatar</value>
+  </data>
+  <data name="Page_Title_Badge" xml:space="preserve">
+    <value>Значок Badge</value>
+  </data>
+  <data name="Page_Title_Banner" xml:space="preserve">
+    <value>Баннер Banner</value>
+  </data>
+  <data name="Page_Title_Breadcrumb" xml:space="preserve">
+    <value>Хлебные крошки Breadcrumb</value>
+  </data>
+  <data name="Page_Title_ButtonGroup" xml:space="preserve">
+    <value>Группа кнопок ButtonGroup</value>
+  </data>
+  <data name="Page_Title_ClassInput" xml:space="preserve">
+    <value>Ввод класса ClassInput</value>
+  </data>
+  <data name="Page_Title_Clock" xml:space="preserve">
+    <value>Часы Clock</value>
+  </data>
+  <data name="Page_Title_DateOffsetPicker" xml:space="preserve">
+    <value>Выбор даты со смещением DateOffsetPicker</value>
+  </data>
+  <data name="Page_Title_DateOffsetRangePicker" xml:space="preserve">
+    <value>Выбор диапазона дат со смещением DateOffsetRangePicker</value>
+  </data>
+  <data name="Page_Title_DateOnlyPicker" xml:space="preserve">
+    <value>Выбор только даты DateOnlyPicker</value>
+  </data>
+  <data name="Page_Title_DateOnlyRangePicker" xml:space="preserve">
+    <value>Выбор диапазона только дат DateOnlyRangePicker</value>
+  </data>
+  <data name="Page_Title_DatePicker" xml:space="preserve">
+    <value>Выбор даты DatePicker</value>
+  </data>
+  <data name="Page_Title_DateRangePicker" xml:space="preserve">
+    <value>Выбор диапазона дат DateRangePicker</value>
+  </data>
+  <data name="Page_Title_DateTimeOffsetPicker" xml:space="preserve">
+    <value>Выбор DateTimeOffset DateTimeOffsetPicker</value>
+  </data>
+  <data name="Page_Title_DateTimePicker" xml:space="preserve">
+    <value>Выбор даты и времени DateTimePicker</value>
+  </data>
+  <data name="Page_Title_Descriptions" xml:space="preserve">
+    <value>Описания Descriptions</value>
+  </data>
+  <data name="Page_Title_DisableContainer" xml:space="preserve">
+    <value>Отключающий контейнер DisableContainer</value>
+  </data>
+  <data name="Page_Title_Divider" xml:space="preserve">
+    <value>Разделитель Divider</value>
+  </data>
+  <data name="Page_Title_Drawer" xml:space="preserve">
+    <value>Панель Drawer</value>
+  </data>
+  <data name="Page_Title_DualBadge" xml:space="preserve">
+    <value>Двойной значок DualBadge</value>
+  </data>
+  <data name="Page_Title_ElasticWrapPanel" xml:space="preserve">
+    <value>Эластичная панель переноса ElasticWrapPanel</value>
+  </data>
+  <data name="Page_Title_EnumSelector" xml:space="preserve">
+    <value>Выбор перечисления EnumSelector</value>
+  </data>
+  <data name="Page_Title_Form" xml:space="preserve">
+    <value>Форма Form</value>
+  </data>
+  <data name="Page_Title_GroupBox" xml:space="preserve">
+    <value>Групповая рамка GroupBox</value>
+  </data>
+  <data name="Page_Title_IconButton" xml:space="preserve">
+    <value>Кнопка с иконкой IconButton</value>
+  </data>
+  <data name="Page_Title_ImageViewer" xml:space="preserve">
+    <value>Просмотр изображений ImageViewer</value>
+  </data>
+  <data name="Page_Title_IPv4Box" xml:space="preserve">
+    <value>Ввод IPv4 IPv4Box</value>
+  </data>
+  <data name="Page_Title_KeyGestureInput" xml:space="preserve">
+    <value>Ввод жестов клавиш KeyGestureInput</value>
+  </data>
+  <data name="Page_Title_Loading" xml:space="preserve">
+    <value>Загрузка Loading</value>
+  </data>
+  <data name="Page_Title_Marquee" xml:space="preserve">
+    <value>Бегущая строка Marquee</value>
+  </data>
+  <data name="Page_Title_MarkdownLine" xml:space="preserve">
+    <value>Строка Markdown MarkdownLine</value>
+  </data>
+  <data name="Page_Title_MessageBox" xml:space="preserve">
+    <value>Окно сообщения MessageBox</value>
+  </data>
+  <data name="Page_Title_MultiAutoCompleteBox" xml:space="preserve">
+    <value>Множественное автозаполнение MultiAutoCompleteBox</value>
+  </data>
+  <data name="Page_Title_MultiComboBox" xml:space="preserve">
+    <value>Множественный выбор MultiComboBox</value>
+  </data>
+  <data name="Page_Title_NavMenu" xml:space="preserve">
+    <value>Меню навигации NavMenu</value>
+  </data>
+  <data name="Page_Title_Notification" xml:space="preserve">
+    <value>Уведомление Notification</value>
+  </data>
+  <data name="Page_Title_NumberDisplayer" xml:space="preserve">
+    <value>Отображение чисел NumberDisplayer</value>
+  </data>
+  <data name="Page_Title_NumericUpDown" xml:space="preserve">
+    <value>Числовой ввод NumericUpDown</value>
+  </data>
+  <data name="Page_Title_NumPad" xml:space="preserve">
+    <value>Цифровая клавиатура NumPad</value>
+  </data>
+  <data name="Page_Title_OverlayDialog" xml:space="preserve">
+    <value>Наложенный диалог OverlayDialog</value>
+  </data>
+  <data name="Page_Title_Pagination" xml:space="preserve">
+    <value>Пагинация Pagination</value>
+  </data>
+  <data name="Page_Title_PathPicker" xml:space="preserve">
+    <value>Выбор пути PathPicker</value>
+  </data>
+  <data name="Page_Title_PinCode" xml:space="preserve">
+    <value>ПИН-код PinCode</value>
+  </data>
+  <data name="Page_Title_PopConfirm" xml:space="preserve">
+    <value>Всплывающее подтверждение PopConfirm</value>
+  </data>
+  <data name="Page_Title_ProportionalCanvas" xml:space="preserve">
+    <value>Пропорциональный холст ProportionalCanvas</value>
+  </data>
+  <data name="Page_Title_QrCode" xml:space="preserve">
+    <value>QR-код QrCode</value>
+  </data>
+  <data name="Page_Title_RangeSlider" xml:space="preserve">
+    <value>Ползунок диапазона RangeSlider</value>
+  </data>
+  <data name="Page_Title_Rating" xml:space="preserve">
+    <value>Рейтинг Rating</value>
+  </data>
+  <data name="Page_Title_ScrollToButton" xml:space="preserve">
+    <value>Кнопка прокрутки ScrollToButton</value>
+  </data>
+  <data name="Page_Title_SelectionList" xml:space="preserve">
+    <value>Список выбора SelectionList</value>
+  </data>
+  <data name="Page_Title_Skeleton" xml:space="preserve">
+    <value>Скелетон Skeleton</value>
+  </data>
+  <data name="Page_Title_TagInput" xml:space="preserve">
+    <value>Ввод тегов TagInput</value>
+  </data>
+  <data name="Page_Title_ThemeToggler" xml:space="preserve">
+    <value>Переключатель темы ThemeToggler</value>
+  </data>
+  <data name="Page_Title_ThemeVariantMapper" xml:space="preserve">
+    <value>Преобразователь вариантов темы ThemeVariantMapper</value>
+  </data>
+  <data name="Page_Title_TimeBox" xml:space="preserve">
+    <value>Ввод времени TimeBox</value>
+  </data>
+  <data name="Page_Title_Timeline" xml:space="preserve">
+    <value>Временная шкала Timeline</value>
+  </data>
+  <data name="Page_Title_TimeOnlyPicker" xml:space="preserve">
+    <value>Выбор только времени TimeOnlyPicker</value>
+  </data>
+  <data name="Page_Title_TimeOnlyRangePicker" xml:space="preserve">
+    <value>Выбор диапазона только времени TimeOnlyRangePicker</value>
+  </data>
+  <data name="Page_Title_TimePicker" xml:space="preserve">
+    <value>Выбор времени TimePicker</value>
+  </data>
+  <data name="Page_Title_TimeRangePicker" xml:space="preserve">
+    <value>Выбор диапазона времени TimeRangePicker</value>
+  </data>
+  <data name="Page_Title_Toast" xml:space="preserve">
+    <value>Уведомление Toast</value>
+  </data>
+  <data name="Page_Title_ToolBar" xml:space="preserve">
+    <value>Панель инструментов ToolBar</value>
+  </data>
+  <data name="Page_Title_TreeComboBox" xml:space="preserve">
+    <value>Древовидный выбор TreeComboBox</value>
+  </data>
+  <data name="Page_Title_TwoTonePathIcon" xml:space="preserve">
+    <value>Двухцветная иконка пути TwoTonePathIcon</value>
+  </data>
+  <data name="Page_Title_VirtualizingUniformGrid" xml:space="preserve">
+    <value>Виртуализированная UniformGrid VirtualizingUniformGrid</value>
+  </data>
+  <data name="Page_Title_WindowDialog" xml:space="preserve">
+    <value>Оконный диалог WindowDialog</value>
+  </data>
+
+  <!-- Page Descriptions -->
+  <data name="Page_Description_Anchor" xml:space="preserve">
+    <value>Якорь обеспечивает навигацию по содержанию, связанную с разделами страницы.</value>
+  </data>
+  <data name="Page_Description_AspectRatioLayout" xml:space="preserve">
+    <value>Макет с соотношением сторон сохраняет фиксированное соотношение сторон для дочернего содержимого.</value>
+  </data>
+  <data name="Page_Description_AutoCompleteBox" xml:space="preserve">
+    <value>Автозаполнение предлагает подсказки по мере ввода текста пользователем.</value>
+  </data>
+  <data name="Page_Description_Avatar" xml:space="preserve">
+    <value>Аватар отображает изображение профиля пользователя или инициалы в круглом контейнере.</value>
+  </data>
+  <data name="Page_Description_Badge" xml:space="preserve">
+    <value>Значок отображает небольшой счетчик или индикатор состояния на другом элементе.</value>
+  </data>
+  <data name="Page_Description_Banner" xml:space="preserve">
+    <value>Баннер отображает заметную информационную или предупреждающую панель сообщений.</value>
+  </data>
+  <data name="Page_Description_Breadcrumb" xml:space="preserve">
+    <value>Хлебные крошки отображают навигационный след, показывающий текущее расположение страницы.</value>
+  </data>
+  <data name="Page_Description_ButtonGroup" xml:space="preserve">
+    <value>Группа кнопок — это элемент управления, который объединяет несколько кнопок вместе.</value>
+  </data>
+  <data name="Page_Description_ClassInput" xml:space="preserve">
+    <value>Ввод класса позволяет пользователям интерактивно вводить имена классов CSS.</value>
+  </data>
+  <data name="Page_Description_Clock" xml:space="preserve">
+    <value>Часы отображают визуальные аналоговые или цифровые часы.</value>
+  </data>
+  <data name="Page_Description_DateOffsetPicker" xml:space="preserve">
+    <value>Выбор даты со смещением выбирает дату с поддержкой смещения часового пояса.</value>
+  </data>
+  <data name="Page_Description_DateOffsetRangePicker" xml:space="preserve">
+    <value>Выбор диапазона дат со смещением выбирает диапазон дат с поддержкой смещения часового пояса.</value>
+  </data>
+  <data name="Page_Description_DateOnlyPicker" xml:space="preserve">
+    <value>Выбор только даты — это выбор даты, работающий с типом DateOnly.</value>
+  </data>
+  <data name="Page_Description_DateOnlyRangePicker" xml:space="preserve">
+    <value>Выбор диапазона только дат выбирает диапазон дат с использованием типа DateOnly.</value>
+  </data>
+  <data name="Page_Description_DatePicker" xml:space="preserve">
+    <value>Выбор даты позволяет пользователям выбрать дату из всплывающего календаря.</value>
+  </data>
+  <data name="Page_Description_DateRangePicker" xml:space="preserve">
+    <value>Выбор диапазона дат позволяет выбрать начальную и конечную дату диапазона.</value>
+  </data>
+  <data name="Page_Description_DateTimeOffsetPicker" xml:space="preserve">
+    <value>Выбор DateTimeOffset выбирает DateTimeOffset, включая информацию о часовом поясе.</value>
+  </data>
+  <data name="Page_Description_DateTimePicker" xml:space="preserve">
+    <value>Выбор даты и времени позволяет выбрать значения как даты, так и времени.</value>
+  </data>
+  <data name="Page_Description_Descriptions" xml:space="preserve">
+    <value>Описания представляют данные ключ-значение в структурированном макете метка-содержимое.</value>
+  </data>
+  <data name="Page_Description_DisableContainer" xml:space="preserve">
+    <value>Отключающий контейнер оборачивает содержимое, чтобы визуально и функционально отключить дочерние элементы.</value>
+  </data>
+  <data name="Page_Description_Divider" xml:space="preserve">
+    <value>Разделитель отображает горизонтальную или вертикальную разделительную линию между содержимым.</value>
+  </data>
+  <data name="Page_Description_Drawer" xml:space="preserve">
+    <value>Панель — это панель, которая выдвигается с края экрана.</value>
+  </data>
+  <data name="Page_Description_DualBadge" xml:space="preserve">
+    <value>Двойной значок показывает двухчастный значок с секциями заголовка и значения.</value>
+  </data>
+  <data name="Page_Description_ElasticWrapPanel" xml:space="preserve">
+    <value>Эластичная панель переноса переносит дочерние элементы с эластичным распределением интервалов.</value>
+  </data>
+  <data name="Page_Description_EnumSelector" xml:space="preserve">
+    <value>Выбор перечисления предоставляет выпадающий список для выбора значений перечисления.</value>
+  </data>
+  <data name="Page_Description_Form" xml:space="preserve">
+    <value>Форма — это контейнер макета для группировки помеченных элементов управления вводом.</value>
+  </data>
+  <data name="Page_Description_GroupBox" xml:space="preserve">
+    <value>Групповая рамка группирует связанные элементы управления вместе с дополнительной рамкой заголовка.</value>
+  </data>
+  <data name="Page_Description_IconButton" xml:space="preserve">
+    <value>Кнопка с иконкой — это кнопка, которая отображает иконку вместе с необязательным текстом.</value>
+  </data>
+  <data name="Page_Description_ImageViewer" xml:space="preserve">
+    <value>Просмотр изображений отображает изображения с возможностями панорамирования, масштабирования и подгонки под окно.</value>
+  </data>
+  <data name="Page_Description_IPv4Box" xml:space="preserve">
+    <value>Ввод IPv4 — это специализированный ввод для ввода адресов IPv4.</value>
+  </data>
+  <data name="Page_Description_KeyGestureInput" xml:space="preserve">
+    <value>Ввод жестов клавиш захватывает жесты сочетаний клавиш из пользовательского ввода.</value>
+  </data>
+  <data name="Page_Description_Loading" xml:space="preserve">
+    <value>Загрузка отображает спиннер или индикатор выполнения во время асинхронных операций.</value>
+  </data>
+  <data name="Page_Description_Marquee" xml:space="preserve">
+    <value>Бегущая строка непрерывно прокручивает текст или содержимое в горизонтальном направлении.</value>
+  </data>
+  <data name="Page_Description_MarkdownLine" xml:space="preserve">
+    <value>Облегченный TextBlock, который отображает ограниченное подмножество встроенного форматирования Markdown.</value>
+  </data>
+  <data name="Page_Description_MessageBox" xml:space="preserve">
+    <value>Окно сообщения показывает модальный диалог с сообщением и кнопками действий.</value>
+  </data>
+  <data name="Page_Description_MultiAutoCompleteBox" xml:space="preserve">
+    <value>Множественное автозаполнение поддерживает выбор нескольких элементов с предложениями автозаполнения.</value>
+  </data>
+  <data name="Page_Description_MultiComboBox" xml:space="preserve">
+    <value>Множественный выбор позволяет выбирать несколько элементов из выпадающего списка.</value>
+  </data>
+  <data name="Page_Description_NavMenu" xml:space="preserve">
+    <value>Меню навигации — это вертикальное или горизонтальное меню навигации с иерархическими элементами.</value>
+  </data>
+  <data name="Page_Description_Notification" xml:space="preserve">
+    <value>Уведомление показывает информационные сообщения в неблокирующем наложении.</value>
+  </data>
+  <data name="Page_Description_NumberDisplayer" xml:space="preserve">
+    <value>Отображение чисел анимирует переходы чисел с плавными эффектами прокрутки цифр.</value>
+  </data>
+  <data name="Page_Description_NumericUpDown" xml:space="preserve">
+    <value>Числовой ввод — это элемент управления числовым вводом с кнопками увеличения и уменьшения.</value>
+  </data>
+  <data name="Page_Description_NumPad" xml:space="preserve">
+    <value>Цифровая клавиатура — это элемент управления цифровой клавиатурой для ввода чисел.</value>
+  </data>
+  <data name="Page_Description_OverlayDialog" xml:space="preserve">
+    <value>Наложенный диалог отображает диалоги в виде наложений в окне приложения.</value>
+  </data>
+  <data name="Page_Description_Pagination" xml:space="preserve">
+    <value>Пагинация предоставляет элементы управления для навигации между страницами содержимого.</value>
+  </data>
+  <data name="Page_Description_PathPicker" xml:space="preserve">
+    <value>Выбор пути позволяет пользователям выбирать пути к файлам или папкам из файловой системы.</value>
+  </data>
+  <data name="Page_Description_PinCode" xml:space="preserve">
+    <value>ПИН-код — это элемент управления вводом для ввода ПИН-кодов или кодов подтверждения.</value>
+  </data>
+  <data name="Page_Description_PopConfirm" xml:space="preserve">
+    <value>Всплывающее подтверждение показывает всплывающее окно подтверждения перед выполнением действия.</value>
+  </data>
+  <data name="Page_Description_ProportionalCanvas" xml:space="preserve">
+    <value>Пропорциональный холст — это панель макета, которая располагает дочерние элементы пропорционально в доступном пространстве.</value>
+  </data>
+  <data name="Page_Description_QrCode" xml:space="preserve">
+    <value>QR-код генерирует и отображает изображения QR-кодов из текстового или URL-ввода.</value>
+  </data>
+  <data name="Page_Description_RangeSlider" xml:space="preserve">
+    <value>Ползунок диапазона позволяет выбирать диапазон значений с помощью двух перетаскиваемых ползунков.</value>
+  </data>
+  <data name="Page_Description_Rating" xml:space="preserve">
+    <value>Рейтинг отображает и собирает звёздные оценки от пользователей.</value>
+  </data>
+  <data name="Page_Description_ScrollToButton" xml:space="preserve">
+    <value>Кнопка прокрутки — это плавающая кнопка, которая прокручивает область просмотра к целевому элементу.</value>
+  </data>
+  <data name="Page_Description_SelectionList" xml:space="preserve">
+    <value>Список выбора представляет список элементов для одиночного или множественного выбора.</value>
+  </data>
+  <data name="Page_Description_Skeleton" xml:space="preserve">
+    <value>Скелетон показывает замещающие анимации загрузки для областей содержимого.</value>
+  </data>
+  <data name="Page_Description_TagInput" xml:space="preserve">
+    <value>Ввод тегов позволяет пользователям вводить и управлять несколькими значениями тегов.</value>
+  </data>
+  <data name="Page_Description_ThemeToggler" xml:space="preserve">
+    <value>Переключатель темы предоставляет элемент управления для переключения между светлой и тёмной темой.</value>
+  </data>
+  <data name="Page_Description_ThemeVariantMapper" xml:space="preserve">
+    <value>Преобразователь вариантов темы сопоставляет значения между вариантами светлой и тёмной темы.</value>
+  </data>
+  <data name="Page_Description_TimeBox" xml:space="preserve">
+    <value>Ввод времени — это текстовый элемент управления для прямого ввода значений времени.</value>
+  </data>
+  <data name="Page_Description_Timeline" xml:space="preserve">
+    <value>Временная шкала представляет последовательность событий в хронологическом вертикальном порядке.</value>
+  </data>
+  <data name="Page_Description_TimeOnlyPicker" xml:space="preserve">
+    <value>Выбор только времени выбирает значения времени с использованием типа TimeOnly.</value>
+  </data>
+  <data name="Page_Description_TimeOnlyRangePicker" xml:space="preserve">
+    <value>Выбор диапазона только времени выбирает диапазон времени с использованием типа TimeOnly.</value>
+  </data>
+  <data name="Page_Description_TimePicker" xml:space="preserve">
+    <value>Выбор времени позволяет выбрать значение времени из всплывающей панели.</value>
+  </data>
+  <data name="Page_Description_TimeRangePicker" xml:space="preserve">
+    <value>Выбор диапазона времени позволяет выбрать начальный и конечный диапазон времени.</value>
+  </data>
+  <data name="Page_Description_Toast" xml:space="preserve">
+    <value>Уведомление отображает краткие, автоматически исчезающие сообщения уведомлений.</value>
+  </data>
+  <data name="Page_Description_ToolBar" xml:space="preserve">
+    <value>Панель инструментов — это контейнер для группировки кнопок действий и элементов управления.</value>
+  </data>
+  <data name="Page_Description_TreeComboBox" xml:space="preserve">
+    <value>Древовидный выбор — это выпадающий список, который отображает элементы в иерархической древовидной структуре.</value>
+  </data>
+  <data name="Page_Description_TwoTonePathIcon" xml:space="preserve">
+    <value>Двухцветная иконка пути отображает иконки пути с двумя различными цветами заливки.</value>
+  </data>
+  <data name="Page_Description_VirtualizingUniformGrid" xml:space="preserve">
+    <value>Виртуализированная панель, которая располагает элементы в единой сетке с фиксированным количеством столбцов. Только видимые в данный момент элементы (плюс буферная зона) создаются; контейнеры за пределами экрана перерабатываются.</value>
+  </data>
+  <data name="Page_Description_WindowDialog" xml:space="preserve">
+    <value>Оконный диалог отображает модальные окна для взаимодействия с пользователем.</value>
+  </data>
+</root>

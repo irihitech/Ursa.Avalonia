@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Lang_Switch_Content" xml:space="preserve">
+    <value>EN</value>
+  </data>
+  <data name="Lang_Switch_ToolTip" xml:space="preserve">
+    <value>Přepnout do angličtiny</value>
+  </data>
+  <data name="Menu_Header_Introduction" xml:space="preserve">
+    <value>Úvod Introduction</value>
+  </data>
+  <data name="Menu_Header_AboutUs" xml:space="preserve">
+    <value>O nás AboutUs</value>
+  </data>
+
+  <!-- Category headers -->
+  <data name="Menu_Category_Controls" xml:space="preserve">
+    <value>Ovládací prvky</value>
+  </data>
+  <data name="Menu_Category_ButtonsAndInputs" xml:space="preserve">
+    <value>Tlačítka a vstupy</value>
+  </data>
+  <data name="Menu_Category_DialogAndFeedbacks" xml:space="preserve">
+    <value>Dialogy a zpětná vazba</value>
+  </data>
+  <data name="Menu_Category_DateAndTime" xml:space="preserve">
+    <value>Datum a čas</value>
+  </data>
+  <data name="Menu_Category_NavigationAndMenus" xml:space="preserve">
+    <value>Navigace a nabídky</value>
+  </data>
+  <data name="Menu_Category_LayoutAndDisplay" xml:space="preserve">
+    <value>Rozvržení a zobrazení</value>
+  </data>
+
+  <!-- Buttons &amp; Inputs -->
+  <data name="Menu_Header_ButtonGroup" xml:space="preserve">
+    <value>Skupina tlačítek ButtonGroup</value>
+  </data>
+  <data name="Menu_Header_IconButton" xml:space="preserve">
+    <value>Tlačítko s ikonou IconButton</value>
+  </data>
+  <data name="Menu_Header_AutoCompleteBox" xml:space="preserve">
+    <value>Automatické dokončování AutoCompleteBox</value>
+  </data>
+  <data name="Menu_Header_ClassInput" xml:space="preserve">
+    <value>Vstup třídy ClassInput</value>
+  </data>
+  <data name="Menu_Header_EnumSelector" xml:space="preserve">
+    <value>Výběr výčtu EnumSelector</value>
+  </data>
+  <data name="Menu_Header_Form" xml:space="preserve">
+    <value>Formulář Form</value>
+  </data>
+  <data name="Menu_Header_KeyGestureInput" xml:space="preserve">
+    <value>Vstup klávesových gest KeyGestureInput</value>
+  </data>
+  <data name="Menu_Header_IPv4Box" xml:space="preserve">
+    <value>IPv4 vstup IPv4Box</value>
+  </data>
+  <data name="Menu_Header_MultiComboBox" xml:space="preserve">
+    <value>Vícenásobný výběr MultiComboBox</value>
+  </data>
+  <data name="Menu_Header_MultiAutoCompleteBox" xml:space="preserve">
+    <value>Vícenásobné automatické dokončování MultiAutoCompleteBox</value>
+  </data>
+  <data name="Menu_Header_NumericUpDown" xml:space="preserve">
+    <value>Číselný vstup NumericUpDown</value>
+  </data>
+  <data name="Menu_Header_NumPad" xml:space="preserve">
+    <value>Numerická klávesnice NumPad</value>
+  </data>
+  <data name="Menu_Header_PathPicker" xml:space="preserve">
+    <value>Výběr cesty PathPicker</value>
+  </data>
+  <data name="Menu_Header_PinCode" xml:space="preserve">
+    <value>PIN kód PinCode</value>
+  </data>
+  <data name="Menu_Header_RangeSlider" xml:space="preserve">
+    <value>Posuvník rozsahu RangeSlider</value>
+  </data>
+  <data name="Menu_Header_Rating" xml:space="preserve">
+    <value>Hodnocení Rating</value>
+  </data>
+  <data name="Menu_Header_SelectionList" xml:space="preserve">
+    <value>Seznam výběru SelectionList</value>
+  </data>
+  <data name="Menu_Header_TagInput" xml:space="preserve">
+    <value>Vstup štítků TagInput</value>
+  </data>
+  <data name="Menu_Header_ThemeToggler" xml:space="preserve">
+    <value>Přepínač motivu ThemeToggler</value>
+  </data>
+  <data name="Menu_Header_TreeComboBox" xml:space="preserve">
+    <value>Stromový výběr TreeComboBox</value>
+  </data>
+
+  <!-- Dialog &amp; Feedbacks -->
+  <data name="Menu_Header_WindowDialog" xml:space="preserve">
+    <value>Okenní dialog WindowDialog</value>
+  </data>
+  <data name="Menu_Header_OverlayDialog" xml:space="preserve">
+    <value>Překryvný dialog OverlayDialog</value>
+  </data>
+  <data name="Menu_Header_Drawer" xml:space="preserve">
+    <value>Zásuvka Drawer</value>
+  </data>
+  <data name="Menu_Header_Loading" xml:space="preserve">
+    <value>Načítání Loading</value>
+  </data>
+  <data name="Menu_Header_MessageBox" xml:space="preserve">
+    <value>Dialogové okno MessageBox</value>
+  </data>
+  <data name="Menu_Header_Notification" xml:space="preserve">
+    <value>Oznámení Notification</value>
+  </data>
+  <data name="Menu_Header_PopConfirm" xml:space="preserve">
+    <value>Potvrzovací bublina PopConfirm</value>
+  </data>
+  <data name="Menu_Header_Toast" xml:space="preserve">
+    <value>Oznámení Toast</value>
+  </data>
+  <data name="Menu_Header_Skeleton" xml:space="preserve">
+    <value>Kostra Skeleton</value>
+  </data>
+
+  <!-- Date &amp; Time -->
+  <data name="Menu_Header_DatePicker" xml:space="preserve">
+    <value>Výběr data DatePicker</value>
+  </data>
+  <data name="Menu_Header_DateOnlyPicker" xml:space="preserve">
+    <value>Výběr pouze data DateOnlyPicker</value>
+  </data>
+  <data name="Menu_Header_DateRangePicker" xml:space="preserve">
+    <value>Výběr rozsahu dat DateRangePicker</value>
+  </data>
+  <data name="Menu_Header_DateOnlyRangePicker" xml:space="preserve">
+    <value>Výběr rozsahu pouze data DateOnlyRangePicker</value>
+  </data>
+  <data name="Menu_Header_DateTimePicker" xml:space="preserve">
+    <value>Výběr data a času DateTimePicker</value>
+  </data>
+  <data name="Menu_Header_DateOffsetPicker" xml:space="preserve">
+    <value>Výběr data s posunem DateOffsetPicker</value>
+  </data>
+  <data name="Menu_Header_DateOffsetRangePicker" xml:space="preserve">
+    <value>Výběr rozsahu data s posunem DateOffsetRangePicker</value>
+  </data>
+  <data name="Menu_Header_DateTimeOffsetPicker" xml:space="preserve">
+    <value>Výběr data, času a posunu DateTimeOffsetPicker</value>
+  </data>
+  <data name="Menu_Header_TimeBox" xml:space="preserve">
+    <value>Časový vstup TimeBox</value>
+  </data>
+  <data name="Menu_Header_TimePicker" xml:space="preserve">
+    <value>Výběr času TimePicker</value>
+  </data>
+  <data name="Menu_Header_TimeOnlyPicker" xml:space="preserve">
+    <value>Výběr pouze času TimeOnlyPicker</value>
+  </data>
+  <data name="Menu_Header_TimeRangePicker" xml:space="preserve">
+    <value>Výběr časového rozsahu TimeRangePicker</value>
+  </data>
+  <data name="Menu_Header_TimeOnlyRangePicker" xml:space="preserve">
+    <value>Výběr rozsahu pouze času TimeOnlyRangePicker</value>
+  </data>
+  <data name="Menu_Header_Clock" xml:space="preserve">
+    <value>Hodiny Clock</value>
+  </data>
+
+  <!-- Navigation &amp; Menus -->
+  <data name="Menu_Header_Anchor" xml:space="preserve">
+    <value>Kotva Anchor</value>
+  </data>
+  <data name="Menu_Header_Breadcrumb" xml:space="preserve">
+    <value>Drobečková navigace Breadcrumb</value>
+  </data>
+  <data name="Menu_Header_NavMenu" xml:space="preserve">
+    <value>Navigační nabídka NavMenu</value>
+  </data>
+  <data name="Menu_Header_Pagination" xml:space="preserve">
+    <value>Stránkování Pagination</value>
+  </data>
+  <data name="Menu_Header_ToolBar" xml:space="preserve">
+    <value>Panel nástrojů ToolBar</value>
+  </data>
+
+  <!-- Layout &amp; Display -->
+  <data name="Menu_Header_AspectRatioLayout" xml:space="preserve">
+    <value>Rozvržení poměru stran AspectRatioLayout</value>
+  </data>
+  <data name="Menu_Header_Avatar" xml:space="preserve">
+    <value>Avatar Avatar</value>
+  </data>
+  <data name="Menu_Header_Badge" xml:space="preserve">
+    <value>Odznak Badge</value>
+  </data>
+  <data name="Menu_Header_Banner" xml:space="preserve">
+    <value>Banner Banner</value>
+  </data>
+  <data name="Menu_Header_Descriptions" xml:space="preserve">
+    <value>Popisy Descriptions</value>
+  </data>
+  <data name="Menu_Header_DisableContainer" xml:space="preserve">
+    <value>Deaktivovaný kontejner DisableContainer</value>
+  </data>
+  <data name="Menu_Header_Divider" xml:space="preserve">
+    <value>Oddělovač Divider</value>
+  </data>
+  <data name="Menu_Header_GroupBox" xml:space="preserve">
+    <value>Skupinový rámeček GroupBox</value>
+  </data>
+  <data name="Menu_Header_DualBadge" xml:space="preserve">
+    <value>Duální odznak DualBadge</value>
+  </data>
+  <data name="Menu_Header_ImageViewer" xml:space="preserve">
+    <value>Prohlížeč obrázků ImageViewer</value>
+  </data>
+  <data name="Menu_Header_ElasticWrapPanel" xml:space="preserve">
+    <value>Elastický zalamovací panel ElasticWrapPanel</value>
+  </data>
+  <data name="Menu_Header_Marquee" xml:space="preserve">
+    <value>Běžící text Marquee</value>
+  </data>
+  <data name="Menu_Header_MarkdownLine" xml:space="preserve">
+    <value>Markdown řádek MarkdownLine</value>
+  </data>
+  <data name="Menu_Header_NumberDisplayer" xml:space="preserve">
+    <value>Zobrazovač čísel NumberDisplayer</value>
+  </data>
+  <data name="Menu_Header_ProportionalCanvas" xml:space="preserve">
+    <value>Proporcionální plátno ProportionalCanvas</value>
+  </data>
+  <data name="Menu_Header_QrCode" xml:space="preserve">
+    <value>QR kód QrCode</value>
+  </data>
+  <data name="Menu_Header_ScrollTo" xml:space="preserve">
+    <value>Posunout na ScrollTo</value>
+  </data>
+  <data name="Menu_Header_ThemeVariantMapper" xml:space="preserve">
+    <value>Mapovač variant motivu ThemeVariantMapper</value>
+  </data>
+  <data name="Menu_Header_Timeline" xml:space="preserve">
+    <value>Časová osa Timeline</value>
+  </data>
+  <data name="Menu_Header_TwoTonePathIcon" xml:space="preserve">
+    <value>Dvoubarevná ikona cesty TwoTonePathIcon</value>
+  </data>
+  <data name="Menu_Header_Settings" xml:space="preserve">
+    <value>Nastavení Settings</value>
+  </data>
+  <data name="Main_Banner_Title" xml:space="preserve">
+    <value>Vítejte v Ursa</value>
+  </data>
+  <data name="Main_Banner_Description" xml:space="preserve">
+    <value>Estetická revoluce produktivity</value>
+  </data>
+  <data name="Menu_Header_VirtualizingUniformGrid" xml:space="preserve">
+    <value>Virtualizovaná jednotná mřížka VirtualizingUniformGrid</value>
+  </data>
+
+  <!-- Page Titles -->
+  <data name="Page_Title_Anchor" xml:space="preserve">
+    <value>Kotva Anchor</value>
+  </data>
+  <data name="Page_Title_AspectRatioLayout" xml:space="preserve">
+    <value>Rozvržení poměru stran AspectRatioLayout</value>
+  </data>
+  <data name="Page_Title_AutoCompleteBox" xml:space="preserve">
+    <value>Automatické dokončování AutoCompleteBox</value>
+  </data>
+  <data name="Page_Title_Avatar" xml:space="preserve">
+    <value>Avatar Avatar</value>
+  </data>
+  <data name="Page_Title_Badge" xml:space="preserve">
+    <value>Odznak Badge</value>
+  </data>
+  <data name="Page_Title_Banner" xml:space="preserve">
+    <value>Banner Banner</value>
+  </data>
+  <data name="Page_Title_Breadcrumb" xml:space="preserve">
+    <value>Drobečková navigace Breadcrumb</value>
+  </data>
+  <data name="Page_Title_ButtonGroup" xml:space="preserve">
+    <value>Skupina tlačítek ButtonGroup</value>
+  </data>
+  <data name="Page_Title_ClassInput" xml:space="preserve">
+    <value>Vstup třídy ClassInput</value>
+  </data>
+  <data name="Page_Title_Clock" xml:space="preserve">
+    <value>Hodiny Clock</value>
+  </data>
+  <data name="Page_Title_DateOffsetPicker" xml:space="preserve">
+    <value>Výběr data s posunem DateOffsetPicker</value>
+  </data>
+  <data name="Page_Title_DateOffsetRangePicker" xml:space="preserve">
+    <value>Výběr rozsahu data s posunem DateOffsetRangePicker</value>
+  </data>
+  <data name="Page_Title_DateOnlyPicker" xml:space="preserve">
+    <value>Výběr pouze data DateOnlyPicker</value>
+  </data>
+  <data name="Page_Title_DateOnlyRangePicker" xml:space="preserve">
+    <value>Výběr rozsahu pouze data DateOnlyRangePicker</value>
+  </data>
+  <data name="Page_Title_DatePicker" xml:space="preserve">
+    <value>Výběr data DatePicker</value>
+  </data>
+  <data name="Page_Title_DateRangePicker" xml:space="preserve">
+    <value>Výběr rozsahu dat DateRangePicker</value>
+  </data>
+  <data name="Page_Title_DateTimeOffsetPicker" xml:space="preserve">
+    <value>Výběr data, času a posunu DateTimeOffsetPicker</value>
+  </data>
+  <data name="Page_Title_DateTimePicker" xml:space="preserve">
+    <value>Výběr data a času DateTimePicker</value>
+  </data>
+  <data name="Page_Title_Descriptions" xml:space="preserve">
+    <value>Popisy Descriptions</value>
+  </data>
+  <data name="Page_Title_DisableContainer" xml:space="preserve">
+    <value>Deaktivovaný kontejner DisableContainer</value>
+  </data>
+  <data name="Page_Title_Divider" xml:space="preserve">
+    <value>Oddělovač Divider</value>
+  </data>
+  <data name="Page_Title_Drawer" xml:space="preserve">
+    <value>Zásuvka Drawer</value>
+  </data>
+  <data name="Page_Title_DualBadge" xml:space="preserve">
+    <value>Duální odznak DualBadge</value>
+  </data>
+  <data name="Page_Title_ElasticWrapPanel" xml:space="preserve">
+    <value>Elastický zalamovací panel ElasticWrapPanel</value>
+  </data>
+  <data name="Page_Title_EnumSelector" xml:space="preserve">
+    <value>Výběr výčtu EnumSelector</value>
+  </data>
+  <data name="Page_Title_Form" xml:space="preserve">
+    <value>Formulář Form</value>
+  </data>
+  <data name="Page_Title_GroupBox" xml:space="preserve">
+    <value>Skupinový rámeček GroupBox</value>
+  </data>
+  <data name="Page_Title_IconButton" xml:space="preserve">
+    <value>Tlačítko s ikonou IconButton</value>
+  </data>
+  <data name="Page_Title_ImageViewer" xml:space="preserve">
+    <value>Prohlížeč obrázků ImageViewer</value>
+  </data>
+  <data name="Page_Title_IPv4Box" xml:space="preserve">
+    <value>IPv4 vstup IPv4Box</value>
+  </data>
+  <data name="Page_Title_KeyGestureInput" xml:space="preserve">
+    <value>Vstup klávesových gest KeyGestureInput</value>
+  </data>
+  <data name="Page_Title_Loading" xml:space="preserve">
+    <value>Načítání Loading</value>
+  </data>
+  <data name="Page_Title_Marquee" xml:space="preserve">
+    <value>Běžící text Marquee</value>
+  </data>
+  <data name="Page_Title_MarkdownLine" xml:space="preserve">
+    <value>Markdown řádek MarkdownLine</value>
+  </data>
+  <data name="Page_Title_MessageBox" xml:space="preserve">
+    <value>Dialogové okno MessageBox</value>
+  </data>
+  <data name="Page_Title_MultiAutoCompleteBox" xml:space="preserve">
+    <value>Vícenásobné automatické dokončování MultiAutoCompleteBox</value>
+  </data>
+  <data name="Page_Title_MultiComboBox" xml:space="preserve">
+    <value>Vícenásobný výběr MultiComboBox</value>
+  </data>
+  <data name="Page_Title_NavMenu" xml:space="preserve">
+    <value>Navigační nabídka NavMenu</value>
+  </data>
+  <data name="Page_Title_Notification" xml:space="preserve">
+    <value>Oznámení Notification</value>
+  </data>
+  <data name="Page_Title_NumberDisplayer" xml:space="preserve">
+    <value>Zobrazovač čísel NumberDisplayer</value>
+  </data>
+  <data name="Page_Title_NumericUpDown" xml:space="preserve">
+    <value>Číselný vstup NumericUpDown</value>
+  </data>
+  <data name="Page_Title_NumPad" xml:space="preserve">
+    <value>Numerická klávesnice NumPad</value>
+  </data>
+  <data name="Page_Title_OverlayDialog" xml:space="preserve">
+    <value>Překryvný dialog OverlayDialog</value>
+  </data>
+  <data name="Page_Title_Pagination" xml:space="preserve">
+    <value>Stránkování Pagination</value>
+  </data>
+  <data name="Page_Title_PathPicker" xml:space="preserve">
+    <value>Výběr cesty PathPicker</value>
+  </data>
+  <data name="Page_Title_PinCode" xml:space="preserve">
+    <value>PIN kód PinCode</value>
+  </data>
+  <data name="Page_Title_PopConfirm" xml:space="preserve">
+    <value>Potvrzovací bublina PopConfirm</value>
+  </data>
+  <data name="Page_Title_ProportionalCanvas" xml:space="preserve">
+    <value>Proporcionální plátno ProportionalCanvas</value>
+  </data>
+  <data name="Page_Title_QrCode" xml:space="preserve">
+    <value>QR kód QrCode</value>
+  </data>
+  <data name="Page_Title_RangeSlider" xml:space="preserve">
+    <value>Posuvník rozsahu RangeSlider</value>
+  </data>
+  <data name="Page_Title_Rating" xml:space="preserve">
+    <value>Hodnocení Rating</value>
+  </data>
+  <data name="Page_Title_ScrollToButton" xml:space="preserve">
+    <value>Tlačítko posunu ScrollToButton</value>
+  </data>
+  <data name="Page_Title_SelectionList" xml:space="preserve">
+    <value>Seznam výběru SelectionList</value>
+  </data>
+  <data name="Page_Title_Skeleton" xml:space="preserve">
+    <value>Kostra Skeleton</value>
+  </data>
+  <data name="Page_Title_TagInput" xml:space="preserve">
+    <value>Vstup štítků TagInput</value>
+  </data>
+  <data name="Page_Title_ThemeToggler" xml:space="preserve">
+    <value>Přepínač motivu ThemeToggler</value>
+  </data>
+  <data name="Page_Title_ThemeVariantMapper" xml:space="preserve">
+    <value>Mapovač variant motivu ThemeVariantMapper</value>
+  </data>
+  <data name="Page_Title_TimeBox" xml:space="preserve">
+    <value>Časový vstup TimeBox</value>
+  </data>
+  <data name="Page_Title_Timeline" xml:space="preserve">
+    <value>Časová osa Timeline</value>
+  </data>
+  <data name="Page_Title_TimeOnlyPicker" xml:space="preserve">
+    <value>Výběr pouze času TimeOnlyPicker</value>
+  </data>
+  <data name="Page_Title_TimeOnlyRangePicker" xml:space="preserve">
+    <value>Výběr rozsahu pouze času TimeOnlyRangePicker</value>
+  </data>
+  <data name="Page_Title_TimePicker" xml:space="preserve">
+    <value>Výběr času TimePicker</value>
+  </data>
+  <data name="Page_Title_TimeRangePicker" xml:space="preserve">
+    <value>Výběr časového rozsahu TimeRangePicker</value>
+  </data>
+  <data name="Page_Title_Toast" xml:space="preserve">
+    <value>Oznámení Toast</value>
+  </data>
+  <data name="Page_Title_ToolBar" xml:space="preserve">
+    <value>Panel nástrojů ToolBar</value>
+  </data>
+  <data name="Page_Title_TreeComboBox" xml:space="preserve">
+    <value>Stromový výběr TreeComboBox</value>
+  </data>
+  <data name="Page_Title_TwoTonePathIcon" xml:space="preserve">
+    <value>Dvoubarevná ikona cesty TwoTonePathIcon</value>
+  </data>
+  <data name="Page_Title_VirtualizingUniformGrid" xml:space="preserve">
+    <value>Virtualizovaná jednotná mřížka VirtualizingUniformGrid</value>
+  </data>
+  <data name="Page_Title_WindowDialog" xml:space="preserve">
+    <value>Okenní dialog WindowDialog</value>
+  </data>
+
+  <!-- Page Descriptions -->
+  <data name="Page_Description_Anchor" xml:space="preserve">
+    <value>Kotva poskytuje navigaci v obsahu propojenou s částmi stránky.</value>
+  </data>
+  <data name="Page_Description_AspectRatioLayout" xml:space="preserve">
+    <value>Rozvržení poměru stran udržuje pevný poměr stran pro svůj podřízený obsah.</value>
+  </data>
+  <data name="Page_Description_AutoCompleteBox" xml:space="preserve">
+    <value>Automatické dokončování nabízí návrhy při psaní do textového pole.</value>
+  </data>
+  <data name="Page_Description_Avatar" xml:space="preserve">
+    <value>Avatar zobrazuje profilový obrázek uživatele nebo iniciály v kruhovém kontejneru.</value>
+  </data>
+  <data name="Page_Description_Badge" xml:space="preserve">
+    <value>Odznak zobrazuje malý počet nebo indikátor stavu na jiném prvku.</value>
+  </data>
+  <data name="Page_Description_Banner" xml:space="preserve">
+    <value>Banner zobrazuje výraznou informační nebo výstražnou zprávu.</value>
+  </data>
+  <data name="Page_Description_Breadcrumb" xml:space="preserve">
+    <value>Drobečková navigace zobrazuje navigační stopu ukazující aktuální umístění stránky.</value>
+  </data>
+  <data name="Page_Description_ButtonGroup" xml:space="preserve">
+    <value>Skupina tlačítek je ovládací prvek, který seskupuje více tlačítek dohromady.</value>
+  </data>
+  <data name="Page_Description_ClassInput" xml:space="preserve">
+    <value>Vstup třídy umožňuje uživatelům interaktivně zadávat názvy CSS tříd.</value>
+  </data>
+  <data name="Page_Description_Clock" xml:space="preserve">
+    <value>Hodiny zobrazují vizuální analogové nebo digitální hodiny.</value>
+  </data>
+  <data name="Page_Description_DateOffsetPicker" xml:space="preserve">
+    <value>Výběr data s posunem vybírá datum s podporou časového posunu.</value>
+  </data>
+  <data name="Page_Description_DateOffsetRangePicker" xml:space="preserve">
+    <value>Výběr rozsahu data s posunem vybírá rozsah dat s podporou časového posunu.</value>
+  </data>
+  <data name="Page_Description_DateOnlyPicker" xml:space="preserve">
+    <value>Výběr pouze data je výběr data, který pracuje s typem DateOnly.</value>
+  </data>
+  <data name="Page_Description_DateOnlyRangePicker" xml:space="preserve">
+    <value>Výběr rozsahu pouze data vybírá rozsah dat pomocí typu DateOnly.</value>
+  </data>
+  <data name="Page_Description_DatePicker" xml:space="preserve">
+    <value>Výběr data umožňuje uživatelům vybrat datum z kalendářového vyskakovacího okna.</value>
+  </data>
+  <data name="Page_Description_DateRangePicker" xml:space="preserve">
+    <value>Výběr rozsahu dat umožňuje výběr počátečního a koncového data.</value>
+  </data>
+  <data name="Page_Description_DateTimeOffsetPicker" xml:space="preserve">
+    <value>Výběr data, času a posunu vybírá DateTimeOffset včetně informací o časové zóně.</value>
+  </data>
+  <data name="Page_Description_DateTimePicker" xml:space="preserve">
+    <value>Výběr data a času umožňuje výběr hodnot data i času.</value>
+  </data>
+  <data name="Page_Description_Descriptions" xml:space="preserve">
+    <value>Popisy prezentují data klíč-hodnota ve strukturovaném rozvržení popisek-obsah.</value>
+  </data>
+  <data name="Page_Description_DisableContainer" xml:space="preserve">
+    <value>Deaktivovaný kontejner obaluje obsah, aby vizuálně a funkčně deaktivoval podřízené prvky.</value>
+  </data>
+  <data name="Page_Description_Divider" xml:space="preserve">
+    <value>Oddělovač vykresluje horizontální nebo vertikální oddělovací čáru mezi obsahem.</value>
+  </data>
+  <data name="Page_Description_Drawer" xml:space="preserve">
+    <value>Zásuvka je panel, který se vysouvá z okraje obrazovky.</value>
+  </data>
+  <data name="Page_Description_DualBadge" xml:space="preserve">
+    <value>Duální odznak zobrazuje dvoudílný odznak s částmi záhlaví a hodnoty.</value>
+  </data>
+  <data name="Page_Description_ElasticWrapPanel" xml:space="preserve">
+    <value>Elastický zalamovací panel zalamuje podřízené prvky s elastickým rozložením mezer.</value>
+  </data>
+  <data name="Page_Description_EnumSelector" xml:space="preserve">
+    <value>Výběr výčtu poskytuje rozbalovací nabídku pro výběr hodnot výčtu.</value>
+  </data>
+  <data name="Page_Description_Form" xml:space="preserve">
+    <value>Formulář je kontejner rozvržení pro seskupování popsaných vstupních ovládacích prvků.</value>
+  </data>
+  <data name="Page_Description_GroupBox" xml:space="preserve">
+    <value>Skupinový rámeček seskupuje související ovládací prvky s volitelným titulkovým ohraničením.</value>
+  </data>
+  <data name="Page_Description_IconButton" xml:space="preserve">
+    <value>Tlačítko s ikonou je tlačítko, které zobrazuje ikonu spolu s volitelným textem.</value>
+  </data>
+  <data name="Page_Description_ImageViewer" xml:space="preserve">
+    <value>Prohlížeč obrázků zobrazuje obrázky s možností posouvání, přiblížení a přizpůsobení oknu.</value>
+  </data>
+  <data name="Page_Description_IPv4Box" xml:space="preserve">
+    <value>IPv4 vstup je specializovaný vstup pro zadávání IPv4 adres.</value>
+  </data>
+  <data name="Page_Description_KeyGestureInput" xml:space="preserve">
+    <value>Vstup klávesových gest zachycuje gesta klávesových zkratek ze vstupu uživatele.</value>
+  </data>
+  <data name="Page_Description_Loading" xml:space="preserve">
+    <value>Načítání zobrazuje spinner nebo indikátor průběhu během asynchronních operací.</value>
+  </data>
+  <data name="Page_Description_Marquee" xml:space="preserve">
+    <value>Běžící text plynule posouvá text nebo obsah v horizontálním směru.</value>
+  </data>
+  <data name="Page_Description_MarkdownLine" xml:space="preserve">
+    <value>Odlehčený TextBlock, který vykresluje omezenou podmnožinu formátování inline Markdown.</value>
+  </data>
+  <data name="Page_Description_MessageBox" xml:space="preserve">
+    <value>Dialogové okno zobrazuje modální dialog se zprávou a akčními tlačítky.</value>
+  </data>
+  <data name="Page_Description_MultiAutoCompleteBox" xml:space="preserve">
+    <value>Vícenásobné automatické dokončování podporuje výběr více položek s návrhy automatického dokončování.</value>
+  </data>
+  <data name="Page_Description_MultiComboBox" xml:space="preserve">
+    <value>Vícenásobný výběr umožňuje výběr více položek z rozbalovacího seznamu.</value>
+  </data>
+  <data name="Page_Description_NavMenu" xml:space="preserve">
+    <value>Navigační nabídka je vertikální nebo horizontální navigační nabídka s hierarchickými položkami.</value>
+  </data>
+  <data name="Page_Description_Notification" xml:space="preserve">
+    <value>Oznámení zobrazuje informační zprávy v neblokujícím překryvu.</value>
+  </data>
+  <data name="Page_Description_NumberDisplayer" xml:space="preserve">
+    <value>Zobrazovač čísel animuje přechody čísel s plynulými efekty překlápění číslic.</value>
+  </data>
+  <data name="Page_Description_NumericUpDown" xml:space="preserve">
+    <value>Číselný vstup je ovládací prvek pro číselný vstup s tlačítky pro zvýšení a snížení.</value>
+  </data>
+  <data name="Page_Description_NumPad" xml:space="preserve">
+    <value>Numerická klávesnice je ovládací prvek numerické klávesnice pro zadávání čísel.</value>
+  </data>
+  <data name="Page_Description_OverlayDialog" xml:space="preserve">
+    <value>Překryvný dialog zobrazuje dialogy jako překryvy v okně aplikace.</value>
+  </data>
+  <data name="Page_Description_Pagination" xml:space="preserve">
+    <value>Stránkování poskytuje ovládací prvky pro navigaci mezi stránkami obsahu.</value>
+  </data>
+  <data name="Page_Description_PathPicker" xml:space="preserve">
+    <value>Výběr cesty umožňuje uživatelům vybírat cesty k souborům nebo složkám ze souborového systému.</value>
+  </data>
+  <data name="Page_Description_PinCode" xml:space="preserve">
+    <value>PIN kód je ovládací prvek pro zadávání PIN nebo ověřovacích kódů.</value>
+  </data>
+  <data name="Page_Description_PopConfirm" xml:space="preserve">
+    <value>Potvrzovací bublina zobrazuje potvrzovací vyskakovací okno před provedením akce.</value>
+  </data>
+  <data name="Page_Description_ProportionalCanvas" xml:space="preserve">
+    <value>Proporcionální plátno je panel rozvržení, který uspořádává podřízené prvky proporcionálně v dostupném prostoru.</value>
+  </data>
+  <data name="Page_Description_QrCode" xml:space="preserve">
+    <value>QR kód generuje a zobrazuje obrázky QR kódů ze vstupu textu nebo URL.</value>
+  </data>
+  <data name="Page_Description_RangeSlider" xml:space="preserve">
+    <value>Posuvník rozsahu umožňuje výběr rozsahu hodnot pomocí dvou přetahovatelných jezdců.</value>
+  </data>
+  <data name="Page_Description_Rating" xml:space="preserve">
+    <value>Hodnocení zobrazuje a sbírá hvězdičkové hodnoty hodnocení od uživatelů.</value>
+  </data>
+  <data name="Page_Description_ScrollToButton" xml:space="preserve">
+    <value>Tlačítko posunu je plovoucí tlačítko, které posune zobrazovanou oblast na cílový prvek.</value>
+  </data>
+  <data name="Page_Description_SelectionList" xml:space="preserve">
+    <value>Seznam výběru prezentuje seznam položek pro jednoduchý nebo vícenásobný výběr.</value>
+  </data>
+  <data name="Page_Description_Skeleton" xml:space="preserve">
+    <value>Kostra zobrazuje zástupné animace načítání pro oblasti obsahu.</value>
+  </data>
+  <data name="Page_Description_TagInput" xml:space="preserve">
+    <value>Vstup štítků umožňuje uživatelům zadávat a spravovat více hodnot štítků.</value>
+  </data>
+  <data name="Page_Description_ThemeToggler" xml:space="preserve">
+    <value>Přepínač motivu poskytuje ovládací prvek pro přepínání mezi světlým a tmavým motivem.</value>
+  </data>
+  <data name="Page_Description_ThemeVariantMapper" xml:space="preserve">
+    <value>Mapovač variant motivu mapuje hodnoty mezi variantami světlého a tmavého motivu.</value>
+  </data>
+  <data name="Page_Description_TimeBox" xml:space="preserve">
+    <value>Časový vstup je textový ovládací prvek pro přímé zadávání časových hodnot.</value>
+  </data>
+  <data name="Page_Description_Timeline" xml:space="preserve">
+    <value>Časová osa prezentuje posloupnost událostí v chronologickém vertikálním pořadí.</value>
+  </data>
+  <data name="Page_Description_TimeOnlyPicker" xml:space="preserve">
+    <value>Výběr pouze času vybírá časové hodnoty pomocí typu TimeOnly.</value>
+  </data>
+  <data name="Page_Description_TimeOnlyRangePicker" xml:space="preserve">
+    <value>Výběr rozsahu pouze času vybírá časový rozsah pomocí typu TimeOnly.</value>
+  </data>
+  <data name="Page_Description_TimePicker" xml:space="preserve">
+    <value>Výběr času umožňuje výběr časové hodnoty z vyskakovacího panelu.</value>
+  </data>
+  <data name="Page_Description_TimeRangePicker" xml:space="preserve">
+    <value>Výběr časového rozsahu umožňuje výběr počátečního a koncového časového rozsahu.</value>
+  </data>
+  <data name="Page_Description_Toast" xml:space="preserve">
+    <value>Oznámení zobrazuje krátké, automaticky mizející oznamovací zprávy.</value>
+  </data>
+  <data name="Page_Description_ToolBar" xml:space="preserve">
+    <value>Panel nástrojů je kontejner pro seskupování akčních tlačítek a ovládacích prvků.</value>
+  </data>
+  <data name="Page_Description_TreeComboBox" xml:space="preserve">
+    <value>Stromový výběr je rozbalovací seznam, který zobrazuje položky v hierarchické stromové struktuře.</value>
+  </data>
+  <data name="Page_Description_TwoTonePathIcon" xml:space="preserve">
+    <value>Dvoubarevná ikona cesty vykresluje ikony cest se dvěma odlišnými barvami výplně.</value>
+  </data>
+  <data name="Page_Description_VirtualizingUniformGrid" xml:space="preserve">
+    <value>Virtualizovaný panel, který uspořádává položky v jednotné mřížce s pevným počtem sloupců. Pouze aktuálně viditelné položky (plus vyrovnávací oblast) jsou vytvořeny; kontejnery mimo obrazovku jsou recyklovány.</value>
+  </data>
+  <data name="Page_Description_WindowDialog" xml:space="preserve">
+    <value>Okenní dialog zobrazuje modální okna pro interakci uživatele.</value>
+  </data>
+</root>

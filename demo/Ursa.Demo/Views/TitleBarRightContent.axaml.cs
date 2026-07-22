@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Globalization;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Ursa.Demo.Localizations;
+using Irihi.Lingua;
+using Semi.Avalonia;
+using Ursa.Themes.Semi;
 
 namespace Ursa.Demo.Views;
 
@@ -21,9 +22,9 @@ public partial class TitleBarRightContent : UserControl
         await launcher.LaunchUriAsync(new Uri("https://github.com/irihitech/Ursa.Avalonia"));
     }
 
-    private void LangSwitchButton_Clicked(object? sender, RoutedEventArgs e)
+    private void CulturePicker_OnCultureChanged(object? sender, CultureChangedEventArgs e)
     {
-        var condition = string.Equals(LanguageManager.Instance.CurrentCulture.TwoLetterISOLanguageName, "zh");
-        LanguageManager.Instance.UpdateCulture(condition ? CultureInfo.InvariantCulture : new CultureInfo("zh-Hans"));
+        SemiTheme.OverrideLocaleResources(App.Current, e.Culture?.Culture);
+        UrsaSemiTheme.OverrideLocaleResources(App.Current, e.Culture?.Culture);
     }
 }

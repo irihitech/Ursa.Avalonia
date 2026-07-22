@@ -12,6 +12,7 @@
         <semi:SemiTheme Locale="zh-CN" />
         <semi:UrsaSemiTheme Locale="zh-CN" />
         <semi:SemiPopupAnimations />
+        <StyleInclude Source="avares://Irihi.Lingua.Core/Themes/Generic.axaml" />
         <!--This style is created to demonstrate Dialog StyleClass feature. This style is applied to Dialog Window-->
         <Style Selector="u|StandardDialogWindow.Custom">
             <Style Selector="^ /template/ Button#PART_OKButton">

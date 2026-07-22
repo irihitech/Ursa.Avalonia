@@ -18,6 +18,7 @@
     <PackageVersion Include="Avalonia.Skia" Version="$(AvaloniaVersion)" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="17.13.1" />
+    <PackageVersion Include="System.Reflection.Metadata" Version="10.0.0" />
     <PackageVersion Include="xunit.v3" Version="3.2.1" />
     <PackageVersion Include="xunit.v3.runner.msbuild" Version="3.2.1" />
     <!--demo-->
@@ -29,6 +30,6 @@
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageVersion Include="Prism.DryIoc.Avalonia" Version="8.1.97.11072" />
     <PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.2.0.2" />
-    <PackageVersion Include="Irihi.Lingua" Version="0.5.0" />
+    <PackageVersion Include="Irihi.Lingua" Version="0.7.0" />
   </ItemGroup>
 </Project>

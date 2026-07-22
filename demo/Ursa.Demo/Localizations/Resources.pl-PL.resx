@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Lang_Switch_Content" xml:space="preserve">
+    <value>EN</value>
+  </data>
+  <data name="Lang_Switch_ToolTip" xml:space="preserve">
+    <value>Przełącz na angielski</value>
+  </data>
+  <data name="Menu_Header_Introduction" xml:space="preserve">
+    <value>Wprowadzenie Introduction</value>
+  </data>
+  <data name="Menu_Header_AboutUs" xml:space="preserve">
+    <value>O nas AboutUs</value>
+  </data>
+  <!-- Category headers -->
+  <data name="Menu_Category_Controls" xml:space="preserve">
+    <value>Kontrolki</value>
+  </data>
+  <data name="Menu_Category_ButtonsAndInputs" xml:space="preserve">
+    <value>Przyciski i pola</value>
+  </data>
+  <data name="Menu_Category_DialogAndFeedbacks" xml:space="preserve">
+    <value>Dialogi i powiadomienia</value>
+  </data>
+  <data name="Menu_Category_DateAndTime" xml:space="preserve">
+    <value>Data i czas</value>
+  </data>
+  <data name="Menu_Category_NavigationAndMenus" xml:space="preserve">
+    <value>Nawigacja i menu</value>
+  </data>
+  <data name="Menu_Category_LayoutAndDisplay" xml:space="preserve">
+    <value>Układ i wyświetlanie</value>
+  </data>
+  <!-- Buttons & Inputs -->
+  <data name="Menu_Header_ButtonGroup" xml:space="preserve">
+    <value>Grupa przycisków ButtonGroup</value>
+  </data>
+  <data name="Menu_Header_IconButton" xml:space="preserve">
+    <value>Przycisk z ikoną IconButton</value>
+  </data>
+  <data name="Menu_Header_AutoCompleteBox" xml:space="preserve">
+    <value>Autouzupełnianie AutoCompleteBox</value>
+  </data>
+  <data name="Menu_Header_ClassInput" xml:space="preserve">
+    <value>Pole klasy ClassInput</value>
+  </data>
+  <data name="Menu_Header_EnumSelector" xml:space="preserve">
+    <value>Selektor wyliczeniowy EnumSelector</value>
+  </data>
+  <data name="Menu_Header_Form" xml:space="preserve">
+    <value>Formularz Form</value>
+  </data>
+  <data name="Menu_Header_KeyGestureInput" xml:space="preserve">
+    <value>Pole skrótów klawiszowych KeyGestureInput</value>
+  </data>
+  <data name="Menu_Header_IPv4Box" xml:space="preserve">
+    <value>Pole IPv4 IPv4Box</value>
+  </data>
+  <data name="Menu_Header_MultiComboBox" xml:space="preserve">
+    <value>Lista wielokrotnego wyboru MultiComboBox</value>
+  </data>
+  <data name="Menu_Header_MultiAutoCompleteBox" xml:space="preserve">
+    <value>Wielokrotne autouzupełnianie MultiAutoCompleteBox</value>
+  </data>
+  <data name="Menu_Header_NumericUpDown" xml:space="preserve">
+    <value>Pole numeryczne NumericUpDown</value>
+  </data>
+  <data name="Menu_Header_NumPad" xml:space="preserve">
+    <value>Klawiatura numeryczna NumPad</value>
+  </data>
+  <data name="Menu_Header_PathPicker" xml:space="preserve">
+    <value>Selektor ścieżki PathPicker</value>
+  </data>
+  <data name="Menu_Header_PinCode" xml:space="preserve">
+    <value>Kod PIN PinCode</value>
+  </data>
+  <data name="Menu_Header_RangeSlider" xml:space="preserve">
+    <value>Suwak zakresu RangeSlider</value>
+  </data>
+  <data name="Menu_Header_Rating" xml:space="preserve">
+    <value>Ocena Rating</value>
+  </data>
+  <data name="Menu_Header_SelectionList" xml:space="preserve">
+    <value>Lista wyboru SelectionList</value>
+  </data>
+  <data name="Menu_Header_TagInput" xml:space="preserve">
+    <value>Pole etykiet TagInput</value>
+  </data>
+  <data name="Menu_Header_ThemeToggler" xml:space="preserve">
+    <value>Przełącznik motywu ThemeToggler</value>
+  </data>
+  <data name="Menu_Header_TreeComboBox" xml:space="preserve">
+    <value>Lista drzewiasta TreeComboBox</value>
+  </data>
+  <!-- Dialog & Feedbacks -->
+  <data name="Menu_Header_WindowDialog" xml:space="preserve">
+    <value>Dialog okienkowy WindowDialog</value>
+  </data>
+  <data name="Menu_Header_OverlayDialog" xml:space="preserve">
+    <value>Dialog nakładkowy OverlayDialog</value>
+  </data>
+  <data name="Menu_Header_Drawer" xml:space="preserve">
+    <value>Szuflada Drawer</value>
+  </data>
+  <data name="Menu_Header_Loading" xml:space="preserve">
+    <value>Ładowanie Loading</value>
+  </data>
+  <data name="Menu_Header_MessageBox" xml:space="preserve">
+    <value>Okno komunikatu MessageBox</value>
+  </data>
+  <data name="Menu_Header_Notification" xml:space="preserve">
+    <value>Powiadomienie Notification</value>
+  </data>
+  <data name="Menu_Header_PopConfirm" xml:space="preserve">
+    <value>Potwierdzenie dymkowe PopConfirm</value>
+  </data>
+  <data name="Menu_Header_Toast" xml:space="preserve">
+    <value>Powiadomienie Toast</value>
+  </data>
+  <data name="Menu_Header_Skeleton" xml:space="preserve">
+    <value>Szkielet Skeleton</value>
+  </data>
+  <!-- Date & Time -->
+  <data name="Menu_Header_DatePicker" xml:space="preserve">
+    <value>Selektor daty DatePicker</value>
+  </data>
+  <data name="Menu_Header_DateOnlyPicker" xml:space="preserve">
+    <value>Selektor samej daty DateOnlyPicker</value>
+  </data>
+  <data name="Menu_Header_DateRangePicker" xml:space="preserve">
+    <value>Selektor zakresu dat DateRangePicker</value>
+  </data>
+  <data name="Menu_Header_DateOnlyRangePicker" xml:space="preserve">
+    <value>Selektor zakresu samej daty DateOnlyRangePicker</value>
+  </data>
+  <data name="Menu_Header_DateTimePicker" xml:space="preserve">
+    <value>Selektor daty i czasu DateTimePicker</value>
+  </data>
+  <data name="Menu_Header_DateOffsetPicker" xml:space="preserve">
+    <value>Selektor daty z przesunięciem DateOffsetPicker</value>
+  </data>
+  <data name="Menu_Header_DateOffsetRangePicker" xml:space="preserve">
+    <value>Selektor zakresu dat z przesunięciem DateOffsetRangePicker</value>
+  </data>
+  <data name="Menu_Header_DateTimeOffsetPicker" xml:space="preserve">
+    <value>Selektor DateTimeOffset DateTimeOffsetPicker</value>
+  </data>
+  <data name="Menu_Header_TimeBox" xml:space="preserve">
+    <value>Pole czasu TimeBox</value>
+  </data>
+  <data name="Menu_Header_TimePicker" xml:space="preserve">
+    <value>Selektor czasu TimePicker</value>
+  </data>
+  <data name="Menu_Header_TimeOnlyPicker" xml:space="preserve">
+    <value>Selektor samego czasu TimeOnlyPicker</value>
+  </data>
+  <data name="Menu_Header_TimeRangePicker" xml:space="preserve">
+    <value>Selektor zakresu czasu TimeRangePicker</value>
+  </data>
+  <data name="Menu_Header_TimeOnlyRangePicker" xml:space="preserve">
+    <value>Selektor zakresu samego czasu TimeOnlyRangePicker</value>
+  </data>
+  <data name="Menu_Header_Clock" xml:space="preserve">
+    <value>Zegar Clock</value>
+  </data>
+  <!-- Navigation & Menus -->
+  <data name="Menu_Header_Anchor" xml:space="preserve">
+    <value>Kotwica Anchor</value>
+  </data>
+  <data name="Menu_Header_Breadcrumb" xml:space="preserve">
+    <value>Nawigacja okruszkowa Breadcrumb</value>
+  </data>
+  <data name="Menu_Header_NavMenu" xml:space="preserve">
+    <value>Menu nawigacyjne NavMenu</value>
+  </data>
+  <data name="Menu_Header_Pagination" xml:space="preserve">
+    <value>Paginacja Pagination</value>
+  </data>
+  <data name="Menu_Header_ToolBar" xml:space="preserve">
+    <value>Pasek narzędzi ToolBar</value>
+  </data>
+  <!-- Layout & Display -->
+  <data name="Menu_Header_AspectRatioLayout" xml:space="preserve">
+    <value>Układ proporcji AspectRatioLayout</value>
+  </data>
+  <data name="Menu_Header_Avatar" xml:space="preserve">
+    <value>Awatar Avatar</value>
+  </data>
+  <data name="Menu_Header_Badge" xml:space="preserve">
+    <value>Odznaka Badge</value>
+  </data>
+  <data name="Menu_Header_Banner" xml:space="preserve">
+    <value>Baner Banner</value>
+  </data>
+  <data name="Menu_Header_Descriptions" xml:space="preserve">
+    <value>Opisy Descriptions</value>
+  </data>
+  <data name="Menu_Header_DisableContainer" xml:space="preserve">
+    <value>Kontener wyłączający DisableContainer</value>
+  </data>
+  <data name="Menu_Header_Divider" xml:space="preserve">
+    <value>Separator Divider</value>
+  </data>
+  <data name="Menu_Header_GroupBox" xml:space="preserve">
+    <value>Ramka grupowa GroupBox</value>
+  </data>
+  <data name="Menu_Header_DualBadge" xml:space="preserve">
+    <value>Podwójna odznaka DualBadge</value>
+  </data>
+  <data name="Menu_Header_ImageViewer" xml:space="preserve">
+    <value>Przeglądarka obrazów ImageViewer</value>
+  </data>
+  <data name="Menu_Header_ElasticWrapPanel" xml:space="preserve">
+    <value>Elastyczny panel zawijania ElasticWrapPanel</value>
+  </data>
+  <data name="Menu_Header_Marquee" xml:space="preserve">
+    <value>Tekst przewijany Marquee</value>
+  </data>
+  <data name="Menu_Header_MarkdownLine" xml:space="preserve">
+    <value>Wiersz Markdown MarkdownLine</value>
+  </data>
+  <data name="Menu_Header_NumberDisplayer" xml:space="preserve">
+    <value>Wyświetlacz liczbowy NumberDisplayer</value>
+  </data>
+  <data name="Menu_Header_ProportionalCanvas" xml:space="preserve">
+    <value>Płótno proporcjonalne ProportionalCanvas</value>
+  </data>
+  <data name="Menu_Header_QrCode" xml:space="preserve">
+    <value>Kod QR QrCode</value>
+  </data>
+  <data name="Menu_Header_ScrollTo" xml:space="preserve">
+    <value>Przewiń do ScrollTo</value>
+  </data>
+  <data name="Menu_Header_ThemeVariantMapper" xml:space="preserve">
+    <value>Mapowanie wariantów motywu ThemeVariantMapper</value>
+  </data>
+  <data name="Menu_Header_Timeline" xml:space="preserve">
+    <value>Oś czasu Timeline</value>
+  </data>
+  <data name="Menu_Header_TwoTonePathIcon" xml:space="preserve">
+    <value>Dwukolorowa ikona ścieżki TwoTonePathIcon</value>
+  </data>
+  <data name="Menu_Header_Settings" xml:space="preserve">
+    <value>Ustawienia Settings</value>
+  </data>
+  <data name="Main_Banner_Title" xml:space="preserve">
+    <value>Witamy w Ursa</value>
+  </data>
+  <data name="Main_Banner_Description" xml:space="preserve">
+    <value>Estetyczna rewolucja produktywności</value>
+  </data>
+  <data name="Menu_Header_VirtualizingUniformGrid" xml:space="preserve">
+    <value>Wirtualizowana siatka jednolita VirtualizingUniformGrid</value>
+  </data>
+  <!-- Page Titles -->
+  <data name="Page_Title_Anchor" xml:space="preserve">
+    <value>Kotwica Anchor</value>
+  </data>
+  <data name="Page_Title_AspectRatioLayout" xml:space="preserve">
+    <value>Układ proporcji AspectRatioLayout</value>
+  </data>
+  <data name="Page_Title_AutoCompleteBox" xml:space="preserve">
+    <value>Autouzupełnianie AutoCompleteBox</value>
+  </data>
+  <data name="Page_Title_Avatar" xml:space="preserve">
+    <value>Awatar Avatar</value>
+  </data>
+  <data name="Page_Title_Badge" xml:space="preserve">
+    <value>Odznaka Badge</value>
+  </data>
+  <data name="Page_Title_Banner" xml:space="preserve">
+    <value>Baner Banner</value>
+  </data>
+  <data name="Page_Title_Breadcrumb" xml:space="preserve">
+    <value>Nawigacja okruszkowa Breadcrumb</value>
+  </data>
+  <data name="Page_Title_ButtonGroup" xml:space="preserve">
+    <value>Grupa przycisków ButtonGroup</value>
+  </data>
+  <data name="Page_Title_ClassInput" xml:space="preserve">
+    <value>Pole klasy ClassInput</value>
+  </data>
+  <data name="Page_Title_Clock" xml:space="preserve">
+    <value>Zegar Clock</value>
+  </data>
+  <data name="Page_Title_DateOffsetPicker" xml:space="preserve">
+    <value>Selektor daty z przesunięciem DateOffsetPicker</value>
+  </data>
+  <data name="Page_Title_DateOffsetRangePicker" xml:space="preserve">
+    <value>Selektor zakresu dat z przesunięciem DateOffsetRangePicker</value>
+  </data>
+  <data name="Page_Title_DateOnlyPicker" xml:space="preserve">
+    <value>Selektor samej daty DateOnlyPicker</value>
+  </data>
+  <data name="Page_Title_DateOnlyRangePicker" xml:space="preserve">
+    <value>Selektor zakresu samej daty DateOnlyRangePicker</value>
+  </data>
+  <data name="Page_Title_DatePicker" xml:space="preserve">
+    <value>Selektor daty DatePicker</value>
+  </data>
+  <data name="Page_Title_DateRangePicker" xml:space="preserve">
+    <value>Selektor zakresu dat DateRangePicker</value>
+  </data>
+  <data name="Page_Title_DateTimeOffsetPicker" xml:space="preserve">
+    <value>Selektor DateTimeOffset DateTimeOffsetPicker</value>
+  </data>
+  <data name="Page_Title_DateTimePicker" xml:space="preserve">
+    <value>Selektor daty i czasu DateTimePicker</value>
+  </data>
+  <data name="Page_Title_Descriptions" xml:space="preserve">
+    <value>Opisy Descriptions</value>
+  </data>
+  <data name="Page_Title_DisableContainer" xml:space="preserve">
+    <value>Kontener wyłączający DisableContainer</value>
+  </data>
+  <data name="Page_Title_Divider" xml:space="preserve">
+    <value>Separator Divider</value>
+  </data>
+  <data name="Page_Title_Drawer" xml:space="preserve">
+    <value>Szuflada Drawer</value>
+  </data>
+  <data name="Page_Title_DualBadge" xml:space="preserve">
+    <value>Podwójna odznaka DualBadge</value>
+  </data>
+  <data name="Page_Title_ElasticWrapPanel" xml:space="preserve">
+    <value>Elastyczny panel zawijania ElasticWrapPanel</value>
+  </data>
+  <data name="Page_Title_EnumSelector" xml:space="preserve">
+    <value>Selektor wyliczeniowy EnumSelector</value>
+  </data>
+  <data name="Page_Title_Form" xml:space="preserve">
+    <value>Formularz Form</value>
+  </data>
+  <data name="Page_Title_GroupBox" xml:space="preserve">
+    <value>Ramka grupowa GroupBox</value>
+  </data>
+  <data name="Page_Title_IconButton" xml:space="preserve">
+    <value>Przycisk z ikoną IconButton</value>
+  </data>
+  <data name="Page_Title_ImageViewer" xml:space="preserve">
+    <value>Przeglądarka obrazów ImageViewer</value>
+  </data>
+  <data name="Page_Title_IPv4Box" xml:space="preserve">
+    <value>Pole IPv4 IPv4Box</value>
+  </data>
+  <data name="Page_Title_KeyGestureInput" xml:space="preserve">
+    <value>Pole skrótów klawiszowych KeyGestureInput</value>
+  </data>
+  <data name="Page_Title_Loading" xml:space="preserve">
+    <value>Ładowanie Loading</value>
+  </data>
+  <data name="Page_Title_Marquee" xml:space="preserve">
+    <value>Tekst przewijany Marquee</value>
+  </data>
+  <data name="Page_Title_MarkdownLine" xml:space="preserve">
+    <value>Wiersz Markdown MarkdownLine</value>
+  </data>
+  <data name="Page_Title_MessageBox" xml:space="preserve">
+    <value>Okno komunikatu MessageBox</value>
+  </data>
+  <data name="Page_Title_MultiAutoCompleteBox" xml:space="preserve">
+    <value>Wielokrotne autouzupełnianie MultiAutoCompleteBox</value>
+  </data>
+  <data name="Page_Title_MultiComboBox" xml:space="preserve">
+    <value>Lista wielokrotnego wyboru MultiComboBox</value>
+  </data>
+  <data name="Page_Title_NavMenu" xml:space="preserve">
+    <value>Menu nawigacyjne NavMenu</value>
+  </data>
+  <data name="Page_Title_Notification" xml:space="preserve">
+    <value>Powiadomienie Notification</value>
+  </data>
+  <data name="Page_Title_NumberDisplayer" xml:space="preserve">
+    <value>Wyświetlacz liczbowy NumberDisplayer</value>
+  </data>
+  <data name="Page_Title_NumericUpDown" xml:space="preserve">
+    <value>Pole numeryczne NumericUpDown</value>
+  </data>
+  <data name="Page_Title_NumPad" xml:space="preserve">
+    <value>Klawiatura numeryczna NumPad</value>
+  </data>
+  <data name="Page_Title_OverlayDialog" xml:space="preserve">
+    <value>Dialog nakładkowy OverlayDialog</value>
+  </data>
+  <data name="Page_Title_Pagination" xml:space="preserve">
+    <value>Paginacja Pagination</value>
+  </data>
+  <data name="Page_Title_PathPicker" xml:space="preserve">
+    <value>Selektor ścieżki PathPicker</value>
+  </data>
+  <data name="Page_Title_PinCode" xml:space="preserve">
+    <value>Kod PIN PinCode</value>
+  </data>
+  <data name="Page_Title_PopConfirm" xml:space="preserve">
+    <value>Potwierdzenie dymkowe PopConfirm</value>
+  </data>
+  <data name="Page_Title_ProportionalCanvas" xml:space="preserve">
+    <value>Płótno proporcjonalne ProportionalCanvas</value>
+  </data>
+  <data name="Page_Title_QrCode" xml:space="preserve">
+    <value>Kod QR QrCode</value>
+  </data>
+  <data name="Page_Title_RangeSlider" xml:space="preserve">
+    <value>Suwak zakresu RangeSlider</value>
+  </data>
+  <data name="Page_Title_Rating" xml:space="preserve">
+    <value>Ocena Rating</value>
+  </data>
+  <data name="Page_Title_ScrollToButton" xml:space="preserve">
+    <value>Przycisk przewiń do ScrollToButton</value>
+  </data>
+  <data name="Page_Title_SelectionList" xml:space="preserve">
+    <value>Lista wyboru SelectionList</value>
+  </data>
+  <data name="Page_Title_Skeleton" xml:space="preserve">
+    <value>Szkielet Skeleton</value>
+  </data>
+  <data name="Page_Title_TagInput" xml:space="preserve">
+    <value>Pole etykiet TagInput</value>
+  </data>
+  <data name="Page_Title_ThemeToggler" xml:space="preserve">
+    <value>Przełącznik motywu ThemeToggler</value>
+  </data>
+  <data name="Page_Title_ThemeVariantMapper" xml:space="preserve">
+    <value>Mapowanie wariantów motywu ThemeVariantMapper</value>
+  </data>
+  <data name="Page_Title_TimeBox" xml:space="preserve">
+    <value>Pole czasu TimeBox</value>
+  </data>
+  <data name="Page_Title_Timeline" xml:space="preserve">
+    <value>Oś czasu Timeline</value>
+  </data>
+  <data name="Page_Title_TimeOnlyPicker" xml:space="preserve">
+    <value>Selektor samego czasu TimeOnlyPicker</value>
+  </data>
+  <data name="Page_Title_TimeOnlyRangePicker" xml:space="preserve">
+    <value>Selektor zakresu samego czasu TimeOnlyRangePicker</value>
+  </data>
+  <data name="Page_Title_TimePicker" xml:space="preserve">
+    <value>Selektor czasu TimePicker</value>
+  </data>
+  <data name="Page_Title_TimeRangePicker" xml:space="preserve">
+    <value>Selektor zakresu czasu TimeRangePicker</value>
+  </data>
+  <data name="Page_Title_Toast" xml:space="preserve">
+    <value>Powiadomienie Toast</value>
+  </data>
+  <data name="Page_Title_ToolBar" xml:space="preserve">
+    <value>Pasek narzędzi ToolBar</value>
+  </data>
+  <data name="Page_Title_TreeComboBox" xml:space="preserve">
+    <value>Lista drzewiasta TreeComboBox</value>
+  </data>
+  <data name="Page_Title_TwoTonePathIcon" xml:space="preserve">
+    <value>Dwukolorowa ikona ścieżki TwoTonePathIcon</value>
+  </data>
+  <data name="Page_Title_VirtualizingUniformGrid" xml:space="preserve">
+    <value>Wirtualizowana siatka jednolita VirtualizingUniformGrid</value>
+  </data>
+  <data name="Page_Title_WindowDialog" xml:space="preserve">
+    <value>Dialog okienkowy WindowDialog</value>
+  </data>
+  <!-- Page Descriptions -->
+  <data name="Page_Description_Anchor" xml:space="preserve">
+    <value>Kotwica zapewnia nawigację spisu treści połączoną z sekcjami strony.</value>
+  </data>
+  <data name="Page_Description_AspectRatioLayout" xml:space="preserve">
+    <value>Układ proporcji utrzymuje stały współczynnik proporcji dla swojej zawartości podrzędnej.</value>
+  </data>
+  <data name="Page_Description_AutoCompleteBox" xml:space="preserve">
+    <value>Autouzupełnianie dostarcza sugestie podczas wpisywania tekstu w polu.</value>
+  </data>
+  <data name="Page_Description_Avatar" xml:space="preserve">
+    <value>Awatar wyświetla obraz profilowy użytkownika lub inicjały w okrągłym kontenerze.</value>
+  </data>
+  <data name="Page_Description_Badge" xml:space="preserve">
+    <value>Odznaka wyświetla mały licznik lub wskaźnik stanu na innym elemencie.</value>
+  </data>
+  <data name="Page_Description_Banner" xml:space="preserve">
+    <value>Baner wyświetla widoczny pasek komunikatu informacyjnego lub ostrzegawczego.</value>
+  </data>
+  <data name="Page_Description_Breadcrumb" xml:space="preserve">
+    <value>Nawigacja okruszkowa wyświetla ślad nawigacyjny pokazujący bieżącą lokalizację strony.</value>
+  </data>
+  <data name="Page_Description_ButtonGroup" xml:space="preserve">
+    <value>Grupa przycisków to kontrolka, która grupuje wiele przycisków razem.</value>
+  </data>
+  <data name="Page_Description_ClassInput" xml:space="preserve">
+    <value>Pole klasy umożliwia użytkownikom interaktywne wprowadzanie nazw klas CSS.</value>
+  </data>
+  <data name="Page_Description_Clock" xml:space="preserve">
+    <value>Zegar wyświetla wizualny zegar analogowy lub cyfrowy.</value>
+  </data>
+  <data name="Page_Description_DateOffsetPicker" xml:space="preserve">
+    <value>Selektor daty z przesunięciem wybiera datę z obsługą przesunięcia strefy czasowej.</value>
+  </data>
+  <data name="Page_Description_DateOffsetRangePicker" xml:space="preserve">
+    <value>Selektor zakresu dat z przesunięciem wybiera zakres dat z obsługą przesunięcia strefy czasowej.</value>
+  </data>
+  <data name="Page_Description_DateOnlyPicker" xml:space="preserve">
+    <value>Selektor samej daty to selektor daty, który działa z typem DateOnly.</value>
+  </data>
+  <data name="Page_Description_DateOnlyRangePicker" xml:space="preserve">
+    <value>Selektor zakresu samej daty wybiera zakres dat przy użyciu typu DateOnly.</value>
+  </data>
+  <data name="Page_Description_DatePicker" xml:space="preserve">
+    <value>Selektor daty umożliwia użytkownikom wybór daty z wyskakującego kalendarza.</value>
+  </data>
+  <data name="Page_Description_DateRangePicker" xml:space="preserve">
+    <value>Selektor zakresu dat umożliwia wybór zakresu daty początkowej i końcowej.</value>
+  </data>
+  <data name="Page_Description_DateTimeOffsetPicker" xml:space="preserve">
+    <value>Selektor DateTimeOffset wybiera DateTimeOffset zawierający informacje o strefie czasowej.</value>
+  </data>
+  <data name="Page_Description_DateTimePicker" xml:space="preserve">
+    <value>Selektor daty i czasu umożliwia wybór zarówno wartości daty, jak i czasu.</value>
+  </data>
+  <data name="Page_Description_Descriptions" xml:space="preserve">
+    <value>Opisy prezentują dane klucz-wartość w ustrukturyzowanym układzie etykieta-zawartość.</value>
+  </data>
+  <data name="Page_Description_DisableContainer" xml:space="preserve">
+    <value>Kontener wyłączający otacza zawartość, aby wizualnie i funkcjonalnie wyłączyć elementy podrzędne.</value>
+  </data>
+  <data name="Page_Description_Divider" xml:space="preserve">
+    <value>Separator renderuje poziomą lub pionową linię oddzielającą między zawartością.</value>
+  </data>
+  <data name="Page_Description_Drawer" xml:space="preserve">
+    <value>Szuflada to panel, który wysuwa się z krawędzi ekranu.</value>
+  </data>
+  <data name="Page_Description_DualBadge" xml:space="preserve">
+    <value>Podwójna odznaka pokazuje dwuczęściową odznakę z sekcjami nagłówka i wartości.</value>
+  </data>
+  <data name="Page_Description_ElasticWrapPanel" xml:space="preserve">
+    <value>Elastyczny panel zawijania zawija elementy podrzędne z elastycznym rozkładem odstępów.</value>
+  </data>
+  <data name="Page_Description_EnumSelector" xml:space="preserve">
+    <value>Selektor wyliczeniowy zapewnia listę rozwijaną do wyboru wartości wyliczeniowych.</value>
+  </data>
+  <data name="Page_Description_Form" xml:space="preserve">
+    <value>Formularz to kontener układu do grupowania oznaczonych kontrolek wejściowych.</value>
+  </data>
+  <data name="Page_Description_GroupBox" xml:space="preserve">
+    <value>Ramka grupowa grupuje powiązane kontrolki razem z opcjonalną ramką tytułową.</value>
+  </data>
+  <data name="Page_Description_IconButton" xml:space="preserve">
+    <value>Przycisk z ikoną to przycisk, który wyświetla ikonę wraz z opcjonalnym tekstem.</value>
+  </data>
+  <data name="Page_Description_ImageViewer" xml:space="preserve">
+    <value>Przeglądarka obrazów wyświetla obrazy z możliwością przesuwania, powiększania i dopasowania do okna.</value>
+  </data>
+  <data name="Page_Description_IPv4Box" xml:space="preserve">
+    <value>Pole IPv4 to specjalistyczne pole do wprowadzania adresów IPv4.</value>
+  </data>
+  <data name="Page_Description_KeyGestureInput" xml:space="preserve">
+    <value>Pole skrótów klawiszowych przechwytuje gesty skrótów klawiaturowych z wprowadzania użytkownika.</value>
+  </data>
+  <data name="Page_Description_Loading" xml:space="preserve">
+    <value>Ładowanie wyświetla wskaźnik lub pasek postępu podczas operacji asynchronicznych.</value>
+  </data>
+  <data name="Page_Description_Marquee" xml:space="preserve">
+    <value>Tekst przewijany przewija tekst lub zawartość w sposób ciągły w kierunku poziomym.</value>
+  </data>
+  <data name="Page_Description_MarkdownLine" xml:space="preserve">
+    <value>Lekki TextBlock, który renderuje ograniczony podzbiór formatowania Markdown w tekście.</value>
+  </data>
+  <data name="Page_Description_MessageBox" xml:space="preserve">
+    <value>Okno komunikatu wyświetla modalne okno dialogowe z komunikatem i przyciskami akcji.</value>
+  </data>
+  <data name="Page_Description_MultiAutoCompleteBox" xml:space="preserve">
+    <value>Wielokrotne autouzupełnianie obsługuje wybór wielu elementów z sugestiami automatycznego uzupełniania.</value>
+  </data>
+  <data name="Page_Description_MultiComboBox" xml:space="preserve">
+    <value>Lista wielokrotnego wyboru umożliwia wybór wielu elementów z listy rozwijanej.</value>
+  </data>
+  <data name="Page_Description_NavMenu" xml:space="preserve">
+    <value>Menu nawigacyjne to pionowe lub poziome menu nawigacyjne z elementami hierarchicznymi.</value>
+  </data>
+  <data name="Page_Description_Notification" xml:space="preserve">
+    <value>Powiadomienie wyświetla komunikaty informacyjne w nieblokującej nakładce.</value>
+  </data>
+  <data name="Page_Description_NumberDisplayer" xml:space="preserve">
+    <value>Wyświetlacz liczbowy animuje przejścia liczbowe z płynnymi efektami przewijania cyfr.</value>
+  </data>
+  <data name="Page_Description_NumericUpDown" xml:space="preserve">
+    <value>Pole numeryczne to kontrolka wprowadzania liczbowego z przyciskami zwiększania i zmniejszania.</value>
+  </data>
+  <data name="Page_Description_NumPad" xml:space="preserve">
+    <value>Klawiatura numeryczna to kontrolka klawiatury numerycznej do wprowadzania liczb.</value>
+  </data>
+  <data name="Page_Description_OverlayDialog" xml:space="preserve">
+    <value>Dialog nakładkowy wyświetla dialogi jako nakładki w oknie aplikacji.</value>
+  </data>
+  <data name="Page_Description_Pagination" xml:space="preserve">
+    <value>Paginacja zapewnia kontrolki do nawigacji między stronami zawartości.</value>
+  </data>
+  <data name="Page_Description_PathPicker" xml:space="preserve">
+    <value>Selektor ścieżki umożliwia użytkownikom wybór ścieżek plików lub folderów z systemu plików.</value>
+  </data>
+  <data name="Page_Description_PinCode" xml:space="preserve">
+    <value>Kod PIN to kontrolka wprowadzania do wprowadzania kodów PIN lub weryfikacyjnych.</value>
+  </data>
+  <data name="Page_Description_PopConfirm" xml:space="preserve">
+    <value>Potwierdzenie dymkowe wyświetla wyskakujące okienko potwierdzenia przed wykonaniem akcji.</value>
+  </data>
+  <data name="Page_Description_ProportionalCanvas" xml:space="preserve">
+    <value>Płótno proporcjonalne to panel układu, który rozmieszcza elementy podrzędne proporcjonalnie w dostępnej przestrzeni.</value>
+  </data>
+  <data name="Page_Description_QrCode" xml:space="preserve">
+    <value>Kod QR generuje i wyświetla obrazy kodów QR z wprowadzonego tekstu lub adresu URL.</value>
+  </data>
+  <data name="Page_Description_RangeSlider" xml:space="preserve">
+    <value>Suwak zakresu umożliwia wybór zakresu wartości za pomocą dwóch przeciągalnych suwaków.</value>
+  </data>
+  <data name="Page_Description_Rating" xml:space="preserve">
+    <value>Ocena wyświetla i zbiera wartości ocen gwiazdkowych od użytkowników.</value>
+  </data>
+  <data name="Page_Description_ScrollToButton" xml:space="preserve">
+    <value>Przycisk przewiń do to pływający przycisk, który przewija widok do elementu docelowego.</value>
+  </data>
+  <data name="Page_Description_SelectionList" xml:space="preserve">
+    <value>Lista wyboru prezentuje listę elementów do wyboru pojedynczego lub wielokrotnego.</value>
+  </data>
+  <data name="Page_Description_Skeleton" xml:space="preserve">
+    <value>Szkielet wyświetla zastępcze animacje ładowania dla obszarów zawartości.</value>
+  </data>
+  <data name="Page_Description_TagInput" xml:space="preserve">
+    <value>Pole etykiet umożliwia użytkownikom wprowadzanie i zarządzanie wieloma wartościami etykiet.</value>
+  </data>
+  <data name="Page_Description_ThemeToggler" xml:space="preserve">
+    <value>Przełącznik motywu zapewnia kontrolkę do przełączania między jasnym a ciemnym motywem.</value>
+  </data>
+  <data name="Page_Description_ThemeVariantMapper" xml:space="preserve">
+    <value>Mapowanie wariantów motywu mapuje wartości między wariantami jasnego i ciemnego motywu.</value>
+  </data>
+  <data name="Page_Description_TimeBox" xml:space="preserve">
+    <value>Pole czasu to tekstowa kontrolka wprowadzania do bezpośredniego wprowadzania wartości czasu.</value>
+  </data>
+  <data name="Page_Description_Timeline" xml:space="preserve">
+    <value>Oś czasu prezentuje sekwencję zdarzeń w chronologicznej kolejności pionowej.</value>
+  </data>
+  <data name="Page_Description_TimeOnlyPicker" xml:space="preserve">
+    <value>Selektor samego czasu wybiera wartości czasu przy użyciu typu TimeOnly.</value>
+  </data>
+  <data name="Page_Description_TimeOnlyRangePicker" xml:space="preserve">
+    <value>Selektor zakresu samego czasu wybiera zakres czasu przy użyciu typu TimeOnly.</value>
+  </data>
+  <data name="Page_Description_TimePicker" xml:space="preserve">
+    <value>Selektor czasu umożliwia wybór wartości czasu z panelu wyskakującego.</value>
+  </data>
+  <data name="Page_Description_TimeRangePicker" xml:space="preserve">
+    <value>Selektor zakresu czasu umożliwia wybór zakresu czasu początkowego i końcowego.</value>
+  </data>
+  <data name="Page_Description_Toast" xml:space="preserve">
+    <value>Powiadomienie wyświetla krótkie, automatycznie znikające komunikaty powiadomień.</value>
+  </data>
+  <data name="Page_Description_ToolBar" xml:space="preserve">
+    <value>Pasek narzędzi to kontener do grupowania przycisków akcji i kontrolek.</value>
+  </data>
+  <data name="Page_Description_TreeComboBox" xml:space="preserve">
+    <value>Lista drzewiasta to lista rozwijana, która wyświetla elementy w hierarchicznej strukturze drzewiastej.</value>
+  </data>
+  <data name="Page_Description_TwoTonePathIcon" xml:space="preserve">
+    <value>Dwukolorowa ikona ścieżki renderuje ikony ścieżek z dwoma różnymi kolorami wypełnienia.</value>
+  </data>
+  <data name="Page_Description_VirtualizingUniformGrid" xml:space="preserve">
+    <value>Wirtualizowany panel, który rozmieszcza elementy w jednolitej siatce ze stałą liczbą kolumn. Tylko aktualnie widoczne elementy (plus obszar bufora) są tworzone; kontenery poza ekranem są poddawane recyklingowi.</value>
+  </data>
+  <data name="Page_Description_WindowDialog" xml:space="preserve">
+    <value>Dialog okienkowy wyświetla modalne okna do interakcji z użytkownikiem.</value>
+  </data>
+</root>
