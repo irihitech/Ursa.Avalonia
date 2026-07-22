@@ -3,4 +3,5 @@
     <StaticResource x:Key="BreadcrumbItemSeparatorForeground" ResourceKey="SemiColorDisabledText" />
     <StaticResource x:Key="BreadcrumbItemLastForeground" ResourceKey="SemiColorText0" />
     <StaticResource x:Key="BreadcrumbItemPointeroverForeground" ResourceKey="SemiColorPrimary" />
+    <StaticResource x:Key="BreadcrumbItemPressedForeground" ResourceKey="SemiColorPrimaryActive" />
 </ResourceDictionary>

@@ -124,6 +124,14 @@ public class VirtualizingUniformGrid : VirtualizingPanel, IScrollSnapPointsInfo
     {
         CacheLengthProperty.Changed.AddClassHandler<VirtualizingUniformGrid>(
             (x, _) => x.OnCacheLengthChanged());
+        ColumnsProperty.Changed.AddClassHandler<VirtualizingUniformGrid>(
+            (x, _) => x.OnColumnsChanged());
+        ItemWidthProperty.Changed.AddClassHandler<VirtualizingUniformGrid>(
+            (x, _) => x.InvalidateMeasure());
+        ItemHeightProperty.Changed.AddClassHandler<VirtualizingUniformGrid>(
+            (x, _) => x.InvalidateMeasure());
+        UniformItemHeightProperty.Changed.AddClassHandler<VirtualizingUniformGrid>(
+            (x, _) => x.InvalidateMeasure());
     }
 
     public VirtualizingUniformGrid()
@@ -944,6 +952,13 @@ public class VirtualizingUniformGrid : VirtualizingPanel, IScrollSnapPointsInfo
     private void OnCacheLengthChanged()
     {
         _bufferFactor = Math.Max(0, CacheLength);
+        InvalidateMeasure();
+    }
+
+    private void OnColumnsChanged()
+    {
+        _realizedElements?.RecycleAllElements(_recycleElement);
+        _rowHeights.Clear();
         InvalidateMeasure();
     }
 
