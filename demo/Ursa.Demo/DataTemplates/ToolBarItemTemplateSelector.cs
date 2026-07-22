@@ -2,6 +2,7 @@
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
+using Avalonia.Layout;
 using Ursa.Controls;
 using Ursa.Demo.ViewModels;
 
@@ -33,7 +34,7 @@ public class ToolBarItemTemplateSelector: IDataTemplate
             {
                 [!ContentControl.ContentProperty] = new Binding() { Path = "Content" },
                 [!ToggleButton.IsCheckedProperty] = new Binding() { Path = "IsChecked" },
-                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
                 [!ToolBar.OverflowModeProperty] = new Binding(){Path = nameof(ToolBarItemViewModel.OverflowMode)},
             };
         }
