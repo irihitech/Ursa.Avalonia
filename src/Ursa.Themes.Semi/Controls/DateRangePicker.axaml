@@ -10,9 +10,7 @@
         <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
         <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
         <Setter Property="MinHeight" Value="32" />
-        <Setter Property="StartPlaceholderText" Value="Start date" />
         <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
-        <Setter Property="EndPlaceholderText" Value="End date" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:DateRangePickerBase">
                 <DataValidationErrors>
