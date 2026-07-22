@@ -8,15 +8,17 @@ using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public class NavMenuDemoViewModel: ObservableObject
+public class NavMenuDemoViewModel: ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "NavMenu",
-        Description = "NavMenu is a vertical or horizontal navigation menu with hierarchical items.",
-        Breadcrumbs = ["Navigation & Menus", "Nav Menu"],
+        Title = LanguageManager.Instance.Page_Title_NavMenu,
+        Description = LanguageManager.Instance.Page_Description_NavMenu,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_NavigationAndMenus), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_NavMenu)],
         Tags = ["NavMenu", "Navigation", "Menu"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/NavMenuDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/NavMenuDemoViewModel.cs",

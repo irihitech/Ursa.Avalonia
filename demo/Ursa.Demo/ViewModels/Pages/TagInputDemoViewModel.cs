@@ -1,15 +1,17 @@
 using System.Collections.ObjectModel;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public class TagInputDemoViewModel: ViewModelBase
+public class TagInputDemoViewModel: ViewModelBase, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "TagInput",
-        Description = "TagInput allows users to enter and manage multiple tag values.",
-        Breadcrumbs = ["Buttons & Inputs", "TagInput"],
+        Title = LanguageManager.Instance.Page_Title_TagInput,
+        Description = LanguageManager.Instance.Page_Description_TagInput,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_ButtonsAndInputs), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_TagInput)],
         Tags = ["TagInput", "Input", "Tag"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/TagInputDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/TagInputDemoViewModel.cs",

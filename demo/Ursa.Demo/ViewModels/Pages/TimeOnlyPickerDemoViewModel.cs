@@ -2,15 +2,17 @@ using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class TimeOnlyPickerDemoViewModel : ObservableObject
+public partial class TimeOnlyPickerDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "TimeOnlyPicker",
-        Description = "TimeOnlyPicker selects time values using the TimeOnly type.",
-        Breadcrumbs = ["Date & Time", "Time Only Picker"],
+        Title = LanguageManager.Instance.Page_Title_TimeOnlyPicker,
+        Description = LanguageManager.Instance.Page_Description_TimeOnlyPicker,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DateAndTime), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_TimeOnlyPicker)],
         Tags = ["TimeOnlyPicker", "Time", "Input"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/TimeOnlyPickerDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/TimeOnlyPickerDemoViewModel.cs",

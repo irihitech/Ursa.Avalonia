@@ -1,20 +1,22 @@
+using System;
+using System.Collections.Generic;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Ursa.Demo.ViewModels.Controls;
 
 public partial class PageMetadataViewModel: ObservableObject
 {
-    [ObservableProperty] private string? _title;
-    [ObservableProperty] private string? _description;
-    [ObservableProperty] private string[]? _breadcrumbs;
-    [ObservableProperty] private string? _demoViewUrl;
-    [ObservableProperty] private string? _demoViewModelUrl;
-    [ObservableProperty] private string? _sourceUrl;
-    [ObservableProperty] private string? _themeUrl;
-    [ObservableProperty] private string[]? _tags;
-    [ObservableProperty] private bool? _mvvmSupport;
-    [ObservableProperty] private bool? _inlineXamlSupport;
-    [ObservableProperty] private bool? _avaloniaExclusive;
+    [ObservableProperty] public partial IObservable<string?>? Title { get; set; }
+    [ObservableProperty] public partial IObservable<string?>? Description { get; set; }
+    [ObservableProperty] public partial IReadOnlyList<BreadcrumbItemData>? Breadcrumbs { get; set; }
+    [ObservableProperty] public partial string? DemoViewUrl { get; set; }
+    [ObservableProperty] public partial string? DemoViewModelUrl { get; set; }
+    [ObservableProperty] public partial string? SourceUrl { get; set; }
+    [ObservableProperty] public partial string? ThemeUrl { get; set; }
+    [ObservableProperty] public partial string[]? Tags { get; set; }
+    [ObservableProperty] public partial bool? MvvmSupport { get; set; }
+    [ObservableProperty] public partial bool? InlineXamlSupport { get; set; }
+    [ObservableProperty] public partial bool? AvaloniaExclusive { get; set; }
 
     public PageMetadataViewModel()
     {

@@ -2,15 +2,17 @@ using System.Collections.Generic;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class TreeComboBoxDemoViewModel: ObservableObject
+public partial class TreeComboBoxDemoViewModel: ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "TreeComboBox",
-        Description = "TreeComboBox is a combo box that displays items in a hierarchical tree structure.",
-        Breadcrumbs = ["Buttons & Inputs", "TreeComboBox"],
+        Title = LanguageManager.Instance.Page_Title_TreeComboBox,
+        Description = LanguageManager.Instance.Page_Description_TreeComboBox,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_ButtonsAndInputs), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_TreeComboBox)],
         Tags = ["TreeComboBox", "ComboBox", "Tree"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/TreeComboBoxDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/TreeComboBoxDemoViewModel.cs",

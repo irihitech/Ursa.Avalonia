@@ -3,15 +3,17 @@ using Avalonia.Layout;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class ElasticWrapPanelDemoViewModel : ObservableObject
+public partial class ElasticWrapPanelDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "ElasticWrapPanel",
-        Description = "ElasticWrapPanel is a panel that wraps children with elastic spacing distribution.",
-        Breadcrumbs = ["Layout & Display", "ElasticWrapPanel"],
+        Title = LanguageManager.Instance.Page_Title_ElasticWrapPanel,
+        Description = LanguageManager.Instance.Page_Description_ElasticWrapPanel,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_LayoutAndDisplay), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_ElasticWrapPanel)],
         Tags = ["ElasticWrapPanel", "Panel", "Layout"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ElasticWrapPanelDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/ElasticWrapPanelDemoViewModel.cs",

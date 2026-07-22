@@ -11,8 +11,7 @@
     x:DataType="viewModels:TimeOnlyRangePickerDemoViewModel"
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
-    <StackPanel Margin="20" Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
+    <StackPanel Spacing="20">
         <StackPanel Spacing="20" HorizontalAlignment="Left">
             <TextBox
                 Name="displayFormat"

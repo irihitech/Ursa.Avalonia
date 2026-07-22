@@ -7,15 +7,17 @@ using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class ImageViewerDemoViewModel: ObservableObject
+public partial class ImageViewerDemoViewModel: ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "ImageViewer",
-        Description = "ImageViewer displays images with pan, zoom, and fit-to-window capabilities.",
-        Breadcrumbs = ["Layout & Display", "ImageViewer"],
+        Title = LanguageManager.Instance.Page_Title_ImageViewer,
+        Description = LanguageManager.Instance.Page_Description_ImageViewer,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_LayoutAndDisplay), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_ImageViewer)],
         Tags = ["ImageViewer", "Image", "Zoom"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ImageViewerDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/ImageViewerDemoViewModel.cs",

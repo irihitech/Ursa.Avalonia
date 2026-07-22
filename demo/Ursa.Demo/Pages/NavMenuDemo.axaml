@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="Ursa.Demo.Pages.NavMenuDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -15,15 +15,20 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <DockPanel>
-    <controls:PageMetadataView DockPanel.Dock="Top" DataContext="{Binding PageMetadata}"/>
-    <Grid
+        <Grid
             HorizontalAlignment="Left"
             ColumnDefinitions="Auto, Auto"
             RowDefinitions="Auto, Auto, *">
-            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-                <ToggleSwitch Name="collapse" OnContent="Collapse" OffContent="Expand" />
-                <Button HorizontalAlignment="Left" Command="{Binding RandomCommand}" Content="Random a selection" />
-                <TextBlock Text="{Binding SelectedMenuItem.Header}" />
+            <StackPanel Grid.Row="1" Grid.Column="0"
+                        Grid.ColumnSpan="2">
+                <ToggleSwitch Name="collapse"
+                              OnContent="Collapse"
+                              OffContent="Expand" />
+                <Button HorizontalAlignment="Left"
+                        Command="{Binding RandomCommand}"
+                        Content="Random a selection" />
+                <TextBlock
+                    Text="{Binding SelectedMenuItem.Header}" />
             </StackPanel>
             <Border
                 Grid.Row="2"
@@ -42,12 +47,15 @@
                     SubMenuBinding="{Binding Children}"
                     Classes="enable_animation">
                     <u:NavMenu.Styles>
-                        <Style x:DataType="vm:MenuItem" Selector="u|NavMenuItem">
-                            <Setter Property="IsSeparator" Value="{Binding IsSeparator}" />
+                        <Style x:DataType="vm:MenuItem"
+                               Selector="u|NavMenuItem">
+                            <Setter Property="IsSeparator"
+                                    Value="{Binding IsSeparator}" />
                         </Style>
                     </u:NavMenu.Styles>
                     <u:NavMenu.IconTemplate>
-                        <DataTemplate DataType="{x:Type x:Int32}">
+                        <DataTemplate
+                            DataType="{x:Type x:Int32}">
                             <u:TwoTonePathIcon
                                 Width="16"
                                 Height="16"
@@ -60,14 +68,16 @@
                         </DataTemplate>
                     </u:NavMenu.IconTemplate>
                     <u:NavMenu.Header>
-                        <Grid HorizontalAlignment="Center" ColumnDefinitions="Auto, Auto">
+                        <Grid HorizontalAlignment="Center"
+                              ColumnDefinitions="Auto, Auto">
                             <Panel
                                 VerticalAlignment="Center"
                                 u:NavMenu.CanToggle="True"
                                 Margin="4 12"
                                 Background="Transparent"
                                 DockPanel.Dock="Left">
-                                <iri:IrihiLogo Width="32" Fill="{DynamicResource SemiGrey7}" />
+                                <iri:IrihiLogo Width="32"
+                                        Fill="{DynamicResource SemiGrey7}" />
                             </Panel>
                             <TextBlock
                                 Grid.Column="1"
@@ -118,5 +128,5 @@
                 </u:NavMenuItem>
             </u:NavMenu>
         </Grid>
-</DockPanel>
+    </DockPanel>
 </UserControl>

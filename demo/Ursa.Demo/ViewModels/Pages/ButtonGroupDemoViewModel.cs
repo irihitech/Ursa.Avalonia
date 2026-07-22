@@ -5,15 +5,17 @@ using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
 using Ursa.Demo.ViewModels.Controls;
 
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public class ButtonGroupDemoViewModel: ViewModelBase
+public class ButtonGroupDemoViewModel: ViewModelBase, IPageMetadataProvider
 {
     public PageMetadataViewModel  PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "ButtonGroup",
-        Description = "A ButtonGroup is a control that groups multiple buttons together. ",
-        Breadcrumbs = ["Input", "Button Group"],
+        Title = LanguageManager.Instance.Page_Title_ButtonGroup,
+        Description = LanguageManager.Instance.Page_Description_ButtonGroup,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_ButtonsAndInputs), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_ButtonGroup)],
         Tags = ["ButtonGroup",  "Button", "Command", "Collection" ],
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/ButtonGroupDemoViewModel.cs",
         InlineXamlSupport = true,

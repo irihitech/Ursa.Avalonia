@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="Ursa.Demo.Pages.FormDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -14,8 +14,7 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <ScrollViewer>
-        <StackPanel HorizontalAlignment="Stretch" Margin="24  0 0 0 ">
-            <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
+        <StackPanel HorizontalAlignment="Stretch" >
             <u:Divider Content="Simple Form"/>
             <u:Form LabelPosition="Left" LabelWidth="*">
                 <TextBox Width="300" u:FormItem.Label="Name" u:FormItem.IsRequired="True" />

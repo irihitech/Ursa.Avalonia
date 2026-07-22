@@ -15,8 +15,7 @@
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:generic="clr-namespace:System.Collections.Generic;assembly=System.Collections">
     <ScrollViewer>
-    <StackPanel Margin="20" Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
+    <StackPanel Spacing="20">
         <ToggleSwitch Name="description" Content="Show Description" />
         <TextBlock Text="Select Type" />
         <ComboBox
@@ -44,8 +43,6 @@
             EnumType="{x:Type system:DayOfWeek}"
             EnumValues="{Binding CustomEnumValues}"
             Value="{Binding Value2}" />
-
-        
         <TextBlock Text="{Binding Value2}" />
         
         <u:Divider Content="Custom EnumValues in XAML" />

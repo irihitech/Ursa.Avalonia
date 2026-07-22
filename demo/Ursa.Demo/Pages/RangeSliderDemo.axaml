@@ -17,8 +17,7 @@
             <Setter Property="Width" Value="300" />
         </Style>
     </UserControl.Styles>
-    <StackPanel Margin="20" Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
+    <StackPanel Spacing="20">
         <u:RangeSlider
             IsSnapToTick="True"
             TickFrequency="5"

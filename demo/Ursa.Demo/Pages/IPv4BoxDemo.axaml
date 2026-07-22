@@ -12,8 +12,7 @@
     d:DesignWidth="800"
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
-    <StackPanel HorizontalAlignment="Stretch" Margin="20" Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
+    <StackPanel HorizontalAlignment="Stretch" Spacing="20">
         <ToggleButton
             Name="format"
             Margin="0,0,0,50"

@@ -4,15 +4,17 @@ using Avalonia.Collections;
 using CommunityToolkit.Mvvm.Input;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public class PaginationDemoViewModel : ViewModelBase
+public class PaginationDemoViewModel : ViewModelBase, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "Pagination",
-        Description = "Pagination provides controls to navigate between pages of content.",
-        Breadcrumbs = ["Navigation & Menus", "Pagination"],
+        Title = LanguageManager.Instance.Page_Title_Pagination,
+        Description = LanguageManager.Instance.Page_Description_Pagination,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_NavigationAndMenus), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_Pagination)],
         Tags = ["Pagination", "Navigation", "Page"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/PaginationDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/PaginationDemoViewModel.cs",

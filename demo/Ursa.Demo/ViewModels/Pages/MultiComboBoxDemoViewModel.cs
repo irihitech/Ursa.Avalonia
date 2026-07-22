@@ -5,15 +5,17 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public class MultiComboBoxDemoViewModel: ObservableObject
+public class MultiComboBoxDemoViewModel: ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "MultiComboBox",
-        Description = "MultiComboBox allows selecting multiple items from a dropdown list.",
-        Breadcrumbs = ["Buttons & Inputs", "MultiComboBox"],
+        Title = LanguageManager.Instance.Page_Title_MultiComboBox,
+        Description = LanguageManager.Instance.Page_Description_MultiComboBox,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_ButtonsAndInputs), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_MultiComboBox)],
         Tags = ["MultiComboBox", "ComboBox", "Selection"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/MultiComboBoxDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/MultiComboBoxDemoViewModel.cs",

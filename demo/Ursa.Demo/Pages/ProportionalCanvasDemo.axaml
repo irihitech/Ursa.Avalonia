@@ -12,8 +12,7 @@
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
     xmlns:u="https://irihi.tech/ursa">
     <ScrollViewer>
-        <StackPanel Spacing="20" Margin="20">
-            <controls:PageMetadataView DataContext="{Binding PageMetadata}" />
+        <StackPanel Spacing="20">
             <StackPanel Spacing="16">
 
                 <!-- ── Controls ────────────────────────────────────────────── -->

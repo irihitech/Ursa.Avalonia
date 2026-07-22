@@ -1,4 +1,4 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
+<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -8,8 +8,7 @@
              x:DataType="viewModels:TwoTonePathIconDemoViewModel"
              xmlns:controls="clr-namespace:Ursa.Demo.Controls"
              xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
-    <StackPanel Margin="20" Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
+    <StackPanel Spacing="20">
         <TextBlock Text="Size" />
         <Slider Name="width" Minimum="0" Maximum="100" Value="20" Width="300" />
         <ToggleSwitch Name="active" Content="Active" />

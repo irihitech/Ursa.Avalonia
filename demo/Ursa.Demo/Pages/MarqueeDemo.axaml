@@ -11,8 +11,7 @@
     x:DataType="viewModels:MarqueeDemoViewModel"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
-    <StackPanel Margin="20" Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
+    <StackPanel Spacing="20">
         <u:Form>
             <TextBox Width="300" Name="content" u:FormItem.Label="Content" Text="Hello Avalonia" />
             <u:EnumSelector

@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="Ursa.Demo.Pages.ToolBarDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -14,36 +14,53 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <DockPanel>
-    <controls:PageMetadataView DockPanel.Dock="Top" DataContext="{Binding PageMetadata}"/>
-    <Grid ColumnDefinitions="Auto, Auto, *" RowDefinitions="Auto, Auto, *">
-            <u:EnumSelector Name="Orientation" EnumType="Orientation" />
+        <Grid ColumnDefinitions="Auto, Auto, *"
+              RowDefinitions="Auto, Auto, *">
+            <u:EnumSelector Name="Orientation"
+                            EnumType="Orientation" />
             <u:ToolBar
                 Grid.Row="0" Grid.Column="1"
                 DockPanel.Dock="Top"
                 Header="Hello World"
                 Orientation="{Binding #Orientation.Value}">
-                <Button u:ToolBar.OverflowMode="Never" Content="Button 1" />
+                <Button u:ToolBar.OverflowMode="Never"
+                        Content="Button 1" />
                 <u:ToolBarSeparator />
-                <TextBox Width="100" VerticalAlignment="Center" />
+                <TextBox Width="100"
+                         VerticalAlignment="Center" />
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton Content="A" VerticalAlignment="Center" />
-                    <RadioButton Content="B" VerticalAlignment="Center" />
+                    <RadioButton Content="A"
+                                 VerticalAlignment="Center" />
+                    <RadioButton Content="B"
+                                 VerticalAlignment="Center" />
                 </StackPanel>
-                <Button u:ToolBar.OverflowMode="AsNeeded" Content="Button 2" />
-                <Button u:ToolBar.OverflowMode="AsNeeded" Content="Button 3" />
+                <Button u:ToolBar.OverflowMode="AsNeeded"
+                        Content="Button 2" />
+                <Button u:ToolBar.OverflowMode="AsNeeded"
+                        Content="Button 3" />
                 <ToggleButton Content="Toggle" />
                 <u:ToolBar.Styles>
-                    <Style Selector="u|ToolBar[Orientation=Vertical]">
-                        <Setter Property="Grid.Row" Value="1" />
-                        <Setter Property="Grid.Column" Value="1" />
-                        <Setter Property="Grid.RowSpan" Value="2" />
-                        <Setter Property="Grid.ColumnSpan" Value="1" />
+                    <Style
+                        Selector="u|ToolBar[Orientation=Vertical]">
+                        <Setter Property="Grid.Row"
+                                Value="1" />
+                        <Setter Property="Grid.Column"
+                                Value="1" />
+                        <Setter Property="Grid.RowSpan"
+                                Value="2" />
+                        <Setter Property="Grid.ColumnSpan"
+                                Value="1" />
                     </Style>
-                    <Style Selector="u|ToolBar[Orientation=Horizontal]">
-                        <Setter Property="Grid.Row" Value="1" />
-                        <Setter Property="Grid.Column" Value="1" />
-                        <Setter Property="Grid.RowSpan" Value="1" />
-                        <Setter Property="Grid.ColumnSpan" Value="3" />
+                    <Style
+                        Selector="u|ToolBar[Orientation=Horizontal]">
+                        <Setter Property="Grid.Row"
+                                Value="1" />
+                        <Setter Property="Grid.Column"
+                                Value="1" />
+                        <Setter Property="Grid.RowSpan"
+                                Value="1" />
+                        <Setter Property="Grid.ColumnSpan"
+                                Value="3" />
                     </Style>
                 </u:ToolBar.Styles>
             </u:ToolBar>
@@ -56,17 +73,27 @@
                     <dataTemplates:ToolBarItemTemplateSelector />
                 </u:ToolBar.ItemTemplate>
                 <u:ToolBar.Styles>
-                    <Style Selector="u|ToolBar[Orientation=Vertical]">
-                        <Setter Property="Grid.Row" Value="1" />
-                        <Setter Property="Grid.Column" Value="0" />
-                        <Setter Property="Grid.RowSpan" Value="2" />
-                        <Setter Property="Grid.ColumnSpan" Value="1" />
+                    <Style
+                        Selector="u|ToolBar[Orientation=Vertical]">
+                        <Setter Property="Grid.Row"
+                                Value="1" />
+                        <Setter Property="Grid.Column"
+                                Value="0" />
+                        <Setter Property="Grid.RowSpan"
+                                Value="2" />
+                        <Setter Property="Grid.ColumnSpan"
+                                Value="1" />
                     </Style>
-                    <Style Selector="u|ToolBar[Orientation=Horizontal]">
-                        <Setter Property="Grid.Row" Value="0" />
-                        <Setter Property="Grid.Column" Value="1" />
-                        <Setter Property="Grid.RowSpan" Value="1" />
-                        <Setter Property="Grid.ColumnSpan" Value="3" />
+                    <Style
+                        Selector="u|ToolBar[Orientation=Horizontal]">
+                        <Setter Property="Grid.Row"
+                                Value="0" />
+                        <Setter Property="Grid.Column"
+                                Value="1" />
+                        <Setter Property="Grid.RowSpan"
+                                Value="1" />
+                        <Setter Property="Grid.ColumnSpan"
+                                Value="3" />
                     </Style>
                 </u:ToolBar.Styles>
             </u:ToolBar>
@@ -102,11 +129,17 @@
                         </ComboBox>
                     </StackPanel>
                     <u:ToolBar.Styles>
-                        <Style Selector="u|ToolBar[Orientation=Horizontal]">
-                            <Setter Property="Grid.Row" Value="2" />
-                            <Setter Property="Grid.Column" Value="1" />
-                            <Setter Property="Grid.RowSpan" Value="1" />
-                            <Setter Property="Grid.ColumnSpan" Value="3" />
+                        <Style
+                            Selector="u|ToolBar[Orientation=Horizontal]">
+                            <Setter Property="Grid.Row"
+                                    Value="2" />
+                            <Setter Property="Grid.Column"
+                                    Value="1" />
+                            <Setter Property="Grid.RowSpan"
+                                    Value="1" />
+                            <Setter
+                                Property="Grid.ColumnSpan"
+                                Value="3" />
                         </Style>
                     </u:ToolBar.Styles>
 
@@ -121,19 +154,24 @@
                     Text="Hello Ursa Avalonia">
                     <TextBlock.Styles>
                         <Style Selector="TextBlock">
-                            <Setter Property="FontWeight" Value="Regular" />
-                            <Setter Property="FontSize" Value="8" />
-                            <Setter Property="FontStyle" Value="Normal" />
+                            <Setter Property="FontWeight"
+                                    Value="Regular" />
+                            <Setter Property="FontSize"
+                                    Value="8" />
+                            <Setter Property="FontStyle"
+                                    Value="Normal" />
                         </Style>
                         <Style Selector="TextBlock.Bold">
-                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="FontWeight"
+                                    Value="Bold" />
                         </Style>
                         <Style Selector="TextBlock.Italic">
-                            <Setter Property="FontStyle" Value="Italic" />
+                            <Setter Property="FontStyle"
+                                    Value="Italic" />
                         </Style>
                     </TextBlock.Styles>
                 </TextBlock>
             </Grid>
         </Grid>
-</DockPanel>
+    </DockPanel>
 </UserControl>

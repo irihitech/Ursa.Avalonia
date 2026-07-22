@@ -2,15 +2,17 @@ using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class DateOnlyRangePickerDemoViewModel : ObservableObject
+public partial class DateOnlyRangePickerDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "DateOnlyRangePicker",
-        Description = "DateOnlyRangePicker selects a date range using the DateOnly type.",
-        Breadcrumbs = ["Date & Time", "Date Only Range Picker"],
+        Title = LanguageManager.Instance.Page_Title_DateOnlyRangePicker,
+        Description = LanguageManager.Instance.Page_Description_DateOnlyRangePicker,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DateAndTime), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_DateOnlyRangePicker)],
         Tags = ["DateOnlyRangePicker", "Date", "Range"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DateOnlyRangePickerDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/DateOnlyRangePickerDemoViewModel.cs",

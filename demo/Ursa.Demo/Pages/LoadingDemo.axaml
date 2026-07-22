@@ -12,10 +12,10 @@
     xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
     <DockPanel>
-    <controls:PageMetadataView DockPanel.Dock="Top" DataContext="{Binding PageMetadata}"/>
-    <Grid RowDefinitions="Auto, Auto, *">
+        <Grid RowDefinitions="Auto, Auto, *">
             <ToggleSwitch Name="s" Content="Loading" />
-            <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal">
                 <u:LoadingIcon Classes="Small" />
                 <u:LoadingIcon />
                 <u:LoadingIcon Classes="Large" />
@@ -27,5 +27,5 @@
                 <Calendar />
             </u:LoadingContainer>
         </Grid>
-</DockPanel>
+    </DockPanel>
 </UserControl>

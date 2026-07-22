@@ -6,15 +6,17 @@ using Ursa.Controls;
 using Ursa.Demo.Dialogs;
 using Ursa.Demo.ViewModels.Controls;
 
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class OverlayDialogDemoViewModel : ObservableObject
+public partial class OverlayDialogDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "Overlay Dialog",
-        Description = "Overlay Dialog displays dialogs as overlays within the application window.",
-        Breadcrumbs = ["Dialog & Feedbacks", "Overlay Dialog"],
+        Title = LanguageManager.Instance.Page_Title_OverlayDialog,
+        Description = LanguageManager.Instance.Page_Description_OverlayDialog,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DialogAndFeedbacks), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_OverlayDialog)],
         Tags = ["Dialog", "Modal", "Overlay"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/OverlayDialogDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/OverlayDialogDemoViewModel.cs",

@@ -12,15 +12,17 @@ using Avalonia.Layout;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class EnumSelectorDemoViewModel : ObservableObject
+public partial class EnumSelectorDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "EnumSelector",
-        Description = "EnumSelector provides a dropdown for selecting enum values.",
-        Breadcrumbs = ["Buttons & Inputs", "Enum Selector"],
+        Title = LanguageManager.Instance.Page_Title_EnumSelector,
+        Description = LanguageManager.Instance.Page_Description_EnumSelector,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_ButtonsAndInputs), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_EnumSelector)],
         Tags = ["EnumSelector", "Enum", "Selector"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/EnumSelectorDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/EnumSelectorDemoViewModel.cs",

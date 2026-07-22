@@ -13,7 +13,6 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <DockPanel>
-        <controls:PageMetadataView DockPanel.Dock="Top" DataContext="{Binding PageMetadata}" />
         <Grid ColumnDefinitions="Auto, *">
             <ScrollViewer>
                 <TabControl Grid.Column="0" TabStripPlacement="Left">

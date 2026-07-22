@@ -3,15 +3,17 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class BadgeDemoViewModel: ViewModelBase
+public partial class BadgeDemoViewModel: ViewModelBase, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "Badge",
-        Description = "Badge displays a small count or status indicator on another element.",
-        Breadcrumbs = ["Layout & Display", "Badge"],
+        Title = LanguageManager.Instance.Page_Title_Badge,
+        Description = LanguageManager.Instance.Page_Description_Badge,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_LayoutAndDisplay), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_Badge)],
         Tags = ["Badge", "Label", "Status"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/BadgeDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/BadgeDemoViewModel.cs",

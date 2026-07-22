@@ -3,15 +3,17 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class AnchorDemoViewModel : ObservableObject
+public partial class AnchorDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "Anchor",
-        Description = "Anchor provides a table of contents navigation linked to page sections.",
-        Breadcrumbs = ["Navigation & Menus", "Anchor"],
+        Title = LanguageManager.Instance.Page_Title_Anchor,
+        Description = LanguageManager.Instance.Page_Description_Anchor,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_NavigationAndMenus), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_Anchor)],
         Tags = ["Anchor", "Navigation", "Scroll"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/AnchorDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/AnchorDemoViewModel.cs",

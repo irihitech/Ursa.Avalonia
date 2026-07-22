@@ -6,15 +6,17 @@ using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Ursa.Demo.ViewModels.Controls;
 
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class VirtualizingUniformGridDemoViewModel : ObservableObject
+public partial class VirtualizingUniformGridDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "VirtualizingUniformGrid",
-        Description = "A virtualizing panel that arranges items in a uniform grid with a fixed number of columns. Only items that are currently visible (plus a buffer area) are realized; off-screen containers are recycled.",
-        Breadcrumbs = ["Layout & Display", "VirtualizingUniformGrid"],
+        Title = LanguageManager.Instance.Page_Title_VirtualizingUniformGrid,
+        Description = LanguageManager.Instance.Page_Description_VirtualizingUniformGrid,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_LayoutAndDisplay), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_VirtualizingUniformGrid)],
         Tags = ["VirtualizingUniformGrid", "Panel", "Layout", "Virtualization"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/VirtualizingUniformGridDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/VirtualizingUniformGridDemoViewModel.cs",

@@ -18,7 +18,7 @@ public partial class MvvmSplashWindow : SplashWindow
         {
             return new MainWindow()
             {
-                DataContext = new MainViewViewModel()
+                DataContext = new MainWindowViewModel()
             };
         }
         return null;

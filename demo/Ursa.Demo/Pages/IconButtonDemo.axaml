@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="Ursa.Demo.Pages.IconButtonDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -40,9 +40,7 @@
         </Style>
     </Control.Styles>
     <ScrollViewer>
-        <StackPanel Margin="20" Spacing="8" HorizontalAlignment="Stretch">
-
-            <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
+        <StackPanel Spacing="8" HorizontalAlignment="Stretch">
 
             <HeaderedContentControl Theme="{StaticResource GroupBox}">
                 <HeaderedContentControl.Header>

@@ -10,18 +10,20 @@
              xmlns:controls="clr-namespace:Ursa.Demo.Controls"
              xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
     <DockPanel>
-    <controls:PageMetadataView DockPanel.Dock="Top" DataContext="{Binding PageMetadata}"/>
-    <Grid ColumnDefinitions="Auto, *">
+        <Grid ColumnDefinitions="Auto, *">
             <StackPanel Grid.Column="0">
                 <TextBlock Text="Global" />
-                <u:ThemeToggleButton/>
+                <u:ThemeToggleButton />
                 <TextBlock Text="Global Indicator" />
-                <u:ThemeToggleButton Mode="Indicator"/>
+                <u:ThemeToggleButton Mode="Indicator" />
                 <TextBlock Text="Target To Scope" />
-                <u:ThemeToggleButton TargetScope="{Binding #scope}" />
+                <u:ThemeToggleButton
+                    TargetScope="{Binding #scope}" />
             </StackPanel>
-            <ThemeVariantScope Grid.Column="1" Name="scope" RequestedThemeVariant="Dark">
-                <Border Theme="{DynamicResource CardBorder}">
+            <ThemeVariantScope Grid.Column="1" Name="scope"
+                               RequestedThemeVariant="Dark">
+                <Border
+                    Theme="{DynamicResource CardBorder}">
                     <StackPanel>
                         <Button Content="Hello World" />
                         <Calendar />
@@ -30,5 +32,5 @@
                 </Border>
             </ThemeVariantScope>
         </Grid>
-</DockPanel>
+    </DockPanel>
 </UserControl>

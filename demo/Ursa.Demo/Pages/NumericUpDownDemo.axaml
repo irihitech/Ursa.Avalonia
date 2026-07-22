@@ -17,16 +17,18 @@
     <UserControl.Styles>
         <Style Selector=":is(u|NumericUpDown)">
             <Setter Property="Width" Value="240" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Left" />
         </Style>
     </UserControl.Styles>
 
     <DockPanel>
-    <controls:PageMetadataView DockPanel.Dock="Top" DataContext="{Binding PageMetadata}"/>
-    <Grid ColumnDefinitions="*,*" RowDefinitions="100,*">
+        <Grid ColumnDefinitions="*,*"
+              RowDefinitions="100,*">
             <StackPanel Grid.ColumnSpan="2">
-                <u:Divider Content="Demo"/>
+                <u:Divider Content="Demo" />
                 <u:NumericUIntUpDown
                     Name="numd"
                     Width="{Binding Width}"
@@ -61,7 +63,8 @@
                 Grid.Column="0"
                 HorizontalAlignment="Left">
                 <StackPanel>
-                    <u:Divider Content="{Binding #input.Value, StringFormat='Int = {0}'}" />
+                    <u:Divider
+                        Content="{Binding #input.Value, StringFormat='Int = {0}'}" />
                     <u:NumericIntUpDown
                         Name="input"
                         Classes="ClearButton"
@@ -69,19 +72,22 @@
                         Step="1"
                         PlaceholderText="Input Value"
                         Value="2" />
-                    <u:Divider Content="{Binding #inputDouble.Value, StringFormat='Double = {0}'}" />
+                    <u:Divider
+                        Content="{Binding #inputDouble.Value, StringFormat='Double = {0}'}" />
                     <u:NumericDoubleUpDown
                         Name="inputDouble"
                         EmptyInputValue="1"
                         Step="0.5"
                         Value="3.1" />
-                    <u:Divider Content="{Binding #inputByte.Value, StringFormat='Byte = {0}'}" />
+                    <u:Divider
+                        Content="{Binding #inputByte.Value, StringFormat='Byte = {0}'}" />
                     <u:NumericByteUpDown
                         Name="inputByte"
                         EmptyInputValue="1"
                         Step="1"
                         Value="3" />
-                    <u:Divider Content="{Binding #Drag_Int.Value, StringFormat='Drag Int = {0}'}" />
+                    <u:Divider
+                        Content="{Binding #Drag_Int.Value, StringFormat='Drag Int = {0}'}" />
                     <u:NumericIntUpDown
                         Name="Drag_Int"
                         AllowDrag="True"
@@ -92,7 +98,8 @@
 
                     <!--  hex demo  -->
 
-                    <u:Divider Content="{Binding #uint_HexNumber.Value, StringFormat='Don‘t Use = {0}, hex={0:X}'}" />
+                    <u:Divider
+                        Content="{Binding #uint_HexNumber.Value, StringFormat='Don‘t Use = {0}, hex={0:X}'}" />
                     <!--  =================this is error usage  -->
                     <u:NumericUIntUpDown
                         Name="uint_HexNumber"
@@ -105,7 +112,8 @@
                         Value="2" />
 
                     <!--  =================we should use AllowHexSpecifier  -->
-                    <u:Divider Content="{Binding #uint_AllowHexSpecifier.Value, StringFormat='uint = {0}, hex={0:X}'}" />
+                    <u:Divider
+                        Content="{Binding #uint_AllowHexSpecifier.Value, StringFormat='uint = {0}, hex={0:X}'}" />
                     <u:NumericUIntUpDown
                         Name="uint_AllowHexSpecifier"
                         HorizontalContentAlignment="Right"
@@ -118,7 +126,8 @@
                         PlaceholderText="AllowHexSpecifier"
                         Value="2" />
 
-                    <u:Divider Content="{Binding #Consolas_uint.Value, StringFormat='Font=Consolas {0}, hex={0:X}'}" />
+                    <u:Divider
+                        Content="{Binding #Consolas_uint.Value, StringFormat='Font=Consolas {0}, hex={0:X}'}" />
                     <u:NumericUIntUpDown
                         Name="Consolas_uint"
                         HorizontalContentAlignment="Right"
@@ -134,18 +143,18 @@
                     <u:NumericUIntUpDown
                         Classes="Small"
                         Step="1"
-                        PlaceholderText="Small"/>
+                        PlaceholderText="Small" />
                     <u:NumericUIntUpDown
                         Classes="Large"
                         Step="1"
                         Margin="0 8 0 0"
-                        PlaceholderText="Large"/>
+                        PlaceholderText="Large" />
                     <u:Divider Content="Error" />
                     <u:NumericUIntUpDown
                         Step="1"
                         PlaceholderText="Validation Error">
                         <DataValidationErrors.Error>
-                            <system:Exception/>
+                            <system:Exception />
                         </DataValidationErrors.Error>
                     </u:NumericUIntUpDown>
                 </StackPanel>
@@ -157,30 +166,39 @@
                 HorizontalAlignment="Left"
                 Orientation="Vertical">
 
-                <CheckBox Content="AutoWidth" IsChecked="{Binding AutoWidth}" />
+                <CheckBox Content="AutoWidth"
+                          IsChecked="{Binding AutoWidth}" />
                 <u:NumericDoubleUpDown
                     AllowDrag="True"
                     InnerLeftContent="Width"
                     IsEnabled="{Binding !AutoWidth}"
                     Value="{Binding Width}" />
 
-                <TextBox InnerLeftContent="FontFamily" Text="{Binding FontFamily}" />
+                <TextBox InnerLeftContent="FontFamily"
+                         Text="{Binding FontFamily}" />
 
-                <CheckBox Content="AllowDrag" IsChecked="{Binding AllowDrag}" />
+                <CheckBox Content="AllowDrag"
+                          IsChecked="{Binding AllowDrag}" />
 
-                <CheckBox Content="IsReadOnly" IsChecked="{Binding IsReadOnly}" />
+                <CheckBox Content="IsReadOnly"
+                          IsChecked="{Binding IsReadOnly}" />
 
                 <Label Content="HorizontalAlignment" />
-                <ComboBox ItemsSource="{Binding ArrayHorizontalAlignment}" SelectedItem="{Binding HorizontalAlignment}" />
+                <ComboBox
+                    ItemsSource="{Binding ArrayHorizontalAlignment}"
+                    SelectedItem="{Binding HorizontalAlignment}" />
                 <Label Content="HorizontalContentAlignment" />
-                <ComboBox ItemsSource="{Binding ArrayHorizontalContentAlignment}" SelectedItem="{Binding HorizontalContentAlignment}" />
+                <ComboBox
+                    ItemsSource="{Binding ArrayHorizontalContentAlignment}"
+                    SelectedItem="{Binding HorizontalContentAlignment}" />
 
                 <TextBox
                     InnerLeftContent="InnerLeftContent"
                     InnerRightContent="obj"
                     Text="{Binding InnerLeftContent}" />
 
-                <TextBox InnerLeftContent="PlaceholderText" Text="{Binding PlaceholderText}" />
+                <TextBox InnerLeftContent="PlaceholderText"
+                         Text="{Binding PlaceholderText}" />
 
                 <TextBox
                     MinWidth="100"
@@ -189,11 +207,15 @@
                     Text="{Binding FormatString}" />
 
                 <Label Content="ParsingNumberStyle" />
-                <ComboBox ItemsSource="{Binding ArrayParsingNumberStyle}" SelectedItem="{Binding ParsingNumberStyle}" />
+                <ComboBox
+                    ItemsSource="{Binding ArrayParsingNumberStyle}"
+                    SelectedItem="{Binding ParsingNumberStyle}" />
 
-                <CheckBox Content="AllowSpin" IsChecked="{Binding AllowSpin}" />
+                <CheckBox Content="AllowSpin"
+                          IsChecked="{Binding AllowSpin}" />
 
-                <CheckBox Content="ShowButtonSpinner" IsChecked="{Binding ShowButtonSpinner}" />
+                <CheckBox Content="ShowButtonSpinner"
+                          IsChecked="{Binding ShowButtonSpinner}" />
 
                 <u:NumericUIntUpDown
                     Name="nudV"
@@ -203,21 +225,27 @@
                     IsReadOnly="False"
                     Value="{Binding Value, Mode=TwoWay}" />
 
-                <u:NumericUIntUpDown InnerLeftContent="Max" Value="{Binding Maximum}" />
+                <u:NumericUIntUpDown InnerLeftContent="Max"
+                                     Value="{Binding Maximum}" />
 
-                <u:NumericUIntUpDown InnerLeftContent="Min" Value="{Binding Minimum}" />
-            
-                <u:NumericUIntUpDown Classes="Split" PlaceholderText="Split" Margin="0 8" />
+                <u:NumericUIntUpDown InnerLeftContent="Min"
+                                     Value="{Binding Minimum}" />
 
-                <Label Content="{Binding Step, StringFormat='Step {0}'}" />
+                <u:NumericUIntUpDown Classes="Split"
+                                     PlaceholderText="Split"
+                                     Margin="0 8" />
+
+                <Label
+                    Content="{Binding Step, StringFormat='Step {0}'}" />
                 <Slider
                     Minimum="1"
                     ToolTip.Tip="{Binding Step}"
                     Value="{Binding Step}" />
 
-                <CheckBox Content="IsEnable" IsChecked="{Binding IsEnable}" />
+                <CheckBox Content="IsEnable"
+                          IsChecked="{Binding IsEnable}" />
 
             </StackPanel>
         </Grid>
-</DockPanel>
+    </DockPanel>
 </UserControl>

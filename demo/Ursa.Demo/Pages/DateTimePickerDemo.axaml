@@ -12,9 +12,7 @@
     x:DataType="viewModels:DateTimePickerDemoViewModel"
     mc:Ignorable="d">
     <StackPanel
-        Margin="20"
         Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}" />
         <StackPanel HorizontalAlignment="Left">
             <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
             <u:Form>

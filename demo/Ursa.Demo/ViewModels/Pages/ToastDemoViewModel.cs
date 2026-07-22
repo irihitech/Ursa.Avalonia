@@ -5,15 +5,17 @@ using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class ToastDemoViewModel : ObservableObject
+public partial class ToastDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "Toast",
-        Description = "Toast displays brief, auto-dismissing notification messages.",
-        Breadcrumbs = ["Dialog & Feedbacks", "Toast"],
+        Title = LanguageManager.Instance.Page_Title_Toast,
+        Description = LanguageManager.Instance.Page_Description_Toast,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DialogAndFeedbacks), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_Toast)],
         Tags = ["Toast", "Notification", "Message"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ToastDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/ToastDemoViewModel.cs",

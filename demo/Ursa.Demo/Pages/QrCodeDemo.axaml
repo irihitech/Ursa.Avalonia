@@ -12,8 +12,7 @@
     xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
     <DockPanel>
-    <controls:PageMetadataView DockPanel.Dock="Top" DataContext="{Binding PageMetadata}"/>
-    <Grid ColumnDefinitions="*, Auto">
+        <Grid ColumnDefinitions="*, Auto">
             <u:QRCode
                 Width="400"
                 Height="400"
@@ -41,5 +40,5 @@
                     IsSnapToTickEnabled="True" />
             </u:Form>
         </Grid>
-</DockPanel>
+    </DockPanel>
 </UserControl>

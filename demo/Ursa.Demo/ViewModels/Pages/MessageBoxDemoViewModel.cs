@@ -8,15 +8,17 @@ using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public class MessageBoxDemoViewModel: ObservableObject
+public class MessageBoxDemoViewModel: ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "MessageBox",
-        Description = "MessageBox shows a modal dialog with a message and action buttons.",
-        Breadcrumbs = ["Dialog & Feedbacks", "Message Box"],
+        Title = LanguageManager.Instance.Page_Title_MessageBox,
+        Description = LanguageManager.Instance.Page_Description_MessageBox,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DialogAndFeedbacks), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_MessageBox)],
         Tags = ["MessageBox", "Dialog", "Alert"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/MessageBoxDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/MessageBoxDemoViewModel.cs",

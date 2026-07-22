@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Controls.Notifications;
@@ -7,6 +8,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using Semi.Avalonia;
 using Ursa.Demo.Localizations;
+using Ursa.Demo.ViewModels.Controls;
 using Notification = Ursa.Controls.Notification;
 using WindowNotificationManager = Ursa.Controls.WindowNotificationManager;
 
@@ -16,6 +18,9 @@ public partial class MainViewViewModel : ViewModelBase
 {
     public WindowNotificationManager? NotificationManager { get; set; }
     public MenuViewModel Menus { get; set; } = new MenuViewModel();
+    
+    [ObservableProperty] public partial IReadOnlyList<BreadcrumbItemData>? NavigationKeys { get; set; }
+    [ObservableProperty] public partial PageMetadataViewModel? PageMetadata { get; set; }
 
     [ObservableProperty] private object? _content;
 
@@ -102,6 +107,16 @@ public partial class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyProportionalCanvas => new ProportionalCanvasDemoViewModel(),
             _ => throw new ArgumentOutOfRangeException(nameof(s), s, null)
         };
+        if (Content is IPageMetadataProvider provider)
+        {
+            PageMetadata = provider.PageMetadata;
+            NavigationKeys = provider.PageMetadata.Breadcrumbs;
+        }
+        else
+        {
+            PageMetadata = null;
+            NavigationKeys = null;
+        }
     }
 
     public ObservableCollection<ThemeItem> Themes { get; } =

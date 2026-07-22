@@ -7,15 +7,17 @@ using Notification = Ursa.Controls.Notification;
 using WindowNotificationManager = Ursa.Controls.WindowNotificationManager;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class NotificationDemoViewModel : ObservableObject
+public partial class NotificationDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "Notification",
-        Description = "Notification shows informational messages in a non-blocking overlay.",
-        Breadcrumbs = ["Dialog & Feedbacks", "Notification"],
+        Title = LanguageManager.Instance.Page_Title_Notification,
+        Description = LanguageManager.Instance.Page_Description_Notification,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DialogAndFeedbacks), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_Notification)],
         Tags = ["Notification", "Alert", "Toast"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/NotificationDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/NotificationDemoViewModel.cs",

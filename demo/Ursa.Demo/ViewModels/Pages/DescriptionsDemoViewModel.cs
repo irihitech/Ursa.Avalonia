@@ -2,15 +2,17 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class DescriptionsDemoViewModel : ObservableObject
+public partial class DescriptionsDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "Descriptions",
-        Description = "Descriptions presents key-value data in a structured label-content layout.",
-        Breadcrumbs = ["Layout & Display", "Descriptions"],
+        Title = LanguageManager.Instance.Page_Title_Descriptions,
+        Description = LanguageManager.Instance.Page_Description_Descriptions,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_LayoutAndDisplay), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_Descriptions)],
         Tags = ["Descriptions", "Label", "Value"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DescriptionsDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/DescriptionsDemoViewModel.cs",

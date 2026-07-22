@@ -3,15 +3,17 @@ using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public class ScrollToButtonDemoViewModel: ObservableObject
+public class ScrollToButtonDemoViewModel: ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "ScrollToButton",
-        Description = "ScrollToButton is a floating button that scrolls the viewport to a target element.",
-        Breadcrumbs = ["Layout & Display", "Scroll To"],
+        Title = LanguageManager.Instance.Page_Title_ScrollToButton,
+        Description = LanguageManager.Instance.Page_Description_ScrollToButton,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_LayoutAndDisplay), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_ScrollTo)],
         Tags = ["ScrollToButton", "Scroll", "Button"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ScrollToButtonDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/ScrollToButtonDemoViewModel.cs",

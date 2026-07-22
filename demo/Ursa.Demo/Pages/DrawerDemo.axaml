@@ -14,23 +14,32 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <DockPanel>
-    <controls:PageMetadataView DockPanel.Dock="Top" DataContext="{Binding PageMetadata}"/>
-    <Grid ColumnDefinitions="Auto, *">
-            <u:Form Width="300" Grid.Column="0" LabelPosition="Top">
-                <TextBox u:FormItem.Label="Title" Text="{Binding Title}"/>
+        <Grid ColumnDefinitions="Auto, *">
+            <u:Form Width="300" Grid.Column="0"
+                    LabelPosition="Top">
+                <TextBox u:FormItem.Label="Title"
+                         Text="{Binding Title}" />
                 <u:EnumSelector
                     u:FormItem.Label="Position"
                     EnumType="common:Position"
-                    Value="{Binding Position}"/>
+                    Value="{Binding Position}" />
                 <u:EnumSelector
                     u:FormItem.Label="Buttons"
                     EnumType="u:DialogButton"
-                    Value="{Binding Buttons}"/>
-                <CheckBox u:FormItem.Label="Can LightDismiss" IsChecked="{Binding CanLightDismiss}"/>
-                <CheckBox u:FormItem.Label="Is Modal" IsChecked="{Binding IsModal}"/>
-                <CheckBox u:FormItem.Label="Is Close Button Visible" IsChecked="{Binding IsCloseButtonVisible}" IsThreeState="True"/>
-                <CheckBox u:FormItem.Label="Custom Dialog" IsChecked="{Binding Custom}"/>
-                <CheckBox u:FormItem.Label="CanResize" IsChecked="{Binding CanResize}" />
+                    Value="{Binding Buttons}" />
+                <CheckBox
+                    u:FormItem.Label="Can LightDismiss"
+                    IsChecked="{Binding CanLightDismiss}" />
+                <CheckBox u:FormItem.Label="Is Modal"
+                          IsChecked="{Binding IsModal}" />
+                <CheckBox
+                    u:FormItem.Label="Is Close Button Visible"
+                    IsChecked="{Binding IsCloseButtonVisible}"
+                    IsThreeState="True" />
+                <CheckBox u:FormItem.Label="Custom Dialog"
+                          IsChecked="{Binding Custom}" />
+                <CheckBox u:FormItem.Label="CanResize"
+                          IsChecked="{Binding CanResize}" />
                 <ToggleSwitch
                     u:FormItem.Label="Global/Local OverlayHost"
                     IsChecked="{Binding IsLocal}"
@@ -49,9 +58,9 @@
                     BorderThickness="1"
                     ClipToBounds="True"
                     CornerRadius="20">
-                    <u:OverlayDialogHost HostId="LocalHost"/>
+                    <u:OverlayDialogHost HostId="LocalHost" />
                 </Border>
             </Grid>
         </Grid>
-</DockPanel>
+    </DockPanel>
 </UserControl>

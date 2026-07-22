@@ -3,15 +3,17 @@ using System.Net;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class IPv4BoxDemoViewModel: ObservableObject
+public partial class IPv4BoxDemoViewModel: ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "IPv4Box",
-        Description = "IPv4Box is a specialized input for entering IPv4 addresses.",
-        Breadcrumbs = ["Buttons & Inputs", "IPv4Box"],
+        Title = LanguageManager.Instance.Page_Title_IPv4Box,
+        Description = LanguageManager.Instance.Page_Description_IPv4Box,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_ButtonsAndInputs), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_IPv4Box)],
         Tags = ["IPv4Box", "Input", "IP"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/IPv4BoxDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/IPv4BoxDemoViewModel.cs",

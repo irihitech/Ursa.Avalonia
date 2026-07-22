@@ -3,15 +3,17 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Ursa.Controls;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public class TimelineDemoViewModel: ViewModelBase
+public class TimelineDemoViewModel: ViewModelBase, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "Timeline",
-        Description = "Timeline presents a sequence of events in chronological vertical order.",
-        Breadcrumbs = ["Layout & Display", "Timeline"],
+        Title = LanguageManager.Instance.Page_Title_Timeline,
+        Description = LanguageManager.Instance.Page_Description_Timeline,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_LayoutAndDisplay), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_Timeline)],
         Tags = ["Timeline", "History", "Steps"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/TimelineDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/TimelineDemoViewModel.cs",

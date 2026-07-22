@@ -5,15 +5,17 @@ using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class ToolBarDemoViewModel : ObservableObject
+public partial class ToolBarDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "ToolBar",
-        Description = "ToolBar is a container for grouping action buttons and controls.",
-        Breadcrumbs = ["Navigation & Menus", "ToolBar"],
+        Title = LanguageManager.Instance.Page_Title_ToolBar,
+        Description = LanguageManager.Instance.Page_Description_ToolBar,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_NavigationAndMenus), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_ToolBar)],
         Tags = ["ToolBar", "Navigation", "Button"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ToolBarDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/ToolBarDemoViewModel.cs",

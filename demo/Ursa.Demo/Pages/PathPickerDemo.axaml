@@ -12,8 +12,8 @@
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <DockPanel>
-    <controls:PageMetadataView DockPanel.Dock="Top" DataContext="{Binding PageMetadata}"/>
-    <Grid ColumnDefinitions="*,*" RowDefinitions="7*,3*">
+        <Grid ColumnDefinitions="*,*"
+              RowDefinitions="7*,3*">
             <ScrollViewer Grid.Row="0" Grid.Column="0">
                 <StackPanel>
                     <HeaderedContentControl
@@ -64,20 +64,24 @@
                         <u:ControlClassesInput
                             Name="ClassInput"
                             HorizontalAlignment="Left"
-                            u:FormItem.Label="Style Class" >
+                            u:FormItem.Label="Style Class">
                             <u:ControlClassesInput.Styles>
-                                <Style Selector="u|ControlClassesInput /template/ u|TagInput">
-                                    <Setter Property="PlaceholderText" Value="Available: Top" />
+                                <Style
+                                    Selector="u|ControlClassesInput /template/ u|TagInput">
+                                    <Setter
+                                        Property="PlaceholderText"
+                                        Value="Available: Top" />
                                 </Style>
                             </u:ControlClassesInput.Styles>
                         </u:ControlClassesInput>
-                    
+
                     </u:Form>
                 </StackPanel>
             </ScrollViewer>
             <ScrollViewer Grid.Row="1" Grid.Column="0">
                 <StackPanel Spacing="2">
-                    <HeaderedContentControl Header="Default">
+                    <HeaderedContentControl
+                        Header="Default">
                         <u:PathPicker
                             Title="{Binding #Title.Text}"
                             u:ControlClassesInput.Source="{Binding #ClassInput}"
@@ -93,7 +97,8 @@
                             SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
                             UsePickerType="{Binding #UsePickerType.Value}" />
                     </HeaderedContentControl>
-                    <HeaderedContentControl Header="ButtonPathPicker">
+                    <HeaderedContentControl
+                        Header="ButtonPathPicker">
                         <u:PathPicker
                             Title="{Binding #Title.Text}"
                             AllowMultiple="{Binding #AllowMultiple.IsChecked}"
@@ -109,7 +114,8 @@
                             Theme="{DynamicResource ButtonPathPicker}"
                             UsePickerType="{Binding #UsePickerType.Value}" />
                     </HeaderedContentControl>
-                    <HeaderedContentControl Header="ListPathPicker">
+                    <HeaderedContentControl
+                        Header="ListPathPicker">
                         <u:PathPicker
                             Title="{Binding #Title.Text}"
                             AllowMultiple="{Binding #AllowMultiple.IsChecked}"
@@ -125,7 +131,8 @@
                             Theme="{DynamicResource ListPathPicker}"
                             UsePickerType="{Binding #UsePickerType.Value}" />
                     </HeaderedContentControl>
-                    <HeaderedContentControl Header="Custom ButtonContent (Icon + Text)">
+                    <HeaderedContentControl
+                        Header="Custom ButtonContent (Icon + Text)">
                         <u:PathPicker
                             Title="{Binding #Title.Text}"
                             AllowMultiple="{Binding #AllowMultiple.IsChecked}"
@@ -140,9 +147,17 @@
                             SuggestedStartPath="{Binding #SuggestedStartPath.Text}"
                             UsePickerType="{Binding #UsePickerType.Value}">
                             <u:PathPicker.ButtonContent>
-                                <StackPanel Orientation="Horizontal" Spacing="4">
-                                    <PathIcon Data="{DynamicResource SemiIconSearch}" Height="16" Width="16" VerticalAlignment="Center" />
-                                    <TextBlock Text="Browse" VerticalAlignment="Center" />
+                                <StackPanel
+                                    Orientation="Horizontal"
+                                    Spacing="4">
+                                    <PathIcon
+                                        Data="{DynamicResource SemiIconSearch}"
+                                        Height="16"
+                                        Width="16"
+                                        VerticalAlignment="Center" />
+                                    <TextBlock
+                                        Text="Browse"
+                                        VerticalAlignment="Center" />
                                 </StackPanel>
                             </u:PathPicker.ButtonContent>
                         </u:PathPicker>
@@ -154,19 +169,23 @@
                 Grid.RowSpan="2"
                 Grid.Column="1">
                 <StackPanel Spacing="1">
-                    <TextBlock Text="{Binding CommandTriggerCount, StringFormat='Command Trigger Count:{0}'}" />
-                    <HeaderedContentControl Header="SelectedPathsText">
+                    <TextBlock
+                        Text="{Binding CommandTriggerCount, StringFormat='Command Trigger Count:{0}'}" />
+                    <HeaderedContentControl
+                        Header="SelectedPathsText">
                         <TextBox
                             Name="SelectedPath"
                             u:FormItem.Label="SelectedPath"
                             IsReadOnly="True"
                             Text="{Binding Path}" />
                     </HeaderedContentControl>
-                    <HeaderedContentControl Header="SelectedPaths">
-                        <ListBox Name="SelectedPaths" ItemsSource="{Binding Paths}" />
+                    <HeaderedContentControl
+                        Header="SelectedPaths">
+                        <ListBox Name="SelectedPaths"
+                                 ItemsSource="{Binding Paths}" />
                     </HeaderedContentControl>
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-</DockPanel>
+    </DockPanel>
 </UserControl>

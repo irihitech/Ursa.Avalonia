@@ -12,8 +12,7 @@
     x:DataType="vm:TreeComboBoxDemoViewModel"
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
-    <StackPanel Margin="20" Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
+    <StackPanel Spacing="20">
         <u:TreeComboBox Width="300" HorizontalAlignment="Left">
             <u:TreeComboBoxItem Header="Hello">
                 <u:TreeComboBoxItem Header="Hello World">

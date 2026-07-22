@@ -9,15 +9,17 @@ using Ursa.Controls;
 using Ursa.Demo.Dialogs;
 using Ursa.Demo.ViewModels.Controls;
 
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class WindowDialogDemoViewModel : ObservableObject
+public partial class WindowDialogDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "Window Dialog",
-        Description = "Window Dialog displays modal windows for user interaction.",
-        Breadcrumbs = ["Dialog & Feedbacks", "Window Dialog"],
+        Title = LanguageManager.Instance.Page_Title_WindowDialog,
+        Description = LanguageManager.Instance.Page_Description_WindowDialog,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DialogAndFeedbacks), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_WindowDialog)],
         Tags = ["Dialog", "Modal", "Window"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/WindowDialogDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/WindowDialogDemoViewModel.cs",

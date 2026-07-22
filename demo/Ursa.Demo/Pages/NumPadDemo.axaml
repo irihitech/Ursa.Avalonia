@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="Ursa.Demo.Pages.NumPadDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -11,8 +11,7 @@
     x:DataType="viewModels:NumPadDemoViewModel"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
-    <StackPanel HorizontalAlignment="Stretch" Margin="20" Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
+    <StackPanel HorizontalAlignment="Stretch" Spacing="20">
         <TextBox
             HorizontalAlignment="Stretch"
             u:NumPad.Attach="True"

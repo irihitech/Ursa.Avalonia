@@ -13,11 +13,8 @@
     mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel
-            Margin="20"
             HorizontalAlignment="Stretch"
             Spacing="8">
-
-            <controls:PageMetadataView DataContext="{Binding PageMetadata}" />
 
             <StackPanel HorizontalAlignment="Left">
                 <ToggleSwitch

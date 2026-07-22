@@ -15,18 +15,23 @@
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
     <UserControl.Resources>
         <ResourceDictionary>
-            <selectors:TimelineIconTemplateSelector x:Key="IconSelector">
-                <SolidColorBrush x:Key="Default" Color="{DynamicResource SemiGray6Color}" />
-                <SolidColorBrush x:Key="Ongoing" Color="{DynamicResource SemiBlue6Color}" />
-                <SolidColorBrush x:Key="Success" Color="{DynamicResource SemiGreen6Color}" />
-                <SolidColorBrush x:Key="Warning" Color="{DynamicResource SemiOrange6Color}" />
-                <SolidColorBrush x:Key="Error" Color="{DynamicResource SemiRed6Color}" />
+            <selectors:TimelineIconTemplateSelector
+                x:Key="IconSelector">
+                <SolidColorBrush x:Key="Default"
+                                 Color="{DynamicResource SemiGray6Color}" />
+                <SolidColorBrush x:Key="Ongoing"
+                                 Color="{DynamicResource SemiBlue6Color}" />
+                <SolidColorBrush x:Key="Success"
+                                 Color="{DynamicResource SemiGreen6Color}" />
+                <SolidColorBrush x:Key="Warning"
+                                 Color="{DynamicResource SemiOrange6Color}" />
+                <SolidColorBrush x:Key="Error"
+                                 Color="{DynamicResource SemiRed6Color}" />
             </selectors:TimelineIconTemplateSelector>
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
-    <controls:PageMetadataView DockPanel.Dock="Top" DataContext="{Binding PageMetadata}"/>
-    <WrapPanel>
+        <WrapPanel>
             <u:Timeline
                 HorizontalAlignment="Left"
                 ContentMemberBinding="{Binding Description}"
@@ -54,7 +59,8 @@
                 ItemsSource="{Binding Items}"
                 Mode="Right"
                 TimeMemberBinding="{Binding Time}" />
-            <u:Timeline HorizontalAlignment="Left" Mode="Alternate">
+            <u:Timeline HorizontalAlignment="Left"
+                        Mode="Alternate">
                 <u:TimelineItem
                     Content="Step 1"
                     Header="第一步"
@@ -83,5 +89,5 @@
                     Type="Error" />
             </u:Timeline>
         </WrapPanel>
-</DockPanel>
+    </DockPanel>
 </UserControl>

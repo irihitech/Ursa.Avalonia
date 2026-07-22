@@ -5,15 +5,17 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class NumericUpDownDemoViewModel : ObservableObject
+public partial class NumericUpDownDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "NumericUpDown",
-        Description = "NumericUpDown is a numeric input control with increment and decrement buttons.",
-        Breadcrumbs = ["Buttons & Inputs", "Numeric UpDown"],
+        Title = LanguageManager.Instance.Page_Title_NumericUpDown,
+        Description = LanguageManager.Instance.Page_Description_NumericUpDown,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_ButtonsAndInputs), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_NumericUpDown)],
         Tags = ["NumericUpDown", "Input", "Number"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/NumericUpDownDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/NumericUpDownDemoViewModel.cs",

@@ -3,15 +3,17 @@ using System.Timers;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class ClockDemoViewModel: ObservableObject, IDisposable
+public partial class ClockDemoViewModel: ObservableObject, IPageMetadataProvider, IDisposable
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "Clock",
-        Description = "Clock displays a visual analog or digital clock.",
-        Breadcrumbs = ["Date & Time", "Clock"],
+        Title = LanguageManager.Instance.Page_Title_Clock,
+        Description = LanguageManager.Instance.Page_Description_Clock,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DateAndTime), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_Clock)],
         Tags = ["Clock", "Time", "Display"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ClockDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/ClockDemoViewModel.cs",

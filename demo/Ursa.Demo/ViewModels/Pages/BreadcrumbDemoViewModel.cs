@@ -5,15 +5,17 @@ using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public class BreadcrumbDemoViewModel: ObservableObject
+public class BreadcrumbDemoViewModel: ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "Breadcrumb",
-        Description = "Breadcrumb displays a navigation trail showing the current page location.",
-        Breadcrumbs = ["Navigation & Menus", "Breadcrumb"],
+        Title = LanguageManager.Instance.Page_Title_Breadcrumb,
+        Description = LanguageManager.Instance.Page_Description_Breadcrumb,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_NavigationAndMenus), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_Breadcrumb)],
         Tags = ["Breadcrumb", "Navigation", "Path"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/BreadcrumbDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/BreadcrumbDemoViewModel.cs",

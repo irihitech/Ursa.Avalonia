@@ -2,15 +2,17 @@ using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class DateOffsetRangePickerDemoViewModel : ObservableObject
+public partial class DateOffsetRangePickerDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "DateOffsetRangePicker",
-        Description = "DateOffsetRangePicker selects a date range with timezone offset support.",
-        Breadcrumbs = ["Date & Time", "Date Offset Range Picker"],
+        Title = LanguageManager.Instance.Page_Title_DateOffsetRangePicker,
+        Description = LanguageManager.Instance.Page_Description_DateOffsetRangePicker,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DateAndTime), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_DateOffsetRangePicker)],
         Tags = ["DateOffsetRangePicker", "Date", "Range"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DateOffsetRangePickerDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/DateOffsetRangePickerDemoViewModel.cs",

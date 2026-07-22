@@ -8,15 +8,17 @@ using Ursa.Controls.Options;
 using Ursa.Demo.Dialogs;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class DrawerDemoViewModel : ObservableObject
+public partial class DrawerDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "Drawer",
-        Description = "Drawer is a panel that slides in from the edge of the screen.",
-        Breadcrumbs = ["Dialog & Feedbacks", "Drawer"],
+        Title = LanguageManager.Instance.Page_Title_Drawer,
+        Description = LanguageManager.Instance.Page_Description_Drawer,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DialogAndFeedbacks), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_Drawer)],
         Tags = ["Drawer", "Panel", "Overlay"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DrawerDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/DrawerDemoViewModel.cs",

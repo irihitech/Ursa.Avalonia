@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Ursa.Demo.Pages.ToastDemo"
+<UserControl x:Class="Ursa.Demo.Pages.ToastDemo"
              xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,8 +12,7 @@
     <Design.DataContext>
         <vm:ToastDemoViewModel />
     </Design.DataContext>
-    <StackPanel Spacing="20" Margin="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
+    <StackPanel Spacing="20">
         <StackPanel Orientation="Horizontal">
             <ToggleSwitch IsChecked="{Binding ShowIcon}" Content="ShowIcon" />
             <ToggleSwitch IsChecked="{Binding ShowClose}" Content="ShowClose" />

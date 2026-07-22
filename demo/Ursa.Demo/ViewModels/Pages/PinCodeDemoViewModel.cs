@@ -7,15 +7,17 @@ using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public partial class PinCodeDemoViewModel: ObservableObject
+public partial class PinCodeDemoViewModel: ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "PinCode",
-        Description = "PinCode is an input control for entering PIN or verification codes.",
-        Breadcrumbs = ["Buttons & Inputs", "PinCode"],
+        Title = LanguageManager.Instance.Page_Title_PinCode,
+        Description = LanguageManager.Instance.Page_Description_PinCode,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_ButtonsAndInputs), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_PinCode)],
         Tags = ["PinCode", "Input", "Password"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/PinCodeDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/PinCodeDemoViewModel.cs",

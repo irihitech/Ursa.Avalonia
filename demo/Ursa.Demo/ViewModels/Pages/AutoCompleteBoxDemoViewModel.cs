@@ -3,15 +3,17 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Ursa.Demo.Models;
 
 using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+
 namespace Ursa.Demo.ViewModels;
 
-public class AutoCompleteBoxDemoViewModel : ObservableObject
+public class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
-        Title = "AutoCompleteBox",
-        Description = "AutoCompleteBox provides suggestions as the user types in a text field.",
-        Breadcrumbs = ["Buttons & Inputs", "AutoCompleteBox"],
+        Title = LanguageManager.Instance.Page_Title_AutoCompleteBox,
+        Description = LanguageManager.Instance.Page_Description_AutoCompleteBox,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_ButtonsAndInputs), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_AutoCompleteBox)],
         Tags = ["AutoCompleteBox", "Input", "Search"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/AutoCompleteBoxDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/ViewModels/Pages/AutoCompleteBoxDemoViewModel.cs",

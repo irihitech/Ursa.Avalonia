@@ -9,8 +9,7 @@
              x:DataType="viewModels:TimeRangePickerDemoViewModel"
              x:Class="Ursa.Demo.Pages.TimeRangePickerDemo"
              xmlns:controls="clr-namespace:Ursa.Demo.Controls">
-    <StackPanel Margin="20" Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
+    <StackPanel Spacing="20">
         <StackPanel HorizontalAlignment="Left" Spacing="20">
             <TextBox
                 Name="displayFormat"

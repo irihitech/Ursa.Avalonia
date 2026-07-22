@@ -12,10 +12,8 @@
     x:DataType="viewModels:ThemeVariantMapperDemoViewModel"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
-    <ScrollViewer Margin="16">
+    <ScrollViewer >
         <StackPanel Spacing="24">
-
-            <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
 
             <TextBlock
                 Margin="0,0,0,4"
@@ -88,8 +86,6 @@
                     </StackPanel>
                 </Border>
             </ThemeVariantScope>
-
-
             <!--  Dynamic theme switching  -->
             <TextBlock
                 FontSize="14"

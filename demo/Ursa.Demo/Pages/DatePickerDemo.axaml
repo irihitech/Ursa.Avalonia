@@ -11,8 +11,7 @@
     x:DataType="viewModels:DatePickerDemoViewModel"
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
-    <StackPanel Margin="20" HorizontalAlignment="Stretch" Spacing="20">
-        <controls:PageMetadataView DataContext="{Binding PageMetadata}"/>
+    <StackPanel HorizontalAlignment="Stretch" Spacing="20">
         <StackPanel HorizontalAlignment="Left">
             <TextBox Name="format" InnerLeftContent="Display Format" Text="yyyy-MM-dd" />
 

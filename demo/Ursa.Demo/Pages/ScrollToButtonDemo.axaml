@@ -19,18 +19,25 @@
         <Style Selector="ScrollViewer Border.Content">
             <Setter Property="Background">
                 <Setter.Value>
-                    <LinearGradientBrush StartPoint="0, 0" EndPoint="2000, 2000">
-                        <GradientStop Color="{DynamicResource SemiPurple9Color}" Offset="0.0" />
-                        <GradientStop Color="{DynamicResource SemiPurple5Color}" Offset="0.5" />
-                        <GradientStop Color="{DynamicResource SemiPurple1Color}" Offset="1.0" />
+                    <LinearGradientBrush StartPoint="0, 0"
+                            EndPoint="2000, 2000">
+                        <GradientStop
+                            Color="{DynamicResource SemiPurple9Color}"
+                            Offset="0.0" />
+                        <GradientStop
+                            Color="{DynamicResource SemiPurple5Color}"
+                            Offset="0.5" />
+                        <GradientStop
+                            Color="{DynamicResource SemiPurple1Color}"
+                            Offset="1.0" />
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
         </Style>
     </UserControl.Styles>
     <DockPanel>
-    <controls:PageMetadataView DockPanel.Dock="Top" DataContext="{Binding PageMetadata}"/>
-    <Grid ColumnDefinitions="*, *, *, *, *" RowDefinitions="Auto, *">
+        <Grid ColumnDefinitions="*, *, *, *, *"
+              RowDefinitions="Auto, *">
             <TextBlock Grid.Row="0" Grid.Column="0">Scroll To Top</TextBlock>
             <TextBlock Grid.Row="0" Grid.Column="1">Scroll To Bottom</TextBlock>
             <TextBlock Grid.Row="0" Grid.Column="2">Scroll To Left</TextBlock>
@@ -42,7 +49,8 @@
                 u:ScrollTo.Direction="Top"
                 HorizontalScrollBarVisibility="Disabled"
                 VerticalScrollBarVisibility="Auto">
-                <Border Classes="Content" Height="2000" HorizontalAlignment="Stretch" />
+                <Border Classes="Content" Height="2000"
+                        HorizontalAlignment="Stretch" />
             </ScrollViewer>
             <ScrollViewer
                 Grid.Row="1"
@@ -50,7 +58,8 @@
                 u:ScrollTo.Direction="Bottom"
                 HorizontalScrollBarVisibility="Disabled"
                 VerticalScrollBarVisibility="Auto">
-                <Border Classes="Content" Height="2000" HorizontalAlignment="Stretch" />
+                <Border Classes="Content" Height="2000"
+                        HorizontalAlignment="Stretch" />
             </ScrollViewer>
             <ScrollViewer
                 Grid.Row="1"
@@ -58,7 +67,8 @@
                 u:ScrollTo.Direction="Left"
                 HorizontalScrollBarVisibility="Auto"
                 VerticalScrollBarVisibility="Disabled">
-                <Border Classes="Content" Width="2000" VerticalAlignment="Stretch" />
+                <Border Classes="Content" Width="2000"
+                        VerticalAlignment="Stretch" />
             </ScrollViewer>
             <ScrollViewer
                 Grid.Row="1"
@@ -66,7 +76,8 @@
                 u:ScrollTo.Direction="Right"
                 HorizontalScrollBarVisibility="Auto"
                 VerticalScrollBarVisibility="Disabled">
-                <Border Classes="Content" Width="2000" VerticalAlignment="Stretch" />
+                <Border Classes="Content" Width="2000"
+                        VerticalAlignment="Stretch" />
             </ScrollViewer>
             <ListBox
                 Grid.Row="1"
@@ -77,5 +88,5 @@
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 ScrollViewer.VerticalScrollBarVisibility="Auto" />
         </Grid>
-</DockPanel>
+    </DockPanel>
 </UserControl>
