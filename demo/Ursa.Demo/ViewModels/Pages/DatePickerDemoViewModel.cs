@@ -20,7 +20,7 @@ public partial class DatePickerDemoViewModel: ObservableObject, IPageMetadataPro
         MvvmSupport = true,
     };
 
-    [ObservableProperty] private DateTime? _selectedDate;
+    [ObservableProperty] public partial DateTime? SelectedDate { get; set; }
 
     public DatePickerDemoViewModel()
     {

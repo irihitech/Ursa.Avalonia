@@ -21,7 +21,7 @@ public partial class SelectionListDemoViewModel: ObservableObject, IPageMetadata
     };
 
     public ObservableCollection<string> Items { get; set; }
-    [ObservableProperty] private string? _selectedItem;
+    [ObservableProperty] public partial string? SelectedItem { get; set; }
 
     public SelectionListDemoViewModel()
     {

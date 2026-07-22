@@ -32,21 +32,21 @@ public partial class OverlayDialogDemoViewModel : ObservableObject, IPageMetadat
 
 public partial class DefaultOverlayDialogDemoViewModel : ObservableObject
 {
-    [ObservableProperty] private HorizontalPosition _horizontalAnchor;
-    [ObservableProperty] private VerticalPosition _verticalAnchor;
-    [ObservableProperty] private double? _horizontalOffset;
-    [ObservableProperty] private double? _verticalOffset;
-    [ObservableProperty] private bool _fullScreen;
-    [ObservableProperty] private DialogMode _mode;
-    [ObservableProperty] private DialogButton _button;
-    [ObservableProperty] private string? _title;
-    [ObservableProperty] private bool _canLightDismiss;
-    [ObservableProperty] private bool _canDragMove;
-    [ObservableProperty] private bool? _isCloseButtonVisible;
-    [ObservableProperty] private bool _isModal;
-    [ObservableProperty] private bool _isLocal;
-    [ObservableProperty] private bool _canResize;
-    [ObservableProperty] private string? _styleClass;
+    [ObservableProperty] public partial HorizontalPosition HorizontalAnchor { get; set; }
+    [ObservableProperty] public partial VerticalPosition VerticalAnchor { get; set; }
+    [ObservableProperty] public partial double? HorizontalOffset { get; set; }
+    [ObservableProperty] public partial double? VerticalOffset { get; set; }
+    [ObservableProperty] public partial bool FullScreen { get; set; }
+    [ObservableProperty] public partial DialogMode Mode { get; set; }
+    [ObservableProperty] public partial DialogButton Button { get; set; }
+    [ObservableProperty] public partial string? Title { get; set; }
+    [ObservableProperty] public partial bool CanLightDismiss { get; set; }
+    [ObservableProperty] public partial bool CanDragMove { get; set; }
+    [ObservableProperty] public partial bool? IsCloseButtonVisible { get; set; }
+    [ObservableProperty] public partial bool IsModal { get; set; }
+    [ObservableProperty] public partial bool IsLocal { get; set; }
+    [ObservableProperty] public partial bool CanResize { get; set; }
+    [ObservableProperty] public partial string? StyleClass { get; set; }
 
     public ICommand ShowDialogCommand { get; }
 
@@ -93,18 +93,18 @@ public partial class DefaultOverlayDialogDemoViewModel : ObservableObject
 
 public partial class CustomOverlayDialogDemoViewModel : ObservableObject
 {
-    [ObservableProperty] private HorizontalPosition _horizontalAnchor;
-    [ObservableProperty] private VerticalPosition _verticalAnchor;
-    [ObservableProperty] private double? _horizontalOffset;
-    [ObservableProperty] private double? _verticalOffset;
-    [ObservableProperty] private bool _fullScreen;
-    [ObservableProperty] private string? _title;
-    [ObservableProperty] private bool _canLightDismiss;
-    [ObservableProperty] private bool _canDragMove;
-    [ObservableProperty] private bool? _isCloseButtonVisible;
-    [ObservableProperty] private bool _isModal;
-    [ObservableProperty] private bool _isLocal;
-    [ObservableProperty] private bool _canResize;
+    [ObservableProperty] public partial HorizontalPosition HorizontalAnchor { get; set; }
+    [ObservableProperty] public partial VerticalPosition VerticalAnchor { get; set; }
+    [ObservableProperty] public partial double? HorizontalOffset { get; set; }
+    [ObservableProperty] public partial double? VerticalOffset { get; set; }
+    [ObservableProperty] public partial bool FullScreen { get; set; }
+    [ObservableProperty] public partial string? Title { get; set; }
+    [ObservableProperty] public partial bool CanLightDismiss { get; set; }
+    [ObservableProperty] public partial bool CanDragMove { get; set; }
+    [ObservableProperty] public partial bool? IsCloseButtonVisible { get; set; }
+    [ObservableProperty] public partial bool IsModal { get; set; }
+    [ObservableProperty] public partial bool IsLocal { get; set; }
+    [ObservableProperty] public partial bool CanResize { get; set; }
 
     public ICommand ShowDialogCommand { get; }
 

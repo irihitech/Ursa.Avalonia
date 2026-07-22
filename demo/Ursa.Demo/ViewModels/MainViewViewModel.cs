@@ -22,7 +22,7 @@ public partial class MainViewViewModel : ViewModelBase
     [ObservableProperty] public partial IReadOnlyList<BreadcrumbItemData>? NavigationKeys { get; set; }
     [ObservableProperty] public partial PageMetadataViewModel? PageMetadata { get; set; }
 
-    [ObservableProperty] private object? _content;
+    [ObservableProperty] public partial object? Content { get; set; }
 
     public MainViewViewModel()
     {
@@ -131,7 +131,7 @@ public partial class MainViewViewModel : ViewModelBase
         new("NightSky", SemiTheme.NightSky)
     ];
 
-    [ObservableProperty] private ThemeItem? _selectedTheme;
+    [ObservableProperty] public partial ThemeItem? SelectedTheme { get; set; }
 
     partial void OnSelectedThemeChanged(ThemeItem? oldValue, ThemeItem? newValue)
     {
@@ -147,9 +147,9 @@ public partial class MainViewViewModel : ViewModelBase
         }
     }
 
-    [ObservableProperty] private IObservable<string?>? _footerText = LanguageManager.Instance.Menu_Header_Settings;
+    [ObservableProperty] public partial IObservable<string?>? FooterText { get; set; } = LanguageManager.Instance.Menu_Header_Settings;
 
-    [ObservableProperty] private bool _isCollapsed;
+    [ObservableProperty] public partial bool IsCollapsed { get; set; }
 
     partial void OnIsCollapsedChanged(bool value)
     {

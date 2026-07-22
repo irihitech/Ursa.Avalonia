@@ -20,8 +20,8 @@ public partial class DateOnlyRangePickerDemoViewModel : ObservableObject, IPageM
         MvvmSupport = true,
     };
 
-    [ObservableProperty] private DateOnly? _startDate;
-    [ObservableProperty] private DateOnly? _endDate;
+    [ObservableProperty] public partial DateOnly? StartDate { get; set; }
+    [ObservableProperty] public partial DateOnly? EndDate { get; set; }
 
     public DateOnlyRangePickerDemoViewModel()
     {

@@ -17,5 +17,5 @@ public partial class MarkdownLineDemoViewModel : ViewModelBase, IPageMetadataPro
         InlineXamlSupport = true,
     };
 
-    [ObservableProperty] private string? _markdown = "**Try** *editing* `this` ~~text~~!";
+    [ObservableProperty] public partial string? Markdown { get; set; } = "**Try** *editing* `this` ~~text~~!";
 }

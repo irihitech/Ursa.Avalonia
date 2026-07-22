@@ -20,8 +20,8 @@ public partial class TimeOnlyRangePickerDemoViewModel : ObservableObject, IPageM
         MvvmSupport = true,
     };
 
-    [ObservableProperty] private TimeOnly? _startTime;
-    [ObservableProperty] private TimeOnly? _endTime;
+    [ObservableProperty] public partial TimeOnly? StartTime { get; set; }
+    [ObservableProperty] public partial TimeOnly? EndTime { get; set; }
 
     public TimeOnlyRangePickerDemoViewModel()
     {

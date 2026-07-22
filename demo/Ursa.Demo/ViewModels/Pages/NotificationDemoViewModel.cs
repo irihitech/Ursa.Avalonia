@@ -28,10 +28,10 @@ public partial class NotificationDemoViewModel : ObservableObject, IPageMetadata
 
     public WindowNotificationManager? NotificationManager { get; set; }
 
-    [ObservableProperty] private bool _showIcon = true;
-    [ObservableProperty] private bool _showClose = true;
+    [ObservableProperty] public partial bool ShowIcon { get; set; } = true;
+    [ObservableProperty] public partial bool ShowClose { get; set; } = true;
 
-    [ObservableProperty] private MessageCloseReason? _reason;
+    [ObservableProperty] public partial MessageCloseReason? Reason { get; set; }
 
     [RelayCommand]
     public void ChangePosition(object obj)

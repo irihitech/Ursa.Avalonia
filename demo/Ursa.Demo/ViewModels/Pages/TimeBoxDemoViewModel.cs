@@ -21,7 +21,7 @@ public partial class TimeBoxDemoViewModel : ObservableObject, IPageMetadataProvi
         MvvmSupport = true,
     };
 
-    [ObservableProperty] private TimeSpan? _timeSpan;
+    [ObservableProperty] public partial TimeSpan? TimeSpan { get; set; }
 
     [RelayCommand]
     private void ChangeRandomTime()

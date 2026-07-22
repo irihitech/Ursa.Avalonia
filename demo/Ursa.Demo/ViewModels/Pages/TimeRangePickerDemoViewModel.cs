@@ -20,8 +20,8 @@ public partial class TimeRangePickerDemoViewModel: ObservableObject, IPageMetada
         MvvmSupport = true,
     };
 
-    [ObservableProperty] private TimeSpan? _startTime;
-    [ObservableProperty] private TimeSpan? _endTime;
+    [ObservableProperty] public partial TimeSpan? StartTime { get; set; }
+    [ObservableProperty] public partial TimeSpan? EndTime { get; set; }
 
     public TimeRangePickerDemoViewModel()
     {

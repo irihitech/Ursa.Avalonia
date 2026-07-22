@@ -20,12 +20,12 @@ public partial class BannerDemoViewModel : ViewModelBase, IPageMetadataProvider
 
     private string? _oldTitle = string.Empty;
     private string? _oldContent = string.Empty;
-    [ObservableProperty] private string? _title = "Welcome to Ursa";
-    [ObservableProperty] private string? _content = "This is the Demo of Ursa Banner.";
-    [ObservableProperty] private bool _bordered;
+    [ObservableProperty] public partial string? Title { get; set; } = "Welcome to Ursa";
+    [ObservableProperty] public partial string? Content { get; set; } = "This is the Demo of Ursa Banner.";
+    [ObservableProperty] public partial bool Bordered { get; set; }
 
-    [ObservableProperty] private bool _setTitleNull = true;
-    [ObservableProperty] private bool _setContentNull = true;
+    [ObservableProperty] public partial bool SetTitleNull { get; set; } = true;
+    [ObservableProperty] public partial bool SetContentNull { get; set; } = true;
 
     partial void OnSetTitleNullChanged(bool value)
     {

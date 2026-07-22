@@ -7,7 +7,7 @@ namespace Ursa.Demo.ViewModels;
 
 public partial class SplashViewModel: ObservableObject, IDialogContext
 {
-    [ObservableProperty] private double _progress;
+    [ObservableProperty] public partial double Progress { get; set; }
     private Random _r = new();
 
     public SplashViewModel()

@@ -20,7 +20,7 @@ public partial class TimePickerDemoViewModel: ObservableObject, IPageMetadataPro
         MvvmSupport = true,
     };
 
-    [ObservableProperty] private TimeSpan? _time;
+    [ObservableProperty] public partial TimeSpan? Time { get; set; }
     
     public TimePickerDemoViewModel()
     {

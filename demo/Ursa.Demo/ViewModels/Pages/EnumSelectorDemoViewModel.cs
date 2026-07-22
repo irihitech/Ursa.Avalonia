@@ -30,10 +30,10 @@ public partial class EnumSelectorDemoViewModel : ObservableObject, IPageMetadata
         MvvmSupport = true,
     };
 
-    [ObservableProperty] private Type? _selectedType;
-    [ObservableProperty] private object? _value;
-    [ObservableProperty] private object? _value2;
-    [ObservableProperty] private object? _value3;
+    [ObservableProperty] public partial Type? SelectedType { get; set; }
+    [ObservableProperty] public partial object? Value { get; set; }
+    [ObservableProperty] public partial object? Value2 { get; set; }
+    [ObservableProperty] public partial object? Value3 { get; set; }
 
     public IList CustomEnumValues { get; set; } = new List<object>
     {

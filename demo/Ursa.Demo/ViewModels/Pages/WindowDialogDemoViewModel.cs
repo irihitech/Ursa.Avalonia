@@ -34,17 +34,17 @@ public partial class WindowDialogDemoViewModel : ObservableObject, IPageMetadata
 
 public partial class DefaultWindowDialogDemoViewModel : ObservableObject
 {
-    [ObservableProperty] private WindowStartupLocation _location;
-    [ObservableProperty] private int? _x;
-    [ObservableProperty] private int? _y;
-    [ObservableProperty] private string? _title;
-    [ObservableProperty] private DialogMode _mode;
-    [ObservableProperty] private DialogButton _button;
-    [ObservableProperty] private bool _showInTaskBar;
-    [ObservableProperty] private bool? _isCloseButtonVisible;
-    [ObservableProperty] private bool _canDragMove;
-    [ObservableProperty] private bool _canResize;
-    [ObservableProperty] private string? _styleClass;
+    [ObservableProperty] public partial WindowStartupLocation Location { get; set; }
+    [ObservableProperty] public partial int? X { get; set; }
+    [ObservableProperty] public partial int? Y { get; set; }
+    [ObservableProperty] public partial string? Title { get; set; }
+    [ObservableProperty] public partial DialogMode Mode { get; set; }
+    [ObservableProperty] public partial DialogButton Button { get; set; }
+    [ObservableProperty] public partial bool ShowInTaskBar { get; set; }
+    [ObservableProperty] public partial bool? IsCloseButtonVisible { get; set; }
+    [ObservableProperty] public partial bool CanDragMove { get; set; }
+    [ObservableProperty] public partial bool CanResize { get; set; }
+    [ObservableProperty] public partial string? StyleClass { get; set; }
 
     public ICommand ShowDialogCommand { get; }
 
@@ -86,15 +86,15 @@ public partial class DefaultWindowDialogDemoViewModel : ObservableObject
 
 public partial class CustomWindowDialogDemoViewModel : ObservableObject
 {
-    [ObservableProperty] private WindowStartupLocation _location;
-    [ObservableProperty] private int? _x;
-    [ObservableProperty] private int? _y;
-    [ObservableProperty] private string? _title;
-    [ObservableProperty] private bool _showInTaskBar;
-    [ObservableProperty] private bool? _isCloseButtonVisible;
-    [ObservableProperty] private bool _isModal;
-    [ObservableProperty] private bool _canDragMove;
-    [ObservableProperty] private bool _canResize;
+    [ObservableProperty] public partial WindowStartupLocation Location { get; set; }
+    [ObservableProperty] public partial int? X { get; set; }
+    [ObservableProperty] public partial int? Y { get; set; }
+    [ObservableProperty] public partial string? Title { get; set; }
+    [ObservableProperty] public partial bool ShowInTaskBar { get; set; }
+    [ObservableProperty] public partial bool? IsCloseButtonVisible { get; set; }
+    [ObservableProperty] public partial bool IsModal { get; set; }
+    [ObservableProperty] public partial bool CanDragMove { get; set; }
+    [ObservableProperty] public partial bool CanResize { get; set; }
 
     public ICommand ShowDialogCommand { get; }
 

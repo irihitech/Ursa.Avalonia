@@ -19,8 +19,8 @@ public partial class AvatarDemoViewModel : ViewModelBase, IPageMetadataProvider
         InlineXamlSupport = true,
     };
 
-    [ObservableProperty] private string _content = "AS";
-    [ObservableProperty] private bool _canClick = true;
+    [ObservableProperty] public partial string Content { get; set; } = "AS";
+    [ObservableProperty] public partial bool CanClick { get; set; } = true;
 
     [RelayCommand(CanExecute = nameof(CanClick))]
     private void Click()

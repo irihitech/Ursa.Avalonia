@@ -20,7 +20,7 @@ public partial class DateOnlyPickerDemoViewModel : ObservableObject, IPageMetada
         MvvmSupport = true,
     };
 
-    [ObservableProperty] private DateOnly? _selectedDate;
+    [ObservableProperty] public partial DateOnly? SelectedDate { get; set; }
 
     public DateOnlyPickerDemoViewModel()
     {

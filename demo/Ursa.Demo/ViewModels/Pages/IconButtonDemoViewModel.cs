@@ -20,7 +20,7 @@ public partial class IconButtonDemoViewModel : ObservableObject, IPageMetadataPr
         MvvmSupport = true,
     };
 
-    [ObservableProperty] private bool _isLoading;
-    [ObservableProperty] private bool _isLoading2;
-    [ObservableProperty] private Position _selectedPosition;
+    [ObservableProperty] public partial bool IsLoading { get; set; }
+    [ObservableProperty] public partial bool IsLoading2 { get; set; }
+    [ObservableProperty] public partial Position SelectedPosition { get; set; }
 }

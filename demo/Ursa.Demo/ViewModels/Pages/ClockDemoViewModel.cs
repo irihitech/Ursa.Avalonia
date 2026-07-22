@@ -22,7 +22,7 @@ public partial class ClockDemoViewModel: ObservableObject, IPageMetadataProvider
 
     private Timer _timer;
     
-    [ObservableProperty] private DateTime _time;
+    [ObservableProperty] public partial DateTime Time { get; set; }
     public ClockDemoViewModel()
     {
         Time = DateTime.Now;

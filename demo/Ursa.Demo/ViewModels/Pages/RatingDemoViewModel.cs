@@ -19,10 +19,10 @@ public partial class RatingDemoViewModel : ViewModelBase, IPageMetadataProvider
         MvvmSupport = true,
     };
 
-    [ObservableProperty] private bool _allowClear = true;
-    [ObservableProperty] private bool _allowHalf = true;
-    [ObservableProperty] private bool _isEnabled = true;
-    [ObservableProperty] private double _value;
-    [ObservableProperty] private double _defaultValue = 2.3;
-    [ObservableProperty] private int _count = 5;
+    [ObservableProperty] public partial bool AllowClear { get; set; } = true;
+    [ObservableProperty] public partial bool AllowHalf { get; set; } = true;
+    [ObservableProperty] public partial bool IsEnabled { get; set; } = true;
+    [ObservableProperty] public partial double Value { get; set; }
+    [ObservableProperty] public partial double DefaultValue { get; set; } = 2.3;
+    [ObservableProperty] public partial int Count { get; set; } = 5;
 }

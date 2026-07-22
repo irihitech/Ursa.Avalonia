@@ -24,7 +24,7 @@ public partial class ImageViewerDemoViewModel: ObservableObject, IPageMetadataPr
         InlineXamlSupport = true,
     };
 
-    [ObservableProperty] private IImage? _source;
+    [ObservableProperty] public partial IImage? Source { get; set; }
     public AsyncRelayCommand<IStorageFile[]> OpenFileCommand { get; set; }
     public RelayCommand ResetImageCommand { get; set; }
 

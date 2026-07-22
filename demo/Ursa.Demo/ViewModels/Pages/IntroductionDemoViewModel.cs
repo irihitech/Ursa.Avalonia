@@ -34,23 +34,23 @@ public partial class IntroductionDemoViewModel : ObservableObject
         "Tag1", "Tag2", "Tag3"
     };
 
-    [ObservableProperty] private double _ratingValue = 3.5;
+    [ObservableProperty] public partial double RatingValue { get; set; } = 3.5;
     
-    [ObservableProperty] private int _sliderValue = 50;
+    [ObservableProperty] public partial int SliderValue { get; set; } = 50;
 
-    [ObservableProperty] private IPAddress? _ipAddress = new IPAddress(new byte[] { 192, 168, 1, 1 });
+    [ObservableProperty] public partial IPAddress? IpAddress { get; set; } = new IPAddress(new byte[] { 192, 168, 1, 1 });
 
-    [ObservableProperty] private double _lowerValue = 20;
+    [ObservableProperty] public partial double LowerValue { get; set; } = 20;
     
-    [ObservableProperty] private double _upperValue = 80;
+    [ObservableProperty] public partial double UpperValue { get; set; } = 80;
 
-    [ObservableProperty] private DateTime _startDate = DateTime.Today;
+    [ObservableProperty] public partial DateTime StartDate { get; set; } = DateTime.Today;
     
-    [ObservableProperty] private DateTime _endDate = DateTime.Today.AddDays(7);
+    [ObservableProperty] public partial DateTime EndDate { get; set; } = DateTime.Today.AddDays(7);
 
-    [ObservableProperty] private DateTime _dateTime = DateTime.Now;
+    [ObservableProperty] public partial DateTime DateTime { get; set; } = DateTime.Now;
 
-    [ObservableProperty] private TimeSpan _startTime = new TimeSpan(9, 0, 0);
+    [ObservableProperty] public partial TimeSpan StartTime { get; set; } = new TimeSpan(9, 0, 0);
     
-    [ObservableProperty] private TimeSpan _endTime = new TimeSpan(17, 0, 0);
+    [ObservableProperty] public partial TimeSpan EndTime { get; set; } = new TimeSpan(17, 0, 0);
 }

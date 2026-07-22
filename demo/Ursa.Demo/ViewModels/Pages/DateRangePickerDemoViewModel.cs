@@ -20,8 +20,8 @@ public partial class DateRangePickerDemoViewModel: ObservableObject, IPageMetada
         MvvmSupport = true,
     };
 
-    [ObservableProperty] private DateTime? _startDate;
-    [ObservableProperty] private DateTime? _endDate;
+    [ObservableProperty] public partial DateTime? StartDate { get; set; }
+    [ObservableProperty] public partial DateTime? EndDate { get; set; }
 
     public DateRangePickerDemoViewModel()
     {

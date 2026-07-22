@@ -11,10 +11,10 @@ namespace Ursa.Demo.Dialogs;
 
 public partial class CustomDemoDialogViewModel : ObservableObject, IDialogContext
 {
-    [ObservableProperty] private string? _city;
-    [ObservableProperty] private string? _department;
-    [ObservableProperty] private string? _owner;
-    [ObservableProperty] private string? _target;
+    [ObservableProperty] public partial string? City { get; set; }
+    [ObservableProperty] public partial string? Department { get; set; }
+    [ObservableProperty] public partial string? Owner { get; set; }
+    [ObservableProperty] public partial string? Target { get; set; }
     public WindowNotificationManager? NotificationManager { get; set; }
     public WindowToastManager? ToastManager { get; set; }
 

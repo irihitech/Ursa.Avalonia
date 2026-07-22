@@ -27,5 +27,5 @@ public partial class RangeSliderDemoViewModel: ObservableObject, IPageMetadataPr
         Orientation.Vertical
     };
 
-    [ObservableProperty] private Orientation _orientation;
+    [ObservableProperty] public partial Orientation Orientation { get; set; }
 }

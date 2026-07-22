@@ -26,7 +26,7 @@ public partial class PinCodeDemoViewModel: ObservableObject, IPageMetadataProvid
     };
 
     public ICommand CompleteCommand { get; set; }
-    [ObservableProperty] private List<Exception>? _error;
+    [ObservableProperty] public partial List<Exception>? Error { get; set; }
 
     public PinCodeDemoViewModel()
     {

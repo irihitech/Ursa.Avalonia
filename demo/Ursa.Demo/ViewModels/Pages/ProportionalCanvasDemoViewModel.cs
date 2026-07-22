@@ -18,9 +18,7 @@ public partial class ProportionalCanvasDemoViewModel: ViewModelBase, IPageMetada
         InlineXamlSupport = true,
     };
     
-    [ObservableProperty]
-    private double _canvasWidth = 500;
+    [ObservableProperty] public partial double CanvasWidth { get; set; } = 500;
 
-    [ObservableProperty]
-    private double _canvasHeight = 400;
+    [ObservableProperty] public partial double CanvasHeight { get; set; } = 400;
 }

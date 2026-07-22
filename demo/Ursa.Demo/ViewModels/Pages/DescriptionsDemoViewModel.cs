@@ -48,6 +48,6 @@ public partial class DescriptionsDemoViewModel : ObservableObject, IPageMetadata
 
 public partial class DescriptionItemViewModel : ObservableObject
 {
-    [ObservableProperty] private string? _label;
-    [ObservableProperty] private object? _description;
+    [ObservableProperty] public partial string? Label { get; set; }
+    [ObservableProperty] public partial object? Description { get; set; }
 }

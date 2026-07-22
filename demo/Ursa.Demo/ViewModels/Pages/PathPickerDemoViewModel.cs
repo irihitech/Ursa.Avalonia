@@ -23,9 +23,9 @@ public partial class PathPickerDemoViewModel : ViewModelBase, IPageMetadataProvi
         AvaloniaExclusive = true,
     };
 
-    [ObservableProperty] private string? _path;
-    [ObservableProperty] private IReadOnlyList<string>? _paths;
-    [ObservableProperty] private int _commandTriggerCount = 0;
+    [ObservableProperty] public partial string? Path { get; set; }
+    [ObservableProperty] public partial IReadOnlyList<string>? Paths { get; set; }
+    [ObservableProperty] public partial int CommandTriggerCount { get; set; } = 0;
 
     [RelayCommand]
     private void Selected(IReadOnlyList<IStorageItem> items)

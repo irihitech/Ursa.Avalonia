@@ -20,7 +20,7 @@ public partial class DateTimeOffsetPickerDemoViewModel : ObservableObject, IPage
         MvvmSupport = true,
     };
 
-    [ObservableProperty] private DateTimeOffset? _selectedDateTime;
+    [ObservableProperty] public partial DateTimeOffset? SelectedDateTime { get; set; }
 
     public DateTimeOffsetPickerDemoViewModel()
     {

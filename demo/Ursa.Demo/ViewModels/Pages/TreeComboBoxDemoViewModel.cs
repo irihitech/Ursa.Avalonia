@@ -20,7 +20,7 @@ public partial class TreeComboBoxDemoViewModel: ObservableObject, IPageMetadataP
         MvvmSupport = true,
     };
 
-    [ObservableProperty] private TreeComboBoxItemViewModel? _selectedItem;
+    [ObservableProperty] public partial TreeComboBoxItemViewModel? SelectedItem { get; set; }
     public List<TreeComboBoxItemViewModel> Items { get; set; }
 
     public TreeComboBoxDemoViewModel()
@@ -80,7 +80,7 @@ public partial class TreeComboBoxDemoViewModel: ObservableObject, IPageMetadataP
 
 public partial class TreeComboBoxItemViewModel : ObservableObject
 {
-    [ObservableProperty] private string? _itemName;
-    [ObservableProperty] private bool _isSelectable = true;
+    [ObservableProperty] public partial string? ItemName { get; set; }
+    [ObservableProperty] public partial bool IsSelectable { get; set; } = true;
     public List<TreeComboBoxItemViewModel> Children { get; set; } = new ();
 }

@@ -20,7 +20,7 @@ public partial class TimeOnlyPickerDemoViewModel : ObservableObject, IPageMetada
         MvvmSupport = true,
     };
 
-    [ObservableProperty] private TimeOnly? _time;
+    [ObservableProperty] public partial TimeOnly? Time { get; set; }
 
     public TimeOnlyPickerDemoViewModel()
     {

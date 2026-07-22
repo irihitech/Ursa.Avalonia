@@ -37,7 +37,7 @@ public partial class BreadcrumbDemoItem: ObservableObject
 {
     public string? Section { get; set; }
     public string? Icon { get; set; }
-    [ObservableProperty] private bool _isReadOnly;
+    [ObservableProperty] public partial bool IsReadOnly { get; set; }
     
     public ICommand Command { get; set; }
 

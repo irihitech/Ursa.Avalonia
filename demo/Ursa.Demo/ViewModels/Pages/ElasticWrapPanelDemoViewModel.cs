@@ -20,24 +20,24 @@ public partial class ElasticWrapPanelDemoViewModel : ObservableObject, IPageMeta
         InlineXamlSupport = true,
     };
 
-    [ObservableProperty] private Orientation _selectedOrientation = Orientation.Horizontal;
-    [ObservableProperty] private ScrollBarVisibility _horizontalVisibility = ScrollBarVisibility.Auto;
-    [ObservableProperty] private ScrollBarVisibility _verticalVisibility = ScrollBarVisibility.Auto;
+    [ObservableProperty] public partial Orientation SelectedOrientation { get; set; } = Orientation.Horizontal;
+    [ObservableProperty] public partial ScrollBarVisibility HorizontalVisibility { get; set; } = ScrollBarVisibility.Auto;
+    [ObservableProperty] public partial ScrollBarVisibility VerticalVisibility { get; set; } = ScrollBarVisibility.Auto;
 
-    [ObservableProperty] private bool _isFillHorizontal;
-    [ObservableProperty] private bool _isFillVertical;
-    [ObservableProperty] private double _itemWidth = 40d;
-    [ObservableProperty] private double _itemHeight = 40d;
-    [ObservableProperty] private double _itemSpacing;
-    [ObservableProperty] private double _lineSpacing;
+    [ObservableProperty] public partial bool IsFillHorizontal { get; set; }
+    [ObservableProperty] public partial bool IsFillVertical { get; set; }
+    [ObservableProperty] public partial double ItemWidth { get; set; } = 40d;
+    [ObservableProperty] public partial double ItemHeight { get; set; } = 40d;
+    [ObservableProperty] public partial double ItemSpacing { get; set; }
+    [ObservableProperty] public partial double LineSpacing { get; set; }
 
-    [ObservableProperty] private bool _autoWidth = true;
-    [ObservableProperty] private bool _autoHeight = true;
-    [ObservableProperty] private double _itemSelfWidth = double.NaN;
-    [ObservableProperty] private double _itemSelfHeight = double.NaN;
+    [ObservableProperty] public partial bool AutoWidth { get; set; } = true;
+    [ObservableProperty] public partial bool AutoHeight { get; set; } = true;
+    [ObservableProperty] public partial double ItemSelfWidth { get; set; } = double.NaN;
+    [ObservableProperty] public partial double ItemSelfHeight { get; set; } = double.NaN;
 
-    [ObservableProperty] private HorizontalAlignment _cmbHAlign = HorizontalAlignment.Left;
-    [ObservableProperty] private VerticalAlignment _cmbVAlign = VerticalAlignment.Stretch;
+    [ObservableProperty] public partial HorizontalAlignment CmbHAlign { get; set; } = HorizontalAlignment.Left;
+    [ObservableProperty] public partial VerticalAlignment CmbVAlign { get; set; } = VerticalAlignment.Stretch;
 
     private double _oldItemSelfWidth;
     private double _oldItemSelfHeight;

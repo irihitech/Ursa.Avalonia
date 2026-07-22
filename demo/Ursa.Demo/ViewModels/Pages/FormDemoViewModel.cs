@@ -23,7 +23,7 @@ public partial class FormDemoViewModel : ObservableObject, IPageMetadataProvider
         MvvmSupport = true,
     };
 
-    [ObservableProperty] private DataModel _model;
+    [ObservableProperty] public partial DataModel Model { get; set; }
 
     public FormDemoViewModel()
     {
@@ -116,25 +116,25 @@ public interface IFromItemViewModel: IFormElement
 
 public partial class FormGroupViewModel : ObservableObject, IFormGroupViewModel
 {
-    [ObservableProperty] private string? _title;
+    [ObservableProperty] public partial string? Title { get; set; }
     public ObservableCollection<IFromItemViewModel> Items { get; set; } = [];
 }
 
 public partial class FormTextViewModel : ObservableObject, IFromItemViewModel
 {
-    [ObservableProperty] private string? _label;
-    [ObservableProperty] private string? _value;
+    [ObservableProperty] public partial string? Label { get; set; }
+    [ObservableProperty] public partial string? Value { get; set; }
 }
 
 public partial class FormAgeViewModel : ObservableObject, IFromItemViewModel
 {
-    [ObservableProperty] private uint? _age;
-    [ObservableProperty] private string? _label;
+    [ObservableProperty] public partial uint? Age { get; set; }
+    [ObservableProperty] public partial string? Label { get; set; }
 }
 
 public partial class FormDateRangeViewModel : ObservableObject, IFromItemViewModel
 {
-    [ObservableProperty] private DateTime? _end;
-    [ObservableProperty] private string? _label;
-    [ObservableProperty] private DateTime? _start;
+    [ObservableProperty] public partial DateTime? End { get; set; }
+    [ObservableProperty] public partial string? Label { get; set; }
+    [ObservableProperty] public partial DateTime? Start { get; set; }
 }

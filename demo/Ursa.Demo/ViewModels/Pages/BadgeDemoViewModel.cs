@@ -20,12 +20,7 @@ public partial class BadgeDemoViewModel: ViewModelBase, IPageMetadataProvider
         InlineXamlSupport = true,
     };
 
-    [ObservableProperty] private string? _text = null;
-
-    public BadgeDemoViewModel()
-    {
-        
-    }
+    [ObservableProperty] public partial string? Text { get; set; } = null;
 
     [RelayCommand]
     public void ChangeText()

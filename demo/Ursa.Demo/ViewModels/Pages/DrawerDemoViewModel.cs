@@ -29,17 +29,17 @@ public partial class DrawerDemoViewModel : ObservableObject, IPageMetadataProvid
 
     public ICommand ShowDialogCommand { get; set; }
 
-    [ObservableProperty] private Position _position;
-    [ObservableProperty] private DialogButton _buttons;
+    [ObservableProperty] public partial Position Position { get; set; }
+    [ObservableProperty] public partial DialogButton Buttons { get; set; }
 
-    [ObservableProperty] private bool _canLightDismiss;
-    [ObservableProperty] private bool _isModal;
-    [ObservableProperty] private bool? _isCloseButtonVisible;
-    [ObservableProperty] private string? _title;
+    [ObservableProperty] public partial bool CanLightDismiss { get; set; }
+    [ObservableProperty] public partial bool IsModal { get; set; }
+    [ObservableProperty] public partial bool? IsCloseButtonVisible { get; set; }
+    [ObservableProperty] public partial string? Title { get; set; }
 
-    [ObservableProperty] private bool _custom;
-    [ObservableProperty] private bool _isLocal;
-    [ObservableProperty] private bool _canResize;
+    [ObservableProperty] public partial bool Custom { get; set; }
+    [ObservableProperty] public partial bool IsLocal { get; set; }
+    [ObservableProperty] public partial bool CanResize { get; set; }
 
     public DrawerDemoViewModel()
     {

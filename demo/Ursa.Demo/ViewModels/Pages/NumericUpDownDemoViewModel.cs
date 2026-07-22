@@ -26,34 +26,34 @@ public partial class NumericUpDownDemoViewModel : ObservableObject, IPageMetadat
 
 
     private double _oldWidth = 300;
-    [ObservableProperty] private bool _autoWidth = true;
-    [ObservableProperty] private double _width = double.NaN;
-    [ObservableProperty] private uint _value;
-    [ObservableProperty] private string _fontFamily = "Consolas";
-    [ObservableProperty] private bool _allowDrag;
-    [ObservableProperty] private bool _isReadOnly;
+    [ObservableProperty] public partial bool AutoWidth { get; set; } = true;
+    [ObservableProperty] public partial double Width { get; set; } = double.NaN;
+    [ObservableProperty] public partial uint Value { get; set; }
+    [ObservableProperty] public partial string FontFamily { get; set; } = "Consolas";
+    [ObservableProperty] public partial bool AllowDrag { get; set; }
+    [ObservableProperty] public partial bool IsReadOnly { get; set; }
 
-    [ObservableProperty] private Array _arrayHorizontalAlignment;
-    [ObservableProperty] private HorizontalAlignment _horizontalAlignment = HorizontalAlignment.Center;
+    [ObservableProperty] public partial Array ArrayHorizontalAlignment { get; set; }
+    [ObservableProperty] public partial HorizontalAlignment HorizontalAlignment { get; set; } = HorizontalAlignment.Center;
 
-    [ObservableProperty] private Array _arrayHorizontalContentAlignment;
-    [ObservableProperty] private HorizontalAlignment _horizontalContentAlignment = HorizontalAlignment.Center;
-    [ObservableProperty] private object? _innerLeftContent = "obj:0x";
-    [ObservableProperty] private object? _innerRightContent = "%";
-    [ObservableProperty] private string _placeholderText = "Placeholder Text showed";
-    [ObservableProperty] private string _formatString = "X8";
-    [ObservableProperty] private Array _arrayParsingNumberStyle;
-    [ObservableProperty] private NumberStyles _parsingNumberStyle = NumberStyles.AllowHexSpecifier;
-    [ObservableProperty] private bool _allowSpin = true;
-    [ObservableProperty] private bool _showButtonSpinner = true;
+    [ObservableProperty] public partial Array ArrayHorizontalContentAlignment { get; set; }
+    [ObservableProperty] public partial HorizontalAlignment HorizontalContentAlignment { get; set; } = HorizontalAlignment.Center;
+    [ObservableProperty] public partial object? InnerLeftContent { get; set; } = "obj:0x";
+    [ObservableProperty] public partial object? InnerRightContent { get; set; } = "%";
+    [ObservableProperty] public partial string PlaceholderText { get; set; } = "Placeholder Text showed";
+    [ObservableProperty] public partial string FormatString { get; set; } = "X8";
+    [ObservableProperty] public partial Array ArrayParsingNumberStyle { get; set; }
+    [ObservableProperty] public partial NumberStyles ParsingNumberStyle { get; set; } = NumberStyles.AllowHexSpecifier;
+    [ObservableProperty] public partial bool AllowSpin { get; set; } = true;
+    [ObservableProperty] public partial bool ShowButtonSpinner { get; set; } = true;
 
-    [ObservableProperty] private UInt32 _maximum = UInt32.MaxValue;
-    [ObservableProperty] private UInt32 _minimum = UInt32.MinValue;
-    [ObservableProperty] private UInt32 _step = 1;
+    [ObservableProperty] public partial UInt32 Maximum { get; set; } = UInt32.MaxValue;
+    [ObservableProperty] public partial UInt32 Minimum { get; set; } = UInt32.MinValue;
+    [ObservableProperty] public partial UInt32 Step { get; set; } = 1;
 
-    [ObservableProperty] private bool _isEnable = true;
+    [ObservableProperty] public partial bool IsEnable { get; set; } = true;
 
-    [ObservableProperty] private string _commandUpdateText = "Command not Execute";
+    [ObservableProperty] public partial string CommandUpdateText { get; set; } = "Command not Execute";
     
     [RelayCommand]
     void Trythis(uint v)

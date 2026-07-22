@@ -21,7 +21,7 @@ public partial class IPv4BoxDemoViewModel: ObservableObject, IPageMetadataProvid
         MvvmSupport = true,
     };
 
-    [ObservableProperty] private IPAddress? _address;
+    [ObservableProperty] public partial IPAddress? Address { get; set; }
     
     public IPv4BoxDemoViewModel()
     {

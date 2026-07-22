@@ -26,9 +26,9 @@ public partial class ToastDemoViewModel : ObservableObject, IPageMetadataProvide
 
     public WindowToastManager? ToastManager { get; set; }
 
-    [ObservableProperty] private bool _showIcon = true;
-    [ObservableProperty] private bool _showClose = true;
-    [ObservableProperty] private MessageCloseReason? _reason;
+    [ObservableProperty] public partial bool ShowIcon { get; set; } = true;
+    [ObservableProperty] public partial bool ShowClose { get; set; } = true;
+    [ObservableProperty] public partial MessageCloseReason? Reason { get; set; }
 
     [RelayCommand]
     public void ShowNormal(object obj)

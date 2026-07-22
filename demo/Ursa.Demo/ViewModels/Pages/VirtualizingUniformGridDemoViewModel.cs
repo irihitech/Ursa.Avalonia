@@ -52,15 +52,15 @@ public partial class VirtualizingUniformGridDemoViewModel : ObservableObject, IP
         return colors[index % colors.Length];
     }
 
-    [ObservableProperty] private int _columns = 4;
-    [ObservableProperty] private double _cacheLength = 0.5;
-    [ObservableProperty] private double _itemWidth = double.NaN;
-    [ObservableProperty] private double _itemHeight = double.NaN;
-    [ObservableProperty] private bool _uniformItemHeight = true;
-    [ObservableProperty] private int _itemCount = 100000;
+    [ObservableProperty] public partial int Columns { get; set; } = 4;
+    [ObservableProperty] public partial double CacheLength { get; set; } = 0.5;
+    [ObservableProperty] public partial double ItemWidth { get; set; } = double.NaN;
+    [ObservableProperty] public partial double ItemHeight { get; set; } = double.NaN;
+    [ObservableProperty] public partial bool UniformItemHeight { get; set; } = true;
+    [ObservableProperty] public partial int ItemCount { get; set; } = 100000;
 
-    [ObservableProperty] private bool _autoWidth = true;
-    [ObservableProperty] private bool _autoHeight = true;
+    [ObservableProperty] public partial bool AutoWidth { get; set; } = true;
+    [ObservableProperty] public partial bool AutoHeight { get; set; } = true;
 
     private double _oldItemWidth;
     private double _oldItemHeight;
@@ -99,12 +99,9 @@ public partial class VirtualizingUniformGridDemoViewModel : ObservableObject, IP
 
 public partial class GridItem : ObservableObject
 {
-    [ObservableProperty]
-    private int _index;
+    [ObservableProperty] public partial int Index { get; set; }
 
-    [ObservableProperty]
-    private string _label = string.Empty;
+    [ObservableProperty] public partial string Label { get; set; } = string.Empty;
 
-    [ObservableProperty]
-    private string _color = "#E0E0E0";
+    [ObservableProperty] public partial string Color { get; set; } = "#E0E0E0";
 }

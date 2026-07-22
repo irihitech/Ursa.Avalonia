@@ -6,10 +6,10 @@ namespace Ursa.Demo.Dialogs;
 public partial class DefaultDemoDialogViewModel: ObservableObject
 {
     public ObservableCollection<string> Cities { get; set; }
-    [ObservableProperty] private string? _owner;
-    [ObservableProperty] private string? _department;
-    [ObservableProperty] private string? _target;
-    [ObservableProperty] private string? _city;
+    [ObservableProperty] public partial string? Owner { get; set; }
+    [ObservableProperty] public partial string? Department { get; set; }
+    [ObservableProperty] public partial string? Target { get; set; }
+    [ObservableProperty] public partial string? City { get; set; }
 
     public DefaultDemoDialogViewModel()
     {

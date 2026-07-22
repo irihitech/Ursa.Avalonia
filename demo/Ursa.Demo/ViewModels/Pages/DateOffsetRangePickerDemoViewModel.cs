@@ -20,8 +20,8 @@ public partial class DateOffsetRangePickerDemoViewModel : ObservableObject, IPag
         MvvmSupport = true,
     };
 
-    [ObservableProperty] private DateTimeOffset? _startDate;
-    [ObservableProperty] private DateTimeOffset? _endDate;
+    [ObservableProperty] public partial DateTimeOffset? StartDate { get; set; }
+    [ObservableProperty] public partial DateTimeOffset? EndDate { get; set; }
 
     public DateOffsetRangePickerDemoViewModel()
     {

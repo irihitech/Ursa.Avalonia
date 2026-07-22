@@ -21,10 +21,10 @@ public partial class NumberDisplayerDemoViewModel: ObservableObject, IPageMetada
         InlineXamlSupport = true,
     };
 
-    [ObservableProperty] private int _value;
-    [ObservableProperty] private long _longValue;
-    [ObservableProperty] private double _doubleValue;
-    [ObservableProperty] private DateTime _dateValue;
+    [ObservableProperty] public partial int Value { get; set; }
+    [ObservableProperty] public partial long LongValue { get; set; }
+    [ObservableProperty] public partial double DoubleValue { get; set; }
+    [ObservableProperty] public partial DateTime DateValue { get; set; }
     public ICommand IncreaseCommand { get; }
     public NumberDisplayerDemoViewModel()
     {
