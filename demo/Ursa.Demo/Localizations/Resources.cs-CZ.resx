@@ -25,10 +25,10 @@
     <value>Přepnout do angličtiny</value>
   </data>
   <data name="Menu_Header_Introduction" xml:space="preserve">
-    <value>Úvod Introduction</value>
+    <value>Úvod</value>
   </data>
   <data name="Menu_Header_AboutUs" xml:space="preserve">
-    <value>O nás AboutUs</value>
+    <value>O nás</value>
   </data>
 
   <!-- Category headers -->
@@ -53,437 +53,437 @@
 
   <!-- Buttons &amp; Inputs -->
   <data name="Menu_Header_ButtonGroup" xml:space="preserve">
-    <value>Skupina tlačítek ButtonGroup</value>
+    <value>Skupina tlačítek (ButtonGroup)</value>
   </data>
   <data name="Menu_Header_IconButton" xml:space="preserve">
-    <value>Tlačítko s ikonou IconButton</value>
+    <value>Tlačítko s ikonou (IconButton)</value>
   </data>
   <data name="Menu_Header_AutoCompleteBox" xml:space="preserve">
-    <value>Automatické dokončování AutoCompleteBox</value>
+    <value>Automatické dokončování (AutoCompleteBox)</value>
   </data>
   <data name="Menu_Header_ClassInput" xml:space="preserve">
-    <value>Vstup třídy ClassInput</value>
+    <value>Vstup třídy (ClassInput)</value>
   </data>
   <data name="Menu_Header_EnumSelector" xml:space="preserve">
-    <value>Výběr výčtu EnumSelector</value>
+    <value>Výběr výčtu (EnumSelector)</value>
   </data>
   <data name="Menu_Header_Form" xml:space="preserve">
-    <value>Formulář Form</value>
+    <value>Formulář (Form)</value>
   </data>
   <data name="Menu_Header_KeyGestureInput" xml:space="preserve">
-    <value>Vstup klávesových gest KeyGestureInput</value>
+    <value>Vstup klávesových gest (KeyGestureInput)</value>
   </data>
   <data name="Menu_Header_IPv4Box" xml:space="preserve">
     <value>IPv4 vstup IPv4Box</value>
   </data>
   <data name="Menu_Header_MultiComboBox" xml:space="preserve">
-    <value>Vícenásobný výběr MultiComboBox</value>
+    <value>Vícenásobný výběr (MultiComboBox)</value>
   </data>
   <data name="Menu_Header_MultiAutoCompleteBox" xml:space="preserve">
-    <value>Vícenásobné automatické dokončování MultiAutoCompleteBox</value>
+    <value>Vícenásobné automatické dokončování (MultiAutoCompleteBox)</value>
   </data>
   <data name="Menu_Header_NumericUpDown" xml:space="preserve">
-    <value>Číselný vstup NumericUpDown</value>
+    <value>Číselný vstup (NumericUpDown)</value>
   </data>
   <data name="Menu_Header_NumPad" xml:space="preserve">
-    <value>Numerická klávesnice NumPad</value>
+    <value>Numerická klávesnice (NumPad)</value>
   </data>
   <data name="Menu_Header_PathPicker" xml:space="preserve">
-    <value>Výběr cesty PathPicker</value>
+    <value>Výběr cesty (PathPicker)</value>
   </data>
   <data name="Menu_Header_PinCode" xml:space="preserve">
-    <value>PIN kód PinCode</value>
+    <value>PIN kód (PinCode)</value>
   </data>
   <data name="Menu_Header_RangeSlider" xml:space="preserve">
-    <value>Posuvník rozsahu RangeSlider</value>
+    <value>Posuvník rozsahu (RangeSlider)</value>
   </data>
   <data name="Menu_Header_Rating" xml:space="preserve">
-    <value>Hodnocení Rating</value>
+    <value>Hodnocení (Rating)</value>
   </data>
   <data name="Menu_Header_SelectionList" xml:space="preserve">
-    <value>Seznam výběru SelectionList</value>
+    <value>Seznam výběru (SelectionList)</value>
   </data>
   <data name="Menu_Header_TagInput" xml:space="preserve">
-    <value>Vstup štítků TagInput</value>
+    <value>Vstup štítků (TagInput)</value>
   </data>
   <data name="Menu_Header_ThemeToggler" xml:space="preserve">
-    <value>Přepínač motivu ThemeToggler</value>
+    <value>Přepínač motivu (ThemeToggler)</value>
   </data>
   <data name="Menu_Header_TreeComboBox" xml:space="preserve">
-    <value>Stromový výběr TreeComboBox</value>
+    <value>Stromový výběr (TreeComboBox)</value>
   </data>
 
   <!-- Dialog &amp; Feedbacks -->
   <data name="Menu_Header_WindowDialog" xml:space="preserve">
-    <value>Okenní dialog WindowDialog</value>
+    <value>Okenní dialog (WindowDialog)</value>
   </data>
   <data name="Menu_Header_OverlayDialog" xml:space="preserve">
-    <value>Překryvný dialog OverlayDialog</value>
+    <value>Překryvný dialog (OverlayDialog)</value>
   </data>
   <data name="Menu_Header_Drawer" xml:space="preserve">
-    <value>Zásuvka Drawer</value>
+    <value>Zásuvka (Drawer)</value>
   </data>
   <data name="Menu_Header_Loading" xml:space="preserve">
-    <value>Načítání Loading</value>
+    <value>Načítání (Loading)</value>
   </data>
   <data name="Menu_Header_MessageBox" xml:space="preserve">
-    <value>Dialogové okno MessageBox</value>
+    <value>Dialogové okno (MessageBox)</value>
   </data>
   <data name="Menu_Header_Notification" xml:space="preserve">
-    <value>Oznámení Notification</value>
+    <value>Oznámení (Notification)</value>
   </data>
   <data name="Menu_Header_PopConfirm" xml:space="preserve">
-    <value>Potvrzovací bublina PopConfirm</value>
+    <value>Potvrzovací bublina (PopConfirm)</value>
   </data>
   <data name="Menu_Header_Toast" xml:space="preserve">
-    <value>Oznámení Toast</value>
+    <value>Oznámení (Toast)</value>
   </data>
   <data name="Menu_Header_Skeleton" xml:space="preserve">
-    <value>Kostra Skeleton</value>
+    <value>Kostra (Skeleton)</value>
   </data>
 
   <!-- Date &amp; Time -->
   <data name="Menu_Header_DatePicker" xml:space="preserve">
-    <value>Výběr data DatePicker</value>
+    <value>Výběr data (DatePicker)</value>
   </data>
   <data name="Menu_Header_DateOnlyPicker" xml:space="preserve">
-    <value>Výběr pouze data DateOnlyPicker</value>
+    <value>Výběr pouze data (DateOnlyPicker)</value>
   </data>
   <data name="Menu_Header_DateRangePicker" xml:space="preserve">
-    <value>Výběr rozsahu dat DateRangePicker</value>
+    <value>Výběr rozsahu dat (DateRangePicker)</value>
   </data>
   <data name="Menu_Header_DateOnlyRangePicker" xml:space="preserve">
-    <value>Výběr rozsahu pouze data DateOnlyRangePicker</value>
+    <value>Výběr rozsahu pouze data (DateOnlyRangePicker)</value>
   </data>
   <data name="Menu_Header_DateTimePicker" xml:space="preserve">
-    <value>Výběr data a času DateTimePicker</value>
+    <value>Výběr data a času (DateTimePicker)</value>
   </data>
   <data name="Menu_Header_DateOffsetPicker" xml:space="preserve">
-    <value>Výběr data s posunem DateOffsetPicker</value>
+    <value>Výběr data s posunem (DateOffsetPicker)</value>
   </data>
   <data name="Menu_Header_DateOffsetRangePicker" xml:space="preserve">
-    <value>Výběr rozsahu data s posunem DateOffsetRangePicker</value>
+    <value>Výběr rozsahu data s posunem (DateOffsetRangePicker)</value>
   </data>
   <data name="Menu_Header_DateTimeOffsetPicker" xml:space="preserve">
-    <value>Výběr data, času a posunu DateTimeOffsetPicker</value>
+    <value>Výběr data, času a posunu (DateTimeOffsetPicker)</value>
   </data>
   <data name="Menu_Header_TimeBox" xml:space="preserve">
-    <value>Časový vstup TimeBox</value>
+    <value>Časový vstup (TimeBox)</value>
   </data>
   <data name="Menu_Header_TimePicker" xml:space="preserve">
-    <value>Výběr času TimePicker</value>
+    <value>Výběr času (TimePicker)</value>
   </data>
   <data name="Menu_Header_TimeOnlyPicker" xml:space="preserve">
-    <value>Výběr pouze času TimeOnlyPicker</value>
+    <value>Výběr pouze času (TimeOnlyPicker)</value>
   </data>
   <data name="Menu_Header_TimeRangePicker" xml:space="preserve">
-    <value>Výběr časového rozsahu TimeRangePicker</value>
+    <value>Výběr časového rozsahu (TimeRangePicker)</value>
   </data>
   <data name="Menu_Header_TimeOnlyRangePicker" xml:space="preserve">
-    <value>Výběr rozsahu pouze času TimeOnlyRangePicker</value>
+    <value>Výběr rozsahu pouze času (TimeOnlyRangePicker)</value>
   </data>
   <data name="Menu_Header_Clock" xml:space="preserve">
-    <value>Hodiny Clock</value>
+    <value>Hodiny (Clock)</value>
   </data>
 
   <!-- Navigation &amp; Menus -->
   <data name="Menu_Header_Anchor" xml:space="preserve">
-    <value>Kotva Anchor</value>
+    <value>Kotva (Anchor)</value>
   </data>
   <data name="Menu_Header_Breadcrumb" xml:space="preserve">
-    <value>Drobečková navigace Breadcrumb</value>
+    <value>Drobečková navigace (Breadcrumb)</value>
   </data>
   <data name="Menu_Header_NavMenu" xml:space="preserve">
-    <value>Navigační nabídka NavMenu</value>
+    <value>Navigační nabídka (NavMenu)</value>
   </data>
   <data name="Menu_Header_Pagination" xml:space="preserve">
-    <value>Stránkování Pagination</value>
+    <value>Stránkování (Pagination)</value>
   </data>
   <data name="Menu_Header_ToolBar" xml:space="preserve">
-    <value>Panel nástrojů ToolBar</value>
+    <value>Panel nástrojů (ToolBar)</value>
   </data>
 
   <!-- Layout &amp; Display -->
   <data name="Menu_Header_AspectRatioLayout" xml:space="preserve">
-    <value>Rozvržení poměru stran AspectRatioLayout</value>
+    <value>Rozvržení poměru stran (AspectRatioLayout)</value>
   </data>
   <data name="Menu_Header_Avatar" xml:space="preserve">
-    <value>Avatar Avatar</value>
+    <value>Avatar (Avatar)</value>
   </data>
   <data name="Menu_Header_Badge" xml:space="preserve">
-    <value>Odznak Badge</value>
+    <value>Odznak (Badge)</value>
   </data>
   <data name="Menu_Header_Banner" xml:space="preserve">
-    <value>Banner Banner</value>
+    <value>Banner (Banner)</value>
   </data>
   <data name="Menu_Header_Descriptions" xml:space="preserve">
-    <value>Popisy Descriptions</value>
+    <value>Popisy (Descriptions)</value>
   </data>
   <data name="Menu_Header_DisableContainer" xml:space="preserve">
-    <value>Deaktivovaný kontejner DisableContainer</value>
+    <value>Deaktivovaný kontejner (DisableContainer)</value>
   </data>
   <data name="Menu_Header_Divider" xml:space="preserve">
-    <value>Oddělovač Divider</value>
+    <value>Oddělovač (Divider)</value>
   </data>
   <data name="Menu_Header_GroupBox" xml:space="preserve">
-    <value>Skupinový rámeček GroupBox</value>
+    <value>Skupinový rámeček (GroupBox)</value>
   </data>
   <data name="Menu_Header_DualBadge" xml:space="preserve">
-    <value>Duální odznak DualBadge</value>
+    <value>Duální odznak (DualBadge)</value>
   </data>
   <data name="Menu_Header_ImageViewer" xml:space="preserve">
-    <value>Prohlížeč obrázků ImageViewer</value>
+    <value>Prohlížeč obrázků (ImageViewer)</value>
   </data>
   <data name="Menu_Header_ElasticWrapPanel" xml:space="preserve">
-    <value>Elastický zalamovací panel ElasticWrapPanel</value>
+    <value>Elastický zalamovací panel (ElasticWrapPanel)</value>
   </data>
   <data name="Menu_Header_Marquee" xml:space="preserve">
-    <value>Běžící text Marquee</value>
+    <value>Běžící text (Marquee)</value>
   </data>
   <data name="Menu_Header_MarkdownLine" xml:space="preserve">
-    <value>Markdown řádek MarkdownLine</value>
+    <value>Markdown řádek (MarkdownLine)</value>
   </data>
   <data name="Menu_Header_NumberDisplayer" xml:space="preserve">
-    <value>Zobrazovač čísel NumberDisplayer</value>
+    <value>Zobrazovač čísel (NumberDisplayer)</value>
   </data>
   <data name="Menu_Header_ProportionalCanvas" xml:space="preserve">
-    <value>Proporcionální plátno ProportionalCanvas</value>
+    <value>Proporcionální plátno (ProportionalCanvas)</value>
   </data>
   <data name="Menu_Header_QrCode" xml:space="preserve">
-    <value>QR kód QrCode</value>
+    <value>QR kód (QrCode)</value>
   </data>
   <data name="Menu_Header_ScrollTo" xml:space="preserve">
-    <value>Posunout na ScrollTo</value>
+    <value>Posunout na (ScrollTo)</value>
   </data>
   <data name="Menu_Header_ThemeVariantMapper" xml:space="preserve">
-    <value>Mapovač variant motivu ThemeVariantMapper</value>
+    <value>Mapovač variant motivu (ThemeVariantMapper)</value>
   </data>
   <data name="Menu_Header_Timeline" xml:space="preserve">
-    <value>Časová osa Timeline</value>
+    <value>Časová osa (Timeline)</value>
   </data>
   <data name="Menu_Header_TwoTonePathIcon" xml:space="preserve">
-    <value>Dvoubarevná ikona cesty TwoTonePathIcon</value>
+    <value>Dvoubarevná ikona cesty (TwoTonePathIcon)</value>
   </data>
   <data name="Menu_Header_Settings" xml:space="preserve">
-    <value>Nastavení Settings</value>
+    <value>Nastavení (Settings)</value>
   </data>
   <data name="Main_Banner_Title" xml:space="preserve">
-    <value>Vítejte v Ursa</value>
+    <value>Vítejte v (Ursa)</value>
   </data>
   <data name="Main_Banner_Description" xml:space="preserve">
     <value>Estetická revoluce produktivity</value>
   </data>
   <data name="Menu_Header_VirtualizingUniformGrid" xml:space="preserve">
-    <value>Virtualizovaná jednotná mřížka VirtualizingUniformGrid</value>
+    <value>Virtualizovaná jednotná mřížka (VirtualizingUniformGrid)</value>
   </data>
 
   <!-- Page Titles -->
   <data name="Page_Title_Anchor" xml:space="preserve">
-    <value>Kotva Anchor</value>
+    <value>Kotva (Anchor)</value>
   </data>
   <data name="Page_Title_AspectRatioLayout" xml:space="preserve">
-    <value>Rozvržení poměru stran AspectRatioLayout</value>
+    <value>Rozvržení poměru stran (AspectRatioLayout)</value>
   </data>
   <data name="Page_Title_AutoCompleteBox" xml:space="preserve">
-    <value>Automatické dokončování AutoCompleteBox</value>
+    <value>Automatické dokončování (AutoCompleteBox)</value>
   </data>
   <data name="Page_Title_Avatar" xml:space="preserve">
-    <value>Avatar Avatar</value>
+    <value>Avatar (Avatar)</value>
   </data>
   <data name="Page_Title_Badge" xml:space="preserve">
-    <value>Odznak Badge</value>
+    <value>Odznak (Badge)</value>
   </data>
   <data name="Page_Title_Banner" xml:space="preserve">
-    <value>Banner Banner</value>
+    <value>Banner (Banner)</value>
   </data>
   <data name="Page_Title_Breadcrumb" xml:space="preserve">
-    <value>Drobečková navigace Breadcrumb</value>
+    <value>Drobečková navigace (Breadcrumb)</value>
   </data>
   <data name="Page_Title_ButtonGroup" xml:space="preserve">
-    <value>Skupina tlačítek ButtonGroup</value>
+    <value>Skupina tlačítek (ButtonGroup)</value>
   </data>
   <data name="Page_Title_ClassInput" xml:space="preserve">
-    <value>Vstup třídy ClassInput</value>
+    <value>Vstup třídy (ClassInput)</value>
   </data>
   <data name="Page_Title_Clock" xml:space="preserve">
-    <value>Hodiny Clock</value>
+    <value>Hodiny (Clock)</value>
   </data>
   <data name="Page_Title_DateOffsetPicker" xml:space="preserve">
-    <value>Výběr data s posunem DateOffsetPicker</value>
+    <value>Výběr data s posunem (DateOffsetPicker)</value>
   </data>
   <data name="Page_Title_DateOffsetRangePicker" xml:space="preserve">
-    <value>Výběr rozsahu data s posunem DateOffsetRangePicker</value>
+    <value>Výběr rozsahu data s posunem (DateOffsetRangePicker)</value>
   </data>
   <data name="Page_Title_DateOnlyPicker" xml:space="preserve">
-    <value>Výběr pouze data DateOnlyPicker</value>
+    <value>Výběr pouze data (DateOnlyPicker)</value>
   </data>
   <data name="Page_Title_DateOnlyRangePicker" xml:space="preserve">
-    <value>Výběr rozsahu pouze data DateOnlyRangePicker</value>
+    <value>Výběr rozsahu pouze data (DateOnlyRangePicker)</value>
   </data>
   <data name="Page_Title_DatePicker" xml:space="preserve">
-    <value>Výběr data DatePicker</value>
+    <value>Výběr data (DatePicker)</value>
   </data>
   <data name="Page_Title_DateRangePicker" xml:space="preserve">
-    <value>Výběr rozsahu dat DateRangePicker</value>
+    <value>Výběr rozsahu dat (DateRangePicker)</value>
   </data>
   <data name="Page_Title_DateTimeOffsetPicker" xml:space="preserve">
-    <value>Výběr data, času a posunu DateTimeOffsetPicker</value>
+    <value>Výběr data, času a posunu (DateTimeOffsetPicker)</value>
   </data>
   <data name="Page_Title_DateTimePicker" xml:space="preserve">
-    <value>Výběr data a času DateTimePicker</value>
+    <value>Výběr data a času (DateTimePicker)</value>
   </data>
   <data name="Page_Title_Descriptions" xml:space="preserve">
-    <value>Popisy Descriptions</value>
+    <value>Popisy (Descriptions)</value>
   </data>
   <data name="Page_Title_DisableContainer" xml:space="preserve">
-    <value>Deaktivovaný kontejner DisableContainer</value>
+    <value>Deaktivovaný kontejner (DisableContainer)</value>
   </data>
   <data name="Page_Title_Divider" xml:space="preserve">
-    <value>Oddělovač Divider</value>
+    <value>Oddělovač (Divider)</value>
   </data>
   <data name="Page_Title_Drawer" xml:space="preserve">
-    <value>Zásuvka Drawer</value>
+    <value>Zásuvka (Drawer)</value>
   </data>
   <data name="Page_Title_DualBadge" xml:space="preserve">
-    <value>Duální odznak DualBadge</value>
+    <value>Duální odznak (DualBadge)</value>
   </data>
   <data name="Page_Title_ElasticWrapPanel" xml:space="preserve">
-    <value>Elastický zalamovací panel ElasticWrapPanel</value>
+    <value>Elastický zalamovací panel (ElasticWrapPanel)</value>
   </data>
   <data name="Page_Title_EnumSelector" xml:space="preserve">
-    <value>Výběr výčtu EnumSelector</value>
+    <value>Výběr výčtu (EnumSelector)</value>
   </data>
   <data name="Page_Title_Form" xml:space="preserve">
-    <value>Formulář Form</value>
+    <value>Formulář (Form)</value>
   </data>
   <data name="Page_Title_GroupBox" xml:space="preserve">
-    <value>Skupinový rámeček GroupBox</value>
+    <value>Skupinový rámeček (GroupBox)</value>
   </data>
   <data name="Page_Title_IconButton" xml:space="preserve">
-    <value>Tlačítko s ikonou IconButton</value>
+    <value>Tlačítko s ikonou (IconButton)</value>
   </data>
   <data name="Page_Title_ImageViewer" xml:space="preserve">
-    <value>Prohlížeč obrázků ImageViewer</value>
+    <value>Prohlížeč obrázků (ImageViewer)</value>
   </data>
   <data name="Page_Title_IPv4Box" xml:space="preserve">
     <value>IPv4 vstup IPv4Box</value>
   </data>
   <data name="Page_Title_KeyGestureInput" xml:space="preserve">
-    <value>Vstup klávesových gest KeyGestureInput</value>
+    <value>Vstup klávesových gest (KeyGestureInput)</value>
   </data>
   <data name="Page_Title_Loading" xml:space="preserve">
-    <value>Načítání Loading</value>
+    <value>Načítání (Loading)</value>
   </data>
   <data name="Page_Title_Marquee" xml:space="preserve">
-    <value>Běžící text Marquee</value>
+    <value>Běžící text (Marquee)</value>
   </data>
   <data name="Page_Title_MarkdownLine" xml:space="preserve">
-    <value>Markdown řádek MarkdownLine</value>
+    <value>Markdown řádek (MarkdownLine)</value>
   </data>
   <data name="Page_Title_MessageBox" xml:space="preserve">
-    <value>Dialogové okno MessageBox</value>
+    <value>Dialogové okno (MessageBox)</value>
   </data>
   <data name="Page_Title_MultiAutoCompleteBox" xml:space="preserve">
-    <value>Vícenásobné automatické dokončování MultiAutoCompleteBox</value>
+    <value>Vícenásobné automatické dokončování (MultiAutoCompleteBox)</value>
   </data>
   <data name="Page_Title_MultiComboBox" xml:space="preserve">
-    <value>Vícenásobný výběr MultiComboBox</value>
+    <value>Vícenásobný výběr (MultiComboBox)</value>
   </data>
   <data name="Page_Title_NavMenu" xml:space="preserve">
-    <value>Navigační nabídka NavMenu</value>
+    <value>Navigační nabídka (NavMenu)</value>
   </data>
   <data name="Page_Title_Notification" xml:space="preserve">
-    <value>Oznámení Notification</value>
+    <value>Oznámení (Notification)</value>
   </data>
   <data name="Page_Title_NumberDisplayer" xml:space="preserve">
-    <value>Zobrazovač čísel NumberDisplayer</value>
+    <value>Zobrazovač čísel (NumberDisplayer)</value>
   </data>
   <data name="Page_Title_NumericUpDown" xml:space="preserve">
-    <value>Číselný vstup NumericUpDown</value>
+    <value>Číselný vstup (NumericUpDown)</value>
   </data>
   <data name="Page_Title_NumPad" xml:space="preserve">
-    <value>Numerická klávesnice NumPad</value>
+    <value>Numerická klávesnice (NumPad)</value>
   </data>
   <data name="Page_Title_OverlayDialog" xml:space="preserve">
-    <value>Překryvný dialog OverlayDialog</value>
+    <value>Překryvný dialog (OverlayDialog)</value>
   </data>
   <data name="Page_Title_Pagination" xml:space="preserve">
-    <value>Stránkování Pagination</value>
+    <value>Stránkování (Pagination)</value>
   </data>
   <data name="Page_Title_PathPicker" xml:space="preserve">
-    <value>Výběr cesty PathPicker</value>
+    <value>Výběr cesty (PathPicker)</value>
   </data>
   <data name="Page_Title_PinCode" xml:space="preserve">
-    <value>PIN kód PinCode</value>
+    <value>PIN kód (PinCode)</value>
   </data>
   <data name="Page_Title_PopConfirm" xml:space="preserve">
-    <value>Potvrzovací bublina PopConfirm</value>
+    <value>Potvrzovací bublina (PopConfirm)</value>
   </data>
   <data name="Page_Title_ProportionalCanvas" xml:space="preserve">
-    <value>Proporcionální plátno ProportionalCanvas</value>
+    <value>Proporcionální plátno (ProportionalCanvas)</value>
   </data>
   <data name="Page_Title_QrCode" xml:space="preserve">
-    <value>QR kód QrCode</value>
+    <value>QR kód (QrCode)</value>
   </data>
   <data name="Page_Title_RangeSlider" xml:space="preserve">
-    <value>Posuvník rozsahu RangeSlider</value>
+    <value>Posuvník rozsahu (RangeSlider)</value>
   </data>
   <data name="Page_Title_Rating" xml:space="preserve">
-    <value>Hodnocení Rating</value>
+    <value>Hodnocení (Rating)</value>
   </data>
   <data name="Page_Title_ScrollToButton" xml:space="preserve">
-    <value>Tlačítko posunu ScrollToButton</value>
+    <value>Tlačítko posunu (ScrollToButton)</value>
   </data>
   <data name="Page_Title_SelectionList" xml:space="preserve">
-    <value>Seznam výběru SelectionList</value>
+    <value>Seznam výběru (SelectionList)</value>
   </data>
   <data name="Page_Title_Skeleton" xml:space="preserve">
-    <value>Kostra Skeleton</value>
+    <value>Kostra (Skeleton)</value>
   </data>
   <data name="Page_Title_TagInput" xml:space="preserve">
-    <value>Vstup štítků TagInput</value>
+    <value>Vstup štítků (TagInput)</value>
   </data>
   <data name="Page_Title_ThemeToggler" xml:space="preserve">
-    <value>Přepínač motivu ThemeToggler</value>
+    <value>Přepínač motivu (ThemeToggler)</value>
   </data>
   <data name="Page_Title_ThemeVariantMapper" xml:space="preserve">
-    <value>Mapovač variant motivu ThemeVariantMapper</value>
+    <value>Mapovač variant motivu (ThemeVariantMapper)</value>
   </data>
   <data name="Page_Title_TimeBox" xml:space="preserve">
-    <value>Časový vstup TimeBox</value>
+    <value>Časový vstup (TimeBox)</value>
   </data>
   <data name="Page_Title_Timeline" xml:space="preserve">
-    <value>Časová osa Timeline</value>
+    <value>Časová osa (Timeline)</value>
   </data>
   <data name="Page_Title_TimeOnlyPicker" xml:space="preserve">
-    <value>Výběr pouze času TimeOnlyPicker</value>
+    <value>Výběr pouze času (TimeOnlyPicker)</value>
   </data>
   <data name="Page_Title_TimeOnlyRangePicker" xml:space="preserve">
-    <value>Výběr rozsahu pouze času TimeOnlyRangePicker</value>
+    <value>Výběr rozsahu pouze času (TimeOnlyRangePicker)</value>
   </data>
   <data name="Page_Title_TimePicker" xml:space="preserve">
-    <value>Výběr času TimePicker</value>
+    <value>Výběr času (TimePicker)</value>
   </data>
   <data name="Page_Title_TimeRangePicker" xml:space="preserve">
-    <value>Výběr časového rozsahu TimeRangePicker</value>
+    <value>Výběr časového rozsahu (TimeRangePicker)</value>
   </data>
   <data name="Page_Title_Toast" xml:space="preserve">
-    <value>Oznámení Toast</value>
+    <value>Oznámení (Toast)</value>
   </data>
   <data name="Page_Title_ToolBar" xml:space="preserve">
-    <value>Panel nástrojů ToolBar</value>
+    <value>Panel nástrojů (ToolBar)</value>
   </data>
   <data name="Page_Title_TreeComboBox" xml:space="preserve">
-    <value>Stromový výběr TreeComboBox</value>
+    <value>Stromový výběr (TreeComboBox)</value>
   </data>
   <data name="Page_Title_TwoTonePathIcon" xml:space="preserve">
-    <value>Dvoubarevná ikona cesty TwoTonePathIcon</value>
+    <value>Dvoubarevná ikona cesty (TwoTonePathIcon)</value>
   </data>
   <data name="Page_Title_VirtualizingUniformGrid" xml:space="preserve">
-    <value>Virtualizovaná jednotná mřížka VirtualizingUniformGrid</value>
+    <value>Virtualizovaná jednotná mřížka (VirtualizingUniformGrid)</value>
   </data>
   <data name="Page_Title_WindowDialog" xml:space="preserve">
-    <value>Okenní dialog WindowDialog</value>
+    <value>Okenní dialog (WindowDialog)</value>
   </data>
 
   <!-- Page Descriptions -->

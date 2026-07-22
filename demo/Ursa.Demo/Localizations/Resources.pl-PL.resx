@@ -25,10 +25,10 @@
     <value>Przełącz na angielski</value>
   </data>
   <data name="Menu_Header_Introduction" xml:space="preserve">
-    <value>Wprowadzenie Introduction</value>
+    <value>Wprowadzenie</value>
   </data>
   <data name="Menu_Header_AboutUs" xml:space="preserve">
-    <value>O nas AboutUs</value>
+    <value>O nas</value>
   </data>
   <!-- Category headers -->
   <data name="Menu_Category_Controls" xml:space="preserve">
@@ -51,432 +51,432 @@
   </data>
   <!-- Buttons & Inputs -->
   <data name="Menu_Header_ButtonGroup" xml:space="preserve">
-    <value>Grupa przycisków ButtonGroup</value>
+    <value>Grupa przycisków (ButtonGroup)</value>
   </data>
   <data name="Menu_Header_IconButton" xml:space="preserve">
-    <value>Przycisk z ikoną IconButton</value>
+    <value>Przycisk z ikoną (IconButton)</value>
   </data>
   <data name="Menu_Header_AutoCompleteBox" xml:space="preserve">
-    <value>Autouzupełnianie AutoCompleteBox</value>
+    <value>Autouzupełnianie (AutoCompleteBox)</value>
   </data>
   <data name="Menu_Header_ClassInput" xml:space="preserve">
-    <value>Pole klasy ClassInput</value>
+    <value>Pole klasy (ClassInput)</value>
   </data>
   <data name="Menu_Header_EnumSelector" xml:space="preserve">
-    <value>Selektor wyliczeniowy EnumSelector</value>
+    <value>Selektor wyliczeniowy (EnumSelector)</value>
   </data>
   <data name="Menu_Header_Form" xml:space="preserve">
-    <value>Formularz Form</value>
+    <value>Formularz (Form)</value>
   </data>
   <data name="Menu_Header_KeyGestureInput" xml:space="preserve">
-    <value>Pole skrótów klawiszowych KeyGestureInput</value>
+    <value>Pole skrótów klawiszowych (KeyGestureInput)</value>
   </data>
   <data name="Menu_Header_IPv4Box" xml:space="preserve">
     <value>Pole IPv4 IPv4Box</value>
   </data>
   <data name="Menu_Header_MultiComboBox" xml:space="preserve">
-    <value>Lista wielokrotnego wyboru MultiComboBox</value>
+    <value>Lista wielokrotnego wyboru (MultiComboBox)</value>
   </data>
   <data name="Menu_Header_MultiAutoCompleteBox" xml:space="preserve">
-    <value>Wielokrotne autouzupełnianie MultiAutoCompleteBox</value>
+    <value>Wielokrotne autouzupełnianie (MultiAutoCompleteBox)</value>
   </data>
   <data name="Menu_Header_NumericUpDown" xml:space="preserve">
-    <value>Pole numeryczne NumericUpDown</value>
+    <value>Pole numeryczne (NumericUpDown)</value>
   </data>
   <data name="Menu_Header_NumPad" xml:space="preserve">
-    <value>Klawiatura numeryczna NumPad</value>
+    <value>Klawiatura numeryczna (NumPad)</value>
   </data>
   <data name="Menu_Header_PathPicker" xml:space="preserve">
-    <value>Selektor ścieżki PathPicker</value>
+    <value>Selektor ścieżki (PathPicker)</value>
   </data>
   <data name="Menu_Header_PinCode" xml:space="preserve">
-    <value>Kod PIN PinCode</value>
+    <value>Kod PIN (PinCode)</value>
   </data>
   <data name="Menu_Header_RangeSlider" xml:space="preserve">
-    <value>Suwak zakresu RangeSlider</value>
+    <value>Suwak zakresu (RangeSlider)</value>
   </data>
   <data name="Menu_Header_Rating" xml:space="preserve">
-    <value>Ocena Rating</value>
+    <value>Ocena (Rating)</value>
   </data>
   <data name="Menu_Header_SelectionList" xml:space="preserve">
-    <value>Lista wyboru SelectionList</value>
+    <value>Lista wyboru (SelectionList)</value>
   </data>
   <data name="Menu_Header_TagInput" xml:space="preserve">
-    <value>Pole etykiet TagInput</value>
+    <value>Pole etykiet (TagInput)</value>
   </data>
   <data name="Menu_Header_ThemeToggler" xml:space="preserve">
-    <value>Przełącznik motywu ThemeToggler</value>
+    <value>Przełącznik motywu (ThemeToggler)</value>
   </data>
   <data name="Menu_Header_TreeComboBox" xml:space="preserve">
-    <value>Lista drzewiasta TreeComboBox</value>
+    <value>Lista drzewiasta (TreeComboBox)</value>
   </data>
   <!-- Dialog & Feedbacks -->
   <data name="Menu_Header_WindowDialog" xml:space="preserve">
-    <value>Dialog okienkowy WindowDialog</value>
+    <value>Dialog okienkowy (WindowDialog)</value>
   </data>
   <data name="Menu_Header_OverlayDialog" xml:space="preserve">
-    <value>Dialog nakładkowy OverlayDialog</value>
+    <value>Dialog nakładkowy (OverlayDialog)</value>
   </data>
   <data name="Menu_Header_Drawer" xml:space="preserve">
-    <value>Szuflada Drawer</value>
+    <value>Szuflada (Drawer)</value>
   </data>
   <data name="Menu_Header_Loading" xml:space="preserve">
-    <value>Ładowanie Loading</value>
+    <value>Ładowanie (Loading)</value>
   </data>
   <data name="Menu_Header_MessageBox" xml:space="preserve">
-    <value>Okno komunikatu MessageBox</value>
+    <value>Okno komunikatu (MessageBox)</value>
   </data>
   <data name="Menu_Header_Notification" xml:space="preserve">
-    <value>Powiadomienie Notification</value>
+    <value>Powiadomienie (Notification)</value>
   </data>
   <data name="Menu_Header_PopConfirm" xml:space="preserve">
-    <value>Potwierdzenie dymkowe PopConfirm</value>
+    <value>Potwierdzenie dymkowe (PopConfirm)</value>
   </data>
   <data name="Menu_Header_Toast" xml:space="preserve">
-    <value>Powiadomienie Toast</value>
+    <value>Powiadomienie (Toast)</value>
   </data>
   <data name="Menu_Header_Skeleton" xml:space="preserve">
-    <value>Szkielet Skeleton</value>
+    <value>Szkielet (Skeleton)</value>
   </data>
   <!-- Date & Time -->
   <data name="Menu_Header_DatePicker" xml:space="preserve">
-    <value>Selektor daty DatePicker</value>
+    <value>Selektor daty (DatePicker)</value>
   </data>
   <data name="Menu_Header_DateOnlyPicker" xml:space="preserve">
-    <value>Selektor samej daty DateOnlyPicker</value>
+    <value>Selektor samej daty (DateOnlyPicker)</value>
   </data>
   <data name="Menu_Header_DateRangePicker" xml:space="preserve">
-    <value>Selektor zakresu dat DateRangePicker</value>
+    <value>Selektor zakresu dat (DateRangePicker)</value>
   </data>
   <data name="Menu_Header_DateOnlyRangePicker" xml:space="preserve">
-    <value>Selektor zakresu samej daty DateOnlyRangePicker</value>
+    <value>Selektor zakresu samej daty (DateOnlyRangePicker)</value>
   </data>
   <data name="Menu_Header_DateTimePicker" xml:space="preserve">
-    <value>Selektor daty i czasu DateTimePicker</value>
+    <value>Selektor daty i czasu (DateTimePicker)</value>
   </data>
   <data name="Menu_Header_DateOffsetPicker" xml:space="preserve">
-    <value>Selektor daty z przesunięciem DateOffsetPicker</value>
+    <value>Selektor daty z przesunięciem (DateOffsetPicker)</value>
   </data>
   <data name="Menu_Header_DateOffsetRangePicker" xml:space="preserve">
-    <value>Selektor zakresu dat z przesunięciem DateOffsetRangePicker</value>
+    <value>Selektor zakresu dat z przesunięciem (DateOffsetRangePicker)</value>
   </data>
   <data name="Menu_Header_DateTimeOffsetPicker" xml:space="preserve">
-    <value>Selektor DateTimeOffset DateTimeOffsetPicker</value>
+    <value>Selektor DateTimeOffset (DateTimeOffsetPicker)</value>
   </data>
   <data name="Menu_Header_TimeBox" xml:space="preserve">
-    <value>Pole czasu TimeBox</value>
+    <value>Pole czasu (TimeBox)</value>
   </data>
   <data name="Menu_Header_TimePicker" xml:space="preserve">
-    <value>Selektor czasu TimePicker</value>
+    <value>Selektor czasu (TimePicker)</value>
   </data>
   <data name="Menu_Header_TimeOnlyPicker" xml:space="preserve">
-    <value>Selektor samego czasu TimeOnlyPicker</value>
+    <value>Selektor samego czasu (TimeOnlyPicker)</value>
   </data>
   <data name="Menu_Header_TimeRangePicker" xml:space="preserve">
-    <value>Selektor zakresu czasu TimeRangePicker</value>
+    <value>Selektor zakresu czasu (TimeRangePicker)</value>
   </data>
   <data name="Menu_Header_TimeOnlyRangePicker" xml:space="preserve">
-    <value>Selektor zakresu samego czasu TimeOnlyRangePicker</value>
+    <value>Selektor zakresu samego czasu (TimeOnlyRangePicker)</value>
   </data>
   <data name="Menu_Header_Clock" xml:space="preserve">
-    <value>Zegar Clock</value>
+    <value>Zegar (Clock)</value>
   </data>
   <!-- Navigation & Menus -->
   <data name="Menu_Header_Anchor" xml:space="preserve">
-    <value>Kotwica Anchor</value>
+    <value>Kotwica (Anchor)</value>
   </data>
   <data name="Menu_Header_Breadcrumb" xml:space="preserve">
-    <value>Nawigacja okruszkowa Breadcrumb</value>
+    <value>Nawigacja okruszkowa (Breadcrumb)</value>
   </data>
   <data name="Menu_Header_NavMenu" xml:space="preserve">
-    <value>Menu nawigacyjne NavMenu</value>
+    <value>Menu nawigacyjne (NavMenu)</value>
   </data>
   <data name="Menu_Header_Pagination" xml:space="preserve">
-    <value>Paginacja Pagination</value>
+    <value>Paginacja (Pagination)</value>
   </data>
   <data name="Menu_Header_ToolBar" xml:space="preserve">
-    <value>Pasek narzędzi ToolBar</value>
+    <value>Pasek narzędzi (ToolBar)</value>
   </data>
   <!-- Layout & Display -->
   <data name="Menu_Header_AspectRatioLayout" xml:space="preserve">
-    <value>Układ proporcji AspectRatioLayout</value>
+    <value>Układ proporcji (AspectRatioLayout)</value>
   </data>
   <data name="Menu_Header_Avatar" xml:space="preserve">
-    <value>Awatar Avatar</value>
+    <value>Awatar (Avatar)</value>
   </data>
   <data name="Menu_Header_Badge" xml:space="preserve">
-    <value>Odznaka Badge</value>
+    <value>Odznaka (Badge)</value>
   </data>
   <data name="Menu_Header_Banner" xml:space="preserve">
-    <value>Baner Banner</value>
+    <value>Baner (Banner)</value>
   </data>
   <data name="Menu_Header_Descriptions" xml:space="preserve">
-    <value>Opisy Descriptions</value>
+    <value>Opisy (Descriptions)</value>
   </data>
   <data name="Menu_Header_DisableContainer" xml:space="preserve">
-    <value>Kontener wyłączający DisableContainer</value>
+    <value>Kontener wyłączający (DisableContainer)</value>
   </data>
   <data name="Menu_Header_Divider" xml:space="preserve">
-    <value>Separator Divider</value>
+    <value>Separator (Divider)</value>
   </data>
   <data name="Menu_Header_GroupBox" xml:space="preserve">
-    <value>Ramka grupowa GroupBox</value>
+    <value>Ramka grupowa (GroupBox)</value>
   </data>
   <data name="Menu_Header_DualBadge" xml:space="preserve">
-    <value>Podwójna odznaka DualBadge</value>
+    <value>Podwójna odznaka (DualBadge)</value>
   </data>
   <data name="Menu_Header_ImageViewer" xml:space="preserve">
-    <value>Przeglądarka obrazów ImageViewer</value>
+    <value>Przeglądarka obrazów (ImageViewer)</value>
   </data>
   <data name="Menu_Header_ElasticWrapPanel" xml:space="preserve">
-    <value>Elastyczny panel zawijania ElasticWrapPanel</value>
+    <value>Elastyczny panel zawijania (ElasticWrapPanel)</value>
   </data>
   <data name="Menu_Header_Marquee" xml:space="preserve">
-    <value>Tekst przewijany Marquee</value>
+    <value>Tekst przewijany (Marquee)</value>
   </data>
   <data name="Menu_Header_MarkdownLine" xml:space="preserve">
-    <value>Wiersz Markdown MarkdownLine</value>
+    <value>Wiersz Markdown (MarkdownLine)</value>
   </data>
   <data name="Menu_Header_NumberDisplayer" xml:space="preserve">
-    <value>Wyświetlacz liczbowy NumberDisplayer</value>
+    <value>Wyświetlacz liczbowy (NumberDisplayer)</value>
   </data>
   <data name="Menu_Header_ProportionalCanvas" xml:space="preserve">
-    <value>Płótno proporcjonalne ProportionalCanvas</value>
+    <value>Płótno proporcjonalne (ProportionalCanvas)</value>
   </data>
   <data name="Menu_Header_QrCode" xml:space="preserve">
-    <value>Kod QR QrCode</value>
+    <value>Kod QR (QrCode)</value>
   </data>
   <data name="Menu_Header_ScrollTo" xml:space="preserve">
-    <value>Przewiń do ScrollTo</value>
+    <value>Przewiń do (ScrollTo)</value>
   </data>
   <data name="Menu_Header_ThemeVariantMapper" xml:space="preserve">
-    <value>Mapowanie wariantów motywu ThemeVariantMapper</value>
+    <value>Mapowanie wariantów motywu (ThemeVariantMapper)</value>
   </data>
   <data name="Menu_Header_Timeline" xml:space="preserve">
-    <value>Oś czasu Timeline</value>
+    <value>Oś czasu (Timeline)</value>
   </data>
   <data name="Menu_Header_TwoTonePathIcon" xml:space="preserve">
-    <value>Dwukolorowa ikona ścieżki TwoTonePathIcon</value>
+    <value>Dwukolorowa ikona ścieżki (TwoTonePathIcon)</value>
   </data>
   <data name="Menu_Header_Settings" xml:space="preserve">
-    <value>Ustawienia Settings</value>
+    <value>Ustawienia (Settings)</value>
   </data>
   <data name="Main_Banner_Title" xml:space="preserve">
-    <value>Witamy w Ursa</value>
+    <value>Witamy w (Ursa)</value>
   </data>
   <data name="Main_Banner_Description" xml:space="preserve">
     <value>Estetyczna rewolucja produktywności</value>
   </data>
   <data name="Menu_Header_VirtualizingUniformGrid" xml:space="preserve">
-    <value>Wirtualizowana siatka jednolita VirtualizingUniformGrid</value>
+    <value>Wirtualizowana siatka jednolita (VirtualizingUniformGrid)</value>
   </data>
   <!-- Page Titles -->
   <data name="Page_Title_Anchor" xml:space="preserve">
-    <value>Kotwica Anchor</value>
+    <value>Kotwica (Anchor)</value>
   </data>
   <data name="Page_Title_AspectRatioLayout" xml:space="preserve">
-    <value>Układ proporcji AspectRatioLayout</value>
+    <value>Układ proporcji (AspectRatioLayout)</value>
   </data>
   <data name="Page_Title_AutoCompleteBox" xml:space="preserve">
-    <value>Autouzupełnianie AutoCompleteBox</value>
+    <value>Autouzupełnianie (AutoCompleteBox)</value>
   </data>
   <data name="Page_Title_Avatar" xml:space="preserve">
-    <value>Awatar Avatar</value>
+    <value>Awatar (Avatar)</value>
   </data>
   <data name="Page_Title_Badge" xml:space="preserve">
-    <value>Odznaka Badge</value>
+    <value>Odznaka (Badge)</value>
   </data>
   <data name="Page_Title_Banner" xml:space="preserve">
-    <value>Baner Banner</value>
+    <value>Baner (Banner)</value>
   </data>
   <data name="Page_Title_Breadcrumb" xml:space="preserve">
-    <value>Nawigacja okruszkowa Breadcrumb</value>
+    <value>Nawigacja okruszkowa (Breadcrumb)</value>
   </data>
   <data name="Page_Title_ButtonGroup" xml:space="preserve">
-    <value>Grupa przycisków ButtonGroup</value>
+    <value>Grupa przycisków (ButtonGroup)</value>
   </data>
   <data name="Page_Title_ClassInput" xml:space="preserve">
-    <value>Pole klasy ClassInput</value>
+    <value>Pole klasy (ClassInput)</value>
   </data>
   <data name="Page_Title_Clock" xml:space="preserve">
-    <value>Zegar Clock</value>
+    <value>Zegar (Clock)</value>
   </data>
   <data name="Page_Title_DateOffsetPicker" xml:space="preserve">
-    <value>Selektor daty z przesunięciem DateOffsetPicker</value>
+    <value>Selektor daty z przesunięciem (DateOffsetPicker)</value>
   </data>
   <data name="Page_Title_DateOffsetRangePicker" xml:space="preserve">
-    <value>Selektor zakresu dat z przesunięciem DateOffsetRangePicker</value>
+    <value>Selektor zakresu dat z przesunięciem (DateOffsetRangePicker)</value>
   </data>
   <data name="Page_Title_DateOnlyPicker" xml:space="preserve">
-    <value>Selektor samej daty DateOnlyPicker</value>
+    <value>Selektor samej daty (DateOnlyPicker)</value>
   </data>
   <data name="Page_Title_DateOnlyRangePicker" xml:space="preserve">
-    <value>Selektor zakresu samej daty DateOnlyRangePicker</value>
+    <value>Selektor zakresu samej daty (DateOnlyRangePicker)</value>
   </data>
   <data name="Page_Title_DatePicker" xml:space="preserve">
-    <value>Selektor daty DatePicker</value>
+    <value>Selektor daty (DatePicker)</value>
   </data>
   <data name="Page_Title_DateRangePicker" xml:space="preserve">
-    <value>Selektor zakresu dat DateRangePicker</value>
+    <value>Selektor zakresu dat (DateRangePicker)</value>
   </data>
   <data name="Page_Title_DateTimeOffsetPicker" xml:space="preserve">
-    <value>Selektor DateTimeOffset DateTimeOffsetPicker</value>
+    <value>Selektor DateTimeOffset (DateTimeOffsetPicker)</value>
   </data>
   <data name="Page_Title_DateTimePicker" xml:space="preserve">
-    <value>Selektor daty i czasu DateTimePicker</value>
+    <value>Selektor daty i czasu (DateTimePicker)</value>
   </data>
   <data name="Page_Title_Descriptions" xml:space="preserve">
-    <value>Opisy Descriptions</value>
+    <value>Opisy (Descriptions)</value>
   </data>
   <data name="Page_Title_DisableContainer" xml:space="preserve">
-    <value>Kontener wyłączający DisableContainer</value>
+    <value>Kontener wyłączający (DisableContainer)</value>
   </data>
   <data name="Page_Title_Divider" xml:space="preserve">
-    <value>Separator Divider</value>
+    <value>Separator (Divider)</value>
   </data>
   <data name="Page_Title_Drawer" xml:space="preserve">
-    <value>Szuflada Drawer</value>
+    <value>Szuflada (Drawer)</value>
   </data>
   <data name="Page_Title_DualBadge" xml:space="preserve">
-    <value>Podwójna odznaka DualBadge</value>
+    <value>Podwójna odznaka (DualBadge)</value>
   </data>
   <data name="Page_Title_ElasticWrapPanel" xml:space="preserve">
-    <value>Elastyczny panel zawijania ElasticWrapPanel</value>
+    <value>Elastyczny panel zawijania (ElasticWrapPanel)</value>
   </data>
   <data name="Page_Title_EnumSelector" xml:space="preserve">
-    <value>Selektor wyliczeniowy EnumSelector</value>
+    <value>Selektor wyliczeniowy (EnumSelector)</value>
   </data>
   <data name="Page_Title_Form" xml:space="preserve">
-    <value>Formularz Form</value>
+    <value>Formularz (Form)</value>
   </data>
   <data name="Page_Title_GroupBox" xml:space="preserve">
-    <value>Ramka grupowa GroupBox</value>
+    <value>Ramka grupowa (GroupBox)</value>
   </data>
   <data name="Page_Title_IconButton" xml:space="preserve">
-    <value>Przycisk z ikoną IconButton</value>
+    <value>Przycisk z ikoną (IconButton)</value>
   </data>
   <data name="Page_Title_ImageViewer" xml:space="preserve">
-    <value>Przeglądarka obrazów ImageViewer</value>
+    <value>Przeglądarka obrazów (ImageViewer)</value>
   </data>
   <data name="Page_Title_IPv4Box" xml:space="preserve">
     <value>Pole IPv4 IPv4Box</value>
   </data>
   <data name="Page_Title_KeyGestureInput" xml:space="preserve">
-    <value>Pole skrótów klawiszowych KeyGestureInput</value>
+    <value>Pole skrótów klawiszowych (KeyGestureInput)</value>
   </data>
   <data name="Page_Title_Loading" xml:space="preserve">
-    <value>Ładowanie Loading</value>
+    <value>Ładowanie (Loading)</value>
   </data>
   <data name="Page_Title_Marquee" xml:space="preserve">
-    <value>Tekst przewijany Marquee</value>
+    <value>Tekst przewijany (Marquee)</value>
   </data>
   <data name="Page_Title_MarkdownLine" xml:space="preserve">
-    <value>Wiersz Markdown MarkdownLine</value>
+    <value>Wiersz Markdown (MarkdownLine)</value>
   </data>
   <data name="Page_Title_MessageBox" xml:space="preserve">
-    <value>Okno komunikatu MessageBox</value>
+    <value>Okno komunikatu (MessageBox)</value>
   </data>
   <data name="Page_Title_MultiAutoCompleteBox" xml:space="preserve">
-    <value>Wielokrotne autouzupełnianie MultiAutoCompleteBox</value>
+    <value>Wielokrotne autouzupełnianie (MultiAutoCompleteBox)</value>
   </data>
   <data name="Page_Title_MultiComboBox" xml:space="preserve">
-    <value>Lista wielokrotnego wyboru MultiComboBox</value>
+    <value>Lista wielokrotnego wyboru (MultiComboBox)</value>
   </data>
   <data name="Page_Title_NavMenu" xml:space="preserve">
-    <value>Menu nawigacyjne NavMenu</value>
+    <value>Menu nawigacyjne (NavMenu)</value>
   </data>
   <data name="Page_Title_Notification" xml:space="preserve">
-    <value>Powiadomienie Notification</value>
+    <value>Powiadomienie (Notification)</value>
   </data>
   <data name="Page_Title_NumberDisplayer" xml:space="preserve">
-    <value>Wyświetlacz liczbowy NumberDisplayer</value>
+    <value>Wyświetlacz liczbowy (NumberDisplayer)</value>
   </data>
   <data name="Page_Title_NumericUpDown" xml:space="preserve">
-    <value>Pole numeryczne NumericUpDown</value>
+    <value>Pole numeryczne (NumericUpDown)</value>
   </data>
   <data name="Page_Title_NumPad" xml:space="preserve">
-    <value>Klawiatura numeryczna NumPad</value>
+    <value>Klawiatura numeryczna (NumPad)</value>
   </data>
   <data name="Page_Title_OverlayDialog" xml:space="preserve">
-    <value>Dialog nakładkowy OverlayDialog</value>
+    <value>Dialog nakładkowy (OverlayDialog)</value>
   </data>
   <data name="Page_Title_Pagination" xml:space="preserve">
-    <value>Paginacja Pagination</value>
+    <value>Paginacja (Pagination)</value>
   </data>
   <data name="Page_Title_PathPicker" xml:space="preserve">
-    <value>Selektor ścieżki PathPicker</value>
+    <value>Selektor ścieżki (PathPicker)</value>
   </data>
   <data name="Page_Title_PinCode" xml:space="preserve">
-    <value>Kod PIN PinCode</value>
+    <value>Kod PIN (PinCode)</value>
   </data>
   <data name="Page_Title_PopConfirm" xml:space="preserve">
-    <value>Potwierdzenie dymkowe PopConfirm</value>
+    <value>Potwierdzenie dymkowe (PopConfirm)</value>
   </data>
   <data name="Page_Title_ProportionalCanvas" xml:space="preserve">
-    <value>Płótno proporcjonalne ProportionalCanvas</value>
+    <value>Płótno proporcjonalne (ProportionalCanvas)</value>
   </data>
   <data name="Page_Title_QrCode" xml:space="preserve">
-    <value>Kod QR QrCode</value>
+    <value>Kod QR (QrCode)</value>
   </data>
   <data name="Page_Title_RangeSlider" xml:space="preserve">
-    <value>Suwak zakresu RangeSlider</value>
+    <value>Suwak zakresu (RangeSlider)</value>
   </data>
   <data name="Page_Title_Rating" xml:space="preserve">
-    <value>Ocena Rating</value>
+    <value>Ocena (Rating)</value>
   </data>
   <data name="Page_Title_ScrollToButton" xml:space="preserve">
-    <value>Przycisk przewiń do ScrollToButton</value>
+    <value>Przycisk przewiń do (ScrollToButton)</value>
   </data>
   <data name="Page_Title_SelectionList" xml:space="preserve">
-    <value>Lista wyboru SelectionList</value>
+    <value>Lista wyboru (SelectionList)</value>
   </data>
   <data name="Page_Title_Skeleton" xml:space="preserve">
-    <value>Szkielet Skeleton</value>
+    <value>Szkielet (Skeleton)</value>
   </data>
   <data name="Page_Title_TagInput" xml:space="preserve">
-    <value>Pole etykiet TagInput</value>
+    <value>Pole etykiet (TagInput)</value>
   </data>
   <data name="Page_Title_ThemeToggler" xml:space="preserve">
-    <value>Przełącznik motywu ThemeToggler</value>
+    <value>Przełącznik motywu (ThemeToggler)</value>
   </data>
   <data name="Page_Title_ThemeVariantMapper" xml:space="preserve">
-    <value>Mapowanie wariantów motywu ThemeVariantMapper</value>
+    <value>Mapowanie wariantów motywu (ThemeVariantMapper)</value>
   </data>
   <data name="Page_Title_TimeBox" xml:space="preserve">
-    <value>Pole czasu TimeBox</value>
+    <value>Pole czasu (TimeBox)</value>
   </data>
   <data name="Page_Title_Timeline" xml:space="preserve">
-    <value>Oś czasu Timeline</value>
+    <value>Oś czasu (Timeline)</value>
   </data>
   <data name="Page_Title_TimeOnlyPicker" xml:space="preserve">
-    <value>Selektor samego czasu TimeOnlyPicker</value>
+    <value>Selektor samego czasu (TimeOnlyPicker)</value>
   </data>
   <data name="Page_Title_TimeOnlyRangePicker" xml:space="preserve">
-    <value>Selektor zakresu samego czasu TimeOnlyRangePicker</value>
+    <value>Selektor zakresu samego czasu (TimeOnlyRangePicker)</value>
   </data>
   <data name="Page_Title_TimePicker" xml:space="preserve">
-    <value>Selektor czasu TimePicker</value>
+    <value>Selektor czasu (TimePicker)</value>
   </data>
   <data name="Page_Title_TimeRangePicker" xml:space="preserve">
-    <value>Selektor zakresu czasu TimeRangePicker</value>
+    <value>Selektor zakresu czasu (TimeRangePicker)</value>
   </data>
   <data name="Page_Title_Toast" xml:space="preserve">
-    <value>Powiadomienie Toast</value>
+    <value>Powiadomienie (Toast)</value>
   </data>
   <data name="Page_Title_ToolBar" xml:space="preserve">
-    <value>Pasek narzędzi ToolBar</value>
+    <value>Pasek narzędzi (ToolBar)</value>
   </data>
   <data name="Page_Title_TreeComboBox" xml:space="preserve">
-    <value>Lista drzewiasta TreeComboBox</value>
+    <value>Lista drzewiasta (TreeComboBox)</value>
   </data>
   <data name="Page_Title_TwoTonePathIcon" xml:space="preserve">
-    <value>Dwukolorowa ikona ścieżki TwoTonePathIcon</value>
+    <value>Dwukolorowa ikona ścieżki (TwoTonePathIcon)</value>
   </data>
   <data name="Page_Title_VirtualizingUniformGrid" xml:space="preserve">
-    <value>Wirtualizowana siatka jednolita VirtualizingUniformGrid</value>
+    <value>Wirtualizowana siatka jednolita (VirtualizingUniformGrid)</value>
   </data>
   <data name="Page_Title_WindowDialog" xml:space="preserve">
-    <value>Dialog okienkowy WindowDialog</value>
+    <value>Dialog okienkowy (WindowDialog)</value>
   </data>
   <!-- Page Descriptions -->
   <data name="Page_Description_Anchor" xml:space="preserve">

@@ -20,6 +20,7 @@
             <lingua:CulturePicker.Styles>
                 <Style Selector="ComboBox">
                     <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderThickness" Value="0" />
                 </Style>
             </lingua:CulturePicker.Styles>
             <lingua:CulturePicker.Managers>

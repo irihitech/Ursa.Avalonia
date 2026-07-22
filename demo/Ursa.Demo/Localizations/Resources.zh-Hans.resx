@@ -18,10 +18,10 @@
     <value>Switch to English</value>
   </data>
   <data name="Menu_Header_Introduction" xml:space="preserve">
-    <value>介绍 Introduction</value>
+    <value>介绍</value>
   </data>
   <data name="Menu_Header_AboutUs" xml:space="preserve">
-    <value>关于我们 AboutUs</value>
+    <value>关于我们</value>
   </data>
   <!-- Category headers -->
   <data name="Menu_Category_Controls" xml:space="preserve">
