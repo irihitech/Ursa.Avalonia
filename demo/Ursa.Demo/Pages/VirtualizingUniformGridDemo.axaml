@@ -54,7 +54,7 @@
                             AllowDrag="True"
                             Step="1"
                             Maximum="1000"
-                            Minimum="0"
+                            Minimum="10"
                             IsEnabled="{Binding !AutoWidth}"
                             Value="{Binding ItemWidth}" />
                     </u:FormItem>
