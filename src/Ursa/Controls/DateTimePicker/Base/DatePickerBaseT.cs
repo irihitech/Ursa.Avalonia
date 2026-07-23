@@ -131,7 +131,6 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
         {
             SetCurrentValue(SelectedDateProperty, null);
             _calendar?.ClearSelection();
-            DataValidationErrors.SetError(this, null);
             return;
         }
 

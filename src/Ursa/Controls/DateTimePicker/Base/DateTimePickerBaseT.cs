@@ -167,7 +167,6 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
         if (string.IsNullOrWhiteSpace(_textBox?.Text))
         {
             SetCurrentValue(SelectedDateProperty, null);
-            DataValidationErrors.SetError(this, null);
             return;
         }
         var parsed = Parse(_textBox?.Text, format);

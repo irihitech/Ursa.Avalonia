@@ -111,7 +111,6 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
         {
             SetCurrentValue(SelectedTimeProperty, null);
             _presenter?.SyncTime(null);
-            DataValidationErrors.SetError(this, null);
             return;
         }
 
