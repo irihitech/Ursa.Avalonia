@@ -117,6 +117,7 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
 
     private void OnTimeSelectedCore(object? sender, TimeChangedEventArgs e)
     {
+        DataValidationErrors.SetError(this, null);
         if (NeedConfirmation)
         {
             if (Equals(sender, _startPresenter))
@@ -176,6 +177,7 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
 
     public override void Confirm()
     {
+        DataValidationErrors.SetError(this, null);
         if (NeedConfirmation)
         {
             if (_pendingStartTime.HasValue)
@@ -235,12 +237,24 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
         if (string.IsNullOrWhiteSpace(_startTextBox?.Text))
             SetCurrentValue(SelectedStartTimeProperty, null);
         else
-            SetCurrentValue(SelectedStartTimeProperty, Parse(_startTextBox?.Text, format));
+        {
+            var parsed = Parse(_startTextBox?.Text, format);
+            if (parsed.HasValue)
+                SetCurrentValue(SelectedStartTimeProperty, parsed);
+            else
+                DataValidationErrors.SetError(this, new InvalidOperationException("The start time input is not valid."));
+        }
 
         if (string.IsNullOrWhiteSpace(_endTextBox?.Text))
             SetCurrentValue(SelectedEndTimeProperty, null);
         else
-            SetCurrentValue(SelectedEndTimeProperty, Parse(_endTextBox?.Text, format));
+        {
+            var parsed = Parse(_endTextBox?.Text, format);
+            if (parsed.HasValue)
+                SetCurrentValue(SelectedEndTimeProperty, parsed);
+            else
+                DataValidationErrors.SetError(this, new InvalidOperationException("The end time input is not valid."));
+        }
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
@@ -259,6 +273,7 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
 
     public override void Clear()
     {
+        DataValidationErrors.SetError(this, null);
         SetCurrentValue(SelectedStartTimeProperty, null);
         SetCurrentValue(SelectedEndTimeProperty, null);
         _startPresenter?.SyncTime(null);

@@ -105,6 +105,7 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
 
     private void OnDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
     {
+        DataValidationErrors.SetError(this, null);
         if (e.Date is null) return;
         if (NeedConfirmation)
         {
@@ -122,6 +123,7 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
 
     private void OnTimeSelected(object? sender, TimeChangedEventArgs e)
     {
+        DataValidationErrors.SetError(this, null);
         if (e.NewTime is null) return;
         if (NeedConfirmation)
         {
@@ -165,10 +167,19 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
         if (string.IsNullOrWhiteSpace(_textBox?.Text))
         {
             SetCurrentValue(SelectedDateProperty, null);
+            DataValidationErrors.SetError(this, null);
             return;
         }
         var parsed = Parse(_textBox?.Text, format);
-        SetCurrentValue(SelectedDateProperty, parsed);
+        if (parsed.HasValue)
+        {
+            SetCurrentValue(SelectedDateProperty, parsed);
+            DataValidationErrors.SetError(this, null);
+        }
+        else
+        {
+            DataValidationErrors.SetError(this, new InvalidOperationException("The input is not a valid date and time."));
+        }
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
@@ -214,7 +225,11 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
         }
     }
 
-    public override void Clear() => SetCurrentValue(SelectedDateProperty, null);
+    public override void Clear()
+    {
+        DataValidationErrors.SetError(this, null);
+        SetCurrentValue(SelectedDateProperty, null);
+    }
 
     public override void Confirm()
     {

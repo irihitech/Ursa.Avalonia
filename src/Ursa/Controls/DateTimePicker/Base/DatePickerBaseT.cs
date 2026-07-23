@@ -96,6 +96,7 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
 
     private void OnDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
     {
+        DataValidationErrors.SetError(this, null);
         if (NeedConfirmation)
         {
             _pendingDate = e.Date;
@@ -130,6 +131,7 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
         {
             SetCurrentValue(SelectedDateProperty, null);
             _calendar?.ClearSelection();
+            DataValidationErrors.SetError(this, null);
             return;
         }
 
@@ -138,6 +140,7 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
         if (parsed.HasValue)
         {
             SetCurrentValue(SelectedDateProperty, parsed);
+            DataValidationErrors.SetError(this, null);
             var dateOnly = ToDateOnly(parsed);
             if (dateOnly.HasValue && _calendar is not null)
             {
@@ -148,8 +151,7 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
         }
         else
         {
-            SetCurrentValue(SelectedDateProperty, null);
-            _calendar?.ClearSelection();
+            DataValidationErrors.SetError(this, new InvalidOperationException("The input is not a valid date."));
         }
     }
 
@@ -219,7 +221,11 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
         }
     }
 
-    public override void Clear() => SetCurrentValue(SelectedDateProperty, null);
+    public override void Clear()
+    {
+        DataValidationErrors.SetError(this, null);
+        SetCurrentValue(SelectedDateProperty, null);
+    }
 
     public override void Confirm()
     {

@@ -135,6 +135,7 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
 
     private void OnDateSelected(object? sender, DatePickerCalendarDayButtonEventArgs e)
     {
+        DataValidationErrors.SetError(this, null);
         if (_status is { Current: Status.Start, Previous: Status.None })
         {
             SetCurrentValue(SelectedStartDateProperty,
@@ -261,12 +262,24 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
         if (string.IsNullOrWhiteSpace(_startTextBox?.Text))
             SetCurrentValue(SelectedStartDateProperty, null);
         else
-            SetCurrentValue(SelectedStartDateProperty, Parse(_startTextBox?.Text, format));
+        {
+            var parsed = Parse(_startTextBox?.Text, format);
+            if (parsed.HasValue)
+                SetCurrentValue(SelectedStartDateProperty, parsed);
+            else
+                DataValidationErrors.SetError(this, new InvalidOperationException("The start date input is not valid."));
+        }
 
         if (string.IsNullOrWhiteSpace(_endTextBox?.Text))
             SetCurrentValue(SelectedEndDateProperty, null);
         else
-            SetCurrentValue(SelectedEndDateProperty, Parse(_endTextBox?.Text, format));
+        {
+            var parsed = Parse(_endTextBox?.Text, format);
+            if (parsed.HasValue)
+                SetCurrentValue(SelectedEndDateProperty, parsed);
+            else
+                DataValidationErrors.SetError(this, new InvalidOperationException("The end date input is not valid."));
+        }
 
         _startCalendar?.MarkDates(ToDateOnly(SelectedStartDate), ToDateOnly(SelectedEndDate));
         _endCalendar?.MarkDates(ToDateOnly(SelectedStartDate), ToDateOnly(SelectedEndDate));
@@ -286,6 +299,7 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
 
     public override void Clear()
     {
+        DataValidationErrors.SetError(this, null);
         SetCurrentValue(SelectedStartDateProperty, null);
         SetCurrentValue(SelectedEndDateProperty, null);
         _status.Reset();
