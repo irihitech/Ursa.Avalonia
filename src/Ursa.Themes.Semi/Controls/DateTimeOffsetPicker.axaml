@@ -186,6 +186,23 @@
         <Style Selector="^[IsReadOnly=True] /template/ ComboBox#PART_OffsetComboBox">
             <Setter Property="IsEnabled" Value="False" />
         </Style>
+
+        <!--  Error State  -->
+        <Style Selector="^:error">
+            <Style Selector="^ /template/ Border#Background">
+                <Setter Property="Background" Value="{DynamicResource DataValidationErrorsBackground}" />
+            </Style>
+            <Style Selector="^:pointerover /template/ Border#Background">
+                <Setter Property="Background" Value="{DynamicResource DataValidationErrorsPointeroverBackground}" />
+            </Style>
+            <Style Selector="^:focus /template/ Border#Background">
+                <Setter Property="BorderBrush" Value="{DynamicResource DataValidationErrorsSelectedBorderBrush}" />
+            </Style>
+            <Style Selector="^:focus-within /template/ Border#Background">
+                <Setter Property="BorderBrush" Value="{DynamicResource DataValidationErrorsSelectedBorderBrush}" />
+            </Style>
+        </Style>
+
 <!--  Focused State  -->
         <Style
             Selector="^:focus /template/ Border#Background">
