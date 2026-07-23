@@ -1,4 +1,5 @@
 ﻿using System;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Irihi.Lingua;
@@ -24,7 +25,10 @@ public partial class TitleBarRightContent : UserControl
 
     private void CulturePicker_OnCultureChanged(object? sender, CultureChangedEventArgs e)
     {
-        SemiTheme.OverrideLocaleResources(App.Current, e.Culture?.Culture);
-        UrsaSemiTheme.OverrideLocaleResources(App.Current, e.Culture?.Culture);
+        if (Application.Current is not null)
+        {
+            SemiTheme.OverrideLocaleResources(Application.Current, e.Culture?.Culture);
+            UrsaSemiTheme.OverrideLocaleResources(Application.Current, e.Culture?.Culture);
+        }
     }
 }
