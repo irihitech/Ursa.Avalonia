@@ -51,5 +51,17 @@
                 PanelFormat="{Binding #panelBox.Text}"
                 SelectedDate="2025-06-26 10:30:00" />
         </StackPanel>
+
+        <StackPanel HorizontalAlignment="Left" Spacing="8">
+            <TextBlock FontWeight="Bold" FontSize="16" Text="Data Validation" />
+            <TextBlock Foreground="{DynamicResource TextBoxPlaceholderForeground}"
+                       Text="Clear the date-time to trigger [Required] validation and see the error feedback." />
+            <u:DateTimePicker
+                MinWidth="100"
+                Classes="ClearButton"
+                DisplayFormat="{Binding #formatBox.Text}"
+                PanelFormat="{Binding #panelBox.Text}"
+                SelectedDate="{Binding ValidatedDateTime, Mode=TwoWay}" />
+        </StackPanel>
     </StackPanel>
 </UserControl>

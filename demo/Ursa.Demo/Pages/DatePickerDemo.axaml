@@ -45,5 +45,15 @@
                 IsReadOnly="{Binding #readonlyToggle.IsChecked}"
                 SelectedDate="2025-06-26" />
         </StackPanel>
+
+        <StackPanel Spacing="8">
+            <TextBlock FontWeight="Bold" FontSize="16" Text="Data Validation" />
+            <TextBlock Foreground="{DynamicResource TextBoxPlaceholderForeground}"
+                       Text="Clear the date to trigger [Required] validation and see the error feedback." />
+            <u:DatePicker
+                Width="200"
+                Classes="ClearButton"
+                SelectedDate="{Binding ValidatedDate, Mode=TwoWay}" />
+        </StackPanel>
     </StackPanel>
 </UserControl>

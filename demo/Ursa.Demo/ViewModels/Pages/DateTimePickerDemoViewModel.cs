@@ -1,9 +1,13 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+using CommunityToolkit.Mvvm.ComponentModel;
+
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 
 namespace Ursa.Demo.ViewModels;
 
-public class DateTimePickerDemoViewModel : IPageMetadataProvider
+public partial class DateTimePickerDemoViewModel : ObservableValidator, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
@@ -17,5 +21,12 @@ public class DateTimePickerDemoViewModel : IPageMetadataProvider
         MvvmSupport = true,
     };
 
-    
+    [ObservableProperty]
+    [Required(ErrorMessage = "Please select a date and time")]
+    public partial DateTime? ValidatedDateTime { get; set; }
+
+    public DateTimePickerDemoViewModel()
+    {
+        ValidatedDateTime = DateTime.Now;
+    }
 }
