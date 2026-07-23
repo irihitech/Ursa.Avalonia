@@ -64,5 +64,17 @@
                 SelectedEndTime="18:30:00"
                 SelectedStartTime="10:30:00" />
         </StackPanel>
+
+        <StackPanel Spacing="8">
+            <TextBlock FontWeight="Bold" FontSize="16" Text="Data Validation" />
+            <TextBlock Foreground="{DynamicResource TextBoxPlaceholderForeground}"
+                       Text="Clear the time range to trigger [Required] validation and see the error feedback." />
+            <u:TimeRangePicker
+                Width="300"
+                DisplayFormat="{Binding #displayFormat.Text}"
+                PanelFormat="{Binding #panelFormat.Text}"
+                SelectedStartTime="{Binding ValidatedRange.Start, Mode=TwoWay}"
+                SelectedEndTime="{Binding ValidatedRange.End, Mode=TwoWay}" />
+        </StackPanel>
     </StackPanel>
 </UserControl>

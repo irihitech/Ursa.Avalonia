@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
@@ -6,7 +7,7 @@ using Ursa.Demo.Localizations;
 
 namespace Ursa.Demo.ViewModels;
 
-public partial class TimeRangePickerDemoViewModel: ObservableObject, IPageMetadataProvider
+public partial class TimeRangePickerDemoViewModel: ObservableValidator, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
@@ -22,10 +23,29 @@ public partial class TimeRangePickerDemoViewModel: ObservableObject, IPageMetada
 
     [ObservableProperty] public partial TimeSpan? StartTime { get; set; }
     [ObservableProperty] public partial TimeSpan? EndTime { get; set; }
+    
+    public ValidatedTimeRange ValidatedRange { get; } = new();
 
     public TimeRangePickerDemoViewModel()
     {
         StartTime = new TimeSpan(8, 21, 0);
         EndTime = new TimeSpan(18, 22, 0);
+    }
+}
+
+public partial class ValidatedTimeRange : ObservableValidator
+{
+    [ObservableProperty]
+    [Required(ErrorMessage = "Start time is required")]
+    public partial TimeSpan? Start { get; set; }
+    
+    [ObservableProperty]
+    [Required(ErrorMessage = "End time is required")]
+    public partial TimeSpan? End { get; set; }
+
+    public ValidatedTimeRange()
+    {
+        Start = new TimeSpan(8, 21, 0);
+        End = new TimeSpan(18, 22, 0);
     }
 }

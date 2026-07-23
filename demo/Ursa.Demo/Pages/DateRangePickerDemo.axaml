@@ -52,5 +52,16 @@
                 SelectedEndDate="2025-06-30"
                 SelectedStartDate="2025-06-26" />
         </StackPanel>
+
+        <StackPanel Spacing="8">
+            <TextBlock FontWeight="Bold" FontSize="16" Text="Data Validation" />
+            <TextBlock Foreground="{DynamicResource TextBoxPlaceholderForeground}"
+                       Text="Clear the date range to trigger [Required] validation and see the error feedback." />
+            <u:DateRangePicker
+                Width="360"
+                DisplayFormat="{Binding #format.Text}"
+                SelectedStartDate="{Binding ValidatedRange.Start, Mode=TwoWay}"
+                SelectedEndDate="{Binding ValidatedRange.End, Mode=TwoWay}" />
+        </StackPanel>
     </StackPanel>
 </UserControl>

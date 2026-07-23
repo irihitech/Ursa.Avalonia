@@ -71,6 +71,16 @@
                 ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
             </StackPanel>
 
+            <StackPanel Spacing="8">
+                <TextBlock FontWeight="Bold" FontSize="16" Text="Data Validation" />
+                <TextBlock Foreground="{DynamicResource TextBoxPlaceholderForeground}"
+                           Text="Clear the date-time to trigger [Required] validation and see the error feedback." />
+                <u:DateTimeOffsetPicker
+                    Width="360"
+                    ShowOffsetSelection="{Binding #showOffset.IsChecked}"
+                    SelectedDate="{Binding ValidatedDateTime, Mode=TwoWay}" />
+            </StackPanel>
+
         </StackPanel>
     </ScrollViewer>
 </UserControl>
