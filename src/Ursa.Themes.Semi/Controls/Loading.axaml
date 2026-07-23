@@ -94,10 +94,8 @@
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:LoadingContainer}" TargetType="u:LoadingContainer">
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="MessageForeground" Value="{DynamicResource TextBlockDefaultForeground}" />
         <Setter Property="Background" Value="{DynamicResource LoadingMaskBackground}" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Indicator">
             <Template>
                 <u:LoadingIcon IsLoading="{Binding $parent[u:LoadingContainer].IsLoading, Mode=TwoWay}" />
