@@ -71,6 +71,7 @@
                        Text="Clear the time range to trigger [Required] validation and see the error feedback." />
             <u:TimeRangePicker
                 Width="300"
+                Classes="ClearButton"
                 DisplayFormat="{Binding #displayFormat.Text}"
                 PanelFormat="{Binding #panelFormat.Text}"
                 SelectedStartTime="{Binding ValidatedRange.Start, Mode=TwoWay}"

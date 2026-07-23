@@ -86,6 +86,7 @@
                            Text="Clear the date range to trigger [Required] validation and see the error feedback." />
                 <u:DateOffsetRangePicker
                     Width="400"
+                    Classes="ClearButton"
                     DisplayFormat="yyyy-MM-dd"
                     ShowOffsetSelection="{Binding #showOffset.IsChecked}"
                     SelectedStartDate="{Binding ValidatedRange.Start, Mode=TwoWay}"

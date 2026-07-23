@@ -77,6 +77,7 @@
                            Text="Clear the date-time to trigger [Required] validation and see the error feedback." />
                 <u:DateTimeOffsetPicker
                     Width="360"
+                    Classes="ClearButton"
                     ShowOffsetSelection="{Binding #showOffset.IsChecked}"
                     SelectedDate="{Binding ValidatedDateTime, Mode=TwoWay}" />
             </StackPanel>

@@ -84,6 +84,7 @@
                            Text="Clear the date to trigger [Required] validation and see the error feedback." />
                 <u:DateOffsetPicker
                     Width="280"
+                    Classes="ClearButton"
                     DisplayFormat="yyyy-MM-dd"
                     ShowOffsetSelection="{Binding #showOffset.IsChecked}"
                     SelectedDate="{Binding ValidatedDate, Mode=TwoWay}" />
