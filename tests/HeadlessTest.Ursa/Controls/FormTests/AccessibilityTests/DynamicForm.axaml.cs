@@ -24,6 +24,6 @@ public partial class DynamicFormViewModel: ObservableObject
 
 public partial class FormTextViewModel : ObservableObject
 {
-    [ObservableProperty] private string? _label;
-    [ObservableProperty] private string? _value;
+    [ObservableProperty] public partial string? Label { get; set; }
+    [ObservableProperty] public partial string? Value { get; set; }
 }

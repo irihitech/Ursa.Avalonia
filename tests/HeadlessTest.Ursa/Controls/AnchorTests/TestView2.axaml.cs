@@ -38,7 +38,7 @@ public partial class AnchorDemoViewModel: ObservableObject
 
 public partial class AnchorItemViewModel: ObservableObject
 {
-    [ObservableProperty] private string? _anchorId;
-    [ObservableProperty] private string? _header;
+    [ObservableProperty] public partial string? AnchorId { get; set; }
+    [ObservableProperty] public partial string? Header { get; set; }
     public ObservableCollection<AnchorItemViewModel>? Children { get; set; }
 }

@@ -40,6 +40,6 @@ public partial class DataBoundTestViewModel
 
 public partial class NavMenuItemViewModel : ObservableObject
 {
-    [ObservableProperty] private string? _header;
+    [ObservableProperty] public partial string? Header { get; set; }
     public ObservableCollection<NavMenuItemViewModel> Children { get; init; } = new();
 }

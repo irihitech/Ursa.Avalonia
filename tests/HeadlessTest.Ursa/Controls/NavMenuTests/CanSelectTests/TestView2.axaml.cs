@@ -37,5 +37,5 @@ public partial class TestView2ViewModel
 
 public partial class MenuItemViewModel: ObservableObject
 {
-    [ObservableProperty] private string? _text;
+    [ObservableProperty] public partial string? Text { get; set; }
 }
