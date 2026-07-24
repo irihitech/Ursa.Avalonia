@@ -574,15 +574,6 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
         set => this.SetValue(CommandParameterProperty, value);
     }
 #pragma warning restore AVP1002
-    protected override void UpdateDataValidation(AvaloniaProperty property, BindingValueType state, Exception? error)
-    {
-        if (property == ValueProperty)
-        {
-            DataValidationErrors.SetError(this, error);
-        }
-        
-    }
-
     private void InvokeCommand(object? cp)
     {
         if (this.Command != null && this.Command.CanExecute(cp))

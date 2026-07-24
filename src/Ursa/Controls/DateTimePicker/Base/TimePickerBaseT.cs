@@ -89,6 +89,7 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
     private void OnPresenterTimeChangedCore(object? sender, TimeChangedEventArgs e)
     {
         if (!IsInitialized) return;
+        DataValidationErrors.SetError(this, null);
         if (NeedConfirmation)
             _pendingTime = e.NewTime;
         else
@@ -117,11 +118,11 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
         if (parsed.HasValue)
         {
             SetCurrentValue(SelectedTimeProperty, parsed);
+            DataValidationErrors.SetError(this, null);
         }
         else
         {
-            SetCurrentValue(SelectedTimeProperty, null);
-            _presenter?.SyncTime(null);
+            DataValidationErrors.SetError(this, new InvalidOperationException("The input is not a valid time."));
         }
     }
 
@@ -211,6 +212,7 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
 
     public override void Clear()
     {
+        DataValidationErrors.SetError(this, null);
         SetCurrentValue(SelectedTimeProperty, null);
         _presenter?.SyncTime(null);
     }

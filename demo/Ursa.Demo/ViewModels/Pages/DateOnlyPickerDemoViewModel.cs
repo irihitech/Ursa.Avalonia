@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
@@ -6,7 +7,7 @@ using Ursa.Demo.Localizations;
 
 namespace Ursa.Demo.ViewModels;
 
-public partial class DateOnlyPickerDemoViewModel : ObservableObject, IPageMetadataProvider
+public partial class DateOnlyPickerDemoViewModel : ObservableValidator, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
@@ -22,8 +23,13 @@ public partial class DateOnlyPickerDemoViewModel : ObservableObject, IPageMetada
 
     [ObservableProperty] public partial DateOnly? SelectedDate { get; set; }
 
+    [ObservableProperty]
+    [Required(ErrorMessage = "Please select a date")]
+    public partial DateOnly? ValidatedDate { get; set; }
+
     public DateOnlyPickerDemoViewModel()
     {
         SelectedDate = DateOnly.FromDateTime(DateTime.Today);
+        ValidatedDate = DateOnly.FromDateTime(DateTime.Today);
     }
 }

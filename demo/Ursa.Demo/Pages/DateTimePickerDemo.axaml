@@ -11,45 +11,58 @@
     d:DesignWidth="800"
     x:DataType="viewModels:DateTimePickerDemoViewModel"
     mc:Ignorable="d">
-    <StackPanel
-        Spacing="20">
-        <StackPanel HorizontalAlignment="Left">
-            <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
-            <u:Form>
-                <TextBox
-                    Name="formatBox"
-                    Width="300"
-                    u:FormItem.Label="DisplayFormat"
-                    Text="yyyy年MM月dd日 HH时mm分ss秒" />
-                <TextBox
-                    Name="panelBox"
-                    u:FormItem.Label="Panel"
-                    Text="hh mm ss" />
-                <TextBlock u:FormItem.Label="Selected" Text="{Binding #confirmPicker.SelectedDate}" />
-                <u:DateTimePicker
-                    Name="confirmPicker"
-                    MinWidth="100"
-                    u:FormItem.Label="Need Confirmation"
-                    Classes="ClearButton"
-                    DisplayFormat="{Binding #formatBox.Text}"
-                    NeedConfirmation="{Binding #needConfirm.IsChecked}"
-                    PanelFormat="{Binding #panelBox.Text}" />
-                <u:DateTimePicker
-                    MinWidth="100"
-                    u:FormItem.NoLabel="True"
-                    Classes="ClearButton"
-                    DisplayFormat="{Binding #formatBox.Text}"
-                    PanelFormat="{Binding #panelBox.Text}" />
-            </u:Form>
+    <ScrollViewer>
+        <StackPanel Spacing="20">
+            <StackPanel HorizontalAlignment="Left">
+                <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
+                <u:Form>
+                    <TextBox
+                        Name="formatBox"
+                        Width="300"
+                        u:FormItem.Label="DisplayFormat"
+                        Text="yyyy年MM月dd日 HH时mm分ss秒" />
+                    <TextBox
+                        Name="panelBox"
+                        u:FormItem.Label="Panel"
+                        Text="hh mm ss" />
+                    <TextBlock u:FormItem.Label="Selected" Text="{Binding #confirmPicker.SelectedDate}" />
+                    <u:DateTimePicker
+                        Name="confirmPicker"
+                        MinWidth="100"
+                        u:FormItem.Label="Need Confirmation"
+                        Classes="ClearButton"
+                        DisplayFormat="{Binding #formatBox.Text}"
+                        NeedConfirmation="{Binding #needConfirm.IsChecked}"
+                        PanelFormat="{Binding #panelBox.Text}" />
+                    <u:DateTimePicker
+                        MinWidth="100"
+                        u:FormItem.NoLabel="True"
+                        Classes="ClearButton"
+                        DisplayFormat="{Binding #formatBox.Text}"
+                        PanelFormat="{Binding #panelBox.Text}" />
+                </u:Form>
 
-            <TextBlock Text="IsReadOnly" />
-            <ToggleSwitch Name="readonlyToggle" Content="Read Only" />
-            <u:DateTimePicker
-                MinWidth="100"
-                DisplayFormat="{Binding #formatBox.Text}"
-                IsReadOnly="{Binding #readonlyToggle.IsChecked}"
-                PanelFormat="{Binding #panelBox.Text}"
-                SelectedDate="2025-06-26 10:30:00" />
+                <TextBlock Text="IsReadOnly" />
+                <ToggleSwitch Name="readonlyToggle" Content="Read Only" />
+                <u:DateTimePicker
+                    MinWidth="100"
+                    DisplayFormat="{Binding #formatBox.Text}"
+                    IsReadOnly="{Binding #readonlyToggle.IsChecked}"
+                    PanelFormat="{Binding #panelBox.Text}"
+                    SelectedDate="2025-06-26 10:30:00" />
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Left" Spacing="8">
+                <TextBlock FontWeight="Bold" FontSize="16" Text="Data Validation" />
+                <TextBlock Foreground="{DynamicResource TextBoxPlaceholderForeground}"
+                           Text="Clear the date-time to trigger [Required] validation and see the error feedback." />
+                <u:DateTimePicker HorizontalAlignment="Left"
+                    MinWidth="100"
+                    Classes="ClearButton"
+                    DisplayFormat="{Binding #formatBox.Text}"
+                    PanelFormat="{Binding #panelBox.Text}"
+                    SelectedDate="{Binding ValidatedDateTime, Mode=TwoWay}" />
+            </StackPanel>
         </StackPanel>
-    </StackPanel>
+    </ScrollViewer>
 </UserControl>

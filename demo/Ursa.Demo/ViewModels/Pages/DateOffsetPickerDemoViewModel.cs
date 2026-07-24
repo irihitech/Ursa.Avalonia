@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
@@ -6,7 +7,7 @@ using Ursa.Demo.Localizations;
 
 namespace Ursa.Demo.ViewModels;
 
-public partial class DateOffsetPickerDemoViewModel : ObservableObject, IPageMetadataProvider
+public partial class DateOffsetPickerDemoViewModel : ObservableValidator, IPageMetadataProvider
 {
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
@@ -22,8 +23,13 @@ public partial class DateOffsetPickerDemoViewModel : ObservableObject, IPageMeta
 
     [ObservableProperty] public partial DateTimeOffset? SelectedDate { get; set; }
 
+    [ObservableProperty]
+    [Required(ErrorMessage = "Please select a date")]
+    public partial DateTimeOffset? ValidatedDate { get; set; }
+
     public DateOffsetPickerDemoViewModel()
     {
         SelectedDate = DateTimeOffset.Now;
+        ValidatedDate = DateTimeOffset.Now;
     }
 }

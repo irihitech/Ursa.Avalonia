@@ -32,6 +32,7 @@ class Program
     public static AppBuilder BuildAvaloniaApp()
         => AppBuilder.Configure<App>()
             .UseManagedSystemDialogs()
+            .WithDataAnnotationsValidation()
             .UsePlatformDetect()
             .With(new Win32PlatformOptions())
             .LogToTrace();
