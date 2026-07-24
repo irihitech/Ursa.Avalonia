@@ -11,57 +11,71 @@
     x:DataType="viewModels:TimeOnlyPickerDemoViewModel"
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
-    <StackPanel Spacing="20">
-        <StackPanel HorizontalAlignment="Left" Spacing="20">
-            <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
+    <ScrollViewer>
+        <StackPanel Spacing="20">
+            <StackPanel HorizontalAlignment="Left" Spacing="20">
+                <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
 
-            <TextBlock Text="{Binding #picker.SelectedTime}" />
+                <TextBlock Text="{Binding #picker.SelectedTime}" />
 
-            <TextBox
-                Name="displayFormat"
-                Width="300"
-                InnerLeftContent="Display Format"
-                Text="HH:mm:ss" />
-            <TextBox
-                Name="panelFormat"
-                Width="300"
-                InnerLeftContent="Panel Format"
-                Text="tt HH mm ss" />
+                <TextBox
+                    Name="displayFormat"
+                    Width="300"
+                    InnerLeftContent="Display Format"
+                    Text="HH:mm:ss" />
+                <TextBox
+                    Name="panelFormat"
+                    Width="300"
+                    InnerLeftContent="Panel Format"
+                    Text="tt HH mm ss" />
 
-            <u:TimeOnlyPicker
-                Name="picker"
-                Width="200"
-                HorizontalAlignment="Left"
-                DisplayFormat="{Binding #displayFormat.Text}"
-                NeedConfirmation="{Binding #needConfirm.IsChecked}"
-                PanelFormat="{Binding #panelFormat.Text}" />
+                <u:TimeOnlyPicker
+                    Name="picker"
+                    Width="200"
+                    HorizontalAlignment="Left"
+                    DisplayFormat="{Binding #displayFormat.Text}"
+                    NeedConfirmation="{Binding #needConfirm.IsChecked}"
+                    PanelFormat="{Binding #panelFormat.Text}" />
 
-            <u:TimeOnlyPicker
-                Width="300"
-                HorizontalAlignment="Left"
-                Classes="ClearButton"
-                DisplayFormat="{Binding #displayFormat.Text}"
-                NeedConfirmation="True"
-                PanelFormat="{Binding #panelFormat.Text}" />
+                <u:TimeOnlyPicker
+                    Width="300"
+                    HorizontalAlignment="Left"
+                    Classes="ClearButton"
+                    DisplayFormat="{Binding #displayFormat.Text}"
+                    NeedConfirmation="True"
+                    PanelFormat="{Binding #panelFormat.Text}" />
 
-            <TextBlock Text="Binding" />
-            <u:TimeOnlyPicker
-                Width="300"
-                Classes="ClearButton"
-                HorizontalAlignment="Left"
-                SelectedTime="{Binding Time}"
-                DisplayFormat="{Binding #displayFormat.Text}"
-                PanelFormat="{Binding #panelFormat.Text}" />
+                <TextBlock Text="Binding" />
+                <u:TimeOnlyPicker
+                    Width="300"
+                    Classes="ClearButton"
+                    HorizontalAlignment="Left"
+                    SelectedTime="{Binding Time}"
+                    DisplayFormat="{Binding #displayFormat.Text}"
+                    PanelFormat="{Binding #panelFormat.Text}" />
 
-            <TextBlock Text="IsReadOnly" />
-            <ToggleSwitch Name="readonlyToggle" Content="Read Only" />
-            <u:TimeOnlyPicker
-                Width="200"
-                HorizontalAlignment="Left"
-                DisplayFormat="{Binding #displayFormat.Text}"
-                IsReadOnly="{Binding #readonlyToggle.IsChecked}"
-                PanelFormat="{Binding #panelFormat.Text}"
-                SelectedTime="10:30:00" />
+                <TextBlock Text="IsReadOnly" />
+                <ToggleSwitch Name="readonlyToggle" Content="Read Only" />
+                <u:TimeOnlyPicker
+                    Width="200"
+                    HorizontalAlignment="Left"
+                    DisplayFormat="{Binding #displayFormat.Text}"
+                    IsReadOnly="{Binding #readonlyToggle.IsChecked}"
+                    PanelFormat="{Binding #panelFormat.Text}"
+                    SelectedTime="10:30:00" />
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Left" Spacing="8">
+                <TextBlock FontWeight="Bold" FontSize="16" Text="Data Validation" />
+                <TextBlock Foreground="{DynamicResource TextBoxPlaceholderForeground}"
+                           Text="Clear the time to trigger [Required] validation and see the error feedback." />
+                <u:TimeOnlyPicker HorizontalAlignment="Left"
+                    Width="200"
+                    Classes="ClearButton"
+                    DisplayFormat="{Binding #displayFormat.Text}"
+                    PanelFormat="{Binding #panelFormat.Text}"
+                    SelectedTime="{Binding ValidatedTime, Mode=TwoWay}" />
+            </StackPanel>
         </StackPanel>
-    </StackPanel>
+    </ScrollViewer>
 </UserControl>

@@ -80,11 +80,11 @@
                     ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
             </StackPanel>
 
-            <StackPanel Spacing="8">
+            <StackPanel HorizontalAlignment="Left" Spacing="8">
                 <TextBlock FontWeight="Bold" FontSize="16" Text="Data Validation" />
                 <TextBlock Foreground="{DynamicResource TextBoxPlaceholderForeground}"
                            Text="Clear the date range to trigger [Required] validation and see the error feedback." />
-                <u:DateOffsetRangePicker
+                <u:DateOffsetRangePicker HorizontalAlignment="Left"
                     Width="400"
                     Classes="ClearButton"
                     DisplayFormat="yyyy-MM-dd"

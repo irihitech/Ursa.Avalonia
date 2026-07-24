@@ -11,7 +11,8 @@
     x:DataType="viewModels:TimePickerDemoViewModel"
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
-    <StackPanel Spacing="20">
+    <ScrollViewer>
+        <StackPanel Spacing="20">
         <StackPanel HorizontalAlignment="Left" Spacing="20">
             <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
         
@@ -70,7 +71,7 @@
             <TextBlock FontWeight="Bold" FontSize="16" Text="Data Validation" />
             <TextBlock Foreground="{DynamicResource TextBoxPlaceholderForeground}"
                        Text="Clear the time to trigger [Required] validation and see the error feedback." />
-            <u:TimePicker
+            <u:TimePicker HorizontalAlignment="Left"
                 Width="200"
                 Classes="ClearButton"
                 DisplayFormat="{Binding #displayFormat.Text}"
@@ -78,4 +79,5 @@
                 SelectedTime="{Binding ValidatedTime, Mode=TwoWay}" />
         </StackPanel>
     </StackPanel>
+    </ScrollViewer>
 </UserControl>

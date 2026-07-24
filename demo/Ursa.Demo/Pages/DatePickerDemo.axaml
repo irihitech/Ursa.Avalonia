@@ -11,7 +11,8 @@
     x:DataType="viewModels:DatePickerDemoViewModel"
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
-    <StackPanel HorizontalAlignment="Stretch" Spacing="20">
+    <ScrollViewer>
+        <StackPanel HorizontalAlignment="Stretch" Spacing="20">
         <StackPanel HorizontalAlignment="Left">
             <TextBox Name="format" InnerLeftContent="Display Format" Text="yyyy-MM-dd" />
 
@@ -46,14 +47,15 @@
                 SelectedDate="2025-06-26" />
         </StackPanel>
 
-        <StackPanel Spacing="8">
+        <StackPanel HorizontalAlignment="Left" Spacing="8">
             <TextBlock FontWeight="Bold" FontSize="16" Text="Data Validation" />
             <TextBlock Foreground="{DynamicResource TextBoxPlaceholderForeground}"
                        Text="Clear the date to trigger [Required] validation and see the error feedback." />
-            <u:DatePicker
+            <u:DatePicker HorizontalAlignment="Left"
                 Width="200"
                 Classes="ClearButton"
                 SelectedDate="{Binding ValidatedDate, Mode=TwoWay}" />
         </StackPanel>
     </StackPanel>
+    </ScrollViewer>
 </UserControl>

@@ -11,7 +11,8 @@
     x:DataType="viewModels:TimeOnlyRangePickerDemoViewModel"
     mc:Ignorable="d"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls">
-    <StackPanel Spacing="20">
+    <ScrollViewer>
+        <StackPanel Spacing="20">
         <StackPanel Spacing="20" HorizontalAlignment="Left">
             <TextBox
                 Name="displayFormat"
@@ -67,11 +68,11 @@
                 SelectedStartTime="10:30:00" />
         </StackPanel>
 
-        <StackPanel Spacing="8">
+        <StackPanel HorizontalAlignment="Left" Spacing="8">
             <TextBlock FontWeight="Bold" FontSize="16" Text="Data Validation" />
             <TextBlock Foreground="{DynamicResource TextBoxPlaceholderForeground}"
                        Text="Clear the time range to trigger [Required] validation and see the error feedback." />
-            <u:TimeOnlyRangePicker
+            <u:TimeOnlyRangePicker HorizontalAlignment="Left"
                 Width="300"
                 Classes="ClearButton"
                 DisplayFormat="{Binding #displayFormat.Text}"
@@ -80,4 +81,5 @@
                 SelectedEndTime="{Binding ValidatedRange.End, Mode=TwoWay}" />
         </StackPanel>
     </StackPanel>
+    </ScrollViewer>
 </UserControl>
