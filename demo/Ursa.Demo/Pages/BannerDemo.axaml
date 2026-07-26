@@ -7,8 +7,7 @@
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
     x:DataType="vm:BannerDemoViewModel"
-    mc:Ignorable="d"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    mc:Ignorable="d">
     <Design.DataContext>
         <vm:BannerDemoViewModel />
     </Design.DataContext>

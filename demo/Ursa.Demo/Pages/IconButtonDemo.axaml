@@ -10,8 +10,7 @@
     d:DesignHeight="NaN"
     d:DesignWidth="1200"
     x:DataType="vm:IconButtonDemoViewModel"
-    mc:Ignorable="d"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    mc:Ignorable="d">
     <Design.DataContext>
         <vm:IconButtonDemoViewModel />
     </Design.DataContext>

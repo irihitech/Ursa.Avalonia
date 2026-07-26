@@ -5,7 +5,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:u="https://irihi.tech/ursa"
              xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
-             xmlns:controls="clr-namespace:Ursa.Demo.Controls"
              d:DesignHeight="800"
              d:DesignWidth="800"
              x:CompileBindings="True"

@@ -7,8 +7,7 @@
              mc:Ignorable="d" d:DesignWidth="800"
              d:DesignHeight="450"
              x:DataType="viewModels:TimeRangePickerDemoViewModel"
-             x:Class="Ursa.Demo.Pages.TimeRangePickerDemo"
-             xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+             x:Class="Ursa.Demo.Pages.TimeRangePickerDemo">
     <ScrollViewer>
         <StackPanel Spacing="20">
         <StackPanel HorizontalAlignment="Left" Spacing="20">

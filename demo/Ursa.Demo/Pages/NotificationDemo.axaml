@@ -7,8 +7,7 @@
              x:DataType="vm:NotificationDemoViewModel"
              d:DesignHeight="450"
              d:DesignWidth="800"
-             mc:Ignorable="d"
-             xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+             mc:Ignorable="d">
     <Design.DataContext>
         <vm:NotificationDemoViewModel />
     </Design.DataContext>

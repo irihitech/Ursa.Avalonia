@@ -9,7 +9,6 @@
     d:DesignWidth="800"
     mc:Ignorable="d"
     x:DataType="viewModels:NumPadDemoViewModel"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
     <StackPanel HorizontalAlignment="Stretch" Spacing="20">
         <TextBox

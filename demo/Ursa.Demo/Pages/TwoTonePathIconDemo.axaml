@@ -6,7 +6,6 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.TwoTonePathIconDemo"
              x:DataType="viewModels:TwoTonePathIconDemoViewModel"
-             xmlns:controls="clr-namespace:Ursa.Demo.Controls"
              xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
     <StackPanel Spacing="20">
         <TextBlock Text="Size" />

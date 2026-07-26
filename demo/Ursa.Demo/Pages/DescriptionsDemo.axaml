@@ -7,8 +7,7 @@
              xmlns:common="clr-namespace:Ursa.Common;assembly=Ursa"
              mc:Ignorable="d" d:DesignWidth="800"
              x:DataType="vm:DescriptionsDemoViewModel"
-             x:Class="Ursa.Demo.Pages.DescriptionsDemo"
-             xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+             x:Class="Ursa.Demo.Pages.DescriptionsDemo">
     <Design.DataContext>
         <vm:DescriptionsDemoViewModel />
     </Design.DataContext>

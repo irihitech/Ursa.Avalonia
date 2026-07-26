@@ -9,8 +9,7 @@
     d:DesignHeight="600"
     d:DesignWidth="800"
     x:DataType="vm:DateTimeOffsetPickerDemoViewModel"
-    mc:Ignorable="d"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel Spacing="8">
 
