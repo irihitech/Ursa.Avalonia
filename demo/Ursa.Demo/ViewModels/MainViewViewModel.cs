@@ -21,6 +21,7 @@ public partial class MainViewViewModel : ViewModelBase
     
     [ObservableProperty] public partial IReadOnlyList<BreadcrumbItemData>? NavigationKeys { get; set; }
     [ObservableProperty] public partial PageMetadataViewModel? PageMetadata { get; set; }
+    [ObservableProperty] public partial string? SearchText { get; set; }
 
     [ObservableProperty] public partial object? Content { get; set; }
 

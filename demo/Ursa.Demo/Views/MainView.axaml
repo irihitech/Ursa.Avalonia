@@ -87,24 +87,31 @@
                         </DataTemplate>
                     </u:NavMenu.HeaderTemplate>
                     <u:NavMenu.Header>
-                        <DockPanel Margin="8 16 8 8"
-                                   HorizontalAlignment="Center">
-                            <Panel
-                                VerticalAlignment="Center"
-                                u:NavMenu.CanToggle="True"
-                                Background="Transparent"
-                                DockPanel.Dock="Left">
-                                <iri:IrihiLogo Width="32"
-                                        Fill="{DynamicResource SemiGrey7}" />
-                            </Panel>
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                Classes="H4"
-                                Margin="16 0 0 0"
-                                IsVisible="{Binding !#menu.IsHorizontalCollapsed}"
-                                Text="Ursa"
-                                Theme="{DynamicResource TitleTextBlock}" />
-                        </DockPanel>
+                        <StackPanel>
+                            <DockPanel Margin="8 16 8 8"
+                                       HorizontalAlignment="Center">
+                                <Panel
+                                    VerticalAlignment="Center"
+                                    u:NavMenu.CanToggle="True"
+                                    Background="Transparent"
+                                    DockPanel.Dock="Left">
+                                    <iri:IrihiLogo Width="32"
+                                            Fill="{DynamicResource SemiGrey7}" />
+                                </Panel>
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    Classes="H4"
+                                    Margin="16 0 0 0"
+                                    IsVisible="{Binding !#menu.IsHorizontalCollapsed}"
+                                    Text="Ursa"
+                                    Theme="{DynamicResource TitleTextBlock}" />
+                            </DockPanel>
+                            <TextBox 
+                                Text="{Binding SearchText}" 
+                                Margin="0 16 0 0"
+                                HorizontalAlignment="Stretch" 
+                                IsVisible="{Binding !#menu.IsHorizontalCollapsed}"/>
+                        </StackPanel>
                     </u:NavMenu.Header>
                     <u:NavMenu.Footer>
                         <u:IconButton
