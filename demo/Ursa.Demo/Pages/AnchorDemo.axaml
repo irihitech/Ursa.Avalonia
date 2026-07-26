@@ -263,6 +263,118 @@
                     </u:Anchor>
                 </StackPanel>
             </TabItem>
+            <TabItem Header="AnchorScrollViewer">
+                <controls:AnchorScrollViewer
+                    VerticalScrollBarVisibility="Visible"
+                    AnchorTopOffset="16">
+                    <controls:AnchorScrollViewer.AnchorItems>
+                        <u:AnchorItem AnchorId="s1" Header="Getting Started" />
+                        <u:AnchorItem AnchorId="s2" Header="Installation">
+                            <u:AnchorItem AnchorId="s2-1" Header="NuGet Package" />
+                            <u:AnchorItem AnchorId="s2-2" Header="Theme Setup" />
+                        </u:AnchorItem>
+                        <u:AnchorItem AnchorId="s3" Header="Basic Usage" />
+                        <u:AnchorItem AnchorId="s4" Header="API Reference">
+                            <u:AnchorItem AnchorId="s4-1" Header="Properties" />
+                            <u:AnchorItem AnchorId="s4-2" Header="Events" />
+                        </u:AnchorItem>
+                    </controls:AnchorScrollViewer.AnchorItems>
+                    <StackPanel Margin="16" Spacing="16">
+                        <Border
+                            Height="200"
+                            u:Anchor.Id="s1"
+                            Background="{DynamicResource SemiGreen2}"
+                            CornerRadius="8">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="24"
+                                FontWeight="Bold"
+                                Text="Getting Started" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            u:Anchor.Id="s2"
+                            Background="{DynamicResource SemiBlue2}"
+                            CornerRadius="8">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="24"
+                                FontWeight="Bold"
+                                Text="Installation" />
+                        </Border>
+                        <Border
+                            Height="140"
+                            u:Anchor.Id="s2-1"
+                            Background="{DynamicResource SemiLightBlue2}"
+                            CornerRadius="8">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Text="NuGet Package" />
+                        </Border>
+                        <Border
+                            Height="140"
+                            u:Anchor.Id="s2-2"
+                            Background="{DynamicResource SemiCyan2}"
+                            CornerRadius="8">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Text="Theme Setup" />
+                        </Border>
+                        <Border
+                            Height="250"
+                            u:Anchor.Id="s3"
+                            Background="{DynamicResource SemiPurple2}"
+                            CornerRadius="8">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="24"
+                                FontWeight="Bold"
+                                Text="Basic Usage" />
+                        </Border>
+                        <Border
+                            Height="300"
+                            u:Anchor.Id="s4"
+                            Background="{DynamicResource SemiPink2}"
+                            CornerRadius="8">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="24"
+                                FontWeight="Bold"
+                                Text="API Reference" />
+                        </Border>
+                        <Border
+                            Height="120"
+                            u:Anchor.Id="s4-1"
+                            Background="{DynamicResource SemiRed2}"
+                            CornerRadius="8">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Text="Properties" />
+                        </Border>
+                        <Border
+                            Height="120"
+                            u:Anchor.Id="s4-2"
+                            Background="{DynamicResource SemiOrange2}"
+                            CornerRadius="8">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Text="Events" />
+                        </Border>
+                    </StackPanel>
+                </controls:AnchorScrollViewer>
+            </TabItem>
         </TabControl>
     </DockPanel>
 </UserControl>
