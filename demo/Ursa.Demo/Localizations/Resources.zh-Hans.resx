@@ -673,4 +673,14 @@
   <data name="Page_Description_WindowDialog" xml:space="preserve">
     <value>窗口对话框显示用于用户交互的模态窗口。</value>
   </data>
+  <!-- Tab Headers -->
+  <data name="Tab_Header_Samples" xml:space="preserve">
+    <value>示例</value>
+  </data>
+  <data name="Tab_Header_Guide" xml:space="preserve">
+    <value>指南</value>
+  </data>
+  <data name="Tab_Header_Resources" xml:space="preserve">
+    <value>资源</value>
+  </data>
 </root>
