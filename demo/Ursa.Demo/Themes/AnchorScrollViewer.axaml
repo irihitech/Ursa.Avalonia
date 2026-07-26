@@ -37,7 +37,7 @@
                             Name="PART_Anchor"
                             Grid.Row="0"
                             Grid.Column="1"
-                            Width="200"
+                            Margin="16"
                             VerticalAlignment="Stretch"
                             TargetContainer="{Binding $parent[ScrollViewer]}"
                             ItemsSource="{TemplateBinding AnchorItems}"

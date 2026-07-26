@@ -9,12 +9,13 @@
     xmlns:u="https://irihi.tech/ursa"
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
     xmlns:controls1="clr-namespace:Ursa.Demo.ViewModels.Controls"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
     d:DesignHeight="850"
     d:DesignWidth="850"
     x:DataType="viewModels:BadgeDemoViewModel"
     mc:Ignorable="d">
     <TabControl>
-        <TabItem Header="用法指南"
+        <TabItem Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
                  Icon="{DynamicResource SemiIconBook}">
             <controls:AnchorScrollViewer
                 u:ScrollTo.Direction="Bottom"
