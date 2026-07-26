@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 
@@ -13,7 +14,7 @@ public enum ControlStatus
     Stable,
 }
 
-public class MenuItemViewModel: ViewModelBase
+public partial class MenuItemViewModel: ViewModelBase
 {
     public IObservable<string?>? MenuHeader { get; set; }
     public string? MenuIconName { get; set; }
@@ -23,7 +24,7 @@ public class MenuItemViewModel: ViewModelBase
     public bool IsSeparator { get; set; }
     public ObservableCollection<MenuItemViewModel> Children { get; set; } = new();
 
-    public bool IsVisible { get; set; } = true;
+    [ObservableProperty] public partial bool IsVisible { get; set; } = true;
     
     public ICommand ActivateCommand { get; set; }
 

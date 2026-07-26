@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using Irihi.Lingua;
 using Ursa.Demo.Localizations;
 
@@ -9,13 +8,10 @@ namespace Ursa.Demo.ViewModels;
 
 public class MenuViewModel : ViewModelBase
 {
-    private readonly List<MenuItemViewModel> _allItems;
-
     public MenuViewModel()
     {
         var lang = LanguageManager.Instance;
-        _allItems =
-        [
+        List<MenuItemViewModel> allItems = [
             new() { MenuHeader = lang.Menu_Header_Introduction, Key = MenuKeys.MenuKeyIntroduction, IsSeparator = false },
             new() { MenuHeader = lang.Menu_Header_AboutUs, Key = MenuKeys.MenuKeyAboutUs, IsSeparator = false },
             new() { MenuHeader = lang.Menu_Category_Controls, IsSeparator = true },
@@ -120,7 +116,7 @@ public class MenuViewModel : ViewModelBase
                 }
             },
         ];
-        MenuItems = new ObservableCollection<MenuItemViewModel>(_allItems);
+        MenuItems = new ObservableCollection<MenuItemViewModel>(allItems);
     }
 
     public ObservableCollection<MenuItemViewModel> MenuItems { get; set; }
@@ -129,10 +125,10 @@ public class MenuViewModel : ViewModelBase
     {
         if (string.IsNullOrWhiteSpace(searchText))
         {
-            SetAllVisible(_allItems);
+            SetAllVisible(MenuItems);
             return;
         }
-        ApplyFilter(_allItems, searchText);
+        ApplyFilter(MenuItems, searchText);
     }
 
     private static void SetAllVisible(IEnumerable<MenuItemViewModel> items)
