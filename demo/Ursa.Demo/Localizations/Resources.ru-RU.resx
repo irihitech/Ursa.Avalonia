@@ -688,4 +688,14 @@
   <data name="Page_Description_WindowDialog" xml:space="preserve">
     <value>Оконный диалог отображает модальные окна для взаимодействия с пользователем.</value>
   </data>
+  <!-- Tab Headers -->
+  <data name="Tab_Header_Samples" xml:space="preserve">
+    <value>Примеры</value>
+  </data>
+  <data name="Tab_Header_Guide" xml:space="preserve">
+    <value>Руководство</value>
+  </data>
+  <data name="Tab_Header_Resources" xml:space="preserve">
+    <value>Ресурсы</value>
+  </data>
 </root>
