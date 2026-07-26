@@ -22,6 +22,8 @@ public class MenuItemViewModel: ViewModelBase
     
     public bool IsSeparator { get; set; }
     public ObservableCollection<MenuItemViewModel> Children { get; set; } = new();
+
+    public bool IsVisible { get; set; } = true;
     
     public ICommand ActivateCommand { get; set; }
 

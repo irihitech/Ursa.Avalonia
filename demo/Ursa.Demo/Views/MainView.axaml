@@ -50,6 +50,8 @@
                             Selector="u|NavMenuItem">
                             <Setter Property="IsSeparator"
                                     Value="{Binding IsSeparator}" />
+                            <Setter Property="IsVisible"
+                                    Value="{Binding IsVisible}" />
                         </Style>
                     </u:NavMenu.Styles>
                     <u:NavMenu.IconTemplate>

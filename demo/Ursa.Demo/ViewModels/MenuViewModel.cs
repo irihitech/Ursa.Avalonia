@@ -127,49 +127,43 @@ public class MenuViewModel : ViewModelBase
 
     public void FilterMenuItems(string? searchText)
     {
-        MenuItems.Clear();
-
         if (string.IsNullOrWhiteSpace(searchText))
         {
-            foreach (var item in _allItems)
-                MenuItems.Add(item);
+            SetAllVisible(_allItems);
             return;
         }
+        ApplyFilter(_allItems, searchText);
+    }
 
-        foreach (var item in _allItems)
+    private static void SetAllVisible(IEnumerable<MenuItemViewModel> items)
+    {
+        foreach (var item in items)
         {
-            var filtered = FilterRecursive(item, searchText);
-            if (filtered is not null)
-                MenuItems.Add(filtered);
+            item.IsVisible = true;
+            if (item.Children.Count > 0)
+                SetAllVisible(item.Children);
         }
     }
 
-    private static MenuItemViewModel? FilterRecursive(MenuItemViewModel item, string searchText)
+    private static bool ApplyFilter(IEnumerable<MenuItemViewModel> items, string searchText)
     {
-        if (item.IsSeparator) return null;
-
-        var headerText = (item.MenuHeader as LinguaObservableString)?.CurrentValue;
-        var selfMatches = headerText?.Contains(searchText, StringComparison.OrdinalIgnoreCase) == true;
-
-        var filteredChildren = new List<MenuItemViewModel>();
-        foreach (var child in item.Children)
+        var anyVisible = false;
+        foreach (var item in items)
         {
-            var filtered = FilterRecursive(child, searchText);
-            if (filtered is not null)
-                filteredChildren.Add(filtered);
+            if (item.IsSeparator)
+            {
+                item.IsVisible = false;
+                continue;
+            }
+
+            var headerText = (item.MenuHeader as LinguaObservableString)?.CurrentValue;
+            var selfMatches = headerText?.Contains(searchText, StringComparison.OrdinalIgnoreCase) == true;
+            var childrenVisible = item.Children.Count > 0 && ApplyFilter(item.Children, searchText);
+
+            item.IsVisible = selfMatches || childrenVisible;
+            if (item.IsVisible) anyVisible = true;
         }
-
-        if (!selfMatches && filteredChildren.Count == 0) return null;
-
-        return new MenuItemViewModel
-        {
-            MenuHeader = item.MenuHeader,
-            MenuIconName = item.MenuIconName,
-            Key = item.Key,
-            Status = item.Status,
-            IsSeparator = item.IsSeparator,
-            Children = new ObservableCollection<MenuItemViewModel>(filteredChildren),
-        };
+        return anyVisible;
     }
 }
 
