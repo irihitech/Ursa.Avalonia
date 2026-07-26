@@ -1,7 +1,8 @@
 using System;
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-
+using Irihi.Lingua;
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 
@@ -21,6 +22,13 @@ public partial class BadgeDemoViewModel: ViewModelBase, IPageMetadataProvider
     };
 
     [ObservableProperty] public partial string? Text { get; set; } = null;
+
+    public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; set; } =
+    [
+        new() { Header = LinguaObservableString.FromLiteral("Item 1"), AnchorId = "Item1" },
+        new() { Header = LinguaObservableString.FromLiteral("Item 2"), AnchorId = "Item2" },
+        new() { Header = LinguaObservableString.FromLiteral("Item 3"), AnchorId = "Item3" },
+    ];
 
     [RelayCommand]
     public void ChangeText()

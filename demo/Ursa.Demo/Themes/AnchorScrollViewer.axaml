@@ -2,10 +2,16 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:controls1="clr-namespace:Ursa.Demo.ViewModels.Controls">
     <Style.Resources>
         <ControlTheme x:Key="{x:Type controls:AnchorScrollViewer}" TargetType="controls:AnchorScrollViewer">
             <Setter Property="Background" Value="Transparent" />
+            <Setter Property="AnchorItemTemplate">
+                <TreeDataTemplate DataType="controls1:AnchorScrollViewerItemViewModel" ItemsSource="{Binding Children}">
+                    <TextBlock Text="{Binding Header^}" />
+                </TreeDataTemplate>
+            </Setter>
             <Setter Property="Template">
                 <ControlTemplate TargetType="controls:AnchorScrollViewer">
                     <Grid ColumnDefinitions="*,Auto,Auto" RowDefinitions="*,Auto">
@@ -52,4 +58,7 @@
             </Setter>
         </ControlTheme>
     </Style.Resources>
+    <Style Selector="controls|AnchorScrollViewer u|AnchorItem" x:DataType="controls1:AnchorScrollViewerItemViewModel">
+        <Setter Property="AnchorId" Value="{Binding AnchorId}" />
+    </Style>
 </Style>
