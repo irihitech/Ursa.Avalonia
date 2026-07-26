@@ -223,7 +223,6 @@
 
                 <!--  Special Flags  -->
                 <StackPanel
-                    Margin="0,8,0,0"
                     Orientation="Horizontal"
                     Spacing="8">
                     <Label
