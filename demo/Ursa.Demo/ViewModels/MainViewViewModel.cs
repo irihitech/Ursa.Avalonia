@@ -25,6 +25,11 @@ public partial class MainViewViewModel : ViewModelBase
 
     [ObservableProperty] public partial object? Content { get; set; }
 
+    partial void OnSearchTextChanged(string? value)
+    {
+        Menus.FilterMenuItems(value);
+    }
+
     public MainViewViewModel()
     {
         WeakReferenceMessenger.Default.Register<MainViewViewModel, string, string>(this, "JumpTo", OnNavigation);

@@ -1,16 +1,21 @@
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using Irihi.Lingua;
 using Ursa.Demo.Localizations;
 
 namespace Ursa.Demo.ViewModels;
 
 public class MenuViewModel : ViewModelBase
 {
+    private readonly List<MenuItemViewModel> _allItems;
+
     public MenuViewModel()
     {
         var lang = LanguageManager.Instance;
-        MenuItems = new ObservableCollection<MenuItemViewModel>
-        {
+        _allItems =
+        [
             new() { MenuHeader = lang.Menu_Header_Introduction, Key = MenuKeys.MenuKeyIntroduction, IsSeparator = false },
             new() { MenuHeader = lang.Menu_Header_AboutUs, Key = MenuKeys.MenuKeyAboutUs, IsSeparator = false },
             new() { MenuHeader = lang.Menu_Category_Controls, IsSeparator = true },
@@ -114,10 +119,58 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = lang.Menu_Header_TwoTonePathIcon, Key = MenuKeys.MenuKeyTwoTonePathIcon }
                 }
             },
-        };
+        ];
+        MenuItems = new ObservableCollection<MenuItemViewModel>(_allItems);
     }
 
     public ObservableCollection<MenuItemViewModel> MenuItems { get; set; }
+
+    public void FilterMenuItems(string? searchText)
+    {
+        MenuItems.Clear();
+
+        if (string.IsNullOrWhiteSpace(searchText))
+        {
+            foreach (var item in _allItems)
+                MenuItems.Add(item);
+            return;
+        }
+
+        foreach (var item in _allItems)
+        {
+            var filtered = FilterRecursive(item, searchText);
+            if (filtered is not null)
+                MenuItems.Add(filtered);
+        }
+    }
+
+    private static MenuItemViewModel? FilterRecursive(MenuItemViewModel item, string searchText)
+    {
+        if (item.IsSeparator) return null;
+
+        var headerText = (item.MenuHeader as LinguaObservableString)?.CurrentValue;
+        var selfMatches = headerText?.Contains(searchText, StringComparison.OrdinalIgnoreCase) == true;
+
+        var filteredChildren = new List<MenuItemViewModel>();
+        foreach (var child in item.Children)
+        {
+            var filtered = FilterRecursive(child, searchText);
+            if (filtered is not null)
+                filteredChildren.Add(filtered);
+        }
+
+        if (!selfMatches && filteredChildren.Count == 0) return null;
+
+        return new MenuItemViewModel
+        {
+            MenuHeader = item.MenuHeader,
+            MenuIconName = item.MenuIconName,
+            Key = item.Key,
+            Status = item.Status,
+            IsSeparator = item.IsSeparator,
+            Children = new ObservableCollection<MenuItemViewModel>(filteredChildren),
+        };
+    }
 }
 
 public static class MenuKeys
