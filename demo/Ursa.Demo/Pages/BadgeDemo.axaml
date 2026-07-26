@@ -14,30 +14,38 @@
     x:DataType="viewModels:BadgeDemoViewModel"
     mc:Ignorable="d">
     <TabControl>
-        <TabItem Header="常见用法">
+        <TabItem Header="用法指南"
+                 Icon="{DynamicResource SemiIconBook}">
             <controls:AnchorScrollViewer
                 u:ScrollTo.Direction="Bottom"
                 AnchorItems="{Binding AnchorItems}"
                 HorizontalScrollBarVisibility="Auto">
                 <controls:AnchorScrollViewer.Styles>
-                    <Style Selector="u|AnchorItem" x:DataType="controls1:AnchorScrollViewerItemViewModel">
-                        <Setter Property="AnchorId" Value="{Binding AnchorId}" />
+                    <Style Selector="u|AnchorItem"
+                           x:DataType="controls1:AnchorScrollViewerItemViewModel">
+                        <Setter Property="AnchorId"
+                                Value="{Binding AnchorId}" />
                     </Style>
                 </controls:AnchorScrollViewer.Styles>
                 <controls:AnchorScrollViewer.AnchorItemTemplate>
-                    <TreeDataTemplate DataType="controls1:AnchorScrollViewerItemViewModel" ItemsSource="{Binding Children}">
-                        <TextBlock Text="{Binding Header^}" />
+                    <TreeDataTemplate
+                        DataType="controls1:AnchorScrollViewerItemViewModel"
+                        ItemsSource="{Binding Children}">
+                        <TextBlock
+                            Text="{Binding Header^}" />
                     </TreeDataTemplate>
                 </controls:AnchorScrollViewer.AnchorItemTemplate>
                 <StackPanel Margin="24"
                             ClipToBounds="False">
 
-                    <StackPanel HorizontalAlignment="Left">
+                    <StackPanel
+                        HorizontalAlignment="Left">
 
                         <StackPanel.Styles>
                             <Style Selector="u|Badge">
-                                <Setter Property="Margin"
-                                        Value="10" />
+                                <Setter
+                                    Property="Margin"
+                                    Value="10" />
                             </Style>
                         </StackPanel.Styles>
 
@@ -166,7 +174,8 @@
                                     Classes="Square LightGreen"
                                     Content="LX" />
                             </u:Badge>
-                            <u:Badge Dot="True" Header="5">
+                            <u:Badge Dot="True"
+                                     Header="5">
                                 <u:Avatar
                                     Classes="Square LightGreen"
                                     Content="YZ" />
@@ -200,8 +209,9 @@
                                     Classes="Square Violet"
                                     Content="MR" />
                             </u:Badge>
-                            <u:Badge Classes="Secondary"
-                                     Header="5">
+                            <u:Badge
+                                Classes="Secondary"
+                                Header="5">
                                 <u:Avatar
                                     Classes="Square Violet"
                                     Content="YL" />
@@ -245,8 +255,9 @@
                                 OverflowCount="10" />
                             <u:Badge Classes="Primary"
                                      Dot="True" />
-                            <u:Badge Classes="Secondary"
-                                     Dot="True" />
+                            <u:Badge
+                                Classes="Secondary"
+                                Dot="True" />
                             <u:Badge Classes="Tertiary"
                                      Dot="True" />
                             <u:Badge Classes="Success"
@@ -278,8 +289,9 @@
                                     Classes="Square Indigo"
                                     Content="Solid" />
                             </u:Badge>
-                            <u:Badge Classes="Secondary"
-                                     Header="URSA">
+                            <u:Badge
+                                Classes="Secondary"
+                                Header="URSA">
                                 <u:Avatar
                                     Classes="Square Indigo"
                                     Content="Solid" />
@@ -347,8 +359,9 @@
                                     Classes="Square Indigo"
                                     Content="Light" />
                             </u:Badge>
-                            <u:Badge Classes="Light Danger"
-                                     Header="URSA">
+                            <u:Badge
+                                Classes="Light Danger"
+                                Header="URSA">
                                 <u:Avatar
                                     Classes="Square Indigo"
                                     Content="Light" />

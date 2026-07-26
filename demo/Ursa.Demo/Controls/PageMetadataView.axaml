@@ -15,6 +15,7 @@
     <UserControl.Resources>
         <converters:StringToUriConverter
             x:Key="StringToUriConverter" />
+        <!-- To be removed after Semi new version release. -->
         <StaticResource x:Key="ExpanderContentBorderThickness" ResourceKey="SemiBorderThicknessControl" />
         <StaticResource x:Key="ExpanderContentLength" ResourceKey="SemiSpacingSuperTight" />
         <StaticResource x:Key="ExpanderCardCornerRadius" ResourceKey="SemiBorderRadiusMedium" />
