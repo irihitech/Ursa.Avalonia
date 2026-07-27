@@ -12,12 +12,8 @@
     <u:Anchor
         Width="200"
         Margin="24"
-        ItemsSource="{Binding AnchorItems}">
-        <u:Anchor.Styles>
-            <Style x:DataType="vm:AnchorItemViewModel" Selector="u|AnchorItem">
-                <Setter Property="AnchorId" Value="{Binding AnchorId}" />
-            </Style>
-        </u:Anchor.Styles>
+        ItemsSource="{Binding AnchorItems}"
+        AnchorIdMemberBinding="{Binding AnchorId}">
         <u:Anchor.ItemTemplate>
             <TreeDataTemplate ItemsSource="{Binding Children}">
                 <TextBlock Text="{Binding Header}"/>

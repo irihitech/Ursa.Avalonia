@@ -2,8 +2,10 @@ using Avalonia;
 using Avalonia.Animation;
 using Avalonia.Animation.Easings;
 using Avalonia.Controls;
+using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Metadata;
 using Avalonia.Styling;
 using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Helpers;
@@ -58,7 +60,19 @@ public class Anchor : ItemsControl
         get => GetValue(TopOffsetProperty);
         set => SetValue(TopOffsetProperty, value);
     }
-    
+
+    public static readonly StyledProperty<BindingBase?> AnchorIdMemberBindingProperty =
+        AvaloniaProperty.Register<Anchor, BindingBase?>(
+            nameof(AnchorIdMemberBinding));
+
+    [AssignBinding]
+    [InheritDataTypeFromItems(nameof(ItemsSource))]
+    public BindingBase? AnchorIdMemberBinding
+    {
+        get => GetValue(AnchorIdMemberBindingProperty);
+        set => SetValue(AnchorIdMemberBindingProperty, value);
+    }
+
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
         return NeedsContainer<AnchorItem>(item, out recycleKey);
@@ -68,6 +82,15 @@ public class Anchor : ItemsControl
     {
         var i = new AnchorItem();
         return i;
+    }
+
+    protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
+    {
+        base.PrepareContainerForItemOverride(container, item, index);
+        if (container is AnchorItem anchorItem && AnchorIdMemberBinding is not null)
+        {
+            anchorItem.Bind(AnchorItem.AnchorIdProperty, AnchorIdMemberBinding);
+        }
     }
 
     private void ScrollToAnchor(Visual target)
