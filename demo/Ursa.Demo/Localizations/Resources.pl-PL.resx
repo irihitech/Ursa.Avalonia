@@ -256,7 +256,7 @@
     <value>Ustawienia (Settings)</value>
   </data>
   <data name="Main_Banner_Title" xml:space="preserve">
-    <value>Witamy w (Ursa)</value>
+    <value>Witamy w Ursa</value>
   </data>
   <data name="Main_Banner_Description" xml:space="preserve">
     <value>Estetyczna rewolucja produktywności</value>
@@ -679,5 +679,15 @@
   </data>
   <data name="Page_Description_WindowDialog" xml:space="preserve">
     <value>Dialog okienkowy wyświetla modalne okna do interakcji z użytkownikiem.</value>
+  </data>
+  <!-- Tab Headers -->
+  <data name="Tab_Header_Samples" xml:space="preserve">
+    <value>Przykłady</value>
+  </data>
+  <data name="Tab_Header_Guide" xml:space="preserve">
+    <value>Przewodnik</value>
+  </data>
+  <data name="Tab_Header_Resources" xml:space="preserve">
+    <value>Zasoby</value>
   </data>
 </root>

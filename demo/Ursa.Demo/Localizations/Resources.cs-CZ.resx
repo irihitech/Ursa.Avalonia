@@ -262,7 +262,7 @@
     <value>Nastavení (Settings)</value>
   </data>
   <data name="Main_Banner_Title" xml:space="preserve">
-    <value>Vítejte v (Ursa)</value>
+    <value>Vítejte v Ursa</value>
   </data>
   <data name="Main_Banner_Description" xml:space="preserve">
     <value>Estetická revoluce produktivity</value>
@@ -687,5 +687,15 @@
   </data>
   <data name="Page_Description_WindowDialog" xml:space="preserve">
     <value>Okenní dialog zobrazuje modální okna pro interakci uživatele.</value>
+  </data>
+  <!-- Tab Headers -->
+  <data name="Tab_Header_Samples" xml:space="preserve">
+    <value>Ukázky</value>
+  </data>
+  <data name="Tab_Header_Guide" xml:space="preserve">
+    <value>Průvodce</value>
+  </data>
+  <data name="Tab_Header_Resources" xml:space="preserve">
+    <value>Zdroje</value>
   </data>
 </root>

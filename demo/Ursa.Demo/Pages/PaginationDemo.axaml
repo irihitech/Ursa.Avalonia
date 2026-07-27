@@ -9,8 +9,7 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:DataType="viewModels:PaginationDemoViewModel"
-    mc:Ignorable="d"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    mc:Ignorable="d">
     <Design.DataContext>
         <viewModels:PaginationDemoViewModel />
     </Design.DataContext>

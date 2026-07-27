@@ -262,7 +262,7 @@
     <value>Paramètres (Settings)</value>
   </data>
   <data name="Main_Banner_Title" xml:space="preserve">
-    <value>Bienvenue sur (Ursa)</value>
+    <value>Bienvenue sur Ursa</value>
   </data>
   <data name="Main_Banner_Description" xml:space="preserve">
     <value>La révolution esthétique de la productivité</value>
@@ -687,5 +687,15 @@
   </data>
   <data name="Page_Description_WindowDialog" xml:space="preserve">
     <value>Le dialogue fenêtré affiche des fenêtres modales pour l'interaction utilisateur.</value>
+  </data>
+  <!-- Tab Headers -->
+  <data name="Tab_Header_Samples" xml:space="preserve">
+    <value>Exemples</value>
+  </data>
+  <data name="Tab_Header_Guide" xml:space="preserve">
+    <value>Guide</value>
+  </data>
+  <data name="Tab_Header_Resources" xml:space="preserve">
+    <value>Ressources</value>
   </data>
 </root>

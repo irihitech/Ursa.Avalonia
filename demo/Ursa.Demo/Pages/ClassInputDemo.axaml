@@ -6,7 +6,6 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.ClassInputDemo"
              x:DataType="viewModels:ClassInputDemoViewModel"
-             xmlns:controls="clr-namespace:Ursa.Demo.Controls"
              xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
     <StackPanel HorizontalAlignment="Stretch" Spacing="20" >
         <u:ControlClassesInput Name="input" Separator=" " />

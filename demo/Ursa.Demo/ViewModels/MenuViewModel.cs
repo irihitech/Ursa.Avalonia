@@ -1,5 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
+using Irihi.Lingua;
 using Ursa.Demo.Localizations;
 
 namespace Ursa.Demo.ViewModels;
@@ -9,8 +11,7 @@ public class MenuViewModel : ViewModelBase
     public MenuViewModel()
     {
         var lang = LanguageManager.Instance;
-        MenuItems = new ObservableCollection<MenuItemViewModel>
-        {
+        List<MenuItemViewModel> allItems = [
             new() { MenuHeader = lang.Menu_Header_Introduction, Key = MenuKeys.MenuKeyIntroduction, IsSeparator = false },
             new() { MenuHeader = lang.Menu_Header_AboutUs, Key = MenuKeys.MenuKeyAboutUs, IsSeparator = false },
             new() { MenuHeader = lang.Menu_Category_Controls, IsSeparator = true },
@@ -114,10 +115,52 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = lang.Menu_Header_TwoTonePathIcon, Key = MenuKeys.MenuKeyTwoTonePathIcon }
                 }
             },
-        };
+        ];
+        MenuItems = new ObservableCollection<MenuItemViewModel>(allItems);
     }
 
     public ObservableCollection<MenuItemViewModel> MenuItems { get; set; }
+
+    public void FilterMenuItems(string? searchText)
+    {
+        if (string.IsNullOrWhiteSpace(searchText))
+        {
+            SetAllVisible(MenuItems);
+            return;
+        }
+        ApplyFilter(MenuItems, searchText);
+    }
+
+    private static void SetAllVisible(IEnumerable<MenuItemViewModel> items)
+    {
+        foreach (var item in items)
+        {
+            item.IsVisible = true;
+            if (item.Children.Count > 0)
+                SetAllVisible(item.Children);
+        }
+    }
+
+    private static bool ApplyFilter(IEnumerable<MenuItemViewModel> items, string searchText)
+    {
+        var anyVisible = false;
+        foreach (var item in items)
+        {
+            if (item.IsSeparator)
+            {
+                item.IsVisible = false;
+                continue;
+            }
+
+            var headerText = (item.MenuHeader as LinguaObservableString)?.CurrentValue;
+            var selfMatches = headerText?.Contains(searchText, StringComparison.OrdinalIgnoreCase) == true;
+            var childrenVisible = item.Children.Count > 0 && ApplyFilter(item.Children, searchText);
+
+            item.IsVisible = selfMatches || childrenVisible;
+            if (item.IsVisible) anyVisible = true;
+        }
+        return anyVisible;
+    }
 }
 
 public static class MenuKeys

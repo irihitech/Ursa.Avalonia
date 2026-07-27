@@ -7,8 +7,7 @@
              x:DataType="vm:PinCodeDemoViewModel"
              x:CompileBindings="True"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Ursa.Demo.Pages.PinCodeDemo"
-             xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+             x:Class="Ursa.Demo.Pages.PinCodeDemo">
     <StackPanel Spacing="20">
         <u:Form>
             <u:PinCode u:FormItem.Label="Regular" Count="4" Name="v4" CompleteCommand="{Binding CompleteCommand}"/>

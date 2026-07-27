@@ -11,7 +11,6 @@
     x:CompileBindings="True"
     x:DataType="vm:EnumSelectorDemoViewModel"
     mc:Ignorable="d"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:generic="clr-namespace:System.Collections.Generic;assembly=System.Collections">
     <ScrollViewer>

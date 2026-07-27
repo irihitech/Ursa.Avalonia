@@ -25,12 +25,15 @@
             </Style>
         </Panel.Styles>
         <DockPanel
+            VerticalSpacing="16"
+            HorizontalSpacing="16"
+            Margin="4 36 4 4"
             Classes.Blur="{Binding $parent[u:UrsaWindow].(u:OverlayDialogHost.IsInModalStatus)}">
             <Border
                 Padding="8,4"
                 DockPanel.Dock="Left"
-                Margin="4 36 4 4"
                 VerticalAlignment="Stretch"
+                Margin="0"
                 Theme="{DynamicResource CardBorder}">
                 <u:NavMenu
                     Name="menu"
@@ -47,6 +50,8 @@
                             Selector="u|NavMenuItem">
                             <Setter Property="IsSeparator"
                                     Value="{Binding IsSeparator}" />
+                            <Setter Property="IsVisible"
+                                    Value="{Binding IsVisible, Mode=TwoWay}" />
                         </Style>
                     </u:NavMenu.Styles>
                     <u:NavMenu.IconTemplate>
@@ -84,24 +89,31 @@
                         </DataTemplate>
                     </u:NavMenu.HeaderTemplate>
                     <u:NavMenu.Header>
-                        <DockPanel Margin="8 16 8 8"
-                                   HorizontalAlignment="Center">
-                            <Panel
-                                VerticalAlignment="Center"
-                                u:NavMenu.CanToggle="True"
-                                Background="Transparent"
-                                DockPanel.Dock="Left">
-                                <iri:IrihiLogo Width="32"
-                                        Fill="{DynamicResource SemiGrey7}" />
-                            </Panel>
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                Classes="H4"
-                                Margin="16 0 0 0"
-                                IsVisible="{Binding !#menu.IsHorizontalCollapsed}"
-                                Text="Ursa"
-                                Theme="{DynamicResource TitleTextBlock}" />
-                        </DockPanel>
+                        <StackPanel>
+                            <DockPanel Margin="8 16 8 8"
+                                       HorizontalAlignment="Center">
+                                <Panel
+                                    VerticalAlignment="Center"
+                                    u:NavMenu.CanToggle="True"
+                                    Background="Transparent"
+                                    DockPanel.Dock="Left">
+                                    <iri:IrihiLogo Width="32"
+                                            Fill="{DynamicResource SemiGrey7}" />
+                                </Panel>
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    Classes="H4"
+                                    Margin="16 0 0 0"
+                                    IsVisible="{Binding !#menu.IsHorizontalCollapsed}"
+                                    Text="Ursa"
+                                    Theme="{DynamicResource TitleTextBlock}" />
+                            </DockPanel>
+                            <TextBox 
+                                Text="{Binding SearchText}" 
+                                Margin="0 16"
+                                HorizontalAlignment="Stretch" 
+                                IsVisible="{Binding !#menu.IsHorizontalCollapsed}"/>
+                        </StackPanel>
                     </u:NavMenu.Header>
                     <u:NavMenu.Footer>
                         <u:IconButton
@@ -131,18 +143,22 @@
                     </u:NavMenu.Footer>
                 </u:NavMenu>
             </Border>
-            <Panel Margin="12 36 12 0" DockPanel.Dock="Top">
-                <controls:PageMetadataView
-                    IsVisible="{Binding Path=., Converter={x:Static ObjectConverters.IsNotNull}}"
-                    DataContext="{Binding PageMetadata}" />
-            </Panel>
-            <ContentControl
-                Margin="12"
-                Content="{Binding Content}">
-                <ContentControl.ContentTemplate>
-                    <dataTemplates:ViewLocator />
-                </ContentControl.ContentTemplate>
-            </ContentControl>
+            <controls:PageMetadataView
+                DockPanel.Dock="Top"
+                IsVisible="{Binding Path=., Converter={x:Static ObjectConverters.IsNotNull}}"
+                DataContext="{Binding PageMetadata}" />
+            <Border 
+                BorderThickness="{DynamicResource SemiBorderThicknessControl}" 
+                CornerRadius="{DynamicResource SemiBorderRadiusMedium}"
+                BorderBrush="{DynamicResource SemiColorBorder}"
+                >
+                <ContentControl
+                    Content="{Binding Content}">
+                    <ContentControl.ContentTemplate>
+                        <dataTemplates:ViewLocator />
+                    </ContentControl.ContentTemplate>
+                </ContentControl>
+            </Border>
         </DockPanel>
     </Panel>
 </UserControl>

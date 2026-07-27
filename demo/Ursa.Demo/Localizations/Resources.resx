@@ -687,4 +687,14 @@
   <data name="Page_Description_WindowDialog" xml:space="preserve">
     <value>Window Dialog displays modal windows for user interaction.</value>
   </data>
+  <!-- Tab Headers -->
+  <data name="Tab_Header_Samples" xml:space="preserve">
+    <value>Samples</value>
+  </data>
+  <data name="Tab_Header_Guide" xml:space="preserve">
+    <value>Guide</value>
+  </data>
+  <data name="Tab_Header_Resources" xml:space="preserve">
+    <value>Resources</value>
+  </data>
 </root>

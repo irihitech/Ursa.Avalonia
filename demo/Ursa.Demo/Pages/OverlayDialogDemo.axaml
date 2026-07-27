@@ -10,8 +10,7 @@
     d:DesignWidth="800"
     x:CompileBindings="True"
     x:DataType="vm:OverlayDialogDemoViewModel"
-    mc:Ignorable="d"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    mc:Ignorable="d">
     <DockPanel>
         <Grid ColumnDefinitions="Auto, *">
             <ScrollViewer>

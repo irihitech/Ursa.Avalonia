@@ -6,101 +6,242 @@
     xmlns:converters="clr-namespace:Ursa.Demo.DataTemplates"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:u="https://irihi.tech/ursa"
+    xmlns:iri="https://irihi.tech/shared"
     d:DesignHeight="200"
     d:DesignWidth="800"
     x:CompileBindings="True"
     x:DataType="controls:PageMetadataViewModel"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <converters:StringToUriConverter x:Key="StringToUriConverter" />
-    </UserControl.Resources>
-    <Border
-        Margin="0"
-        Padding="16"
-        Theme="{DynamicResource CardBorder}">
-        <StackPanel Spacing="8">
-            <DockPanel IsVisible="False">
-                <!--  Source links  -->
-                <StackPanel
-                    Margin="0,8,0,0"
-                    DockPanel.Dock="Right"
-                    HorizontalAlignment="Right"
-                    Orientation="Horizontal"
-                    Spacing="8">
-                    <HyperlinkButton
-                        Content="Demo View"
-                        Classes="WithIcon Underline"
-                        IsVisible="{Binding DemoViewUrl, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                        NavigateUri="{Binding DemoViewUrl, Converter={StaticResource StringToUriConverter}}" />
-                    <HyperlinkButton
-                        Content="Demo ViewModel"
-                        Classes="WithIcon Underline"
-                        IsVisible="{Binding DemoViewModelUrl, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                        NavigateUri="{Binding DemoViewModelUrl, Converter={StaticResource StringToUriConverter}}" />
-                    <HyperlinkButton
-                        Content="Source Code"
-                        Classes="WithIcon Underline"
-                        IsVisible="{Binding SourceUrl, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                        NavigateUri="{Binding SourceUrl, Converter={StaticResource StringToUriConverter}}" />
-                    <HyperlinkButton
-                        Content="Theme Source Code"
-                        Classes="WithIcon Underline"
-                        IsVisible="{Binding ThemeUrl, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                        NavigateUri="{Binding ThemeUrl, Converter={StaticResource StringToUriConverter}}" />
-                </StackPanel>
-            </DockPanel>
+        <converters:StringToUriConverter
+            x:Key="StringToUriConverter" />
+        <!-- To be removed after Semi new version release. -->
+        <StaticResource x:Key="ExpanderContentBorderThickness" ResourceKey="SemiBorderThicknessControl" />
+        <StaticResource x:Key="ExpanderContentLength" ResourceKey="SemiSpacingSuperTight" />
+        <StaticResource x:Key="ExpanderCardCornerRadius" ResourceKey="SemiBorderRadiusMedium" />
+        <ControlTheme
+            x:Key="ExpanderCardHeaderToggleButtonTheme"
+            TargetType="ToggleButton">
+            <Setter Property="Template">
+                <ControlTemplate
+                    TargetType="ToggleButton">
+                    <ContentPresenter
+                        Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        Content="{TemplateBinding Content}"
+                        BorderBrush="{DynamicResource ExpanderSeparatorBorderBrush}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        BorderThickness="{TemplateBinding BorderThickness}" />
+                </ControlTemplate>
+            </Setter>
+        </ControlTheme>
 
+        <ControlTheme x:Key="ExpanderCard"
+                      TargetType="Expander">
+            <Setter Property="BorderThickness"
+                    Value="{DynamicResource ExpanderContentBorderThickness}" />
+            <Setter Property="BorderBrush"
+                    Value="{DynamicResource ExpanderSeparatorBorderBrush}" />
+            <Setter Property="CornerRadius"
+                    Value="{DynamicResource ExpanderCardCornerRadius}" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Stretch" />
+            <Setter
+                Property="HorizontalContentAlignment"
+                Value="Stretch" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Stretch" />
+            <Setter Property="Template">
+                <ControlTemplate TargetType="Expander">
+                    <DockPanel>
+                        <LayoutTransformControl
+                            Name="ExpanderHeaderLayoutContainer">
+                            <ToggleButton
+                                Name="ExpanderHeader"
+                                Padding="{DynamicResource ExpanderHeaderPadding}"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Stretch"
+                                Background="{DynamicResource ExpanderHeaderDefaultBackground}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                IsChecked="{TemplateBinding IsExpanded, Mode=TwoWay}"
+                                IsEnabled="{TemplateBinding IsEnabled}"
+                                TextElement.FontWeight="{DynamicResource ExpanderHeaderFontWeight}"
+                                TextElement.Foreground="{DynamicResource ExpanderHeaderForeground}"
+                                Theme="{DynamicResource ExpanderCardHeaderToggleButtonTheme}">
+                                <Grid
+                                    Background="Transparent"
+                                    ColumnDefinitions="*, Auto">
+                                    <ContentPresenter
+                                        Grid.Column="0"
+                                        Content="{TemplateBinding Header}"
+                                        ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                                    <PathIcon
+                                        Name="PART_PathIcon"
+                                        Grid.Column="1"
+                                        Theme="{DynamicResource InnerPathIcon}"
+                                        Margin="{DynamicResource ExpanderIconMargin}"
+                                        Data="{DynamicResource ExpanderIcon}">
+                                        <PathIcon.Transitions>
+                                            <Transitions>
+                                                <TransformOperationsTransition
+                                                    Property="RenderTransform"
+                                                    Duration="0.1" />
+                                            </Transitions>
+                                        </PathIcon.Transitions>
+                                    </PathIcon>
+                                </Grid>
+                            </ToggleButton>
+                        </LayoutTransformControl>
+                        <LayoutTransformControl
+                            Name="ExpanderContentLayoutContainer"
+                            MinHeight="1">
+                            <Border
+                                Name="ExpanderContent"
+                                BorderBrush="{DynamicResource ExpanderSeparatorBorderBrush}"
+                                CornerRadius="{TemplateBinding CornerRadius}">
+                                <ContentPresenter
+                                    Name="PART_ContentPresenter"
+                                    Margin="{DynamicResource ExpanderContentMargin}"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Content="{TemplateBinding Content}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    Foreground="{DynamicResource ExpanderContentForeground}"
+                                    IsVisible="{TemplateBinding IsExpanded, Mode=TwoWay}" />
+                            </Border>
+                        </LayoutTransformControl>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter>
+
+            <Style
+                Selector="^:expanded /template/ PathIcon#PART_PathIcon">
+                <Setter Property="RenderTransform"
+                        Value="rotate(180deg)" />
+            </Style>
+
+            <Style Selector="^:expanded">
+                <Style Selector="^:up">
+                    <Style
+                        Selector="^ /template/ ToggleButton#ExpanderHeader">
+                        <Setter Property="CornerRadius"
+                                Value="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter Bottom}}" />
+                    </Style>
+                    <Style
+                        Selector="^ /template/ Border#ExpanderContent">
+                        <Setter Property="MinHeight"
+                                Value="{DynamicResource ExpanderContentLength}" />
+                        <Setter
+                            Property="BorderThickness"
+                            Value="{TemplateBinding BorderThickness, Converter={iri:ThicknessMixerConverter 'Horizontal,Top'}}" />
+                        <Setter Property="CornerRadius"
+                                Value="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter Top}}" />
+                    </Style>
+                </Style>
+                <Style Selector="^:down">
+                    <Style
+                        Selector="^ /template/ ToggleButton#ExpanderHeader">
+                        <Setter Property="CornerRadius"
+                                Value="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter Top}}" />
+                    </Style>
+                    <Style
+                        Selector="^ /template/ Border#ExpanderContent">
+                        <Setter Property="MinHeight"
+                                Value="{DynamicResource ExpanderContentLength}" />
+                        <Setter
+                            Property="BorderThickness"
+                            Value="{TemplateBinding BorderThickness, Converter={iri:ThicknessMixerConverter 'Horizontal,Bottom'}}" />
+                        <Setter Property="CornerRadius"
+                                Value="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter Bottom}}" />
+                    </Style>
+                </Style>
+            </Style>
+
+            <Style
+                Selector="^:up /template/ LayoutTransformControl#ExpanderHeaderLayoutContainer">
+                <Setter Property="DockPanel.Dock"
+                        Value="Bottom" />
+            </Style>
+            <Style
+                Selector="^:down /template/ LayoutTransformControl#ExpanderHeaderLayoutContainer">
+                <Setter Property="DockPanel.Dock"
+                        Value="Top" />
+            </Style>
+
+            <Style
+                Selector="^ /template/ ToggleButton#ExpanderHeader:pointerover">
+                <Setter Property="Background"
+                        Value="{DynamicResource ExpanderHeaderHoverBackground}" />
+            </Style>
+            <Style
+                Selector="^ /template/ ToggleButton#ExpanderHeader:pressed">
+                <Setter Property="Background"
+                        Value="{DynamicResource ExpanderHeaderPressedBackground}" />
+            </Style>
+            <Style
+                Selector="^ /template/ ToggleButton#ExpanderHeader:disabled">
+                <Setter Property="Foreground"
+                        Value="{DynamicResource ExpanderHeaderDisabledForeground}" />
+            </Style>
+        </ControlTheme>
+    </UserControl.Resources>
+    <Expander Theme="{StaticResource ExpanderCard}" IsExpanded="True">
+        <Expander.Header>
             <!--  Title  -->
             <TextBlock
-                Classes="H4"
+                Classes="H5"
+                Margin="8 0 0 0"
                 IsVisible="{Binding Title^, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                 Text="{Binding Title^}"
                 Theme="{DynamicResource TitleTextBlock}" />
+        </Expander.Header>
+        <Expander.Content>
+            <StackPanel Spacing="8">
+                <!--  Description  -->
+                <TextBlock
+                    Classes="Secondary"
+                    IsVisible="{Binding Description^, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                    Text="{Binding Description^}"
+                    TextWrapping="Wrap" />
 
-            <!--  Description  -->
-            <TextBlock
-                Classes="Secondary"
-                IsVisible="{Binding Description^, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                Text="{Binding Description^}"
-                TextWrapping="Wrap" />
+                <!--  Tags  -->
+                <ItemsControl ItemsSource="{Binding Tags}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding .}"
+                                   Theme="{DynamicResource TagLabel}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
-            <!--  Tags  -->
-            <ItemsControl ItemsSource="{Binding Tags}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Label Content="{Binding .}" Theme="{DynamicResource TagLabel}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-
-            <!--  Special Flags  -->
-            <StackPanel
-                Margin="0,8,0,0"
-                Orientation="Horizontal"
-                Spacing="8">
-                <Label
-                    Classes="Blue"
-                    Content="MVVM Support"
-                    IsVisible="{Binding MvvmSupport}"
-                    Theme="{DynamicResource TagLabel}" />
-                <Label
-                    Classes="Orange"
-                    Content="Inline XAML Support"
-                    IsVisible="{Binding InlineXamlSupport}"
-                    Theme="{DynamicResource TagLabel}" />
-                <Label
-                    Classes="Indigo"
-                    Content="Require Avalonia Exclusive ViewModel"
-                    IsVisible="{Binding AvaloniaExclusive}"
-                    Theme="{DynamicResource TagLabel}" />
+                <!--  Special Flags  -->
+                <StackPanel
+                    Orientation="Horizontal"
+                    Spacing="8">
+                    <Label
+                        Classes="Blue"
+                        Content="MVVM Support"
+                        IsVisible="{Binding MvvmSupport}"
+                        Theme="{DynamicResource TagLabel}" />
+                    <Label
+                        Classes="Orange"
+                        Content="Inline XAML Support"
+                        IsVisible="{Binding InlineXamlSupport}"
+                        Theme="{DynamicResource TagLabel}" />
+                    <Label
+                        Classes="Indigo"
+                        Content="Require Avalonia Exclusive ViewModel"
+                        IsVisible="{Binding AvaloniaExclusive}"
+                        Theme="{DynamicResource TagLabel}" />
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-    </Border>
+        </Expander.Content>
+    </Expander>
 </UserControl>
-

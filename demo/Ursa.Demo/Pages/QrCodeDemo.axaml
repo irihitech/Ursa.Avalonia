@@ -9,7 +9,6 @@
     d:DesignWidth="800"
     mc:Ignorable="d"
     x:DataType="viewModels:QrCodeDemoViewModel"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
     <DockPanel>
         <Grid ColumnDefinitions="*, Auto">

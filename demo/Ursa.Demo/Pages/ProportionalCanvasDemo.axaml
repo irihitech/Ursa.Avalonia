@@ -8,7 +8,6 @@
     d:DesignWidth="800"
     mc:Ignorable="d"
     x:DataType="viewModels:ProportionalCanvasDemoViewModel"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
     xmlns:u="https://irihi.tech/ursa">
     <ScrollViewer>

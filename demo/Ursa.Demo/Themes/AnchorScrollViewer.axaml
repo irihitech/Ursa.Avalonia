@@ -1,0 +1,64 @@
+<Style
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:controls1="clr-namespace:Ursa.Demo.ViewModels.Controls">
+    <Style.Resources>
+        <ControlTheme x:Key="{x:Type controls:AnchorScrollViewer}" TargetType="controls:AnchorScrollViewer">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="AnchorItemTemplate">
+                <TreeDataTemplate DataType="controls1:AnchorScrollViewerItemViewModel" ItemsSource="{Binding Children}">
+                    <TextBlock Text="{Binding Header^}" />
+                </TreeDataTemplate>
+            </Setter>
+            <Setter Property="Template">
+                <ControlTemplate TargetType="controls:AnchorScrollViewer">
+                    <Grid ColumnDefinitions="*,Auto,Auto" RowDefinitions="*,Auto">
+                        <ScrollContentPresenter
+                            Name="PART_ContentPresenter"
+                            Grid.RowSpan="2"
+                            Grid.Column="0"
+                            Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            HorizontalSnapPointsAlignment="{TemplateBinding HorizontalSnapPointsAlignment}"
+                            HorizontalSnapPointsType="{TemplateBinding HorizontalSnapPointsType}"
+                            ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}"
+                            VerticalSnapPointsAlignment="{TemplateBinding VerticalSnapPointsAlignment}"
+                            VerticalSnapPointsType="{TemplateBinding VerticalSnapPointsType}">
+                            <ScrollContentPresenter.GestureRecognizers>
+                                <ScrollGestureRecognizer
+                                    CanHorizontallyScroll="{Binding CanHorizontallyScroll, ElementName=PART_ContentPresenter}"
+                                    CanVerticallyScroll="{Binding CanVerticallyScroll, ElementName=PART_ContentPresenter}"
+                                    IsScrollInertiaEnabled="{Binding (ScrollViewer.IsScrollInertiaEnabled), ElementName=PART_ContentPresenter}" />
+                            </ScrollContentPresenter.GestureRecognizers>
+                        </ScrollContentPresenter>
+                        <u:Anchor
+                            Name="PART_Anchor"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="16"
+                            VerticalAlignment="Stretch"
+                            TargetContainer="{Binding $parent[ScrollViewer]}"
+                            ItemsSource="{TemplateBinding AnchorItems}"
+                            ItemTemplate="{TemplateBinding AnchorItemTemplate}"
+                            TopOffset="{TemplateBinding AnchorTopOffset}" />
+                        <ScrollBar
+                            Name="PART_VerticalScrollBar"
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Orientation="Vertical" />
+                        <ScrollBar
+                            Name="PART_HorizontalScrollBar"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Orientation="Horizontal" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+        </ControlTheme>
+    </Style.Resources>
+    <Style Selector="controls|AnchorScrollViewer u|AnchorItem" x:DataType="controls1:AnchorScrollViewerItemViewModel">
+        <Setter Property="AnchorId" Value="{Binding AnchorId}" />
+    </Style>
+</Style>

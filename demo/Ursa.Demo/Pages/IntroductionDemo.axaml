@@ -11,7 +11,6 @@
     d:DesignHeight="800"
     d:DesignWidth="1600"
     mc:Ignorable="d"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:localizations="clr-namespace:Ursa.Demo.Localizations">
     <Design.DataContext>
         <vm:IntroductionDemoViewModel />

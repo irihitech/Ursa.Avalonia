@@ -9,8 +9,7 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d"
-    x:DataType="vm:SkeletonDemoViewModel"
-    xmlns:controls="clr-namespace:Ursa.Demo.Controls">
+    x:DataType="vm:SkeletonDemoViewModel">
     <Design.DataContext>
         <vm:SkeletonDemoViewModel />
     </Design.DataContext>
