@@ -83,7 +83,7 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
         if (IsReadOnly) return;
         CommitInput();
         if (_status is { Current: Status.End, Previous: Status.Start }
-            && Equals(sender, _endTextBox) && _endTextBox?.IsFocused == true)
+            && Equals(sender, _endTextBox))
         {
             SetCurrentValue(IsDropdownOpenProperty, false);
         }

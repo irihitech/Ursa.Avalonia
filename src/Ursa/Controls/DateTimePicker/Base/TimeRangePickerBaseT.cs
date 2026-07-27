@@ -37,7 +37,6 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
     private TextBox? _startTextBox;
     private TextBox? _endTextBox;
     private Popup? _popup;
-    private bool _isFocused;
     private readonly RangePickerStatus _status = new();
     private TimeOnly? _pendingStartTime;
     private TimeOnly? _pendingEndTime;
@@ -83,7 +82,7 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
         if (IsReadOnly) return;
         CommitInput();
         if (_status is { Current: Status.End, Previous: Status.Start }
-            && Equals(sender, _endTextBox) && _endTextBox?.IsFocused == true)
+            && Equals(sender, _endTextBox))
         {
             SetCurrentValue(IsDropdownOpenProperty, false);
         }
@@ -194,20 +193,14 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
     {
         if (IsReadOnly) return;
         base.OnLostFocus(e);
-        FocusChanged(IsKeyboardFocusWithin);
         var element = e.NewFocusedElement;
         if (Equals(element, _endTextBox) || Equals(element, _startTextBox)) return;
         if (element is Visual v && _popup?.IsInsidePopup(v) == true) return;
         CommitInput();
+        _status.Reset();
+        _pendingStartTime = null;
+        _pendingEndTime = null;
         SetCurrentValue(IsDropdownOpenProperty, false);
-    }
-
-    private void FocusChanged(bool hasFocus)
-    {
-        var wasFocused = _isFocused;
-        _isFocused = hasFocus;
-        if (hasFocus && !wasFocused && _startTextBox != null)
-            _startTextBox.Focus();
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
@@ -215,7 +208,8 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
         if (IsReadOnly) return;
         base.OnPointerPressed(e);
         if (e.Source is Visual source && _popup?.IsInsidePopup(source) == true) return;
-        if (_startTextBox?.IsFocused == false)
+        if (Equals(e.Source, _startTextBox) || Equals(e.Source, _endTextBox)) return;
+        if (_startTextBox?.IsFocused == false && _endTextBox?.IsFocused == false)
             _startTextBox?.Focus();
         else
             SetCurrentValue(IsDropdownOpenProperty, true);
