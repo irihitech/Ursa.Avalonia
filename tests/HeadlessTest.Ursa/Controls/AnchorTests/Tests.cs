@@ -92,6 +92,15 @@ public class Tests
         var items = window.GetVisualDescendants().OfType<AnchorItem>().ToList();
         Assert.NotEmpty(items);
         Assert.Equal(10, items.Count);
+
+        // Verify AnchorIdMemberBinding propagated AnchorId to every level
+        var anchorIds = items.Select(i => i.AnchorId).OrderBy(id => id).ToList();
+        var expectedIds = new[]
+        {
+            "anchor1", "anchor2", "anchor3", "anchor3-1", "anchor3-2", "anchor3-3",
+            "anchor4", "anchor5", "anchor6", "anchor7"
+        };
+        Assert.Equal(expectedIds, anchorIds);
     }
 
     [AvaloniaFact]
