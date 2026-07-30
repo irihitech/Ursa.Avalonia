@@ -3,7 +3,7 @@
 [English](README.md) | 简体中文
 
 <p align="center">
-    <img src="./assets/Ursa.svg" alt="drawing" width="150" />
+    <img src="./assets/Ursa.svg" alt="drawing" height="64" />
 </p>
 
 [![Irihi.Ursa](https://img.shields.io/nuget/v/Irihi.Ursa.svg?color=red&style=flat-square)](https://www.nuget.org/packages/Irihi.Ursa/)
