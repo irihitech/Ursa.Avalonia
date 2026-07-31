@@ -10,7 +10,7 @@
     Title="Starting Ursa Demo..."
     Width="400"
     Height="400"
-    Icon="/Assets/Ursa.ico"
+    Icon="/Assets/irihi.ico"
     x:DataType="viewModels:SplashViewModel"
     CountDown="{x:Null}"
     mc:Ignorable="d">
