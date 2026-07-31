@@ -26,6 +26,8 @@ public partial class AboutUsDemoViewModel : ObservableObject
         ["ursa"] = "https://github.com/irihitech/Ursa.Avalonia",
         ["mantra"] = "https://www.bilibili.com/video/BV15pfKYbEEQ",
         ["huska"] = "https://www.bilibili.com/video/BV1knj1zWE4A",
+        ["lingua"] = "https://github.com/irihitech/Irihi.Lingua",
+        ["mafia"] = "https://github.com/irihitech/Irihi.Mafia",
     };
 
     private async Task OnNavigateAsync(string? arg)
