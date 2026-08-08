@@ -9,5 +9,12 @@
     <ControlTheme x:Key="{x:Type u:ShimmerSelectableText}" TargetType="u:ShimmerSelectableText">
         <Setter Property="BaseColor" Value="{DynamicResource ShimmerBaseColor}" />
         <Setter Property="HighlightColor" Value="{DynamicResource ShimmerHighlightColor}" />
+        <Setter Property="FontSize" Value="{DynamicResource TextBlockFontSize}" />
+        <Setter Property="Cursor" Value="Ibeam" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource TextBlockSelectionBackground}" />
+        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource TextBlockSelectionForeground}" />
+        <Style Selector="^[IsEnabled=True]">
+            <Setter Property="ContextFlyout" Value="{DynamicResource SelectableTextBlockContextFlyout}" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

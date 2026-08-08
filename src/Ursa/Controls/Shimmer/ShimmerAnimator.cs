@@ -5,7 +5,7 @@ using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Styling;
 
-namespace Ursa.Controls.Shimmer;
+namespace Ursa.Controls;
 
 /// <summary>
 ///     Shared implementation for shimmer-animated visuals: takes over one of the

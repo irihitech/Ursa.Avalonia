@@ -2,7 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Media;
 
-namespace Ursa.Controls.Shimmer;
+namespace Ursa.Controls;
 
 /// <summary>
 ///     A <see cref="SelectableTextBlock" /> whose text sweeps with a shimmering
