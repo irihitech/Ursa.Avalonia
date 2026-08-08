@@ -135,6 +135,9 @@
   <data name="Menu_Header_Skeleton" xml:space="preserve">
     <value>Skeleton (Skeleton)</value>
   </data>
+  <data name="Menu_Header_Shimmer" xml:space="preserve">
+    <value>Schimmer (Shimmer)</value>
+  </data>
 
   <!-- Date &amp; Time -->
   <data name="Menu_Header_DatePicker" xml:space="preserve">
@@ -434,6 +437,9 @@
   <data name="Page_Title_Skeleton" xml:space="preserve">
     <value>Skeleton (Skeleton)</value>
   </data>
+  <data name="Page_Title_Shimmer" xml:space="preserve">
+    <value>Schimmer (Shimmer)</value>
+  </data>
   <data name="Page_Title_TagInput" xml:space="preserve">
     <value>Schlagworteingabe (TagInput)</value>
   </data>
@@ -641,6 +647,9 @@
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
     <value>Skeleton zeigt Platzhalter-Ladeanimationen für Inhaltsbereiche an.</value>
+  </data>
+  <data name="Page_Description_Shimmer" xml:space="preserve">
+    <value>Shimmer verleiht Text oder anderen visuellen Elementen einen gleitenden Verlaufseffekt.</value>
   </data>
   <data name="Page_Description_TagInput" xml:space="preserve">
     <value>Schlagworteingabe ermöglicht Benutzern die Eingabe und Verwaltung mehrerer Schlagwortwerte.</value>

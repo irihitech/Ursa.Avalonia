@@ -7,4 +7,5 @@ using Avalonia.Metadata;
 [assembly:XmlnsDefinition("https://irihi.tech/ursa", "Ursa")]
 [assembly:XmlnsDefinition("https://irihi.tech/ursa", "Ursa.Controls")]
 [assembly:XmlnsDefinition("https://irihi.tech/ursa", "Ursa.Controls.Shapes")]
+[assembly:XmlnsDefinition("https://irihi.tech/ursa", "Ursa.Controls.Shimmer")]
 [assembly:XmlnsDefinition("https://irihi.tech/ursa", "Ursa.Helpers")]

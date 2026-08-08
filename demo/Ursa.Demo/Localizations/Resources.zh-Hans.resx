@@ -125,6 +125,9 @@
   <data name="Menu_Header_Skeleton" xml:space="preserve">
     <value>骨架屏 Skeleton</value>
   </data>
+  <data name="Menu_Header_Shimmer" xml:space="preserve">
+    <value>微光 Shimmer</value>
+  </data>
   <!-- Date & Time -->
   <data name="Menu_Header_DatePicker" xml:space="preserve">
     <value>日期选择器 DatePicker</value>
@@ -420,6 +423,9 @@
   <data name="Page_Title_Skeleton" xml:space="preserve">
     <value>骨架屏 Skeleton</value>
   </data>
+  <data name="Page_Title_Shimmer" xml:space="preserve">
+    <value>微光 Shimmer</value>
+  </data>
   <data name="Page_Title_TagInput" xml:space="preserve">
     <value>标签输入 TagInput</value>
   </data>
@@ -627,6 +633,9 @@
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
     <value>骨架屏为内容区域显示占位加载动画。</value>
+  </data>
+  <data name="Page_Description_Shimmer" xml:space="preserve">
+    <value>微光为文本或其他视觉元素添加扫掠渐变的加载效果。</value>
   </data>
   <data name="Page_Description_TagInput" xml:space="preserve">
     <value>标签输入允许用户输入和管理多个标签值。</value>

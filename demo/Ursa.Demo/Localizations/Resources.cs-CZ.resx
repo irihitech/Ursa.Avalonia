@@ -135,6 +135,9 @@
   <data name="Menu_Header_Skeleton" xml:space="preserve">
     <value>Kostra (Skeleton)</value>
   </data>
+  <data name="Menu_Header_Shimmer" xml:space="preserve">
+    <value>Třpyt (Shimmer)</value>
+  </data>
 
   <!-- Date &amp; Time -->
   <data name="Menu_Header_DatePicker" xml:space="preserve">
@@ -434,6 +437,9 @@
   <data name="Page_Title_Skeleton" xml:space="preserve">
     <value>Kostra (Skeleton)</value>
   </data>
+  <data name="Page_Title_Shimmer" xml:space="preserve">
+    <value>Třpyt (Shimmer)</value>
+  </data>
   <data name="Page_Title_TagInput" xml:space="preserve">
     <value>Vstup štítků (TagInput)</value>
   </data>
@@ -642,6 +648,9 @@
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
     <value>Kostra zobrazuje zástupné animace načítání pro oblasti obsahu.</value>
+  </data>
+  <data name="Page_Description_Shimmer" xml:space="preserve">
+    <value>Shimmer přidává k textu nebo jiným vizuálním prvkům efekt posouvajícího přechodu.</value>
   </data>
   <data name="Page_Description_TagInput" xml:space="preserve">
     <value>Vstup štítků umožňuje uživatelům zadávat a spravovat více hodnot štítků.</value>

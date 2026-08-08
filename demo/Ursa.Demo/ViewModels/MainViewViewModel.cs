@@ -94,6 +94,7 @@ public partial class MainViewViewModel : ViewModelBase
             MenuKeys.MenuKeyScrollToButton => new ScrollToButtonDemoViewModel(),
             MenuKeys.MenuKeySelectionList => new SelectionListDemoViewModel(),
             MenuKeys.MenuKeySkeleton => new SkeletonDemoViewModel(),
+            MenuKeys.MenuKeyShimmer => new ShimmerDemoViewModel(),
             MenuKeys.MenuKeyTagInput => new TagInputDemoViewModel(),
             MenuKeys.MenuKeyThemeToggler => new ThemeTogglerDemoViewModel(),
             MenuKeys.MenuKeyThemeVariantMapper => new ThemeVariantMapperDemoViewModel(),

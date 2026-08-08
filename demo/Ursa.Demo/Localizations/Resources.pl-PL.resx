@@ -132,6 +132,9 @@
   <data name="Menu_Header_Skeleton" xml:space="preserve">
     <value>Szkielet (Skeleton)</value>
   </data>
+  <data name="Menu_Header_Shimmer" xml:space="preserve">
+    <value>Połysk (Shimmer)</value>
+  </data>
   <!-- Date & Time -->
   <data name="Menu_Header_DatePicker" xml:space="preserve">
     <value>Selektor daty (DatePicker)</value>
@@ -427,6 +430,9 @@
   <data name="Page_Title_Skeleton" xml:space="preserve">
     <value>Szkielet (Skeleton)</value>
   </data>
+  <data name="Page_Title_Shimmer" xml:space="preserve">
+    <value>Połysk (Shimmer)</value>
+  </data>
   <data name="Page_Title_TagInput" xml:space="preserve">
     <value>Pole etykiet (TagInput)</value>
   </data>
@@ -634,6 +640,9 @@
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
     <value>Szkielet wyświetla zastępcze animacje ładowania dla obszarów zawartości.</value>
+  </data>
+  <data name="Page_Description_Shimmer" xml:space="preserve">
+    <value>Shimmer dodaje przesuwający gradientowy efekt ładowania do tekstu lub innych elementów wizualnych.</value>
   </data>
   <data name="Page_Description_TagInput" xml:space="preserve">
     <value>Pole etykiet umożliwia użytkownikom wprowadzanie i zarządzanie wieloma wartościami etykiet.</value>

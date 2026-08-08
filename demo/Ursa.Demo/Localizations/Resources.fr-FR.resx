@@ -135,6 +135,9 @@
   <data name="Menu_Header_Skeleton" xml:space="preserve">
     <value>Squelette (Skeleton)</value>
   </data>
+  <data name="Menu_Header_Shimmer" xml:space="preserve">
+    <value>Scintillement (Shimmer)</value>
+  </data>
 
   <!-- Date & Time -->
   <data name="Menu_Header_DatePicker" xml:space="preserve">
@@ -434,6 +437,9 @@
   <data name="Page_Title_Skeleton" xml:space="preserve">
     <value>Squelette (Skeleton)</value>
   </data>
+  <data name="Page_Title_Shimmer" xml:space="preserve">
+    <value>Scintillement (Shimmer)</value>
+  </data>
   <data name="Page_Title_TagInput" xml:space="preserve">
     <value>Saisie d'étiquettes (TagInput)</value>
   </data>
@@ -642,6 +648,9 @@
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
     <value>Le squelette affiche des animations de chargement de substitution pour les zones de contenu.</value>
+  </data>
+  <data name="Page_Description_Shimmer" xml:space="preserve">
+    <value>Shimmer ajoute un effet de dégradé balayant au texte ou à d'autres éléments visuels.</value>
   </data>
   <data name="Page_Description_TagInput" xml:space="preserve">
     <value>La saisie d'étiquettes permet aux utilisateurs de saisir et de gérer plusieurs valeurs d'étiquettes.</value>
