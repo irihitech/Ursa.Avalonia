@@ -20,6 +20,7 @@
             <StackPanel Spacing="8">
                 <TextBlock Text="Default (loading style)" FontWeight="Bold" FontSize="18"/>
                 <u:ShimmerText Text="Thinking..." FontSize="24"/>
+                <u:ShimmerSelectableText Text="Thinking..." FontSize="24"/>
             </StackPanel>
 
             <!-- Custom colors -->
@@ -58,26 +59,9 @@
                 <TextBlock Text="Skeleton (attached properties)" FontWeight="Bold" FontSize="18"/>
                 <StackPanel Spacing="8" Width="320" HorizontalAlignment="Left">
                     <Border Width="48" Height="48" CornerRadius="24"
-                            Background="{DynamicResource SemiColorBg1}"
+                            u:Shimmer.BaseColor="{DynamicResource SemiGrey1Color}"
                             u:Shimmer.IsActive="True"
-                            u:Shimmer.HighlightColor="{DynamicResource SemiWhiteColor}"/>
-                    <Rectangle Height="14" RadiusX="7" RadiusY="7"
-                               Fill="{DynamicResource SemiColorBg1}"
-                               u:Shimmer.BrushProperty="{x:Static Rectangle.FillProperty}"
-                               u:Shimmer.IsActive="True"
-                               u:Shimmer.HighlightColor="{DynamicResource SemiWhiteColor}"/>
-                    <Button Content="Shimmer Button"
-                            u:Shimmer.BrushProperty="{x:Static Button.ForegroundProperty}"
-                            u:Shimmer.IsActive="True"
-                            u:Shimmer.HighlightColor="{DynamicResource SemiRed5Color}"/>
-                    <Rectangle Height="14" RadiusX="7" RadiusY="7"
-                               Fill="{DynamicResource SemiColorBg1}" Width="220" HorizontalAlignment="Left"
-                               u:Shimmer.IsActive="True"
-                               u:Shimmer.HighlightColor="{DynamicResource SemiWhiteColor}"/>
-                    <Rectangle Height="14" RadiusX="7" RadiusY="7"
-                               Fill="{DynamicResource SemiColorBg1}" Width="180" HorizontalAlignment="Left"
-                               u:Shimmer.IsActive="True"
-                               u:Shimmer.HighlightColor="{DynamicResource SemiWhiteColor}"/>
+                            u:Shimmer.HighlightColor="{DynamicResource SemiGrey5Color}"/>
                 </StackPanel>
                 <TextBlock Text="Uses Shimmer.IsActive on Border/Rectangle — no subclassing."
                            Foreground="{DynamicResource SemiColorText2}" FontSize="12"/>

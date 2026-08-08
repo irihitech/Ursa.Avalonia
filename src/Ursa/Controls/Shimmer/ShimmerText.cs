@@ -50,7 +50,7 @@ public class ShimmerText : TextBlock
     }
 
     /// <inheritdoc />
-    protected override Type StyleKeyOverride { get; } = typeof(TextBlock);
+    protected override Type StyleKeyOverride { get; } = typeof(ShimmerText);
 
     /// <summary>Gets or sets the resting text color (defaults to the current foreground).</summary>
     public Color? BaseColor

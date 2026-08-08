@@ -127,17 +127,21 @@ internal sealed class ShimmerAnimator
 
     private void OnPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
     {
-        if (e.Property == _baseColorProperty ||
-            e.Property == _highlightColorProperty ||
+        // Compare by name (not reference) so AddOwner-derived properties declared on
+        // ShimmerText / ShimmerSelectableText also match — they are different
+        // AvaloniaProperty instances that share the same backing value store.
+        var propName = e.Property.Name;
+        if (propName == _baseColorProperty.Name ||
+            propName == _highlightColorProperty.Name ||
             e.Property == _brushProperty)
             RebuildBrush();
-        else if (e.Property == _durationProperty)
+        else if (propName == _durationProperty.Name)
             StartAnimation();
-        else if (e.Property == _isActiveProperty)
+        else if (propName == _isActiveProperty.Name)
             OnIsActiveChanged();
         else if (e.Property == Visual.IsVisibleProperty)
             UpdateAnimationState();
-        else if (e.Property == _shimmerOffsetProperty) UpdateBrushPosition();
+        else if (propName == _shimmerOffsetProperty.Name) UpdateBrushPosition();
     }
 
     // Note: Control.IsLoaded becomes true asynchronously (via Dispatcher.Post) and

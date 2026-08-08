@@ -49,7 +49,7 @@ public class ShimmerSelectableText : SelectableTextBlock
     }
 
     /// <inheritdoc />
-    protected override Type StyleKeyOverride { get; } = typeof(SelectableTextBlock);
+    protected override Type StyleKeyOverride { get; } = typeof(ShimmerSelectableText);
 
     /// <summary>Gets or sets the resting text color (defaults to the current foreground).</summary>
     public Color? BaseColor
