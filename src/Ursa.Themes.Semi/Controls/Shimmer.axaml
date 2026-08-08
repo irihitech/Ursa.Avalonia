@@ -1,0 +1,13 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <ControlTheme x:Key="{x:Type u:ShimmerText}" TargetType="u:ShimmerText">
+        <Setter Property="BaseColor" Value="{DynamicResource ShimmerBaseColor}" />
+        <Setter Property="HighlightColor" Value="{DynamicResource ShimmerHighlightColor}" />
+    </ControlTheme>
+    <ControlTheme x:Key="{x:Type u:ShimmerSelectableText}" TargetType="u:ShimmerSelectableText">
+        <Setter Property="BaseColor" Value="{DynamicResource ShimmerBaseColor}" />
+        <Setter Property="HighlightColor" Value="{DynamicResource ShimmerHighlightColor}" />
+    </ControlTheme>
+</ResourceDictionary>
