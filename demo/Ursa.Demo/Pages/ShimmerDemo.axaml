@@ -26,31 +26,31 @@
             <StackPanel Spacing="8">
                 <TextBlock Text="Custom colors" FontWeight="Bold" FontSize="18"/>
                 <u:ShimmerText Text="Generating a response…" FontSize="24"
-                               BaseColor="#4A4A4A" HighlightColor="#00B4D8"/>
+                               BaseColor="{DynamicResource SemiGrey7Color}" HighlightColor="{DynamicResource SemiBlue5Color}"/>
             </StackPanel>
 
             <!-- Large heading -->
             <StackPanel Spacing="8">
                 <TextBlock Text="Large heading" FontWeight="Bold" FontSize="18"/>
                 <u:ShimmerText Text="Ursa.Avalonia" FontSize="40" FontWeight="Bold"
-                               HighlightColor="#FF6B6B" Duration="00:00:02.5"/>
+                               HighlightColor="{DynamicResource SemiRed5Color}" Duration="00:00:02.5"/>
             </StackPanel>
 
             <!-- Highlight only, dark text -->
             <StackPanel Spacing="8">
                 <TextBlock Text="Accent highlight" FontWeight="Bold" FontSize="18"/>
                 <u:ShimmerText Text="Streaming from the model" FontSize="24"
-                               BaseColor="#202020"/>
+                               BaseColor="{DynamicResource SemiGrey9Color}"/>
             </StackPanel>
 
             <!-- Selectable variant -->
             <StackPanel Spacing="8">
                 <TextBlock Text="Selectable (SelectableTextBlock)" FontWeight="Bold" FontSize="18"/>
                 <u:ShimmerSelectableText Text="This text can be selected and copied"
-                                         FontSize="24" BaseColor="#202020"
-                                         HighlightColor="#38B2AC"/>
+                                         FontSize="24" BaseColor="{DynamicResource SemiGrey9Color}"
+                                         HighlightColor="{DynamicResource SemiTeal5Color}"/>
                 <TextBlock Text="Hint: select the text above and copy it (Ctrl+C)."
-                           Foreground="Gray" FontSize="12"/>
+                           Foreground="{DynamicResource SemiColorText2}" FontSize="12"/>
             </StackPanel>
 
             <!-- Skeleton via attached properties -->
@@ -58,29 +58,29 @@
                 <TextBlock Text="Skeleton (attached properties)" FontWeight="Bold" FontSize="18"/>
                 <StackPanel Spacing="8" Width="320" HorizontalAlignment="Left">
                     <Border Width="48" Height="48" CornerRadius="24"
-                            Background="#E0E0E0"
+                            Background="{DynamicResource SemiColorBg1}"
                             u:Shimmer.IsActive="True"
-                            u:Shimmer.HighlightColor="#B3FFFFFF"/>
+                            u:Shimmer.HighlightColor="{DynamicResource SemiWhiteColor}"/>
                     <Rectangle Height="14" RadiusX="7" RadiusY="7"
-                               Fill="#E0E0E0"
+                               Fill="{DynamicResource SemiColorBg1}"
                                u:Shimmer.BrushProperty="{x:Static Rectangle.FillProperty}"
                                u:Shimmer.IsActive="True"
-                               u:Shimmer.HighlightColor="#B3FFFFFF"/>
+                               u:Shimmer.HighlightColor="{DynamicResource SemiWhiteColor}"/>
                     <Button Content="Shimmer Button"
                             u:Shimmer.BrushProperty="{x:Static Button.ForegroundProperty}"
                             u:Shimmer.IsActive="True"
-                            u:Shimmer.HighlightColor="Red"/>
+                            u:Shimmer.HighlightColor="{DynamicResource SemiRed5Color}"/>
                     <Rectangle Height="14" RadiusX="7" RadiusY="7"
-                               Fill="#E0E0E0" Width="220" HorizontalAlignment="Left"
+                               Fill="{DynamicResource SemiColorBg1}" Width="220" HorizontalAlignment="Left"
                                u:Shimmer.IsActive="True"
-                               u:Shimmer.HighlightColor="#B3FFFFFF"/>
+                               u:Shimmer.HighlightColor="{DynamicResource SemiWhiteColor}"/>
                     <Rectangle Height="14" RadiusX="7" RadiusY="7"
-                               Fill="#E0E0E0" Width="180" HorizontalAlignment="Left"
+                               Fill="{DynamicResource SemiColorBg1}" Width="180" HorizontalAlignment="Left"
                                u:Shimmer.IsActive="True"
-                               u:Shimmer.HighlightColor="#B3FFFFFF"/>
+                               u:Shimmer.HighlightColor="{DynamicResource SemiWhiteColor}"/>
                 </StackPanel>
                 <TextBlock Text="Uses Shimmer.IsActive on Border/Rectangle — no subclassing."
-                           Foreground="Gray" FontSize="12"/>
+                           Foreground="{DynamicResource SemiColorText2}" FontSize="12"/>
             </StackPanel>
 
             <!-- Control -->
@@ -91,7 +91,7 @@
                     <Button Content="Resume" Command="{Binding ResumeCommand}"/>
                 </StackPanel>
                 <u:ShimmerText Text="Toggle me" FontSize="24"
-                               BaseColor="#202020" HighlightColor="#FFB84C"
+                               BaseColor="{DynamicResource SemiGrey9Color}" HighlightColor="{DynamicResource SemiOrange5Color}"
                                IsActive="{Binding IsActive}"/>
             </StackPanel>
 
