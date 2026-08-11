@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using Ursa.Demo.ViewModels;
+using Ursa.Demo.Pages.FormDemo;
 
 namespace Ursa.Demo.DataTemplates;
 

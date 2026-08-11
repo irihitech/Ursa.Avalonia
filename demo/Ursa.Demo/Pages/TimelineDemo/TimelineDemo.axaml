@@ -1,0 +1,92 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.TimelineDemo.TimelineDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:selectors="clr-namespace:Ursa.Demo.TemplateSelectors"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.TimelineDemo"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="False"
+    x:DataType="viewModels:TimelineDemoViewModel"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <selectors:TimelineIconTemplateSelector
+                x:Key="IconSelector">
+                <SolidColorBrush x:Key="Default"
+                                 Color="{DynamicResource SemiGray6Color}" />
+                <SolidColorBrush x:Key="Ongoing"
+                                 Color="{DynamicResource SemiBlue6Color}" />
+                <SolidColorBrush x:Key="Success"
+                                 Color="{DynamicResource SemiGreen6Color}" />
+                <SolidColorBrush x:Key="Warning"
+                                 Color="{DynamicResource SemiOrange6Color}" />
+                <SolidColorBrush x:Key="Error"
+                                 Color="{DynamicResource SemiRed6Color}" />
+            </selectors:TimelineIconTemplateSelector>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <DockPanel>
+        <WrapPanel>
+            <u:Timeline
+                HorizontalAlignment="Left"
+                ContentMemberBinding="{Binding Description}"
+                HeaderMemberBinding="{Binding Header}"
+                IconMemberBinding="{Binding ItemType}"
+                IconTemplate="{StaticResource IconSelector}"
+                ItemsSource="{Binding Items}"
+                Mode="Alternate"
+                TimeMemberBinding="{Binding Time}" />
+            <u:Timeline
+                HorizontalAlignment="Left"
+                ContentMemberBinding="{Binding Description}"
+                HeaderMemberBinding="{Binding Header}"
+                IconMemberBinding="{Binding ItemType}"
+                IconTemplate="{StaticResource IconSelector}"
+                ItemsSource="{Binding Items}"
+                Mode="Left"
+                TimeMemberBinding="{Binding Time}" />
+            <u:Timeline
+                HorizontalAlignment="Left"
+                ContentMemberBinding="{Binding Description}"
+                HeaderMemberBinding="{Binding Header}"
+                IconMemberBinding="{Binding ItemType}"
+                IconTemplate="{StaticResource IconSelector}"
+                ItemsSource="{Binding Items}"
+                Mode="Right"
+                TimeMemberBinding="{Binding Time}" />
+            <u:Timeline HorizontalAlignment="Left"
+                        Mode="Alternate">
+                <u:TimelineItem
+                    Content="Step 1"
+                    Header="第一步"
+                    Position="Left"
+                    Type="Default" />
+                <u:TimelineItem
+                    Content="Step 2"
+                    Header="第二步"
+                    Position="Right"
+                    Type="Success" />
+                <u:TimelineItem
+                    Content="Step 3"
+                    Header="第三步"
+                    Position="Separate"
+                    Type="Warning" />
+                <u:TimelineItem
+                    Content="Step 4"
+                    Header="第四步"
+                    Position="Separate"
+                    Type="Ongoing" />
+                <u:TimelineItem
+                    Content="Step 5"
+                    Header="第五步"
+                    Position="Separate"
+                    TimeFormat="yyyy-MM-dd"
+                    Type="Error" />
+            </u:Timeline>
+        </WrapPanel>
+    </DockPanel>
+</UserControl>

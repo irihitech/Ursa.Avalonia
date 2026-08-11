@@ -1,0 +1,76 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.ImageViewerDemo.ImageViewerDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:DataType="viewModels:ImageViewerDemoViewModel"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.ImageViewerDemo">
+    <UserControl.Resources>
+        <SolidColorBrush
+            x:Key="MaskBackground"
+            Opacity="0.2"
+            Color="Red" />
+        <SolidColorBrush x:Key="MaskBorder" Color="Red" />
+    </UserControl.Resources>
+    <Grid RowDefinitions="Auto, *"
+          ColumnDefinitions="*,Auto">
+        <!-- Main viewer -->
+        <u:ImageViewer Grid.Row="1" x:Name="Viewer"
+                       Source="{Binding Source}"
+                       Grid.Column="0" />
+
+        <!-- Side panel with controls and info -->
+        <Border Grid.Row="1" Grid.Column="1" Width="220"
+                Padding="12">
+            <StackPanel Spacing="12">
+                <u:PathPicker AllowMultiple="False"
+                              UsePickerType="OpenFile"
+                              DefaultFileExtension="[,.jpg, .png]"
+                              ButtonContent="Select"
+                              Command="{Binding OpenFileCommand}" />
+                <TextBlock Text="ImageViewer Demo"
+                           FontSize="16" FontWeight="Bold" />
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Controls"
+                               FontWeight="SemiBold" />
+                    <TextBlock Text="• Drag to pan"
+                               TextWrapping="Wrap" />
+                    <TextBlock
+                        Text="• Scroll wheel to zoom"
+                        TextWrapping="Wrap" />
+                    <TextBlock
+                        Text="• Double-click to reset"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <Separator />
+
+                <TextBlock x:Name="ZoomLabel"
+                           Text="Zoom: 1.00×"
+                           FontWeight="SemiBold" />
+
+                <Slider x:Name="ZoomSlider"
+                        Minimum="0.1" Maximum="5.0"
+                        Value="{Binding #Viewer.Zoom, Mode=TwoWay}" />
+                <Slider x:Name="OffsetXSlider"
+                        Minimum="-1000"
+                        Maximum="1000"
+                        Value="{Binding #Viewer.OffsetX, Mode=TwoWay}" />
+                <Slider x:Name="OffsetYSlider"
+                        Minimum="-1000"
+                        Maximum="1000"
+                        Value="{Binding #Viewer.OffsetY, Mode=TwoWay}" />
+                <Button Content="Reset Picture"
+                        Command="{Binding ResetImageCommand}" />
+                <Button Content="Reset View"
+                        Click="ResetView_Click" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

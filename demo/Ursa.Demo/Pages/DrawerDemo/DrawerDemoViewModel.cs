@@ -1,0 +1,96 @@
+using System.Threading.Tasks;
+using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Ursa.Common;
+using Ursa.Controls;
+using Ursa.Controls.Options;
+using Ursa.Demo.Dialogs;
+
+using Ursa.Demo.ViewModels.Controls;
+using Ursa.Demo.Localizations;
+using Irihi.Dogma.Docs;
+using Ursa.Demo.Pages.DummyPages;
+
+namespace Ursa.Demo.Pages.DrawerDemo;
+
+[DocCategory(Category_Key, IsClickable = false, Parent = DialogAndFeedbacksPage.Category_Key)]
+[DocPage(Menu_Header, View = typeof(DrawerDemo))]
+public partial class DrawerDemoViewModel : ObservableObject, IPageMetadataProvider
+{
+    public const string Category_Key = "Drawer";
+    public const string Menu_Header = "Menu_Header_Drawer";
+    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    {
+        Title = LanguageManager.Instance.Page_Title_Drawer,
+        Description = LanguageManager.Instance.Page_Description_Drawer,
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DialogAndFeedbacks), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_Drawer)],
+        Tags = ["Drawer", "Panel", "Overlay"],
+        DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DrawerDemo/DrawerDemo.axaml",
+        DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DrawerDemo/DrawerDemoViewModel.cs",
+        InlineXamlSupport = false,
+        MvvmSupport = true,
+        AvaloniaExclusive = true,
+    };
+
+    public ICommand ShowDialogCommand { get; set; }
+
+    [ObservableProperty] public partial Position Position { get; set; }
+    [ObservableProperty] public partial DialogButton Buttons { get; set; }
+
+    [ObservableProperty] public partial bool CanLightDismiss { get; set; }
+    [ObservableProperty] public partial bool IsModal { get; set; }
+    [ObservableProperty] public partial bool? IsCloseButtonVisible { get; set; }
+    [ObservableProperty] public partial string? Title { get; set; }
+
+    [ObservableProperty] public partial bool Custom { get; set; }
+    [ObservableProperty] public partial bool IsLocal { get; set; }
+    [ObservableProperty] public partial bool CanResize { get; set; }
+
+    public DrawerDemoViewModel()
+    {
+        ShowDialogCommand = new AsyncRelayCommand(ShowDefaultDialog);
+        Position = Position.Right;
+        IsModal = true;
+        Title = "Add New";
+    }
+
+    private async Task ShowDefaultDialog()
+    {
+        var options = new DrawerOptions()
+        {
+            Position = Position,
+            Buttons = Buttons,
+            CanLightDismiss = CanLightDismiss,
+            IsCloseButtonVisible = IsCloseButtonVisible,
+            Title = Title,
+            CanResize = CanResize,
+        };
+        var hostId = IsLocal ? "LocalHost" : null;
+        if (Custom)
+        {
+            var vm = new CustomDemoDialogViewModel();
+            if (IsModal)
+            {
+                await OverlayDrawer.ShowCustomAsync<CustomDemoDialog, CustomDemoDialogViewModel, object?>(vm, hostId, options);
+            }
+            else
+            {
+                OverlayDrawer.ShowCustom<CustomDemoDialog, CustomDemoDialogViewModel>(vm, hostId, options);
+            }
+        }
+        else
+        {
+            var vm = new DefaultDemoDialogViewModel();
+            if (IsModal)
+            {
+                await OverlayDrawer.ShowStandardAsync<DefaultDemoDialog, DefaultDemoDialogViewModel>(vm, hostId, options);
+            }
+            else
+            {
+                OverlayDrawer.ShowStandard<DefaultDemoDialog, DefaultDemoDialogViewModel>(vm, hostId, options);
+            }
+        }
+        
+    }
+}

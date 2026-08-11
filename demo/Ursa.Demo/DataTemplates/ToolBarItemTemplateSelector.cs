@@ -4,7 +4,7 @@ using Avalonia.Controls.Templates;
 using Avalonia.Data;
 using Avalonia.Layout;
 using Ursa.Controls;
-using Ursa.Demo.ViewModels;
+using Ursa.Demo.Pages.ToolBarDemo;
 
 namespace Ursa.Demo.DataTemplates;
 

@@ -7,6 +7,7 @@
     xmlns:iri="https://irihi.tech/shared"
     RequestedThemeVariant="Default"
     xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
+    xmlns:aboutUsDemo="clr-namespace:Ursa.Demo.Pages.AboutUsDemo"
     x:DataType="vm:ApplicationViewModel">
     <Application.Styles>
         <semi:SemiTheme Locale="zh-CN" />
@@ -27,7 +28,7 @@
             <NativeMenuItem
                 Header="About Us"
                 Command="{Binding JumpToCommand}"
-                CommandParameter="{x:Static vm:MenuKeys.MenuKeyAboutUs}" />
+                CommandParameter="{x:Static aboutUsDemo:AboutUsDemoViewModel.Category_Key}" />
         </NativeMenu>
     </NativeMenu.Menu>
 </Application>

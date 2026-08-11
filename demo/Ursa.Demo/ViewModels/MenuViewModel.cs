@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using Irihi.Dogma.Docs;
 using Irihi.Lingua;
-using Ursa.Demo.Localizations;
+using Ursa.Demo.Common;
 
 namespace Ursa.Demo.ViewModels;
 
@@ -10,114 +12,24 @@ public class MenuViewModel : ViewModelBase
 {
     public MenuViewModel()
     {
-        var lang = LanguageManager.Instance;
-        List<MenuItemViewModel> allItems = [
-            new() { MenuHeader = lang.Menu_Header_Introduction, Key = MenuKeys.MenuKeyIntroduction, IsSeparator = false },
-            new() { MenuHeader = lang.Menu_Header_AboutUs, Key = MenuKeys.MenuKeyAboutUs, IsSeparator = false },
-            new() { MenuHeader = lang.Menu_Category_Controls, IsSeparator = true },
-            new()
-            {
-                MenuHeader = lang.Menu_Category_ButtonsAndInputs, Children = new ObservableCollection<MenuItemViewModel>
-                {
-                    new() { MenuHeader = lang.Menu_Header_ButtonGroup, Key = MenuKeys.MenuKeyButtonGroup },
-                    new() { MenuHeader = lang.Menu_Header_IconButton, Key = MenuKeys.MenuKeyIconButton },
-                    new() { MenuHeader = lang.Menu_Header_AutoCompleteBox, Key = MenuKeys.MenuKeyAutoCompleteBox },
-                    new() { MenuHeader = lang.Menu_Header_ClassInput, Key = MenuKeys.MenuKeyClassInput },
-                    new() { MenuHeader = lang.Menu_Header_EnumSelector, Key = MenuKeys.MenuKeyEnumSelector },
-                    new() { MenuHeader = lang.Menu_Header_Form, Key = MenuKeys.MenuKeyForm },
-                    new() { MenuHeader = lang.Menu_Header_KeyGestureInput, Key = MenuKeys.MenuKeyKeyGestureInput },
-                    new() { MenuHeader = lang.Menu_Header_IPv4Box, Key = MenuKeys.MenuKeyIpBox },
-                    new() { MenuHeader = lang.Menu_Header_MultiComboBox, Key = MenuKeys.MenuKeyMultiComboBox },
-                    new() { MenuHeader = lang.Menu_Header_MultiAutoCompleteBox, Key = MenuKeys.MenuKeyMultiAutoCompleteBox },
-                    new() { MenuHeader = lang.Menu_Header_NumericUpDown, Key = MenuKeys.MenuKeyNumericUpDown },
-                    new() { MenuHeader = lang.Menu_Header_NumPad, Key = MenuKeys.MenuKeyNumPad },
-                    new() { MenuHeader = lang.Menu_Header_PathPicker, Key = MenuKeys.MenuKeyPathPicker, Status = "Updated" },
-                    new() { MenuHeader = lang.Menu_Header_PinCode, Key = MenuKeys.MenuKeyPinCode },
-                    new() { MenuHeader = lang.Menu_Header_RangeSlider, Key = MenuKeys.MenuKeyRangeSlider },
-                    new() { MenuHeader = lang.Menu_Header_Rating, Key = MenuKeys.MenuKeyRating },
-                    new() { MenuHeader = lang.Menu_Header_SelectionList, Key = MenuKeys.MenuKeySelectionList },
-                    new() { MenuHeader = lang.Menu_Header_TagInput, Key = MenuKeys.MenuKeyTagInput, Status = "Updated" },
-                    new() { MenuHeader = lang.Menu_Header_ThemeToggler, Key = MenuKeys.MenuKeyThemeToggler },
-                    new() { MenuHeader = lang.Menu_Header_TreeComboBox, Key = MenuKeys.MenuKeyTreeComboBox },
-                }
-            },
-            new()
-            {
-                MenuHeader = lang.Menu_Category_DialogAndFeedbacks, Children = new ObservableCollection<MenuItemViewModel>()
-                {
-                    new() { MenuHeader = lang.Menu_Header_WindowDialog, Key = MenuKeys.MenuKeyWindowDialog },
-                    new() { MenuHeader = lang.Menu_Header_OverlayDialog, Key = MenuKeys.MenuKeyOverlayDialog },
-                    new() { MenuHeader = lang.Menu_Header_Drawer, Key = MenuKeys.MenuKeyDrawer, Status = "Updated" },
-                    new() { MenuHeader = lang.Menu_Header_Loading, Key = MenuKeys.MenuKeyLoading },
-                    new() { MenuHeader = lang.Menu_Header_MessageBox, Key = MenuKeys.MenuKeyMessageBox, Status = "Updated" },
-                    new() { MenuHeader = lang.Menu_Header_Notification, Key = MenuKeys.MenuKeyNotification, Status = "Updated" },
-                    new() { MenuHeader = lang.Menu_Header_PopConfirm, Key = MenuKeys.MenuKeyPopConfirm },
-                    new() { MenuHeader = lang.Menu_Header_Toast, Key = MenuKeys.MenuKeyToast, Status = "Updated" },
-                    new() { MenuHeader = lang.Menu_Header_Skeleton, Key = MenuKeys.MenuKeySkeleton },
-                    new() { MenuHeader = lang.Menu_Header_Shimmer, Key = MenuKeys.MenuKeyShimmer, Status = "New" },
-                }
-            },
-            new()
-            {
-                MenuHeader = lang.Menu_Category_DateAndTime, Children = new ObservableCollection<MenuItemViewModel>
-                {
-                    new() { MenuHeader = lang.Menu_Header_DatePicker, Key = MenuKeys.MenuKeyDatePicker, Status = "Updated" },
-                    new() { MenuHeader = lang.Menu_Header_DateOnlyPicker, Key = MenuKeys.MenuKeyDateOnlyPicker, Status = "New" },
-                    new() { MenuHeader = lang.Menu_Header_DateRangePicker, Key = MenuKeys.MenuKeyDateRangePicker, Status = "Updated" },
-                    new() { MenuHeader = lang.Menu_Header_DateOnlyRangePicker, Key = MenuKeys.MenuKeyDateOnlyRangePicker, Status = "New" },
-                    new() { MenuHeader = lang.Menu_Header_DateTimePicker, Key = MenuKeys.MenuKeyDateTimePicker, Status = "Updated" },
-                    new() { MenuHeader = lang.Menu_Header_DateOffsetPicker, Key = MenuKeys.MenuKeyDateOffsetPicker, Status = "New" },
-                    new() { MenuHeader = lang.Menu_Header_DateOffsetRangePicker, Key = MenuKeys.MenuKeyDateOffsetRangePicker, Status = "New" },
-                    new() { MenuHeader = lang.Menu_Header_DateTimeOffsetPicker, Key = MenuKeys.MenuKeyDateTimeOffsetPicker, Status = "New" },
-                    new() { MenuHeader = lang.Menu_Header_TimeBox, Key = MenuKeys.MenuKeyTimeBox },
-                    new() { MenuHeader = lang.Menu_Header_TimePicker, Key = MenuKeys.MenuKeyTimePicker, Status = "Updated" },
-                    new() { MenuHeader = lang.Menu_Header_TimeOnlyPicker, Key = MenuKeys.MenuKeyTimeOnlyPicker, Status = "New" },
-                    new() { MenuHeader = lang.Menu_Header_TimeRangePicker, Key = MenuKeys.MenuKeyTimeRangePicker, Status = "New" },
-                    new() { MenuHeader = lang.Menu_Header_TimeOnlyRangePicker, Key = MenuKeys.MenuKeyTimeOnlyRangePicker, Status = "New" },
-                    new() { MenuHeader = lang.Menu_Header_Clock, Key = MenuKeys.MenuKeyClock }
-                }
-            },
-            new()
-            {
-                MenuHeader = lang.Menu_Category_NavigationAndMenus, Children = new ObservableCollection<MenuItemViewModel>
-                {
-                    new() { MenuHeader = lang.Menu_Header_Anchor, Key = MenuKeys.MenuKeyAnchor },
-                    new() { MenuHeader = lang.Menu_Header_Breadcrumb, Key = MenuKeys.MenuKeyBreadcrumb },
-                    new() { MenuHeader = lang.Menu_Header_NavMenu, Key = MenuKeys.MenuKeyNavMenu, Status = "Updated" },
-                    new() { MenuHeader = lang.Menu_Header_Pagination, Key = MenuKeys.MenuKeyPagination },
-                    new() { MenuHeader = lang.Menu_Header_ToolBar, Key = MenuKeys.MenuKeyToolBar },
-                }
-            },
-            new()
-            {
-                MenuHeader = lang.Menu_Category_LayoutAndDisplay,
-                Children = new ObservableCollection<MenuItemViewModel>
-                {
-                    new() { MenuHeader = lang.Menu_Header_AspectRatioLayout, Key = MenuKeys.MenuKeyAspectRatioLayout },
-                    new() { MenuHeader = lang.Menu_Header_Avatar, Key = MenuKeys.MenuKeyAvatar, Status = "WIP" },
-                    new() { MenuHeader = lang.Menu_Header_Badge, Key = MenuKeys.MenuKeyBadge },
-                    new() { MenuHeader = lang.Menu_Header_Banner, Key = MenuKeys.MenuKeyBanner },
-                    new() { MenuHeader = lang.Menu_Header_Descriptions, Key = MenuKeys.MenuKeyDescriptions },
-                    new() { MenuHeader = lang.Menu_Header_DisableContainer, Key = MenuKeys.MenuKeyDisableContainer },
-                    new() { MenuHeader = lang.Menu_Header_Divider, Key = MenuKeys.MenuKeyDivider },
-                    new() { MenuHeader = lang.Menu_Header_GroupBox, Key = MenuKeys.MenuKeyGroupBox, Status = "New" },
-                    new() { MenuHeader = lang.Menu_Header_DualBadge, Key = MenuKeys.MenuKeyDualBadge },
-                    new() { MenuHeader = lang.Menu_Header_ImageViewer, Key = MenuKeys.MenuKeyImageViewer, Status = "WIP" },
-                    new() { MenuHeader = lang.Menu_Header_ElasticWrapPanel, Key = MenuKeys.MenuKeyElasticWrapPanel },
-                    new() { MenuHeader = lang.Menu_Header_VirtualizingUniformGrid, Key = MenuKeys.MenuKeyVirtualizingUniformGrid, Status = "New" },
-                    new() { MenuHeader = lang.Menu_Header_ProportionalCanvas, Key = MenuKeys.MenuKeyProportionalCanvas, Status = "New" },
-                    new() { MenuHeader = lang.Menu_Header_Marquee, Key = MenuKeys.MenuKeyMarquee },
-                    new() { MenuHeader = lang.Menu_Header_MarkdownLine, Key = MenuKeys.MenuKeyMarkdownLine, Status = "New" },
-                    new() { MenuHeader = lang.Menu_Header_NumberDisplayer, Key = MenuKeys.MenuKeyNumberDisplayer },
-                    new() { MenuHeader = lang.Menu_Header_QrCode, Key = MenuKeys.MenuKeyQrCode },
-                    new() { MenuHeader = lang.Menu_Header_ScrollTo, Key = MenuKeys.MenuKeyScrollToButton },
-                    new() { MenuHeader = lang.Menu_Header_ThemeVariantMapper, Key = MenuKeys.MenuKeyThemeVariantMapper, Status = "New" },
-                    new() { MenuHeader = lang.Menu_Header_Timeline, Key = MenuKeys.MenuKeyTimeline },
-                    new() { MenuHeader = lang.Menu_Header_TwoTonePathIcon, Key = MenuKeys.MenuKeyTwoTonePathIcon }
-                }
-            },
-        ];
-        MenuItems = new ObservableCollection<MenuItemViewModel>(allItems);
+        MenuItems = BuildTreeItems(UrsaDocSite.Instance.Roots);
+    }
+    
+    private static ObservableCollection<MenuItemViewModel> BuildTreeItems(IReadOnlyList<DocCategoryNode> node)
+    {
+        var children = node
+            .OrderBy(a => a.Metadata.Order)
+            .Select(BuildTreeItem);
+        return new ObservableCollection<MenuItemViewModel>(children);
+    }
+
+
+    private static MenuItemViewModel BuildTreeItem(DocCategoryNode node)
+    {
+        var item = new MenuItemViewModel(node);
+        var children = BuildTreeItems(node.Children);
+        item.Children = new ObservableCollection<MenuItemViewModel>(children);
+        return item;
     }
 
     public ObservableCollection<MenuItemViewModel> MenuItems { get; set; }

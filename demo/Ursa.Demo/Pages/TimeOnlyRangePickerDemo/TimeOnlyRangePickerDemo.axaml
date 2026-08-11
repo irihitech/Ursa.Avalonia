@@ -1,0 +1,84 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.TimeOnlyRangePickerDemo.TimeOnlyRangePickerDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.TimeOnlyRangePickerDemo"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="viewModels:TimeOnlyRangePickerDemoViewModel"
+    mc:Ignorable="d">
+    <ScrollViewer>
+        <StackPanel Spacing="20">
+        <StackPanel Spacing="20" HorizontalAlignment="Left">
+            <TextBox
+                Name="displayFormat"
+                Width="300"
+                InnerLeftContent="Display Format"
+                Text="HH:mm:ss" />
+            <TextBox
+                Name="panelFormat"
+                Width="300"
+                InnerLeftContent="Panel Format"
+                Text="tt HH mm ss" />
+
+            <TextBlock Text="Need Confirmation" />
+            <ToggleSwitch Name="needConfirm" Content="Need Confirm" />
+            <TextBlock Text="{Binding #confirmPicker.SelectedStartTime, StringFormat='Start: {0}'}" />
+            <TextBlock Text="{Binding #confirmPicker.SelectedEndTime, StringFormat='End: {0}'}" />
+            <u:TimeOnlyRangePicker
+                Name="confirmPicker"
+                Width="300"
+                DisplayFormat="{Binding #displayFormat.Text}"
+                NeedConfirmation="{Binding #needConfirm.IsChecked}"
+                PanelFormat="{Binding #panelFormat.Text}" />
+
+            <TextBlock Text="Default" />
+            <u:TimeOnlyRangePicker
+                Width="300"
+                DisplayFormat="{Binding #displayFormat.Text}"
+                PanelFormat="{Binding #panelFormat.Text}" />
+
+            <TextBlock Text="Initialized by Binding" />
+            <u:TimeOnlyRangePicker
+                Width="300"
+                SelectedStartTime="{Binding StartTime}"
+                SelectedEndTime="{Binding EndTime}"
+                DisplayFormat="{Binding #displayFormat.Text}"
+                PanelFormat="{Binding #panelFormat.Text}" />
+
+            <TextBlock Text="Clear Button" />
+            <u:TimeOnlyRangePicker
+                Width="300"
+                Classes="ClearButton"
+                DisplayFormat="{Binding #displayFormat.Text}"
+                PanelFormat="{Binding #panelFormat.Text}" />
+
+            <TextBlock Text="IsReadOnly" />
+            <ToggleSwitch Name="readonlyToggle" Content="Read Only" />
+            <u:TimeOnlyRangePicker
+                Width="300"
+                DisplayFormat="{Binding #displayFormat.Text}"
+                IsReadOnly="{Binding #readonlyToggle.IsChecked}"
+                PanelFormat="{Binding #panelFormat.Text}"
+                SelectedEndTime="18:30:00"
+                SelectedStartTime="10:30:00" />
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Left" Spacing="8">
+            <TextBlock FontWeight="Bold" FontSize="16" Text="Data Validation" />
+            <TextBlock Foreground="{DynamicResource TextBoxPlaceholderForeground}"
+                       Text="Clear the time range to trigger [Required] validation and see the error feedback." />
+            <u:TimeOnlyRangePicker HorizontalAlignment="Left"
+                Width="300"
+                Classes="ClearButton"
+                DisplayFormat="{Binding #displayFormat.Text}"
+                PanelFormat="{Binding #panelFormat.Text}"
+                SelectedStartTime="{Binding ValidatedRange.Start, Mode=TwoWay}"
+                SelectedEndTime="{Binding ValidatedRange.End, Mode=TwoWay}" />
+        </StackPanel>
+    </StackPanel>
+    </ScrollViewer>
+</UserControl>

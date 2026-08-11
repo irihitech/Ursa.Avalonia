@@ -30,5 +30,6 @@
     <PackageVersion Include="Prism.DryIoc.Avalonia" Version="8.1.97.11072" />
     <PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.2.0.2" />
     <PackageVersion Include="Irihi.Lingua" Version="1.0.0" />
+    <PackageVersion Include="Irihi.Dogma" Version="0.1.0" />
   </ItemGroup>
 </Project>
