@@ -24,6 +24,7 @@
         <ResourceInclude Source="QrCode.axaml" />
         <ResourceInclude Source="Rating.axaml" />
         <ResourceInclude Source="SelectionList.axaml" />
+        <ResourceInclude Source="Shimmer.axaml" />
         <ResourceInclude Source="Skeleton.axaml" />
         <ResourceInclude Source="TagInput.axaml" />
         <ResourceInclude Source="Timeline.axaml" />

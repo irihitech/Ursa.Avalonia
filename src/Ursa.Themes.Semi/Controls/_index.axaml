@@ -57,6 +57,7 @@
         <ResourceInclude Source="ScrollToButton.axaml" />
         <ResourceInclude Source="SelectionList.axaml" />
         <ResourceInclude Source="Skeleton.axaml" />
+        <ResourceInclude Source="Shimmer.axaml" />
         <ResourceInclude Source="SplashWindow.axaml" />
         <ResourceInclude Source="TagInput.axaml" />
         <ResourceInclude Source="ThemeSelector.axaml" />

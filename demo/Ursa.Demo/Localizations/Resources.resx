@@ -135,6 +135,9 @@
   <data name="Menu_Header_Skeleton" xml:space="preserve">
     <value>Skeleton</value>
   </data>
+  <data name="Menu_Header_Shimmer" xml:space="preserve">
+    <value>Shimmer</value>
+  </data>
 
   <!-- Date & Time -->
   <data name="Menu_Header_DatePicker" xml:space="preserve">
@@ -434,6 +437,9 @@
   <data name="Page_Title_Skeleton" xml:space="preserve">
     <value>Skeleton</value>
   </data>
+  <data name="Page_Title_Shimmer" xml:space="preserve">
+    <value>Shimmer</value>
+  </data>
   <data name="Page_Title_TagInput" xml:space="preserve">
     <value>TagInput</value>
   </data>
@@ -641,6 +647,9 @@
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
     <value>Skeleton shows placeholder loading animations for content areas.</value>
+  </data>
+  <data name="Page_Description_Shimmer" xml:space="preserve">
+    <value>Shimmer adds a sweeping gradient loading effect to text or other visuals.</value>
   </data>
   <data name="Page_Description_TagInput" xml:space="preserve">
     <value>TagInput allows users to enter and manage multiple tag values.</value>

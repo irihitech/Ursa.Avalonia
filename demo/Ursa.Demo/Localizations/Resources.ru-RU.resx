@@ -135,6 +135,9 @@
   <data name="Menu_Header_Skeleton" xml:space="preserve">
     <value>Скелетон (Skeleton)</value>
   </data>
+  <data name="Menu_Header_Shimmer" xml:space="preserve">
+    <value>Мерцание (Shimmer)</value>
+  </data>
 
   <!-- Date &amp; Time -->
   <data name="Menu_Header_DatePicker" xml:space="preserve">
@@ -434,6 +437,9 @@
   <data name="Page_Title_Skeleton" xml:space="preserve">
     <value>Скелетон (Skeleton)</value>
   </data>
+  <data name="Page_Title_Shimmer" xml:space="preserve">
+    <value>Мерцание (Shimmer)</value>
+  </data>
   <data name="Page_Title_TagInput" xml:space="preserve">
     <value>Ввод тегов (TagInput)</value>
   </data>
@@ -642,6 +648,9 @@
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
     <value>Скелетон показывает замещающие анимации загрузки для областей содержимого.</value>
+  </data>
+  <data name="Page_Description_Shimmer" xml:space="preserve">
+    <value>Shimmer добавляет скользящий градиентный эффект загрузки к тексту или другим визуальным элементам.</value>
   </data>
   <data name="Page_Description_TagInput" xml:space="preserve">
     <value>Ввод тегов позволяет пользователям вводить и управлять несколькими значениями тегов.</value>

@@ -54,6 +54,7 @@ public class MenuViewModel : ViewModelBase
                     new() { MenuHeader = lang.Menu_Header_PopConfirm, Key = MenuKeys.MenuKeyPopConfirm },
                     new() { MenuHeader = lang.Menu_Header_Toast, Key = MenuKeys.MenuKeyToast, Status = "Updated" },
                     new() { MenuHeader = lang.Menu_Header_Skeleton, Key = MenuKeys.MenuKeySkeleton },
+                    new() { MenuHeader = lang.Menu_Header_Shimmer, Key = MenuKeys.MenuKeyShimmer, Status = "New" },
                 }
             },
             new()
@@ -218,6 +219,7 @@ public static class MenuKeys
     public const string MenuKeyScrollToButton = "ScrollToButton";
     public const string MenuKeySelectionList = "SelectionList";
     public const string MenuKeySkeleton = "Skeleton";
+    public const string MenuKeyShimmer = "Shimmer";
     public const string MenuKeyTagInput = "TagInput";
     public const string MenuKeyThemeToggler = "ThemeToggler";
     public const string MenuKeyThemeVariantMapper = "ThemeVariantMapper";
