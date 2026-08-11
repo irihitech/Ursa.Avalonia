@@ -2,7 +2,9 @@ using System.Globalization;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Irihi.Dogma.Docs;
 using Irihi.Lingua;
+using Ursa.Demo.Common;
 using Ursa.Demo.Localizations;
 using Ursa.Demo.ViewModels;
 using Ursa.Demo.Views;
@@ -18,6 +20,9 @@ public partial class App : Application
 #if DEBUG
         this.AttachDeveloperTools();
 #endif
+        GeneratedDocPages.Register(UrsaDocSite.Instance);
+        UrsaDocSite.Instance.LinguaManager = LanguageManager.Instance;
+        
         DataContext = new ApplicationViewModel();
     }
 

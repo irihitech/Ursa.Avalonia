@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using Irihi.Dogma.Docs;
 using Irihi.Lingua;
+using Ursa.Demo.Common;
 using Ursa.Demo.Localizations;
 
 namespace Ursa.Demo.ViewModels;
@@ -117,7 +120,14 @@ public class MenuViewModel : ViewModelBase
                 }
             },
         ];
-        MenuItems = new ObservableCollection<MenuItemViewModel>(allItems);
+        MenuItems = new ObservableCollection<MenuItemViewModel>(UrsaDocSite.Instance.Roots.Select(BuildTreeItem));
+    }
+
+    private static MenuItemViewModel BuildTreeItem(DocCategoryNode node)
+    {
+        var item = new MenuItemViewModel(node);
+        item.Children = new ObservableCollection<MenuItemViewModel>(node.Children.Select(BuildTreeItem).ToList());
+        return item;
     }
 
     public ObservableCollection<MenuItemViewModel> MenuItems { get; set; }

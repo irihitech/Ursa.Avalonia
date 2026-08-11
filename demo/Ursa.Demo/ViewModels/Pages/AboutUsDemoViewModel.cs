@@ -5,12 +5,17 @@ using System.Windows.Input;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-
+using Irihi.Dogma.Docs;
+using Ursa.Demo.Pages;
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
+[DocCategory(Category_Key)]
+[DocPage(Menu_Header_AboutUs, View = typeof(AboutUsDemo))]
 public partial class AboutUsDemoViewModel : ObservableObject
 {
+    public const string Category_Key = "About Us";
+    public const string Menu_Header_AboutUs = nameof(Menu_Header_AboutUs);
     public ICommand NavigateCommand { get; set; }
 
     internal ILauncher? Launcher { get; set; }

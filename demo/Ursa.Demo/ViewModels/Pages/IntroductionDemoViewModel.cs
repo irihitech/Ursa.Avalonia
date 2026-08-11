@@ -2,13 +2,19 @@ using System;
 using System.Collections.ObjectModel;
 using System.Net;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Irihi.Dogma.Docs;
 using Ursa.Demo.Models;
-
+using Ursa.Demo.Pages;
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
+[DocCategory(Category_Key)]
+[DocPage(Menu_Header, View = typeof(IntroductionDemo))]
 public partial class IntroductionDemoViewModel : ObservableObject
 {
+    public const string Category_Key = "IntroductionDemo";
+    public const string Menu_Header = "Menu_Header_Introduction";
+    
     public ObservableCollection<string> ButtonGroupItems { get; set; } = new()
     {
         "Avalonia", "WPF", "Xamarin"

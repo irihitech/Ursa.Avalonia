@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Avalonia;
 using Avalonia.Controls.Notifications;
 using Avalonia.Styling;
@@ -18,6 +19,7 @@ public partial class MainViewViewModel : ViewModelBase
 {
     public WindowNotificationManager? NotificationManager { get; set; }
     public MenuViewModel Menus { get; set; } = new MenuViewModel();
+    [ObservableProperty] public partial MenuItemViewModel? SelectedMenuItem { get; set; }
     
     [ObservableProperty] public partial IReadOnlyList<BreadcrumbItemData>? NavigationKeys { get; set; }
     [ObservableProperty] public partial PageMetadataViewModel? PageMetadata { get; set; }
@@ -33,9 +35,16 @@ public partial class MainViewViewModel : ViewModelBase
     public MainViewViewModel()
     {
         WeakReferenceMessenger.Default.Register<MainViewViewModel, string, string>(this, "JumpTo", OnNavigation);
-        OnNavigation(this, MenuKeys.MenuKeyIntroduction);
+        //OnNavigation(this, MenuKeys.MenuKeyIntroduction);
+        SelectedMenuItem = Menus.MenuItems.FirstOrDefault();
     }
 
+    partial void OnSelectedMenuItemChanged(MenuItemViewModel? value)
+    {
+        if (value is null) return;
+        var content = value.Node.Page?.Metadata.ViewModelFactory();
+        this.Content = content;
+    }
 
     private void OnNavigation(MainViewViewModel vm, string s)
     {
