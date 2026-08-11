@@ -9,11 +9,17 @@ using Ursa.Controls;
 
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
+using Irihi.Dogma.Docs;
+using Ursa.Demo.Pages.DummyPages;
 
 namespace Ursa.Demo.Pages.NavMenuDemo;
 
+[DocCategory(Category_Key, IsClickable = false, Parent = NavigationAndMenusPage.Category_Key)]
+[DocPage(Menu_Header, View = typeof(NavMenuDemo))]
 public class NavMenuDemoViewModel: ObservableObject, IPageMetadataProvider
 {
+    public const string Category_Key = "NavMenu";
+    public const string Menu_Header = "Menu_Header_NavMenu";
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_NavMenu,

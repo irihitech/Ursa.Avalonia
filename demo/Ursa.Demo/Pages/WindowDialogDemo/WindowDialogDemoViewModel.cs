@@ -10,11 +10,17 @@ using Ursa.Demo.Dialogs;
 using Ursa.Demo.ViewModels.Controls;
 
 using Ursa.Demo.Localizations;
+using Irihi.Dogma.Docs;
+using Ursa.Demo.Pages.DummyPages;
 
 namespace Ursa.Demo.Pages.WindowDialogDemo;
 
+[DocCategory(Category_Key, IsClickable = false, Parent = DialogAndFeedbacksPage.Category_Key)]
+[DocPage(Menu_Header, View = typeof(WindowDialogDemo))]
 public partial class WindowDialogDemoViewModel : ObservableObject, IPageMetadataProvider
 {
+    public const string Category_Key = "WindowDialog";
+    public const string Menu_Header = "Menu_Header_WindowDialog";
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_WindowDialog,

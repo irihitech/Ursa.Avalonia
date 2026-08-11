@@ -13,7 +13,7 @@ namespace Ursa.Demo.Pages.AboutUsDemo;
 [DocPage(Menu_Header, View = typeof(AboutUsDemo))]
 public partial class AboutUsDemoViewModel : ObservableObject
 {
-    public const string Category_Key = "About Us";
+    public const string Category_Key = "AboutUs";
     public const string Menu_Header = "Menu_Header_AboutUs";
     public ICommand NavigateCommand { get; set; }
 

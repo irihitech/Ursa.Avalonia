@@ -9,11 +9,17 @@ using Ursa.Controls;
 
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
+using Irihi.Dogma.Docs;
+using Ursa.Demo.Pages.DummyPages;
 
 namespace Ursa.Demo.Pages.MessageBoxDemo;
 
+[DocCategory(Category_Key, IsClickable = false, Parent = DialogAndFeedbacksPage.Category_Key)]
+[DocPage(Menu_Header, View = typeof(MessageBoxDemo))]
 public class MessageBoxDemoViewModel: ObservableObject, IPageMetadataProvider
 {
+    public const string Category_Key = "MessageBox";
+    public const string Menu_Header = "Menu_Header_MessageBox";
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_MessageBox,

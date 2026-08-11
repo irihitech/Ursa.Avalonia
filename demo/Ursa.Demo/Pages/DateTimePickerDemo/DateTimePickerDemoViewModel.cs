@@ -4,11 +4,17 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
+using Irihi.Dogma.Docs;
+using Ursa.Demo.Pages.DummyPages;
 
 namespace Ursa.Demo.Pages.DateTimePickerDemo;
 
+[DocCategory(Category_Key, IsClickable = false, Parent = DateAndTimePage.Category_Key)]
+[DocPage(Menu_Header, View = typeof(DateTimePickerDemo))]
 public partial class DateTimePickerDemoViewModel : ObservableValidator, IPageMetadataProvider
 {
+    public const string Category_Key = "DateTimePicker";
+    public const string Menu_Header = "Menu_Header_DateTimePicker";
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_DateTimePicker,

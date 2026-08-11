@@ -7,11 +7,17 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Ursa.Demo.ViewModels.Controls;
 
 using Ursa.Demo.Localizations;
+using Irihi.Dogma.Docs;
+using Ursa.Demo.Pages.DummyPages;
 
 namespace Ursa.Demo.Pages.VirtualizingUniformGridDemo;
 
+[DocCategory(Category_Key, IsClickable = false, Parent = LayoutAndDisplayPage.Category_Key)]
+[DocPage(Menu_Header, View = typeof(VirtualizingUniformGridDemo))]
 public partial class VirtualizingUniformGridDemoViewModel : ObservableObject, IPageMetadataProvider
 {
+    public const string Category_Key = "VirtualizingUniformGrid";
+    public const string Menu_Header = "Menu_Header_VirtualizingUniformGrid";
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_VirtualizingUniformGrid,

@@ -4,11 +4,17 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
+using Irihi.Dogma.Docs;
+using Ursa.Demo.Pages.DummyPages;
 
 namespace Ursa.Demo.Pages.ElasticWrapPanelDemo;
 
+[DocCategory(Category_Key, IsClickable = false, Parent = LayoutAndDisplayPage.Category_Key)]
+[DocPage(Menu_Header, View = typeof(ElasticWrapPanelDemo))]
 public partial class ElasticWrapPanelDemoViewModel : ObservableObject, IPageMetadataProvider
 {
+    public const string Category_Key = "ElasticWrapPanel";
+    public const string Menu_Header = "Menu_Header_ElasticWrapPanel";
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_ElasticWrapPanel,

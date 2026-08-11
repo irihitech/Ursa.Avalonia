@@ -9,11 +9,17 @@ using Ursa.Demo.Dialogs;
 
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
+using Irihi.Dogma.Docs;
+using Ursa.Demo.Pages.DummyPages;
 
 namespace Ursa.Demo.Pages.DrawerDemo;
 
+[DocCategory(Category_Key, IsClickable = false, Parent = DialogAndFeedbacksPage.Category_Key)]
+[DocPage(Menu_Header, View = typeof(DrawerDemo))]
 public partial class DrawerDemoViewModel : ObservableObject, IPageMetadataProvider
 {
+    public const string Category_Key = "Drawer";
+    public const string Menu_Header = "Menu_Header_Drawer";
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_Drawer,

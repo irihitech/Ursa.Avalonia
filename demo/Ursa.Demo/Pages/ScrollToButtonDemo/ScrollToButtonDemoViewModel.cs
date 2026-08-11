@@ -4,11 +4,17 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
+using Irihi.Dogma.Docs;
+using Ursa.Demo.Pages.DummyPages;
 
 namespace Ursa.Demo.Pages.ScrollToButtonDemo;
 
+[DocCategory(Category_Key, IsClickable = false, Parent = LayoutAndDisplayPage.Category_Key)]
+[DocPage(Menu_Header, View = typeof(ScrollToButtonDemo))]
 public class ScrollToButtonDemoViewModel: ObservableObject, IPageMetadataProvider
 {
+    public const string Category_Key = "ScrollToButton";
+    public const string Menu_Header = "Menu_Header_ScrollTo";
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_ScrollToButton,

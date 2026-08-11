@@ -16,7 +16,7 @@ namespace Ursa.Demo.Pages.ButtonGroupDemo;
 [DocPage(Menu_Header, View = typeof(ButtonGroupDemo))]
 public class ButtonGroupDemoViewModel: ViewModelBase, IPageMetadataProvider
 {
-    public const string Category_Key = "ButtonsGroup";
+    public const string Category_Key = "ButtonGroup";
     public const string Menu_Header = "Menu_Header_ButtonGroup";
     public PageMetadataViewModel  PageMetadata { get; set; } = new PageMetadataViewModel()
     {

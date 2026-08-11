@@ -3,11 +3,17 @@ using Ursa.Demo.ViewModels;
 using Ursa.Demo.ViewModels.Controls;
 
 using Ursa.Demo.Localizations;
+using Irihi.Dogma.Docs;
+using Ursa.Demo.Pages.DummyPages;
 
 namespace Ursa.Demo.Pages.ProportionalCanvasDemo;
 
+[DocCategory(Category_Key, IsClickable = false, Parent = LayoutAndDisplayPage.Category_Key)]
+[DocPage(Menu_Header, View = typeof(ProportionalCanvasDemo))]
 public partial class ProportionalCanvasDemoViewModel: ViewModelBase, IPageMetadataProvider
 {
+    public const string Category_Key = "Proportional Canvas";
+    public const string Menu_Header = "Menu_Header_ProportionalCanvas";
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_ProportionalCanvas,

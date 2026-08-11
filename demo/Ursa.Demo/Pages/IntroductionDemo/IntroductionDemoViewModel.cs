@@ -11,7 +11,7 @@ namespace Ursa.Demo.Pages.IntroductionDemo;
 [DocPage(Menu_Header, View = typeof(IntroductionDemo))]
 public partial class IntroductionDemoViewModel : ObservableObject
 {
-    public const string Category_Key = "IntroductionDemo";
+    public const string Category_Key = "Introduction";
     public const string Menu_Header = "Menu_Header_Introduction";
     
     public ObservableCollection<string> ButtonGroupItems { get; set; } = new()
