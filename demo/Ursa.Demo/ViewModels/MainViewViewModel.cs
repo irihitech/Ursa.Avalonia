@@ -116,6 +116,16 @@ public partial class MainViewViewModel : ViewModelBase
         if (value is null) return;
         var content = value.Node.Page?.Metadata.ViewModelFactory();
         this.Content = content;
+        if (Content is IPageMetadataProvider provider)
+        {
+            PageMetadata = provider.PageMetadata;
+            NavigationKeys = provider.PageMetadata.Breadcrumbs;
+        }
+        else
+        {
+            PageMetadata = null;
+            NavigationKeys = null;
+        }
     }
 
     private void OnNavigation(MainViewViewModel vm, string s)
