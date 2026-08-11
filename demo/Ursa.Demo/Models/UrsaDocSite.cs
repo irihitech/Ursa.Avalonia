@@ -1,6 +1,6 @@
 ﻿using Irihi.Dogma.Docs;
 
-namespace Ursa.Demo.Common;
+namespace Ursa.Demo.Models;
 
 public class UrsaDocSite: DocSite
 {

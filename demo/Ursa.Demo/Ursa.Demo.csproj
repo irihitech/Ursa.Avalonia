@@ -33,4 +33,8 @@
         <ProjectReference Include="..\..\src\Ursa.Themes.Semi\Ursa.Themes.Semi.csproj"/>
         <ProjectReference Include="..\..\src\Ursa\Ursa.csproj"/>
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Common\" />
+    </ItemGroup>
 </Project>
