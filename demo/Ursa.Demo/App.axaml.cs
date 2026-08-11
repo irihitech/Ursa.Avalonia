@@ -3,7 +3,6 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Irihi.Dogma.Docs;
-using Irihi.Lingua;
 using Ursa.Demo.Common;
 using Ursa.Demo.Localizations;
 using Ursa.Demo.ViewModels;

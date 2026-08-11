@@ -5,7 +5,6 @@ using System.Linq;
 using Irihi.Dogma.Docs;
 using Irihi.Lingua;
 using Ursa.Demo.Common;
-using Ursa.Demo.Localizations;
 
 namespace Ursa.Demo.ViewModels;
 
