@@ -8,7 +8,7 @@ using Ursa.Demo.Pages;
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-[DocCategory(Category_Key)]
+[DocCategory(Category_Key, Order = 0)]
 [DocPage(Menu_Header, View = typeof(IntroductionDemo))]
 public partial class IntroductionDemoViewModel : ObservableObject
 {

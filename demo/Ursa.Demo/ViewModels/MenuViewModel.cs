@@ -120,13 +120,23 @@ public class MenuViewModel : ViewModelBase
                 }
             },
         ];
-        MenuItems = new ObservableCollection<MenuItemViewModel>(UrsaDocSite.Instance.Roots.Select(BuildTreeItem));
+        MenuItems = BuildTreeItems(UrsaDocSite.Instance.Roots);
     }
+    
+    private static ObservableCollection<MenuItemViewModel> BuildTreeItems(IReadOnlyList<DocCategoryNode> node)
+    {
+        var children = node
+            .OrderBy(a => a.Metadata.Order)
+            .Select(BuildTreeItem);
+        return new ObservableCollection<MenuItemViewModel>(children);
+    }
+
 
     private static MenuItemViewModel BuildTreeItem(DocCategoryNode node)
     {
         var item = new MenuItemViewModel(node);
-        item.Children = new ObservableCollection<MenuItemViewModel>(node.Children.Select(BuildTreeItem).ToList());
+        var children = BuildTreeItems(node.Children);
+        item.Children = new ObservableCollection<MenuItemViewModel>(children);
         return item;
     }
 

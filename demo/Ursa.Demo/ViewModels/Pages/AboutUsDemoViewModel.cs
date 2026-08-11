@@ -10,12 +10,12 @@ using Ursa.Demo.Pages;
 using Ursa.Demo.ViewModels.Controls;
 namespace Ursa.Demo.ViewModels;
 
-[DocCategory(Category_Key)]
-[DocPage(Menu_Header_AboutUs, View = typeof(AboutUsDemo))]
+[DocCategory(Category_Key, Order = 1)]
+[DocPage(Menu_Header, View = typeof(AboutUsDemo))]
 public partial class AboutUsDemoViewModel : ObservableObject
 {
     public const string Category_Key = "About Us";
-    public const string Menu_Header_AboutUs = nameof(Menu_Header_AboutUs);
+    public const string Menu_Header = "Menu_Header_AboutUs";
     public ICommand NavigateCommand { get; set; }
 
     internal ILauncher? Launcher { get; set; }
