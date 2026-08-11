@@ -2,12 +2,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+             xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.TimeRangePickerDemo"
              xmlns:u="https://irihi.tech/ursa"
              mc:Ignorable="d" d:DesignWidth="800"
              d:DesignHeight="450"
              x:DataType="viewModels:TimeRangePickerDemoViewModel"
-             x:Class="Ursa.Demo.Pages.TimeRangePickerDemo">
+             x:Class="Ursa.Demo.Pages.TimeRangePickerDemo.TimeRangePickerDemo">
     <ScrollViewer>
         <StackPanel Spacing="20">
         <StackPanel HorizontalAlignment="Left" Spacing="20">

@@ -1,5 +1,5 @@
 <UserControl
-    x:Class="Ursa.Demo.Pages.DividerDemo"
+    x:Class="Ursa.Demo.Pages.DividerDemo.DividerDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,7 +9,7 @@
     d:DesignWidth="800"
     mc:Ignorable="d"
     x:DataType="viewModels:DividerDemoViewModel"
-    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
+    xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.DividerDemo">
     <StackPanel Spacing="20">
         <u:Divider>Center</u:Divider>
         <u:Divider HorizontalContentAlignment="Left">Left</u:Divider>

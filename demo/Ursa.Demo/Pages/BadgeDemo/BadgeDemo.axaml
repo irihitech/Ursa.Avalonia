@@ -1,5 +1,5 @@
 <UserControl
-    x:Class="Ursa.Demo.Pages.BadgeDemo"
+    x:Class="Ursa.Demo.Pages.BadgeDemo.BadgeDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:common="clr-namespace:Ursa.Common;assembly=Ursa"
@@ -7,7 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
-    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.BadgeDemo"
     xmlns:controls1="clr-namespace:Ursa.Demo.ViewModels.Controls"
     xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
     d:DesignHeight="850"

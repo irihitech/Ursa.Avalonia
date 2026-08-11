@@ -3,11 +3,12 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
+using Ursa.Demo.ViewModels;
 using Ursa.Demo.ViewModels.Controls;
 
 using Ursa.Demo.Localizations;
 
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.ButtonGroupDemo;
 
 public class ButtonGroupDemoViewModel: ViewModelBase, IPageMetadataProvider
 {

@@ -4,7 +4,7 @@ using Ursa.Common;
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.IconButtonDemo;
 
 public partial class IconButtonDemoViewModel : ObservableObject, IPageMetadataProvider
 {

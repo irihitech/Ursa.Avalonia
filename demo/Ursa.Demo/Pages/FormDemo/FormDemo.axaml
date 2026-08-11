@@ -1,11 +1,11 @@
 <UserControl
-    x:Class="Ursa.Demo.Pages.FormDemo"
+    x:Class="Ursa.Demo.Pages.FormDemo.FormDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
-    xmlns:vm="clr-namespace:Ursa.Demo.ViewModels;assembly=Ursa.Demo"
+    xmlns:vm="clr-namespace:Ursa.Demo.Pages.FormDemo;assembly=Ursa.Demo"
     xmlns:dataTemplates="clr-namespace:Ursa.Demo.DataTemplates"
     d:DesignHeight="450"
     d:DesignWidth="800"

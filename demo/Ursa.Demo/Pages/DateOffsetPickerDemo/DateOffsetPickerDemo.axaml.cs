@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace Ursa.Demo.Pages;
+namespace Ursa.Demo.Pages.DateOffsetPickerDemo;
 
 public partial class DateOffsetPickerDemo : UserControl
 {

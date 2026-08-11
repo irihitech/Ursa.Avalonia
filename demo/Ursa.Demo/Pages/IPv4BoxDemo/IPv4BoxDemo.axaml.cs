@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace Ursa.Demo.Pages;
+namespace Ursa.Demo.Pages.IPv4BoxDemo;
 
 public partial class IPv4BoxDemo : UserControl
 {

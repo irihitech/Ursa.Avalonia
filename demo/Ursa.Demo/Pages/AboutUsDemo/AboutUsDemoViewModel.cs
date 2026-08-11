@@ -6,9 +6,8 @@ using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Irihi.Dogma.Docs;
-using Ursa.Demo.Pages;
 using Ursa.Demo.ViewModels.Controls;
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.AboutUsDemo;
 
 [DocCategory(Category_Key, Order = 1)]
 [DocPage(Menu_Header, View = typeof(AboutUsDemo))]

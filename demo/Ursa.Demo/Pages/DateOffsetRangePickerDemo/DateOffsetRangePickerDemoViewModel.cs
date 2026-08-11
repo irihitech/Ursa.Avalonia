@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.DateOffsetRangePickerDemo;
 
 public partial class DateOffsetRangePickerDemoViewModel : ObservableValidator, IPageMetadataProvider
 {

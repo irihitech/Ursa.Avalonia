@@ -3,10 +3,11 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Irihi.Lingua;
+using Ursa.Demo.ViewModels;
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.BadgeDemo;
 
 public partial class BadgeDemoViewModel: ViewModelBase, IPageMetadataProvider
 {

@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:u="https://irihi.tech/ursa"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Ursa.Demo.Pages.ClassInputDemo"
+             x:Class="Ursa.Demo.Pages.ClassInputDemo.ClassInputDemo"
              x:DataType="viewModels:ClassInputDemoViewModel"
-             xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
+             xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.ClassInputDemo">
     <StackPanel HorizontalAlignment="Stretch" Spacing="20" >
         <u:ControlClassesInput Name="input" Separator=" " />
         <Button u:ControlClassesInput.Source="{Binding #input}" Content="Hello Panda" />

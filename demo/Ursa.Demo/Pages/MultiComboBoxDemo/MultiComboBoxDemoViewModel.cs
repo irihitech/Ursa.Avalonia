@@ -7,7 +7,7 @@ using CommunityToolkit.Mvvm.Input;
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.MultiComboBoxDemo;
 
 public class MultiComboBoxDemoViewModel: ObservableObject, IPageMetadataProvider
 {

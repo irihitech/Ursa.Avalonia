@@ -5,9 +5,9 @@
              xmlns:u="https://irihi.tech/ursa"
              mc:Ignorable="d" d:DesignWidth="800"
              d:DesignHeight="450"
-             x:Class="Ursa.Demo.Pages.ThemeTogglerDemo"
+             x:Class="Ursa.Demo.Pages.ThemeTogglerDemo.ThemeTogglerDemo"
              x:DataType="viewModels:ThemeTogglerDemoViewModel"
-             xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
+             xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.ThemeTogglerDemo">
     <DockPanel>
         <Grid ColumnDefinitions="Auto, *">
             <StackPanel Grid.Column="0">

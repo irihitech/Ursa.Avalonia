@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace Ursa.Demo.Pages;
+namespace Ursa.Demo.Pages.SkeletonDemo;
 
 public partial class SkeletonDemo : UserControl
 {

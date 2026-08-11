@@ -1,9 +1,10 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 
+using Ursa.Demo.ViewModels;
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.BannerDemo;
 
 public partial class BannerDemoViewModel : ViewModelBase, IPageMetadataProvider
 {

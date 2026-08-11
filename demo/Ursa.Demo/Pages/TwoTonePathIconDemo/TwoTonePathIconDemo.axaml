@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:u="https://irihi.tech/ursa"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Ursa.Demo.Pages.TwoTonePathIconDemo"
+             x:Class="Ursa.Demo.Pages.TwoTonePathIconDemo.TwoTonePathIconDemo"
              x:DataType="viewModels:TwoTonePathIconDemoViewModel"
-             xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels">
+             xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.TwoTonePathIconDemo">
     <StackPanel Spacing="20">
         <TextBlock Text="Size" />
         <Slider Name="width" Minimum="0" Maximum="100" Value="20" Width="300" />

@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace Ursa.Demo.Pages;
+namespace Ursa.Demo.Pages.ProportionalCanvasDemo;
 
 public partial class ProportionalCanvasDemo : UserControl
 {

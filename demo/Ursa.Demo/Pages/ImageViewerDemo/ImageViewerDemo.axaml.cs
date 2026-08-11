@@ -2,7 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 
-namespace Ursa.Demo.Pages;
+namespace Ursa.Demo.Pages.ImageViewerDemo;
 
 public partial class ImageViewerDemo : UserControl
 {

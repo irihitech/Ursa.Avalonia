@@ -7,7 +7,7 @@ using Irihi.Avalonia.Shared.Contracts;
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.FormDemo;
 
 public partial class FormDemoViewModel : ObservableObject, IPageMetadataProvider
 {

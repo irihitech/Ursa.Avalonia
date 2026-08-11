@@ -1,9 +1,8 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Ursa.Controls;
-using Ursa.Demo.ViewModels;
 
-namespace Ursa.Demo.Pages;
+namespace Ursa.Demo.Pages.ToastDemo;
 
 public partial class ToastDemo : UserControl
 {

@@ -8,7 +8,7 @@ using Ursa.Demo.ViewModels.Controls;
 
 using Ursa.Demo.Localizations;
 
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.VirtualizingUniformGridDemo;
 
 public partial class VirtualizingUniformGridDemoViewModel : ObservableObject, IPageMetadataProvider
 {

@@ -2,7 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Styling;
 
-namespace Ursa.Demo.Pages;
+namespace Ursa.Demo.Pages.ThemeVariantMapperDemo;
 
 public partial class ThemeVariantMapperDemo : UserControl
 {

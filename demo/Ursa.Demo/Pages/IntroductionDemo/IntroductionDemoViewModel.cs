@@ -4,9 +4,8 @@ using System.Net;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Irihi.Dogma.Docs;
 using Ursa.Demo.Models;
-using Ursa.Demo.Pages;
 using Ursa.Demo.ViewModels.Controls;
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.IntroductionDemo;
 
 [DocCategory(Category_Key, Order = 0)]
 [DocPage(Menu_Header, View = typeof(IntroductionDemo))]

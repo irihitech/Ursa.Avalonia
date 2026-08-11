@@ -1,8 +1,9 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using Ursa.Demo.Localizations;
+using Ursa.Demo.ViewModels;
 using Ursa.Demo.ViewModels.Controls;
 
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.MarkdownLineDemo;
 
 public partial class MarkdownLineDemoViewModel : ViewModelBase, IPageMetadataProvider
 {

@@ -5,7 +5,7 @@ using Ursa.Demo.Models;
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.AutoCompleteBoxDemo;
 
 public class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetadataProvider
 {

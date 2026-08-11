@@ -10,7 +10,7 @@ using Ursa.Demo.Dialogs;
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.DrawerDemo;
 
 public partial class DrawerDemoViewModel : ObservableObject, IPageMetadataProvider
 {

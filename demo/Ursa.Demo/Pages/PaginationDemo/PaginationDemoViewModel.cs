@@ -3,10 +3,11 @@ using System.Windows.Input;
 using Avalonia.Collections;
 using CommunityToolkit.Mvvm.Input;
 
+using Ursa.Demo.ViewModels;
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.PaginationDemo;
 
 public class PaginationDemoViewModel : ViewModelBase, IPageMetadataProvider
 {

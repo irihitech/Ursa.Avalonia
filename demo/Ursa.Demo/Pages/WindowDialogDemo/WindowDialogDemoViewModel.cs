@@ -11,7 +11,7 @@ using Ursa.Demo.ViewModels.Controls;
 
 using Ursa.Demo.Localizations;
 
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.WindowDialogDemo;
 
 public partial class WindowDialogDemoViewModel : ObservableObject, IPageMetadataProvider
 {

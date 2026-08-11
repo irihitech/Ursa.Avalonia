@@ -3,10 +3,11 @@ using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
+using Ursa.Demo.ViewModels;
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.PathPickerDemo;
 
 public partial class PathPickerDemoViewModel : ViewModelBase, IPageMetadataProvider
 {

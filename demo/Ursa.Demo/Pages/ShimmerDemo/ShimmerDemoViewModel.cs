@@ -1,9 +1,10 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Demo.Localizations;
+using Ursa.Demo.ViewModels;
 using Ursa.Demo.ViewModels.Controls;
 
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.ShimmerDemo;
 
 public partial class ShimmerDemoViewModel : ViewModelBase, IPageMetadataProvider
 {

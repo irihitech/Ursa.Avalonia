@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.QrCodeDemo;
 
 public class QrCodeDemoViewModel: ObservableObject, IPageMetadataProvider
 {

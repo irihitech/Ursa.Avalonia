@@ -9,7 +9,7 @@ using CommunityToolkit.Mvvm.Input;
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 
-namespace Ursa.Demo.ViewModels;
+namespace Ursa.Demo.Pages.ImageViewerDemo;
 
 public partial class ImageViewerDemoViewModel: ObservableObject, IPageMetadataProvider
 {

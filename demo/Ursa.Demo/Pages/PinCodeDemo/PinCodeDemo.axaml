@@ -3,11 +3,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:u="https://irihi.tech/ursa"
-             xmlns:vm="using:Ursa.Demo.ViewModels"
+             xmlns:vm="using:Ursa.Demo.Pages.PinCodeDemo"
              x:DataType="vm:PinCodeDemoViewModel"
              x:CompileBindings="True"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Ursa.Demo.Pages.PinCodeDemo">
+             x:Class="Ursa.Demo.Pages.PinCodeDemo.PinCodeDemo">
     <StackPanel Spacing="20">
         <u:Form>
             <u:PinCode u:FormItem.Label="Regular" Count="4" Name="v4" CompleteCommand="{Binding CompleteCommand}"/>
