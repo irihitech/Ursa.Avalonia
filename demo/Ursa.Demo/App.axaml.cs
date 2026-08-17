@@ -20,7 +20,6 @@ public partial class App : Application
         this.AttachDeveloperTools();
 #endif
         GeneratedDocPages.Register(UrsaDocSite.Instance);
-        UrsaDocSite.Instance.LinguaManager = LanguageManager.Instance;
         
         DataContext = new ApplicationViewModel();
     }
