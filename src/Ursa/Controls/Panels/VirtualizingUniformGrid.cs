@@ -172,6 +172,14 @@ public class VirtualizingUniformGrid : VirtualizingPanel, IScrollSnapPointsInfo
     }
 
     /// <summary>
+    /// Gets the effective number of columns, clamped to at least 1.
+    /// The public <see cref="Columns"/> property is validated to be positive,
+    /// but a value of 0 can still arrive through a data binding, which bypasses
+    /// validation. Layout math must never divide by this value.
+    /// </summary>
+    private int EffectiveColumns => Math.Max(1, Columns);
+
+    /// <summary>
     /// Gets or sets whether all rows share the same height (default <see langword="true"/>).
     /// When <see langword="false"/>, each row height is determined by its tallest item.
     /// </summary>
@@ -245,7 +253,7 @@ public class VirtualizingUniformGrid : VirtualizingPanel, IScrollSnapPointsInfo
         scrollToElement.Measure(Size.Infinity);
 
         // Arrange it at its estimated position.
-        var row  = index / Columns;
+        var row  = index / EffectiveColumns;
         var rect = new Rect(0, row * _cellHeight, _cellWidth, _cellHeight);
         scrollToElement.Arrange(rect);
 
@@ -276,7 +284,7 @@ public class VirtualizingUniformGrid : VirtualizingPanel, IScrollSnapPointsInfo
         if (count == 0 || (fromControl is null && direction is not NavigationDirection.First and not NavigationDirection.Last))
             return null;
 
-        var cols = Columns;
+        var cols = EffectiveColumns;
         var fromIndex = fromControl is not null ? IndexFromContainer(fromControl) : -1;
         var toIndex = fromIndex;
 
@@ -447,7 +455,7 @@ public class VirtualizingUniformGrid : VirtualizingPanel, IScrollSnapPointsInfo
         try
         {
             ComputeCellSizes(availableSize);
-            var cols = Columns;
+            var cols = EffectiveColumns;
             _totalRows = (itemCount + cols - 1) / cols;
             var uniform = UniformItemHeight;
 
@@ -539,7 +547,7 @@ public class VirtualizingUniformGrid : VirtualizingPanel, IScrollSnapPointsInfo
         _isInLayout = true;
         try
         {
-            var cols    = Columns;
+            var cols    = EffectiveColumns;
             var uniform = UniformItemHeight;
             double y    = 0;
             int prevRow = -1;
@@ -590,7 +598,7 @@ public class VirtualizingUniformGrid : VirtualizingPanel, IScrollSnapPointsInfo
     /// <summary>Standalone arrange (no ItemsControl) — arrange all Children.</summary>
     private void ArrangeChildrenStandalone(Size finalSize)
     {
-        var cols = Columns;
+        var cols = EffectiveColumns;
         var itemCount = Children.Count;
         if (itemCount == 0) return;
         var uniform = UniformItemHeight;
@@ -662,7 +670,7 @@ public class VirtualizingUniformGrid : VirtualizingPanel, IScrollSnapPointsInfo
         if (!double.IsNaN(ItemWidth))
             _cellWidth = ItemWidth;
         else if (!double.IsInfinity(availableSize.Width))
-            _cellWidth = Math.Max(1.0, availableSize.Width / Columns);
+            _cellWidth = Math.Max(1.0, availableSize.Width / EffectiveColumns);
         else
             _cellWidth = 100.0;
 
@@ -730,7 +738,7 @@ public class VirtualizingUniformGrid : VirtualizingPanel, IScrollSnapPointsInfo
         _rowHeights.Clear();
         if (_measureElements is null) return;
 
-        var cols = Columns;
+        var cols = EffectiveColumns;
         for (int i = 0; i < _measureElements.Count; i++)
         {
             var e = _measureElements.Elements[i];
@@ -791,7 +799,7 @@ public class VirtualizingUniformGrid : VirtualizingPanel, IScrollSnapPointsInfo
             if (_measureElements!.GetElement(idx) is not null)
                 continue;
 
-            var row = idx / Columns;
+            var row = idx / EffectiveColumns;
             var e   = GetOrCreateElement(items, idx);
             var u   = row * _cellHeight;
 
