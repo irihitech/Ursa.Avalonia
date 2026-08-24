@@ -28,5 +28,6 @@
     <ItemGroup>
         <None Include="..\..\irihi.png" Pack="true" PackagePath="\" Link="Properties\irihi.png"/>
         <None Include="..\..\LICENSE" Pack="true" PackagePath="\" Link="Properties\LICENSE"/>
+        <None Include="..\..\README.md" Pack="true" PackagePath="\" Link="Properties\README.md"/>
     </ItemGroup>
 </Project>
