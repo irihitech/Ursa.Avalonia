@@ -701,6 +701,24 @@
   <data name="Page_AutoCompleteBox_Section_ItemTemplate_Support_Description" xml:space="preserve">
     <value>AutoCompleteBox umożliwia dostosowanie wyglądu i układu opcji za pomocą ItemTemplate.</value>
   </data>
+  <data name="Page_AutoCompleteBox_Section_ClearButton_Support_Header" xml:space="preserve">
+    <value>Obsługa klasy stylu ClearButton</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ClearButton_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox obsługuje klasę stylu `ClearButton`, dzięki czemu jednym kliknięciem można wyczyścić zarówno wybraną pozycję, jak i tekst wejściowy.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_InnerContent_Support_Header" xml:space="preserve">
+    <value>Obsługa InnerLeftContent i InnerRightContent</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_InnerContent_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox obsługuje `InnerLeftContent` i `InnerRightContent`, dzięki czemu można wyświetlać dodatkową zawartość po lewej i prawej stronie wewnątrz pola wejściowego.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Header" xml:space="preserve">
+    <value>Jak rozumieć ItemTemplate i ValueMemberBinding</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Content" xml:space="preserve">
+    <value>Ponieważ AutoCompleteBox zawsze musi wyświetlać wybraną pozycję jako tekst w TextBoxie, przy własnym wyglądzie opcji przez ItemTemplate nadal trzeba wskazać w ValueMemberBinding właściwość używaną jako tekst wybranej pozycji. W przeciwnym razie AutoCompleteBox nie wyświetli poprawnie wybranego elementu. Jeśli ItemTemplate nie jest ustawiony, AutoCompleteBox używa ValueMemberBinding do wyświetlania opcji.</value>
+  </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">
     <value>Przykłady</value>

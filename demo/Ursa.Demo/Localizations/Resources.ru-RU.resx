@@ -709,6 +709,24 @@
   <data name="Page_AutoCompleteBox_Section_ItemTemplate_Support_Description" xml:space="preserve">
     <value>AutoCompleteBox позволяет настраивать внешний вид и компоновку вариантов с помощью ItemTemplate.</value>
   </data>
+  <data name="Page_AutoCompleteBox_Section_ClearButton_Support_Header" xml:space="preserve">
+    <value>Поддержка класса стиля ClearButton</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ClearButton_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox поддерживает класс стиля `ClearButton`, позволяя одной кнопкой очищать и выбранный элемент, и введенный текст.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_InnerContent_Support_Header" xml:space="preserve">
+    <value>Поддержка InnerLeftContent и InnerRightContent</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_InnerContent_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox поддерживает `InnerLeftContent` и `InnerRightContent`, поэтому внутри поля ввода можно отображать дополнительное содержимое слева и справа.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Header" xml:space="preserve">
+    <value>Как понимать ItemTemplate и ValueMemberBinding</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Content" xml:space="preserve">
+    <value>Поскольку AutoCompleteBox всегда должен отображать выбранный элемент в TextBox как строку, при настройке отображения вариантов через ItemTemplate всё равно нужно указать ValueMemberBinding — какое свойство использовать как текст выбранного значения. Иначе AutoCompleteBox не сможет корректно показать выбранный элемент. Если ItemTemplate не задан, AutoCompleteBox использует ValueMemberBinding для отображения вариантов.</value>
+  </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">
     <value>Примеры</value>

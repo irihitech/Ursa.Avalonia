@@ -709,6 +709,24 @@
   <data name="Page_AutoCompleteBox_Section_ItemTemplate_Support_Description" xml:space="preserve">
     <value>AutoCompleteBox permet de personnaliser l'apparence et la disposition des options via ItemTemplate.</value>
   </data>
+  <data name="Page_AutoCompleteBox_Section_ClearButton_Support_Header" xml:space="preserve">
+    <value>Prise en charge de la classe de style ClearButton</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ClearButton_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox prend en charge la classe de style `ClearButton`, ce qui permet d'effacer en un clic l'élément sélectionné ainsi que le texte saisi.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_InnerContent_Support_Header" xml:space="preserve">
+    <value>Prise en charge d'InnerLeftContent et InnerRightContent</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_InnerContent_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox prend en charge `InnerLeftContent` et `InnerRightContent`, afin d'afficher du contenu supplémentaire à gauche et à droite à l'intérieur de la zone de saisie.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Header" xml:space="preserve">
+    <value>Comment comprendre ItemTemplate et ValueMemberBinding</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Content" xml:space="preserve">
+    <value>Comme AutoCompleteBox doit toujours afficher l'élément sélectionné sous forme de chaîne dans le TextBox, lorsque vous personnalisez l'affichage des options avec ItemTemplate, vous devez toujours utiliser ValueMemberBinding pour indiquer la propriété à afficher comme texte sélectionné. Sinon, AutoCompleteBox ne pourra pas afficher correctement l'élément sélectionné. Si ItemTemplate n'est pas défini, AutoCompleteBox utilise ValueMemberBinding pour afficher les options.</value>
+  </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">
     <value>Exemples</value>
