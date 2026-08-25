@@ -22,6 +22,10 @@ public class AnchorScrollViewer : ScrollViewer
         AvaloniaProperty.Register<AnchorScrollViewer, double>(
             nameof(AnchorTopOffset), 0.0);
 
+    public static readonly StyledProperty<double> MaxContentWidthProperty =
+        AvaloniaProperty.Register<AnchorScrollViewer, double>(
+            nameof(MaxContentWidth), double.PositiveInfinity);
+
     public IEnumerable? AnchorItems
     {
         get => GetValue(AnchorItemsProperty);
@@ -38,5 +42,11 @@ public class AnchorScrollViewer : ScrollViewer
     {
         get => GetValue(AnchorTopOffsetProperty);
         set => SetValue(AnchorTopOffsetProperty, value);
+    }
+
+    public double MaxContentWidth
+    {
+        get => GetValue(MaxContentWidthProperty);
+        set => SetValue(MaxContentWidthProperty, value);
     }
 }
