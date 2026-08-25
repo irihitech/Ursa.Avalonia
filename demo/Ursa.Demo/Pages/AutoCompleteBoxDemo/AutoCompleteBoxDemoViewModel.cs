@@ -15,6 +15,11 @@ public partial class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetad
 {
     public const string Category_Key = "AutoCompleteBox";
     public const string Menu_Header = "Menu_Header_AutoCompleteBox";
+    private const string BasicUsageAnchorId = "auto-complete-box-basic-usage";
+    private const string ItemTemplateSupportAnchorId = "auto-complete-box-item-template-support";
+    private const string ClearButtonSupportAnchorId = "auto-complete-box-clear-button-support";
+    private const string InnerContentSupportAnchorId = "auto-complete-box-inner-content-support";
+
     public PageMetadataViewModel PageMetadata { get; set; } = new()
     {
         Title = LanguageManager.Instance.Page_Title_AutoCompleteBox,
@@ -34,7 +39,7 @@ public partial class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetad
         {
             Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_Basic_Usage_Header,
             Description = LanguageManager.Instance.Page_AutoCompleteBox_Section_Basic_Usage_Description,
-            AnchorId = "auto-complete-box-basic-usage"
+            AnchorId = BasicUsageAnchorId
         };
         BasicSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
         {
@@ -64,7 +69,7 @@ public partial class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetad
         {
             Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_ItemTemplate_Support_Header,
             Description = LanguageManager.Instance.Page_AutoCompleteBox_Section_ItemTemplate_Support_Description,
-            AnchorId = "auto-complete-box-item-template-support"
+            AnchorId = ItemTemplateSupportAnchorId
         };
         ItemTemplateSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
         {
@@ -89,7 +94,7 @@ public partial class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetad
         {
             Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_ClearButton_Support_Header,
             Description = LanguageManager.Instance.Page_AutoCompleteBox_Section_ClearButton_Support_Description,
-            AnchorId = "auto-complete-box-clear-button-support"
+            AnchorId = ClearButtonSupportAnchorId
         };
         ClearButtonSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
         {
@@ -108,7 +113,7 @@ public partial class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetad
         {
             Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_InnerContent_Support_Header,
             Description = LanguageManager.Instance.Page_AutoCompleteBox_Section_InnerContent_Support_Description,
-            AnchorId = "auto-complete-box-inner-content-support"
+            AnchorId = InnerContentSupportAnchorId
         };
         InnerContentSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
         {
@@ -134,22 +139,22 @@ public partial class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetad
     [
         new() { 
             Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_Basic_Usage_Header,
-            AnchorId = "auto-complete-box-basic-usage" 
+            AnchorId = BasicUsageAnchorId
         },
         new()
         {
             Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_ItemTemplate_Support_Header,
-            AnchorId = "auto-complete-box-item-template-support"
+            AnchorId = ItemTemplateSupportAnchorId
         },
         new()
         {
             Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_ClearButton_Support_Header,
-            AnchorId = "auto-complete-box-clear-button-support"
+            AnchorId = ClearButtonSupportAnchorId
         },
         new()
         {
             Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_InnerContent_Support_Header,
-            AnchorId = "auto-complete-box-inner-content-support"
+            AnchorId = InnerContentSupportAnchorId
         },
     ];
 

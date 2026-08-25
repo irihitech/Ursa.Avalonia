@@ -23,7 +23,7 @@
             TargetType="controls1:DemoSectionView">
             <StackPanel Spacing="4">
                 <TextBlock
-                    Classes="H6"
+                    Classes="H5"
                     Theme="{DynamicResource TitleTextBlock}"
                     u:Anchor.Id="{Binding SectionContext?.AnchorId, RelativeSource={RelativeSource TemplatedParent}}"
                     IsVisible="{Binding SectionContext?.Header^, 
