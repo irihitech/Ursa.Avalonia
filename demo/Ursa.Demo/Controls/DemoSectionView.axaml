@@ -25,6 +25,7 @@
                 <TextBlock
                     Classes="H6"
                     Theme="{DynamicResource TitleTextBlock}"
+                    u:Anchor.Id="{Binding SectionContext?.AnchorId, RelativeSource={RelativeSource TemplatedParent}}"
                     IsVisible="{Binding SectionContext?.Header^, 
                         RelativeSource={RelativeSource TemplatedParent}, 
                         Converter={x:Static StringConverters.IsNotNullOrEmpty},
@@ -47,9 +48,7 @@
                     BorderThickness="{DynamicResource SemiBorderThicknessControl}"
                     CornerRadius="{DynamicResource SemiBorderRadiusMedium}">
                     <StackPanel
-                        Spacing="12"
-                        u:Anchor.Id="{Binding SectionContext?.AnchorId, RelativeSource={RelativeSource TemplatedParent}}">
-
+                        Spacing="12">
                         <ContentPresenter
                             Content="{TemplateBinding Content}" />
 
