@@ -25,7 +25,7 @@
                 <u:FormGroup Header="Grid Settings">
                     <u:FormItem Label="Columns">
                         <u:NumericIntUpDown
-                            Minimum="1"
+                            Minimum="-1"
                             Maximum="12"
                             Value="{Binding Columns}" />
                     </u:FormItem>

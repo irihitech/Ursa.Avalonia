@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Data;
 using Avalonia.Headless.XUnit;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
@@ -54,6 +55,42 @@ public class Tests
         var sut = new VirtualizingUniformGrid();
         Assert.Throws<ArgumentException>(() => sut.Columns = 0);
         Assert.Throws<ArgumentException>(() => sut.Columns = -1);
+    }
+
+    // =================================================================
+    //  Binding edge cases (bindings bypass property validation)
+    // =================================================================
+
+    [AvaloniaFact]
+    public void Binding_Columns_Zero_Does_Not_Crash_Measure_Or_Arrange()
+    {
+        var vm = new TestViewModel { Columns = 0 };
+        var sut = new VirtualizingUniformGrid();
+        sut.Bind(VirtualizingUniformGrid.ColumnsProperty,
+            new Binding(nameof(TestViewModel.Columns)) { Source = vm });
+        for (int i = 0; i < 10; i++)
+            sut.Children.Add(new Border());
+
+        sut.Measure(new Size(400, 400));
+        Assert.True(sut.DesiredSize.Height > 0);
+        sut.Arrange(new Rect(0, 0, 400, 400));
+    }
+
+    [AvaloniaFact]
+    public void Binding_Columns_Zero_With_ItemsControl_Does_Not_Crash()
+    {
+        var vm = new TestViewModel { Columns = 0 };
+        var sut = new VirtualizingUniformGrid();
+        sut.Bind(VirtualizingUniformGrid.ColumnsProperty,
+            new Binding(nameof(TestViewModel.Columns)) { Source = vm });
+
+        var items = new ItemsControl
+        {
+            ItemsSource = vm.Items,
+        };
+        items.ItemsPanel = new Avalonia.Controls.Templates.FuncTemplate<Panel?>(() => sut);
+        items.Measure(new Size(400, 400));
+        items.Arrange(new Rect(0, 0, 400, 400));
     }
 
     [AvaloniaFact]
