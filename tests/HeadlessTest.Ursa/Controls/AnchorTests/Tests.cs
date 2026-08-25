@@ -31,12 +31,12 @@ public class Tests
         Assert.NotNull(scrollViewer);
         Assert.NotNull(item4);
 
-        var transltion = item4.TranslatePoint(new Point(0, 0), window);
+        var translation = item4.TranslatePoint(new Point(0, 0), window);
         
         Assert.Equal(0, scrollViewer.Offset.Y);
         
         // Simulate a click on the anchor
-        window.MouseDown(new Point(10, transltion.Value.Y+10), MouseButton.Left);
+        window.MouseDown(new Point(10, translation.Value.Y+10), MouseButton.Left);
         Dispatcher.UIThread.RunJobs();
         await Task.Delay(800);
         Assert.True(item4.IsSelected);
@@ -64,11 +64,11 @@ public class Tests
         Assert.NotNull(item4);
 
         anchor.IsAnimated = false;
-        var transltion = item4.TranslatePoint(new Point(0, 0), window);
+        var translation = item4.TranslatePoint(new Point(0, 0), window);
         
         Assert.Equal(0, scrollViewer.Offset.Y);
         
-        window.MouseDown(new Point(10, transltion.Value.Y+10), MouseButton.Left);
+        window.MouseDown(new Point(10, translation.Value.Y+10), MouseButton.Left);
         Dispatcher.UIThread.RunJobs();
         
         Assert.True(item4.IsSelected);
