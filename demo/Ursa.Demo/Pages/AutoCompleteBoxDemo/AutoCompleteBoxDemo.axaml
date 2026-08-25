@@ -4,37 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.AutoCompleteBoxDemo"
              xmlns:models="clr-namespace:Ursa.Demo.Models"
+             xmlns:controls="clr-namespace:Ursa.Demo.Controls"
              xmlns:u="https://irihi.tech/ursa"
              x:DataType="viewModels:AutoCompleteBoxDemoViewModel"
              mc:Ignorable="d" d:DesignWidth="800"
              d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.AutoCompleteBoxDemo.AutoCompleteBoxDemo">
     <StackPanel HorizontalAlignment="Stretch" Spacing="20" >
-        <StackPanel.Styles>
-            <Style Selector="u|AutoCompleteBox">
-                <Setter Property="Width" Value="300" />
-                <Setter Property="ItemsSource">
-                    <Binding Path="Controls" />
-                </Setter>
-                <Setter Property="ItemTemplate">
-                    <DataTemplate DataType="models:ControlData">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding MenuHeader}" VerticalAlignment="Center"/>
-                            <TextBlock Text="{Binding Chinese}" Classes="Secondary" FontSize="12" Margin="8 0 0 0" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </Setter>
-            </Style>
-        </StackPanel.Styles>
-
-        <TextBlock Text="{Binding #box.((models:ControlData)SelectedItem).MenuHeader}" />
-        
-        <u:AutoCompleteBox
-            Name="box"
-            PlaceholderText="Please select a Control"
-            Classes="ClearButton"
-            ValueMemberBinding="{ReflectionBinding MenuHeader}" />
-        
+        <controls:DemoSectionView
+            Header="{Binding BasicSection.Header}"
+            Description="{Binding BasicSection.Description}"
+            AnchorId="{Binding BasicSection.AnchorId}"
+            CodeSnippets="{Binding BasicSection.CodeSnippets}">
+            <controls:DemoSectionView.DemoContent>
+                <StackPanel HorizontalAlignment="Stretch" Spacing="20">
+                    <u:AutoCompleteBox
+                        ItemsSource="{Binding Controls}"
+                        Width="300"
+                        HorizontalAlignment="Center"
+                        PlaceholderText="Please select a Control"
+                        ValueMemberBinding="{ReflectionBinding MenuHeader}" />
+                </StackPanel>
+            </controls:DemoSectionView.DemoContent>
+        </controls:DemoSectionView>
         <u:AutoCompleteBox
             Classes="Large"
             ValueMemberBinding="{ReflectionBinding MenuHeader}" />

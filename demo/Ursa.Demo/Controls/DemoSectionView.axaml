@@ -1,0 +1,63 @@
+<UserControl
+    x:Class="Ursa.Demo.Controls.DemoSectionView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels.Controls"
+    xmlns:controls="clr-namespace:Irihi.Dogma.Controls;assembly=Irihi.Dogma"
+    xmlns:converters="clr-namespace:Ursa.Demo.DataTemplates"
+    x:Name="Root"
+    x:CompileBindings="False"
+    d:DesignHeight="240"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:CodeLanguageToPathConverter x:Key="CodeLanguageToPathConverter" />
+    </UserControl.Resources>
+    <StackPanel Spacing="4">
+        <TextBlock
+            Classes="H6"
+            Theme="{DynamicResource TitleTextBlock}"
+            IsVisible="{Binding Header, ElementName=Root, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+            Text="{Binding Header, ElementName=Root}" />
+        <TextBlock
+            Classes="Secondary"
+            IsVisible="{Binding Description, ElementName=Root, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+            Text="{Binding Description, ElementName=Root}"
+            TextWrapping="Wrap" />
+        <Border
+            Padding="16"
+            BorderBrush="{DynamicResource SemiColorBorder}"
+            BorderThickness="{DynamicResource SemiBorderThicknessControl}"
+            CornerRadius="{DynamicResource SemiBorderRadiusMedium}">
+            <StackPanel
+                Spacing="12"
+                u:Anchor.Id="{Binding AnchorId, ElementName=Root}">
+                
+                <ContentPresenter Content="{Binding DemoContent, ElementName=Root}" />
+
+                <TabControl ItemsSource="{Binding CodeSnippets, ElementName=Root}">
+                    <TabControl.ContentTemplate>
+                        <DataTemplate DataType="viewModels:DemoSectionCodeSnippetViewModel">
+                            <controls:CodeBlock
+                                MinHeight="72"
+                                Margin="0 8 0 0"
+                                Language="{Binding CodeSnippetLanguage}"
+                                Code="{Binding CodeSnippet}" />
+                        </DataTemplate>
+                    </TabControl.ContentTemplate>
+                    <TabControl.ItemTemplate>
+                        <DataTemplate DataType="viewModels:DemoSectionCodeSnippetViewModel">
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <PathIcon Width="12" Height="12" Data="{Binding CodeSnippetLanguage, Converter={StaticResource CodeLanguageToPathConverter}}" />
+                                <TextBlock Text="{Binding TabName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
+                </TabControl>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</UserControl>

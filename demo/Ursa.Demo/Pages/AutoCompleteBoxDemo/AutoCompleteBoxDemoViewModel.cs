@@ -5,6 +5,7 @@ using Ursa.Demo.Models;
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 using Irihi.Dogma.Docs;
+using Irihi.Dogma.Controls;
 using Ursa.Demo.Pages.DummyPages;
 
 namespace Ursa.Demo.Pages.AutoCompleteBoxDemo;
@@ -30,9 +31,39 @@ public class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetadataProvi
     public AutoCompleteBoxDemoViewModel()
     {
         Controls = new ObservableCollection<ControlData>(GetControlData());
+        BasicSection = new DemoSectionViewModel
+        {
+            Header = "Basic Usage",
+            Description = "Demonstrates common AutoCompleteBox variants and interactions.",
+            AnchorId = "auto-complete-box-basic-usage"
+        };
+        BasicSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = "XAML",
+            CodeSnippet = """
+                          <u:AutoCompleteBox
+                              PlaceholderText="Please select a Control"
+                              ValueMemberBinding="{ReflectionBinding MenuHeader}" />
+                          """
+        });
+        BasicSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.CSharp,
+            TabName = "VM",
+            CodeSnippet = """
+                          public ObservableCollection<ControlData> Controls { get; set; }
+
+                          public AutoCompleteBoxDemoViewModel()
+                          {
+                             Controls = new ObservableCollection<ControlData>(GetControlData());
+                          }
+                          """
+        });
     }
 
     public ObservableCollection<ControlData> Controls { get; set; }
+    public DemoSectionViewModel BasicSection { get; }
 
     private static ControlData[] GetControlData()
     {
