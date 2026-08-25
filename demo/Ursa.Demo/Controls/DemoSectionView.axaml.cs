@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Controls;
 using Ursa.Demo.ViewModels.Controls;
@@ -7,43 +6,16 @@ namespace Ursa.Demo.Controls;
 
 public partial class DemoSectionView : UserControl
 {
-    public static readonly StyledProperty<string?> HeaderProperty =
-        AvaloniaProperty.Register<DemoSectionView, string?>(nameof(Header));
-
-    public static readonly StyledProperty<string?> DescriptionProperty =
-        AvaloniaProperty.Register<DemoSectionView, string?>(nameof(Description));
-
-    public static readonly StyledProperty<string?> AnchorIdProperty =
-        AvaloniaProperty.Register<DemoSectionView, string?>(nameof(AnchorId));
-
-    public static readonly StyledProperty<IEnumerable<DemoSectionCodeSnippetViewModel>?> CodeSnippetsProperty =
-        AvaloniaProperty.Register<DemoSectionView, IEnumerable<DemoSectionCodeSnippetViewModel>?>(nameof(CodeSnippets));
+    public static readonly StyledProperty<DemoSectionViewModel?> SectionContextProperty =
+        AvaloniaProperty.Register<DemoSectionView, DemoSectionViewModel?>(nameof(SectionContext));
 
     public static readonly StyledProperty<object?> DemoContentProperty =
         AvaloniaProperty.Register<DemoSectionView, object?>(nameof(DemoContent));
 
-    public string? Header
+    public DemoSectionViewModel? SectionContext
     {
-        get => GetValue(HeaderProperty);
-        set => SetValue(HeaderProperty, value);
-    }
-
-    public string? Description
-    {
-        get => GetValue(DescriptionProperty);
-        set => SetValue(DescriptionProperty, value);
-    }
-
-    public string? AnchorId
-    {
-        get => GetValue(AnchorIdProperty);
-        set => SetValue(AnchorIdProperty, value);
-    }
-
-    public IEnumerable<DemoSectionCodeSnippetViewModel>? CodeSnippets
-    {
-        get => GetValue(CodeSnippetsProperty);
-        set => SetValue(CodeSnippetsProperty, value);
+        get => GetValue(SectionContextProperty);
+        set => SetValue(SectionContextProperty, value);
     }
 
     public object? DemoContent
@@ -54,7 +26,7 @@ public partial class DemoSectionView : UserControl
 
     public DemoSectionView()
     {
-        CodeSnippets = [];
+        SectionContext = new DemoSectionViewModel();
         InitializeComponent();
     }
 }

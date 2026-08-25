@@ -20,12 +20,12 @@
         <TextBlock
             Classes="H6"
             Theme="{DynamicResource TitleTextBlock}"
-            IsVisible="{Binding Header, ElementName=Root, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-            Text="{Binding Header, ElementName=Root}" />
+            IsVisible="{Binding SectionContext.Header, ElementName=Root, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+            Text="{Binding SectionContext.Header, ElementName=Root}" />
         <TextBlock
             Classes="Secondary"
-            IsVisible="{Binding Description, ElementName=Root, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-            Text="{Binding Description, ElementName=Root}"
+            IsVisible="{Binding SectionContext.Description, ElementName=Root, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+            Text="{Binding SectionContext.Description, ElementName=Root}"
             TextWrapping="Wrap" />
         <Border
             Padding="16"
@@ -34,11 +34,11 @@
             CornerRadius="{DynamicResource SemiBorderRadiusMedium}">
             <StackPanel
                 Spacing="12"
-                u:Anchor.Id="{Binding AnchorId, ElementName=Root}">
+                u:Anchor.Id="{Binding SectionContext.AnchorId, ElementName=Root}">
                 
                 <ContentPresenter Content="{Binding DemoContent, ElementName=Root}" />
 
-                <TabControl ItemsSource="{Binding CodeSnippets, ElementName=Root}">
+                <TabControl ItemsSource="{Binding SectionContext.CodeSnippets, ElementName=Root}">
                     <TabControl.ContentTemplate>
                         <DataTemplate DataType="viewModels:DemoSectionCodeSnippetViewModel">
                             <controls:CodeBlock

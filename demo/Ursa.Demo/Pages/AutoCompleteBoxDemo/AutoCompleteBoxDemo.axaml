@@ -12,10 +12,7 @@
              x:Class="Ursa.Demo.Pages.AutoCompleteBoxDemo.AutoCompleteBoxDemo">
     <StackPanel HorizontalAlignment="Stretch" Spacing="20" >
         <controls:DemoSectionView
-            Header="{Binding BasicSection.Header}"
-            Description="{Binding BasicSection.Description}"
-            AnchorId="{Binding BasicSection.AnchorId}"
-            CodeSnippets="{Binding BasicSection.CodeSnippets}">
+            SectionContext="{Binding BasicSection}">
             <controls:DemoSectionView.DemoContent>
                 <StackPanel HorizontalAlignment="Stretch" Spacing="20">
                     <u:AutoCompleteBox
