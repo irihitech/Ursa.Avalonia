@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Styling;
+using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Themes.Semi.Locale;
 using Ursa.Themes.Semi.SizeAnimations;
 
@@ -43,12 +44,12 @@ public partial class UrsaSemiTheme : Styles
                 if (TryGetLocaleResource(value, out var resource) && resource is not null)
                 {
                     field = value;
-                    SetResources(this.Resources, resource);
+                    Resources.BulkSetResources(resource);
                 }
                 else
                 {
                     field = new CultureInfo("zh-CN");
-                    SetResources(Resources, DefaultResource);
+                    Resources.BulkSetResources(DefaultResource);
                 }
             }
             catch
@@ -86,25 +87,13 @@ public partial class UrsaSemiTheme : Styles
     {
         if (culture is null) return;
         if (!LocaleToResource.TryGetValue(culture, out var resources)) return;
-        SetResources(application.Resources, resources);
+        application.Resources.BulkSetResources(resources);
     }
 
     public static void OverrideLocaleResources(StyledElement element, CultureInfo? culture)
     {
         if (culture is null) return;
         if (!LocaleToResource.TryGetValue(culture, out var resources)) return;
-        SetResources(element.Resources, resources);
-    }
-
-    private static void SetResources(IResourceDictionary source, IResourceDictionary content)
-    {
-        if (source is ResourceDictionary resourceDictionary)
-        {
-             resourceDictionary.SetItems(content);
-        }
-        else
-        {
-            foreach (var kv in content) source[kv.Key] = kv.Value;
-        }
+        element.Resources.BulkSetResources(resources);
     }
 }
