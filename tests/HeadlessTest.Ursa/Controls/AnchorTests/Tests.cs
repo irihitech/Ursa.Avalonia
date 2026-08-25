@@ -42,6 +42,38 @@ public class Tests
         Assert.True(item4.IsSelected);
         Assert.Equal(300.0 * 3, scrollViewer.Offset.Y, 50.0);
     }
+
+    [AvaloniaFact]
+    public void Click_Anchor_With_Mouse_And_IsAnimated_False_Should_Jump_To_Target_Directly()
+    {
+        var window = new Window()
+        {
+            Width = 500,
+            Height = 500,
+        };
+        var view = new TestView();
+        window.Content = view;
+        window.Show();
+        
+        var anchor = view.FindControl<Anchor>("Anchor");
+        var scrollViewer = view.FindControl<ScrollViewer>("ScrollViewer");
+        var item4 = view.FindControl<AnchorItem>("Item4");
+        
+        Assert.NotNull(anchor);
+        Assert.NotNull(scrollViewer);
+        Assert.NotNull(item4);
+
+        anchor.IsAnimated = false;
+        var transltion = item4.TranslatePoint(new Point(0, 0), window);
+        
+        Assert.Equal(0, scrollViewer.Offset.Y);
+        
+        window.MouseDown(new Point(10, transltion.Value.Y+10), MouseButton.Left);
+        Dispatcher.UIThread.RunJobs();
+        
+        Assert.True(item4.IsSelected);
+        Assert.Equal(300.0 * 3, scrollViewer.Offset.Y, 0.1);
+    }
     
     [AvaloniaFact]
     public async Task Change_Scroll_Offset_Should_Update_Selected_Item()
@@ -290,6 +322,7 @@ public class Tests
         var anchor = new Anchor();
         
         Assert.Null(anchor.TargetContainer);
+        Assert.True(anchor.IsAnimated);
         Assert.Equal(0.0, anchor.TopOffset);
     }
 
@@ -319,6 +352,18 @@ public class Tests
         
         anchor.TopOffset = 0.0;
         Assert.Equal(0.0, anchor.TopOffset);
+    }
+
+    [AvaloniaFact]
+    public void Anchor_Should_Set_And_Get_IsAnimated()
+    {
+        var anchor = new Anchor();
+        
+        anchor.IsAnimated = false;
+        Assert.False(anchor.IsAnimated);
+        
+        anchor.IsAnimated = true;
+        Assert.True(anchor.IsAnimated);
     }
 
     [AvaloniaFact]

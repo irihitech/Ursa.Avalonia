@@ -26,6 +26,10 @@ public class Anchor : ItemsControl
         AvaloniaProperty.Register<Anchor, ScrollViewer?>(
             nameof(TargetContainer));
 
+    public static readonly StyledProperty<bool> IsAnimatedProperty =
+        AvaloniaProperty.Register<Anchor, bool>(
+            nameof(IsAnimated), true);
+
     public static readonly AttachedProperty<string?> IdProperty =
         AvaloniaProperty.RegisterAttached<Anchor, Visual, string?>("Id");
 
@@ -40,6 +44,12 @@ public class Anchor : ItemsControl
     {
         get => GetValue(TargetContainerProperty);
         set => SetValue(TargetContainerProperty, value);
+    }
+
+    public bool IsAnimated
+    {
+        get => GetValue(IsAnimatedProperty);
+        set => SetValue(IsAnimatedProperty, value);
     }
 
     public static void SetId(Visual obj, string? value)
@@ -106,6 +116,15 @@ public class Anchor : ItemsControl
             if (to > TargetContainer.Extent.Height - TargetContainer.Bounds.Height)
                 to = TargetContainer.Extent.Height - TargetContainer.Bounds.Height;
             if (MathHelpers.AreClose(from,to)) return;
+            _cts.Cancel();
+            _cts.Dispose();
+            _cts = new CancellationTokenSource();
+            if (!IsAnimated)
+            {
+                _scrollingFromSelection = false;
+                TargetContainer.Offset = new Vector(0, to);
+                return;
+            }
             var animation = new Animation
             {
                 Duration = TimeSpan.FromSeconds(0.3),
@@ -124,9 +143,6 @@ public class Anchor : ItemsControl
                     }
                 }
             };
-            _cts.Cancel();
-            _cts.Dispose();
-            _cts = new CancellationTokenSource();
             var token = _cts.Token;
             token.Register(_ => _scrollingFromSelection = false, null);
             _scrollingFromSelection = true;
