@@ -13,33 +13,36 @@
     <StackPanel HorizontalAlignment="Stretch" Spacing="20" >
         <controls:DemoSectionView
             SectionContext="{Binding BasicSection}">
-            <controls:DemoSectionView.DemoContent>
-                <StackPanel HorizontalAlignment="Stretch" Spacing="20">
-                    <u:AutoCompleteBox
-                        ItemsSource="{Binding Controls}"
-                        Width="300"
-                        HorizontalAlignment="Center"
-                        PlaceholderText="Please select a Control"
-                        ValueMemberBinding="{ReflectionBinding MenuHeader}" />
-                </StackPanel>
-            </controls:DemoSectionView.DemoContent>
+            <StackPanel HorizontalAlignment="Stretch" Spacing="20">
+                <u:AutoCompleteBox
+                    ItemsSource="{Binding Controls}"
+                    Width="300"
+                    HorizontalAlignment="Center"
+                    PlaceholderText="Please select a Control"
+                    ValueMemberBinding="{ReflectionBinding MenuHeader}" />
+            </StackPanel>
         </controls:DemoSectionView>
         <u:AutoCompleteBox
             Classes="Large"
+            ItemsSource="{Binding Controls}"
             ValueMemberBinding="{ReflectionBinding MenuHeader}" />
         <u:AutoCompleteBox
             Classes="Small"
+            ItemsSource="{Binding Controls}"
             ValueMemberBinding="{ReflectionBinding MenuHeader}" />
         <u:AutoCompleteBox
             Classes="Bordered"
+            ItemsSource="{Binding Controls}"
             ValueMemberBinding="{ReflectionBinding MenuHeader}" />
         <u:AutoCompleteBox
             IsEnabled="False"
             PlaceholderText="Disabled"
+            ItemsSource="{Binding Controls}"
             ValueMemberBinding="{ReflectionBinding MenuHeader}" />
         <u:AutoCompleteBox
             InnerLeftContent="https://"
             InnerRightContent=".com"
+            ItemsSource="{Binding Controls}"
             ValueMemberBinding="{ReflectionBinding MenuHeader}" />
     </StackPanel>
 </UserControl>

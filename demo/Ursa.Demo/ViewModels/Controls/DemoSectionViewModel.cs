@@ -9,7 +9,6 @@ public partial class DemoSectionViewModel : ObservableObject
     [ObservableProperty] public partial string? Header { get; set; }
     [ObservableProperty] public partial string? Description { get; set; }
     [ObservableProperty] public partial string? AnchorId { get; set; }
-    [ObservableProperty] public partial object? DemoContent { get; set; }
     public ObservableCollection<DemoSectionCodeSnippetViewModel> CodeSnippets { get; } = [];
 }
 

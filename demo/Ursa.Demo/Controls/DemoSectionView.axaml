@@ -8,6 +8,7 @@
     xmlns:viewModels="clr-namespace:Ursa.Demo.ViewModels.Controls"
     xmlns:controls="clr-namespace:Irihi.Dogma.Controls;assembly=Irihi.Dogma"
     xmlns:converters="clr-namespace:Ursa.Demo.DataTemplates"
+    xmlns:controls1="clr-namespace:Ursa.Demo.Controls"
     x:Name="Root"
     x:CompileBindings="False"
     d:DesignHeight="240"
@@ -16,48 +17,52 @@
     <UserControl.Resources>
         <converters:CodeLanguageToPathConverter x:Key="CodeLanguageToPathConverter" />
     </UserControl.Resources>
-    <StackPanel Spacing="4">
-        <TextBlock
-            Classes="H6"
-            Theme="{DynamicResource TitleTextBlock}"
-            IsVisible="{Binding SectionContext.Header, ElementName=Root, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-            Text="{Binding SectionContext.Header, ElementName=Root}" />
-        <TextBlock
-            Classes="Secondary"
-            IsVisible="{Binding SectionContext.Description, ElementName=Root, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-            Text="{Binding SectionContext.Description, ElementName=Root}"
-            TextWrapping="Wrap" />
-        <Border
-            Padding="16"
-            BorderBrush="{DynamicResource SemiColorBorder}"
-            BorderThickness="{DynamicResource SemiBorderThicknessControl}"
-            CornerRadius="{DynamicResource SemiBorderRadiusMedium}">
-            <StackPanel
-                Spacing="12"
-                u:Anchor.Id="{Binding SectionContext.AnchorId, ElementName=Root}">
-                
-                <ContentPresenter Content="{Binding DemoContent, ElementName=Root}" />
+    <UserControl.Template>
+        <ControlTemplate TargetType="controls1:DemoSectionView">
+            <StackPanel Spacing="4">
+                <TextBlock
+                    Classes="H6"
+                    Theme="{DynamicResource TitleTextBlock}"
+                    IsVisible="{Binding SectionContext.Header, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                    Text="{Binding SectionContext.Header, RelativeSource={RelativeSource TemplatedParent}}" />
+                <TextBlock
+                    Classes="Secondary"
+                    IsVisible="{Binding SectionContext.Description, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                    Text="{Binding SectionContext.Description, RelativeSource={RelativeSource TemplatedParent}}"
+                    TextWrapping="Wrap" />
+                <Border
+                    Padding="16"
+                    BorderBrush="{DynamicResource SemiColorBorder}"
+                    BorderThickness="{DynamicResource SemiBorderThicknessControl}"
+                    CornerRadius="{DynamicResource SemiBorderRadiusMedium}">
+                    <StackPanel
+                        Spacing="12"
+                        u:Anchor.Id="{Binding SectionContext.AnchorId, RelativeSource={RelativeSource TemplatedParent}}">
 
-                <TabControl ItemsSource="{Binding SectionContext.CodeSnippets, ElementName=Root}">
-                    <TabControl.ContentTemplate>
-                        <DataTemplate DataType="viewModels:DemoSectionCodeSnippetViewModel">
-                            <controls:CodeBlock
-                                MinHeight="72"
-                                Margin="0 8 0 0"
-                                Language="{Binding CodeSnippetLanguage}"
-                                Code="{Binding CodeSnippet}" />
-                        </DataTemplate>
-                    </TabControl.ContentTemplate>
-                    <TabControl.ItemTemplate>
-                        <DataTemplate DataType="viewModels:DemoSectionCodeSnippetViewModel">
-                            <StackPanel Orientation="Horizontal" Spacing="4">
-                                <PathIcon Width="12" Height="12" Data="{Binding CodeSnippetLanguage, Converter={StaticResource CodeLanguageToPathConverter}}" />
-                                <TextBlock Text="{Binding TabName}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </TabControl.ItemTemplate>
-                </TabControl>
+                        <ContentPresenter Content="{TemplateBinding Content}" />
+
+                        <TabControl ItemsSource="{Binding SectionContext.CodeSnippets, RelativeSource={RelativeSource TemplatedParent}}">
+                            <TabControl.ContentTemplate>
+                                <DataTemplate DataType="viewModels:DemoSectionCodeSnippetViewModel">
+                                    <controls:CodeBlock
+                                        MinHeight="72"
+                                        Margin="0 8 0 0"
+                                        Language="{Binding CodeSnippetLanguage}"
+                                        Code="{Binding CodeSnippet}" />
+                                </DataTemplate>
+                            </TabControl.ContentTemplate>
+                            <TabControl.ItemTemplate>
+                                <DataTemplate DataType="viewModels:DemoSectionCodeSnippetViewModel">
+                                    <StackPanel Orientation="Horizontal" Spacing="4">
+                                        <PathIcon Width="12" Height="12" Data="{Binding CodeSnippetLanguage, Converter={StaticResource CodeLanguageToPathConverter}}" />
+                                        <TextBlock Text="{Binding TabName}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </TabControl.ItemTemplate>
+                        </TabControl>
+                    </StackPanel>
+                </Border>
             </StackPanel>
-        </Border>
-    </StackPanel>
+        </ControlTemplate>
+    </UserControl.Template>
 </UserControl>
