@@ -407,3 +407,4 @@ src/Web/Avalonia.Web.Blazor/Interop/Typescript/*.js
 ## Reasonix
 #################
 .reasonix/
+reasonix.toml
