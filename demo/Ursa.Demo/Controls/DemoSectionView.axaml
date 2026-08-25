@@ -15,20 +15,21 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <converters:CodeLanguageToPathConverter x:Key="CodeLanguageToPathConverter" />
+        <converters:CodeLanguageToPathConverter
+            x:Key="CodeLanguageToPathConverter" />
     </UserControl.Resources>
     <UserControl.Template>
-        <ControlTemplate TargetType="controls1:DemoSectionView">
+        <ControlTemplate
+            TargetType="controls1:DemoSectionView">
             <StackPanel Spacing="4">
                 <TextBlock
                     Classes="H6"
                     Theme="{DynamicResource TitleTextBlock}"
-                    IsVisible="{Binding SectionContext.Header, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                    Text="{Binding SectionContext.Header, RelativeSource={RelativeSource TemplatedParent}}" />
-                <TextBlock
-                    Classes="Secondary"
-                    IsVisible="{Binding SectionContext.Description, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                    Text="{Binding SectionContext.Description, RelativeSource={RelativeSource TemplatedParent}}"
+                    IsVisible="{Binding SectionContext.Header^, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                    Text="{Binding SectionContext.Header^, RelativeSource={RelativeSource TemplatedParent}}" />
+                <u:MarkdownLine
+                    IsVisible="{Binding SectionContext.Description^, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                    Markdown="{Binding SectionContext.Description^, RelativeSource={RelativeSource TemplatedParent}}"
                     TextWrapping="Wrap" />
                 <Border
                     Padding="16"
@@ -39,11 +40,14 @@
                         Spacing="12"
                         u:Anchor.Id="{Binding SectionContext.AnchorId, RelativeSource={RelativeSource TemplatedParent}}">
 
-                        <ContentPresenter Content="{TemplateBinding Content}" />
+                        <ContentPresenter
+                            Content="{TemplateBinding Content}" />
 
-                        <TabControl ItemsSource="{Binding SectionContext.CodeSnippets, RelativeSource={RelativeSource TemplatedParent}}">
+                        <TabControl
+                            ItemsSource="{Binding SectionContext.CodeSnippets, RelativeSource={RelativeSource TemplatedParent}}">
                             <TabControl.ContentTemplate>
-                                <DataTemplate DataType="viewModels:DemoSectionCodeSnippetViewModel">
+                                <DataTemplate
+                                    DataType="viewModels:DemoSectionCodeSnippetViewModel">
                                     <controls:CodeBlock
                                         MinHeight="72"
                                         Margin="0 8 0 0"
@@ -52,10 +56,18 @@
                                 </DataTemplate>
                             </TabControl.ContentTemplate>
                             <TabControl.ItemTemplate>
-                                <DataTemplate DataType="viewModels:DemoSectionCodeSnippetViewModel">
-                                    <StackPanel Orientation="Horizontal" Spacing="4">
-                                        <PathIcon Width="12" Height="12" Data="{Binding CodeSnippetLanguage, Converter={StaticResource CodeLanguageToPathConverter}}" />
-                                        <TextBlock Text="{Binding TabName}" />
+                                <DataTemplate
+                                    DataType="viewModels:DemoSectionCodeSnippetViewModel">
+                                    <StackPanel
+                                        Orientation="Horizontal"
+                                        Spacing="4">
+                                        <PathIcon
+                                            Foreground="{DynamicResource SemiColorPrimary}"
+                                            Width="12"
+                                            Height="12"
+                                            Data="{Binding CodeSnippetLanguage, Converter={StaticResource CodeLanguageToPathConverter}}" />
+                                        <TextBlock
+                                            Text="{Binding TabName^}" />
                                     </StackPanel>
                                 </DataTemplate>
                             </TabControl.ItemTemplate>

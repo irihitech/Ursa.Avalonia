@@ -3,46 +3,48 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.AutoCompleteBoxDemo"
-             xmlns:models="clr-namespace:Ursa.Demo.Models"
              xmlns:controls="clr-namespace:Ursa.Demo.Controls"
              xmlns:u="https://irihi.tech/ursa"
              x:DataType="viewModels:AutoCompleteBoxDemoViewModel"
              mc:Ignorable="d" d:DesignWidth="800"
              d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.AutoCompleteBoxDemo.AutoCompleteBoxDemo">
-    <StackPanel HorizontalAlignment="Stretch" Spacing="20" >
-        <controls:DemoSectionView
-            SectionContext="{Binding BasicSection}">
-            <StackPanel HorizontalAlignment="Stretch" Spacing="20">
-                <u:AutoCompleteBox
-                    ItemsSource="{Binding Controls}"
-                    Width="300"
-                    HorizontalAlignment="Center"
-                    PlaceholderText="Please select a Control"
-                    ValueMemberBinding="{ReflectionBinding MenuHeader}" />
-            </StackPanel>
-        </controls:DemoSectionView>
-        <u:AutoCompleteBox
-            Classes="Large"
-            ItemsSource="{Binding Controls}"
-            ValueMemberBinding="{ReflectionBinding MenuHeader}" />
-        <u:AutoCompleteBox
-            Classes="Small"
-            ItemsSource="{Binding Controls}"
-            ValueMemberBinding="{ReflectionBinding MenuHeader}" />
-        <u:AutoCompleteBox
-            Classes="Bordered"
-            ItemsSource="{Binding Controls}"
-            ValueMemberBinding="{ReflectionBinding MenuHeader}" />
-        <u:AutoCompleteBox
-            IsEnabled="False"
-            PlaceholderText="Disabled"
-            ItemsSource="{Binding Controls}"
-            ValueMemberBinding="{ReflectionBinding MenuHeader}" />
-        <u:AutoCompleteBox
-            InnerLeftContent="https://"
-            InnerRightContent=".com"
-            ItemsSource="{Binding Controls}"
-            ValueMemberBinding="{ReflectionBinding MenuHeader}" />
-    </StackPanel>
+    <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+        <StackPanel HorizontalAlignment="Stretch" Spacing="20" >
+            <controls:DemoSectionView
+                SectionContext="{Binding BasicSection}">
+                <StackPanel HorizontalAlignment="Stretch" Spacing="20">
+                    <u:AutoCompleteBox
+                        ItemsSource="{Binding Controls}"
+                        Width="300"
+                        HorizontalAlignment="Center"
+                        PlaceholderText="Please select a Control"
+                        SelectedItem="{Binding SelectedControl, Mode=TwoWay}"
+                        ValueMemberBinding="{ReflectionBinding MenuHeader}" />
+                </StackPanel>
+            </controls:DemoSectionView>
+            <u:AutoCompleteBox
+                Classes="Large"
+                ItemsSource="{Binding Controls}"
+                ValueMemberBinding="{ReflectionBinding MenuHeader}" />
+            <u:AutoCompleteBox
+                Classes="Small"
+                ItemsSource="{Binding Controls}"
+                ValueMemberBinding="{ReflectionBinding MenuHeader}" />
+            <u:AutoCompleteBox
+                Classes="Bordered"
+                ItemsSource="{Binding Controls}"
+                ValueMemberBinding="{ReflectionBinding MenuHeader}" />
+            <u:AutoCompleteBox
+                IsEnabled="False"
+                PlaceholderText="Disabled"
+                ItemsSource="{Binding Controls}"
+                ValueMemberBinding="{ReflectionBinding MenuHeader}" />
+            <u:AutoCompleteBox
+                InnerLeftContent="https://"
+                InnerRightContent=".com"
+                ItemsSource="{Binding Controls}"
+                ValueMemberBinding="{ReflectionBinding MenuHeader}" />
+        </StackPanel>
+    </controls:AnchorScrollViewer>
 </UserControl>

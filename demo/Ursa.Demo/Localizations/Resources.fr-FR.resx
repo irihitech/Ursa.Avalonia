@@ -697,6 +697,12 @@
   <data name="Page_Description_WindowDialog" xml:space="preserve">
     <value>Le dialogue fenêtré affiche des fenêtres modales pour l'interaction utilisateur.</value>
   </data>
+  <data name="Page_AutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Utilisation de base</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>L'AutoCompleteBox d'Ursa est globalement identique à celui natif d'Avalonia, mais ajoute la possibilité d'afficher immédiatement toutes les options disponibles au clic. AutoCompleteBox est généralement utilisé avec MVVM : liez la collection via `ItemsSource` et l'élément sélectionné via `SelectedItem`.</value>
+  </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">
     <value>Exemples</value>

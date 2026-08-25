@@ -682,6 +682,19 @@
   <data name="Page_Description_WindowDialog" xml:space="preserve">
     <value>窗口对话框显示用于用户交互的模态窗口。</value>
   </data>
+  <!-- Demo Section -->
+  <data name="Page_AutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Ursa的AutoCompleteBox与Avalonia原生基本相同，但增加了点击后立刻展开所有可选项的功能。AutoCompleteBox通常以MVVM的形式使用，通过`ItemsSource`绑定集合，通过`SelectedItem`绑定选中项。</value>
+  </data>
+  <data name="DemoSection_Tab_Xaml" xml:space="preserve">
+    <value>XAML</value>
+  </data>
+  <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
+    <value>视图模型</value>
+  </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">
     <value>示例</value>

@@ -1,7 +1,6 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Ursa.Demo.Models;
-
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 using Irihi.Dogma.Docs;
@@ -12,11 +11,11 @@ namespace Ursa.Demo.Pages.AutoCompleteBoxDemo;
 
 [DocCategory(Category_Key, IsClickable = false, Parent = ButtonsAndInputsPage.Category_Key)]
 [DocPage(Menu_Header, View = typeof(AutoCompleteBoxDemo))]
-public class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetadataProvider
+public partial class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public const string Category_Key = "AutoCompleteBox";
     public const string Menu_Header = "Menu_Header_AutoCompleteBox";
-    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    public PageMetadataViewModel PageMetadata { get; set; } = new()
     {
         Title = LanguageManager.Instance.Page_Title_AutoCompleteBox,
         Description = LanguageManager.Instance.Page_Description_AutoCompleteBox,
@@ -33,37 +32,48 @@ public class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetadataProvi
         Controls = new ObservableCollection<ControlData>(GetControlData());
         BasicSection = new DemoSectionViewModel
         {
-            Header = "Basic Usage",
-            Description = "Demonstrates common AutoCompleteBox variants and interactions.",
+            Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_Basic_Usage_Header,
+            Description = LanguageManager.Instance.Page_AutoCompleteBox_Section_Basic_Usage_Description,
             AnchorId = "auto-complete-box-basic-usage"
         };
         BasicSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
         {
             CodeSnippetLanguage = CodeLanguage.Axaml,
-            TabName = "XAML",
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
             CodeSnippet = """
                           <u:AutoCompleteBox
+                              ItemsSource="{Binding Controls}"
                               PlaceholderText="Please select a Control"
+                              SelectedItem="{Binding SelectedControl, Mode=TwoWay}"
                               ValueMemberBinding="{ReflectionBinding MenuHeader}" />
                           """
         });
         BasicSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
         {
             CodeSnippetLanguage = CodeLanguage.CSharp,
-            TabName = "VM",
+            TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
             CodeSnippet = """
                           public ObservableCollection<ControlData> Controls { get; set; }
+                          
+                          [ObservableProperty] 
+                          public partial ControlData? SelectedControl { get; set; }
 
-                          public AutoCompleteBoxDemoViewModel()
-                          {
-                             Controls = new ObservableCollection<ControlData>(GetControlData());
-                          }
                           """
         });
     }
 
     public ObservableCollection<ControlData> Controls { get; set; }
     public DemoSectionViewModel BasicSection { get; }
+    
+    public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; set; } =
+    [
+        new() { 
+            Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_Basic_Usage_Header,
+            AnchorId = "auto-complete-box-basic-usage" 
+        },
+    ];
+
+    [ObservableProperty] public partial ControlData? SelectedControl { get; set; }
 
     private static ControlData[] GetControlData()
     {

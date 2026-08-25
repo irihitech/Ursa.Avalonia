@@ -697,6 +697,12 @@
   <data name="Page_Description_WindowDialog" xml:space="preserve">
     <value>Оконный диалог отображает модальные окна для взаимодействия с пользователем.</value>
   </data>
+  <data name="Page_AutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>AutoCompleteBox в Ursa в основном такой же, как нативный в Avalonia, но дополнительно поддерживает мгновенное раскрытие всех доступных вариантов при клике. Обычно AutoCompleteBox используется в стиле MVVM: коллекция привязывается через `ItemsSource`, а выбранный элемент — через `SelectedItem`.</value>
+  </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">
     <value>Примеры</value>
