@@ -695,6 +695,12 @@
   <data name="Page_AutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
     <value>AutoCompleteBox w Ursa jest zasadniczo taki sam jak natywny w Avalonia, ale dodatkowo umożliwia natychmiastowe rozwinięcie wszystkich dostępnych opcji po kliknięciu. AutoCompleteBox jest zwykle używany w podejściu MVVM: kolekcję wiąże się przez `ItemsSource`, a wybrany element przez `SelectedItem`.</value>
   </data>
+  <data name="Page_AutoCompleteBox_Section_ItemTemplate_Support_Header" xml:space="preserve">
+    <value>Obsługa ItemTemplate</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ItemTemplate_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox umożliwia dostosowanie wyglądu i układu opcji za pomocą ItemTemplate.</value>
+  </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">
     <value>Przykłady</value>

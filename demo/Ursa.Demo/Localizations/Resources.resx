@@ -703,6 +703,12 @@
   <data name="Page_AutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
     <value>Ursa's AutoCompleteBox is mostly the same as Avalonia's native one, but adds the ability to immediately expand all available options when clicked. AutoCompleteBox is typically used with MVVM: bind the collection through `ItemsSource` and bind the selected item through `SelectedItem`.</value>
   </data>
+  <data name="Page_AutoCompleteBox_Section_ItemTemplate_Support_Header" xml:space="preserve">
+    <value>ItemTemplate Support</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ItemTemplate_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox can customize option appearance and layout through ItemTemplate.</value>
+  </data>
   <data name="DemoSection_Tab_Xaml" xml:space="preserve">
     <value>XAML</value>
   </data>

@@ -25,11 +25,21 @@
                 <TextBlock
                     Classes="H6"
                     Theme="{DynamicResource TitleTextBlock}"
-                    IsVisible="{Binding SectionContext.Header^, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                    Text="{Binding SectionContext.Header^, RelativeSource={RelativeSource TemplatedParent}}" />
+                    IsVisible="{Binding SectionContext?.Header^, 
+                        RelativeSource={RelativeSource TemplatedParent}, 
+                        Converter={x:Static StringConverters.IsNotNullOrEmpty},
+                        FallbackValue={x:False}}"
+                    Text="{Binding SectionContext?.Header^, 
+                        RelativeSource={RelativeSource TemplatedParent},
+                        FallbackValue={x:Static x:String.Empty}}" />
                 <u:MarkdownLine
-                    IsVisible="{Binding SectionContext.Description^, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                    Markdown="{Binding SectionContext.Description^, RelativeSource={RelativeSource TemplatedParent}}"
+                    IsVisible="{Binding SectionContext?.Description^, 
+                        RelativeSource={RelativeSource TemplatedParent}, 
+                        Converter={x:Static StringConverters.IsNotNullOrEmpty},
+                        FallbackValue={x:False}}"
+                    Markdown="{Binding SectionContext?.Description^, 
+                        RelativeSource={RelativeSource TemplatedParent},
+                        FallbackValue={x:Static x:String.Empty}}"
                     TextWrapping="Wrap" />
                 <Border
                     Padding="16"
@@ -38,13 +48,13 @@
                     CornerRadius="{DynamicResource SemiBorderRadiusMedium}">
                     <StackPanel
                         Spacing="12"
-                        u:Anchor.Id="{Binding SectionContext.AnchorId, RelativeSource={RelativeSource TemplatedParent}}">
+                        u:Anchor.Id="{Binding SectionContext?.AnchorId, RelativeSource={RelativeSource TemplatedParent}}">
 
                         <ContentPresenter
                             Content="{TemplateBinding Content}" />
 
                         <TabControl
-                            ItemsSource="{Binding SectionContext.CodeSnippets, RelativeSource={RelativeSource TemplatedParent}}">
+                            ItemsSource="{Binding SectionContext?.CodeSnippets, RelativeSource={RelativeSource TemplatedParent}}">
                             <TabControl.ContentTemplate>
                                 <DataTemplate
                                     DataType="viewModels:DemoSectionCodeSnippetViewModel">

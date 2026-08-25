@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.AutoCompleteBoxDemo"
+             xmlns:models="clr-namespace:Ursa.Demo.Models"
              xmlns:controls="clr-namespace:Ursa.Demo.Controls"
              xmlns:u="https://irihi.tech/ursa"
              x:DataType="viewModels:AutoCompleteBoxDemoViewModel"
@@ -22,6 +23,25 @@
                         SelectedItem="{Binding SelectedControl, Mode=TwoWay}"
                         ValueMemberBinding="{ReflectionBinding MenuHeader}" />
                 </StackPanel>
+            </controls:DemoSectionView>
+            <controls:DemoSectionView SectionContext="{Binding ItemTemplateSection}">
+                <u:AutoCompleteBox
+                    Width="300"
+                    HorizontalAlignment="Center"
+                    ItemsSource="{Binding Controls}"
+                    PlaceholderText="Choose a control with custom template"
+                    ValueMemberBinding="{ReflectionBinding MenuHeader}">
+                    <u:AutoCompleteBox.ItemTemplate>
+                        <DataTemplate DataType="models:ControlData">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="{Binding MenuHeader}" />
+                                <TextBlock
+                                    Classes="Secondary"
+                                    Text="{Binding Chinese}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </u:AutoCompleteBox.ItemTemplate>
+                </u:AutoCompleteBox>
             </controls:DemoSectionView>
             <u:AutoCompleteBox
                 Classes="Large"

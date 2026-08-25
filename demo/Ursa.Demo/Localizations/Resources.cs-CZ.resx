@@ -703,6 +703,12 @@
   <data name="Page_AutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
     <value>AutoCompleteBox v Ursa je v zásadě stejný jako nativní prvek Avalonia, ale navíc přidává funkci okamžitého rozbalení všech dostupných možností po kliknutí. AutoCompleteBox se obvykle používá ve stylu MVVM: kolekce se váže přes `ItemsSource` a vybraná položka přes `SelectedItem`.</value>
   </data>
+  <data name="Page_AutoCompleteBox_Section_ItemTemplate_Support_Header" xml:space="preserve">
+    <value>Podpora ItemTemplate</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ItemTemplate_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox umožňuje přizpůsobit vzhled a rozvržení možností pomocí ItemTemplate.</value>
+  </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">
     <value>Ukázky</value>

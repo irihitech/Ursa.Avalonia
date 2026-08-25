@@ -60,16 +60,47 @@ public partial class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetad
 
                           """
         });
+        ItemTemplateSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_ItemTemplate_Support_Header,
+            Description = LanguageManager.Instance.Page_AutoCompleteBox_Section_ItemTemplate_Support_Description,
+            AnchorId = "auto-complete-box-item-template-support"
+        };
+        ItemTemplateSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:AutoCompleteBox ItemsSource="{Binding Controls}"
+                                            PlaceholderText="Choose a control">
+                             <u:AutoCompleteBox.ItemTemplate>
+                                 <DataTemplate DataType="models:ControlData">
+                                     <StackPanel Orientation="Horizontal" Spacing="8">
+                                         <TextBlock Text="{Binding MenuHeader}" />
+                                         <TextBlock Classes="Secondary"
+                                                    Text="{Binding Chinese}" />
+                                     </StackPanel>
+                                 </DataTemplate>
+                             </u:AutoCompleteBox.ItemTemplate>
+                          </u:AutoCompleteBox>
+                          """
+        });
     }
 
     public ObservableCollection<ControlData> Controls { get; set; }
     public DemoSectionViewModel BasicSection { get; }
+    public DemoSectionViewModel ItemTemplateSection { get; }
     
     public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; set; } =
     [
         new() { 
             Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_Basic_Usage_Header,
             AnchorId = "auto-complete-box-basic-usage" 
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_ItemTemplate_Support_Header,
+            AnchorId = "auto-complete-box-item-template-support"
         },
     ];
 
