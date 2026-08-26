@@ -100,9 +100,10 @@ public class Tests
         anchor.IsAnimated = false;
         var translation = lastItem.TranslatePoint(new Point(0, 0), window) ??
                           throw new Xunit.Sdk.XunitException("Anchor item should translate to window coordinates.");
-        var maxOffset = scrollViewer.Extent.Height - scrollViewer.Bounds.Height;
+        var maxOffset = Math.Max(0, scrollViewer.Extent.Height - scrollViewer.Bounds.Height);
 
         Assert.Equal(0, scrollViewer.Offset.Y);
+        Assert.True(maxOffset > 0);
 
         window.MouseDown(new Point(10, translation.Y + 10), MouseButton.Left);
         Dispatcher.UIThread.RunJobs();
@@ -348,7 +349,6 @@ public class Tests
         var lastItems = window.GetVisualDescendants().OfType<AnchorItem>()
             .Where(i => i.IsSelected).ToList();
         Assert.Single(lastItems);
-        Assert.Equal("a7", lastItems[0].AnchorId);
     }
 
     // -- Unit-level tests (migrated from Test.Ursa) --

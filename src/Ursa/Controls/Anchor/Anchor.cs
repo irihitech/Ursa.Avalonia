@@ -7,6 +7,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Metadata;
 using Avalonia.Styling;
+using Avalonia.Threading;
 using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
@@ -36,6 +37,7 @@ public class Anchor : ItemsControl
     private CancellationTokenSource _cts = new();
 
     private List<(string, double)> _positions = [];
+    private int _selectionScrollVersion;
     private bool _scrollingFromSelection;
 
     private AnchorItem? _selectedContainer;
@@ -121,8 +123,20 @@ public class Anchor : ItemsControl
             _cts = new CancellationTokenSource();
             if (!IsAnimated)
             {
-                _scrollingFromSelection = false;
-                TargetContainer.Offset = new Vector(0, to);
+                var selectionScrollVersion = ++_selectionScrollVersion;
+                _scrollingFromSelection = true;
+                try
+                {
+                    TargetContainer.Offset = new Vector(0, to);
+                }
+                finally
+                {
+                    Dispatcher.UIThread.Post(() =>
+                    {
+                        if (_selectionScrollVersion == selectionScrollVersion)
+                            _scrollingFromSelection = false;
+                    }, DispatcherPriority.Render);
+                }
                 return;
             }
             var animation = new Animation
@@ -238,11 +252,8 @@ public class Anchor : ItemsControl
     internal void MarkSelectedContainerByPosition()
     {
         if (TargetContainer is null) return;
-        var maxOffset = Math.Max(0, TargetContainer.Extent.Height - TargetContainer.Bounds.Height);
         var top = TargetContainer.Offset.Y + TopOffset;
-        var topAnchorId = TargetContainer.Offset.Y >= maxOffset || MathHelpers.AreClose(TargetContainer.Offset.Y, maxOffset)
-            ? _positions.LastOrDefault().Item1
-            : _positions.LastOrDefault(a => a.Item2 <= top).Item1;
+        var topAnchorId = _positions.LastOrDefault(a => a.Item2 <= top).Item1;
         if (topAnchorId is null) return;
         var item = this.GetVisualDescendants().OfType<AnchorItem>()
                        .FirstOrDefault(a => a.AnchorId == topAnchorId);
