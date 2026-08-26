@@ -38,7 +38,7 @@ public partial class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetad
         BasicSection = new DemoSectionViewModel
         {
             Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_Basic_Usage_Header,
-            Description = LanguageManager.Instance.Page_AutoCompleteBox_Section_Basic_Usage_Description,
+            Descriptions = { LanguageManager.Instance.Page_AutoCompleteBox_Section_Basic_Usage_Description },
             AnchorId = BasicUsageAnchorId
         };
         BasicSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
@@ -68,7 +68,7 @@ public partial class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetad
         ItemTemplateSection = new DemoSectionViewModel
         {
             Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_ItemTemplate_Support_Header,
-            Description = LanguageManager.Instance.Page_AutoCompleteBox_Section_ItemTemplate_Support_Description,
+            Descriptions = { LanguageManager.Instance.Page_AutoCompleteBox_Section_ItemTemplate_Support_Description },
             AnchorId = ItemTemplateSupportAnchorId
         };
         ItemTemplateSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
@@ -93,7 +93,7 @@ public partial class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetad
         ClearButtonSection = new DemoSectionViewModel
         {
             Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_ClearButton_Support_Header,
-            Description = LanguageManager.Instance.Page_AutoCompleteBox_Section_ClearButton_Support_Description,
+            Descriptions = { LanguageManager.Instance.Page_AutoCompleteBox_Section_ClearButton_Support_Description },
             AnchorId = ClearButtonSupportAnchorId
         };
         ClearButtonSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
@@ -112,7 +112,7 @@ public partial class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetad
         InnerContentSection = new DemoSectionViewModel
         {
             Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_InnerContent_Support_Header,
-            Description = LanguageManager.Instance.Page_AutoCompleteBox_Section_InnerContent_Support_Description,
+            Descriptions = { LanguageManager.Instance.Page_AutoCompleteBox_Section_InnerContent_Support_Description },
             AnchorId = InnerContentSupportAnchorId
         };
         InnerContentSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel

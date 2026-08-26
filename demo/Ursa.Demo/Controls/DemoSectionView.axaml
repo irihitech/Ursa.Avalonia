@@ -33,15 +33,16 @@
                     Text="{Binding SectionContext?.Header^, 
                         RelativeSource={RelativeSource TemplatedParent},
                         FallbackValue={x:Static x:String.Empty}}" />
-                <u:MarkdownLine
-                    IsVisible="{Binding SectionContext?.Description^, 
-                        RelativeSource={RelativeSource TemplatedParent}, 
-                        Converter={x:Static StringConverters.IsNotNullOrEmpty},
-                        FallbackValue={x:False}}"
-                    Markdown="{Binding SectionContext?.Description^, 
-                        RelativeSource={RelativeSource TemplatedParent},
-                        FallbackValue={x:Static x:String.Empty}}"
-                    TextWrapping="Wrap" />
+                <ItemsControl
+                    ItemsSource="{Binding SectionContext?.Descriptions, RelativeSource={RelativeSource TemplatedParent}}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <u:MarkdownLine
+                                Markdown="{Binding ^, FallbackValue={x:Static x:String.Empty}}"
+                                TextWrapping="Wrap" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
                 <Border
                     Padding="16"
                     BorderBrush="{DynamicResource SemiColorBorder}"
