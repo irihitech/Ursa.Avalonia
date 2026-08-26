@@ -7,6 +7,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Metadata;
 using Avalonia.Styling;
+using Avalonia.Threading;
 using Avalonia.VisualTree;
 using Irihi.Avalonia.Shared.Helpers;
 using Ursa.Common;
@@ -26,12 +27,17 @@ public class Anchor : ItemsControl
         AvaloniaProperty.Register<Anchor, ScrollViewer?>(
             nameof(TargetContainer));
 
+    public static readonly StyledProperty<bool> IsAnimatedProperty =
+        AvaloniaProperty.Register<Anchor, bool>(
+            nameof(IsAnimated), true);
+
     public static readonly AttachedProperty<string?> IdProperty =
         AvaloniaProperty.RegisterAttached<Anchor, Visual, string?>("Id");
 
     private CancellationTokenSource _cts = new();
 
     private List<(string, double)> _positions = [];
+    private int _selectionScrollVersion;
     private bool _scrollingFromSelection;
 
     private AnchorItem? _selectedContainer;
@@ -40,6 +46,12 @@ public class Anchor : ItemsControl
     {
         get => GetValue(TargetContainerProperty);
         set => SetValue(TargetContainerProperty, value);
+    }
+
+    public bool IsAnimated
+    {
+        get => GetValue(IsAnimatedProperty);
+        set => SetValue(IsAnimatedProperty, value);
     }
 
     public static void SetId(Visual obj, string? value)
@@ -106,6 +118,27 @@ public class Anchor : ItemsControl
             if (to > TargetContainer.Extent.Height - TargetContainer.Bounds.Height)
                 to = TargetContainer.Extent.Height - TargetContainer.Bounds.Height;
             if (MathHelpers.AreClose(from,to)) return;
+            _cts.Cancel();
+            _cts.Dispose();
+            _cts = new CancellationTokenSource();
+            if (!IsAnimated)
+            {
+                var selectionScrollVersion = ++_selectionScrollVersion;
+                _scrollingFromSelection = true;
+                try
+                {
+                    TargetContainer.Offset = new Vector(0, to);
+                }
+                finally
+                {
+                    Dispatcher.UIThread.Post(() =>
+                    {
+                        if (_selectionScrollVersion == selectionScrollVersion)
+                            _scrollingFromSelection = false;
+                    }, DispatcherPriority.Render);
+                }
+                return;
+            }
             var animation = new Animation
             {
                 Duration = TimeSpan.FromSeconds(0.3),
@@ -124,9 +157,6 @@ public class Anchor : ItemsControl
                     }
                 }
             };
-            _cts.Cancel();
-            _cts.Dispose();
-            _cts = new CancellationTokenSource();
             var token = _cts.Token;
             token.Register(_ => _scrollingFromSelection = false, null);
             _scrollingFromSelection = true;

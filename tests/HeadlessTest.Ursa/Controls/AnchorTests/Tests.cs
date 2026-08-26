@@ -31,16 +31,85 @@ public class Tests
         Assert.NotNull(scrollViewer);
         Assert.NotNull(item4);
 
-        var transltion = item4.TranslatePoint(new Point(0, 0), window);
+        var translation = item4.TranslatePoint(new Point(0, 0), window) ??
+                          throw new Xunit.Sdk.XunitException("Anchor item should translate to window coordinates.");
         
         Assert.Equal(0, scrollViewer.Offset.Y);
         
         // Simulate a click on the anchor
-        window.MouseDown(new Point(10, transltion.Value.Y+10), MouseButton.Left);
+        window.MouseDown(new Point(10, translation.Y+10), MouseButton.Left);
         Dispatcher.UIThread.RunJobs();
         await Task.Delay(800);
         Assert.True(item4.IsSelected);
         Assert.Equal(300.0 * 3, scrollViewer.Offset.Y, 50.0);
+    }
+
+    [AvaloniaFact]
+    public void Click_Anchor_With_Mouse_And_IsAnimated_False_Should_Jump_To_Target_Directly()
+    {
+        var window = new Window()
+        {
+            Width = 500,
+            Height = 500,
+        };
+        var view = new TestView();
+        window.Content = view;
+        window.Show();
+        
+        var anchor = view.FindControl<Anchor>("Anchor");
+        var scrollViewer = view.FindControl<ScrollViewer>("ScrollViewer");
+        var item4 = view.FindControl<AnchorItem>("Item4");
+        
+        Assert.NotNull(anchor);
+        Assert.NotNull(scrollViewer);
+        Assert.NotNull(item4);
+
+        anchor.IsAnimated = false;
+        var translation = item4.TranslatePoint(new Point(0, 0), window) ??
+                          throw new Xunit.Sdk.XunitException("Anchor item should translate to window coordinates.");
+        
+        Assert.Equal(0, scrollViewer.Offset.Y);
+        
+        window.MouseDown(new Point(10, translation.Y+10), MouseButton.Left);
+        Dispatcher.UIThread.RunJobs();
+        
+        Assert.True(item4.IsSelected);
+        Assert.Equal(300.0 * 3, scrollViewer.Offset.Y, 0.1);
+    }
+
+    [AvaloniaFact]
+    public void Click_Last_Anchor_With_Mouse_And_IsAnimated_False_Should_Select_On_First_Click()
+    {
+        var window = new Window()
+        {
+            Width = 500,
+            Height = 500,
+        };
+        var view = new TestView();
+        window.Content = view;
+        window.Show();
+
+        var anchor = view.FindControl<Anchor>("Anchor");
+        var scrollViewer = view.FindControl<ScrollViewer>("ScrollViewer");
+        var lastItem = window.GetVisualDescendants().OfType<AnchorItem>().FirstOrDefault(x => x.AnchorId == "a7");
+
+        Assert.NotNull(anchor);
+        Assert.NotNull(scrollViewer);
+        Assert.NotNull(lastItem);
+
+        anchor.IsAnimated = false;
+        var translation = lastItem.TranslatePoint(new Point(0, 0), window) ??
+                          throw new Xunit.Sdk.XunitException("Anchor item should translate to window coordinates.");
+        var maxOffset = Math.Max(0, scrollViewer.Extent.Height - scrollViewer.Bounds.Height);
+
+        Assert.Equal(0, scrollViewer.Offset.Y);
+        Assert.True(maxOffset > 0);
+
+        window.MouseDown(new Point(10, translation.Y + 10), MouseButton.Left);
+        Dispatcher.UIThread.RunJobs();
+
+        Assert.True(lastItem.IsSelected);
+        Assert.Equal(maxOffset, scrollViewer.Offset.Y, 0.1);
     }
     
     [AvaloniaFact]
@@ -290,6 +359,7 @@ public class Tests
         var anchor = new Anchor();
         
         Assert.Null(anchor.TargetContainer);
+        Assert.True(anchor.IsAnimated);
         Assert.Equal(0.0, anchor.TopOffset);
     }
 
@@ -319,6 +389,18 @@ public class Tests
         
         anchor.TopOffset = 0.0;
         Assert.Equal(0.0, anchor.TopOffset);
+    }
+
+    [AvaloniaFact]
+    public void Anchor_Should_Set_And_Get_IsAnimated()
+    {
+        var anchor = new Anchor();
+        
+        anchor.IsAnimated = false;
+        Assert.False(anchor.IsAnimated);
+        
+        anchor.IsAnimated = true;
+        Assert.True(anchor.IsAnimated);
     }
 
     [AvaloniaFact]
