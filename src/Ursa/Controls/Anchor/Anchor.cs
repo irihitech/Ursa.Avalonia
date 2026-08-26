@@ -238,8 +238,11 @@ public class Anchor : ItemsControl
     internal void MarkSelectedContainerByPosition()
     {
         if (TargetContainer is null) return;
+        var maxOffset = Math.Max(0, TargetContainer.Extent.Height - TargetContainer.Bounds.Height);
         var top = TargetContainer.Offset.Y + TopOffset;
-        var topAnchorId = _positions.LastOrDefault(a => a.Item2 <= top).Item1;
+        var topAnchorId = TargetContainer.Offset.Y >= maxOffset || MathHelpers.AreClose(TargetContainer.Offset.Y, maxOffset)
+            ? _positions.LastOrDefault().Item1
+            : _positions.LastOrDefault(a => a.Item2 <= top).Item1;
         if (topAnchorId is null) return;
         var item = this.GetVisualDescendants().OfType<AnchorItem>()
                        .FirstOrDefault(a => a.AnchorId == topAnchorId);
