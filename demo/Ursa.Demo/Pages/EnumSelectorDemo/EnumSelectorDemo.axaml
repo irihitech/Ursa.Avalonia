@@ -23,35 +23,22 @@
                 <StackPanel HorizontalAlignment="Stretch" Spacing="20">
                     <controls:DemoSectionView SectionContext="{Binding BasicSection}">
                         <StackPanel Spacing="12">
-                            <ToggleSwitch
-                                Content="Show Description"
-                                IsChecked="{Binding DisplayDescription}" />
-                            <TextBlock Text="Select Type" />
-                            <ComboBox
-                                Width="200"
-                                DisplayMemberBinding="{Binding Name}"
-                                ItemsSource="{Binding Types}"
-                                SelectedItem="{Binding SelectedType}" />
-                            <TextBlock Text="Select Value" />
                             <u:EnumSelector
                                 Width="200"
-                                DisplayDescription="{Binding DisplayDescription}"
-                                EnumType="{Binding SelectedType}"
+                                EnumType="{x:Type system:DayOfWeek}"
                                 Value="{Binding Value}" />
                             <TextBlock Text="{Binding Value}" />
                         </StackPanel>
                     </controls:DemoSectionView>
 
-                    <controls:DemoSectionView SectionContext="{Binding SmallSizeSection}">
-                        <StackPanel Spacing="12">
+                    <controls:DemoSectionView SectionContext="{Binding StylingSection}">
+                        <DockPanel HorizontalSpacing="12">
                             <u:EnumSelector
                                 Width="200"
                                 Classes="Small"
-                                DisplayDescription="{Binding DisplayDescription}"
-                                EnumType="{Binding SelectedType}"
+                                EnumType="{x:Type system:DayOfWeek}"
                                 Value="{Binding Value}" />
-                            <TextBlock Text="{Binding Value}" />
-                        </StackPanel>
+                        </DockPanel>
                     </controls:DemoSectionView>
 
                     <controls:DemoSectionView SectionContext="{Binding CustomEnumValuesSection}">
@@ -62,7 +49,6 @@
                                 EnumValues="{Binding CustomEnumValues}"
                                 Value="{Binding Value2}" />
                             <TextBlock Text="{Binding Value2}" />
-
                             <u:EnumSelector
                                 Width="200"
                                 EnumType="{x:Type system:DayOfWeek}"
@@ -76,6 +62,17 @@
                                 </u:EnumSelector.EnumValues>
                             </u:EnumSelector>
                             <TextBlock Text="{Binding Value3}" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding DescriptionAttributeSection}">
+                        <StackPanel Spacing="12">
+                            <u:EnumSelector
+                                Width="220"
+                                EnumType="{x:Type vm:DescriptionSampleEnum}"
+                                DisplayDescription="True"
+                                Value="{Binding DescriptionAttributeValue}" />
+                            <TextBlock Text="{Binding DescriptionAttributeValue}" />
                         </StackPanel>
                     </controls:DemoSectionView>
 

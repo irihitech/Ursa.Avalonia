@@ -3,12 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using Avalonia.Animation;
-using Avalonia.Controls;
-using Avalonia.Data;
-using Avalonia.Input;
-using Avalonia.Interactivity;
-using Avalonia.Layout;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Irihi.Dogma.Controls;
  
@@ -28,6 +22,7 @@ public partial class EnumSelectorDemoViewModel : ObservableObject, IPageMetadata
     private const string BasicUsageAnchorId = "enum-selector-basic-usage";
     private const string SmallSizeAnchorId = "enum-selector-small-size";
     private const string CustomEnumValuesAnchorId = "enum-selector-custom-enum-values";
+    private const string DescriptionAttributeAnchorId = "enum-selector-description-attribute";
     private const string CustomDisplayNamesAnchorId = "enum-selector-custom-display-names";
 
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
@@ -58,20 +53,19 @@ public partial class EnumSelectorDemoViewModel : ObservableObject, IPageMetadata
             CodeSnippet = """
                           <u:EnumSelector
                               Width="200"
-                              DisplayDescription="{Binding DisplayDescription}"
-                              EnumType="{Binding SelectedType}"
+                              EnumType="{x:Type system:DayOfWeek}"
                               Value="{Binding Value}" />
                           """
         });
 
-        SmallSizeSection = new DemoSectionViewModel
+        StylingSection = new DemoSectionViewModel
         {
             Header = LanguageManager.Instance.Page_EnumSelector_Section_Small_Size_Header,
             Descriptions = { LanguageManager.Instance.Page_EnumSelector_Section_Small_Size_Description },
             SectionTag = DemoSectionTag.Style,
             AnchorId = SmallSizeAnchorId
         };
-        SmallSizeSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        StylingSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
         {
             CodeSnippetLanguage = CodeLanguage.Axaml,
             TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
@@ -79,8 +73,7 @@ public partial class EnumSelectorDemoViewModel : ObservableObject, IPageMetadata
                           <u:EnumSelector
                               Width="200"
                               Classes="Small"
-                              DisplayDescription="{Binding DisplayDescription}"
-                              EnumType="{Binding SelectedType}"
+                              EnumType="{x:Type system:DayOfWeek}"
                               Value="{Binding Value}" />
                           """
         });
@@ -102,6 +95,68 @@ public partial class EnumSelectorDemoViewModel : ObservableObject, IPageMetadata
                               EnumType="{x:Type system:DayOfWeek}"
                               EnumValues="{Binding CustomEnumValues}"
                               Value="{Binding Value2}" />
+
+                          <u:EnumSelector
+                              Width="200"
+                              EnumType="{x:Type system:DayOfWeek}"
+                              Value="{Binding Value3}">
+                              <u:EnumSelector.EnumValues>
+                                  <generic:List x:TypeArguments="system:DayOfWeek">
+                                      <system:DayOfWeek>Saturday</system:DayOfWeek>
+                                      <system:DayOfWeek>Sunday</system:DayOfWeek>
+                                      <system:DayOfWeek>Monday</system:DayOfWeek>
+                                  </generic:List>
+                              </u:EnumSelector.EnumValues>
+                          </u:EnumSelector>
+                          """
+        });
+        CustomEnumValuesSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.CSharp,
+            TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
+            CodeSnippet = """
+                          public IList CustomEnumValues { get; set; } = new List<object>
+                          {
+                              DayOfWeek.Monday,
+                              DayOfWeek.Wednesday,
+                              DayOfWeek.Friday,
+                          };
+                          """
+        });
+
+        DescriptionAttributeSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_EnumSelector_Section_Description_Attribute_Header,
+            Descriptions = { LanguageManager.Instance.Page_EnumSelector_Section_Description_Attribute_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = DescriptionAttributeAnchorId
+        };
+        DescriptionAttributeSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:EnumSelector
+                              Width="220"
+                              EnumType="{x:Type vm:DescriptionSampleEnum}"
+                              DisplayDescription="True"
+                              Value="{Binding DescriptionAttributeValue}" />
+                          """
+        });
+        DescriptionAttributeSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.CSharp,
+            TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
+            CodeSnippet = """
+                          public enum DescriptionSampleEnum
+                          {
+                              [Description("Waiting for review")]
+                              Pending,
+                              [Description("Approved and ready")]
+                              Approved,
+                              [Description("Rejected")]
+                              Rejected
+                          }
                           """
         });
 
@@ -134,15 +189,15 @@ public partial class EnumSelectorDemoViewModel : ObservableObject, IPageMetadata
         });
     }
 
-    [ObservableProperty] public partial bool DisplayDescription { get; set; } = true;
-    [ObservableProperty] public partial Type? SelectedType { get; set; }
     [ObservableProperty] public partial object? Value { get; set; }
     [ObservableProperty] public partial object? Value2 { get; set; }
+    [ObservableProperty] public partial object? DescriptionAttributeValue { get; set; }
     [ObservableProperty] public partial object? Value3 { get; set; }
 
     public DemoSectionViewModel BasicSection { get; }
-    public DemoSectionViewModel SmallSizeSection { get; }
+    public DemoSectionViewModel StylingSection { get; }
     public DemoSectionViewModel CustomEnumValuesSection { get; }
+    public DemoSectionViewModel DescriptionAttributeSection { get; }
     public DemoSectionViewModel CustomDisplayNamesSection { get; }
 
     public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; } =
@@ -164,6 +219,11 @@ public partial class EnumSelectorDemoViewModel : ObservableObject, IPageMetadata
         },
         new()
         {
+            Header = LanguageManager.Instance.Page_EnumSelector_Section_Description_Attribute_Header,
+            AnchorId = DescriptionAttributeAnchorId
+        },
+        new()
+        {
             Header = LanguageManager.Instance.Page_EnumSelector_Section_Custom_DisplayNames_Header,
             AnchorId = CustomDisplayNamesAnchorId
         }
@@ -175,29 +235,14 @@ public partial class EnumSelectorDemoViewModel : ObservableObject, IPageMetadata
         DayOfWeek.Wednesday,
         DayOfWeek.Friday,
     };
-
-    public ObservableCollection<Type?> Types { get; set; } =
-    [
-        typeof(HorizontalAlignment),
-        typeof(VerticalAlignment),
-        typeof(Orientation),
-        typeof(Dock),
-        typeof(GridResizeDirection),
-        typeof(DayOfWeek),
-        typeof(FillMode),
-        typeof(IterationType),
-        typeof(BindingMode),
-        typeof(BindingPriority),
-        typeof(StandardCursorType),
-        typeof(Key),
-        typeof(KeyModifiers),
-        typeof(RoutingStrategies),
-        typeof(CustomEnum)
-    ];
 }
 
-public enum CustomEnum
+public enum DescriptionSampleEnum
 {
-    [Description("是")] Yes,
-    [Description("否")] No,
+    [Description("Waiting for review")]
+    Pending,
+    [Description("Approved and ready")]
+    Approved,
+    [Description("Rejected")]
+    Rejected
 }

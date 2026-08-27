@@ -757,28 +757,34 @@
     <value>同一分组内的选项互斥；选择其他分组中的样式类时会保留当前选择。</value>
   </data>
   <data name="Page_EnumSelector_Section_Basic_Usage_Header" xml:space="preserve">
-    <value>Basic usage</value>
+    <value>基础用法</value>
   </data>
   <data name="Page_EnumSelector_Section_Basic_Usage_Description" xml:space="preserve">
-    <value>Select enum types at runtime and bind selected enum values.</value>
+    <value>使用 DayOfWeek 枚举演示基础值选择。</value>
   </data>
   <data name="Page_EnumSelector_Section_Small_Size_Header" xml:space="preserve">
-    <value>Small size</value>
+    <value>小尺寸</value>
   </data>
   <data name="Page_EnumSelector_Section_Small_Size_Description" xml:space="preserve">
-    <value>Apply the Small class to render a compact enum selector.</value>
+    <value>应用 Small 样式类以呈现紧凑的枚举选择器。</value>
   </data>
   <data name="Page_EnumSelector_Section_Custom_EnumValues_Header" xml:space="preserve">
-    <value>Custom enum values</value>
+    <value>自定义枚举值</value>
   </data>
   <data name="Page_EnumSelector_Section_Custom_EnumValues_Description" xml:space="preserve">
-    <value>Limit available enum values from binding or inline XAML lists.</value>
+    <value>通过绑定或内联 XAML 列表限制可选的枚举值。</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Header" xml:space="preserve">
+    <value>显示 Description 特性</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Description" xml:space="preserve">
+    <value>将 DisplayDescription 设为 True，可显示枚举成员上的 Description 特性文本。</value>
   </data>
   <data name="Page_EnumSelector_Section_Custom_DisplayNames_Header" xml:space="preserve">
-    <value>Custom display names</value>
+    <value>自定义显示名称</value>
   </data>
   <data name="Page_EnumSelector_Section_Custom_DisplayNames_Description" xml:space="preserve">
-    <value>Provide EnumItemTuple values to show custom display names.</value>
+    <value>通过提供 EnumItemTuple 值来显示自定义名称。</value>
   </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
     <value>Basic binding</value>

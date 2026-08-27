@@ -765,28 +765,34 @@
     <value>Možnosti ve stejné skupině se vzájemně vylučují. Výběr třídy z jiné skupiny zachová stávající výběr.</value>
   </data>
   <data name="Page_EnumSelector_Section_Basic_Usage_Header" xml:space="preserve">
-    <value>Basic usage</value>
+    <value>Základní použití</value>
   </data>
   <data name="Page_EnumSelector_Section_Basic_Usage_Description" xml:space="preserve">
-    <value>Select enum types at runtime and bind selected enum values.</value>
+    <value>Použijte výčet DayOfWeek k ukázce základního výběru hodnoty.</value>
   </data>
   <data name="Page_EnumSelector_Section_Small_Size_Header" xml:space="preserve">
-    <value>Small size</value>
+    <value>Malá velikost</value>
   </data>
   <data name="Page_EnumSelector_Section_Small_Size_Description" xml:space="preserve">
-    <value>Apply the Small class to render a compact enum selector.</value>
+    <value>Použijte třídu Small pro kompaktní zobrazení výběru výčtu.</value>
   </data>
   <data name="Page_EnumSelector_Section_Custom_EnumValues_Header" xml:space="preserve">
-    <value>Custom enum values</value>
+    <value>Vlastní hodnoty výčtu</value>
   </data>
   <data name="Page_EnumSelector_Section_Custom_EnumValues_Description" xml:space="preserve">
-    <value>Limit available enum values from binding or inline XAML lists.</value>
+    <value>Omezte dostupné hodnoty výčtu pomocí vazby nebo vložených seznamů XAML.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Header" xml:space="preserve">
+    <value>Zobrazení atributu Description</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Description" xml:space="preserve">
+    <value>Nastavte DisplayDescription na True, aby se zobrazil text atributu Description z členů výčtu.</value>
   </data>
   <data name="Page_EnumSelector_Section_Custom_DisplayNames_Header" xml:space="preserve">
-    <value>Custom display names</value>
+    <value>Vlastní zobrazované názvy</value>
   </data>
   <data name="Page_EnumSelector_Section_Custom_DisplayNames_Description" xml:space="preserve">
-    <value>Provide EnumItemTuple values to show custom display names.</value>
+    <value>Poskytněte hodnoty EnumItemTuple pro zobrazení vlastních názvů.</value>
   </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
     <value>Basic binding</value>

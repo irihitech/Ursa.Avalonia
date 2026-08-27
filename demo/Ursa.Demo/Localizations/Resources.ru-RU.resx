@@ -765,28 +765,34 @@
     <value>Параметры в одной группе взаимоисключающие. Выбор класса из другой группы сохраняет текущий выбор.</value>
   </data>
   <data name="Page_EnumSelector_Section_Basic_Usage_Header" xml:space="preserve">
-    <value>Basic usage</value>
+    <value>Базовое использование</value>
   </data>
   <data name="Page_EnumSelector_Section_Basic_Usage_Description" xml:space="preserve">
-    <value>Select enum types at runtime and bind selected enum values.</value>
+    <value>Используйте перечисление DayOfWeek для демонстрации базового выбора значения.</value>
   </data>
   <data name="Page_EnumSelector_Section_Small_Size_Header" xml:space="preserve">
-    <value>Small size</value>
+    <value>Малый размер</value>
   </data>
   <data name="Page_EnumSelector_Section_Small_Size_Description" xml:space="preserve">
-    <value>Apply the Small class to render a compact enum selector.</value>
+    <value>Примените класс Small, чтобы отобразить компактный селектор перечисления.</value>
   </data>
   <data name="Page_EnumSelector_Section_Custom_EnumValues_Header" xml:space="preserve">
-    <value>Custom enum values</value>
+    <value>Пользовательские значения перечисления</value>
   </data>
   <data name="Page_EnumSelector_Section_Custom_EnumValues_Description" xml:space="preserve">
-    <value>Limit available enum values from binding or inline XAML lists.</value>
+    <value>Ограничьте доступные значения перечисления через привязку или встроенные списки XAML.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Header" xml:space="preserve">
+    <value>Отображение атрибута Description</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Description" xml:space="preserve">
+    <value>Установите DisplayDescription в True, чтобы отображать текст атрибута Description у элементов перечисления.</value>
   </data>
   <data name="Page_EnumSelector_Section_Custom_DisplayNames_Header" xml:space="preserve">
-    <value>Custom display names</value>
+    <value>Пользовательские отображаемые имена</value>
   </data>
   <data name="Page_EnumSelector_Section_Custom_DisplayNames_Description" xml:space="preserve">
-    <value>Provide EnumItemTuple values to show custom display names.</value>
+    <value>Передавайте значения EnumItemTuple для отображения пользовательских имен.</value>
   </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
     <value>Basic binding</value>

@@ -757,28 +757,34 @@
     <value>Opcje w tej samej grupie wzajemnie się wykluczają. Wybranie klasy z innej grupy zachowuje istniejący wybór.</value>
   </data>
   <data name="Page_EnumSelector_Section_Basic_Usage_Header" xml:space="preserve">
-    <value>Basic usage</value>
+    <value>Podstawowe użycie</value>
   </data>
   <data name="Page_EnumSelector_Section_Basic_Usage_Description" xml:space="preserve">
-    <value>Select enum types at runtime and bind selected enum values.</value>
+    <value>Użyj wyliczenia DayOfWeek do demonstracji podstawowego wyboru wartości.</value>
   </data>
   <data name="Page_EnumSelector_Section_Small_Size_Header" xml:space="preserve">
-    <value>Small size</value>
+    <value>Mały rozmiar</value>
   </data>
   <data name="Page_EnumSelector_Section_Small_Size_Description" xml:space="preserve">
-    <value>Apply the Small class to render a compact enum selector.</value>
+    <value>Zastosuj klasę Small, aby wyświetlić kompaktowy selektor wyliczeń.</value>
   </data>
   <data name="Page_EnumSelector_Section_Custom_EnumValues_Header" xml:space="preserve">
-    <value>Custom enum values</value>
+    <value>Niestandardowe wartości wyliczenia</value>
   </data>
   <data name="Page_EnumSelector_Section_Custom_EnumValues_Description" xml:space="preserve">
-    <value>Limit available enum values from binding or inline XAML lists.</value>
+    <value>Ogranicz dostępne wartości wyliczenia za pomocą powiązania lub list osadzonych w XAML.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Header" xml:space="preserve">
+    <value>Wyświetlanie atrybutu Description</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Description" xml:space="preserve">
+    <value>Ustaw DisplayDescription na True, aby wyświetlać tekst atrybutu Description elementów wyliczenia.</value>
   </data>
   <data name="Page_EnumSelector_Section_Custom_DisplayNames_Header" xml:space="preserve">
-    <value>Custom display names</value>
+    <value>Niestandardowe nazwy wyświetlane</value>
   </data>
   <data name="Page_EnumSelector_Section_Custom_DisplayNames_Description" xml:space="preserve">
-    <value>Provide EnumItemTuple values to show custom display names.</value>
+    <value>Użyj wartości EnumItemTuple, aby wyświetlać niestandardowe nazwy.</value>
   </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
     <value>Basic binding</value>
