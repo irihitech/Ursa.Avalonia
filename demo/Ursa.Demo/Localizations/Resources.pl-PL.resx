@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
@@ -827,5 +827,101 @@
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
     <value>W przypadku złożonych struktur danych używaj ItemFilter i ItemTemplate razem, aby określić sposób filtrowania i wyświetlania danych.</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Podstawowe użycie</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Wprowadzaj tagi rozdzielone skonfigurowanym separatorem i zachowuj duplikaty, gdy AllowDuplicates jest włączone.</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_And_Multiline_Header" xml:space="preserve">
+    <value>Unikalne tagi i wejście wielowierszowe</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_And_Multiline_Description" xml:space="preserve">
+    <value>Czyść oczekujący tekst po utracie fokusu, zapobiegaj duplikatom i zezwalaj na wejście wielowierszowe do wklejania lub edycji dłuższych wartości.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Header" xml:space="preserve">
+    <value>Elementy osadzone</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Description" xml:space="preserve">
+    <value>Deklaruj zagnieżdżone wartości TreeComboBoxItem bezpośrednio w XAML dla prostych drzew.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Header" xml:space="preserve">
+    <value>Powiązanie danych</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Description" xml:space="preserve">
+    <value>Powiąż hierarchiczną kolekcję i użyj TreeDataTemplate do wyświetlania zagnieżdżonych elementów.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Header" xml:space="preserve">
+    <value>Style i dostosowanie wyskakującego okna</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Description" xml:space="preserve">
+    <value>Połącz klasę ClearButton z zawartością wewnętrzną, zawartością wyskakującego okna i zasadami wyboru węzłów.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Configurable_Playground_Header" xml:space="preserve">
+    <value>Konfigurowalny plac zabaw</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Configurable_Playground_Description" xml:space="preserve">
+    <value>Powiąż właściwości NumericUIntUpDown, aby szybko testować formatowanie, zakres, wyrównanie i polecenia.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Header" xml:space="preserve">
+    <value>Typy liczbowe i wejście szesnastkowe</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Description" xml:space="preserve">
+    <value>Użyj typowanych wariantów NumericUpDown dla liczb całkowitych, double, bajtów, wejścia przez przeciąganie i analizowania szesnastkowego.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_And_Validation_Header" xml:space="preserve">
+    <value>Style i walidacja</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_And_Validation_Description" xml:space="preserve">
+    <value>Zastosuj klasy ClearButton, Small, Large i Split oraz pokaż informacje zwrotne walidacji za pomocą DataValidationErrors.</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Header" xml:space="preserve">
+    <value>Podstawowe tryby wprowadzania</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Description" xml:space="preserve">
+    <value>Porównaj standardowy i szybki tryb wprowadzania podczas przełączania wyświetlania zer wiodących.</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Header" xml:space="preserve">
+    <value>Powiązanie ze źródłem i stan wyłączony</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
+    <value>Powiąż właściwość IPAddress z danymi view modelu i pokaż wyłączony stan IPv4Box.</value>
+  </data>
+  <data name="Page_IconButton_Section_Action_Button_Variants_Header" xml:space="preserve">
+    <value>Warianty przycisków akcji</value>
+  </data>
+  <data name="Page_IconButton_Section_Action_Button_Variants_Description" xml:space="preserve">
+    <value>Porównaj IconButton, IconDropDownButton i IconSplitButton w różnych rozmiarach, motywach i stanach ładowania.</value>
+  </data>
+  <data name="Page_IconButton_Section_Toggle_Button_Variants_Header" xml:space="preserve">
+    <value>Warianty przycisków przełączających</value>
+  </data>
+  <data name="Page_IconButton_Section_Toggle_Button_Variants_Description" xml:space="preserve">
+    <value>Zaprezentuj IconToggleButton i IconToggleSplitButton w stanach zaznaczony, odznaczony i nieokreślony.</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Header" xml:space="preserve">
+    <value>Ładowanie i niestandardowe ikony</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Description" xml:space="preserve">
+    <value>Powiąż stan ładowania i położenie ikony z właściwościami view modelu dla interaktywnych podglądów.</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Header" xml:space="preserve">
+    <value>Szablony elementów i polecenia</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Description" xml:space="preserve">
+    <value>Powiąż kolekcję z ButtonGroup i dostosuj każdy generowany przycisk za pomocą szablonu elementu.</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Klasy stylów</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Łącz klasy semantyczne takie jak Success, Warning i Danger z wariantami Small, Large i Solid.</value>
+  </data>
+  <data name="DemoSection_Tab_Xaml" xml:space="preserve">
+    <value>XAML</value>
+  </data>
+  <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
+    <value>ViewModel</value>
   </data>
 </root>

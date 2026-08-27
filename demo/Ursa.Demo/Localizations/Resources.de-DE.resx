@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
@@ -834,5 +834,101 @@
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
     <value>Wenn Sie komplexe Datenstrukturen verwenden, nutzen Sie ItemFilter und ItemTemplate gemeinsam, um zu steuern, wie Daten gefiltert und angezeigt werden.</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Grundlegende Verwendung</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Geben Sie Tags getrennt durch das konfigurierte Trennzeichen ein und behalten Sie doppelte Werte bei, wenn AllowDuplicates aktiviert ist.</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_And_Multiline_Header" xml:space="preserve">
+    <value>Eindeutige Tags und mehrzeilige Eingabe</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_And_Multiline_Description" xml:space="preserve">
+    <value>Löschen Sie ausstehenden Text beim Fokusverlust, verhindern Sie Duplikate und erlauben Sie mehrzeilige Eingaben zum Einfügen oder Bearbeiten längerer Werte.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Header" xml:space="preserve">
+    <value>Inline-Elemente</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Description" xml:space="preserve">
+    <value>Deklarieren Sie verschachtelte TreeComboBoxItem-Werte für einfache Bäume direkt in XAML.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Header" xml:space="preserve">
+    <value>Datenbindung</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Description" xml:space="preserve">
+    <value>Binden Sie eine hierarchische Sammlung und verwenden Sie TreeDataTemplate zur Anzeige verschachtelter Elemente.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Header" xml:space="preserve">
+    <value>Stil- und Popup-Anpassung</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Description" xml:space="preserve">
+    <value>Kombinieren Sie die Klasse ClearButton mit innerem Inhalt, Popup-Inhalt und Regeln für auswählbare Knoten.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Configurable_Playground_Header" xml:space="preserve">
+    <value>Konfigurierbare Spielwiese</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Configurable_Playground_Description" xml:space="preserve">
+    <value>Binden Sie NumericUIntUpDown-Eigenschaften, um Formatierung, Bereich, Ausrichtung und Befehle schnell auszuprobieren.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Header" xml:space="preserve">
+    <value>Numerische Typen und Hex-Eingabe</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Description" xml:space="preserve">
+    <value>Verwenden Sie die typisierten NumericUpDown-Varianten für Ganzzahlen, Gleitkommazahlen, Bytes, Zieh-Eingaben und hexadezimales Parsen.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_And_Validation_Header" xml:space="preserve">
+    <value>Stil und Validierung</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_And_Validation_Description" xml:space="preserve">
+    <value>Wenden Sie die Klassen ClearButton, Small, Large und Split an und zeigen Sie Validierungsrückmeldungen mit DataValidationErrors an.</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Header" xml:space="preserve">
+    <value>Grundlegende Eingabemodi</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Description" xml:space="preserve">
+    <value>Vergleichen Sie Standard- und Schnelleingabemodus beim Umschalten der Anzeige führender Nullen.</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Header" xml:space="preserve">
+    <value>Quellbindung und deaktivierter Zustand</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
+    <value>Binden Sie die Eigenschaft IPAddress an ViewModel-Daten und zeigen Sie einen deaktivierten IPv4Box-Zustand an.</value>
+  </data>
+  <data name="Page_IconButton_Section_Action_Button_Variants_Header" xml:space="preserve">
+    <value>Varianten von Aktionsschaltflächen</value>
+  </data>
+  <data name="Page_IconButton_Section_Action_Button_Variants_Description" xml:space="preserve">
+    <value>Vergleichen Sie IconButton, IconDropDownButton und IconSplitButton über Größen, Designs und Ladezustände hinweg.</value>
+  </data>
+  <data name="Page_IconButton_Section_Toggle_Button_Variants_Header" xml:space="preserve">
+    <value>Varianten von Umschaltflächen</value>
+  </data>
+  <data name="Page_IconButton_Section_Toggle_Button_Variants_Description" xml:space="preserve">
+    <value>Zeigen Sie IconToggleButton und IconToggleSplitButton mit aktivierten, deaktivierten und unbestimmten Zuständen.</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Header" xml:space="preserve">
+    <value>Laden und benutzerdefinierte Symbole</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Description" xml:space="preserve">
+    <value>Binden Sie Ladezustand und Symbolposition an ViewModel-Eigenschaften für interaktive Vorschauen.</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Header" xml:space="preserve">
+    <value>Elementvorlagen und Befehle</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Description" xml:space="preserve">
+    <value>Binden Sie eine Sammlung an ButtonGroup und passen Sie jede erzeugte Schaltfläche mit einer Elementvorlage an.</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Stilklassen</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Kombinieren Sie semantische Klassen wie Success, Warning und Danger mit den Varianten Small, Large und Solid.</value>
+  </data>
+  <data name="DemoSection_Tab_Xaml" xml:space="preserve">
+    <value>XAML</value>
+  </data>
+  <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
+    <value>ViewModel</value>
   </data>
 </root>

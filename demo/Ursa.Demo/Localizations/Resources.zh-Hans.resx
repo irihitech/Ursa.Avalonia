@@ -1,4 +1,4 @@
-<root>
+﻿<root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -827,5 +827,95 @@
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
     <value>当使用复杂数据结构时，需要结合 ItemFilter 与 ItemTemplate 来决定数据如何筛选和显示。</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>使用配置好的分隔符输入标签，并在启用 AllowDuplicates 时保留重复值。</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_And_Multiline_Header" xml:space="preserve">
+    <value>去重标签与多行输入</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_And_Multiline_Description" xml:space="preserve">
+    <value>在失去焦点时清除未完成文本，阻止重复项，并允许多行输入以便粘贴或编辑较长内容。</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Header" xml:space="preserve">
+    <value>内联项</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Description" xml:space="preserve">
+    <value>可在 XAML 中直接声明嵌套的 TreeComboBoxItem，用于简单树形结构。</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Header" xml:space="preserve">
+    <value>数据绑定</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Description" xml:space="preserve">
+    <value>绑定层级集合，并使用 TreeDataTemplate 展示嵌套项。</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Header" xml:space="preserve">
+    <value>样式与弹出层自定义</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Description" xml:space="preserve">
+    <value>将 ClearButton 样式类与内部内容、弹出层内容以及可选节点规则组合使用。</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Configurable_Playground_Header" xml:space="preserve">
+    <value>可配置演示区</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Configurable_Playground_Description" xml:space="preserve">
+    <value>通过绑定 NumericUIntUpDown 的属性，快速试验格式化、范围、对齐和命令。</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Header" xml:space="preserve">
+    <value>数字类型与十六进制输入</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Description" xml:space="preserve">
+    <value>使用各类 NumericUpDown 变体来演示整数、双精度、字节、拖拽输入和十六进制解析。</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_And_Validation_Header" xml:space="preserve">
+    <value>样式与验证</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_And_Validation_Description" xml:space="preserve">
+    <value>应用 ClearButton、Small、Large 和 Split 样式类，并通过 DataValidationErrors 展示验证反馈。</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Header" xml:space="preserve">
+    <value>基础输入模式</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Description" xml:space="preserve">
+    <value>在切换前导零显示时，对比标准输入模式与快速输入模式。</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Header" xml:space="preserve">
+    <value>源绑定与禁用状态</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
+    <value>将 IPAddress 属性绑定到视图模型数据，并展示 IPv4Box 的禁用状态。</value>
+  </data>
+  <data name="Page_IconButton_Section_Action_Button_Variants_Header" xml:space="preserve">
+    <value>动作按钮变体</value>
+  </data>
+  <data name="Page_IconButton_Section_Action_Button_Variants_Description" xml:space="preserve">
+    <value>对比 IconButton、IconDropDownButton 和 IconSplitButton 在不同尺寸、主题和加载状态下的表现。</value>
+  </data>
+  <data name="Page_IconButton_Section_Toggle_Button_Variants_Header" xml:space="preserve">
+    <value>切换按钮变体</value>
+  </data>
+  <data name="Page_IconButton_Section_Toggle_Button_Variants_Description" xml:space="preserve">
+    <value>演示 IconToggleButton 和 IconToggleSplitButton 的选中、未选中和不确定状态。</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Header" xml:space="preserve">
+    <value>加载态与自定义图标</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Description" xml:space="preserve">
+    <value>将加载状态和图标位置绑定到视图模型属性，以实现交互式预览。</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Header" xml:space="preserve">
+    <value>项模板与命令</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Description" xml:space="preserve">
+    <value>将集合绑定到 ButtonGroup，并使用项模板自定义每个生成的按钮。</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Description" xml:space="preserve">
+    <value>将 Success、Warning、Danger 等语义类与 Small、Large、Solid 变体组合使用。</value>
   </data>
 </root>

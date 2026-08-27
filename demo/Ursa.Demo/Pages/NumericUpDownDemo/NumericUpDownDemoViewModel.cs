@@ -1,8 +1,10 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using Avalonia.Layout;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Irihi.Dogma.Controls;
 
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
@@ -17,6 +19,9 @@ public partial class NumericUpDownDemoViewModel : ObservableObject, IPageMetadat
 {
     public const string Category_Key = "NumericUpDown";
     public const string Menu_Header = "Menu_Header_NumericUpDown";
+    private const string ConfigurablePlaygroundAnchorId = "numeric-up-down-configurable-playground";
+    private const string NumericTypesAndHexAnchorId = "numeric-up-down-numeric-types-and-hex";
+    private const string StyleAndValidationAnchorId = "numeric-up-down-style-and-validation";
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_NumericUpDown,
@@ -29,7 +34,27 @@ public partial class NumericUpDownDemoViewModel : ObservableObject, IPageMetadat
         MvvmSupport = true,
     };
 
-
+    public DemoSectionViewModel ConfigurablePlaygroundSection { get; }
+    public DemoSectionViewModel NumericTypesAndHexSection { get; }
+    public DemoSectionViewModel StyleAndValidationSection { get; }
+    public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; } =
+    [
+        new()
+        {
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Configurable_Playground_Header,
+            AnchorId = ConfigurablePlaygroundAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Numeric_Types_And_Hex_Header,
+            AnchorId = NumericTypesAndHexAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Style_And_Validation_Header,
+            AnchorId = StyleAndValidationAnchorId
+        }
+    ];
 
     private double _oldWidth = 300;
     [ObservableProperty] public partial bool AutoWidth { get; set; } = true;
@@ -70,6 +95,84 @@ public partial class NumericUpDownDemoViewModel : ObservableObject, IPageMetadat
 
     public NumericUpDownDemoViewModel()
     {
+        ConfigurablePlaygroundSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Configurable_Playground_Header,
+            Descriptions = { LanguageManager.Instance.Page_NumericUpDown_Section_Configurable_Playground_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = ConfigurablePlaygroundAnchorId
+        };
+        ConfigurablePlaygroundSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:NumericUIntUpDown
+                              Width="{Binding Width}"
+                              AllowDrag="{Binding AllowDrag}"
+                              AllowSpin="{Binding AllowSpin}"
+                              Command="{Binding TrythisCommand}"
+                              FormatString="{Binding FormatString}"
+                              Maximum="{Binding Maximum}"
+                              Minimum="{Binding Minimum}"
+                              ParsingNumberStyle="{Binding ParsingNumberStyle}"
+                              Step="{Binding Step}"
+                              Value="{Binding Value}" />
+                          """
+        });
+        ConfigurablePlaygroundSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.CSharp,
+            TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
+            CodeSnippet = """
+                          [ObservableProperty] public partial uint Value { get; set; }
+                          [ObservableProperty] public partial uint Maximum { get; set; } = UInt32.MaxValue;
+                          [ObservableProperty] public partial uint Minimum { get; set; } = UInt32.MinValue;
+                          [ObservableProperty] public partial uint Step { get; set; } = 1;
+                          """
+        });
+
+        NumericTypesAndHexSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Numeric_Types_And_Hex_Header,
+            Descriptions = { LanguageManager.Instance.Page_NumericUpDown_Section_Numeric_Types_And_Hex_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = NumericTypesAndHexAnchorId
+        };
+        NumericTypesAndHexSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:NumericIntUpDown Value="2" />
+                          <u:NumericDoubleUpDown Step="0.5" Value="3.1" />
+                          <u:NumericUIntUpDown
+                              FontFamily="Consolas"
+                              FormatString="X8"
+                              ParsingNumberStyle="AllowHexSpecifier"
+                              Value="2" />
+                          """
+        });
+
+        StyleAndValidationSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Style_And_Validation_Header,
+            Descriptions = { LanguageManager.Instance.Page_NumericUpDown_Section_Style_And_Validation_Description },
+            SectionTag = DemoSectionTag.Style,
+            AnchorId = StyleAndValidationAnchorId
+        };
+        StyleAndValidationSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:NumericIntUpDown Classes="ClearButton" />
+                          <u:NumericUIntUpDown Classes="Small" />
+                          <u:NumericUIntUpDown Classes="Large" />
+                          <u:NumericUIntUpDown Classes="Split" />
+                          """
+        });
+
         ArrayHorizontalContentAlignment = Enum.GetValues(typeof(HorizontalAlignment));
         ArrayHorizontalAlignment = Enum.GetValues(typeof(HorizontalAlignment));
         ArrayParsingNumberStyle = Enum.GetValues(typeof(NumberStyles));

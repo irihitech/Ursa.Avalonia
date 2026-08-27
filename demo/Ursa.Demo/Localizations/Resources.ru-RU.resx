@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
@@ -835,5 +835,101 @@
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
     <value>При использовании сложных структур данных применяйте ItemFilter и ItemTemplate вместе, чтобы определить, как данные фильтруются и отображаются.</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Вводите теги, разделённые настроенным разделителем, и сохраняйте дубликаты, когда включён AllowDuplicates.</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_And_Multiline_Header" xml:space="preserve">
+    <value>Уникальные теги и многострочный ввод</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_And_Multiline_Description" xml:space="preserve">
+    <value>Очищайте незавершённый текст при потере фокуса, предотвращайте дубликаты и разрешайте многострочный ввод для вставки или редактирования длинных значений.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Header" xml:space="preserve">
+    <value>Встроенные элементы</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Description" xml:space="preserve">
+    <value>Объявляйте вложенные значения TreeComboBoxItem прямо в XAML для простых деревьев.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Header" xml:space="preserve">
+    <value>Привязка данных</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Description" xml:space="preserve">
+    <value>Привяжите иерархическую коллекцию и используйте TreeDataTemplate для отображения вложенных элементов.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Header" xml:space="preserve">
+    <value>Стиль и настройка всплывающего окна</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Description" xml:space="preserve">
+    <value>Комбинируйте класс ClearButton с внутренним содержимым, содержимым всплывающего окна и правилами выбора узлов.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Configurable_Playground_Header" xml:space="preserve">
+    <value>Настраиваемая площадка</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Configurable_Playground_Description" xml:space="preserve">
+    <value>Привяжите свойства NumericUIntUpDown, чтобы быстро экспериментировать с форматированием, диапазоном, выравниванием и командами.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Header" xml:space="preserve">
+    <value>Числовые типы и шестнадцатеричный ввод</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Description" xml:space="preserve">
+    <value>Используйте типизированные варианты NumericUpDown для целых чисел, double, байтов, ввода перетаскиванием и шестнадцатеричного разбора.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_And_Validation_Header" xml:space="preserve">
+    <value>Стиль и валидация</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_And_Validation_Description" xml:space="preserve">
+    <value>Применяйте классы ClearButton, Small, Large и Split и показывайте сообщения валидации через DataValidationErrors.</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Header" xml:space="preserve">
+    <value>Базовые режимы ввода</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Description" xml:space="preserve">
+    <value>Сравните стандартный и быстрый режимы ввода при переключении отображения ведущих нулей.</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Header" xml:space="preserve">
+    <value>Привязка к источнику и отключённое состояние</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
+    <value>Привяжите свойство IPAddress к данным view model и покажите отключённое состояние IPv4Box.</value>
+  </data>
+  <data name="Page_IconButton_Section_Action_Button_Variants_Header" xml:space="preserve">
+    <value>Варианты кнопок действий</value>
+  </data>
+  <data name="Page_IconButton_Section_Action_Button_Variants_Description" xml:space="preserve">
+    <value>Сравните IconButton, IconDropDownButton и IconSplitButton для разных размеров, тем и состояний загрузки.</value>
+  </data>
+  <data name="Page_IconButton_Section_Toggle_Button_Variants_Header" xml:space="preserve">
+    <value>Варианты переключаемых кнопок</value>
+  </data>
+  <data name="Page_IconButton_Section_Toggle_Button_Variants_Description" xml:space="preserve">
+    <value>Покажите IconToggleButton и IconToggleSplitButton в состояниях отмечено, не отмечено и неопределено.</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Header" xml:space="preserve">
+    <value>Загрузка и пользовательские иконки</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Description" xml:space="preserve">
+    <value>Привяжите состояние загрузки и положение иконки к свойствам view model для интерактивного предпросмотра.</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Header" xml:space="preserve">
+    <value>Шаблоны элементов и команды</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Description" xml:space="preserve">
+    <value>Привяжите коллекцию к ButtonGroup и настройте каждую созданную кнопку с помощью шаблона элемента.</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стилей</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Сочетайте семантические классы Success, Warning и Danger с вариантами Small, Large и Solid.</value>
+  </data>
+  <data name="DemoSection_Tab_Xaml" xml:space="preserve">
+    <value>XAML</value>
+  </data>
+  <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
+    <value>ViewModel</value>
   </data>
 </root>

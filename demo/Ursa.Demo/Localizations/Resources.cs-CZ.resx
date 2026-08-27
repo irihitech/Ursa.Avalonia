@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
@@ -835,5 +835,101 @@
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
     <value>Při použití složitější datové struktury používejte ItemFilter a ItemTemplate společně, abyste určili, jak se data filtrují a zobrazují.</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Zadávejte tagy oddělené nastaveným oddělovačem a při zapnutém AllowDuplicates ponechejte duplicitní hodnoty.</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_And_Multiline_Header" xml:space="preserve">
+    <value>Jedinečné tagy a víceřádkový vstup</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_And_Multiline_Description" xml:space="preserve">
+    <value>Při ztrátě fokusu vyčistěte nedokončený text, zabraňte duplicitám a povolte víceřádkový vstup pro vložení nebo úpravu delších hodnot.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Header" xml:space="preserve">
+    <value>Vložené položky</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Description" xml:space="preserve">
+    <value>Deklarujte vnořené hodnoty TreeComboBoxItem přímo v XAML pro jednoduché stromy.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Header" xml:space="preserve">
+    <value>Datová vazba</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Description" xml:space="preserve">
+    <value>Navažte hierarchickou kolekci a použijte TreeDataTemplate pro zobrazení vnořených položek.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Header" xml:space="preserve">
+    <value>Styl a přizpůsobení vyskakovacího okna</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Description" xml:space="preserve">
+    <value>Zkombinujte třídu ClearButton s vnitřním obsahem, obsahem vyskakovacího okna a pravidly volitelných uzlů.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Configurable_Playground_Header" xml:space="preserve">
+    <value>Konfigurovatelné hřiště</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Configurable_Playground_Description" xml:space="preserve">
+    <value>Navažte vlastnosti NumericUIntUpDown a rychle zkoušejte formátování, rozsah, zarovnání a příkazy.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Header" xml:space="preserve">
+    <value>Číselné typy a hexadecimální vstup</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Description" xml:space="preserve">
+    <value>Použijte typované varianty NumericUpDown pro celá čísla, desetinná čísla, byty, vstup tažením a hexadecimální parsování.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_And_Validation_Header" xml:space="preserve">
+    <value>Styl a validace</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_And_Validation_Description" xml:space="preserve">
+    <value>Použijte třídy ClearButton, Small, Large a Split a zobrazte validační zpětnou vazbu pomocí DataValidationErrors.</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Header" xml:space="preserve">
+    <value>Základní režimy vstupu</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Description" xml:space="preserve">
+    <value>Porovnejte standardní a rychlý režim vstupu při přepínání zobrazení úvodních nul.</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Header" xml:space="preserve">
+    <value>Vazba na zdroj a zakázaný stav</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
+    <value>Navažte vlastnost IPAddress na data ve view modelu a zobrazte zakázaný stav IPv4Boxu.</value>
+  </data>
+  <data name="Page_IconButton_Section_Action_Button_Variants_Header" xml:space="preserve">
+    <value>Varianty akčních tlačítek</value>
+  </data>
+  <data name="Page_IconButton_Section_Action_Button_Variants_Description" xml:space="preserve">
+    <value>Porovnejte IconButton, IconDropDownButton a IconSplitButton napříč velikostmi, tématy a stavy načítání.</value>
+  </data>
+  <data name="Page_IconButton_Section_Toggle_Button_Variants_Header" xml:space="preserve">
+    <value>Varianty přepínacích tlačítek</value>
+  </data>
+  <data name="Page_IconButton_Section_Toggle_Button_Variants_Description" xml:space="preserve">
+    <value>Předveďte IconToggleButton a IconToggleSplitButton ve stavech zaškrtnuto, nezaškrtnuto a neurčeno.</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Header" xml:space="preserve">
+    <value>Načítání a vlastní ikony</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Description" xml:space="preserve">
+    <value>Navažte stav načítání a umístění ikony na vlastnosti view modelu pro interaktivní náhledy.</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Header" xml:space="preserve">
+    <value>Šablony položek a příkazy</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Description" xml:space="preserve">
+    <value>Navažte kolekci na ButtonGroup a přizpůsobte každé generované tlačítko pomocí šablony položky.</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Kombinujte sémantické třídy jako Success, Warning a Danger s variantami Small, Large a Solid.</value>
+  </data>
+  <data name="DemoSection_Tab_Xaml" xml:space="preserve">
+    <value>XAML</value>
+  </data>
+  <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
+    <value>ViewModel</value>
   </data>
 </root>

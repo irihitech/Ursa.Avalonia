@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="clr-namespace:Ursa.Demo.Pages.IconButtonDemo"
     xmlns:common="clr-namespace:Ursa.Common;assembly=Ursa"
@@ -38,9 +40,15 @@
             <Setter Property="Value" Value="{x:Static common:Position.Left}" />
         </Style>
     </Control.Styles>
-    <ScrollViewer>
-        <StackPanel Spacing="8" HorizontalAlignment="Stretch">
+    <TabControl>
+        <TabItem
+            Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+            Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel Spacing="20" HorizontalAlignment="Stretch">
 
+            <controls:DemoSectionView SectionContext="{Binding ActionButtonVariantsSection}">
+                <StackPanel Spacing="20">
             <HeaderedContentControl Theme="{StaticResource GroupBox}">
                 <HeaderedContentControl.Header>
                     <DockPanel>
@@ -391,7 +399,11 @@
                     </StackPanel>
                 </Panel>
             </HeaderedContentControl>
+                </StackPanel>
+            </controls:DemoSectionView>
 
+            <controls:DemoSectionView SectionContext="{Binding ToggleButtonVariantsSection}">
+                <StackPanel Spacing="20">
             <HeaderedContentControl Theme="{StaticResource GroupBox}">
                 <HeaderedContentControl.Header>
                     <DockPanel>
@@ -566,7 +578,11 @@
                     </StackPanel>
                 </Panel>
             </HeaderedContentControl>
+                </StackPanel>
+            </controls:DemoSectionView>
 
+            <controls:DemoSectionView SectionContext="{Binding LoadingAndCustomIconsSection}">
+                <StackPanel Spacing="12">
             <Border Theme="{StaticResource CardBorder}">
                 <StackPanel Spacing="8">
                     <StackPanel Orientation="Horizontal" Spacing="8">
@@ -676,7 +692,10 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
-
-        </StackPanel>
-    </ScrollViewer>
+                </StackPanel>
+            </controls:DemoSectionView>
+                </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>
