@@ -87,6 +87,7 @@ public static class MenuKeys
     public const string MenuKeyBreadcrumb = "Breadcrumb";
     public const string MenuKeyButtonGroup = "ButtonGroup";
     public const string MenuKeyClassInput = "Class Input";
+    public const string MenuKeyClassSelector = "ClassSelector";
     public const string MenuKeyClock = "Clock";
     public const string MenuKeyDateOnlyPicker = "DateOnlyPicker";
     public const string MenuKeyDateOnlyRangePicker = "DateOnlyRangePicker";

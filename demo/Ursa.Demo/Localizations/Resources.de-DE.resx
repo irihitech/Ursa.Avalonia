@@ -44,6 +44,9 @@
   <data name="Menu_Category_LayoutAndDisplay" xml:space="preserve">
     <value>Layout &amp; (Anzeige)</value>
   </data>
+  <data name="Menu_Category_DevUtilities" xml:space="preserve">
+    <value>Entwicklerwerkzeuge</value>
+  </data>
 
   <!-- Buttons &amp; Inputs -->
   <data name="Menu_Header_ButtonGroup" xml:space="preserve">
@@ -744,5 +747,20 @@
   </data>
   <data name="Tab_Header_Resources" xml:space="preserve">
     <value>Ressourcen</value>
+  </data>
+  <data name="Menu_Header_ClassSelector" xml:space="preserve">
+    <value>Klassenauswahl</value>
+  </data>
+  <data name="Page_Title_ClassSelector" xml:space="preserve">
+    <value>ClassSelector</value>
+  </data>
+  <data name="Page_Description_ClassSelector" xml:space="preserve">
+    <value>ClassSelector wählt Stilklassen aus und erzwingt sich gegenseitig ausschließende Optionen innerhalb jeder Gruppe.</value>
+  </data>
+  <data name="Page_ClassSelector_Section_Grouped_Selection_Header" xml:space="preserve">
+    <value>Gruppierte Klassenauswahl</value>
+  </data>
+  <data name="Page_ClassSelector_Section_Grouped_Selection_Description" xml:space="preserve">
+    <value>Optionen derselben Gruppe schließen sich gegenseitig aus. Die Auswahl einer Klasse aus einer anderen Gruppe behält die bestehende Auswahl bei.</value>
   </data>
 </root>

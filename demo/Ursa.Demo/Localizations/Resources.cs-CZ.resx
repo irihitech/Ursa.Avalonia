@@ -44,6 +44,9 @@
   <data name="Menu_Category_LayoutAndDisplay" xml:space="preserve">
     <value>Rozvržení a zobrazení</value>
   </data>
+  <data name="Menu_Category_DevUtilities" xml:space="preserve">
+    <value>Vývojářské nástroje</value>
+  </data>
 
   <!-- Buttons &amp; Inputs -->
   <data name="Menu_Header_ButtonGroup" xml:space="preserve">
@@ -745,5 +748,20 @@
   </data>
   <data name="Tab_Header_Resources" xml:space="preserve">
     <value>Zdroje</value>
+  </data>
+  <data name="Menu_Header_ClassSelector" xml:space="preserve">
+    <value>Výběr tříd</value>
+  </data>
+  <data name="Page_Title_ClassSelector" xml:space="preserve">
+    <value>ClassSelector</value>
+  </data>
+  <data name="Page_Description_ClassSelector" xml:space="preserve">
+    <value>ClassSelector vybírá třídy stylů a zajišťuje vzájemné vyloučení možností v každé skupině.</value>
+  </data>
+  <data name="Page_ClassSelector_Section_Grouped_Selection_Header" xml:space="preserve">
+    <value>Seskupený výběr tříd</value>
+  </data>
+  <data name="Page_ClassSelector_Section_Grouped_Selection_Description" xml:space="preserve">
+    <value>Možnosti ve stejné skupině se vzájemně vylučují. Výběr třídy z jiné skupiny zachová stávající výběr.</value>
   </data>
 </root>

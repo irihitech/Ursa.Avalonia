@@ -44,6 +44,9 @@
   <data name="Menu_Category_LayoutAndDisplay" xml:space="preserve">
     <value>Layout &amp; Display</value>
   </data>
+  <data name="Menu_Category_DevUtilities" xml:space="preserve">
+    <value>Dev Utilities</value>
+  </data>
 
   <!-- Buttons & Inputs -->
   <data name="Menu_Header_ButtonGroup" xml:space="preserve">
@@ -751,5 +754,20 @@
   </data>
   <data name="Tab_Header_Resources" xml:space="preserve">
     <value>Resources</value>
+  </data>
+  <data name="Menu_Header_ClassSelector" xml:space="preserve">
+    <value>Class Selector</value>
+  </data>
+  <data name="Page_Title_ClassSelector" xml:space="preserve">
+    <value>ClassSelector</value>
+  </data>
+  <data name="Page_Description_ClassSelector" xml:space="preserve">
+    <value>ClassSelector selects style classes while enforcing mutually exclusive options within each group.</value>
+  </data>
+  <data name="Page_ClassSelector_Section_Grouped_Selection_Header" xml:space="preserve">
+    <value>Grouped class selection</value>
+  </data>
+  <data name="Page_ClassSelector_Section_Grouped_Selection_Description" xml:space="preserve">
+    <value>Options in the same group are mutually exclusive. Selecting a class from another group preserves the existing selection.</value>
   </data>
 </root>

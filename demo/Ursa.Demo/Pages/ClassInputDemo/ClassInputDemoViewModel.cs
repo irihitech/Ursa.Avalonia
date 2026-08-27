@@ -7,7 +7,7 @@ using Ursa.Demo.Pages.DummyPages;
 
 namespace Ursa.Demo.Pages.ClassInputDemo;
 
-[DocCategory(Category_Key, IsClickable = false, Parent = ButtonsAndInputsPage.Category_Key)]
+[DocCategory(Category_Key, IsClickable = false, Parent = DevUtilitiesPage.Category_Key)]
 [DocPage(Menu_Header, View = typeof(ClassInputDemo))]
 public class ClassInputDemoViewModel: ObservableObject, IPageMetadataProvider
 {
@@ -17,7 +17,7 @@ public class ClassInputDemoViewModel: ObservableObject, IPageMetadataProvider
     {
         Title = LanguageManager.Instance.Page_Title_ClassInput,
         Description = LanguageManager.Instance.Page_Description_ClassInput,
-        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_ButtonsAndInputs), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_ClassInput)],
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DevUtilities), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_ClassInput)],
         Tags = ["ClassInput", "Input", "CSS"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ClassInputDemo/ClassInputDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/ClassInputDemo/ClassInputDemoViewModel.cs",

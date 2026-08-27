@@ -1,0 +1,45 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.ClassSelectorDemo.ClassSelectorDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.ClassSelectorDemo"
+    x:DataType="viewModels:ClassSelectorDemoViewModel"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <TabControl>
+        <TabItem
+            Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+            Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel HorizontalAlignment="Stretch" Spacing="20">
+                    <controls:DemoSectionView SectionContext="{Binding GroupedSelectionSection}">
+                        <StackPanel >
+                            <u:ClassSelector
+                                Width="300"
+                                PlaceholderText="Select style classes"
+                                SelectedClasses="{Binding SelectedClasses}">
+                                <u:ClassSelectorGroup Header="Size">
+                                    <u:ClassSelectorItem ClassName="Small" Content="Small" />
+                                    <u:ClassSelectorItem ClassName="Large" Content="Large" />
+                                </u:ClassSelectorGroup>
+                                <u:ClassSelectorGroup Header="Horizontal alignment">
+                                    <u:ClassSelectorItem ClassName="Left" Content="Left" />
+                                    <u:ClassSelectorItem ClassName="Right" Content="Right" />
+                                </u:ClassSelectorGroup>
+                            </u:ClassSelector>
+                            <ItemsControl
+                                VerticalAlignment="Center"
+                                ItemsSource="{Binding SelectedClasses}" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+                </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
+</UserControl>

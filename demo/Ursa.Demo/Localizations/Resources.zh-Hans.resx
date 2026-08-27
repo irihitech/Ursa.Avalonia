@@ -36,6 +36,9 @@
   <data name="Menu_Category_LayoutAndDisplay" xml:space="preserve">
     <value>布局与展示</value>
   </data>
+  <data name="Menu_Category_DevUtilities" xml:space="preserve">
+    <value>开发工具</value>
+  </data>
   <!-- Buttons & Inputs -->
   <data name="Menu_Header_ButtonGroup" xml:space="preserve">
     <value>按钮组 ButtonGroup</value>
@@ -737,5 +740,20 @@
   </data>
   <data name="Tab_Header_Resources" xml:space="preserve">
     <value>资源</value>
+  </data>
+  <data name="Menu_Header_ClassSelector" xml:space="preserve">
+    <value>样式类选择器 ClassSelector</value>
+  </data>
+  <data name="Page_Title_ClassSelector" xml:space="preserve">
+    <value>样式类选择器 ClassSelector</value>
+  </data>
+  <data name="Page_Description_ClassSelector" xml:space="preserve">
+    <value>ClassSelector 用于选择样式类，并确保同一分组内的选项互斥。</value>
+  </data>
+  <data name="Page_ClassSelector_Section_Grouped_Selection_Header" xml:space="preserve">
+    <value>分组样式类选择</value>
+  </data>
+  <data name="Page_ClassSelector_Section_Grouped_Selection_Description" xml:space="preserve">
+    <value>同一分组内的选项互斥；选择其他分组中的样式类时会保留当前选择。</value>
   </data>
 </root>
