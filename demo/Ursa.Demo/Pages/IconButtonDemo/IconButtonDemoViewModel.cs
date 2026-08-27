@@ -121,7 +121,6 @@ public partial class IconButtonDemoViewModel : ObservableObject, IPageMetadataPr
             CodeSnippetLanguage = CodeLanguage.CSharp,
             TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
             CodeSnippet = """
-                          [ObservableProperty] public partial bool IsLoading { get; set; }
                           [ObservableProperty] public partial bool IsLoading2 { get; set; }
                           [ObservableProperty] public partial Position SelectedPosition { get; set; }
                           """

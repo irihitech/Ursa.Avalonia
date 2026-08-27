@@ -33,6 +33,7 @@ public partial class IPv4BoxDemoViewModel: ObservableObject, IPageMetadataProvid
     };
 
     [ObservableProperty] public partial IPAddress? Address { get; set; }
+    [ObservableProperty] public partial bool ShowLeadingZero { get; set; }
     public DemoSectionViewModel BasicInputModesSection { get; }
     public DemoSectionViewModel SourceBindingAndDisabledStateSection { get; }
     public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; } =
@@ -63,8 +64,9 @@ public partial class IPv4BoxDemoViewModel: ObservableObject, IPageMetadataProvid
             CodeSnippetLanguage = CodeLanguage.Axaml,
             TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
             CodeSnippet = """
-                          <u:IPv4Box Width="200" ShowLeadingZero="{Binding #format.IsChecked}" />
-                          <u:IPv4Box Width="200" InputMode="Fast" ShowLeadingZero="{Binding #format.IsChecked}" />
+                          <ToggleButton Content="Show Leading Zeroes" IsChecked="{Binding ShowLeadingZero}" />
+                          <u:IPv4Box Width="200" ShowLeadingZero="{Binding ShowLeadingZero}" />
+                          <u:IPv4Box Width="200" InputMode="Fast" ShowLeadingZero="{Binding ShowLeadingZero}" />
                           """
         });
 
@@ -81,7 +83,7 @@ public partial class IPv4BoxDemoViewModel: ObservableObject, IPageMetadataProvid
             TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
             CodeSnippet = """
                           <RepeatButton Command="{Binding ChangeAddressCommand}" Content="Random" />
-                          <u:IPv4Box Width="200" IPAddress="{Binding Address}" />
+                          <u:IPv4Box Width="200" IPAddress="{Binding Address}" ShowLeadingZero="{Binding ShowLeadingZero}" />
                           """
         });
         SourceBindingAndDisabledStateSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
@@ -90,12 +92,14 @@ public partial class IPv4BoxDemoViewModel: ObservableObject, IPageMetadataProvid
             TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
             CodeSnippet = """
                           [ObservableProperty] public partial IPAddress? Address { get; set; }
+                          [ObservableProperty] public partial bool ShowLeadingZero { get; set; }
 
                           [RelayCommand]
                           private void ChangeAddress()
                           {
-                              var value = Random.Shared.NextInt64(0x00000000FFFFFFFF);
-                              Address = new IPAddress(value);
+                              var bytes = new byte[4];
+                              Random.Shared.NextBytes(bytes);
+                              Address = new IPAddress(bytes);
                           }
                           """
         });
@@ -106,7 +110,8 @@ public partial class IPv4BoxDemoViewModel: ObservableObject, IPageMetadataProvid
     [RelayCommand]
     private void ChangeAddress()
     {
-        var value = Random.Shared.NextInt64(0x00000000FFFFFFFF);
-        Address = new IPAddress(value);
+        var bytes = new byte[4];
+        Random.Shared.NextBytes(bytes);
+        Address = new IPAddress(bytes);
     }
 }

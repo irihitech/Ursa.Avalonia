@@ -72,7 +72,12 @@ public class TagInputDemoViewModel: ViewModelBase, IPageMetadataProvider
             CodeSnippetLanguage = CodeLanguage.CSharp,
             TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
             CodeSnippet = """
-                          public ObservableCollection<string> Tags { get; set; } = new();
+                          private ObservableCollection<string> _tags = new();
+                          public ObservableCollection<string> Tags
+                          {
+                              get => _tags;
+                              set => SetProperty(ref _tags, value);
+                          }
                           """
         });
 
@@ -107,7 +112,12 @@ public class TagInputDemoViewModel: ViewModelBase, IPageMetadataProvider
             CodeSnippetLanguage = CodeLanguage.CSharp,
             TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
             CodeSnippet = """
-                          public ObservableCollection<string> DistinctTags { get; set; } = new();
+                          private ObservableCollection<string> _distinctTags = new();
+                          public ObservableCollection<string> DistinctTags
+                          {
+                              get => _distinctTags;
+                              set => SetProperty(ref _distinctTags, value);
+                          }
                           """
         });
     }

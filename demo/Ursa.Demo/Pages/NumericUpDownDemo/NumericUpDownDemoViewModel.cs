@@ -87,7 +87,7 @@ public partial class NumericUpDownDemoViewModel : ObservableObject, IPageMetadat
     [ObservableProperty] public partial string CommandUpdateText { get; set; } = "Command not Execute";
     
     [RelayCommand]
-    void Trythis(uint v)
+    void TryThis(uint v)
     {
         CommandUpdateText = $"Command Exe,CommandParameter={v}";
     }
@@ -111,7 +111,7 @@ public partial class NumericUpDownDemoViewModel : ObservableObject, IPageMetadat
                               Width="{Binding Width}"
                               AllowDrag="{Binding AllowDrag}"
                               AllowSpin="{Binding AllowSpin}"
-                              Command="{Binding TrythisCommand}"
+                              Command="{Binding TryThisCommand}"
                               FormatString="{Binding FormatString}"
                               Maximum="{Binding Maximum}"
                               Minimum="{Binding Minimum}"

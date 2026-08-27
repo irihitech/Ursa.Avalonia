@@ -22,21 +22,21 @@
                     <controls:DemoSectionView SectionContext="{Binding BasicInputModesSection}">
                         <StackPanel Spacing="12">
                             <ToggleButton
-                                Name="format"
                                 Content="Show Leading Zeroes"
-                                HorizontalAlignment="Left" />
+                                HorizontalAlignment="Left"
+                                IsChecked="{Binding ShowLeadingZero}" />
                             <TextBlock Text="Normal" />
                             <u:IPv4Box
                                 Name="box"
                                 Width="200"
-                                ShowLeadingZero="{Binding #format.IsChecked}" />
+                                ShowLeadingZero="{Binding ShowLeadingZero}" />
                             <TextBlock Text="IP: " />
                             <TextBlock Text="{Binding #box.IPAddress}" />
                             <TextBlock Text="Fast input" />
                             <u:IPv4Box
                                 Width="200"
                                 InputMode="Fast"
-                                ShowLeadingZero="{Binding #format.IsChecked}" />
+                                ShowLeadingZero="{Binding ShowLeadingZero}" />
                         </StackPanel>
                     </controls:DemoSectionView>
 
@@ -50,9 +50,13 @@
                             <u:IPv4Box
                                 Width="200"
                                 IPAddress="{Binding Address}"
-                                ShowLeadingZero="{Binding #format.IsChecked}" />
+                                ShowLeadingZero="{Binding ShowLeadingZero}" />
                             <TextBlock Text="Disabled" />
-                            <u:IPv4Box Width="200" IsEnabled="False" IPAddress="{Binding Address}" />
+                            <u:IPv4Box
+                                Width="200"
+                                IsEnabled="False"
+                                IPAddress="{Binding Address}"
+                                ShowLeadingZero="{Binding ShowLeadingZero}" />
                         </StackPanel>
                     </controls:DemoSectionView>
                 </StackPanel>

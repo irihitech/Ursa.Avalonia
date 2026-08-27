@@ -34,7 +34,6 @@
                     <controls:DemoSectionView SectionContext="{Binding ConfigurablePlaygroundSection}">
                         <Grid ColumnDefinitions="*,320" ColumnSpacing="24">
                             <StackPanel Spacing="12">
-                                <u:Divider Content="Demo" />
                                 <u:NumericUIntUpDown
                                     Name="numd"
                                     Width="{Binding Width}"
@@ -42,7 +41,7 @@
                                     HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
                                     AllowDrag="{Binding AllowDrag}"
                                     AllowSpin="{Binding AllowSpin}"
-                                    Command="{Binding TrythisCommand}"
+                                    Command="{Binding TryThisCommand}"
                                     FontFamily="{Binding FontFamily, Mode=OneWay}"
                                     FormatString="{Binding FormatString}"
                                     InnerLeftContent="{Binding InnerLeftContent}"
@@ -174,7 +173,7 @@
                                 PlaceholderText="Input Value"
                                 Value="2" />
 
-                            <u:Divider Content="{Binding #uint_HexNumber.Value, StringFormat='Don‘t Use = {0}, hex={0:X}'}" />
+                            <u:Divider Content="{Binding #uint_HexNumber.Value, StringFormat='Do not use = {0}, hex={0:X}'}" />
                             <u:NumericUIntUpDown
                                 Name="uint_HexNumber"
                                 AllowDrag="False"
