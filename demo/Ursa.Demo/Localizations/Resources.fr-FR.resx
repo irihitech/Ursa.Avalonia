@@ -728,13 +728,13 @@
     <value>Comme AutoCompleteBox doit toujours afficher l'élément sélectionné sous forme de chaîne dans le TextBox, lorsque vous personnalisez l'affichage des options avec ItemTemplate, vous devez toujours utiliser ValueMemberBinding pour indiquer la propriété à afficher comme texte sélectionné. Sinon, AutoCompleteBox ne pourra pas afficher correctement l'élément sélectionné. Si ItemTemplate n'est pas défini, AutoCompleteBox utilise ValueMemberBinding pour afficher les options.</value>
   </data>
   <data name="DemoSection_Tag_Function" xml:space="preserve">
-    <value>Function</value>
+    <value>Fonctionnalité</value>
   </data>
   <data name="DemoSection_Tag_Style" xml:space="preserve">
     <value>Style</value>
   </data>
   <data name="DemoSection_Tag_Others" xml:space="preserve">
-    <value>Others</value>
+    <value>Autres</value>
   </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">

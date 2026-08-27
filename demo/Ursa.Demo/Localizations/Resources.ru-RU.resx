@@ -728,13 +728,13 @@
     <value>Поскольку AutoCompleteBox всегда должен отображать выбранный элемент в TextBox как строку, при настройке отображения вариантов через ItemTemplate всё равно нужно указать ValueMemberBinding — какое свойство использовать как текст выбранного значения. Иначе AutoCompleteBox не сможет корректно показать выбранный элемент. Если ItemTemplate не задан, AutoCompleteBox использует ValueMemberBinding для отображения вариантов.</value>
   </data>
   <data name="DemoSection_Tag_Function" xml:space="preserve">
-    <value>Function</value>
+    <value>Функции</value>
   </data>
   <data name="DemoSection_Tag_Style" xml:space="preserve">
-    <value>Style</value>
+    <value>Стиль</value>
   </data>
   <data name="DemoSection_Tag_Others" xml:space="preserve">
-    <value>Others</value>
+    <value>Прочее</value>
   </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">

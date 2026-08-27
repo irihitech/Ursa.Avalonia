@@ -727,13 +727,13 @@
     <value>Da AutoCompleteBox den ausgewählten Eintrag im TextBox immer als Zeichenfolge anzeigen muss, müssen Sie beim Anpassen der Optionsdarstellung per ItemTemplate weiterhin über ValueMemberBinding festlegen, welche Eigenschaft als ausgewählter Text angezeigt wird. Andernfalls kann AutoCompleteBox den ausgewählten Eintrag nicht korrekt anzeigen. Wenn kein ItemTemplate angegeben ist, verwendet AutoCompleteBox ValueMemberBinding zur Darstellung der Optionen.</value>
   </data>
   <data name="DemoSection_Tag_Function" xml:space="preserve">
-    <value>Function</value>
+    <value>Funktion</value>
   </data>
   <data name="DemoSection_Tag_Style" xml:space="preserve">
-    <value>Style</value>
+    <value>Stil</value>
   </data>
   <data name="DemoSection_Tag_Others" xml:space="preserve">
-    <value>Others</value>
+    <value>Sonstiges</value>
   </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">
