@@ -719,6 +719,15 @@
   <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Content" xml:space="preserve">
     <value>Ponieważ AutoCompleteBox zawsze musi wyświetlać wybraną pozycję jako tekst w TextBoxie, przy własnym wyglądzie opcji przez ItemTemplate nadal trzeba wskazać w ValueMemberBinding właściwość używaną jako tekst wybranej pozycji. W przeciwnym razie AutoCompleteBox nie wyświetli poprawnie wybranego elementu. Jeśli ItemTemplate nie jest ustawiony, AutoCompleteBox używa ValueMemberBinding do wyświetlania opcji.</value>
   </data>
+  <data name="DemoSection_Tag_Function" xml:space="preserve">
+    <value>Function</value>
+  </data>
+  <data name="DemoSection_Tag_Style" xml:space="preserve">
+    <value>Style</value>
+  </data>
+  <data name="DemoSection_Tag_Others" xml:space="preserve">
+    <value>Others</value>
+  </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">
     <value>Przykłady</value>

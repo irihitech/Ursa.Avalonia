@@ -46,11 +46,11 @@ For a target page `<ControlName>Demo`:
 5. Ensure every section `AnchorId` is unique and appears in both:
    - `DemoSectionViewModel.AnchorId`
    - `AnchorItems` entry
-6. Set `DemoSectionViewModel.SectionTag` for each section using enum values:
+6. Set `DemoSectionViewModel.SectionTag` as an enum value:
    - `DemoSectionTag.Function`
    - `DemoSectionTag.Style`
    - `DemoSectionTag.Others`
-   Do not set tag text in page view models. Tag display text is handled inside `DemoSectionView`.
+   Display text must be derived inside `DemoSectionView` from this enum via Lingua resources (`LanguageManager.Instance.DemoSection_Tag_*`).
 
 ## Implementation checklist
 

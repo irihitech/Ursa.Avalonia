@@ -713,6 +713,15 @@
   <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Content" xml:space="preserve">
     <value>由于AutoCompleteBox始终需要在TextBox中将选中项显示为一个字符串，因此在使用ItemTemplate自定义选项显示内容时，仍然需要通过ValueMemberBinding指定一个属性作为选中项显示的文本，否则AutoCompleteBox将无法正确显示选中的项。如果未指定ItemTemplate，AutoCompleteBox会使用ValueMemberBinding作为选项的显示方法。</value>
   </data>
+  <data name="DemoSection_Tag_Function" xml:space="preserve">
+    <value>功能</value>
+  </data>
+  <data name="DemoSection_Tag_Style" xml:space="preserve">
+    <value>样式</value>
+  </data>
+  <data name="DemoSection_Tag_Others" xml:space="preserve">
+    <value>其他</value>
+  </data>
   <data name="DemoSection_Tab_Xaml" xml:space="preserve">
     <value>XAML</value>
   </data>

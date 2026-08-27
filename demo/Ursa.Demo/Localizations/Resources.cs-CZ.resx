@@ -727,6 +727,15 @@
   <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Content" xml:space="preserve">
     <value>Protože AutoCompleteBox musí vždy zobrazit vybranou položku v TextBoxu jako řetězec, i při vlastním vzhledu možností přes ItemTemplate je stále nutné pomocí ValueMemberBinding určit vlastnost, která se má zobrazit jako text vybrané položky. Jinak AutoCompleteBox nedokáže vybranou položku správně zobrazit. Pokud ItemTemplate není nastaven, AutoCompleteBox používá pro zobrazení možností ValueMemberBinding.</value>
   </data>
+  <data name="DemoSection_Tag_Function" xml:space="preserve">
+    <value>Function</value>
+  </data>
+  <data name="DemoSection_Tag_Style" xml:space="preserve">
+    <value>Style</value>
+  </data>
+  <data name="DemoSection_Tag_Others" xml:space="preserve">
+    <value>Others</value>
+  </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">
     <value>Ukázky</value>

@@ -89,6 +89,6 @@ Add the keys to:
 1. Section order in XAML, section properties in ViewModel, and `AnchorItems` must match.
 2. Anchor IDs must be unique and stable.
 3. Every section should include a `SectionTag` enum value: `DemoSectionTag.Function`, `DemoSectionTag.Style`, or `DemoSectionTag.Others`.
-4. Tag display text should be rendered by `DemoSectionView`, not by page-specific view models.
+4. In `DemoSectionView`, derive the tag display observable from the enum using Lingua resources (`LanguageManager.Instance.DemoSection_Tag_*`).
 5. Keep snippets representative of the exact section UI.
 6. Preserve existing page metadata and behavior.

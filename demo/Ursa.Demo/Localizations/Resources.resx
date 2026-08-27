@@ -727,6 +727,15 @@
   <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Content" xml:space="preserve">
     <value>Because AutoCompleteBox always needs to display the selected item as a string in the TextBox, when using ItemTemplate to customize option appearance, you still need to use ValueMemberBinding to specify which property is shown as the selected text. Otherwise, AutoCompleteBox cannot correctly display the selected item. If ItemTemplate is not specified, AutoCompleteBox uses ValueMemberBinding to display options.</value>
   </data>
+  <data name="DemoSection_Tag_Function" xml:space="preserve">
+    <value>Function</value>
+  </data>
+  <data name="DemoSection_Tag_Style" xml:space="preserve">
+    <value>Style</value>
+  </data>
+  <data name="DemoSection_Tag_Others" xml:space="preserve">
+    <value>Others</value>
+  </data>
   <data name="DemoSection_Tab_Xaml" xml:space="preserve">
     <value>XAML</value>
   </data>
