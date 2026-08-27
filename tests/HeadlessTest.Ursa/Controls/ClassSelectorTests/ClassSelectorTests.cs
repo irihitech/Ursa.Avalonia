@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Headless.XUnit;
 using Ursa.Controls;
@@ -125,6 +126,69 @@ public class ClassSelectorTests
         Assert.False(left.IsSelected);
         Assert.Empty(selector.SelectedClasses!);
     }
+
+    [AvaloniaFact]
+    public void Target_Should_Receive_Selected_Classes()
+    {
+        var (_, selector, small, large, left, _) = CreateSelector();
+        var target = new Button { Classes = { "Existing" } };
+        selector.Target = target;
+
+        small.IsSelected = true;
+        left.IsSelected = true;
+        large.IsSelected = true;
+
+        Assert.Equal(["Left", "Large"], GetStyleClasses(target));
+    }
+
+    [AvaloniaFact]
+    public void Source_Should_Update_Attached_Targets()
+    {
+        var (_, selector, small, _, left, _) = CreateSelector();
+        var firstTarget = new Button();
+        var secondTarget = new TextBox();
+        ClassSelector.SetSource(firstTarget, selector);
+        ClassSelector.SetSource(secondTarget, selector);
+
+        small.IsSelected = true;
+        left.IsSelected = true;
+
+        Assert.Equal(["Small", "Left"], GetStyleClasses(firstTarget));
+        Assert.Equal(["Small", "Left"], GetStyleClasses(secondTarget));
+    }
+
+    [AvaloniaFact]
+    public void Changing_Source_Should_Stop_Updating_Previous_Selector_Target()
+    {
+        var (_, firstSelector, small, _, _, _) = CreateSelector();
+        var (_, secondSelector, _, _, left, _) = CreateSelector();
+        var target = new Button();
+        ClassSelector.SetSource(target, firstSelector);
+        small.IsSelected = true;
+
+        ClassSelector.SetSource(target, secondSelector);
+        left.IsSelected = true;
+        small.IsSelected = false;
+
+        Assert.Equal(["Left"], GetStyleClasses(target));
+    }
+
+    [AvaloniaFact]
+    public void External_SelectedClasses_Changes_Should_Update_Target()
+    {
+        var selectedClasses = new ObservableCollection<string>();
+        var (_, selector, _, _, _, _) = CreateSelector(selectedClasses);
+        var target = new Button();
+        selector.Target = target;
+
+        selectedClasses.Add("Small");
+        selectedClasses.Add("Left");
+
+        Assert.Equal(["Small", "Left"], GetStyleClasses(target));
+    }
+
+    private static IEnumerable<string> GetStyleClasses(StyledElement element) =>
+        element.Classes.Where(className => !className.StartsWith(':'));
 
     private static (
         Window Window,

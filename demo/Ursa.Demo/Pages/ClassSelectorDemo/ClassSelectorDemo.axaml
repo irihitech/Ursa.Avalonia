@@ -20,22 +20,30 @@
                 <StackPanel HorizontalAlignment="Stretch" Spacing="20">
                     <controls:DemoSectionView SectionContext="{Binding GroupedSelectionSection}">
                         <StackPanel >
+                            <Button
+                                x:Name="target"
+                                HorizontalAlignment="Left"
+                                Content="Target control" />
                             <u:ClassSelector
+                                x:Name="classSelector"
                                 Width="300"
                                 PlaceholderText="Select style classes"
-                                SelectedClasses="{Binding SelectedClasses}">
+                                SelectedClasses="{Binding SelectedClasses}"
+                                Target="{Binding #target}">
+                                <u:ClassSelectorGroup Header="Color">
+                                    <u:ClassSelectorItem ClassName="Primary" Content="Primary" />
+                                    <u:ClassSelectorItem ClassName="Secondary" Content="Secondary" />
+                                    <u:ClassSelectorItem ClassName="Tertiary" Content="Tertiary" />
+                                    <u:ClassSelectorItem ClassName="Success" Content="Success" />
+                                    <u:ClassSelectorItem ClassName="Warning" Content="Warning" />
+                                    <u:ClassSelectorItem ClassName="Danger" Content="Danger" />
+                                </u:ClassSelectorGroup>
                                 <u:ClassSelectorGroup Header="Size">
                                     <u:ClassSelectorItem ClassName="Small" Content="Small" />
                                     <u:ClassSelectorItem ClassName="Large" Content="Large" />
                                 </u:ClassSelectorGroup>
-                                <u:ClassSelectorGroup Header="Horizontal alignment">
-                                    <u:ClassSelectorItem ClassName="Left" Content="Left" />
-                                    <u:ClassSelectorItem ClassName="Right" Content="Right" />
-                                </u:ClassSelectorGroup>
                             </u:ClassSelector>
-                            <ItemsControl
-                                VerticalAlignment="Center"
-                                ItemsSource="{Binding SelectedClasses}" />
+                           
                         </StackPanel>
                     </controls:DemoSectionView>
                 </StackPanel>

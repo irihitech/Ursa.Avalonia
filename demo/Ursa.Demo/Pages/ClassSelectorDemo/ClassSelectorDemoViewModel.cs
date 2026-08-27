@@ -30,14 +30,27 @@ public class ClassSelectorDemoViewModel : ObservableObject, IPageMetadataProvide
             CodeSnippetLanguage = CodeLanguage.Axaml,
             TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
             CodeSnippet = """
-                          <u:ClassSelector SelectedClasses="{Binding SelectedClasses}">
+                          <Button
+                              x:Name="target"
+                              HorizontalAlignment="Left"
+                              Content="Target control" />
+                          <u:ClassSelector
+                              x:Name="classSelector"
+                              Width="300"
+                              PlaceholderText="Select style classes"
+                              SelectedClasses="{Binding SelectedClasses}"
+                              Target="{Binding #target}">
+                              <u:ClassSelectorGroup Header="Color">
+                                  <u:ClassSelectorItem ClassName="Primary" Content="Primary" />
+                                  <u:ClassSelectorItem ClassName="Secondary" Content="Secondary" />
+                                  <u:ClassSelectorItem ClassName="Tertiary" Content="Tertiary" />
+                                  <u:ClassSelectorItem ClassName="Success" Content="Success" />
+                                  <u:ClassSelectorItem ClassName="Warning" Content="Warning" />
+                                  <u:ClassSelectorItem ClassName="Danger" Content="Danger" />
+                              </u:ClassSelectorGroup>
                               <u:ClassSelectorGroup Header="Size">
                                   <u:ClassSelectorItem ClassName="Small" Content="Small" />
                                   <u:ClassSelectorItem ClassName="Large" Content="Large" />
-                              </u:ClassSelectorGroup>
-                              <u:ClassSelectorGroup Header="Horizontal alignment">
-                                  <u:ClassSelectorItem ClassName="Left" Content="Left" />
-                                  <u:ClassSelectorItem ClassName="Right" Content="Right" />
                               </u:ClassSelectorGroup>
                           </u:ClassSelector>
                           """

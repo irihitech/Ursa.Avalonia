@@ -1,19 +1,49 @@
 using System.Collections;
+using System.Collections.Specialized;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.LogicalTree;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
 public class ClassSelector : MultiComboBox
 {
+    private readonly List<StyledElement> _targets = [];
+
     public static readonly StyledProperty<IList?> SelectedClassesProperty = SelectedItemsProperty;
+
+    public static readonly StyledProperty<Control?> TargetProperty =
+        AvaloniaProperty.Register<ClassSelector, Control?>(nameof(Target));
+
+    public static readonly AttachedProperty<ClassSelector?> SourceProperty =
+        AvaloniaProperty.RegisterAttached<ClassSelector, StyledElement, ClassSelector?>("Source");
+
+    static ClassSelector()
+    {
+        TargetProperty.Changed.AddClassHandler<ClassSelector>((selector, _) => selector.ApplyClassesToTargets());
+        SelectedClassesProperty.Changed.AddClassHandler<ClassSelector, IList?>((selector, args) =>
+            selector.OnSelectedClassesChanged(args));
+        SourceProperty.Changed.AddClassHandler<StyledElement, ClassSelector?>(OnSourceChanged);
+    }
 
     public IList? SelectedClasses
     {
         get => GetValue(SelectedClassesProperty);
         set => SetValue(SelectedClassesProperty, value);
     }
+
+    public Control? Target
+    {
+        get => GetValue(TargetProperty);
+        set => SetValue(TargetProperty, value);
+    }
+
+    public static void SetSource(StyledElement element, ClassSelector? source) =>
+        element.SetValue(SourceProperty, source);
+
+    public static ClassSelector? GetSource(StyledElement element) =>
+        element.GetValue(SourceProperty);
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey)
     {
@@ -46,6 +76,7 @@ public class ClassSelector : MultiComboBox
         if (!isSelected)
         {
             SelectedClasses?.Remove(className);
+            ApplyClassesToTargets();
             return;
         }
 
@@ -73,6 +104,8 @@ public class ClassSelector : MultiComboBox
         {
             SelectedClasses.Add(className);
         }
+
+        ApplyClassesToTargets();
     }
 
     public override void Remove(object? value)
@@ -90,6 +123,8 @@ public class ClassSelector : MultiComboBox
                 item.SetSelectionFromSelector(false);
             }
         }
+
+        ApplyClassesToTargets();
     }
 
     public override void Clear()
@@ -99,6 +134,66 @@ public class ClassSelector : MultiComboBox
         {
             item.SetSelectionFromSelector(false);
         }
+
+        ApplyClassesToTargets();
+    }
+
+    private static void OnSourceChanged(
+        StyledElement target,
+        AvaloniaPropertyChangedEventArgs<ClassSelector?> args)
+    {
+        args.OldValue.Value?._targets.Remove(target);
+
+        var source = args.NewValue.Value;
+        if (source is null)
+        {
+            return;
+        }
+
+        if (!source._targets.Contains(target))
+        {
+            source._targets.Add(target);
+        }
+
+        source.ApplyClasses(target);
+    }
+
+    private void OnSelectedClassesChanged(AvaloniaPropertyChangedEventArgs<IList?> args)
+    {
+        if (args.OldValue.Value is INotifyCollectionChanged oldCollection)
+        {
+            oldCollection.CollectionChanged -= OnSelectedClassesCollectionChanged;
+        }
+
+        if (args.NewValue.Value is INotifyCollectionChanged newCollection)
+        {
+            newCollection.CollectionChanged += OnSelectedClassesCollectionChanged;
+        }
+
+        ApplyClassesToTargets();
+    }
+
+    private void OnSelectedClassesCollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
+    {
+        ApplyClassesToTargets();
+    }
+
+    private void ApplyClassesToTargets()
+    {
+        if (Target is not null)
+        {
+            ApplyClasses(Target);
+        }
+
+        foreach (var target in _targets)
+        {
+            ApplyClasses(target);
+        }
+    }
+
+    private void ApplyClasses(StyledElement target)
+    {
+        target.Classes.Replace(SelectedClasses?.OfType<string>().ToList() ?? []);
     }
 
 }
