@@ -6,9 +6,18 @@ using Irihi.Dogma.Controls;
 
 namespace Ursa.Demo.ViewModels.Controls;
 
+public enum DemoSectionTag
+{
+    None = 0,
+    Function = 1,
+    Style = 2,
+    Others = 3
+}
+
 public partial class DemoSectionViewModel : ObservableObject
 {
     [ObservableProperty] public partial IObservable<string?>? Header { get; set; }
+    [ObservableProperty] public partial DemoSectionTag SectionTag { get; set; }
     public List<IObservable<string?>> Descriptions { get; } = [];
     [ObservableProperty] public partial string? AnchorId { get; set; }
     public ObservableCollection<DemoSectionCodeSnippetViewModel> CodeSnippets { get; } = [];

@@ -22,17 +22,33 @@
         <ControlTemplate
             TargetType="controls1:DemoSectionView">
             <StackPanel Spacing="4">
-                <TextBlock
-                    Classes="H5"
-                    Theme="{DynamicResource TitleTextBlock}"
-                    u:Anchor.Id="{Binding SectionContext?.AnchorId, RelativeSource={RelativeSource TemplatedParent}}"
-                    IsVisible="{Binding SectionContext?.Header^, 
-                        RelativeSource={RelativeSource TemplatedParent}, 
-                        Converter={x:Static StringConverters.IsNotNullOrEmpty},
-                        FallbackValue={x:False}}"
-                    Text="{Binding SectionContext?.Header^, 
-                        RelativeSource={RelativeSource TemplatedParent},
-                        FallbackValue={x:Static x:String.Empty}}" />
+                <DockPanel LastChildFill="False">
+                    <TextBlock
+                        Classes="H5"
+                        Theme="{DynamicResource TitleTextBlock}"
+                        u:Anchor.Id="{Binding SectionContext?.AnchorId, RelativeSource={RelativeSource TemplatedParent}}"
+                        IsVisible="{Binding SectionContext?.Header^, 
+                            RelativeSource={RelativeSource TemplatedParent}, 
+                            Converter={x:Static StringConverters.IsNotNullOrEmpty},
+                            FallbackValue={x:False}}"
+                        Text="{Binding SectionContext?.Header^, 
+                            RelativeSource={RelativeSource TemplatedParent},
+                            FallbackValue={x:Static x:String.Empty}}" />
+                    <Border
+                        DockPanel.Dock="Right"
+                        Margin="8 0 0 0"
+                        Padding="8 2"
+                        Background="{DynamicResource SemiColorBgDefault}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        IsVisible="{TemplateBinding HasSectionTag}">
+                        <TextBlock
+                            Classes="Secondary"
+                            FontSize="11"
+                            Text="{TemplateBinding SectionTagDisplayText}" />
+                    </Border>
+                </DockPanel>
                 <ItemsControl
                     ItemsSource="{Binding SectionContext?.Descriptions, RelativeSource={RelativeSource TemplatedParent}}">
                     <ItemsControl.ItemTemplate>

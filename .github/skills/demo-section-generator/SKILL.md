@@ -29,7 +29,7 @@ For a target page `<ControlName>Demo`:
 2. Update `<ControlName>DemoViewModel.cs` to add:
    - Anchor ID constants (kebab-case string values).
    - `DemoSectionViewModel` properties (`XxxSection` naming).
-   - Constructor initialization for each section (`Header`, `Descriptions`, `AnchorId`, and `CodeSnippets`).
+   - Constructor initialization for each section (`Header`, `SectionTag`, `Descriptions`, `AnchorId`, and `CodeSnippets`).
    - `AnchorItems` entries aligned 1:1 with section headers and anchor IDs.
 3. Update localization resources:
    - Add keys to `demo/Ursa.Demo/Localizations/Resources.resx`.
@@ -46,6 +46,11 @@ For a target page `<ControlName>Demo`:
 5. Ensure every section `AnchorId` is unique and appears in both:
    - `DemoSectionViewModel.AnchorId`
    - `AnchorItems` entry
+6. Set `DemoSectionViewModel.SectionTag` for each section using enum values:
+   - `DemoSectionTag.Function`
+   - `DemoSectionTag.Style`
+   - `DemoSectionTag.Others`
+   Do not set tag text in page view models. Tag display text is handled inside `DemoSectionView`.
 
 ## Implementation checklist
 
@@ -56,4 +61,3 @@ For a target page `<ControlName>Demo`:
 5. Sync `AnchorItems` ordering with visual section ordering.
 6. Add localization keys for every section header/description.
 7. Build and run the project's standard validation commands defined in repository instructions.
-

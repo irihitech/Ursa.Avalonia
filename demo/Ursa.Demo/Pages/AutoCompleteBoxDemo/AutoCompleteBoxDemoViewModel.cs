@@ -39,6 +39,7 @@ public partial class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetad
         {
             Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_Basic_Usage_Header,
             Descriptions = { LanguageManager.Instance.Page_AutoCompleteBox_Section_Basic_Usage_Description },
+            SectionTag = DemoSectionTag.Function,
             AnchorId = BasicUsageAnchorId
         };
         BasicSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
@@ -69,6 +70,7 @@ public partial class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetad
         {
             Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_ItemTemplate_Support_Header,
             Descriptions = { LanguageManager.Instance.Page_AutoCompleteBox_Section_ItemTemplate_Support_Description },
+            SectionTag = DemoSectionTag.Function,
             AnchorId = ItemTemplateSupportAnchorId
         };
         ItemTemplateSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
@@ -94,6 +96,7 @@ public partial class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetad
         {
             Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_ClearButton_Support_Header,
             Descriptions = { LanguageManager.Instance.Page_AutoCompleteBox_Section_ClearButton_Support_Description },
+            SectionTag = DemoSectionTag.Style,
             AnchorId = ClearButtonSupportAnchorId
         };
         ClearButtonSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
@@ -113,6 +116,7 @@ public partial class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetad
         {
             Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_InnerContent_Support_Header,
             Descriptions = { LanguageManager.Instance.Page_AutoCompleteBox_Section_InnerContent_Support_Description },
+            SectionTag = DemoSectionTag.Others,
             AnchorId = InnerContentSupportAnchorId
         };
         InnerContentSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel

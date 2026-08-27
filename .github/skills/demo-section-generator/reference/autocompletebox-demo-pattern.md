@@ -53,6 +53,7 @@ public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; 
 BasicSection = new DemoSectionViewModel
 {
     Header = LanguageManager.Instance.Page_<ControlName>_Section_Basic_Usage_Header,
+    SectionTag = DemoSectionTag.Function,
     Descriptions = { LanguageManager.Instance.Page_<ControlName>_Section_Basic_Usage_Description },
     AnchorId = BasicAnchorId
 };
@@ -87,6 +88,7 @@ Add the keys to:
 
 1. Section order in XAML, section properties in ViewModel, and `AnchorItems` must match.
 2. Anchor IDs must be unique and stable.
-3. Keep snippets representative of the exact section UI.
-4. Preserve existing page metadata and behavior.
-
+3. Every section should include a `SectionTag` enum value: `DemoSectionTag.Function`, `DemoSectionTag.Style`, or `DemoSectionTag.Others`.
+4. Tag display text should be rendered by `DemoSectionView`, not by page-specific view models.
+5. Keep snippets representative of the exact section UI.
+6. Preserve existing page metadata and behavior.
