@@ -818,16 +818,22 @@
   <data name="Page_MultiComboBox_Section_Inline_Items_Description" xml:space="preserve">
     <value>Объявляйте параметры MultiComboBoxItem прямо в содержимом XAML.</value>
   </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Header" xml:space="preserve">
+    <value>Коллекция строковых элементов</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Description" xml:space="preserve">
+    <value>Привяжите коллекцию строк напрямую для простой настройки автодополнения с множественным выбором.</value>
+  </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
-    <value>Базовое использование</value>
+    <value>Пользовательские шаблоны</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
-    <value>Выбирайте несколько элементов с поведением фильтрации по умолчанию.</value>
+    <value>Настройте отображение элементов и выбранных элементов с помощью ItemTemplate и SelectedItemTemplate.</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Header" xml:space="preserve">
     <value>Пользовательский фильтр и шаблон</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
-    <value>Используйте пользовательский предикат фильтра вместе с пользовательскими шаблонами элемента и выбранного элемента.</value>
+    <value>При использовании сложных структур данных применяйте ItemFilter и ItemTemplate вместе, чтобы определить, как данные фильтруются и отображаются.</value>
   </data>
 </root>

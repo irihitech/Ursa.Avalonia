@@ -18,7 +18,7 @@ public class MultiAutoCompleteBoxDemoViewModel : ObservableObject, IPageMetadata
 {
     public const string Category_Key = "MultiAutoCompleteBox";
     public const string Menu_Header = "Menu_Header_MultiAutoCompleteBox";
-    private const string BasicUsageAnchorId = "multi-auto-complete-box-basic-usage";
+    private const string StringItemsAnchorId = "multi-auto-complete-box-string-items";
     private const string CustomFilterAndTemplateAnchorId = "multi-auto-complete-box-custom-filter-and-template";
 
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
@@ -33,19 +33,20 @@ public class MultiAutoCompleteBoxDemoViewModel : ObservableObject, IPageMetadata
         MvvmSupport = true,
     };
 
+    public ObservableCollection<string> StringItems { get; set; }
+    public ObservableCollection<string> SelectedStringItems { get; set; }
     public ObservableCollection<ControlData> Items { get; set; }
-    public ObservableCollection<ControlData> BasicSelectedItems { get; set; }
     public ObservableCollection<ControlData> SelectedItems { get; set; }
     public AutoCompleteFilterPredicate<object> FilterPredicate { get; set; }
-    public DemoSectionViewModel BasicSection { get; }
+    public DemoSectionViewModel StringItemsSection { get; }
     public DemoSectionViewModel CustomFilterAndTemplateSection { get; }
 
     public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; } =
     [
         new()
         {
-            Header = LanguageManager.Instance.Page_MultiAutoCompleteBox_Section_Basic_Usage_Header,
-            AnchorId = BasicUsageAnchorId
+            Header = LanguageManager.Instance.Page_MultiAutoCompleteBox_Section_String_Items_Header,
+            AnchorId = StringItemsAnchorId
         },
         new()
         {
@@ -56,21 +57,37 @@ public class MultiAutoCompleteBoxDemoViewModel : ObservableObject, IPageMetadata
 
     public MultiAutoCompleteBoxDemoViewModel()
     {
-        BasicSection = new DemoSectionViewModel
+        StringItemsSection = new DemoSectionViewModel
         {
-            Header = LanguageManager.Instance.Page_MultiAutoCompleteBox_Section_Basic_Usage_Header,
-            Descriptions = { LanguageManager.Instance.Page_MultiAutoCompleteBox_Section_Basic_Usage_Description },
+            Header = LanguageManager.Instance.Page_MultiAutoCompleteBox_Section_String_Items_Header,
+            Descriptions = { LanguageManager.Instance.Page_MultiAutoCompleteBox_Section_String_Items_Description },
             SectionTag = DemoSectionTag.Function,
-            AnchorId = BasicUsageAnchorId
+            AnchorId = StringItemsAnchorId
         };
-        BasicSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        StringItemsSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
         {
             CodeSnippetLanguage = CodeLanguage.Axaml,
             TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
             CodeSnippet = """
                           <u:MultiAutoCompleteBox
-                              ItemsSource="{Binding Items}"
-                              SelectedItems="{Binding BasicSelectedItems}" />
+                              ItemsSource="{Binding StringItems}"
+                              SelectedItems="{Binding SelectedStringItems}" />
+                          """
+        });
+        StringItemsSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.CSharp,
+            TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
+            CodeSnippet = """
+                          public ObservableCollection<string> StringItems { get; } =
+                          [
+                              "Button",
+                              "TextBox",
+                              "ComboBox",
+                              "DatePicker"
+                          ];
+
+                          public ObservableCollection<string> SelectedStringItems { get; } = [];
                           """
         });
 
@@ -89,12 +106,51 @@ public class MultiAutoCompleteBoxDemoViewModel : ObservableObject, IPageMetadata
                           <u:MultiAutoCompleteBox
                               ItemsSource="{Binding Items}"
                               SelectedItems="{Binding SelectedItems}"
-                              ItemFilter="{Binding FilterPredicate}"
-                              FilterMode="Custom" />
+                             ItemFilter="{Binding FilterPredicate}"
+                             FilterMode="Custom">
+                             <u:MultiAutoCompleteBox.ItemTemplate>
+                                 <DataTemplate DataType="models:ControlData">
+                                     <TextBlock Text="{Binding MenuHeader}" />
+                                 </DataTemplate>
+                             </u:MultiAutoCompleteBox.ItemTemplate>
+                             <u:MultiAutoCompleteBox.SelectedItemTemplate>
+                                 <DataTemplate DataType="models:ControlData">
+                                     <TextBlock Text="{Binding MenuHeader}" />
+                                 </DataTemplate>
+                             </u:MultiAutoCompleteBox.SelectedItemTemplate>
+                          </u:MultiAutoCompleteBox>
+                          """
+        });
+        CustomFilterAndTemplateSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.CSharp,
+            TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
+            CodeSnippet = """
+                          public ObservableCollection<ControlData> Items { get; } = [];
+                          public ObservableCollection<ControlData> SelectedItems { get; } = [];
+
+                          public AutoCompleteFilterPredicate<object> FilterPredicate { get; } = Search;
+
+                          private static bool Search(string? text, object? data)
+                          {
+                             if (text is null) return true;
+                             if (data is not ControlData control) return false;
+                             return control.MenuHeader.Contains(text, StringComparison.InvariantCultureIgnoreCase) ||
+                                    control.Chinese.Contains(text, StringComparison.InvariantCultureIgnoreCase);
+                          }
                           """
         });
 
-        BasicSelectedItems = new ObservableCollection<ControlData>();
+        StringItems = new ObservableCollection<string>
+        {
+            "Button",
+            "TextBox",
+            "ComboBox",
+            "DatePicker",
+            "TreeView",
+            "DataGrid"
+        };
+        SelectedStringItems = new ObservableCollection<string>();
         SelectedItems = new ObservableCollection<ControlData>();
         Items = new ObservableCollection<ControlData>
         {

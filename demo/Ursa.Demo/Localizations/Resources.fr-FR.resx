@@ -818,16 +818,22 @@
   <data name="Page_MultiComboBox_Section_Inline_Items_Description" xml:space="preserve">
     <value>Déclarez les options MultiComboBoxItem directement dans le contenu XAML.</value>
   </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Header" xml:space="preserve">
+    <value>Collection d’éléments de chaîne</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Description" xml:space="preserve">
+    <value>Liez directement une collection de chaînes pour configurer simplement une saisie semi-automatique multi-sélection.</value>
+  </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
-    <value>Utilisation de base</value>
+    <value>Modèles personnalisés</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
-    <value>Sélectionnez plusieurs éléments avec le comportement de filtrage par défaut.</value>
+    <value>Personnalisez l’affichage des éléments et des éléments sélectionnés avec ItemTemplate et SelectedItemTemplate.</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Header" xml:space="preserve">
     <value>Filtre et modèle personnalisés</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
-    <value>Utilisez un prédicat de filtre personnalisé avec des modèles personnalisés pour les éléments et les éléments sélectionnés.</value>
+    <value>Lorsque vous utilisez des structures de données complexes, utilisez ItemFilter et ItemTemplate ensemble pour contrôler le filtrage et l’affichage des données.</value>
   </data>
 </root>

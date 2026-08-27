@@ -810,16 +810,22 @@
   <data name="Page_MultiComboBox_Section_Inline_Items_Description" xml:space="preserve">
     <value>可在 XAML 内容中直接声明 MultiComboBoxItem 选项。</value>
   </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Header" xml:space="preserve">
+    <value>字符串集合项</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Description" xml:space="preserve">
+    <value>可直接绑定字符串集合，简单配置多选自动补全。</value>
+  </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
-    <value>基础用法</value>
+    <value>自定义模板</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
-    <value>使用默认筛选行为选择多个项目。</value>
+    <value>通过 ItemTemplate 和 SelectedItemTemplate 自定义项目与已选项目的显示。</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Header" xml:space="preserve">
     <value>自定义筛选与模板</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
-    <value>使用自定义筛选谓词，并为项目和已选项目配置自定义模板。</value>
+    <value>当使用复杂数据结构时，需要结合 ItemFilter 与 ItemTemplate 来决定数据如何筛选和显示。</value>
   </data>
 </root>

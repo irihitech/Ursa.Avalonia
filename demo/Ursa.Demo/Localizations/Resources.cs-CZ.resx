@@ -818,16 +818,22 @@
   <data name="Page_MultiComboBox_Section_Inline_Items_Description" xml:space="preserve">
     <value>Deklarujte možnosti MultiComboBoxItem přímo v obsahu XAML.</value>
   </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Header" xml:space="preserve">
+    <value>Kolekce řetězcových položek</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Description" xml:space="preserve">
+    <value>Přímo navažte kolekci řetězců pro jednoduché nastavení vícenásobného automatického doplňování.</value>
+  </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
-    <value>Základní použití</value>
+    <value>Vlastní šablony</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
-    <value>Vyberte více položek s výchozím chováním filtrování.</value>
+    <value>Přizpůsobte vykreslení položek a vybraných položek pomocí ItemTemplate a SelectedItemTemplate.</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Header" xml:space="preserve">
     <value>Vlastní filtr a šablona</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
-    <value>Použijte vlastní predikát filtru spolu s vlastními šablonami položky a vybrané položky.</value>
+    <value>Při použití složitější datové struktury používejte ItemFilter a ItemTemplate společně, abyste určili, jak se data filtrují a zobrazují.</value>
   </data>
 </root>

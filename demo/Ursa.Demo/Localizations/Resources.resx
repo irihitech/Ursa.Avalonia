@@ -824,16 +824,22 @@
   <data name="Page_MultiComboBox_Section_Inline_Items_Description" xml:space="preserve">
     <value>Declare MultiComboBoxItem options directly in XAML content.</value>
   </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Header" xml:space="preserve">
+    <value>String items collection</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Description" xml:space="preserve">
+    <value>Bind a string collection directly for a simple multi-select autocomplete setup.</value>
+  </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
-    <value>Basic usage</value>
+    <value>Custom templates</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
-    <value>Select multiple items with default filtering behavior.</value>
+    <value>Customize item and selected-item rendering with ItemTemplate and SelectedItemTemplate.</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Header" xml:space="preserve">
     <value>Custom filter and template</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
-    <value>Use a custom filter predicate with custom item and selected-item templates.</value>
+    <value>When using complex data structures, use ItemFilter and ItemTemplate together to control how data is filtered and displayed.</value>
   </data>
 </root>

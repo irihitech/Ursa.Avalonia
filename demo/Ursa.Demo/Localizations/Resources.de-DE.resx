@@ -817,16 +817,22 @@
   <data name="Page_MultiComboBox_Section_Inline_Items_Description" xml:space="preserve">
     <value>Deklarieren Sie MultiComboBoxItem-Optionen direkt im XAML-Inhalt.</value>
   </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Header" xml:space="preserve">
+    <value>String-Elementsammlung</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Description" xml:space="preserve">
+    <value>Binden Sie eine Zeichenfolgensammlung direkt für eine einfache Autovervollständigung mit Mehrfachauswahl.</value>
+  </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
-    <value>Grundlegende Verwendung</value>
+    <value>Benutzerdefinierte Vorlagen</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
-    <value>Wählen Sie mehrere Elemente mit dem Standardfilterverhalten aus.</value>
+    <value>Passen Sie die Darstellung von Elementen und ausgewählten Elementen mit ItemTemplate und SelectedItemTemplate an.</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Header" xml:space="preserve">
     <value>Benutzerdefinierter Filter und Vorlage</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
-    <value>Verwenden Sie ein benutzerdefiniertes Filterprädikat mit benutzerdefinierten Vorlagen für Element und ausgewähltes Element.</value>
+    <value>Wenn Sie komplexe Datenstrukturen verwenden, nutzen Sie ItemFilter und ItemTemplate gemeinsam, um zu steuern, wie Daten gefiltert und angezeigt werden.</value>
   </data>
 </root>

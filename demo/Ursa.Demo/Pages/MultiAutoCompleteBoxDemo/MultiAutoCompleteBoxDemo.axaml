@@ -16,13 +16,13 @@
             Icon="{DynamicResource SemiIconBook}">
             <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
                 <StackPanel HorizontalAlignment="Stretch" Spacing="20">
-                    <controls:DemoSectionView SectionContext="{Binding BasicSection}">
+                    <controls:DemoSectionView SectionContext="{Binding StringItemsSection}">
                         <u:MultiAutoCompleteBox
-                            ItemsSource="{Binding Items}"
+                            ItemsSource="{Binding StringItems}"
                             HorizontalAlignment="Left"
                             MaxWidth="400"
                             PlaceholderText="Select controls"
-                            SelectedItems="{Binding BasicSelectedItems}" />
+                            SelectedItems="{Binding SelectedStringItems}" />
                     </controls:DemoSectionView>
 
                     <controls:DemoSectionView SectionContext="{Binding CustomFilterAndTemplateSection}">
