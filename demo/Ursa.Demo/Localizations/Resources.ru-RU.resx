@@ -795,33 +795,39 @@
     <value>Передавайте значения EnumItemTuple для отображения пользовательских имен.</value>
   </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
-    <value>Basic binding</value>
+    <value>Базовая привязка</value>
   </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Description" xml:space="preserve">
-    <value>Bind items and selected items collections for multi-selection.</value>
+    <value>Привяжите коллекции элементов и выбранных элементов для множественного выбора.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стилей</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте Small и Large для управления размером, а ClearButton — для отображения кнопки очистки.</value>
   </data>
   <data name="Page_MultiComboBox_Section_Advanced_Customization_Header" xml:space="preserve">
-    <value>Advanced customization</value>
+    <value>Расширенная настройка</value>
   </data>
   <data name="Page_MultiComboBox_Section_Advanced_Customization_Description" xml:space="preserve">
-    <value>Combine clear button styles, inner content, popup content, and selection commands.</value>
+    <value>Комбинируйте стили кнопки очистки, внутреннее содержимое, содержимое всплывающего окна и команды выбора.</value>
   </data>
   <data name="Page_MultiComboBox_Section_Inline_Items_Header" xml:space="preserve">
-    <value>Inline items</value>
+    <value>Встроенные элементы</value>
   </data>
   <data name="Page_MultiComboBox_Section_Inline_Items_Description" xml:space="preserve">
-    <value>Declare MultiComboBoxItem options directly in XAML content.</value>
+    <value>Объявляйте параметры MultiComboBoxItem прямо в содержимом XAML.</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
-    <value>Basic usage</value>
+    <value>Базовое использование</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
-    <value>Select multiple items with default filtering behavior.</value>
+    <value>Выбирайте несколько элементов с поведением фильтрации по умолчанию.</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Header" xml:space="preserve">
-    <value>Custom filter and template</value>
+    <value>Пользовательский фильтр и шаблон</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
-    <value>Use a custom filter predicate with custom item and selected-item templates.</value>
+    <value>Используйте пользовательский предикат фильтра вместе с пользовательскими шаблонами элемента и выбранного элемента.</value>
   </data>
 </root>

@@ -27,8 +27,32 @@
                                 MaxHeight="200"
                                 SelectedItems="{Binding SelectedItems}"
                                 ItemsSource="{Binding Items}" />
-                            <ListBox Width="300" MaxHeight="120" ItemsSource="{Binding SelectedItems}" />
                         </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding StyleClassesSection}">
+                        <DockPanel HorizontalSpacing="12">
+                            <u:ClassSelector 
+                                Width="200" 
+                                DockPanel.Dock="Right" 
+                                Target="{Binding #styleTarget}">
+                                <u:ClassSelectorGroup Header="Size">
+                                    <u:ClassSelectorItem ClassName="Small">Small</u:ClassSelectorItem>
+                                    <u:ClassSelectorItem ClassName="Large">Large</u:ClassSelectorItem>
+                                </u:ClassSelectorGroup>
+                                <u:ClassSelectorGroup Header="Others">
+                                    <u:ClassSelectorItem ClassName="ClearButton">ClearButton</u:ClassSelectorItem>
+                                </u:ClassSelectorGroup>
+                            </u:ClassSelector>
+                            <u:MultiComboBox
+                                Name="styleTarget"
+                                Width="300"
+                                MaxHeight="200"
+                                SelectedItems="{Binding StyleSmallSelectedItems}"
+                                ItemsSource="{Binding Items}" />
+
+                            
+                        </DockPanel>
                     </controls:DemoSectionView>
 
                     <controls:DemoSectionView SectionContext="{Binding AdvancedCustomizationSection}">
@@ -49,11 +73,6 @@
                                         <Button Theme="{DynamicResource BorderlessButton}" Content="Inverse" Command="{Binding InvertSelectionCommand}" />
                                     </StackPanel>
                                 </u:MultiComboBox.PopupInnerTopContent>
-                                <u:MultiComboBox.ContextFlyout>
-                                    <MenuFlyout>
-                                        <MenuItem Header="Select All" Command="{Binding SelectAllCommand}" />
-                                    </MenuFlyout>
-                                </u:MultiComboBox.ContextFlyout>
                             </u:MultiComboBox>
                         </StackPanel>
                     </controls:DemoSectionView>

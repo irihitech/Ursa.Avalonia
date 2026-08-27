@@ -794,33 +794,39 @@
     <value>Verwenden Sie EnumItemTuple-Werte, um benutzerdefinierte Anzeigenamen anzuzeigen.</value>
   </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
-    <value>Basic binding</value>
+    <value>Grundlegende Bindung</value>
   </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Description" xml:space="preserve">
-    <value>Bind items and selected items collections for multi-selection.</value>
+    <value>Binden Sie Element- und Auswahlelement-Sammlungen für die Mehrfachauswahl.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Stilklassen</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Verwenden Sie Small und Large zur Steuerung der Größe und ClearButton zum Anzeigen der Schaltfläche zum Leeren.</value>
   </data>
   <data name="Page_MultiComboBox_Section_Advanced_Customization_Header" xml:space="preserve">
-    <value>Advanced customization</value>
+    <value>Erweiterte Anpassung</value>
   </data>
   <data name="Page_MultiComboBox_Section_Advanced_Customization_Description" xml:space="preserve">
-    <value>Combine clear button styles, inner content, popup content, and selection commands.</value>
+    <value>Kombinieren Sie Clear-Button-Stile, inneren Inhalt, Popup-Inhalt und Auswahlbefehle.</value>
   </data>
   <data name="Page_MultiComboBox_Section_Inline_Items_Header" xml:space="preserve">
-    <value>Inline items</value>
+    <value>Inline-Elemente</value>
   </data>
   <data name="Page_MultiComboBox_Section_Inline_Items_Description" xml:space="preserve">
-    <value>Declare MultiComboBoxItem options directly in XAML content.</value>
+    <value>Deklarieren Sie MultiComboBoxItem-Optionen direkt im XAML-Inhalt.</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
-    <value>Basic usage</value>
+    <value>Grundlegende Verwendung</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
-    <value>Select multiple items with default filtering behavior.</value>
+    <value>Wählen Sie mehrere Elemente mit dem Standardfilterverhalten aus.</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Header" xml:space="preserve">
-    <value>Custom filter and template</value>
+    <value>Benutzerdefinierter Filter und Vorlage</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
-    <value>Use a custom filter predicate with custom item and selected-item templates.</value>
+    <value>Verwenden Sie ein benutzerdefiniertes Filterprädikat mit benutzerdefinierten Vorlagen für Element und ausgewähltes Element.</value>
   </data>
 </root>

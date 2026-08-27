@@ -806,6 +806,12 @@
   <data name="Page_MultiComboBox_Section_Basic_Binding_Description" xml:space="preserve">
     <value>Bind items and selected items collections for multi-selection.</value>
   </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Style classes</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Use Small and Large to control size, and ClearButton to show the clear button.</value>
+  </data>
   <data name="Page_MultiComboBox_Section_Advanced_Customization_Header" xml:space="preserve">
     <value>Advanced customization</value>
   </data>

@@ -75,4 +75,5 @@ For a target page `<ControlName>Demo`:
 4. Add section metadata/snippets in the view model.
 5. Sync `AnchorItems` ordering with visual section ordering.
 6. Add localization keys for every section header/description in all locale files with proper translations.
-7. Build and run the project's standard validation commands defined in repository instructions.
+7. Validate by building only the demo project: `dotnet build demo/Ursa.Demo/Ursa.Demo.csproj`.
+8. Do not run full repository build or test suites unless the user explicitly asks for them.

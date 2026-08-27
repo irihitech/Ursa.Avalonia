@@ -795,33 +795,39 @@
     <value>Poskytněte hodnoty EnumItemTuple pro zobrazení vlastních názvů.</value>
   </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
-    <value>Basic binding</value>
+    <value>Základní vazba</value>
   </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Description" xml:space="preserve">
-    <value>Bind items and selected items collections for multi-selection.</value>
+    <value>Navažte kolekce položek a vybraných položek pro vícenásobný výběr.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Použijte Small a Large pro ovládání velikosti a ClearButton pro zobrazení tlačítka vymazání.</value>
   </data>
   <data name="Page_MultiComboBox_Section_Advanced_Customization_Header" xml:space="preserve">
-    <value>Advanced customization</value>
+    <value>Pokročilé přizpůsobení</value>
   </data>
   <data name="Page_MultiComboBox_Section_Advanced_Customization_Description" xml:space="preserve">
-    <value>Combine clear button styles, inner content, popup content, and selection commands.</value>
+    <value>Kombinujte styl tlačítka pro vymazání, vnitřní obsah, obsah překryvného okna a příkazy výběru.</value>
   </data>
   <data name="Page_MultiComboBox_Section_Inline_Items_Header" xml:space="preserve">
-    <value>Inline items</value>
+    <value>Vložené položky</value>
   </data>
   <data name="Page_MultiComboBox_Section_Inline_Items_Description" xml:space="preserve">
-    <value>Declare MultiComboBoxItem options directly in XAML content.</value>
+    <value>Deklarujte možnosti MultiComboBoxItem přímo v obsahu XAML.</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
-    <value>Basic usage</value>
+    <value>Základní použití</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
-    <value>Select multiple items with default filtering behavior.</value>
+    <value>Vyberte více položek s výchozím chováním filtrování.</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Header" xml:space="preserve">
-    <value>Custom filter and template</value>
+    <value>Vlastní filtr a šablona</value>
   </data>
   <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
-    <value>Use a custom filter predicate with custom item and selected-item templates.</value>
+    <value>Použijte vlastní predikát filtru spolu s vlastními šablonami položky a vybrané položky.</value>
   </data>
 </root>
