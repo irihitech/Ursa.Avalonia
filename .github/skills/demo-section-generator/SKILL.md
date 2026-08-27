@@ -41,6 +41,11 @@ For a target page `<ControlName>Demo`:
      - `Resources.ru-RU.resx`
      - `Resources.zh-Hans.resx`
    - Provide proper per-language translations. Do **not** copy English fallback text into non-English resource files unless the user explicitly requests it.
+4. Section content defaults (apply unless user asks otherwise):
+   - If the control supports style classes, add a dedicated style-class section tagged with `DemoSectionTag.Style`, and explain what each class changes.
+   - If style classes can be switched interactively and there are multiple class groups, prefer using `ClassSelector` to group class options and apply them to target controls.
+   - For selection controls, include a simple section that binds a string collection (`ObservableCollection<string>`) for basic usage.
+   - For complex item types, demonstrate filtering and display together: use `ItemFilter` and `ItemTemplate` in the same section so filtering behavior and rendering are explained as one workflow.
 
 ## Naming and structure rules
 
@@ -49,6 +54,8 @@ For a target page `<ControlName>Demo`:
    - `Page_<ControlName>_Section_<SectionName>_Description`
 2. Use `LanguageManager.Instance` for section headers/descriptions and snippet tab names.
 3. Use `CodeLanguage.Axaml` and `CodeLanguage.CSharp` for snippets where appropriate.
+   - Include at least one XAML snippet per section.
+   - Add a ViewModel (C#) snippet when the section relies on bindings, collections, predicates, or custom data structures.
 4. Keep `PageMetadata`, doc attributes, and existing behavior intact unless explicitly requested otherwise.
 5. Ensure every section `AnchorId` is unique and appears in both:
    - `DemoSectionViewModel.AnchorId`
@@ -73,7 +80,9 @@ For a target page `<ControlName>Demo`:
 2. Add/adjust required namespaces (`controls`, `localizations`, `u`, etc.).
 3. Wrap each demo block in `DemoSectionView`.
 4. Add section metadata/snippets in the view model.
-5. Sync `AnchorItems` ordering with visual section ordering.
-6. Add localization keys for every section header/description in all locale files with proper translations.
-7. Validate by building only the demo project: `dotnet build demo/Ursa.Demo/Ursa.Demo.csproj`.
-8. Do not run full repository build or test suites unless the user explicitly asks for them.
+5. Add section-appropriate snippets: XAML for every section, plus C# ViewModel snippets for data/binding/filter logic.
+6. If style classes are part of the control API, add a dedicated style section and use `ClassSelector` grouping when practical.
+7. Sync `AnchorItems` ordering with visual section ordering.
+8. Add localization keys for every section header/description in all locale files with proper translations.
+9. Validate by building only the demo project: `dotnet build demo/Ursa.Demo/Ursa.Demo.csproj`.
+10. Do not run full repository build or test suites unless the user explicitly asks for them.
