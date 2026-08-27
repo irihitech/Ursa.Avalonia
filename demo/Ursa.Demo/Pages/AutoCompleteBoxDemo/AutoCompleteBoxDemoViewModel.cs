@@ -1,21 +1,26 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Ursa.Demo.Models;
-
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 using Irihi.Dogma.Docs;
+using Irihi.Dogma.Controls;
 using Ursa.Demo.Pages.DummyPages;
 
 namespace Ursa.Demo.Pages.AutoCompleteBoxDemo;
 
 [DocCategory(Category_Key, IsClickable = false, Parent = ButtonsAndInputsPage.Category_Key)]
 [DocPage(Menu_Header, View = typeof(AutoCompleteBoxDemo))]
-public class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetadataProvider
+public partial class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetadataProvider
 {
     public const string Category_Key = "AutoCompleteBox";
     public const string Menu_Header = "Menu_Header_AutoCompleteBox";
-    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    private const string BasicUsageAnchorId = "auto-complete-box-basic-usage";
+    private const string ItemTemplateSupportAnchorId = "auto-complete-box-item-template-support";
+    private const string ClearButtonSupportAnchorId = "auto-complete-box-clear-button-support";
+    private const string InnerContentSupportAnchorId = "auto-complete-box-inner-content-support";
+
+    public PageMetadataViewModel PageMetadata { get; set; } = new()
     {
         Title = LanguageManager.Instance.Page_Title_AutoCompleteBox,
         Description = LanguageManager.Instance.Page_Description_AutoCompleteBox,
@@ -30,9 +35,136 @@ public class AutoCompleteBoxDemoViewModel : ObservableObject, IPageMetadataProvi
     public AutoCompleteBoxDemoViewModel()
     {
         Controls = new ObservableCollection<ControlData>(GetControlData());
+        BasicSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_Basic_Usage_Header,
+            Descriptions = { LanguageManager.Instance.Page_AutoCompleteBox_Section_Basic_Usage_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = BasicUsageAnchorId
+        };
+        BasicSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:AutoCompleteBox
+                              ItemsSource="{Binding Controls}"
+                              PlaceholderText="Please select a Control"
+                              SelectedItem="{Binding SelectedControl, Mode=TwoWay}"
+                              ValueMemberBinding="{ReflectionBinding MenuHeader}" />
+                          """
+        });
+        BasicSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.CSharp,
+            TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
+            CodeSnippet = """
+                          public ObservableCollection<ControlData> Controls { get; set; }
+                          
+                          [ObservableProperty] 
+                          public partial ControlData? SelectedControl { get; set; }
+
+                          """
+        });
+        ItemTemplateSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_ItemTemplate_Support_Header,
+            Descriptions = { LanguageManager.Instance.Page_AutoCompleteBox_Section_ItemTemplate_Support_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = ItemTemplateSupportAnchorId
+        };
+        ItemTemplateSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:AutoCompleteBox ItemsSource="{Binding Controls}"
+                                            PlaceholderText="Choose a control">
+                             <u:AutoCompleteBox.ItemTemplate>
+                                 <DataTemplate DataType="models:ControlData">
+                                     <StackPanel Orientation="Horizontal" Spacing="8">
+                                         <TextBlock Text="{Binding MenuHeader}" />
+                                         <TextBlock Classes="Secondary"
+                                                    Text="{Binding Chinese}" />
+                                     </StackPanel>
+                                 </DataTemplate>
+                             </u:AutoCompleteBox.ItemTemplate>
+                          </u:AutoCompleteBox>
+                          """
+        });
+        ClearButtonSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_ClearButton_Support_Header,
+            Descriptions = { LanguageManager.Instance.Page_AutoCompleteBox_Section_ClearButton_Support_Description },
+            SectionTag = DemoSectionTag.Style,
+            AnchorId = ClearButtonSupportAnchorId
+        };
+        ClearButtonSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:AutoCompleteBox
+                             Classes="ClearButton"
+                             ItemsSource="{Binding Controls}"
+                             SelectedItem="{Binding ClearButtonSelectedControl, Mode=TwoWay}"
+                             Text="{Binding ClearButtonText, Mode=TwoWay}"
+                             ValueMemberBinding="{ReflectionBinding MenuHeader}" />
+                          """
+        });
+        InnerContentSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_InnerContent_Support_Header,
+            Descriptions = { LanguageManager.Instance.Page_AutoCompleteBox_Section_InnerContent_Support_Description },
+            SectionTag = DemoSectionTag.Others,
+            AnchorId = InnerContentSupportAnchorId
+        };
+        InnerContentSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:AutoCompleteBox
+                             InnerLeftContent="https://"
+                             InnerRightContent=".com"
+                             ItemsSource="{Binding Controls}"
+                             ValueMemberBinding="{ReflectionBinding MenuHeader}" />
+                          """
+        });
     }
 
     public ObservableCollection<ControlData> Controls { get; set; }
+    public DemoSectionViewModel BasicSection { get; }
+    public DemoSectionViewModel ItemTemplateSection { get; }
+    public DemoSectionViewModel ClearButtonSection { get; }
+    public DemoSectionViewModel InnerContentSection { get; }
+    
+    public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; set; } =
+    [
+        new() { 
+            Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_Basic_Usage_Header,
+            AnchorId = BasicUsageAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_ItemTemplate_Support_Header,
+            AnchorId = ItemTemplateSupportAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_ClearButton_Support_Header,
+            AnchorId = ClearButtonSupportAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_AutoCompleteBox_Section_InnerContent_Support_Header,
+            AnchorId = InnerContentSupportAnchorId
+        },
+    ];
+
+    [ObservableProperty] public partial ControlData? SelectedControl { get; set; }
+    [ObservableProperty] public partial ControlData? ClearButtonSelectedControl { get; set; }
+    [ObservableProperty] public partial string? ClearButtonText { get; set; }
 
     private static ControlData[] GetControlData()
     {

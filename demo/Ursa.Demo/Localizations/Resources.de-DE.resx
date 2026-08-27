@@ -44,6 +44,9 @@
   <data name="Menu_Category_LayoutAndDisplay" xml:space="preserve">
     <value>Layout &amp; (Anzeige)</value>
   </data>
+  <data name="Menu_Category_DevUtilities" xml:space="preserve">
+    <value>Entwicklerwerkzeuge</value>
+  </data>
 
   <!-- Buttons &amp; Inputs -->
   <data name="Menu_Header_ButtonGroup" xml:space="preserve">
@@ -696,6 +699,45 @@
   <data name="Page_Description_WindowDialog" xml:space="preserve">
     <value>Fensterdialog zeigt modale Fenster für die Benutzerinteraktion an.</value>
   </data>
+  <data name="Page_AutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Grundlegende Verwendung</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Die AutoCompleteBox von Ursa ist im Wesentlichen identisch mit der nativen von Avalonia, bietet jedoch zusätzlich die Funktion, beim Klicken sofort alle verfügbaren Optionen aufzuklappen. Die AutoCompleteBox wird typischerweise im MVVM-Stil verwendet: Die Sammlung wird über `ItemsSource` gebunden und das ausgewählte Element über `SelectedItem`.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ItemTemplate_Support_Header" xml:space="preserve">
+    <value>ItemTemplate-Unterstützung</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ItemTemplate_Support_Description" xml:space="preserve">
+    <value>Mit AutoCompleteBox kann das Erscheinungsbild und Layout der Optionen über ItemTemplate angepasst werden.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ClearButton_Support_Header" xml:space="preserve">
+    <value>Unterstützung der Stilklasse ClearButton</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ClearButton_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox unterstützt die Stilklasse `ClearButton`, sodass sich sowohl das ausgewählte Element als auch der eingegebene Text mit einem Klick löschen lassen.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_InnerContent_Support_Header" xml:space="preserve">
+    <value>Unterstützung für InnerLeftContent und InnerRightContent</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_InnerContent_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox unterstützt `InnerLeftContent` und `InnerRightContent`, sodass zusätzlicher Inhalt links und rechts innerhalb des Eingabefelds angezeigt werden kann.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Header" xml:space="preserve">
+    <value>Wie ItemTemplate und ValueMemberBinding zu verstehen sind</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Content" xml:space="preserve">
+    <value>Da AutoCompleteBox den ausgewählten Eintrag im TextBox immer als Zeichenfolge anzeigen muss, müssen Sie beim Anpassen der Optionsdarstellung per ItemTemplate weiterhin über ValueMemberBinding festlegen, welche Eigenschaft als ausgewählter Text angezeigt wird. Andernfalls kann AutoCompleteBox den ausgewählten Eintrag nicht korrekt anzeigen. Wenn kein ItemTemplate angegeben ist, verwendet AutoCompleteBox ValueMemberBinding zur Darstellung der Optionen.</value>
+  </data>
+  <data name="DemoSection_Tag_Function" xml:space="preserve">
+    <value>Funktion</value>
+  </data>
+  <data name="DemoSection_Tag_Style" xml:space="preserve">
+    <value>Stil</value>
+  </data>
+  <data name="DemoSection_Tag_Others" xml:space="preserve">
+    <value>Sonstiges</value>
+  </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">
     <value>Beispiele</value>
@@ -705,5 +747,20 @@
   </data>
   <data name="Tab_Header_Resources" xml:space="preserve">
     <value>Ressourcen</value>
+  </data>
+  <data name="Menu_Header_ClassSelector" xml:space="preserve">
+    <value>Klassenauswahl</value>
+  </data>
+  <data name="Page_Title_ClassSelector" xml:space="preserve">
+    <value>ClassSelector</value>
+  </data>
+  <data name="Page_Description_ClassSelector" xml:space="preserve">
+    <value>ClassSelector wählt Stilklassen aus und erzwingt sich gegenseitig ausschließende Optionen innerhalb jeder Gruppe.</value>
+  </data>
+  <data name="Page_ClassSelector_Section_Grouped_Selection_Header" xml:space="preserve">
+    <value>Gruppierte Klassenauswahl</value>
+  </data>
+  <data name="Page_ClassSelector_Section_Grouped_Selection_Description" xml:space="preserve">
+    <value>Optionen derselben Gruppe schließen sich gegenseitig aus. Die Auswahl einer Klasse aus einer anderen Gruppe behält die bestehende Auswahl bei.</value>
   </data>
 </root>

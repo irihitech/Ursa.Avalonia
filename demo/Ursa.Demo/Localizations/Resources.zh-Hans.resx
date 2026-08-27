@@ -36,6 +36,9 @@
   <data name="Menu_Category_LayoutAndDisplay" xml:space="preserve">
     <value>布局与展示</value>
   </data>
+  <data name="Menu_Category_DevUtilities" xml:space="preserve">
+    <value>开发工具</value>
+  </data>
   <!-- Buttons & Inputs -->
   <data name="Menu_Header_ButtonGroup" xml:space="preserve">
     <value>按钮组 ButtonGroup</value>
@@ -682,6 +685,52 @@
   <data name="Page_Description_WindowDialog" xml:space="preserve">
     <value>窗口对话框显示用于用户交互的模态窗口。</value>
   </data>
+  <!-- Demo Section -->
+  <data name="Page_AutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Ursa的AutoCompleteBox与Avalonia原生基本相同，但增加了点击后立刻展开所有可选项的功能。AutoCompleteBox通常以MVVM的形式使用，通过`ItemsSource`绑定集合，通过`SelectedItem`绑定选中项。</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ItemTemplate_Support_Header" xml:space="preserve">
+    <value>ItemTemplate 支持</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ItemTemplate_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox 可以通过 ItemTemplate 设置选项的外观和布局。</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ClearButton_Support_Header" xml:space="preserve">
+    <value>ClearButton 样式类支持</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ClearButton_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox 支持 `ClearButton` 样式类，可通过清除按钮一键清空当前选中项和输入文本。</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_InnerContent_Support_Header" xml:space="preserve">
+    <value>InnerLeftContent 与 InnerRightContent 支持</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_InnerContent_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox 支持 `InnerLeftContent` 和 `InnerRightContent`，可在输入框内部左右两侧显示附加内容。</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Header" xml:space="preserve">
+    <value>如何理解ItemTemplate与ValueMemberBinding</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Content" xml:space="preserve">
+    <value>由于AutoCompleteBox始终需要在TextBox中将选中项显示为一个字符串，因此在使用ItemTemplate自定义选项显示内容时，仍然需要通过ValueMemberBinding指定一个属性作为选中项显示的文本，否则AutoCompleteBox将无法正确显示选中的项。如果未指定ItemTemplate，AutoCompleteBox会使用ValueMemberBinding作为选项的显示方法。</value>
+  </data>
+  <data name="DemoSection_Tag_Function" xml:space="preserve">
+    <value>功能</value>
+  </data>
+  <data name="DemoSection_Tag_Style" xml:space="preserve">
+    <value>样式</value>
+  </data>
+  <data name="DemoSection_Tag_Others" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="DemoSection_Tab_Xaml" xml:space="preserve">
+    <value>XAML</value>
+  </data>
+  <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
+    <value>视图模型</value>
+  </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">
     <value>示例</value>
@@ -691,5 +740,20 @@
   </data>
   <data name="Tab_Header_Resources" xml:space="preserve">
     <value>资源</value>
+  </data>
+  <data name="Menu_Header_ClassSelector" xml:space="preserve">
+    <value>样式类选择器 ClassSelector</value>
+  </data>
+  <data name="Page_Title_ClassSelector" xml:space="preserve">
+    <value>样式类选择器 ClassSelector</value>
+  </data>
+  <data name="Page_Description_ClassSelector" xml:space="preserve">
+    <value>ClassSelector 用于选择样式类，并确保同一分组内的选项互斥。</value>
+  </data>
+  <data name="Page_ClassSelector_Section_Grouped_Selection_Header" xml:space="preserve">
+    <value>分组样式类选择</value>
+  </data>
+  <data name="Page_ClassSelector_Section_Grouped_Selection_Description" xml:space="preserve">
+    <value>同一分组内的选项互斥；选择其他分组中的样式类时会保留当前选择。</value>
   </data>
 </root>

@@ -269,7 +269,7 @@ public class MultiComboBox : SelectingItemsControl, IInnerContentControl, IPopup
         if (IsDropDownOpen && dropDownItem.IsFocused && dropDownItem.IsArrangeValid) dropDownItem.BringIntoView();
     }
 
-    public void Remove(object? o)
+    public virtual void Remove(object? o)
     {
         if (o is StyledElement s)
         {
@@ -284,7 +284,7 @@ public class MultiComboBox : SelectingItemsControl, IInnerContentControl, IPopup
         }
     }
 
-    public void Clear()
+    public virtual void Clear()
     {
         this.SelectedItems?.Clear();
         var containers = Presenter?.Panel?.Children;

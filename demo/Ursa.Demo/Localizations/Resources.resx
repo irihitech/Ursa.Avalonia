@@ -44,6 +44,9 @@
   <data name="Menu_Category_LayoutAndDisplay" xml:space="preserve">
     <value>Layout &amp; Display</value>
   </data>
+  <data name="Menu_Category_DevUtilities" xml:space="preserve">
+    <value>Dev Utilities</value>
+  </data>
 
   <!-- Buttons & Inputs -->
   <data name="Menu_Header_ButtonGroup" xml:space="preserve">
@@ -696,6 +699,52 @@
   <data name="Page_Description_WindowDialog" xml:space="preserve">
     <value>Window Dialog displays modal windows for user interaction.</value>
   </data>
+  <!-- Demo Section -->
+  <data name="Page_AutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Basic Usage</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Ursa's AutoCompleteBox is mostly the same as Avalonia's native one, but adds the ability to immediately expand all available options when clicked. AutoCompleteBox is typically used with MVVM: bind the collection through `ItemsSource` and bind the selected item through `SelectedItem`.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ItemTemplate_Support_Header" xml:space="preserve">
+    <value>ItemTemplate Support</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ItemTemplate_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox can customize option appearance and layout through ItemTemplate.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ClearButton_Support_Header" xml:space="preserve">
+    <value>ClearButton Style Class</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ClearButton_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox supports the `ClearButton` style class, allowing users to clear both the selected item and input text with one click.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_InnerContent_Support_Header" xml:space="preserve">
+    <value>InnerLeftContent and InnerRightContent</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_InnerContent_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox supports `InnerLeftContent` and `InnerRightContent`, so extra content can be displayed on both sides inside the input box.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Header" xml:space="preserve">
+    <value>How to Understand ItemTemplate and ValueMemberBinding</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Content" xml:space="preserve">
+    <value>Because AutoCompleteBox always needs to display the selected item as a string in the TextBox, when using ItemTemplate to customize option appearance, you still need to use ValueMemberBinding to specify which property is shown as the selected text. Otherwise, AutoCompleteBox cannot correctly display the selected item. If ItemTemplate is not specified, AutoCompleteBox uses ValueMemberBinding to display options.</value>
+  </data>
+  <data name="DemoSection_Tag_Function" xml:space="preserve">
+    <value>Function</value>
+  </data>
+  <data name="DemoSection_Tag_Style" xml:space="preserve">
+    <value>Style</value>
+  </data>
+  <data name="DemoSection_Tag_Others" xml:space="preserve">
+    <value>Others</value>
+  </data>
+  <data name="DemoSection_Tab_Xaml" xml:space="preserve">
+    <value>XAML</value>
+  </data>
+  <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
+    <value>ViewModel</value>
+  </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">
     <value>Samples</value>
@@ -705,5 +754,20 @@
   </data>
   <data name="Tab_Header_Resources" xml:space="preserve">
     <value>Resources</value>
+  </data>
+  <data name="Menu_Header_ClassSelector" xml:space="preserve">
+    <value>Class Selector</value>
+  </data>
+  <data name="Page_Title_ClassSelector" xml:space="preserve">
+    <value>ClassSelector</value>
+  </data>
+  <data name="Page_Description_ClassSelector" xml:space="preserve">
+    <value>ClassSelector selects style classes while enforcing mutually exclusive options within each group.</value>
+  </data>
+  <data name="Page_ClassSelector_Section_Grouped_Selection_Header" xml:space="preserve">
+    <value>Grouped class selection</value>
+  </data>
+  <data name="Page_ClassSelector_Section_Grouped_Selection_Description" xml:space="preserve">
+    <value>Options in the same group are mutually exclusive. Selecting a class from another group preserves the existing selection.</value>
   </data>
 </root>

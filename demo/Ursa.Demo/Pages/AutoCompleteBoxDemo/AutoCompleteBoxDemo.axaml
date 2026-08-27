@@ -4,53 +4,87 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.AutoCompleteBoxDemo"
              xmlns:models="clr-namespace:Ursa.Demo.Models"
+             xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+             xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
              xmlns:u="https://irihi.tech/ursa"
              x:DataType="viewModels:AutoCompleteBoxDemoViewModel"
              mc:Ignorable="d" d:DesignWidth="800"
              d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.AutoCompleteBoxDemo.AutoCompleteBoxDemo">
-    <StackPanel HorizontalAlignment="Stretch" Spacing="20" >
-        <StackPanel.Styles>
-            <Style Selector="u|AutoCompleteBox">
-                <Setter Property="Width" Value="300" />
-                <Setter Property="ItemsSource">
-                    <Binding Path="Controls" />
-                </Setter>
-                <Setter Property="ItemTemplate">
-                    <DataTemplate DataType="models:ControlData">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding MenuHeader}" VerticalAlignment="Center"/>
-                            <TextBlock Text="{Binding Chinese}" Classes="Secondary" FontSize="12" Margin="8 0 0 0" VerticalAlignment="Center"/>
+    <TabControl>
+        <TabItem Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+                 Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer
+                AnchorItems="{Binding AnchorItems}">
+                <StackPanel HorizontalAlignment="Stretch"
+                            Spacing="20">
+                    <controls:DemoSectionView
+                        SectionContext="{Binding BasicSection}">
+                        <StackPanel
+                            HorizontalAlignment="Stretch"
+                            Spacing="20">
+                            <u:AutoCompleteBox
+                                ItemsSource="{Binding Controls}"
+                                Width="300"
+                                HorizontalAlignment="Center"
+                                PlaceholderText="Please select a Control"
+                                SelectedItem="{Binding SelectedControl, Mode=TwoWay}"
+                                ValueMemberBinding="{ReflectionBinding MenuHeader}" />
                         </StackPanel>
-                    </DataTemplate>
-                </Setter>
-            </Style>
-        </StackPanel.Styles>
-
-        <TextBlock Text="{Binding #box.((models:ControlData)SelectedItem).MenuHeader}" />
-        
-        <u:AutoCompleteBox
-            Name="box"
-            PlaceholderText="Please select a Control"
-            Classes="ClearButton"
-            ValueMemberBinding="{ReflectionBinding MenuHeader}" />
-        
-        <u:AutoCompleteBox
-            Classes="Large"
-            ValueMemberBinding="{ReflectionBinding MenuHeader}" />
-        <u:AutoCompleteBox
-            Classes="Small"
-            ValueMemberBinding="{ReflectionBinding MenuHeader}" />
-        <u:AutoCompleteBox
-            Classes="Bordered"
-            ValueMemberBinding="{ReflectionBinding MenuHeader}" />
-        <u:AutoCompleteBox
-            IsEnabled="False"
-            PlaceholderText="Disabled"
-            ValueMemberBinding="{ReflectionBinding MenuHeader}" />
-        <u:AutoCompleteBox
-            InnerLeftContent="https://"
-            InnerRightContent=".com"
-            ValueMemberBinding="{ReflectionBinding MenuHeader}" />
-    </StackPanel>
+                    </controls:DemoSectionView>
+                    <controls:DemoSectionView
+                        SectionContext="{Binding ItemTemplateSection}">
+                        <u:AutoCompleteBox
+                            Width="300"
+                            HorizontalAlignment="Center"
+                            ItemsSource="{Binding Controls}"
+                            PlaceholderText="Choose a control with custom template"
+                            >
+                            <u:AutoCompleteBox.ItemTemplate>
+                                <DataTemplate
+                                    DataType="models:ControlData">
+                                    <StackPanel
+                                        Orientation="Horizontal"
+                                        Spacing="8">
+                                        <TextBlock
+                                            Text="{Binding MenuHeader}" />
+                                        <TextBlock
+                                            Classes="Secondary"
+                                            Text="{Binding Chinese}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </u:AutoCompleteBox.ItemTemplate>
+                        </u:AutoCompleteBox>
+                    </controls:DemoSectionView>
+                    <u:Banner 
+                        Type="Warning" 
+                        Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Header}}" 
+                        Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Content}}" />
+                    <controls:DemoSectionView
+                       SectionContext="{Binding ClearButtonSection}">
+                       <u:AutoCompleteBox
+                           Width="300"
+                           HorizontalAlignment="Center"
+                           Classes="ClearButton"
+                           ItemsSource="{Binding Controls}"
+                           PlaceholderText="Select an item and click clear"
+                           SelectedItem="{Binding ClearButtonSelectedControl, Mode=TwoWay}"
+                           Text="{Binding ClearButtonText, Mode=TwoWay}"
+                           ValueMemberBinding="{ReflectionBinding MenuHeader}" />
+                    </controls:DemoSectionView>
+                    
+                    <controls:DemoSectionView
+                        SectionContext="{Binding InnerContentSection}">
+                        <u:AutoCompleteBox
+                            Width="300"
+                            HorizontalAlignment="Center"
+                            InnerLeftContent="https://"
+                            InnerRightContent=".com"
+                            ItemsSource="{Binding Controls}"
+                            ValueMemberBinding="{ReflectionBinding MenuHeader}" />
+                    </controls:DemoSectionView>
+                </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>

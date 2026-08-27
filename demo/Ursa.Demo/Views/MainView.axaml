@@ -148,18 +148,12 @@
                 DockPanel.Dock="Top"
                 IsVisible="{Binding Path=., Converter={x:Static ObjectConverters.IsNotNull}}"
                 DataContext="{Binding PageMetadata}" />
-            <Border 
-                BorderThickness="{DynamicResource SemiBorderThicknessControl}" 
-                CornerRadius="{DynamicResource SemiBorderRadiusMedium}"
-                BorderBrush="{DynamicResource SemiColorBorder}"
-                >
-                <ContentControl
-                    Content="{Binding Content}">
-                    <ContentControl.ContentTemplate>
-                        <docs:GeneratedViewLocator />
-                    </ContentControl.ContentTemplate>
-                </ContentControl>
-            </Border>
+            <ContentControl
+                Content="{Binding Content}">
+                <ContentControl.ContentTemplate>
+                    <docs:GeneratedViewLocator />
+                </ContentControl.ContentTemplate>
+            </ContentControl>
         </DockPanel>
     </Panel>
 </UserControl>

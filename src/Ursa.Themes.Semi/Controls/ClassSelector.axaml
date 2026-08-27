@@ -1,0 +1,99 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <Design.PreviewWith>
+        <u:ClassSelector Width="300">
+            <u:ClassSelectorGroup Header="Size">
+                <u:ClassSelectorItem ClassName="Small" Content="Small" />
+                <u:ClassSelectorItem ClassName="Large" Content="Large" />
+            </u:ClassSelectorGroup>
+            <u:ClassSelectorGroup Header="Alignment">
+                <u:ClassSelectorItem ClassName="Left" Content="Left" />
+                <u:ClassSelectorItem ClassName="Right" Content="Right" />
+            </u:ClassSelectorGroup>
+        </u:ClassSelector>
+    </Design.PreviewWith>
+
+    <ControlTheme
+        x:Key="{x:Type u:ClassSelector}"
+        BasedOn="{StaticResource {x:Type u:MultiComboBox}}"
+        TargetType="u:ClassSelector" />
+
+    <ControlTheme x:Key="{x:Type u:ClassSelectorGroup}" TargetType="u:ClassSelectorGroup">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="ItemsPanel">
+            <ItemsPanelTemplate>
+                <StackPanel />
+            </ItemsPanelTemplate>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:ClassSelectorGroup">
+                <StackPanel Margin="0 4">
+                    <ContentPresenter
+                        Margin="12 4"
+                        Content="{TemplateBinding Header}"
+                        ContentTemplate="{TemplateBinding HeaderTemplate}"
+                        FontWeight="SemiBold"
+                        IsVisible="{TemplateBinding Header, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:ClassSelectorItem}" TargetType="u:ClassSelectorItem">
+        <Setter Property="Padding" Value="12 8" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Background" Value="{DynamicResource ComboBoxItemBackground}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:ClassSelectorItem">
+                <Border
+                    Padding="{TemplateBinding Padding}"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <Grid ColumnDefinitions="Auto,*">
+                        <PathIcon
+                            Name="CheckGlyph"
+                            Width="{DynamicResource CheckBoxBoxGlyphWidth}"
+                            Height="{DynamicResource CheckBoxBoxGlyphHeight}"
+                            Margin="0 0 8 0"
+                            VerticalAlignment="Center"
+                            Data="{DynamicResource SemiIconTick}"
+                            Opacity="0"
+                            Theme="{DynamicResource InnerPathIcon}" />
+                        <ContentPresenter
+                            Grid.Column="1"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            RecognizesAccessKey="True"
+                            TextWrapping="Wrap" />
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:pointerover">
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemPointeroverForeground}" />
+            <Setter Property="Background" Value="{DynamicResource ComboBoxItemPointeroverBackground}" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemPressedForeground}" />
+            <Setter Property="Background" Value="{DynamicResource ComboBoxItemPressedBackground}" />
+        </Style>
+        <Style Selector="^:selected /template/ PathIcon#CheckGlyph">
+            <Setter Property="Opacity" Value="1" />
+        </Style>
+        <Style Selector="^:disabled">
+            <Setter Property="Foreground" Value="{DynamicResource ListBoxItemDisabledForeground}" />
+            <Setter Property="Background" Value="{DynamicResource ListBoxItemDisabledBackground}" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

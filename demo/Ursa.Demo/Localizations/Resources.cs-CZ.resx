@@ -44,6 +44,9 @@
   <data name="Menu_Category_LayoutAndDisplay" xml:space="preserve">
     <value>Rozvržení a zobrazení</value>
   </data>
+  <data name="Menu_Category_DevUtilities" xml:space="preserve">
+    <value>Vývojářské nástroje</value>
+  </data>
 
   <!-- Buttons &amp; Inputs -->
   <data name="Menu_Header_ButtonGroup" xml:space="preserve">
@@ -697,6 +700,45 @@
   <data name="Page_Description_WindowDialog" xml:space="preserve">
     <value>Okenní dialog zobrazuje modální okna pro interakci uživatele.</value>
   </data>
+  <data name="Page_AutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>AutoCompleteBox v Ursa je v zásadě stejný jako nativní prvek Avalonia, ale navíc přidává funkci okamžitého rozbalení všech dostupných možností po kliknutí. AutoCompleteBox se obvykle používá ve stylu MVVM: kolekce se váže přes `ItemsSource` a vybraná položka přes `SelectedItem`.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ItemTemplate_Support_Header" xml:space="preserve">
+    <value>Podpora ItemTemplate</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ItemTemplate_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox umožňuje přizpůsobit vzhled a rozvržení možností pomocí ItemTemplate.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ClearButton_Support_Header" xml:space="preserve">
+    <value>Podpora třídy stylu ClearButton</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_ClearButton_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox podporuje třídu stylu `ClearButton`, takže lze jedním kliknutím vymazat jak vybranou položku, tak zadaný text.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_InnerContent_Support_Header" xml:space="preserve">
+    <value>Podpora InnerLeftContent a InnerRightContent</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Section_InnerContent_Support_Description" xml:space="preserve">
+    <value>AutoCompleteBox podporuje `InnerLeftContent` a `InnerRightContent`, takže lze uvnitř vstupního pole zobrazit doplňkový obsah vlevo i vpravo.</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Header" xml:space="preserve">
+    <value>Jak chápat ItemTemplate a ValueMemberBinding</value>
+  </data>
+  <data name="Page_AutoCompleteBox_Banner_ItemTemplate_ValueMemberBinding_Content" xml:space="preserve">
+    <value>Protože AutoCompleteBox musí vždy zobrazit vybranou položku v TextBoxu jako řetězec, i při vlastním vzhledu možností přes ItemTemplate je stále nutné pomocí ValueMemberBinding určit vlastnost, která se má zobrazit jako text vybrané položky. Jinak AutoCompleteBox nedokáže vybranou položku správně zobrazit. Pokud ItemTemplate není nastaven, AutoCompleteBox používá pro zobrazení možností ValueMemberBinding.</value>
+  </data>
+  <data name="DemoSection_Tag_Function" xml:space="preserve">
+    <value>Funkce</value>
+  </data>
+  <data name="DemoSection_Tag_Style" xml:space="preserve">
+    <value>Styl</value>
+  </data>
+  <data name="DemoSection_Tag_Others" xml:space="preserve">
+    <value>Ostatní</value>
+  </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">
     <value>Ukázky</value>
@@ -706,5 +748,20 @@
   </data>
   <data name="Tab_Header_Resources" xml:space="preserve">
     <value>Zdroje</value>
+  </data>
+  <data name="Menu_Header_ClassSelector" xml:space="preserve">
+    <value>Výběr tříd</value>
+  </data>
+  <data name="Page_Title_ClassSelector" xml:space="preserve">
+    <value>ClassSelector</value>
+  </data>
+  <data name="Page_Description_ClassSelector" xml:space="preserve">
+    <value>ClassSelector vybírá třídy stylů a zajišťuje vzájemné vyloučení možností v každé skupině.</value>
+  </data>
+  <data name="Page_ClassSelector_Section_Grouped_Selection_Header" xml:space="preserve">
+    <value>Seskupený výběr tříd</value>
+  </data>
+  <data name="Page_ClassSelector_Section_Grouped_Selection_Description" xml:space="preserve">
+    <value>Možnosti ve stejné skupině se vzájemně vylučují. Výběr třídy z jiné skupiny zachová stávající výběr.</value>
   </data>
 </root>
