@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Irihi.Dogma.Controls;
 using Ursa.Demo.Models;
 
 using Ursa.Demo.ViewModels.Controls;
@@ -17,6 +18,9 @@ public class MultiAutoCompleteBoxDemoViewModel : ObservableObject, IPageMetadata
 {
     public const string Category_Key = "MultiAutoCompleteBox";
     public const string Menu_Header = "Menu_Header_MultiAutoCompleteBox";
+    private const string BasicUsageAnchorId = "multi-auto-complete-box-basic-usage";
+    private const string CustomFilterAndTemplateAnchorId = "multi-auto-complete-box-custom-filter-and-template";
+
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_MultiAutoCompleteBox,
@@ -30,11 +34,67 @@ public class MultiAutoCompleteBoxDemoViewModel : ObservableObject, IPageMetadata
     };
 
     public ObservableCollection<ControlData> Items { get; set; }
+    public ObservableCollection<ControlData> BasicSelectedItems { get; set; }
     public ObservableCollection<ControlData> SelectedItems { get; set; }
     public AutoCompleteFilterPredicate<object> FilterPredicate { get; set; }
+    public DemoSectionViewModel BasicSection { get; }
+    public DemoSectionViewModel CustomFilterAndTemplateSection { get; }
+
+    public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; } =
+    [
+        new()
+        {
+            Header = LanguageManager.Instance.Page_MultiAutoCompleteBox_Section_Basic_Usage_Header,
+            AnchorId = BasicUsageAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Header,
+            AnchorId = CustomFilterAndTemplateAnchorId
+        }
+    ];
 
     public MultiAutoCompleteBoxDemoViewModel()
     {
+        BasicSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_MultiAutoCompleteBox_Section_Basic_Usage_Header,
+            Descriptions = { LanguageManager.Instance.Page_MultiAutoCompleteBox_Section_Basic_Usage_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = BasicUsageAnchorId
+        };
+        BasicSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:MultiAutoCompleteBox
+                              ItemsSource="{Binding Items}"
+                              SelectedItems="{Binding BasicSelectedItems}" />
+                          """
+        });
+
+        CustomFilterAndTemplateSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Header,
+            Descriptions = { LanguageManager.Instance.Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description },
+            SectionTag = DemoSectionTag.Others,
+            AnchorId = CustomFilterAndTemplateAnchorId
+        };
+        CustomFilterAndTemplateSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:MultiAutoCompleteBox
+                              ItemsSource="{Binding Items}"
+                              SelectedItems="{Binding SelectedItems}"
+                              ItemFilter="{Binding FilterPredicate}"
+                              FilterMode="Custom" />
+                          """
+        });
+
+        BasicSelectedItems = new ObservableCollection<ControlData>();
         SelectedItems = new ObservableCollection<ControlData>();
         Items = new ObservableCollection<ControlData>
         {

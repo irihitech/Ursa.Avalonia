@@ -764,4 +764,58 @@
   <data name="Page_ClassSelector_Section_Grouped_Selection_Description" xml:space="preserve">
     <value>Les options d’un même groupe sont mutuellement exclusives. La sélection d’une classe dans un autre groupe conserve la sélection existante.</value>
   </data>
+  <data name="Page_EnumSelector_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Basic usage</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Select enum types at runtime and bind selected enum values.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Small_Size_Header" xml:space="preserve">
+    <value>Small size</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Small_Size_Description" xml:space="preserve">
+    <value>Apply the Small class to render a compact enum selector.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_EnumValues_Header" xml:space="preserve">
+    <value>Custom enum values</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_EnumValues_Description" xml:space="preserve">
+    <value>Limit available enum values from binding or inline XAML lists.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_DisplayNames_Header" xml:space="preserve">
+    <value>Custom display names</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_DisplayNames_Description" xml:space="preserve">
+    <value>Provide EnumItemTuple values to show custom display names.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
+    <value>Basic binding</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Basic_Binding_Description" xml:space="preserve">
+    <value>Bind items and selected items collections for multi-selection.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Advanced_Customization_Header" xml:space="preserve">
+    <value>Advanced customization</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Advanced_Customization_Description" xml:space="preserve">
+    <value>Combine clear button styles, inner content, popup content, and selection commands.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Inline_Items_Header" xml:space="preserve">
+    <value>Inline items</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Inline_Items_Description" xml:space="preserve">
+    <value>Declare MultiComboBoxItem options directly in XAML content.</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Basic usage</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Select multiple items with default filtering behavior.</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Header" xml:space="preserve">
+    <value>Custom filter and template</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
+    <value>Use a custom filter predicate with custom item and selected-item templates.</value>
+  </data>
 </root>

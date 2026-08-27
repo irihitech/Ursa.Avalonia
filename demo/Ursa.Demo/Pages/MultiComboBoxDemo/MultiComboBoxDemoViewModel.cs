@@ -3,7 +3,8 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-
+using Irihi.Dogma.Controls;
+ 
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 using Irihi.Dogma.Docs;
@@ -17,6 +18,10 @@ public class MultiComboBoxDemoViewModel: ObservableObject, IPageMetadataProvider
 {
     public const string Category_Key = "MultiComboBox";
     public const string Menu_Header = "Menu_Header_MultiComboBox";
+    private const string BasicBindingAnchorId = "multi-combo-box-basic-binding";
+    private const string AdvancedCustomizationAnchorId = "multi-combo-box-advanced-customization";
+    private const string InlineItemsAnchorId = "multi-combo-box-inline-items";
+
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_MultiComboBox,
@@ -32,6 +37,29 @@ public class MultiComboBoxDemoViewModel: ObservableObject, IPageMetadataProvider
     public ObservableCollection<string> Items { get; set; }
     
     public ObservableCollection<string> SelectedItems { get; set; }
+
+    public DemoSectionViewModel BasicBindingSection { get; }
+    public DemoSectionViewModel AdvancedCustomizationSection { get; }
+    public DemoSectionViewModel InlineItemsSection { get; }
+
+    public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; } =
+    [
+        new()
+        {
+            Header = LanguageManager.Instance.Page_MultiComboBox_Section_Basic_Binding_Header,
+            AnchorId = BasicBindingAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_MultiComboBox_Section_Advanced_Customization_Header,
+            AnchorId = AdvancedCustomizationAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_MultiComboBox_Section_Inline_Items_Header,
+            AnchorId = InlineItemsAnchorId
+        }
+    ];
 
     public ICommand SelectAllCommand => new RelayCommand(() =>
     {
@@ -62,6 +90,74 @@ public class MultiComboBoxDemoViewModel: ObservableObject, IPageMetadataProvider
     
     public MultiComboBoxDemoViewModel()
     {
+        BasicBindingSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_MultiComboBox_Section_Basic_Binding_Header,
+            Descriptions = { LanguageManager.Instance.Page_MultiComboBox_Section_Basic_Binding_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = BasicBindingAnchorId
+        };
+        BasicBindingSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:MultiComboBox
+                              PlaceholderText="Please Select"
+                              Width="300"
+                              SelectedItems="{Binding SelectedItems}"
+                              ItemsSource="{Binding Items}" />
+                          """
+        });
+
+        AdvancedCustomizationSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_MultiComboBox_Section_Advanced_Customization_Header,
+            Descriptions = { LanguageManager.Instance.Page_MultiComboBox_Section_Advanced_Customization_Description },
+            SectionTag = DemoSectionTag.Others,
+            AnchorId = AdvancedCustomizationAnchorId
+        };
+        AdvancedCustomizationSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:MultiComboBox
+                              Classes="ClearButton"
+                              InnerLeftContent="Left"
+                              InnerRightContent="Right"
+                              SelectedItems="{Binding SelectedItems}"
+                              ItemsSource="{Binding Items}">
+                              <u:MultiComboBox.PopupInnerTopContent>
+                                  <StackPanel Orientation="Horizontal">
+                                      <Button Content="Select All" Command="{Binding SelectAllCommand}" />
+                                      <Button Content="Unselect All" Command="{Binding ClearAllCommand}" />
+                                  </StackPanel>
+                              </u:MultiComboBox.PopupInnerTopContent>
+                          </u:MultiComboBox>
+                          """
+        });
+
+        InlineItemsSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_MultiComboBox_Section_Inline_Items_Header,
+            Descriptions = { LanguageManager.Instance.Page_MultiComboBox_Section_Inline_Items_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = InlineItemsAnchorId
+        };
+        InlineItemsSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:MultiComboBox>
+                              <u:MultiComboBoxItem>option 1</u:MultiComboBoxItem>
+                              <u:MultiComboBoxItem>option 2</u:MultiComboBoxItem>
+                              <Button>option 3</Button>
+                          </u:MultiComboBox>
+                          """
+        });
+
         Items = new ObservableCollection<string>()
         {
             "Item 1",
