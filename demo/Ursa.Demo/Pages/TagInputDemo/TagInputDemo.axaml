@@ -29,7 +29,31 @@
                             Tags="{Binding Tags}" />
                     </controls:DemoSectionView>
 
-                    <controls:DemoSectionView SectionContext="{Binding DistinctAndMultilineSection}">
+                    <controls:DemoSectionView SectionContext="{Binding SeparatorBehaviorSection}">
+                        <StackPanel Spacing="12">
+                            <u:TagInput
+                                Width="420"
+                                HorizontalAlignment="Left"
+                                Separator=","
+                                PlaceholderText="With separator: type a,b,c then press Enter"
+                                Tags="{Binding SeparatorTags}" />
+                            <ListBox
+                                Width="420"
+                                HorizontalAlignment="Left"
+                                ItemsSource="{Binding SeparatorTags}" />
+                            <u:TagInput
+                                Width="420"
+                                HorizontalAlignment="Left"
+                                PlaceholderText="Without separator: type a,b,c then press Enter"
+                                Tags="{Binding NoSeparatorTags}" />
+                            <ListBox
+                                Width="420"
+                                HorizontalAlignment="Left"
+                                ItemsSource="{Binding NoSeparatorTags}" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding DistinctSection}">
                         <StackPanel Spacing="12">
                             <u:TagInput
                                 Width="420"
@@ -43,6 +67,11 @@
                                 Width="420"
                                 HorizontalAlignment="Left"
                                 ItemsSource="{Binding DistinctTags}" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding MultilineSection}">
+                        <StackPanel Spacing="12">
                             <u:TagInput
                                 Width="420"
                                 HorizontalAlignment="Left"
@@ -51,7 +80,11 @@
                                 LostFocusBehavior="Clear"
                                 Separator="-"
                                 PlaceholderText="Accepts multiline paste"
-                                Tags="{Binding DistinctTags}" />
+                                Tags="{Binding MultilineTags}" />
+                            <ListBox
+                                Width="420"
+                                HorizontalAlignment="Left"
+                                ItemsSource="{Binding MultilineTags}" />
                         </StackPanel>
                     </controls:DemoSectionView>
                 </StackPanel>

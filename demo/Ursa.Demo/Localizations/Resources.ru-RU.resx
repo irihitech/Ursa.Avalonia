@@ -842,11 +842,23 @@
   <data name="Page_TagInput_Section_Basic_Usage_Description" xml:space="preserve">
     <value>Вводите теги, разделённые настроенным разделителем, и сохраняйте дубликаты, когда включён AllowDuplicates.</value>
   </data>
-  <data name="Page_TagInput_Section_Distinct_And_Multiline_Header" xml:space="preserve">
-    <value>Уникальные теги и многострочный ввод</value>
+  <data name="Page_TagInput_Section_Separator_Behavior_Header" xml:space="preserve">
+    <value>Поведение разделителя</value>
   </data>
-  <data name="Page_TagInput_Section_Distinct_And_Multiline_Description" xml:space="preserve">
-    <value>Очищайте незавершённый текст при потере фокуса, предотвращайте дубликаты и разрешайте многострочный ввод для вставки или редактирования длинных значений.</value>
+  <data name="Page_TagInput_Section_Separator_Behavior_Description" xml:space="preserve">
+    <value>Если задан Separator, при подтверждении ввод разделяется по разделителю. Без Separator весь ввод подтверждается как один тег. Нажмите Enter, чтобы подтвердить ввод.</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Header" xml:space="preserve">
+    <value>Уникальные теги</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Description" xml:space="preserve">
+    <value>Установите AllowDuplicates в False, чтобы предотвращать дубликаты тегов, и очищайте незавершённый текст при потере фокуса.</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Header" xml:space="preserve">
+    <value>Многострочный ввод</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Description" xml:space="preserve">
+    <value>Установите AcceptsReturn в True, чтобы вводить или вставлять многострочные значения.</value>
   </data>
   <data name="Page_TreeComboBox_Section_Inline_Items_Header" xml:space="preserve">
     <value>Встроенные элементы</value>
@@ -914,23 +926,35 @@
   <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
     <value>Привяжите свойство IPAddress к данным view model и покажите отключённое состояние IPv4Box.</value>
   </data>
-  <data name="Page_IconButton_Section_Action_Button_Variants_Header" xml:space="preserve">
-    <value>Варианты кнопок действий</value>
+  <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
   </data>
-  <data name="Page_IconButton_Section_Action_Button_Variants_Description" xml:space="preserve">
-    <value>Сравните IconButton, IconDropDownButton и IconSplitButton для разных размеров, тем и состояний загрузки.</value>
+  <data name="Page_IconButton_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Ursa IconButton — это семейство элементов управления, включающее IconButton, IconDropDownButton, IconRepeatButton, IconSplitButton, IconToggleButton и IconToggleSplitButton.</value>
   </data>
-  <data name="Page_IconButton_Section_Toggle_Button_Variants_Header" xml:space="preserve">
-    <value>Варианты переключаемых кнопок</value>
+  <data name="Page_IconButton_Section_Theme_Variants_Header" xml:space="preserve">
+    <value>Варианты темы</value>
   </data>
-  <data name="Page_IconButton_Section_Toggle_Button_Variants_Description" xml:space="preserve">
-    <value>Покажите IconToggleButton и IconToggleSplitButton в состояниях отмечено, не отмечено и неопределено.</value>
+  <data name="Page_IconButton_Section_Theme_Variants_Description" xml:space="preserve">
+    <value>IconButton поддерживает дополнительные темы: SolidIconButton, OutlineIconButton и BorderlessIconButton.</value>
   </data>
-  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Header" xml:space="preserve">
-    <value>Загрузка и пользовательские иконки</value>
+  <data name="Page_IconButton_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стилей</value>
   </data>
-  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Description" xml:space="preserve">
-    <value>Привяжите состояние загрузки и положение иконки к свойствам view model для интерактивного предпросмотра.</value>
+  <data name="Page_IconButton_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте ClassSelector для сочетания цветовых классов (Primary, Secondary, Tertiary, Success, Warning, Danger, Colorful) и классов размеров (Small, Large).</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Header" xml:space="preserve">
+    <value>Расположение иконки</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Description" xml:space="preserve">
+    <value>Используйте EnumSelector для управления IconPlacement и интерактивного предварительного просмотра разных положений иконки.</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Header" xml:space="preserve">
+    <value>Состояние загрузки</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Description" xml:space="preserve">
+    <value>Используйте ToggleSwitch для управления IsLoading и предварительного просмотра индикаторов загрузки на кнопках с иконкой.</value>
   </data>
   <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Header" xml:space="preserve">
     <value>Шаблоны элементов и команды</value>

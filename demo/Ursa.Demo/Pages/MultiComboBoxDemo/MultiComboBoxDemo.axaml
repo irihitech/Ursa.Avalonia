@@ -37,11 +37,11 @@
                                 DockPanel.Dock="Right" 
                                 Target="{Binding #styleTarget}">
                                 <u:ClassSelectorGroup Header="Size">
-                                    <u:ClassSelectorItem ClassName="Small">Small</u:ClassSelectorItem>
-                                    <u:ClassSelectorItem ClassName="Large">Large</u:ClassSelectorItem>
+                                    <u:ClassSelectorItem ClassName="Small" />
+                                    <u:ClassSelectorItem ClassName="Large" />
                                 </u:ClassSelectorGroup>
                                 <u:ClassSelectorGroup Header="Others">
-                                    <u:ClassSelectorItem ClassName="ClearButton">ClearButton</u:ClassSelectorItem>
+                                    <u:ClassSelectorItem ClassName="ClearButton" />
                                 </u:ClassSelectorGroup>
                             </u:ClassSelector>
                             <u:MultiComboBox

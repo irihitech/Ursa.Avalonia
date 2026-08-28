@@ -842,11 +842,23 @@
   <data name="Page_TagInput_Section_Basic_Usage_Description" xml:space="preserve">
     <value>Zadávejte tagy oddělené nastaveným oddělovačem a při zapnutém AllowDuplicates ponechejte duplicitní hodnoty.</value>
   </data>
-  <data name="Page_TagInput_Section_Distinct_And_Multiline_Header" xml:space="preserve">
-    <value>Jedinečné tagy a víceřádkový vstup</value>
+  <data name="Page_TagInput_Section_Separator_Behavior_Header" xml:space="preserve">
+    <value>Chování oddělovače</value>
   </data>
-  <data name="Page_TagInput_Section_Distinct_And_Multiline_Description" xml:space="preserve">
-    <value>Při ztrátě fokusu vyčistěte nedokončený text, zabraňte duplicitám a povolte víceřádkový vstup pro vložení nebo úpravu delších hodnot.</value>
+  <data name="Page_TagInput_Section_Separator_Behavior_Description" xml:space="preserve">
+    <value>Pokud je nastaven Separator, vstup se při potvrzení rozdělí podle oddělovače. Bez Separator se celý vstup potvrdí jako jeden tag. Pro potvrzení vstupu stiskněte Enter.</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Header" xml:space="preserve">
+    <value>Jedinečné tagy</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Description" xml:space="preserve">
+    <value>Nastavením AllowDuplicates na False zabráníte duplicitním tagům a při ztrátě fokusu vyčistíte nedokončený text.</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Header" xml:space="preserve">
+    <value>Víceřádkový vstup</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Description" xml:space="preserve">
+    <value>Nastavením AcceptsReturn na True povolíte zadávání nebo vkládání víceřádkových hodnot.</value>
   </data>
   <data name="Page_TreeComboBox_Section_Inline_Items_Header" xml:space="preserve">
     <value>Vložené položky</value>
@@ -914,23 +926,35 @@
   <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
     <value>Navažte vlastnost IPAddress na data ve view modelu a zobrazte zakázaný stav IPv4Boxu.</value>
   </data>
-  <data name="Page_IconButton_Section_Action_Button_Variants_Header" xml:space="preserve">
-    <value>Varianty akčních tlačítek</value>
+  <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
   </data>
-  <data name="Page_IconButton_Section_Action_Button_Variants_Description" xml:space="preserve">
-    <value>Porovnejte IconButton, IconDropDownButton a IconSplitButton napříč velikostmi, tématy a stavy načítání.</value>
+  <data name="Page_IconButton_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Ursa IconButton je rodina ovládacích prvků zahrnující IconButton, IconDropDownButton, IconRepeatButton, IconSplitButton, IconToggleButton a IconToggleSplitButton.</value>
   </data>
-  <data name="Page_IconButton_Section_Toggle_Button_Variants_Header" xml:space="preserve">
-    <value>Varianty přepínacích tlačítek</value>
+  <data name="Page_IconButton_Section_Theme_Variants_Header" xml:space="preserve">
+    <value>Varianty motivu</value>
   </data>
-  <data name="Page_IconButton_Section_Toggle_Button_Variants_Description" xml:space="preserve">
-    <value>Předveďte IconToggleButton a IconToggleSplitButton ve stavech zaškrtnuto, nezaškrtnuto a neurčeno.</value>
+  <data name="Page_IconButton_Section_Theme_Variants_Description" xml:space="preserve">
+    <value>IconButton podporuje další motivy: SolidIconButton, OutlineIconButton a BorderlessIconButton.</value>
   </data>
-  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Header" xml:space="preserve">
-    <value>Načítání a vlastní ikony</value>
+  <data name="Page_IconButton_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
   </data>
-  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Description" xml:space="preserve">
-    <value>Navažte stav načítání a umístění ikony na vlastnosti view modelu pro interaktivní náhledy.</value>
+  <data name="Page_IconButton_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Použijte ClassSelector ke kombinování barevných tříd (Primary, Secondary, Tertiary, Success, Warning, Danger, Colorful) a velikostních tříd (Small, Large).</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Header" xml:space="preserve">
+    <value>Umístění ikony</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Description" xml:space="preserve">
+    <value>Použijte EnumSelector k ovládání IconPlacement a interaktivnímu náhledu různých pozic ikony.</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Header" xml:space="preserve">
+    <value>Stav načítání</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Description" xml:space="preserve">
+    <value>Použijte ToggleSwitch k ovládání IsLoading a náhledu indikátorů načítání u tlačítek s ikonou.</value>
   </data>
   <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Header" xml:space="preserve">
     <value>Šablony položek a příkazy</value>

@@ -848,11 +848,23 @@
   <data name="Page_TagInput_Section_Basic_Usage_Description" xml:space="preserve">
     <value>Enter tags separated by the configured separator and keep duplicate values when AllowDuplicates is enabled.</value>
   </data>
-  <data name="Page_TagInput_Section_Distinct_And_Multiline_Header" xml:space="preserve">
-    <value>Distinct tags and multiline input</value>
+  <data name="Page_TagInput_Section_Separator_Behavior_Header" xml:space="preserve">
+    <value>Separator behavior</value>
   </data>
-  <data name="Page_TagInput_Section_Distinct_And_Multiline_Description" xml:space="preserve">
-    <value>Clear pending text on focus loss, prevent duplicates, and allow multi-line input for pasting or editing longer values.</value>
+  <data name="Page_TagInput_Section_Separator_Behavior_Description" xml:space="preserve">
+    <value>With Separator set, input is split by the separator when committed. Without Separator, the whole input is committed as one tag. Press Enter to commit input.</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Header" xml:space="preserve">
+    <value>Distinct tags</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Description" xml:space="preserve">
+    <value>Set AllowDuplicates to False to prevent duplicate tags and clear pending text on focus loss.</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Header" xml:space="preserve">
+    <value>Multiline input</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Description" xml:space="preserve">
+    <value>Set AcceptsReturn to True to enter or paste multiline values.</value>
   </data>
   <data name="Page_TreeComboBox_Section_Inline_Items_Header" xml:space="preserve">
     <value>Inline items</value>
@@ -920,23 +932,35 @@
   <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
     <value>Bind the IPAddress property to view model data and show a disabled IPv4Box state.</value>
   </data>
-  <data name="Page_IconButton_Section_Action_Button_Variants_Header" xml:space="preserve">
-    <value>Action button variants</value>
+  <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Basic Usage</value>
   </data>
-  <data name="Page_IconButton_Section_Action_Button_Variants_Description" xml:space="preserve">
-    <value>Compare IconButton, IconDropDownButton, and IconSplitButton across sizes, themes, and loading states.</value>
+  <data name="Page_IconButton_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Ursa IconButton is a family of controls including IconButton, IconDropDownButton, IconRepeatButton, IconSplitButton, IconToggleButton, and IconToggleSplitButton.</value>
   </data>
-  <data name="Page_IconButton_Section_Toggle_Button_Variants_Header" xml:space="preserve">
-    <value>Toggle button variants</value>
+  <data name="Page_IconButton_Section_Theme_Variants_Header" xml:space="preserve">
+    <value>Theme Variants</value>
   </data>
-  <data name="Page_IconButton_Section_Toggle_Button_Variants_Description" xml:space="preserve">
-    <value>Demonstrate IconToggleButton and IconToggleSplitButton with checked, unchecked, and indeterminate states.</value>
+  <data name="Page_IconButton_Section_Theme_Variants_Description" xml:space="preserve">
+    <value>IconButton supports additional themes: SolidIconButton, OutlineIconButton, and BorderlessIconButton.</value>
   </data>
-  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Header" xml:space="preserve">
-    <value>Loading and custom icons</value>
+  <data name="Page_IconButton_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Style Classes</value>
   </data>
-  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Description" xml:space="preserve">
-    <value>Bind loading state and icon placement to view model properties for interactive previews.</value>
+  <data name="Page_IconButton_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Use ClassSelector to combine color classes (Primary, Secondary, Tertiary, Success, Warning, Danger, Colorful) and size classes (Small, Large).</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Header" xml:space="preserve">
+    <value>Icon Placement</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Description" xml:space="preserve">
+    <value>Use EnumSelector to control IconPlacement and preview different icon positions interactively.</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Header" xml:space="preserve">
+    <value>Loading State</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Description" xml:space="preserve">
+    <value>Use a ToggleSwitch to control IsLoading and preview loading indicators on icon buttons.</value>
   </data>
   <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Header" xml:space="preserve">
     <value>Item templates and commands</value>

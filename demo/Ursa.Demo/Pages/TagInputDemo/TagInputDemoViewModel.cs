@@ -16,7 +16,9 @@ public class TagInputDemoViewModel: ViewModelBase, IPageMetadataProvider
     public const string Category_Key = "TagInput";
     public const string Menu_Header = "Menu_Header_TagInput";
     private const string BasicUsageAnchorId = "tag-input-basic-usage";
-    private const string DistinctAndMultilineAnchorId = "tag-input-distinct-and-multiline";
+    private const string SeparatorBehaviorAnchorId = "tag-input-separator-behavior";
+    private const string DistinctTagsAnchorId = "tag-input-distinct-tags";
+    private const string MultilineInputAnchorId = "tag-input-multiline-input";
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_TagInput,
@@ -30,7 +32,9 @@ public class TagInputDemoViewModel: ViewModelBase, IPageMetadataProvider
     };
 
     public DemoSectionViewModel BasicUsageSection { get; }
-    public DemoSectionViewModel DistinctAndMultilineSection { get; }
+    public DemoSectionViewModel SeparatorBehaviorSection { get; }
+    public DemoSectionViewModel DistinctSection { get; }
+    public DemoSectionViewModel MultilineSection { get; }
 
     public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; } =
     [
@@ -41,8 +45,18 @@ public class TagInputDemoViewModel: ViewModelBase, IPageMetadataProvider
         },
         new()
         {
-            Header = LanguageManager.Instance.Page_TagInput_Section_Distinct_And_Multiline_Header,
-            AnchorId = DistinctAndMultilineAnchorId
+            Header = LanguageManager.Instance.Page_TagInput_Section_Separator_Behavior_Header,
+            AnchorId = SeparatorBehaviorAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_TagInput_Section_Distinct_Tags_Header,
+            AnchorId = DistinctTagsAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_TagInput_Section_Multiline_Input_Header,
+            AnchorId = MultilineInputAnchorId
         }
     ];
 
@@ -72,23 +86,45 @@ public class TagInputDemoViewModel: ViewModelBase, IPageMetadataProvider
             CodeSnippetLanguage = CodeLanguage.CSharp,
             TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
             CodeSnippet = """
-                          private ObservableCollection<string> _tags = new();
-                          public ObservableCollection<string> Tags
-                          {
-                              get => _tags;
-                              set => SetProperty(ref _tags, value);
-                          }
+                          // Collection must be initialized
+                          public ObservableCollection<string> Tags { get; set; } = [];
                           """
         });
 
-        DistinctAndMultilineSection = new DemoSectionViewModel
+        SeparatorBehaviorSection = new DemoSectionViewModel
         {
-            Header = LanguageManager.Instance.Page_TagInput_Section_Distinct_And_Multiline_Header,
-            Descriptions = { LanguageManager.Instance.Page_TagInput_Section_Distinct_And_Multiline_Description },
-            SectionTag = DemoSectionTag.Others,
-            AnchorId = DistinctAndMultilineAnchorId
+            Header = LanguageManager.Instance.Page_TagInput_Section_Separator_Behavior_Header,
+            Descriptions = { LanguageManager.Instance.Page_TagInput_Section_Separator_Behavior_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = SeparatorBehaviorAnchorId
         };
-        DistinctAndMultilineSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        SeparatorBehaviorSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:TagInput Separator="," Tags="{Binding SeparatorTags}" />
+                          <u:TagInput Tags="{Binding NoSeparatorTags}" />
+                          """
+        });
+        SeparatorBehaviorSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.CSharp,
+            TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
+            CodeSnippet = """
+                          public ObservableCollection<string> SeparatorTags { get; set; } = [];
+                          public ObservableCollection<string> NoSeparatorTags { get; set; } = [];
+                          """
+        });
+
+        DistinctSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_TagInput_Section_Distinct_Tags_Header,
+            Descriptions = { LanguageManager.Instance.Page_TagInput_Section_Distinct_Tags_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = DistinctTagsAnchorId
+        };
+        DistinctSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
         {
             CodeSnippetLanguage = CodeLanguage.Axaml,
             TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
@@ -98,41 +134,55 @@ public class TagInputDemoViewModel: ViewModelBase, IPageMetadataProvider
                               LostFocusBehavior="Clear"
                               Separator="-"
                               Tags="{Binding DistinctTags}" />
+                          """
+        });
+        DistinctSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.CSharp,
+            TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
+            CodeSnippet = """
+                          public ObservableCollection<string> DistinctTags { get; set; } = [];
+                          """
+        });
 
+        MultilineSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_TagInput_Section_Multiline_Input_Header,
+            Descriptions = { LanguageManager.Instance.Page_TagInput_Section_Multiline_Input_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = MultilineInputAnchorId
+        };
+        MultilineSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
                           <u:TagInput
                               AllowDuplicates="False"
                               AcceptsReturn="True"
                               LostFocusBehavior="Clear"
                               Separator="-"
-                              Tags="{Binding DistinctTags}" />
+                              Tags="{Binding MultilineTags}" />
                           """
         });
-        DistinctAndMultilineSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        MultilineSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
         {
             CodeSnippetLanguage = CodeLanguage.CSharp,
             TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
             CodeSnippet = """
-                          private ObservableCollection<string> _distinctTags = new();
-                          public ObservableCollection<string> DistinctTags
-                          {
-                              get => _distinctTags;
-                              set => SetProperty(ref _distinctTags, value);
-                          }
+                          public ObservableCollection<string> MultilineTags { get; set; } = [];
                           """
         });
     }
 
-    private ObservableCollection<string> _tags = new () ;
-    public ObservableCollection<string> Tags
-    {
-        get => _tags;
-        set => SetProperty(ref _tags, value);
-    }
 
-    private ObservableCollection<string> _distinctTags = new();
-    public ObservableCollection<string> DistinctTags
-    {
-        get => _distinctTags;
-        set => SetProperty(ref _distinctTags, value);
-    }
+    public ObservableCollection<string> Tags { get; set; } = [];
+
+    public ObservableCollection<string> SeparatorTags { get; set; } = [];
+
+    public ObservableCollection<string> NoSeparatorTags { get; set; } = [];
+
+    public ObservableCollection<string> DistinctTags { get; set; } = [];
+
+    public ObservableCollection<string> MultilineTags { get; set; } = [];
 }

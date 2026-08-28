@@ -841,11 +841,23 @@
   <data name="Page_TagInput_Section_Basic_Usage_Description" xml:space="preserve">
     <value>Geben Sie Tags getrennt durch das konfigurierte Trennzeichen ein und behalten Sie doppelte Werte bei, wenn AllowDuplicates aktiviert ist.</value>
   </data>
-  <data name="Page_TagInput_Section_Distinct_And_Multiline_Header" xml:space="preserve">
-    <value>Eindeutige Tags und mehrzeilige Eingabe</value>
+  <data name="Page_TagInput_Section_Separator_Behavior_Header" xml:space="preserve">
+    <value>Verhalten mit Trennzeichen</value>
   </data>
-  <data name="Page_TagInput_Section_Distinct_And_Multiline_Description" xml:space="preserve">
-    <value>Löschen Sie ausstehenden Text beim Fokusverlust, verhindern Sie Duplikate und erlauben Sie mehrzeilige Eingaben zum Einfügen oder Bearbeiten längerer Werte.</value>
+  <data name="Page_TagInput_Section_Separator_Behavior_Description" xml:space="preserve">
+    <value>Wenn Separator gesetzt ist, wird die Eingabe beim Bestätigen anhand des Trennzeichens aufgeteilt. Ohne Separator wird die gesamte Eingabe als ein Tag übernommen. Drücken Sie Enter, um die Eingabe zu bestätigen.</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Header" xml:space="preserve">
+    <value>Eindeutige Tags</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Description" xml:space="preserve">
+    <value>Setzen Sie AllowDuplicates auf False, um doppelte Tags zu verhindern, und löschen Sie ausstehenden Text beim Fokusverlust.</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Header" xml:space="preserve">
+    <value>Mehrzeilige Eingabe</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Description" xml:space="preserve">
+    <value>Setzen Sie AcceptsReturn auf True, um mehrzeilige Werte einzugeben oder einzufügen.</value>
   </data>
   <data name="Page_TreeComboBox_Section_Inline_Items_Header" xml:space="preserve">
     <value>Inline-Elemente</value>
@@ -913,23 +925,35 @@
   <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
     <value>Binden Sie die Eigenschaft IPAddress an ViewModel-Daten und zeigen Sie einen deaktivierten IPv4Box-Zustand an.</value>
   </data>
-  <data name="Page_IconButton_Section_Action_Button_Variants_Header" xml:space="preserve">
-    <value>Varianten von Aktionsschaltflächen</value>
+  <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Grundlegende Verwendung</value>
   </data>
-  <data name="Page_IconButton_Section_Action_Button_Variants_Description" xml:space="preserve">
-    <value>Vergleichen Sie IconButton, IconDropDownButton und IconSplitButton über Größen, Designs und Ladezustände hinweg.</value>
+  <data name="Page_IconButton_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Ursa IconButton ist eine Steuerelementfamilie, die IconButton, IconDropDownButton, IconRepeatButton, IconSplitButton, IconToggleButton und IconToggleSplitButton umfasst.</value>
   </data>
-  <data name="Page_IconButton_Section_Toggle_Button_Variants_Header" xml:space="preserve">
-    <value>Varianten von Umschaltflächen</value>
+  <data name="Page_IconButton_Section_Theme_Variants_Header" xml:space="preserve">
+    <value>Themenvarianten</value>
   </data>
-  <data name="Page_IconButton_Section_Toggle_Button_Variants_Description" xml:space="preserve">
-    <value>Zeigen Sie IconToggleButton und IconToggleSplitButton mit aktivierten, deaktivierten und unbestimmten Zuständen.</value>
+  <data name="Page_IconButton_Section_Theme_Variants_Description" xml:space="preserve">
+    <value>IconButton unterstützt zusätzliche Designs: SolidIconButton, OutlineIconButton und BorderlessIconButton.</value>
   </data>
-  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Header" xml:space="preserve">
-    <value>Laden und benutzerdefinierte Symbole</value>
+  <data name="Page_IconButton_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Stilklassen</value>
   </data>
-  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Description" xml:space="preserve">
-    <value>Binden Sie Ladezustand und Symbolposition an ViewModel-Eigenschaften für interaktive Vorschauen.</value>
+  <data name="Page_IconButton_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Verwenden Sie den ClassSelector, um Farbklassen (Primary, Secondary, Tertiary, Success, Warning, Danger, Colorful) und Größenklassen (Small, Large) zu kombinieren.</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Header" xml:space="preserve">
+    <value>Symbolposition</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Description" xml:space="preserve">
+    <value>Verwenden Sie EnumSelector, um IconPlacement zu steuern und verschiedene Symbolpositionen interaktiv anzuzeigen.</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Header" xml:space="preserve">
+    <value>Ladezustand</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Description" xml:space="preserve">
+    <value>Verwenden Sie einen ToggleSwitch, um IsLoading zu steuern und Ladeindikatoren auf Icon-Schaltflächen anzuzeigen.</value>
   </data>
   <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Header" xml:space="preserve">
     <value>Elementvorlagen und Befehle</value>

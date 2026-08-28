@@ -834,11 +834,23 @@
   <data name="Page_TagInput_Section_Basic_Usage_Description" xml:space="preserve">
     <value>使用配置好的分隔符输入标签，并在启用 AllowDuplicates 时保留重复值。</value>
   </data>
-  <data name="Page_TagInput_Section_Distinct_And_Multiline_Header" xml:space="preserve">
-    <value>去重标签与多行输入</value>
+  <data name="Page_TagInput_Section_Separator_Behavior_Header" xml:space="preserve">
+    <value>分隔符行为</value>
   </data>
-  <data name="Page_TagInput_Section_Distinct_And_Multiline_Description" xml:space="preserve">
-    <value>在失去焦点时清除未完成文本，阻止重复项，并允许多行输入以便粘贴或编辑较长内容。</value>
+  <data name="Page_TagInput_Section_Separator_Behavior_Description" xml:space="preserve">
+    <value>设置 Separator 后，提交时会按分隔符拆分输入；不设置 Separator 时，整段输入会作为一个标签提交。按 Enter 提交输入。</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Header" xml:space="preserve">
+    <value>去重标签</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Description" xml:space="preserve">
+    <value>将 AllowDuplicates 设为 False 可阻止重复标签，并在失去焦点时清除未完成文本。</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Header" xml:space="preserve">
+    <value>多行输入</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Description" xml:space="preserve">
+    <value>将 AcceptsReturn 设为 True，可输入或粘贴多行内容。</value>
   </data>
   <data name="Page_TreeComboBox_Section_Inline_Items_Header" xml:space="preserve">
     <value>内联项</value>
@@ -906,23 +918,35 @@
   <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
     <value>将 IPAddress 属性绑定到视图模型数据，并展示 IPv4Box 的禁用状态。</value>
   </data>
-  <data name="Page_IconButton_Section_Action_Button_Variants_Header" xml:space="preserve">
-    <value>动作按钮变体</value>
+  <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
   </data>
-  <data name="Page_IconButton_Section_Action_Button_Variants_Description" xml:space="preserve">
-    <value>对比 IconButton、IconDropDownButton 和 IconSplitButton 在不同尺寸、主题和加载状态下的表现。</value>
+  <data name="Page_IconButton_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Ursa IconButton 是一组控件，包含 IconButton、IconDropDownButton、IconRepeatButton、IconSplitButton、IconToggleButton 和 IconToggleSplitButton。</value>
   </data>
-  <data name="Page_IconButton_Section_Toggle_Button_Variants_Header" xml:space="preserve">
-    <value>切换按钮变体</value>
+  <data name="Page_IconButton_Section_Theme_Variants_Header" xml:space="preserve">
+    <value>主题变体</value>
   </data>
-  <data name="Page_IconButton_Section_Toggle_Button_Variants_Description" xml:space="preserve">
-    <value>演示 IconToggleButton 和 IconToggleSplitButton 的选中、未选中和不确定状态。</value>
+  <data name="Page_IconButton_Section_Theme_Variants_Description" xml:space="preserve">
+    <value>IconButton 支持额外主题：SolidIconButton、OutlineIconButton 和 BorderlessIconButton。</value>
   </data>
-  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Header" xml:space="preserve">
-    <value>加载态与自定义图标</value>
+  <data name="Page_IconButton_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
   </data>
-  <data name="Page_IconButton_Section_Loading_And_Custom_Icons_Description" xml:space="preserve">
-    <value>将加载状态和图标位置绑定到视图模型属性，以实现交互式预览。</value>
+  <data name="Page_IconButton_Section_Style_Classes_Description" xml:space="preserve">
+    <value>使用 ClassSelector 组合颜色类（Primary、Secondary、Tertiary、Success、Warning、Danger、Colorful）和尺寸类（Small、Large）。</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Header" xml:space="preserve">
+    <value>图标位置</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Description" xml:space="preserve">
+    <value>使用 EnumSelector 控制 IconPlacement，并以交互方式预览不同的图标位置。</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Header" xml:space="preserve">
+    <value>加载状态</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Description" xml:space="preserve">
+    <value>使用 ToggleSwitch 控制 IsLoading，并预览图标按钮的加载指示效果。</value>
   </data>
   <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Header" xml:space="preserve">
     <value>项模板与命令</value>

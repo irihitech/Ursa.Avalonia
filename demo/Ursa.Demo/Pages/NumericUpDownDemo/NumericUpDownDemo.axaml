@@ -103,14 +103,14 @@
                         <DockPanel HorizontalSpacing="12">
                             <u:ClassSelector Target="{Binding #styleTarget}" DockPanel.Dock="Right">
                                 <u:ClassSelectorGroup Header="Size">
-                                    <u:ClassSelectorItem ClassName="Small" Content="Small" />
-                                    <u:ClassSelectorItem ClassName="Large" Content="Large" />
+                                    <u:ClassSelectorItem ClassName="Small" />
+                                    <u:ClassSelectorItem ClassName="Large" />
                                 </u:ClassSelectorGroup>
                                 <u:ClassSelectorGroup Header="Layout">
-                                    <u:ClassSelectorItem ClassName="Split" Content="Split" />
+                                    <u:ClassSelectorItem ClassName="Split" />
                                 </u:ClassSelectorGroup>
                                 <u:ClassSelectorGroup Header="Others">
-                                    <u:ClassSelectorItem ClassName="ClearButton" Content="ClearButton" />
+                                    <u:ClassSelectorItem ClassName="ClearButton" />
                                 </u:ClassSelectorGroup>
                             </u:ClassSelector>
                             <u:NumericIntUpDown

@@ -31,16 +31,16 @@
                                 SelectedClasses="{Binding SelectedClasses}"
                                 Target="{Binding #target}">
                                 <u:ClassSelectorGroup Header="Color">
-                                    <u:ClassSelectorItem ClassName="Primary" Content="Primary" />
-                                    <u:ClassSelectorItem ClassName="Secondary" Content="Secondary" />
-                                    <u:ClassSelectorItem ClassName="Tertiary" Content="Tertiary" />
-                                    <u:ClassSelectorItem ClassName="Success" Content="Success" />
-                                    <u:ClassSelectorItem ClassName="Warning" Content="Warning" />
-                                    <u:ClassSelectorItem ClassName="Danger" Content="Danger" />
+                                    <u:ClassSelectorItem ClassName="Primary" />
+                                    <u:ClassSelectorItem ClassName="Secondary" />
+                                    <u:ClassSelectorItem ClassName="Tertiary" />
+                                    <u:ClassSelectorItem ClassName="Success" />
+                                    <u:ClassSelectorItem ClassName="Warning" />
+                                    <u:ClassSelectorItem ClassName="Danger" />
                                 </u:ClassSelectorGroup>
                                 <u:ClassSelectorGroup Header="Size">
-                                    <u:ClassSelectorItem ClassName="Small" Content="Small" />
-                                    <u:ClassSelectorItem ClassName="Large" Content="Large" />
+                                    <u:ClassSelectorItem ClassName="Small" />
+                                    <u:ClassSelectorItem ClassName="Large" />
                                 </u:ClassSelectorGroup>
                             </u:ClassSelector>
                            

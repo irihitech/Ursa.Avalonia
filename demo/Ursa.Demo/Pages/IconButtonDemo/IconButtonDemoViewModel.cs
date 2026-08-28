@@ -1,12 +1,11 @@
 using CommunityToolkit.Mvvm.ComponentModel;
-using Ursa.Common;
 using System.Collections.ObjectModel;
 using Irihi.Dogma.Controls;
-
-using Ursa.Demo.ViewModels.Controls;
-using Ursa.Demo.Localizations;
 using Irihi.Dogma.Docs;
+using Ursa.Common;
+using Ursa.Demo.Localizations;
 using Ursa.Demo.Pages.DummyPages;
+using Ursa.Demo.ViewModels.Controls;
 
 namespace Ursa.Demo.Pages.IconButtonDemo;
 
@@ -16,118 +15,189 @@ public partial class IconButtonDemoViewModel : ObservableObject, IPageMetadataPr
 {
     public const string Category_Key = "IconButton";
     public const string Menu_Header = "Menu_Header_IconButton";
-    private const string ActionButtonVariantsAnchorId = "icon-button-action-button-variants";
-    private const string ToggleButtonVariantsAnchorId = "icon-button-toggle-button-variants";
-    private const string LoadingAndCustomIconsAnchorId = "icon-button-loading-and-custom-icons";
-    public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
+    private const string BasicUsageAnchorId = "icon-button-basic-usage";
+    private const string ThemeVariantsAnchorId = "icon-button-theme-variants";
+    private const string StyleClassesAnchorId = "icon-button-style-classes";
+    private const string IconPlacementAnchorId = "icon-button-icon-placement";
+    private const string LoadingStateAnchorId = "icon-button-loading-state";
+    private bool _isLoading;
+
+    public PageMetadataViewModel PageMetadata { get; set; } = new()
     {
         Title = LanguageManager.Instance.Page_Title_IconButton,
         Description = LanguageManager.Instance.Page_Description_IconButton,
-        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_ButtonsAndInputs), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_IconButton)],
+        Breadcrumbs =
+        [
+            new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_ButtonsAndInputs),
+            new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_IconButton)
+        ],
         Tags = ["IconButton", "Button", "Icon"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/IconButtonDemo/IconButtonDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/IconButtonDemo/IconButtonDemoViewModel.cs",
         InlineXamlSupport = true,
-        MvvmSupport = true,
+        MvvmSupport = true
     };
 
-    public DemoSectionViewModel ActionButtonVariantsSection { get; }
-    public DemoSectionViewModel ToggleButtonVariantsSection { get; }
-    public DemoSectionViewModel LoadingAndCustomIconsSection { get; }
+    public DemoSectionViewModel BasicUsageSection { get; }
+    public DemoSectionViewModel ThemeVariantsSection { get; }
+    public DemoSectionViewModel StyleClassesSection { get; }
+    public DemoSectionViewModel IconPlacementSection { get; }
+    public DemoSectionViewModel LoadingStateSection { get; }
+
+    public bool IsLoading
+    {
+        get => _isLoading;
+        set => SetProperty(ref _isLoading, value);
+    }
+
     public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; } =
     [
         new()
         {
-            Header = LanguageManager.Instance.Page_IconButton_Section_Action_Button_Variants_Header,
-            AnchorId = ActionButtonVariantsAnchorId
+            Header = LanguageManager.Instance.Page_IconButton_Section_Basic_Usage_Header,
+            AnchorId = BasicUsageAnchorId
         },
         new()
         {
-            Header = LanguageManager.Instance.Page_IconButton_Section_Toggle_Button_Variants_Header,
-            AnchorId = ToggleButtonVariantsAnchorId
+            Header = LanguageManager.Instance.Page_IconButton_Section_Theme_Variants_Header,
+            AnchorId = ThemeVariantsAnchorId
         },
         new()
         {
-            Header = LanguageManager.Instance.Page_IconButton_Section_Loading_And_Custom_Icons_Header,
-            AnchorId = LoadingAndCustomIconsAnchorId
+            Header = LanguageManager.Instance.Page_IconButton_Section_Style_Classes_Header,
+            AnchorId = StyleClassesAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_IconButton_Section_Icon_Placement_Header,
+            AnchorId = IconPlacementAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_IconButton_Section_Loading_State_Header,
+            AnchorId = LoadingStateAnchorId
         }
     ];
 
     public IconButtonDemoViewModel()
     {
-        ActionButtonVariantsSection = new DemoSectionViewModel
+        BasicUsageSection = new DemoSectionViewModel
         {
-            Header = LanguageManager.Instance.Page_IconButton_Section_Action_Button_Variants_Header,
-            Descriptions = { LanguageManager.Instance.Page_IconButton_Section_Action_Button_Variants_Description },
-            SectionTag = DemoSectionTag.Style,
-            AnchorId = ActionButtonVariantsAnchorId
-        };
-        ActionButtonVariantsSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
-        {
-            CodeSnippetLanguage = CodeLanguage.Axaml,
-            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
-            CodeSnippet = """
-                          <u:IconButton Icon="{StaticResource SemiIconCamera}" Content="Primary" Classes="Primary" />
-                          <u:IconDropDownButton Icon="{StaticResource SemiIconCamera}" Content="Primary" Classes="Primary" />
-                          <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" Content="Primary" Classes="Primary" />
-                          """
-        });
-
-        ToggleButtonVariantsSection = new DemoSectionViewModel
-        {
-            Header = LanguageManager.Instance.Page_IconButton_Section_Toggle_Button_Variants_Header,
-            Descriptions = { LanguageManager.Instance.Page_IconButton_Section_Toggle_Button_Variants_Description },
-            SectionTag = DemoSectionTag.Style,
-            AnchorId = ToggleButtonVariantsAnchorId
-        };
-        ToggleButtonVariantsSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
-        {
-            CodeSnippetLanguage = CodeLanguage.Axaml,
-            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
-            CodeSnippet = """
-                          <u:IconToggleButton
-                              Icon="{StaticResource SemiIconCamera}"
-                              IsThreeState="True"
-                              IsChecked="{x:Null}"
-                              Content="Indeterminate" />
-                          <u:IconToggleSplitButton
-                              Icon="{StaticResource SemiIconCamera}"
-                              IsChecked="True"
-                              Content="Checked" />
-                          """
-        });
-
-        LoadingAndCustomIconsSection = new DemoSectionViewModel
-        {
-            Header = LanguageManager.Instance.Page_IconButton_Section_Loading_And_Custom_Icons_Header,
-            Descriptions = { LanguageManager.Instance.Page_IconButton_Section_Loading_And_Custom_Icons_Description },
+            Header = LanguageManager.Instance.Page_IconButton_Section_Basic_Usage_Header,
+            Descriptions = { LanguageManager.Instance.Page_IconButton_Section_Basic_Usage_Description },
             SectionTag = DemoSectionTag.Function,
-            AnchorId = LoadingAndCustomIconsAnchorId
+            AnchorId = BasicUsageAnchorId
         };
-        LoadingAndCustomIconsSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+
+        BasicUsageSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:IconButton Icon="{StaticResource SemiIconCamera}" Content="IconButton" />
+                          <u:IconDropDownButton Icon="{StaticResource SemiIconCamera}" Content="IconDropDownButton" />
+                          <u:IconRepeatButton Icon="{StaticResource SemiIconCamera}" Content="IconRepeatButton" />
+                          <u:IconSplitButton Icon="{StaticResource SemiIconCamera}" Content="IconSplitButton" />
+                          <u:IconToggleButton Icon="{StaticResource SemiIconCamera}" Content="IconToggleButton" />
+                          <u:IconToggleSplitButton Icon="{StaticResource SemiIconCamera}" Content="IconToggleSplitButton" />
+                          """
+        });
+
+        ThemeVariantsSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_IconButton_Section_Theme_Variants_Header,
+            Descriptions = { LanguageManager.Instance.Page_IconButton_Section_Theme_Variants_Description },
+            SectionTag = DemoSectionTag.Style,
+            AnchorId = ThemeVariantsAnchorId
+        };
+
+        ThemeVariantsSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:IconButton Icon="{StaticResource SemiIconCamera}" Content="SolidIconButton" Theme="{StaticResource SolidIconButton}" />
+                          <u:IconButton Icon="{StaticResource SemiIconCamera}" Content="OutlineIconButton" Theme="{StaticResource OutlineIconButton}" />
+                          <u:IconButton Icon="{StaticResource SemiIconCamera}" Content="BorderlessIconButton" Theme="{StaticResource BorderlessIconButton}" />
+                          """
+        });
+
+        StyleClassesSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_IconButton_Section_Style_Classes_Header,
+            Descriptions = { LanguageManager.Instance.Page_IconButton_Section_Style_Classes_Description },
+            SectionTag = DemoSectionTag.Style,
+            AnchorId = StyleClassesAnchorId
+        };
+
+        StyleClassesSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
         {
             CodeSnippetLanguage = CodeLanguage.Axaml,
             TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
             CodeSnippet = """
                           <u:IconButton
-                              IsLoading="{Binding IsLoading2}"
-                              IconPlacement="{Binding SelectedPosition}"
-                              Icon="{StaticResource SemiIconCamera}"
-                              Content="Hello Camera" />
+                          Name="styleTarget"
+                          Icon="{StaticResource SemiIconCamera}"
+                          Content="Style Target" />
                           """
         });
-        LoadingAndCustomIconsSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+
+        IconPlacementSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_IconButton_Section_Icon_Placement_Header,
+            Descriptions = { LanguageManager.Instance.Page_IconButton_Section_Icon_Placement_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = IconPlacementAnchorId
+        };
+
+        IconPlacementSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:IconButton
+                              Classes="Large"
+                              Icon="{StaticResource SemiIconCamera}"
+                              Content="IconButton"
+                              IconPlacement="Left" />
+                          """
+        });
+
+        IconPlacementSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
         {
             CodeSnippetLanguage = CodeLanguage.CSharp,
             TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
             CodeSnippet = """
-                          [ObservableProperty] public partial bool IsLoading2 { get; set; }
-                          [ObservableProperty] public partial Position SelectedPosition { get; set; }
+                          private Position _iconPlacement = Position.Left;
+                          public Position IconPlacement
+                          {
+                              get => _iconPlacement;
+                              set => SetProperty(ref _iconPlacement, value);
+                          }
                           """
         });
-    }
 
-    [ObservableProperty] public partial bool IsLoading { get; set; }
-    [ObservableProperty] public partial bool IsLoading2 { get; set; }
-    [ObservableProperty] public partial Position SelectedPosition { get; set; }
+        LoadingStateSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_IconButton_Section_Loading_State_Header,
+            Descriptions = { LanguageManager.Instance.Page_IconButton_Section_Loading_State_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = LoadingStateAnchorId
+        };
+
+        LoadingStateSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <DockPanel HorizontalSpacing="12">
+                              <u:IconButton
+                                  Icon="{StaticResource SemiIconCamera}"
+                                  Content="IconButton"
+                                  IsLoading="True" />
+                          </DockPanel>
+                          """
+        });
+
+    }
 }

@@ -72,7 +72,7 @@
                             Grid.Column="1"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Content="{TemplateBinding Content}"
+                            Content="{TemplateBinding DisplayContent}"
                             ContentTemplate="{TemplateBinding ContentTemplate}"
                             RecognizesAccessKey="True"
                             TextWrapping="Wrap" />

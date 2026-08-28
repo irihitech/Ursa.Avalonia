@@ -85,6 +85,28 @@ public class ButtonGroupDemoViewModel: ViewModelBase, IPageMetadataProvider
                           public ObservableCollection<ButtonItem> Items { get; set; } = new();
                           """
         });
+        ItemTemplatesAndCommandsSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel()
+        {
+            CodeSnippetLanguage =  CodeLanguage.CSharp,
+            TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
+            CodeSnippet = """
+                          public class ButtonItem
+                          {
+                              public string? Name { get; set; }
+                              public ICommand InvokeCommand { get; set; }
+                          
+                              public ButtonItem()
+                              {
+                                  InvokeCommand = new AsyncRelayCommand(Invoke);
+                              }
+                          
+                              private async Task Invoke()
+                              {
+                                  await OverlayMessageBox.ShowAsync("Hello " + Name);
+                              }
+                          }
+                          """
+        });
 
         StyleClassesSection = new DemoSectionViewModel
         {

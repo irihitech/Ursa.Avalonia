@@ -36,25 +36,31 @@
                     </controls:DemoSectionView>
 
                     <controls:DemoSectionView SectionContext="{Binding StyleClassesSection}">
-                        <StackPanel Spacing="12">
+                        <DockPanel HorizontalSpacing="12">
+                            <u:ClassSelector DockPanel.Dock="Right" Width="200" Target="{Binding #styleTarget}">
+                                <u:ClassSelectorGroup Header="Color">
+                                    <u:ClassSelectorItem ClassName="Primary" />
+                                    <u:ClassSelectorItem ClassName="Secondary" />
+                                    <u:ClassSelectorItem ClassName="Tertiary" />
+                                    <u:ClassSelectorItem ClassName="Success" />
+                                    <u:ClassSelectorItem ClassName="Warning" />
+                                    <u:ClassSelectorItem ClassName="Danger" />
+                                </u:ClassSelectorGroup>
+                                <u:ClassSelectorGroup Header="Size">
+                                    <u:ClassSelectorItem ClassName="Small" />
+                                    <u:ClassSelectorItem ClassName="Large" />
+                                </u:ClassSelectorGroup>
+                                <u:ClassSelectorGroup Header="Other">
+                                    <u:ClassSelectorItem ClassName="Solid" />
+                                </u:ClassSelectorGroup>
+                            </u:ClassSelector>
                             <u:ButtonGroup
+                                Name="styleTarget"
                                 Classes="Success"
                                 ContentBinding="{Binding Name}"
                                 CommandBinding="{Binding InvokeCommand}"
                                 ItemsSource="{Binding Items}" />
-
-                            <u:ButtonGroup
-                                Classes="Warning Small"
-                                ContentBinding="{Binding Name}"
-                                CommandBinding="{Binding InvokeCommand}"
-                                ItemsSource="{Binding Items}" />
-
-                            <u:ButtonGroup
-                                Classes="Danger Large"
-                                ContentBinding="{Binding Name}"
-                                CommandBinding="{Binding InvokeCommand}"
-                                ItemsSource="{Binding Items}" />
-                        </StackPanel>
+                        </DockPanel>
                     </controls:DemoSectionView>
                 </StackPanel>
             </controls:AnchorScrollViewer>
