@@ -568,6 +568,54 @@
   <data name="Page_Description_Form" xml:space="preserve">
     <value>Formulář je kontejner rozvržení pro seskupování popsaných vstupních ovládacích prvků.</value>
   </data>
+  <data name="Page_Form_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_Form_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Použijte Form s FormItem.Label pro uspořádání popsaných vstupů a nastavte FormItem.IsRequired pro označení povinných polí.</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Header" xml:space="preserve">
+    <value>Validační atributy MVVM</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Description" xml:space="preserve">
+    <value>Svažte pole formuláře s vlastnostmi ViewModelu označenými atributy DataAnnotations, například MinLength, EmailAddress a Range, a zapněte tak validaci v MVVM.</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Header" xml:space="preserve">
+    <value>Skupiny formuláře</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Description" xml:space="preserve">
+    <value>Pomocí FormGroup uvnitř Form rozdělíte související pole do logických bloků s nadpisy a zachováte jednotné rozvržení popisků.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Header" xml:space="preserve">
+    <value>Umístění popisku</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Description" xml:space="preserve">
+    <value>Nastavte LabelPosition pro umístění popisků vlevo nebo nahoře u každého pole.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Header" xml:space="preserve">
+    <value>Šířka popisku</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Description" xml:space="preserve">
+    <value>Když je LabelPosition nastaveno na Left, použijte LabelWidth pro řízení vyhrazené šířky popisku. Nastavením LabelWidth="*" se popisky automaticky zarovnají podle nejširšího.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Header" xml:space="preserve">
+    <value>Zarovnání popisku</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Description" xml:space="preserve">
+    <value>Při pevné šířce popisků použijte LabelAlignment pro zarovnání obsahu popisku vlevo, na střed nebo vpravo.</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Header" xml:space="preserve">
+    <value>Plné použití FormItem</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Description" xml:space="preserve">
+    <value>Připojené vlastnosti jsou vhodné pro jednoduchá pole. Pro pokročilé scénáře, jako je řízení IsVisible nebo vlastní obsah popisku, obalte ovládací prvek do plného FormItem.</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Header" xml:space="preserve">
+    <value>Dynamické položky formuláře (MVVM)</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Description" xml:space="preserve">
+    <value>Navažte ItemsSource na smíšenou kolekci z ViewModelu a pomocí stylů Form a selektoru datových šablon dynamicky vytvářejte FormGroup a FormItem.</value>
+  </data>
   <data name="Page_Description_GroupBox" xml:space="preserve">
     <value>Skupinový rámeček seskupuje související ovládací prvky s volitelným titulkovým ohraničením.</value>
   </data>

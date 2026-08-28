@@ -568,6 +568,54 @@
   <data name="Page_Description_Form" xml:space="preserve">
     <value>Форма — это контейнер макета для группировки помеченных элементов управления вводом.</value>
   </data>
+  <data name="Page_Form_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_Form_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Используйте Form с FormItem.Label для размещения полей ввода с подписями и задайте FormItem.IsRequired, чтобы отметить обязательные поля.</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Header" xml:space="preserve">
+    <value>Атрибуты валидации MVVM</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Description" xml:space="preserve">
+    <value>Свяжите поля формы со свойствами ViewModel, помеченными атрибутами DataAnnotations (например, MinLength, EmailAddress и Range), чтобы включить валидацию в MVVM.</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Header" xml:space="preserve">
+    <value>Группы формы</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Description" xml:space="preserve">
+    <value>Используйте FormGroup внутри Form, чтобы разделить связанные поля на логические блоки с заголовками и сохранить единое выравнивание меток.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Header" xml:space="preserve">
+    <value>Положение метки</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Description" xml:space="preserve">
+    <value>Установите LabelPosition, чтобы размещать метки слева от поля или над ним.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Header" xml:space="preserve">
+    <value>Ширина метки</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Description" xml:space="preserve">
+    <value>Когда LabelPosition имеет значение Left, используйте LabelWidth для управления зарезервированной шириной метки. Установите LabelWidth="*", чтобы автоматически выровнять по самой широкой метке.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Header" xml:space="preserve">
+    <value>Выравнивание метки</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Description" xml:space="preserve">
+    <value>При фиксированной ширине метки используйте LabelAlignment для выравнивания содержимого по левому краю, по центру или по правому краю.</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Header" xml:space="preserve">
+    <value>Полное использование FormItem</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Description" xml:space="preserve">
+    <value>Присоединённые свойства подходят для простых полей. Для более сложных сценариев, например управления IsVisible или настройки содержимого метки, лучше обернуть элемент управления в полноценный FormItem.</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Header" xml:space="preserve">
+    <value>Динамические элементы формы (MVVM)</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Description" xml:space="preserve">
+    <value>Привяжите ItemsSource к смешанной коллекции из ViewModel, затем используйте стили Form и селектор шаблонов данных, чтобы динамически создавать FormGroup и FormItem.</value>
+  </data>
   <data name="Page_Description_GroupBox" xml:space="preserve">
     <value>Групповая рамка группирует связанные элементы управления вместе с дополнительной рамкой заголовка.</value>
   </data>

@@ -560,6 +560,54 @@
   <data name="Page_Description_Form" xml:space="preserve">
     <value>Formularz to kontener układu do grupowania oznaczonych kontrolek wejściowych.</value>
   </data>
+  <data name="Page_Form_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Podstawowe użycie</value>
+  </data>
+  <data name="Page_Form_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Użyj Form z FormItem.Label do rozmieszczenia pól wejściowych z etykietami i ustaw FormItem.IsRequired, aby oznaczyć pola wymagane.</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Header" xml:space="preserve">
+    <value>Atrybuty walidacji MVVM</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Description" xml:space="preserve">
+    <value>Powiąż pola formularza z właściwościami ViewModelu oznaczonymi atrybutami DataAnnotations, takimi jak MinLength, EmailAddress i Range, aby włączyć walidację w MVVM.</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Header" xml:space="preserve">
+    <value>Grupy formularza</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Description" xml:space="preserve">
+    <value>Użyj FormGroup wewnątrz Form, aby podzielić powiązane pola na logiczne bloki z nagłówkami, zachowując spójny układ etykiet.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Header" xml:space="preserve">
+    <value>Pozycja etykiety</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Description" xml:space="preserve">
+    <value>Ustaw LabelPosition, aby umieścić etykiety po lewej stronie pola lub nad nim.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Header" xml:space="preserve">
+    <value>Szerokość etykiety</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Description" xml:space="preserve">
+    <value>Gdy LabelPosition ma wartość Left, użyj LabelWidth do kontrolowania zarezerwowanej szerokości etykiety. Ustaw LabelWidth="*", aby automatycznie wyrównać do najszerszej etykiety.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Header" xml:space="preserve">
+    <value>Wyrównanie etykiety</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Description" xml:space="preserve">
+    <value>Przy stałej szerokości etykiety użyj LabelAlignment, aby wyrównać treść do lewej, środka lub prawej.</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Header" xml:space="preserve">
+    <value>Pełne użycie FormItem</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Description" xml:space="preserve">
+    <value>Właściwości dołączane są odpowiednie dla prostych pól. W bardziej złożonych scenariuszach, takich jak sterowanie IsVisible lub niestandardowa zawartość etykiety, lepiej owinąć kontrolkę pełnym FormItem.</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Header" xml:space="preserve">
+    <value>Dynamiczne elementy formularza (MVVM)</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Description" xml:space="preserve">
+    <value>Powiąż ItemsSource z mieszaną kolekcją z ViewModelu, a następnie użyj stylów Form i selektora szablonów danych, aby dynamicznie generować FormGroup i FormItem.</value>
+  </data>
   <data name="Page_Description_GroupBox" xml:space="preserve">
     <value>Ramka grupowa grupuje powiązane kontrolki razem z opcjonalną ramką tytułową.</value>
   </data>

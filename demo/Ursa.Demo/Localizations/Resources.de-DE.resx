@@ -567,6 +567,54 @@
   <data name="Page_Description_Form" xml:space="preserve">
     <value>Formular ist ein Layout-Container zum Gruppieren von beschrifteten Eingabesteuerelementen.</value>
   </data>
+  <data name="Page_Form_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Grundlegende Verwendung</value>
+  </data>
+  <data name="Page_Form_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Verwenden Sie Form mit FormItem.Label zum Anordnen beschrifteter Eingaben und setzen Sie FormItem.IsRequired zum Markieren von Pflichtfeldern.</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Header" xml:space="preserve">
+    <value>MVVM-Validierungsattribute</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Description" xml:space="preserve">
+    <value>Binden Sie Formularfelder an ViewModel-Eigenschaften mit DataAnnotations-Attributen wie MinLength, EmailAddress und Range, um die Validierung im MVVM-Muster zu aktivieren.</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Header" xml:space="preserve">
+    <value>Formulargruppen</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Description" xml:space="preserve">
+    <value>Verwenden Sie FormGroup innerhalb von Form, um zusammengehörige Felder in logische Blöcke mit Überschriften zu gliedern und gleichzeitig ein einheitliches Label-Layout beizubehalten.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Header" xml:space="preserve">
+    <value>Position des Labels</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Description" xml:space="preserve">
+    <value>Stellen Sie LabelPosition ein, um Labels links oder oberhalb jedes Felds anzuzeigen.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Header" xml:space="preserve">
+    <value>Labelbreite</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Description" xml:space="preserve">
+    <value>Wenn LabelPosition auf Left steht, steuert LabelWidth den reservierten Platz für Labels. Setzen Sie LabelWidth="*", um Labels automatisch am breitesten Label auszurichten.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Header" xml:space="preserve">
+    <value>Labelausrichtung</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Description" xml:space="preserve">
+    <value>Bei fester Labelbreite richtet LabelAlignment den Labelinhalt links, zentriert oder rechts aus.</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Header" xml:space="preserve">
+    <value>Volle FormItem-Verwendung</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Description" xml:space="preserve">
+    <value>Angehängte Eigenschaften sind für einfache Felder geeignet. Für komplexere Szenarien wie die Steuerung von IsVisible oder benutzerdefinierte Label-Inhalte sollten Sie das Steuerelement in ein vollständiges FormItem einschließen.</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Header" xml:space="preserve">
+    <value>Dynamische Formularelemente (MVVM)</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Description" xml:space="preserve">
+    <value>Binden Sie ItemsSource an eine gemischte Sammlung aus dem ViewModel und erzeugen Sie dann mit Form-Stilen und einem Datenvorlagen-Selektor FormGroup und FormItem dynamisch.</value>
+  </data>
   <data name="Page_Description_GroupBox" xml:space="preserve">
     <value>Gruppenfeld gruppiert verwandte Steuerelemente mit einem optionalen Titelrahmen.</value>
   </data>

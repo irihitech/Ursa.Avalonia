@@ -8,9 +8,10 @@
         <ControlTheme x:Key="{x:Type controls:AnchorScrollViewer}" TargetType="controls:AnchorScrollViewer">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="MaxContentWidth" Value="800" />
+            <Setter Property="AnchorWidth" Value="240" />
             <Setter Property="AnchorItemTemplate">
                 <TreeDataTemplate DataType="controls1:AnchorScrollViewerItemViewModel" ItemsSource="{Binding Children}">
-                    <TextBlock Text="{Binding Header^}" />
+                    <TextBlock Text="{Binding Header^}" TextWrapping="Wrap" />
                 </TreeDataTemplate>
             </Setter>
             <Setter Property="Template">
@@ -20,8 +21,6 @@
                             Name="PART_ContentPresenter"
                             Grid.RowSpan="2"
                             Grid.Column="0"
-                            MaxWidth="{TemplateBinding MaxContentWidth}"
-                            Padding="{TemplateBinding Padding}"
                             Background="{TemplateBinding Background}"
                             HorizontalSnapPointsAlignment="{TemplateBinding HorizontalSnapPointsAlignment}"
                             HorizontalSnapPointsType="{TemplateBinding HorizontalSnapPointsType}"
@@ -39,6 +38,7 @@
                             Name="PART_Anchor"
                             Grid.Row="0"
                             Grid.Column="1"
+                            Width="{TemplateBinding AnchorWidth}"
                             Margin="16"
                             VerticalAlignment="Stretch"
                             TargetContainer="{Binding $parent[ScrollViewer]}"

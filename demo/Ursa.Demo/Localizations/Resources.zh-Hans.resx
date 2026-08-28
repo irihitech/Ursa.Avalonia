@@ -553,6 +553,54 @@
   <data name="Page_Description_Form" xml:space="preserve">
     <value>表单是用于分组带标签输入控件的布局容器。</value>
   </data>
+  <data name="Page_Form_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_Form_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>使用 Form 配合 FormItem.Label 排列带标签的输入项，并通过 FormItem.IsRequired 标记必填字段。</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Header" xml:space="preserve">
+    <value>MVVM 验证特性</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Description" xml:space="preserve">
+    <value>将表单字段绑定到带有 DataAnnotations 特性（如 MinLength、EmailAddress、Range）的视图模型属性，即可在 MVVM 模式下启用验证。</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Header" xml:space="preserve">
+    <value>表单分组</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Description" xml:space="preserve">
+    <value>在 Form 中使用 FormGroup 可按标题将相关字段分组，并保持标签布局一致。</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Header" xml:space="preserve">
+    <value>标签位置</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Description" xml:space="preserve">
+    <value>通过 LabelPosition 可将标签放在字段左侧或上方。</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Header" xml:space="preserve">
+    <value>标签宽度</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Description" xml:space="preserve">
+    <value>当 LabelPosition 为 Left 时，可使用 LabelWidth 控制标签区域的预留宽度。将 LabelWidth="*" 可按最宽标签自动对齐。</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Header" xml:space="preserve">
+    <value>标签对齐</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Description" xml:space="preserve">
+    <value>在固定标签宽度下，可用 LabelAlignment 将标签内容设为左对齐、居中或右对齐。</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Header" xml:space="preserve">
+    <value>完整 FormItem 用法</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Description" xml:space="preserve">
+    <value>附加属性适合简单场景。对于控制 IsVisible 或自定义标签内容等复杂场景，建议将控件包裹在完整的 FormItem 中。</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Header" xml:space="preserve">
+    <value>动态表单项（MVVM）</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Description" xml:space="preserve">
+    <value>将 ItemsSource 绑定到来自视图模型的混合集合，再通过 Form 样式与数据模板选择器动态生成 FormGroup 和 FormItem。</value>
+  </data>
   <data name="Page_Description_GroupBox" xml:space="preserve">
     <value>分组框将相关控件组合在一起，带有可选标题边框。</value>
   </data>

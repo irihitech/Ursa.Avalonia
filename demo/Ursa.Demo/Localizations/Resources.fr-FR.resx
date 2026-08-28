@@ -568,6 +568,54 @@
   <data name="Page_Description_Form" xml:space="preserve">
     <value>Le formulaire est un conteneur de mise en page pour regrouper des contrôles de saisie étiquetés.</value>
   </data>
+  <data name="Page_Form_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Utilisation de base</value>
+  </data>
+  <data name="Page_Form_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Utilisez Form avec FormItem.Label pour organiser les champs de saisie étiquetés, puis définissez FormItem.IsRequired pour marquer les champs obligatoires.</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Header" xml:space="preserve">
+    <value>Attributs de validation MVVM</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Description" xml:space="preserve">
+    <value>Liez les champs du formulaire aux propriétés du ViewModel décorées avec des attributs DataAnnotations tels que MinLength, EmailAddress et Range pour activer la validation en MVVM.</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Header" xml:space="preserve">
+    <value>Groupes de formulaire</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Description" xml:space="preserve">
+    <value>Utilisez FormGroup dans Form pour diviser les champs associés en blocs logiques avec en-têtes tout en conservant une mise en page de libellés cohérente.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Header" xml:space="preserve">
+    <value>Position du libellé</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Description" xml:space="preserve">
+    <value>Définissez LabelPosition pour placer les libellés à gauche ou au-dessus de chaque champ.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Header" xml:space="preserve">
+    <value>Largeur du libellé</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Description" xml:space="preserve">
+    <value>Lorsque LabelPosition vaut Left, utilisez LabelWidth pour contrôler l’espace réservé au libellé. Définissez LabelWidth="*" pour aligner automatiquement selon le libellé le plus large.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Header" xml:space="preserve">
+    <value>Alignement du libellé</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Description" xml:space="preserve">
+    <value>Avec une largeur de libellé fixe, utilisez LabelAlignment pour aligner le contenu à gauche, au centre ou à droite.</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Header" xml:space="preserve">
+    <value>Utilisation complète de FormItem</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Description" xml:space="preserve">
+    <value>Les propriétés attachées conviennent aux champs simples. Pour les scénarios plus complexes, comme contrôler IsVisible ou personnaliser le contenu du libellé, encapsulez le contrôle dans un FormItem complet.</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Header" xml:space="preserve">
+    <value>Éléments de formulaire dynamiques (MVVM)</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Description" xml:space="preserve">
+    <value>Liez ItemsSource à une collection mixte du ViewModel, puis utilisez les styles Form et un sélecteur de modèles de données pour générer dynamiquement FormGroup et FormItem.</value>
+  </data>
   <data name="Page_Description_GroupBox" xml:space="preserve">
     <value>Le cadre de groupe regroupe des contrôles associés avec une bordure de titre optionnelle.</value>
   </data>

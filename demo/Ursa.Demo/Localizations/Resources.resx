@@ -567,6 +567,54 @@
   <data name="Page_Description_Form" xml:space="preserve">
     <value>Form is a layout container for grouping labeled input controls.</value>
   </data>
+  <data name="Page_Form_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Basic Usage</value>
+  </data>
+  <data name="Page_Form_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Use Form with FormItem.Label to arrange labeled inputs, and set FormItem.IsRequired to mark required fields.</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Header" xml:space="preserve">
+    <value>MVVM Validation Attributes</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Description" xml:space="preserve">
+    <value>Bind form fields to view-model properties decorated with DataAnnotations attributes such as MinLength, EmailAddress, and Range to enable validation in MVVM.</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Header" xml:space="preserve">
+    <value>Form Group</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Description" xml:space="preserve">
+    <value>Use FormGroup inside Form to split related fields into logical blocks with headers while keeping label layout consistent.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Header" xml:space="preserve">
+    <value>Label Position</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Description" xml:space="preserve">
+    <value>Set LabelPosition to place labels on the left side or on top of each field.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Header" xml:space="preserve">
+    <value>Label Width</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Description" xml:space="preserve">
+    <value>When LabelPosition is Left, use LabelWidth to control the reserved width for labels. Set LabelWidth="*" to automatically align with the widest label.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Header" xml:space="preserve">
+    <value>Label Alignment</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Description" xml:space="preserve">
+    <value>With fixed label width, use LabelAlignment to align label content to left, center, or right.</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Header" xml:space="preserve">
+    <value>Full FormItem Usage</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Description" xml:space="preserve">
+    <value>Attached properties are suitable for simple fields. For advanced scenarios like controlling IsVisible or custom label content, wrap the control inside a full FormItem.</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Header" xml:space="preserve">
+    <value>Dynamic Form Items (MVVM)</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Description" xml:space="preserve">
+    <value>Bind ItemsSource to a mixed collection from the ViewModel, then use Form styles and a data template selector to generate FormGroup and FormItem dynamically.</value>
+  </data>
   <data name="Page_Description_GroupBox" xml:space="preserve">
     <value>GroupBox groups related controls together with an optional title border.</value>
   </data>
