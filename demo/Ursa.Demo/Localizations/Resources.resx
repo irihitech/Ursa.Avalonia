@@ -872,23 +872,41 @@
   <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Description" xml:space="preserve">
     <value>Combine the ClearButton class with inner content, popup content, and selectable node rules.</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Configurable_Playground_Header" xml:space="preserve">
-    <value>Configurable playground</value>
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Basic Usage</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Configurable_Playground_Description" xml:space="preserve">
-    <value>Bind NumericUIntUpDown properties to quickly experiment with formatting, range, alignment, and commands.</value>
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Ursa NumericUpDown is a family of controls for number input. Dedicated controls for primitive numeric types provide better type safety. Use Value, Minimum, and Maximum to control behavior.</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Header" xml:space="preserve">
-    <value>Numeric types and hex input</value>
+  <data name="Page_NumericUpDown_Section_Available_Types_Header" xml:space="preserve">
+    <value>Available NumericUpDown types</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Description" xml:space="preserve">
-    <value>Use the typed NumericUpDown variants for integers, doubles, bytes, drag input, and hexadecimal parsing.</value>
+  <data name="Page_NumericUpDown_Section_Available_Types_Description" xml:space="preserve">
+    <value>List all available typed NumericUpDown controls: NumericIntUpDown, NumericUIntUpDown, NumericDoubleUpDown, NumericByteUpDown, NumericSByteUpDown, NumericShortUpDown, NumericUShortUpDown, NumericLongUpDown, NumericULongUpDown, NumericFloatUpDown, and NumericDecimalUpDown.</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Style_And_Validation_Header" xml:space="preserve">
-    <value>Style and validation</value>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Header" xml:space="preserve">
+    <value>Drag to adjust values</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Style_And_Validation_Description" xml:space="preserve">
-    <value>Apply ClearButton, Small, Large, and Split classes, and show validation feedback with DataValidationErrors.</value>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Description" xml:space="preserve">
+    <value>Set AllowDrag to True to enable dragging for value adjustment.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Header" xml:space="preserve">
+    <value>Using EmptyInputValue</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Description" xml:space="preserve">
+    <value>Set EmptyInputValue to apply a fallback value when the input is cleared and then committed.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Style classes</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Use ClassSelector to switch Small, Large, Split, and ClearButton classes.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Header" xml:space="preserve">
+    <value>Validation</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Description" xml:space="preserve">
+    <value>Attach DataValidationErrors.Error to display a validation error state.</value>
   </data>
   <data name="Page_IPv4Box_Section_Basic_Input_Modes_Header" xml:space="preserve">
     <value>Basic input modes</value>

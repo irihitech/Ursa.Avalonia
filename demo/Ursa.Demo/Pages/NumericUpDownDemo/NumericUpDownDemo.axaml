@@ -31,209 +31,101 @@
             Icon="{DynamicResource SemiIconBook}">
             <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
                 <StackPanel HorizontalAlignment="Stretch" Spacing="20">
-                    <controls:DemoSectionView SectionContext="{Binding ConfigurablePlaygroundSection}">
-                        <Grid ColumnDefinitions="*,320" ColumnSpacing="24">
-                            <StackPanel Spacing="12">
-                                <u:NumericUIntUpDown
-                                    Name="numd"
-                                    Width="{Binding Width}"
-                                    HorizontalAlignment="{Binding HorizontalAlignment}"
-                                    HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
-                                    AllowDrag="{Binding AllowDrag}"
-                                    AllowSpin="{Binding AllowSpin}"
-                                    Command="{Binding TryThisCommand}"
-                                    FontFamily="{Binding FontFamily, Mode=OneWay}"
-                                    FormatString="{Binding FormatString}"
-                                    InnerLeftContent="{Binding InnerLeftContent}"
-                                    InnerRightContent="{Binding InnerRightContent}"
-                                    IsEnabled="{Binding IsEnable}"
-                                    IsReadOnly="{Binding IsReadOnly}"
-                                    Maximum="{Binding Maximum}"
-                                    Minimum="{Binding Minimum}"
-                                    ParsingNumberStyle="{Binding ParsingNumberStyle}"
-                                    ShowButtonSpinner="{Binding ShowButtonSpinner}"
-                                    Step="{Binding Step}"
-                                    PlaceholderText="{Binding PlaceholderText}"
-                                    Value="{Binding Value}" />
-                                <TextBox
-                                    Width="NaN"
-                                    HorizontalAlignment="Stretch"
-                                    IsReadOnly="True"
-                                    Text="{Binding CommandUpdateText}" />
-                            </StackPanel>
-
-                            <StackPanel
-                                Grid.Column="1"
-                                HorizontalAlignment="Left"
-                                Orientation="Vertical"
-                                Spacing="8">
-                                <CheckBox Content="AutoWidth"
-                                          IsChecked="{Binding AutoWidth}" />
-                                <u:NumericDoubleUpDown
-                                    AllowDrag="True"
-                                    InnerLeftContent="Width"
-                                    IsEnabled="{Binding !AutoWidth}"
-                                    Value="{Binding Width}" />
-
-                                <TextBox InnerLeftContent="FontFamily"
-                                         Text="{Binding FontFamily}" />
-
-                                <CheckBox Content="AllowDrag"
-                                          IsChecked="{Binding AllowDrag}" />
-
-                                <CheckBox Content="IsReadOnly"
-                                          IsChecked="{Binding IsReadOnly}" />
-
-                                <Label Content="HorizontalAlignment" />
-                                <ComboBox
-                                    ItemsSource="{Binding ArrayHorizontalAlignment}"
-                                    SelectedItem="{Binding HorizontalAlignment}" />
-                                <Label Content="HorizontalContentAlignment" />
-                                <ComboBox
-                                    ItemsSource="{Binding ArrayHorizontalContentAlignment}"
-                                    SelectedItem="{Binding HorizontalContentAlignment}" />
-
-                                <TextBox
-                                    InnerLeftContent="InnerLeftContent"
-                                    InnerRightContent="obj"
-                                    Text="{Binding InnerLeftContent}" />
-
-                                <TextBox InnerLeftContent="PlaceholderText"
-                                         Text="{Binding PlaceholderText}" />
-
-                                <TextBox
-                                    MinWidth="100"
-                                    InnerLeftContent="FormatString"
-                                    MaxLength="100"
-                                    Text="{Binding FormatString}" />
-
-                                <Label Content="ParsingNumberStyle" />
-                                <ComboBox
-                                    ItemsSource="{Binding ArrayParsingNumberStyle}"
-                                    SelectedItem="{Binding ParsingNumberStyle}" />
-
-                                <CheckBox Content="AllowSpin"
-                                          IsChecked="{Binding AllowSpin}" />
-
-                                <CheckBox Content="ShowButtonSpinner"
-                                          IsChecked="{Binding ShowButtonSpinner}" />
-
-                                <u:NumericUIntUpDown
-                                    AllowSpin="True"
-                                    InnerLeftContent="Value"
-                                    IsEnabled="True"
-                                    IsReadOnly="False"
-                                    Value="{Binding Value, Mode=TwoWay}" />
-
-                                <u:NumericUIntUpDown InnerLeftContent="Max"
-                                                     Value="{Binding Maximum}" />
-
-                                <u:NumericUIntUpDown InnerLeftContent="Min"
-                                                     Value="{Binding Minimum}" />
-
-                                <Label Content="{Binding Step, StringFormat='Step {0}'}" />
-                                <Slider
-                                    Minimum="1"
-                                    ToolTip.Tip="{Binding Step}"
-                                    Value="{Binding Step}" />
-
-                                <CheckBox Content="IsEnable"
-                                          IsChecked="{Binding IsEnable}" />
-                            </StackPanel>
-                        </Grid>
-                    </controls:DemoSectionView>
-
-                    <controls:DemoSectionView SectionContext="{Binding NumericTypesAndHexSection}">
-                        <StackPanel>
-                            <u:Divider Content="{Binding #input.Value, StringFormat='Int = {0}'}" />
+                    <controls:DemoSectionView SectionContext="{Binding BasicUsageSection}">
+                        <StackPanel Spacing="12">
                             <u:NumericIntUpDown
-                                Name="input"
-                                InnerLeftContent="Age"
-                                Step="1"
-                                PlaceholderText="Input Value"
-                                Value="2" />
-                            <u:Divider Content="{Binding #inputDouble.Value, StringFormat='Double = {0}'}" />
+                                InnerLeftContent="int"
+                                Maximum="120"
+                                Minimum="0"
+                                Value="18" />
+                            <u:NumericUIntUpDown
+                                InnerLeftContent="uint"
+                                Maximum="100"
+                                Minimum="0"
+                                Value="{Binding Value}" />
                             <u:NumericDoubleUpDown
-                                Name="inputDouble"
-                                EmptyInputValue="1"
-                                Step="0.5"
-                                Value="3.1" />
-                            <u:Divider Content="{Binding #inputByte.Value, StringFormat='Byte = {0}'}" />
-                            <u:NumericByteUpDown
-                                Name="inputByte"
-                                EmptyInputValue="1"
-                                Step="1"
-                                Value="3" />
-                            <u:Divider Content="{Binding #Drag_Int.Value, StringFormat='Drag Int = {0}'}" />
-                            <u:NumericIntUpDown
-                                Name="Drag_Int"
-                                AllowDrag="True"
-                                InnerLeftContent="Drag"
-                                Step="1"
-                                PlaceholderText="Input Value"
-                                Value="2" />
-
-                            <u:Divider Content="{Binding #uint_HexNumber.Value, StringFormat='Do not use = {0}, hex={0:X}'}" />
-                            <u:NumericUIntUpDown
-                                Name="uint_HexNumber"
-                                AllowDrag="False"
-                                FormatString="{}{0:X8}"
-                                InnerLeftContent="HexNumber"
-                                ParsingNumberStyle="HexNumber"
-                                Step="1"
-                                PlaceholderText="Input Value"
-                                Value="2" />
-
-                            <u:Divider Content="{Binding #uint_AllowHexSpecifier.Value, StringFormat='uint = {0}, hex={0:X}'}" />
-                            <u:NumericUIntUpDown
-                                Name="uint_AllowHexSpecifier"
-                                HorizontalContentAlignment="Right"
-                                AllowDrag="False"
-                                FontFamily="Consolas"
-                                FormatString="{}{0:X8}"
-                                InnerLeftContent="AllowHexSpecifier"
-                                ParsingNumberStyle="AllowHexSpecifier"
-                                Step="1"
-                                PlaceholderText="AllowHexSpecifier"
-                                Value="2" />
-
-                            <u:Divider Content="{Binding #Consolas_uint.Value, StringFormat='Font=Consolas {0}, hex={0:X}'}" />
-                            <u:NumericUIntUpDown
-                                Name="Consolas_uint"
-                                HorizontalContentAlignment="Right"
-                                AllowDrag="False"
-                                FontFamily="Consolas"
-                                FormatString="X8"
-                                InnerLeftContent="0x"
-                                ParsingNumberStyle="AllowHexSpecifier"
-                                Step="1"
-                                PlaceholderText="AllowHexSpecifier"
-                                Value="2" />
+                                InnerLeftContent="double"
+                                Maximum="10"
+                                Minimum="0"
+                                Value="3.5" />
                         </StackPanel>
                     </controls:DemoSectionView>
 
-                    <controls:DemoSectionView SectionContext="{Binding StyleAndValidationSection}">
+                    <controls:DemoSectionView SectionContext="{Binding AvailableTypesSection}">
                         <StackPanel Spacing="12">
+                            <u:NumericIntUpDown InnerLeftContent="int" Value="1" />
+                            <u:NumericUIntUpDown InnerLeftContent="uint" Value="1" />
+                            <u:NumericDoubleUpDown InnerLeftContent="double" Value="1.5" />
+                            <u:NumericByteUpDown InnerLeftContent="byte" Value="1" />
+                            <u:NumericSByteUpDown InnerLeftContent="sbyte" Value="1" />
+                            <u:NumericShortUpDown InnerLeftContent="short" Value="1" />
+                            <u:NumericUShortUpDown InnerLeftContent="ushort" Value="1" />
+                            <u:NumericLongUpDown InnerLeftContent="long" Value="1" />
+                            <u:NumericULongUpDown InnerLeftContent="ulong" Value="1" />
+                            <u:NumericFloatUpDown InnerLeftContent="float" Value="1.5" />
+                            <u:NumericDecimalUpDown InnerLeftContent="decimal" Value="1.5" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding DragAdjustmentSection}">
+                        <StackPanel Spacing="12">
+                            <u:Divider Content="{Binding #dragDemo.Value, StringFormat='Value = {0}'}" />
+                            <u:NumericDoubleUpDown
+                                Name="dragDemo"
+                                AllowDrag="True"
+                                Minimum="-10"
+                                Maximum="10"
+                                Step="0.5"
+                                Value="0" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding EmptyInputValueSection}">
+                        <StackPanel Spacing="12">
+                            <u:Divider Content="{Binding #emptyInt.Value, StringFormat='Int Value = {0}'}" />
                             <u:NumericIntUpDown
+                                Name="emptyInt"
+                                Classes="ClearButton"
+                                EmptyInputValue="18"
+                                PlaceholderText="Clear input then confirm"
+                                Value="18" />
+                            <u:Divider Content="{Binding #emptyDouble.Value, StringFormat='Double Value = {0}'}" />
+                            <u:NumericDoubleUpDown
+                                Name="emptyDouble"
+                                Classes="ClearButton"
+                                EmptyInputValue="3.14"
+                                PlaceholderText="Clear input then confirm"
+                                Value="3.14" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding StyleClassesSection}">
+                        <DockPanel HorizontalSpacing="12">
+                            <u:ClassSelector Target="{Binding #styleTarget}" DockPanel.Dock="Right">
+                                <u:ClassSelectorGroup Header="Size">
+                                    <u:ClassSelectorItem ClassName="Small" Content="Small" />
+                                    <u:ClassSelectorItem ClassName="Large" Content="Large" />
+                                </u:ClassSelectorGroup>
+                                <u:ClassSelectorGroup Header="Layout">
+                                    <u:ClassSelectorItem ClassName="Split" Content="Split" />
+                                </u:ClassSelectorGroup>
+                                <u:ClassSelectorGroup Header="Others">
+                                    <u:ClassSelectorItem ClassName="ClearButton" Content="ClearButton" />
+                                </u:ClassSelectorGroup>
+                            </u:ClassSelector>
+                            <u:NumericIntUpDown
+                                Name="styleTarget"
                                 Classes="ClearButton"
                                 InnerLeftContent="Age"
                                 Step="1"
                                 PlaceholderText="Input Value"
                                 Value="2" />
-                            <u:NumericUIntUpDown
-                                Classes="Small"
-                                Step="1"
-                                PlaceholderText="Small" />
-                            <u:NumericUIntUpDown
-                                Classes="Large"
-                                Step="1"
-                                PlaceholderText="Large" />
-                            <u:NumericUIntUpDown
-                                Classes="Split"
-                                PlaceholderText="Split" />
-                            <u:NumericUIntUpDown
-                                Step="1"
-                                PlaceholderText="Validation Error">
+                        </DockPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding ValidationSection}">
+                        <StackPanel Spacing="12">
+                            <u:NumericUIntUpDown PlaceholderText="Validation Error">
                                 <DataValidationErrors.Error>
                                     <system:Exception />
                                 </DataValidationErrors.Error>

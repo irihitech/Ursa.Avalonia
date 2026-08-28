@@ -858,23 +858,41 @@
   <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Description" xml:space="preserve">
     <value>Połącz klasę ClearButton z zawartością wewnętrzną, zawartością wyskakującego okna i zasadami wyboru węzłów.</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Configurable_Playground_Header" xml:space="preserve">
-    <value>Konfigurowalny plac zabaw</value>
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Podstawowe użycie</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Configurable_Playground_Description" xml:space="preserve">
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Description" xml:space="preserve">
     <value>Powiąż właściwości NumericUIntUpDown, aby szybko testować formatowanie, zakres, wyrównanie i polecenia.</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Header" xml:space="preserve">
-    <value>Typy liczbowe i wejście szesnastkowe</value>
+  <data name="Page_NumericUpDown_Section_Available_Types_Header" xml:space="preserve">
+    <value>Dostępne typy NumericUpDown</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Description" xml:space="preserve">
-    <value>Użyj typowanych wariantów NumericUpDown dla liczb całkowitych, double, bajtów, wejścia przez przeciąganie i analizowania szesnastkowego.</value>
+  <data name="Page_NumericUpDown_Section_Available_Types_Description" xml:space="preserve">
+    <value>Lista wszystkich dostępnych typowanych kontrolek NumericUpDown: NumericIntUpDown, NumericUIntUpDown, NumericDoubleUpDown, NumericByteUpDown, NumericSByteUpDown, NumericShortUpDown, NumericUShortUpDown, NumericLongUpDown, NumericULongUpDown, NumericFloatUpDown i NumericDecimalUpDown.</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Style_And_Validation_Header" xml:space="preserve">
-    <value>Style i walidacja</value>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Header" xml:space="preserve">
+    <value>Zmiana wartości przez przeciąganie</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Style_And_Validation_Description" xml:space="preserve">
-    <value>Zastosuj klasy ClearButton, Small, Large i Split oraz pokaż informacje zwrotne walidacji za pomocą DataValidationErrors.</value>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Description" xml:space="preserve">
+    <value>Ustawienie AllowDrag na True umożliwia zmianę wartości przez przeciąganie.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Header" xml:space="preserve">
+    <value>Użycie EmptyInputValue</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Description" xml:space="preserve">
+    <value>Ustaw EmptyInputValue, aby po wyczyszczeniu i zatwierdzeniu pola zastosować wartość zastępczą.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Klasy stylów</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Użyj ClassSelector, aby przełączać klasy Small, Large, Split i ClearButton.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Header" xml:space="preserve">
+    <value>Walidacja</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Description" xml:space="preserve">
+    <value>Dodaj DataValidationErrors.Error, aby wyświetlić stan błędu walidacji.</value>
   </data>
   <data name="Page_IPv4Box_Section_Basic_Input_Modes_Header" xml:space="preserve">
     <value>Podstawowe tryby wprowadzania</value>

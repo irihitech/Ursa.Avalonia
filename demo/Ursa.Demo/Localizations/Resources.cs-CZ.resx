@@ -866,23 +866,41 @@
   <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Description" xml:space="preserve">
     <value>Zkombinujte třídu ClearButton s vnitřním obsahem, obsahem vyskakovacího okna a pravidly volitelných uzlů.</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Configurable_Playground_Header" xml:space="preserve">
-    <value>Konfigurovatelné hřiště</value>
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Configurable_Playground_Description" xml:space="preserve">
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Description" xml:space="preserve">
     <value>Navažte vlastnosti NumericUIntUpDown a rychle zkoušejte formátování, rozsah, zarovnání a příkazy.</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Header" xml:space="preserve">
-    <value>Číselné typy a hexadecimální vstup</value>
+  <data name="Page_NumericUpDown_Section_Available_Types_Header" xml:space="preserve">
+    <value>Dostupné typy NumericUpDown</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Description" xml:space="preserve">
-    <value>Použijte typované varianty NumericUpDown pro celá čísla, desetinná čísla, byty, vstup tažením a hexadecimální parsování.</value>
+  <data name="Page_NumericUpDown_Section_Available_Types_Description" xml:space="preserve">
+    <value>Seznam všech dostupných typovaných ovládacích prvků NumericUpDown: NumericIntUpDown, NumericUIntUpDown, NumericDoubleUpDown, NumericByteUpDown, NumericSByteUpDown, NumericShortUpDown, NumericUShortUpDown, NumericLongUpDown, NumericULongUpDown, NumericFloatUpDown a NumericDecimalUpDown.</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Style_And_Validation_Header" xml:space="preserve">
-    <value>Styl a validace</value>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Header" xml:space="preserve">
+    <value>Úprava hodnoty tažením</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Style_And_Validation_Description" xml:space="preserve">
-    <value>Použijte třídy ClearButton, Small, Large a Split a zobrazte validační zpětnou vazbu pomocí DataValidationErrors.</value>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Description" xml:space="preserve">
+    <value>Nastavením AllowDrag na True povolíte úpravu hodnoty tažením.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Header" xml:space="preserve">
+    <value>Použití EmptyInputValue</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Description" xml:space="preserve">
+    <value>Nastavte EmptyInputValue, aby se při vymazání vstupu a jeho potvrzení použila náhradní hodnota.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Pomocí ClassSelector přepínejte třídy Small, Large, Split a ClearButton.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Header" xml:space="preserve">
+    <value>Validace</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Description" xml:space="preserve">
+    <value>Přidejte DataValidationErrors.Error pro zobrazení stavu validační chyby.</value>
   </data>
   <data name="Page_IPv4Box_Section_Basic_Input_Modes_Header" xml:space="preserve">
     <value>Základní režimy vstupu</value>

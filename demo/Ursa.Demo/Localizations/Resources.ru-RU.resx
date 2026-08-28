@@ -866,23 +866,41 @@
   <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Description" xml:space="preserve">
     <value>Комбинируйте класс ClearButton с внутренним содержимым, содержимым всплывающего окна и правилами выбора узлов.</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Configurable_Playground_Header" xml:space="preserve">
-    <value>Настраиваемая площадка</value>
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Configurable_Playground_Description" xml:space="preserve">
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Description" xml:space="preserve">
     <value>Привяжите свойства NumericUIntUpDown, чтобы быстро экспериментировать с форматированием, диапазоном, выравниванием и командами.</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Header" xml:space="preserve">
-    <value>Числовые типы и шестнадцатеричный ввод</value>
+  <data name="Page_NumericUpDown_Section_Available_Types_Header" xml:space="preserve">
+    <value>Доступные типы NumericUpDown</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Description" xml:space="preserve">
-    <value>Используйте типизированные варианты NumericUpDown для целых чисел, double, байтов, ввода перетаскиванием и шестнадцатеричного разбора.</value>
+  <data name="Page_NumericUpDown_Section_Available_Types_Description" xml:space="preserve">
+    <value>Список всех доступных типизированных элементов управления NumericUpDown: NumericIntUpDown, NumericUIntUpDown, NumericDoubleUpDown, NumericByteUpDown, NumericSByteUpDown, NumericShortUpDown, NumericUShortUpDown, NumericLongUpDown, NumericULongUpDown, NumericFloatUpDown и NumericDecimalUpDown.</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Style_And_Validation_Header" xml:space="preserve">
-    <value>Стиль и валидация</value>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Header" xml:space="preserve">
+    <value>Изменение значений перетаскиванием</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Style_And_Validation_Description" xml:space="preserve">
-    <value>Применяйте классы ClearButton, Small, Large и Split и показывайте сообщения валидации через DataValidationErrors.</value>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Description" xml:space="preserve">
+    <value>Установите AllowDrag в True, чтобы изменять значения перетаскиванием.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Header" xml:space="preserve">
+    <value>Использование EmptyInputValue</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Description" xml:space="preserve">
+    <value>Установите EmptyInputValue, чтобы после очистки и подтверждения ввода применялось резервное значение.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стилей</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте ClassSelector для переключения классов Small, Large, Split и ClearButton.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Header" xml:space="preserve">
+    <value>Валидация</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Description" xml:space="preserve">
+    <value>Добавьте DataValidationErrors.Error, чтобы показать состояние ошибки валидации.</value>
   </data>
   <data name="Page_IPv4Box_Section_Basic_Input_Modes_Header" xml:space="preserve">
     <value>Базовые режимы ввода</value>

@@ -858,23 +858,41 @@
   <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Description" xml:space="preserve">
     <value>将 ClearButton 样式类与内部内容、弹出层内容以及可选节点规则组合使用。</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Configurable_Playground_Header" xml:space="preserve">
-    <value>可配置演示区</value>
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Configurable_Playground_Description" xml:space="preserve">
-    <value>通过绑定 NumericUIntUpDown 的属性，快速试验格式化、范围、对齐和命令。</value>
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Ursa NumericUpDown 是一组用于数字输入的控件。我们为各类基础数值类型提供了专用控件，以获得更好的类型安全。你可以通过 Value、Minimum 和 Maximum 来控制其行为。</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Header" xml:space="preserve">
-    <value>数字类型与十六进制输入</value>
+  <data name="Page_NumericUpDown_Section_Available_Types_Header" xml:space="preserve">
+    <value>可用的 NumericUpDown 类型</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Numeric_Types_And_Hex_Description" xml:space="preserve">
-    <value>使用各类 NumericUpDown 变体来演示整数、双精度、字节、拖拽输入和十六进制解析。</value>
+  <data name="Page_NumericUpDown_Section_Available_Types_Description" xml:space="preserve">
+    <value>列出所有可用的类型化 NumericUpDown 控件：NumericIntUpDown、NumericUIntUpDown、NumericDoubleUpDown、NumericByteUpDown、NumericSByteUpDown、NumericShortUpDown、NumericUShortUpDown、NumericLongUpDown、NumericULongUpDown、NumericFloatUpDown 和 NumericDecimalUpDown。</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Style_And_Validation_Header" xml:space="preserve">
-    <value>样式与验证</value>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Header" xml:space="preserve">
+    <value>拖拽调节数值</value>
   </data>
-  <data name="Page_NumericUpDown_Section_Style_And_Validation_Description" xml:space="preserve">
-    <value>应用 ClearButton、Small、Large 和 Split 样式类，并通过 DataValidationErrors 展示验证反馈。</value>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Description" xml:space="preserve">
+    <value>将 AllowDrag 设为 True 后，可通过拖拽来调整数值。</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Header" xml:space="preserve">
+    <value>EmptyInputValue 用法</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Description" xml:space="preserve">
+    <value>设置 EmptyInputValue 可在输入被清空并提交后应用一个回填值。</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Description" xml:space="preserve">
+    <value>使用 ClassSelector 切换 Small、Large、Split 和 ClearButton 样式类。</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Header" xml:space="preserve">
+    <value>验证</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Description" xml:space="preserve">
+    <value>通过设置 DataValidationErrors.Error 来展示验证错误状态。</value>
   </data>
   <data name="Page_IPv4Box_Section_Basic_Input_Modes_Header" xml:space="preserve">
     <value>基础输入模式</value>
