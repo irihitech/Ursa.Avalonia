@@ -9,7 +9,7 @@ using Ursa.Demo.Pages.DummyPages;
 
 namespace Ursa.Demo.Pages.DateOffsetRangePickerDemo;
 
-[DocCategory(Category_Key, IsClickable = false, Parent = DateAndTimePage.Category_Key)]
+[DocCategory(Category_Key, IsClickable = false, Parent = DatePickersPage.Category_Key)]
 [DocPage(Menu_Header, View = typeof(DateOffsetRangePickerDemo))]
 public partial class DateOffsetRangePickerDemoViewModel : ObservableValidator, IPageMetadataProvider
 {
@@ -19,7 +19,7 @@ public partial class DateOffsetRangePickerDemoViewModel : ObservableValidator, I
     {
         Title = LanguageManager.Instance.Page_Title_DateOffsetRangePicker,
         Description = LanguageManager.Instance.Page_Description_DateOffsetRangePicker,
-        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DateAndTime), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_DateOffsetRangePicker)],
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DateAndTime), new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DatePickers), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_DateOffsetRangePicker)],
         Tags = ["DateOffsetRangePicker", "Date", "Range"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DateOffsetRangePickerDemo/DateOffsetRangePickerDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DateOffsetRangePickerDemo/DateOffsetRangePickerDemoViewModel.cs",

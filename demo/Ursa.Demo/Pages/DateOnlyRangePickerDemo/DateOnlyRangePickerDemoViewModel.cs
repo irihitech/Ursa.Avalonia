@@ -9,7 +9,7 @@ using Ursa.Demo.Pages.DummyPages;
 
 namespace Ursa.Demo.Pages.DateOnlyRangePickerDemo;
 
-[DocCategory(Category_Key, IsClickable = false, Parent = DateAndTimePage.Category_Key)]
+[DocCategory(Category_Key, IsClickable = false, Parent = DatePickersPage.Category_Key)]
 [DocPage(Menu_Header, View = typeof(DateOnlyRangePickerDemo))]
 public partial class DateOnlyRangePickerDemoViewModel : ObservableValidator, IPageMetadataProvider
 {
@@ -19,7 +19,7 @@ public partial class DateOnlyRangePickerDemoViewModel : ObservableValidator, IPa
     {
         Title = LanguageManager.Instance.Page_Title_DateOnlyRangePicker,
         Description = LanguageManager.Instance.Page_Description_DateOnlyRangePicker,
-        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DateAndTime), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_DateOnlyRangePicker)],
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DateAndTime), new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DatePickers), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_DateOnlyRangePicker)],
         Tags = ["DateOnlyRangePicker", "Date", "Range"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DateOnlyRangePickerDemo/DateOnlyRangePickerDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/DateOnlyRangePickerDemo/DateOnlyRangePickerDemoViewModel.cs",

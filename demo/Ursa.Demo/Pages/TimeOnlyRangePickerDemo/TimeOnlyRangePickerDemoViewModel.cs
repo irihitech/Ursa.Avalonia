@@ -9,7 +9,7 @@ using Ursa.Demo.Pages.DummyPages;
 
 namespace Ursa.Demo.Pages.TimeOnlyRangePickerDemo;
 
-[DocCategory(Category_Key, IsClickable = false, Parent = DateAndTimePage.Category_Key)]
+[DocCategory(Category_Key, IsClickable = false, Parent = TimePickersPage.Category_Key)]
 [DocPage(Menu_Header, View = typeof(TimeOnlyRangePickerDemo))]
 public partial class TimeOnlyRangePickerDemoViewModel : ObservableValidator, IPageMetadataProvider
 {
@@ -19,7 +19,7 @@ public partial class TimeOnlyRangePickerDemoViewModel : ObservableValidator, IPa
     {
         Title = LanguageManager.Instance.Page_Title_TimeOnlyRangePicker,
         Description = LanguageManager.Instance.Page_Description_TimeOnlyRangePicker,
-        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DateAndTime), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_TimeOnlyRangePicker)],
+        Breadcrumbs = [new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_DateAndTime), new BreadcrumbItemData(LanguageManager.Instance.Menu_Category_TimePickers), new BreadcrumbItemData(LanguageManager.Instance.Menu_Header_TimeOnlyRangePicker)],
         Tags = ["TimeOnlyRangePicker", "Time", "Range"],
         DemoViewUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/TimeOnlyRangePickerDemo/TimeOnlyRangePickerDemo.axaml",
         DemoViewModelUrl = "https://github.com/irihitech/Ursa.Avalonia/blob/main/demo/Ursa.Demo/Pages/TimeOnlyRangePickerDemo/TimeOnlyRangePickerDemoViewModel.cs",
