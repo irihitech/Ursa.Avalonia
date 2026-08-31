@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="using:Ursa.Demo.Pages.TagInputDemo"
     x:DataType="vm:TagInputDemoViewModel"
@@ -11,28 +13,82 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <StackPanel Spacing="20">
-        <u:TagInput
-            Name="labels"
-            Margin="20"
-            AllowDuplicates="True"
-            Separator="-"
-            PlaceholderText="Hello world"
-            Tags="{Binding Tags}" />
-        <u:TagInput
-            Margin="20"
-            AllowDuplicates="False"
-            LostFocusBehavior="Clear"
-            Separator="-"
-            Tags="{Binding DistinctTags}" />
-        <ListBox ItemsSource="{Binding DistinctTags}" />
-        
-        <u:TagInput
-            Margin="20"
-            AllowDuplicates="False"
-            AcceptsReturn="True"
-            LostFocusBehavior="Clear"
-            Separator="-"
-            Tags="{Binding DistinctTags}" />
-    </StackPanel>
+    <TabControl>
+        <TabItem
+            Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+            Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel HorizontalAlignment="Stretch" Spacing="20">
+                    <controls:DemoSectionView SectionContext="{Binding BasicUsageSection}">
+                        <u:TagInput
+                            Width="420"
+                            HorizontalAlignment="Left"
+                            AllowDuplicates="True"
+                            Separator="-"
+                            PlaceholderText="Enter tags separated with -"
+                            Tags="{Binding Tags}" />
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding SeparatorBehaviorSection}">
+                        <StackPanel Spacing="12">
+                            <u:TagInput
+                                Width="420"
+                                HorizontalAlignment="Left"
+                                Separator=","
+                                PlaceholderText="With separator: type a,b,c then press Enter"
+                                Tags="{Binding SeparatorTags}" />
+                            <ListBox
+                                Width="420"
+                                HorizontalAlignment="Left"
+                                ItemsSource="{Binding SeparatorTags}" />
+                            <u:TagInput
+                                Width="420"
+                                HorizontalAlignment="Left"
+                                PlaceholderText="Without separator: type a,b,c then press Enter"
+                                Tags="{Binding NoSeparatorTags}" />
+                            <ListBox
+                                Width="420"
+                                HorizontalAlignment="Left"
+                                ItemsSource="{Binding NoSeparatorTags}" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding DistinctSection}">
+                        <StackPanel Spacing="12">
+                            <u:TagInput
+                                Width="420"
+                                HorizontalAlignment="Left"
+                                AllowDuplicates="False"
+                                LostFocusBehavior="Clear"
+                                Separator="-"
+                                PlaceholderText="Duplicates are ignored"
+                                Tags="{Binding DistinctTags}" />
+                            <ListBox
+                                Width="420"
+                                HorizontalAlignment="Left"
+                                ItemsSource="{Binding DistinctTags}" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding MultilineSection}">
+                        <StackPanel Spacing="12">
+                            <u:TagInput
+                                Width="420"
+                                HorizontalAlignment="Left"
+                                AllowDuplicates="False"
+                                AcceptsReturn="True"
+                                LostFocusBehavior="Clear"
+                                Separator="-"
+                                PlaceholderText="Accepts multiline paste"
+                                Tags="{Binding MultilineTags}" />
+                            <ListBox
+                                Width="420"
+                                HorizontalAlignment="Left"
+                                ItemsSource="{Binding MultilineTags}" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+                </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>

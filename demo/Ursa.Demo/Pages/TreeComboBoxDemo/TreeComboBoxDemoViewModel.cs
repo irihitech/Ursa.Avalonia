@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Irihi.Dogma.Controls;
 
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
@@ -14,6 +16,9 @@ public partial class TreeComboBoxDemoViewModel: ObservableObject, IPageMetadataP
 {
     public const string Category_Key = "TreeComboBox";
     public const string Menu_Header = "Menu_Header_TreeComboBox";
+    private const string InlineItemsAnchorId = "tree-combo-box-inline-items";
+    private const string DataBindingAnchorId = "tree-combo-box-data-binding";
+    private const string StyleAndPopupCustomizationAnchorId = "tree-combo-box-style-and-popup-customization";
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_TreeComboBox,
@@ -28,9 +33,107 @@ public partial class TreeComboBoxDemoViewModel: ObservableObject, IPageMetadataP
 
     [ObservableProperty] public partial TreeComboBoxItemViewModel? SelectedItem { get; set; }
     public List<TreeComboBoxItemViewModel> Items { get; set; }
+    public DemoSectionViewModel InlineItemsSection { get; }
+    public DemoSectionViewModel DataBindingSection { get; }
+    public DemoSectionViewModel StyleAndPopupCustomizationSection { get; }
+    public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; } =
+    [
+        new()
+        {
+            Header = LanguageManager.Instance.Page_TreeComboBox_Section_Inline_Items_Header,
+            AnchorId = InlineItemsAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_TreeComboBox_Section_Data_Binding_Header,
+            AnchorId = DataBindingAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_TreeComboBox_Section_Style_And_Popup_Customization_Header,
+            AnchorId = StyleAndPopupCustomizationAnchorId
+        }
+    ];
 
     public TreeComboBoxDemoViewModel()
     {
+        InlineItemsSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_TreeComboBox_Section_Inline_Items_Header,
+            Descriptions = { LanguageManager.Instance.Page_TreeComboBox_Section_Inline_Items_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = InlineItemsAnchorId
+        };
+        InlineItemsSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:TreeComboBox Width="300">
+                              <u:TreeComboBoxItem Header="Hello">
+                                  <u:TreeComboBoxItem Header="Hello World" />
+                              </u:TreeComboBoxItem>
+                              <u:TreeComboBoxItem Header="World" />
+                          </u:TreeComboBox>
+                          """
+        });
+
+        DataBindingSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_TreeComboBox_Section_Data_Binding_Header,
+            Descriptions = { LanguageManager.Instance.Page_TreeComboBox_Section_Data_Binding_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = DataBindingAnchorId
+        };
+        DataBindingSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:TreeComboBox
+                              Width="300"
+                              SelectedItem="{Binding SelectedItem}"
+                              ItemsSource="{Binding Items}">
+                              <u:TreeComboBox.ItemTemplate>
+                                  <TreeDataTemplate ItemsSource="{Binding Children}">
+                                      <TextBlock Text="{Binding ItemName}" />
+                                  </TreeDataTemplate>
+                              </u:TreeComboBox.ItemTemplate>
+                          </u:TreeComboBox>
+                          """
+        });
+        DataBindingSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.CSharp,
+            TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
+            CodeSnippet = """
+                          [ObservableProperty] public partial TreeComboBoxItemViewModel? SelectedItem { get; set; }
+                          public List<TreeComboBoxItemViewModel> Items { get; set; }
+                          """
+        });
+
+        StyleAndPopupCustomizationSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_TreeComboBox_Section_Style_And_Popup_Customization_Header,
+            Descriptions = { LanguageManager.Instance.Page_TreeComboBox_Section_Style_And_Popup_Customization_Description },
+            SectionTag = DemoSectionTag.Style,
+            AnchorId = StyleAndPopupCustomizationAnchorId
+        };
+        StyleAndPopupCustomizationSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:TreeComboBox
+                              Classes="ClearButton"
+                              InnerLeftContent="Left"
+                              InnerRightContent="Right"
+                              PopupInnerTopContent="Top"
+                              PopupInnerBottomContent="Bottom"
+                              ItemsSource="{Binding Items}" />
+                          """
+        });
+
         Items = new List<TreeComboBoxItemViewModel>()
         {
             new TreeComboBoxItemViewModel()

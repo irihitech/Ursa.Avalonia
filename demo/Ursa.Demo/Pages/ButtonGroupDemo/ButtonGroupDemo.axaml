@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="clr-namespace:Ursa.Demo.Pages.ButtonGroupDemo;assembly=Ursa.Demo"
     d:DesignHeight="450"
@@ -11,37 +13,57 @@
     x:CompileBindings="True"
     x:DataType="vm:ButtonGroupDemoViewModel"
     mc:Ignorable="d">
-    <StackPanel Spacing="20">
-        <u:ButtonGroup
-            Classes="Primary Solid"
-            CommandBinding="{Binding InvokeCommand}"
-            ItemsSource="{Binding Items}">
-            <u:ButtonGroup.ItemTemplate>
-                <DataTemplate x:DataType="vm:ButtonItem">
-                    <TextBlock>
-                        <Run Text="🐼" />
-                        <Run Text="{Binding Name}" />
-                    </TextBlock>
-                </DataTemplate>
-            </u:ButtonGroup.ItemTemplate>
-        </u:ButtonGroup>
+    <TabControl>
+        <TabItem
+            Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+            Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel HorizontalAlignment="Stretch" Spacing="20">
+                    <controls:DemoSectionView SectionContext="{Binding ItemTemplatesAndCommandsSection}">
+                        <u:ButtonGroup
+                            Classes="Primary Solid"
+                            CommandBinding="{Binding InvokeCommand}"
+                            ItemsSource="{Binding Items}">
+                            <u:ButtonGroup.ItemTemplate>
+                                <DataTemplate x:DataType="vm:ButtonItem">
+                                    <TextBlock>
+                                        <Run Text="🐼" />
+                                        <Run Text="{Binding Name}" />
+                                    </TextBlock>
+                                </DataTemplate>
+                            </u:ButtonGroup.ItemTemplate>
+                        </u:ButtonGroup>
+                    </controls:DemoSectionView>
 
-        <u:ButtonGroup
-            Classes="Success"
-            ContentBinding="{Binding Name}"
-            CommandBinding="{Binding InvokeCommand}"
-            ItemsSource="{Binding Items}" />
-
-        <u:ButtonGroup
-            Classes="Warning Small"
-            ContentBinding="{Binding Name}"
-            CommandBinding="{Binding InvokeCommand}"
-            ItemsSource="{Binding Items}" />
-
-        <u:ButtonGroup
-            Classes="Danger Large"
-            ContentBinding="{Binding Name}"
-            CommandBinding="{Binding InvokeCommand}"
-            ItemsSource="{Binding Items}" />
-    </StackPanel>
+                    <controls:DemoSectionView SectionContext="{Binding StyleClassesSection}">
+                        <DockPanel HorizontalSpacing="12">
+                            <u:ClassSelector DockPanel.Dock="Right" Width="200" Target="{Binding #styleTarget}">
+                                <u:ClassSelectorGroup Header="Color">
+                                    <u:ClassSelectorItem ClassName="Primary" />
+                                    <u:ClassSelectorItem ClassName="Secondary" />
+                                    <u:ClassSelectorItem ClassName="Tertiary" />
+                                    <u:ClassSelectorItem ClassName="Success" />
+                                    <u:ClassSelectorItem ClassName="Warning" />
+                                    <u:ClassSelectorItem ClassName="Danger" />
+                                </u:ClassSelectorGroup>
+                                <u:ClassSelectorGroup Header="Size">
+                                    <u:ClassSelectorItem ClassName="Small" />
+                                    <u:ClassSelectorItem ClassName="Large" />
+                                </u:ClassSelectorGroup>
+                                <u:ClassSelectorGroup Header="Other">
+                                    <u:ClassSelectorItem ClassName="Solid" />
+                                </u:ClassSelectorGroup>
+                            </u:ClassSelector>
+                            <u:ButtonGroup
+                                Name="styleTarget"
+                                Classes="Success"
+                                ContentBinding="{Binding Name}"
+                                CommandBinding="{Binding InvokeCommand}"
+                                ItemsSource="{Binding Items}" />
+                        </DockPanel>
+                    </controls:DemoSectionView>
+                </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>

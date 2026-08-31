@@ -4,77 +4,163 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:dataTemplates="clr-namespace:Ursa.Demo.DataTemplates"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="clr-namespace:Ursa.Demo.Pages.FormDemo;assembly=Ursa.Demo"
-    xmlns:dataTemplates="clr-namespace:Ursa.Demo.DataTemplates"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:CompileBindings="True"
     x:DataType="vm:FormDemoViewModel"
     mc:Ignorable="d">
-    <ScrollViewer>
-        <StackPanel HorizontalAlignment="Stretch" >
-            <u:Divider Content="Simple Form"/>
-            <u:Form LabelPosition="Left" LabelWidth="*">
-                <TextBox Width="300" u:FormItem.Label="Name" u:FormItem.IsRequired="True" />
-                <TextBox Width="300" u:FormItem.Label="Email" />
-                <TextBox Width="300" u:FormItem.Label="Message" Classes="TextArea"/>
-            </u:Form>
-            <u:Divider Content="Form accessibility"/>
-            <u:Form LabelPosition="Left" LabelWidth="*">
-                <TextBox Width="300" u:FormItem.Label="_Name" />
-                <TextBox Width="300" u:FormItem.Label="_Email" />
-                <TextBox Width="300" u:FormItem.Label="_Message" Classes="TextArea"/>
-            </u:Form>
-            <u:Divider Content="Label on top"/>
-            <u:Form LabelPosition="Top" LabelWidth="*">
-                <TextBox Width="300" u:FormItem.Label="Name" />
-                <TextBox Width="300" u:FormItem.Label="Email" />
-            </u:Form>
-            <u:Divider Content="FormGroup"/>
-            <u:Form LabelPosition="Left" LabelWidth="*">
-                <u:FormGroup Header="Basic Information">
-                    <TextBox Width="300" u:FormItem.Label="Name" />
-                    <TextBox Width="300" u:FormItem.Label="Email" />
-                </u:FormGroup>
-                <u:FormGroup Header="Education Information">
-                    <TextBox Width="300" u:FormItem.Label="Collage" />
-                    <u:FormItem Label="Study Time">
-                        <u:DateRangePicker Width="300" />
-                    </u:FormItem>
-                </u:FormGroup>
-                <Button Content="Submit" Theme="{DynamicResource SolidButton}" u:FormItem.NoLabel="True" HorizontalAlignment="Stretch"/>
-            </u:Form>
-            <u:Divider Content="MVVM setup and validation" />
-            <u:Form LabelPosition="Left" LabelWidth="*" DataContext="{Binding Model}">
-                <TextBox Width="300" u:FormItem.Label="Name" Text="{Binding  Name}"/>
-                <TextBox Width="300" u:FormItem.Label="Email" Text="{Binding Email}" />
-            </u:Form>
-            <u:Divider Content="MVVM setup for dynamic items. " />
-            <u:Form ItemsSource="{Binding FormGroups}" HorizontalAlignment="Stretch" LabelPosition="Left" LabelWidth="*">
-                <u:Form.Styles>
-                    <Style Selector="u|FormGroup" x:DataType="vm:IFormGroupViewModel">
-                        <Setter Property="Header" Value="{Binding Title}" />
-                        <Setter Property="ItemsSource" Value="{Binding Items}" />
-                    </Style>
-                    <Style Selector="u|FormItem" x:DataType="vm:IFromItemViewModel">
-                        <Setter Property="Label" Value="{Binding Label}" />
-                    </Style>
-                </u:Form.Styles>
-                <u:Form.ItemTemplate>
-                    <dataTemplates:FormDataTemplateSelector>
-                        <DataTemplate x:Key="{x:Type vm:FormTextViewModel}" DataType="vm:FormTextViewModel">
-                            <TextBox Text="{Binding Value}"/>
-                        </DataTemplate>
-                        <DataTemplate x:Key="{x:Type vm:FormAgeViewModel}" DataType="vm:FormAgeViewModel">
-                            <u:NumericUIntUpDown Value="{Binding Age}"/>
-                        </DataTemplate>
-                        <DataTemplate x:Key="{x:Type vm:FormDateRangeViewModel}" DataType="vm:FormDateRangeViewModel">
-                            <u:DateRangePicker SelectedStartDate="{Binding Start}" SelectedEndDate="{Binding End}"/>
-                        </DataTemplate>
-                    </dataTemplates:FormDataTemplateSelector>
-                </u:Form.ItemTemplate>
-            </u:Form>
-        </StackPanel>
-    </ScrollViewer>
+    <TabControl>
+        <TabItem
+            Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+            Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel HorizontalAlignment="Stretch" Spacing="20">
+                    <controls:DemoSectionView SectionContext="{Binding BasicUsageSection}">
+                        <u:Form LabelPosition="Left" LabelWidth="*">
+                            <TextBox Width="300" u:FormItem.Label="Name" u:FormItem.IsRequired="True" />
+                            <TextBox Width="300" u:FormItem.Label="Email" />
+                            <TextBox Width="300" u:FormItem.Label="Message" Classes="TextArea" />
+                        </u:Form>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding MvvmValidationSection}">
+                        <u:Form LabelPosition="Left" LabelWidth="*">
+                            <TextBox
+                                Width="300"
+                                Text="{Binding Model.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                u:FormItem.Label="Name (MinLength 10)" />
+                            <TextBox
+                                Width="300"
+                                Text="{Binding Model.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                u:FormItem.Label="Email (EmailAddress)" />
+                            <u:NumericDoubleUpDown
+                                Width="300"
+                                Value="{Binding Model.Number, Mode=TwoWay}"
+                                u:FormItem.Label="Score (Range 0-10)" />
+                        </u:Form>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding FormGroupSection}">
+                        <u:Form LabelPosition="Left" LabelWidth="*">
+                            <u:FormGroup Header="Basic Information">
+                                <TextBox Width="300" u:FormItem.Label="Name" />
+                                <TextBox Width="300" u:FormItem.Label="Email" />
+                            </u:FormGroup>
+                            <u:FormGroup Header="Education Information">
+                                <TextBox Width="300" u:FormItem.Label="Collage" />
+                                <u:FormItem Label="Study Time">
+                                    <u:DateRangePicker Width="300" />
+                                </u:FormItem>
+                            </u:FormGroup>
+                            <Button
+                                Content="Submit"
+                                HorizontalAlignment="Stretch"
+                                Theme="{DynamicResource SolidButton}"
+                                u:FormItem.NoLabel="True" />
+                        </u:Form>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding LabelPositionSection}">
+                        <StackPanel Spacing="12">
+                            <u:Form LabelPosition="Left" LabelWidth="140">
+                                <TextBox Width="300" u:FormItem.Label="Name" />
+                                <TextBox Width="300" u:FormItem.Label="Email" />
+                            </u:Form>
+                            <u:Form LabelPosition="Top">
+                                <TextBox Width="300" u:FormItem.Label="Name" />
+                                <TextBox Width="300" u:FormItem.Label="Email" />
+                            </u:Form>
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding LabelWidthSection}">
+                        <StackPanel Spacing="12">
+                            <u:Form LabelPosition="Left" LabelWidth="100">
+                                <TextBox Width="300" u:FormItem.Label="Short Label" />
+                                <TextBox Width="300" u:FormItem.Label="A longer label" />
+                            </u:Form>
+                            <u:Form LabelPosition="Left" LabelWidth="220">
+                                <TextBox Width="300" u:FormItem.Label="Short Label" />
+                                <TextBox Width="300" u:FormItem.Label="A longer label" />
+                            </u:Form>
+                            <u:Form LabelPosition="Left" LabelWidth="*">
+                                <TextBox Width="300" u:FormItem.Label="ID" />
+                                <TextBox Width="300" u:FormItem.Label="Display Name With More Text" />
+                            </u:Form>
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding LabelAlignmentSection}">
+                        <StackPanel Spacing="12">
+                            <u:Form LabelPosition="Left" LabelWidth="180" LabelAlignment="Left">
+                                <TextBox Width="300" u:FormItem.Label="Left" />
+                            </u:Form>
+                            <u:Form LabelPosition="Left" LabelWidth="180" LabelAlignment="Center">
+                                <TextBox Width="300" u:FormItem.Label="Center" />
+                            </u:Form>
+                            <u:Form LabelPosition="Left" LabelWidth="180" LabelAlignment="Right">
+                                <TextBox Width="300" u:FormItem.Label="Right" />
+                            </u:Form>
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding FullFormItemSection}">
+                        <StackPanel Spacing="12">
+                            <ToggleSwitch
+                                Content="Show advanced item"
+                                IsChecked="{Binding ShowAdvancedField}" />
+                            <u:Form LabelPosition="Left" LabelWidth="*" >
+                                <TextBox Width="300" u:FormItem.Label="Name" />
+                                <u:FormItem IsVisible="{Binding ShowAdvancedField}">
+                                    <u:FormItem.Label>
+                                        <StackPanel Orientation="Horizontal" Spacing="6">
+                                            <TextBlock Text="Advanced Email" />
+                                            <TextBlock Foreground="{DynamicResource SemiColorText2}" Text="(custom label)" />
+                                        </StackPanel>
+                                    </u:FormItem.Label>
+                                    <TextBox Width="300" Watermark="name@company.com" />
+                                </u:FormItem>
+                            </u:Form>
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding DynamicFormItemsSection}">
+                        <u:Form
+                            ItemsSource="{Binding FormGroups}"
+                            HorizontalAlignment="Stretch"
+                            LabelPosition="Left"
+                            LabelWidth="*">
+                            <u:Form.Styles>
+                                <Style Selector="u|FormGroup" x:DataType="vm:IFormGroupViewModel">
+                                    <Setter Property="Header" Value="{Binding Title}" />
+                                    <Setter Property="ItemsSource" Value="{Binding Items}" />
+                                </Style>
+                                <Style Selector="u|FormItem" x:DataType="vm:IFromItemViewModel">
+                                    <Setter Property="Label" Value="{Binding Label}" />
+                                </Style>
+                            </u:Form.Styles>
+                            <u:Form.ItemTemplate>
+                                <dataTemplates:FormDataTemplateSelector>
+                                    <DataTemplate x:Key="{x:Type vm:FormTextViewModel}" DataType="vm:FormTextViewModel">
+                                        <TextBox Text="{Binding Value}" />
+                                    </DataTemplate>
+                                    <DataTemplate x:Key="{x:Type vm:FormAgeViewModel}" DataType="vm:FormAgeViewModel">
+                                        <u:NumericUIntUpDown Value="{Binding Age}" />
+                                    </DataTemplate>
+                                    <DataTemplate x:Key="{x:Type vm:FormDateRangeViewModel}" DataType="vm:FormDateRangeViewModel">
+                                        <u:DateRangePicker SelectedStartDate="{Binding Start}" SelectedEndDate="{Binding End}" />
+                                    </DataTemplate>
+                                </dataTemplates:FormDataTemplateSelector>
+                            </u:Form.ItemTemplate>
+                        </u:Form>
+                    </controls:DemoSectionView>
+                </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>

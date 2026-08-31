@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
@@ -568,6 +568,54 @@
   <data name="Page_Description_Form" xml:space="preserve">
     <value>Formulář je kontejner rozvržení pro seskupování popsaných vstupních ovládacích prvků.</value>
   </data>
+  <data name="Page_Form_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_Form_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Použijte Form s FormItem.Label pro uspořádání popsaných vstupů a nastavte FormItem.IsRequired pro označení povinných polí.</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Header" xml:space="preserve">
+    <value>Validační atributy MVVM</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Description" xml:space="preserve">
+    <value>Svažte pole formuláře s vlastnostmi ViewModelu označenými atributy DataAnnotations, například MinLength, EmailAddress a Range, a zapněte tak validaci v MVVM.</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Header" xml:space="preserve">
+    <value>Skupiny formuláře</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Description" xml:space="preserve">
+    <value>Pomocí FormGroup uvnitř Form rozdělíte související pole do logických bloků s nadpisy a zachováte jednotné rozvržení popisků.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Header" xml:space="preserve">
+    <value>Umístění popisku</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Description" xml:space="preserve">
+    <value>Nastavte LabelPosition pro umístění popisků vlevo nebo nahoře u každého pole.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Header" xml:space="preserve">
+    <value>Šířka popisku</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Description" xml:space="preserve">
+    <value>Když je LabelPosition nastaveno na Left, použijte LabelWidth pro řízení vyhrazené šířky popisku. Nastavením LabelWidth="*" se popisky automaticky zarovnají podle nejširšího.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Header" xml:space="preserve">
+    <value>Zarovnání popisku</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Description" xml:space="preserve">
+    <value>Při pevné šířce popisků použijte LabelAlignment pro zarovnání obsahu popisku vlevo, na střed nebo vpravo.</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Header" xml:space="preserve">
+    <value>Plné použití FormItem</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Description" xml:space="preserve">
+    <value>Připojené vlastnosti jsou vhodné pro jednoduchá pole. Pro pokročilé scénáře, jako je řízení IsVisible nebo vlastní obsah popisku, obalte ovládací prvek do plného FormItem.</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Header" xml:space="preserve">
+    <value>Dynamické položky formuláře (MVVM)</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Description" xml:space="preserve">
+    <value>Navažte ItemsSource na smíšenou kolekci z ViewModelu a pomocí stylů Form a selektoru datových šablon dynamicky vytvářejte FormGroup a FormItem.</value>
+  </data>
   <data name="Page_Description_GroupBox" xml:space="preserve">
     <value>Skupinový rámeček seskupuje související ovládací prvky s volitelným titulkovým ohraničením.</value>
   </data>
@@ -763,5 +811,215 @@
   </data>
   <data name="Page_ClassSelector_Section_Grouped_Selection_Description" xml:space="preserve">
     <value>Možnosti ve stejné skupině se vzájemně vylučují. Výběr třídy z jiné skupiny zachová stávající výběr.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Použijte výčet DayOfWeek k ukázce základního výběru hodnoty.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Small_Size_Header" xml:space="preserve">
+    <value>Malá velikost</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Small_Size_Description" xml:space="preserve">
+    <value>Použijte třídu Small pro kompaktní zobrazení výběru výčtu.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_EnumValues_Header" xml:space="preserve">
+    <value>Vlastní hodnoty výčtu</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_EnumValues_Description" xml:space="preserve">
+    <value>Omezte dostupné hodnoty výčtu pomocí vazby nebo vložených seznamů XAML.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Header" xml:space="preserve">
+    <value>Zobrazení atributu Description</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Description" xml:space="preserve">
+    <value>Nastavte DisplayDescription na True, aby se zobrazil text atributu Description z členů výčtu.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_DisplayNames_Header" xml:space="preserve">
+    <value>Vlastní zobrazované názvy</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_DisplayNames_Description" xml:space="preserve">
+    <value>Poskytněte hodnoty EnumItemTuple pro zobrazení vlastních názvů.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
+    <value>Základní vazba</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Basic_Binding_Description" xml:space="preserve">
+    <value>Navažte kolekce položek a vybraných položek pro vícenásobný výběr.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Použijte Small a Large pro ovládání velikosti a ClearButton pro zobrazení tlačítka vymazání.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Advanced_Customization_Header" xml:space="preserve">
+    <value>Pokročilé přizpůsobení</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Advanced_Customization_Description" xml:space="preserve">
+    <value>Kombinujte styl tlačítka pro vymazání, vnitřní obsah, obsah překryvného okna a příkazy výběru.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Inline_Items_Header" xml:space="preserve">
+    <value>Vložené položky</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Inline_Items_Description" xml:space="preserve">
+    <value>Deklarujte možnosti MultiComboBoxItem přímo v obsahu XAML.</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Header" xml:space="preserve">
+    <value>Kolekce řetězcových položek</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Description" xml:space="preserve">
+    <value>Přímo navažte kolekci řetězců pro jednoduché nastavení vícenásobného automatického doplňování.</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Vlastní šablony</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Přizpůsobte vykreslení položek a vybraných položek pomocí ItemTemplate a SelectedItemTemplate.</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Header" xml:space="preserve">
+    <value>Vlastní filtr a šablona</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
+    <value>Při použití složitější datové struktury používejte ItemFilter a ItemTemplate společně, abyste určili, jak se data filtrují a zobrazují.</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Zadávejte tagy oddělené nastaveným oddělovačem a při zapnutém AllowDuplicates ponechejte duplicitní hodnoty.</value>
+  </data>
+  <data name="Page_TagInput_Section_Separator_Behavior_Header" xml:space="preserve">
+    <value>Chování oddělovače</value>
+  </data>
+  <data name="Page_TagInput_Section_Separator_Behavior_Description" xml:space="preserve">
+    <value>Pokud je nastaven Separator, vstup se při potvrzení rozdělí podle oddělovače. Bez Separator se celý vstup potvrdí jako jeden tag. Pro potvrzení vstupu stiskněte Enter.</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Header" xml:space="preserve">
+    <value>Jedinečné tagy</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Description" xml:space="preserve">
+    <value>Nastavením AllowDuplicates na False zabráníte duplicitním tagům a při ztrátě fokusu vyčistíte nedokončený text.</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Header" xml:space="preserve">
+    <value>Víceřádkový vstup</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Description" xml:space="preserve">
+    <value>Nastavením AcceptsReturn na True povolíte zadávání nebo vkládání víceřádkových hodnot.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Header" xml:space="preserve">
+    <value>Vložené položky</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Description" xml:space="preserve">
+    <value>Deklarujte vnořené hodnoty TreeComboBoxItem přímo v XAML pro jednoduché stromy.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Header" xml:space="preserve">
+    <value>Datová vazba</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Description" xml:space="preserve">
+    <value>Navažte hierarchickou kolekci a použijte TreeDataTemplate pro zobrazení vnořených položek.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Header" xml:space="preserve">
+    <value>Styl a přizpůsobení vyskakovacího okna</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Description" xml:space="preserve">
+    <value>Zkombinujte třídu ClearButton s vnitřním obsahem, obsahem vyskakovacího okna a pravidly volitelných uzlů.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Navažte vlastnosti NumericUIntUpDown a rychle zkoušejte formátování, rozsah, zarovnání a příkazy.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Available_Types_Header" xml:space="preserve">
+    <value>Dostupné typy NumericUpDown</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Available_Types_Description" xml:space="preserve">
+    <value>Seznam všech dostupných typovaných ovládacích prvků NumericUpDown: NumericIntUpDown, NumericUIntUpDown, NumericDoubleUpDown, NumericByteUpDown, NumericSByteUpDown, NumericShortUpDown, NumericUShortUpDown, NumericLongUpDown, NumericULongUpDown, NumericFloatUpDown a NumericDecimalUpDown.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Header" xml:space="preserve">
+    <value>Úprava hodnoty tažením</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Description" xml:space="preserve">
+    <value>Nastavením AllowDrag na True povolíte úpravu hodnoty tažením.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Header" xml:space="preserve">
+    <value>Použití EmptyInputValue</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Description" xml:space="preserve">
+    <value>Nastavte EmptyInputValue, aby se při vymazání vstupu a jeho potvrzení použila náhradní hodnota.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Pomocí ClassSelector přepínejte třídy Small, Large, Split a ClearButton.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Header" xml:space="preserve">
+    <value>Validace</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Description" xml:space="preserve">
+    <value>Přidejte DataValidationErrors.Error pro zobrazení stavu validační chyby.</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Header" xml:space="preserve">
+    <value>Základní režimy vstupu</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Description" xml:space="preserve">
+    <value>Porovnejte standardní a rychlý režim vstupu při přepínání zobrazení úvodních nul.</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Header" xml:space="preserve">
+    <value>Vazba na zdroj a zakázaný stav</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
+    <value>Navažte vlastnost IPAddress na data ve view modelu a zobrazte zakázaný stav IPv4Boxu.</value>
+  </data>
+  <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_IconButton_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Ursa IconButton je rodina ovládacích prvků zahrnující IconButton, IconDropDownButton, IconRepeatButton, IconSplitButton, IconToggleButton a IconToggleSplitButton.</value>
+  </data>
+  <data name="Page_IconButton_Section_Theme_Variants_Header" xml:space="preserve">
+    <value>Varianty motivu</value>
+  </data>
+  <data name="Page_IconButton_Section_Theme_Variants_Description" xml:space="preserve">
+    <value>IconButton podporuje další motivy: SolidIconButton, OutlineIconButton a BorderlessIconButton.</value>
+  </data>
+  <data name="Page_IconButton_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_IconButton_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Použijte ClassSelector ke kombinování barevných tříd (Primary, Secondary, Tertiary, Success, Warning, Danger, Colorful) a velikostních tříd (Small, Large).</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Header" xml:space="preserve">
+    <value>Umístění ikony</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Description" xml:space="preserve">
+    <value>Použijte EnumSelector k ovládání IconPlacement a interaktivnímu náhledu různých pozic ikony.</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Header" xml:space="preserve">
+    <value>Stav načítání</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Description" xml:space="preserve">
+    <value>Použijte ToggleSwitch k ovládání IsLoading a náhledu indikátorů načítání u tlačítek s ikonou.</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Header" xml:space="preserve">
+    <value>Šablony položek a příkazy</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Description" xml:space="preserve">
+    <value>Navažte kolekci na ButtonGroup a přizpůsobte každé generované tlačítko pomocí šablony položky.</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Kombinujte sémantické třídy jako Success, Warning a Danger s variantami Small, Large a Solid.</value>
+  </data>
+  <data name="DemoSection_Tab_Xaml" xml:space="preserve">
+    <value>XAML</value>
+  </data>
+  <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
+    <value>ViewModel</value>
   </data>
 </root>

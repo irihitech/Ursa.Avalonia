@@ -14,6 +14,7 @@ public class ClassSelectorItem : ContentControl
     private static readonly Point InvalidPoint = new(double.NaN, double.NaN);
     private Point _pointerDownPoint = InvalidPoint;
     private bool _isUpdatingSelection;
+    private object? _displayContent;
 
     public static readonly StyledProperty<string?> ClassNameProperty =
         AvaloniaProperty.Register<ClassSelectorItem, string?>(nameof(ClassName));
@@ -21,11 +22,18 @@ public class ClassSelectorItem : ContentControl
     public static readonly StyledProperty<bool> IsSelectedProperty =
         AvaloniaProperty.Register<ClassSelectorItem, bool>(nameof(IsSelected));
 
+    public static readonly DirectProperty<ClassSelectorItem, object?> DisplayContentProperty =
+        AvaloniaProperty.RegisterDirect<ClassSelectorItem, object?>(
+            nameof(DisplayContent),
+            item => item.DisplayContent);
+
     static ClassSelectorItem()
     {
         IsSelectedProperty.AffectsPseudoClass<ClassSelectorItem>(PseudoClassName.PC_Selected);
         IsSelectedProperty.Changed.AddClassHandler<ClassSelectorItem, bool>((item, args) =>
             item.OnSelectionChanged(args.NewValue.Value));
+        ClassNameProperty.Changed.AddClassHandler<ClassSelectorItem>((item, _) => item.UpdateDisplayContent());
+        ContentProperty.Changed.AddClassHandler<ClassSelectorItem>((item, _) => item.UpdateDisplayContent());
         PressedMixin.Attach<ClassSelectorItem>();
         FocusableProperty.OverrideDefaultValue<ClassSelectorItem>(true);
     }
@@ -40,6 +48,12 @@ public class ClassSelectorItem : ContentControl
     {
         get => GetValue(IsSelectedProperty);
         set => SetValue(IsSelectedProperty, value);
+    }
+
+    public object? DisplayContent
+    {
+        get => _displayContent;
+        private set => SetAndRaise(DisplayContentProperty, ref _displayContent, value);
     }
 
     internal string? GetClassName()
@@ -57,6 +71,7 @@ public class ClassSelectorItem : ContentControl
     protected override void OnAttachedToLogicalTree(LogicalTreeAttachmentEventArgs e)
     {
         base.OnAttachedToLogicalTree(e);
+        UpdateDisplayContent();
         var selector = this.FindLogicalAncestorOfType<ClassSelector>();
         if (IsSelected || selector?.SelectedClasses?.Contains(GetClassName()) == true)
         {
@@ -119,5 +134,15 @@ public class ClassSelectorItem : ContentControl
         }
 
         this.FindLogicalAncestorOfType<ClassSelector>()?.UpdateSelection(this, isSelected);
+    }
+
+    private void UpdateDisplayContent()
+    {
+        DisplayContent = Content switch
+        {
+            null => ClassName,
+            string text when string.IsNullOrWhiteSpace(text) => ClassName,
+            _ => Content
+        };
     }
 }

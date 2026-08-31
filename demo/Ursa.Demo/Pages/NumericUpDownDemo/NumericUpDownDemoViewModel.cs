@@ -1,8 +1,6 @@
-using System;
-using System.Globalization;
-using Avalonia.Layout;
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+using Irihi.Dogma.Controls;
 
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
@@ -17,6 +15,12 @@ public partial class NumericUpDownDemoViewModel : ObservableObject, IPageMetadat
 {
     public const string Category_Key = "NumericUpDown";
     public const string Menu_Header = "Menu_Header_NumericUpDown";
+    private const string BasicUsageAnchorId = "numeric-up-down-basic-usage";
+    private const string AvailableTypesAnchorId = "numeric-up-down-available-types";
+    private const string DragAdjustmentAnchorId = "numeric-up-down-drag-adjustment";
+    private const string EmptyInputValueAnchorId = "numeric-up-down-empty-input-value";
+    private const string StyleClassesAnchorId = "numeric-up-down-style-classes";
+    private const string ValidationAnchorId = "numeric-up-down-validation";
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_NumericUpDown,
@@ -29,62 +33,177 @@ public partial class NumericUpDownDemoViewModel : ObservableObject, IPageMetadat
         MvvmSupport = true,
     };
 
+    public DemoSectionViewModel BasicUsageSection { get; }
+    public DemoSectionViewModel AvailableTypesSection { get; }
+    public DemoSectionViewModel DragAdjustmentSection { get; }
+    public DemoSectionViewModel EmptyInputValueSection { get; }
+    public DemoSectionViewModel StyleClassesSection { get; }
+    public DemoSectionViewModel ValidationSection { get; }
+    public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; } =
+    [
+        new()
+        {
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Basic_Usage_Header,
+            AnchorId = BasicUsageAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Available_Types_Header,
+            AnchorId = AvailableTypesAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Drag_Adjustment_Header,
+            AnchorId = DragAdjustmentAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Empty_Input_Value_Header,
+            AnchorId = EmptyInputValueAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Style_Classes_Header,
+            AnchorId = StyleClassesAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Validation_Header,
+            AnchorId = ValidationAnchorId
+        }
+    ];
 
-
-    private double _oldWidth = 300;
-    [ObservableProperty] public partial bool AutoWidth { get; set; } = true;
-    [ObservableProperty] public partial double Width { get; set; } = double.NaN;
-    [ObservableProperty] public partial uint Value { get; set; }
-    [ObservableProperty] public partial string FontFamily { get; set; } = "Consolas";
-    [ObservableProperty] public partial bool AllowDrag { get; set; }
-    [ObservableProperty] public partial bool IsReadOnly { get; set; }
-
-    [ObservableProperty] public partial Array ArrayHorizontalAlignment { get; set; }
-    [ObservableProperty] public partial HorizontalAlignment HorizontalAlignment { get; set; } = HorizontalAlignment.Center;
-
-    [ObservableProperty] public partial Array ArrayHorizontalContentAlignment { get; set; }
-    [ObservableProperty] public partial HorizontalAlignment HorizontalContentAlignment { get; set; } = HorizontalAlignment.Center;
-    [ObservableProperty] public partial object? InnerLeftContent { get; set; } = "obj:0x";
-    [ObservableProperty] public partial object? InnerRightContent { get; set; } = "%";
-    [ObservableProperty] public partial string PlaceholderText { get; set; } = "Placeholder Text showed";
-    [ObservableProperty] public partial string FormatString { get; set; } = "X8";
-    [ObservableProperty] public partial Array ArrayParsingNumberStyle { get; set; }
-    [ObservableProperty] public partial NumberStyles ParsingNumberStyle { get; set; } = NumberStyles.AllowHexSpecifier;
-    [ObservableProperty] public partial bool AllowSpin { get; set; } = true;
-    [ObservableProperty] public partial bool ShowButtonSpinner { get; set; } = true;
-
-    [ObservableProperty] public partial UInt32 Maximum { get; set; } = UInt32.MaxValue;
-    [ObservableProperty] public partial UInt32 Minimum { get; set; } = UInt32.MinValue;
-    [ObservableProperty] public partial UInt32 Step { get; set; } = 1;
-
-    [ObservableProperty] public partial bool IsEnable { get; set; } = true;
-
-    [ObservableProperty] public partial string CommandUpdateText { get; set; } = "Command not Execute";
+    [ObservableProperty] public partial uint Value { get; set; } = 30;
     
-    [RelayCommand]
-    void Trythis(uint v)
-    {
-        CommandUpdateText = $"Command Exe,CommandParameter={v}";
-    }
-
-
     public NumericUpDownDemoViewModel()
     {
-        ArrayHorizontalContentAlignment = Enum.GetValues(typeof(HorizontalAlignment));
-        ArrayHorizontalAlignment = Enum.GetValues(typeof(HorizontalAlignment));
-        ArrayParsingNumberStyle = Enum.GetValues(typeof(NumberStyles));
-    }
+        BasicUsageSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Basic_Usage_Header,
+            Descriptions = { LanguageManager.Instance.Page_NumericUpDown_Section_Basic_Usage_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = BasicUsageAnchorId
+        };
+        BasicUsageSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:NumericIntUpDown Value="18" Minimum="0" Maximum="120" />
+                          <u:NumericUIntUpDown Value="{Binding Value}" Minimum="0" Maximum="100" />
+                          <u:NumericDoubleUpDown Value="3.5" Minimum="0" Maximum="10" />
+                          """
+        });
+        BasicUsageSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.CSharp,
+            TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
+            CodeSnippet = """
+                          [ObservableProperty] public partial uint Value { get; set; } = 30;
+                          """
+        });
 
-    partial void OnAutoWidthChanged(bool value)
-    {
-        if (value)
+        AvailableTypesSection = new DemoSectionViewModel
         {
-            _oldWidth = Width;
-            Width = double.NaN;
-        }
-        else
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Available_Types_Header,
+            Descriptions = { LanguageManager.Instance.Page_NumericUpDown_Section_Available_Types_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = AvailableTypesAnchorId
+        };
+        AvailableTypesSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
         {
-            Width = _oldWidth;
-        }
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:NumericIntUpDown Value="1" />
+                          <u:NumericUIntUpDown Value="1" />
+                          <u:NumericDoubleUpDown Value="1.5" />
+                          <u:NumericByteUpDown Value="1" />
+                          <u:NumericSByteUpDown Value="1" />
+                          <u:NumericShortUpDown Value="1" />
+                          <u:NumericUShortUpDown Value="1" />
+                          <u:NumericLongUpDown Value="1" />
+                          <u:NumericULongUpDown Value="1" />
+                          <u:NumericFloatUpDown Value="1.5" />
+                          <u:NumericDecimalUpDown Value="1.5" />
+                          """
+        });
+
+        DragAdjustmentSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Drag_Adjustment_Header,
+            Descriptions = { LanguageManager.Instance.Page_NumericUpDown_Section_Drag_Adjustment_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = DragAdjustmentAnchorId
+        };
+        DragAdjustmentSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:NumericDoubleUpDown
+                              AllowDrag="True"
+                              Value="0"
+                              Minimum="-10"
+                              Maximum="10"
+                              Step="0.5" />
+                          """
+        });
+
+        EmptyInputValueSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Empty_Input_Value_Header,
+            Descriptions = { LanguageManager.Instance.Page_NumericUpDown_Section_Empty_Input_Value_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = EmptyInputValueAnchorId
+        };
+        EmptyInputValueSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:NumericIntUpDown EmptyInputValue="18" Value="18" />
+                          <u:NumericDoubleUpDown EmptyInputValue="3.14" Value="3.14" />
+                          """
+        });
+
+        StyleClassesSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Style_Classes_Header,
+            Descriptions = { LanguageManager.Instance.Page_NumericUpDown_Section_Style_Classes_Description },
+            SectionTag = DemoSectionTag.Style,
+            AnchorId = StyleClassesAnchorId
+        };
+        StyleClassesSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:NumericIntUpDown Classes="ClearButton" />
+                          <u:NumericUIntUpDown Classes="Small" />
+                          <u:NumericUIntUpDown Classes="Large" />
+                          <u:NumericUIntUpDown Classes="Split" />
+                          """
+        });
+
+        ValidationSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_NumericUpDown_Section_Validation_Header,
+            Descriptions = { LanguageManager.Instance.Page_NumericUpDown_Section_Validation_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = ValidationAnchorId
+        };
+        ValidationSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:NumericUIntUpDown PlaceholderText="Validation Error">
+                              <DataValidationErrors.Error>
+                                  <system:Exception />
+                              </DataValidationErrors.Error>
+                          </u:NumericUIntUpDown>
+                          """
+        });
     }
 }

@@ -1,4 +1,4 @@
-<root>
+﻿<root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -553,6 +553,54 @@
   <data name="Page_Description_Form" xml:space="preserve">
     <value>表单是用于分组带标签输入控件的布局容器。</value>
   </data>
+  <data name="Page_Form_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_Form_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>使用 Form 配合 FormItem.Label 排列带标签的输入项，并通过 FormItem.IsRequired 标记必填字段。</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Header" xml:space="preserve">
+    <value>MVVM 验证特性</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Description" xml:space="preserve">
+    <value>将表单字段绑定到带有 DataAnnotations 特性（如 MinLength、EmailAddress、Range）的视图模型属性，即可在 MVVM 模式下启用验证。</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Header" xml:space="preserve">
+    <value>表单分组</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Description" xml:space="preserve">
+    <value>在 Form 中使用 FormGroup 可按标题将相关字段分组，并保持标签布局一致。</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Header" xml:space="preserve">
+    <value>标签位置</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Description" xml:space="preserve">
+    <value>通过 LabelPosition 可将标签放在字段左侧或上方。</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Header" xml:space="preserve">
+    <value>标签宽度</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Description" xml:space="preserve">
+    <value>当 LabelPosition 为 Left 时，可使用 LabelWidth 控制标签区域的预留宽度。将 LabelWidth="*" 可按最宽标签自动对齐。</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Header" xml:space="preserve">
+    <value>标签对齐</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Description" xml:space="preserve">
+    <value>在固定标签宽度下，可用 LabelAlignment 将标签内容设为左对齐、居中或右对齐。</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Header" xml:space="preserve">
+    <value>完整 FormItem 用法</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Description" xml:space="preserve">
+    <value>附加属性适合简单场景。对于控制 IsVisible 或自定义标签内容等复杂场景，建议将控件包裹在完整的 FormItem 中。</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Header" xml:space="preserve">
+    <value>动态表单项（MVVM）</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Description" xml:space="preserve">
+    <value>将 ItemsSource 绑定到来自视图模型的混合集合，再通过 Form 样式与数据模板选择器动态生成 FormGroup 和 FormItem。</value>
+  </data>
   <data name="Page_Description_GroupBox" xml:space="preserve">
     <value>分组框将相关控件组合在一起，带有可选标题边框。</value>
   </data>
@@ -755,5 +803,209 @@
   </data>
   <data name="Page_ClassSelector_Section_Grouped_Selection_Description" xml:space="preserve">
     <value>同一分组内的选项互斥；选择其他分组中的样式类时会保留当前选择。</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>使用 DayOfWeek 枚举演示基础值选择。</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Small_Size_Header" xml:space="preserve">
+    <value>小尺寸</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Small_Size_Description" xml:space="preserve">
+    <value>应用 Small 样式类以呈现紧凑的枚举选择器。</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_EnumValues_Header" xml:space="preserve">
+    <value>自定义枚举值</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_EnumValues_Description" xml:space="preserve">
+    <value>通过绑定或内联 XAML 列表限制可选的枚举值。</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Header" xml:space="preserve">
+    <value>显示 Description 特性</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Description" xml:space="preserve">
+    <value>将 DisplayDescription 设为 True，可显示枚举成员上的 Description 特性文本。</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_DisplayNames_Header" xml:space="preserve">
+    <value>自定义显示名称</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_DisplayNames_Description" xml:space="preserve">
+    <value>通过提供 EnumItemTuple 值来显示自定义名称。</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
+    <value>基础绑定</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Basic_Binding_Description" xml:space="preserve">
+    <value>通过绑定项目集合和已选项目集合来实现多选。</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Description" xml:space="preserve">
+    <value>使用 Small 和 Large 控制大小，使用 ClearButton 显示清除按钮。</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Advanced_Customization_Header" xml:space="preserve">
+    <value>高级自定义</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Advanced_Customization_Description" xml:space="preserve">
+    <value>可组合清除按钮样式、内部内容、弹出层内容和选择命令。</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Inline_Items_Header" xml:space="preserve">
+    <value>内联项</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Inline_Items_Description" xml:space="preserve">
+    <value>可在 XAML 内容中直接声明 MultiComboBoxItem 选项。</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Header" xml:space="preserve">
+    <value>字符串集合项</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Description" xml:space="preserve">
+    <value>可直接绑定字符串集合，简单配置多选自动补全。</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>自定义模板</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>通过 ItemTemplate 和 SelectedItemTemplate 自定义项目与已选项目的显示。</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Header" xml:space="preserve">
+    <value>自定义筛选与模板</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
+    <value>当使用复杂数据结构时，需要结合 ItemFilter 与 ItemTemplate 来决定数据如何筛选和显示。</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>使用配置好的分隔符输入标签，并在启用 AllowDuplicates 时保留重复值。</value>
+  </data>
+  <data name="Page_TagInput_Section_Separator_Behavior_Header" xml:space="preserve">
+    <value>分隔符行为</value>
+  </data>
+  <data name="Page_TagInput_Section_Separator_Behavior_Description" xml:space="preserve">
+    <value>设置 Separator 后，提交时会按分隔符拆分输入；不设置 Separator 时，整段输入会作为一个标签提交。按 Enter 提交输入。</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Header" xml:space="preserve">
+    <value>去重标签</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Description" xml:space="preserve">
+    <value>将 AllowDuplicates 设为 False 可阻止重复标签，并在失去焦点时清除未完成文本。</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Header" xml:space="preserve">
+    <value>多行输入</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Description" xml:space="preserve">
+    <value>将 AcceptsReturn 设为 True，可输入或粘贴多行内容。</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Header" xml:space="preserve">
+    <value>内联项</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Description" xml:space="preserve">
+    <value>可在 XAML 中直接声明嵌套的 TreeComboBoxItem，用于简单树形结构。</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Header" xml:space="preserve">
+    <value>数据绑定</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Description" xml:space="preserve">
+    <value>绑定层级集合，并使用 TreeDataTemplate 展示嵌套项。</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Header" xml:space="preserve">
+    <value>样式与弹出层自定义</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Description" xml:space="preserve">
+    <value>将 ClearButton 样式类与内部内容、弹出层内容以及可选节点规则组合使用。</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Ursa NumericUpDown 是一组用于数字输入的控件。我们为各类基础数值类型提供了专用控件，以获得更好的类型安全。你可以通过 Value、Minimum 和 Maximum 来控制其行为。</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Available_Types_Header" xml:space="preserve">
+    <value>可用的 NumericUpDown 类型</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Available_Types_Description" xml:space="preserve">
+    <value>列出所有可用的类型化 NumericUpDown 控件：NumericIntUpDown、NumericUIntUpDown、NumericDoubleUpDown、NumericByteUpDown、NumericSByteUpDown、NumericShortUpDown、NumericUShortUpDown、NumericLongUpDown、NumericULongUpDown、NumericFloatUpDown 和 NumericDecimalUpDown。</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Header" xml:space="preserve">
+    <value>拖拽调节数值</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Description" xml:space="preserve">
+    <value>将 AllowDrag 设为 True 后，可通过拖拽来调整数值。</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Header" xml:space="preserve">
+    <value>EmptyInputValue 用法</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Description" xml:space="preserve">
+    <value>设置 EmptyInputValue 可在输入被清空并提交后应用一个回填值。</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Description" xml:space="preserve">
+    <value>使用 ClassSelector 切换 Small、Large、Split 和 ClearButton 样式类。</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Header" xml:space="preserve">
+    <value>验证</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Description" xml:space="preserve">
+    <value>通过设置 DataValidationErrors.Error 来展示验证错误状态。</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Header" xml:space="preserve">
+    <value>基础输入模式</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Description" xml:space="preserve">
+    <value>在切换前导零显示时，对比标准输入模式与快速输入模式。</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Header" xml:space="preserve">
+    <value>源绑定与禁用状态</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
+    <value>将 IPAddress 属性绑定到视图模型数据，并展示 IPv4Box 的禁用状态。</value>
+  </data>
+  <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_IconButton_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Ursa IconButton 是一组控件，包含 IconButton、IconDropDownButton、IconRepeatButton、IconSplitButton、IconToggleButton 和 IconToggleSplitButton。</value>
+  </data>
+  <data name="Page_IconButton_Section_Theme_Variants_Header" xml:space="preserve">
+    <value>主题变体</value>
+  </data>
+  <data name="Page_IconButton_Section_Theme_Variants_Description" xml:space="preserve">
+    <value>IconButton 支持额外主题：SolidIconButton、OutlineIconButton 和 BorderlessIconButton。</value>
+  </data>
+  <data name="Page_IconButton_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_IconButton_Section_Style_Classes_Description" xml:space="preserve">
+    <value>使用 ClassSelector 组合颜色类（Primary、Secondary、Tertiary、Success、Warning、Danger、Colorful）和尺寸类（Small、Large）。</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Header" xml:space="preserve">
+    <value>图标位置</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Description" xml:space="preserve">
+    <value>使用 EnumSelector 控制 IconPlacement，并以交互方式预览不同的图标位置。</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Header" xml:space="preserve">
+    <value>加载状态</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Description" xml:space="preserve">
+    <value>使用 ToggleSwitch 控制 IsLoading，并预览图标按钮的加载指示效果。</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Header" xml:space="preserve">
+    <value>项模板与命令</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Description" xml:space="preserve">
+    <value>将集合绑定到 ButtonGroup，并使用项模板自定义每个生成的按钮。</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Description" xml:space="preserve">
+    <value>将 Success、Warning、Danger 等语义类与 Small、Large、Solid 变体组合使用。</value>
   </data>
 </root>

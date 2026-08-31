@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
@@ -567,6 +567,54 @@
   <data name="Page_Description_Form" xml:space="preserve">
     <value>Form is a layout container for grouping labeled input controls.</value>
   </data>
+  <data name="Page_Form_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Basic Usage</value>
+  </data>
+  <data name="Page_Form_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Use Form with FormItem.Label to arrange labeled inputs, and set FormItem.IsRequired to mark required fields.</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Header" xml:space="preserve">
+    <value>MVVM Validation Attributes</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Description" xml:space="preserve">
+    <value>Bind form fields to view-model properties decorated with DataAnnotations attributes such as MinLength, EmailAddress, and Range to enable validation in MVVM.</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Header" xml:space="preserve">
+    <value>Form Group</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Description" xml:space="preserve">
+    <value>Use FormGroup inside Form to split related fields into logical blocks with headers while keeping label layout consistent.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Header" xml:space="preserve">
+    <value>Label Position</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Description" xml:space="preserve">
+    <value>Set LabelPosition to place labels on the left side or on top of each field.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Header" xml:space="preserve">
+    <value>Label Width</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Description" xml:space="preserve">
+    <value>When LabelPosition is Left, use LabelWidth to control the reserved width for labels. Set LabelWidth="*" to automatically align with the widest label.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Header" xml:space="preserve">
+    <value>Label Alignment</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Description" xml:space="preserve">
+    <value>With fixed label width, use LabelAlignment to align label content to left, center, or right.</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Header" xml:space="preserve">
+    <value>Full FormItem Usage</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Description" xml:space="preserve">
+    <value>Attached properties are suitable for simple fields. For advanced scenarios like controlling IsVisible or custom label content, wrap the control inside a full FormItem.</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Header" xml:space="preserve">
+    <value>Dynamic Form Items (MVVM)</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Description" xml:space="preserve">
+    <value>Bind ItemsSource to a mixed collection from the ViewModel, then use Form styles and a data template selector to generate FormGroup and FormItem dynamically.</value>
+  </data>
   <data name="Page_Description_GroupBox" xml:space="preserve">
     <value>GroupBox groups related controls together with an optional title border.</value>
   </data>
@@ -769,5 +817,209 @@
   </data>
   <data name="Page_ClassSelector_Section_Grouped_Selection_Description" xml:space="preserve">
     <value>Options in the same group are mutually exclusive. Selecting a class from another group preserves the existing selection.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Basic usage</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Use the DayOfWeek enum to demonstrate basic value selection.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Small_Size_Header" xml:space="preserve">
+    <value>Small size</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Small_Size_Description" xml:space="preserve">
+    <value>Apply the Small class to render a compact enum selector.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_EnumValues_Header" xml:space="preserve">
+    <value>Custom enum values</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_EnumValues_Description" xml:space="preserve">
+    <value>Limit available enum values from binding or inline XAML lists.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Header" xml:space="preserve">
+    <value>Description attribute display</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Description" xml:space="preserve">
+    <value>Set DisplayDescription to True to show Description attribute text from enum members.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_DisplayNames_Header" xml:space="preserve">
+    <value>Custom display names</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_DisplayNames_Description" xml:space="preserve">
+    <value>Provide EnumItemTuple values to show custom display names.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
+    <value>Basic binding</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Basic_Binding_Description" xml:space="preserve">
+    <value>Bind items and selected items collections for multi-selection.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Style classes</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Use Small and Large to control size, and ClearButton to show the clear button.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Advanced_Customization_Header" xml:space="preserve">
+    <value>Advanced customization</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Advanced_Customization_Description" xml:space="preserve">
+    <value>Combine clear button styles, inner content, popup content, and selection commands.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Inline_Items_Header" xml:space="preserve">
+    <value>Inline items</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Inline_Items_Description" xml:space="preserve">
+    <value>Declare MultiComboBoxItem options directly in XAML content.</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Header" xml:space="preserve">
+    <value>String items collection</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Description" xml:space="preserve">
+    <value>Bind a string collection directly for a simple multi-select autocomplete setup.</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Custom templates</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Customize item and selected-item rendering with ItemTemplate and SelectedItemTemplate.</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Header" xml:space="preserve">
+    <value>Custom filter and template</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
+    <value>When using complex data structures, use ItemFilter and ItemTemplate together to control how data is filtered and displayed.</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Basic usage</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Enter tags separated by the configured separator and keep duplicate values when AllowDuplicates is enabled.</value>
+  </data>
+  <data name="Page_TagInput_Section_Separator_Behavior_Header" xml:space="preserve">
+    <value>Separator behavior</value>
+  </data>
+  <data name="Page_TagInput_Section_Separator_Behavior_Description" xml:space="preserve">
+    <value>With Separator set, input is split by the separator when committed. Without Separator, the whole input is committed as one tag. Press Enter to commit input.</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Header" xml:space="preserve">
+    <value>Distinct tags</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Description" xml:space="preserve">
+    <value>Set AllowDuplicates to False to prevent duplicate tags and clear pending text on focus loss.</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Header" xml:space="preserve">
+    <value>Multiline input</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Description" xml:space="preserve">
+    <value>Set AcceptsReturn to True to enter or paste multiline values.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Header" xml:space="preserve">
+    <value>Inline items</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Description" xml:space="preserve">
+    <value>Declare nested TreeComboBoxItem values directly in XAML for simple trees.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Header" xml:space="preserve">
+    <value>Data binding</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Description" xml:space="preserve">
+    <value>Bind a hierarchical collection and use TreeDataTemplate to display nested items.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Header" xml:space="preserve">
+    <value>Style and popup customization</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Description" xml:space="preserve">
+    <value>Combine the ClearButton class with inner content, popup content, and selectable node rules.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Basic Usage</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Ursa NumericUpDown is a family of controls for number input. Dedicated controls for primitive numeric types provide better type safety. Use Value, Minimum, and Maximum to control behavior.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Available_Types_Header" xml:space="preserve">
+    <value>Available NumericUpDown types</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Available_Types_Description" xml:space="preserve">
+    <value>List all available typed NumericUpDown controls: NumericIntUpDown, NumericUIntUpDown, NumericDoubleUpDown, NumericByteUpDown, NumericSByteUpDown, NumericShortUpDown, NumericUShortUpDown, NumericLongUpDown, NumericULongUpDown, NumericFloatUpDown, and NumericDecimalUpDown.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Header" xml:space="preserve">
+    <value>Drag to adjust values</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Description" xml:space="preserve">
+    <value>Set AllowDrag to True to enable dragging for value adjustment.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Header" xml:space="preserve">
+    <value>Using EmptyInputValue</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Description" xml:space="preserve">
+    <value>Set EmptyInputValue to apply a fallback value when the input is cleared and then committed.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Style classes</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Use ClassSelector to switch Small, Large, Split, and ClearButton classes.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Header" xml:space="preserve">
+    <value>Validation</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Description" xml:space="preserve">
+    <value>Attach DataValidationErrors.Error to display a validation error state.</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Header" xml:space="preserve">
+    <value>Basic input modes</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Description" xml:space="preserve">
+    <value>Compare standard and fast input modes while toggling leading zero display.</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Header" xml:space="preserve">
+    <value>Source binding and disabled state</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
+    <value>Bind the IPAddress property to view model data and show a disabled IPv4Box state.</value>
+  </data>
+  <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Basic Usage</value>
+  </data>
+  <data name="Page_IconButton_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Ursa IconButton is a family of controls including IconButton, IconDropDownButton, IconRepeatButton, IconSplitButton, IconToggleButton, and IconToggleSplitButton.</value>
+  </data>
+  <data name="Page_IconButton_Section_Theme_Variants_Header" xml:space="preserve">
+    <value>Theme Variants</value>
+  </data>
+  <data name="Page_IconButton_Section_Theme_Variants_Description" xml:space="preserve">
+    <value>IconButton supports additional themes: SolidIconButton, OutlineIconButton, and BorderlessIconButton.</value>
+  </data>
+  <data name="Page_IconButton_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Style Classes</value>
+  </data>
+  <data name="Page_IconButton_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Use ClassSelector to combine color classes (Primary, Secondary, Tertiary, Success, Warning, Danger, Colorful) and size classes (Small, Large).</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Header" xml:space="preserve">
+    <value>Icon Placement</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Description" xml:space="preserve">
+    <value>Use EnumSelector to control IconPlacement and preview different icon positions interactively.</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Header" xml:space="preserve">
+    <value>Loading State</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Description" xml:space="preserve">
+    <value>Use a ToggleSwitch to control IsLoading and preview loading indicators on icon buttons.</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Header" xml:space="preserve">
+    <value>Item templates and commands</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Description" xml:space="preserve">
+    <value>Bind a collection to ButtonGroup and customize each generated button with an item template.</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Style classes</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Combine semantic classes like Success, Warning, and Danger with Small, Large, and Solid variants.</value>
   </data>
 </root>

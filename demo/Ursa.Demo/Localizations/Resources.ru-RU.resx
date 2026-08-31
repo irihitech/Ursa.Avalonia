@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
@@ -568,6 +568,54 @@
   <data name="Page_Description_Form" xml:space="preserve">
     <value>Форма — это контейнер макета для группировки помеченных элементов управления вводом.</value>
   </data>
+  <data name="Page_Form_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_Form_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Используйте Form с FormItem.Label для размещения полей ввода с подписями и задайте FormItem.IsRequired, чтобы отметить обязательные поля.</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Header" xml:space="preserve">
+    <value>Атрибуты валидации MVVM</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Description" xml:space="preserve">
+    <value>Свяжите поля формы со свойствами ViewModel, помеченными атрибутами DataAnnotations (например, MinLength, EmailAddress и Range), чтобы включить валидацию в MVVM.</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Header" xml:space="preserve">
+    <value>Группы формы</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Description" xml:space="preserve">
+    <value>Используйте FormGroup внутри Form, чтобы разделить связанные поля на логические блоки с заголовками и сохранить единое выравнивание меток.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Header" xml:space="preserve">
+    <value>Положение метки</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Description" xml:space="preserve">
+    <value>Установите LabelPosition, чтобы размещать метки слева от поля или над ним.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Header" xml:space="preserve">
+    <value>Ширина метки</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Description" xml:space="preserve">
+    <value>Когда LabelPosition имеет значение Left, используйте LabelWidth для управления зарезервированной шириной метки. Установите LabelWidth="*", чтобы автоматически выровнять по самой широкой метке.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Header" xml:space="preserve">
+    <value>Выравнивание метки</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Description" xml:space="preserve">
+    <value>При фиксированной ширине метки используйте LabelAlignment для выравнивания содержимого по левому краю, по центру или по правому краю.</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Header" xml:space="preserve">
+    <value>Полное использование FormItem</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Description" xml:space="preserve">
+    <value>Присоединённые свойства подходят для простых полей. Для более сложных сценариев, например управления IsVisible или настройки содержимого метки, лучше обернуть элемент управления в полноценный FormItem.</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Header" xml:space="preserve">
+    <value>Динамические элементы формы (MVVM)</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Description" xml:space="preserve">
+    <value>Привяжите ItemsSource к смешанной коллекции из ViewModel, затем используйте стили Form и селектор шаблонов данных, чтобы динамически создавать FormGroup и FormItem.</value>
+  </data>
   <data name="Page_Description_GroupBox" xml:space="preserve">
     <value>Групповая рамка группирует связанные элементы управления вместе с дополнительной рамкой заголовка.</value>
   </data>
@@ -763,5 +811,215 @@
   </data>
   <data name="Page_ClassSelector_Section_Grouped_Selection_Description" xml:space="preserve">
     <value>Параметры в одной группе взаимоисключающие. Выбор класса из другой группы сохраняет текущий выбор.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Используйте перечисление DayOfWeek для демонстрации базового выбора значения.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Small_Size_Header" xml:space="preserve">
+    <value>Малый размер</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Small_Size_Description" xml:space="preserve">
+    <value>Примените класс Small, чтобы отобразить компактный селектор перечисления.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_EnumValues_Header" xml:space="preserve">
+    <value>Пользовательские значения перечисления</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_EnumValues_Description" xml:space="preserve">
+    <value>Ограничьте доступные значения перечисления через привязку или встроенные списки XAML.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Header" xml:space="preserve">
+    <value>Отображение атрибута Description</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Description" xml:space="preserve">
+    <value>Установите DisplayDescription в True, чтобы отображать текст атрибута Description у элементов перечисления.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_DisplayNames_Header" xml:space="preserve">
+    <value>Пользовательские отображаемые имена</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_DisplayNames_Description" xml:space="preserve">
+    <value>Передавайте значения EnumItemTuple для отображения пользовательских имен.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
+    <value>Базовая привязка</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Basic_Binding_Description" xml:space="preserve">
+    <value>Привяжите коллекции элементов и выбранных элементов для множественного выбора.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стилей</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте Small и Large для управления размером, а ClearButton — для отображения кнопки очистки.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Advanced_Customization_Header" xml:space="preserve">
+    <value>Расширенная настройка</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Advanced_Customization_Description" xml:space="preserve">
+    <value>Комбинируйте стили кнопки очистки, внутреннее содержимое, содержимое всплывающего окна и команды выбора.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Inline_Items_Header" xml:space="preserve">
+    <value>Встроенные элементы</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Inline_Items_Description" xml:space="preserve">
+    <value>Объявляйте параметры MultiComboBoxItem прямо в содержимом XAML.</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Header" xml:space="preserve">
+    <value>Коллекция строковых элементов</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Description" xml:space="preserve">
+    <value>Привяжите коллекцию строк напрямую для простой настройки автодополнения с множественным выбором.</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Пользовательские шаблоны</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Настройте отображение элементов и выбранных элементов с помощью ItemTemplate и SelectedItemTemplate.</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Header" xml:space="preserve">
+    <value>Пользовательский фильтр и шаблон</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
+    <value>При использовании сложных структур данных применяйте ItemFilter и ItemTemplate вместе, чтобы определить, как данные фильтруются и отображаются.</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Вводите теги, разделённые настроенным разделителем, и сохраняйте дубликаты, когда включён AllowDuplicates.</value>
+  </data>
+  <data name="Page_TagInput_Section_Separator_Behavior_Header" xml:space="preserve">
+    <value>Поведение разделителя</value>
+  </data>
+  <data name="Page_TagInput_Section_Separator_Behavior_Description" xml:space="preserve">
+    <value>Если задан Separator, при подтверждении ввод разделяется по разделителю. Без Separator весь ввод подтверждается как один тег. Нажмите Enter, чтобы подтвердить ввод.</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Header" xml:space="preserve">
+    <value>Уникальные теги</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Description" xml:space="preserve">
+    <value>Установите AllowDuplicates в False, чтобы предотвращать дубликаты тегов, и очищайте незавершённый текст при потере фокуса.</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Header" xml:space="preserve">
+    <value>Многострочный ввод</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Description" xml:space="preserve">
+    <value>Установите AcceptsReturn в True, чтобы вводить или вставлять многострочные значения.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Header" xml:space="preserve">
+    <value>Встроенные элементы</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Description" xml:space="preserve">
+    <value>Объявляйте вложенные значения TreeComboBoxItem прямо в XAML для простых деревьев.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Header" xml:space="preserve">
+    <value>Привязка данных</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Description" xml:space="preserve">
+    <value>Привяжите иерархическую коллекцию и используйте TreeDataTemplate для отображения вложенных элементов.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Header" xml:space="preserve">
+    <value>Стиль и настройка всплывающего окна</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Description" xml:space="preserve">
+    <value>Комбинируйте класс ClearButton с внутренним содержимым, содержимым всплывающего окна и правилами выбора узлов.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Привяжите свойства NumericUIntUpDown, чтобы быстро экспериментировать с форматированием, диапазоном, выравниванием и командами.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Available_Types_Header" xml:space="preserve">
+    <value>Доступные типы NumericUpDown</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Available_Types_Description" xml:space="preserve">
+    <value>Список всех доступных типизированных элементов управления NumericUpDown: NumericIntUpDown, NumericUIntUpDown, NumericDoubleUpDown, NumericByteUpDown, NumericSByteUpDown, NumericShortUpDown, NumericUShortUpDown, NumericLongUpDown, NumericULongUpDown, NumericFloatUpDown и NumericDecimalUpDown.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Header" xml:space="preserve">
+    <value>Изменение значений перетаскиванием</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Description" xml:space="preserve">
+    <value>Установите AllowDrag в True, чтобы изменять значения перетаскиванием.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Header" xml:space="preserve">
+    <value>Использование EmptyInputValue</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Description" xml:space="preserve">
+    <value>Установите EmptyInputValue, чтобы после очистки и подтверждения ввода применялось резервное значение.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стилей</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте ClassSelector для переключения классов Small, Large, Split и ClearButton.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Header" xml:space="preserve">
+    <value>Валидация</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Description" xml:space="preserve">
+    <value>Добавьте DataValidationErrors.Error, чтобы показать состояние ошибки валидации.</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Header" xml:space="preserve">
+    <value>Базовые режимы ввода</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Description" xml:space="preserve">
+    <value>Сравните стандартный и быстрый режимы ввода при переключении отображения ведущих нулей.</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Header" xml:space="preserve">
+    <value>Привязка к источнику и отключённое состояние</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
+    <value>Привяжите свойство IPAddress к данным view model и покажите отключённое состояние IPv4Box.</value>
+  </data>
+  <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_IconButton_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Ursa IconButton — это семейство элементов управления, включающее IconButton, IconDropDownButton, IconRepeatButton, IconSplitButton, IconToggleButton и IconToggleSplitButton.</value>
+  </data>
+  <data name="Page_IconButton_Section_Theme_Variants_Header" xml:space="preserve">
+    <value>Варианты темы</value>
+  </data>
+  <data name="Page_IconButton_Section_Theme_Variants_Description" xml:space="preserve">
+    <value>IconButton поддерживает дополнительные темы: SolidIconButton, OutlineIconButton и BorderlessIconButton.</value>
+  </data>
+  <data name="Page_IconButton_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стилей</value>
+  </data>
+  <data name="Page_IconButton_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте ClassSelector для сочетания цветовых классов (Primary, Secondary, Tertiary, Success, Warning, Danger, Colorful) и классов размеров (Small, Large).</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Header" xml:space="preserve">
+    <value>Расположение иконки</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Description" xml:space="preserve">
+    <value>Используйте EnumSelector для управления IconPlacement и интерактивного предварительного просмотра разных положений иконки.</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Header" xml:space="preserve">
+    <value>Состояние загрузки</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Description" xml:space="preserve">
+    <value>Используйте ToggleSwitch для управления IsLoading и предварительного просмотра индикаторов загрузки на кнопках с иконкой.</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Header" xml:space="preserve">
+    <value>Шаблоны элементов и команды</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Description" xml:space="preserve">
+    <value>Привяжите коллекцию к ButtonGroup и настройте каждую созданную кнопку с помощью шаблона элемента.</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стилей</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Сочетайте семантические классы Success, Warning и Danger с вариантами Small, Large и Solid.</value>
+  </data>
+  <data name="DemoSection_Tab_Xaml" xml:space="preserve">
+    <value>XAML</value>
+  </data>
+  <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
+    <value>ViewModel</value>
   </data>
 </root>

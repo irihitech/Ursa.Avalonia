@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
@@ -567,6 +567,54 @@
   <data name="Page_Description_Form" xml:space="preserve">
     <value>Formular ist ein Layout-Container zum Gruppieren von beschrifteten Eingabesteuerelementen.</value>
   </data>
+  <data name="Page_Form_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Grundlegende Verwendung</value>
+  </data>
+  <data name="Page_Form_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Verwenden Sie Form mit FormItem.Label zum Anordnen beschrifteter Eingaben und setzen Sie FormItem.IsRequired zum Markieren von Pflichtfeldern.</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Header" xml:space="preserve">
+    <value>MVVM-Validierungsattribute</value>
+  </data>
+  <data name="Page_Form_Section_Mvvm_Validation_Description" xml:space="preserve">
+    <value>Binden Sie Formularfelder an ViewModel-Eigenschaften mit DataAnnotations-Attributen wie MinLength, EmailAddress und Range, um die Validierung im MVVM-Muster zu aktivieren.</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Header" xml:space="preserve">
+    <value>Formulargruppen</value>
+  </data>
+  <data name="Page_Form_Section_Form_Group_Description" xml:space="preserve">
+    <value>Verwenden Sie FormGroup innerhalb von Form, um zusammengehörige Felder in logische Blöcke mit Überschriften zu gliedern und gleichzeitig ein einheitliches Label-Layout beizubehalten.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Header" xml:space="preserve">
+    <value>Position des Labels</value>
+  </data>
+  <data name="Page_Form_Section_Label_Position_Description" xml:space="preserve">
+    <value>Stellen Sie LabelPosition ein, um Labels links oder oberhalb jedes Felds anzuzeigen.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Header" xml:space="preserve">
+    <value>Labelbreite</value>
+  </data>
+  <data name="Page_Form_Section_Label_Width_Description" xml:space="preserve">
+    <value>Wenn LabelPosition auf Left steht, steuert LabelWidth den reservierten Platz für Labels. Setzen Sie LabelWidth="*", um Labels automatisch am breitesten Label auszurichten.</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Header" xml:space="preserve">
+    <value>Labelausrichtung</value>
+  </data>
+  <data name="Page_Form_Section_Label_Alignment_Description" xml:space="preserve">
+    <value>Bei fester Labelbreite richtet LabelAlignment den Labelinhalt links, zentriert oder rechts aus.</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Header" xml:space="preserve">
+    <value>Volle FormItem-Verwendung</value>
+  </data>
+  <data name="Page_Form_Section_Full_Form_Item_Description" xml:space="preserve">
+    <value>Angehängte Eigenschaften sind für einfache Felder geeignet. Für komplexere Szenarien wie die Steuerung von IsVisible oder benutzerdefinierte Label-Inhalte sollten Sie das Steuerelement in ein vollständiges FormItem einschließen.</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Header" xml:space="preserve">
+    <value>Dynamische Formularelemente (MVVM)</value>
+  </data>
+  <data name="Page_Form_Section_Dynamic_Form_Items_Description" xml:space="preserve">
+    <value>Binden Sie ItemsSource an eine gemischte Sammlung aus dem ViewModel und erzeugen Sie dann mit Form-Stilen und einem Datenvorlagen-Selektor FormGroup und FormItem dynamisch.</value>
+  </data>
   <data name="Page_Description_GroupBox" xml:space="preserve">
     <value>Gruppenfeld gruppiert verwandte Steuerelemente mit einem optionalen Titelrahmen.</value>
   </data>
@@ -762,5 +810,215 @@
   </data>
   <data name="Page_ClassSelector_Section_Grouped_Selection_Description" xml:space="preserve">
     <value>Optionen derselben Gruppe schließen sich gegenseitig aus. Die Auswahl einer Klasse aus einer anderen Gruppe behält die bestehende Auswahl bei.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Grundlegende Verwendung</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Verwenden Sie die DayOfWeek-Enumeration, um die grundlegende Wertauswahl zu demonstrieren.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Small_Size_Header" xml:space="preserve">
+    <value>Kleine Größe</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Small_Size_Description" xml:space="preserve">
+    <value>Wenden Sie die Klasse Small an, um einen kompakten Enum-Selektor darzustellen.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_EnumValues_Header" xml:space="preserve">
+    <value>Benutzerdefinierte Enum-Werte</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_EnumValues_Description" xml:space="preserve">
+    <value>Begrenzen Sie verfügbare Enum-Werte über Bindung oder eingebettete XAML-Listen.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Header" xml:space="preserve">
+    <value>Anzeige des Description-Attributs</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Description_Attribute_Description" xml:space="preserve">
+    <value>Setzen Sie DisplayDescription auf True, um den Text des Description-Attributs von Enum-Mitgliedern anzuzeigen.</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_DisplayNames_Header" xml:space="preserve">
+    <value>Benutzerdefinierte Anzeigenamen</value>
+  </data>
+  <data name="Page_EnumSelector_Section_Custom_DisplayNames_Description" xml:space="preserve">
+    <value>Verwenden Sie EnumItemTuple-Werte, um benutzerdefinierte Anzeigenamen anzuzeigen.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
+    <value>Grundlegende Bindung</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Basic_Binding_Description" xml:space="preserve">
+    <value>Binden Sie Element- und Auswahlelement-Sammlungen für die Mehrfachauswahl.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Stilklassen</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Verwenden Sie Small und Large zur Steuerung der Größe und ClearButton zum Anzeigen der Schaltfläche zum Leeren.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Advanced_Customization_Header" xml:space="preserve">
+    <value>Erweiterte Anpassung</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Advanced_Customization_Description" xml:space="preserve">
+    <value>Kombinieren Sie Clear-Button-Stile, inneren Inhalt, Popup-Inhalt und Auswahlbefehle.</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Inline_Items_Header" xml:space="preserve">
+    <value>Inline-Elemente</value>
+  </data>
+  <data name="Page_MultiComboBox_Section_Inline_Items_Description" xml:space="preserve">
+    <value>Deklarieren Sie MultiComboBoxItem-Optionen direkt im XAML-Inhalt.</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Header" xml:space="preserve">
+    <value>String-Elementsammlung</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_String_Items_Description" xml:space="preserve">
+    <value>Binden Sie eine Zeichenfolgensammlung direkt für eine einfache Autovervollständigung mit Mehrfachauswahl.</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Benutzerdefinierte Vorlagen</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Passen Sie die Darstellung von Elementen und ausgewählten Elementen mit ItemTemplate und SelectedItemTemplate an.</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Header" xml:space="preserve">
+    <value>Benutzerdefinierter Filter und Vorlage</value>
+  </data>
+  <data name="Page_MultiAutoCompleteBox_Section_Custom_Filter_And_Template_Description" xml:space="preserve">
+    <value>Wenn Sie komplexe Datenstrukturen verwenden, nutzen Sie ItemFilter und ItemTemplate gemeinsam, um zu steuern, wie Daten gefiltert und angezeigt werden.</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Grundlegende Verwendung</value>
+  </data>
+  <data name="Page_TagInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Geben Sie Tags getrennt durch das konfigurierte Trennzeichen ein und behalten Sie doppelte Werte bei, wenn AllowDuplicates aktiviert ist.</value>
+  </data>
+  <data name="Page_TagInput_Section_Separator_Behavior_Header" xml:space="preserve">
+    <value>Verhalten mit Trennzeichen</value>
+  </data>
+  <data name="Page_TagInput_Section_Separator_Behavior_Description" xml:space="preserve">
+    <value>Wenn Separator gesetzt ist, wird die Eingabe beim Bestätigen anhand des Trennzeichens aufgeteilt. Ohne Separator wird die gesamte Eingabe als ein Tag übernommen. Drücken Sie Enter, um die Eingabe zu bestätigen.</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Header" xml:space="preserve">
+    <value>Eindeutige Tags</value>
+  </data>
+  <data name="Page_TagInput_Section_Distinct_Tags_Description" xml:space="preserve">
+    <value>Setzen Sie AllowDuplicates auf False, um doppelte Tags zu verhindern, und löschen Sie ausstehenden Text beim Fokusverlust.</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Header" xml:space="preserve">
+    <value>Mehrzeilige Eingabe</value>
+  </data>
+  <data name="Page_TagInput_Section_Multiline_Input_Description" xml:space="preserve">
+    <value>Setzen Sie AcceptsReturn auf True, um mehrzeilige Werte einzugeben oder einzufügen.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Header" xml:space="preserve">
+    <value>Inline-Elemente</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Inline_Items_Description" xml:space="preserve">
+    <value>Deklarieren Sie verschachtelte TreeComboBoxItem-Werte für einfache Bäume direkt in XAML.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Header" xml:space="preserve">
+    <value>Datenbindung</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Data_Binding_Description" xml:space="preserve">
+    <value>Binden Sie eine hierarchische Sammlung und verwenden Sie TreeDataTemplate zur Anzeige verschachtelter Elemente.</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Header" xml:space="preserve">
+    <value>Stil- und Popup-Anpassung</value>
+  </data>
+  <data name="Page_TreeComboBox_Section_Style_And_Popup_Customization_Description" xml:space="preserve">
+    <value>Kombinieren Sie die Klasse ClearButton mit innerem Inhalt, Popup-Inhalt und Regeln für auswählbare Knoten.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Grundlegende Verwendung</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Binden Sie NumericUIntUpDown-Eigenschaften, um Formatierung, Bereich, Ausrichtung und Befehle schnell auszuprobieren.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Available_Types_Header" xml:space="preserve">
+    <value>Verfügbare NumericUpDown-Typen</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Available_Types_Description" xml:space="preserve">
+    <value>Listet alle verfügbaren typisierten NumericUpDown-Steuerelemente auf: NumericIntUpDown, NumericUIntUpDown, NumericDoubleUpDown, NumericByteUpDown, NumericSByteUpDown, NumericShortUpDown, NumericUShortUpDown, NumericLongUpDown, NumericULongUpDown, NumericFloatUpDown und NumericDecimalUpDown.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Header" xml:space="preserve">
+    <value>Werte per Ziehen anpassen</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Drag_Adjustment_Description" xml:space="preserve">
+    <value>Setzen Sie AllowDrag auf True, um Werte durch Ziehen anzupassen.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Header" xml:space="preserve">
+    <value>Verwendung von EmptyInputValue</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Empty_Input_Value_Description" xml:space="preserve">
+    <value>Setzen Sie EmptyInputValue, um einen Ersatzwert anzuwenden, wenn die Eingabe geleert und anschließend bestätigt wird.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Stilklassen</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Verwenden Sie ClassSelector, um zwischen den Klassen Small, Large, Split und ClearButton zu wechseln.</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Header" xml:space="preserve">
+    <value>Validierung</value>
+  </data>
+  <data name="Page_NumericUpDown_Section_Validation_Description" xml:space="preserve">
+    <value>Fügen Sie DataValidationErrors.Error hinzu, um einen Validierungsfehlerzustand anzuzeigen.</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Header" xml:space="preserve">
+    <value>Grundlegende Eingabemodi</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Basic_Input_Modes_Description" xml:space="preserve">
+    <value>Vergleichen Sie Standard- und Schnelleingabemodus beim Umschalten der Anzeige führender Nullen.</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Header" xml:space="preserve">
+    <value>Quellbindung und deaktivierter Zustand</value>
+  </data>
+  <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
+    <value>Binden Sie die Eigenschaft IPAddress an ViewModel-Daten und zeigen Sie einen deaktivierten IPv4Box-Zustand an.</value>
+  </data>
+  <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Grundlegende Verwendung</value>
+  </data>
+  <data name="Page_IconButton_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Ursa IconButton ist eine Steuerelementfamilie, die IconButton, IconDropDownButton, IconRepeatButton, IconSplitButton, IconToggleButton und IconToggleSplitButton umfasst.</value>
+  </data>
+  <data name="Page_IconButton_Section_Theme_Variants_Header" xml:space="preserve">
+    <value>Themenvarianten</value>
+  </data>
+  <data name="Page_IconButton_Section_Theme_Variants_Description" xml:space="preserve">
+    <value>IconButton unterstützt zusätzliche Designs: SolidIconButton, OutlineIconButton und BorderlessIconButton.</value>
+  </data>
+  <data name="Page_IconButton_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Stilklassen</value>
+  </data>
+  <data name="Page_IconButton_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Verwenden Sie den ClassSelector, um Farbklassen (Primary, Secondary, Tertiary, Success, Warning, Danger, Colorful) und Größenklassen (Small, Large) zu kombinieren.</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Header" xml:space="preserve">
+    <value>Symbolposition</value>
+  </data>
+  <data name="Page_IconButton_Section_Icon_Placement_Description" xml:space="preserve">
+    <value>Verwenden Sie EnumSelector, um IconPlacement zu steuern und verschiedene Symbolpositionen interaktiv anzuzeigen.</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Header" xml:space="preserve">
+    <value>Ladezustand</value>
+  </data>
+  <data name="Page_IconButton_Section_Loading_State_Description" xml:space="preserve">
+    <value>Verwenden Sie einen ToggleSwitch, um IsLoading zu steuern und Ladeindikatoren auf Icon-Schaltflächen anzuzeigen.</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Header" xml:space="preserve">
+    <value>Elementvorlagen und Befehle</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Item_Templates_And_Commands_Description" xml:space="preserve">
+    <value>Binden Sie eine Sammlung an ButtonGroup und passen Sie jede erzeugte Schaltfläche mit einer Elementvorlage an.</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Stilklassen</value>
+  </data>
+  <data name="Page_ButtonGroup_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Kombinieren Sie semantische Klassen wie Success, Warning und Danger mit den Varianten Small, Large und Solid.</value>
+  </data>
+  <data name="DemoSection_Tab_Xaml" xml:space="preserve">
+    <value>XAML</value>
+  </data>
+  <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
+    <value>ViewModel</value>
   </data>
 </root>
