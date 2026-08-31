@@ -973,6 +973,24 @@
   <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
     <value>Binden Sie die Eigenschaft IPAddress an ViewModel-Daten und zeigen Sie einen deaktivierten IPv4Box-Zustand an.</value>
   </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Header" xml:space="preserve">
+    <value>Inline-XAML-Definition</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Description" xml:space="preserve">
+    <value>Definieren Sie BreadcrumbItem-Elemente direkt in XAML, um einen statischen Navigationspfad aufzubauen, und markieren Sie das letzte Element als schreibgeschützt.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Header" xml:space="preserve">
+    <value>MVVM-Bindung</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Description" xml:space="preserve">
+    <value>Binden Sie ItemsSource zusammen mit DisplayMemberBinding, IconBinding und CommandBinding, um Breadcrumb-Elemente aus ViewModel-Daten zu erzeugen.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Header" xml:space="preserve">
+    <value>Größen-Stilklasse</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Description" xml:space="preserve">
+    <value>Verwenden Sie ClassSelector, um die Klasse Small umzuschalten und kompaktere Breadcrumb-Abstände sowie Typografie vorzuschauen.</value>
+  </data>
   <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
     <value>Grundlegende Verwendung</value>
   </data>

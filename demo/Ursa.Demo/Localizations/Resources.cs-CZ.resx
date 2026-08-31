@@ -974,6 +974,24 @@
   <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
     <value>Navažte vlastnost IPAddress na data ve view modelu a zobrazte zakázaný stav IPv4Boxu.</value>
   </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Header" xml:space="preserve">
+    <value>Vložená definice XAML</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Description" xml:space="preserve">
+    <value>Definujte prvky BreadcrumbItem přímo v XAML pro vytvoření statické navigační cesty a označte koncovou položku jako jen pro čtení.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Header" xml:space="preserve">
+    <value>MVVM vazba</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Description" xml:space="preserve">
+    <value>Navažte ItemsSource společně s DisplayMemberBinding, IconBinding a CommandBinding, aby se položky breadcrumb generovaly z dat view modelu.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Header" xml:space="preserve">
+    <value>Třída stylu velikosti</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Description" xml:space="preserve">
+    <value>Pomocí ClassSelector přepínejte třídu Small a zobrazte kompaktnější rozestupy i typografii breadcrumbu.</value>
+  </data>
   <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
     <value>Základní použití</value>
   </data>

@@ -966,6 +966,24 @@
   <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
     <value>Powiąż właściwość IPAddress z danymi view modelu i pokaż wyłączony stan IPv4Box.</value>
   </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Header" xml:space="preserve">
+    <value>Definicja inline w XAML</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Description" xml:space="preserve">
+    <value>Zdefiniuj elementy BreadcrumbItem bezpośrednio w XAML, aby zbudować statyczną ścieżkę nawigacji, i oznacz końcowy element jako tylko do odczytu.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Header" xml:space="preserve">
+    <value>Powiązanie MVVM</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Description" xml:space="preserve">
+    <value>Powiąż ItemsSource razem z DisplayMemberBinding, IconBinding i CommandBinding, aby generować elementy okruszków na podstawie danych view modelu.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Header" xml:space="preserve">
+    <value>Klasa stylu rozmiaru</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Description" xml:space="preserve">
+    <value>Użyj ClassSelector do przełączania klasy Small i podglądu bardziej kompaktowych odstępów oraz typografii okruszków.</value>
+  </data>
   <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
     <value>Podstawowe użycie</value>
   </data>

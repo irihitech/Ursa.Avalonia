@@ -966,6 +966,24 @@
   <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
     <value>将 IPAddress 属性绑定到视图模型数据，并展示 IPv4Box 的禁用状态。</value>
   </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Header" xml:space="preserve">
+    <value>内联 XAML 定义</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Description" xml:space="preserve">
+    <value>直接在 XAML 中定义 BreadcrumbItem 以构建静态导航路径，并将末尾项标记为只读。</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Header" xml:space="preserve">
+    <value>MVVM 绑定</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Description" xml:space="preserve">
+    <value>通过 ItemsSource 结合 DisplayMemberBinding、IconBinding 和 CommandBinding，从视图模型数据动态生成面包屑项。</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Header" xml:space="preserve">
+    <value>尺寸样式类</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Description" xml:space="preserve">
+    <value>使用 ClassSelector 切换 Small 样式类，预览更紧凑的面包屑间距与排版效果。</value>
+  </data>
   <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
     <value>基础用法</value>
   </data>

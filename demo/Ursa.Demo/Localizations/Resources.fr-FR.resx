@@ -974,6 +974,24 @@
   <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
     <value>Liez la propriété IPAddress aux données du view model et montrez un état désactivé pour IPv4Box.</value>
   </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Header" xml:space="preserve">
+    <value>Définition XAML inline</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Description" xml:space="preserve">
+    <value>Définissez des éléments BreadcrumbItem directement en XAML pour construire un chemin de navigation statique et marquez l’élément final en lecture seule.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Header" xml:space="preserve">
+    <value>Liaison MVVM</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Description" xml:space="preserve">
+    <value>Liez ItemsSource avec DisplayMemberBinding, IconBinding et CommandBinding pour générer les éléments de fil d’Ariane à partir des données du view model.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Header" xml:space="preserve">
+    <value>Classe de style de taille</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Description" xml:space="preserve">
+    <value>Utilisez ClassSelector pour basculer la classe Small et prévisualiser un espacement et une typographie de fil d’Ariane plus compacts.</value>
+  </data>
   <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
     <value>Utilisation de base</value>
   </data>

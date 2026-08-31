@@ -974,6 +974,24 @@
   <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
     <value>Привяжите свойство IPAddress к данным view model и покажите отключённое состояние IPv4Box.</value>
   </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Header" xml:space="preserve">
+    <value>Встроенное определение XAML</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Description" xml:space="preserve">
+    <value>Определите элементы BreadcrumbItem прямо в XAML, чтобы собрать статический путь навигации, и пометьте конечный элемент как только для чтения.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Header" xml:space="preserve">
+    <value>Привязка MVVM</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Description" xml:space="preserve">
+    <value>Привяжите ItemsSource вместе с DisplayMemberBinding, IconBinding и CommandBinding, чтобы формировать элементы breadcrumb из данных view model.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Header" xml:space="preserve">
+    <value>Класс стиля размера</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Description" xml:space="preserve">
+    <value>Используйте ClassSelector, чтобы переключать класс Small и просматривать более компактные отступы и типографику breadcrumb.</value>
+  </data>
   <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
     <value>Базовое использование</value>
   </data>
