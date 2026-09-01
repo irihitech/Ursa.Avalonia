@@ -23,7 +23,15 @@
                 NeedConfirmation="{Binding #needConfirm.IsChecked}"
                 ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
 
-            <TextBlock Text="UTC, Local, Beijing, New York" />
+            <TextBlock Text="Offset Definitions" />
+            <TextBlock Text="OffsetDefinitions as string" />
+            <u:DateTimeOffsetPicker
+                Width="360"
+                NeedConfirmation="{Binding #needConfirm.IsChecked}"
+                SelectedDate="2025-06-26T10:30:00+08:00"
+                ShowOffsetSelection="{Binding #showOffset.IsChecked}"
+                OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+            <TextBlock Text="OffsetDefinitions as collection" />
             <u:DateTimeOffsetPicker
                 Width="360"
                 NeedConfirmation="{Binding #needConfirm.IsChecked}"

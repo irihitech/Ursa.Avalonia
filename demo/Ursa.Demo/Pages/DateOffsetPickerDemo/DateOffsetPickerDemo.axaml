@@ -24,6 +24,52 @@
                         </StackPanel>
                     </controls:DemoSectionView>
 
+                    <controls:DemoSectionView SectionContext="{Binding ShowOffsetSelectionSection}">
+                        <StackPanel HorizontalAlignment="Left" Spacing="8">
+                            <TextBlock Text="ShowOffsetSelection=False" />
+                            <u:DateOffsetPicker
+                                Width="400"
+                                DisplayFormat="yyyy-MM-dd HH:mm zzz"
+                                ShowOffsetSelection="False"
+                                SelectedDate="2025-06-26+08:00"
+                                OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+                            <TextBlock Text="ShowOffsetSelection=True" />
+                            <u:DateOffsetPicker
+                                Width="400"
+                                DisplayFormat="yyyy-MM-dd HH:mm zzz"
+                                ShowOffsetSelection="True"
+                                SelectedDate="2025-06-26+08:00"
+                                OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding OffsetDefinitionsSection}">
+                        <StackPanel HorizontalAlignment="Left" Spacing="8">
+                            <TextBlock Text="OffsetDefinitions as string" />
+                            <u:DateOffsetPicker
+                                Width="400"
+                                DisplayFormat="yyyy-MM-dd HH:mm zzz"
+                                ShowOffsetSelection="True"
+                                SelectedDate="2025-06-26+08:00"
+                                OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+                            <TextBlock Text="OffsetDefinitions as collection" />
+                            <u:DateOffsetPicker
+                                Width="400"
+                                DisplayFormat="yyyy-MM-dd HH:mm zzz"
+                                ShowOffsetSelection="True"
+                                SelectedDate="2025-06-26+08:00">
+                                <u:DateOffsetPicker.OffsetDefinitions>
+                                    <u:OffsetDefinitions>
+                                        <u:OffsetDefinition Offset="UTC" />
+                                        <u:OffsetDefinition Offset="Local" />
+                                        <u:OffsetDefinition DisplayName="Beijing (CST)" Offset="+08:00" />
+                                        <u:OffsetDefinition DisplayName="New York (EST)" Offset="-05:00" />
+                                    </u:OffsetDefinitions>
+                                </u:DateOffsetPicker.OffsetDefinitions>
+                            </u:DateOffsetPicker>
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
                     <controls:DemoSectionView SectionContext="{Binding DisplayFormatSection}">
                         <StackPanel HorizontalAlignment="Left" Spacing="8">
                             <TextBox InnerLeftContent="Display Format"

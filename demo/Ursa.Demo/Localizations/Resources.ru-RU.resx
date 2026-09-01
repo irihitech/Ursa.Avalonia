@@ -1106,11 +1106,65 @@
   <data name="Page_DateRangePicker_Section_Style_Classes_Description" xml:space="preserve">
     <value>Используйте ClassSelector для переключения классов Small и Large и предварительного просмотра компактной или увеличенной высоты поля диапазона.</value>
   </data>
+  <data name="Page_DateOffsetRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Поведение по умолчанию</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Покажите DateOffsetRangePicker со стандартным поведением диапазона и смещения.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>Показывать выбор смещения</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>Установите ShowOffsetSelection, чтобы управлять отображением выбора смещения для начальной и конечной дат.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>Определения смещений</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>Передавайте OffsetDefinitions как строку, разделенную запятыми, или как явные элементы OffsetDefinition с пользовательскими отображаемыми именами.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Использование с привязкой</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Привяжите SelectedStartDate и SelectedEndDate к свойствам DateTimeOffset для двусторонней синхронизации.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Режим только для чтения</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Установите IsReadOnly в true, чтобы запретить редактирование и сохранить видимость выбранного диапазона.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Проверка данных</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Привяжите начальное и конечное значения DateTimeOffset с атрибутом [Required] и очистите их, чтобы вызвать визуальные ошибки валидации.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стилей</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте ClassSelector для переключения классов Small и Large и добавьте ClearButton для быстрого сброса диапазона.</value>
+  </data>
   <data name="Page_DateOffsetPicker_Section_Default_Behavior_Header" xml:space="preserve">
     <value>Поведение по умолчанию</value>
   </data>
   <data name="Page_DateOffsetPicker_Section_Default_Behavior_Description" xml:space="preserve">
     <value>Покажите простой DateOffsetPicker со стандартным поведением даты и смещения.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>Показывать выбор смещения</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>Установите ShowOffsetSelection, чтобы определить, отображать ли варианты смещения во всплывающей панели.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>Определения смещений</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>Передавайте OffsetDefinitions как строку, разделенную запятыми, или как явные элементы OffsetDefinition с пользовательскими отображаемыми именами.</value>
   </data>
   <data name="Page_DateOffsetPicker_Section_Display_Format_Header" xml:space="preserve">
     <value>Формат отображения</value>

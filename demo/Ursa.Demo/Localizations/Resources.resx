@@ -1112,11 +1112,65 @@
   <data name="Page_DateRangePicker_Section_Style_Classes_Description" xml:space="preserve">
     <value>Use ClassSelector to switch Small and Large style classes and preview compact or spacious range input height.</value>
   </data>
+  <data name="Page_DateOffsetRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Default Behavior</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Show a DateOffsetRangePicker with default range and offset behavior.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>Show Offset Selection</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>Set ShowOffsetSelection to control whether offset pickers are shown for start and end dates.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>Offset Definitions</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>Provide OffsetDefinitions as a comma-separated string or as explicit OffsetDefinition items with custom display names.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Use with Binding</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Bind SelectedStartDate and SelectedEndDate to DateTimeOffset properties for two-way synchronization.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Readonly Mode</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Set IsReadOnly to true to prevent editing while keeping the selected range visible.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Data Validation</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Bind [Required] start and end DateTimeOffset values and clear them to trigger validation error visuals.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Style Classes</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Use ClassSelector to switch Small and Large style classes and add ClearButton for quick range reset.</value>
+  </data>
   <data name="Page_DateOffsetPicker_Section_Default_Behavior_Header" xml:space="preserve">
     <value>Default Behavior</value>
   </data>
   <data name="Page_DateOffsetPicker_Section_Default_Behavior_Description" xml:space="preserve">
     <value>Show a plain DateOffsetPicker with default date and offset behavior.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>Show Offset Selection</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>Set ShowOffsetSelection to control whether offset options are shown in the popup panel.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>Offset Definitions</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>Provide OffsetDefinitions as a comma-separated string or as explicit OffsetDefinition items with custom display names.</value>
   </data>
   <data name="Page_DateOffsetPicker_Section_Display_Format_Header" xml:space="preserve">
     <value>Display Format</value>

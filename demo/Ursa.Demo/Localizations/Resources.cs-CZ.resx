@@ -1106,11 +1106,65 @@
   <data name="Page_DateRangePicker_Section_Style_Classes_Description" xml:space="preserve">
     <value>Použijte ClassSelector pro přepínání tříd Small a Large a náhled kompaktní nebo prostornější výšky vstupu rozsahu.</value>
   </data>
+  <data name="Page_DateOffsetRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Výchozí chování</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Zobrazte DateOffsetRangePicker s výchozím chováním rozsahu a posunu.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>Zobrazení výběru posunu</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>Nastavte ShowOffsetSelection, abyste určili, zda se mají pro počáteční a koncové datum zobrazovat volby posunu.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>Definice posunů</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>Poskytněte OffsetDefinitions jako čárkami oddělený řetězec nebo jako explicitní položky OffsetDefinition s vlastním zobrazovaným názvem.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Použití s vazbou</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Navažte SelectedStartDate a SelectedEndDate na vlastnosti DateTimeOffset pro obousměrnou synchronizaci.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Režim jen pro čtení</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Nastavte IsReadOnly na true, abyste zabránili úpravám a ponechali vybraný rozsah viditelný.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validace dat</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Navažte počáteční a koncové hodnoty DateTimeOffset s atributem [Required] a jejich vymazáním vyvolejte vizuální indikaci validačních chyb.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Použijte ClassSelector pro přepínání tříd Small a Large a přidejte ClearButton pro rychlé vymazání rozsahu.</value>
+  </data>
   <data name="Page_DateOffsetPicker_Section_Default_Behavior_Header" xml:space="preserve">
     <value>Výchozí chování</value>
   </data>
   <data name="Page_DateOffsetPicker_Section_Default_Behavior_Description" xml:space="preserve">
     <value>Zobrazte jednoduchý DateOffsetPicker s výchozím chováním data a posunu.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>Zobrazení výběru posunu</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>Nastavte ShowOffsetSelection, abyste určili, zda se v rozbalovacím panelu zobrazí možnosti posunu.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>Definice posunů</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>Poskytněte OffsetDefinitions jako čárkami oddělený řetězec nebo jako explicitní položky OffsetDefinition s vlastním zobrazovaným názvem.</value>
   </data>
   <data name="Page_DateOffsetPicker_Section_Display_Format_Header" xml:space="preserve">
     <value>Formát zobrazení</value>

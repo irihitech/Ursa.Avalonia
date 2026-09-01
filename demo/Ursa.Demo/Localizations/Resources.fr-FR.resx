@@ -1106,11 +1106,65 @@
   <data name="Page_DateRangePicker_Section_Style_Classes_Description" xml:space="preserve">
     <value>Utilisez ClassSelector pour basculer entre les classes Small et Large et prévisualiser une hauteur de saisie de plage compacte ou plus espacée.</value>
   </data>
+  <data name="Page_DateOffsetRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Comportement par défaut</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Affichez un DateOffsetRangePicker avec le comportement par défaut de plage et d'offset.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>Afficher la sélection d'offset</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>Définissez ShowOffsetSelection pour contrôler si les sélecteurs d'offset s'affichent pour les dates de début et de fin.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>Définitions d'offset</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>Fournissez OffsetDefinitions sous forme de chaîne séparée par des virgules ou sous forme d'éléments OffsetDefinition explicites avec des noms d'affichage personnalisés.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Utilisation avec liaison</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Liez SelectedStartDate et SelectedEndDate à des propriétés DateTimeOffset pour une synchronisation bidirectionnelle.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Mode lecture seule</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Définissez IsReadOnly sur true pour empêcher la modification tout en gardant la plage sélectionnée visible.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validation des données</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Liez des valeurs DateTimeOffset de début et de fin avec l'attribut [Required], puis effacez-les pour déclencher des erreurs de validation visuelles.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Classes de style</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Utilisez ClassSelector pour basculer entre les classes Small et Large et ajouter ClearButton pour réinitialiser rapidement la plage.</value>
+  </data>
   <data name="Page_DateOffsetPicker_Section_Default_Behavior_Header" xml:space="preserve">
     <value>Comportement par défaut</value>
   </data>
   <data name="Page_DateOffsetPicker_Section_Default_Behavior_Description" xml:space="preserve">
     <value>Affichez un DateOffsetPicker simple avec le comportement par défaut de date et d’offset.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>Afficher la sélection d'offset</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>Définissez ShowOffsetSelection pour contrôler si les options d'offset s'affichent dans le panneau contextuel.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>Définitions d'offset</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>Fournissez OffsetDefinitions sous forme de chaîne séparée par des virgules ou sous forme d'éléments OffsetDefinition explicites avec des noms d'affichage personnalisés.</value>
   </data>
   <data name="Page_DateOffsetPicker_Section_Display_Format_Header" xml:space="preserve">
     <value>Format d’affichage</value>

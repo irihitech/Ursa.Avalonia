@@ -18,6 +18,8 @@ public partial class DateOffsetPickerDemoViewModel : ObservableValidator, IPageM
     public const string Category_Key = "DateOffsetPicker";
     public const string Menu_Header = "Menu_Header_DateOffsetPicker";
     private const string DefaultBehaviorAnchorId = "date-offset-picker-default-behavior";
+    private const string ShowOffsetSelectionAnchorId = "date-offset-picker-show-offset-selection";
+    private const string OffsetDefinitionsAnchorId = "date-offset-picker-offset-definitions";
     private const string DisplayFormatAnchorId = "date-offset-picker-display-format";
     private const string NeedConfirmationAnchorId = "date-offset-picker-need-confirmation";
     private const string UseWithBindingAnchorId = "date-offset-picker-use-with-binding";
@@ -44,6 +46,8 @@ public partial class DateOffsetPickerDemoViewModel : ObservableValidator, IPageM
     public partial DateTimeOffset? ValidatedDate { get; set; }
 
     public DemoSectionViewModel DefaultBehaviorSection { get; }
+    public DemoSectionViewModel ShowOffsetSelectionSection { get; }
+    public DemoSectionViewModel OffsetDefinitionsSection { get; }
     public DemoSectionViewModel DisplayFormatSection { get; }
     public DemoSectionViewModel NeedConfirmationSection { get; }
     public DemoSectionViewModel UseWithBindingSection { get; }
@@ -54,6 +58,8 @@ public partial class DateOffsetPickerDemoViewModel : ObservableValidator, IPageM
     public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; } =
     [
         new() { Header = LanguageManager.Instance.Page_DateOffsetPicker_Section_Default_Behavior_Header, AnchorId = DefaultBehaviorAnchorId },
+        new() { Header = LanguageManager.Instance.Page_DateOffsetPicker_Section_Show_Offset_Selection_Header, AnchorId = ShowOffsetSelectionAnchorId },
+        new() { Header = LanguageManager.Instance.Page_DateOffsetPicker_Section_Offset_Definitions_Header, AnchorId = OffsetDefinitionsAnchorId },
         new() { Header = LanguageManager.Instance.Page_DateOffsetPicker_Section_Display_Format_Header, AnchorId = DisplayFormatAnchorId },
         new() { Header = LanguageManager.Instance.Page_DateOffsetPicker_Section_Need_Confirmation_Header, AnchorId = NeedConfirmationAnchorId },
         new() { Header = LanguageManager.Instance.Page_DateOffsetPicker_Section_Use_With_Binding_Header, AnchorId = UseWithBindingAnchorId },
@@ -80,6 +86,71 @@ public partial class DateOffsetPickerDemoViewModel : ObservableValidator, IPageM
             TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
             CodeSnippet = """
                           <u:DateOffsetPicker />
+                          """
+        });
+
+        ShowOffsetSelectionSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_DateOffsetPicker_Section_Show_Offset_Selection_Header,
+            Descriptions = { LanguageManager.Instance.Page_DateOffsetPicker_Section_Show_Offset_Selection_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = ShowOffsetSelectionAnchorId
+        };
+        ShowOffsetSelectionSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <TextBlock Text="ShowOffsetSelection=False" />
+                          <u:DateOffsetPicker
+                              Width="400"
+                              DisplayFormat="yyyy-MM-dd HH:mm zzz"
+                              ShowOffsetSelection="False"
+                              SelectedDate="2025-06-26+08:00"
+                              OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+                          <TextBlock Text="ShowOffsetSelection=True" />
+                          <u:DateOffsetPicker
+                              Width="400"
+                              DisplayFormat="yyyy-MM-dd HH:mm zzz"
+                              ShowOffsetSelection="True"
+                              SelectedDate="2025-06-26+08:00"
+                              OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+                          """
+        });
+
+        OffsetDefinitionsSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_DateOffsetPicker_Section_Offset_Definitions_Header,
+            Descriptions = { LanguageManager.Instance.Page_DateOffsetPicker_Section_Offset_Definitions_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = OffsetDefinitionsAnchorId
+        };
+        OffsetDefinitionsSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:DateOffsetPicker
+                              Width="400"
+                              DisplayFormat="yyyy-MM-dd HH:mm zzz"
+                              ShowOffsetSelection="True"
+                              SelectedDate="2025-06-26+08:00"
+                              OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+
+                          <u:DateOffsetPicker
+                              Width="400"
+                              DisplayFormat="yyyy-MM-dd HH:mm zzz"
+                              ShowOffsetSelection="True"
+                              SelectedDate="2025-06-26+08:00">
+                              <u:DateOffsetPicker.OffsetDefinitions>
+                                  <u:OffsetDefinitions>
+                                      <u:OffsetDefinition Offset="UTC" />
+                                      <u:OffsetDefinition Offset="Local" />
+                                      <u:OffsetDefinition DisplayName="Beijing (CST)" Offset="+08:00" />
+                                      <u:OffsetDefinition DisplayName="New York (EST)" Offset="-05:00" />
+                                  </u:OffsetDefinitions>
+                              </u:DateOffsetPicker.OffsetDefinitions>
+                          </u:DateOffsetPicker>
                           """
         });
 
