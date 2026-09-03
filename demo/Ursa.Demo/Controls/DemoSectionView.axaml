@@ -10,7 +10,7 @@
     xmlns:converters="clr-namespace:Ursa.Demo.DataTemplates"
     xmlns:controls1="clr-namespace:Ursa.Demo.Controls"
     x:Name="Root"
-    x:CompileBindings="False"
+    x:CompileBindings="True"
     d:DesignHeight="240"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -54,7 +54,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <u:MarkdownLine
-                                Markdown="{Binding ^, FallbackValue={x:Static x:String.Empty}}"
+                                Markdown="{ReflectionBinding ^, FallbackValue={x:Static x:String.Empty}}"
                                 TextWrapping="Wrap" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

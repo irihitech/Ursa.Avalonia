@@ -38,6 +38,12 @@
   <data name="Menu_Category_DateAndTime" xml:space="preserve">
     <value>Дата и время</value>
   </data>
+  <data name="Menu_Category_TimePickers" xml:space="preserve">
+    <value>Выбор времени</value>
+  </data>
+  <data name="Menu_Category_DatePickers" xml:space="preserve">
+    <value>Выбор даты</value>
+  </data>
   <data name="Menu_Category_NavigationAndMenus" xml:space="preserve">
     <value>Навигация и меню</value>
   </data>
@@ -631,6 +637,24 @@
   <data name="Page_Description_KeyGestureInput" xml:space="preserve">
     <value>Ввод жестов клавиш захватывает жесты сочетаний клавиш из пользовательского ввода.</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Используйте KeyGestureInput для захвата жестов сочетаний клавиш из пользовательского ввода. Элемент реагирует на нажатия клавиш и сохраняет текущее KeyGesture.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Header" xml:space="preserve">
+    <value>Допустимые клавиши</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Description" xml:space="preserve">
+    <value>Задайте AcceptableKeys, чтобы ограничить набор клавиш, которые можно захватывать. В этой демонстрации принимаются только A, B и C.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
+    <value>Стиль-класс ClearButton</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
+    <value>Примените класс ClearButton, чтобы показать встроенную кнопку очистки, когда у элемента есть жест. InnerLeftContent и InnerRightContent добавляют декоративный контент по обе стороны.</value>
+  </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>Загрузка отображает спиннер или индикатор выполнения во время асинхронных операций.</value>
   </data>
@@ -676,6 +700,36 @@
   <data name="Page_Description_PinCode" xml:space="preserve">
     <value>ПИН-код — это элемент управления вводом для ввода ПИН-кодов или кодов подтверждения.</value>
   </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Используйте PinCode для ввода кода подтверждения и выполняйте команду после заполнения всех ячеек.</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Header" xml:space="preserve">
+    <value>Режимы ввода</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Description" xml:space="preserve">
+    <value>Установите Mode в Digit или Letter, чтобы ограничить допустимые символы в каждой ячейке.</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Header" xml:space="preserve">
+    <value>Маска пароля</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Description" xml:space="preserve">
+    <value>Используйте PasswordChar, чтобы скрыть введённые значения, и обрабатывайте событие Complete после заполнения кода.</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Header" xml:space="preserve">
+    <value>Проверка</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Description" xml:space="preserve">
+    <value>Подключите DataValidationErrors.Errors, чтобы показать недопустимое состояние PinCode.</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Стили-классы</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте классы Small и Large, чтобы переключать размер элемента.</value>
+  </data>
   <data name="Page_Description_PopConfirm" xml:space="preserve">
     <value>Всплывающее подтверждение показывает всплывающее окно подтверждения перед выполнением действия.</value>
   </data>
@@ -687,6 +741,24 @@
   </data>
   <data name="Page_Description_RangeSlider" xml:space="preserve">
     <value>Ползунок диапазона позволяет выбирать диапазон значений с помощью двух перетаскиваемых ползунков.</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Используйте RangeSlider, чтобы выбирать диапазон значений, перетаскивая нижний и верхний ползунки. Свяжите Minimum, Maximum, LowerValue и UpperValue, чтобы синхронизировать слайдер и вспомогательные поля ввода.</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Tick_Snapping_Header" xml:space="preserve">
+    <value>Привязка к делениям</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Tick_Snapping_Description" xml:space="preserve">
+    <value>Включите IsSnapToTick и задайте TickFrequency и TickPlacement, чтобы диапазон привязывался к дискретным значениям и показывал деления вокруг дорожки.</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Orientation_Header" xml:space="preserve">
+    <value>Ориентация</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Orientation_Description" xml:space="preserve">
+    <value>Свяжите Orientation, чтобы переключаться между горизонтальным и вертикальным расположением. Элемент автоматически обновляет шаблон и псевдоклассы при смене ориентации.</value>
   </data>
   <data name="Page_Description_Rating" xml:space="preserve">
     <value>Рейтинг отображает и собирает звёздные оценки от пользователей.</value>
@@ -974,6 +1046,288 @@
   <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
     <value>Привяжите свойство IPAddress к данным view model и покажите отключённое состояние IPv4Box.</value>
   </data>
+  <data name="Page_DateOnlyPicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Поведение по умолчанию</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Покажите простой DateOnlyPicker с настройками по умолчанию.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Формат отображения</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Задайте DisplayFormat, чтобы определить, как отображается текст выбранной даты.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Требуется подтверждение</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Задайте NeedConfirmation, чтобы применение выбранной даты требовало явного подтверждения.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Использование с привязкой</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Привяжите SelectedDate к view model для двусторонней синхронизации между пользовательским вводом и состоянием приложения.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Режим только для чтения</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Установите IsReadOnly в true, чтобы запретить редактирование текста и сохранить видимость выбранной даты.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Проверка данных</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Привяжите свойство даты с атрибутом [Required] и очистите значение, чтобы вызвать визуальную ошибку валидации.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стилей</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте ClassSelector для переключения классов Small и Large и предварительного просмотра компактной или увеличенной высоты поля ввода.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Поведение по умолчанию</value>
+  </data>
+  <data name="Page_DatePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Покажите простой DatePicker с настройками по умолчанию.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Формат отображения</value>
+  </data>
+  <data name="Page_DatePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Задайте DisplayFormat, чтобы определить, как отображается текст выбранной даты.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Требуется подтверждение</value>
+  </data>
+  <data name="Page_DatePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Задайте NeedConfirmation, чтобы применение выбранной даты требовало явного подтверждения.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Использование с привязкой</value>
+  </data>
+  <data name="Page_DatePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Привяжите SelectedDate к view model для двусторонней синхронизации между пользовательским вводом и состоянием приложения.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Режим только для чтения</value>
+  </data>
+  <data name="Page_DatePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Установите IsReadOnly в true, чтобы запретить редактирование текста и сохранить видимость выбранной даты.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Проверка данных</value>
+  </data>
+  <data name="Page_DatePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Привяжите свойство даты с атрибутом [Required] и очистите значение, чтобы вызвать визуальную ошибку валидации.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стилей</value>
+  </data>
+  <data name="Page_DatePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте ClassSelector для переключения классов Small и Large и предварительного просмотра компактной или увеличенной высоты поля ввода.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Поведение по умолчанию</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Покажите простой DateOnlyRangePicker с настройками по умолчанию.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Формат отображения</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Задайте DisplayFormat, чтобы определить формат отображения текста выбранного диапазона.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Требуется подтверждение</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>DateOnlyRangePicker применяет выбор диапазона сразу и не предоставляет свойство NeedConfirmation.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Использование с привязкой</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Привяжите SelectedStartDate и SelectedEndDate к модели представления для двусторонней синхронизации.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Режим только для чтения</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Установите IsReadOnly в true, чтобы запретить редактирование диапазона и сохранить видимость выбранных начальной и конечной дат.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Проверка данных</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Привяжите обязательные свойства начала и конца типа DateOnly и очистите одну из сторон, чтобы вызвать визуальную ошибку валидации.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стилей</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте ClassSelector для переключения классов Small и Large и предварительного просмотра компактной или увеличенной высоты поля диапазона.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Поведение по умолчанию</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Покажите простой DateRangePicker со стандартным поведением выбора диапазона.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Формат отображения</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Задайте DisplayFormat, чтобы определить, как отображаются начальная и конечная даты.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Требуется подтверждение</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>DateRangePicker применяет выбранный диапазон сразу и не предоставляет параметр NeedConfirmation.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Использование с привязкой</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Привяжите SelectedStartDate и SelectedEndDate к view model для двустороннего обновления диапазона дат.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Режим только для чтения</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Установите IsReadOnly в true, чтобы запретить редактирование диапазона и сохранить выбранные даты начала и конца.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Проверка данных</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Привяжите обязательные свойства начала и конца и очистите одну из сторон, чтобы вызвать визуальную ошибку валидации.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стилей</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте ClassSelector для переключения классов Small и Large и предварительного просмотра компактной или увеличенной высоты поля диапазона.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Поведение по умолчанию</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Покажите DateOffsetRangePicker со стандартным поведением диапазона и смещения.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>Показывать выбор смещения</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>Установите ShowOffsetSelection, чтобы управлять отображением выбора смещения для начальной и конечной дат.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>Определения смещений</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>Передавайте OffsetDefinitions как строку, разделенную запятыми, или как явные элементы OffsetDefinition с пользовательскими отображаемыми именами.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Использование с привязкой</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Привяжите SelectedStartDate и SelectedEndDate к свойствам DateTimeOffset для двусторонней синхронизации.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Режим только для чтения</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Установите IsReadOnly в true, чтобы запретить редактирование и сохранить видимость выбранного диапазона.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Проверка данных</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Привяжите начальное и конечное значения DateTimeOffset с атрибутом [Required] и очистите их, чтобы вызвать визуальные ошибки валидации.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стилей</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте ClassSelector для переключения классов Small и Large и добавьте ClearButton для быстрого сброса диапазона.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Поведение по умолчанию</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Покажите простой DateOffsetPicker со стандартным поведением даты и смещения.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>Показывать выбор смещения</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>Установите ShowOffsetSelection, чтобы определить, отображать ли варианты смещения во всплывающей панели.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>Определения смещений</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>Передавайте OffsetDefinitions как строку, разделенную запятыми, или как явные элементы OffsetDefinition с пользовательскими отображаемыми именами.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Формат отображения</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Задайте DisplayFormat, чтобы форматировать и текст даты/времени, и отображение смещения.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Требуется подтверждение</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Задайте NeedConfirmation, чтобы применение выбора даты и смещения требовало явного подтверждения.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Использование с привязкой</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Привяжите SelectedDate к свойству DateTimeOffset для двусторонней синхронизации даты и смещения.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Режим только для чтения</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Установите IsReadOnly в true, чтобы запретить редактирование и сохранить видимость выбранных даты и смещения.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Проверка данных</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Привяжите свойство DateTimeOffset с атрибутом [Required] и очистите значение, чтобы вызвать визуальную ошибку валидации.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стилей</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте ClassSelector для переключения классов Small и Large и предварительного просмотра компактной или увеличенной высоты поля ввода.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Header" xml:space="preserve">
+    <value>Встроенное определение XAML</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Description" xml:space="preserve">
+    <value>Определите элементы BreadcrumbItem прямо в XAML, чтобы собрать статический путь навигации, и пометьте конечный элемент как только для чтения.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Header" xml:space="preserve">
+    <value>Привязка MVVM</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Description" xml:space="preserve">
+    <value>Привяжите ItemsSource вместе с DisplayMemberBinding, IconBinding и CommandBinding, чтобы формировать элементы breadcrumb из данных view model.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Header" xml:space="preserve">
+    <value>Класс стиля размера</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Description" xml:space="preserve">
+    <value>Используйте ClassSelector, чтобы переключать класс Small и просматривать более компактные отступы и типографику breadcrumb.</value>
+  </data>
   <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
     <value>Базовое использование</value>
   </data>
@@ -1021,5 +1375,389 @@
   </data>
   <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
     <value>ViewModel</value>
+  </data>
+  <data name="Page_TimePicker_Section_Basic_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_TimePicker_Section_Basic_Description" xml:space="preserve">
+    <value>Используйте TimePicker со стандартным поведением.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Формат отображения</value>
+  </data>
+  <data name="Page_TimePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Привяжите DisplayFormat к TextBox, чтобы интерактивно менять формат отображения выбранного времени.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>Формат панели</value>
+  </data>
+  <data name="Page_TimePicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>Привяжите PanelFormat к TextBox, чтобы интерактивно настраивать формат панели времени.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Использование с привязкой</value>
+  </data>
+  <data name="Page_TimePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Привяжите SelectedTime к свойству ViewModel для двустороннего обновления.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Требуется подтверждение</value>
+  </data>
+  <data name="Page_TimePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Установите NeedConfirmation, чтобы управлять требованием подтверждения при изменении времени.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Режим только чтения</value>
+  </data>
+  <data name="Page_TimePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Установите IsReadOnly, чтобы запретить редактирование и при этом показывать значение.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Проверка данных</value>
+  </data>
+  <data name="Page_TimePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Используйте аннотации данных для проверки ввода времени и отображения ошибок проверки.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Basic_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Basic_Description" xml:space="preserve">
+    <value>Используйте TimeOnlyPicker со стандартным поведением.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Формат отображения</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Привяжите DisplayFormat к TextBox, чтобы интерактивно менять формат отображения выбранного времени.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>Формат панели</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>Привяжите PanelFormat к TextBox, чтобы интерактивно настраивать формат панели времени.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Использование с привязкой</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Привяжите SelectedTime к свойству ViewModel для двустороннего обновления.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Требуется подтверждение</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Установите NeedConfirmation, чтобы управлять требованием подтверждения при изменении времени.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Режим только чтения</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Установите IsReadOnly, чтобы запретить редактирование и при этом показывать значение.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Проверка данных</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Используйте аннотации данных для проверки ввода времени и отображения ошибок проверки.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Поведение по умолчанию</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Показывает DateTimePicker с поведением выбора даты и времени по умолчанию.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Формат отображения</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Свяжите DisplayFormat с TextBox, чтобы изменять способ отображения выбранной даты и времени.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>Формат панели</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>Свяжите PanelFormat с TextBox, чтобы интерактивно настраивать формат панели даты и времени.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Требуется подтверждение</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Установите NeedConfirmation, чтобы перед применением изменений даты и времени требовалось явное подтверждение.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Использование со связыванием</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Свяжите SelectedDate со свойством DateTime во ViewModel для двусторонней синхронизации.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Режим только чтения</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Установите IsReadOnly в true, чтобы запретить редактирование, сохранив видимыми выбранные дату и время.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Проверка данных</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Свяжите свойство DateTime с атрибутом [Required] и очистите значение, чтобы показать ошибки проверки.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стиля</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте ClassSelector для переключения классов Small и Large и добавьте ClearButton для быстрого сброса.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Поведение по умолчанию</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Показывает DateTimeOffsetPicker с поведением выбора даты, времени и локального смещения по умолчанию.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>Показывать выбор смещения</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>Установите ShowOffsetSelection, чтобы управлять показом вариантов смещения в всплывающей панели.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>Определения смещений</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>Задайте OffsetDefinitions как строку через запятую или как явные элементы OffsetDefinition с пользовательскими именами.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Требуется подтверждение</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Установите NeedConfirmation, чтобы перед применением изменений даты, времени и смещения требовалось явное подтверждение.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Использование со связыванием</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Свяжите SelectedDate со свойством DateTimeOffset для двусторонней синхронизации даты, времени и смещения.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Режим только чтения</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Установите IsReadOnly в true, чтобы запретить редактирование, сохранив видимыми выбранные дату, время и смещение.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Проверка данных</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Свяжите свойство DateTimeOffset с атрибутом [Required] и очистите значение, чтобы показать ошибки проверки.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стиля</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте ClassSelector для переключения классов Small и Large и добавьте ClearButton для быстрого сброса.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Поведение по умолчанию</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Показывает TimeRangePicker с поведением выбора времени начала и конца по умолчанию.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Формат отображения</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Свяжите DisplayFormat с TextBox, чтобы изменять способ отображения выбранного времени начала и конца.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>Формат панели</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>Свяжите PanelFormat с TextBox, чтобы интерактивно настраивать формат панели диапазона времени.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Требуется подтверждение</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Установите NeedConfirmation, чтобы определить, требует ли изменение диапазона подтверждения.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Использование со связыванием</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Свяжите SelectedStartTime и SelectedEndTime со свойствами ViewModel для двусторонних обновлений.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Режим только чтения</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Установите IsReadOnly, чтобы запретить редактирование, сохранив видимым выбранный диапазон времени.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Проверка данных</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Свяжите обязательные свойства времени начала и конца и очистите одно из них, чтобы показать ошибки проверки.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стиля</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте ClassSelector для переключения классов Small и Large и добавьте ClearButton для быстрого сброса.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Поведение по умолчанию</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Показывает TimeOnlyRangePicker с поведением выбора времени начала и конца по умолчанию.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Формат отображения</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Свяжите DisplayFormat с TextBox, чтобы изменять способ отображения выбранного времени начала и конца.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>Формат панели</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>Свяжите PanelFormat с TextBox, чтобы интерактивно настраивать формат панели диапазона времени.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Требуется подтверждение</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Установите NeedConfirmation, чтобы определить, требует ли изменение диапазона подтверждения.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Использование со связыванием</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Свяжите SelectedStartTime и SelectedEndTime со свойствами ViewModel для двусторонних обновлений.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Режим только чтения</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Установите IsReadOnly, чтобы запретить редактирование, сохранив видимым выбранный диапазон времени.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Проверка данных</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Свяжите обязательные свойства времени начала и конца и очистите одно из них, чтобы показать ошибки проверки.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Классы стиля</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте ClassSelector для переключения классов Small и Large и добавьте ClearButton для быстрого сброса.</value>
+  </data>
+  <data name="Page_Rating_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_Rating_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Свяжите Value и Count, чтобы пользователи могли оценивать значением по умолчанию и видеть текущий результат.</value>
+  </data>
+  <data name="Page_Rating_Section_Custom_Character_Header" xml:space="preserve">
+    <value>Пользовательский символ</value>
+  </data>
+  <data name="Page_Rating_Section_Custom_Character_Description" xml:space="preserve">
+    <value>Замените звезду по умолчанию значком сердца и настройте цвет и размер.</value>
+  </data>
+  <data name="Page_Rating_Section_Small_Style_Header" xml:space="preserve">
+    <value>Компактный стиль</value>
+  </data>
+  <data name="Page_Rating_Section_Small_Style_Description" xml:space="preserve">
+    <value>Используйте стиль Small для более компактного элемента оценки.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_Shimmer_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Покажите текст Shimmer по умолчанию и его выбираемую версию.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Custom_Colors_Header" xml:space="preserve">
+    <value>Пользовательские цвета</value>
+  </data>
+  <data name="Page_Shimmer_Section_Custom_Colors_Description" xml:space="preserve">
+    <value>Настройте цвета пробега и длительность для разных состояний загрузки.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Attached_Properties_Header" xml:space="preserve">
+    <value>Присоединённые свойства</value>
+  </data>
+  <data name="Page_Shimmer_Section_Attached_Properties_Description" xml:space="preserve">
+    <value>Применяйте Shimmer к обычным визуальным элементам, таким как Border, чтобы анимировать их свойства кисти.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Live_State_Header" xml:space="preserve">
+    <value>Активное состояние</value>
+  </data>
+  <data name="Page_Shimmer_Section_Live_State_Description" xml:space="preserve">
+    <value>Свяжите IsActive и управляйте Shimmer с помощью команд.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Basic_Formatting_Header" xml:space="preserve">
+    <value>Базовое форматирование</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Basic_Formatting_Description" xml:space="preserve">
+    <value>Используйте стандартные маркеры Markdown для жирного, курсива, зачёркивания и встроенного кода.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Mixed_Formatting_Header" xml:space="preserve">
+    <value>Смешанное форматирование</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Mixed_Formatting_Description" xml:space="preserve">
+    <value>Комбинируйте маркеры, чтобы показать вложенность и то, что встроенный код остаётся буквальным.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Code_Styling_Header" xml:space="preserve">
+    <value>Оформление кода</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Code_Styling_Description" xml:space="preserve">
+    <value>Настройте фон, семейство шрифтов и перенос встроенного кода.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Live_Preview_Header" xml:space="preserve">
+    <value>Живой предпросмотр</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Live_Preview_Description" xml:space="preserve">
+    <value>Свяжите источник Markdown, чтобы интерактивно редактировать отрендеренный текст.</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Options_Header" xml:space="preserve">
+    <value>Параметры выдвижной панели</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Options_Description" xml:space="preserve">
+    <value>Задайте Position, Buttons, CanLightDismiss, IsCloseButtonVisible и CanResize перед открытием панели.</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Variants_Header" xml:space="preserve">
+    <value>Стандартная и пользовательская панель</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Variants_Description" xml:space="preserve">
+    <value>Стандартная панель использует встроенную строку заголовка и кнопки, а пользовательская панель использует собственную раскладку содержимого.</value>
+  </data>
+  <data name="Page_Drawer_Section_Position_Header" xml:space="preserve">
+    <value>Положение</value>
+  </data>
+  <data name="Page_Drawer_Section_Position_Description" xml:space="preserve">
+    <value>Выберите, с какого края выдвигается панель.</value>
+  </data>
+  <data name="Page_Drawer_Section_Buttons_Header" xml:space="preserve">
+    <value>Кнопки</value>
+  </data>
+  <data name="Page_Drawer_Section_Buttons_Description" xml:space="preserve">
+    <value>Выберите набор кнопок для нижней панели стандартной выдвижной панели.</value>
+  </data>
+  <data name="Page_Drawer_Section_Light_Dismiss_Header" xml:space="preserve">
+    <value>Лёгкое закрытие</value>
+  </data>
+  <data name="Page_Drawer_Section_Light_Dismiss_Description" xml:space="preserve">
+    <value>Определите, закрывается ли панель при щелчке вне её области.</value>
+  </data>
+  <data name="Page_Drawer_Section_Close_Button_Header" xml:space="preserve">
+    <value>Кнопка закрытия</value>
+  </data>
+  <data name="Page_Drawer_Section_Close_Button_Description" xml:space="preserve">
+    <value>Управляйте видимостью кнопки закрытия через трёхсостояное значение.</value>
+  </data>
+  <data name="Page_Drawer_Section_Resize_Header" xml:space="preserve">
+    <value>Изменение размера</value>
+  </data>
+  <data name="Page_Drawer_Section_Resize_Description" xml:space="preserve">
+    <value>Включите ручку изменения размера для панелей, которые должны быть изменяемыми.</value>
   </data>
 </root>

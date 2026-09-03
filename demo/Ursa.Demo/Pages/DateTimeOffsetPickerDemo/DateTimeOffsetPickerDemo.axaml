@@ -2,7 +2,9 @@
     x:Class="Ursa.Demo.Pages.DateTimeOffsetPickerDemo.DateTimeOffsetPickerDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="clr-namespace:Ursa.Demo.Pages.DateTimeOffsetPickerDemo"
@@ -10,77 +12,135 @@
     d:DesignWidth="800"
     x:DataType="vm:DateTimeOffsetPickerDemoViewModel"
     mc:Ignorable="d">
-    <ScrollViewer>
-        <StackPanel Spacing="8">
+    <TabControl>
+        <TabItem
+            Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+            Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel HorizontalAlignment="Stretch" Spacing="20">
+                    <controls:DemoSectionView SectionContext="{Binding DefaultBehaviorSection}">
+                        <StackPanel HorizontalAlignment="Left" Spacing="8">
+                            <u:DateTimeOffsetPicker
+                                Width="360"
+                                ShowOffsetSelection="True" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-            <StackPanel HorizontalAlignment="Left">
-                <ToggleSwitch Name="showOffset" Content="Show Offset Selection" IsChecked="True" />
-            <ToggleSwitch Name="needConfirm" Content="Need Confirmation" />
+                    <controls:DemoSectionView SectionContext="{Binding ShowOffsetSelectionSection}">
+                        <StackPanel HorizontalAlignment="Left" Spacing="8">
+                            <TextBlock Text="ShowOffsetSelection=False" />
+                            <u:DateTimeOffsetPicker
+                                Width="360"
+                                ShowOffsetSelection="False"
+                                SelectedDate="2025-06-26T10:30:00+08:00"
+                                OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+                            <TextBlock Text="ShowOffsetSelection=True" />
+                            <u:DateTimeOffsetPicker
+                                Width="360"
+                                ShowOffsetSelection="True"
+                                SelectedDate="2025-06-26T10:30:00+08:00"
+                                OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-            <TextBlock Text="Default (Local offset)" />
-            <u:DateTimeOffsetPicker
-                Width="360"
-                NeedConfirmation="{Binding #needConfirm.IsChecked}"
-                ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
+                    <controls:DemoSectionView SectionContext="{Binding OffsetDefinitionsSection}">
+                        <StackPanel HorizontalAlignment="Left" Spacing="8">
+                            <TextBlock Text="OffsetDefinitions as string" />
+                            <u:DateTimeOffsetPicker
+                                Width="360"
+                                ShowOffsetSelection="True"
+                                SelectedDate="2025-06-26T10:30:00+08:00"
+                                OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+                            <TextBlock Text="OffsetDefinitions as collection" />
+                            <u:DateTimeOffsetPicker
+                                Width="360"
+                                ShowOffsetSelection="True"
+                                SelectedDate="2025-06-26T10:30:00+08:00">
+                                <u:DateTimeOffsetPicker.OffsetDefinitions>
+                                    <u:OffsetDefinitions>
+                                        <u:OffsetDefinition Offset="UTC" />
+                                        <u:OffsetDefinition Offset="Local" />
+                                        <u:OffsetDefinition DisplayName="Beijing (CST)" Offset="+08:00" />
+                                        <u:OffsetDefinition DisplayName="New York (EST)" Offset="-05:00" />
+                                    </u:OffsetDefinitions>
+                                </u:DateTimeOffsetPicker.OffsetDefinitions>
+                            </u:DateTimeOffsetPicker>
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-            <TextBlock Text="UTC, Local, Beijing, New York" />
-            <u:DateTimeOffsetPicker
-                Width="360"
-                NeedConfirmation="{Binding #needConfirm.IsChecked}"
-                ShowOffsetSelection="{Binding #showOffset.IsChecked}">
-                <u:DateTimeOffsetPicker.OffsetDefinitions>
-                    <u:OffsetDefinitions>
-                        <u:OffsetDefinition Offset="UTC" />
-                        <u:OffsetDefinition Offset="Local" />
-                        <u:OffsetDefinition Offset="+08:00" DisplayName="Beijing (CST)" />
-                        <u:OffsetDefinition Offset="-05:00" DisplayName="New York (EST)" />
-                    </u:OffsetDefinitions>
-                </u:DateTimeOffsetPicker.OffsetDefinitions>
-            </u:DateTimeOffsetPicker>
+                    <controls:DemoSectionView SectionContext="{Binding NeedConfirmationSection}">
+                        <StackPanel HorizontalAlignment="Left" Spacing="8">
+                            <TextBlock Text="NeedConfirmation=False" />
+                            <u:DateTimeOffsetPicker
+                                Width="360"
+                                ShowOffsetSelection="True"
+                                SelectedDate="2025-06-26T10:30:00+08:00"
+                                OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+                            <TextBlock Text="NeedConfirmation=True" />
+                            <u:DateTimeOffsetPicker
+                                Width="360"
+                                NeedConfirmation="True"
+                                ShowOffsetSelection="True"
+                                SelectedDate="2025-06-26T10:30:00+08:00"
+                                OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-            <TextBlock Text="Binding" />
-            <TextBlock Text="{Binding SelectedDateTime, StringFormat='Selected: {0:yyyy-MM-dd HH:mm:ss zzz}'}" />
-            <u:DateTimeOffsetPicker
-                Width="360"
-                NeedConfirmation="{Binding #needConfirm.IsChecked}"
-                SelectedDate="{Binding SelectedDateTime, Mode=TwoWay}"
-                ShowOffsetSelection="{Binding #showOffset.IsChecked}">
-                <u:DateTimeOffsetPicker.OffsetDefinitions>
-                    <u:OffsetDefinitions>
-                        <u:OffsetDefinition Offset="UTC" />
-                        <u:OffsetDefinition Offset="Local" />
-                        <u:OffsetDefinition Offset="+08:00" DisplayName="Beijing (CST)" />
-                        <u:OffsetDefinition Offset="-05:00" DisplayName="New York (EST)" />
-                    </u:OffsetDefinitions>
-                </u:DateTimeOffsetPicker.OffsetDefinitions>
-            </u:DateTimeOffsetPicker>
+                    <controls:DemoSectionView SectionContext="{Binding UseWithBindingSection}">
+                        <StackPanel HorizontalAlignment="Left" Spacing="8">
+                            <TextBlock Text="{Binding SelectedDateTime, StringFormat='Selected: {0:yyyy-MM-dd HH:mm:ss zzz}'}" />
+                            <u:DateTimeOffsetPicker
+                                Width="360"
+                                ShowOffsetSelection="True"
+                                SelectedDate="{Binding SelectedDateTime, Mode=TwoWay}"
+                                OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-            <TextBlock Text="Clear Button" />
-            <u:DateTimeOffsetPicker
-                Width="360"
-                Classes="ClearButton"
-                ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
+                    <controls:DemoSectionView SectionContext="{Binding ReadonlyModeSection}">
+                        <StackPanel HorizontalAlignment="Left" Spacing="8">
+                            <u:DateTimeOffsetPicker
+                                Width="360"
+                                IsReadOnly="True"
+                                ShowOffsetSelection="True"
+                                SelectedDate="2025-06-26T10:30:00+08:00"
+                                OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-            <TextBlock Text="IsReadOnly" />
-            <ToggleSwitch Name="readonlyToggle" Content="Read Only" />
-            <u:DateTimeOffsetPicker
-                Width="360"
-                IsReadOnly="{Binding #readonlyToggle.IsChecked}"
-                SelectedDate="2025-06-26T10:30:00+08:00"
-                ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
-            </StackPanel>
+                    <controls:DemoSectionView SectionContext="{Binding DataValidationSection}">
+                        <StackPanel HorizontalAlignment="Left" Spacing="8">
+                            <TextBlock Foreground="{DynamicResource TextBoxPlaceholderForeground}"
+                                       Text="Clear the date-time to trigger [Required] validation and see the error feedback." />
+                            <u:DateTimeOffsetPicker
+                                Width="360"
+                                Classes="ClearButton"
+                                ShowOffsetSelection="True"
+                                SelectedDate="{Binding ValidatedDateTime, Mode=TwoWay}" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-            <StackPanel HorizontalAlignment="Left" Spacing="8">
-                <TextBlock FontWeight="Bold" FontSize="16" Text="Data Validation" />
-                <TextBlock Foreground="{DynamicResource TextBoxPlaceholderForeground}"
-                           Text="Clear the date-time to trigger [Required] validation and see the error feedback." />
-                <u:DateTimeOffsetPicker HorizontalAlignment="Left"
-                    Width="360"
-                    Classes="ClearButton"
-                    ShowOffsetSelection="{Binding #showOffset.IsChecked}"
-                    SelectedDate="{Binding ValidatedDateTime, Mode=TwoWay}" />
-            </StackPanel>
-
-        </StackPanel>
-    </ScrollViewer>
+                    <controls:DemoSectionView SectionContext="{Binding StyleClassesSection}">
+                        <DockPanel HorizontalSpacing="12">
+                            <u:ClassSelector Name="sizeClassSelector" DockPanel.Dock="Right">
+                                <u:ClassSelectorGroup Header="Size">
+                                    <u:ClassSelectorItem ClassName="Small" />
+                                    <u:ClassSelectorItem ClassName="Large" />
+                                </u:ClassSelectorGroup>
+                                <u:ClassSelectorGroup Header="Other">
+                                    <u:ClassSelectorItem ClassName="ClearButton" />
+                                </u:ClassSelectorGroup>
+                            </u:ClassSelector>
+                            <u:DateTimeOffsetPicker
+                                Width="360"
+                                ShowOffsetSelection="True"
+                                SelectedDate="2025-06-26T10:30:00+08:00"
+                                OffsetDefinitions="Utc, Local, +8:00, -5:00"
+                                u:ClassSelector.Source="{Binding #sizeClassSelector}" />
+                        </DockPanel>
+                    </controls:DemoSectionView>
+                </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>

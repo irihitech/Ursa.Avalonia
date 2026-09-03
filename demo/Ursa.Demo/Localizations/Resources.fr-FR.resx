@@ -38,6 +38,12 @@
   <data name="Menu_Category_DateAndTime" xml:space="preserve">
     <value>Date &amp; heure</value>
   </data>
+  <data name="Menu_Category_TimePickers" xml:space="preserve">
+    <value>Sélecteurs d'heure</value>
+  </data>
+  <data name="Menu_Category_DatePickers" xml:space="preserve">
+    <value>Sélecteurs de date</value>
+  </data>
   <data name="Menu_Category_NavigationAndMenus" xml:space="preserve">
     <value>Navigation &amp; menus</value>
   </data>
@@ -631,6 +637,24 @@
   <data name="Page_Description_KeyGestureInput" xml:space="preserve">
     <value>La saisie de raccourcis clavier capture les gestes de raccourcis clavier à partir de la saisie utilisateur.</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Utilisation de base</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Utilisez KeyGestureInput pour capturer des raccourcis clavier à partir de la saisie utilisateur. Le contrôle écoute les pressions de touches et enregistre le KeyGesture courant.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Header" xml:space="preserve">
+    <value>Touches autorisées</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Description" xml:space="preserve">
+    <value>Définissez AcceptableKeys pour limiter les touches pouvant être capturées. Cette démonstration n'accepte que A, B et C.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
+    <value>Classe de style ClearButton</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
+    <value>Appliquez la classe ClearButton pour afficher le bouton d'effacement intégré dès que le contrôle contient un geste. InnerLeftContent et InnerRightContent ajoutent un contenu décoratif de chaque côté.</value>
+  </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>Le chargement affiche un spinner ou un indicateur de progression pendant les opérations asynchrones.</value>
   </data>
@@ -676,6 +700,36 @@
   <data name="Page_Description_PinCode" xml:space="preserve">
     <value>Le code PIN est un contrôle de saisie pour entrer des codes PIN ou de vérification.</value>
   </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Utilisation de base</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Utilisez PinCode pour saisir un code de vérification et exécuter une commande lorsque toutes les cases sont remplies.</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Header" xml:space="preserve">
+    <value>Modes de saisie</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Description" xml:space="preserve">
+    <value>Réglez Mode sur Digit ou Letter pour limiter ce que chaque case accepte.</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Header" xml:space="preserve">
+    <value>Masque de mot de passe</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Description" xml:space="preserve">
+    <value>Utilisez PasswordChar pour masquer les valeurs saisies et traiter l'événement Complete lorsque le code est rempli.</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Header" xml:space="preserve">
+    <value>Validation</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Description" xml:space="preserve">
+    <value>Attachez DataValidationErrors.Errors pour afficher l'état invalide d'un PinCode.</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Classes de style</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Utilisez les classes Small et Large pour modifier la taille du contrôle.</value>
+  </data>
   <data name="Page_Description_PopConfirm" xml:space="preserve">
     <value>La confirmation contextuelle affiche une fenêtre contextuelle de confirmation avant d'exécuter une action.</value>
   </data>
@@ -687,6 +741,24 @@
   </data>
   <data name="Page_Description_RangeSlider" xml:space="preserve">
     <value>Le curseur de plage permet de sélectionner une plage de valeurs avec deux curseurs déplaçables.</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Utilisation de base</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Utilisez RangeSlider pour sélectionner un intervalle de valeurs en faisant glisser les poignées inférieure et supérieure. Liez Minimum, Maximum, LowerValue et UpperValue pour garder le curseur et les champs associés synchronisés.</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Tick_Snapping_Header" xml:space="preserve">
+    <value>Accrochage aux graduations</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Tick_Snapping_Description" xml:space="preserve">
+    <value>Activez IsSnapToTick et définissez TickFrequency et TickPlacement pour que la plage s'aligne sur des valeurs discrètes tout en affichant des graduations autour de la piste.</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Orientation_Header" xml:space="preserve">
+    <value>Orientation</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Orientation_Description" xml:space="preserve">
+    <value>Liez Orientation pour basculer entre une disposition horizontale et verticale. Le contrôle met automatiquement à jour son modèle et ses pseudo-classes lorsque l'orientation change.</value>
   </data>
   <data name="Page_Description_Rating" xml:space="preserve">
     <value>L'évaluation affiche et collecte des valeurs d'évaluation par étoiles auprès des utilisateurs.</value>
@@ -974,6 +1046,288 @@
   <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
     <value>Liez la propriété IPAddress aux données du view model et montrez un état désactivé pour IPv4Box.</value>
   </data>
+  <data name="Page_DateOnlyPicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Comportement par défaut</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Affichez un DateOnlyPicker simple avec les paramètres par défaut.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Format d’affichage</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Définissez DisplayFormat pour contrôler le rendu du texte de la date sélectionnée.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Confirmation requise</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Définissez NeedConfirmation pour exiger une confirmation explicite avant d’appliquer une sélection de date.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Utilisation avec liaison</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Liez SelectedDate au ViewModel pour une synchronisation bidirectionnelle entre la saisie utilisateur et l’état de l’application.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Mode lecture seule</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Définissez IsReadOnly sur true pour empêcher la saisie tout en conservant la date sélectionnée visible.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validation des données</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Liez une propriété de date annotée [Required] puis effacez la valeur pour déclencher une erreur de validation visuelle.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Classes de style</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Utilisez ClassSelector pour basculer entre les classes Small et Large et prévisualiser une hauteur de champ compacte ou plus grande.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Comportement par défaut</value>
+  </data>
+  <data name="Page_DatePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Affichez un DatePicker simple avec les paramètres par défaut.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Format d’affichage</value>
+  </data>
+  <data name="Page_DatePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Définissez DisplayFormat pour contrôler le rendu du texte de la date sélectionnée.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Confirmation requise</value>
+  </data>
+  <data name="Page_DatePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Définissez NeedConfirmation pour exiger une confirmation explicite avant d’appliquer une sélection de date.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Utilisation avec liaison</value>
+  </data>
+  <data name="Page_DatePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Liez SelectedDate au view model pour synchroniser en mode bidirectionnel la saisie utilisateur et l’état de l’application.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Mode lecture seule</value>
+  </data>
+  <data name="Page_DatePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Définissez IsReadOnly sur true pour empêcher la saisie tout en conservant la date sélectionnée visible.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validation des données</value>
+  </data>
+  <data name="Page_DatePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Liez une propriété de date avec l’attribut [Required], puis effacez la valeur pour déclencher le retour visuel d’erreur de validation.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Classes de style</value>
+  </data>
+  <data name="Page_DatePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Utilisez ClassSelector pour basculer entre les classes Small et Large et prévisualiser une hauteur de saisie compacte ou plus espacée.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Comportement par défaut</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Affichez un DateOnlyRangePicker simple avec les paramètres par défaut.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Format d’affichage</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Définissez DisplayFormat pour définir le rendu textuel de la plage sélectionnée.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Confirmation requise</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>DateOnlyRangePicker applique immédiatement la sélection de plage et n’expose pas la propriété NeedConfirmation.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Utilisation avec liaison</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Liez SelectedStartDate et SelectedEndDate au ViewModel pour une synchronisation bidirectionnelle.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Mode lecture seule</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Définissez IsReadOnly sur true pour empêcher la modification de la plage tout en conservant les dates de début et de fin sélectionnées visibles.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validation des données</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Liez des propriétés de début et de fin DateOnly requises, puis effacez l’un des deux côtés pour déclencher des erreurs de validation visuelles.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Classes de style</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Utilisez ClassSelector pour basculer entre les classes Small et Large et prévisualiser une hauteur de saisie de plage compacte ou plus espacée.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Comportement par défaut</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Affichez un DateRangePicker simple avec le comportement de sélection de plage par défaut.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Format d’affichage</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Définissez DisplayFormat pour contrôler le rendu des dates de début et de fin.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Confirmation requise</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>DateRangePicker applique la plage sélectionnée immédiatement et n’expose pas d’option NeedConfirmation.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Utilisation avec liaison</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Liez SelectedStartDate et SelectedEndDate au view model pour mettre à jour la plage de dates en bidirectionnel.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Mode lecture seule</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Définissez IsReadOnly sur true pour empêcher la modification de la plage tout en conservant les dates sélectionnées.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validation des données</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Liez des propriétés de début et de fin requises, puis effacez l’un des deux côtés pour déclencher le retour visuel d’erreur de validation.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Classes de style</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Utilisez ClassSelector pour basculer entre les classes Small et Large et prévisualiser une hauteur de saisie de plage compacte ou plus espacée.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Comportement par défaut</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Affichez un DateOffsetRangePicker avec le comportement par défaut de plage et d'offset.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>Afficher la sélection d'offset</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>Définissez ShowOffsetSelection pour contrôler si les sélecteurs d'offset s'affichent pour les dates de début et de fin.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>Définitions d'offset</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>Fournissez OffsetDefinitions sous forme de chaîne séparée par des virgules ou sous forme d'éléments OffsetDefinition explicites avec des noms d'affichage personnalisés.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Utilisation avec liaison</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Liez SelectedStartDate et SelectedEndDate à des propriétés DateTimeOffset pour une synchronisation bidirectionnelle.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Mode lecture seule</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Définissez IsReadOnly sur true pour empêcher la modification tout en gardant la plage sélectionnée visible.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validation des données</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Liez des valeurs DateTimeOffset de début et de fin avec l'attribut [Required], puis effacez-les pour déclencher des erreurs de validation visuelles.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Classes de style</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Utilisez ClassSelector pour basculer entre les classes Small et Large et ajouter ClearButton pour réinitialiser rapidement la plage.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Comportement par défaut</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Affichez un DateOffsetPicker simple avec le comportement par défaut de date et d’offset.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>Afficher la sélection d'offset</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>Définissez ShowOffsetSelection pour contrôler si les options d'offset s'affichent dans le panneau contextuel.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>Définitions d'offset</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>Fournissez OffsetDefinitions sous forme de chaîne séparée par des virgules ou sous forme d'éléments OffsetDefinition explicites avec des noms d'affichage personnalisés.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Format d’affichage</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Définissez DisplayFormat pour formater à la fois le texte date/heure et l’affichage de l’offset.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Confirmation requise</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Définissez NeedConfirmation pour exiger une confirmation explicite avant d’appliquer une sélection de date et d’offset.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Utilisation avec liaison</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Liez SelectedDate à une propriété DateTimeOffset pour synchroniser en bidirectionnel les valeurs de date et d’offset.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Mode lecture seule</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Définissez IsReadOnly sur true pour empêcher la modification tout en conservant la date et l’offset sélectionnés visibles.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validation des données</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Liez une propriété DateTimeOffset avec l’attribut [Required], puis effacez la valeur pour déclencher le retour visuel d’erreur de validation.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Classes de style</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Utilisez ClassSelector pour basculer entre les classes Small et Large et prévisualiser une hauteur de saisie compacte ou plus espacée.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Header" xml:space="preserve">
+    <value>Définition XAML inline</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Description" xml:space="preserve">
+    <value>Définissez des éléments BreadcrumbItem directement en XAML pour construire un chemin de navigation statique et marquez l’élément final en lecture seule.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Header" xml:space="preserve">
+    <value>Liaison MVVM</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Description" xml:space="preserve">
+    <value>Liez ItemsSource avec DisplayMemberBinding, IconBinding et CommandBinding pour générer les éléments de fil d’Ariane à partir des données du view model.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Header" xml:space="preserve">
+    <value>Classe de style de taille</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Description" xml:space="preserve">
+    <value>Utilisez ClassSelector pour basculer la classe Small et prévisualiser un espacement et une typographie de fil d’Ariane plus compacts.</value>
+  </data>
   <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
     <value>Utilisation de base</value>
   </data>
@@ -1021,5 +1375,389 @@
   </data>
   <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
     <value>ViewModel</value>
+  </data>
+  <data name="Page_TimePicker_Section_Basic_Header" xml:space="preserve">
+    <value>Utilisation de base</value>
+  </data>
+  <data name="Page_TimePicker_Section_Basic_Description" xml:space="preserve">
+    <value>Utilisez TimePicker avec son comportement par défaut.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Format d'affichage</value>
+  </data>
+  <data name="Page_TimePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Liez DisplayFormat à une TextBox pour modifier de façon interactive le format d'affichage de l'heure sélectionnée.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>Format du panneau</value>
+  </data>
+  <data name="Page_TimePicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>Liez PanelFormat à une TextBox pour ajuster de façon interactive le format du panneau d'heure.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Utilisation avec liaison</value>
+  </data>
+  <data name="Page_TimePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Liez SelectedTime à une propriété du ViewModel pour des mises à jour bidirectionnelles.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Confirmation requise</value>
+  </data>
+  <data name="Page_TimePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Définissez NeedConfirmation pour contrôler si les changements d'heure nécessitent une confirmation.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Mode lecture seule</value>
+  </data>
+  <data name="Page_TimePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Définissez IsReadOnly pour empêcher la modification tout en conservant l'affichage de la valeur.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validation des données</value>
+  </data>
+  <data name="Page_TimePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Utilisez les annotations de données pour valider la saisie de l'heure et afficher les erreurs de validation.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Basic_Header" xml:space="preserve">
+    <value>Utilisation de base</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Basic_Description" xml:space="preserve">
+    <value>Utilisez TimeOnlyPicker avec son comportement par défaut.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Format d'affichage</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Liez DisplayFormat à une TextBox pour modifier de façon interactive le format d'affichage de l'heure sélectionnée.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>Format du panneau</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>Liez PanelFormat à une TextBox pour ajuster de façon interactive le format du panneau d'heure.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Utilisation avec liaison</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Liez SelectedTime à une propriété du ViewModel pour des mises à jour bidirectionnelles.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Confirmation requise</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Définissez NeedConfirmation pour contrôler si les changements d'heure nécessitent une confirmation.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Mode lecture seule</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Définissez IsReadOnly pour empêcher la modification tout en conservant l'affichage de la valeur.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validation des données</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Utilisez les annotations de données pour valider la saisie de l'heure et afficher les erreurs de validation.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Comportement par défaut</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Affiche un DateTimePicker avec le comportement de sélection de date et d'heure par défaut.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Format d'affichage</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Liez DisplayFormat à une TextBox pour ajuster la façon dont le texte date-heure sélectionné est rendu.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>Format du panneau</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>Liez PanelFormat à une TextBox pour configurer interactivement le format du panneau date-heure.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Confirmation requise</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Définissez NeedConfirmation pour exiger une confirmation explicite avant d'appliquer les changements de date et d'heure.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Utilisation avec liaison</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Liez SelectedDate à une propriété DateTime du ViewModel pour une synchronisation bidirectionnelle.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Mode lecture seule</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Définissez IsReadOnly sur true pour empêcher la modification tout en gardant la date et l'heure sélectionnées visibles.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validation des données</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Liez une propriété DateTime marquée [Required] et effacez la valeur pour déclencher les erreurs de validation.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Classes de style</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Utilisez ClassSelector pour basculer entre les classes Small et Large et ajoutez ClearButton pour une remise à zéro rapide.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Comportement par défaut</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Affiche un DateTimeOffsetPicker avec le comportement par défaut de sélection de date, d'heure et de décalage local.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>Afficher la sélection du décalage</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>Définissez ShowOffsetSelection pour contrôler l'affichage des options de décalage dans le panneau contextuel.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>Définitions de décalage</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>Fournissez OffsetDefinitions sous forme de chaîne séparée par des virgules ou de balises OffsetDefinition explicites avec des noms d'affichage personnalisés.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Confirmation requise</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Définissez NeedConfirmation pour exiger une confirmation explicite avant d'appliquer les changements de date, d'heure et de décalage.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Utilisation avec liaison</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Liez SelectedDate à une propriété DateTimeOffset pour une synchronisation bidirectionnelle de la date, de l'heure et du décalage.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Mode lecture seule</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Définissez IsReadOnly sur true pour empêcher la modification tout en gardant la date, l'heure et le décalage sélectionnés visibles.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validation des données</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Liez une propriété DateTimeOffset marquée [Required] et effacez la valeur pour déclencher les erreurs de validation.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Classes de style</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Utilisez ClassSelector pour basculer entre les classes Small et Large et ajoutez ClearButton pour une remise à zéro rapide.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Comportement par défaut</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Affiche un TimeRangePicker avec le comportement par défaut des heures de début et de fin.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Format d'affichage</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Liez DisplayFormat à une TextBox pour ajuster la façon dont les heures de début et de fin sélectionnées sont rendues.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>Format du panneau</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>Liez PanelFormat à une TextBox pour configurer interactivement le format du panneau de plage horaire.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Confirmation requise</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Définissez NeedConfirmation pour déterminer si les changements de plage doivent être confirmés.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Utilisation avec liaison</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Liez SelectedStartTime et SelectedEndTime à des propriétés du ViewModel pour des mises à jour bidirectionnelles.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Mode lecture seule</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Définissez IsReadOnly pour empêcher la modification tout en gardant la plage horaire sélectionnée visible.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validation des données</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Liez des propriétés d'heure de début et de fin requises et effacez l'une d'elles pour déclencher les erreurs de validation.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Classes de style</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Utilisez ClassSelector pour basculer entre les classes Small et Large et ajoutez ClearButton pour une remise à zéro rapide.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Comportement par défaut</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Affiche un TimeOnlyRangePicker avec le comportement par défaut des heures de début et de fin.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Format d'affichage</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Liez DisplayFormat à une TextBox pour ajuster la façon dont les heures de début et de fin sélectionnées sont rendues.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>Format du panneau</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>Liez PanelFormat à une TextBox pour configurer interactivement le format du panneau de plage horaire.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Confirmation requise</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Définissez NeedConfirmation pour déterminer si les changements de plage doivent être confirmés.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Utilisation avec liaison</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Liez SelectedStartTime et SelectedEndTime à des propriétés du ViewModel pour des mises à jour bidirectionnelles.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Mode lecture seule</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Définissez IsReadOnly pour empêcher la modification tout en gardant la plage horaire sélectionnée visible.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validation des données</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Liez des propriétés d'heure de début et de fin requises et effacez l'une d'elles pour déclencher les erreurs de validation.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Classes de style</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Utilisez ClassSelector pour basculer entre les classes Small et Large et ajoutez ClearButton pour une remise à zéro rapide.</value>
+  </data>
+  <data name="Page_Rating_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Utilisation de base</value>
+  </data>
+  <data name="Page_Rating_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Liez Value et Count pour permettre aux utilisateurs d'attribuer une note avec l'étoile par défaut et voir le score actuel.</value>
+  </data>
+  <data name="Page_Rating_Section_Custom_Character_Header" xml:space="preserve">
+    <value>Caractère personnalisé</value>
+  </data>
+  <data name="Page_Rating_Section_Custom_Character_Description" xml:space="preserve">
+    <value>Remplacez l'étoile par défaut par une icône cœur et ajustez la couleur et la taille.</value>
+  </data>
+  <data name="Page_Rating_Section_Small_Style_Header" xml:space="preserve">
+    <value>Style compact</value>
+  </data>
+  <data name="Page_Rating_Section_Small_Style_Description" xml:space="preserve">
+    <value>Utilisez la classe de style Small pour un contrôle de notation plus compact.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Utilisation de base</value>
+  </data>
+  <data name="Page_Shimmer_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Montrez le texte Shimmer par défaut et sa variante sélectionnable.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Custom_Colors_Header" xml:space="preserve">
+    <value>Couleurs personnalisées</value>
+  </data>
+  <data name="Page_Shimmer_Section_Custom_Colors_Description" xml:space="preserve">
+    <value>Ajustez les couleurs du balayage et la durée pour différents états de chargement.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Attached_Properties_Header" xml:space="preserve">
+    <value>Propriétés attachées</value>
+  </data>
+  <data name="Page_Shimmer_Section_Attached_Properties_Description" xml:space="preserve">
+    <value>Appliquez Shimmer à des visuels ordinaires comme Border pour animer leurs propriétés de brush.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Live_State_Header" xml:space="preserve">
+    <value>État en direct</value>
+  </data>
+  <data name="Page_Shimmer_Section_Live_State_Description" xml:space="preserve">
+    <value>Liez IsActive et pilotez le shimmer avec des commandes.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Basic_Formatting_Header" xml:space="preserve">
+    <value>Formatage de base</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Basic_Formatting_Description" xml:space="preserve">
+    <value>Utilisez les marqueurs Markdown courants pour le gras, l'italique, le barré et le code en ligne.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Mixed_Formatting_Header" xml:space="preserve">
+    <value>Formatage mixte</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Mixed_Formatting_Description" xml:space="preserve">
+    <value>Combinez les marqueurs pour montrer l'imbrication et le fait que le code en ligne reste littéral.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Code_Styling_Header" xml:space="preserve">
+    <value>Style du code</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Code_Styling_Description" xml:space="preserve">
+    <value>Personnalisez l'arrière-plan, la police et le retour à la ligne du code en ligne.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Live_Preview_Header" xml:space="preserve">
+    <value>Aperçu en direct</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Live_Preview_Description" xml:space="preserve">
+    <value>Liez la source Markdown pour modifier le texte rendu de façon interactive.</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Options_Header" xml:space="preserve">
+    <value>Options du tiroir</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Options_Description" xml:space="preserve">
+    <value>Réglez Position, Buttons, CanLightDismiss, IsCloseButtonVisible et CanResize avant d'ouvrir le tiroir.</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Variants_Header" xml:space="preserve">
+    <value>Tiroir standard et tiroir personnalisé</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Variants_Description" xml:space="preserve">
+    <value>Le tiroir standard utilise la barre de titre et les boutons intégrés, tandis que le tiroir personnalisé utilise votre propre mise en page de contenu.</value>
+  </data>
+  <data name="Page_Drawer_Section_Position_Header" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Page_Drawer_Section_Position_Description" xml:space="preserve">
+    <value>Choisissez de quel bord le tiroir s'ouvre.</value>
+  </data>
+  <data name="Page_Drawer_Section_Buttons_Header" xml:space="preserve">
+    <value>Boutons</value>
+  </data>
+  <data name="Page_Drawer_Section_Buttons_Description" xml:space="preserve">
+    <value>Sélectionnez le jeu de boutons pour le pied de page du tiroir standard.</value>
+  </data>
+  <data name="Page_Drawer_Section_Light_Dismiss_Header" xml:space="preserve">
+    <value>Fermeture par clic extérieur</value>
+  </data>
+  <data name="Page_Drawer_Section_Light_Dismiss_Description" xml:space="preserve">
+    <value>Activez ou désactivez la fermeture du tiroir lorsque l'on clique à l'extérieur.</value>
+  </data>
+  <data name="Page_Drawer_Section_Close_Button_Header" xml:space="preserve">
+    <value>Bouton de fermeture</value>
+  </data>
+  <data name="Page_Drawer_Section_Close_Button_Description" xml:space="preserve">
+    <value>Contrôlez la visibilité du bouton de fermeture avec une valeur à trois états.</value>
+  </data>
+  <data name="Page_Drawer_Section_Resize_Header" xml:space="preserve">
+    <value>Redimensionnement</value>
+  </data>
+  <data name="Page_Drawer_Section_Resize_Description" xml:space="preserve">
+    <value>Activez la poignée de redimensionnement pour les tiroirs qui doivent pouvoir être redimensionnés.</value>
   </data>
 </root>

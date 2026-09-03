@@ -30,6 +30,12 @@
   <data name="Menu_Category_DateAndTime" xml:space="preserve">
     <value>日期与时间</value>
   </data>
+  <data name="Menu_Category_TimePickers" xml:space="preserve">
+    <value>时间选择器</value>
+  </data>
+  <data name="Menu_Category_DatePickers" xml:space="preserve">
+    <value>日期选择器</value>
+  </data>
   <data name="Menu_Category_NavigationAndMenus" xml:space="preserve">
     <value>导航与菜单</value>
   </data>
@@ -616,6 +622,24 @@
   <data name="Page_Description_KeyGestureInput" xml:space="preserve">
     <value>快捷键输入捕获用户输入的键盘快捷键手势。</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>使用 KeyGestureInput 从用户输入中捕获键盘快捷键手势。控件会监听按键并保存当前的 KeyGesture。</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Header" xml:space="preserve">
+    <value>允许的按键</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Description" xml:space="preserve">
+    <value>设置 AcceptableKeys 以限制可捕获的按键。此示例只接受 A、B 和 C。</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
+    <value>ClearButton 样式类</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
+    <value>应用 ClearButton 类可在控件已有手势时显示内置清除按钮。InnerLeftContent 和 InnerRightContent 会在输入框两侧添加附加内容。</value>
+  </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>加载在异步操作期间显示旋转器或进度指示器。</value>
   </data>
@@ -661,6 +685,36 @@
   <data name="Page_Description_PinCode" xml:space="preserve">
     <value>密码输入是用于输入 PIN 或验证码的控件。</value>
   </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>使用 PinCode 输入验证码，并在所有输入位填满后执行命令。</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Header" xml:space="preserve">
+    <value>输入模式</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Description" xml:space="preserve">
+    <value>将 Mode 设为 Digit 或 Letter，以限制每个输入位可接受的内容。</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Header" xml:space="preserve">
+    <value>密码掩码</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Description" xml:space="preserve">
+    <value>使用 PasswordChar 隐藏输入值，并在代码填满后处理 Complete 事件。</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Header" xml:space="preserve">
+    <value>验证</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Description" xml:space="preserve">
+    <value>附加 DataValidationErrors.Errors 以显示 PinCode 的无效状态。</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Description" xml:space="preserve">
+    <value>使用 Small 和 Large 样式类切换控件大小。</value>
+  </data>
   <data name="Page_Description_PopConfirm" xml:space="preserve">
     <value>气泡确认在执行操作前显示确认弹出框。</value>
   </data>
@@ -672,6 +726,24 @@
   </data>
   <data name="Page_Description_RangeSlider" xml:space="preserve">
     <value>范围滑块允许使用两个可拖动的滑块选择数值范围。</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>使用 RangeSlider 通过拖动下限和上限滑块来选择数值区间。将 Minimum、Maximum、LowerValue 和 UpperValue 绑定起来，可让滑块与辅助输入保持同步。</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Tick_Snapping_Header" xml:space="preserve">
+    <value>刻度吸附</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Tick_Snapping_Description" xml:space="preserve">
+    <value>启用 IsSnapToTick，并设置 TickFrequency 和 TickPlacement，让范围吸附到离散值，同时在轨道周围显示刻度。</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Orientation_Header" xml:space="preserve">
+    <value>方向</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Orientation_Description" xml:space="preserve">
+    <value>绑定 Orientation 可在水平和垂直布局之间切换。方向变化时，控件会自动更新模板和伪类。</value>
   </data>
   <data name="Page_Description_Rating" xml:space="preserve">
     <value>评分显示并收集用户的星级评分值。</value>
@@ -966,6 +1038,288 @@
   <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
     <value>将 IPAddress 属性绑定到视图模型数据，并展示 IPv4Box 的禁用状态。</value>
   </data>
+  <data name="Page_DateOnlyPicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>默认行为</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>展示一个使用默认设置的简单 DateOnlyPicker。</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>显示格式</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>设置 DisplayFormat，用于定义所选日期文本的显示方式。</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>需要确认</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>设置 NeedConfirmation，使日期选择在应用前需要显式确认。</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>结合绑定使用</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>将 SelectedDate 绑定到 ViewModel，实现用户输入与应用状态之间的双向同步。</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>只读模式</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>将 IsReadOnly 设为 true 以禁止文本编辑，同时保持已选日期可见。</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>数据验证</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>绑定带有 [Required] 标注的日期属性，并清空值以触发可视化校验错误。</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>使用 ClassSelector 切换 Small 和 Large 类，预览紧凑或更高的输入框高度。</value>
+  </data>
+  <data name="Page_DatePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>默认行为</value>
+  </data>
+  <data name="Page_DatePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>展示一个使用默认设置的简单 DatePicker。</value>
+  </data>
+  <data name="Page_DatePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>显示格式</value>
+  </data>
+  <data name="Page_DatePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>设置 DisplayFormat，用于定义所选日期文本的显示方式。</value>
+  </data>
+  <data name="Page_DatePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>需要确认</value>
+  </data>
+  <data name="Page_DatePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>设置 NeedConfirmation，使日期选择在应用前需要显式确认。</value>
+  </data>
+  <data name="Page_DatePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>结合绑定使用</value>
+  </data>
+  <data name="Page_DatePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>将 SelectedDate 绑定到 ViewModel，实现用户输入与应用状态之间的双向同步。</value>
+  </data>
+  <data name="Page_DatePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>只读模式</value>
+  </data>
+  <data name="Page_DatePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>将 IsReadOnly 设为 true 以禁止文本编辑，同时保持已选日期可见。</value>
+  </data>
+  <data name="Page_DatePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>数据验证</value>
+  </data>
+  <data name="Page_DatePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>绑定带有 [Required] 标注的日期属性，并清空值以触发可视化校验错误。</value>
+  </data>
+  <data name="Page_DatePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_DatePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>使用 ClassSelector 切换 Small 和 Large 类，预览紧凑或更高的输入框高度。</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>默认行为</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>展示一个使用默认设置的简单 DateOnlyRangePicker。</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>显示格式</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>设置 DisplayFormat，用于定义所选范围文本的显示方式。</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>需要确认</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>DateOnlyRangePicker 会立即应用范围选择，不提供 NeedConfirmation 属性。</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>结合绑定使用</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>将 SelectedStartDate 和 SelectedEndDate 绑定到 ViewModel，实现双向同步。</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>只读模式</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>将 IsReadOnly 设为 true 以禁止范围编辑，并保持已选开始和结束日期可见。</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>数据验证</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>绑定必填的 DateOnly 开始/结束属性，并清空其中一端以触发可视化校验错误。</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>使用 ClassSelector 切换 Small 和 Large 类，预览紧凑或更高的范围输入高度。</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>默认行为</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>展示一个具有默认范围选择行为的简单 DateRangePicker。</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>显示格式</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>设置 DisplayFormat，用于定义起始和结束日期的显示方式。</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>需要确认</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>DateRangePicker 会立即应用所选范围，不提供 NeedConfirmation 选项。</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>结合绑定使用</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>将 SelectedStartDate 和 SelectedEndDate 绑定到 ViewModel，以双向更新日期范围。</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>只读模式</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>将 IsReadOnly 设为 true 以禁止范围编辑，并保留所选起止日期。</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>数据验证</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>绑定必填的开始/结束属性，并清空其中一端以触发可视化校验错误。</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>使用 ClassSelector 切换 Small 和 Large 类，预览紧凑或更高的范围输入高度。</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>默认行为</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>展示一个具有默认范围与偏移行为的 DateOffsetRangePicker。</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>显示偏移选择</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>设置 ShowOffsetSelection，以控制是否为开始和结束日期显示偏移选择器。</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>偏移定义</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>可将 OffsetDefinitions 配置为逗号分隔字符串，或配置为带自定义显示名称的 OffsetDefinition 显式项。</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>结合绑定使用</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>将 SelectedStartDate 和 SelectedEndDate 绑定到 DateTimeOffset 属性，实现双向同步。</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>只读模式</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>将 IsReadOnly 设为 true 以禁止编辑，并保持所选范围可见。</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>数据验证</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>绑定带有 [Required] 标注的开始与结束 DateTimeOffset 值，并清空它们以触发可视化校验错误。</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>使用 ClassSelector 切换 Small 和 Large 类，并添加 ClearButton 以快速重置范围。</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>默认行为</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>展示一个具有默认日期与偏移行为的简单 DateOffsetPicker。</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>显示偏移选择</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>设置 ShowOffsetSelection 以控制是否在弹出面板中显示偏移选项。</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>偏移定义</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>可将 OffsetDefinitions 配置为逗号分隔字符串，或配置为带自定义显示名称的 OffsetDefinition 显式项。</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>显示格式</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>设置 DisplayFormat，同时格式化日期时间文本和偏移显示。</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>需要确认</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>设置 NeedConfirmation，使日期与偏移选择在应用前需要显式确认。</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>结合绑定使用</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>将 SelectedDate 绑定到 DateTimeOffset 属性，实现日期与偏移的双向同步。</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>只读模式</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>将 IsReadOnly 设为 true 以禁止编辑，并保持所选日期与偏移可见。</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>数据验证</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>绑定带有 [Required] 标注的 DateTimeOffset 属性，并清空值以触发可视化校验错误。</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>使用 ClassSelector 切换 Small 和 Large 类，预览紧凑或更高的输入框高度。</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Header" xml:space="preserve">
+    <value>内联 XAML 定义</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Description" xml:space="preserve">
+    <value>直接在 XAML 中定义 BreadcrumbItem 以构建静态导航路径，并将末尾项标记为只读。</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Header" xml:space="preserve">
+    <value>MVVM 绑定</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Description" xml:space="preserve">
+    <value>通过 ItemsSource 结合 DisplayMemberBinding、IconBinding 和 CommandBinding，从视图模型数据动态生成面包屑项。</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Header" xml:space="preserve">
+    <value>尺寸样式类</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Description" xml:space="preserve">
+    <value>使用 ClassSelector 切换 Small 样式类，预览更紧凑的面包屑间距与排版效果。</value>
+  </data>
   <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
     <value>基础用法</value>
   </data>
@@ -1007,5 +1361,389 @@
   </data>
   <data name="Page_ButtonGroup_Section_Style_Classes_Description" xml:space="preserve">
     <value>将 Success、Warning、Danger 等语义类与 Small、Large、Solid 变体组合使用。</value>
+  </data>
+  <data name="Page_TimePicker_Section_Basic_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_TimePicker_Section_Basic_Description" xml:space="preserve">
+    <value>使用 TimePicker 的默认行为。</value>
+  </data>
+  <data name="Page_TimePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>显示格式</value>
+  </data>
+  <data name="Page_TimePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>将 DisplayFormat 绑定到 TextBox，以交互方式更新已选时间的显示格式。</value>
+  </data>
+  <data name="Page_TimePicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>面板格式</value>
+  </data>
+  <data name="Page_TimePicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>将 PanelFormat 绑定到 TextBox，以交互方式调整时间面板格式。</value>
+  </data>
+  <data name="Page_TimePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>绑定用法</value>
+  </data>
+  <data name="Page_TimePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>将 SelectedTime 绑定到 ViewModel 属性，实现双向更新。</value>
+  </data>
+  <data name="Page_TimePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>确认选择</value>
+  </data>
+  <data name="Page_TimePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>设置 NeedConfirmation 以控制时间变更是否需要确认。</value>
+  </data>
+  <data name="Page_TimePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>只读模式</value>
+  </data>
+  <data name="Page_TimePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>设置 IsReadOnly，禁止编辑但仍显示当前值。</value>
+  </data>
+  <data name="Page_TimePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>数据验证</value>
+  </data>
+  <data name="Page_TimePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>使用数据注解验证时间输入并显示校验错误。</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Basic_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Basic_Description" xml:space="preserve">
+    <value>使用 TimeOnlyPicker 的默认行为。</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>显示格式</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>将 DisplayFormat 绑定到 TextBox，以交互方式更新已选时间的显示格式。</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>面板格式</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>将 PanelFormat 绑定到 TextBox，以交互方式调整时间面板格式。</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>绑定用法</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>将 SelectedTime 绑定到 ViewModel 属性，实现双向更新。</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>确认选择</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>设置 NeedConfirmation 以控制时间变更是否需要确认。</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>只读模式</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>设置 IsReadOnly，禁止编辑但仍显示当前值。</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>数据验证</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>使用数据注解验证时间输入并显示校验错误。</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>默认行为</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>显示具有默认日期和时间选择行为的 DateTimePicker。</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>显示格式</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>将 DisplayFormat 绑定到 TextBox，以调整所选日期时间文本的显示方式。</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>面板格式</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>将 PanelFormat 绑定到 TextBox，以交互方式配置日期时间面板格式。</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>需要确认</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>设置 NeedConfirmation，以便在应用日期和时间更改前要求显式确认。</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>与绑定一起使用</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>将 SelectedDate 绑定到 ViewModel 的 DateTime 属性，以实现双向同步。</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>只读模式</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>将 IsReadOnly 设为 true，可阻止编辑，同时保留所选日期和时间可见。</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>数据验证</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>绑定带有 [Required] 的 DateTime 属性并清空值，以触发验证错误显示。</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>使用 ClassSelector 在 Small 和 Large 样式类之间切换，并添加 ClearButton 以便快速清除。</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>默认行为</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>显示具有默认日期、时间和本地偏移行为的 DateTimeOffsetPicker。</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>显示偏移选择</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>设置 ShowOffsetSelection，以控制是否在弹出面板中显示偏移选项。</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>偏移定义</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>将 OffsetDefinitions 提供为逗号分隔字符串，或提供带自定义显示名称的显式 OffsetDefinition 项。</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>需要确认</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>设置 NeedConfirmation，以便在应用日期、时间和偏移更改前要求显式确认。</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>与绑定一起使用</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>将 SelectedDate 绑定到 DateTimeOffset 属性，以实现日期、时间和偏移的双向同步。</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>只读模式</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>将 IsReadOnly 设为 true，可阻止编辑，同时保留所选日期、时间和偏移可见。</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>数据验证</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>绑定带有 [Required] 的 DateTimeOffset 属性并清空值，以触发验证错误显示。</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>使用 ClassSelector 在 Small 和 Large 样式类之间切换，并添加 ClearButton 以便快速清除。</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>默认行为</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>显示具有默认开始和结束时间行为的 TimeRangePicker。</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>显示格式</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>将 DisplayFormat 绑定到 TextBox，以调整所选开始和结束时间的显示方式。</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>面板格式</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>将 PanelFormat 绑定到 TextBox，以交互方式配置时间范围面板格式。</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>需要确认</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>设置 NeedConfirmation，以控制范围更改是否需要确认。</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>与绑定一起使用</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>将 SelectedStartTime 和 SelectedEndTime 绑定到 ViewModel 属性，以实现双向更新。</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>只读模式</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>将 IsReadOnly 设为 true，可阻止编辑，同时保留所选时间范围可见。</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>数据验证</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>绑定必需的开始和结束时间属性，并清空任一项以触发验证错误。</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>使用 ClassSelector 在 Small 和 Large 样式类之间切换，并添加 ClearButton 以便快速清除。</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>默认行为</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>显示具有默认开始和结束时间行为的 TimeOnlyRangePicker。</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>显示格式</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>将 DisplayFormat 绑定到 TextBox，以调整所选开始和结束时间的显示方式。</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>面板格式</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>将 PanelFormat 绑定到 TextBox，以交互方式配置时间范围面板格式。</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>需要确认</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>设置 NeedConfirmation，以控制范围更改是否需要确认。</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>与绑定一起使用</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>将 SelectedStartTime 和 SelectedEndTime 绑定到 ViewModel 属性，以实现双向更新。</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>只读模式</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>将 IsReadOnly 设为 true，可阻止编辑，同时保留所选时间范围可见。</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>数据验证</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>绑定必需的开始和结束时间属性，并清空任一项以触发验证错误。</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>使用 ClassSelector 在 Small 和 Large 样式类之间切换，并添加 ClearButton 以便快速清除。</value>
+  </data>
+  <data name="Page_Rating_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基本用法</value>
+  </data>
+  <data name="Page_Rating_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>绑定 Value 和 Count，让用户使用默认星形评分并查看当前分数。</value>
+  </data>
+  <data name="Page_Rating_Section_Custom_Character_Header" xml:space="preserve">
+    <value>自定义字符</value>
+  </data>
+  <data name="Page_Rating_Section_Custom_Character_Description" xml:space="preserve">
+    <value>将默认星形替换为爱心图标，并调整颜色和大小。</value>
+  </data>
+  <data name="Page_Rating_Section_Small_Style_Header" xml:space="preserve">
+    <value>小型样式</value>
+  </data>
+  <data name="Page_Rating_Section_Small_Style_Description" xml:space="preserve">
+    <value>使用 Small 样式类让评分控件更紧凑。</value>
+  </data>
+  <data name="Page_Shimmer_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基本用法</value>
+  </data>
+  <data name="Page_Shimmer_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>展示默认的 Shimmer 文本以及可选文本版本。</value>
+  </data>
+  <data name="Page_Shimmer_Section_Custom_Colors_Header" xml:space="preserve">
+    <value>自定义颜色</value>
+  </data>
+  <data name="Page_Shimmer_Section_Custom_Colors_Description" xml:space="preserve">
+    <value>为不同的加载状态调整扫光颜色和持续时间。</value>
+  </data>
+  <data name="Page_Shimmer_Section_Attached_Properties_Header" xml:space="preserve">
+    <value>附加属性</value>
+  </data>
+  <data name="Page_Shimmer_Section_Attached_Properties_Description" xml:space="preserve">
+    <value>将 Shimmer 应用于 Border 之类的普通视觉元素，以动画化其画刷属性。</value>
+  </data>
+  <data name="Page_Shimmer_Section_Live_State_Header" xml:space="preserve">
+    <value>活动状态</value>
+  </data>
+  <data name="Page_Shimmer_Section_Live_State_Description" xml:space="preserve">
+    <value>绑定 IsActive，并通过命令控制 Shimmer。</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Basic_Formatting_Header" xml:space="preserve">
+    <value>基本格式</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Basic_Formatting_Description" xml:space="preserve">
+    <value>使用常见的 Markdown 标记来表示粗体、斜体、删除线和行内代码。</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Mixed_Formatting_Header" xml:space="preserve">
+    <value>混合格式</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Mixed_Formatting_Description" xml:space="preserve">
+    <value>组合多个标记，展示嵌套以及行内代码保持字面内容的效果。</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Code_Styling_Header" xml:space="preserve">
+    <value>代码样式</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Code_Styling_Description" xml:space="preserve">
+    <value>自定义行内代码的背景、字体和换行方式。</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Live_Preview_Header" xml:space="preserve">
+    <value>实时预览</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Live_Preview_Description" xml:space="preserve">
+    <value>绑定 Markdown 源文本，交互式编辑渲染结果。</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Options_Header" xml:space="preserve">
+    <value>抽屉选项</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Options_Description" xml:space="preserve">
+    <value>在打开抽屉前设置 Position、Buttons、CanLightDismiss、IsCloseButtonVisible 和 CanResize。</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Variants_Header" xml:space="preserve">
+    <value>标准抽屉与自定义抽屉</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Variants_Description" xml:space="preserve">
+    <value>标准抽屉使用内置标题栏和按钮，而自定义抽屉使用你自己的内容布局。</value>
+  </data>
+  <data name="Page_Drawer_Section_Position_Header" xml:space="preserve">
+    <value>位置</value>
+  </data>
+  <data name="Page_Drawer_Section_Position_Description" xml:space="preserve">
+    <value>选择抽屉从哪一侧滑出。</value>
+  </data>
+  <data name="Page_Drawer_Section_Buttons_Header" xml:space="preserve">
+    <value>按钮</value>
+  </data>
+  <data name="Page_Drawer_Section_Buttons_Description" xml:space="preserve">
+    <value>选择标准抽屉底部按钮组。</value>
+  </data>
+  <data name="Page_Drawer_Section_Light_Dismiss_Header" xml:space="preserve">
+    <value>轻触关闭</value>
+  </data>
+  <data name="Page_Drawer_Section_Light_Dismiss_Description" xml:space="preserve">
+    <value>控制是否可以通过点击抽屉外部将其关闭。</value>
+  </data>
+  <data name="Page_Drawer_Section_Close_Button_Header" xml:space="preserve">
+    <value>关闭按钮</value>
+  </data>
+  <data name="Page_Drawer_Section_Close_Button_Description" xml:space="preserve">
+    <value>使用三态值控制关闭按钮的显示状态。</value>
+  </data>
+  <data name="Page_Drawer_Section_Resize_Header" xml:space="preserve">
+    <value>调整大小</value>
+  </data>
+  <data name="Page_Drawer_Section_Resize_Description" xml:space="preserve">
+    <value>为需要可调整大小的抽屉启用拖拽手柄。</value>
   </data>
 </root>

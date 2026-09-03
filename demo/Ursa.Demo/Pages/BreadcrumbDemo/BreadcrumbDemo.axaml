@@ -2,6 +2,8 @@
     x:Class="Ursa.Demo.Pages.BreadcrumbDemo.BreadcrumbDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
@@ -12,43 +14,57 @@
     x:CompileBindings="True"
     x:DataType="vm:BreadcrumbDemoViewModel"
     mc:Ignorable="d">
-    <StackPanel Spacing="20">
-        <u:Breadcrumb>
-            <TextBlock Text="Hello" />
-            <u:BreadcrumbItem Content="World" IsReadOnly="True" />
-            <u:BreadcrumbItem Icon="?" Separator="♥" />
-            <TextBlock Text="Avalonia" />
-            <TextBlock Text="Ursa" />
-        </u:Breadcrumb>
-        <u:Breadcrumb Classes="Small">
-            <TextBlock Text="Hello" />
-            <u:BreadcrumbItem Icon="?" Separator="♥" />
-            <TextBlock Text="Avalonia" />
-            <TextBlock Text="Ursa" />
-        </u:Breadcrumb>
-        <u:Breadcrumb>
-            <TextBlock Text="Hello" />
-            <u:BreadcrumbItem Icon="?" Separator="♥" />
-            <TextBlock Text="Avalonia" />
-            <TextBlock Text="Ursa" />
-        </u:Breadcrumb>
-        <u:Breadcrumb
-            DisplayMemberBinding="{Binding Section}"
-            IconBinding="{Binding Icon}"
-            CommandBinding="{Binding Command}"
-            ItemsSource="{Binding Items1}">
-            <u:Breadcrumb.Styles>
-                <Style Selector="u|BreadcrumbItem" x:DataType="vm:BreadcrumbDemoItem">
-                    <Setter Property="IsReadOnly" Value="{Binding IsReadOnly}"/>
-                </Style>
-            </u:Breadcrumb.Styles>
-            <u:Breadcrumb.IconTemplate>
-                <DataTemplate DataType="x:String">
-                    <PathIcon
-                        Theme="{StaticResource InnerPathIcon}"
-                        Data="{Binding Converter={converters:IconNameToPathConverter}}" />
-                </DataTemplate>
-            </u:Breadcrumb.IconTemplate>
-        </u:Breadcrumb>
-    </StackPanel>
+    <TabControl>
+        <TabItem
+            Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+            Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel HorizontalAlignment="Stretch" Spacing="20">
+                    <controls:DemoSectionView SectionContext="{Binding InlineXamlDefinitionSection}">
+                        <u:Breadcrumb>
+                            <u:BreadcrumbItem Content="Home" Icon="Home" />
+                            <u:BreadcrumbItem Content="Components" Icon="Page" />
+                            <u:BreadcrumbItem Content="Breadcrumb" Icon="Page" IsReadOnly="True" />
+                        </u:Breadcrumb>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding MvvmBindingSection}">
+                        <u:Breadcrumb
+                            DisplayMemberBinding="{Binding Section}"
+                            IconBinding="{Binding Icon}"
+                            CommandBinding="{Binding Command}"
+                            ItemsSource="{Binding Items1}">
+                            <u:Breadcrumb.Styles>
+                                <Style Selector="u|BreadcrumbItem" x:DataType="vm:BreadcrumbDemoItem">
+                                    <Setter Property="IsReadOnly" Value="{Binding IsReadOnly}" />
+                                </Style>
+                            </u:Breadcrumb.Styles>
+                            <u:Breadcrumb.IconTemplate>
+                                <DataTemplate DataType="x:String">
+                                    <PathIcon
+                                        Theme="{StaticResource InnerPathIcon}"
+                                        Data="{Binding Converter={converters:IconNameToPathConverter}}" />
+                                </DataTemplate>
+                            </u:Breadcrumb.IconTemplate>
+                        </u:Breadcrumb>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding SizeStyleClassSection}">
+                        <DockPanel HorizontalSpacing="12">
+                            <u:ClassSelector Name="sizeClassSelector" DockPanel.Dock="Right">
+                                <u:ClassSelectorGroup Header="Size">
+                                    <u:ClassSelectorItem ClassName="Small" />
+                                </u:ClassSelectorGroup>
+                            </u:ClassSelector>
+                            <u:Breadcrumb u:ClassSelector.Source="{Binding #sizeClassSelector}">
+                                <u:BreadcrumbItem Content="Home" Icon="Home" />
+                                <u:BreadcrumbItem Content="Components" Icon="Page" />
+                                <u:BreadcrumbItem Content="Breadcrumb" Icon="Page" IsReadOnly="True" />
+                            </u:Breadcrumb>
+                        </DockPanel>
+                    </controls:DemoSectionView>
+                </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>

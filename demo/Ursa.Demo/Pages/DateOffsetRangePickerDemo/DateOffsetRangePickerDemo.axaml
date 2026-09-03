@@ -2,7 +2,9 @@
     x:Class="Ursa.Demo.Pages.DateOffsetRangePickerDemo.DateOffsetRangePickerDemo"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="clr-namespace:Ursa.Demo.Pages.DateOffsetRangePickerDemo"
@@ -10,88 +12,135 @@
     d:DesignWidth="800"
     x:DataType="vm:DateOffsetRangePickerDemoViewModel"
     mc:Ignorable="d">
-    <ScrollViewer>
-        <StackPanel
-            HorizontalAlignment="Stretch"
-            Spacing="8">
+    <TabControl>
+        <TabItem
+            Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+            Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel HorizontalAlignment="Stretch" Spacing="20">
+                    <controls:DemoSectionView SectionContext="{Binding DefaultBehaviorSection}">
+                        <StackPanel HorizontalAlignment="Left" Spacing="8">
+                            <u:DateOffsetRangePicker
+                                Width="400"
+                                DisplayFormat="yyyy-MM-dd"
+                                ShowOffsetSelection="True" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-            <StackPanel HorizontalAlignment="Left">
-                <ToggleSwitch
-                    Name="showOffset"
-                    Content="Show Offset Selection"
-                    IsChecked="True" />
+                    <controls:DemoSectionView SectionContext="{Binding ShowOffsetSelectionSection}">
+                        <StackPanel HorizontalAlignment="Left" Spacing="8">
+                            <TextBlock Text="ShowOffsetSelection=False" />
+                            <u:DateOffsetRangePicker
+                                Width="400"
+                                DisplayFormat="yyyy-MM-dd"
+                                ShowOffsetSelection="False"
+                                SelectedStartDate="2025-06-26+08:00"
+                                SelectedEndDate="2025-06-30+08:00"
+                                OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+                            <TextBlock Text="ShowOffsetSelection=True" />
+                            <u:DateOffsetRangePicker
+                                Width="400"
+                                DisplayFormat="yyyy-MM-dd"
+                                ShowOffsetSelection="True"
+                                SelectedStartDate="2025-06-26+08:00"
+                                SelectedEndDate="2025-06-30+08:00"
+                                OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-                <TextBlock Text="Default (Local offset)" />
-                <u:DateOffsetRangePicker
-                    Width="400"
-                    DisplayFormat="yyyy-MM-dd"
-                    ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
+                    <controls:DemoSectionView SectionContext="{Binding OffsetDefinitionsSection}">
+                        <StackPanel HorizontalAlignment="Left" Spacing="8">
+                            <TextBlock Text="OffsetDefinitions as string" />
+                            <u:DateOffsetRangePicker
+                                Width="400"
+                                DisplayFormat="yyyy-MM-dd"
+                                ShowOffsetSelection="True"
+                                SelectedStartDate="2025-06-26+08:00"
+                                SelectedEndDate="2025-06-30+08:00"
+                                OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+                            <TextBlock Text="OffsetDefinitions as collection" />
+                            <u:DateOffsetRangePicker
+                                Width="400"
+                                DisplayFormat="yyyy-MM-dd"
+                                ShowOffsetSelection="True"
+                                SelectedStartDate="2025-06-26+08:00"
+                                SelectedEndDate="2025-06-30+08:00">
+                                <u:DateOffsetRangePicker.OffsetDefinitions>
+                                    <u:OffsetDefinitions>
+                                        <u:OffsetDefinition Offset="UTC" />
+                                        <u:OffsetDefinition Offset="Local" />
+                                        <u:OffsetDefinition DisplayName="Beijing (CST)" Offset="+08:00" />
+                                        <u:OffsetDefinition DisplayName="New York (EST)" Offset="-05:00" />
+                                    </u:OffsetDefinitions>
+                                </u:DateOffsetRangePicker.OffsetDefinitions>
+                            </u:DateOffsetRangePicker>
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-                <TextBlock Text="UTC, Local, Beijing, New York" />
-                <u:DateOffsetRangePicker
-                    Width="400"
-                    DisplayFormat="yyyy-MM-dd"
-                    ShowOffsetSelection="{Binding #showOffset.IsChecked}">
-                    <u:DateOffsetRangePicker.OffsetDefinitions>
-                        <u:OffsetDefinitions>
-                            <u:OffsetDefinition Offset="UTC" />
-                            <u:OffsetDefinition Offset="Local" />
-                            <u:OffsetDefinition DisplayName="Beijing (CST)" Offset="+08:00" />
-                            <u:OffsetDefinition DisplayName="New York (EST)" Offset="-05:00" />
-                        </u:OffsetDefinitions>
-                    </u:DateOffsetRangePicker.OffsetDefinitions>
-                </u:DateOffsetRangePicker>
+                    <controls:DemoSectionView SectionContext="{Binding UseWithBindingSection}">
+                        <StackPanel HorizontalAlignment="Left" Spacing="8">
+                            <TextBlock Text="{Binding StartDate, StringFormat='Start: {0:yyyy-MM-dd zzz}'}" />
+                            <TextBlock Text="{Binding EndDate, StringFormat='End: {0:yyyy-MM-dd zzz}'}" />
+                            <u:DateOffsetRangePicker
+                                Width="400"
+                                DisplayFormat="yyyy-MM-dd"
+                                SelectedStartDate="{Binding StartDate, Mode=TwoWay}"
+                                SelectedEndDate="{Binding EndDate, Mode=TwoWay}"
+                                ShowOffsetSelection="True"
+                                OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-                <TextBlock Text="Binding" />
-                <TextBlock Text="{Binding StartDate, StringFormat='Start: {0:yyyy-MM-dd zzz}'}" />
-                <TextBlock Text="{Binding EndDate, StringFormat='End: {0:yyyy-MM-dd zzz}'}" />
-                <u:DateOffsetRangePicker
-                    Width="400"
-                    DisplayFormat="yyyy-MM-dd"
-                    SelectedEndDate="{Binding EndDate, Mode=TwoWay}"
-                    SelectedStartDate="{Binding StartDate, Mode=TwoWay}"
-                    ShowOffsetSelection="{Binding #showOffset.IsChecked}">
-                    <u:DateOffsetRangePicker.OffsetDefinitions>
-                        <u:OffsetDefinitions>
-                            <u:OffsetDefinition Offset="UTC" />
-                            <u:OffsetDefinition Offset="Local" />
-                            <u:OffsetDefinition DisplayName="Beijing (CST)" Offset="+08:00" />
-                            <u:OffsetDefinition DisplayName="New York (EST)" Offset="-05:00" />
-                        </u:OffsetDefinitions>
-                    </u:DateOffsetRangePicker.OffsetDefinitions>
-                </u:DateOffsetRangePicker>
+                    <controls:DemoSectionView SectionContext="{Binding ReadonlyModeSection}">
+                        <StackPanel HorizontalAlignment="Left" Spacing="8">
+                            <u:DateOffsetRangePicker
+                                Width="400"
+                                DisplayFormat="yyyy-MM-dd"
+                                IsReadOnly="True"
+                                SelectedStartDate="2025-06-26+08:00"
+                                SelectedEndDate="2025-06-30+08:00"
+                                ShowOffsetSelection="True"
+                                OffsetDefinitions="Utc, Local, +8:00, -5:00" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-                <TextBlock Text="Clear Button" />
-                <u:DateOffsetRangePicker
-                    Width="400"
-                    Classes="ClearButton"
-                    DisplayFormat="yyyy-MM-dd"
-                    ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
+                    <controls:DemoSectionView SectionContext="{Binding DataValidationSection}">
+                        <StackPanel HorizontalAlignment="Left" Spacing="8">
+                            <TextBlock Foreground="{DynamicResource TextBoxPlaceholderForeground}"
+                                       Text="Clear the date range to trigger [Required] validation and see the error feedback." />
+                            <u:DateOffsetRangePicker
+                                Width="400"
+                                Classes="ClearButton"
+                                DisplayFormat="yyyy-MM-dd"
+                                ShowOffsetSelection="True"
+                                SelectedStartDate="{Binding ValidatedRange.Start, Mode=TwoWay}"
+                                SelectedEndDate="{Binding ValidatedRange.End, Mode=TwoWay}" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-                <TextBlock Text="IsReadOnly" />
-                <ToggleSwitch Name="readonlyToggle" Content="Read Only" />
-                <u:DateOffsetRangePicker
-                    Width="400"
-                    DisplayFormat="yyyy-MM-dd"
-                    IsReadOnly="{Binding #readonlyToggle.IsChecked}"
-                    SelectedEndDate="2025-06-30+08:00"
-                    SelectedStartDate="2025-06-26+08:00"
-                    ShowOffsetSelection="{Binding #showOffset.IsChecked}" />
-            </StackPanel>
-
-            <StackPanel HorizontalAlignment="Left" Spacing="8">
-                <TextBlock FontWeight="Bold" FontSize="16" Text="Data Validation" />
-                <TextBlock Foreground="{DynamicResource TextBoxPlaceholderForeground}"
-                           Text="Clear the date range to trigger [Required] validation and see the error feedback." />
-                <u:DateOffsetRangePicker HorizontalAlignment="Left"
-                    Width="400"
-                    Classes="ClearButton"
-                    DisplayFormat="yyyy-MM-dd"
-                    ShowOffsetSelection="{Binding #showOffset.IsChecked}"
-                    SelectedStartDate="{Binding ValidatedRange.Start, Mode=TwoWay}"
-                    SelectedEndDate="{Binding ValidatedRange.End, Mode=TwoWay}" />
-            </StackPanel>
-
-        </StackPanel>
-    </ScrollViewer>
+                    <controls:DemoSectionView SectionContext="{Binding StyleClassesSection}">
+                        <DockPanel HorizontalSpacing="12">
+                            <u:ClassSelector Name="sizeClassSelector" DockPanel.Dock="Right">
+                                <u:ClassSelectorGroup Header="Size">
+                                    <u:ClassSelectorItem ClassName="Small" />
+                                    <u:ClassSelectorItem ClassName="Large" />
+                                </u:ClassSelectorGroup>
+                                <u:ClassSelectorGroup Header="Other">
+                                    <u:ClassSelectorItem ClassName="ClearButton" />
+                                </u:ClassSelectorGroup>
+                            </u:ClassSelector>
+                            <u:DateOffsetRangePicker
+                                Width="400"
+                                DisplayFormat="yyyy-MM-dd"
+                                SelectedStartDate="2025-06-26+08:00"
+                                SelectedEndDate="2025-06-30+08:00"
+                                ShowOffsetSelection="True"
+                                OffsetDefinitions="Utc, Local, +8:00, -5:00"
+                                u:ClassSelector.Source="{Binding #sizeClassSelector}" />
+                        </DockPanel>
+                    </controls:DemoSectionView>
+                </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>

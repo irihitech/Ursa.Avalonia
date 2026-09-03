@@ -38,6 +38,12 @@
   <data name="Menu_Category_DateAndTime" xml:space="preserve">
     <value>Datum a čas</value>
   </data>
+  <data name="Menu_Category_TimePickers" xml:space="preserve">
+    <value>Výběr času</value>
+  </data>
+  <data name="Menu_Category_DatePickers" xml:space="preserve">
+    <value>Výběr data</value>
+  </data>
   <data name="Menu_Category_NavigationAndMenus" xml:space="preserve">
     <value>Navigace a nabídky</value>
   </data>
@@ -631,6 +637,24 @@
   <data name="Page_Description_KeyGestureInput" xml:space="preserve">
     <value>Vstup klávesových gest zachycuje gesta klávesových zkratek ze vstupu uživatele.</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Použijte KeyGestureInput k zachycení klávesových zkratek z uživatelského vstupu. Ovládání poslouchá stisky kláves a ukládá aktuální KeyGesture.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Header" xml:space="preserve">
+    <value>Povolené klávesy</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Description" xml:space="preserve">
+    <value>Nastavte AcceptableKeys, abyste omezili, které klávesy lze zachytit. Tato ukázka přijímá pouze A, B a C.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
+    <value>Stylová třída ClearButton</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
+    <value>Použijte třídu ClearButton k zobrazení vestavěného tlačítka pro vymazání, jakmile má ovládací prvek gesto. InnerLeftContent a InnerRightContent přidávají doplňkový obsah na obě strany.</value>
+  </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>Načítání zobrazuje spinner nebo indikátor průběhu během asynchronních operací.</value>
   </data>
@@ -676,6 +700,36 @@
   <data name="Page_Description_PinCode" xml:space="preserve">
     <value>PIN kód je ovládací prvek pro zadávání PIN nebo ověřovacích kódů.</value>
   </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Použijte PinCode k zadání ověřovacího kódu a po vyplnění všech polí spusťte příkaz.</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Header" xml:space="preserve">
+    <value>Režimy zadávání</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Description" xml:space="preserve">
+    <value>Nastavte Mode na Digit nebo Letter, aby každé pole přijímalo jen požadovaný typ znaků.</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Header" xml:space="preserve">
+    <value>Maska hesla</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Description" xml:space="preserve">
+    <value>Pomocí PasswordChar skryjte zadané hodnoty a obslužte událost Complete po vyplnění kódu.</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Header" xml:space="preserve">
+    <value>Validace</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Description" xml:space="preserve">
+    <value>Připojte DataValidationErrors.Errors, abyste zobrazili neplatný stav ovládacího prvku PinCode.</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Stylové třídy</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Třídy Small a Large přepínají velikost ovládacího prvku.</value>
+  </data>
   <data name="Page_Description_PopConfirm" xml:space="preserve">
     <value>Potvrzovací bublina zobrazuje potvrzovací vyskakovací okno před provedením akce.</value>
   </data>
@@ -687,6 +741,24 @@
   </data>
   <data name="Page_Description_RangeSlider" xml:space="preserve">
     <value>Posuvník rozsahu umožňuje výběr rozsahu hodnot pomocí dvou přetahovatelných jezdců.</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Pomocí RangeSlider vyberte rozsah hodnot tažením dolního a horního jezdce. Svažte Minimum, Maximum, LowerValue a UpperValue, aby byl jezdec a doprovodné vstupy synchronizované.</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Tick_Snapping_Header" xml:space="preserve">
+    <value>Přichytávání k značkám</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Tick_Snapping_Description" xml:space="preserve">
+    <value>Zapněte IsSnapToTick a nastavte TickFrequency a TickPlacement, aby se rozsah přichytával na diskrétní hodnoty a zároveň zobrazoval značky kolem dráhy.</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Orientation_Header" xml:space="preserve">
+    <value>Orientace</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Orientation_Description" xml:space="preserve">
+    <value>Svažte Orientation pro přepínání mezi vodorovným a svislým rozložením. Ovládací prvek automaticky aktualizuje šablonu i pseudo-třídy při změně orientace.</value>
   </data>
   <data name="Page_Description_Rating" xml:space="preserve">
     <value>Hodnocení zobrazuje a sbírá hvězdičkové hodnoty hodnocení od uživatelů.</value>
@@ -974,6 +1046,288 @@
   <data name="Page_IPv4Box_Section_Source_Binding_And_Disabled_State_Description" xml:space="preserve">
     <value>Navažte vlastnost IPAddress na data ve view modelu a zobrazte zakázaný stav IPv4Boxu.</value>
   </data>
+  <data name="Page_DateOnlyPicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Výchozí chování</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Zobrazte jednoduchý DateOnlyPicker s výchozím nastavením.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Formát zobrazení</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Nastavte DisplayFormat a určete, jak se vykresluje text vybraného data.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Vyžadovat potvrzení</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Nastavte NeedConfirmation, aby byl před použitím výběru data vyžadován výslovný souhlas.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Použití s vazbou</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Navažte SelectedDate na view model pro obousměrnou synchronizaci mezi vstupem uživatele a stavem aplikace.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Režim jen pro čtení</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Nastavte IsReadOnly na true, aby se zabránilo úpravám textu a vybrané datum zůstalo viditelné.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Ověřování dat</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Navažte vlastnost data s anotací [Required] a vymažte hodnotu pro vyvolání vizuální chyby ověření.</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_DateOnlyPicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Pomocí ClassSelector přepínejte třídy Small a Large a zobrazte kompaktní nebo vyšší výšku vstupu.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Výchozí chování</value>
+  </data>
+  <data name="Page_DatePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Zobrazte jednoduchý DatePicker s výchozím nastavením.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Formát zobrazení</value>
+  </data>
+  <data name="Page_DatePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Nastavte DisplayFormat a určete, jak se vykresluje text vybraného data.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Vyžadovat potvrzení</value>
+  </data>
+  <data name="Page_DatePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Nastavte NeedConfirmation, aby byl před použitím výběru data vyžadován výslovný souhlas.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Použití s vazbou</value>
+  </data>
+  <data name="Page_DatePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Navažte SelectedDate na view model pro obousměrnou synchronizaci mezi vstupem uživatele a stavem aplikace.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Režim jen pro čtení</value>
+  </data>
+  <data name="Page_DatePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Nastavte IsReadOnly na true, aby se zabránilo úpravám textu a vybrané datum zůstalo viditelné.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validace dat</value>
+  </data>
+  <data name="Page_DatePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Navažte pole data s atributem [Required] a vymazáním hodnoty vyvolejte vizuální indikaci validační chyby.</value>
+  </data>
+  <data name="Page_DatePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_DatePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Použijte ClassSelector pro přepínání tříd Small a Large a náhled kompaktní nebo prostornější výšky vstupu.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Výchozí chování</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Zobrazte jednoduchý DateOnlyRangePicker s výchozím nastavením.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Formát zobrazení</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Nastavte DisplayFormat pro určení způsobu zobrazení textu vybraného rozsahu.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Vyžadovat potvrzení</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>DateOnlyRangePicker použije výběr rozsahu okamžitě a nevystavuje vlastnost NeedConfirmation.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Použití s vazbou</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Navažte SelectedStartDate a SelectedEndDate na view model pro obousměrnou synchronizaci.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Režim jen pro čtení</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Nastavte IsReadOnly na true, abyste zabránili úpravám rozsahu a zachovali viditelné vybrané počáteční i koncové datum.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validace dat</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Navažte povinné vlastnosti startu/konce typu DateOnly a vymazáním kterékoliv hodnoty vyvolejte vizuální indikaci validační chyby.</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_DateOnlyRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Použijte ClassSelector pro přepínání tříd Small a Large a náhled kompaktní nebo prostornější výšky vstupu rozsahu.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Výchozí chování</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Zobrazte jednoduchý DateRangePicker s výchozím chováním výběru rozsahu.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Formát zobrazení</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Nastavte DisplayFormat a určete, jak se vykreslují data začátku a konce.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Vyžadovat potvrzení</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>DateRangePicker použije zvolený rozsah okamžitě a nenabízí možnost NeedConfirmation.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Použití s vazbou</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Navažte SelectedStartDate a SelectedEndDate na view model pro obousměrné aktualizace rozsahu dat.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Režim jen pro čtení</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Nastavte IsReadOnly na true, abyste zabránili úpravám rozsahu a zachovali vybraná data začátku a konce.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validace dat</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Navažte povinné vlastnosti začátku a konce a vymazáním kterékoliv hodnoty vyvolejte vizuální indikaci validační chyby.</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_DateRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Použijte ClassSelector pro přepínání tříd Small a Large a náhled kompaktní nebo prostornější výšky vstupu rozsahu.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Výchozí chování</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Zobrazte DateOffsetRangePicker s výchozím chováním rozsahu a posunu.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>Zobrazení výběru posunu</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>Nastavte ShowOffsetSelection, abyste určili, zda se mají pro počáteční a koncové datum zobrazovat volby posunu.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>Definice posunů</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>Poskytněte OffsetDefinitions jako čárkami oddělený řetězec nebo jako explicitní položky OffsetDefinition s vlastním zobrazovaným názvem.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Použití s vazbou</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Navažte SelectedStartDate a SelectedEndDate na vlastnosti DateTimeOffset pro obousměrnou synchronizaci.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Režim jen pro čtení</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Nastavte IsReadOnly na true, abyste zabránili úpravám a ponechali vybraný rozsah viditelný.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validace dat</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Navažte počáteční a koncové hodnoty DateTimeOffset s atributem [Required] a jejich vymazáním vyvolejte vizuální indikaci validačních chyb.</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_DateOffsetRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Použijte ClassSelector pro přepínání tříd Small a Large a přidejte ClearButton pro rychlé vymazání rozsahu.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Výchozí chování</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Zobrazte jednoduchý DateOffsetPicker s výchozím chováním data a posunu.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>Zobrazení výběru posunu</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>Nastavte ShowOffsetSelection, abyste určili, zda se v rozbalovacím panelu zobrazí možnosti posunu.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>Definice posunů</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>Poskytněte OffsetDefinitions jako čárkami oddělený řetězec nebo jako explicitní položky OffsetDefinition s vlastním zobrazovaným názvem.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Formát zobrazení</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Nastavte DisplayFormat pro formátování textu data/času i zobrazení posunu.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Vyžadovat potvrzení</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Nastavte NeedConfirmation, aby bylo před použitím výběru data a posunu vyžadováno výslovné potvrzení.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Použití s vazbou</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Navažte SelectedDate na vlastnost DateTimeOffset pro obousměrnou synchronizaci hodnot data a posunu.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Režim jen pro čtení</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Nastavte IsReadOnly na true, abyste zabránili úpravám a ponechali vybrané datum i posun viditelné.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Validace dat</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Navažte vlastnost DateTimeOffset s atributem [Required] a vymazáním hodnoty vyvolejte vizuální indikaci validační chyby.</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_DateOffsetPicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Použijte ClassSelector pro přepínání tříd Small a Large a náhled kompaktní nebo prostornější výšky vstupu.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Header" xml:space="preserve">
+    <value>Vložená definice XAML</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Inline_Xaml_Definition_Description" xml:space="preserve">
+    <value>Definujte prvky BreadcrumbItem přímo v XAML pro vytvoření statické navigační cesty a označte koncovou položku jako jen pro čtení.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Header" xml:space="preserve">
+    <value>MVVM vazba</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Mvvm_Binding_Description" xml:space="preserve">
+    <value>Navažte ItemsSource společně s DisplayMemberBinding, IconBinding a CommandBinding, aby se položky breadcrumb generovaly z dat view modelu.</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Header" xml:space="preserve">
+    <value>Třída stylu velikosti</value>
+  </data>
+  <data name="Page_Breadcrumb_Section_Size_Style_Class_Description" xml:space="preserve">
+    <value>Pomocí ClassSelector přepínejte třídu Small a zobrazte kompaktnější rozestupy i typografii breadcrumbu.</value>
+  </data>
   <data name="Page_IconButton_Section_Basic_Usage_Header" xml:space="preserve">
     <value>Základní použití</value>
   </data>
@@ -1021,5 +1375,389 @@
   </data>
   <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
     <value>ViewModel</value>
+  </data>
+  <data name="Page_TimePicker_Section_Basic_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_TimePicker_Section_Basic_Description" xml:space="preserve">
+    <value>Použijte TimePicker s výchozím chováním.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Formát zobrazení</value>
+  </data>
+  <data name="Page_TimePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Navažte DisplayFormat na TextBox a interaktivně měňte formát zobrazení vybraného času.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>Formát panelu</value>
+  </data>
+  <data name="Page_TimePicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>Navažte PanelFormat na TextBox a interaktivně upravujte formát panelu času.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Použití s vazbou</value>
+  </data>
+  <data name="Page_TimePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Navažte SelectedTime na vlastnost ViewModelu pro obousměrné aktualizace.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Potvrzení výběru</value>
+  </data>
+  <data name="Page_TimePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Nastavte NeedConfirmation a určete, zda změna času vyžaduje potvrzení.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Režim jen pro čtení</value>
+  </data>
+  <data name="Page_TimePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Nastavte IsReadOnly, aby nebylo možné upravovat hodnotu, ale zůstala viditelná.</value>
+  </data>
+  <data name="Page_TimePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Ověření dat</value>
+  </data>
+  <data name="Page_TimePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Použijte datové anotace k ověření vstupu času a zobrazení chyb.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Basic_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Basic_Description" xml:space="preserve">
+    <value>Použijte TimeOnlyPicker s výchozím chováním.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Formát zobrazení</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Navažte DisplayFormat na TextBox a interaktivně měňte formát zobrazení vybraného času.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>Formát panelu</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>Navažte PanelFormat na TextBox a interaktivně upravujte formát panelu času.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Použití s vazbou</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Navažte SelectedTime na vlastnost ViewModelu pro obousměrné aktualizace.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Potvrzení výběru</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Nastavte NeedConfirmation a určete, zda změna času vyžaduje potvrzení.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Režim jen pro čtení</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Nastavte IsReadOnly, aby nebylo možné upravovat hodnotu, ale zůstala viditelná.</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Ověření dat</value>
+  </data>
+  <data name="Page_TimeOnlyPicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Použijte datové anotace k ověření vstupu času a zobrazení chyb.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Výchozí chování</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Zobrazte DateTimePicker se standardním výběrem data a času.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Formát zobrazení</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Navažte DisplayFormat na TextBox a upravujte způsob zobrazení vybraného data a času.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>Formát panelu</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>Navažte PanelFormat na TextBox a interaktivně nastavujte formát panelu data a času.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Potvrzení výběru</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Nastavte NeedConfirmation, aby před použitím změn data a času bylo vyžadováno výslovné potvrzení.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Použití s vazbou</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Navažte SelectedDate na vlastnost DateTime ve ViewModelu pro obousměrnou synchronizaci.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Režim jen pro čtení</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Nastavte IsReadOnly na true, abyste zabránili úpravám a ponechali vybrané datum i čas viditelné.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Ověření dat</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Navažte vlastnost DateTime s atributem [Required] a vymazáním hodnoty vyvolejte vizuální chybu ověření.</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_DateTimePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Použijte ClassSelector pro přepínání tříd Small a Large a přidejte ClearButton pro rychlé vymazání.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Výchozí chování</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Zobrazte DateTimeOffsetPicker se standardním chováním data, času a lokálního posunu.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Show_Offset_Selection_Header" xml:space="preserve">
+    <value>Zobrazení výběru posunu</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Show_Offset_Selection_Description" xml:space="preserve">
+    <value>Nastavte ShowOffsetSelection, abyste určili, zda se v rozbalovacím panelu zobrazí možnosti posunu.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Offset_Definitions_Header" xml:space="preserve">
+    <value>Definice posunů</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Offset_Definitions_Description" xml:space="preserve">
+    <value>Poskytněte OffsetDefinitions jako čárkami oddělený řetězec nebo jako explicitní položky OffsetDefinition s vlastním zobrazovaným názvem.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Potvrzení výběru</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Nastavte NeedConfirmation, aby před použitím změn data, času a posunu bylo vyžadováno výslovné potvrzení.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Použití s vazbou</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Navažte SelectedDate na vlastnost DateTimeOffset pro obousměrnou synchronizaci data, času a posunu.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Režim jen pro čtení</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Nastavte IsReadOnly na true, abyste zabránili úpravám a ponechali vybrané datum, čas i posun viditelné.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Ověření dat</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Navažte vlastnost DateTimeOffset s atributem [Required] a vymazáním hodnoty vyvolejte vizuální chybu ověření.</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_DateTimeOffsetPicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Použijte ClassSelector pro přepínání tříd Small a Large a přidejte ClearButton pro rychlé vymazání.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Výchozí chování</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Zobrazte TimeRangePicker se standardním chováním počátečního a koncového času.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Formát zobrazení</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Navažte DisplayFormat na TextBox a upravujte způsob zobrazení vybraného počátečního a koncového času.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>Formát panelu</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>Navažte PanelFormat na TextBox a interaktivně nastavujte formát panelu rozsahu času.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Potvrzení výběru</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Nastavte NeedConfirmation a určete, zda změny rozsahu vyžadují potvrzení.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Použití s vazbou</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Navažte SelectedStartTime a SelectedEndTime na vlastnosti ViewModelu pro obousměrné aktualizace.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Režim jen pro čtení</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Nastavte IsReadOnly, aby nebylo možné upravovat rozsah a vybraný rozsah času zůstal viditelný.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Ověření dat</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Navažte povinné vlastnosti počátečního a koncového času a vymazáním kterékoliv hodnoty vyvolejte chybu ověření.</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_TimeRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Použijte ClassSelector pro přepínání tříd Small a Large a přidejte ClearButton pro rychlé vymazání.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Default_Behavior_Header" xml:space="preserve">
+    <value>Výchozí chování</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Default_Behavior_Description" xml:space="preserve">
+    <value>Zobrazte TimeOnlyRangePicker se standardním chováním počátečního a koncového času.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Display_Format_Header" xml:space="preserve">
+    <value>Formát zobrazení</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Display_Format_Description" xml:space="preserve">
+    <value>Navažte DisplayFormat na TextBox a upravujte způsob zobrazení vybraného počátečního a koncového času.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Panel_Format_Header" xml:space="preserve">
+    <value>Formát panelu</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Panel_Format_Description" xml:space="preserve">
+    <value>Navažte PanelFormat na TextBox a interaktivně nastavujte formát panelu rozsahu času.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Need_Confirmation_Header" xml:space="preserve">
+    <value>Potvrzení výběru</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Need_Confirmation_Description" xml:space="preserve">
+    <value>Nastavte NeedConfirmation a určete, zda změny rozsahu vyžadují potvrzení.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Use_With_Binding_Header" xml:space="preserve">
+    <value>Použití s vazbou</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Use_With_Binding_Description" xml:space="preserve">
+    <value>Navažte SelectedStartTime a SelectedEndTime na vlastnosti ViewModelu pro obousměrné aktualizace.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Readonly_Mode_Header" xml:space="preserve">
+    <value>Režim jen pro čtení</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Readonly_Mode_Description" xml:space="preserve">
+    <value>Nastavte IsReadOnly, aby nebylo možné upravovat rozsah a vybraný rozsah času zůstal viditelný.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Data_Validation_Header" xml:space="preserve">
+    <value>Ověření dat</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Data_Validation_Description" xml:space="preserve">
+    <value>Navažte povinné vlastnosti počátečního a koncového času a vymazáním kterékoliv hodnoty vyvolejte chybu ověření.</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Třídy stylů</value>
+  </data>
+  <data name="Page_TimeOnlyRangePicker_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Použijte ClassSelector pro přepínání tříd Small a Large a přidejte ClearButton pro rychlé vymazání.</value>
+  </data>
+  <data name="Page_Rating_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_Rating_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Navážte Value a Count, aby uživatelé mohli hodnotit výchozí hvězdou a vidět aktuální skóre.</value>
+  </data>
+  <data name="Page_Rating_Section_Custom_Character_Header" xml:space="preserve">
+    <value>Vlastní znak</value>
+  </data>
+  <data name="Page_Rating_Section_Custom_Character_Description" xml:space="preserve">
+    <value>Nahraďte výchozí hvězdu ikonou srdce a upravte barvu i velikost.</value>
+  </data>
+  <data name="Page_Rating_Section_Small_Style_Header" xml:space="preserve">
+    <value>Malý styl</value>
+  </data>
+  <data name="Page_Rating_Section_Small_Style_Description" xml:space="preserve">
+    <value>Použijte stylovou třídu Small pro kompaktnější ovládací prvek hodnocení.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_Shimmer_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Zobrazte výchozí shimmer text i jeho volitelnou variantu se selekcí.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Custom_Colors_Header" xml:space="preserve">
+    <value>Vlastní barvy</value>
+  </data>
+  <data name="Page_Shimmer_Section_Custom_Colors_Description" xml:space="preserve">
+    <value>Upravte barvy průchodu i dobu trvání pro různé stavy načítání.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Attached_Properties_Header" xml:space="preserve">
+    <value>Připojené vlastnosti</value>
+  </data>
+  <data name="Page_Shimmer_Section_Attached_Properties_Description" xml:space="preserve">
+    <value>Použijte shimmer na běžné vizuály, jako je Border, a animujte jejich vlastnosti štětce.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Live_State_Header" xml:space="preserve">
+    <value>Živý stav</value>
+  </data>
+  <data name="Page_Shimmer_Section_Live_State_Description" xml:space="preserve">
+    <value>Navážete IsActive a ovládejte shimmer pomocí příkazů.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Basic_Formatting_Header" xml:space="preserve">
+    <value>Základní formátování</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Basic_Formatting_Description" xml:space="preserve">
+    <value>Použijte běžné markdown značky pro tučné písmo, kurzívu, přeškrtnutí a vložený kód.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Mixed_Formatting_Header" xml:space="preserve">
+    <value>Smíšené formátování</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Mixed_Formatting_Description" xml:space="preserve">
+    <value>Kombinujte značky, abyste ukázali vnoření i to, že vložený kód zůstává doslovný.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Code_Styling_Header" xml:space="preserve">
+    <value>Stylování kódu</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Code_Styling_Description" xml:space="preserve">
+    <value>Upravte pozadí vloženého kódu, rodinu písma i zalamování.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Live_Preview_Header" xml:space="preserve">
+    <value>Živý náhled</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Live_Preview_Description" xml:space="preserve">
+    <value>Navážete zdroj markdownu a upravujte vykreslený text interaktivně.</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Options_Header" xml:space="preserve">
+    <value>Možnosti draweru</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Options_Description" xml:space="preserve">
+    <value>Před otevřením draweru nastavte Position, Buttons, CanLightDismiss, IsCloseButtonVisible a CanResize.</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Variants_Header" xml:space="preserve">
+    <value>Standardní a vlastní drawer</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Variants_Description" xml:space="preserve">
+    <value>Standardní drawer používá vestavěný titulkový pruh a tlačítka, zatímco vlastní drawer používá vlastní rozvržení obsahu.</value>
+  </data>
+  <data name="Page_Drawer_Section_Position_Header" xml:space="preserve">
+    <value>Poloha</value>
+  </data>
+  <data name="Page_Drawer_Section_Position_Description" xml:space="preserve">
+    <value>Zvolte, z jaké hrany se drawer vysune.</value>
+  </data>
+  <data name="Page_Drawer_Section_Buttons_Header" xml:space="preserve">
+    <value>Tlačítka</value>
+  </data>
+  <data name="Page_Drawer_Section_Buttons_Description" xml:space="preserve">
+    <value>Vyberte sadu tlačítek pro patičku standardního draweru.</value>
+  </data>
+  <data name="Page_Drawer_Section_Light_Dismiss_Header" xml:space="preserve">
+    <value>Lehké zavření</value>
+  </data>
+  <data name="Page_Drawer_Section_Light_Dismiss_Description" xml:space="preserve">
+    <value>Přepněte, zda kliknutí mimo drawer panel zavře.</value>
+  </data>
+  <data name="Page_Drawer_Section_Close_Button_Header" xml:space="preserve">
+    <value>Tlačítko zavření</value>
+  </data>
+  <data name="Page_Drawer_Section_Close_Button_Description" xml:space="preserve">
+    <value>Ovládejte viditelnost tlačítka zavření pomocí trojstavu.</value>
+  </data>
+  <data name="Page_Drawer_Section_Resize_Header" xml:space="preserve">
+    <value>Změna velikosti</value>
+  </data>
+  <data name="Page_Drawer_Section_Resize_Description" xml:space="preserve">
+    <value>Povolte úchyt pro změnu velikosti u drawerů, které mají být měnitelné.</value>
   </data>
 </root>
