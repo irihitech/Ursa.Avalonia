@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 using Irihi.Dogma.Docs;
+using Irihi.Dogma.Controls;
 using Ursa.Demo.Pages.DummyPages;
 
 namespace Ursa.Demo.Pages.RangeSliderDemo;
@@ -15,6 +16,10 @@ public partial class RangeSliderDemoViewModel: ObservableObject, IPageMetadataPr
 {
     public const string Category_Key = "RangeSlider";
     public const string Menu_Header = "Menu_Header_RangeSlider";
+    private const string BasicUsageAnchorId = "range-slider-basic-usage";
+    private const string TickSnappingAnchorId = "range-slider-tick-snapping";
+    private const string OrientationAnchorId = "range-slider-orientation";
+
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_RangeSlider,
@@ -27,11 +32,111 @@ public partial class RangeSliderDemoViewModel: ObservableObject, IPageMetadataPr
         MvvmSupport = true,
     };
 
-    public ObservableCollection<Orientation> Orientations { get; set; } = new ObservableCollection<Orientation>()
+    public RangeSliderDemoViewModel()
     {
-        Orientation.Horizontal,
-        Orientation.Vertical
-    };
+        BasicUsageSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_RangeSlider_Section_Basic_Usage_Header,
+            SectionTag = DemoSectionTag.Function,
+            Descriptions = { LanguageManager.Instance.Page_RangeSlider_Section_Basic_Usage_Description },
+            AnchorId = BasicUsageAnchorId
+        };
+        BasicUsageSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:RangeSlider Name="basicRange"
+                                         Minimum="0"
+                                         Maximum="100"
+                                         LowerValue="25"
+                                         UpperValue="75" />
+                          <TextBlock Text="{Binding #basicRange.LowerValue, StringFormat='Lower value: {0}'}" />
+                          <TextBlock Text="{Binding #basicRange.UpperValue, StringFormat='Upper value: {0}'}" />
+                          """
+        });
 
-    [ObservableProperty] public partial Orientation Orientation { get; set; }
+        TickSnappingSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_RangeSlider_Section_Tick_Snapping_Header,
+            SectionTag = DemoSectionTag.Function,
+            Descriptions = { LanguageManager.Instance.Page_RangeSlider_Section_Tick_Snapping_Description },
+            AnchorId = TickSnappingAnchorId
+        };
+        TickSnappingSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:RangeSlider Name="snapRange"
+                                         Minimum="0"
+                                         Maximum="100"
+                                         LowerValue="20"
+                                         UpperValue="80"
+                                         IsSnapToTick="True"
+                                         TickFrequency="10"
+                                         TickPlacement="Outside" />
+                          """
+        });
+
+        OrientationSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_RangeSlider_Section_Orientation_Header,
+            SectionTag = DemoSectionTag.Others,
+            Descriptions = { LanguageManager.Instance.Page_RangeSlider_Section_Orientation_Description },
+            AnchorId = OrientationAnchorId
+        };
+        OrientationSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:EnumSelector Width="220"
+                                         EnumType="Orientation"
+                                         Value="{Binding Orientation}" />
+                          <u:RangeSlider Name="orientationRange"
+                                         Orientation="{Binding Orientation}"
+                                         Minimum="0"
+                                         Maximum="100"
+                                         LowerValue="30"
+                                         UpperValue="70"
+                                         TickFrequency="10"
+                                         TickPlacement="Outside" />
+                          """
+        });
+        OrientationSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.CSharp,
+            TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
+            CodeSnippet = """
+                          [ObservableProperty]
+                          public partial Orientation Orientation { get; set; } = Orientation.Horizontal;
+                          """
+        });
+    }
+
+    public DemoSectionViewModel BasicUsageSection { get; }
+    public DemoSectionViewModel TickSnappingSection { get; }
+    public DemoSectionViewModel OrientationSection { get; }
+
+    public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; } =
+    [
+        new()
+        {
+            Header = LanguageManager.Instance.Page_RangeSlider_Section_Basic_Usage_Header,
+            AnchorId = BasicUsageAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_RangeSlider_Section_Tick_Snapping_Header,
+            AnchorId = TickSnappingAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_RangeSlider_Section_Orientation_Header,
+            AnchorId = OrientationAnchorId
+        }
+    ];
+
+    [ObservableProperty] public partial Orientation Orientation { get; set; } = Orientation.Horizontal;
 }

@@ -742,6 +742,24 @@
   <data name="Page_Description_RangeSlider" xml:space="preserve">
     <value>Posuvník rozsahu umožňuje výběr rozsahu hodnot pomocí dvou přetahovatelných jezdců.</value>
   </data>
+  <data name="Page_RangeSlider_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Pomocí RangeSlider vyberte rozsah hodnot tažením dolního a horního jezdce. Svažte Minimum, Maximum, LowerValue a UpperValue, aby byl jezdec a doprovodné vstupy synchronizované.</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Tick_Snapping_Header" xml:space="preserve">
+    <value>Přichytávání k značkám</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Tick_Snapping_Description" xml:space="preserve">
+    <value>Zapněte IsSnapToTick a nastavte TickFrequency a TickPlacement, aby se rozsah přichytával na diskrétní hodnoty a zároveň zobrazoval značky kolem dráhy.</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Orientation_Header" xml:space="preserve">
+    <value>Orientace</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Orientation_Description" xml:space="preserve">
+    <value>Svažte Orientation pro přepínání mezi vodorovným a svislým rozložením. Ovládací prvek automaticky aktualizuje šablonu i pseudo-třídy při změně orientace.</value>
+  </data>
   <data name="Page_Description_Rating" xml:space="preserve">
     <value>Hodnocení zobrazuje a sbírá hvězdičkové hodnoty hodnocení od uživatelů.</value>
   </data>

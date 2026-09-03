@@ -734,6 +734,24 @@
   <data name="Page_Description_RangeSlider" xml:space="preserve">
     <value>Suwak zakresu umożliwia wybór zakresu wartości za pomocą dwóch przeciągalnych suwaków.</value>
   </data>
+  <data name="Page_RangeSlider_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Podstawowe użycie</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Użyj RangeSlider do wyboru zakresu wartości, przeciągając dolny i górny uchwyt. Powiąż Minimum, Maximum, LowerValue i UpperValue, aby suwak i pola pomocnicze pozostawały zsynchronizowane.</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Tick_Snapping_Header" xml:space="preserve">
+    <value>Przyciąganie do znaczników</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Tick_Snapping_Description" xml:space="preserve">
+    <value>Włącz IsSnapToTick i ustaw TickFrequency oraz TickPlacement, aby zakres przyciągał się do dyskretnych wartości i jednocześnie wyświetlał znaczniki wokół toru.</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Orientation_Header" xml:space="preserve">
+    <value>Orientacja</value>
+  </data>
+  <data name="Page_RangeSlider_Section_Orientation_Description" xml:space="preserve">
+    <value>Powiąż Orientation, aby przełączać się między układem poziomym i pionowym. Kontrolka automatycznie aktualizuje szablon i pseudo-klasy po zmianie orientacji.</value>
+  </data>
   <data name="Page_Description_Rating" xml:space="preserve">
     <value>Ocena wyświetla i zbiera wartości ocen gwiazdkowych od użytkowników.</value>
   </data>
