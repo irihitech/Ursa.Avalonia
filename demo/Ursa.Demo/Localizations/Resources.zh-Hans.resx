@@ -622,6 +622,24 @@
   <data name="Page_Description_KeyGestureInput" xml:space="preserve">
     <value>快捷键输入捕获用户输入的键盘快捷键手势。</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>使用 KeyGestureInput 从用户输入中捕获键盘快捷键手势。控件会监听按键并保存当前的 KeyGesture。</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Header" xml:space="preserve">
+    <value>允许的按键</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Description" xml:space="preserve">
+    <value>设置 AcceptableKeys 以限制可捕获的按键。此示例只接受 A、B 和 C。</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
+    <value>ClearButton 样式类</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
+    <value>应用 ClearButton 类可在控件已有手势时显示内置清除按钮。InnerLeftContent 和 InnerRightContent 会在输入框两侧添加附加内容。</value>
+  </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>加载在异步操作期间显示旋转器或进度指示器。</value>
   </data>
@@ -666,6 +684,36 @@
   </data>
   <data name="Page_Description_PinCode" xml:space="preserve">
     <value>密码输入是用于输入 PIN 或验证码的控件。</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>使用 PinCode 输入验证码，并在所有输入位填满后执行命令。</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Header" xml:space="preserve">
+    <value>输入模式</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Description" xml:space="preserve">
+    <value>将 Mode 设为 Digit 或 Letter，以限制每个输入位可接受的内容。</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Header" xml:space="preserve">
+    <value>密码掩码</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Description" xml:space="preserve">
+    <value>使用 PasswordChar 隐藏输入值，并在代码填满后处理 Complete 事件。</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Header" xml:space="preserve">
+    <value>验证</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Description" xml:space="preserve">
+    <value>附加 DataValidationErrors.Errors 以显示 PinCode 的无效状态。</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Description" xml:space="preserve">
+    <value>使用 Small 和 Large 样式类切换控件大小。</value>
   </data>
   <data name="Page_Description_PopConfirm" xml:space="preserve">
     <value>气泡确认在执行操作前显示确认弹出框。</value>

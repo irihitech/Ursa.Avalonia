@@ -637,6 +637,24 @@
   <data name="Page_Description_KeyGestureInput" xml:space="preserve">
     <value>La saisie de raccourcis clavier capture les gestes de raccourcis clavier à partir de la saisie utilisateur.</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Utilisation de base</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Utilisez KeyGestureInput pour capturer des raccourcis clavier à partir de la saisie utilisateur. Le contrôle écoute les pressions de touches et enregistre le KeyGesture courant.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Header" xml:space="preserve">
+    <value>Touches autorisées</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Description" xml:space="preserve">
+    <value>Définissez AcceptableKeys pour limiter les touches pouvant être capturées. Cette démonstration n'accepte que A, B et C.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
+    <value>Classe de style ClearButton</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
+    <value>Appliquez la classe ClearButton pour afficher le bouton d'effacement intégré dès que le contrôle contient un geste. InnerLeftContent et InnerRightContent ajoutent un contenu décoratif de chaque côté.</value>
+  </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>Le chargement affiche un spinner ou un indicateur de progression pendant les opérations asynchrones.</value>
   </data>
@@ -681,6 +699,36 @@
   </data>
   <data name="Page_Description_PinCode" xml:space="preserve">
     <value>Le code PIN est un contrôle de saisie pour entrer des codes PIN ou de vérification.</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Utilisation de base</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Utilisez PinCode pour saisir un code de vérification et exécuter une commande lorsque toutes les cases sont remplies.</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Header" xml:space="preserve">
+    <value>Modes de saisie</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Description" xml:space="preserve">
+    <value>Réglez Mode sur Digit ou Letter pour limiter ce que chaque case accepte.</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Header" xml:space="preserve">
+    <value>Masque de mot de passe</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Description" xml:space="preserve">
+    <value>Utilisez PasswordChar pour masquer les valeurs saisies et traiter l'événement Complete lorsque le code est rempli.</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Header" xml:space="preserve">
+    <value>Validation</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Description" xml:space="preserve">
+    <value>Attachez DataValidationErrors.Errors pour afficher l'état invalide d'un PinCode.</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Classes de style</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Utilisez les classes Small et Large pour modifier la taille du contrôle.</value>
   </data>
   <data name="Page_Description_PopConfirm" xml:space="preserve">
     <value>La confirmation contextuelle affiche une fenêtre contextuelle de confirmation avant d'exécuter une action.</value>

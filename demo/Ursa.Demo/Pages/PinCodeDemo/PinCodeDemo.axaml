@@ -2,24 +2,63 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+             xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
              xmlns:u="https://irihi.tech/ursa"
              xmlns:vm="using:Ursa.Demo.Pages.PinCodeDemo"
              x:DataType="vm:PinCodeDemoViewModel"
              x:CompileBindings="True"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Ursa.Demo.Pages.PinCodeDemo.PinCodeDemo">
-    <StackPanel Spacing="20">
-        <u:Form>
-            <u:PinCode u:FormItem.Label="Regular" Count="4" Name="v4" CompleteCommand="{Binding CompleteCommand}"/>
-            <u:PinCode u:FormItem.Label="Digit Only" Count="4" Mode="Digit" DataValidationErrors.Errors="{Binding Error}"/>
-            <u:PinCode u:FormItem.Label="Letter Only" Count="4" Mode="Letter"/>
-            <u:PinCode u:FormItem.Label="Password Mask" Count="6" PasswordChar="•" Complete="VerificationCode_OnComplete" />
-            <u:FormGroup>
-                <u:PinCode u:FormItem.Label="Size Small" Count="6" Classes="Small" />
-                <u:PinCode u:FormItem.Label="Size Default" Count="6" />
-                <u:PinCode u:FormItem.Label="Size Large" Count="6" Classes="Large"  />
-            </u:FormGroup>
-        </u:Form>
-        
-    </StackPanel>
+    <TabControl>
+        <TabItem Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+                 Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel HorizontalAlignment="Stretch" Spacing="20">
+                    <controls:DemoSectionView SectionContext="{Binding BasicUsageSection}">
+                        <u:PinCode Count="4"
+                                   CompleteCommand="{Binding CompleteCommand}" />
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding InputModesSection}">
+                        <u:Form>
+                            <u:FormGroup>
+                                <u:PinCode u:FormItem.Label="Digit Only"
+                                           Count="4"
+                                           Mode="Digit" />
+                                <u:PinCode u:FormItem.Label="Letter Only"
+                                           Count="4"
+                                           Mode="Letter" />
+                            </u:FormGroup>
+                        </u:Form>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding PasswordMaskSection}">
+                        <u:PinCode Count="6"
+                                   PasswordChar="•"
+                                   Complete="VerificationCode_OnComplete" />
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding ValidationSection}">
+                        <u:PinCode Count="4"
+                                   Mode="Digit"
+                                   DataValidationErrors.Errors="{Binding Error}" />
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding StyleClassesSection}">
+                        <StackPanel Spacing="12">
+                            <u:ClassSelector Target="{Binding #sizeTarget}">
+                                <u:ClassSelectorGroup Header="Size">
+                                    <u:ClassSelectorItem ClassName="Small" />
+                                    <u:ClassSelectorItem ClassName="Large" />
+                                </u:ClassSelectorGroup>
+                            </u:ClassSelector>
+                            <u:PinCode Name="sizeTarget"
+                                       Count="6" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+                </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>

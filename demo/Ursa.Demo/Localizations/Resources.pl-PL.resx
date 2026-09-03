@@ -629,6 +629,24 @@
   <data name="Page_Description_KeyGestureInput" xml:space="preserve">
     <value>Pole skrótów klawiszowych przechwytuje gesty skrótów klawiaturowych z wprowadzania użytkownika.</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Podstawowe użycie</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Użyj KeyGestureInput do przechwytywania gestów skrótów klawiaturowych z wprowadzania użytkownika. Kontrolka nasłuchuje naciśnięć klawiszy i zapisuje bieżący KeyGesture.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Header" xml:space="preserve">
+    <value>Dozwolone klawisze</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Description" xml:space="preserve">
+    <value>Ustaw AcceptableKeys, aby ograniczyć, które klawisze mogą zostać przechwycone. Ta prezentacja akceptuje tylko A, B i C.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
+    <value>Klasa stylu ClearButton</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
+    <value>Zastosuj klasę ClearButton, aby pokazać wbudowany przycisk czyszczenia, gdy kontrolka ma przypisany gest. InnerLeftContent i InnerRightContent dodają dekoracyjną zawartość po obu stronach.</value>
+  </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>Ładowanie wyświetla wskaźnik lub pasek postępu podczas operacji asynchronicznych.</value>
   </data>
@@ -673,6 +691,36 @@
   </data>
   <data name="Page_Description_PinCode" xml:space="preserve">
     <value>Kod PIN to kontrolka wprowadzania do wprowadzania kodów PIN lub weryfikacyjnych.</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Podstawowe użycie</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Użyj PinCode do wprowadzania kodu weryfikacyjnego i uruchom polecenie po wypełnieniu wszystkich pól.</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Header" xml:space="preserve">
+    <value>Tryby wprowadzania</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Description" xml:space="preserve">
+    <value>Ustaw Mode na Digit lub Letter, aby ograniczyć to, co akceptuje każde pole.</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Header" xml:space="preserve">
+    <value>Maska hasła</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Description" xml:space="preserve">
+    <value>Użyj PasswordChar, aby ukryć wpisane wartości, i obsłuż zdarzenie Complete po wypełnieniu kodu.</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Header" xml:space="preserve">
+    <value>Walidacja</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Description" xml:space="preserve">
+    <value>Dołącz DataValidationErrors.Errors, aby pokazać stan nieprawidłowy kontrolki PinCode.</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Klasy stylu</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Użyj klas Small i Large, aby przełączać rozmiar kontrolki.</value>
   </data>
   <data name="Page_Description_PopConfirm" xml:space="preserve">
     <value>Potwierdzenie dymkowe wyświetla wyskakujące okienko potwierdzenia przed wykonaniem akcji.</value>

@@ -637,6 +637,24 @@
   <data name="Page_Description_KeyGestureInput" xml:space="preserve">
     <value>Vstup klávesových gest zachycuje gesta klávesových zkratek ze vstupu uživatele.</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Použijte KeyGestureInput k zachycení klávesových zkratek z uživatelského vstupu. Ovládání poslouchá stisky kláves a ukládá aktuální KeyGesture.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Header" xml:space="preserve">
+    <value>Povolené klávesy</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Description" xml:space="preserve">
+    <value>Nastavte AcceptableKeys, abyste omezili, které klávesy lze zachytit. Tato ukázka přijímá pouze A, B a C.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
+    <value>Stylová třída ClearButton</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
+    <value>Použijte třídu ClearButton k zobrazení vestavěného tlačítka pro vymazání, jakmile má ovládací prvek gesto. InnerLeftContent a InnerRightContent přidávají doplňkový obsah na obě strany.</value>
+  </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>Načítání zobrazuje spinner nebo indikátor průběhu během asynchronních operací.</value>
   </data>
@@ -681,6 +699,36 @@
   </data>
   <data name="Page_Description_PinCode" xml:space="preserve">
     <value>PIN kód je ovládací prvek pro zadávání PIN nebo ověřovacích kódů.</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Použijte PinCode k zadání ověřovacího kódu a po vyplnění všech polí spusťte příkaz.</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Header" xml:space="preserve">
+    <value>Režimy zadávání</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Description" xml:space="preserve">
+    <value>Nastavte Mode na Digit nebo Letter, aby každé pole přijímalo jen požadovaný typ znaků.</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Header" xml:space="preserve">
+    <value>Maska hesla</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Description" xml:space="preserve">
+    <value>Pomocí PasswordChar skryjte zadané hodnoty a obslužte událost Complete po vyplnění kódu.</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Header" xml:space="preserve">
+    <value>Validace</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Description" xml:space="preserve">
+    <value>Připojte DataValidationErrors.Errors, abyste zobrazili neplatný stav ovládacího prvku PinCode.</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Stylové třídy</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Třídy Small a Large přepínají velikost ovládacího prvku.</value>
   </data>
   <data name="Page_Description_PopConfirm" xml:space="preserve">
     <value>Potvrzovací bublina zobrazuje potvrzovací vyskakovací okno před provedením akce.</value>

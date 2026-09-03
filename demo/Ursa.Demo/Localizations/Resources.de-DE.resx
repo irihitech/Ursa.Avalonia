@@ -636,6 +636,24 @@
   <data name="Page_Description_KeyGestureInput" xml:space="preserve">
     <value>Tastenkürzeleingabe erfasst Tastaturkürzel-Gesten aus Benutzereingaben.</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Grundlegende Verwendung</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Verwenden Sie KeyGestureInput, um Tastenkombinationsgesten aus Benutzereingaben zu erfassen. Das Steuerelement reagiert auf Tastendrücke und speichert die aktuelle KeyGesture.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Header" xml:space="preserve">
+    <value>Zulässige Tasten</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Description" xml:space="preserve">
+    <value>Legen Sie AcceptableKeys fest, um einzuschränken, welche Tasten erfasst werden können. Diese Demo akzeptiert nur A, B und C.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
+    <value>ClearButton-Stilklasse</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
+    <value>Verwenden Sie die Klasse ClearButton, um die integrierte Löschen-Schaltfläche anzuzeigen, sobald das Steuerelement eine Geste enthält. InnerLeftContent und InnerRightContent fügen dekorativen Inhalt auf beiden Seiten hinzu.</value>
+  </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>Laden zeigt einen Spinner oder Fortschrittsindikator während asynchroner Operationen an.</value>
   </data>
@@ -680,6 +698,36 @@
   </data>
   <data name="Page_Description_PinCode" xml:space="preserve">
     <value>PIN-Code ist ein Eingabesteuerelement zur Eingabe von PIN- oder Verifizierungscodes.</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Grundlegende Verwendung</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Verwenden Sie PinCode, um einen Verifizierungscode einzugeben und einen Befehl auszuführen, sobald alle Felder gefüllt sind.</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Header" xml:space="preserve">
+    <value>Eingabemodi</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Description" xml:space="preserve">
+    <value>Legen Sie Mode auf Digit oder Letter fest, um einzuschränken, was jedes Feld akzeptiert.</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Header" xml:space="preserve">
+    <value>Passwortmaske</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Description" xml:space="preserve">
+    <value>Mit PasswordChar blenden Sie eingegebene Werte aus und behandeln das Complete-Ereignis, wenn der Code vollständig ist.</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Header" xml:space="preserve">
+    <value>Validierung</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Description" xml:space="preserve">
+    <value>Hängen Sie DataValidationErrors.Errors an, um den ungültigen Zustand von PinCode anzuzeigen.</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Stilklassen</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Verwenden Sie die Klassen Small und Large, um die Größe des Steuerelements zu wechseln.</value>
   </data>
   <data name="Page_Description_PopConfirm" xml:space="preserve">
     <value>Bestätigungs-Popup zeigt ein Bestätigungs-Popup vor der Ausführung einer Aktion an.</value>

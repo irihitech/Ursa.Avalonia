@@ -54,7 +54,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <u:MarkdownLine
-                                Markdown="{Binding .^, FallbackValue={x:Static x:String.Empty}}"
+                                Markdown="{ReflectionBinding ^, FallbackValue={x:Static x:String.Empty}}"
                                 TextWrapping="Wrap" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

@@ -637,6 +637,24 @@
   <data name="Page_Description_KeyGestureInput" xml:space="preserve">
     <value>Ввод жестов клавиш захватывает жесты сочетаний клавиш из пользовательского ввода.</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Используйте KeyGestureInput для захвата жестов сочетаний клавиш из пользовательского ввода. Элемент реагирует на нажатия клавиш и сохраняет текущее KeyGesture.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Header" xml:space="preserve">
+    <value>Допустимые клавиши</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Description" xml:space="preserve">
+    <value>Задайте AcceptableKeys, чтобы ограничить набор клавиш, которые можно захватывать. В этой демонстрации принимаются только A, B и C.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
+    <value>Стиль-класс ClearButton</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
+    <value>Примените класс ClearButton, чтобы показать встроенную кнопку очистки, когда у элемента есть жест. InnerLeftContent и InnerRightContent добавляют декоративный контент по обе стороны.</value>
+  </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>Загрузка отображает спиннер или индикатор выполнения во время асинхронных операций.</value>
   </data>
@@ -681,6 +699,36 @@
   </data>
   <data name="Page_Description_PinCode" xml:space="preserve">
     <value>ПИН-код — это элемент управления вводом для ввода ПИН-кодов или кодов подтверждения.</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Используйте PinCode для ввода кода подтверждения и выполняйте команду после заполнения всех ячеек.</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Header" xml:space="preserve">
+    <value>Режимы ввода</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Description" xml:space="preserve">
+    <value>Установите Mode в Digit или Letter, чтобы ограничить допустимые символы в каждой ячейке.</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Header" xml:space="preserve">
+    <value>Маска пароля</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Description" xml:space="preserve">
+    <value>Используйте PasswordChar, чтобы скрыть введённые значения, и обрабатывайте событие Complete после заполнения кода.</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Header" xml:space="preserve">
+    <value>Проверка</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Description" xml:space="preserve">
+    <value>Подключите DataValidationErrors.Errors, чтобы показать недопустимое состояние PinCode.</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Стили-классы</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Используйте классы Small и Large, чтобы переключать размер элемента.</value>
   </data>
   <data name="Page_Description_PopConfirm" xml:space="preserve">
     <value>Всплывающее подтверждение показывает всплывающее окно подтверждения перед выполнением действия.</value>

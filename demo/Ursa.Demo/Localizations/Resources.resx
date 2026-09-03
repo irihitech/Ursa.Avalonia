@@ -636,6 +636,24 @@
   <data name="Page_Description_KeyGestureInput" xml:space="preserve">
     <value>KeyGestureInput captures keyboard shortcut gestures from user input.</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Basic Usage</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Use KeyGestureInput to capture keyboard shortcut gestures from user input. The control listens for key presses and stores the current KeyGesture.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Header" xml:space="preserve">
+    <value>Acceptable Keys</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Description" xml:space="preserve">
+    <value>Set AcceptableKeys to limit which keys can be captured. This demo accepts only A, B, and C.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
+    <value>ClearButton Style Class</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
+    <value>Apply the ClearButton class to show the built-in clear button when the control has a gesture. InnerLeftContent and InnerRightContent add inline adornments on both sides.</value>
+  </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>Loading displays a spinner or progress indicator during async operations.</value>
   </data>
@@ -680,6 +698,36 @@
   </data>
   <data name="Page_Description_PinCode" xml:space="preserve">
     <value>PinCode is an input control for entering PIN or verification codes.</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Basic Usage</value>
+  </data>
+  <data name="Page_PinCode_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Use PinCode to enter a verification code and run a command when all slots are filled.</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Header" xml:space="preserve">
+    <value>Input Modes</value>
+  </data>
+  <data name="Page_PinCode_Section_Input_Modes_Description" xml:space="preserve">
+    <value>Set Mode to Digit or Letter to restrict what each slot accepts.</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Header" xml:space="preserve">
+    <value>Password Mask</value>
+  </data>
+  <data name="Page_PinCode_Section_Password_Mask_Description" xml:space="preserve">
+    <value>Use PasswordChar to hide entered values and handle the Complete event when the code is filled.</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Header" xml:space="preserve">
+    <value>Validation</value>
+  </data>
+  <data name="Page_PinCode_Section_Validation_Description" xml:space="preserve">
+    <value>Attach DataValidationErrors.Errors to show the invalid state for a PinCode.</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Header" xml:space="preserve">
+    <value>Style Classes</value>
+  </data>
+  <data name="Page_PinCode_Section_Style_Classes_Description" xml:space="preserve">
+    <value>Use the Small and Large classes to switch the control size.</value>
   </data>
   <data name="Page_Description_PopConfirm" xml:space="preserve">
     <value>PopConfirm shows a confirmation popup before executing an action.</value>
