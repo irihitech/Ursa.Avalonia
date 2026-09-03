@@ -4,115 +4,133 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Ursa.Demo.Pages.RatingDemo"
+             xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+             xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
              xmlns:u="https://irihi.tech/ursa"
              d:DesignHeight="450"
              d:DesignWidth="800"
              x:CompileBindings="True"
              x:DataType="vm:RatingDemoViewModel"
              mc:Ignorable="d">
-    <StackPanel Spacing="20">
-        <Grid ColumnDefinitions="*, 300">
-            <Grid Grid.Column="0">
-                <StackPanel HorizontalAlignment="Center">
-                    <u:Rating
-                        AllowClear="{Binding AllowClear}"
-                        AllowHalf="{Binding AllowHalf}"
-                        IsEnabled="{Binding IsEnabled}"
-                        Value="{Binding Value}"
-                        Count="{Binding Count}"
-                        DefaultValue="{Binding DefaultValue}" />
-                    <u:Rating
-                        Classes="Small"
-                        AllowClear="{Binding AllowClear}"
-                        AllowHalf="{Binding AllowHalf}"
-                        IsEnabled="{Binding IsEnabled}"
-                        Value="{Binding Value}"
-                        Count="{Binding Count}"
-                        DefaultValue="{Binding DefaultValue}" />
-                    <u:Rating
-                        Size="48"
-                        AllowClear="{Binding AllowClear}"
-                        AllowHalf="{Binding AllowHalf}"
-                        IsEnabled="{Binding IsEnabled}"
-                        Value="{Binding Value}"
-                        Count="{Binding Count}"
-                        DefaultValue="{Binding DefaultValue}"
-                        Foreground="{StaticResource SemiRed5}"
-                        Character="{StaticResource SemiIconLikeHeart}" />
+    <TabControl>
+        <TabItem Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+                 Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel HorizontalAlignment="Stretch"
+                            Spacing="20">
+                    <controls:DemoSectionView SectionContext="{Binding BasicSection}">
+                        <Grid ColumnDefinitions="*, 320"
+                              HorizontalAlignment="Stretch">
+                            <StackPanel Grid.Column="0"
+                                        HorizontalAlignment="Center"
+                                        Spacing="16">
+                                <u:Rating AllowClear="{Binding AllowClear}"
+                                          AllowHalf="{Binding AllowHalf}"
+                                          Count="{Binding Count}"
+                                          DefaultValue="{Binding DefaultValue}"
+                                          IsEnabled="{Binding IsEnabled}"
+                                          Value="{Binding Value}" />
+                                <TextBlock HorizontalAlignment="Center"
+                                           Classes="Secondary"
+                                           Text="{Binding Value}" />
+                            </StackPanel>
+                            <Border Grid.Column="1"
+                                    VerticalAlignment="Top">
+                                <Grid ColumnDefinitions="*, Auto"
+                                      RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+                                      RowSpacing="8">
+                                    <Label Grid.Row="0"
+                                           Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Content="AllowClear" />
+                                    <ToggleSwitch Grid.Row="0"
+                                                  Grid.Column="1"
+                                                  MinWidth="200"
+                                                  IsChecked="{Binding AllowClear}" />
+                                    <Label Grid.Row="1"
+                                           Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Content="AllowHalf" />
+                                    <ToggleSwitch Grid.Row="1"
+                                                  Grid.Column="1"
+                                                  VerticalAlignment="Center"
+                                                  IsChecked="{Binding AllowHalf}" />
+                                    <Label Grid.Row="2"
+                                           Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Content="IsEnabled" />
+                                    <ToggleSwitch Grid.Row="2"
+                                                  Grid.Column="1"
+                                                  VerticalAlignment="Center"
+                                                  IsChecked="{Binding IsEnabled}" />
+                                    <Label Grid.Row="3"
+                                           Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Content="DefaultValue" />
+                                    <Label Grid.Row="3"
+                                           Grid.Column="1"
+                                           Theme="{StaticResource TagLabel}"
+                                           Classes="Large"
+                                           VerticalAlignment="Center"
+                                           Content="{Binding DefaultValue}" />
+                                    <Label Grid.Row="4"
+                                           Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Content="Value" />
+                                    <NumericUpDown Grid.Row="4"
+                                                   Grid.Column="1"
+                                                   Maximum="{Binding Count}"
+                                                   Minimum="0"
+                                                   Increment="0.1"
+                                                   VerticalAlignment="Center"
+                                                   Value="{Binding Value}" />
+                                    <Label Grid.Row="5"
+                                           Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Content="Count" />
+                                    <NumericUpDown Grid.Row="5"
+                                                   Grid.Column="1"
+                                                   Maximum="10"
+                                                   Minimum="1"
+                                                   Increment="1"
+                                                   VerticalAlignment="Center"
+                                                   Value="{Binding Count}" />
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </controls:DemoSectionView>
+                    <controls:DemoSectionView SectionContext="{Binding CustomCharacterSection}">
+                        <StackPanel HorizontalAlignment="Center"
+                                    Spacing="16">
+                            <u:Rating AllowClear="{Binding AllowClear}"
+                                      AllowHalf="{Binding AllowHalf}"
+                                      Character="{StaticResource SemiIconLikeHeart}"
+                                      Count="{Binding Count}"
+                                      DefaultValue="{Binding DefaultValue}"
+                                      Foreground="{StaticResource SemiRed5}"
+                                      Size="48"
+                                      Value="{Binding Value}" />
+                            <TextBlock HorizontalAlignment="Center"
+                                       Classes="Secondary"
+                                       Text="The heart glyph uses the same bindings with a custom character." />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+                    <controls:DemoSectionView SectionContext="{Binding SmallStyleSection}">
+                        <StackPanel HorizontalAlignment="Center"
+                                    Spacing="16">
+                            <u:Rating AllowClear="{Binding AllowClear}"
+                                      AllowHalf="{Binding AllowHalf}"
+                                      Classes="Small"
+                                      Count="{Binding Count}"
+                                      DefaultValue="{Binding DefaultValue}"
+                                      Value="{Binding Value}" />
+                            <TextBlock HorizontalAlignment="Center"
+                                       Classes="Secondary"
+                                       Text="The Small class reduces the default star size." />
+                        </StackPanel>
+                    </controls:DemoSectionView>
                 </StackPanel>
-            </Grid>
-            <Border Grid.Column="1" VerticalAlignment="Top">
-                <Grid ColumnDefinitions="*, Auto" RowDefinitions="*,*,*,*,*,*,*,*">
-                    <Label
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="AllowClear" />
-                    <ToggleSwitch
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        MinWidth="200"
-                        IsChecked="{Binding AllowClear}" />
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="AllowHalf" />
-                    <ToggleSwitch
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        IsChecked="{Binding AllowHalf}" />
-                    <Label
-                        Grid.Row="3"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="IsEnabled" />
-                    <ToggleSwitch
-                        Grid.Row="3"
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        IsChecked="{Binding IsEnabled}" />
-                    <Label
-                        Grid.Row="4"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="DefaultValue" />
-                    <Label
-                        Grid.Row="4"
-                        Grid.Column="1"
-                        Theme="{StaticResource TagLabel}"
-                        Classes="Large"
-                        VerticalAlignment="Center"
-                        Content="{Binding DefaultValue}" />
-                    <Label
-                        Grid.Row="5"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="Value" />
-                    <NumericUpDown
-                        Grid.Row="5"
-                        Grid.Column="1"
-                        Maximum="100"
-                        Minimum="-10"
-                        Increment="0.1"
-                        VerticalAlignment="Center"
-                        Value="{Binding Value}" />
-                    <Label
-                        Grid.Row="6"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="Count" />
-                    <NumericUpDown
-                        Grid.Row="6"
-                        Grid.Column="1"
-                        Maximum="100"
-                        Minimum="-10"
-                        Increment="1"
-                        VerticalAlignment="Center"
-                        Value="{Binding Count}" />
-                </Grid>
-            </Border>
-        </Grid>
-    </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>

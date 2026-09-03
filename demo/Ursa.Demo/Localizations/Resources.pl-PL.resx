@@ -1644,4 +1644,112 @@
   <data name="Page_TimeOnlyRangePicker_Section_Style_Classes_Description" xml:space="preserve">
     <value>Użyj ClassSelector do przełączania klas Small i Large oraz dodaj ClearButton do szybkiego resetu.</value>
   </data>
+  <data name="Page_Rating_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Podstawowe użycie</value>
+  </data>
+  <data name="Page_Rating_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Powiąż Value i Count, aby użytkownicy mogli oceniać domyślną gwiazdką i widzieć bieżący wynik.</value>
+  </data>
+  <data name="Page_Rating_Section_Custom_Character_Header" xml:space="preserve">
+    <value>Niestandardowy znak</value>
+  </data>
+  <data name="Page_Rating_Section_Custom_Character_Description" xml:space="preserve">
+    <value>Zastąp domyślną gwiazdkę ikoną serca i dostosuj kolor oraz rozmiar.</value>
+  </data>
+  <data name="Page_Rating_Section_Small_Style_Header" xml:space="preserve">
+    <value>Mały styl</value>
+  </data>
+  <data name="Page_Rating_Section_Small_Style_Description" xml:space="preserve">
+    <value>Użyj klasy stylu Small, aby uzyskać bardziej kompaktową kontrolkę oceny.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Podstawowe użycie</value>
+  </data>
+  <data name="Page_Shimmer_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Pokaż domyślny tekst Shimmer i jego wybieralną odmianę.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Custom_Colors_Header" xml:space="preserve">
+    <value>Niestandardowe kolory</value>
+  </data>
+  <data name="Page_Shimmer_Section_Custom_Colors_Description" xml:space="preserve">
+    <value>Dopasuj kolory przejścia i czas trwania do różnych stanów ładowania.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Attached_Properties_Header" xml:space="preserve">
+    <value>Właściwości dołączone</value>
+  </data>
+  <data name="Page_Shimmer_Section_Attached_Properties_Description" xml:space="preserve">
+    <value>Zastosuj Shimmer do zwykłych wizualnych elementów, takich jak Border, aby animować ich właściwości pędzla.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Live_State_Header" xml:space="preserve">
+    <value>Stan aktywny</value>
+  </data>
+  <data name="Page_Shimmer_Section_Live_State_Description" xml:space="preserve">
+    <value>Powiąż IsActive i steruj Shimmer za pomocą poleceń.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Basic_Formatting_Header" xml:space="preserve">
+    <value>Podstawowe formatowanie</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Basic_Formatting_Description" xml:space="preserve">
+    <value>Użyj typowych znaczników Markdown dla pogrubienia, kursywy, przekreślenia i kodu wbudowanego.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Mixed_Formatting_Header" xml:space="preserve">
+    <value>Mieszane formatowanie</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Mixed_Formatting_Description" xml:space="preserve">
+    <value>Łącz znaczniki, aby pokazać zagnieżdżanie i to, że kod wbudowany pozostaje dosłowny.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Code_Styling_Header" xml:space="preserve">
+    <value>Stylowanie kodu</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Code_Styling_Description" xml:space="preserve">
+    <value>Dostosuj tło, czcionkę i zawijanie kodu wbudowanego.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Live_Preview_Header" xml:space="preserve">
+    <value>Podgląd na żywo</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Live_Preview_Description" xml:space="preserve">
+    <value>Powiąż źródło Markdown, aby interaktywnie edytować renderowany tekst.</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Options_Header" xml:space="preserve">
+    <value>Opcje szuflady</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Options_Description" xml:space="preserve">
+    <value>Ustaw Position, Buttons, CanLightDismiss, IsCloseButtonVisible i CanResize przed otwarciem szuflady.</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Variants_Header" xml:space="preserve">
+    <value>Standardowa i niestandardowa szuflada</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Variants_Description" xml:space="preserve">
+    <value>Standardowa szuflada używa wbudowanego paska tytułu i przycisków, a niestandardowa szuflada używa własnego układu treści.</value>
+  </data>
+  <data name="Page_Drawer_Section_Position_Header" xml:space="preserve">
+    <value>Pozycja</value>
+  </data>
+  <data name="Page_Drawer_Section_Position_Description" xml:space="preserve">
+    <value>Wybierz, z której krawędzi wysuwa się szuflada.</value>
+  </data>
+  <data name="Page_Drawer_Section_Buttons_Header" xml:space="preserve">
+    <value>Przyciski</value>
+  </data>
+  <data name="Page_Drawer_Section_Buttons_Description" xml:space="preserve">
+    <value>Wybierz zestaw przycisków dla stopki standardowej szuflady.</value>
+  </data>
+  <data name="Page_Drawer_Section_Light_Dismiss_Header" xml:space="preserve">
+    <value>Łagodne zamknięcie</value>
+  </data>
+  <data name="Page_Drawer_Section_Light_Dismiss_Description" xml:space="preserve">
+    <value>Określ, czy kliknięcie poza szufladą ją zamyka.</value>
+  </data>
+  <data name="Page_Drawer_Section_Close_Button_Header" xml:space="preserve">
+    <value>Przycisk zamknięcia</value>
+  </data>
+  <data name="Page_Drawer_Section_Close_Button_Description" xml:space="preserve">
+    <value>Kontroluj widoczność przycisku zamknięcia za pomocą wartości trójstanowej.</value>
+  </data>
+  <data name="Page_Drawer_Section_Resize_Header" xml:space="preserve">
+    <value>Zmiana rozmiaru</value>
+  </data>
+  <data name="Page_Drawer_Section_Resize_Description" xml:space="preserve">
+    <value>Włącz uchwyt zmiany rozmiaru dla szuflad, które powinny być regulowane.</value>
+  </data>
 </root>

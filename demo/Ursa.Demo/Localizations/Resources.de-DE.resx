@@ -1651,4 +1651,112 @@
   <data name="Page_TimeOnlyRangePicker_Section_Style_Classes_Description" xml:space="preserve">
     <value>Verwenden Sie ClassSelector zum Umschalten zwischen den Stilklassen Small und Large und fügen Sie ClearButton zum schnellen Zurücksetzen hinzu.</value>
   </data>
+  <data name="Page_Rating_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Grundlegende Verwendung</value>
+  </data>
+  <data name="Page_Rating_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Binden Sie Value und Count, damit Benutzer mit dem Standardstern bewerten und die aktuelle Punktzahl sehen können.</value>
+  </data>
+  <data name="Page_Rating_Section_Custom_Character_Header" xml:space="preserve">
+    <value>Benutzerdefiniertes Zeichen</value>
+  </data>
+  <data name="Page_Rating_Section_Custom_Character_Description" xml:space="preserve">
+    <value>Ersetzen Sie den Standardsstern durch ein Herzsymbol und passen Sie Farbe und Größe an.</value>
+  </data>
+  <data name="Page_Rating_Section_Small_Style_Header" xml:space="preserve">
+    <value>Kleiner Stil</value>
+  </data>
+  <data name="Page_Rating_Section_Small_Style_Description" xml:space="preserve">
+    <value>Verwenden Sie die Stilklasse Small für ein kompakteres Bewertungssteuerelement.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Grundlegende Verwendung</value>
+  </data>
+  <data name="Page_Shimmer_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Zeigen Sie den standardmäßigen Shimmer-Text und die auswählbare Variante.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Custom_Colors_Header" xml:space="preserve">
+    <value>Benutzerdefinierte Farben</value>
+  </data>
+  <data name="Page_Shimmer_Section_Custom_Colors_Description" xml:space="preserve">
+    <value>Passen Sie Sweep-Farben und Dauer für verschiedene Ladezustände an.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Attached_Properties_Header" xml:space="preserve">
+    <value>Angefügte Eigenschaften</value>
+  </data>
+  <data name="Page_Shimmer_Section_Attached_Properties_Description" xml:space="preserve">
+    <value>Wenden Sie Shimmer auf normale visuelle Elemente wie Border an, um deren Brush-Eigenschaften zu animieren.</value>
+  </data>
+  <data name="Page_Shimmer_Section_Live_State_Header" xml:space="preserve">
+    <value>Live-Status</value>
+  </data>
+  <data name="Page_Shimmer_Section_Live_State_Description" xml:space="preserve">
+    <value>Binden Sie IsActive und steuern Sie den Shimmer über Befehle.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Basic_Formatting_Header" xml:space="preserve">
+    <value>Grundlegende Formatierung</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Basic_Formatting_Description" xml:space="preserve">
+    <value>Verwenden Sie die üblichen Markdown-Markierungen für Fett, Kursiv, Durchgestrichen und Inline-Code.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Mixed_Formatting_Header" xml:space="preserve">
+    <value>Gemischte Formatierung</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Mixed_Formatting_Description" xml:space="preserve">
+    <value>Kombinieren Sie Markierungen, um Verschachtelung und die wörtliche Behandlung von Inline-Code zu zeigen.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Code_Styling_Header" xml:space="preserve">
+    <value>Code-Styling</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Code_Styling_Description" xml:space="preserve">
+    <value>Passen Sie Hintergrund, Schriftfamilie und Umbruch für Inline-Code an.</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Live_Preview_Header" xml:space="preserve">
+    <value>Live-Vorschau</value>
+  </data>
+  <data name="Page_MarkdownLine_Section_Live_Preview_Description" xml:space="preserve">
+    <value>Binden Sie die Markdown-Quelle, um den gerenderten Text interaktiv zu bearbeiten.</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Options_Header" xml:space="preserve">
+    <value>Drawer-Optionen</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Options_Description" xml:space="preserve">
+    <value>Setzen Sie Position, Buttons, CanLightDismiss, IsCloseButtonVisible und CanResize, bevor Sie den Drawer öffnen.</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Variants_Header" xml:space="preserve">
+    <value>Standard- und benutzerdefinierter Drawer</value>
+  </data>
+  <data name="Page_Drawer_Section_Drawer_Variants_Description" xml:space="preserve">
+    <value>Der Standard-Drawer verwendet die integrierte Titelleiste und die Schaltflächen, während der benutzerdefinierte Drawer Ihr eigenes Inhaltslayout verwendet.</value>
+  </data>
+  <data name="Page_Drawer_Section_Position_Header" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Page_Drawer_Section_Position_Description" xml:space="preserve">
+    <value>Wählen Sie aus, von welcher Kante der Drawer hereinfährt.</value>
+  </data>
+  <data name="Page_Drawer_Section_Buttons_Header" xml:space="preserve">
+    <value>Schaltflächen</value>
+  </data>
+  <data name="Page_Drawer_Section_Buttons_Description" xml:space="preserve">
+    <value>Wählen Sie den Schaltflächensatz für die Fußzeile des Standard-Drawers.</value>
+  </data>
+  <data name="Page_Drawer_Section_Light_Dismiss_Header" xml:space="preserve">
+    <value>Leichtes Schließen</value>
+  </data>
+  <data name="Page_Drawer_Section_Light_Dismiss_Description" xml:space="preserve">
+    <value>Bestimmen Sie, ob ein Klick außerhalb des Drawers ihn schließt.</value>
+  </data>
+  <data name="Page_Drawer_Section_Close_Button_Header" xml:space="preserve">
+    <value>Schließen-Schaltfläche</value>
+  </data>
+  <data name="Page_Drawer_Section_Close_Button_Description" xml:space="preserve">
+    <value>Steuern Sie die Sichtbarkeit der Schließen-Schaltfläche mit einem Dreistatuswert.</value>
+  </data>
+  <data name="Page_Drawer_Section_Resize_Header" xml:space="preserve">
+    <value>Größe ändern</value>
+  </data>
+  <data name="Page_Drawer_Section_Resize_Description" xml:space="preserve">
+    <value>Aktivieren Sie den Größenänderungsgriff für Drawer, die anpassbar sein sollen.</value>
+  </data>
 </root>

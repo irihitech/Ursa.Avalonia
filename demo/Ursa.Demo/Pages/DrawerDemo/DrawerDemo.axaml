@@ -4,62 +4,99 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:common="clr-namespace:Ursa.Common;assembly=Ursa"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="clr-namespace:Ursa.Demo.Pages.DrawerDemo;assembly=Ursa.Demo"
-    xmlns:common="clr-namespace:Ursa.Common;assembly=Ursa"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="900"
+    d:DesignWidth="900"
     x:CompileBindings="True"
     x:DataType="vm:DrawerDemoViewModel"
     mc:Ignorable="d">
-    <DockPanel>
-        <Grid ColumnDefinitions="Auto, *">
-            <u:Form Width="300" Grid.Column="0"
-                    LabelPosition="Top">
-                <TextBox u:FormItem.Label="Title"
-                         Text="{Binding Title}" />
-                <u:EnumSelector
-                    u:FormItem.Label="Position"
-                    EnumType="common:Position"
-                    Value="{Binding Position}" />
-                <u:EnumSelector
-                    u:FormItem.Label="Buttons"
-                    EnumType="u:DialogButton"
-                    Value="{Binding Buttons}" />
-                <CheckBox
-                    u:FormItem.Label="Can LightDismiss"
-                    IsChecked="{Binding CanLightDismiss}" />
-                <CheckBox u:FormItem.Label="Is Modal"
-                          IsChecked="{Binding IsModal}" />
-                <CheckBox
-                    u:FormItem.Label="Is Close Button Visible"
-                    IsChecked="{Binding IsCloseButtonVisible}"
-                    IsThreeState="True" />
-                <CheckBox u:FormItem.Label="Custom Dialog"
-                          IsChecked="{Binding Custom}" />
-                <CheckBox u:FormItem.Label="CanResize"
-                          IsChecked="{Binding CanResize}" />
-                <ToggleSwitch
-                    u:FormItem.Label="Global/Local OverlayHost"
-                    IsChecked="{Binding IsLocal}"
-                    OffContent="Global"
-                    OnContent="Local" />
-                <Button
-                    HorizontalAlignment="Left"
-                    u:FormItem.NoLabel="True"
-                    Command="{Binding ShowDialogCommand}"
-                    Content="Show" />
-            </u:Form>
-            <Grid Grid.Column="1" ClipToBounds="True">
-                <Border
-                    BorderBrush="{DynamicResource SemiGrey1}"
-                    Background="{DynamicResource SemiColorBackground1}"
-                    BorderThickness="1"
-                    ClipToBounds="True"
-                    CornerRadius="20">
-                    <u:OverlayDialogHost HostId="LocalHost" />
-                </Border>
-            </Grid>
-        </Grid>
-    </DockPanel>
+    <TabControl>
+        <TabItem Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+                 Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel HorizontalAlignment="Stretch"
+                            Spacing="20">
+                    <controls:DemoSectionView SectionContext="{Binding PositionSection}">
+                        <u:Form Width="320"
+                                LabelPosition="Top">
+                            <u:EnumSelector u:FormItem.Label="Position"
+                                            EnumType="common:Position"
+                                            Value="{Binding Position}" />
+                            <Button u:FormItem.NoLabel="True"
+                                    Content="Show standard drawer"
+                                    Command="{Binding ShowStandardDrawerCommand}" />
+                        </u:Form>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding ButtonsSection}">
+                        <u:Form Width="320"
+                                LabelPosition="Top">
+                            <u:EnumSelector u:FormItem.Label="Buttons"
+                                            EnumType="u:DialogButton"
+                                            Value="{Binding Buttons}" />
+                            <Button u:FormItem.NoLabel="True"
+                                    Content="Show standard drawer"
+                                    Command="{Binding ShowStandardDrawerCommand}" />
+                        </u:Form>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding LightDismissSection}">
+                        <u:Form Width="320"
+                                LabelPosition="Top">
+                            <CheckBox u:FormItem.Label="Can LightDismiss"
+                                      IsChecked="{Binding CanLightDismiss}" />
+                            <Button u:FormItem.NoLabel="True"
+                                    Content="Show standard drawer"
+                                    Command="{Binding ShowStandardDrawerCommand}" />
+                        </u:Form>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding CloseButtonSection}">
+                        <u:Form Width="320"
+                                LabelPosition="Top">
+                            <CheckBox u:FormItem.Label="Is Close Button Visible"
+                                      IsChecked="{Binding IsCloseButtonVisible}"
+                                      IsThreeState="True" />
+                            <Button u:FormItem.NoLabel="True"
+                                    Content="Show standard drawer"
+                                    Command="{Binding ShowStandardDrawerCommand}" />
+                        </u:Form>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding ResizeSection}">
+                        <u:Form Width="320"
+                                LabelPosition="Top">
+                            <CheckBox u:FormItem.Label="CanResize"
+                                      IsChecked="{Binding CanResize}" />
+                            <Button u:FormItem.NoLabel="True"
+                                    Content="Show standard drawer"
+                                    Command="{Binding ShowStandardDrawerCommand}" />
+                        </u:Form>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding DrawerVariantsSection}">
+                        <Grid ColumnDefinitions="*,*"
+                              ColumnSpacing="20"
+                              HorizontalAlignment="Stretch">
+                            <StackPanel Spacing="12">
+                                <Button HorizontalAlignment="Left"
+                                        Content="Open standard drawer"
+                                        Command="{Binding ShowStandardDrawerCommand}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1"
+                                        Spacing="12">
+                                <Button HorizontalAlignment="Left"
+                                        Content="Open custom drawer"
+                                        Command="{Binding ShowCustomDrawerCommand}" />
+                            </StackPanel>
+                        </Grid>
+                    </controls:DemoSectionView>
+                </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>

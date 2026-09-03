@@ -4,81 +4,77 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="clr-namespace:Ursa.Demo.Pages.ShimmerDemo"
     d:DesignHeight="900"
     d:DesignWidth="900"
-    mc:Ignorable="d"
-    x:DataType="vm:ShimmerDemoViewModel">
-    <Design.DataContext>
-        <vm:ShimmerDemoViewModel />
-    </Design.DataContext>
-    <ScrollViewer Margin="16">
-        <StackPanel Spacing="24">
+    x:CompileBindings="True"
+    x:DataType="vm:ShimmerDemoViewModel"
+    mc:Ignorable="d">
+    <TabControl>
+        <TabItem Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+                 Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel HorizontalAlignment="Stretch"
+                            Spacing="20">
+                    <controls:DemoSectionView SectionContext="{Binding BasicSection}">
+                        <StackPanel Spacing="12">
+                            <u:ShimmerText FontSize="24"
+                                           Text="Thinking..." />
+                            <u:ShimmerSelectableText FontSize="24"
+                                                     Text="Thinking..." />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-            <!-- Default -->
-            <StackPanel Spacing="8">
-                <TextBlock Text="Default (loading style)" FontWeight="Bold" FontSize="18"/>
-                <u:ShimmerText Text="Thinking..." FontSize="24"/>
-                <u:ShimmerSelectableText Text="Thinking..." FontSize="24"/>
-            </StackPanel>
+                    <controls:DemoSectionView SectionContext="{Binding CustomColorsSection}">
+                        <StackPanel Spacing="12">
+                            <u:ShimmerText FontSize="24"
+                                           Text="Generating a response…"
+                                           BaseColor="{DynamicResource SemiGrey7Color}"
+                                           HighlightColor="{DynamicResource SemiBlue5Color}"
+                                           Duration="00:00:02.5" />
+                            <u:ShimmerText FontSize="40"
+                                           FontWeight="Bold"
+                                           Text="Ursa.Avalonia"
+                                           BaseColor="{DynamicResource SemiGrey9Color}"
+                                           HighlightColor="{DynamicResource SemiRed5Color}"
+                                           Duration="00:00:02.5" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-            <!-- Custom colors -->
-            <StackPanel Spacing="8">
-                <TextBlock Text="Custom colors" FontWeight="Bold" FontSize="18"/>
-                <u:ShimmerText Text="Generating a response…" FontSize="24"
-                               BaseColor="{DynamicResource SemiGrey7Color}" HighlightColor="{DynamicResource SemiBlue5Color}"/>
-            </StackPanel>
+                    <controls:DemoSectionView SectionContext="{Binding AttachedPropertiesSection}">
+                        <StackPanel Spacing="12">
+                            <Border Width="320"
+                                    Height="16"
+                                    CornerRadius="8"
+                                    u:Shimmer.BaseColor="{DynamicResource SemiGrey1Color}"
+                                    u:Shimmer.HighlightColor="{DynamicResource SemiGrey5Color}"
+                                    u:Shimmer.IsActive="True" />
+                            <TextBlock Classes="Secondary"
+                                       Text="Attach Shimmer to any visual to animate its brush property." />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-            <!-- Large heading -->
-            <StackPanel Spacing="8">
-                <TextBlock Text="Large heading" FontWeight="Bold" FontSize="18"/>
-                <u:ShimmerText Text="Ursa.Avalonia" FontSize="40" FontWeight="Bold"
-                               HighlightColor="{DynamicResource SemiRed5Color}" Duration="00:00:02.5"/>
-            </StackPanel>
-
-            <!-- Highlight only, dark text -->
-            <StackPanel Spacing="8">
-                <TextBlock Text="Accent highlight" FontWeight="Bold" FontSize="18"/>
-                <u:ShimmerText Text="Streaming from the model" FontSize="24"
-                               BaseColor="{DynamicResource SemiGrey9Color}"/>
-            </StackPanel>
-
-            <!-- Selectable variant -->
-            <StackPanel Spacing="8">
-                <TextBlock Text="Selectable (SelectableTextBlock)" FontWeight="Bold" FontSize="18"/>
-                <u:ShimmerSelectableText Text="This text can be selected and copied"
-                                         FontSize="24" BaseColor="{DynamicResource SemiGrey9Color}"
-                                         HighlightColor="{DynamicResource SemiTeal5Color}"/>
-                <TextBlock Text="Hint: select the text above and copy it (Ctrl+C)."
-                           Foreground="{DynamicResource SemiColorText2}" FontSize="12"/>
-            </StackPanel>
-
-            <!-- Skeleton via attached properties -->
-            <StackPanel Spacing="8">
-                <TextBlock Text="Skeleton (attached properties)" FontWeight="Bold" FontSize="18"/>
-                <StackPanel Spacing="8" Width="320" HorizontalAlignment="Left">
-                    <Border Width="48" Height="48" CornerRadius="24"
-                            u:Shimmer.BaseColor="{DynamicResource SemiGrey1Color}"
-                            u:Shimmer.IsActive="True"
-                            u:Shimmer.HighlightColor="{DynamicResource SemiGrey5Color}"/>
+                    <controls:DemoSectionView SectionContext="{Binding LiveStateSection}">
+                        <StackPanel Spacing="12">
+                            <StackPanel Orientation="Horizontal"
+                                        Spacing="8">
+                                <Button Content="Pause"
+                                        Command="{Binding PauseCommand}" />
+                                <Button Content="Resume"
+                                        Command="{Binding ResumeCommand}" />
+                            </StackPanel>
+                            <u:ShimmerText FontSize="24"
+                                           Text="Toggle me"
+                                           BaseColor="{DynamicResource SemiGrey9Color}"
+                                           HighlightColor="{DynamicResource SemiOrange5Color}"
+                                           IsActive="{Binding IsActive}" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
                 </StackPanel>
-                <TextBlock Text="Uses Shimmer.IsActive on Border/Rectangle — no subclassing."
-                           Foreground="{DynamicResource SemiColorText2}" FontSize="12"/>
-            </StackPanel>
-
-            <!-- Control -->
-            <StackPanel Spacing="8">
-                <TextBlock Text="IsActive control" FontWeight="Bold" FontSize="18"/>
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                    <Button Content="Pause" Command="{Binding PauseCommand}"/>
-                    <Button Content="Resume" Command="{Binding ResumeCommand}"/>
-                </StackPanel>
-                <u:ShimmerText Text="Toggle me" FontSize="24"
-                               BaseColor="{DynamicResource SemiGrey9Color}" HighlightColor="{DynamicResource SemiOrange5Color}"
-                               IsActive="{Binding IsActive}"/>
-            </StackPanel>
-
-        </StackPanel>
-    </ScrollViewer>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>

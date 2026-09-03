@@ -4,89 +4,61 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.MarkdownLineDemo"
     d:DesignHeight="850"
     d:DesignWidth="850"
+    x:CompileBindings="True"
     x:DataType="viewModels:MarkdownLineDemoViewModel"
     mc:Ignorable="d">
-    <ScrollViewer u:ScrollTo.Direction="Bottom"
-                  HorizontalScrollBarVisibility="Auto">
-        <StackPanel HorizontalAlignment="Left">
+    <TabControl>
+        <TabItem Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+                 Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel HorizontalAlignment="Stretch"
+                            Spacing="20">
+                    <controls:DemoSectionView SectionContext="{Binding BasicFormattingSection}">
+                        <StackPanel Spacing="8">
+                            <u:MarkdownLine Markdown="**Bold text** and *italic text* and ~~strikethrough~~" />
+                            <u:MarkdownLine Markdown="__Bold (underscore)__ and _italic (underscore)_" />
+                            <u:MarkdownLine Markdown="`inline code` with monospace font" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-            <!-- 基础格式 -->
-            <Border Theme="{DynamicResource CardBorder}"
-                    Margin="0,8">
-                <StackPanel Spacing="8">
-                    <TextBlock Classes="h6"
-                               Text="Basic Formatting" />
-                    <u:MarkdownLine
-                        Markdown="**Bold text** and *italic text* and ~~strikethrough~~" />
-                    <u:MarkdownLine
-                        Markdown="__Bold (underscore)__ and _italic (underscore)_" />
-                    <u:MarkdownLine
-                        Markdown="`inline code` with monospace font" />
-                </StackPanel>
-            </Border>
+                    <controls:DemoSectionView SectionContext="{Binding MixedFormattingSection}">
+                        <StackPanel Spacing="8">
+                            <u:MarkdownLine Markdown="**Bold *and italic* together**" />
+                            <u:MarkdownLine Markdown="~~Strikethrough **and bold**~~" />
+                            <u:MarkdownLine Markdown="`code **not parsed** inside code`" />
+                            <u:MarkdownLine Markdown="**Bold with `inline code` inside**" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-            <!-- 混合格式 -->
-            <Border Theme="{DynamicResource CardBorder}"
-                    Margin="0,8">
-                <StackPanel Spacing="8">
-                    <TextBlock Classes="h6"
-                               Text="Mixed Formatting" />
-                    <u:MarkdownLine
-                        Markdown="**Bold *and italic* together**" />
-                    <u:MarkdownLine
-                        Markdown="~~Strikethrough **and bold**~~" />
-                    <u:MarkdownLine
-                        Markdown="`code **not parsed** inside code`" />
-                    <u:MarkdownLine
-                        Markdown="**Bold with `inline code` inside**" />
-                </StackPanel>
-            </Border>
+                    <controls:DemoSectionView SectionContext="{Binding CodeStylingSection}">
+                        <StackPanel Spacing="8">
+                            <u:MarkdownLine MaxWidth="420"
+                                            Markdown="This is a **very long** line of text that demonstrates `code` wrapping behavior. ~~Old pricing~~ *New pricing* is now available." />
+                            <u:MarkdownLine CodeBackground="{DynamicResource SemiColorPrimaryLight}"
+                                            Markdown="`Highlighted code` with a custom background color" />
+                            <u:MarkdownLine CodeBackground="Transparent"
+                                            CodeFontFamily="Cascadia Code"
+                                            Markdown="`Plain code` with a custom font family" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-            <!-- 长文本 -->
-            <Border Theme="{DynamicResource CardBorder}"
-                    Margin="0,8">
-                <StackPanel Spacing="8">
-                    <TextBlock Classes="h6"
-                               Text="Long Text Wrapping" />
-                    <u:MarkdownLine
-                        MaxWidth="400"
-                        Markdown="This is a **very long** line of text that demonstrates `code` wrapping behavior. ~~Old pricing~~ *New pricing* is now available." />
+                    <controls:DemoSectionView SectionContext="{Binding LivePreviewSection}">
+                        <StackPanel Spacing="8">
+                            <TextBox AcceptsReturn="True"
+                                     MinHeight="96"
+                                     PlaceholderText="Type your Markdown here..."
+                                     Text="{Binding Markdown}" />
+                            <u:MarkdownLine Markdown="{Binding Markdown}" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
                 </StackPanel>
-            </Border>
-
-            <!-- 自定义 CodeBackground -->
-            <Border Theme="{DynamicResource CardBorder}"
-                    Margin="0,8">
-                <StackPanel Spacing="8">
-                    <TextBlock Classes="h6"
-                               Text="Custom Code Background" />
-                    <u:MarkdownLine
-                        CodeBackground="{DynamicResource SemiColorPrimaryLight}"
-                        Markdown="`Highlighted code` with a custom background color" />
-                    <u:MarkdownLine
-                        CodeBackground="Transparent"
-                        Markdown="`Plain code` with transparent background" />
-                </StackPanel>
-            </Border>
-
-            <!-- 交互式输入 -->
-            <Border Theme="{DynamicResource CardBorder}"
-                    Margin="0,8">
-                <StackPanel Spacing="8">
-                    <TextBlock Classes="h6"
-                               Text="Live Preview" />
-                    <TextBox Text="{Binding Markdown}"
-                             PlaceholderText="Type your Markdown here..."
-                             AcceptsReturn="True"
-                             TextWrapping="Wrap"
-                             MinHeight="60" />
-                    <u:MarkdownLine Markdown="{Binding Markdown}" />
-                </StackPanel>
-            </Border>
-        </StackPanel>
-    </ScrollViewer>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>
