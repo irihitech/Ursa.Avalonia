@@ -67,7 +67,7 @@ public class PopConfirm : ContentControl
         nameof(IsDropdownOpen));
 
     public static readonly StyledProperty<PlacementMode> PlacementProperty =
-        Popup.PlacementProperty.AddOwner<PopConfirm>(new StyledPropertyMetadata<PlacementMode>());
+        Popup.PlacementProperty.AddOwner<PopConfirm>(new StyledPropertyMetadata<PlacementMode>(coerce: static (_, value) => value is PlacementMode.Custom ? PlacementMode.Center : value));
 
     public static readonly StyledProperty<object?> IconProperty = Banner.IconProperty.AddOwner<PopConfirm>();
 
