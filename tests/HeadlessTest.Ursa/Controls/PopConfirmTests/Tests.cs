@@ -1,3 +1,4 @@
+using Avalonia.Controls;
 using Avalonia.Controls.Primitives.PopupPositioning;
 using Avalonia.Headless.XUnit;
 using UrsaControls = Ursa.Controls;
