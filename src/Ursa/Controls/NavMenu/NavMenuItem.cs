@@ -404,6 +404,10 @@ public class NavMenuItem : HeaderedItemsControl
         {
             menu.SelectItem(item, this);
         }
+        else if (RootMenu is not null)
+        {
+            RootMenu.SelectItem(item, this);
+        }
 
         _popup?.Close();
         return true;

@@ -191,4 +191,52 @@ public class Test
         Assert.Equal(item3, menu.SelectedItem); // Selection should change to item3
         Assert.Equal(2, view.CommandExecutionCount); // Command should be executed, count increments to 2
     }
+    
+    [AvaloniaFact]
+    public void Footer_NavMenu_Items_Participate_In_Selection_Change()
+    {
+        Window window = new Window
+        {
+            Width = 400,
+            Height = 400,
+        };
+        
+        var view = new TestView4();
+        window.Content = view;
+        window.Show();
+
+        var menu = view.FindControl<NavMenu>("Menu");
+        var item1 = view.FindControl<NavMenuItem>("MenuItem1");
+        var footerItem1 = view.FindControl<NavMenuItem>("FooterItem1");
+        var footerItem2 = view.FindControl<NavMenuItem>("FooterItem2");
+
+        Assert.NotNull(menu);
+        Assert.NotNull(item1);
+        Assert.NotNull(footerItem1);
+        Assert.NotNull(footerItem2);
+
+        var point1 = item1.TranslatePoint(new Point(0, 0), window);
+        var footerPoint1 = footerItem1.TranslatePoint(new Point(0, 0), window);
+        var footerPoint2 = footerItem2.TranslatePoint(new Point(0, 0), window);
+        Assert.NotNull(point1);
+        Assert.NotNull(footerPoint1);
+        Assert.NotNull(footerPoint2);
+
+        window.MouseDown(new Point(point1.Value.X + 10, point1.Value.Y + 10), Avalonia.Input.MouseButton.Left);
+        window.MouseUp(new Point(point1.Value.X + 10, point1.Value.Y + 10), Avalonia.Input.MouseButton.Left);
+        Assert.Equal(item1, menu.SelectedItem);
+        Assert.True(item1.IsSelected);
+
+        window.MouseDown(new Point(footerPoint1.Value.X + 10, footerPoint1.Value.Y + 10), Avalonia.Input.MouseButton.Left);
+        window.MouseUp(new Point(footerPoint1.Value.X + 10, footerPoint1.Value.Y + 10), Avalonia.Input.MouseButton.Left);
+        Assert.Equal(footerItem1, menu.SelectedItem);
+        Assert.True(footerItem1.IsSelected);
+        Assert.False(item1.IsSelected);
+
+        window.MouseDown(new Point(footerPoint2.Value.X + 10, footerPoint2.Value.Y + 10), Avalonia.Input.MouseButton.Left);
+        window.MouseUp(new Point(footerPoint2.Value.X + 10, footerPoint2.Value.Y + 10), Avalonia.Input.MouseButton.Left);
+        Assert.Equal(footerItem2, menu.SelectedItem);
+        Assert.True(footerItem2.IsSelected);
+        Assert.False(footerItem1.IsSelected);
+    }
 }

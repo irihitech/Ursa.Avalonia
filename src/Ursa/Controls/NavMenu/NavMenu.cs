@@ -287,11 +287,13 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
     internal void SelectItem(NavMenuItem item, NavMenuItem parent)
     {
         _isSelectionFromUI = true;
-        foreach (var child in LogicalChildren)
-        {
-            if (Equals(child, parent)) continue;
-            if (child is NavMenuItem navMenuItem) navMenuItem.ClearSelection();
-        }
+        var selectedPath = item.GetSelfAndLogicalAncestors()
+            .OfType<NavMenuItem>()
+            .Where(i => i.RootMenu == this)
+            .ToHashSet();
+        foreach (var rootItem in GetRootLevelMenuItems())
+            if (!selectedPath.Contains(rootItem))
+                rootItem.ClearSelection();
 
         if (item.DataContext is not null && item.DataContext != DataContext)
             SetCurrentValue(SelectedItemProperty, item.DataContext);
@@ -303,9 +305,8 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
 
     private void ClearAll()
     {
-        foreach (var child in LogicalChildren)
-            if (child is NavMenuItem item)
-                item.ClearSelection();
+        foreach (var rootItem in GetRootLevelMenuItems())
+            rootItem.ClearSelection();
     }
 
     (bool handled, IInputElement? next) ICustomKeyboardNavigation.GetNext(IInputElement element, NavigationDirection direction)
@@ -425,13 +426,18 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
 
     private IEnumerable<NavMenuItem> GetLeafMenus()
     {
-        foreach (var child in LogicalChildren)
-            if (child is NavMenuItem item)
-            {
-                var leafs = item.GetLeafMenus();
-                foreach (var leaf in leafs) yield return leaf;
-            }
+        foreach (var rootItem in GetRootLevelMenuItems())
+        {
+            var leafs = rootItem.GetLeafMenus();
+            foreach (var leaf in leafs) yield return leaf;
+        }
     }
+
+    private IEnumerable<NavMenuItem> GetRootLevelMenuItems() =>
+        this.GetLogicalDescendants()
+            .OfType<NavMenuItem>()
+            .Where(item => item.RootMenu == this)
+            .Where(item => !item.GetLogicalAncestors().OfType<NavMenuItem>().Any(ancestor => ancestor.RootMenu == this));
 
     public NavMenuItem? GetContainerForItem(object? item)
     {
