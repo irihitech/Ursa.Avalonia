@@ -239,4 +239,22 @@ public class Test
         Assert.True(footerItem2.IsSelected);
         Assert.False(footerItem1.IsSelected);
     }
+    
+    [AvaloniaFact]
+    public void Footer_NavMenu_Item_Keeps_Local_Header_When_HeaderBinding_Is_Set()
+    {
+        Window window = new Window
+        {
+            Width = 400,
+            Height = 400,
+        };
+        
+        var view = new TestView5();
+        window.Content = view;
+        window.Show();
+
+        var footerItem = view.FindControl<NavMenuItem>("FooterItem");
+        Assert.NotNull(footerItem);
+        Assert.Equal("Footer Item", footerItem.Header);
+    }
 }
