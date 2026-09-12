@@ -287,12 +287,8 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
     internal void SelectItem(NavMenuItem item, NavMenuItem parent)
     {
         _isSelectionFromUI = true;
-        var selectedPath = item.GetSelfAndLogicalAncestors()
-            .OfType<NavMenuItem>()
-            .Where(i => i.RootMenu == this)
-            .ToHashSet();
         foreach (var rootItem in GetRootLevelMenuItems())
-            if (!selectedPath.Contains(rootItem))
+            if (!ReferenceEquals(rootItem, parent))
                 rootItem.ClearSelection();
 
         if (item.DataContext is not null && item.DataContext != DataContext)
@@ -434,10 +430,20 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
     }
 
     private IEnumerable<NavMenuItem> GetRootLevelMenuItems() =>
-        this.GetLogicalDescendants()
-            .OfType<NavMenuItem>()
-            .Where(item => item.RootMenu == this)
-            .Where(item => !item.GetLogicalAncestors().OfType<NavMenuItem>().Any(ancestor => ancestor.RootMenu == this));
+        LogicalChildren.SelectMany(GetRootLevelMenuItemsInternal);
+
+    private static IEnumerable<NavMenuItem> GetRootLevelMenuItemsInternal(ILogical logical)
+    {
+        if (logical is NavMenuItem item)
+        {
+            yield return item;
+            yield break;
+        }
+
+        foreach (var child in logical.LogicalChildren)
+        foreach (var descendant in GetRootLevelMenuItemsInternal(child))
+            yield return descendant;
+    }
 
     public NavMenuItem? GetContainerForItem(object? item)
     {
