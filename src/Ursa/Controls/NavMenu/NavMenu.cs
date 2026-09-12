@@ -430,7 +430,22 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
     }
 
     private IEnumerable<NavMenuItem> GetTopLevelMenuItems() =>
-        LogicalChildren.SelectMany(GetTopLevelMenuItemsInternal);
+        GetTopLevelMenuItemsInternal();
+
+    private IEnumerable<NavMenuItem> GetTopLevelMenuItemsInternal()
+    {
+        var visited = new HashSet<NavMenuItem>();
+
+        foreach (var logical in LogicalChildren)
+        foreach (var item in GetTopLevelMenuItemsInternal(logical))
+            if (visited.Add(item))
+                yield return item;
+
+        if (Footer is ILogical footerLogical)
+            foreach (var item in GetTopLevelMenuItemsInternal(footerLogical))
+                if (visited.Add(item))
+                    yield return item;
+    }
 
     private static IEnumerable<NavMenuItem> GetTopLevelMenuItemsInternal(ILogical logical)
     {
