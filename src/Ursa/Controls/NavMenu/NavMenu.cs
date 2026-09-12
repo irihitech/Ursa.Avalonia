@@ -287,7 +287,7 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
     internal void SelectItem(NavMenuItem item, NavMenuItem parent)
     {
         _isSelectionFromUI = true;
-        foreach (var rootItem in GetRootLevelMenuItems())
+        foreach (var rootItem in GetTopLevelMenuItems())
             if (!ReferenceEquals(rootItem, parent))
                 rootItem.ClearSelection();
 
@@ -301,7 +301,7 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
 
     private void ClearAll()
     {
-        foreach (var rootItem in GetRootLevelMenuItems())
+        foreach (var rootItem in GetTopLevelMenuItems())
             rootItem.ClearSelection();
     }
 
@@ -422,17 +422,17 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
 
     private IEnumerable<NavMenuItem> GetLeafMenus()
     {
-        foreach (var rootItem in GetRootLevelMenuItems())
+        foreach (var rootItem in GetTopLevelMenuItems())
         {
             var leafs = rootItem.GetLeafMenus();
             foreach (var leaf in leafs) yield return leaf;
         }
     }
 
-    private IEnumerable<NavMenuItem> GetRootLevelMenuItems() =>
-        LogicalChildren.SelectMany(GetRootLevelMenuItemsInternal);
+    private IEnumerable<NavMenuItem> GetTopLevelMenuItems() =>
+        LogicalChildren.SelectMany(GetTopLevelMenuItemsInternal);
 
-    private static IEnumerable<NavMenuItem> GetRootLevelMenuItemsInternal(ILogical logical)
+    private static IEnumerable<NavMenuItem> GetTopLevelMenuItemsInternal(ILogical logical)
     {
         if (logical is NavMenuItem item)
         {
@@ -441,7 +441,7 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
         }
 
         foreach (var child in logical.LogicalChildren)
-        foreach (var descendant in GetRootLevelMenuItemsInternal(child))
+        foreach (var descendant in GetTopLevelMenuItemsInternal(child))
             yield return descendant;
     }
 
