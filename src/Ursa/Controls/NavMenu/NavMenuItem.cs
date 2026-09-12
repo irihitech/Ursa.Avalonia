@@ -189,9 +189,9 @@ public class NavMenuItem : HeaderedItemsControl
                 this.TryBind(HeaderProperty, RootMenu.HeaderBinding);
                 this.TryBind(ItemsSourceProperty, RootMenu.SubMenuBinding);
                 this.TryBind(CommandProperty, RootMenu.CommandBinding);
-                this[!IconTemplateProperty] = RootMenu[!NavMenu.IconTemplateProperty];
-                this[!HeaderTemplateProperty] = RootMenu[!NavMenu.HeaderTemplateProperty];
             }
+            this[!IconTemplateProperty] = RootMenu[!NavMenu.IconTemplateProperty];
+            this[!HeaderTemplateProperty] = RootMenu[!NavMenu.HeaderTemplateProperty];
             this[!SubMenuIndentProperty] = RootMenu[!NavMenu.SubMenuIndentProperty];
             this[!IsHorizontalCollapsedProperty] = RootMenu[!NavMenu.IsHorizontalCollapsedProperty];
         }
