@@ -37,6 +37,9 @@
                             <u:TitleBar
                                 Name="PART_TitleBar"
                                 VerticalAlignment="Top"
+                                Padding="{OnPlatform macOS={DynamicResource UrsaWindowMacTitleBarPadding}}"
+                                Background="{TemplateBinding TitleBarBackground}"
+                                MinHeight="{DynamicResource TitleBarMinHeight}"
                                 IsVisible="{TemplateBinding IsTitleBarVisible}"
                                 HorizontalAlignment="Stretch"
                                 LeftContent="{TemplateBinding LeftContent}"
