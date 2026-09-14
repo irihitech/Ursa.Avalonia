@@ -4,7 +4,7 @@ using Avalonia.Controls.Chrome;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
-using Avalonia.Styling;
+using Avalonia.Media;
 
 namespace Ursa.Controls;
 
@@ -86,6 +86,15 @@ public class UrsaWindow : Window
     public static readonly StyledProperty<Thickness> TitleBarMarginProperty =
         AvaloniaProperty.Register<UrsaWindow, Thickness>(
             nameof(TitleBarMargin));
+
+    public static readonly StyledProperty<IBrush?> TitleBarBackgroundProperty = AvaloniaProperty.Register<UrsaWindow, IBrush?>(
+        nameof(TitleBarBackground));
+
+    public IBrush? TitleBarBackground
+    {
+        get => GetValue(TitleBarBackgroundProperty);
+        set => SetValue(TitleBarBackgroundProperty, value);
+    }
 
     private bool _canClose;
     
