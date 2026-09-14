@@ -19,12 +19,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Ursa Unit Test
-        run: dotnet test tests/Test.Ursa
+        run: |
+          New-Item -ItemType Directory -Force tests/Test.Ursa/TestResults | Out-Null
+          dotnet run --project tests/Test.Ursa 2>&1 | Tee-Object -FilePath tests/Test.Ursa/TestResults/test.log
+          exit $LASTEXITCODE
       - name: Ursa Headless Test
-        run: dotnet test tests/HeadlessTest.Ursa
-      - name: Show Test Error Logs
-        if: failure()
-        run: Get-ChildItem -Path . -Filter *.log -Recurse | Where-Object { $_.DirectoryName -like '*TestResults*' } | ForEach-Object { Get-Content $_.FullName }
+        run: |
+          New-Item -ItemType Directory -Force tests/HeadlessTest.Ursa/TestResults | Out-Null
+          dotnet run --project tests/HeadlessTest.Ursa 2>&1 | Tee-Object -FilePath tests/HeadlessTest.Ursa/TestResults/test.log
+          exit $LASTEXITCODE
 
   ubuntu:
     runs-on: ubuntu-latest
@@ -35,12 +38,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Unit Test
-        run: dotnet test tests/Test.Ursa --configuration Release  -- --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml
+        run: |
+          set -o pipefail
+          mkdir -p tests/Test.Ursa/TestResults
+          dotnet run --project tests/Test.Ursa --configuration Release -- --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml 2>&1 | tee tests/Test.Ursa/TestResults/test.log
       - name: Ursa Headless Test
-        run: dotnet test tests/HeadlessTest.Ursa --configuration Release  -- --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml
-      - name: Show Test Error Logs
-        if: failure()
-        run: find . -type f -path '*/TestResults/*.log' -print -exec cat {} \;
+        run: |
+          set -o pipefail
+          mkdir -p tests/HeadlessTest.Ursa/TestResults
+          dotnet run --project tests/HeadlessTest.Ursa --configuration Release -- --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml 2>&1 | tee tests/HeadlessTest.Ursa/TestResults/test.log
       - name: Combine Coverage Reports # This is because one report is produced per project, and we want one result for all of them.
         uses: danielpalme/ReportGenerator-GitHub-Action@v5
         with:
@@ -67,6 +73,7 @@ jobs:
           path: code-coverage-results.md
       - name: Upload Test Result Files
         uses: actions/upload-artifact@v7
+        if: always()
         with:
           name: test-results
           path: |
