@@ -10,6 +10,7 @@
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
         <Setter Property="u:OverlayDialogHost.IsModalStatusScope" Value="True" />
+        <Setter Property="TitleBarPadding" Value="{OnPlatform macOS={StaticResource UrsaWindowMacTitleBarPadding}}"/>
         <Setter Property="WindowDecorationsTheme" Value="{DynamicResource KEY_URSAWINDOW_DRAWN_DECORATIONS}" />
         <Setter Property="WindowDecorations" Value="{x:Static WindowDecorations.Full}" />
         <Setter Property="Template">
@@ -37,7 +38,8 @@
                             <u:TitleBar
                                 Name="PART_TitleBar"
                                 VerticalAlignment="Top"
-                                Padding="{OnPlatform macOS={DynamicResource UrsaWindowMacTitleBarPadding}}"
+                                Margin="{TemplateBinding TitleBarMargin}"
+                                Padding="{TemplateBinding TitleBarPadding}"
                                 Background="{TemplateBinding TitleBarBackground}"
                                 MinHeight="{DynamicResource TitleBarMinHeight}"
                                 IsVisible="{TemplateBinding IsTitleBarVisible}"
