@@ -4,7 +4,7 @@ using Avalonia.Controls.Chrome;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
-using Avalonia.Styling;
+using Avalonia.Media;
 
 namespace Ursa.Controls;
 
@@ -86,6 +86,20 @@ public class UrsaWindow : Window
     public static readonly StyledProperty<Thickness> TitleBarMarginProperty =
         AvaloniaProperty.Register<UrsaWindow, Thickness>(
             nameof(TitleBarMargin));
+
+    /// <summary>
+    /// Defines the padding of the title bar.
+    /// </summary>
+    public static readonly StyledProperty<Thickness> TitleBarPaddingProperty =
+        AvaloniaProperty.Register<UrsaWindow, Thickness>(
+            nameof(TitleBarPadding));
+
+    /// <summary>
+    /// Defines the background of the title bar.
+    /// </summary>
+    public static readonly StyledProperty<IBrush?> TitleBarBackgroundProperty =
+        AvaloniaProperty.Register<UrsaWindow, IBrush?>(
+            nameof(TitleBarBackground));
 
     private bool _canClose;
     
@@ -183,7 +197,25 @@ public class UrsaWindow : Window
         get => GetValue(TitleBarMarginProperty);
         set => SetValue(TitleBarMarginProperty, value);
     }
-    
+
+    /// <summary>
+    /// Gets or sets the padding of the title bar.
+    /// </summary>
+    public Thickness TitleBarPadding
+    {
+        get => GetValue(TitleBarPaddingProperty);
+        set => SetValue(TitleBarPaddingProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the background of the title bar.
+    /// </summary>
+    public IBrush? TitleBarBackground
+    {
+        get => GetValue(TitleBarBackgroundProperty);
+        set => SetValue(TitleBarBackgroundProperty, value);
+    }
+
     private TitleBar? _titleBar;
     private OverlayDialogHost? _dialogHost;
     /// <inheritdoc/>

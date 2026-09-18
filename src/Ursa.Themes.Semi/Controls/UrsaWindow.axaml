@@ -12,6 +12,11 @@
         <Setter Property="u:OverlayDialogHost.IsModalStatusScope" Value="True" />
         <Setter Property="WindowDecorationsTheme" Value="{DynamicResource KEY_URSAWINDOW_DRAWN_DECORATIONS}" />
         <Setter Property="WindowDecorations" Value="{x:Static WindowDecorations.Full}" />
+        <Setter Property="TitleBarPadding">
+            <OnPlatform
+                Default="{DynamicResource UrsaWindowTitleBarPadding}"
+                macOS="{DynamicResource UrsaWindowMacTitleBarPadding}" />
+        </Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:UrsaWindow">
                 <Panel>
@@ -37,6 +42,10 @@
                             <u:TitleBar
                                 Name="PART_TitleBar"
                                 VerticalAlignment="Top"
+                                Margin="{TemplateBinding TitleBarMargin}"
+                                Padding="{TemplateBinding TitleBarPadding}"
+                                Background="{TemplateBinding TitleBarBackground}"
+                                MinHeight="{DynamicResource TitleBarMinHeight}"
                                 IsVisible="{TemplateBinding IsTitleBarVisible}"
                                 HorizontalAlignment="Stretch"
                                 LeftContent="{TemplateBinding LeftContent}"

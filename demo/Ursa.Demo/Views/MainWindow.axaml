@@ -20,8 +20,8 @@
     IsManagedResizerVisible="{OnPlatform {x:False}, Linux={x:True}}"
     mc:Ignorable="d">
     <u:UrsaWindow.TitleBarContent>
-        <u:Breadcrumb IsHitTestVisible="False" 
-                      Margin="12 0 0 0" 
+        <u:Breadcrumb IsHitTestVisible="False"
+                      Margin="8 0 0 0"
                       ItemsSource="{Binding MainViewViewModel.NavigationKeys}">
             <u:Breadcrumb.ItemTemplate>
                 <DataTemplate>

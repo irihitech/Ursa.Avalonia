@@ -2,39 +2,40 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
-    <!--  Add Resources Here  -->
     <ControlTheme x:Key="{x:Type u:TitleBar}" TargetType="u:TitleBar">
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:TitleBar">
-                <DockPanel Background="Transparent" WindowDecorationProperties.ElementRole="TitleBar">
-                    <ContentPresenter
-                        Name="PART_LeftContentPresenter"
-                        Content="{TemplateBinding LeftContent}"
-                        DockPanel.Dock="Left"
-                        IsVisible="{TemplateBinding LeftContent,
-                                                    Converter={x:Static ObjectConverters.IsNotNull}}"
-                        KeyboardNavigation.TabNavigation="Local"
-                        TabIndex="1"
-                        WindowDecorationProperties.ElementRole="User" />
-                    <ContentPresenter
-                        Name="PART_RightContentPresenter"
-                        Content="{TemplateBinding RightContent}"
-                        DockPanel.Dock="Right"
-                        IsVisible="{TemplateBinding RightContent,
-                                                    Converter={x:Static ObjectConverters.IsNotNull}}"
-                        KeyboardNavigation.TabNavigation="Local"
-                        TabIndex="3"
-                        WindowDecorationProperties.ElementRole="User" />
-                    <ContentPresenter
-                        Name="PART_ContentPresenter"
-                        HorizontalAlignment="Stretch"
-                        Content="{TemplateBinding CenterContent}"
-                        IsVisible="{TemplateBinding CenterContent,
-                                                    Converter={x:Static ObjectConverters.IsNotNull}}"
-                        KeyboardNavigation.TabNavigation="Local"
-                        TabIndex="2"
-                        WindowDecorationProperties.ElementRole="User" />
-                </DockPanel>
+                <Border
+                    Padding="{TemplateBinding Padding}"
+                    Background="{TemplateBinding Background}"
+                    WindowDecorationProperties.ElementRole="TitleBar">
+                    <DockPanel>
+                        <ContentPresenter
+                            Name="PART_LeftContentPresenter"
+                            DockPanel.Dock="Left"
+                            KeyboardNavigation.TabNavigation="Local"
+                            WindowDecorationProperties.ElementRole="User"
+                            Content="{TemplateBinding LeftContent}"
+                            IsVisible="{Binding $self.Content,Converter={x:Static ObjectConverters.IsNotNull}}"
+                            TabIndex="1" />
+                        <ContentPresenter
+                            Name="PART_RightContentPresenter"
+                            DockPanel.Dock="Right"
+                            KeyboardNavigation.TabNavigation="Local"
+                            WindowDecorationProperties.ElementRole="User"
+                            Content="{TemplateBinding RightContent}"
+                            IsVisible="{Binding $self.Content,Converter={x:Static ObjectConverters.IsNotNull}}"
+                            TabIndex="3" />
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            KeyboardNavigation.TabNavigation="Local"
+                            WindowDecorationProperties.ElementRole="User"
+                            Content="{TemplateBinding CenterContent}"
+                            IsVisible="{Binding $self.Content,Converter={x:Static ObjectConverters.IsNotNull}}"
+                            TabIndex="2" />
+                    </DockPanel>
+                </Border>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
