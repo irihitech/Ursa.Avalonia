@@ -206,9 +206,11 @@
                                     <u:Int32Displayer
                                         Value="60"
                                         FontSize="24"
+                                        FontWeight="Bold"
                                         Foreground="White" />
                                     <TextBlock Text="+"
                                             FontSize="24"
+                                            FontWeight="Bold"
                                             Foreground="#8FB4FF" />
                                 </StackPanel>
                                 <TextBlock
@@ -519,7 +521,6 @@
                                 Spacing="6">
                                 <u:Int32Displayer
                                     FontSize="26"
-                                    FontWeight="Bold"
                                     Foreground="{DynamicResource SemiColorPrimary}"
                                     HorizontalAlignment="Center"
                                     Value="{Binding MetricValue}" />
