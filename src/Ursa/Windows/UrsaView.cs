@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Media;
 
 namespace Ursa.Controls;
 
@@ -46,6 +47,18 @@ public class UrsaView : ContentControl
         UrsaWindow.TitleBarMarginProperty.AddOwner<UrsaView>();
 
     /// <summary>
+    ///     Defines the padding of the title bar.
+    /// </summary>
+    public static readonly StyledProperty<Thickness> TitleBarPaddingProperty =
+        UrsaWindow.TitleBarPaddingProperty.AddOwner<UrsaView>();
+
+    /// <summary>
+    ///     Defines the background of the title bar.
+    /// </summary>
+    public static readonly StyledProperty<IBrush?> TitleBarBackgroundProperty =
+        UrsaWindow.TitleBarBackgroundProperty.AddOwner<UrsaView>();
+
+    /// <summary>
     ///     Gets or sets a value indicating whether the title bar is visible.
     /// </summary>
     public bool IsTitleBarVisible
@@ -88,6 +101,24 @@ public class UrsaView : ContentControl
     {
         get => GetValue(TitleBarMarginProperty);
         set => SetValue(TitleBarMarginProperty, value);
+    }
+
+    /// <summary>
+    ///     Gets or sets the padding of the title bar.
+    /// </summary>
+    public Thickness TitleBarPadding
+    {
+        get => GetValue(TitleBarPaddingProperty);
+        set => SetValue(TitleBarPaddingProperty, value);
+    }
+
+    /// <summary>
+    ///     Gets or sets the background of the title bar.
+    /// </summary>
+    public IBrush? TitleBarBackground
+    {
+        get => GetValue(TitleBarBackgroundProperty);
+        set => SetValue(TitleBarBackgroundProperty, value);
     }
 
     /// <summary>

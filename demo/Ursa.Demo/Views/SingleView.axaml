@@ -1,14 +1,33 @@
 <u:UrsaView xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:views="clr-namespace:Ursa.Demo.Views"
-             xmlns:u="https://irihi.tech/ursa"
-             mc:Ignorable="d" d:DesignWidth="800"
-             d:DesignHeight="450"
-             x:Class="Ursa.Demo.Views.SingleView">
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:u="https://irihi.tech/ursa"
+            xmlns:vm="clr-namespace:Ursa.Demo.ViewModels"
+            xmlns:views="clr-namespace:Ursa.Demo.Views"
+            mc:Ignorable="d" d:DesignWidth="800"
+            d:DesignHeight="450"
+            x:DataType="vm:MainViewViewModel"
+            x:Class="Ursa.Demo.Views.SingleView"
+            IsTitleBarVisible="True">
+    <u:UrsaView.LeftContent>
+        <u:Breadcrumb IsHitTestVisible="False"
+                      Margin="8 0 0 0"
+                      ItemsSource="{Binding NavigationKeys}">
+            <u:Breadcrumb.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Header^}" />
+                </DataTemplate>
+            </u:Breadcrumb.ItemTemplate>
+            <u:Breadcrumb.Styles>
+                <Style Selector="u|BreadcrumbItem">
+                    <Setter Property="IsReadOnly" Value="True" />
+                </Style>
+            </u:Breadcrumb.Styles>
+        </u:Breadcrumb>
+    </u:UrsaView.LeftContent>
     <u:UrsaView.RightContent>
-        <views:TitleBarRightContent/>
+        <views:TitleBarRightContent />
     </u:UrsaView.RightContent>
-    <views:MainView/>
+    <views:MainView />
 </u:UrsaView>

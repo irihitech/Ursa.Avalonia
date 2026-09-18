@@ -10,9 +10,13 @@
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
         <Setter Property="u:OverlayDialogHost.IsModalStatusScope" Value="True" />
-        <Setter Property="TitleBarPadding" Value="{OnPlatform macOS={StaticResource UrsaWindowMacTitleBarPadding}}"/>
         <Setter Property="WindowDecorationsTheme" Value="{DynamicResource KEY_URSAWINDOW_DRAWN_DECORATIONS}" />
         <Setter Property="WindowDecorations" Value="{x:Static WindowDecorations.Full}" />
+        <Setter Property="TitleBarPadding">
+            <OnPlatform
+                Default="{DynamicResource UrsaWindowTitleBarPadding}"
+                macOS="{DynamicResource UrsaWindowMacTitleBarPadding}" />
+        </Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="u:UrsaWindow">
                 <Panel>

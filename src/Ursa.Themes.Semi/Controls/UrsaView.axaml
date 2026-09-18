@@ -7,6 +7,7 @@
         <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
+        <Setter Property="TitleBarPadding" Value="{DynamicResource UrsaWindowTitleBarPadding}" />
         <Setter Property="u:OverlayDialogHost.IsModalStatusScope" Value="True" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:UrsaView">
@@ -20,23 +21,17 @@
                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}" />
-                        <Grid
-                            Margin="{Binding $parent[u:UrsaWindow].TitleBarMargin}"
+                        <u:TitleBar
                             VerticalAlignment="Top"
-                            ColumnDefinitions="Auto, *, Auto">
-                            <ContentPresenter
-                                Grid.Column="0"
-                                IsVisible="{TemplateBinding IsTitleBarVisible}"
-                                Content="{TemplateBinding LeftContent}" />
-                            <ContentPresenter
-                                Grid.Column="1"
-                                IsVisible="{TemplateBinding IsTitleBarVisible}"
-                                Content="{TemplateBinding TitleBarContent}" />
-                            <ContentPresenter
-                                Grid.Column="2"
-                                IsVisible="{TemplateBinding IsTitleBarVisible}"
-                                Content="{TemplateBinding RightContent}" />
-                        </Grid>
+                            Margin="{TemplateBinding TitleBarMargin}"
+                            Padding="{TemplateBinding TitleBarPadding}"
+                            Background="{TemplateBinding TitleBarBackground}"
+                            MinHeight="{DynamicResource TitleBarMinHeight}"
+                            IsVisible="{TemplateBinding IsTitleBarVisible}"
+                            HorizontalAlignment="Stretch"
+                            LeftContent="{TemplateBinding LeftContent}"
+                            RightContent="{TemplateBinding RightContent}"
+                            CenterContent="{TemplateBinding TitleBarContent}" />
                         <u:OverlayDialogHost Name="{x:Static u:UrsaView.PART_DialogHost}" IsModalStatusReporter="True" />
                     </Panel>
                 </Panel>

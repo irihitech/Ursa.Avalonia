@@ -1,5 +1,6 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Thickness x:Key="UrsaWindowTitleBarPadding">0</Thickness>
     <Thickness x:Key="UrsaWindowMacTitleBarPadding">72,0,0,0</Thickness>
     <StaticResource x:Key="TitleBarMinHeight" ResourceKey="SemiHeightControlDefault" />
 </ResourceDictionary>
