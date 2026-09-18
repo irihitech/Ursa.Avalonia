@@ -1752,4 +1752,109 @@
   <data name="Page_Drawer_Section_Resize_Description" xml:space="preserve">
     <value>Włącz uchwyt zmiany rozmiaru dla szuflad, które powinny być regulowane.</value>
   </data>
+
+  <!-- Introduction page -->
+  <data name="Introduction_Chip_CrossPlatform" xml:space="preserve">
+    <value>Wieloplatformowość</value>
+  </data>
+  <data name="Introduction_GetStarted" xml:space="preserve">
+    <value>Rozpocznij</value>
+  </data>
+  <data name="Introduction_Stat_Controls" xml:space="preserve">
+    <value>Kontrolki</value>
+  </data>
+  <data name="Introduction_Stat_Platforms" xml:space="preserve">
+    <value>Platformy</value>
+  </data>
+  <data name="Introduction_Stat_OpenSource" xml:space="preserve">
+    <value>Open Source</value>
+  </data>
+  <data name="Introduction_Ticker" xml:space="preserve">
+    <value>◆ 60+ gotowych produkcyjnie kontrolek    ◆ Windows · macOS · Linux · Web · iOS · Android    ◆ Licencja MIT, na zawsze bezpłatna    ◆ Tryb ciemny i palety motywów    ◆ Wbudowane wsparcie 40+ języków    ◆ Napędzane przez Avalonię 11</value>
+  </data>
+  <data name="Introduction_Section_Title" xml:space="preserve">
+    <value>Prezentacja kontrolek</value>
+  </data>
+  <data name="Introduction_Section_Subtitle" xml:space="preserve">
+    <value>Interaktywne komponenty na żywo — klikaj, pisz, przeciągaj i odkrywaj.</value>
+  </data>
+  <data name="Introduction_Inputs_Title" xml:space="preserve">
+    <value>Pola wejściowe</value>
+  </data>
+  <data name="Introduction_TagInput_Placeholder" xml:space="preserve">
+    <value>Dodaj tag i naciśnij Enter</value>
+  </data>
+  <data name="Introduction_Selectors_Title" xml:space="preserve">
+    <value>Selektory</value>
+  </data>
+  <data name="Introduction_MultiComboBox_Placeholder" xml:space="preserve">
+    <value>Ulubione kontrolki</value>
+  </data>
+  <data name="Introduction_TreeComboBox_Placeholder" xml:space="preserve">
+    <value>Przestrzeń nazw</value>
+  </data>
+  <data name="Introduction_AutoComplete_Placeholder" xml:space="preserve">
+    <value>Szukaj kontrolek...</value>
+  </data>
+  <data name="Introduction_RangeSlider_Description" xml:space="preserve">
+    <value>Wybór zakresu dwoma suwakami</value>
+  </data>
+  <data name="Introduction_Feedback_Title" xml:space="preserve">
+    <value>Informacje zwrotne</value>
+  </data>
+  <data name="Introduction_Banner_Header" xml:space="preserve">
+    <value>Wdrożono</value>
+  </data>
+  <data name="Introduction_Banner_Content" xml:space="preserve">
+    <value>Kompilacja #1024 przeszła wszystkie testy.</value>
+  </data>
+  <data name="Introduction_QRCode_Description" xml:space="preserve">
+    <value>Wektorowe renderowanie QR z korekcją błędów</value>
+  </data>
+  <data name="Introduction_QRCode_Hint" xml:space="preserve">
+    <value>Skieruj aparat na kod, aby otworzyć repozytorium.</value>
+  </data>
+  <data name="Introduction_TwoFactor_Resend" xml:space="preserve">
+    <value>Wyślij kod ponownie</value>
+  </data>
+  <data name="Introduction_Metric_Unit" xml:space="preserve">
+    <value>żądania / min</value>
+  </data>
+  <data name="Introduction_Navigation_Title" xml:space="preserve">
+    <value>Nawigacja</value>
+  </data>
+  <data name="Introduction_Breadcrumb_Home" xml:space="preserve">
+    <value>Strona główna</value>
+  </data>
+  <data name="Introduction_Breadcrumb_Components" xml:space="preserve">
+    <value>Komponenty</value>
+  </data>
+  <data name="Introduction_DateTime_Title" xml:space="preserve">
+    <value>Data i godzina</value>
+  </data>
+  <data name="Introduction_Overlays_Title" xml:space="preserve">
+    <value>Nakładki</value>
+  </data>
+  <data name="Introduction_ShowDialog" xml:space="preserve">
+    <value>Pokaż okno dialogowe</value>
+  </data>
+  <data name="Introduction_PopConfirm_Header" xml:space="preserve">
+    <value>Usunąć tę kompilację?</value>
+  </data>
+  <data name="Introduction_PopConfirm_Content" xml:space="preserve">
+    <value>Artefakty zostaną trwale usunięte.</value>
+  </data>
+  <data name="Introduction_Uninstall" xml:space="preserve">
+    <value>Odinstaluj</value>
+  </data>
+  <data name="Introduction_Footer" xml:space="preserve">
+    <value>Ursa jest wydawana na licencji MIT · Stworzona przez IRIHI przy użyciu Avalonii</value>
+  </data>
+  <data name="Introduction_Dialog_Title" xml:space="preserve">
+    <value>Czysta instalacja?</value>
+  </data>
+  <data name="Introduction_Dialog_Message" xml:space="preserve">
+    <value>Spowoduje to usunięcie lokalnego cache pakietów. Tej czynności nie można cofnąć.</value>
+  </data>
+
 </root>

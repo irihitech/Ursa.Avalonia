@@ -1746,4 +1746,109 @@
   <data name="Page_Drawer_Section_Resize_Description" xml:space="preserve">
     <value>为需要可调整大小的抽屉启用拖拽手柄。</value>
   </data>
+
+  <!-- Introduction page -->
+  <data name="Introduction_Chip_CrossPlatform" xml:space="preserve">
+    <value>跨平台</value>
+  </data>
+  <data name="Introduction_GetStarted" xml:space="preserve">
+    <value>开始使用</value>
+  </data>
+  <data name="Introduction_Stat_Controls" xml:space="preserve">
+    <value>控件</value>
+  </data>
+  <data name="Introduction_Stat_Platforms" xml:space="preserve">
+    <value>平台</value>
+  </data>
+  <data name="Introduction_Stat_OpenSource" xml:space="preserve">
+    <value>开源</value>
+  </data>
+  <data name="Introduction_Ticker" xml:space="preserve">
+    <value>◆ 60+ 生产级控件    ◆ Windows · macOS · Linux · Web · iOS · Android    ◆ MIT 许可，永久免费    ◆ 深色模式与主题色板    ◆ 内置 40+ 种语言    ◆ 基于 Avalonia 11 驱动</value>
+  </data>
+  <data name="Introduction_Section_Title" xml:space="preserve">
+    <value>控件展示</value>
+  </data>
+  <data name="Introduction_Section_Subtitle" xml:space="preserve">
+    <value>真实可交互的组件——点击、输入、滑动，尽情探索。</value>
+  </data>
+  <data name="Introduction_Inputs_Title" xml:space="preserve">
+    <value>输入控件</value>
+  </data>
+  <data name="Introduction_TagInput_Placeholder" xml:space="preserve">
+    <value>输入标签后按回车</value>
+  </data>
+  <data name="Introduction_Selectors_Title" xml:space="preserve">
+    <value>选择器</value>
+  </data>
+  <data name="Introduction_MultiComboBox_Placeholder" xml:space="preserve">
+    <value>常用控件</value>
+  </data>
+  <data name="Introduction_TreeComboBox_Placeholder" xml:space="preserve">
+    <value>命名空间</value>
+  </data>
+  <data name="Introduction_AutoComplete_Placeholder" xml:space="preserve">
+    <value>搜索控件...</value>
+  </data>
+  <data name="Introduction_RangeSlider_Description" xml:space="preserve">
+    <value>双滑块区间选择</value>
+  </data>
+  <data name="Introduction_Feedback_Title" xml:space="preserve">
+    <value>反馈</value>
+  </data>
+  <data name="Introduction_Banner_Header" xml:space="preserve">
+    <value>已部署</value>
+  </data>
+  <data name="Introduction_Banner_Content" xml:space="preserve">
+    <value>构建 #1024 已通过全部检查。</value>
+  </data>
+  <data name="Introduction_QRCode_Description" xml:space="preserve">
+    <value>矢量二维码渲染，支持纠错等级</value>
+  </data>
+  <data name="Introduction_QRCode_Hint" xml:space="preserve">
+    <value>用相机扫描二维码即可打开仓库。</value>
+  </data>
+  <data name="Introduction_TwoFactor_Resend" xml:space="preserve">
+    <value>重新发送验证码</value>
+  </data>
+  <data name="Introduction_Metric_Unit" xml:space="preserve">
+    <value>请求 / 分钟</value>
+  </data>
+  <data name="Introduction_Navigation_Title" xml:space="preserve">
+    <value>导航</value>
+  </data>
+  <data name="Introduction_Breadcrumb_Home" xml:space="preserve">
+    <value>首页</value>
+  </data>
+  <data name="Introduction_Breadcrumb_Components" xml:space="preserve">
+    <value>组件</value>
+  </data>
+  <data name="Introduction_DateTime_Title" xml:space="preserve">
+    <value>日期与时间</value>
+  </data>
+  <data name="Introduction_Overlays_Title" xml:space="preserve">
+    <value>浮层</value>
+  </data>
+  <data name="Introduction_ShowDialog" xml:space="preserve">
+    <value>显示对话框</value>
+  </data>
+  <data name="Introduction_PopConfirm_Header" xml:space="preserve">
+    <value>删除此构建？</value>
+  </data>
+  <data name="Introduction_PopConfirm_Content" xml:space="preserve">
+    <value>构建产物将被永久删除。</value>
+  </data>
+  <data name="Introduction_Uninstall" xml:space="preserve">
+    <value>卸载</value>
+  </data>
+  <data name="Introduction_Footer" xml:space="preserve">
+    <value>Ursa 以 MIT 许可证发布 · 由 IRIHI 基于 Avalonia 构建</value>
+  </data>
+  <data name="Introduction_Dialog_Title" xml:space="preserve">
+    <value>全新安装？</value>
+  </data>
+  <data name="Introduction_Dialog_Message" xml:space="preserve">
+    <value>此操作将删除本地包缓存，且无法撤销。</value>
+  </data>
+
 </root>

@@ -166,7 +166,7 @@
                                     Margin="8,0,0,0">
                                 <TextBlock
                                     Classes="HeroChipText"
-                                    Text="Cross Platform" />
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Chip_CrossPlatform}}" />
                             </Border>
                         </WrapPanel>
 
@@ -189,7 +189,7 @@
                                     FontWeight="SemiBold"
                                     Command="{Binding NavigateCommand}"
                                     CommandParameter="docs"
-                                    Content="Get Started" />
+                                    Content="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_GetStarted}}" />
                             <u:IconButton
                                 Classes="Tertiary"
                                 Content="GitHub"
@@ -215,7 +215,7 @@
                                 </StackPanel>
                                 <TextBlock
                                     Classes="HeroStatLabel"
-                                    Text="Controls" />
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Stat_Controls}}" />
                             </StackPanel>
                             <StackPanel Spacing="0"
                                     Margin="28,0,0,0">
@@ -225,7 +225,7 @@
                                         Foreground="White" />
                                 <TextBlock
                                     Classes="HeroStatLabel"
-                                    Text="Platforms" />
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Stat_Platforms}}" />
                             </StackPanel>
                             <StackPanel Spacing="0"
                                     Margin="28,0,0,0">
@@ -235,7 +235,7 @@
                                         Foreground="White" />
                                 <TextBlock
                                     Classes="HeroStatLabel"
-                                    Text="Open Source" />
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Stat_OpenSource}}" />
                             </StackPanel>
                         </WrapPanel>
                     </StackPanel>
@@ -248,7 +248,7 @@
                             BorderThickness="0,1,0,0">
                         <u:Marquee Classes="HeroTicker"
                                    Height="34" Speed="55"
-                                   Content="◆ 60+ production-ready controls    ◆ Windows · macOS · Linux · Web · iOS · Android    ◆ MIT licensed, free forever    ◆ Dark mode &amp; theme palettes    ◆ 40+ languages built in    ◆ Powered by Avalonia 11" />
+                                   Content="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Ticker}}" />
                     </Border>
                 </Panel>
             </Border>
@@ -264,11 +264,11 @@
                     <TextBlock FontSize="18"
                                Theme="{DynamicResource TitleTextBlock}"
                                Classes="H6"
-                               Text="Control Showcase" />
+                               Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Section_Title}}" />
                 </StackPanel>
                 <TextBlock Classes="Tertiary"
                            Margin="14,0,0,0"
-                           Text="Live, interactive components — click, type, slide and explore." />
+                           Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Section_Subtitle}}" />
             </StackPanel>
 
             <!--  ============ Masonry ============  -->
@@ -284,7 +284,7 @@
                             <StackPanel Spacing="2">
                                 <TextBlock
                                     Classes="CardTitle"
-                                    Text="Inputs" />
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Inputs_Title}}" />
                                 <TextBlock
                                     Classes="CardSub"
                                     Text="TagInput · IPv4Box" />
@@ -292,7 +292,7 @@
                             <StackPanel Spacing="10">
                                 <u:TagInput Width="180"
                                         HorizontalAlignment="Left"
-                                        PlaceholderText="Add a tag, press Enter"
+                                        PlaceholderText="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_TagInput_Placeholder}}"
                                         Tags="{Binding TagItems}" />
                                 <u:IPv4Box Width="180"
                                         HorizontalAlignment="Left"
@@ -307,7 +307,7 @@
                             <StackPanel Spacing="2">
                                 <TextBlock
                                     Classes="CardTitle"
-                                    Text="Selectors" />
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Selectors_Title}}" />
                                 <TextBlock
                                     Classes="CardSub"
                                     Text="MultiComboBox · TreeComboBox · MultiAutoCompleteBox" />
@@ -316,11 +316,11 @@
                                 <u:MultiComboBox
                                     Width="280"
                                     HorizontalAlignment="Left"
-                                    PlaceholderText="Favorite controls"
+                                    PlaceholderText="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_MultiComboBox_Placeholder}}"
                                     ItemsSource="{Binding ComboBoxItems}" />
                                 <u:TreeComboBox Width="280"
                                         HorizontalAlignment="Left"
-                                        PlaceholderText="Namespace">
+                                        PlaceholderText="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_TreeComboBox_Placeholder}}">
                                     <u:TreeComboBoxItem
                                         Header="Ursa">
                                         <u:TreeComboBoxItem
@@ -339,7 +339,7 @@
                                 <u:MultiAutoCompleteBox
                                     Width="280"
                                     HorizontalAlignment="Left"
-                                    PlaceholderText="Search controls..."
+                                    PlaceholderText="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_AutoComplete_Placeholder}}"
                                     ItemsSource="{Binding AutoCompleteItems}"
                                     SelectedItems="{Binding AutoCompleteSelectedItems}">
                                     <u:MultiAutoCompleteBox.ItemTemplate>
@@ -371,7 +371,7 @@
                                     Text="RangeSlider" />
                                 <TextBlock
                                     Classes="CardSub"
-                                    Text="Dual-thumb range selection" />
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_RangeSlider_Description}}" />
                             </StackPanel>
                             <StackPanel Spacing="16"
                                     Margin="0,6,0,2">
@@ -390,15 +390,15 @@
                             <StackPanel Spacing="2">
                                 <TextBlock
                                     Classes="CardTitle"
-                                    Text="Feedback" />
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Feedback_Title}}" />
                                 <TextBlock
                                     Classes="CardSub"
                                     Text="Banner · Badge · Rating · Loading · DualBadge" />
                             </StackPanel>
                             <u:Banner
                                 Classes="Bordered"
-                                Content="Build #1024 passed all checks."
-                                Header="Deployed"
+                                Content="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Banner_Content}}"
+                                Header="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Banner_Header}}"
                                 Type="Success" />
                             <StackPanel
                                 Orientation="Horizontal"
@@ -435,7 +435,7 @@
                                     Text="QRCode" />
                                 <TextBlock
                                     Classes="CardSub"
-                                    Text="Vector QR rendering with error correction" />
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_QRCode_Description}}" />
                             </StackPanel>
                             <Grid
                                 ColumnDefinitions="Auto,*"
@@ -464,7 +464,7 @@
                                         FontSize="12"
                                         Opacity="0.65"
                                         TextWrapping="Wrap"
-                                        Text="Point your camera at the code to open the repository." />
+                                        Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_QRCode_Hint}}" />
                                 </StackPanel>
                             </Grid>
                         </StackPanel>
@@ -489,15 +489,6 @@
                                         Classes="Grey"
                                         Content="+4" />
                             </StackPanel>
-                            <StackPanel Spacing="4">
-                                <TextBlock
-                                    Classes="CardTitle"
-                                    Text="Two-factor Authentication" />
-                                <TextBlock FontSize="12"
-                                        Opacity="0.6"
-                                        TextWrapping="Wrap"
-                                        Text="Enter the 6-digit code from your authenticator app to continue." />
-                            </StackPanel>
                             <u:PinCode Count="6"
                                        HorizontalAlignment="Center"
                                        Mode="Digit"
@@ -506,7 +497,7 @@
                                 Orientation="Horizontal"
                                 Spacing="10">
                                 <HyperlinkButton
-                                    Content="Resend code" />
+                                    Content="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_TwoFactor_Resend}}" />
                                 <TextBlock
                                     VerticalAlignment="Center"
                                     FontSize="12"
@@ -555,7 +546,7 @@
                                     <TextBlock
                                         Classes="CardSub"
                                         VerticalAlignment="Center"
-                                        Text="requests / min" />
+                                        Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Metric_Unit}}" />
                                 </StackPanel>
                             </StackPanel>
                             <TextBlock Classes="CardSub"
@@ -569,17 +560,17 @@
                             <StackPanel Spacing="2">
                                 <TextBlock
                                     Classes="CardTitle"
-                                    Text="Navigation" />
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Navigation_Title}}" />
                                 <TextBlock
                                     Classes="CardSub"
                                     Text="Breadcrumb · ButtonGroup · Pagination" />
                             </StackPanel>
                             <u:Breadcrumb>
                                 <u:BreadcrumbItem
-                                    Content="Home"
+                                    Content="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Breadcrumb_Home}}"
                                     Icon="Home" />
                                 <u:BreadcrumbItem
-                                    Content="Components"
+                                    Content="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Breadcrumb_Components}}"
                                     Icon="Page" />
                                 <u:BreadcrumbItem
                                     Content="Ursa"
@@ -606,7 +597,7 @@
                             <StackPanel Spacing="2">
                                 <TextBlock
                                     Classes="CardTitle"
-                                    Text="Date &amp; Time" />
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_DateTime_Title}}" />
                                 <TextBlock
                                     Classes="CardSub"
                                     Text="DateTimePicker · DateRangePicker · TimeRangePicker" />
@@ -636,7 +627,7 @@
                             <StackPanel Spacing="2">
                                 <TextBlock
                                     Classes="CardTitle"
-                                    Text="Overlays" />
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Overlays_Title}}" />
                                 <TextBlock
                                     Classes="CardSub"
                                     Text="OverlayDialogHost · PopConfirm · IconButton" />
@@ -661,15 +652,15 @@
                                     Classes="Primary Small"
                                     Theme="{DynamicResource SolidButton}"
                                     Command="{Binding ShowDialogCommand}"
-                                    Content="Show Dialog" />
+                                    Content="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_ShowDialog}}" />
                                 <u:PopConfirm
                                     Margin="8,0,0,0"
-                                    PopupContent="Artifacts will be removed permanently."
-                                    PopupHeader="Delete this build?">
+                                    PopupContent="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_PopConfirm_Content}}"
+                                    PopupHeader="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_PopConfirm_Header}}">
                                     <Button
                                         Classes="Danger Small"
                                         Theme="{DynamicResource OutlineButton}"
-                                        Content="Uninstall" />
+                                        Content="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Uninstall}}" />
                                 </u:PopConfirm>
                                 <u:IconButton
                                     Margin="8,0,0,0"
@@ -690,7 +681,7 @@
             <!--  Footer  -->
             <TextBlock HorizontalAlignment="Center"
                        FontSize="11" Opacity="0.5"
-                       Text="Ursa is released under the MIT License · Built by IRIHI with Avalonia" />
+                       Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Footer}}" />
         </StackPanel>
     </ScrollViewer>
 </UserControl>

@@ -10,6 +10,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Irihi.Dogma.Docs;
 using Ursa.Controls;
+using Ursa.Demo.Localizations;
 using Ursa.Demo.Models;
 
 namespace Ursa.Demo.Pages.IntroductionDemo;
@@ -26,7 +27,7 @@ public partial class IntroductionDemoViewModel : ObservableObject
         new Dictionary<string, string>()
         {
             ["github"] = "https://github.com/irihitech/Ursa.Avalonia",
-            ["docs"] = "https://ursa.irihi.tech/",
+            ["docs"] = "https://docs.irihi.tech/ursa",
             ["nuget"] = "https://www.nuget.org/packages/Ursa.Avalonia",
         };
 
@@ -104,7 +105,7 @@ public partial class IntroductionDemoViewModel : ObservableObject
     private async Task NavigateAsync(string? key)
     {
         if (Launcher is not null && key is not null &&
-            _keyToUrlMapping.TryGetValue(key.ToLower(), out var uri))
+            _keyToUrlMapping.TryGetValue(key.ToLowerInvariant(), out var uri))
         {
             await Launcher.LaunchUriAsync(new Uri(uri));
         }
@@ -114,8 +115,8 @@ public partial class IntroductionDemoViewModel : ObservableObject
     private async Task ShowDialogAsync()
     {
         await OverlayMessageBox.ShowAsync(
-            "This removes the local package cache. The action cannot be undone.",
-            "Clean install?",
+            (IObservable<string>)LanguageManager.Instance.Introduction_Dialog_Message,
+            (IObservable<string>)LanguageManager.Instance.Introduction_Dialog_Title,
             LocalHost,
             icon: MessageBoxIcon.Question,
             button: MessageBoxButton.OKCancel);
