@@ -1760,4 +1760,109 @@
   <data name="Page_Drawer_Section_Resize_Description" xml:space="preserve">
     <value>Activez la poignée de redimensionnement pour les tiroirs qui doivent pouvoir être redimensionnés.</value>
   </data>
+
+  <!-- Introduction page -->
+  <data name="Introduction_Chip_CrossPlatform" xml:space="preserve">
+    <value>Multiplateforme</value>
+  </data>
+  <data name="Introduction_GetStarted" xml:space="preserve">
+    <value>Commencer</value>
+  </data>
+  <data name="Introduction_Stat_Controls" xml:space="preserve">
+    <value>Contrôles</value>
+  </data>
+  <data name="Introduction_Stat_Platforms" xml:space="preserve">
+    <value>Plateformes</value>
+  </data>
+  <data name="Introduction_Stat_OpenSource" xml:space="preserve">
+    <value>Open Source</value>
+  </data>
+  <data name="Introduction_Ticker" xml:space="preserve">
+    <value>◆ 60+ contrôles prêts pour la production    ◆ Windows · macOS · Linux · Web · iOS · Android    ◆ Licence MIT, gratuit pour toujours    ◆ Mode sombre &amp; palettes de thèmes    ◆ 40+ langues intégrées    ◆ Propulsé par Avalonia 11</value>
+  </data>
+  <data name="Introduction_Section_Title" xml:space="preserve">
+    <value>Vitrine des contrôles</value>
+  </data>
+  <data name="Introduction_Section_Subtitle" xml:space="preserve">
+    <value>Composants interactifs en direct — cliquez, tapez, faites glisser et explorez.</value>
+  </data>
+  <data name="Introduction_Inputs_Title" xml:space="preserve">
+    <value>Saisies</value>
+  </data>
+  <data name="Introduction_TagInput_Placeholder" xml:space="preserve">
+    <value>Ajoutez un tag puis Entrée</value>
+  </data>
+  <data name="Introduction_Selectors_Title" xml:space="preserve">
+    <value>Sélecteurs</value>
+  </data>
+  <data name="Introduction_MultiComboBox_Placeholder" xml:space="preserve">
+    <value>Contrôles favoris</value>
+  </data>
+  <data name="Introduction_TreeComboBox_Placeholder" xml:space="preserve">
+    <value>Espace de noms</value>
+  </data>
+  <data name="Introduction_AutoComplete_Placeholder" xml:space="preserve">
+    <value>Rechercher des contrôles…</value>
+  </data>
+  <data name="Introduction_RangeSlider_Description" xml:space="preserve">
+    <value>Sélection de plage à deux curseurs</value>
+  </data>
+  <data name="Introduction_Feedback_Title" xml:space="preserve">
+    <value>Commentaires</value>
+  </data>
+  <data name="Introduction_Banner_Header" xml:space="preserve">
+    <value>Déployé</value>
+  </data>
+  <data name="Introduction_Banner_Content" xml:space="preserve">
+    <value>Le build #1024 a réussi toutes les vérifications.</value>
+  </data>
+  <data name="Introduction_QRCode_Description" xml:space="preserve">
+    <value>Rendu QR vectoriel avec correction d'erreurs</value>
+  </data>
+  <data name="Introduction_QRCode_Hint" xml:space="preserve">
+    <value>Pointez votre caméra sur le code pour ouvrir le dépôt.</value>
+  </data>
+  <data name="Introduction_TwoFactor_Resend" xml:space="preserve">
+    <value>Renvoyer le code</value>
+  </data>
+  <data name="Introduction_Metric_Unit" xml:space="preserve">
+    <value>requêtes / min</value>
+  </data>
+  <data name="Introduction_Navigation_Title" xml:space="preserve">
+    <value>Navigation</value>
+  </data>
+  <data name="Introduction_Breadcrumb_Home" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="Introduction_Breadcrumb_Components" xml:space="preserve">
+    <value>Composants</value>
+  </data>
+  <data name="Introduction_DateTime_Title" xml:space="preserve">
+    <value>Date et heure</value>
+  </data>
+  <data name="Introduction_Overlays_Title" xml:space="preserve">
+    <value>Superpositions</value>
+  </data>
+  <data name="Introduction_ShowDialog" xml:space="preserve">
+    <value>Afficher la boîte de dialogue</value>
+  </data>
+  <data name="Introduction_PopConfirm_Header" xml:space="preserve">
+    <value>Supprimer ce build ?</value>
+  </data>
+  <data name="Introduction_PopConfirm_Content" xml:space="preserve">
+    <value>Les artefacts seront définitivement supprimés.</value>
+  </data>
+  <data name="Introduction_Uninstall" xml:space="preserve">
+    <value>Désinstaller</value>
+  </data>
+  <data name="Introduction_Footer" xml:space="preserve">
+    <value>Ursa est publié sous licence MIT · Construit par IRIHI avec Avalonia</value>
+  </data>
+  <data name="Introduction_Dialog_Title" xml:space="preserve">
+    <value>Installation propre ?</value>
+  </data>
+  <data name="Introduction_Dialog_Message" xml:space="preserve">
+    <value>Cela supprime le cache local des paquets. Cette action est irréversible.</value>
+  </data>
+
 </root>
