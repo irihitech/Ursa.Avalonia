@@ -65,22 +65,6 @@
             <Setter Property="FontSize" Value="11" />
             <Setter Property="Foreground" Value="#8C96C4" />
         </Style>
-        <Style Selector="Button.HeroLight">
-            <Setter Property="Background" Value="#FFFFFF" />
-            <Setter Property="Foreground" Value="#151B3A" />
-            <Setter Property="Padding" Value="20,0" />
-            <Setter Property="FontWeight" Value="SemiBold" />
-        </Style>
-        <Style
-            Selector="Button.HeroLight /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Foreground" Value="#151B3A" />
-        </Style>
-        <Style Selector="Button.HeroLight:pointerover">
-            <Setter Property="Background" Value="#E8EAF6" />
-        </Style>
-        <Style Selector="Button.HeroLight:pressed">
-            <Setter Property="Background" Value="#D9DDEF" />
-        </Style>
         <Style Selector="u|Marquee.HeroTicker TextBlock">
             <Setter Property="Foreground" Value="#A7B0D8" />
         </Style>
@@ -93,7 +77,8 @@
         <StackPanel Margin="16" Spacing="20">
 
             <!--  ============ Hero ============  -->
-            <Border Name="HeroRoot" ClipToBounds="True"
+            <ThemeVariantScope RequestedThemeVariant="Dark" MaxHeight="360">
+                <Border Name="HeroRoot" ClipToBounds="True"
                     CornerRadius="18"
                     HorizontalAlignment="Stretch">
                 <Border.Background>
@@ -175,7 +160,7 @@
                                     Margin="8,0,0,0">
                                 <TextBlock
                                     Classes="HeroChipText"
-                                    Text="Avalonia 11 · .NET 8+" />
+                                    Text="Avalonia 12 · .NET 8+" />
                             </Border>
                             <Border Classes="HeroChip"
                                     Margin="8,0,0,0">
@@ -200,23 +185,18 @@
                             <Button Classes="Primary"
                                     Theme="{DynamicResource SolidButton}"
                                     Padding="24,0"
+                                    BorderThickness="0"
                                     FontWeight="SemiBold"
                                     Command="{Binding NavigateCommand}"
                                     CommandParameter="docs"
                                     Content="Get Started" />
-                            <Button Classes="HeroLight"
-                                    Command="{Binding NavigateCommand}"
-                                    CommandParameter="github">
-                                <StackPanel
-                                    Orientation="Horizontal"
-                                    Spacing="8">
-                                    <PathIcon Height="14"
-                                            Data="{StaticResource SemiIconGithubLogo}"
-                                            Foreground="#151B3A" />
-                                    <TextBlock
-                                        Text="GitHub" />
-                                </StackPanel>
-                            </Button>
+                            <u:IconButton
+                                Classes="Tertiary"
+                                Content="GitHub"
+                                Command="{Binding NavigateCommand}"
+                                CommandParameter="github"
+                                Icon="{StaticResource SemiIconGithubLogo}"
+                                />
                         </StackPanel>
 
                         <WrapPanel Margin="0,14,0,0">
@@ -226,11 +206,9 @@
                                     <u:Int32Displayer
                                         Value="60"
                                         FontSize="24"
-                                        FontWeight="Bold"
                                         Foreground="White" />
                                     <TextBlock Text="+"
                                             FontSize="24"
-                                            FontWeight="Bold"
                                             Foreground="#8FB4FF" />
                                 </StackPanel>
                                 <TextBlock
@@ -272,6 +250,7 @@
                     </Border>
                 </Panel>
             </Border>
+            </ThemeVariantScope>
 
             <!--  ============ Section header ============  -->
             <StackPanel Spacing="4" Margin="4,4,4,0">
@@ -281,10 +260,11 @@
                             CornerRadius="2"
                             Background="{DynamicResource SemiColorPrimary}" />
                     <TextBlock FontSize="18"
-                               FontWeight="Bold"
+                               Theme="{DynamicResource TitleTextBlock}"
+                               Classes="H6"
                                Text="Control Showcase" />
                 </StackPanel>
-                <TextBlock FontSize="12" Opacity="0.55"
+                <TextBlock Classes="Tertiary"
                            Margin="14,0,0,0"
                            Text="Live, interactive components — click, type, slide and explore." />
             </StackPanel>
@@ -305,11 +285,9 @@
                                     Text="Inputs" />
                                 <TextBlock
                                     Classes="CardSub"
-                                    Text="TextBox · TagInput · IPv4Box" />
+                                    Text="TagInput · IPv4Box" />
                             </StackPanel>
                             <StackPanel Spacing="10">
-                                <TextBox
-                                    PlaceholderText="name@company.com" />
                                 <u:TagInput Width="180"
                                         HorizontalAlignment="Left"
                                         PlaceholderText="Add a tag, press Enter"
@@ -538,20 +516,49 @@
                                     Opacity="0.6" />
                             <StackPanel
                                 HorizontalAlignment="Center"
-                                Spacing="2">
-                                <TextBlock
-                                    Classes="CardSub"
+                                Spacing="6">
+                                <u:Int32Displayer
+                                    FontSize="26"
+                                    FontWeight="Bold"
+                                    Foreground="{DynamicResource SemiColorPrimary}"
                                     HorizontalAlignment="Center"
-                                    Text="Today" />
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontFamily="Consolas,Menlo,monospace"
-                                    FontSize="16"
-                                    FontWeight="SemiBold"
-                                    Text="{Binding ClockTime, StringFormat='{}{0:yyyy-MM-dd dddd}'}" />
+                                    Value="{Binding MetricValue}" />
+                                <StackPanel
+                                    Orientation="Horizontal"
+                                    Spacing="6"
+                                    HorizontalAlignment="Center">
+                                    <TextBlock
+                                        FontSize="12"
+                                        Foreground="#16A34A"
+                                        IsVisible="{Binding MetricIsUp}"
+                                        Text="▲"
+                                        VerticalAlignment="Center" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        Foreground="#DC2626"
+                                        IsVisible="{Binding MetricIsDown}"
+                                        Text="▼"
+                                        VerticalAlignment="Center" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        FontWeight="SemiBold"
+                                        Foreground="#16A34A"
+                                        IsVisible="{Binding MetricIsUp}"
+                                        Text="{Binding MetricDelta, StringFormat='+{0}'}" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        FontWeight="SemiBold"
+                                        Foreground="#DC2626"
+                                        IsVisible="{Binding MetricIsDown}"
+                                        Text="{Binding MetricDelta, StringFormat='{}{0}'}" />
+                                    <TextBlock
+                                        Classes="CardSub"
+                                        VerticalAlignment="Center"
+                                        Text="requests / min" />
+                                </StackPanel>
                             </StackPanel>
                             <TextBlock Classes="CardSub"
-                                       Text="PinCode · Avatar · Date" />
+                                       Text="PinCode · Avatar · Int32Displayer" />
                         </StackPanel>
                     </Border>
                     

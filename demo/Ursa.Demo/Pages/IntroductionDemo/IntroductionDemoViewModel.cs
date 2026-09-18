@@ -75,14 +75,29 @@ public partial class IntroductionDemoViewModel : ObservableObject
 
     [ObservableProperty] public partial TimeSpan EndTime { get; set; } = new TimeSpan(17, 0, 0);
 
-    [ObservableProperty] public partial DateTime ClockTime { get; set; } = DateTime.Now;
+    [ObservableProperty] public partial int MetricValue { get; set; } = 68420;
+
+    [ObservableProperty] public partial int MetricDelta { get; set; }
+
+    [ObservableProperty] public partial bool MetricIsUp { get; set; } = true;
+
+    [ObservableProperty] public partial bool MetricIsDown { get; set; }
+
+    private readonly Random _random = new();
 
     public IntroductionDemoViewModel()
     {
         if (Design.IsDesignMode) return;
-        var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-        timer.Tick += (_, _) => ClockTime = DateTime.Now;
-        timer.Start();
+        var metricTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1500) };
+        metricTimer.Tick += (_, _) =>
+        {
+            var delta = _random.Next(-80, 121);
+            MetricValue = Math.Max(0, MetricValue + delta);
+            MetricDelta = delta;
+            MetricIsUp = delta >= 0;
+            MetricIsDown = delta < 0;
+        };
+        metricTimer.Start();
     }
 
     [RelayCommand]
