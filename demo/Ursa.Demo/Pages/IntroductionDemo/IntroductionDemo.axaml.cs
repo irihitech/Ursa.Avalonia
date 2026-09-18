@@ -16,6 +16,7 @@ public partial class IntroductionDemo : UserControl
         if (DataContext is IntroductionDemoViewModel vm)
         {
             vm.Launcher = TopLevel.GetTopLevel(this)?.Launcher;
+            vm.ShowDialogCommand.Execute(null);
         }
     }
 }
