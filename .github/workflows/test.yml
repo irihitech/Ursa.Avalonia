@@ -18,10 +18,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+      # Run the test app directly instead of `dotnet test`: the MSBuild integration swallows
+      # per-test console output into TestResults logs, while direct execution prints failure
+      # messages and stack traces straight into the job log.
       - name: Ursa Unit Test
-        run: dotnet test tests/Test.Ursa
+        run: |
+          dotnet build tests/Test.Ursa
+          dotnet tests/Test.Ursa/bin/Debug/net10.0/Test.Ursa.dll
       - name: Ursa Headless Test
-        run: dotnet test tests/HeadlessTest.Ursa
+        run: |
+          dotnet build tests/HeadlessTest.Ursa
+          dotnet tests/HeadlessTest.Ursa/bin/Debug/net10.0/HeadlessTest.Ursa.dll
 
   ubuntu:
     runs-on: ubuntu-latest
@@ -32,9 +39,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Unit Test
-        run: dotnet test tests/Test.Ursa --configuration Release  -- --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml
+        run: |
+          dotnet build tests/Test.Ursa --configuration Release
+          dotnet tests/Test.Ursa/bin/Release/net10.0/Test.Ursa.dll --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml
       - name: Ursa Headless Test
-        run: dotnet test tests/HeadlessTest.Ursa --configuration Release  -- --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml
+        run: |
+          dotnet build tests/HeadlessTest.Ursa --configuration Release
+          dotnet tests/HeadlessTest.Ursa/bin/Release/net10.0/HeadlessTest.Ursa.dll --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml
       - name: Combine Coverage Reports # This is because one report is produced per project, and we want one result for all of them.
         uses: danielpalme/ReportGenerator-GitHub-Action@v5
         with:
