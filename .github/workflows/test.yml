@@ -38,14 +38,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+      # --report-xunit-trx feeds the Publish Test Results step below; without a TRX report it
+      # always publishes "0 tests".
       - name: Unit Test
         run: |
           dotnet build tests/Test.Ursa --configuration Release
-          dotnet tests/Test.Ursa/bin/Release/net10.0/Test.Ursa.dll --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml
+          dotnet tests/Test.Ursa/bin/Release/net10.0/Test.Ursa.dll --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml --report-xunit-trx
       - name: Ursa Headless Test
         run: |
           dotnet build tests/HeadlessTest.Ursa --configuration Release
-          dotnet tests/HeadlessTest.Ursa/bin/Release/net10.0/HeadlessTest.Ursa.dll --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml
+          dotnet tests/HeadlessTest.Ursa/bin/Release/net10.0/HeadlessTest.Ursa.dll --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml --report-xunit-trx
       - name: Combine Coverage Reports # This is because one report is produced per project, and we want one result for all of them.
         uses: danielpalme/ReportGenerator-GitHub-Action@v5
         with:
