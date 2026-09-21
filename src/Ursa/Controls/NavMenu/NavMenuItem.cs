@@ -72,6 +72,9 @@ public class NavMenuItem : HeaderedItemsControl
     public static readonly StyledProperty<bool> IsSeparatorProperty = AvaloniaProperty.Register<NavMenuItem, bool>(
         nameof(IsSeparator));
 
+    public static readonly StyledProperty<bool> AllowSelectWithChildrenProperty = AvaloniaProperty.Register<NavMenuItem, bool>(
+        nameof(AllowSelectWithChildren));
+
     private Panel? _overflowPanel;
     private bool _isPointerDown;
     private Popup? _popup;
@@ -154,6 +157,12 @@ public class NavMenuItem : HeaderedItemsControl
     {
         get => GetValue(IsSeparatorProperty);
         set => SetValue(IsSeparatorProperty, value);
+    }
+
+    public bool AllowSelectWithChildren
+    {
+        get => GetValue(AllowSelectWithChildrenProperty);
+        set => SetValue(AllowSelectWithChildrenProperty, value);
     }
 
     internal NavMenu? RootMenu { get; private set; }
@@ -403,6 +412,12 @@ public class NavMenuItem : HeaderedItemsControl
         else if (Parent is NavMenu menu)
         {
             menu.SelectItem(item, this);
+            if (AllowSelectWithChildren)
+            {
+                var items = item.LogicalChildren.OfType<NavMenuItem>();
+                foreach (var child in items)
+                    child.ClearSelection();
+            }
         }
 
         _popup?.Close();
@@ -435,7 +450,10 @@ public class NavMenuItem : HeaderedItemsControl
             e.Handled = true;
             return;
         }
-
+        else if (AllowSelectWithChildren)
+        {
+            SelectAndExecute();
+        }
         if (!IsHorizontalCollapsed)
         {
             SetCurrentValue(IsVerticalCollapsedProperty, !IsVerticalCollapsed);
