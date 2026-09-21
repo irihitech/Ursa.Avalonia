@@ -8,242 +8,679 @@
     xmlns:vm="using:Ursa.Demo.Pages.IntroductionDemo"
     xmlns:models="clr-namespace:Ursa.Demo.Models"
     x:DataType="vm:IntroductionDemoViewModel"
-    d:DesignHeight="800"
-    d:DesignWidth="1600"
+    d:DesignHeight="900"
+    d:DesignWidth="1280"
     mc:Ignorable="d"
     xmlns:localizations="clr-namespace:Ursa.Demo.Localizations">
     <Design.DataContext>
         <vm:IntroductionDemoViewModel />
     </Design.DataContext>
+
     <UserControl.Styles>
-        <Style Selector="u|Badge">
-            <Setter Property="Margin" Value="4" />
-        </Style>
-        <Style Selector="u|DualBadge">
-            <Setter Property="Margin" Value="3" />
-        </Style>
-        <Style Selector="Border.SectionCard">
-            <Setter Property="Background" Value="{DynamicResource SemiColorBgDefault}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorBorder}" />
+        <!-- Cards -->
+        <Style Selector="Border.ShowcaseCard">
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="BorderBrush"
+                    Value="{DynamicResource SemiColorBorder}" />
             <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="CornerRadius" Value="6" />
-            <Setter Property="Padding" Value="10" />
-            <Setter Property="Margin" Value="4" />
+            <Setter Property="CornerRadius" Value="16" />
+            <Setter Property="Padding" Value="20" />
         </Style>
-        <Style Selector="TextBlock.SectionTitle">
+        <Style Selector="Border.ShowcaseCard:pointerover">
+            <Setter Property="BoxShadow"
+                    Value="{DynamicResource SemiShadowElevated}" />
+        </Style>
+
+        <!-- Card typography -->
+        <Style Selector="TextBlock.CardTitle">
+            <Setter Property="FontSize" Value="15" />
             <Setter Property="FontWeight" Value="SemiBold" />
-            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style Selector="TextBlock.CardSub">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Opacity" Value="0.55" />
+        </Style>
+        <Style Selector="TextBlock.Caption">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Opacity" Value="0.55" />
+        </Style>
+
+        <!-- Hero bits -->
+        <Style Selector="Border.HeroChip">
+            <Setter Property="CornerRadius" Value="999" />
+            <Setter Property="BorderBrush"
+                    Value="#33FFFFFF" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Background" Value="#14FFFFFF" />
+            <Setter Property="Padding" Value="10,4" />
+        </Style>
+        <Style Selector="TextBlock.HeroChipText">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Foreground" Value="#C7CDF4" />
+        </Style>
+        <Style Selector="TextBlock.HeroStatLabel">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Foreground" Value="#8C96C4" />
+        </Style>
+        <Style Selector="u|Marquee.HeroTicker TextBlock">
+            <Setter Property="Foreground" Value="#A7B0D8" />
         </Style>
     </UserControl.Styles>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <StackPanel Spacing="8">
-            <!-- Welcome Banner -->
-            <u:Banner
-                Classes="Bordered"
-                Content="{Translate {x:Static localizations:LanguageManager+Keys.Main_Banner_Description}}"
-                Header="{Translate {x:Static localizations:LanguageManager+Keys.Main_Banner_Title}}"
-                Type="Information" />
+    <!--  Page root  -->
+    <ScrollViewer Name="PageScroll"
+                  HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="16" Spacing="20">
 
-            <!-- Marquee -->
-            <u:Marquee Height="40" Speed="40" Content="This is a scrolling marquee text - Ursa.Avalonia UI Library" />
+            <!--  ============ Hero ============  -->
+            <ThemeVariantScope RequestedThemeVariant="Dark" MaxHeight="360">
+                <Border Name="HeroRoot" ClipToBounds="True"
+                    CornerRadius="18"
+                    HorizontalAlignment="Stretch">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0%,0%"
+                            EndPoint="100%,100%">
+                        <GradientStop Offset="0"
+                                      Color="#0A0E24" />
+                        <GradientStop Offset="0.45"
+                                      Color="#141B4C" />
+                        <GradientStop Offset="0.78"
+                                      Color="#2A2070" />
+                        <GradientStop Offset="1"
+                                      Color="#45267F" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Panel>
+                    <!--  glow orbs  -->
+                    <Ellipse Width="520" Height="520"
+                             Fill="#2E4CFF" Opacity="0.22"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Top"
+                             Margin="-190,-230,0,0">
+                        <Ellipse.Effect>
+                            <BlurEffect Radius="90" />
+                        </Ellipse.Effect>
+                    </Ellipse>
+                    <Ellipse Width="380" Height="380"
+                             Fill="#7C3AED" Opacity="0.3"
+                             HorizontalAlignment="Right"
+                             VerticalAlignment="Bottom"
+                             Margin="0,0,-130,-180">
+                        <Ellipse.Effect>
+                            <BlurEffect Radius="80" />
+                        </Ellipse.Effect>
+                    </Ellipse>
+                    <Ellipse Width="220" Height="220"
+                             Fill="#22D3EE" Opacity="0.14"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Margin="0,40,160,0">
+                        <Ellipse.Effect>
+                            <BlurEffect Radius="70" />
+                        </Ellipse.Effect>
+                    </Ellipse>
+                    <!--  rings  -->
+                    <Ellipse Width="430" Height="430"
+                             Stroke="#FFFFFF"
+                             StrokeThickness="1"
+                             Opacity="0.06"
+                             HorizontalAlignment="Right"
+                             VerticalAlignment="Center"
+                             Margin="0,20,60,60" />
+                    <Ellipse Width="640" Height="640"
+                             Stroke="#FFFFFF"
+                             StrokeThickness="1"
+                             Opacity="0.04"
+                             HorizontalAlignment="Right"
+                             VerticalAlignment="Center"
+                             Margin="0,20,-80,-80" />
 
-            <Grid ColumnDefinitions="*, *, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto">
-                <!-- Row 0 - Avatars, Badges, Button Groups -->
-                <Border Grid.Column="0" Grid.Row="0" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="Avatars" Classes="SectionTitle" />
-                        <StackPanel Orientation="Horizontal" Spacing="4">
-                            <u:Avatar Classes="Red Small" Content="R" />
-                            <u:Avatar Classes="Blue Small" Content="B" />
-                            <u:Avatar Classes="Green Small" Content="G" />
-                            <u:Avatar Classes="Square Orange Small" Content="S" />
+                    <StackPanel Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Spacing="14"
+                                Margin="48,34,48,40">
+                        <WrapPanel>
+                            <Border Classes="HeroChip">
+                                <StackPanel
+                                    Orientation="Horizontal"
+                                    Spacing="6">
+                                    <Ellipse Width="6"
+                                            Height="6"
+                                            Fill="#4ADE80" />
+                                    <TextBlock
+                                        Classes="HeroChipText"
+                                        Text="MIT License" />
+                                </StackPanel>
+                            </Border>
+                            <Border Classes="HeroChip"
+                                    Margin="8,0,0,0">
+                                <TextBlock
+                                    Classes="HeroChipText"
+                                    Text="Avalonia 12 · .NET 8+" />
+                            </Border>
+                            <Border Classes="HeroChip"
+                                    Margin="8,0,0,0">
+                                <TextBlock
+                                    Classes="HeroChipText"
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Chip_CrossPlatform}}" />
+                            </Border>
+                        </WrapPanel>
+
+                        <TextBlock FontSize="34"
+                                   FontWeight="Bold"
+                                   Foreground="White"
+                                   Text="{Translate {x:Static localizations:LanguageManager+Keys.Main_Banner_Title}}" />
+
+                        <TextBlock FontSize="14"
+                                   Foreground="#B8C0E8"
+                                   Text="{Translate {x:Static localizations:LanguageManager+Keys.Main_Banner_Description}}" />
+
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Spacing="12" Margin="0,6,0,0">
+                            <Button Classes="Primary"
+                                    Theme="{DynamicResource SolidButton}"
+                                    Padding="24,0"
+                                    BorderThickness="0"
+                                    FontWeight="SemiBold"
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="docs"
+                                    Content="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_GetStarted}}" />
+                            <u:IconButton
+                                Classes="Tertiary"
+                                Content="GitHub"
+                                Command="{Binding NavigateCommand}"
+                                CommandParameter="github"
+                                Icon="{StaticResource SemiIconGithubLogo}"
+                                />
                         </StackPanel>
-                    </StackPanel>
-                </Border>
 
-                <Border Grid.Column="1" Grid.Row="0" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="Badges" Classes="SectionTitle" />
-                        <WrapPanel Orientation="Horizontal">
-                            <u:Badge Classes="Primary" Header="5">
-                                <u:Avatar Classes="Blue Small" Content="A" />
-                            </u:Badge>
-                            <u:Badge Classes="Success" Header="99" OverflowCount="50">
-                                <u:Avatar Classes="Green Small" Content="B" />
-                            </u:Badge>
-                            <u:Badge Classes="Warning" Dot="True">
-                                <u:Avatar Classes="Amber Small" Content="C" />
-                            </u:Badge>
+                        <WrapPanel Margin="0,14,0,0">
+                            <StackPanel Spacing="0">
+                                <StackPanel
+                                    Orientation="Horizontal">
+                                    <u:Int32Displayer
+                                        Value="60"
+                                        FontSize="24"
+                                        FontWeight="Bold"
+                                        Foreground="White" />
+                                    <TextBlock Text="+"
+                                            FontSize="24"
+                                            FontWeight="Bold"
+                                            Foreground="#8FB4FF" />
+                                </StackPanel>
+                                <TextBlock
+                                    Classes="HeroStatLabel"
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Stat_Controls}}" />
+                            </StackPanel>
+                            <StackPanel Spacing="0"
+                                    Margin="28,0,0,0">
+                                <TextBlock Text="6"
+                                        FontSize="24"
+                                        FontWeight="Bold"
+                                        Foreground="White" />
+                                <TextBlock
+                                    Classes="HeroStatLabel"
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Stat_Platforms}}" />
+                            </StackPanel>
+                            <StackPanel Spacing="0"
+                                    Margin="28,0,0,0">
+                                <TextBlock Text="100%"
+                                        FontSize="24"
+                                        FontWeight="Bold"
+                                        Foreground="White" />
+                                <TextBlock
+                                    Classes="HeroStatLabel"
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Stat_OpenSource}}" />
+                            </StackPanel>
                         </WrapPanel>
                     </StackPanel>
-                </Border>
 
-                <Border Grid.Column="2" Grid.Row="0" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="Button Groups" Classes="SectionTitle" />
-                        <u:ButtonGroup Classes="Primary Small" ItemsSource="{Binding ButtonGroupItems}" />
-                        <u:ButtonGroup Classes="Success Small" ItemsSource="{Binding ButtonGroupItems}" />
-                    </StackPanel>
-                </Border>
+                    <!--  ticker  -->
+                    <Border VerticalAlignment="Bottom"
+                            Height="34"
+                            Background="#10000000"
+                            BorderBrush="#14FFFFFF"
+                            BorderThickness="0,1,0,0">
+                        <u:Marquee Classes="HeroTicker"
+                                   Height="34" Speed="55"
+                                   Content="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Ticker}}" />
+                    </Border>
+                </Panel>
+            </Border>
+            </ThemeVariantScope>
 
-                <!-- Row 1 - Icon Buttons, Rating, Dividers -->
-                <Border Grid.Column="0" Grid.Row="1" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="Icon Buttons" Classes="SectionTitle" />
-                        <StackPanel Orientation="Horizontal" Spacing="4">
-                            <u:IconButton Icon="{StaticResource SemiIconCamera}" Classes="Small" />
-                            <u:IconButton Icon="{StaticResource SemiIconStar}" Classes="Secondary Small" />
-                            <u:IconButton Icon="{StaticResource SemiIconLikeHeart}" Classes="Warning Small" />
+            <!--  ============ Section header ============  -->
+            <StackPanel Spacing="4" Margin="4,4,4,0">
+                <StackPanel Orientation="Horizontal"
+                            Spacing="10">
+                    <Border Width="4" Height="18"
+                            CornerRadius="2"
+                            Background="{DynamicResource SemiColorPrimary}" />
+                    <TextBlock FontSize="18"
+                               Theme="{DynamicResource TitleTextBlock}"
+                               Classes="H6"
+                               Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Section_Title}}" />
+                </StackPanel>
+                <TextBlock Classes="Tertiary"
+                           Margin="14,0,0,0"
+                           Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Section_Subtitle}}" />
+            </StackPanel>
+
+            <!--  ============ Masonry ============  -->
+            <Grid MinWidth="980"
+                  ColumnDefinitions="*,*,*"
+                  ColumnSpacing="16">
+
+                <!--  ======== Column 1 ========  -->
+                <StackPanel Grid.Column="0" Spacing="16">
+
+                    <!--  Inputs  -->
+                    <Border Classes="ShowcaseCard">
+                        <StackPanel Spacing="14">
+                            <StackPanel Spacing="2">
+                                <TextBlock
+                                    Classes="CardTitle"
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Inputs_Title}}" />
+                                <TextBlock
+                                    Classes="CardSub"
+                                    Text="TagInput · IPv4Box" />
+                            </StackPanel>
+                            <StackPanel Spacing="10">
+                                <u:TagInput Width="180"
+                                        HorizontalAlignment="Left"
+                                        PlaceholderText="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_TagInput_Placeholder}}"
+                                        Tags="{Binding TagItems}" />
+                                <u:IPv4Box Width="180"
+                                        HorizontalAlignment="Left"
+                                        IPAddress="{Binding IpAddress}" />
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                </Border>
+                    </Border>
 
-                <Border Grid.Column="1" Grid.Row="1" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="Rating" Classes="SectionTitle" />
-                        <u:Rating Classes="Small" AllowHalf="True" Value="{Binding RatingValue}" />
-                    </StackPanel>
-                </Border>
+                    <!--  Selectors  -->
+                    <Border Classes="ShowcaseCard">
+                        <StackPanel Spacing="14">
+                            <StackPanel Spacing="2">
+                                <TextBlock
+                                    Classes="CardTitle"
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Selectors_Title}}" />
+                                <TextBlock
+                                    Classes="CardSub"
+                                    Text="MultiComboBox · TreeComboBox · MultiAutoCompleteBox" />
+                            </StackPanel>
+                            <StackPanel Spacing="10">
+                                <u:MultiComboBox
+                                    Width="280"
+                                    HorizontalAlignment="Left"
+                                    PlaceholderText="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_MultiComboBox_Placeholder}}"
+                                    ItemsSource="{Binding ComboBoxItems}" />
+                                <u:TreeComboBox Width="280"
+                                        HorizontalAlignment="Left"
+                                        PlaceholderText="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_TreeComboBox_Placeholder}}">
+                                    <u:TreeComboBoxItem
+                                        Header="Ursa">
+                                        <u:TreeComboBoxItem
+                                            Header="Controls">
+                                            <u:TreeComboBoxItem
+                                                Header="PinCode" />
+                                            <u:TreeComboBoxItem
+                                                Header="QRCode" />
+                                        </u:TreeComboBoxItem>
+                                        <u:TreeComboBoxItem
+                                            Header="Themes" />
+                                    </u:TreeComboBoxItem>
+                                    <u:TreeComboBoxItem
+                                        Header="Semi" />
+                                </u:TreeComboBox>
+                                <u:MultiAutoCompleteBox
+                                    Width="280"
+                                    HorizontalAlignment="Left"
+                                    PlaceholderText="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_AutoComplete_Placeholder}}"
+                                    ItemsSource="{Binding AutoCompleteItems}"
+                                    SelectedItems="{Binding AutoCompleteSelectedItems}">
+                                    <u:MultiAutoCompleteBox.ItemTemplate>
+                                        <DataTemplate
+                                            DataType="models:ControlData">
+                                            <StackPanel
+                                                Orientation="Horizontal"
+                                                Spacing="8">
+                                                <TextBlock
+                                                    Text="{Binding MenuHeader}" />
+                                                <TextBlock
+                                                    FontSize="11"
+                                                    Opacity="0.5"
+                                                    Text="{Binding Chinese}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </u:MultiAutoCompleteBox.ItemTemplate>
+                                </u:MultiAutoCompleteBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!--  RangeSlider  -->
+                    <Border Classes="ShowcaseCard">
+                        <StackPanel Spacing="14">
+                            <StackPanel Spacing="2">
+                                <TextBlock
+                                    Classes="CardTitle"
+                                    Text="RangeSlider" />
+                                <TextBlock
+                                    Classes="CardSub"
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_RangeSlider_Description}}" />
+                            </StackPanel>
+                            <StackPanel Spacing="16"
+                                    Margin="0,6,0,2">
+                                <u:RangeSlider
+                                    Maximum="100"
+                                    LowerValue="{Binding LowerValue}"
+                                    Minimum="0"
+                                    UpperValue="{Binding UpperValue}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!--  Feedback & status  -->
+                    <Border Classes="ShowcaseCard">
+                        <StackPanel Spacing="14">
+                            <StackPanel Spacing="2">
+                                <TextBlock
+                                    Classes="CardTitle"
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Feedback_Title}}" />
+                                <TextBlock
+                                    Classes="CardSub"
+                                    Text="Banner · Badge · Rating · Loading · DualBadge" />
+                            </StackPanel>
+                            <u:Banner
+                                Classes="Bordered"
+                                Content="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Banner_Content}}"
+                                Header="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Banner_Header}}"
+                                Type="Success" />
+                            <StackPanel
+                                Orientation="Horizontal"
+                                Spacing="12">
+                                <u:Rating AllowHalf="True"
+                                        Value="{Binding RatingValue}" />
+                                <u:DualBadge Header="v">2.0</u:DualBadge>
+                            </StackPanel>
+                            <Grid
+                                ColumnDefinitions="*,Auto"
+                                ColumnSpacing="12">
+                                <ProgressBar Maximum="100"
+                                        Value="72" />
+                                <u:LoadingIcon
+                                    Grid.Column="1"
+                                    Classes="Small"
+                                    VerticalAlignment="Center" />
+                            </Grid>
+                        </StackPanel>
+                    </Border>
 
-                <Border Grid.Column="2" Grid.Row="1" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="Dual Badge" Classes="SectionTitle" />
-                        <u:DualBadge Header="v">1.0</u:DualBadge>
-                    </StackPanel>
-                </Border>
 
-                <!-- Row 2 - IPv4Box, NumericUpDown, Slider -->
-                <Border Grid.Column="0" Grid.Row="2" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="IPv4Box" Classes="SectionTitle" />
-                        <u:IPv4Box Width="180" IPAddress="{Binding IpAddress}" />
-                    </StackPanel>
-                </Border>
+                </StackPanel>
 
-                <Border Grid.Column="1" Grid.Row="2" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="NumericUpDown" Classes="SectionTitle" />
-                        <NumericUpDown Width="120" Value="{Binding SliderValue}" />
-                    </StackPanel>
-                </Border>
+                <!--  ======== Column 2 ========  -->
+                <StackPanel Grid.Column="1" Spacing="16">
+                    
+                    <!--  QRCode  -->
+                    <Border Classes="ShowcaseCard">
+                        <StackPanel Spacing="14">
+                            <StackPanel Spacing="2">
+                                <TextBlock
+                                    Classes="CardTitle"
+                                    Text="QRCode" />
+                                <TextBlock
+                                    Classes="CardSub"
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_QRCode_Description}}" />
+                            </StackPanel>
+                            <Grid
+                                ColumnDefinitions="Auto,*"
+                                ColumnSpacing="16">
+                                <Border
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Padding="8"
+                                    CornerRadius="10"
+                                    Background="#0F000000"
+                                    BorderBrush="{DynamicResource SemiColorBorder}"
+                                    BorderThickness="1">
+                                    <u:QRCode Width="112"
+                                            Height="112"
+                                            Background="Transparent"
+                                            Data="https://github.com/irihitech/Ursa.Avalonia" />
+                                </Border>
+                                <StackPanel Grid.Column="1"
+                                        VerticalAlignment="Center"
+                                        Spacing="10">
+                                    <u:DualBadge
+                                        Header="GitHub">
+                                        Ursa.Avalonia
+                                    </u:DualBadge>
+                                    <TextBlock
+                                        FontSize="12"
+                                        Opacity="0.65"
+                                        TextWrapping="Wrap"
+                                        Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_QRCode_Hint}}" />
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
 
-                <Border Grid.Column="2" Grid.Row="2" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="Slider" Classes="SectionTitle" />
-                        <Slider Minimum="0" Maximum="100" Value="{Binding SliderValue}" />
-                    </StackPanel>
-                </Border>
 
-                <!-- Row 3 - RangeSlider, MultiComboBox, TreeComboBox -->
-                <Border Grid.Column="0" Grid.Row="3" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="RangeSlider" Classes="SectionTitle" />
-                        <u:RangeSlider Minimum="0" Maximum="100" LowerValue="{Binding LowerValue}" UpperValue="{Binding UpperValue}" />
-                    </StackPanel>
-                </Border>
+                    <!--  Security / PinCode  -->
+                    <Border Classes="ShowcaseCard">
+                        <StackPanel Spacing="14">
+                            <StackPanel
+                                Orientation="Horizontal"
+                                Spacing="0">
+                                <u:Avatar Classes="Blue"
+                                        Content="IR" />
+                                <u:Avatar Margin="-8,0,0,0"
+                                        Classes="Green"
+                                        Content="AV" />
+                                <u:Avatar Margin="-8,0,0,0"
+                                        Classes="Purple"
+                                        Content="SM" />
+                                <u:Avatar Margin="-8,0,0,0"
+                                        Classes="Grey"
+                                        Content="+4" />
+                            </StackPanel>
+                            <u:PinCode Count="6"
+                                       HorizontalAlignment="Center"
+                                       Mode="Digit"
+                                       PasswordChar="•" />
+                            <StackPanel
+                                Orientation="Horizontal"
+                                Spacing="10">
+                                <HyperlinkButton
+                                    Content="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_TwoFactor_Resend}}" />
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="12"
+                                    Opacity="0.55"
+                                    Text="00:42" />
+                            </StackPanel>
+                            <Border Height="1"
+                                    Background="{DynamicResource SemiColorBorder}"
+                                    Opacity="0.6" />
+                            <StackPanel
+                                HorizontalAlignment="Center"
+                                Spacing="6">
+                                <u:Int32Displayer
+                                    FontSize="26"
+                                    Foreground="{DynamicResource SemiColorPrimary}"
+                                    HorizontalAlignment="Center"
+                                    Value="{Binding MetricValue}" />
+                                <StackPanel
+                                    Orientation="Horizontal"
+                                    Spacing="6"
+                                    HorizontalAlignment="Center">
+                                    <TextBlock
+                                        FontSize="12"
+                                        Foreground="#16A34A"
+                                        IsVisible="{Binding MetricIsUp}"
+                                        Text="▲"
+                                        VerticalAlignment="Center" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        Foreground="#DC2626"
+                                        IsVisible="{Binding MetricIsDown}"
+                                        Text="▼"
+                                        VerticalAlignment="Center" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        FontWeight="SemiBold"
+                                        Foreground="#16A34A"
+                                        IsVisible="{Binding MetricIsUp}"
+                                        Text="{Binding MetricDelta, StringFormat='+{0}'}" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        FontWeight="SemiBold"
+                                        Foreground="#DC2626"
+                                        IsVisible="{Binding MetricIsDown}"
+                                        Text="{Binding MetricDelta, StringFormat='{}{0}'}" />
+                                    <TextBlock
+                                        Classes="CardSub"
+                                        VerticalAlignment="Center"
+                                        Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Metric_Unit}}" />
+                                </StackPanel>
+                            </StackPanel>
+                            <TextBlock Classes="CardSub"
+                                       Text="PinCode · Avatar · Int32Displayer" />
+                        </StackPanel>
+                    </Border>
+                    
+                    <!--  Navigation  -->
+                    <Border Classes="ShowcaseCard">
+                        <StackPanel Spacing="14">
+                            <StackPanel Spacing="2">
+                                <TextBlock
+                                    Classes="CardTitle"
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Navigation_Title}}" />
+                                <TextBlock
+                                    Classes="CardSub"
+                                    Text="Breadcrumb · ButtonGroup · Pagination" />
+                            </StackPanel>
+                            <u:Breadcrumb>
+                                <u:BreadcrumbItem
+                                    Content="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Breadcrumb_Home}}"
+                                    Icon="Home" />
+                                <u:BreadcrumbItem
+                                    Content="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Breadcrumb_Components}}"
+                                    Icon="Page" />
+                                <u:BreadcrumbItem
+                                    Content="Ursa"
+                                    Icon="Page"
+                                    IsReadOnly="True" />
+                            </u:Breadcrumb>
+                            <u:ButtonGroup
+                                Classes="Primary Small"
+                                ItemsSource="{Binding ButtonGroupItems}" />
+                            <u:Pagination
+                                HorizontalAlignment="Center"
+                                TotalCount="86" />
+                        </StackPanel>
+                    </Border>
 
-                <Border Grid.Column="1" Grid.Row="3" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="MultiComboBox" Classes="SectionTitle" />
-                        <u:MultiComboBox Width="180" PlaceholderText="Select..." ItemsSource="{Binding ComboBoxItems}" />
-                    </StackPanel>
-                </Border>
+                </StackPanel>
 
-                <Border Grid.Column="2" Grid.Row="3" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="TreeComboBox" Classes="SectionTitle" />
-                        <u:TreeComboBox Width="180" PlaceholderText="Select...">
-                            <u:TreeComboBoxItem Header="Item 1">
-                                <u:TreeComboBoxItem Header="Sub 1" />
-                                <u:TreeComboBoxItem Header="Sub 2" />
-                            </u:TreeComboBoxItem>
-                            <u:TreeComboBoxItem Header="Item 2" />
-                        </u:TreeComboBox>
-                    </StackPanel>
-                </Border>
+                <!--  ======== Column 3 ========  -->
+                <StackPanel Grid.Column="2" Spacing="16">
 
-                <!-- Row 4 - TagInput, MultiAutoCompleteBox, Breadcrumb -->
-                <Border Grid.Column="0" Grid.Row="4" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="TagInput" Classes="SectionTitle" />
-                        <u:TagInput Width="180" PlaceholderText="Add tags..." Tags="{Binding TagItems}" />
-                    </StackPanel>
-                </Border>
+                    <!--  Date & time  -->
+                    <Border Classes="ShowcaseCard">
+                        <StackPanel Spacing="14">
+                            <StackPanel Spacing="2">
+                                <TextBlock
+                                    Classes="CardTitle"
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_DateTime_Title}}" />
+                                <TextBlock
+                                    Classes="CardSub"
+                                    Text="DateTimePicker · DateRangePicker · TimeRangePicker" />
+                            </StackPanel>
+                            <StackPanel Spacing="10">
+                                <u:DateTimePicker
+                                    Width="280"
+                                    HorizontalAlignment="Left"
+                                    SelectedDate="{Binding CurrentDateTime}" />
+                                <u:DateRangePicker
+                                    Width="280"
+                                    HorizontalAlignment="Left"
+                                    SelectedEndDate="{Binding EndDate}"
+                                    SelectedStartDate="{Binding StartDate}" />
+                                <u:TimeRangePicker
+                                    Width="280"
+                                    HorizontalAlignment="Left"
+                                    SelectedEndTime="{Binding EndTime}"
+                                    SelectedStartTime="{Binding StartTime}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
 
-                <Border Grid.Column="1" Grid.Row="4" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="MultiAutoComplete" Classes="SectionTitle" />
-                        <u:MultiAutoCompleteBox Width="180" PlaceholderText="Type..." ItemsSource="{Binding AutoCompleteItems}" SelectedItems="{Binding AutoCompleteSelectedItems}">
-                            <u:MultiAutoCompleteBox.ItemTemplate>
-                                <DataTemplate DataType="models:ControlData">
-                                    <TextBlock Text="{Binding MenuHeader}" />
-                                </DataTemplate>
-                            </u:MultiAutoCompleteBox.ItemTemplate>
-                        </u:MultiAutoCompleteBox>
-                    </StackPanel>
-                </Border>
-
-                <Border Grid.Column="2" Grid.Row="4" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="Breadcrumb" Classes="SectionTitle" />
-                        <u:Breadcrumb>
-                            <TextBlock Text="Home" />
-                            <TextBlock Text="Ursa" />
-                            <TextBlock Text="Intro" />
-                        </u:Breadcrumb>
-                    </StackPanel>
-                </Border>
+                    <!--  Overlays  -->
+                    <Border Classes="ShowcaseCard">
+                        <StackPanel Spacing="14">
+                            <StackPanel Spacing="2">
+                                <TextBlock
+                                    Classes="CardTitle"
+                                    Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Overlays_Title}}" />
+                                <TextBlock
+                                    Classes="CardSub"
+                                    Text="OverlayDialogHost · PopConfirm · IconButton" />
+                            </StackPanel>
+                            <Border Height="340"
+                                    ClipToBounds="True"
+                                    CornerRadius="12"
+                                    Background="{DynamicResource SemiColorBackground1}"
+                                    BorderBrush="{DynamicResource SemiGrey1}"
+                                    BorderThickness="1">
+                                <Panel>
+                                    <TextBlock
+                                        Margin="10,6,0,0"
+                                        FontSize="10"
+                                        Opacity="0.35"
+                                        Text="OverlayDialogHost" />
+                                    <u:OverlayDialogHost HostId="{x:Static vm:IntroductionDemoViewModel.LocalHost}" />
+                                </Panel>
+                            </Border>
+                            <WrapPanel>
+                                <Button
+                                    Classes="Primary Small"
+                                    Theme="{DynamicResource SolidButton}"
+                                    Command="{Binding ShowDialogCommand}"
+                                    Content="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_ShowDialog}}" />
+                                <u:PopConfirm
+                                    Margin="8,0,0,0"
+                                    PopupContent="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_PopConfirm_Content}}"
+                                    PopupHeader="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_PopConfirm_Header}}">
+                                    <Button
+                                        Classes="Danger Small"
+                                        Theme="{DynamicResource OutlineButton}"
+                                        Content="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Uninstall}}" />
+                                </u:PopConfirm>
+                                <u:IconButton
+                                    Margin="8,0,0,0"
+                                    Icon="{StaticResource SemiIconCamera}" />
+                                <u:IconButton
+                                    Margin="8,0,0,0"
+                                    Icon="{StaticResource SemiIconStar}"
+                                    Classes="Warning" />
+                                <u:IconButton
+                                    Margin="8,0,0,0"
+                                    Icon="{StaticResource SemiIconMore}" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
             </Grid>
 
-            <!-- Date and Time Pickers Row -->
-            <Grid ColumnDefinitions="*, *, *" RowDefinitions="Auto">
-                <Border Grid.Column="0" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="DateRangePicker" Classes="SectionTitle" />
-                        <u:DateRangePicker Width="220" SelectedStartDate="{Binding StartDate}" SelectedEndDate="{Binding EndDate}" />
-                    </StackPanel>
-                </Border>
-
-                <Border Grid.Column="1" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="DateTimePicker" Classes="SectionTitle" />
-                        <u:DateTimePicker Width="220" SelectedDate="{Binding DateTime}" />
-                    </StackPanel>
-                </Border>
-
-                <Border Grid.Column="2" Classes="SectionCard">
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="TimeRangePicker" Classes="SectionTitle" />
-                        <u:TimeRangePicker Width="220" SelectedStartTime="{Binding StartTime}" SelectedEndTime="{Binding EndTime}" />
-                    </StackPanel>
-                </Border>
-            </Grid>
-
-            <!-- ToolBar -->
-            <Border Classes="SectionCard">
-                <StackPanel Spacing="6">
-                    <TextBlock Text="ToolBar" Classes="SectionTitle" />
-                    <u:ToolBar Header="Actions">
-                        <Button Content="Save" Classes="Small" />
-                        <u:ToolBarSeparator />
-                        <Button Content="Load" Classes="Small" />
-                        <Button Content="Delete" Classes="Small" />
-                    </u:ToolBar>
-                </StackPanel>
-            </Border>
-
-            <!-- Pagination -->
-            <Border Classes="SectionCard">
-                <StackPanel Spacing="6">
-                    <TextBlock Text="Pagination" Classes="SectionTitle" />
-                    <u:Pagination
-                        HorizontalAlignment="Center"
-                        PageSizeOptions="10, 20, 50"
-                        ShowPageSizeSelector="True"
-                        TotalCount="500" />
-                </StackPanel>
-            </Border>
+            <!--  Footer  -->
+            <TextBlock HorizontalAlignment="Center"
+                       FontSize="11" Opacity="0.5"
+                       Text="{Translate {x:Static localizations:LanguageManager+Keys.Introduction_Footer}}" />
         </StackPanel>
     </ScrollViewer>
 </UserControl>

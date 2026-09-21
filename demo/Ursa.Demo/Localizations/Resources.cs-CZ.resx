@@ -1760,4 +1760,109 @@
   <data name="Page_Drawer_Section_Resize_Description" xml:space="preserve">
     <value>Povolte úchyt pro změnu velikosti u drawerů, které mají být měnitelné.</value>
   </data>
+
+  <!-- Introduction page -->
+  <data name="Introduction_Chip_CrossPlatform" xml:space="preserve">
+    <value>Multiplatform</value>
+  </data>
+  <data name="Introduction_GetStarted" xml:space="preserve">
+    <value>Začít</value>
+  </data>
+  <data name="Introduction_Stat_Controls" xml:space="preserve">
+    <value>Ovládací prvky</value>
+  </data>
+  <data name="Introduction_Stat_Platforms" xml:space="preserve">
+    <value>Platformy</value>
+  </data>
+  <data name="Introduction_Stat_OpenSource" xml:space="preserve">
+    <value>Open Source</value>
+  </data>
+  <data name="Introduction_Ticker" xml:space="preserve">
+    <value>◆ 60+ hotových ovládacích prvků    ◆ Windows · macOS · Linux · Web · iOS · Android    ◆ Licence MIT, navždy zdarma    ◆ Tmavý režim a barevná témata    ◆ Vestavěných 40+ jazyků    ◆ Pohání Avalonia 12</value>
+  </data>
+  <data name="Introduction_Section_Title" xml:space="preserve">
+    <value>Ukázka ovládacích prvků</value>
+  </data>
+  <data name="Introduction_Section_Subtitle" xml:space="preserve">
+    <value>Živé interaktivní komponenty — klikněte, pište, posouvejte a objevujte.</value>
+  </data>
+  <data name="Introduction_Inputs_Title" xml:space="preserve">
+    <value>Vstupní prvky</value>
+  </data>
+  <data name="Introduction_TagInput_Placeholder" xml:space="preserve">
+    <value>Přidejte štítek a stiskněte Enter</value>
+  </data>
+  <data name="Introduction_Selectors_Title" xml:space="preserve">
+    <value>Výběry</value>
+  </data>
+  <data name="Introduction_MultiComboBox_Placeholder" xml:space="preserve">
+    <value>Oblíbené ovládací prvky</value>
+  </data>
+  <data name="Introduction_TreeComboBox_Placeholder" xml:space="preserve">
+    <value>Obor názvů</value>
+  </data>
+  <data name="Introduction_AutoComplete_Placeholder" xml:space="preserve">
+    <value>Hledat ovládací prvky…</value>
+  </data>
+  <data name="Introduction_RangeSlider_Description" xml:space="preserve">
+    <value>Výběr rozsahu dvěma jezci</value>
+  </data>
+  <data name="Introduction_Feedback_Title" xml:space="preserve">
+    <value>Zpětná vazba</value>
+  </data>
+  <data name="Introduction_Banner_Header" xml:space="preserve">
+    <value>Nasazeno</value>
+  </data>
+  <data name="Introduction_Banner_Content" xml:space="preserve">
+    <value>Sestavení #1024 prošlo všemi kontrolami.</value>
+  </data>
+  <data name="Introduction_QRCode_Description" xml:space="preserve">
+    <value>Vektorové vykreslení QR s korekcí chyb</value>
+  </data>
+  <data name="Introduction_QRCode_Hint" xml:space="preserve">
+    <value>Namiřte kameru na kód a otevřete repozitář.</value>
+  </data>
+  <data name="Introduction_TwoFactor_Resend" xml:space="preserve">
+    <value>Poslat kód znovu</value>
+  </data>
+  <data name="Introduction_Metric_Unit" xml:space="preserve">
+    <value>požadavky / min</value>
+  </data>
+  <data name="Introduction_Navigation_Title" xml:space="preserve">
+    <value>Navigace</value>
+  </data>
+  <data name="Introduction_Breadcrumb_Home" xml:space="preserve">
+    <value>Domů</value>
+  </data>
+  <data name="Introduction_Breadcrumb_Components" xml:space="preserve">
+    <value>Komponenty</value>
+  </data>
+  <data name="Introduction_DateTime_Title" xml:space="preserve">
+    <value>Datum a čas</value>
+  </data>
+  <data name="Introduction_Overlays_Title" xml:space="preserve">
+    <value>Překryvy</value>
+  </data>
+  <data name="Introduction_ShowDialog" xml:space="preserve">
+    <value>Zobrazit dialog</value>
+  </data>
+  <data name="Introduction_PopConfirm_Header" xml:space="preserve">
+    <value>Smazat toto sestavení?</value>
+  </data>
+  <data name="Introduction_PopConfirm_Content" xml:space="preserve">
+    <value>Artefakty budou trvale odstraněny.</value>
+  </data>
+  <data name="Introduction_Uninstall" xml:space="preserve">
+    <value>Odinstalovat</value>
+  </data>
+  <data name="Introduction_Footer" xml:space="preserve">
+    <value>Ursa je vydáváno pod licencí MIT · Vytvořeno týmem IRIHI s Avalonií</value>
+  </data>
+  <data name="Introduction_Dialog_Title" xml:space="preserve">
+    <value>Čistá instalace?</value>
+  </data>
+  <data name="Introduction_Dialog_Message" xml:space="preserve">
+    <value>Tímto odstraníte místní mezipaměť balíčků. Akci nelze vrátit.</value>
+  </data>
+
 </root>

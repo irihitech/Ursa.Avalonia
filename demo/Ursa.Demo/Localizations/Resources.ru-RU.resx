@@ -1760,4 +1760,109 @@
   <data name="Page_Drawer_Section_Resize_Description" xml:space="preserve">
     <value>Включите ручку изменения размера для панелей, которые должны быть изменяемыми.</value>
   </data>
+
+  <!-- Introduction page -->
+  <data name="Introduction_Chip_CrossPlatform" xml:space="preserve">
+    <value>Кроссплатформенность</value>
+  </data>
+  <data name="Introduction_GetStarted" xml:space="preserve">
+    <value>Начать работу</value>
+  </data>
+  <data name="Introduction_Stat_Controls" xml:space="preserve">
+    <value>Элементы управления</value>
+  </data>
+  <data name="Introduction_Stat_Platforms" xml:space="preserve">
+    <value>Платформы</value>
+  </data>
+  <data name="Introduction_Stat_OpenSource" xml:space="preserve">
+    <value>Открытый исходный код</value>
+  </data>
+  <data name="Introduction_Ticker" xml:space="preserve">
+    <value>◆ 60+ готовых к продакшену элементов управления    ◆ Windows · macOS · Linux · Web · iOS · Android    ◆ Лицензия MIT, навсегда бесплатно    ◆ Тёмная тема и цветовые палитры    ◆ 40+ встроенных языков    ◆ На базе Avalonia 12</value>
+  </data>
+  <data name="Introduction_Section_Title" xml:space="preserve">
+    <value>Витрина элементов управления</value>
+  </data>
+  <data name="Introduction_Section_Subtitle" xml:space="preserve">
+    <value>Живые интерактивные компоненты — нажимайте, вводите, перетаскивайте и исследуйте.</value>
+  </data>
+  <data name="Introduction_Inputs_Title" xml:space="preserve">
+    <value>Элементы ввода</value>
+  </data>
+  <data name="Introduction_TagInput_Placeholder" xml:space="preserve">
+    <value>Добавьте тег и нажмите Enter</value>
+  </data>
+  <data name="Introduction_Selectors_Title" xml:space="preserve">
+    <value>Селекторы</value>
+  </data>
+  <data name="Introduction_MultiComboBox_Placeholder" xml:space="preserve">
+    <value>Любимые элементы управления</value>
+  </data>
+  <data name="Introduction_TreeComboBox_Placeholder" xml:space="preserve">
+    <value>Пространство имён</value>
+  </data>
+  <data name="Introduction_AutoComplete_Placeholder" xml:space="preserve">
+    <value>Поиск элементов управления...</value>
+  </data>
+  <data name="Introduction_RangeSlider_Description" xml:space="preserve">
+    <value>Выбор диапазона двумя ползунками</value>
+  </data>
+  <data name="Introduction_Feedback_Title" xml:space="preserve">
+    <value>Обратная связь</value>
+  </data>
+  <data name="Introduction_Banner_Header" xml:space="preserve">
+    <value>Развёрнуто</value>
+  </data>
+  <data name="Introduction_Banner_Content" xml:space="preserve">
+    <value>Сборка #1024 прошла все проверки.</value>
+  </data>
+  <data name="Introduction_QRCode_Description" xml:space="preserve">
+    <value>Векторный QR-код с коррекцией ошибок</value>
+  </data>
+  <data name="Introduction_QRCode_Hint" xml:space="preserve">
+    <value>Наведите камеру на код, чтобы открыть репозиторий.</value>
+  </data>
+  <data name="Introduction_TwoFactor_Resend" xml:space="preserve">
+    <value>Отправить код повторно</value>
+  </data>
+  <data name="Introduction_Metric_Unit" xml:space="preserve">
+    <value>запросы / мин</value>
+  </data>
+  <data name="Introduction_Navigation_Title" xml:space="preserve">
+    <value>Навигация</value>
+  </data>
+  <data name="Introduction_Breadcrumb_Home" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="Introduction_Breadcrumb_Components" xml:space="preserve">
+    <value>Компоненты</value>
+  </data>
+  <data name="Introduction_DateTime_Title" xml:space="preserve">
+    <value>Дата и время</value>
+  </data>
+  <data name="Introduction_Overlays_Title" xml:space="preserve">
+    <value>Оверлеи</value>
+  </data>
+  <data name="Introduction_ShowDialog" xml:space="preserve">
+    <value>Показать диалог</value>
+  </data>
+  <data name="Introduction_PopConfirm_Header" xml:space="preserve">
+    <value>Удалить эту сборку?</value>
+  </data>
+  <data name="Introduction_PopConfirm_Content" xml:space="preserve">
+    <value>Артефакты будут удалены навсегда.</value>
+  </data>
+  <data name="Introduction_Uninstall" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Introduction_Footer" xml:space="preserve">
+    <value>Ursa распространяется по лицензии MIT · Создано IRIHI на Avalonia</value>
+  </data>
+  <data name="Introduction_Dialog_Title" xml:space="preserve">
+    <value>Чистая установка?</value>
+  </data>
+  <data name="Introduction_Dialog_Message" xml:space="preserve">
+    <value>Это удалит локальный кэш пакетов. Действие нельзя отменить.</value>
+  </data>
+
 </root>
