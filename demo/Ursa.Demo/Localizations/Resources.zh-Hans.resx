@@ -1764,7 +1764,7 @@
     <value>开源</value>
   </data>
   <data name="Introduction_Ticker" xml:space="preserve">
-    <value>◆ 60+ 生产级控件    ◆ Windows · macOS · Linux · Web · iOS · Android    ◆ MIT 许可，永久免费    ◆ 深色模式与主题色板    ◆ 内置 40+ 种语言    ◆ 基于 Avalonia 11 驱动</value>
+    <value>◆ 60+ 生产级控件    ◆ Windows · macOS · Linux · Web · iOS · Android    ◆ MIT 许可，永久免费    ◆ 深色模式与主题色板    ◆ 内置 40+ 种语言    ◆ 基于 Avalonia 12 驱动</value>
   </data>
   <data name="Introduction_Section_Title" xml:space="preserve">
     <value>控件展示</value>

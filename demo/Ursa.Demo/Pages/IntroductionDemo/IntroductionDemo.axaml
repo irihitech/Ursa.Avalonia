@@ -20,18 +20,16 @@
         <!-- Cards -->
         <Style Selector="Border.ShowcaseCard">
             <Setter Property="Background"
-                    Value="{DynamicResource SemiColorBgDefault}" />
+                    Value="Transparent" />
             <Setter Property="BorderBrush"
                     Value="{DynamicResource SemiColorBorder}" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="CornerRadius" Value="16" />
             <Setter Property="Padding" Value="20" />
-            <Setter Property="BoxShadow"
-                    Value="0 1 2 0 #16000000, 0 12 32 0 #14000000" />
         </Style>
         <Style Selector="Border.ShowcaseCard:pointerover">
             <Setter Property="BoxShadow"
-                    Value="0 2 4 0 #16000000, 0 16 40 0 #1F000000" />
+                    Value="{DynamicResource SemiShadowElevated}" />
         </Style>
 
         <!-- Card typography -->
@@ -273,7 +271,8 @@
 
             <!--  ============ Masonry ============  -->
             <Grid MinWidth="980"
-                  ColumnDefinitions="*,16,*,16,*">
+                  ColumnDefinitions="*,*,*"
+                  ColumnSpacing="16">
 
                 <!--  ======== Column 1 ========  -->
                 <StackPanel Grid.Column="0" Spacing="16">
@@ -424,7 +423,7 @@
                 </StackPanel>
 
                 <!--  ======== Column 2 ========  -->
-                <StackPanel Grid.Column="2" Spacing="16">
+                <StackPanel Grid.Column="1" Spacing="16">
                     
                     <!--  QRCode  -->
                     <Border Classes="ShowcaseCard">
@@ -589,7 +588,7 @@
                 </StackPanel>
 
                 <!--  ======== Column 3 ========  -->
-                <StackPanel Grid.Column="4" Spacing="16">
+                <StackPanel Grid.Column="2" Spacing="16">
 
                     <!--  Date & time  -->
                     <Border Classes="ShowcaseCard">
