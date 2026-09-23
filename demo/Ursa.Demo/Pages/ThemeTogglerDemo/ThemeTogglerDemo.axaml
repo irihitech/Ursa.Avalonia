@@ -1,35 +1,61 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:u="https://irihi.tech/ursa"
-             mc:Ignorable="d" d:DesignWidth="800"
-             d:DesignHeight="450"
-             x:Class="Ursa.Demo.Pages.ThemeTogglerDemo.ThemeTogglerDemo"
-             x:DataType="viewModels:ThemeTogglerDemoViewModel"
-             xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.ThemeTogglerDemo">
-    <DockPanel>
-        <Grid ColumnDefinitions="Auto, *">
-            <StackPanel Grid.Column="0">
-                <TextBlock Text="Global" />
-                <u:ThemeToggleButton />
-                <TextBlock Text="Global Indicator" />
-                <u:ThemeToggleButton Mode="Indicator" />
-                <TextBlock Text="Target To Scope" />
-                <u:ThemeToggleButton
-                    TargetScope="{Binding #scope}" />
-            </StackPanel>
-            <ThemeVariantScope Grid.Column="1" Name="scope"
-                               RequestedThemeVariant="Dark">
-                <Border
-                    Theme="{DynamicResource CardBorder}">
-                    <StackPanel>
-                        <Button Content="Hello World" />
-                        <Calendar />
-                        <u:ThemeToggleButton />
-                    </StackPanel>
-                </Border>
-            </ThemeVariantScope>
-        </Grid>
-    </DockPanel>
+<UserControl
+    x:Class="Ursa.Demo.Pages.ThemeTogglerDemo.ThemeTogglerDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Ursa.Demo.Pages.ThemeTogglerDemo"
+    x:CompileBindings="True"
+    x:DataType="vm:ThemeTogglerDemoViewModel"
+    mc:Ignorable="d">
+    <TabControl>
+        <TabItem
+            Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+            Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel
+                    HorizontalAlignment="Stretch"
+                    Spacing="20">
+                    <controls:DemoSectionView SectionContext="{Binding GlobalThemeSection}">
+                        <u:ThemeToggleButton IsThreeState="True" />
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding ThreeStateSection}">
+                        <u:ThemeToggleButton IsThreeState="True" />
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding IndicatorSection}">
+                        <u:ThemeToggleButton
+                            IsThreeState="True"
+                            IsHitTestVisible="False"
+                            Mode="Indicator" />
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding ScopedThemeSection}">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <u:ThemeToggleButton
+                                Grid.Column="0"
+                                TargetScope="{Binding #scope}" />
+                            <ThemeVariantScope
+                                x:Name="scope"
+                                Grid.Column="1"
+                                RequestedThemeVariant="Dark">
+                                <Border
+                                    Padding="16"
+                                    Theme="{DynamicResource CardBorder}">
+                                    <StackPanel>
+                                        <Button Content="Inside scope" />
+                                        <u:ThemeToggleButton />
+                                    </StackPanel>
+                                </Border>
+                            </ThemeVariantScope>
+                        </Grid>
+                    </controls:DemoSectionView>
+                </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>

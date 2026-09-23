@@ -2070,4 +2070,28 @@
   <data name="Page_PopConfirm_Section_Custom_Icon_Description" xml:space="preserve">
     <value>Ustaw właściwość Icon, aby zastąpić wbudowaną ikonę własną zawartością.</value>
   </data>
+  <data name="Page_ThemeToggler_Section_Global_Header" xml:space="preserve">
+    <value>Motyw aplikacji</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Global_Description" xml:space="preserve">
+    <value>Domyślnie ThemeToggleButton steruje motywem całej aplikacji i przełącza między Light i Dark. Jeśli aplikacja musi ustawić RequestedThemeVariant na ThemeVariant.Default, ustaw IsThreeState na true, aby można było wybrać Default.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Header" xml:space="preserve">
+    <value>Trójstanowe przełączanie motywu</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Description" xml:space="preserve">
+    <value>Ustaw IsThreeState na true, aby przełączać motywy Light, Dark i Default (systemowy).</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Header" xml:space="preserve">
+    <value>Wskaźnik motywu</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Description" xml:space="preserve">
+    <value>Tryb Indicator pokazuje bieżący motyw Light, Dark lub Default bez wprowadzania zmiany.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Header" xml:space="preserve">
+    <value>Sterowanie motywem w zakresie</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Description" xml:space="preserve">
+    <value>Umieść zawartość w ThemeVariantScope i ustaw TargetScope, aby zmieniać tylko ten zakres. Przełącznik umieszczony w zakresie może automatycznie nim sterować.</value>
+  </data>
 </root>

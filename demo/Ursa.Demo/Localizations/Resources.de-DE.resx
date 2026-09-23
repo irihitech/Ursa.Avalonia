@@ -2077,4 +2077,28 @@
   <data name="Page_PopConfirm_Section_Custom_Icon_Description" xml:space="preserve">
     <value>Setzen Sie die Eigenschaft Icon, um das integrierte Symbol durch eigenen Inhalt zu ersetzen.</value>
   </data>
+  <data name="Page_ThemeToggler_Section_Global_Header" xml:space="preserve">
+    <value>Anwendungsthema</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Global_Description" xml:space="preserve">
+    <value>Standardmäßig steuert ThemeToggleButton das anwendungsweite Theme und wechselt zwischen Light und Dark. Wenn die Anwendung RequestedThemeVariant auf ThemeVariant.Default setzen muss, setzen Sie IsThreeState auf true, damit Default über den Umschalter auswählbar ist.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Header" xml:space="preserve">
+    <value>Dreistufiger Themenwechsel</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Description" xml:space="preserve">
+    <value>Setzen Sie IsThreeState auf true, um zwischen den Themes Light, Dark und Default (System) zu wechseln.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Header" xml:space="preserve">
+    <value>Themenanzeige</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Description" xml:space="preserve">
+    <value>Der Modus Indicator zeigt das aktuelle Theme Light, Dark oder Default an, ohne es zu ändern.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Header" xml:space="preserve">
+    <value>Theme-Steuerung für einen Bereich</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Description" xml:space="preserve">
+    <value>Platzieren Sie Inhalte in einer ThemeVariantScope und setzen Sie TargetScope, damit nur dieser Bereich geändert wird. Ein Umschalter innerhalb eines Bereichs kann ihn automatisch steuern.</value>
+  </data>
 </root>

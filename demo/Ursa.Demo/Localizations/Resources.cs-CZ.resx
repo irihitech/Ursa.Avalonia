@@ -2078,4 +2078,28 @@
   <data name="Page_PopConfirm_Section_Custom_Icon_Description" xml:space="preserve">
     <value>Nastavením vlastnosti Icon nahradíte vestavěnou ikonu vlastním obsahem.</value>
   </data>
+  <data name="Page_ThemeToggler_Section_Global_Header" xml:space="preserve">
+    <value>Motiv aplikace</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Global_Description" xml:space="preserve">
+    <value>ThemeToggleButton ve výchozím nastavení ovládá motiv celé aplikace a přepíná mezi Light a Dark. Pokud aplikace potřebuje nastavit RequestedThemeVariant na ThemeVariant.Default, nastavte IsThreeState na true, aby bylo možné přepínačem zvolit Default.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Header" xml:space="preserve">
+    <value>Třípolohové přepínání motivu</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Description" xml:space="preserve">
+    <value>Nastavením IsThreeState na true budete přepínat mezi motivy Light, Dark a Default (systémový).</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Header" xml:space="preserve">
+    <value>Indikátor motivu</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Description" xml:space="preserve">
+    <value>Režim Indicator zobrazuje aktuální motiv Light, Dark nebo Default, aniž by jej měnil.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Header" xml:space="preserve">
+    <value>Ovládání motivu v rozsahu</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Description" xml:space="preserve">
+    <value>Umístěte obsah do ThemeVariantScope a nastavte TargetScope, aby se měnil pouze tento rozsah. Přepínač uvnitř rozsahu jej může automaticky ovládat.</value>
+  </data>
 </root>

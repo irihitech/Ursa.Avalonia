@@ -2078,4 +2078,28 @@
   <data name="Page_PopConfirm_Section_Custom_Icon_Description" xml:space="preserve">
     <value>Set the Icon property to replace the built-in icon with custom content.</value>
   </data>
+  <data name="Page_ThemeToggler_Section_Global_Header" xml:space="preserve">
+    <value>Application theme</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Global_Description" xml:space="preserve">
+    <value>By default, ThemeToggleButton controls the application-wide theme and switches between Light and Dark. If the application must set RequestedThemeVariant to ThemeVariant.Default, set IsThreeState to true so the toggle can select Default.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Header" xml:space="preserve">
+    <value>Three-state theme cycle</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Description" xml:space="preserve">
+    <value>Set IsThreeState to true to cycle through Light, Dark, and Default (system) themes.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Header" xml:space="preserve">
+    <value>Theme indicator</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Description" xml:space="preserve">
+    <value>Indicator mode displays the current Light, Dark, or Default theme without applying a theme change.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Header" xml:space="preserve">
+    <value>Scoped theme control</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Description" xml:space="preserve">
+    <value>Place content in ThemeVariantScope and set TargetScope to change only that scope. A toggle inside a scope can target it automatically.</value>
+  </data>
 </root>

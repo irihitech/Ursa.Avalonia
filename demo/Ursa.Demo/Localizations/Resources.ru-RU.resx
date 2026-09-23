@@ -2078,4 +2078,28 @@
   <data name="Page_PopConfirm_Section_Custom_Icon_Description" xml:space="preserve">
     <value>Задайте свойство Icon, чтобы заменить встроенный значок пользовательским содержимым.</value>
   </data>
+  <data name="Page_ThemeToggler_Section_Global_Header" xml:space="preserve">
+    <value>Тема приложения</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Global_Description" xml:space="preserve">
+    <value>По умолчанию ThemeToggleButton управляет темой всего приложения и переключает Light и Dark. Если приложению необходимо задать RequestedThemeVariant как ThemeVariant.Default, установите IsThreeState в true, чтобы можно было выбрать Default.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Header" xml:space="preserve">
+    <value>Трехпозиционное переключение темы</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Description" xml:space="preserve">
+    <value>Установите IsThreeState в true, чтобы переключать темы Light, Dark и Default (системную).</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Header" xml:space="preserve">
+    <value>Индикатор темы</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Description" xml:space="preserve">
+    <value>Режим Indicator отображает текущую тему Light, Dark или Default, не применяя изменение.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Header" xml:space="preserve">
+    <value>Управление темой в области</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Description" xml:space="preserve">
+    <value>Поместите содержимое в ThemeVariantScope и задайте TargetScope, чтобы изменить только эту область. Переключатель внутри области может автоматически управлять ею.</value>
+  </data>
 </root>

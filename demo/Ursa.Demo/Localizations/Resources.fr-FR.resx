@@ -2078,4 +2078,28 @@
   <data name="Page_PopConfirm_Section_Custom_Icon_Description" xml:space="preserve">
     <value>Définissez la propriété Icon pour remplacer l’icône intégrée par un contenu personnalisé.</value>
   </data>
+  <data name="Page_ThemeToggler_Section_Global_Header" xml:space="preserve">
+    <value>Thème de l’application</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Global_Description" xml:space="preserve">
+    <value>Par défaut, ThemeToggleButton contrôle le thème de toute l’application et bascule entre Light et Dark. Si l’application doit définir RequestedThemeVariant sur ThemeVariant.Default, définissez IsThreeState sur true pour permettre au bouton de sélectionner Default.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Header" xml:space="preserve">
+    <value>Cycle de thème à trois états</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Description" xml:space="preserve">
+    <value>Définissez IsThreeState sur true pour parcourir les thèmes Light, Dark et Default (système).</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Header" xml:space="preserve">
+    <value>Indicateur de thème</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Description" xml:space="preserve">
+    <value>Le mode Indicator affiche le thème Light, Dark ou Default actuel sans appliquer de changement de thème.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Header" xml:space="preserve">
+    <value>Contrôle du thème par portée</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Description" xml:space="preserve">
+    <value>Placez le contenu dans ThemeVariantScope et définissez TargetScope pour ne modifier que cette portée. Un bouton de bascule placé dans une portée peut la cibler automatiquement.</value>
+  </data>
 </root>

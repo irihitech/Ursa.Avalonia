@@ -2064,4 +2064,28 @@
   <data name="Page_PopConfirm_Section_Custom_Icon_Description" xml:space="preserve">
     <value>设置 Icon 属性，以自定义内容替换内置图标。</value>
   </data>
+  <data name="Page_ThemeToggler_Section_Global_Header" xml:space="preserve">
+    <value>应用主题</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Global_Description" xml:space="preserve">
+    <value>默认情况下，ThemeToggleButton 控制整个应用的主题，并在 Light 和 Dark 之间切换。如果应用需要将 RequestedThemeVariant 设为 ThemeVariant.Default，必须将 IsThreeState 设为 true，才能通过切换按钮选择 Default。</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Header" xml:space="preserve">
+    <value>三态主题循环</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Description" xml:space="preserve">
+    <value>将 IsThreeState 设为 true，即可在 Light、Dark 和 Default（系统）主题之间循环切换。</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Header" xml:space="preserve">
+    <value>主题指示器</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Description" xml:space="preserve">
+    <value>Indicator 模式显示当前 Light、Dark 或 Default 主题，但不应用主题更改。</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Header" xml:space="preserve">
+    <value>作用域主题控制</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Description" xml:space="preserve">
+    <value>将内容放在 ThemeVariantScope 中并设置 TargetScope，即可仅更改该作用域的主题。作用域内的切换按钮也可以自动控制该作用域。</value>
+  </data>
 </root>
