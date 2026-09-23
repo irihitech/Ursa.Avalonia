@@ -45,7 +45,8 @@ For a target page `<ControlName>Demo`:
    - If the control supports style classes, add a dedicated style-class section tagged with `DemoSectionTag.Style`, and explain what each class changes.
    - If style classes can be switched interactively and there are multiple class groups, prefer using `ClassSelector` to group class options and apply them to target controls.
    - For selection controls, include a simple section that binds a string collection (`ObservableCollection<string>`) for basic usage.
-   - For complex item types, demonstrate filtering and display together: use `ItemFilter` and `ItemTemplate` in the same section so filtering behavior and rendering are explained as one workflow.
+   - Focus each demo section on one cohesive function of the control. Add more sections than the original demo page when needed to cover how the control actually works.
+   - Keep all descriptive and explanatory text in the section's `SectionContext`; do not add explanation text to the demo section content. Extra controls may support an interactive demo, but omit those helper controls from the section's code snippets.
 
 ## Naming and structure rules
 
