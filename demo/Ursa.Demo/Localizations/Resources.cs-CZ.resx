@@ -1400,6 +1400,9 @@
   <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
     <value>ViewModel</value>
   </data>
+  <data name="DemoSection_Tab_ViewCode" xml:space="preserve">
+    <value>Kód zobrazení</value>
+  </data>
   <data name="Page_TimePicker_Section_Basic_Header" xml:space="preserve">
     <value>Základní použití</value>
   </data>
@@ -1948,5 +1951,131 @@
   </data>
   <data name="Page_MessageBox_Section_Observable_Content_Description" xml:space="preserve">
     <value>Zadejte zdroje IObservable&lt;string&gt;, které aktualizují zprávu a její název, dokud je dialogové okno otevřené.</value>
+  </data>
+  <data name="Page_Notification_Section_Manager_Wiring_Header" xml:space="preserve">
+    <value>Zapojení správce oznámení</value>
+  </data>
+  <data name="Page_Notification_Section_Manager_Wiring_Description" xml:space="preserve">
+    <value>Před voláním Show vytvořte nebo znovu použijte WindowNotificationManager pro aktuální TopLevel.</value>
+  </data>
+  <data name="Page_Notification_Section_Position_Header" xml:space="preserve">
+    <value>Pozice</value>
+  </data>
+  <data name="Page_Notification_Section_Position_Description" xml:space="preserve">
+    <value>Nastavením Position vyberte jedno ze šesti umístění oznámení.</value>
+  </data>
+  <data name="Page_Notification_Section_Icon_Header" xml:space="preserve">
+    <value>Ikona</value>
+  </data>
+  <data name="Page_Notification_Section_Icon_Description" xml:space="preserve">
+    <value>Pomocí showIcon zobrazíte nebo skryjete ikonu typu oznámení.</value>
+  </data>
+  <data name="Page_Notification_Section_Show_Close_Header" xml:space="preserve">
+    <value>Tlačítko zavření</value>
+  </data>
+  <data name="Page_Notification_Section_Show_Close_Description" xml:space="preserve">
+    <value>Pomocí showClose umožníte uživatelům ručně zavřít oznámení.</value>
+  </data>
+  <data name="Page_Notification_Section_Light_Style_Header" xml:space="preserve">
+    <value>Světlá třída stylu</value>
+  </data>
+  <data name="Page_Notification_Section_Light_Style_Description" xml:space="preserve">
+    <value>Předáním třídy Light použijete světlé pozadí a okraje podle typu oznámení.</value>
+  </data>
+  <data name="Page_Notification_Section_Close_Reason_Header" xml:space="preserve">
+    <value>Callback důvodu zavření</value>
+  </data>
+  <data name="Page_Notification_Section_Close_Reason_Description" xml:space="preserve">
+    <value>Pomocí onClose získáte při zavření oznámení hodnotu MessageCloseReason: Timeout, UserAction nebo Displaced.</value>
+  </data>
+  <data name="Page_Toast_Section_Manager_Setup_Header" xml:space="preserve">
+    <value>Nastavení správce Toast</value>
+  </data>
+  <data name="Page_Toast_Section_Manager_Setup_Description" xml:space="preserve">
+    <value>Vytvořte WindowToastManager pro aktuální TopLevel, nastavte maximální počet viditelných Toastů a při odpojení pohledu jej odinstalujte.</value>
+  </data>
+  <data name="Page_Toast_Section_Types_Header" xml:space="preserve">
+    <value>Typy oznámení</value>
+  </data>
+  <data name="Page_Toast_Section_Types_Description" xml:space="preserve">
+    <value>Zvolte Information, Success, Warning nebo Error podle zprávy.</value>
+  </data>
+  <data name="Page_Toast_Section_Icon_Header" xml:space="preserve">
+    <value>Zobrazení ikony</value>
+  </data>
+  <data name="Page_Toast_Section_Icon_Description" xml:space="preserve">
+    <value>Pomocí showIcon zobrazíte nebo skryjete ikonu odpovídající typu Toastu.</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Button_Header" xml:space="preserve">
+    <value>Tlačítko zavření</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Button_Description" xml:space="preserve">
+    <value>Pomocí showClose umožníte uživatelům zavřít Toast před vypršením jeho platnosti.</value>
+  </data>
+  <data name="Page_Toast_Section_Expiration_Header" xml:space="preserve">
+    <value>Doba zobrazení</value>
+  </data>
+  <data name="Page_Toast_Section_Expiration_Description" xml:space="preserve">
+    <value>Pomocí expiration nastavíte dobu zobrazení Toastu. TimeSpan.Zero jej ponechá otevřený až do ručního zavření.</value>
+  </data>
+  <data name="Page_Toast_Section_Light_Style_Header" xml:space="preserve">
+    <value>Světlý styl</value>
+  </data>
+  <data name="Page_Toast_Section_Light_Style_Description" xml:space="preserve">
+    <value>Předejte třídu Light, která nastaví světlé pozadí a barevný okraj podle typu Toastu.</value>
+  </data>
+  <data name="Page_Toast_Section_Click_Callback_Header" xml:space="preserve">
+    <value>Akce při kliknutí</value>
+  </data>
+  <data name="Page_Toast_Section_Click_Callback_Description" xml:space="preserve">
+    <value>Pomocí onClick spustíte akci při kliknutí uživatele na Toast.</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Reason_Header" xml:space="preserve">
+    <value>Důvod zavření</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Reason_Description" xml:space="preserve">
+    <value>Pomocí onClose zjistíte, proč byl Toast zavřen, například po vypršení času, akcí uživatele nebo nahrazením novým Toastem.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Basic_Header" xml:space="preserve">
+    <value>Základní potvrzení</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Basic_Description" xml:space="preserve">
+    <value>Obalte spouštěcí prvek do PopConfirm a navažte ConfirmCommand a CancelCommand na akce pro jednotlivé volby.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Trigger_Modes_Header" xml:space="preserve">
+    <value>Režimy spuštění</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Trigger_Modes_Description" xml:space="preserve">
+    <value>Výchozí režim je Click. Kombinací Focus a Click otevřete popup také při zaměření spouštěcího prvku pomocí klávesnice.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Non_Button_Trigger_Header" xml:space="preserve">
+    <value>Spouštěcí prvek bez tlačítka</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Non_Button_Trigger_Description" xml:space="preserve">
+    <value>Tlačítko otevře popup při události Click; ostatní podřízené ovládací prvky jej otevřou při PointerPressed.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Placement_Header" xml:space="preserve">
+    <value>Umístění popupu</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Placement_Description" xml:space="preserve">
+    <value>Pomocí Placement vyberte, kde se popup zobrazí vzhledem ke spouštěcímu prvku.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Async_Command_Header" xml:space="preserve">
+    <value>Zpracování asynchronního příkazu</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Async_Command_Description" xml:space="preserve">
+    <value>Je-li HandleAsyncCommand zapnuté, popup zůstane otevřený během provádění asynchronního příkazu a zavře se po jeho dokončení.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Icon_Styles_Header" xml:space="preserve">
+    <value>Styly vestavěné ikony</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Icon_Styles_Description" xml:space="preserve">
+    <value>Pomocí Information, Success, Warning nebo Error změňte vestavěnou ikonu a její barvu.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Custom_Icon_Header" xml:space="preserve">
+    <value>Vlastní ikona</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Custom_Icon_Description" xml:space="preserve">
+    <value>Nastavením vlastnosti Icon nahradíte vestavěnou ikonu vlastním obsahem.</value>
   </data>
 </root>

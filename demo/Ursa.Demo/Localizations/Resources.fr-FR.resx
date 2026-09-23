@@ -1400,6 +1400,9 @@
   <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
     <value>ViewModel</value>
   </data>
+  <data name="DemoSection_Tab_ViewCode" xml:space="preserve">
+    <value>Code de la vue</value>
+  </data>
   <data name="Page_TimePicker_Section_Basic_Header" xml:space="preserve">
     <value>Utilisation de base</value>
   </data>
@@ -1948,5 +1951,131 @@
   </data>
   <data name="Page_MessageBox_Section_Observable_Content_Description" xml:space="preserve">
     <value>Fournissez des sources IObservable&lt;string&gt; pour mettre à jour le message et le titre tant que la boîte de message reste ouverte.</value>
+  </data>
+  <data name="Page_Notification_Section_Manager_Wiring_Header" xml:space="preserve">
+    <value>Configurer NotificationManager</value>
+  </data>
+  <data name="Page_Notification_Section_Manager_Wiring_Description" xml:space="preserve">
+    <value>Créez ou réutilisez un WindowNotificationManager pour le TopLevel courant avant d’appeler Show.</value>
+  </data>
+  <data name="Page_Notification_Section_Position_Header" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Page_Notification_Section_Position_Description" xml:space="preserve">
+    <value>Définissez Position pour choisir parmi les six emplacements de notification.</value>
+  </data>
+  <data name="Page_Notification_Section_Icon_Header" xml:space="preserve">
+    <value>Icône</value>
+  </data>
+  <data name="Page_Notification_Section_Icon_Description" xml:space="preserve">
+    <value>Utilisez showIcon pour afficher ou masquer l’icône du type de notification.</value>
+  </data>
+  <data name="Page_Notification_Section_Show_Close_Header" xml:space="preserve">
+    <value>Bouton de fermeture</value>
+  </data>
+  <data name="Page_Notification_Section_Show_Close_Description" xml:space="preserve">
+    <value>Utilisez showClose pour permettre aux utilisateurs de fermer manuellement une notification.</value>
+  </data>
+  <data name="Page_Notification_Section_Light_Style_Header" xml:space="preserve">
+    <value>Classe de style Light</value>
+  </data>
+  <data name="Page_Notification_Section_Light_Style_Description" xml:space="preserve">
+    <value>Passez la classe Light pour appliquer des arrière-plans clairs et des bordures adaptées au type de notification.</value>
+  </data>
+  <data name="Page_Notification_Section_Close_Reason_Header" xml:space="preserve">
+    <value>Callback du motif de fermeture</value>
+  </data>
+  <data name="Page_Notification_Section_Close_Reason_Description" xml:space="preserve">
+    <value>Utilisez onClose pour recevoir Timeout, UserAction ou Displaced lors de la fermeture d’une notification.</value>
+  </data>
+  <data name="Page_Toast_Section_Manager_Setup_Header" xml:space="preserve">
+    <value>Configurer le gestionnaire Toast</value>
+  </data>
+  <data name="Page_Toast_Section_Manager_Setup_Description" xml:space="preserve">
+    <value>Créez un WindowToastManager pour le TopLevel courant, définissez le nombre maximal de Toast visibles et désinstallez-le lorsque la vue est détachée.</value>
+  </data>
+  <data name="Page_Toast_Section_Types_Header" xml:space="preserve">
+    <value>Types de notification</value>
+  </data>
+  <data name="Page_Toast_Section_Types_Description" xml:space="preserve">
+    <value>Choisissez Information, Success, Warning ou Error selon le message à afficher.</value>
+  </data>
+  <data name="Page_Toast_Section_Icon_Header" xml:space="preserve">
+    <value>Affichage de l’icône</value>
+  </data>
+  <data name="Page_Toast_Section_Icon_Description" xml:space="preserve">
+    <value>Utilisez showIcon pour afficher ou masquer l’icône associée au type de Toast.</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Button_Header" xml:space="preserve">
+    <value>Bouton de fermeture</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Button_Description" xml:space="preserve">
+    <value>Utilisez showClose pour permettre aux utilisateurs de fermer un Toast avant son expiration.</value>
+  </data>
+  <data name="Page_Toast_Section_Expiration_Header" xml:space="preserve">
+    <value>Durée d’affichage</value>
+  </data>
+  <data name="Page_Toast_Section_Expiration_Description" xml:space="preserve">
+    <value>Définissez expiration pour contrôler la durée d’affichage du Toast. TimeSpan.Zero le maintient ouvert jusqu’à sa fermeture manuelle.</value>
+  </data>
+  <data name="Page_Toast_Section_Light_Style_Header" xml:space="preserve">
+    <value>Style Light</value>
+  </data>
+  <data name="Page_Toast_Section_Light_Style_Description" xml:space="preserve">
+    <value>Passez la classe Light pour obtenir un arrière-plan clair et une bordure colorée selon le type de Toast.</value>
+  </data>
+  <data name="Page_Toast_Section_Click_Callback_Header" xml:space="preserve">
+    <value>Rappel au clic</value>
+  </data>
+  <data name="Page_Toast_Section_Click_Callback_Description" xml:space="preserve">
+    <value>Utilisez onClick pour exécuter une action lorsque l’utilisateur clique sur le Toast.</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Reason_Header" xml:space="preserve">
+    <value>Raison de fermeture</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Reason_Description" xml:space="preserve">
+    <value>Utilisez onClose pour connaître la raison de fermeture d’un Toast, par exemple l’expiration, une action de l’utilisateur ou son remplacement.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Basic_Header" xml:space="preserve">
+    <value>Confirmation de base</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Basic_Description" xml:space="preserve">
+    <value>Entourez un élément déclencheur avec PopConfirm et liez ConfirmCommand et CancelCommand aux actions correspondant à chaque choix.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Trigger_Modes_Header" xml:space="preserve">
+    <value>Modes de déclenchement</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Trigger_Modes_Description" xml:space="preserve">
+    <value>Click est le mode par défaut. Combinez Focus et Click pour ouvrir aussi la fenêtre lorsque la navigation au clavier place le focus sur l’élément déclencheur.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Non_Button_Trigger_Header" xml:space="preserve">
+    <value>Déclencheur sans bouton</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Non_Button_Trigger_Description" xml:space="preserve">
+    <value>Un Button ouvre la fenêtre lors de Click ; les autres contrôles enfants l’ouvrent lors de PointerPressed.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Placement_Header" xml:space="preserve">
+    <value>Position de la fenêtre</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Placement_Description" xml:space="preserve">
+    <value>Définissez Placement pour choisir la position de la fenêtre par rapport à son élément déclencheur.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Async_Command_Header" xml:space="preserve">
+    <value>Gestion des commandes asynchrones</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Async_Command_Description" xml:space="preserve">
+    <value>Lorsque HandleAsyncCommand est activé, la fenêtre reste ouverte pendant l’exécution de la commande asynchrone et se ferme lorsqu’elle est terminée.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Icon_Styles_Header" xml:space="preserve">
+    <value>Styles des icônes intégrées</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Icon_Styles_Description" xml:space="preserve">
+    <value>Utilisez Information, Success, Warning ou Error pour modifier l’icône intégrée et sa couleur.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Custom_Icon_Header" xml:space="preserve">
+    <value>Icône personnalisée</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Custom_Icon_Description" xml:space="preserve">
+    <value>Définissez la propriété Icon pour remplacer l’icône intégrée par un contenu personnalisé.</value>
   </data>
 </root>

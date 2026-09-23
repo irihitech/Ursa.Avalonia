@@ -1400,6 +1400,9 @@
   <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
     <value>ViewModel</value>
   </data>
+  <data name="DemoSection_Tab_ViewCode" xml:space="preserve">
+    <value>Код представления</value>
+  </data>
   <data name="Page_TimePicker_Section_Basic_Header" xml:space="preserve">
     <value>Базовое использование</value>
   </data>
@@ -1948,5 +1951,131 @@
   </data>
   <data name="Page_MessageBox_Section_Observable_Content_Description" xml:space="preserve">
     <value>Передайте источники IObservable&lt;string&gt;, чтобы обновлять сообщение и заголовок, пока окно сообщения открыто.</value>
+  </data>
+  <data name="Page_Notification_Section_Manager_Wiring_Header" xml:space="preserve">
+    <value>Подключение NotificationManager</value>
+  </data>
+  <data name="Page_Notification_Section_Manager_Wiring_Description" xml:space="preserve">
+    <value>Создайте или используйте существующий WindowNotificationManager для текущего TopLevel перед вызовом Show.</value>
+  </data>
+  <data name="Page_Notification_Section_Position_Header" xml:space="preserve">
+    <value>Положение</value>
+  </data>
+  <data name="Page_Notification_Section_Position_Description" xml:space="preserve">
+    <value>Задайте Position, чтобы выбрать одно из шести мест отображения уведомления.</value>
+  </data>
+  <data name="Page_Notification_Section_Icon_Header" xml:space="preserve">
+    <value>Значок</value>
+  </data>
+  <data name="Page_Notification_Section_Icon_Description" xml:space="preserve">
+    <value>Используйте showIcon, чтобы показывать или скрывать значок типа уведомления.</value>
+  </data>
+  <data name="Page_Notification_Section_Show_Close_Header" xml:space="preserve">
+    <value>Кнопка закрытия</value>
+  </data>
+  <data name="Page_Notification_Section_Show_Close_Description" xml:space="preserve">
+    <value>Используйте showClose, чтобы пользователи могли закрывать уведомление вручную.</value>
+  </data>
+  <data name="Page_Notification_Section_Light_Style_Header" xml:space="preserve">
+    <value>Класс стиля Light</value>
+  </data>
+  <data name="Page_Notification_Section_Light_Style_Description" xml:space="preserve">
+    <value>Передайте класс Light, чтобы использовать светлый фон и рамки, соответствующие типу уведомления.</value>
+  </data>
+  <data name="Page_Notification_Section_Close_Reason_Header" xml:space="preserve">
+    <value>Callback причины закрытия</value>
+  </data>
+  <data name="Page_Notification_Section_Close_Reason_Description" xml:space="preserve">
+    <value>Используйте onClose, чтобы получить Timeout, UserAction или Displaced при закрытии уведомления.</value>
+  </data>
+  <data name="Page_Toast_Section_Manager_Setup_Header" xml:space="preserve">
+    <value>Настройка менеджера Toast</value>
+  </data>
+  <data name="Page_Toast_Section_Manager_Setup_Description" xml:space="preserve">
+    <value>Создайте WindowToastManager для текущего TopLevel, задайте максимальное число видимых Toast и удалите его при отсоединении представления.</value>
+  </data>
+  <data name="Page_Toast_Section_Types_Header" xml:space="preserve">
+    <value>Типы уведомлений</value>
+  </data>
+  <data name="Page_Toast_Section_Types_Description" xml:space="preserve">
+    <value>Выберите Information, Success, Warning или Error в зависимости от сообщения.</value>
+  </data>
+  <data name="Page_Toast_Section_Icon_Header" xml:space="preserve">
+    <value>Отображение значка</value>
+  </data>
+  <data name="Page_Toast_Section_Icon_Description" xml:space="preserve">
+    <value>Используйте showIcon, чтобы показать или скрыть значок, соответствующий типу Toast.</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Button_Header" xml:space="preserve">
+    <value>Кнопка закрытия</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Button_Description" xml:space="preserve">
+    <value>Используйте showClose, чтобы пользователь мог закрыть Toast до истечения времени показа.</value>
+  </data>
+  <data name="Page_Toast_Section_Expiration_Header" xml:space="preserve">
+    <value>Время показа</value>
+  </data>
+  <data name="Page_Toast_Section_Expiration_Description" xml:space="preserve">
+    <value>Задайте expiration, чтобы управлять длительностью показа Toast. TimeSpan.Zero оставляет его открытым до ручного закрытия.</value>
+  </data>
+  <data name="Page_Toast_Section_Light_Style_Header" xml:space="preserve">
+    <value>Светлый стиль</value>
+  </data>
+  <data name="Page_Toast_Section_Light_Style_Description" xml:space="preserve">
+    <value>Передайте класс Light, чтобы применить светлый фон и цветную рамку в соответствии с типом Toast.</value>
+  </data>
+  <data name="Page_Toast_Section_Click_Callback_Header" xml:space="preserve">
+    <value>Обработка щелчка</value>
+  </data>
+  <data name="Page_Toast_Section_Click_Callback_Description" xml:space="preserve">
+    <value>Используйте onClick, чтобы выполнить действие при щелчке пользователя по Toast.</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Reason_Header" xml:space="preserve">
+    <value>Причина закрытия</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Reason_Description" xml:space="preserve">
+    <value>Используйте onClose, чтобы узнать причину закрытия Toast, например тайм-аут, действие пользователя или вытеснение.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Basic_Header" xml:space="preserve">
+    <value>Простое подтверждение</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Basic_Description" xml:space="preserve">
+    <value>Оберните элемент, запускающий действие, в PopConfirm и свяжите ConfirmCommand и CancelCommand с действиями для каждого выбора.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Trigger_Modes_Header" xml:space="preserve">
+    <value>Режимы запуска</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Trigger_Modes_Description" xml:space="preserve">
+    <value>По умолчанию используется Click. Объедините Focus и Click, чтобы открывать окно также при получении фокуса элементом управления с помощью клавиатуры.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Non_Button_Trigger_Header" xml:space="preserve">
+    <value>Запуск не кнопкой</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Non_Button_Trigger_Description" xml:space="preserve">
+    <value>Кнопка открывает окно при событии Click, а другие дочерние элементы — при PointerPressed.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Placement_Header" xml:space="preserve">
+    <value>Положение окна</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Placement_Description" xml:space="preserve">
+    <value>Задайте Placement, чтобы выбрать положение окна относительно элемента запуска.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Async_Command_Header" xml:space="preserve">
+    <value>Обработка асинхронных команд</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Async_Command_Description" xml:space="preserve">
+    <value>Если HandleAsyncCommand включен, окно остается открытым во время выполнения асинхронной команды и закрывается после ее завершения.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Icon_Styles_Header" xml:space="preserve">
+    <value>Стили встроенного значка</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Icon_Styles_Description" xml:space="preserve">
+    <value>Используйте Information, Success, Warning или Error, чтобы изменить встроенный значок и его цвет.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Custom_Icon_Header" xml:space="preserve">
+    <value>Пользовательский значок</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Custom_Icon_Description" xml:space="preserve">
+    <value>Задайте свойство Icon, чтобы заменить встроенный значок пользовательским содержимым.</value>
   </data>
 </root>

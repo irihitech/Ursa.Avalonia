@@ -1,68 +1,132 @@
-<UserControl x:Class="Ursa.Demo.Pages.NotificationDemo.NotificationDemo"
-             xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="using:Ursa.Demo.Pages.NotificationDemo"
-             x:DataType="vm:NotificationDemoViewModel"
-             d:DesignHeight="450"
-             d:DesignWidth="800"
-             mc:Ignorable="d">
-    <Design.DataContext>
-        <vm:NotificationDemoViewModel />
-    </Design.DataContext>
-    <StackPanel Spacing="20">
-        <StackPanel Orientation="Horizontal">
-            <ToggleSwitch IsChecked="{Binding ShowIcon}" Content="ShowIcon" />
-            <ToggleSwitch IsChecked="{Binding ShowClose}" Content="ShowClose" />
-        </StackPanel>
+<UserControl
+    x:Class="Ursa.Demo.Pages.NotificationDemo.NotificationDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
+    xmlns:vm="using:Ursa.Demo.Pages.NotificationDemo"
+    x:DataType="vm:NotificationDemoViewModel"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <TabControl>
+        <TabItem
+            Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+            Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel
+                    HorizontalAlignment="Stretch"
+                    Spacing="20">
+                    <controls:DemoSectionView SectionContext="{Binding ManagerWiringSection}">
+                        <Button
+                            Command="{Binding ShowNormalCommand}"
+                            CommandParameter="Information"
+                            Content="Show Notification" />
+                    </controls:DemoSectionView>
 
-        <UniformGrid Rows="2" Columns="3" Width="500" HorizontalAlignment="Left">
-            <UniformGrid.Styles>
-                <Style Selector="RadioButton">
-                    <Setter Property="Theme" Value="{DynamicResource PureCardRadioButton}" />
-                    <Setter Property="Command" Value="{Binding ChangePosition}" />
-                    <Setter Property="CommandParameter" Value="{Binding $self.Content}" />
-                </Style>
-            </UniformGrid.Styles>
-            <RadioButton Content="TopLeft" />
-            <RadioButton Content="TopCenter" />
-            <RadioButton Content="TopRight" IsChecked="True" />
-            <RadioButton Content="BottomLeft" />
-            <RadioButton Content="BottomCenter" />
-            <RadioButton Content="BottomRight" />
-        </UniformGrid>
+                    <controls:DemoSectionView SectionContext="{Binding PositionSection}">
+                        <UniformGrid
+                            Width="500"
+                            HorizontalAlignment="Left"
+                            Columns="3"
+                            Rows="2">
+                            <RadioButton
+                                Command="{Binding ChangePositionCommand}"
+                                CommandParameter="TopLeft"
+                                Content="TopLeft" />
+                            <RadioButton
+                                Command="{Binding ChangePositionCommand}"
+                                CommandParameter="TopCenter"
+                                Content="TopCenter" />
+                            <RadioButton
+                                IsChecked="True"
+                                Command="{Binding ChangePositionCommand}"
+                                CommandParameter="TopRight"
+                                Content="TopRight" />
+                            <RadioButton
+                                Command="{Binding ChangePositionCommand}"
+                                CommandParameter="BottomLeft"
+                                Content="BottomLeft" />
+                            <RadioButton
+                                Command="{Binding ChangePositionCommand}"
+                                CommandParameter="BottomCenter"
+                                Content="BottomCenter" />
+                            <RadioButton
+                                Command="{Binding ChangePositionCommand}"
+                                CommandParameter="BottomRight"
+                                Content="BottomRight" />
+                        </UniformGrid>
+                    </controls:DemoSectionView>
 
-        <StackPanel Orientation="Horizontal" Spacing="20">
-            <StackPanel.Styles>
-                <Style Selector="Button">
-                    <Setter Property="Command" Value="{Binding ShowNormal}" />
-                    <Setter Property="CommandParameter" Value="{Binding $self.Content}" />
-                </Style>
-            </StackPanel.Styles>
-            <Button Content="Information" />
-            <Button Content="Success" Classes="Success" />
-            <Button Content="Warning" Classes="Warning" />
-            <Button Content="Error" Classes="Danger" />
-        </StackPanel>
+                    <controls:DemoSectionView SectionContext="{Binding IconSection}">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <ToggleSwitch
+                                Content="Show Icon"
+                                IsChecked="{Binding ShowIcon}" />
+                            <Button
+                                Command="{Binding ShowNormalCommand}"
+                                CommandParameter="Information"
+                                Content="Show Notification" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-        <StackPanel Orientation="Horizontal" Spacing="20">
-            <StackPanel.Styles>
-                <Style Selector="Button">
-                    <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
-                    <Setter Property="Command" Value="{Binding ShowLight}" />
-                    <Setter Property="CommandParameter" Value="{Binding $self.Content}" />
-                </Style>
-            </StackPanel.Styles>
-            <Button Content="Information" />
-            <Button Content="Success" Classes="Success" />
-            <Button Content="Warning" Classes="Warning" />
-            <Button Content="Error" Classes="Danger" />
-        </StackPanel>
-      
-        <TextBlock>
-            <Run Text="Close Reason: " />
-            <Run Text="{Binding Reason}" />
-        </TextBlock>
-    </StackPanel>
+                    <controls:DemoSectionView SectionContext="{Binding ShowCloseSection}">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <ToggleSwitch
+                                Content="Show Close Button"
+                                IsChecked="{Binding ShowClose}" />
+                            <Button
+                                Command="{Binding ShowNormalCommand}"
+                                CommandParameter="Information"
+                                Content="Show Notification" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding LightStyleSection}">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Spacing="20">
+                            <Button
+                                Command="{Binding ShowLightCommand}"
+                                CommandParameter="Information"
+                                Content="Information" />
+                            <Button
+                                Classes="Success"
+                                Command="{Binding ShowLightCommand}"
+                                CommandParameter="Success"
+                                Content="Success" />
+                            <Button
+                                Classes="Warning"
+                                Command="{Binding ShowLightCommand}"
+                                CommandParameter="Warning"
+                                Content="Warning" />
+                            <Button
+                                Classes="Danger"
+                                Command="{Binding ShowLightCommand}"
+                                CommandParameter="Error"
+                                Content="Error" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding CloseReasonSection}">
+                        <StackPanel Spacing="12">
+                            <Button
+                                Command="{Binding ShowCloseReasonCommand}"
+                                Content="Show Persistent Notification" />
+                            <TextBlock>
+                                <Run Text="Close Reason: " />
+                                <Run Text="{Binding Reason}" />
+                            </TextBlock>
+                        </StackPanel>
+                    </controls:DemoSectionView>
+                </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>
