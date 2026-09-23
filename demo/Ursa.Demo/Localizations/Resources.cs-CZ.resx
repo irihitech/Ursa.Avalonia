@@ -344,6 +344,30 @@
   <data name="Page_Title_DisableContainer" xml:space="preserve">
     <value>Deaktivovaný kontejner (DisableContainer)</value>
   </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Header" xml:space="preserve">
+    <value>Vlastní indikátor</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Header" xml:space="preserve">
+    <value>Použití ve vyskakovacím panelu</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Header" xml:space="preserve">
+    <value>Vymazání výběru</value>
+  </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Pro nejjednodušší scénář jednoho výběru přímo navazte na SelectionList kolekci řetězců.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Description" xml:space="preserve">
+    <value>Upravte indikátor i šablonu položky, aby vybraný řádek odpovídal vizuálnímu stylu aplikace.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Description" xml:space="preserve">
+    <value>Umístěte SelectionList do vyskakovacího panelu, když má oblast výběru zůstat kompaktní.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Description" xml:space="preserve">
+    <value>Použijte příkaz k vymazání aktuální položky a resetování stavu výběru.</value>
+  </data>
   <data name="Page_Title_Divider" xml:space="preserve">
     <value>Oddělovač (Divider)</value>
   </data>
@@ -767,7 +791,7 @@
     <value>Tlačítko posunu je plovoucí tlačítko, které posune zobrazovanou oblast na cílový prvek.</value>
   </data>
   <data name="Page_Description_SelectionList" xml:space="preserve">
-    <value>Seznam výběru prezentuje seznam položek pro jednoduchý nebo vícenásobný výběr.</value>
+    <value>Seznam výběru slouží k výběru jedné položky s animovaným indikátorem.</value>
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
     <value>Kostra zobrazuje zástupné animace načítání pro oblasti obsahu.</value>

@@ -344,6 +344,30 @@
   <data name="Page_Title_DisableContainer" xml:space="preserve">
     <value>Отключающий контейнер (DisableContainer)</value>
   </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Свяжите коллекцию строк напрямую с SelectionList для самого простого сценария одиночного выбора.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Header" xml:space="preserve">
+    <value>Пользовательский индикатор</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Description" xml:space="preserve">
+    <value>Настройте индикатор и шаблон элемента, когда выбранная строка должна соответствовать визуальному языку приложения.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Header" xml:space="preserve">
+    <value>Использование во всплывающем слое</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Description" xml:space="preserve">
+    <value>Размещайте SelectionList во всплывающем слое, когда область выбора должна оставаться компактной.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Header" xml:space="preserve">
+    <value>Очистка выбора</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Description" xml:space="preserve">
+    <value>Используйте команду, чтобы очистить текущий элемент и сбросить состояние выбора.</value>
+  </data>
   <data name="Page_Title_Divider" xml:space="preserve">
     <value>Разделитель (Divider)</value>
   </data>
@@ -767,7 +791,7 @@
     <value>Кнопка прокрутки — это плавающая кнопка, которая прокручивает область просмотра к целевому элементу.</value>
   </data>
   <data name="Page_Description_SelectionList" xml:space="preserve">
-    <value>Список выбора представляет список элементов для одиночного или множественного выбора.</value>
+    <value>SelectionList используется для выбора одного элемента с анимированным индикатором.</value>
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
     <value>Скелетон показывает замещающие анимации загрузки для областей содержимого.</value>

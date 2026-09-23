@@ -344,6 +344,30 @@
   <data name="Page_Title_DisableContainer" xml:space="preserve">
     <value>Deaktivierungscontainer (DisableContainer)</value>
   </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Grundverwendung</value>
+  </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Binde eine Zeichenfolgenauflistung direkt an SelectionList für den einfachsten Einzelauswahlfall.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Header" xml:space="preserve">
+    <value>Benutzerdefinierter Indikator</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Description" xml:space="preserve">
+    <value>Passe Indikator und Vorlagenlayout an, wenn die markierte Zeile zur Designsprache deiner App passen soll.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Header" xml:space="preserve">
+    <value>Flyout-Verwendung</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Description" xml:space="preserve">
+    <value>Platziere SelectionList in einem Flyout, wenn die Auswahloberfläche kompakt bleiben soll.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Header" xml:space="preserve">
+    <value>Auswahl löschen</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Description" xml:space="preserve">
+    <value>Verwende einen Befehl, um das aktuelle Element zu löschen und den Auswahlzustand zurückzusetzen.</value>
+  </data>
   <data name="Page_Title_Divider" xml:space="preserve">
     <value>Trennlinie (Divider)</value>
   </data>
@@ -766,7 +790,7 @@
     <value>Scrollen-Schaltfläche ist eine schwebende Schaltfläche, die den Ansichtsbereich zu einem Zielelement scrollt.</value>
   </data>
   <data name="Page_Description_SelectionList" xml:space="preserve">
-    <value>Auswahlliste präsentiert eine Liste von Elementen zur Einfach- oder Mehrfachauswahl.</value>
+    <value>SelectionList dient zur Auswahl eines einzelnen Elements mit einem animierten Indikator.</value>
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
     <value>Skeleton zeigt Platzhalter-Ladeanimationen für Inhaltsbereiche an.</value>

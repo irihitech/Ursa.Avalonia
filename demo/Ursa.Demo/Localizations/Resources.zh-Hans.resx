@@ -330,6 +330,30 @@
   <data name="Page_Title_DisableContainer" xml:space="preserve">
     <value>禁用容器 DisableContainer</value>
   </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Header" xml:space="preserve">
+    <value>自定义指示器</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Header" xml:space="preserve">
+    <value>飞出层用法</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Header" xml:space="preserve">
+    <value>清除选择</value>
+  </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>将字符串集合直接绑定到 SelectionList，即可完成最简单的单选场景。</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Description" xml:space="preserve">
+    <value>可自定义指示器和项模板，使选中行与应用的视觉风格一致。</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Description" xml:space="preserve">
+    <value>当选择区域需要保持紧凑时，可将 SelectionList 放入飞出层中。</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Description" xml:space="preserve">
+    <value>使用命令清除当前项并重置选择状态。</value>
+  </data>
   <data name="Page_Title_Divider" xml:space="preserve">
     <value>分割线 Divider</value>
   </data>
@@ -752,7 +776,7 @@
     <value>滚动到按钮是滚动视口到目标元素的浮动按钮。</value>
   </data>
   <data name="Page_Description_SelectionList" xml:space="preserve">
-    <value>选择列表呈现供单选或多选的项目列表。</value>
+    <value>SelectionList 用于选择单个项目，并显示动画指示器。</value>
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
     <value>骨架屏为内容区域显示占位加载动画。</value>

@@ -344,6 +344,30 @@
   <data name="Page_Title_DisableContainer" xml:space="preserve">
     <value>Conteneur désactivé (DisableContainer)</value>
   </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Utilisation de base</value>
+  </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Liez directement une collection de chaînes à SelectionList pour le scénario de sélection unique le plus simple.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Header" xml:space="preserve">
+    <value>Indicateur personnalisé</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Description" xml:space="preserve">
+    <value>Personnalisez l'indicateur et le modèle d'élément lorsque la ligne sélectionnée doit refléter le style visuel de votre application.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Header" xml:space="preserve">
+    <value>Utilisation dans un flyout</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Description" xml:space="preserve">
+    <value>Placez SelectionList dans un flyout lorsque la surface de sélection doit rester compacte.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Header" xml:space="preserve">
+    <value>Effacer la sélection</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Description" xml:space="preserve">
+    <value>Utilisez une commande pour effacer l'élément courant et réinitialiser l'état de sélection.</value>
+  </data>
   <data name="Page_Title_Divider" xml:space="preserve">
     <value>Séparateur (Divider)</value>
   </data>
@@ -767,7 +791,7 @@
     <value>Le bouton défiler vers est un bouton flottant qui fait défiler la vue vers un élément cible.</value>
   </data>
   <data name="Page_Description_SelectionList" xml:space="preserve">
-    <value>La liste de sélection présente une liste d'éléments pour une sélection simple ou multiple.</value>
+    <value>SelectionList permet de sélectionner un seul élément avec un indicateur animé.</value>
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
     <value>Le squelette affiche des animations de chargement de substitution pour les zones de contenu.</value>

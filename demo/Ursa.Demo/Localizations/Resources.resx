@@ -555,6 +555,18 @@
   <data name="Page_Description_DisableContainer" xml:space="preserve">
     <value>DisableContainer wraps content to visually and functionally disable child elements.</value>
   </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Bind a string collection directly for the simplest SelectionList setup.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Description" xml:space="preserve">
+    <value>Customize the indicator and row template to match your app's visual language.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Description" xml:space="preserve">
+    <value>Place SelectionList in a flyout when the selection surface should stay compact.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Description" xml:space="preserve">
+    <value>Use a command to clear the current item and reset the selection state.</value>
+  </data>
   <data name="Page_Description_Divider" xml:space="preserve">
     <value>Divider renders a horizontal or vertical separator line between content.</value>
   </data>
@@ -766,7 +778,19 @@
     <value>ScrollToButton is a floating button that scrolls the viewport to a target element.</value>
   </data>
   <data name="Page_Description_SelectionList" xml:space="preserve">
-    <value>SelectionList presents a list of items for single or multiple selection.</value>
+    <value>SelectionList is used to select a single item with an animated indicator.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Basic usage</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Header" xml:space="preserve">
+    <value>Custom indicator</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Header" xml:space="preserve">
+    <value>Flyout usage</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Header" xml:space="preserve">
+    <value>Clear selection</value>
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
     <value>Skeleton shows placeholder loading animations for content areas.</value>

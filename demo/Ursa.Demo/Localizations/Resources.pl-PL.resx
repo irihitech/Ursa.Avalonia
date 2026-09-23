@@ -337,6 +337,30 @@
   <data name="Page_Title_DisableContainer" xml:space="preserve">
     <value>Kontener wyłączający (DisableContainer)</value>
   </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Podstawowe użycie</value>
+  </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Powiąż bezpośrednio kolekcję ciągów z SelectionList w najprostszym scenariuszu pojedynczego wyboru.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Header" xml:space="preserve">
+    <value>Niestandardowy wskaźnik</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Description" xml:space="preserve">
+    <value>Dostosuj wskaźnik i szablon elementu, aby zaznaczony wiersz pasował do stylu wizualnego aplikacji.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Header" xml:space="preserve">
+    <value>Użycie w wysuwanym panelu</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Description" xml:space="preserve">
+    <value>Umieść SelectionList w wysuwanym panelu, gdy obszar wyboru ma pozostać kompaktowy.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Header" xml:space="preserve">
+    <value>Wyczyść wybór</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Description" xml:space="preserve">
+    <value>Użyj polecenia, aby wyczyścić bieżący element i zresetować stan wyboru.</value>
+  </data>
   <data name="Page_Title_Divider" xml:space="preserve">
     <value>Separator (Divider)</value>
   </data>
@@ -759,7 +783,7 @@
     <value>Przycisk przewiń do to pływający przycisk, który przewija widok do elementu docelowego.</value>
   </data>
   <data name="Page_Description_SelectionList" xml:space="preserve">
-    <value>Lista wyboru prezentuje listę elementów do wyboru pojedynczego lub wielokrotnego.</value>
+    <value>SelectionList służy do wybierania pojedynczego elementu z animowanym wskaźnikiem.</value>
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
     <value>Szkielet wyświetla zastępcze animacje ładowania dla obszarów zawartości.</value>
