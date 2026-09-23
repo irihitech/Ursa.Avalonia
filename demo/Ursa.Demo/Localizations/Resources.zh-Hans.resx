@@ -2088,4 +2088,46 @@
   <data name="Page_ThemeToggler_Section_Scoped_Theme_Description" xml:space="preserve">
     <value>将内容放在 ThemeVariantScope 中并设置 TargetScope，即可仅更改该作用域的主题。作用域内的切换按钮也可以自动控制该作用域。</value>
   </data>
+  <data name="Page_PathPicker_Section_Open_File_Header" xml:space="preserve">
+    <value>打开文件</value>
+  </data>
+  <data name="Page_PathPicker_Section_Open_File_Description" xml:space="preserve">
+    <value>使用 UsePickerType=OpenFile 打开文件选择对话框。FileFilter 用于限制可选文件类型。</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Header" xml:space="preserve">
+    <value>保存文件</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Description" xml:space="preserve">
+    <value>使用 SaveFile、SuggestedFileName、DefaultFileExtension 和 FileFilter 配置保存对话框。</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Header" xml:space="preserve">
+    <value>选择文件夹</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Description" xml:space="preserve">
+    <value>使用 OpenFolder 选择文件夹。如果允许选择多个文件夹，请将 AllowMultiple 设为 true。</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Header" xml:space="preserve">
+    <value>选择多个文件</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Description" xml:space="preserve">
+    <value>设置 AllowMultiple 并绑定 SelectedPaths，以收集用户选择的路径。</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Header" xml:space="preserve">
+    <value>命令与取消行为</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Description" xml:space="preserve">
+    <value>Command 接收所选 IReadOnlyList&lt;IStorageItem&gt;。IsOmitCommandOnCancel 控制取消时是否执行命令，IsClearSelectionOnCancel 控制是否清除当前选择。</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Header" xml:space="preserve">
+    <value>外观与按钮内容</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Description" xml:space="preserve">
+    <value>Top 类会将浏览按钮放在文本框上方。ButtonPathPicker 仅显示按钮，ListPathPicker 在可展开列表中显示已选路径，ButtonContent 则可替换默认浏览按钮内容。</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Header" xml:space="preserve">
+    <value>Command</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Description" xml:space="preserve">
+    <value>PathPicker.Command 接收 IReadOnlyList&lt;IStorageItem&gt;。将项目转换为 IStorageFile 后可调用 OpenReadAsync 获取流，或转换为 IStorageFolder 访问文件夹。若存储提供程序不提供本地路径，TryGetLocalPath 可能返回 null。</value>
+  </data>
 </root>

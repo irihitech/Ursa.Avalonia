@@ -2102,4 +2102,46 @@
   <data name="Page_ThemeToggler_Section_Scoped_Theme_Description" xml:space="preserve">
     <value>Umístěte obsah do ThemeVariantScope a nastavte TargetScope, aby se měnil pouze tento rozsah. Přepínač uvnitř rozsahu jej může automaticky ovládat.</value>
   </data>
+  <data name="Page_PathPicker_Section_Open_File_Header" xml:space="preserve">
+    <value>Otevření souboru</value>
+  </data>
+  <data name="Page_PathPicker_Section_Open_File_Description" xml:space="preserve">
+    <value>Pomocí UsePickerType=OpenFile otevřete dialog pro výběr souboru. FileFilter omezuje dostupné typy souborů.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Header" xml:space="preserve">
+    <value>Uložení souboru</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Description" xml:space="preserve">
+    <value>Pomocí SaveFile, SuggestedFileName, DefaultFileExtension a FileFilter nakonfigurujete dialog pro uložení.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Header" xml:space="preserve">
+    <value>Výběr složek</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Description" xml:space="preserve">
+    <value>Pomocí OpenFolder vyberete složku. Nastavte AllowMultiple na true, pokud uživatelé mohou vybrat více složek.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Header" xml:space="preserve">
+    <value>Výběr více souborů</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Description" xml:space="preserve">
+    <value>Nastavte AllowMultiple a navažte SelectedPaths, abyste získali cesty vybrané uživatelem.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Header" xml:space="preserve">
+    <value>Příkaz a chování při zrušení</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Description" xml:space="preserve">
+    <value>Command obdrží vybraný IReadOnlyList&lt;IStorageItem&gt;. IsOmitCommandOnCancel určuje spuštění příkazu při zrušení, zatímco IsClearSelectionOnCancel určuje, zda se výběr vymaže.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Header" xml:space="preserve">
+    <value>Vzhled a obsah tlačítka</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Description" xml:space="preserve">
+    <value>Třída Top umístí tlačítko pro procházení nad textové pole. ButtonPathPicker zobrazí pouze tlačítko, ListPathPicker zobrazí vybrané cesty v rozbalovacím seznamu a ButtonContent nahradí výchozí obsah tlačítka.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Header" xml:space="preserve">
+    <value>Příkaz</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Description" xml:space="preserve">
+    <value>PathPicker.Command obdrží IReadOnlyList&lt;IStorageItem&gt;. Přetypujte položku na IStorageFile a zavolejte OpenReadAsync pro otevření streamu, nebo na IStorageFolder pro přístup ke složce. TryGetLocalPath může vrátit null, pokud poskytovatel nezpřístupňuje místní cestu.</value>
+  </data>
 </root>

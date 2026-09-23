@@ -2101,4 +2101,46 @@
   <data name="Page_ThemeToggler_Section_Scoped_Theme_Description" xml:space="preserve">
     <value>Platzieren Sie Inhalte in einer ThemeVariantScope und setzen Sie TargetScope, damit nur dieser Bereich geändert wird. Ein Umschalter innerhalb eines Bereichs kann ihn automatisch steuern.</value>
   </data>
+  <data name="Page_PathPicker_Section_Open_File_Header" xml:space="preserve">
+    <value>Datei öffnen</value>
+  </data>
+  <data name="Page_PathPicker_Section_Open_File_Description" xml:space="preserve">
+    <value>Verwenden Sie UsePickerType=OpenFile, um einen Dateiauswahldialog zu öffnen. FileFilter begrenzt die auswählbaren Dateitypen.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Header" xml:space="preserve">
+    <value>Datei speichern</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Description" xml:space="preserve">
+    <value>Konfigurieren Sie den Speicherdialog mit SaveFile, SuggestedFileName, DefaultFileExtension und FileFilter.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Header" xml:space="preserve">
+    <value>Ordner auswählen</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Description" xml:space="preserve">
+    <value>Verwenden Sie OpenFolder zur Ordnerauswahl. Setzen Sie AllowMultiple auf true, wenn mehrere Ordner ausgewählt werden dürfen.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Header" xml:space="preserve">
+    <value>Mehrere Dateien auswählen</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Description" xml:space="preserve">
+    <value>Setzen Sie AllowMultiple und binden Sie SelectedPaths, um die ausgewählten Pfade zu erfassen.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Header" xml:space="preserve">
+    <value>Befehl und Abbruchverhalten</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Description" xml:space="preserve">
+    <value>Command erhält die ausgewählte IReadOnlyList&lt;IStorageItem&gt;. IsOmitCommandOnCancel steuert die Befehlsausführung beim Abbruch, während IsClearSelectionOnCancel festlegt, ob die aktuelle Auswahl gelöscht wird.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Header" xml:space="preserve">
+    <value>Darstellung und Schaltflächeninhalt</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Description" xml:space="preserve">
+    <value>Die Klasse Top platziert die Durchsuchen-Schaltfläche über dem Textfeld. ButtonPathPicker zeigt nur eine Schaltfläche, ListPathPicker zeigt ausgewählte Pfade in einer aufklappbaren Liste, und ButtonContent ersetzt den Standardinhalt der Schaltfläche.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Header" xml:space="preserve">
+    <value>Befehl</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Description" xml:space="preserve">
+    <value>PathPicker.Command erhält eine IReadOnlyList&lt;IStorageItem&gt;. Wandeln Sie Elemente in IStorageFile um, um mit OpenReadAsync einen Stream zu öffnen, oder in IStorageFolder für ordnerspezifischen Zugriff. TryGetLocalPath kann null zurückgeben, wenn der Anbieter keinen lokalen Pfad bereitstellt.</value>
+  </data>
 </root>

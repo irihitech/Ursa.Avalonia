@@ -2102,4 +2102,46 @@
   <data name="Page_ThemeToggler_Section_Scoped_Theme_Description" xml:space="preserve">
     <value>Поместите содержимое в ThemeVariantScope и задайте TargetScope, чтобы изменить только эту область. Переключатель внутри области может автоматически управлять ею.</value>
   </data>
+  <data name="Page_PathPicker_Section_Open_File_Header" xml:space="preserve">
+    <value>Открытие файла</value>
+  </data>
+  <data name="Page_PathPicker_Section_Open_File_Description" xml:space="preserve">
+    <value>Используйте UsePickerType=OpenFile, чтобы открыть диалог выбора файла. FileFilter ограничивает доступные типы файлов.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Header" xml:space="preserve">
+    <value>Сохранение файла</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Description" xml:space="preserve">
+    <value>Настройте диалог сохранения с помощью SaveFile, SuggestedFileName, DefaultFileExtension и FileFilter.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Header" xml:space="preserve">
+    <value>Выбор папок</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Description" xml:space="preserve">
+    <value>Используйте OpenFolder для выбора папки. Установите AllowMultiple в true, если пользователь может выбрать несколько папок.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Header" xml:space="preserve">
+    <value>Выбор нескольких файлов</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Description" xml:space="preserve">
+    <value>Установите AllowMultiple и привяжите SelectedPaths, чтобы получить выбранные пользователем пути.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Header" xml:space="preserve">
+    <value>Команда и отмена</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Description" xml:space="preserve">
+    <value>Command получает выбранную IReadOnlyList&lt;IStorageItem&gt;. IsOmitCommandOnCancel управляет вызовом команды при отмене, а IsClearSelectionOnCancel — очисткой текущего выбора.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Header" xml:space="preserve">
+    <value>Внешний вид и содержимое кнопки</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Description" xml:space="preserve">
+    <value>Класс Top размещает кнопку обзора над текстовым полем. ButtonPathPicker отображает только кнопку, ListPathPicker показывает выбранные пути в раскрывающемся списке, а ButtonContent заменяет содержимое кнопки по умолчанию.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Header" xml:space="preserve">
+    <value>Команда</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Description" xml:space="preserve">
+    <value>PathPicker.Command получает IReadOnlyList&lt;IStorageItem&gt;. Преобразуйте элемент в IStorageFile, чтобы вызвать OpenReadAsync и получить поток, или в IStorageFolder для работы с папкой. TryGetLocalPath может вернуть null, если поставщик не предоставляет локальный путь.</value>
+  </data>
 </root>

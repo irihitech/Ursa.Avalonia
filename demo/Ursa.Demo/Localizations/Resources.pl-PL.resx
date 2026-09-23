@@ -2094,4 +2094,46 @@
   <data name="Page_ThemeToggler_Section_Scoped_Theme_Description" xml:space="preserve">
     <value>Umieść zawartość w ThemeVariantScope i ustaw TargetScope, aby zmieniać tylko ten zakres. Przełącznik umieszczony w zakresie może automatycznie nim sterować.</value>
   </data>
+  <data name="Page_PathPicker_Section_Open_File_Header" xml:space="preserve">
+    <value>Otwieranie pliku</value>
+  </data>
+  <data name="Page_PathPicker_Section_Open_File_Description" xml:space="preserve">
+    <value>Użyj UsePickerType=OpenFile, aby otworzyć okno wyboru pliku. FileFilter ogranicza dostępne typy plików.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Header" xml:space="preserve">
+    <value>Zapisywanie pliku</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Description" xml:space="preserve">
+    <value>Skonfiguruj okno zapisu za pomocą SaveFile, SuggestedFileName, DefaultFileExtension i FileFilter.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Header" xml:space="preserve">
+    <value>Wybór folderów</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Description" xml:space="preserve">
+    <value>Użyj OpenFolder, aby wybrać folder. Ustaw AllowMultiple na true, jeśli można wybrać więcej niż jeden folder.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Header" xml:space="preserve">
+    <value>Wybór wielu plików</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Description" xml:space="preserve">
+    <value>Ustaw AllowMultiple i powiąż SelectedPaths, aby pobrać ścieżki wybrane przez użytkownika.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Header" xml:space="preserve">
+    <value>Polecenie i anulowanie</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Description" xml:space="preserve">
+    <value>Command otrzymuje wybraną kolekcję IReadOnlyList&lt;IStorageItem&gt;. IsOmitCommandOnCancel określa, czy polecenie zostanie uruchomione po anulowaniu, a IsClearSelectionOnCancel — czy bieżący wybór zostanie wyczyszczony.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Header" xml:space="preserve">
+    <value>Wygląd i zawartość przycisku</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Description" xml:space="preserve">
+    <value>Klasa Top umieszcza przycisk przeglądania nad polem tekstowym. ButtonPathPicker wyświetla tylko przycisk, ListPathPicker pokazuje wybrane ścieżki na rozwijanej liście, a ButtonContent zastępuje domyślną zawartość przycisku.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Header" xml:space="preserve">
+    <value>Polecenie</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Description" xml:space="preserve">
+    <value>PathPicker.Command otrzymuje IReadOnlyList&lt;IStorageItem&gt;. Rzutuj element na IStorageFile, aby wywołać OpenReadAsync i uzyskać strumień, lub na IStorageFolder, aby uzyskać dostęp do folderu. TryGetLocalPath może zwrócić null, jeśli dostawca nie udostępnia lokalnej ścieżki.</value>
+  </data>
 </root>

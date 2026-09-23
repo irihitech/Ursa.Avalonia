@@ -2102,4 +2102,46 @@
   <data name="Page_ThemeToggler_Section_Scoped_Theme_Description" xml:space="preserve">
     <value>Placez le contenu dans ThemeVariantScope et définissez TargetScope pour ne modifier que cette portée. Un bouton de bascule placé dans une portée peut la cibler automatiquement.</value>
   </data>
+  <data name="Page_PathPicker_Section_Open_File_Header" xml:space="preserve">
+    <value>Ouvrir un fichier</value>
+  </data>
+  <data name="Page_PathPicker_Section_Open_File_Description" xml:space="preserve">
+    <value>Utilisez UsePickerType=OpenFile pour ouvrir la boîte de sélection de fichiers. FileFilter limite les types de fichiers sélectionnables.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Header" xml:space="preserve">
+    <value>Enregistrer un fichier</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Description" xml:space="preserve">
+    <value>Configurez la boîte d’enregistrement avec SaveFile, SuggestedFileName, DefaultFileExtension et FileFilter.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Header" xml:space="preserve">
+    <value>Sélectionner des dossiers</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Description" xml:space="preserve">
+    <value>Utilisez OpenFolder pour sélectionner un dossier. Définissez AllowMultiple sur true si plusieurs dossiers peuvent être sélectionnés.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Header" xml:space="preserve">
+    <value>Sélectionner plusieurs fichiers</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Description" xml:space="preserve">
+    <value>Définissez AllowMultiple et liez SelectedPaths pour récupérer les chemins sélectionnés par l’utilisateur.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Header" xml:space="preserve">
+    <value>Commande et annulation</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Description" xml:space="preserve">
+    <value>Command reçoit l’IReadOnlyList&lt;IStorageItem&gt; sélectionnée. IsOmitCommandOnCancel contrôle l’exécution de la commande en cas d’annulation, tandis que IsClearSelectionOnCancel détermine si la sélection actuelle est effacée.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Header" xml:space="preserve">
+    <value>Apparence et contenu du bouton</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Description" xml:space="preserve">
+    <value>La classe Top place le bouton de parcours au-dessus du champ de texte. ButtonPathPicker affiche uniquement un bouton, ListPathPicker présente les chemins sélectionnés dans une liste dépliable et ButtonContent remplace le contenu par défaut du bouton.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Header" xml:space="preserve">
+    <value>Commande</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Description" xml:space="preserve">
+    <value>PathPicker.Command reçoit une IReadOnlyList&lt;IStorageItem&gt;. Convertissez un élément en IStorageFile pour appeler OpenReadAsync et obtenir un flux, ou en IStorageFolder pour accéder à un dossier. TryGetLocalPath peut renvoyer null si le fournisseur ne fournit pas de chemin local.</value>
+  </data>
 </root>

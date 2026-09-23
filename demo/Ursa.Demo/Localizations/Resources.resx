@@ -2102,4 +2102,46 @@
   <data name="Page_ThemeToggler_Section_Scoped_Theme_Description" xml:space="preserve">
     <value>Place content in ThemeVariantScope and set TargetScope to change only that scope. A toggle inside a scope can target it automatically.</value>
   </data>
+  <data name="Page_PathPicker_Section_Open_File_Header" xml:space="preserve">
+    <value>Open a file</value>
+  </data>
+  <data name="Page_PathPicker_Section_Open_File_Description" xml:space="preserve">
+    <value>Use UsePickerType=OpenFile to open a file picker. FileFilter limits the file types users can choose.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Header" xml:space="preserve">
+    <value>Save a file</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Description" xml:space="preserve">
+    <value>Use SaveFile with SuggestedFileName, DefaultFileExtension, and FileFilter to configure the save dialog.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Header" xml:space="preserve">
+    <value>Select folders</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Description" xml:space="preserve">
+    <value>Use OpenFolder to select a directory. Set AllowMultiple to true when users may choose more than one folder.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Header" xml:space="preserve">
+    <value>Select multiple files</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Description" xml:space="preserve">
+    <value>Set AllowMultiple and bind SelectedPaths to collect the paths selected by the user.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Header" xml:space="preserve">
+    <value>Command and cancel behavior</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Description" xml:space="preserve">
+    <value>Command receives the selected IReadOnlyList&lt;IStorageItem&gt;. IsOmitCommandOnCancel controls command execution on cancel, while IsClearSelectionOnCancel controls whether the current selection is cleared.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Header" xml:space="preserve">
+    <value>Appearance and button content</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Description" xml:space="preserve">
+    <value>The Top class docks the browse button above the text field. ButtonPathPicker shows only a button, ListPathPicker displays selected paths in an expandable list, and ButtonContent replaces the default browse button content.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Header" xml:space="preserve">
+    <value>Command</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Description" xml:space="preserve">
+    <value>PathPicker.Command receives an IReadOnlyList&lt;IStorageItem&gt;. Cast items to IStorageFile to call OpenReadAsync for a stream, or to IStorageFolder for folder-specific access. TryGetLocalPath may return null when a provider does not expose a local path.</value>
+  </data>
 </root>
