@@ -1889,4 +1889,64 @@
     <value>Tímto odstraníte místní mezipaměť balíčků. Akci nelze vrátit.</value>
   </data>
 
+  <data name="Page_Loading_Section_Indicator_Sizes_Header" xml:space="preserve">
+    <value>Velikost indikátoru</value>
+  </data>
+  <data name="Page_Loading_Section_Indicator_Sizes_Description" xml:space="preserve">
+    <value>Třídy Small a Large mění rozměry spinneru; bez nich se použije výchozí velikost.</value>
+  </data>
+  <data name="Page_Loading_Section_Overlay_Header" xml:space="preserve">
+    <value>Vrstva načítání</value>
+  </data>
+  <data name="Page_Loading_Section_Overlay_Description" xml:space="preserve">
+    <value>Navázáním IsLoading na stav operace zobrazíte vrstvu nad stávajícím obsahem; během načítání se obsah rozostří.</value>
+  </data>
+  <data name="Page_Loading_Section_Message_Template_Header" xml:space="preserve">
+    <value>Šablona zprávy načítání</value>
+  </data>
+  <data name="Page_Loading_Section_Message_Template_Description" xml:space="preserve">
+    <value>Pro stavový obsah použijte LoadingMessage a způsob jeho vykreslení upravte pomocí LoadingMessageTemplate.</value>
+  </data>
+  <data name="Page_Loading_Section_Custom_Indicator_Header" xml:space="preserve">
+    <value>Vlastní indikátor</value>
+  </data>
+  <data name="Page_Loading_Section_Custom_Indicator_Description" xml:space="preserve">
+    <value>Nastavením Indicator nahradíte výchozí spinner jiným ovládacím prvkem, který lépe vyjadřuje průběh načítání.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Icon_Header" xml:space="preserve">
+    <value>Ikona</value>
+  </data>
+  <data name="Page_MessageBox_Section_Icon_Description" xml:space="preserve">
+    <value>Vyberte ikonu vyjadřující typ zprávy, nebo zvolte None, pokud ji nechcete zobrazit.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Title_Header" xml:space="preserve">
+    <value>Titulek</value>
+  </data>
+  <data name="Page_MessageBox_Section_Title_Description" xml:space="preserve">
+    <value>Nezávisle na textu zprávy můžete titulek zobrazit nebo skrýt.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Button_Combinations_Header" xml:space="preserve">
+    <value>Kombinace tlačítek</value>
+  </data>
+  <data name="Page_MessageBox_Section_Button_Combinations_Description" xml:space="preserve">
+    <value>Vyberte dostupné odpovědi a zkontrolujte vrácenou hodnotu MessageBoxResult.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Presentation_Modes_Header" xml:space="preserve">
+    <value>Způsoby zobrazení</value>
+  </data>
+  <data name="Page_MessageBox_Section_Presentation_Modes_Description" xml:space="preserve">
+    <value>Na podporovaných platformách použijte okno MessageBox nebo na webu a mobilních zařízeních přepněte na vnořený dialog OverlayMessageBox.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Style_Class_Header" xml:space="preserve">
+    <value>Třída stylu</value>
+  </data>
+  <data name="Page_MessageBox_Section_Style_Class_Description" xml:space="preserve">
+    <value>Třída Compact aktivuje aplikační styl ukázky, který zmenšuje vnitřní odsazení dialogového okna.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Observable_Content_Header" xml:space="preserve">
+    <value>Pozorovatelný obsah</value>
+  </data>
+  <data name="Page_MessageBox_Section_Observable_Content_Description" xml:space="preserve">
+    <value>Zadejte zdroje IObservable&lt;string&gt;, které aktualizují zprávu a její název, dokud je dialogové okno otevřené.</value>
+  </data>
 </root>

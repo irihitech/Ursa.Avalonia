@@ -1888,4 +1888,64 @@
     <value>Dadurch wird der lokale Paketcache entfernt. Die Aktion kann nicht rückgängig gemacht werden.</value>
   </data>
 
+  <data name="Page_Loading_Section_Indicator_Sizes_Header" xml:space="preserve">
+    <value>Indikatorgrößen</value>
+  </data>
+  <data name="Page_Loading_Section_Indicator_Sizes_Description" xml:space="preserve">
+    <value>Die Klassen Small und Large passen die Abmessungen des Spinners an; ohne Größenklasse wird die Standardgröße verwendet.</value>
+  </data>
+  <data name="Page_Loading_Section_Overlay_Header" xml:space="preserve">
+    <value>Ladeüberlagerung</value>
+  </data>
+  <data name="Page_Loading_Section_Overlay_Description" xml:space="preserve">
+    <value>Binden Sie IsLoading an den Vorgangsstatus, um eine Ladeebene über dem vorhandenen Inhalt anzuzeigen; während des Ladens wird der Inhalt weichgezeichnet.</value>
+  </data>
+  <data name="Page_Loading_Section_Message_Template_Header" xml:space="preserve">
+    <value>Vorlage für die Lademeldung</value>
+  </data>
+  <data name="Page_Loading_Section_Message_Template_Description" xml:space="preserve">
+    <value>Verwenden Sie LoadingMessage für den Statustext und LoadingMessageTemplate, um dessen Darstellung anzupassen.</value>
+  </data>
+  <data name="Page_Loading_Section_Custom_Indicator_Header" xml:space="preserve">
+    <value>Benutzerdefinierter Indikator</value>
+  </data>
+  <data name="Page_Loading_Section_Custom_Indicator_Description" xml:space="preserve">
+    <value>Setzen Sie Indicator, um den Standard-Spinner durch ein anderes Steuerelement zu ersetzen, das den Ladevorgang besser vermittelt.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Icon_Header" xml:space="preserve">
+    <value>Symbol</value>
+  </data>
+  <data name="Page_MessageBox_Section_Icon_Description" xml:space="preserve">
+    <value>Wählen Sie ein Symbol zur Kennzeichnung der Nachricht aus oder wählen Sie None, um es auszublenden.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Title_Header" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="Page_MessageBox_Section_Title_Description" xml:space="preserve">
+    <value>Blenden Sie den Titel unabhängig vom Nachrichtentext ein oder aus.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Button_Combinations_Header" xml:space="preserve">
+    <value>Schaltflächenkombinationen</value>
+  </data>
+  <data name="Page_MessageBox_Section_Button_Combinations_Description" xml:space="preserve">
+    <value>Wählen Sie die verfügbaren Antwortschaltflächen aus und prüfen Sie das zurückgegebene MessageBoxResult.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Presentation_Modes_Header" xml:space="preserve">
+    <value>Anzeigemodi</value>
+  </data>
+  <data name="Page_MessageBox_Section_Presentation_Modes_Description" xml:space="preserve">
+    <value>Verwenden Sie, sofern unterstützt, ein MessageBox-Fenster oder wechseln Sie im Browser und auf Mobilgeräten zu einem In-App-Dialog mit OverlayMessageBox.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Style_Class_Header" xml:space="preserve">
+    <value>Stilklasse</value>
+  </data>
+  <data name="Page_MessageBox_Section_Style_Class_Description" xml:space="preserve">
+    <value>Übergeben Sie die Klasse Compact, um den Anwendungsstil der Demo anzuwenden, der den Innenabstand der MessageBox verringert.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Observable_Content_Header" xml:space="preserve">
+    <value>Beobachtbarer Inhalt</value>
+  </data>
+  <data name="Page_MessageBox_Section_Observable_Content_Description" xml:space="preserve">
+    <value>Stellen Sie IObservable&lt;string&gt;-Quellen bereit, um Nachricht und Titel zu aktualisieren, solange die MessageBox geöffnet ist.</value>
+  </data>
 </root>

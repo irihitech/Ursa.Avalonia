@@ -4,27 +4,81 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
     xmlns:u="https://irihi.tech/ursa"
+    xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.LoadingDemo"
+    x:DataType="viewModels:LoadingDemoViewModel"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    mc:Ignorable="d"
-    x:DataType="viewModels:LoadingDemoViewModel"
-    xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.LoadingDemo">
-    <DockPanel>
-        <Grid RowDefinitions="Auto, Auto, *">
-            <ToggleSwitch Name="s" Content="Loading" />
-            <StackPanel Grid.Row="1"
-                        Orientation="Horizontal">
-                <u:LoadingIcon Classes="Small" />
-                <u:LoadingIcon />
-                <u:LoadingIcon Classes="Large" />
-            </StackPanel>
-            <u:LoadingContainer
-                Grid.Row="2"
-                IsLoading="{Binding #s.IsChecked}"
-                LoadingMessage="Loading...">
-                <Calendar />
-            </u:LoadingContainer>
-        </Grid>
-    </DockPanel>
+    mc:Ignorable="d">
+    <TabControl>
+        <TabItem
+            Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+            Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel
+                    HorizontalAlignment="Stretch"
+                    Spacing="20">
+                    <controls:DemoSectionView SectionContext="{Binding IndicatorSizesSection}">
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <u:LoadingIcon Classes="Small" />
+                            <u:LoadingIcon />
+                            <u:LoadingIcon Classes="Large" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding LoadingOverlaySection}">
+                        <StackPanel Spacing="12">
+                            <ToggleSwitch
+                                Content="Loading"
+                                IsChecked="{Binding IsOverlayLoading, Mode=TwoWay}" />
+                            <u:LoadingContainer
+                                IsLoading="{Binding IsOverlayLoading}"
+                                LoadingMessage="Loading calendar...">
+                                <Calendar />
+                            </u:LoadingContainer>
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding LoadingMessageSection}">
+                        <u:LoadingContainer
+                            IsLoading="True"
+                            LoadingMessage="Syncing your data">
+                            <u:LoadingContainer.LoadingMessageTemplate>
+                                <DataTemplate DataType="x:String">
+                                    <TextBlock
+                                        FontSize="16"
+                                        FontWeight="SemiBold"
+                                        Text="{Binding}" />
+                                </DataTemplate>
+                            </u:LoadingContainer.LoadingMessageTemplate>
+                            <Calendar />
+                        </u:LoadingContainer>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding CustomIndicatorSection}">
+                        <u:LoadingContainer
+                            IsLoading="True"
+                            LoadingMessage="Preparing report">
+                            <u:LoadingContainer.Indicator>
+                                <ProgressBar
+                                    Width="140"
+                                    IsIndeterminate="True" />
+                            </u:LoadingContainer.Indicator>
+                            <StackPanel Spacing="8">
+                                <TextBlock
+                                    Classes="H5"
+                                    Text="Monthly report" />
+                                <TextBlock Text="Report content" />
+                            </StackPanel>
+                        </u:LoadingContainer>
+                    </controls:DemoSectionView>
+                </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>

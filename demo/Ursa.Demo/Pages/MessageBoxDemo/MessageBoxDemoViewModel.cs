@@ -10,6 +10,7 @@ using Ursa.Controls;
 using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
 using Irihi.Dogma.Docs;
+using Irihi.Dogma.Controls;
 using Ursa.Demo.Pages.DummyPages;
 
 namespace Ursa.Demo.Pages.MessageBoxDemo;
@@ -20,6 +21,12 @@ public class MessageBoxDemoViewModel: ObservableObject, IPageMetadataProvider
 {
     public const string Category_Key = "MessageBox";
     public const string Menu_Header = "Menu_Header_MessageBox";
+    private const string IconAnchorId = "message-box-icon";
+    private const string TitleAnchorId = "message-box-title";
+    private const string ButtonCombinationsAnchorId = "message-box-button-combinations";
+    private const string PresentationModesAnchorId = "message-box-presentation-modes";
+    private const string StyleClassAnchorId = "message-box-style-class";
+    private const string ObservableContentAnchorId = "message-box-observable-content";
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_MessageBox,
@@ -33,10 +40,7 @@ public class MessageBoxDemoViewModel: ObservableObject, IPageMetadataProvider
         AvaloniaExclusive = true,
     };
 
-    private readonly string _longMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-
-    private readonly string _shortMessage = "Welcome to Ursa Avalonia!";
-    private string _message;
+    private const string DefaultMessage = "Welcome to Ursa Avalonia!";
     private string? _title;
 
     public ICommand DefaultMessageBoxCommand { get; set; }
@@ -45,6 +49,48 @@ public class MessageBoxDemoViewModel: ObservableObject, IPageMetadataProvider
     public ICommand YesNoCommand { get; set; }
     public ICommand YesNoCancelCommand { get; set; }
     public ICommand OkCancelCommand { get; set; }
+    public ICommand CompactMessageBoxCommand { get; set; }
+
+    public DemoSectionViewModel IconSection { get; }
+    public DemoSectionViewModel TitleSection { get; }
+    public DemoSectionViewModel ButtonCombinationsSection { get; }
+    public DemoSectionViewModel PresentationModesSection { get; }
+    public DemoSectionViewModel StyleClassSection { get; }
+    public DemoSectionViewModel ObservableContentSection { get; }
+
+    public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; } =
+    [
+        new()
+        {
+            Header = LanguageManager.Instance.Page_MessageBox_Section_Icon_Header,
+            AnchorId = IconAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_MessageBox_Section_Title_Header,
+            AnchorId = TitleAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_MessageBox_Section_Button_Combinations_Header,
+            AnchorId = ButtonCombinationsAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_MessageBox_Section_Presentation_Modes_Header,
+            AnchorId = PresentationModesAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_MessageBox_Section_Style_Class_Header,
+            AnchorId = StyleClassAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_MessageBox_Section_Observable_Content_Header,
+            AnchorId = ObservableContentAnchorId
+        },
+    ];
     
     public ObservableCollection<MessageBoxIcon> Icons { get; set; }
     
@@ -60,18 +106,6 @@ public class MessageBoxDemoViewModel: ObservableObject, IPageMetadataProvider
     {
         get => _result;
         set => SetProperty(ref _result, value);
-    }
-
-    private bool _useLong;
-
-    public bool UseLong
-    {
-        get => _useLong;
-        set
-        {
-            SetProperty(ref _useLong, value);
-            _message = value ? _longMessage : _shortMessage;
-        }
     }
 
     private bool _useTitle;
@@ -102,10 +136,96 @@ public class MessageBoxDemoViewModel: ObservableObject, IPageMetadataProvider
         YesNoCommand = new AsyncRelayCommand(OnYesNoAsync);
         YesNoCancelCommand = new AsyncRelayCommand(OnYesNoCancelAsync);
         OkCancelCommand = new AsyncRelayCommand(OnOkCancelAsync);
+        CompactMessageBoxCommand = new AsyncRelayCommand(OnCompactMessageBoxAsync);
         Icons = new ObservableCollection<MessageBoxIcon>(
             Enum.GetValues<MessageBoxIcon>());
         SelectedIcon = MessageBoxIcon.None;
-        _message = _shortMessage;
+
+        IconSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_MessageBox_Section_Icon_Header,
+            Descriptions = { LanguageManager.Instance.Page_MessageBox_Section_Icon_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = IconAnchorId
+        };
+        AddSnippet(IconSection, CodeLanguage.CSharp, LanguageManager.Instance.DemoSection_Tab_ViewModel, """
+            var result = await MessageBox.ShowAsync(
+                "Welcome to Ursa Avalonia!",
+                icon: MessageBoxIcon.Information);
+            """);
+
+        TitleSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_MessageBox_Section_Title_Header,
+            Descriptions = { LanguageManager.Instance.Page_MessageBox_Section_Title_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = TitleAnchorId
+        };
+        AddSnippet(TitleSection, CodeLanguage.CSharp, LanguageManager.Instance.DemoSection_Tab_ViewModel, """
+            var result = await MessageBox.ShowAsync(
+                "Welcome to Ursa Avalonia!",
+                title: "Ursa MessageBox");
+            """);
+
+        ButtonCombinationsSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_MessageBox_Section_Button_Combinations_Header,
+            Descriptions = { LanguageManager.Instance.Page_MessageBox_Section_Button_Combinations_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = ButtonCombinationsAnchorId
+        };
+        AddSnippet(ButtonCombinationsSection, CodeLanguage.CSharp, LanguageManager.Instance.DemoSection_Tab_ViewModel, """
+            var result = await MessageBox.ShowAsync(
+                "Continue with this operation?",
+                icon: MessageBoxIcon.Question,
+                button: MessageBoxButton.YesNoCancel);
+            """);
+
+        PresentationModesSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_MessageBox_Section_Presentation_Modes_Header,
+            Descriptions = { LanguageManager.Instance.Page_MessageBox_Section_Presentation_Modes_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = PresentationModesAnchorId
+        };
+        AddSnippet(PresentationModesSection, CodeLanguage.CSharp, LanguageManager.Instance.DemoSection_Tab_ViewModel, """
+            var result = UseOverlay
+                ? await OverlayMessageBox.ShowAsync(message, title, icon: SelectedIcon)
+                : await MessageBox.ShowAsync(message, title, icon: SelectedIcon);
+            """);
+
+        StyleClassSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_MessageBox_Section_Style_Class_Header,
+            Descriptions = { LanguageManager.Instance.Page_MessageBox_Section_Style_Class_Description },
+            SectionTag = DemoSectionTag.Style,
+            AnchorId = StyleClassAnchorId
+        };
+        AddSnippet(StyleClassSection, CodeLanguage.Axaml, LanguageManager.Instance.DemoSection_Tab_Xaml, """
+            <Style Selector="u|MessageBoxWindow.Compact, u|MessageBoxControl.Compact">
+                <Setter Property="Padding" Value="24 12" />
+            </Style>
+            """);
+        AddSnippet(StyleClassSection, CodeLanguage.CSharp, LanguageManager.Instance.DemoSection_Tab_ViewModel, """
+            await OverlayMessageBox.ShowAsync(
+                message,
+                title,
+                styleClass: "Compact");
+            """);
+
+        ObservableContentSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_MessageBox_Section_Observable_Content_Header,
+            Descriptions = { LanguageManager.Instance.Page_MessageBox_Section_Observable_Content_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = ObservableContentAnchorId
+        };
+        AddSnippet(ObservableContentSection, CodeLanguage.CSharp, LanguageManager.Instance.DemoSection_Tab_ViewModel, """
+            await OverlayMessageBox.ShowAsync(
+                messageSource,
+                titleSource,
+                icon: SelectedIcon);
+            """);
     }
 
     private async Task OnDefaultMessageAsync()
@@ -150,11 +270,16 @@ public class MessageBoxDemoViewModel: ObservableObject, IPageMetadataProvider
         await Show(MessageBoxButton.OKCancel);
     }
 
-    private async Task Show(MessageBoxButton button)
+    private async Task OnCompactMessageBoxAsync()
+    {
+        await Show(MessageBoxButton.OK, "Compact");
+    }
+
+    private async Task Show(MessageBoxButton button, string? styleClass = null)
     {
         if (UseOverlay)
         {
-            Result = await OverlayMessageBox.ShowAsync(_message, _title, icon: SelectedIcon, button:button);
+            Result = await OverlayMessageBox.ShowAsync(DefaultMessage, _title, icon: SelectedIcon, button:button, styleClass: styleClass);
         }
         else
         {
@@ -164,8 +289,22 @@ public class MessageBoxDemoViewModel: ObservableObject, IPageMetadataProvider
                     "Ursa MessageBox", button: MessageBoxButton.OK, icon: MessageBoxIcon.Error);
                 return;
             }
-            Result = await MessageBox.ShowAsync(_message, _title, icon: SelectedIcon, button:button);
+            Result = await MessageBox.ShowAsync(DefaultMessage, _title, icon: SelectedIcon, button:button, styleClass: styleClass);
         }
+    }
+
+    private static void AddSnippet(
+        DemoSectionViewModel section,
+        CodeLanguage language,
+        IObservable<string?> tabName,
+        string code)
+    {
+        section.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = language,
+            TabName = tabName,
+            CodeSnippet = code
+        });
     }
 
     #region Minimal Observable Helpers (no System.Reactive required)

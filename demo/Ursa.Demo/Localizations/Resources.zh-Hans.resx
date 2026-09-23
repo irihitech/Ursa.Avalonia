@@ -1875,4 +1875,64 @@
     <value>此操作将删除本地包缓存，且无法撤销。</value>
   </data>
 
+  <data name="Page_Loading_Section_Indicator_Sizes_Header" xml:space="preserve">
+    <value>指示器尺寸</value>
+  </data>
+  <data name="Page_Loading_Section_Indicator_Sizes_Description" xml:space="preserve">
+    <value>Small 和 Large 样式类会调整旋转指示器的尺寸；未指定尺寸类时使用默认大小。</value>
+  </data>
+  <data name="Page_Loading_Section_Overlay_Header" xml:space="preserve">
+    <value>加载遮罩</value>
+  </data>
+  <data name="Page_Loading_Section_Overlay_Description" xml:space="preserve">
+    <value>将 IsLoading 绑定到操作状态，以便在现有内容上显示加载层；加载时底层内容会模糊处理。</value>
+  </data>
+  <data name="Page_Loading_Section_Message_Template_Header" xml:space="preserve">
+    <value>加载消息模板</value>
+  </data>
+  <data name="Page_Loading_Section_Message_Template_Description" xml:space="preserve">
+    <value>使用 LoadingMessage 设置状态内容，并通过 LoadingMessageTemplate 自定义其呈现方式。</value>
+  </data>
+  <data name="Page_Loading_Section_Custom_Indicator_Header" xml:space="preserve">
+    <value>自定义指示器</value>
+  </data>
+  <data name="Page_Loading_Section_Custom_Indicator_Description" xml:space="preserve">
+    <value>设置 Indicator 可用其他控件替换默认旋转指示器，更清晰地表达加载操作。</value>
+  </data>
+  <data name="Page_MessageBox_Section_Icon_Header" xml:space="preserve">
+    <value>图标</value>
+  </data>
+  <data name="Page_MessageBox_Section_Icon_Description" xml:space="preserve">
+    <value>选择图标来表达消息类型，也可以选择 None 不显示图标。</value>
+  </data>
+  <data name="Page_MessageBox_Section_Title_Header" xml:space="preserve">
+    <value>标题</value>
+  </data>
+  <data name="Page_MessageBox_Section_Title_Description" xml:space="preserve">
+    <value>可独立于消息正文显示或隐藏标题。</value>
+  </data>
+  <data name="Page_MessageBox_Section_Button_Combinations_Header" xml:space="preserve">
+    <value>按钮组合</value>
+  </data>
+  <data name="Page_MessageBox_Section_Button_Combinations_Description" xml:space="preserve">
+    <value>选择可用的响应按钮，并查看返回的 MessageBoxResult。</value>
+  </data>
+  <data name="Page_MessageBox_Section_Presentation_Modes_Header" xml:space="preserve">
+    <value>呈现模式</value>
+  </data>
+  <data name="Page_MessageBox_Section_Presentation_Modes_Description" xml:space="preserve">
+    <value>在支持的平台上使用 MessageBox 窗口；在浏览器和移动设备上可切换为应用内的 OverlayMessageBox 对话框。</value>
+  </data>
+  <data name="Page_MessageBox_Section_Style_Class_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_MessageBox_Section_Style_Class_Description" xml:space="preserve">
+    <value>传入 Compact 类以应用演示程序级样式，该样式会缩小消息框的内边距。</value>
+  </data>
+  <data name="Page_MessageBox_Section_Observable_Content_Header" xml:space="preserve">
+    <value>可观察内容</value>
+  </data>
+  <data name="Page_MessageBox_Section_Observable_Content_Description" xml:space="preserve">
+    <value>提供 IObservable&lt;string&gt; 数据源，以便在消息框保持打开时更新消息和标题。</value>
+  </data>
 </root>

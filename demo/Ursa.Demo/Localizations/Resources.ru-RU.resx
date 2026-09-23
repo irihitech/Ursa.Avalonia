@@ -1889,4 +1889,64 @@
     <value>Это удалит локальный кэш пакетов. Действие нельзя отменить.</value>
   </data>
 
+  <data name="Page_Loading_Section_Indicator_Sizes_Header" xml:space="preserve">
+    <value>Размеры индикатора</value>
+  </data>
+  <data name="Page_Loading_Section_Indicator_Sizes_Description" xml:space="preserve">
+    <value>Классы Small и Large меняют размеры спиннера; без них используется размер по умолчанию.</value>
+  </data>
+  <data name="Page_Loading_Section_Overlay_Header" xml:space="preserve">
+    <value>Слой загрузки</value>
+  </data>
+  <data name="Page_Loading_Section_Overlay_Description" xml:space="preserve">
+    <value>Свяжите IsLoading с состоянием операции, чтобы отобразить слой загрузки поверх содержимого; во время загрузки содержимое размывается.</value>
+  </data>
+  <data name="Page_Loading_Section_Message_Template_Header" xml:space="preserve">
+    <value>Шаблон сообщения о загрузке</value>
+  </data>
+  <data name="Page_Loading_Section_Message_Template_Description" xml:space="preserve">
+    <value>Используйте LoadingMessage для текста состояния, а LoadingMessageTemplate — для настройки его отображения.</value>
+  </data>
+  <data name="Page_Loading_Section_Custom_Indicator_Header" xml:space="preserve">
+    <value>Пользовательский индикатор</value>
+  </data>
+  <data name="Page_Loading_Section_Custom_Indicator_Description" xml:space="preserve">
+    <value>Задайте Indicator, чтобы заменить стандартный спиннер другим элементом, который лучше показывает ход операции.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Icon_Header" xml:space="preserve">
+    <value>Значок</value>
+  </data>
+  <data name="Page_MessageBox_Section_Icon_Description" xml:space="preserve">
+    <value>Выберите значок типа сообщения или None, чтобы не отображать его.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Title_Header" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="Page_MessageBox_Section_Title_Description" xml:space="preserve">
+    <value>Включайте или отключайте заголовок независимо от текста сообщения.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Button_Combinations_Header" xml:space="preserve">
+    <value>Комбинации кнопок</value>
+  </data>
+  <data name="Page_MessageBox_Section_Button_Combinations_Description" xml:space="preserve">
+    <value>Выберите доступные кнопки ответа и проверьте возвращаемое значение MessageBoxResult.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Presentation_Modes_Header" xml:space="preserve">
+    <value>Способы отображения</value>
+  </data>
+  <data name="Page_MessageBox_Section_Presentation_Modes_Description" xml:space="preserve">
+    <value>На поддерживаемых платформах используйте окно MessageBox или переключитесь на встроенный диалог OverlayMessageBox в браузере и на мобильных устройствах.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Style_Class_Header" xml:space="preserve">
+    <value>Класс стиля</value>
+  </data>
+  <data name="Page_MessageBox_Section_Style_Class_Description" xml:space="preserve">
+    <value>Передайте класс Compact, чтобы применить стиль уровня приложения из демонстрации, уменьшающий внутренние отступы окна сообщения.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Observable_Content_Header" xml:space="preserve">
+    <value>Наблюдаемое содержимое</value>
+  </data>
+  <data name="Page_MessageBox_Section_Observable_Content_Description" xml:space="preserve">
+    <value>Передайте источники IObservable&lt;string&gt;, чтобы обновлять сообщение и заголовок, пока окно сообщения открыто.</value>
+  </data>
 </root>
