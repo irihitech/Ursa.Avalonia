@@ -2144,4 +2144,50 @@
   <data name="Page_PathPicker_Section_Command_Description" xml:space="preserve">
     <value>PathPicker.Command получает IReadOnlyList&lt;IStorageItem&gt;. Преобразуйте элемент в IStorageFile, чтобы вызвать OpenReadAsync и получить поток, или в IStorageFolder для работы с папкой. TryGetLocalPath может вернуть null, если поставщик не предоставляет локальный путь.</value>
   </data>
+  <data name="Page_WindowDialog_Section_Position_Header" xml:space="preserve"><value>Положение</value></data>
+  <data name="Page_WindowDialog_Section_Position_Description" xml:space="preserve"><value>Выберите начальное положение. Укажите X и Y для точного размещения в пикселях.</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Header" xml:space="preserve"><value>Режим и кнопки</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Description" xml:space="preserve"><value>Выберите режим диалога и кнопки в нижней части стандартного окна.</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Header" xml:space="preserve"><value>Кнопка закрытия</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Description" xml:space="preserve"><value>Трёхпозиционный параметр позволяет показать, скрыть или унаследовать видимость кнопки закрытия.</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Header" xml:space="preserve"><value>Поведение окна</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Description" xml:space="preserve"><value>Управляйте отображением на панели задач, перетаскиванием и изменением размера окна.</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Header" xml:space="preserve"><value>Класс стиля</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Description" xml:space="preserve"><value>Введите `Custom`, чтобы применить стиль приложения StandardDialogWindow.Custom: кнопка OK станет предупреждающей с надписью CUSTOM. Очистите поле, чтобы вернуть стандартный стиль.</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Header" xml:space="preserve"><value>Стандартный и пользовательский диалог</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Description" xml:space="preserve"><value>Стандартный диалог содержит встроенные кнопки, пользовательский использует ваше представление. Переключатель Modal выбирает модальный или немодальный API.</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Header" xml:space="preserve"><value>Размещение</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Description" xml:space="preserve"><value>Задайте горизонтальную и вертикальную привязку и необязательные смещения для размещения наложения.</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Header" xml:space="preserve"><value>Режим и кнопки</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Description" xml:space="preserve"><value>Выберите режим и кнопки в нижней части стандартного диалога наложения.</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Header" xml:space="preserve"><value>Закрытие</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Description" xml:space="preserve"><value>Разрешите закрытие щелчком вне диалога; трёхпозиционный параметр позволяет показать, скрыть или унаследовать видимость кнопки закрытия.</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Header" xml:space="preserve"><value>Размещение и взаимодействие</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Description" xml:space="preserve"><value>Переключайте полноэкранный режим, перетаскивание и изменение размера диалога наложения.</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Header" xml:space="preserve"><value>Локальный или глобальный хост</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Description" xml:space="preserve"><value>Глобальный хост показывает наложение во всём приложении; выберите Local для отображения диалога в рамке OverlayDialogHost ниже.</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Header" xml:space="preserve"><value>Класс стиля</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Description" xml:space="preserve"><value>Введите `Custom`, чтобы применить стиль окна-хоста StandardDialogControl.Custom: кнопка OK станет предупреждающей с надписью CUSTOM. Очистите поле, чтобы вернуть стандартный стиль.</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Header" xml:space="preserve"><value>Стандартный и пользовательский диалог</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Description" xml:space="preserve"><value>Стандартное наложение содержит встроенные кнопки, пользовательское использует ваше представление. Переключатель Modal определяет, блокирует ли диалог другие действия.</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>Основное использование</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>Откройте стандартное окно диалога со стандартными кнопками и поведением одним вызовом.</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Header" xml:space="preserve"><value>Позиционирование</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Description" xml:space="preserve"><value>Выберите начальное положение или задайте X и Y, чтобы указать точные координаты окна на экране.</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Пользовательское содержимое диалога</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Используйте API пользовательского диалога, чтобы показать собственные представление и модель представления вместо стандартного содержимого.</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Header" xml:space="preserve"><value>Модальные и немодальные окна</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Description" xml:space="preserve"><value>Используйте асинхронный API для модального окна, а обычный API — для немодального.</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>Основное использование</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>Откройте стандартный диалог наложения в глобальном хосте одним вызовом.</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Header" xml:space="preserve"><value>Позиционирование</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Description" xml:space="preserve"><value>Выберите горизонтальную и вертикальную привязки и настройте положение с помощью необязательных смещений.</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Header" xml:space="preserve"><value>Закрытие при щелчке снаружи</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Description" xml:space="preserve"><value>Разрешите закрывать диалог щелчком за его пределами.</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Header" xml:space="preserve"><value>Использование локального хоста</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Description" xml:space="preserve"><value>Выберите глобальный хост для диалога на уровне приложения или локальный OverlayDialogHost, чтобы ограничить диалог частью представления.</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Header" xml:space="preserve"><value>Модальные и немодальные наложения</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Description" xml:space="preserve"><value>Используйте асинхронный API для модального диалога наложения или обычный API для немодального.</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Пользовательское содержимое диалога</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Используйте API пользовательского наложения, чтобы отобразить в нём собственные представление и модель представления.</value></data>
 </root>

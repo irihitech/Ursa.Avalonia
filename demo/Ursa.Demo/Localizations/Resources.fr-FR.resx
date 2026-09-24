@@ -2144,4 +2144,50 @@
   <data name="Page_PathPicker_Section_Command_Description" xml:space="preserve">
     <value>PathPicker.Command reçoit une IReadOnlyList&lt;IStorageItem&gt;. Convertissez un élément en IStorageFile pour appeler OpenReadAsync et obtenir un flux, ou en IStorageFolder pour accéder à un dossier. TryGetLocalPath peut renvoyer null si le fournisseur ne fournit pas de chemin local.</value>
   </data>
+  <data name="Page_WindowDialog_Section_Position_Header" xml:space="preserve"><value>Position</value></data>
+  <data name="Page_WindowDialog_Section_Position_Description" xml:space="preserve"><value>Choisissez la position initiale. Renseignez X et Y pour définir une position précise en pixels.</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Header" xml:space="preserve"><value>Mode et boutons</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Description" xml:space="preserve"><value>Choisissez le mode de dialogue et les boutons affichés en bas de la boîte de dialogue standard.</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Header" xml:space="preserve"><value>Bouton de fermeture</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Description" xml:space="preserve"><value>L'option à trois états permet d'afficher, de masquer ou d'hériter de la visibilité du bouton de fermeture.</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Header" xml:space="preserve"><value>Comportement de la fenêtre</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Description" xml:space="preserve"><value>Contrôlez la présence dans la barre des tâches, le déplacement et le redimensionnement de la fenêtre.</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Header" xml:space="preserve"><value>Classe de style</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Description" xml:space="preserve"><value>Saisissez `Custom` pour appliquer le style StandardDialogWindow.Custom de l'application : le bouton OK devient un bouton d'avertissement intitulé CUSTOM. Videz le champ pour retrouver le style par défaut.</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Header" xml:space="preserve"><value>Dialogue standard ou personnalisé</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Description" xml:space="preserve"><value>Le dialogue standard fournit des boutons intégrés ; le dialogue personnalisé utilise votre propre vue. Basculez Modal pour choisir une API modale ou non modale.</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Header" xml:space="preserve"><value>Placement</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Description" xml:space="preserve"><value>Définissez les ancres horizontale et verticale ainsi que des décalages facultatifs pour placer la superposition.</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Header" xml:space="preserve"><value>Mode et boutons</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Description" xml:space="preserve"><value>Choisissez le mode et les boutons en bas d'un dialogue superposé standard.</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Header" xml:space="preserve"><value>Fermeture</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Description" xml:space="preserve"><value>Autorisez la fermeture par clic extérieur ; l'option à trois états permet d'afficher, de masquer ou d'hériter de la visibilité du bouton de fermeture.</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Header" xml:space="preserve"><value>Disposition et interaction</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Description" xml:space="preserve"><value>Activez le plein écran, le déplacement et le redimensionnement du dialogue superposé.</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Header" xml:space="preserve"><value>Hôte local ou global</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Description" xml:space="preserve"><value>L'hôte global affiche une superposition à l'échelle de l'application ; choisissez Local pour afficher le dialogue dans l'OverlayDialogHost encadré ci-dessous.</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Header" xml:space="preserve"><value>Classe de style</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Description" xml:space="preserve"><value>Saisissez `Custom` pour appliquer le style StandardDialogControl.Custom de la fenêtre hôte : le bouton OK devient un bouton d'avertissement intitulé CUSTOM. Videz le champ pour retrouver le style par défaut.</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Header" xml:space="preserve"><value>Dialogue standard ou personnalisé</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Description" xml:space="preserve"><value>Les superpositions standard ont des boutons intégrés ; les personnalisées utilisent votre propre vue. Basculez Modal pour choisir si le dialogue bloque les autres interactions.</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>Utilisation de base</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>Ouvrez une boîte de dialogue standard avec ses boutons et son comportement par défaut en un seul appel.</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Header" xml:space="preserve"><value>Positionnement</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Description" xml:space="preserve"><value>Choisissez une position de démarrage ou renseignez X et Y pour placer la boîte de dialogue à des coordonnées précises.</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Contenu personnalisé</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Utilisez l'API de dialogue personnalisé pour afficher votre propre vue et modèle de vue à la place du contenu standard intégré.</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Header" xml:space="preserve"><value>Fenêtres modales et non modales</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Description" xml:space="preserve"><value>Utilisez l'API asynchrone pour une fenêtre modale, ou l'API non asynchrone pour ouvrir une fenêtre non modale.</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>Utilisation de base</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>Ouvrez un dialogue superposé standard dans l'hôte global en un seul appel.</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Header" xml:space="preserve"><value>Positionnement</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Description" xml:space="preserve"><value>Choisissez les ancres horizontale et verticale, puis ajustez la position avec des décalages facultatifs.</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Header" xml:space="preserve"><value>Fermeture par clic extérieur</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Description" xml:space="preserve"><value>Autorisez la fermeture du dialogue lorsque l'utilisateur clique à l'extérieur.</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Header" xml:space="preserve"><value>Utiliser un hôte local</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Description" xml:space="preserve"><value>Choisissez l'hôte global pour un dialogue à l'échelle de l'application ou un OverlayDialogHost local pour le limiter à une partie précise de la vue.</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Header" xml:space="preserve"><value>Superpositions modales et non modales</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Description" xml:space="preserve"><value>Utilisez l'API asynchrone pour attendre un dialogue superposé modal, ou l'API non asynchrone pour afficher une superposition non modale.</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Contenu personnalisé</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Utilisez l'API de superposition personnalisée pour afficher votre propre vue et modèle de vue dans la superposition.</value></data>
 </root>

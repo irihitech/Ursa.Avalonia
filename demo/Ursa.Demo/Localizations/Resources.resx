@@ -2144,4 +2144,50 @@
   <data name="Page_PathPicker_Section_Command_Description" xml:space="preserve">
     <value>PathPicker.Command receives an IReadOnlyList&lt;IStorageItem&gt;. Cast items to IStorageFile to call OpenReadAsync for a stream, or to IStorageFolder for folder-specific access. TryGetLocalPath may return null when a provider does not expose a local path.</value>
   </data>
+  <data name="Page_WindowDialog_Section_Position_Header" xml:space="preserve"><value>Position</value></data>
+  <data name="Page_WindowDialog_Section_Position_Description" xml:space="preserve"><value>Choose the startup location. Supply both X and Y to set an explicit pixel position.</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Header" xml:space="preserve"><value>Mode and buttons</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Description" xml:space="preserve"><value>Choose a dialog mode and the buttons shown in the standard dialog footer.</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Header" xml:space="preserve"><value>Close button</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Description" xml:space="preserve"><value>Use the three-state option to show, hide, or inherit the window close button visibility.</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Header" xml:space="preserve"><value>Window behavior</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Description" xml:space="preserve"><value>Control taskbar visibility, dragging, and resizing for the window.</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Header" xml:space="preserve"><value>Style class</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Description" xml:space="preserve"><value>Enter `Custom` to apply the application's StandardDialogWindow.Custom style: the OK button becomes a warning button labeled CUSTOM. Clear the class for the default style.</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Header" xml:space="preserve"><value>Standard vs custom dialog</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Description" xml:space="preserve"><value>Standard dialogs provide built-in buttons; custom dialogs use your own view. Toggle Modal to switch the custom dialog between modal and modeless APIs.</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Header" xml:space="preserve"><value>Placement</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Description" xml:space="preserve"><value>Set horizontal and vertical anchors and optional offsets to position the overlay.</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Header" xml:space="preserve"><value>Mode and buttons</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Description" xml:space="preserve"><value>Choose the mode and footer buttons for a standard overlay dialog.</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Header" xml:space="preserve"><value>Dismissal</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Description" xml:space="preserve"><value>Enable light dismiss to close on outside clicks; use the three-state close button option to show, hide, or inherit its visibility.</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Header" xml:space="preserve"><value>Layout and interaction</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Description" xml:space="preserve"><value>Toggle full screen, dragging, and resizing of the overlay dialog.</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Header" xml:space="preserve"><value>Local or global host</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Description" xml:space="preserve"><value>Use the global host for an app-wide overlay, or select Local to show the dialog inside the bordered OverlayDialogHost below.</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Header" xml:space="preserve"><value>Style class</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Description" xml:space="preserve"><value>Enter `Custom` to apply the host window's StandardDialogControl.Custom style: the OK button becomes a warning button labeled CUSTOM. Clear the class for the default style.</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Header" xml:space="preserve"><value>Standard vs custom dialog</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Description" xml:space="preserve"><value>Standard overlays have built-in buttons; custom overlays use your own view. Toggle Modal to choose whether the custom dialog blocks interaction.</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>Basic Usage</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>Open a standard window dialog with its default buttons and behavior using a single call.</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Header" xml:space="preserve"><value>Positioning</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Description" xml:space="preserve"><value>Choose a startup location, or set both X and Y to place the dialog at a specific screen coordinate.</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Custom Dialog Content</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Use the custom dialog API to show your own view and view model instead of the built-in standard dialog content.</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Header" xml:space="preserve"><value>Modal and Modeless Windows</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Description" xml:space="preserve"><value>Use the async custom-dialog API for a modal window, or the non-async API to open a modeless window.</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>Basic Usage</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>Open a standard overlay dialog in the global overlay host with a single call.</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Header" xml:space="preserve"><value>Positioning</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Description" xml:space="preserve"><value>Choose horizontal and vertical anchors and adjust the position with optional offsets.</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Header" xml:space="preserve"><value>Light Dismiss</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Description" xml:space="preserve"><value>Enable light dismiss to close the dialog when the user clicks outside it.</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Header" xml:space="preserve"><value>Using a Local Host</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Description" xml:space="preserve"><value>Choose the global host for an app-wide dialog or a local OverlayDialogHost to constrain it to a specific part of the view.</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Header" xml:space="preserve"><value>Modal and Modeless Overlays</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Description" xml:space="preserve"><value>Use the async API to await a modal overlay dialog, or the non-async API to show a modeless overlay.</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Custom Dialog Content</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Use the custom overlay API to render your own view and view model inside the overlay.</value></data>
 </root>

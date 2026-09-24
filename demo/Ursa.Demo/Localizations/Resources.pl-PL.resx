@@ -2136,4 +2136,50 @@
   <data name="Page_PathPicker_Section_Command_Description" xml:space="preserve">
     <value>PathPicker.Command otrzymuje IReadOnlyList&lt;IStorageItem&gt;. Rzutuj element na IStorageFile, aby wywołać OpenReadAsync i uzyskać strumień, lub na IStorageFolder, aby uzyskać dostęp do folderu. TryGetLocalPath może zwrócić null, jeśli dostawca nie udostępnia lokalnej ścieżki.</value>
   </data>
+  <data name="Page_WindowDialog_Section_Position_Header" xml:space="preserve"><value>Położenie</value></data>
+  <data name="Page_WindowDialog_Section_Position_Description" xml:space="preserve"><value>Wybierz położenie początkowe. Podaj X i Y, aby ustawić dokładną pozycję w pikselach.</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Header" xml:space="preserve"><value>Tryb i przyciski</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Description" xml:space="preserve"><value>Wybierz tryb dialogu i przyciski wyświetlane na dole standardowego okna dialogowego.</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Header" xml:space="preserve"><value>Przycisk zamykania</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Description" xml:space="preserve"><value>Opcja trójstanowa pozwala pokazać, ukryć lub odziedziczyć widoczność przycisku zamykania.</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Header" xml:space="preserve"><value>Zachowanie okna</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Description" xml:space="preserve"><value>Kontroluj widoczność na pasku zadań, przeciąganie i zmianę rozmiaru okna.</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Header" xml:space="preserve"><value>Klasa stylu</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Description" xml:space="preserve"><value>Wpisz `Custom`, aby zastosować styl aplikacji StandardDialogWindow.Custom: przycisk OK stanie się przyciskiem ostrzegawczym z napisem CUSTOM. Wyczyść pole, aby przywrócić styl domyślny.</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Header" xml:space="preserve"><value>Dialog standardowy i niestandardowy</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Description" xml:space="preserve"><value>Standardowy dialog ma wbudowane przyciski; niestandardowy używa własnego widoku. Przełącz Modal, aby wybrać interfejs modalny lub niemodalny.</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Header" xml:space="preserve"><value>Położenie</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Description" xml:space="preserve"><value>Ustaw poziome i pionowe punkty zaczepienia oraz opcjonalne przesunięcia, aby umieścić nakładkę.</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Header" xml:space="preserve"><value>Tryb i przyciski</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Description" xml:space="preserve"><value>Wybierz tryb i przyciski na dole standardowego dialogu nakładki.</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Header" xml:space="preserve"><value>Zamykanie</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Description" xml:space="preserve"><value>Włącz zamykanie kliknięciem poza dialogiem; opcja trójstanowa pozwala pokazać, ukryć lub odziedziczyć widoczność przycisku zamykania.</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Header" xml:space="preserve"><value>Układ i interakcja</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Description" xml:space="preserve"><value>Przełącz tryb pełnoekranowy, przeciąganie i zmianę rozmiaru dialogu nakładki.</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Header" xml:space="preserve"><value>Host lokalny lub globalny</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Description" xml:space="preserve"><value>Host globalny wyświetla nakładkę w całej aplikacji; wybierz Local, aby pokazać dialog w obramowanym OverlayDialogHost poniżej.</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Header" xml:space="preserve"><value>Klasa stylu</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Description" xml:space="preserve"><value>Wpisz `Custom`, aby zastosować styl okna hosta StandardDialogControl.Custom: przycisk OK stanie się przyciskiem ostrzegawczym z napisem CUSTOM. Wyczyść pole, aby przywrócić styl domyślny.</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Header" xml:space="preserve"><value>Dialog standardowy i niestandardowy</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Description" xml:space="preserve"><value>Standardowa nakładka ma wbudowane przyciski; niestandardowa używa własnego widoku. Przełącz Modal, aby określić, czy dialog blokuje inne interakcje.</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>Podstawowe użycie</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>Otwórz standardowe okno dialogowe z domyślnymi przyciskami i zachowaniem za pomocą jednego wywołania.</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Header" xml:space="preserve"><value>Pozycjonowanie</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Description" xml:space="preserve"><value>Wybierz pozycję początkową lub podaj X i Y, aby umieścić okno dialogowe pod określonymi współrzędnymi ekranu.</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Niestandardowa zawartość dialogu</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Użyj API niestandardowego dialogu, aby wyświetlić własny widok i model widoku zamiast wbudowanej standardowej zawartości.</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Header" xml:space="preserve"><value>Okna modalne i niemodalne</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Description" xml:space="preserve"><value>Użyj asynchronicznego API dla okna modalnego lub synchronicznego API, aby otworzyć okno niemodalne.</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>Podstawowe użycie</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>Otwórz standardowy dialog nakładki w globalnym hoście za pomocą jednego wywołania.</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Header" xml:space="preserve"><value>Pozycjonowanie</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Description" xml:space="preserve"><value>Wybierz poziome i pionowe punkty zaczepienia oraz dostosuj położenie za pomocą opcjonalnych przesunięć.</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Header" xml:space="preserve"><value>Zamykanie kliknięciem poza dialogiem</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Description" xml:space="preserve"><value>Włącz zamykanie dialogu po kliknięciu poza nim.</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Header" xml:space="preserve"><value>Używanie lokalnego hosta</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Description" xml:space="preserve"><value>Wybierz host globalny dla dialogu w całej aplikacji lub lokalny OverlayDialogHost, aby ograniczyć go do części widoku.</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Header" xml:space="preserve"><value>Nakładki modalne i niemodalne</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Description" xml:space="preserve"><value>Użyj asynchronicznego API, aby oczekiwać na modalny dialog nakładki, lub synchronicznego API, aby wyświetlić nakładkę niemodalną.</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Niestandardowa zawartość dialogu</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Użyj API niestandardowej nakładki, aby wyświetlić w niej własny widok i model widoku.</value></data>
 </root>

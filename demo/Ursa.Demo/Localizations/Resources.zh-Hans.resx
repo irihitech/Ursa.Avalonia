@@ -2130,4 +2130,50 @@
   <data name="Page_PathPicker_Section_Command_Description" xml:space="preserve">
     <value>PathPicker.Command 接收 IReadOnlyList&lt;IStorageItem&gt;。将项目转换为 IStorageFile 后可调用 OpenReadAsync 获取流，或转换为 IStorageFolder 访问文件夹。若存储提供程序不提供本地路径，TryGetLocalPath 可能返回 null。</value>
   </data>
+  <data name="Page_WindowDialog_Section_Position_Header" xml:space="preserve"><value>位置</value></data>
+  <data name="Page_WindowDialog_Section_Position_Description" xml:space="preserve"><value>选择窗口启动位置；同时填写 X 和 Y 可指定像素坐标。</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Header" xml:space="preserve"><value>模式与按钮</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Description" xml:space="preserve"><value>选择对话框模式和标准对话框底部显示的按钮。</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Header" xml:space="preserve"><value>关闭按钮</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Description" xml:space="preserve"><value>使用三态选项显示、隐藏或继承窗口关闭按钮的可见性。</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Header" xml:space="preserve"><value>窗口行为</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Description" xml:space="preserve"><value>控制窗口的任务栏显示、拖动和调整大小。</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Header" xml:space="preserve"><value>样式类</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Description" xml:space="preserve"><value>输入 `Custom` 可应用应用程序的 StandardDialogWindow.Custom 样式：确定按钮变为标有 CUSTOM 的警告按钮。清空样式类则恢复默认样式。</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Header" xml:space="preserve"><value>标准与自定义对话框</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Description" xml:space="preserve"><value>标准对话框提供内置按钮；自定义对话框使用自己的视图。切换 Modal 可在模态和非模态 API 之间选择。</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Header" xml:space="preserve"><value>位置</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Description" xml:space="preserve"><value>设置水平和垂直锚点及可选偏移量，以定位覆盖层。</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Header" xml:space="preserve"><value>模式与按钮</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Description" xml:space="preserve"><value>选择标准覆盖层对话框的模式和底部按钮。</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Header" xml:space="preserve"><value>关闭方式</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Description" xml:space="preserve"><value>启用轻量关闭可在点击外部时关闭对话框；使用三态选项显示、隐藏或继承关闭按钮的可见性。</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Header" xml:space="preserve"><value>布局与交互</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Description" xml:space="preserve"><value>切换覆盖层对话框的全屏、拖动和调整大小功能。</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Header" xml:space="preserve"><value>本地或全局宿主</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Description" xml:space="preserve"><value>使用全局宿主显示应用级覆盖层，或选择 Local 在下方带边框的 OverlayDialogHost 中显示对话框。</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Header" xml:space="preserve"><value>样式类</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Description" xml:space="preserve"><value>输入 `Custom` 可应用宿主窗口的 StandardDialogControl.Custom 样式：确定按钮变为标有 CUSTOM 的警告按钮。清空样式类则恢复默认样式。</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Header" xml:space="preserve"><value>标准与自定义对话框</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Description" xml:space="preserve"><value>标准覆盖层提供内置按钮；自定义覆盖层使用自己的视图。切换 Modal 可选择自定义对话框是否阻止其他交互。</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>基本用法</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>通过一次调用打开标准窗口对话框，并使用其默认按钮和行为。</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Header" xml:space="preserve"><value>窗口定位</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Description" xml:space="preserve"><value>选择启动位置，或同时设置 X 和 Y，将对话框定位到指定的屏幕坐标。</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Header" xml:space="preserve"><value>自定义对话框内容</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Description" xml:space="preserve"><value>使用自定义对话框 API 显示自己的视图和视图模型，而不是标准对话框的内置内容。</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Header" xml:space="preserve"><value>模态与非模态窗口</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Description" xml:space="preserve"><value>使用异步自定义对话框 API 打开模态窗口，或使用非异步 API 打开非模态窗口。</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>基本用法</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>通过一次调用在全局覆盖层宿主中打开标准覆盖层对话框。</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Header" xml:space="preserve"><value>覆盖层定位</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Description" xml:space="preserve"><value>选择水平和垂直锚点，并使用可选偏移量调整位置。</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Header" xml:space="preserve"><value>点击外部关闭</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Description" xml:space="preserve"><value>启用轻量关闭后，用户点击对话框外部即可关闭对话框。</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Header" xml:space="preserve"><value>使用本地宿主</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Description" xml:space="preserve"><value>全局宿主适用于应用范围的对话框；本地 OverlayDialogHost 可将对话框限制在视图中的特定区域。</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Header" xml:space="preserve"><value>模态与非模态覆盖层</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Description" xml:space="preserve"><value>使用异步 API 等待模态覆盖层对话框，或使用非异步 API 显示非模态覆盖层。</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Header" xml:space="preserve"><value>自定义对话框内容</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Description" xml:space="preserve"><value>使用自定义覆盖层 API 在覆盖层中呈现自己的视图和视图模型。</value></data>
 </root>

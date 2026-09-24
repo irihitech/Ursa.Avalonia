@@ -2144,4 +2144,50 @@
   <data name="Page_PathPicker_Section_Command_Description" xml:space="preserve">
     <value>PathPicker.Command obdrží IReadOnlyList&lt;IStorageItem&gt;. Přetypujte položku na IStorageFile a zavolejte OpenReadAsync pro otevření streamu, nebo na IStorageFolder pro přístup ke složce. TryGetLocalPath může vrátit null, pokud poskytovatel nezpřístupňuje místní cestu.</value>
   </data>
+  <data name="Page_WindowDialog_Section_Position_Header" xml:space="preserve"><value>Umístění</value></data>
+  <data name="Page_WindowDialog_Section_Position_Description" xml:space="preserve"><value>Vyberte počáteční umístění. Zadejte X i Y pro přesnou polohu v pixelech.</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Header" xml:space="preserve"><value>Režim a tlačítka</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Description" xml:space="preserve"><value>Vyberte režim dialogu a tlačítka ve spodní části standardního dialogu.</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Header" xml:space="preserve"><value>Tlačítko zavření</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Description" xml:space="preserve"><value>Třístavová volba umožňuje tlačítko zavření zobrazit, skrýt nebo převzít jeho viditelnost.</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Header" xml:space="preserve"><value>Chování okna</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Description" xml:space="preserve"><value>Ovládejte zobrazení na hlavním panelu, přetahování a změnu velikosti okna.</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Header" xml:space="preserve"><value>Třída stylu</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Description" xml:space="preserve"><value>Zadejte `Custom` pro použití stylu aplikace StandardDialogWindow.Custom: tlačítko OK se změní na varovné tlačítko s nápisem CUSTOM. Vymazáním hodnoty obnovíte výchozí styl.</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Header" xml:space="preserve"><value>Standardní a vlastní dialog</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Description" xml:space="preserve"><value>Standardní dialog nabízí vestavěná tlačítka; vlastní dialog používá váš pohled. Přepínač Modal volí mezi modálním a nemodálním API.</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Header" xml:space="preserve"><value>Umístění</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Description" xml:space="preserve"><value>Nastavte vodorovné a svislé ukotvení a volitelné odsazení pro umístění překryvu.</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Header" xml:space="preserve"><value>Režim a tlačítka</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Description" xml:space="preserve"><value>Vyberte režim a tlačítka ve spodní části standardního překryvného dialogu.</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Header" xml:space="preserve"><value>Zavření</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Description" xml:space="preserve"><value>Povolte zavření kliknutím mimo dialog; třístavová volba umožňuje tlačítko zavření zobrazit, skrýt nebo převzít jeho viditelnost.</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Header" xml:space="preserve"><value>Rozvržení a interakce</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Description" xml:space="preserve"><value>Přepněte režim celé obrazovky, přetahování a změnu velikosti překryvného dialogu.</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Header" xml:space="preserve"><value>Lokální nebo globální hostitel</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Description" xml:space="preserve"><value>Globální hostitel zobrazí překryv v celé aplikaci; volba Local zobrazí dialog v orámovaném OverlayDialogHost níže.</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Header" xml:space="preserve"><value>Třída stylu</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Description" xml:space="preserve"><value>Zadejte `Custom` pro použití stylu hostitelského okna StandardDialogControl.Custom: tlačítko OK se změní na varovné tlačítko s nápisem CUSTOM. Vymazáním hodnoty obnovíte výchozí styl.</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Header" xml:space="preserve"><value>Standardní a vlastní dialog</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Description" xml:space="preserve"><value>Standardní překryv má vestavěná tlačítka; vlastní používá váš pohled. Přepínač Modal určuje, zda vlastní dialog blokuje další interakce.</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>Základní použití</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>Otevřete standardní dialog okna s výchozími tlačítky a chováním jediným voláním.</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Header" xml:space="preserve"><value>Umístění</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Description" xml:space="preserve"><value>Vyberte počáteční umístění nebo zadejte X a Y pro umístění dialogu na konkrétní souřadnice obrazovky.</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Vlastní obsah dialogu</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Použijte API vlastního dialogu a zobrazte vlastní pohled a view model místo vestavěného obsahu standardního dialogu.</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Header" xml:space="preserve"><value>Modální a nemodální okna</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Description" xml:space="preserve"><value>Asynchronní API vlastního dialogu otevře modální okno; neasynchronní API otevře nemodální okno.</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>Základní použití</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>Otevřete standardní překryvný dialog v globálním hostiteli jediným voláním.</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Header" xml:space="preserve"><value>Umístění</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Description" xml:space="preserve"><value>Vyberte vodorovné a svislé ukotvení a upravte polohu pomocí volitelného odsazení.</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Header" xml:space="preserve"><value>Zavření kliknutím mimo</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Description" xml:space="preserve"><value>Povolte zavření kliknutím mimo dialog.</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Header" xml:space="preserve"><value>Použití lokálního hostitele</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Description" xml:space="preserve"><value>Vyberte globálního hostitele pro dialog v celé aplikaci nebo místního OverlayDialogHost pro omezení dialogu na konkrétní část pohledu.</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Header" xml:space="preserve"><value>Modální a nemodální překryvy</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Description" xml:space="preserve"><value>Asynchronní API otevře modální překryvný dialog; neasynchronní API zobrazí nemodální překryv.</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Vlastní obsah dialogu</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Použijte API vlastního překryvu a zobrazte v něm vlastní pohled a view model.</value></data>
 </root>

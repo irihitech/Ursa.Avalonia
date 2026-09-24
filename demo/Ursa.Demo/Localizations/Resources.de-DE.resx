@@ -2143,4 +2143,50 @@
   <data name="Page_PathPicker_Section_Command_Description" xml:space="preserve">
     <value>PathPicker.Command erhält eine IReadOnlyList&lt;IStorageItem&gt;. Wandeln Sie Elemente in IStorageFile um, um mit OpenReadAsync einen Stream zu öffnen, oder in IStorageFolder für ordnerspezifischen Zugriff. TryGetLocalPath kann null zurückgeben, wenn der Anbieter keinen lokalen Pfad bereitstellt.</value>
   </data>
+  <data name="Page_WindowDialog_Section_Position_Header" xml:space="preserve"><value>Position</value></data>
+  <data name="Page_WindowDialog_Section_Position_Description" xml:space="preserve"><value>Wählen Sie die Startposition. Geben Sie sowohl X als auch Y an, um eine genaue Pixelposition festzulegen.</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Header" xml:space="preserve"><value>Modus und Schaltflächen</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Description" xml:space="preserve"><value>Wählen Sie den Dialogmodus und die Schaltflächen im Fußbereich des Standarddialogs.</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Header" xml:space="preserve"><value>Schließen-Schaltfläche</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Description" xml:space="preserve"><value>Mit der dreistufigen Option können Sie die Schließen-Schaltfläche anzeigen, ausblenden oder ihre Sichtbarkeit übernehmen.</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Header" xml:space="preserve"><value>Fensterverhalten</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Description" xml:space="preserve"><value>Steuern Sie die Anzeige in der Taskleiste, das Verschieben und die Größenänderung des Fensters.</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Header" xml:space="preserve"><value>Stilklasse</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Description" xml:space="preserve"><value>Geben Sie `Custom` ein, um den Anwendungsstil StandardDialogWindow.Custom anzuwenden: Die OK-Schaltfläche wird zur Warnschaltfläche mit der Aufschrift CUSTOM. Leeren Sie das Feld für den Standardstil.</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Header" xml:space="preserve"><value>Standarddialog und benutzerdefinierter Dialog</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Description" xml:space="preserve"><value>Standarddialoge haben integrierte Schaltflächen; benutzerdefinierte Dialoge verwenden Ihre eigene Ansicht. Mit Modal wechseln Sie zwischen modaler und nichtmodaler API.</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Header" xml:space="preserve"><value>Platzierung</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Description" xml:space="preserve"><value>Positionieren Sie das Overlay mit horizontalen und vertikalen Ankern sowie optionalen Abständen.</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Header" xml:space="preserve"><value>Modus und Schaltflächen</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Description" xml:space="preserve"><value>Wählen Sie den Modus und die Schaltflächen im Fußbereich eines Standard-Overlaydialogs.</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Header" xml:space="preserve"><value>Schließen</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Description" xml:space="preserve"><value>Aktivieren Sie das Schließen durch Klicken außerhalb; mit der dreistufigen Option können Sie die Schließen-Schaltfläche anzeigen, ausblenden oder ihre Sichtbarkeit übernehmen.</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Header" xml:space="preserve"><value>Layout und Interaktion</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Description" xml:space="preserve"><value>Schalten Sie Vollbildmodus, Verschieben und Größenänderung des Overlaydialogs um.</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Header" xml:space="preserve"><value>Lokaler oder globaler Host</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Description" xml:space="preserve"><value>Der globale Host zeigt das Overlay anwendungsweit an; mit Local erscheint der Dialog im umrandeten OverlayDialogHost unten.</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Header" xml:space="preserve"><value>Stilklasse</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Description" xml:space="preserve"><value>Geben Sie `Custom` ein, um den Stil StandardDialogControl.Custom des Hostfensters anzuwenden: Die OK-Schaltfläche wird zur Warnschaltfläche mit der Aufschrift CUSTOM. Leeren Sie das Feld für den Standardstil.</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Header" xml:space="preserve"><value>Standarddialog und benutzerdefinierter Dialog</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Description" xml:space="preserve"><value>Standard-Overlays haben integrierte Schaltflächen; benutzerdefinierte Overlays verwenden Ihre eigene Ansicht. Mit Modal legen Sie fest, ob der benutzerdefinierte Dialog andere Interaktionen blockiert.</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>Grundlegende Verwendung</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>Öffnen Sie einen Standard-Fensterdialog mit den Standardschaltflächen und dem Standardverhalten in einem einzigen Aufruf.</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Header" xml:space="preserve"><value>Positionierung</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Description" xml:space="preserve"><value>Wählen Sie eine Startposition oder geben Sie X und Y an, um den Dialog an bestimmten Bildschirmkoordinaten zu platzieren.</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Benutzerdefinierter Dialoginhalt</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Verwenden Sie die API für benutzerdefinierte Dialoge, um eine eigene Ansicht und ein eigenes ViewModel anstelle des Standardinhalts anzuzeigen.</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Header" xml:space="preserve"><value>Modale und nichtmodale Fenster</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Description" xml:space="preserve"><value>Verwenden Sie die asynchrone API für ein modales Fenster oder die synchrone API zum Öffnen eines nichtmodalen Fensters.</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>Grundlegende Verwendung</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>Öffnen Sie einen Standard-Overlaydialog mit einem einzigen Aufruf im globalen Overlayhost.</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Header" xml:space="preserve"><value>Positionierung</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Description" xml:space="preserve"><value>Wählen Sie horizontale und vertikale Anker und passen Sie die Position mit optionalen Abständen an.</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Header" xml:space="preserve"><value>Schließen durch Außenklick</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Description" xml:space="preserve"><value>Aktivieren Sie das Schließen durch Außenklick, damit der Dialog bei einem Klick außerhalb geschlossen wird.</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Header" xml:space="preserve"><value>Lokalen Host verwenden</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Description" xml:space="preserve"><value>Wählen Sie den globalen Host für einen anwendungsweiten Dialog oder einen lokalen OverlayDialogHost, um den Dialog auf einen bestimmten Ansichtsbereich zu beschränken.</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Header" xml:space="preserve"><value>Modale und nichtmodale Overlays</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Description" xml:space="preserve"><value>Verwenden Sie die asynchrone API für einen modalen Overlaydialog oder die synchrone API für ein nichtmodales Overlay.</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Benutzerdefinierter Dialoginhalt</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Verwenden Sie die API für benutzerdefinierte Overlays, um eine eigene Ansicht und ein eigenes ViewModel im Overlay darzustellen.</value></data>
 </root>
