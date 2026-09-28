@@ -499,34 +499,41 @@ public class DatePickerCalendarView : TemplatedControl
 
     private void UpdateHeaderButtons()
     {
+        var isMonth = Mode == DatePickerCalendarViewMode.Month;
+        if (isMonth)
+        {
+            IsVisibleProperty.SetValue(true, _yearButton, _monthButton);
+            if (_headerButton?.IsFocused == true)
+                _monthButton?.Focus();
+            IsVisibleProperty.SetValue(false, _headerButton);
+        }
+        else
+        {
+            IsVisibleProperty.SetValue(true, _headerButton);
+            // Transfer focus before hiding the old header, so it does not return to the picker's text box.
+            if (_yearButton?.IsFocused == true || _monthButton?.IsFocused == true)
+                _headerButton?.Focus();
+            IsVisibleProperty.SetValue(false, _yearButton, _monthButton);
+        }
+        IsVisibleProperty.SetValue(isMonth, _monthGrid, _fastPreviousButton, _fastNextButton);
+        IsVisibleProperty.SetValue(!isMonth, _yearGrid);
+
         if (Mode == DatePickerCalendarViewMode.Century)
         {
-            IsVisibleProperty.SetValue(true, _headerButton, _yearGrid);
-            IsVisibleProperty.SetValue(false, _yearButton, _monthButton, _monthGrid, _fastPreviousButton,
-                _fastNextButton);
             _headerButton?.SetValue(ContentControl.ContentProperty,
                 ContextDate.StartYear + "-" + ContextDate.EndYear);
         }
         else if (Mode == DatePickerCalendarViewMode.Decade)
         {
-            IsVisibleProperty.SetValue(true, _headerButton, _yearGrid);
-            IsVisibleProperty.SetValue(false, _yearButton, _monthButton, _monthGrid, _fastPreviousButton,
-                _fastNextButton);
             _headerButton?.SetValue(ContentControl.ContentProperty,
                 ContextDate.StartYear + "-" + ContextDate.EndYear);
         }
         else if (Mode == DatePickerCalendarViewMode.Year)
         {
-            IsVisibleProperty.SetValue(true, _headerButton, _yearGrid);
-            IsVisibleProperty.SetValue(false, _yearButton, _monthButton, _monthGrid, _fastPreviousButton,
-                _fastNextButton);
             _headerButton?.SetValue(ContentControl.ContentProperty, ContextDate.Year);
         }
         else if (Mode == DatePickerCalendarViewMode.Month)
         {
-            IsVisibleProperty.SetValue(false, _headerButton, _yearGrid);
-            IsVisibleProperty.SetValue(true, _yearButton, _monthButton, _monthGrid, _fastPreviousButton,
-                _fastNextButton);
             // _headerButton?.SetValue(ContentControl.ContentProperty, ContextCalendar.Year);
             _yearButton?.SetValue(ContentControl.ContentProperty, ContextDate.Year);
             _monthButton?.SetValue(ContentControl.ContentProperty,
@@ -613,6 +620,19 @@ public class DatePickerCalendarView : TemplatedControl
     internal void SyncContextDate(DatePickerCalendarContext? context)
     {
         if (context is null) return;
+        if (context.Year is { } year)
+        {
+            if (Mode == DatePickerCalendarViewMode.Decade)
+            {
+                var range = DateTimeHelper.GetDecadeViewRangeByYear(year);
+                context = context.With(startYear: range.start, endYear: range.end);
+            }
+            else if (Mode == DatePickerCalendarViewMode.Century)
+            {
+                var range = DateTimeHelper.GetCenturyViewRangeByYear(year);
+                context = context.With(startYear: range.start, endYear: range.end);
+            }
+        }
         _dateContextSyncing = true;
         ContextDate = context;
         _dateContextSyncing = false;
