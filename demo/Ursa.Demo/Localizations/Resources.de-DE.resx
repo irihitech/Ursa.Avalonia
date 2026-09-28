@@ -344,6 +344,30 @@
   <data name="Page_Title_DisableContainer" xml:space="preserve">
     <value>Deaktivierungscontainer (DisableContainer)</value>
   </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Grundverwendung</value>
+  </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Binde eine Zeichenfolgenauflistung direkt an SelectionList für den einfachsten Einzelauswahlfall.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Header" xml:space="preserve">
+    <value>Benutzerdefinierter Indikator</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Description" xml:space="preserve">
+    <value>Passe Indikator und Vorlagenlayout an, wenn die markierte Zeile zur Designsprache deiner App passen soll.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Header" xml:space="preserve">
+    <value>Flyout-Verwendung</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Description" xml:space="preserve">
+    <value>Platziere SelectionList in einem Flyout, wenn die Auswahloberfläche kompakt bleiben soll.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Header" xml:space="preserve">
+    <value>Auswahl löschen</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Description" xml:space="preserve">
+    <value>Verwende einen Befehl, um das aktuelle Element zu löschen und den Auswahlzustand zurückzusetzen.</value>
+  </data>
   <data name="Page_Title_Divider" xml:space="preserve">
     <value>Trennlinie (Divider)</value>
   </data>
@@ -766,7 +790,7 @@
     <value>Scrollen-Schaltfläche ist eine schwebende Schaltfläche, die den Ansichtsbereich zu einem Zielelement scrollt.</value>
   </data>
   <data name="Page_Description_SelectionList" xml:space="preserve">
-    <value>Auswahlliste präsentiert eine Liste von Elementen zur Einfach- oder Mehrfachauswahl.</value>
+    <value>SelectionList dient zur Auswahl eines einzelnen Elements mit einem animierten Indikator.</value>
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
     <value>Skeleton zeigt Platzhalter-Ladeanimationen für Inhaltsbereiche an.</value>
@@ -1375,6 +1399,9 @@
   <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
     <value>ViewModel</value>
   </data>
+  <data name="DemoSection_Tab_ViewCode" xml:space="preserve">
+    <value>Ansichtscode</value>
+  </data>
   <data name="Page_TimePicker_Section_Basic_Header" xml:space="preserve">
     <value>Grundlagen</value>
   </data>
@@ -1864,4 +1891,302 @@
     <value>Dadurch wird der lokale Paketcache entfernt. Die Aktion kann nicht rückgängig gemacht werden.</value>
   </data>
 
+  <data name="Page_Loading_Section_Indicator_Sizes_Header" xml:space="preserve">
+    <value>Indikatorgrößen</value>
+  </data>
+  <data name="Page_Loading_Section_Indicator_Sizes_Description" xml:space="preserve">
+    <value>Die Klassen Small und Large passen die Abmessungen des Spinners an; ohne Größenklasse wird die Standardgröße verwendet.</value>
+  </data>
+  <data name="Page_Loading_Section_Overlay_Header" xml:space="preserve">
+    <value>Ladeüberlagerung</value>
+  </data>
+  <data name="Page_Loading_Section_Overlay_Description" xml:space="preserve">
+    <value>Binden Sie IsLoading an den Vorgangsstatus, um eine Ladeebene über dem vorhandenen Inhalt anzuzeigen; während des Ladens wird der Inhalt weichgezeichnet.</value>
+  </data>
+  <data name="Page_Loading_Section_Message_Template_Header" xml:space="preserve">
+    <value>Vorlage für die Lademeldung</value>
+  </data>
+  <data name="Page_Loading_Section_Message_Template_Description" xml:space="preserve">
+    <value>Verwenden Sie LoadingMessage für den Statustext und LoadingMessageTemplate, um dessen Darstellung anzupassen.</value>
+  </data>
+  <data name="Page_Loading_Section_Custom_Indicator_Header" xml:space="preserve">
+    <value>Benutzerdefinierter Indikator</value>
+  </data>
+  <data name="Page_Loading_Section_Custom_Indicator_Description" xml:space="preserve">
+    <value>Setzen Sie Indicator, um den Standard-Spinner durch ein anderes Steuerelement zu ersetzen, das den Ladevorgang besser vermittelt.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Icon_Header" xml:space="preserve">
+    <value>Symbol</value>
+  </data>
+  <data name="Page_MessageBox_Section_Icon_Description" xml:space="preserve">
+    <value>Wählen Sie ein Symbol zur Kennzeichnung der Nachricht aus oder wählen Sie None, um es auszublenden.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Title_Header" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="Page_MessageBox_Section_Title_Description" xml:space="preserve">
+    <value>Blenden Sie den Titel unabhängig vom Nachrichtentext ein oder aus.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Button_Combinations_Header" xml:space="preserve">
+    <value>Schaltflächenkombinationen</value>
+  </data>
+  <data name="Page_MessageBox_Section_Button_Combinations_Description" xml:space="preserve">
+    <value>Wählen Sie die verfügbaren Antwortschaltflächen aus und prüfen Sie das zurückgegebene MessageBoxResult.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Presentation_Modes_Header" xml:space="preserve">
+    <value>Anzeigemodi</value>
+  </data>
+  <data name="Page_MessageBox_Section_Presentation_Modes_Description" xml:space="preserve">
+    <value>Verwenden Sie, sofern unterstützt, ein MessageBox-Fenster oder wechseln Sie im Browser und auf Mobilgeräten zu einem In-App-Dialog mit OverlayMessageBox.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Style_Class_Header" xml:space="preserve">
+    <value>Stilklasse</value>
+  </data>
+  <data name="Page_MessageBox_Section_Style_Class_Description" xml:space="preserve">
+    <value>Übergeben Sie die Klasse Compact, um den Anwendungsstil der Demo anzuwenden, der den Innenabstand der MessageBox verringert.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Observable_Content_Header" xml:space="preserve">
+    <value>Beobachtbarer Inhalt</value>
+  </data>
+  <data name="Page_MessageBox_Section_Observable_Content_Description" xml:space="preserve">
+    <value>Stellen Sie IObservable&lt;string&gt;-Quellen bereit, um Nachricht und Titel zu aktualisieren, solange die MessageBox geöffnet ist.</value>
+  </data>
+  <data name="Page_Notification_Section_Manager_Wiring_Header" xml:space="preserve">
+    <value>NotificationManager einbinden</value>
+  </data>
+  <data name="Page_Notification_Section_Manager_Wiring_Description" xml:space="preserve">
+    <value>Erstellen Sie einen WindowNotificationManager für das aktuelle TopLevel oder verwenden Sie einen vorhandenen wieder, bevor Sie Show aufrufen.</value>
+  </data>
+  <data name="Page_Notification_Section_Position_Header" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Page_Notification_Section_Position_Description" xml:space="preserve">
+    <value>Setzen Sie Position, um eine der sechs Platzierungen für Benachrichtigungen auszuwählen.</value>
+  </data>
+  <data name="Page_Notification_Section_Icon_Header" xml:space="preserve">
+    <value>Symbol</value>
+  </data>
+  <data name="Page_Notification_Section_Icon_Description" xml:space="preserve">
+    <value>Mit showIcon können Sie das Symbol des Benachrichtigungstyps ein- oder ausblenden.</value>
+  </data>
+  <data name="Page_Notification_Section_Show_Close_Header" xml:space="preserve">
+    <value>Schließen-Schaltfläche</value>
+  </data>
+  <data name="Page_Notification_Section_Show_Close_Description" xml:space="preserve">
+    <value>Mit showClose können Benutzer eine Benachrichtigung manuell schließen.</value>
+  </data>
+  <data name="Page_Notification_Section_Light_Style_Header" xml:space="preserve">
+    <value>Light-Stilklasse</value>
+  </data>
+  <data name="Page_Notification_Section_Light_Style_Description" xml:space="preserve">
+    <value>Übergeben Sie die Klasse Light, um helle Hintergründe und typabhängige Rahmen zu verwenden.</value>
+  </data>
+  <data name="Page_Notification_Section_Close_Reason_Header" xml:space="preserve">
+    <value>Callback für den Schließgrund</value>
+  </data>
+  <data name="Page_Notification_Section_Close_Reason_Description" xml:space="preserve">
+    <value>Mit onClose erhalten Sie beim Schließen einer Benachrichtigung den Grund Timeout, UserAction oder Displaced.</value>
+  </data>
+  <data name="Page_Toast_Section_Manager_Setup_Header" xml:space="preserve">
+    <value>Toast-Manager einrichten</value>
+  </data>
+  <data name="Page_Toast_Section_Manager_Setup_Description" xml:space="preserve">
+    <value>Erstellen Sie einen WindowToastManager für das aktuelle TopLevel, legen Sie die maximale Anzahl sichtbarer Toasts fest und deinstallieren Sie ihn beim Trennen der Ansicht.</value>
+  </data>
+  <data name="Page_Toast_Section_Types_Header" xml:space="preserve">
+    <value>Benachrichtigungstypen</value>
+  </data>
+  <data name="Page_Toast_Section_Types_Description" xml:space="preserve">
+    <value>Wählen Sie passend zur Meldung Information, Success, Warning oder Error.</value>
+  </data>
+  <data name="Page_Toast_Section_Icon_Header" xml:space="preserve">
+    <value>Symbolanzeige</value>
+  </data>
+  <data name="Page_Toast_Section_Icon_Description" xml:space="preserve">
+    <value>Mit showIcon blenden Sie das zum Toast-Typ gehörende Symbol ein oder aus.</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Button_Header" xml:space="preserve">
+    <value>Schließen-Schaltfläche</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Button_Description" xml:space="preserve">
+    <value>Mit showClose können Benutzer einen Toast vor Ablauf der Zeit schließen.</value>
+  </data>
+  <data name="Page_Toast_Section_Expiration_Header" xml:space="preserve">
+    <value>Anzeigedauer</value>
+  </data>
+  <data name="Page_Toast_Section_Expiration_Description" xml:space="preserve">
+    <value>Mit expiration legen Sie fest, wie lange der Toast angezeigt wird. TimeSpan.Zero lässt ihn bis zum manuellen Schließen geöffnet.</value>
+  </data>
+  <data name="Page_Toast_Section_Light_Style_Header" xml:space="preserve">
+    <value>Light-Stil</value>
+  </data>
+  <data name="Page_Toast_Section_Light_Style_Description" xml:space="preserve">
+    <value>Die Klasse Light sorgt für einen hellen Hintergrund und einen zum Toast-Typ passenden farbigen Rand.</value>
+  </data>
+  <data name="Page_Toast_Section_Click_Callback_Header" xml:space="preserve">
+    <value>Klick-Callback</value>
+  </data>
+  <data name="Page_Toast_Section_Click_Callback_Description" xml:space="preserve">
+    <value>Mit onClick führen Sie eine Aktion aus, wenn der Benutzer auf den Toast klickt.</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Reason_Header" xml:space="preserve">
+    <value>Schließgrund</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Reason_Description" xml:space="preserve">
+    <value>Mit onClose erfahren Sie, warum ein Toast geschlossen wurde, etwa durch Zeitablauf, eine Benutzeraktion oder Verdrängung.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Basic_Header" xml:space="preserve">
+    <value>Einfache Bestätigung</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Basic_Description" xml:space="preserve">
+    <value>Umschließen Sie ein auslösendes Element mit PopConfirm und binden Sie ConfirmCommand und CancelCommand an die Aktionen für die jeweilige Auswahl.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Trigger_Modes_Header" xml:space="preserve">
+    <value>Auslösemodi</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Trigger_Modes_Description" xml:space="preserve">
+    <value>Click ist der Standard. Kombinieren Sie Focus und Click, damit sich das Popup auch öffnet, wenn die Tastaturnavigation das Auslöseelement fokussiert.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Non_Button_Trigger_Header" xml:space="preserve">
+    <value>Auslöser ohne Schaltfläche</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Non_Button_Trigger_Description" xml:space="preserve">
+    <value>Ein Button öffnet das Popup bei Click; andere untergeordnete Steuerelemente öffnen es bei PointerPressed.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Placement_Header" xml:space="preserve">
+    <value>Popup-Position</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Placement_Description" xml:space="preserve">
+    <value>Mit Placement legen Sie fest, wo das Popup relativ zum Auslöseelement erscheint.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Async_Command_Header" xml:space="preserve">
+    <value>Asynchrone Befehle</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Async_Command_Description" xml:space="preserve">
+    <value>Bei aktiviertem HandleAsyncCommand bleibt das Popup während der Ausführung eines asynchronen Befehls geöffnet und schließt sich nach dessen Abschluss.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Icon_Styles_Header" xml:space="preserve">
+    <value>Stile der integrierten Symbole</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Icon_Styles_Description" xml:space="preserve">
+    <value>Mit Information, Success, Warning oder Error ändern Sie das integrierte Symbol und dessen Farbe.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Custom_Icon_Header" xml:space="preserve">
+    <value>Eigenes Symbol</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Custom_Icon_Description" xml:space="preserve">
+    <value>Setzen Sie die Eigenschaft Icon, um das integrierte Symbol durch eigenen Inhalt zu ersetzen.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Global_Header" xml:space="preserve">
+    <value>Anwendungsthema</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Global_Description" xml:space="preserve">
+    <value>Standardmäßig steuert ThemeToggleButton das anwendungsweite Theme und wechselt zwischen Light und Dark. Wenn die Anwendung RequestedThemeVariant auf ThemeVariant.Default setzen muss, setzen Sie IsThreeState auf true, damit Default über den Umschalter auswählbar ist.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Header" xml:space="preserve">
+    <value>Dreistufiger Themenwechsel</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Description" xml:space="preserve">
+    <value>Setzen Sie IsThreeState auf true, um zwischen den Themes Light, Dark und Default (System) zu wechseln.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Header" xml:space="preserve">
+    <value>Themenanzeige</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Description" xml:space="preserve">
+    <value>Der Modus Indicator zeigt das aktuelle Theme Light, Dark oder Default an, ohne es zu ändern.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Header" xml:space="preserve">
+    <value>Theme-Steuerung für einen Bereich</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Description" xml:space="preserve">
+    <value>Platzieren Sie Inhalte in einer ThemeVariantScope und setzen Sie TargetScope, damit nur dieser Bereich geändert wird. Ein Umschalter innerhalb eines Bereichs kann ihn automatisch steuern.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Open_File_Header" xml:space="preserve">
+    <value>Datei öffnen</value>
+  </data>
+  <data name="Page_PathPicker_Section_Open_File_Description" xml:space="preserve">
+    <value>Verwenden Sie UsePickerType=OpenFile, um einen Dateiauswahldialog zu öffnen. FileFilter begrenzt die auswählbaren Dateitypen.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Header" xml:space="preserve">
+    <value>Datei speichern</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Description" xml:space="preserve">
+    <value>Konfigurieren Sie den Speicherdialog mit SaveFile, SuggestedFileName, DefaultFileExtension und FileFilter.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Header" xml:space="preserve">
+    <value>Ordner auswählen</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Description" xml:space="preserve">
+    <value>Verwenden Sie OpenFolder zur Ordnerauswahl. Setzen Sie AllowMultiple auf true, wenn mehrere Ordner ausgewählt werden dürfen.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Header" xml:space="preserve">
+    <value>Mehrere Dateien auswählen</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Description" xml:space="preserve">
+    <value>Setzen Sie AllowMultiple und binden Sie SelectedPaths, um die ausgewählten Pfade zu erfassen.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Header" xml:space="preserve">
+    <value>Befehl und Abbruchverhalten</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Description" xml:space="preserve">
+    <value>Command erhält die ausgewählte IReadOnlyList&lt;IStorageItem&gt;. IsOmitCommandOnCancel steuert die Befehlsausführung beim Abbruch, während IsClearSelectionOnCancel festlegt, ob die aktuelle Auswahl gelöscht wird.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Header" xml:space="preserve">
+    <value>Darstellung und Schaltflächeninhalt</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Description" xml:space="preserve">
+    <value>Die Klasse Top platziert die Durchsuchen-Schaltfläche über dem Textfeld. ButtonPathPicker zeigt nur eine Schaltfläche, ListPathPicker zeigt ausgewählte Pfade in einer aufklappbaren Liste, und ButtonContent ersetzt den Standardinhalt der Schaltfläche.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Header" xml:space="preserve">
+    <value>Befehl</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Description" xml:space="preserve">
+    <value>PathPicker.Command erhält eine IReadOnlyList&lt;IStorageItem&gt;. Wandeln Sie Elemente in IStorageFile um, um mit OpenReadAsync einen Stream zu öffnen, oder in IStorageFolder für ordnerspezifischen Zugriff. TryGetLocalPath kann null zurückgeben, wenn der Anbieter keinen lokalen Pfad bereitstellt.</value>
+  </data>
+  <data name="Page_WindowDialog_Section_Position_Header" xml:space="preserve"><value>Position</value></data>
+  <data name="Page_WindowDialog_Section_Position_Description" xml:space="preserve"><value>Wählen Sie die Startposition. Geben Sie sowohl X als auch Y an, um eine genaue Pixelposition festzulegen.</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Header" xml:space="preserve"><value>Modus und Schaltflächen</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Description" xml:space="preserve"><value>Wählen Sie den Dialogmodus und die Schaltflächen im Fußbereich des Standarddialogs.</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Header" xml:space="preserve"><value>Schließen-Schaltfläche</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Description" xml:space="preserve"><value>Mit der dreistufigen Option können Sie die Schließen-Schaltfläche anzeigen, ausblenden oder ihre Sichtbarkeit übernehmen.</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Header" xml:space="preserve"><value>Fensterverhalten</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Description" xml:space="preserve"><value>Steuern Sie die Anzeige in der Taskleiste, das Verschieben und die Größenänderung des Fensters.</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Header" xml:space="preserve"><value>Stilklasse</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Description" xml:space="preserve"><value>Geben Sie `Custom` ein, um den Anwendungsstil StandardDialogWindow.Custom anzuwenden: Die OK-Schaltfläche wird zur Warnschaltfläche mit der Aufschrift CUSTOM. Leeren Sie das Feld für den Standardstil.</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Header" xml:space="preserve"><value>Standarddialog und benutzerdefinierter Dialog</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Description" xml:space="preserve"><value>Standarddialoge haben integrierte Schaltflächen; benutzerdefinierte Dialoge verwenden Ihre eigene Ansicht. Mit Modal wechseln Sie zwischen modaler und nichtmodaler API.</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Header" xml:space="preserve"><value>Platzierung</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Description" xml:space="preserve"><value>Positionieren Sie das Overlay mit horizontalen und vertikalen Ankern sowie optionalen Abständen.</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Header" xml:space="preserve"><value>Modus und Schaltflächen</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Description" xml:space="preserve"><value>Wählen Sie den Modus und die Schaltflächen im Fußbereich eines Standard-Overlaydialogs.</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Header" xml:space="preserve"><value>Schließen</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Description" xml:space="preserve"><value>Aktivieren Sie das Schließen durch Klicken außerhalb; mit der dreistufigen Option können Sie die Schließen-Schaltfläche anzeigen, ausblenden oder ihre Sichtbarkeit übernehmen.</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Header" xml:space="preserve"><value>Layout und Interaktion</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Description" xml:space="preserve"><value>Schalten Sie Vollbildmodus, Verschieben und Größenänderung des Overlaydialogs um.</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Header" xml:space="preserve"><value>Lokaler oder globaler Host</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Description" xml:space="preserve"><value>Der globale Host zeigt das Overlay anwendungsweit an; mit Local erscheint der Dialog im umrandeten OverlayDialogHost unten.</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Header" xml:space="preserve"><value>Stilklasse</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Description" xml:space="preserve"><value>Geben Sie `Custom` ein, um den Stil StandardDialogControl.Custom des Hostfensters anzuwenden: Die OK-Schaltfläche wird zur Warnschaltfläche mit der Aufschrift CUSTOM. Leeren Sie das Feld für den Standardstil.</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Header" xml:space="preserve"><value>Standarddialog und benutzerdefinierter Dialog</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Description" xml:space="preserve"><value>Standard-Overlays haben integrierte Schaltflächen; benutzerdefinierte Overlays verwenden Ihre eigene Ansicht. Mit Modal legen Sie fest, ob der benutzerdefinierte Dialog andere Interaktionen blockiert.</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>Grundlegende Verwendung</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>Öffnen Sie einen Standard-Fensterdialog mit den Standardschaltflächen und dem Standardverhalten in einem einzigen Aufruf.</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Header" xml:space="preserve"><value>Positionierung</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Description" xml:space="preserve"><value>Wählen Sie eine Startposition oder geben Sie X und Y an, um den Dialog an bestimmten Bildschirmkoordinaten zu platzieren.</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Benutzerdefinierter Dialoginhalt</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Verwenden Sie die API für benutzerdefinierte Dialoge, um eine eigene Ansicht und ein eigenes ViewModel anstelle des Standardinhalts anzuzeigen.</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Header" xml:space="preserve"><value>Modale und nichtmodale Fenster</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Description" xml:space="preserve"><value>Verwenden Sie die asynchrone API für ein modales Fenster oder die synchrone API zum Öffnen eines nichtmodalen Fensters.</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>Grundlegende Verwendung</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>Öffnen Sie einen Standard-Overlaydialog mit einem einzigen Aufruf im globalen Overlayhost.</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Header" xml:space="preserve"><value>Positionierung</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Description" xml:space="preserve"><value>Wählen Sie horizontale und vertikale Anker und passen Sie die Position mit optionalen Abständen an.</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Header" xml:space="preserve"><value>Schließen durch Außenklick</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Description" xml:space="preserve"><value>Aktivieren Sie das Schließen durch Außenklick, damit der Dialog bei einem Klick außerhalb geschlossen wird.</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Header" xml:space="preserve"><value>Lokalen Host verwenden</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Description" xml:space="preserve"><value>Wählen Sie den globalen Host für einen anwendungsweiten Dialog oder einen lokalen OverlayDialogHost, um den Dialog auf einen bestimmten Ansichtsbereich zu beschränken.</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Header" xml:space="preserve"><value>Modale und nichtmodale Overlays</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Description" xml:space="preserve"><value>Verwenden Sie die asynchrone API für einen modalen Overlaydialog oder die synchrone API für ein nichtmodales Overlay.</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Benutzerdefinierter Dialoginhalt</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Verwenden Sie die API für benutzerdefinierte Overlays, um eine eigene Ansicht und ein eigenes ViewModel im Overlay darzustellen.</value></data>
 </root>

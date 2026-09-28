@@ -1,13 +1,14 @@
 using System;
+using System.Collections.ObjectModel;
 using Avalonia.Controls.Notifications;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ursa.Controls;
-
-using Ursa.Demo.ViewModels.Controls;
 using Ursa.Demo.Localizations;
-using Irihi.Dogma.Docs;
 using Ursa.Demo.Pages.DummyPages;
+using Ursa.Demo.ViewModels.Controls;
+using Irihi.Dogma.Controls;
+using Irihi.Dogma.Docs;
 
 namespace Ursa.Demo.Pages.ToastDemo;
 
@@ -17,6 +18,15 @@ public partial class ToastDemoViewModel : ObservableObject, IPageMetadataProvide
 {
     public const string Category_Key = "Toast";
     public const string Menu_Header = "Menu_Header_Toast";
+    private const string ManagerSetupAnchorId = "toast-manager-setup";
+    private const string TypesAnchorId = "toast-notification-types";
+    private const string IconAnchorId = "toast-icon";
+    private const string CloseButtonAnchorId = "toast-close-button";
+    private const string ExpirationAnchorId = "toast-expiration";
+    private const string LightStyleAnchorId = "toast-light-style";
+    private const string ClickCallbackAnchorId = "toast-click-callback";
+    private const string CloseReasonAnchorId = "toast-close-reason";
+
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
         Title = LanguageManager.Instance.Page_Title_Toast,
@@ -32,63 +42,290 @@ public partial class ToastDemoViewModel : ObservableObject, IPageMetadataProvide
 
     public WindowToastManager? ToastManager { get; set; }
 
+    public DemoSectionViewModel ManagerSetupSection { get; }
+    public DemoSectionViewModel TypesSection { get; }
+    public DemoSectionViewModel IconSection { get; }
+    public DemoSectionViewModel CloseButtonSection { get; }
+    public DemoSectionViewModel ExpirationSection { get; }
+    public DemoSectionViewModel LightStyleSection { get; }
+    public DemoSectionViewModel ClickCallbackSection { get; }
+    public DemoSectionViewModel CloseReasonSection { get; }
+
+    public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; } =
+    [
+        new()
+        {
+            Header = LanguageManager.Instance.Page_Toast_Section_Manager_Setup_Header,
+            AnchorId = ManagerSetupAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_Toast_Section_Types_Header,
+            AnchorId = TypesAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_Toast_Section_Icon_Header,
+            AnchorId = IconAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_Toast_Section_Close_Button_Header,
+            AnchorId = CloseButtonAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_Toast_Section_Expiration_Header,
+            AnchorId = ExpirationAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_Toast_Section_Light_Style_Header,
+            AnchorId = LightStyleAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_Toast_Section_Click_Callback_Header,
+            AnchorId = ClickCallbackAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_Toast_Section_Close_Reason_Header,
+            AnchorId = CloseReasonAnchorId
+        },
+    ];
+
     [ObservableProperty] public partial bool ShowIcon { get; set; } = true;
     [ObservableProperty] public partial bool ShowClose { get; set; } = true;
     [ObservableProperty] public partial MessageCloseReason? Reason { get; set; }
+    [ObservableProperty] public partial int ClickCount { get; set; }
+
+    public ToastDemoViewModel()
+    {
+        ManagerSetupSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_Toast_Section_Manager_Setup_Header,
+            Descriptions = { LanguageManager.Instance.Page_Toast_Section_Manager_Setup_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = ManagerSetupAnchorId
+        };
+        AddSnippet(ManagerSetupSection, """
+            private ToastDemoViewModel? _viewModel;
+
+            protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+            {
+                base.OnAttachedToVisualTree(e);
+                if (DataContext is not ToastDemoViewModel vm) return;
+                _viewModel = vm;
+                _viewModel.ToastManager =
+                    new WindowToastManager(TopLevel.GetTopLevel(this)) { MaxItems = 3 };
+            }
+
+            protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+            {
+                base.OnDetachedFromVisualTree(e);
+                _viewModel?.ToastManager?.Uninstall();
+            }
+            """, LanguageManager.Instance.DemoSection_Tab_ViewCode);
+        AddSnippet(ManagerSetupSection, """
+            public WindowToastManager? ToastManager { get; set; }
+            """);
+
+        TypesSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_Toast_Section_Types_Header,
+            Descriptions = { LanguageManager.Instance.Page_Toast_Section_Types_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = TypesAnchorId
+        };
+        AddSnippet(TypesSection, """
+            ToastManager.Show(
+                new Toast("File saved successfully."),
+                NotificationType.Success);
+            """);
+
+        IconSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_Toast_Section_Icon_Header,
+            Descriptions = { LanguageManager.Instance.Page_Toast_Section_Icon_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = IconAnchorId
+        };
+        AddSnippet(IconSection, """
+            ToastManager.Show(
+                new Toast("Information"),
+                NotificationType.Information,
+                showIcon: false);
+            """);
+
+        CloseButtonSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_Toast_Section_Close_Button_Header,
+            Descriptions = { LanguageManager.Instance.Page_Toast_Section_Close_Button_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = CloseButtonAnchorId
+        };
+        AddSnippet(CloseButtonSection, """
+            ToastManager.Show(
+                new Toast("Dismiss me"),
+                NotificationType.Information,
+                showClose: false);
+            """);
+
+        ExpirationSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_Toast_Section_Expiration_Header,
+            Descriptions = { LanguageManager.Instance.Page_Toast_Section_Expiration_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = ExpirationAnchorId
+        };
+        AddSnippet(ExpirationSection, """
+            ToastManager.Show(
+                new Toast("Closes after five seconds"),
+                NotificationType.Information,
+                expiration: TimeSpan.FromSeconds(5));
+
+            ToastManager.Show(
+                new Toast("Close me manually"),
+                NotificationType.Information,
+                expiration: TimeSpan.Zero);
+            """);
+
+        LightStyleSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_Toast_Section_Light_Style_Header,
+            Descriptions = { LanguageManager.Instance.Page_Toast_Section_Light_Style_Description },
+            SectionTag = DemoSectionTag.Style,
+            AnchorId = LightStyleAnchorId
+        };
+        AddSnippet(LightStyleSection, """
+            ToastManager.Show(
+                new Toast("Light style message"),
+                NotificationType.Success,
+                classes: ["Light"]);
+            """);
+
+        ClickCallbackSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_Toast_Section_Click_Callback_Header,
+            Descriptions = { LanguageManager.Instance.Page_Toast_Section_Click_Callback_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = ClickCallbackAnchorId
+        };
+        AddSnippet(ClickCallbackSection, """
+            ToastManager.Show(new Toast(
+                "Click to open the update page",
+                onClick: () => OpenUpdatePage()));
+            """);
+
+        CloseReasonSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_Toast_Section_Close_Reason_Header,
+            Descriptions = { LanguageManager.Instance.Page_Toast_Section_Close_Reason_Description },
+            SectionTag = DemoSectionTag.Function,
+            AnchorId = CloseReasonAnchorId
+        };
+        AddSnippet(CloseReasonSection, """
+            ToastManager.Show(new Toast(
+                "Close me",
+                expiration: TimeSpan.Zero,
+                onClose: reason => CloseReason = reason));
+            """);
+    }
 
     [RelayCommand]
-    public void ShowNormal(object obj)
+    public void ShowType(object obj)
     {
-        if (obj is string s)
+        if (obj is string value && Enum.TryParse<NotificationType>(value, out var type))
         {
-            Enum.TryParse<NotificationType>(s, out var notificationType);
-            ToastManager?.Show(
-                new Toast("This is message"),
-                showIcon: ShowIcon,
-                showClose: ShowClose,
-                type: notificationType,
-                onClose: OnClose);
+            ToastManager?.Show(new Toast("This is message"), type);
         }
+    }
 
-        // ToastManager?.Show(new ToastDemoViewModel
-        // {
-        //     Content = "This is message",
-        //     ToastManager = ToastManager
-        // });
+    [RelayCommand]
+    public void ShowWithIcon()
+    {
+        ToastManager?.Show(
+            new Toast("This is message"),
+            NotificationType.Information,
+            showIcon: ShowIcon);
+    }
+
+    [RelayCommand]
+    public void ShowWithCloseButton()
+    {
+        ToastManager?.Show(
+            new Toast("This is message"),
+            NotificationType.Information,
+            showClose: ShowClose);
+    }
+
+    [RelayCommand]
+    public void ShowTransient()
+    {
+        ToastManager?.Show(
+            new Toast("This toast closes after five seconds"),
+            NotificationType.Information,
+            expiration: TimeSpan.FromSeconds(5));
+    }
+
+    [RelayCommand]
+    public void ShowPersistent()
+    {
+        ToastManager?.Show(
+            new Toast("Close me manually"),
+            NotificationType.Information,
+            expiration: TimeSpan.Zero);
     }
 
     [RelayCommand]
     public void ShowLight(object obj)
     {
-        if (obj is string s)
+        if (obj is string value && Enum.TryParse<NotificationType>(value, out var type))
         {
-            Enum.TryParse<NotificationType>(s, out var notificationType);
             ToastManager?.Show(
                 new Toast("This is message"),
-                showIcon: ShowIcon,
-                showClose: ShowClose,
-                type: notificationType,
-                onClose: OnClose,
+                type,
+                showIcon: true,
+                showClose: true,
                 classes: ["Light"]);
         }
     }
-    
+
+    [RelayCommand]
+    public void ShowClickCallback()
+    {
+        ClickCount = 0;
+        ToastManager?.Show(new Toast(
+            "Click this toast",
+            onClick: () => ClickCount++));
+    }
+
+    [RelayCommand]
+    public void ShowCloseReason()
+    {
+        Reason = null;
+        ToastManager?.Show(new Toast(
+            "Close me",
+            expiration: TimeSpan.Zero,
+            onClose: OnClose));
+    }
+
     private void OnClose(MessageCloseReason reason)
     {
         Reason = reason;
     }
 
-    public string? Content { get; set; }
-
-    [RelayCommand]
-    public void YesCommand()
+    private static void AddSnippet(
+        DemoSectionViewModel section,
+        string code,
+        IObservable<string?>? tabName = null)
     {
-        ToastManager?.Show(new Toast("Yes!"));
-    }
-
-    [RelayCommand]
-    public void NoCommand()
-    {
-        ToastManager?.Show(new Toast("No!"));
+        section.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.CSharp,
+            TabName = tabName ?? LanguageManager.Instance.DemoSection_Tab_ViewModel,
+            CodeSnippet = code
+        });
     }
 }

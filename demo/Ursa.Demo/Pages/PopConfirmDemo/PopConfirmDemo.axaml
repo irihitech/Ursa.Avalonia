@@ -1,71 +1,137 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:u="https://irihi.tech/ursa"
-             xmlns:viewModels="clr-namespace:Ursa.Demo.Pages.PopConfirmDemo"
-             mc:Ignorable="d" d:DesignWidth="800"
-             d:DesignHeight="450"
-             x:DataType="viewModels:PopConfirmDemoViewModel"
-             x:Class="Ursa.Demo.Pages.PopConfirmDemo.PopConfirmDemo">
-    <StackPanel HorizontalAlignment="Stretch" Spacing="20">
-        <Border Theme="{DynamicResource CardBorder}">
-            <u:Form>
-                <u:ControlClassesInput 
-                    Name="classInput"
-                    u:FormItem.Label="Control Classes"
-                    Width="240" />
-                <u:EnumSelector 
-                    Name="placement"
-                    Width="240"
-                    u:FormItem.Label="Popup Placement"
-                    EnumType="{x:Type PlacementMode}"
-                    Value="{x:Static PlacementMode.BottomEdgeAlignedLeft}" />
-            </u:Form>
-        </Border>
-        <TextBlock Text="Default PopConfirm" Margin="0 16" />
-        <u:PopConfirm PopupHeader="确定是否要保存此修改？"
-                      HorizontalAlignment="Left"
-                      PopupContent="此修改将不可逆"
-                      Placement="{Binding #placement.Value}"
-                      ConfirmCommand="{Binding ConfirmCommand}"
-                      CancelCommand="{Binding Path=CancelCommand}">
-            <Button Content="Hello World" />
-        </u:PopConfirm>
-        <TextBlock Text="GotFocus to open, LostFocus to close" Margin="0 16" />
-        <u:PopConfirm PopupHeader="确定是否要保存此修改？"
-                      PopupContent="此修改将不可逆"
-                      TriggerMode="Focus, Click"
-                      HorizontalAlignment="Left"
-                      Placement="{Binding #placement.Value}"
-                      u:ControlClassesInput.Source="{Binding #classInput}"
-                      ConfirmCommand="{Binding ConfirmCommand}"
-                      CancelCommand="{Binding Path=CancelCommand}">
-            <Button Content="Hello World" />
-        </u:PopConfirm>
-        <TextBlock
-            Text="Non-button control as main element"
-            Margin="0 16" />
-        <u:PopConfirm PopupHeader="确定是否要保存此修改？"
-                      PopupContent="此修改将不可逆"
-                      TriggerMode="Click"
-                      HorizontalAlignment="Left"
-                      u:ControlClassesInput.Source="{Binding #classInput}"
-                      Placement="{Binding #placement.Value}"
-                      ConfirmCommand="{Binding ConfirmCommand}"
-                      CancelCommand="{Binding Path=CancelCommand}">
-            <TextBlock Text="Hello World" />
-        </u:PopConfirm>
-        <TextBlock Text="Asynchronized command support"
-                   Margin="0 16" />
-        <u:PopConfirm PopupHeader="确定是否要保存此修改？"
-                      PopupContent="此修改将不可逆"
-                      HorizontalAlignment="Left"
-                      Placement="{Binding #placement.Value}"
-                      u:ControlClassesInput.Source="{Binding #classInput}"
-                      ConfirmCommand="{Binding AsyncConfirmCommand}"
-                      CancelCommand="{Binding Path=AsyncCancelCommand}">
-            <Button Content="Hello World" />
-        </u:PopConfirm>
-    </StackPanel>
+<UserControl
+    x:Class="Ursa.Demo.Pages.PopConfirmDemo.PopConfirmDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Ursa.Demo.Pages.PopConfirmDemo"
+    x:CompileBindings="True"
+    x:DataType="vm:PopConfirmDemoViewModel"
+    mc:Ignorable="d">
+    <TabControl>
+        <TabItem
+            Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+            Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel
+                    HorizontalAlignment="Stretch"
+                    Spacing="20">
+                    <controls:DemoSectionView SectionContext="{Binding BasicSection}">
+                        <u:PopConfirm
+                            PopupHeader="Confirm this action?"
+                            PopupContent="This action cannot be undone."
+                            ConfirmCommand="{Binding ConfirmCommand}"
+                            CancelCommand="{Binding CancelCommand}">
+                            <Button Content="Run action" />
+                        </u:PopConfirm>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding TriggerModesSection}">
+                        <u:PopConfirm
+                            TriggerMode="Focus, Click"
+                            PopupHeader="Confirm changes?"
+                            PopupContent="Unsaved changes will be lost."
+                            ConfirmCommand="{Binding ConfirmCommand}">
+                            <Button Content="Close" />
+                        </u:PopConfirm>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding NonButtonTriggerSection}">
+                        <u:PopConfirm
+                            PopupHeader="Confirm deletion?"
+                            PopupContent="This item will be removed."
+                            ConfirmCommand="{Binding ConfirmCommand}">
+                            <TextBlock Text="Delete item" />
+                        </u:PopConfirm>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding PlacementSection}">
+                        <StackPanel Spacing="16">
+                            <u:EnumSelector
+                                x:Name="placement"
+                                Width="260"
+                                EnumType="{x:Type PlacementMode}"
+                                Value="{x:Static PlacementMode.BottomEdgeAlignedLeft}" />
+                            <u:PopConfirm
+                                PopupHeader="Confirm"
+                                PopupContent="Are you sure?"
+                                Placement="{Binding #placement.Value}"
+                                ConfirmCommand="{Binding ConfirmCommand}">
+                                <Button Content="Click me" />
+                            </u:PopConfirm>
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding AsyncCommandSection}">
+                        <StackPanel Spacing="12">
+                            <ToggleSwitch
+                                Content="Handle async command"
+                                IsChecked="{Binding HandleAsyncCommand}" />
+                            <u:PopConfirm
+                                PopupHeader="Processing..."
+                                PopupContent="This may take a moment."
+                                HandleAsyncCommand="{Binding HandleAsyncCommand}"
+                                ConfirmCommand="{Binding AsyncConfirmCommand}"
+                                CancelCommand="{Binding AsyncCancelCommand}">
+                                <Button Content="Process" />
+                            </u:PopConfirm>
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding IconStylesSection}">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Spacing="12">
+                            <u:PopConfirm
+                                Classes="Information"
+                                PopupHeader="Info"
+                                PopupContent="Information message."
+                                ConfirmCommand="{Binding ConfirmCommand}">
+                                <Button Content="Information" />
+                            </u:PopConfirm>
+                            <u:PopConfirm
+                                Classes="Success"
+                                PopupHeader="Success"
+                                PopupContent="Operation completed."
+                                ConfirmCommand="{Binding ConfirmCommand}">
+                                <Button Content="Success" />
+                            </u:PopConfirm>
+                            <u:PopConfirm
+                                Classes="Warning"
+                                PopupHeader="Warning"
+                                PopupContent="Check this action."
+                                ConfirmCommand="{Binding ConfirmCommand}">
+                                <Button Content="Warning" />
+                            </u:PopConfirm>
+                            <u:PopConfirm
+                                Classes="Error"
+                                PopupHeader="Error"
+                                PopupContent="Operation failed."
+                                ConfirmCommand="{Binding ConfirmCommand}">
+                                <Button Content="Error" />
+                            </u:PopConfirm>
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding CustomIconSection}">
+                        <u:PopConfirm
+                            PopupHeader="Custom action"
+                            PopupContent="Proceed with this action?"
+                            ConfirmCommand="{Binding ConfirmCommand}">
+                            <u:PopConfirm.Icon>
+                                <TextBlock
+                                    FontSize="18"
+                                    FontWeight="Bold"
+                                    Text="!" />
+                            </u:PopConfirm.Icon>
+                            <Button Content="Custom icon" />
+                        </u:PopConfirm>
+                    </controls:DemoSectionView>
+                </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>

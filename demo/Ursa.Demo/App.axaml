@@ -23,6 +23,9 @@
                 <Setter Property="iri:ClassHelper.Classes" Value="Warning" />
             </Style>
         </Style>
+        <Style Selector="u|MessageBoxWindow.Compact, u|MessageBoxControl.Compact">
+            <Setter Property="Padding" Value="24 12" />
+        </Style>
     </Application.Styles>
     <NativeMenu.Menu>
         <NativeMenu>

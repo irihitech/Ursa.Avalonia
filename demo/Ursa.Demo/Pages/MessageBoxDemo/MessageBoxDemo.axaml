@@ -4,33 +4,108 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
+    xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="using:Ursa.Demo.Pages.MessageBoxDemo"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:CompileBindings="True"
     x:DataType="vm:MessageBoxDemoViewModel"
     mc:Ignorable="d">
-    <UserControl.Styles>
-        <Style Selector="Button">
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Margin" Value="8" />
-        </Style>
-    </UserControl.Styles>
-    <StackPanel HorizontalAlignment="Stretch" Spacing="20">
-        <ComboBox ItemsSource="{Binding Icons}" SelectedItem="{Binding SelectedIcon}" />
-        <ToggleSwitch Content="Try Long Message" IsChecked="{Binding UseLong}" />
-        <ToggleSwitch Content="Show Title" IsChecked="{Binding UseTitle}" />
-        <ToggleSwitch Content="Overlay" IsChecked="{Binding UseOverlay}" />
-        <Button Command="{Binding DefaultMessageBoxCommand}" Content="Default" />
-        <Button Command="{Binding ObservableDemoCommand}" Content="Observable Demo" />
-        <Button Command="{Binding OkCommand}" Content="OK" />
-        <Button Command="{Binding OkCancelCommand}" Content="OKCancel" />
-        <Button Command="{Binding YesNoCommand}" Content="YesNo" />
-        <Button Command="{Binding YesNoCancelCommand}" Content="YesNoCancel" />
+    <TabControl>
+        <TabItem
+            Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+            Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel
+                    HorizontalAlignment="Stretch"
+                    Spacing="20">
+                    <controls:DemoSectionView SectionContext="{Binding IconSection}">
+                        <StackPanel Spacing="12">
+                            <ComboBox
+                                ItemsSource="{Binding Icons}"
+                                SelectedItem="{Binding SelectedIcon}" />
+                            <Button
+                                Command="{Binding DefaultMessageBoxCommand}"
+                                Content="Show Message" />
+                            <TextBlock>
+                                <Run Text="Last Clicked Result: " />
+                                <Run Text="{Binding Result}" />
+                            </TextBlock>
+                        </StackPanel>
+                    </controls:DemoSectionView>
 
-        <TextBlock>
-            <Run Text="Last Clicked Result: " />
-            <Run Text="{Binding Result}" />
-        </TextBlock>
-    </StackPanel>
+                    <controls:DemoSectionView SectionContext="{Binding TitleSection}">
+                        <StackPanel Spacing="12">
+                            <ToggleSwitch
+                                Content="Show Title"
+                                IsChecked="{Binding UseTitle}" />
+                            <Button
+                                Command="{Binding DefaultMessageBoxCommand}"
+                                Content="Show Message" />
+                            <TextBlock>
+                                <Run Text="Last Clicked Result: " />
+                                <Run Text="{Binding Result}" />
+                            </TextBlock>
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding ButtonCombinationsSection}">
+                        <StackPanel Spacing="12">
+                            <WrapPanel>
+                                <Button Command="{Binding OkCommand}" Content="OK" />
+                                <Button Command="{Binding OkCancelCommand}" Content="OKCancel" />
+                                <Button Command="{Binding YesNoCommand}" Content="YesNo" />
+                                <Button Command="{Binding YesNoCancelCommand}" Content="YesNoCancel" />
+                            </WrapPanel>
+                            <TextBlock>
+                                <Run Text="Last Clicked Result: " />
+                                <Run Text="{Binding Result}" />
+                            </TextBlock>
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding PresentationModesSection}">
+                        <StackPanel Spacing="12">
+                            <ToggleSwitch
+                                Content="Overlay"
+                                IsChecked="{Binding UseOverlay}" />
+                            <Button
+                                Command="{Binding DefaultMessageBoxCommand}"
+                                Content="Show Message" />
+                            <TextBlock>
+                                <Run Text="Last Clicked Result: " />
+                                <Run Text="{Binding Result}" />
+                            </TextBlock>
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding StyleClassSection}">
+                        <StackPanel Spacing="12">
+                            <Button
+                                Command="{Binding CompactMessageBoxCommand}"
+                                Content="Compact MessageBox" />
+                            <TextBlock>
+                                <Run Text="Last Clicked Result: " />
+                                <Run Text="{Binding Result}" />
+                            </TextBlock>
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding ObservableContentSection}">
+                        <StackPanel Spacing="12">
+                            <Button
+                                Command="{Binding ObservableDemoCommand}"
+                                Content="Observable Demo" />
+                            <TextBlock>
+                                <Run Text="Last Clicked Result: " />
+                                <Run Text="{Binding Result}" />
+                            </TextBlock>
+                        </StackPanel>
+                    </controls:DemoSectionView>
+                </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>

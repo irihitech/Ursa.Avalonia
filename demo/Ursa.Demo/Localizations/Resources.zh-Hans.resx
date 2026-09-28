@@ -330,6 +330,30 @@
   <data name="Page_Title_DisableContainer" xml:space="preserve">
     <value>禁用容器 DisableContainer</value>
   </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基础用法</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Header" xml:space="preserve">
+    <value>自定义指示器</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Header" xml:space="preserve">
+    <value>飞出层用法</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Header" xml:space="preserve">
+    <value>清除选择</value>
+  </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>将字符串集合直接绑定到 SelectionList，即可完成最简单的单选场景。</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Description" xml:space="preserve">
+    <value>可自定义指示器和项模板，使选中行与应用的视觉风格一致。</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Description" xml:space="preserve">
+    <value>当选择区域需要保持紧凑时，可将 SelectionList 放入飞出层中。</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Description" xml:space="preserve">
+    <value>使用命令清除当前项并重置选择状态。</value>
+  </data>
   <data name="Page_Title_Divider" xml:space="preserve">
     <value>分割线 Divider</value>
   </data>
@@ -752,7 +776,7 @@
     <value>滚动到按钮是滚动视口到目标元素的浮动按钮。</value>
   </data>
   <data name="Page_Description_SelectionList" xml:space="preserve">
-    <value>选择列表呈现供单选或多选的项目列表。</value>
+    <value>SelectionList 用于选择单个项目，并显示动画指示器。</value>
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
     <value>骨架屏为内容区域显示占位加载动画。</value>
@@ -850,6 +874,9 @@
   </data>
   <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
     <value>视图模型</value>
+  </data>
+  <data name="DemoSection_Tab_ViewCode" xml:space="preserve">
+    <value>视图代码</value>
   </data>
   <!-- Tab Headers -->
   <data name="Tab_Header_Samples" xml:space="preserve">
@@ -1851,4 +1878,302 @@
     <value>此操作将删除本地包缓存，且无法撤销。</value>
   </data>
 
+  <data name="Page_Loading_Section_Indicator_Sizes_Header" xml:space="preserve">
+    <value>指示器尺寸</value>
+  </data>
+  <data name="Page_Loading_Section_Indicator_Sizes_Description" xml:space="preserve">
+    <value>Small 和 Large 样式类会调整旋转指示器的尺寸；未指定尺寸类时使用默认大小。</value>
+  </data>
+  <data name="Page_Loading_Section_Overlay_Header" xml:space="preserve">
+    <value>加载遮罩</value>
+  </data>
+  <data name="Page_Loading_Section_Overlay_Description" xml:space="preserve">
+    <value>将 IsLoading 绑定到操作状态，以便在现有内容上显示加载层；加载时底层内容会模糊处理。</value>
+  </data>
+  <data name="Page_Loading_Section_Message_Template_Header" xml:space="preserve">
+    <value>加载消息模板</value>
+  </data>
+  <data name="Page_Loading_Section_Message_Template_Description" xml:space="preserve">
+    <value>使用 LoadingMessage 设置状态内容，并通过 LoadingMessageTemplate 自定义其呈现方式。</value>
+  </data>
+  <data name="Page_Loading_Section_Custom_Indicator_Header" xml:space="preserve">
+    <value>自定义指示器</value>
+  </data>
+  <data name="Page_Loading_Section_Custom_Indicator_Description" xml:space="preserve">
+    <value>设置 Indicator 可用其他控件替换默认旋转指示器，更清晰地表达加载操作。</value>
+  </data>
+  <data name="Page_MessageBox_Section_Icon_Header" xml:space="preserve">
+    <value>图标</value>
+  </data>
+  <data name="Page_MessageBox_Section_Icon_Description" xml:space="preserve">
+    <value>选择图标来表达消息类型，也可以选择 None 不显示图标。</value>
+  </data>
+  <data name="Page_MessageBox_Section_Title_Header" xml:space="preserve">
+    <value>标题</value>
+  </data>
+  <data name="Page_MessageBox_Section_Title_Description" xml:space="preserve">
+    <value>可独立于消息正文显示或隐藏标题。</value>
+  </data>
+  <data name="Page_MessageBox_Section_Button_Combinations_Header" xml:space="preserve">
+    <value>按钮组合</value>
+  </data>
+  <data name="Page_MessageBox_Section_Button_Combinations_Description" xml:space="preserve">
+    <value>选择可用的响应按钮，并查看返回的 MessageBoxResult。</value>
+  </data>
+  <data name="Page_MessageBox_Section_Presentation_Modes_Header" xml:space="preserve">
+    <value>呈现模式</value>
+  </data>
+  <data name="Page_MessageBox_Section_Presentation_Modes_Description" xml:space="preserve">
+    <value>在支持的平台上使用 MessageBox 窗口；在浏览器和移动设备上可切换为应用内的 OverlayMessageBox 对话框。</value>
+  </data>
+  <data name="Page_MessageBox_Section_Style_Class_Header" xml:space="preserve">
+    <value>样式类</value>
+  </data>
+  <data name="Page_MessageBox_Section_Style_Class_Description" xml:space="preserve">
+    <value>传入 Compact 类以应用演示程序级样式，该样式会缩小消息框的内边距。</value>
+  </data>
+  <data name="Page_MessageBox_Section_Observable_Content_Header" xml:space="preserve">
+    <value>可观察内容</value>
+  </data>
+  <data name="Page_MessageBox_Section_Observable_Content_Description" xml:space="preserve">
+    <value>提供 IObservable&lt;string&gt; 数据源，以便在消息框保持打开时更新消息和标题。</value>
+  </data>
+  <data name="Page_Notification_Section_Manager_Wiring_Header" xml:space="preserve">
+    <value>配置通知管理器</value>
+  </data>
+  <data name="Page_Notification_Section_Manager_Wiring_Description" xml:space="preserve">
+    <value>调用 Show 前，为当前 TopLevel 创建或复用 WindowNotificationManager。</value>
+  </data>
+  <data name="Page_Notification_Section_Position_Header" xml:space="preserve">
+    <value>位置</value>
+  </data>
+  <data name="Page_Notification_Section_Position_Description" xml:space="preserve">
+    <value>设置 Position，从六种通知显示位置中进行选择。</value>
+  </data>
+  <data name="Page_Notification_Section_Icon_Header" xml:space="preserve">
+    <value>图标</value>
+  </data>
+  <data name="Page_Notification_Section_Icon_Description" xml:space="preserve">
+    <value>使用 showIcon 显示或隐藏通知类型图标。</value>
+  </data>
+  <data name="Page_Notification_Section_Show_Close_Header" xml:space="preserve">
+    <value>关闭按钮</value>
+  </data>
+  <data name="Page_Notification_Section_Show_Close_Description" xml:space="preserve">
+    <value>使用 showClose 允许用户手动关闭通知。</value>
+  </data>
+  <data name="Page_Notification_Section_Light_Style_Header" xml:space="preserve">
+    <value>Light 样式类</value>
+  </data>
+  <data name="Page_Notification_Section_Light_Style_Description" xml:space="preserve">
+    <value>传入 Light 类，以使用浅色背景和与通知类型对应的边框。</value>
+  </data>
+  <data name="Page_Notification_Section_Close_Reason_Header" xml:space="preserve">
+    <value>关闭原因回调</value>
+  </data>
+  <data name="Page_Notification_Section_Close_Reason_Description" xml:space="preserve">
+    <value>使用 onClose 在通知关闭时接收 Timeout、UserAction 或 Displaced。</value>
+  </data>
+  <data name="Page_Toast_Section_Manager_Setup_Header" xml:space="preserve">
+    <value>配置 Toast 管理器</value>
+  </data>
+  <data name="Page_Toast_Section_Manager_Setup_Description" xml:space="preserve">
+    <value>为当前 TopLevel 创建 WindowToastManager，设置可见 Toast 的最大数量，并在视图分离时卸载管理器。</value>
+  </data>
+  <data name="Page_Toast_Section_Types_Header" xml:space="preserve">
+    <value>通知类型</value>
+  </data>
+  <data name="Page_Toast_Section_Types_Description" xml:space="preserve">
+    <value>根据消息内容选择 Information、Success、Warning 或 Error 类型。</value>
+  </data>
+  <data name="Page_Toast_Section_Icon_Header" xml:space="preserve">
+    <value>图标显示</value>
+  </data>
+  <data name="Page_Toast_Section_Icon_Description" xml:space="preserve">
+    <value>使用 showIcon 显示或隐藏与 Toast 类型对应的图标。</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Button_Header" xml:space="preserve">
+    <value>关闭按钮</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Button_Description" xml:space="preserve">
+    <value>使用 showClose 允许用户在 Toast 过期前手动将其关闭。</value>
+  </data>
+  <data name="Page_Toast_Section_Expiration_Header" xml:space="preserve">
+    <value>过期时间</value>
+  </data>
+  <data name="Page_Toast_Section_Expiration_Description" xml:space="preserve">
+    <value>设置 expiration 控制 Toast 的显示时长；TimeSpan.Zero 会使其保持显示，直到手动关闭。</value>
+  </data>
+  <data name="Page_Toast_Section_Light_Style_Header" xml:space="preserve">
+    <value>Light 浅色样式</value>
+  </data>
+  <data name="Page_Toast_Section_Light_Style_Description" xml:space="preserve">
+    <value>传入 Light 类以应用浅色背景和与 Toast 类型对应的彩色边框。</value>
+  </data>
+  <data name="Page_Toast_Section_Click_Callback_Header" xml:space="preserve">
+    <value>点击回调</value>
+  </data>
+  <data name="Page_Toast_Section_Click_Callback_Description" xml:space="preserve">
+    <value>使用 onClick 在用户点击 Toast 时执行操作。</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Reason_Header" xml:space="preserve">
+    <value>关闭原因</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Reason_Description" xml:space="preserve">
+    <value>使用 onClose 获取 Toast 的关闭原因，例如超时、用户操作或被其他 Toast 替换。</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Basic_Header" xml:space="preserve">
+    <value>基本确认</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Basic_Description" xml:space="preserve">
+    <value>使用 PopConfirm 包裹触发元素，并将 ConfirmCommand 和 CancelCommand 绑定到用户选择后要执行的操作。</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Trigger_Modes_Header" xml:space="preserve">
+    <value>触发模式</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Trigger_Modes_Description" xml:space="preserve">
+    <value>默认触发模式为 Click。组合 Focus 和 Click 后，键盘导航使触发元素获得焦点时也会打开弹出框。</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Non_Button_Trigger_Header" xml:space="preserve">
+    <value>非按钮触发元素</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Non_Button_Trigger_Description" xml:space="preserve">
+    <value>子元素为 Button 时，弹出框在 Click 时打开；其他子控件则在 PointerPressed 时打开。</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Placement_Header" xml:space="preserve">
+    <value>弹出位置</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Placement_Description" xml:space="preserve">
+    <value>设置 Placement 以选择弹出框相对于触发元素的显示位置。</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Async_Command_Header" xml:space="preserve">
+    <value>异步命令处理</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Async_Command_Description" xml:space="preserve">
+    <value>启用 HandleAsyncCommand 后，弹出框会在异步命令运行期间保持打开，并在命令完成后关闭。</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Icon_Styles_Header" xml:space="preserve">
+    <value>内置图标样式</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Icon_Styles_Description" xml:space="preserve">
+    <value>使用 Information、Success、Warning 或 Error 来更改内置图标及其颜色。</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Custom_Icon_Header" xml:space="preserve">
+    <value>自定义图标</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Custom_Icon_Description" xml:space="preserve">
+    <value>设置 Icon 属性，以自定义内容替换内置图标。</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Global_Header" xml:space="preserve">
+    <value>应用主题</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Global_Description" xml:space="preserve">
+    <value>默认情况下，ThemeToggleButton 控制整个应用的主题，并在 Light 和 Dark 之间切换。如果应用需要将 RequestedThemeVariant 设为 ThemeVariant.Default，必须将 IsThreeState 设为 true，才能通过切换按钮选择 Default。</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Header" xml:space="preserve">
+    <value>三态主题循环</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Description" xml:space="preserve">
+    <value>将 IsThreeState 设为 true，即可在 Light、Dark 和 Default（系统）主题之间循环切换。</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Header" xml:space="preserve">
+    <value>主题指示器</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Description" xml:space="preserve">
+    <value>Indicator 模式显示当前 Light、Dark 或 Default 主题，但不应用主题更改。</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Header" xml:space="preserve">
+    <value>作用域主题控制</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Description" xml:space="preserve">
+    <value>将内容放在 ThemeVariantScope 中并设置 TargetScope，即可仅更改该作用域的主题。作用域内的切换按钮也可以自动控制该作用域。</value>
+  </data>
+  <data name="Page_PathPicker_Section_Open_File_Header" xml:space="preserve">
+    <value>打开文件</value>
+  </data>
+  <data name="Page_PathPicker_Section_Open_File_Description" xml:space="preserve">
+    <value>使用 UsePickerType=OpenFile 打开文件选择对话框。FileFilter 用于限制可选文件类型。</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Header" xml:space="preserve">
+    <value>保存文件</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Description" xml:space="preserve">
+    <value>使用 SaveFile、SuggestedFileName、DefaultFileExtension 和 FileFilter 配置保存对话框。</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Header" xml:space="preserve">
+    <value>选择文件夹</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Description" xml:space="preserve">
+    <value>使用 OpenFolder 选择文件夹。如果允许选择多个文件夹，请将 AllowMultiple 设为 true。</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Header" xml:space="preserve">
+    <value>选择多个文件</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Description" xml:space="preserve">
+    <value>设置 AllowMultiple 并绑定 SelectedPaths，以收集用户选择的路径。</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Header" xml:space="preserve">
+    <value>命令与取消行为</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Description" xml:space="preserve">
+    <value>Command 接收所选 IReadOnlyList&lt;IStorageItem&gt;。IsOmitCommandOnCancel 控制取消时是否执行命令，IsClearSelectionOnCancel 控制是否清除当前选择。</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Header" xml:space="preserve">
+    <value>外观与按钮内容</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Description" xml:space="preserve">
+    <value>Top 类会将浏览按钮放在文本框上方。ButtonPathPicker 仅显示按钮，ListPathPicker 在可展开列表中显示已选路径，ButtonContent 则可替换默认浏览按钮内容。</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Header" xml:space="preserve">
+    <value>Command</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Description" xml:space="preserve">
+    <value>PathPicker.Command 接收 IReadOnlyList&lt;IStorageItem&gt;。将项目转换为 IStorageFile 后可调用 OpenReadAsync 获取流，或转换为 IStorageFolder 访问文件夹。若存储提供程序不提供本地路径，TryGetLocalPath 可能返回 null。</value>
+  </data>
+  <data name="Page_WindowDialog_Section_Position_Header" xml:space="preserve"><value>位置</value></data>
+  <data name="Page_WindowDialog_Section_Position_Description" xml:space="preserve"><value>选择窗口启动位置；同时填写 X 和 Y 可指定像素坐标。</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Header" xml:space="preserve"><value>模式与按钮</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Description" xml:space="preserve"><value>选择对话框模式和标准对话框底部显示的按钮。</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Header" xml:space="preserve"><value>关闭按钮</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Description" xml:space="preserve"><value>使用三态选项显示、隐藏或继承窗口关闭按钮的可见性。</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Header" xml:space="preserve"><value>窗口行为</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Description" xml:space="preserve"><value>控制窗口的任务栏显示、拖动和调整大小。</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Header" xml:space="preserve"><value>样式类</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Description" xml:space="preserve"><value>输入 `Custom` 可应用应用程序的 StandardDialogWindow.Custom 样式：确定按钮变为标有 CUSTOM 的警告按钮。清空样式类则恢复默认样式。</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Header" xml:space="preserve"><value>标准与自定义对话框</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Description" xml:space="preserve"><value>标准对话框提供内置按钮；自定义对话框使用自己的视图。切换 Modal 可在模态和非模态 API 之间选择。</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Header" xml:space="preserve"><value>位置</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Description" xml:space="preserve"><value>设置水平和垂直锚点及可选偏移量，以定位覆盖层。</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Header" xml:space="preserve"><value>模式与按钮</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Description" xml:space="preserve"><value>选择标准覆盖层对话框的模式和底部按钮。</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Header" xml:space="preserve"><value>关闭方式</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Description" xml:space="preserve"><value>启用轻量关闭可在点击外部时关闭对话框；使用三态选项显示、隐藏或继承关闭按钮的可见性。</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Header" xml:space="preserve"><value>布局与交互</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Description" xml:space="preserve"><value>切换覆盖层对话框的全屏、拖动和调整大小功能。</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Header" xml:space="preserve"><value>本地或全局宿主</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Description" xml:space="preserve"><value>使用全局宿主显示应用级覆盖层，或选择 Local 在下方带边框的 OverlayDialogHost 中显示对话框。</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Header" xml:space="preserve"><value>样式类</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Description" xml:space="preserve"><value>输入 `Custom` 可应用宿主窗口的 StandardDialogControl.Custom 样式：确定按钮变为标有 CUSTOM 的警告按钮。清空样式类则恢复默认样式。</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Header" xml:space="preserve"><value>标准与自定义对话框</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Description" xml:space="preserve"><value>标准覆盖层提供内置按钮；自定义覆盖层使用自己的视图。切换 Modal 可选择自定义对话框是否阻止其他交互。</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>基本用法</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>通过一次调用打开标准窗口对话框，并使用其默认按钮和行为。</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Header" xml:space="preserve"><value>窗口定位</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Description" xml:space="preserve"><value>选择启动位置，或同时设置 X 和 Y，将对话框定位到指定的屏幕坐标。</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Header" xml:space="preserve"><value>自定义对话框内容</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Description" xml:space="preserve"><value>使用自定义对话框 API 显示自己的视图和视图模型，而不是标准对话框的内置内容。</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Header" xml:space="preserve"><value>模态与非模态窗口</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Description" xml:space="preserve"><value>使用异步自定义对话框 API 打开模态窗口，或使用非异步 API 打开非模态窗口。</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>基本用法</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>通过一次调用在全局覆盖层宿主中打开标准覆盖层对话框。</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Header" xml:space="preserve"><value>覆盖层定位</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Description" xml:space="preserve"><value>选择水平和垂直锚点，并使用可选偏移量调整位置。</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Header" xml:space="preserve"><value>点击外部关闭</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Description" xml:space="preserve"><value>启用轻量关闭后，用户点击对话框外部即可关闭对话框。</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Header" xml:space="preserve"><value>使用本地宿主</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Description" xml:space="preserve"><value>全局宿主适用于应用范围的对话框；本地 OverlayDialogHost 可将对话框限制在视图中的特定区域。</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Header" xml:space="preserve"><value>模态与非模态覆盖层</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Description" xml:space="preserve"><value>使用异步 API 等待模态覆盖层对话框，或使用非异步 API 显示非模态覆盖层。</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Header" xml:space="preserve"><value>自定义对话框内容</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Description" xml:space="preserve"><value>使用自定义覆盖层 API 在覆盖层中呈现自己的视图和视图模型。</value></data>
 </root>

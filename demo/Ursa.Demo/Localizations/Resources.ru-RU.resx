@@ -344,6 +344,30 @@
   <data name="Page_Title_DisableContainer" xml:space="preserve">
     <value>Отключающий контейнер (DisableContainer)</value>
   </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_SelectionList_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Свяжите коллекцию строк напрямую с SelectionList для самого простого сценария одиночного выбора.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Header" xml:space="preserve">
+    <value>Пользовательский индикатор</value>
+  </data>
+  <data name="Page_SelectionList_Section_Custom_Indicator_Description" xml:space="preserve">
+    <value>Настройте индикатор и шаблон элемента, когда выбранная строка должна соответствовать визуальному языку приложения.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Header" xml:space="preserve">
+    <value>Использование во всплывающем слое</value>
+  </data>
+  <data name="Page_SelectionList_Section_Flyout_Usage_Description" xml:space="preserve">
+    <value>Размещайте SelectionList во всплывающем слое, когда область выбора должна оставаться компактной.</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Header" xml:space="preserve">
+    <value>Очистка выбора</value>
+  </data>
+  <data name="Page_SelectionList_Section_Clear_Selection_Description" xml:space="preserve">
+    <value>Используйте команду, чтобы очистить текущий элемент и сбросить состояние выбора.</value>
+  </data>
   <data name="Page_Title_Divider" xml:space="preserve">
     <value>Разделитель (Divider)</value>
   </data>
@@ -767,7 +791,7 @@
     <value>Кнопка прокрутки — это плавающая кнопка, которая прокручивает область просмотра к целевому элементу.</value>
   </data>
   <data name="Page_Description_SelectionList" xml:space="preserve">
-    <value>Список выбора представляет список элементов для одиночного или множественного выбора.</value>
+    <value>SelectionList используется для выбора одного элемента с анимированным индикатором.</value>
   </data>
   <data name="Page_Description_Skeleton" xml:space="preserve">
     <value>Скелетон показывает замещающие анимации загрузки для областей содержимого.</value>
@@ -1376,6 +1400,9 @@
   <data name="DemoSection_Tab_ViewModel" xml:space="preserve">
     <value>ViewModel</value>
   </data>
+  <data name="DemoSection_Tab_ViewCode" xml:space="preserve">
+    <value>Код представления</value>
+  </data>
   <data name="Page_TimePicker_Section_Basic_Header" xml:space="preserve">
     <value>Базовое использование</value>
   </data>
@@ -1865,4 +1892,302 @@
     <value>Это удалит локальный кэш пакетов. Действие нельзя отменить.</value>
   </data>
 
+  <data name="Page_Loading_Section_Indicator_Sizes_Header" xml:space="preserve">
+    <value>Размеры индикатора</value>
+  </data>
+  <data name="Page_Loading_Section_Indicator_Sizes_Description" xml:space="preserve">
+    <value>Классы Small и Large меняют размеры спиннера; без них используется размер по умолчанию.</value>
+  </data>
+  <data name="Page_Loading_Section_Overlay_Header" xml:space="preserve">
+    <value>Слой загрузки</value>
+  </data>
+  <data name="Page_Loading_Section_Overlay_Description" xml:space="preserve">
+    <value>Свяжите IsLoading с состоянием операции, чтобы отобразить слой загрузки поверх содержимого; во время загрузки содержимое размывается.</value>
+  </data>
+  <data name="Page_Loading_Section_Message_Template_Header" xml:space="preserve">
+    <value>Шаблон сообщения о загрузке</value>
+  </data>
+  <data name="Page_Loading_Section_Message_Template_Description" xml:space="preserve">
+    <value>Используйте LoadingMessage для текста состояния, а LoadingMessageTemplate — для настройки его отображения.</value>
+  </data>
+  <data name="Page_Loading_Section_Custom_Indicator_Header" xml:space="preserve">
+    <value>Пользовательский индикатор</value>
+  </data>
+  <data name="Page_Loading_Section_Custom_Indicator_Description" xml:space="preserve">
+    <value>Задайте Indicator, чтобы заменить стандартный спиннер другим элементом, который лучше показывает ход операции.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Icon_Header" xml:space="preserve">
+    <value>Значок</value>
+  </data>
+  <data name="Page_MessageBox_Section_Icon_Description" xml:space="preserve">
+    <value>Выберите значок типа сообщения или None, чтобы не отображать его.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Title_Header" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="Page_MessageBox_Section_Title_Description" xml:space="preserve">
+    <value>Включайте или отключайте заголовок независимо от текста сообщения.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Button_Combinations_Header" xml:space="preserve">
+    <value>Комбинации кнопок</value>
+  </data>
+  <data name="Page_MessageBox_Section_Button_Combinations_Description" xml:space="preserve">
+    <value>Выберите доступные кнопки ответа и проверьте возвращаемое значение MessageBoxResult.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Presentation_Modes_Header" xml:space="preserve">
+    <value>Способы отображения</value>
+  </data>
+  <data name="Page_MessageBox_Section_Presentation_Modes_Description" xml:space="preserve">
+    <value>На поддерживаемых платформах используйте окно MessageBox или переключитесь на встроенный диалог OverlayMessageBox в браузере и на мобильных устройствах.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Style_Class_Header" xml:space="preserve">
+    <value>Класс стиля</value>
+  </data>
+  <data name="Page_MessageBox_Section_Style_Class_Description" xml:space="preserve">
+    <value>Передайте класс Compact, чтобы применить стиль уровня приложения из демонстрации, уменьшающий внутренние отступы окна сообщения.</value>
+  </data>
+  <data name="Page_MessageBox_Section_Observable_Content_Header" xml:space="preserve">
+    <value>Наблюдаемое содержимое</value>
+  </data>
+  <data name="Page_MessageBox_Section_Observable_Content_Description" xml:space="preserve">
+    <value>Передайте источники IObservable&lt;string&gt;, чтобы обновлять сообщение и заголовок, пока окно сообщения открыто.</value>
+  </data>
+  <data name="Page_Notification_Section_Manager_Wiring_Header" xml:space="preserve">
+    <value>Подключение NotificationManager</value>
+  </data>
+  <data name="Page_Notification_Section_Manager_Wiring_Description" xml:space="preserve">
+    <value>Создайте или используйте существующий WindowNotificationManager для текущего TopLevel перед вызовом Show.</value>
+  </data>
+  <data name="Page_Notification_Section_Position_Header" xml:space="preserve">
+    <value>Положение</value>
+  </data>
+  <data name="Page_Notification_Section_Position_Description" xml:space="preserve">
+    <value>Задайте Position, чтобы выбрать одно из шести мест отображения уведомления.</value>
+  </data>
+  <data name="Page_Notification_Section_Icon_Header" xml:space="preserve">
+    <value>Значок</value>
+  </data>
+  <data name="Page_Notification_Section_Icon_Description" xml:space="preserve">
+    <value>Используйте showIcon, чтобы показывать или скрывать значок типа уведомления.</value>
+  </data>
+  <data name="Page_Notification_Section_Show_Close_Header" xml:space="preserve">
+    <value>Кнопка закрытия</value>
+  </data>
+  <data name="Page_Notification_Section_Show_Close_Description" xml:space="preserve">
+    <value>Используйте showClose, чтобы пользователи могли закрывать уведомление вручную.</value>
+  </data>
+  <data name="Page_Notification_Section_Light_Style_Header" xml:space="preserve">
+    <value>Класс стиля Light</value>
+  </data>
+  <data name="Page_Notification_Section_Light_Style_Description" xml:space="preserve">
+    <value>Передайте класс Light, чтобы использовать светлый фон и рамки, соответствующие типу уведомления.</value>
+  </data>
+  <data name="Page_Notification_Section_Close_Reason_Header" xml:space="preserve">
+    <value>Callback причины закрытия</value>
+  </data>
+  <data name="Page_Notification_Section_Close_Reason_Description" xml:space="preserve">
+    <value>Используйте onClose, чтобы получить Timeout, UserAction или Displaced при закрытии уведомления.</value>
+  </data>
+  <data name="Page_Toast_Section_Manager_Setup_Header" xml:space="preserve">
+    <value>Настройка менеджера Toast</value>
+  </data>
+  <data name="Page_Toast_Section_Manager_Setup_Description" xml:space="preserve">
+    <value>Создайте WindowToastManager для текущего TopLevel, задайте максимальное число видимых Toast и удалите его при отсоединении представления.</value>
+  </data>
+  <data name="Page_Toast_Section_Types_Header" xml:space="preserve">
+    <value>Типы уведомлений</value>
+  </data>
+  <data name="Page_Toast_Section_Types_Description" xml:space="preserve">
+    <value>Выберите Information, Success, Warning или Error в зависимости от сообщения.</value>
+  </data>
+  <data name="Page_Toast_Section_Icon_Header" xml:space="preserve">
+    <value>Отображение значка</value>
+  </data>
+  <data name="Page_Toast_Section_Icon_Description" xml:space="preserve">
+    <value>Используйте showIcon, чтобы показать или скрыть значок, соответствующий типу Toast.</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Button_Header" xml:space="preserve">
+    <value>Кнопка закрытия</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Button_Description" xml:space="preserve">
+    <value>Используйте showClose, чтобы пользователь мог закрыть Toast до истечения времени показа.</value>
+  </data>
+  <data name="Page_Toast_Section_Expiration_Header" xml:space="preserve">
+    <value>Время показа</value>
+  </data>
+  <data name="Page_Toast_Section_Expiration_Description" xml:space="preserve">
+    <value>Задайте expiration, чтобы управлять длительностью показа Toast. TimeSpan.Zero оставляет его открытым до ручного закрытия.</value>
+  </data>
+  <data name="Page_Toast_Section_Light_Style_Header" xml:space="preserve">
+    <value>Светлый стиль</value>
+  </data>
+  <data name="Page_Toast_Section_Light_Style_Description" xml:space="preserve">
+    <value>Передайте класс Light, чтобы применить светлый фон и цветную рамку в соответствии с типом Toast.</value>
+  </data>
+  <data name="Page_Toast_Section_Click_Callback_Header" xml:space="preserve">
+    <value>Обработка щелчка</value>
+  </data>
+  <data name="Page_Toast_Section_Click_Callback_Description" xml:space="preserve">
+    <value>Используйте onClick, чтобы выполнить действие при щелчке пользователя по Toast.</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Reason_Header" xml:space="preserve">
+    <value>Причина закрытия</value>
+  </data>
+  <data name="Page_Toast_Section_Close_Reason_Description" xml:space="preserve">
+    <value>Используйте onClose, чтобы узнать причину закрытия Toast, например тайм-аут, действие пользователя или вытеснение.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Basic_Header" xml:space="preserve">
+    <value>Простое подтверждение</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Basic_Description" xml:space="preserve">
+    <value>Оберните элемент, запускающий действие, в PopConfirm и свяжите ConfirmCommand и CancelCommand с действиями для каждого выбора.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Trigger_Modes_Header" xml:space="preserve">
+    <value>Режимы запуска</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Trigger_Modes_Description" xml:space="preserve">
+    <value>По умолчанию используется Click. Объедините Focus и Click, чтобы открывать окно также при получении фокуса элементом управления с помощью клавиатуры.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Non_Button_Trigger_Header" xml:space="preserve">
+    <value>Запуск не кнопкой</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Non_Button_Trigger_Description" xml:space="preserve">
+    <value>Кнопка открывает окно при событии Click, а другие дочерние элементы — при PointerPressed.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Placement_Header" xml:space="preserve">
+    <value>Положение окна</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Placement_Description" xml:space="preserve">
+    <value>Задайте Placement, чтобы выбрать положение окна относительно элемента запуска.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Async_Command_Header" xml:space="preserve">
+    <value>Обработка асинхронных команд</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Async_Command_Description" xml:space="preserve">
+    <value>Если HandleAsyncCommand включен, окно остается открытым во время выполнения асинхронной команды и закрывается после ее завершения.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Icon_Styles_Header" xml:space="preserve">
+    <value>Стили встроенного значка</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Icon_Styles_Description" xml:space="preserve">
+    <value>Используйте Information, Success, Warning или Error, чтобы изменить встроенный значок и его цвет.</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Custom_Icon_Header" xml:space="preserve">
+    <value>Пользовательский значок</value>
+  </data>
+  <data name="Page_PopConfirm_Section_Custom_Icon_Description" xml:space="preserve">
+    <value>Задайте свойство Icon, чтобы заменить встроенный значок пользовательским содержимым.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Global_Header" xml:space="preserve">
+    <value>Тема приложения</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Global_Description" xml:space="preserve">
+    <value>По умолчанию ThemeToggleButton управляет темой всего приложения и переключает Light и Dark. Если приложению необходимо задать RequestedThemeVariant как ThemeVariant.Default, установите IsThreeState в true, чтобы можно было выбрать Default.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Header" xml:space="preserve">
+    <value>Трехпозиционное переключение темы</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Three_State_Description" xml:space="preserve">
+    <value>Установите IsThreeState в true, чтобы переключать темы Light, Dark и Default (системную).</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Header" xml:space="preserve">
+    <value>Индикатор темы</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Indicator_Description" xml:space="preserve">
+    <value>Режим Indicator отображает текущую тему Light, Dark или Default, не применяя изменение.</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Header" xml:space="preserve">
+    <value>Управление темой в области</value>
+  </data>
+  <data name="Page_ThemeToggler_Section_Scoped_Theme_Description" xml:space="preserve">
+    <value>Поместите содержимое в ThemeVariantScope и задайте TargetScope, чтобы изменить только эту область. Переключатель внутри области может автоматически управлять ею.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Open_File_Header" xml:space="preserve">
+    <value>Открытие файла</value>
+  </data>
+  <data name="Page_PathPicker_Section_Open_File_Description" xml:space="preserve">
+    <value>Используйте UsePickerType=OpenFile, чтобы открыть диалог выбора файла. FileFilter ограничивает доступные типы файлов.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Header" xml:space="preserve">
+    <value>Сохранение файла</value>
+  </data>
+  <data name="Page_PathPicker_Section_Save_File_Description" xml:space="preserve">
+    <value>Настройте диалог сохранения с помощью SaveFile, SuggestedFileName, DefaultFileExtension и FileFilter.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Header" xml:space="preserve">
+    <value>Выбор папок</value>
+  </data>
+  <data name="Page_PathPicker_Section_Folder_Selection_Description" xml:space="preserve">
+    <value>Используйте OpenFolder для выбора папки. Установите AllowMultiple в true, если пользователь может выбрать несколько папок.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Header" xml:space="preserve">
+    <value>Выбор нескольких файлов</value>
+  </data>
+  <data name="Page_PathPicker_Section_Multiple_Selection_Description" xml:space="preserve">
+    <value>Установите AllowMultiple и привяжите SelectedPaths, чтобы получить выбранные пользователем пути.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Header" xml:space="preserve">
+    <value>Команда и отмена</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Cancel_Description" xml:space="preserve">
+    <value>Command получает выбранную IReadOnlyList&lt;IStorageItem&gt;. IsOmitCommandOnCancel управляет вызовом команды при отмене, а IsClearSelectionOnCancel — очисткой текущего выбора.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Header" xml:space="preserve">
+    <value>Внешний вид и содержимое кнопки</value>
+  </data>
+  <data name="Page_PathPicker_Section_Appearance_Description" xml:space="preserve">
+    <value>Класс Top размещает кнопку обзора над текстовым полем. ButtonPathPicker отображает только кнопку, ListPathPicker показывает выбранные пути в раскрывающемся списке, а ButtonContent заменяет содержимое кнопки по умолчанию.</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Header" xml:space="preserve">
+    <value>Команда</value>
+  </data>
+  <data name="Page_PathPicker_Section_Command_Description" xml:space="preserve">
+    <value>PathPicker.Command получает IReadOnlyList&lt;IStorageItem&gt;. Преобразуйте элемент в IStorageFile, чтобы вызвать OpenReadAsync и получить поток, или в IStorageFolder для работы с папкой. TryGetLocalPath может вернуть null, если поставщик не предоставляет локальный путь.</value>
+  </data>
+  <data name="Page_WindowDialog_Section_Position_Header" xml:space="preserve"><value>Положение</value></data>
+  <data name="Page_WindowDialog_Section_Position_Description" xml:space="preserve"><value>Выберите начальное положение. Укажите X и Y для точного размещения в пикселях.</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Header" xml:space="preserve"><value>Режим и кнопки</value></data>
+  <data name="Page_WindowDialog_Section_Buttons_Description" xml:space="preserve"><value>Выберите режим диалога и кнопки в нижней части стандартного окна.</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Header" xml:space="preserve"><value>Кнопка закрытия</value></data>
+  <data name="Page_WindowDialog_Section_Close_Button_Description" xml:space="preserve"><value>Трёхпозиционный параметр позволяет показать, скрыть или унаследовать видимость кнопки закрытия.</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Header" xml:space="preserve"><value>Поведение окна</value></data>
+  <data name="Page_WindowDialog_Section_Window_Options_Description" xml:space="preserve"><value>Управляйте отображением на панели задач, перетаскиванием и изменением размера окна.</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Header" xml:space="preserve"><value>Класс стиля</value></data>
+  <data name="Page_WindowDialog_Section_Style_Class_Description" xml:space="preserve"><value>Введите `Custom`, чтобы применить стиль приложения StandardDialogWindow.Custom: кнопка OK станет предупреждающей с надписью CUSTOM. Очистите поле, чтобы вернуть стандартный стиль.</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Header" xml:space="preserve"><value>Стандартный и пользовательский диалог</value></data>
+  <data name="Page_WindowDialog_Section_Variants_Description" xml:space="preserve"><value>Стандартный диалог содержит встроенные кнопки, пользовательский использует ваше представление. Переключатель Modal выбирает модальный или немодальный API.</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Header" xml:space="preserve"><value>Размещение</value></data>
+  <data name="Page_OverlayDialog_Section_Position_Description" xml:space="preserve"><value>Задайте горизонтальную и вертикальную привязку и необязательные смещения для размещения наложения.</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Header" xml:space="preserve"><value>Режим и кнопки</value></data>
+  <data name="Page_OverlayDialog_Section_Buttons_Description" xml:space="preserve"><value>Выберите режим и кнопки в нижней части стандартного диалога наложения.</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Header" xml:space="preserve"><value>Закрытие</value></data>
+  <data name="Page_OverlayDialog_Section_Dismiss_Description" xml:space="preserve"><value>Разрешите закрытие щелчком вне диалога; трёхпозиционный параметр позволяет показать, скрыть или унаследовать видимость кнопки закрытия.</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Header" xml:space="preserve"><value>Размещение и взаимодействие</value></data>
+  <data name="Page_OverlayDialog_Section_Layout_Description" xml:space="preserve"><value>Переключайте полноэкранный режим, перетаскивание и изменение размера диалога наложения.</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Header" xml:space="preserve"><value>Локальный или глобальный хост</value></data>
+  <data name="Page_OverlayDialog_Section_Host_Description" xml:space="preserve"><value>Глобальный хост показывает наложение во всём приложении; выберите Local для отображения диалога в рамке OverlayDialogHost ниже.</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Header" xml:space="preserve"><value>Класс стиля</value></data>
+  <data name="Page_OverlayDialog_Section_Style_Class_Description" xml:space="preserve"><value>Введите `Custom`, чтобы применить стиль окна-хоста StandardDialogControl.Custom: кнопка OK станет предупреждающей с надписью CUSTOM. Очистите поле, чтобы вернуть стандартный стиль.</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Header" xml:space="preserve"><value>Стандартный и пользовательский диалог</value></data>
+  <data name="Page_OverlayDialog_Section_Variants_Description" xml:space="preserve"><value>Стандартное наложение содержит встроенные кнопки, пользовательское использует ваше представление. Переключатель Modal определяет, блокирует ли диалог другие действия.</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>Основное использование</value></data>
+  <data name="Page_WindowDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>Откройте стандартное окно диалога со стандартными кнопками и поведением одним вызовом.</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Header" xml:space="preserve"><value>Позиционирование</value></data>
+  <data name="Page_WindowDialog_Section_Positioning_Description" xml:space="preserve"><value>Выберите начальное положение или задайте X и Y, чтобы указать точные координаты окна на экране.</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Пользовательское содержимое диалога</value></data>
+  <data name="Page_WindowDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Используйте API пользовательского диалога, чтобы показать собственные представление и модель представления вместо стандартного содержимого.</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Header" xml:space="preserve"><value>Модальные и немодальные окна</value></data>
+  <data name="Page_WindowDialog_Section_Modality_Description" xml:space="preserve"><value>Используйте асинхронный API для модального окна, а обычный API — для немодального.</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Header" xml:space="preserve"><value>Основное использование</value></data>
+  <data name="Page_OverlayDialog_Section_Basic_Usage_Description" xml:space="preserve"><value>Откройте стандартный диалог наложения в глобальном хосте одним вызовом.</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Header" xml:space="preserve"><value>Позиционирование</value></data>
+  <data name="Page_OverlayDialog_Section_Positioning_Description" xml:space="preserve"><value>Выберите горизонтальную и вертикальную привязки и настройте положение с помощью необязательных смещений.</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Header" xml:space="preserve"><value>Закрытие при щелчке снаружи</value></data>
+  <data name="Page_OverlayDialog_Section_Light_Dismiss_Description" xml:space="preserve"><value>Разрешите закрывать диалог щелчком за его пределами.</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Header" xml:space="preserve"><value>Использование локального хоста</value></data>
+  <data name="Page_OverlayDialog_Section_Local_Host_Description" xml:space="preserve"><value>Выберите глобальный хост для диалога на уровне приложения или локальный OverlayDialogHost, чтобы ограничить диалог частью представления.</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Header" xml:space="preserve"><value>Модальные и немодальные наложения</value></data>
+  <data name="Page_OverlayDialog_Section_Modality_Description" xml:space="preserve"><value>Используйте асинхронный API для модального диалога наложения или обычный API для немодального.</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Пользовательское содержимое диалога</value></data>
+  <data name="Page_OverlayDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Используйте API пользовательского наложения, чтобы отобразить в нём собственные представление и модель представления.</value></data>
 </root>
