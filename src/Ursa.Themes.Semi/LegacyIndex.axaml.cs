@@ -23,6 +23,8 @@ public class SemiTheme : Styles
         { new CultureInfo("ru-RU"), new ru_ru() },
         { new CultureInfo("pl-PL"), new pl_pl() },
         { new CultureInfo("cs-CZ"), new cs_cz() },
+        { new CultureInfo("ko-KR"), new ko_kr() },
+        { new CultureInfo("ja-JP"), new ja_jp() },
     };
 
     private static readonly ResourceDictionary DefaultResource = new zh_cn();
