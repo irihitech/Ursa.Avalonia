@@ -32,6 +32,8 @@
                 <lingua:LinguaCulture Culture="cs-CZ" DisplayName="Čeština" ShortDisplayName="CS" />
                 <lingua:LinguaCulture Culture="de-DE" DisplayName="Deutsch" ShortDisplayName="DE" />
                 <lingua:LinguaCulture Culture="fr-FR" DisplayName="Français" ShortDisplayName="FR" />
+                <lingua:LinguaCulture Culture="ja-JP" DisplayName="日本語" ShortDisplayName="日" />
+                <lingua:LinguaCulture Culture="ko-KR" DisplayName="한국어" ShortDisplayName="한" />
                 <lingua:LinguaCulture Culture="pl-PL" DisplayName="Polski" ShortDisplayName="PL" />
                 <lingua:LinguaCulture Culture="ru-RU" DisplayName="Русский" ShortDisplayName="RU" />
             </lingua:CulturePicker.Cultures>
