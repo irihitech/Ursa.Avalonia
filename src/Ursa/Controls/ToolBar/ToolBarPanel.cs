@@ -121,6 +121,7 @@ public class ToolBarPanel: StackPanel
                         overflowIndex = OverflowPanel?.Children?.IndexOf(last) ?? -1;
                     }
                     OverflowPanel?.Children?.Insert(overflowIndex + 1, child);
+                    ReparentedControlHelper.InvalidateVisuals(child);
                 }
             }
             else if (OverflowPanel?.Children?.Contains(child) == true)
@@ -135,6 +136,7 @@ public class ToolBarPanel: StackPanel
                         index = Children?.IndexOf(last) ?? -1;
                     }
                     Children?.Insert(index + 1, child);
+                    ReparentedControlHelper.InvalidateVisuals(child);
                 }
             }
         }

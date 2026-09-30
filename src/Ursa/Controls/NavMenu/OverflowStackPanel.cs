@@ -13,6 +13,7 @@ public class OverflowStackPanel : StackPanel
         {
             Children.Remove(child);
             OverflowPanel?.Children.Add(child);
+            ReparentedControlHelper.InvalidateVisuals(child);
         }
     }
 
@@ -24,6 +25,7 @@ public class OverflowStackPanel : StackPanel
             {
                 OverflowPanel?.Children.Remove(child);
                 Children.Add(child);
+                ReparentedControlHelper.InvalidateVisuals(child);
             }
     }
 }

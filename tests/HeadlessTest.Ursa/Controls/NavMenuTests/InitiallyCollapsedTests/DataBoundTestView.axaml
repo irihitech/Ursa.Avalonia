@@ -12,6 +12,12 @@
                ExpandWidth="400"
                IsHorizontalCollapsed="True"
                ItemsSource="{Binding MenuItems}"
-               HeaderBinding="{Binding Header}"
-               SubMenuBinding="{Binding Children}" />
+               HeaderBinding="{Binding}"
+               SubMenuBinding="{Binding Children}">
+        <u:NavMenu.HeaderTemplate>
+            <DataTemplate x:DataType="tests:NavMenuItemViewModel">
+                <TextBlock Text="{Binding Header}" />
+            </DataTemplate>
+        </u:NavMenu.HeaderTemplate>
+    </u:NavMenu>
 </UserControl>
