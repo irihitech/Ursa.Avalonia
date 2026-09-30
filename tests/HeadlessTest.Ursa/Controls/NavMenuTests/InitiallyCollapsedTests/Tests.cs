@@ -2,12 +2,43 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Headless;
 using Avalonia.Headless.XUnit;
+using Avalonia.Threading;
+using Avalonia.VisualTree;
 using Ursa.Controls;
 
 namespace HeadlessTest.Ursa.Controls.NavMenuTests.InitiallyCollapsedTests;
 
 public class Tests
 {
+    [AvaloniaFact]
+    public void DataBound_SubMenu_Header_Remains_Visible_After_Collapse_And_Expand()
+    {
+        var window = new Window { Width = 400, Height = 400, Content = new DataBoundTestView() };
+        window.Show();
+
+        var menu = ((DataBoundTestView)window.Content!).FindControl<NavMenu>("Menu")!;
+        var parent = Assert.IsType<NavMenuItem>(menu.ContainerFromIndex(0));
+        var child = Assert.IsType<NavMenuItem>(parent.ContainerFromIndex(0));
+
+        menu.IsHorizontalCollapsed = false;
+        window.UpdateLayout();
+        for (var i = 0; i < 3; i++)
+        {
+            menu.IsHorizontalCollapsed = true;
+            Dispatcher.UIThread.RunJobs();
+            window.UpdateLayout();
+            menu.IsHorizontalCollapsed = false;
+            Dispatcher.UIThread.RunJobs();
+            window.UpdateLayout();
+
+            Assert.Equal("Sub Item 1", Assert.IsType<NavMenuItemViewModel>(child.Header).Header);
+            var header = Assert.Single(child.GetVisualDescendants().OfType<TextBlock>());
+            Assert.Equal("Sub Item 1", header.Text);
+            Assert.True(header.IsEffectivelyVisible);
+            Assert.True(header.Bounds.Width > 0);
+        }
+    }
+
     /// <summary>
     /// Verifies that when a NavMenu starts with IsHorizontalCollapsed=true,
     /// top-level items with sub-menus are accessible and report the correct item counts.
