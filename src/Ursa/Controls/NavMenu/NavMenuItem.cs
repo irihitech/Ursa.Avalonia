@@ -182,10 +182,14 @@ public class NavMenuItem : HeaderedItemsControl
         _overflowPanel = e.NameScope.Find<Panel>("PART_OverflowPanel");
         if (RootMenu is not null)
         {
-            this.TryBind(IconProperty, RootMenu.IconBinding);
-            this.TryBind(HeaderProperty, RootMenu.HeaderBinding);
-            this.TryBind(ItemsSourceProperty, RootMenu.SubMenuBinding);
-            this.TryBind(CommandProperty, RootMenu.CommandBinding);
+            var shouldApplyMenuItemBindings = DataContext is not null && DataContext != RootMenu.DataContext;
+            if (shouldApplyMenuItemBindings)
+            {
+                this.TryBind(IconProperty, RootMenu.IconBinding);
+                this.TryBind(HeaderProperty, RootMenu.HeaderBinding);
+                this.TryBind(ItemsSourceProperty, RootMenu.SubMenuBinding);
+                this.TryBind(CommandProperty, RootMenu.CommandBinding);
+            }
             this[!IconTemplateProperty] = RootMenu[!NavMenu.IconTemplateProperty];
             this[!HeaderTemplateProperty] = RootMenu[!NavMenu.HeaderTemplateProperty];
             this[!SubMenuIndentProperty] = RootMenu[!NavMenu.SubMenuIndentProperty];
@@ -403,6 +407,10 @@ public class NavMenuItem : HeaderedItemsControl
         else if (Parent is NavMenu menu)
         {
             menu.SelectItem(item, this);
+        }
+        else if (RootMenu is not null)
+        {
+            RootMenu.SelectItem(item, this);
         }
 
         _popup?.Close();
