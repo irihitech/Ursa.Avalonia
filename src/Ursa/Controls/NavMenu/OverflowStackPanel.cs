@@ -1,5 +1,4 @@
 using Avalonia.Controls;
-using Avalonia.VisualTree;
 
 namespace Ursa.Controls;
 
@@ -14,6 +13,7 @@ public class OverflowStackPanel : StackPanel
         {
             Children.Remove(child);
             OverflowPanel?.Children.Add(child);
+            ReparentedControlHelper.InvalidateVisuals(child);
         }
     }
 
@@ -25,12 +25,7 @@ public class OverflowStackPanel : StackPanel
             {
                 OverflowPanel?.Children.Remove(child);
                 Children.Add(child);
-
-                // Reparenting from a Popup can leave descendant visuals with stale
-                // render data even after the item is attached to the menu again.
-                child.InvalidateVisual();
-                foreach (var visual in child.GetVisualDescendants())
-                    visual.InvalidateVisual();
+                ReparentedControlHelper.InvalidateVisuals(child);
             }
     }
 }
