@@ -11,8 +11,4 @@
         <PackageReference Include="Irihi.Avalonia.Shared"/>
         <PackageReference Include="Irihi.Avalonia.Shared.Contracts"/>
     </ItemGroup>
-
-    <ItemGroup>
-        <InternalsVisibleTo Include="HeadlessTest.Ursa"/>
-    </ItemGroup>
 </Project>
