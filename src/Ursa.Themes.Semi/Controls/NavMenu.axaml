@@ -165,7 +165,10 @@
             <!--<Setter Property="RenderTransform" Value="scale(1,0.9)" />-->
         </Style>
         <Style Selector="^:vertical-collapsed /template/ LayoutTransformControl">
-            <Setter Property="LayoutTransform" Value="scale(1,0)" />
+            <!-- Keep the transform invertible: a singular transform (e.g. scale(1,0)) makes
+                 LayoutTransformControl measure and arrange the whole submenu at 0x0, and
+                 headers arranged during that window keep a zero-width arrange afterwards. -->
+            <Setter Property="LayoutTransform" Value="scale(1,0.001)" />
         </Style>
         <Style Selector="^:vertical-collapsed /template/ PathIcon#PART_ExpanderIcon">
             <Setter Property="RenderTransform" Value="rotate(180deg)" />
