@@ -345,6 +345,12 @@ public class NavMenuItem : HeaderedItemsControl
         }
         else
         {
+            // Popup content lives on a separate layout root. If the popup is still open,
+            // the containers being moved back still hold layout state bound to the popup's
+            // LayoutManager, which breaks (or freezes) the next arrange pass in the main
+            // tree. Close it first, then re-parent (which invalidates the moved subtree's
+            // measure via LayoutHelper.InvalidateSelfAndChildrenMeasure).
+            _popup?.Close();
             if (ItemsPanelRoot is OverflowStackPanel s) s.MoveChildrenToMainPanel();
         }
     }
