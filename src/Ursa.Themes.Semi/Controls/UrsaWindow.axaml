@@ -59,6 +59,10 @@
                                 IsTopLevel="True" />
                         </Panel>
                     </VisualLayerManager>
+                    <u:WindowResizer
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        IsVisible="{TemplateBinding IsManagedResizerVisible}" />
                 </Panel>
             </ControlTemplate>
         </Setter>
