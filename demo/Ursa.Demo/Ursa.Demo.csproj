@@ -27,6 +27,7 @@
         <PackageReference Include="Semi.Avalonia" />
         <PackageReference Include="Irihi.Lingua" />
         <PackageReference Include="Irihi.Dogma" />
+        <PackageReference Include="Irihi.Branding" />
     </ItemGroup>
 
     <ItemGroup>
