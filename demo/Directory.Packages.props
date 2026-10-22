@@ -14,6 +14,7 @@
         <PackageVersion Include="Avalonia.Android" Version="$(AvaloniaVersion)"/>
 
         <PackageVersion Include="SkiaSharp" Version="$(SkiaSharpVersion)"/>
+        <PackageVersion Include="SkiaSharp.NativeAssets.Linux" Version="$(SkiaSharpVersion)"/>
         <PackageVersion Include="SkiaSharp.NativeAssets.WebAssembly" Version="$(SkiaSharpVersion)"/>
 
         <PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.2.0"/>
