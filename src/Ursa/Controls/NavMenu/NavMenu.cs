@@ -287,11 +287,9 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
     internal void SelectItem(NavMenuItem item, NavMenuItem parent)
     {
         _isSelectionFromUI = true;
-        foreach (var child in LogicalChildren)
-        {
-            if (Equals(child, parent)) continue;
-            if (child is NavMenuItem navMenuItem) navMenuItem.ClearSelection();
-        }
+        foreach (var rootItem in GetTopLevelMenuItems())
+            if (!ReferenceEquals(rootItem, parent))
+                rootItem.ClearSelection();
 
         if (item.DataContext is not null && item.DataContext != DataContext)
             SetCurrentValue(SelectedItemProperty, item.DataContext);
@@ -303,9 +301,8 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
 
     private void ClearAll()
     {
-        foreach (var child in LogicalChildren)
-            if (child is NavMenuItem item)
-                item.ClearSelection();
+        foreach (var rootItem in GetTopLevelMenuItems())
+            rootItem.ClearSelection();
     }
 
     (bool handled, IInputElement? next) ICustomKeyboardNavigation.GetNext(IInputElement element, NavigationDirection direction)
@@ -425,12 +422,42 @@ public class NavMenu : ItemsControl, ICustomKeyboardNavigation
 
     private IEnumerable<NavMenuItem> GetLeafMenus()
     {
-        foreach (var child in LogicalChildren)
-            if (child is NavMenuItem item)
-            {
-                var leafs = item.GetLeafMenus();
-                foreach (var leaf in leafs) yield return leaf;
-            }
+        foreach (var rootItem in GetTopLevelMenuItems())
+        {
+            var leafs = rootItem.GetLeafMenus();
+            foreach (var leaf in leafs) yield return leaf;
+        }
+    }
+
+    private IEnumerable<NavMenuItem> GetTopLevelMenuItems() =>
+        GetTopLevelMenuItemsInternal();
+
+    private IEnumerable<NavMenuItem> GetTopLevelMenuItemsInternal()
+    {
+        var visited = new HashSet<NavMenuItem>();
+
+        foreach (var logical in LogicalChildren)
+        foreach (var item in GetTopLevelMenuItemsInternal(logical))
+            if (visited.Add(item))
+                yield return item;
+
+        if (Footer is ILogical footerLogical)
+            foreach (var item in GetTopLevelMenuItemsInternal(footerLogical))
+                if (visited.Add(item))
+                    yield return item;
+    }
+
+    private static IEnumerable<NavMenuItem> GetTopLevelMenuItemsInternal(ILogical logical)
+    {
+        if (logical is NavMenuItem item)
+        {
+            yield return item;
+            yield break;
+        }
+
+        foreach (var child in logical.LogicalChildren)
+        foreach (var descendant in GetTopLevelMenuItemsInternal(child))
+            yield return descendant;
     }
 
     public NavMenuItem? GetContainerForItem(object? item)
