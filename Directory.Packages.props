@@ -31,5 +31,6 @@
     <PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.2.0.2" />
     <PackageVersion Include="Irihi.Lingua" Version="1.0.0" />
     <PackageVersion Include="Irihi.Dogma" Version="0.2.3" />
+    <PackageVersion Include="Irihi.Branding" Version="0.2.0" />
   </ItemGroup>
 </Project>
