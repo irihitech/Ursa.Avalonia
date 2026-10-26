@@ -17,6 +17,9 @@
                 Default="{DynamicResource UrsaWindowTitleBarPadding}"
                 macOS="{DynamicResource UrsaWindowMacTitleBarPadding}" />
         </Setter>
+        <!-- Transparent floor keeps the title bar hit-testable when no background
+             is set, so drag and double-click keep working on empty areas. -->
+        <Setter Property="TitleBarBackground" Value="Transparent" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:UrsaWindow">
                 <Panel>
@@ -50,8 +53,7 @@
                                 HorizontalAlignment="Stretch"
                                 LeftContent="{TemplateBinding LeftContent}"
                                 RightContent="{TemplateBinding RightContent}"
-                                CenterContent="{TemplateBinding TitleBarContent}"
-                                WindowDecorationProperties.ElementRole="TitleBar" />
+                                CenterContent="{TemplateBinding TitleBarContent}" />
                             <u:OverlayDialogHost
                                 Name="{x:Static u:UrsaWindow.PART_DialogHost}"
                                 SafePadding="{TemplateBinding WindowDecorationMargin}"

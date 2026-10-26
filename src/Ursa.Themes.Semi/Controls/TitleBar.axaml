@@ -8,8 +8,7 @@
             <ControlTemplate TargetType="u:TitleBar">
                 <Border
                     Padding="{TemplateBinding Padding}"
-                    Background="{TemplateBinding Background}"
-                    WindowDecorationProperties.ElementRole="TitleBar">
+                    Background="{TemplateBinding Background}">
                     <DockPanel>
                         <ContentPresenter
                             Name="PART_LeftContentPresenter"
