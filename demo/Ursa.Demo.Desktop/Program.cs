@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Versioning;
 using Avalonia;
 using Avalonia.Dialogs;
@@ -9,6 +10,7 @@ namespace Ursa.Demo.Desktop;
 [SupportedOSPlatform("windows")]
 [SupportedOSPlatform("linux")]
 [SupportedOSPlatform("macos")]
+[Experimental("AVALONIA_X11_FORCE_CSD")]
 class Program
 {
     // Initialization code. Don't use any Avalonia, third-party APIs or any
@@ -34,6 +36,9 @@ class Program
             .UseManagedSystemDialogs()
             .WithDataAnnotationsValidation()
             .UsePlatformDetect()
-            .With(new Win32PlatformOptions())
+            .With(new X11PlatformOptions()
+            {
+                ForceDrawnDecorations = true
+            })
             .LogToTrace();
 }
