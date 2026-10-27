@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Headless.XUnit;
 using Avalonia.Interactivity;
@@ -258,6 +259,34 @@ public class PaginationTests
         Assert.True(previousButton?.IsEnabled);
         Assert.False(nextButton?.IsEnabled);
     }
+
+    [AvaloniaFact]
+    public void Disabled_Pagination_Buttons_Do_Not_Install_Adorners()
+    {
+        var pagination = new Pagination
+        {
+            CurrentPage = 1,
+            PageSize = 50,
+            TotalCount = 300,
+        };
+
+        AssertDisabledArrowsDoNotInstallAdorners(pagination);
+    }
+
+    private static void AssertDisabledArrowsDoNotInstallAdorners(Pagination pagination)
+    {
+        var window = new Window { Content = pagination };
+        window.Show();
+        Dispatcher.UIThread.RunJobs();
+
+        AssertDisabledArrowHasNoAdorner(pagination);
+
+        pagination.CurrentPage = 6;
+        Dispatcher.UIThread.RunJobs();
+
+        AssertDisabledArrowHasNoAdorner(pagination);
+        window.Close();
+    }
     
     [AvaloniaFact]
     public void TinyPagination_Should_Calculate_PageCount_Correctly()
@@ -431,6 +460,13 @@ public class PaginationTests
         pagination.CurrentPage = 5;
         Dispatcher.UIThread.RunJobs();
         Assert.Equal(1, count);
+    }
+
+    private static void AssertDisabledArrowHasNoAdorner(Pagination pagination)
+    {
+        var disabledButton = pagination.GetTemplateChildrenOfType<PaginationButton>()
+            .Single(button => !button.IsEnabled);
+        Assert.Null(AdornerLayer.GetAdorner(disabledButton));
     }
     
 }
