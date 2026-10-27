@@ -11,14 +11,14 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Pagination">
                 <StackPanel Orientation="Horizontal">
-                    <u:PaginationButton Name="{x:Static u:Pagination.PART_PreviousButton}" u:DisabledAdorner.IsEnabled="True">
+                    <u:PaginationButton Name="{x:Static u:Pagination.PART_PreviousButton}">
                         <PathIcon
                             Theme="{StaticResource InnerPathIcon}"
                             Data="{DynamicResource PaginationBackwardGlyph}"
                             Foreground="{DynamicResource PaginationButtonIconForeground}" />
                     </u:PaginationButton>
                     <StackPanel Name="{x:Static u:Pagination.PART_ButtonPanel}" Orientation="Horizontal" />
-                    <u:PaginationButton Name="{x:Static u:Pagination.PART_NextButton}" u:DisabledAdorner.IsEnabled="True">
+                    <u:PaginationButton Name="{x:Static u:Pagination.PART_NextButton}">
                         <PathIcon
                             Theme="{StaticResource InnerPathIcon}"
                             Data="{DynamicResource PaginationForwardGlyph}"
@@ -53,7 +53,7 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:Pagination">
                 <StackPanel Orientation="Horizontal">
-                    <u:PaginationButton Name="{x:Static u:Pagination.PART_PreviousButton}" u:DisabledAdorner.IsEnabled="True">
+                    <u:PaginationButton Name="{x:Static u:Pagination.PART_PreviousButton}">
                         <PathIcon
                             Theme="{StaticResource InnerPathIcon}"
                             Data="{DynamicResource PaginationBackwardGlyph}"
@@ -86,7 +86,7 @@
                             VerticalAlignment="Center"
                             Text="{TemplateBinding PageCount}" />
                     </Grid>
-                    <u:PaginationButton Name="{x:Static u:Pagination.PART_NextButton}" u:DisabledAdorner.IsEnabled="True">
+                    <u:PaginationButton Name="{x:Static u:Pagination.PART_NextButton}">
                         <PathIcon
                             Theme="{StaticResource InnerPathIcon}"
                             Data="{DynamicResource PaginationForwardGlyph}"
