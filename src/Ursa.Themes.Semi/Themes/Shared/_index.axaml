@@ -14,7 +14,6 @@
         <ResourceInclude Source="Drawer.axaml" />
         <ResourceInclude Source="DualBadge.axaml" />
         <ResourceInclude Source="IconButton.axaml" />
-        <ResourceInclude Source="KeyGestureInput.axaml" />
         <ResourceInclude Source="MarkdownLine.axaml" />
         <ResourceInclude Source="MessageBox.axaml" />
         <ResourceInclude Source="NavigationMenu.axaml" />

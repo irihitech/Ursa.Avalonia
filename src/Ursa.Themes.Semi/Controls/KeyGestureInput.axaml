@@ -83,18 +83,7 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border
-                                            Classes="KeyGestureInputKeyTag"
-                                            Background="{DynamicResource KeyGestureInputKeyTagBackground}"
-                                            BorderBrush="{DynamicResource KeyGestureInputKeyTagBorderBrush}"
-                                            BorderThickness="{DynamicResource KeyGestureInputKeyTagBorderThickness}"
-                                            CornerRadius="{DynamicResource KeyGestureInputKeyTagCornerRadius}"
-                                            Padding="{DynamicResource KeyGestureInputKeyTagPadding}">
-                                            <TextBlock
-                                                FontSize="{DynamicResource KeyGestureInputKeyFontSize}"
-                                                Text="{Binding}"
-                                                TextTrimming="CharacterEllipsis" />
-                                        </Border>
+                                        <Label Theme="{DynamicResource TagLabel}" Classes="White" Content="{Binding}" />
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

@@ -1,5 +1,0 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!--KeyTag-->
-    <StaticResource x:Key="KeyGestureInputKeyTagBackground" ResourceKey="SemiColorWindow" />
-    <StaticResource x:Key="KeyGestureInputKeyTagBorderBrush" ResourceKey="SemiColorWindowText" />
-</ResourceDictionary>
