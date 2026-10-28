@@ -7,7 +7,7 @@ using Ursa.Controls;
 
 namespace HeadlessTest.Ursa.Controls.SettingsCardTests;
 
-public class SettingsCardGroupTest
+public partial class SettingsCardGroupTest
 {
     [AvaloniaFact]
     public void SettingsCardGroup_ModelItems_AutoWrappedInCards()
@@ -67,5 +67,45 @@ public class SettingsCardGroupTest
         };
         Assert.Equal("Group header", group.Header);
         Assert.Equal("Group description", group.Description);
+    }
+
+    [AvaloniaFact]
+    public void SettingsCardGroup_ItemTemplate_ExpandableRows_BindToModel()
+    {
+        var model = new RowModel("Row");
+        var template = new FuncDataTemplate<RowModel>((m, _) =>
+        {
+            var card = new SettingsCard { Content = m?.Name, Detail = new StackPanel() };
+            card.Bind(SettingsCard.IsExpandedProperty, new Avalonia.Data.Binding(nameof(RowModel.IsExpanded)));
+            return card;
+        });
+        var group = new SettingsCardGroup
+        {
+            ItemTemplate = template,
+            ItemsSource = new System.Collections.ObjectModel.ObservableCollection<RowModel> { model },
+        };
+        var window = new Window { Content = group };
+        window.Show();
+        window.UpdateLayout();
+
+        var presenter = Assert.IsType<ContentPresenter>(group.ContainerFromIndex(0));
+        var card = Assert.IsType<SettingsCard>(presenter.Child);
+
+        // Model drives the card, and clicking the card drives the model back —
+        // the expanded state lives in the model and survives container regeneration.
+        model.IsExpanded = true;
+        Assert.True(card.IsExpanded);
+        card.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
+        Assert.False(model.IsExpanded);
+    }
+
+    private partial class RowModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
+    {
+        public RowModel(string name) => Name = name;
+
+        public string Name { get; }
+
+        [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
+        public partial bool IsExpanded { get; set; }
     }
 }

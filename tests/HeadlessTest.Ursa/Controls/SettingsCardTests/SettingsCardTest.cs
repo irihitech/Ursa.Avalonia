@@ -107,14 +107,14 @@ public class SettingsCardTest
     }
 
     [AvaloniaFact]
-    public void SettingsCard_NestedCardGroupInDetail_Works()
+    public void SettingsCard_CardsInDetail_Works()
     {
         var innerCheckBox = new CheckBox();
         var innerRow = new SettingsCard { Content = "Inner row" };
         innerRow.RightContent = innerCheckBox;
-        var innerGroup = new SettingsCardGroup();
-        innerGroup.Items.Add(innerRow);
-        var outer = new SettingsCard { Content = "Outer", Detail = innerGroup };
+        var detailPanel = new StackPanel();
+        detailPanel.Children.Add(innerRow);
+        var outer = new SettingsCard { Content = "Outer", Detail = detailPanel };
         var outerGroup = new SettingsCardGroup();
         outerGroup.Items.Add(outer);
         var window = new Window { Content = outerGroup };
@@ -144,36 +144,30 @@ public class SettingsCardTest
     }
 
     [AvaloniaFact]
-    public void SettingsCard_NestedGroupInDetail_RendersFlat()
+    public void SettingsCard_CardsInDetail_RenderFlat()
     {
         var first = new SettingsCard { Content = "First nested" };
         var last = new SettingsCard { Content = "Last nested" };
-        var innerGroup = new SettingsCardGroup();
-        innerGroup.Items.Add(first);
-        innerGroup.Items.Add(last);
-        var outer = new SettingsCard { Content = "Outer", Detail = innerGroup, IsExpanded = true };
+        var detailPanel = new StackPanel();
+        detailPanel.Children.Add(first);
+        detailPanel.Children.Add(last);
+        var outer = new SettingsCard { Content = "Outer", Detail = detailPanel, IsExpanded = true };
         var outerGroup = new SettingsCardGroup();
         outerGroup.Items.Add(outer);
         var window = new Window { Content = outerGroup };
         window.Show();
         window.UpdateLayout();
 
-        // The nested group cancels the detail presenter margins so rows span the card edge to edge.
-        Assert.Equal(new Avalonia.Thickness(-48, -12, -16, -12), innerGroup.Margin);
+        // The detail presenter has no margin, so nested cards span the card edge to edge.
+        Assert.Equal(new Avalonia.Thickness(0), first.Margin);
 
-        // Card chrome removed: transparent background, no border.
-        var cardBorder = innerGroup.GetTemplateChildOfType<Border>("PART_Root");
-        Assert.NotNull(cardBorder);
-        Assert.Equal(Avalonia.Media.Brushes.Transparent, cardBorder!.Background);
-        Assert.Equal(new Avalonia.Thickness(0), cardBorder.BorderThickness);
-
-        // Nested rows keep square top corners (a header row sits above); the last nested row
-        // closes the card with the outer bottom radius.
+        // Cards are square-cornered; the group card carries the radius.
         Assert.Equal(new Avalonia.CornerRadius(0), first.CornerRadius);
-        Assert.Equal(0, last.CornerRadius.TopLeft);
-        Assert.Equal(0, last.CornerRadius.TopRight);
-        Assert.Equal(outerGroup.CornerRadius.BottomLeft, last.CornerRadius.BottomLeft);
-        Assert.Equal(outerGroup.CornerRadius.BottomRight, last.CornerRadius.BottomRight);
+        Assert.Equal(new Avalonia.CornerRadius(0), last.CornerRadius);
+
+        // Separators between nested rows, none after the last one.
+        Assert.True(first.GetTemplateChildOfType<Border>("PART_Separator")!.IsVisible);
+        Assert.False(last.GetTemplateChildOfType<Border>("PART_Separator")!.IsVisible);
     }
 
     [AvaloniaFact]
@@ -187,10 +181,10 @@ public class SettingsCardTest
         var loneA = new RadioButton();
         var loneB = new RadioButton();
 
-        var innerGroup = new SettingsCardGroup();
-        innerGroup.Items.Add(new SettingsCard { Content = "Light", RightContent = radioA });
-        innerGroup.Items.Add(new SettingsCard { Content = "Dark", RightContent = radioB });
-        var outer = new SettingsCard { Content = "Theme", Detail = innerGroup, IsExpanded = true };
+        var detailPanel = new StackPanel();
+        detailPanel.Children.Add(new SettingsCard { Content = "Light", RightContent = radioA });
+        detailPanel.Children.Add(new SettingsCard { Content = "Dark", RightContent = radioB });
+        var outer = new SettingsCard { Content = "Theme", Detail = detailPanel, IsExpanded = true };
         var group = new SettingsCardGroup();
         group.Items.Add(outer);
         group.Items.Add(new SettingsCard { Content = "Lone A", RightContent = loneA });

@@ -1,99 +1,10 @@
-﻿<!--
-    Cross-control styles for SettingsCard/SettingsCardGroup (descendant selectors are not
-    allowed inside a ControlTheme, hence this separate Styles file). Content:
-    1. Separator lines between adjacent rows inside a group; the last row has none
-       (both direct child rows and rows generated from ItemsSource);
-    2. Row hover/press corner radii inherit the group card radius by first/last position
-       (CornerRadiusMixerConverter from Irihi.Avalonia.Shared).
--->
-<Styles xmlns="https://github.com/avaloniaui"
+﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:u="https://irihi.tech/ursa"
-        xmlns:iri="https://irihi.tech/shared">
-
-    <!--  1. Row separators: visible inside a group, hidden after the last row
-          (direct child rows and presenter-wrapped rows).  -->
+        xmlns:u="https://irihi.tech/ursa">
     <Style Selector="u|SettingsCardGroup u|SettingsCard /template/ Border#PART_Separator">
         <Setter Property="IsVisible" Value="True" />
     </Style>
     <Style Selector="u|SettingsCardGroup u|SettingsCard:nth-last-child(1) /template/ Border#PART_Separator">
         <Setter Property="IsVisible" Value="False" />
-    </Style>
-    <!--  Rows generated from ItemsSource: the container is a ContentPresenter wrapping the card.  -->
-    <Style Selector="u|SettingsCardGroup ContentPresenter u|SettingsCard /template/ Border#PART_Separator">
-        <Setter Property="IsVisible" Value="True" />
-    </Style>
-    <Style Selector="u|SettingsCardGroup ContentPresenter:nth-last-child(1) u|SettingsCard /template/ Border#PART_Separator">
-        <Setter Property="IsVisible" Value="False" />
-    </Style>
-
-    <!--  2. Row corner radii align with the card edges: first row rounds the top only, last row
-          rounds the bottom only, middle rows are square, a single row rounds everything
-          (same two container forms as above).  -->
-    <Style Selector="u|SettingsCardGroup u|SettingsCard">
-        <Setter Property="CornerRadius" Value="0" />
-    </Style>
-    <Style Selector="u|SettingsCardGroup u|SettingsCard:nth-child(1)">
-        <Setter Property="CornerRadius"
-                Value="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType={x:Type u:SettingsCardGroup}}, Converter={iri:CornerRadiusMixerConverter Top}}" />
-    </Style>
-    <Style Selector="u|SettingsCardGroup u|SettingsCard:nth-last-child(1)">
-        <Setter Property="CornerRadius"
-                Value="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType={x:Type u:SettingsCardGroup}}, Converter={iri:CornerRadiusMixerConverter Bottom}}" />
-    </Style>
-    <Style Selector="u|SettingsCardGroup u|SettingsCard:nth-child(1):nth-last-child(1)">
-        <Setter Property="CornerRadius"
-                Value="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType={x:Type u:SettingsCardGroup}}, Converter={iri:CornerRadiusMixerConverter All}}" />
-    </Style>
-    <Style Selector="u|SettingsCardGroup ContentPresenter u|SettingsCard">
-        <Setter Property="CornerRadius" Value="0" />
-    </Style>
-    <Style Selector="u|SettingsCardGroup ContentPresenter:nth-child(1) u|SettingsCard">
-        <Setter Property="CornerRadius"
-                Value="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType={x:Type u:SettingsCardGroup}}, Converter={iri:CornerRadiusMixerConverter Top}}" />
-    </Style>
-    <Style Selector="u|SettingsCardGroup ContentPresenter:nth-last-child(1) u|SettingsCard">
-        <Setter Property="CornerRadius"
-                Value="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType={x:Type u:SettingsCardGroup}}, Converter={iri:CornerRadiusMixerConverter Bottom}}" />
-    </Style>
-    <Style Selector="u|SettingsCardGroup ContentPresenter:nth-child(1):nth-last-child(1) u|SettingsCard">
-        <Setter Property="CornerRadius"
-                Value="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType={x:Type u:SettingsCardGroup}}, Converter={iri:CornerRadiusMixerConverter All}}" />
-    </Style>
-
-    <!--  3. A SettingsCardGroup hosted inside a card's Detail renders flat, Windows-Settings
-          style: no nested card chrome, rows continue the outer card edge to edge with
-          separators between them (section 1 applies to nested rows as well). The negative
-          margin cancels the PART_Detail presenter margin (48,12,16,12 in the card theme) so
-          nested rows span the full card width; their content still aligns with the outer
-          title because the icon slot is constant (16 + 20 + 12 = 48).  -->
-    <Style Selector="u|SettingsCard u|SettingsCardGroup">
-        <Setter Property="Margin" Value="-48,-12,-16,-12" />
-        <!--  Nested rows inherit corner radii from the OUTER group (the ancestor walk from the
-              nested group finds the outer group), bottom side only.  -->
-        <Setter Property="CornerRadius"
-                Value="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType={x:Type u:SettingsCardGroup}}, Converter={iri:CornerRadiusMixerConverter Bottom}}" />
-    </Style>
-    <Style Selector="u|SettingsCard u|SettingsCardGroup /template/ Border#PART_Root">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderThickness" Value="0" />
-    </Style>
-
-    <!--  4. Nested rows: square corners by default (a header row sits above), the last nested
-          row rounds the bottom to close the outer card. These must come after the general
-          corner rules in section 2 to take precedence.  -->
-    <Style Selector="u|SettingsCard u|SettingsCard">
-        <Setter Property="CornerRadius" Value="0" />
-    </Style>
-    <Style Selector="u|SettingsCard u|SettingsCard:nth-last-child(1)">
-        <Setter Property="CornerRadius"
-                Value="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType={x:Type u:SettingsCardGroup}}, Converter={iri:CornerRadiusMixerConverter Bottom}}" />
-    </Style>
-    <Style Selector="u|SettingsCard ContentPresenter u|SettingsCard">
-        <Setter Property="CornerRadius" Value="0" />
-    </Style>
-    <Style Selector="u|SettingsCard ContentPresenter u|SettingsCard:nth-last-child(1)">
-        <Setter Property="CornerRadius"
-                Value="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType={x:Type u:SettingsCardGroup}}, Converter={iri:CornerRadiusMixerConverter Bottom}}" />
     </Style>
 </Styles>

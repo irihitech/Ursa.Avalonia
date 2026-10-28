@@ -85,20 +85,16 @@ public partial class SettingsCardDemoViewModel : ObservableObject, IPageMetadata
                                               Description="Click the row to expand inline details"
                                               IsExpanded="{Binding DetailExpanded}">
                                   <u:SettingsCard.Detail>
-                                      <!--  Detail can host another SettingsCardGroup: nested rows
-                                            render FLAT (Windows-Settings style) — no sub-card chrome,
-                                            rows continue the outer card edge to edge with separators.
-                                            RadioButtons in different rows need a shared GroupName.  -->
-                                      <u:SettingsCardGroup>
+                                      <StackPanel>
                                           <u:SettingsCard>
                                               <RadioButton GroupName="fuzzy"
-                                                           Content="平翘舌 (flat vs. retroflex)"
+                                                           Content="Flat vs. retroflex"
                                                            IsChecked="{Binding FuzzyEnabled}" />
                                           </u:SettingsCard>
                                           <u:SettingsCard>
-                                              <RadioButton GroupName="fuzzy" Content="前后鼻音 (nasal finals)" />
+                                              <RadioButton GroupName="fuzzy" Content="Nasal finals" />
                                           </u:SettingsCard>
-                                      </u:SettingsCardGroup>
+                                      </StackPanel>
                                   </u:SettingsCard.Detail>
                               </u:SettingsCard>
                           </u:SettingsCardGroup>
@@ -144,18 +140,27 @@ public partial class SettingsCardDemoViewModel : ObservableObject, IPageMetadata
             CodeSnippetLanguage = CodeLanguage.Axaml,
             TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
             CodeSnippet = """
-                          <!--  Without an ItemTemplate, models are auto-wrapped in SettingsCards.  -->
                           <u:SettingsCardGroup Header="Quick options"
                                                ItemsSource="{Binding QuickOptions}" />
 
-                          <!--  With an ItemTemplate, cards bind to model properties.  -->
                           <u:SettingsCardGroup Header="Profiles"
                                                ItemsSource="{Binding Profiles}">
                               <u:SettingsCardGroup.ItemTemplate>
                                   <DataTemplate>
                                       <u:SettingsCard Content="{Binding Name}"
                                                       Note="{Binding Status}"
-                                                      ShowChevron="True" />
+                                                      IsExpanded="{Binding IsExpanded}">
+                                          <u:SettingsCard.Detail>
+                                              <StackPanel>
+                                                  <u:SettingsCard Content="Sync across devices">
+                                                      <u:SettingsCard.RightContent>
+                                                          <CheckBox IsChecked="{Binding SyncEnabled}" />
+                                                      </u:SettingsCard.RightContent>
+                                                  </u:SettingsCard>
+                                                  <u:SettingsCard Content="Send usage statistics" />
+                                              </StackPanel>
+                                          </u:SettingsCard.Detail>
+                                      </u:SettingsCard>
                                   </DataTemplate>
                               </u:SettingsCardGroup.ItemTemplate>
                           </u:SettingsCardGroup>
@@ -175,7 +180,19 @@ public partial class SettingsCardDemoViewModel : ObservableObject, IPageMetadata
                               new("MingLan", "Idle"),
                           ];
 
-                          public partial record ProfileViewModel(string Name, string Status);
+                          public partial class ProfileViewModel : ObservableObject
+                          {
+                              public ProfileViewModel(string name, string status)
+                              {
+                                  Name = name;
+                                  Status = status;
+                              }
+
+                              public string Name { get; }
+                              public string Status { get; }
+                              [ObservableProperty] public partial bool IsExpanded { get; set; }
+                              [ObservableProperty] public partial bool SyncEnabled { get; set; } = true;
+                          }
                           """
         });
     }
@@ -232,4 +249,18 @@ public partial class SettingsCardDemoViewModel : ObservableObject, IPageMetadata
     }
 }
 
-public partial record ProfileViewModel(string Name, string Status);
+public partial class ProfileViewModel : ObservableObject
+{
+    public ProfileViewModel(string name, string status)
+    {
+        Name = name;
+        Status = status;
+    }
+
+    public string Name { get; }
+    public string Status { get; }
+
+    [ObservableProperty] public partial bool IsExpanded { get; set; }
+
+    [ObservableProperty] public partial bool SyncEnabled { get; set; } = true;
+}

@@ -36,6 +36,14 @@ public class SettingsCard : Button
 
     private Control? _detailHost;
 
+    static SettingsCard()
+    {
+        DetailProperty.Changed.AddClassHandler<SettingsCard>((s, e) => s.OnDetailChanged(e));
+        IsExpandedProperty.Changed.AddClassHandler<SettingsCard>((s, e) => s.OnIsExpandedChanged(e));
+        CommandProperty.Changed.AddClassHandler<SettingsCard>((s, e) => s.OnCommandChanged(e));
+        ShowChevronProperty.Changed.AddClassHandler<SettingsCard>((s, e) => s.OnShowChevronChanged(e));
+    }
+
     public SettingsCard()
     {
         Click += OnCardClick;
@@ -317,28 +325,25 @@ public class SettingsCard : Button
         set => SetValue(IsExpandedProperty, value);
     }
 
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    private void OnDetailChanged(AvaloniaPropertyChangedEventArgs e)
     {
-        base.OnPropertyChanged(change);
-        if (change.Property == DetailProperty)
-        {
-            // SetCurrentValue keeps a two-way binding on IsExpanded alive.
-            if (change.NewValue is null) SetCurrentValue(IsExpandedProperty, false);
-            PseudoClasses.Set(PC_HasDetail, change.NewValue is not null);
-            UpdateInteractive();
-        }
-        else if (change.Property == IsExpandedProperty)
-        {
-            PseudoClasses.Set(PC_Expanded, IsExpanded);
-            // Once collapsed the detail is no longer hoverable; a stale :over-detail would
-            // suppress the row highlight on the next hover of the row header.
-            if (!IsExpanded) PseudoClasses.Set(PC_OverDetail, false);
-        }
-        else if (change.Property == CommandProperty || change.Property == ShowChevronProperty)
-        {
-            UpdateInteractive();
-        }
+        // SetCurrentValue keeps a two-way binding on IsExpanded alive.
+        if (e.NewValue is null) SetCurrentValue(IsExpandedProperty, false);
+        PseudoClasses.Set(PC_HasDetail, e.NewValue is not null);
+        UpdateInteractive();
     }
+
+    private void OnIsExpandedChanged(AvaloniaPropertyChangedEventArgs e)
+    {
+        PseudoClasses.Set(PC_Expanded, IsExpanded);
+        // Once collapsed the detail is no longer hoverable; a stale :over-detail would
+        // suppress the row highlight on the next hover of the row header.
+        if (!IsExpanded) PseudoClasses.Set(PC_OverDetail, false);
+    }
+
+    private void OnCommandChanged(AvaloniaPropertyChangedEventArgs e) => UpdateInteractive();
+
+    private void OnShowChevronChanged(AvaloniaPropertyChangedEventArgs e) => UpdateInteractive();
 
     /// <summary>
     /// Only interactive rows (expandable or navigable) get hover/press feedback and focus;

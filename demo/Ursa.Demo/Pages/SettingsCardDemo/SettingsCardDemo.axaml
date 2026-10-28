@@ -54,25 +54,27 @@
                                     Icon="{DynamicResource SemiIconSetting}"
                                     IsExpanded="{Binding DetailExpanded}">
                                     <u:SettingsCard.Detail>
-                                        <u:SettingsCardGroup>
+                                        <StackPanel>
                                             <u:SettingsCard>
                                                 <RadioButton
                                                     GroupName="fuzzy"
-                                                    Content="平翘舌 (flat vs. retroflex)"
+                                                    Content="Flat vs. retroflex"
                                                     IsChecked="{Binding FuzzyEnabled}" />
                                             </u:SettingsCard>
                                             <u:SettingsCard>
-                                                <RadioButton GroupName="fuzzy" Content="前后鼻音 (nasal finals)" />
+                                                <RadioButton
+                                                    GroupName="fuzzy"
+                                                    Content="Nasal finals" />
                                             </u:SettingsCard>
-                                            <u:SettingsCard
-                                                Command="{Binding NavigateCommand}"
-                                                CommandParameter="Fuzzy advanced"
-                                                Content="Advanced"
-                                                Description="Nested rows are full SettingsCards — navigable ones work too"
-                                                ShowChevron="True" />
-                                        </u:SettingsCardGroup>
+                                        </StackPanel>
                                     </u:SettingsCard.Detail>
                                 </u:SettingsCard>
+                                <u:SettingsCard
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="Fuzzy advanced"
+                                    Content="Advanced"
+                                    Description="Nested rows are full SettingsCards — navigable ones work too"
+                                    ShowChevron="True" />
                             </u:SettingsCardGroup>
                             <TextBlock
                                 IsVisible="{Binding DetailExpanded}"
@@ -115,7 +117,20 @@
                                             Content="{Binding Name}"
                                             Icon="{DynamicResource SemiIconUser}"
                                             Note="{Binding Status}"
-                                            ShowChevron="True" />
+                                            IsExpanded="{Binding IsExpanded}">
+                                            <u:SettingsCard.Detail>
+                                                <StackPanel>
+                                                    <u:SettingsCard>
+                                                        <CheckBox
+                                                            Content="Sync across devices"
+                                                            IsChecked="{Binding SyncEnabled}" />
+                                                    </u:SettingsCard>
+                                                    <u:SettingsCard>
+                                                        <CheckBox Content="Send usage statistics" />
+                                                    </u:SettingsCard>
+                                                </StackPanel>
+                                            </u:SettingsCard.Detail>
+                                        </u:SettingsCard>
                                     </DataTemplate>
                                 </u:SettingsCardGroup.ItemTemplate>
                             </u:SettingsCardGroup>

@@ -53,7 +53,6 @@
 
     <ControlTheme x:Key="{x:Type u:SettingsCard}" TargetType="u:SettingsCard">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="CornerRadius" Value="{DynamicResource SemiBorderRadiusMedium}" />
         <Setter Property="MinHeight" Value="44" />
         <Setter Property="Padding" Value="16,10" />
         <Setter Property="Template">
@@ -156,7 +155,6 @@
                         IsVisible="{TemplateBinding IsExpanded}">
                         <ContentPresenter
                             Name="PART_Detail"
-                            Margin="48,12,16,12"
                             Content="{TemplateBinding Detail}"
                             ContentTemplate="{TemplateBinding DetailTemplate}" />
                     </Border>
@@ -164,6 +162,8 @@
                     <Border
                         Name="PART_Separator"
                         Height="1"
+                        IsHitTestVisible="False"
+                        Focusable="False"
                         Background="{DynamicResource SemiColorBorder}" />
                 </StackPanel>
             </ControlTemplate>
@@ -180,9 +180,6 @@
         </Style>
         <Style Selector="^:disabled">
             <Setter Property="Opacity" Value="0.55" />
-        </Style>
-        <Style Selector="^:expanded /template/ Border#PART_Root">
-            <Setter Property="CornerRadius" Value="0" />
         </Style>
         <Style Selector="^ /template/ Border#PART_Separator">
             <Setter Property="IsVisible" Value="False" />
