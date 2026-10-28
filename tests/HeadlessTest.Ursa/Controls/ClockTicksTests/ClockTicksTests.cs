@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Headless;
 using Avalonia.Headless.XUnit;
 using Avalonia.Media;
 using Avalonia.Threading;
@@ -58,9 +59,20 @@ public class ClockTicksTests
                 throw new ArgumentOutOfRangeException(nameof(propertyName));
         }
 
-        Dispatcher.UIThread.RunJobs();
+        RunJobsAndRender();
 
         Assert.True(clockTicks.RenderCount > initialRenderCount);
+    }
+
+    private static void RunJobsAndRender()
+    {
+        for (var i = 0; i < 10; i++)
+        {
+            Dispatcher.UIThread.RunJobs();
+            AvaloniaHeadlessPlatform.ForceRenderTimerTick();
+        }
+
+        Dispatcher.UIThread.RunJobs();
     }
 
     [AvaloniaFact]
