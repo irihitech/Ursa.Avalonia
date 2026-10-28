@@ -75,6 +75,55 @@ Ursa currently is compatible with both Avalonia 11.1.x and 11.2.x, but specifica
 
 ## Extensions
 
+### Fluent 2 theme (experimental)
+
+`src/Ursa.Themes.Fluent2` provides an alternative to the Semi theme. It uses
+Avalonia's unreleased Fluent 2 CI packages; only the Fluent 2 library, gallery,
+and tests opt into that dependency version. Existing Semi applications keep
+their current Avalonia dependencies.
+
+Register the base theme before Ursa's theme, instead of the Semi themes:
+
+```xml
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:fluent2="https://irihi.tech/ursa/themes/fluent2">
+    <Application.Styles>
+        <Fluent2Theme />
+        <fluent2:UrsaFluent2Theme />
+    </Application.Styles>
+</Application>
+```
+
+Use the Avalonia CI version pinned in `Directory.Packages.props` for all
+Avalonia packages in a Fluent 2 application, and restore with this repository's
+`NuGet.Config`. Run the dedicated gallery with:
+
+```powershell
+dotnet run --project demo\Ursa.Fluent2.Demo
+```
+
+The gallery includes Light/Dark, Normal/Compact, and English/Chinese switches.
+When changing density in an application, set `DensityStyle` on both
+`Fluent2Theme` and `UrsaFluent2Theme`. `Locale` configures Ursa's localized
+strings and defaults to Simplified Chinese. High-contrast theme variants are
+not yet supported by this experimental theme.
+
+Resource conventions follow Avalonia's
+[initial Fluent 2 implementation](https://github.com/AvaloniaUI/Avalonia/pull/21771)
+and [theme contract tests](https://github.com/AvaloniaUI/Avalonia/pull/22216):
+keep component/state resource keys, consume changing values with
+`DynamicResource`, and distinguish semantic `Color` tokens from brush resources.
+Override the component key used by a control for reliable runtime customization;
+a static alias is not a live subscription to its underlying token.
+
+The pinned CI package predates the
+[shared brush additions](https://github.com/AvaloniaUI/Avalonia/pull/22611) and
+[DropDownButton fixes](https://github.com/AvaloniaUI/Avalonia/pull/22591).
+Do not assume resource keys from newer pull requests exist in this package.
+The [resource dictionary consolidation](https://github.com/AvaloniaUI/Avalonia/pull/22637)
+and [Fluent 2 ColorPicker](https://github.com/AvaloniaUI/Avalonia/pull/22569)
+are still proposals, not requirements of this migration.
+
 ### Prism Extension
 If you need to integrate Ursa with Prism.Avalonia, you can use the Irihi.Ursa.PrismExtension package. This package provide Dialog related services to utilize Ursa Dialogs with Prism flavor. 
 
@@ -88,4 +137,3 @@ We offer limited free community support for Semi Avalonia and Ursa. Please join 
 <p>
     <img src="./assets/community-support.png" alt="drawing" width="600" />
 </p>
-

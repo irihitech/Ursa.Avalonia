@@ -1,0 +1,46 @@
+<u:UrsaWindow xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:u="https://irihi.tech/ursa"
+        xmlns:pages="using:Ursa.Fluent2.Demo.Pages"
+        x:Class="Ursa.Fluent2.Demo.MainWindow"
+        Title="Ursa · Fluent 2"
+        Width="1120" Height="850" MinWidth="720" MinHeight="560">
+  <u:UrsaWindow.Styles>
+    <Style Selector="Border.gallery-card">
+      <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefault}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefault}" />
+    </Style>
+    <Style Selector="TextBlock.gallery-label">
+      <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondary}" />
+    </Style>
+    <Style Selector="TextBlock.gallery-error">
+      <Setter Property="Foreground" Value="{DynamicResource SystemFillColorCritical}" />
+    </Style>
+  </u:UrsaWindow.Styles>
+  <DockPanel Margin="0,32,0,0">
+    <Border DockPanel.Dock="Top"
+            Padding="16,10"
+            Background="{DynamicResource LayerFillColorDefault}">
+      <StackPanel Spacing="8">
+        <TextBlock Text="Ursa for Fluent 2" FontSize="24" FontWeight="SemiBold" />
+        <StackPanel Orientation="Horizontal" Spacing="8">
+          <Button Content="System" Click="UseSystemTheme" />
+          <Button Content="Light" Click="UseLightTheme" />
+          <Button Content="Dark" Click="UseDarkTheme" />
+          <Button Content="Normal density" Click="UseNormalDensity" />
+          <Button Content="Compact density" Click="UseCompactDensity" />
+          <Button Content="简体中文" Click="UseChinese" />
+          <Button Content="English" Click="UseEnglish" />
+        </StackPanel>
+      </StackPanel>
+    </Border>
+    <TabControl x:Name="Gallery">
+      <TabItem Header="Presentation and actions (16)"><pages:PresentationPage /></TabItem>
+      <TabItem Header="Inputs, selection, and forms (26)"><pages:InputsPage /></TabItem>
+      <TabItem Header="Date and time (20)"><pages:DateTimePage /></TabItem>
+      <TabItem Header="Navigation and application shell (18)"><pages:NavigationPage /></TabItem>
+      <TabItem Header="Overlays and feedback (18)"><pages:OverlaysPage /></TabItem>
+      <TabItem Header="Specialized controls (13)"><pages:SpecializedPage /></TabItem>
+    </TabControl>
+  </DockPanel>
+</u:UrsaWindow>

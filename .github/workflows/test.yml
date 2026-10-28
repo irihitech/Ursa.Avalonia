@@ -13,6 +13,26 @@ permissions:
   pull-requests: write
 
 jobs:
+  fluent2:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Build Fluent 2 gallery and tests
+        run: dotnet build tests/Ursa.Themes.Fluent2.Tests --configuration Release
+      - name: Fluent 2 theme tests
+        run: dotnet tests/Ursa.Themes.Fluent2.Tests/bin/Release/net10.0/Ursa.Themes.Fluent2.Tests.dll
+      - name: Pack experimental Fluent 2 theme
+        run: dotnet pack src/Ursa.Themes.Fluent2 --configuration Release --output nugets
+      - name: Upload Fluent 2 packages
+        uses: actions/upload-artifact@v7
+        with:
+          name: fluent2-${{ matrix.os }}
+          path: nugets/*
+
   windows:
     runs-on: windows-latest
     steps:

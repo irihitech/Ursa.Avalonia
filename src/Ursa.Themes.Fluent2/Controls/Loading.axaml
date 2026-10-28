@@ -1,0 +1,127 @@
+<ResourceDictionary x:ClassModifier="internal"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:iri="https://irihi.tech/shared"
+    xmlns:converters="using:Ursa.Themes.Fluent2.Converters">
+    <Design.PreviewWith>
+        <StackPanel Margin="20">
+            <u:LoadingIcon Classes="Large" />
+        </StackPanel>
+    </Design.PreviewWith>
+    <ControlTheme x:Key="{x:Type u:LoadingIcon}" TargetType="u:LoadingIcon">
+        <Setter Property="IsLoading" Value="True" />
+        <Setter Property="Foreground" Value="{DynamicResource LoadingIconForeground}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:LoadingIcon">
+                <Arc
+                    Name="PART_Arc"
+                    Width="20"
+                    Height="20"
+                    IsVisible="{TemplateBinding IsVisible}"
+                    StartAngle="0"
+                    StrokeJoin="Round"
+                    StrokeLineCap="Round"
+                    StrokeThickness="3"
+                    SweepAngle="300">
+                    <Arc.Stroke>
+                        <ConicGradientBrush Angle="50">
+                            <GradientStops>
+                                <GradientStop Offset="0.4" Color="Transparent" />
+                                <GradientStop Offset="0.8" Color="{Binding Foreground, Converter={converters:BrushToColorConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <GradientStop Offset="1.0" Color="{Binding Foreground, Converter={converters:BrushToColorConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                            </GradientStops>
+                        </ConicGradientBrush>
+                    </Arc.Stroke>
+                </Arc>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^.Small /template/ Arc#PART_Arc">
+            <Setter Property="Width" Value="14" />
+            <Setter Property="Height" Value="14" />
+            <Setter Property="StrokeThickness" Value="2" />
+        </Style>
+        <Style Selector="^.Large /template/ Arc#PART_Arc">
+            <Setter Property="Width" Value="32" />
+            <Setter Property="Height" Value="32" />
+            <Setter Property="StrokeThickness" Value="5" />
+        </Style>
+        <Style Selector="^[IsLoading=True] /template/ Arc#PART_Arc">
+            <Style.Animations>
+                <Animation IterationCount="Infinite" Duration="0:0:0.6">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="RotateTransform.Angle" Value="0.0" />
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="RotateTransform.Angle" Value="360.0" />
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:Loading}" TargetType="u:Loading">
+        <Setter Property="Background" Value="{DynamicResource LoadingMaskBackground}" />
+        <Setter Property="Indicator">
+            <Template>
+                <u:LoadingIcon IsLoading="{Binding $parent[u:Loading].IsLoading, Mode=TwoWay}" />
+            </Template>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:Loading">
+                <Panel IsVisible="{TemplateBinding IsLoading}">
+                    <iri:PureRectangle
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="{TemplateBinding Background}"
+                        IsHitTestVisible="True" />
+                    <Grid
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        RowDefinitions="Auto, *">
+                        <ContentPresenter HorizontalAlignment="Center" Content="{TemplateBinding Indicator}" />
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            Grid.Row="1"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            IsVisible="{TemplateBinding Content,
+                                                        Converter={x:Static ObjectConverters.IsNotNull}}" />
+                    </Grid>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:LoadingContainer}" TargetType="u:LoadingContainer">
+        <Setter Property="MessageForeground" Value="{DynamicResource TextBlockDefaultForeground}" />
+        <Setter Property="Background" Value="{DynamicResource LoadingMaskBackground}" />
+        <Setter Property="Indicator">
+            <Template>
+                <u:LoadingIcon IsLoading="{Binding $parent[u:LoadingContainer].IsLoading, Mode=TwoWay}" />
+            </Template>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:LoadingContainer">
+                <Panel>
+                    <ContentPresenter
+                        Name="PART_ContentPresenter"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    <u:Loading
+                        Background="{TemplateBinding Background}"
+                        Content="{TemplateBinding LoadingMessage}"
+                        ContentTemplate="{TemplateBinding LoadingMessageTemplate}"
+                        Foreground="{TemplateBinding MessageForeground}"
+                        Indicator="{TemplateBinding Indicator}"
+                        IsLoading="{TemplateBinding IsLoading}" />
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:loading /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Effect" Value="blur(5)" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

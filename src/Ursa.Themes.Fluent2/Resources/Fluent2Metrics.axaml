@@ -1,0 +1,29 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <!-- Ursa-specific dimensions following the pinned Fluent 2 geometry tokens. -->
+  <CornerRadius x:Key="UrsaFluent2GroupBoxCornerRadius">4</CornerRadius>
+  <CornerRadius x:Key="ButtonGroupCornerRadius">4</CornerRadius>
+  <CornerRadius x:Key="BannerCornerRadius">4</CornerRadius>
+  <CornerRadius x:Key="CalenderDayCornerRadius">20</CornerRadius>
+  <CornerRadius x:Key="CalenderYearCornerRadius">4</CornerRadius>
+  <CornerRadius x:Key="DialogCornerRadius">8</CornerRadius>
+  <CornerRadius x:Key="DrawerCornerRadius">8</CornerRadius>
+  <CornerRadius x:Key="PopConfirmBorderCornerRadius">8</CornerRadius>
+  <CornerRadius x:Key="NavigationMenuItemDefaultCornerRadius">4</CornerRadius>
+  <CornerRadius x:Key="ToastCardCornerRadius">8</CornerRadius>
+  <CornerRadius x:Key="AvatarSquareCornerRadius">4</CornerRadius>
+  <CornerRadius x:Key="AvatarLargeSquareCornerRadius">4</CornerRadius>
+  <CornerRadius x:Key="AvatarExtraLargeSquareCornerRadius">8</CornerRadius>
+  <Thickness x:Key="ButtonGroupDefaultPadding">11,5,11,6</Thickness>
+  <Thickness x:Key="ButtonGroupLargePadding">11,5,11,6</Thickness>
+  <Thickness x:Key="UrsaFluent2GroupBoxPadding">16</Thickness>
+  <x:Double x:Key="AutoCompleteBoxDefaultHeight">32</x:Double>
+  <x:Double x:Key="NumericUpDownDefaultHeight">32</x:Double>
+  <x:Double x:Key="UrsaFluent2HeaderFontSizeLarge">24</x:Double>
+  <x:Double x:Key="UrsaFluent2HeaderFontSizeMedium">20</x:Double>
+  <x:Double x:Key="UrsaFluent2HeaderFontSizeSmall">16</x:Double>
+  <x:Double x:Key="UrsaFluent2FontSizeSmall">12</x:Double>
+  <FontWeight x:Key="UrsaFluent2FontWeightBold">SemiBold</FontWeight>
+  <x:Double x:Key="UrsaFluent2IconButtonInnerSpacing">4</x:Double>
+  <BoxShadows x:Key="UrsaFluent2OverlayBoxShadow">0 4 8 0 #26000000</BoxShadows>
+</ResourceDictionary>

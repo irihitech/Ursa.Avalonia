@@ -1,0 +1,7 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StaticResource x:Key="PaginationFastBackwardGlyph" ResourceKey="UrsaFluent2IconDoubleChevronLeft" />
+    <StaticResource x:Key="PaginationFastForwardGlyph" ResourceKey="UrsaFluent2IconDoubleChevronRight" />
+    <StaticResource x:Key="PaginationBackwardGlyph" ResourceKey="UrsaFluent2IconChevronLeft" />
+    <StaticResource x:Key="PaginationForwardGlyph" ResourceKey="UrsaFluent2IconChevronRight" />
+    <StaticResource x:Key="PaginationMoreGlyph" ResourceKey="UrsaFluent2IconMore" />
+</ResourceDictionary>

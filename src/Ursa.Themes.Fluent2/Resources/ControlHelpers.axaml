@@ -1,0 +1,70 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ControlTheme x:Key="InnerIconButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+    <Setter Property="MinWidth" Value="24" />
+    <Setter Property="MinHeight" Value="24" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+  </ControlTheme>
+  <ControlTheme x:Key="InnerPathIcon" TargetType="PathIcon" BasedOn="{StaticResource {x:Type PathIcon}}">
+    <Setter Property="Width" Value="16" />
+    <Setter Property="Height" Value="16" />
+  </ControlTheme>
+  <DataTemplate x:Key="UrsaFluent2GeometryIconTemplate" DataType="Geometry">
+    <PathIcon Data="{Binding}" Width="12" Height="12" />
+  </DataTemplate>
+  <DataTemplate x:Key="UrsaFluent2SmallGeometryIconTemplate" DataType="Geometry">
+    <PathIcon Data="{Binding}" Width="8" Height="8" />
+  </DataTemplate>
+  <DataTemplate x:Key="UrsaFluent2CalendarNavigationIconTemplate" DataType="Geometry">
+    <PathIcon
+        Data="{Binding}"
+        Width="{DynamicResource CalenderViewPathIconWidth}"
+        Height="{DynamicResource CalenderViewPathIconHeight}" />
+  </DataTemplate>
+  <ControlTheme x:Key="LooklessTextBox" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+  </ControlTheme>
+  <ControlTheme x:Key="NonErrorTextBox" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" />
+  <ControlTheme x:Key="DateTimePickerItem" TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}" />
+  <ControlTheme x:Key="SplitButtonSpinner" TargetType="ButtonSpinner" BasedOn="{StaticResource {x:Type ButtonSpinner}}" />
+  <ControlTheme x:Key="BorderlessButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="8,4" />
+  </ControlTheme>
+  <ControlTheme x:Key="CaptionButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+    <Setter Property="MinWidth" Value="36" />
+    <Setter Property="MinHeight" Value="32" />
+    <Setter Property="Padding" Value="8" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+  </ControlTheme>
+  <ControlTheme x:Key="SolidButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+    <Setter Property="Background" Value="{DynamicResource AccentFillColorDefaultBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorPrimary}" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
+  </ControlTheme>
+  <ControlTheme x:Key="CardBorder" TargetType="Border">
+    <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefault}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefault}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
+  </ControlTheme>
+  <ControlTheme x:Key="AdornerLayerBorder" TargetType="Border">
+    <Setter Property="BorderBrush" Value="{DynamicResource FocusStrokeColorOuter}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
+  </ControlTheme>
+  <ControlTheme x:Key="SliderThumbTheme" TargetType="Thumb" BasedOn="{StaticResource FluentSliderThumbTheme}" />
+  <ControlTheme x:Key="ToggleButtonTreeViewItemIconButton" TargetType="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
+    <Setter Property="Width" Value="24" />
+    <Setter Property="Height" Value="24" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+  </ControlTheme>
+</ResourceDictionary>

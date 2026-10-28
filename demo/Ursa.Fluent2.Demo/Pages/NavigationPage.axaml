@@ -1,0 +1,144 @@
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:u="https://irihi.tech/ursa" xmlns:sys="using:System" x:Class="Ursa.Fluent2.Demo.Pages.NavigationPage">
+  <ScrollViewer>
+    <StackPanel Margin="16" Spacing="12">
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="Anchor" FontSize="12" FontWeight="SemiBold"/>
+          <u:Anchor>
+            <u:AnchorItem Header="First item"/>
+            <u:AnchorItem Header="Second item"/>
+          </u:Anchor>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="Breadcrumb" FontSize="12" FontWeight="SemiBold"/>
+          <u:Breadcrumb>
+            <u:BreadcrumbItem Content="First item"/>
+            <u:BreadcrumbItem Content="Second item"/>
+          </u:Breadcrumb>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="NavMenu" FontSize="12" FontWeight="SemiBold"/>
+          <u:NavMenu>
+            <u:NavMenuItem Header="First item"/>
+            <u:NavMenuItem Header="Second item"/>
+          </u:NavMenu>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="Pagination" FontSize="12" FontWeight="SemiBold"/>
+          <u:Pagination HorizontalAlignment="Left" MaxWidth="640"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="ScrollToButton" FontSize="12" FontWeight="SemiBold"/>
+          <Grid>
+            <ScrollViewer x:Name="ScrollTarget" Width="280" Height="120">
+              <StackPanel Spacing="8">
+                <TextBlock Text="Scrollable item 1"/>
+                <TextBlock Text="Scrollable item 2"/>
+                <TextBlock Text="Scrollable item 3"/>
+                <TextBlock Text="Scrollable item 4"/>
+                <TextBlock Text="Scrollable item 5"/>
+                <TextBlock Text="Scrollable item 6"/>
+                <TextBlock Text="Scrollable item 7"/>
+                <TextBlock Text="Scrollable item 8"/>
+                <TextBlock Text="Scrollable item 9"/>
+              </StackPanel>
+            </ScrollViewer>
+            <u:ScrollToButton Target="{Binding #ScrollTarget}" Direction="Bottom" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="8"/>
+          </Grid>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="ThemeSelector" FontSize="12" FontWeight="SemiBold"/>
+          <u:ThemeToggleButton HorizontalAlignment="Left" MaxWidth="640"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="TitleBar" FontSize="12" FontWeight="SemiBold"/>
+          <u:TitleBar HorizontalAlignment="Left" MaxWidth="640"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="ToolBar" FontSize="12" FontWeight="SemiBold"/>
+          <u:ToolBar HorizontalAlignment="Left" MaxWidth="640"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="UrsaView" FontSize="12" FontWeight="SemiBold"/>
+          <u:UrsaView HorizontalAlignment="Left" MaxWidth="640"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="UrsaWindow" FontSize="12" FontWeight="SemiBold"/>
+          <Button Content="Open UrsaWindow sample" Tag="UrsaWindow" Click="OpenSample" HorizontalAlignment="Left"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="SplashWindow" FontSize="12" FontWeight="SemiBold"/>
+          <Button Content="Open SplashWindow sample" Tag="SplashWindow" Click="OpenSample" HorizontalAlignment="Left"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="Resizer" FontSize="12" FontWeight="SemiBold"/>
+          <u:WindowResizer HorizontalAlignment="Left" MaxWidth="640"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="AnchorItem" FontSize="12" FontWeight="SemiBold"/>
+          <u:Anchor>
+            <u:AnchorItem Header="Anchor item"/>
+          </u:Anchor>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="BreadcrumbItem" FontSize="12" FontWeight="SemiBold"/>
+          <u:Breadcrumb>
+            <u:BreadcrumbItem Content="Breadcrumb item"/>
+          </u:Breadcrumb>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="NavMenuItem" FontSize="12" FontWeight="SemiBold"/>
+          <u:NavMenu>
+            <u:NavMenuItem Header="Navigation item"/>
+          </u:NavMenu>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="PaginationButton" FontSize="12" FontWeight="SemiBold"/>
+          <u:PaginationButton HorizontalAlignment="Left" MaxWidth="640"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="ToolBarSeparator" FontSize="12" FontWeight="SemiBold"/>
+          <u:ToolBarSeparator HorizontalAlignment="Left" MaxWidth="640"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="WindowResizerThumb" FontSize="12" FontWeight="SemiBold"/>
+          <u:WindowResizerThumb HorizontalAlignment="Left" MaxWidth="640"/>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

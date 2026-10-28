@@ -1,0 +1,30 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--CalenderDayButton-->
+    <x:Double x:Key="CalenderDayMinWidth">40</x:Double>
+    <x:Double x:Key="CalenderDayMinHeight">40</x:Double>
+    <Thickness x:Key="CalenderDayMargin">1</Thickness>
+    <Thickness x:Key="CalenderDayBorderThickness">1</Thickness>
+    <CornerRadius x:Key="CalenderDayCornerRadius">20</CornerRadius>
+
+    <CornerRadius x:Key="CalenderDayInRangeCornerRadius">0</CornerRadius>
+    <Thickness x:Key="CalenderDayNoBorderThickness">0</Thickness>
+
+    <CornerRadius x:Key="CalenderDayStartDateCornerRadius">20 0 0 20</CornerRadius>
+    <CornerRadius x:Key="CalenderDayEndDateCornerRadius">0 20 20 0</CornerRadius>
+
+    <!--CalenderYearButton-->
+    <x:Double x:Key="CalenderYearMinWidth">32</x:Double>
+    <x:Double x:Key="CalenderYearMinHeight">32</x:Double>
+    <Thickness x:Key="CalenderYearMargin">0 2</Thickness>
+    <Thickness x:Key="CalenderYearBorderThickness">1</Thickness>
+    <CornerRadius x:Key="CalenderYearCornerRadius">3</CornerRadius>
+    <Thickness x:Key="CalenderYearSelectedBorderThickness">0</Thickness>
+
+    <!--CalenderView-->
+    <x:Double x:Key="CalenderViewMinWidth">260</x:Double>
+    <x:Double x:Key="CalenderViewMinHeight">260</x:Double>
+    <x:Double x:Key="CalenderViewPathIconWidth">8</x:Double>
+    <x:Double x:Key="CalenderViewPathIconHeight">8</x:Double>
+    <StaticResource x:Key="CalendarViewFastForwardGlyph" ResourceKey="CalendarItemFastPreviousIconGlyph" />
+    <StaticResource x:Key="CalendarViewFastBackwardGlyph" ResourceKey="CalendarItemFastNextIconGlyph" />
+</ResourceDictionary>

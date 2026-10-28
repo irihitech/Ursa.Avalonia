@@ -1,0 +1,131 @@
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:u="https://irihi.tech/ursa" xmlns:sys="using:System" x:Class="Ursa.Fluent2.Demo.Pages.PresentationPage">
+  <ScrollViewer>
+    <StackPanel Margin="16" Spacing="12">
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="Buttons · visual comparison" FontSize="12" FontWeight="SemiBold"/>
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="24">
+            <StackPanel Spacing="8">
+              <TextBlock Text="Avalonia Fluent 2" FontSize="12"/>
+              <Button Content="Save changes"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Spacing="8">
+              <TextBlock Text="Ursa Fluent 2" FontSize="12"/>
+              <u:IconButton Content="Save changes"/>
+            </StackPanel>
+          </Grid>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="Divider" FontSize="12" FontWeight="SemiBold"/>
+          <u:Divider HorizontalAlignment="Stretch" Content="Sample"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="UrsaGroupBox" FontSize="12" FontWeight="SemiBold"/>
+          <u:UrsaGroupBox Header="Sample header" Content="Sample"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="ButtonGroup" FontSize="12" FontWeight="SemiBold"/>
+          <u:ButtonGroup HorizontalAlignment="Left">
+            <Button Content="First"/>
+            <Button Content="Second"/>
+          </u:ButtonGroup>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="Descriptions" FontSize="12" FontWeight="SemiBold"/>
+          <u:Descriptions>
+            <u:DescriptionsItem Label="Name" Content="Alex Morgan"/>
+            <u:DescriptionsItem Label="Status" Content="Active"/>
+          </u:Descriptions>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="Avatar" FontSize="12" FontWeight="SemiBold"/>
+          <u:Avatar Content="JD"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="Badge" FontSize="12" FontWeight="SemiBold"/>
+          <u:Badge Header="3" Content="Inbox"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="DualBadge" FontSize="12" FontWeight="SemiBold"/>
+          <u:DualBadge HorizontalAlignment="Left" MaxWidth="640" Content="Sample"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="TwoTonePathIcon" FontSize="12" FontWeight="SemiBold"/>
+          <u:TwoTonePathIcon HorizontalAlignment="Left" Data="M 2,2 L 14,2 14,14 2,14 Z"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="DisableContainer" FontSize="12" FontWeight="SemiBold"/>
+          <u:DisableContainer HorizontalAlignment="Left">
+            <u:DisableContainer.Content>
+              <Button Content="Disabled example"/>
+            </u:DisableContainer.Content>
+          </u:DisableContainer>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="IconButton" FontSize="12" FontWeight="SemiBold"/>
+          <u:IconButton HorizontalAlignment="Left" MaxWidth="640" Content="Sample" Icon="A"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="IconDropDownButton" FontSize="12" FontWeight="SemiBold"/>
+          <DropDownButton Content="Hello World" />
+          <u:IconDropDownButton HorizontalAlignment="Left" MaxWidth="640" Content="Sample"  Icon="A"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="IconRepeatButton" FontSize="12" FontWeight="SemiBold"/>
+          <u:IconRepeatButton HorizontalAlignment="Left" MaxWidth="640" Content="Sample"  Icon="A"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="IconSplitButton" FontSize="12" FontWeight="SemiBold"/>
+          <SplitButton Content="Hello" />
+          <u:IconSplitButton HorizontalAlignment="Left" MaxWidth="640" Content="Sample"  Icon="A"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="IconToggleButton" FontSize="12" FontWeight="SemiBold"/>
+          <u:IconToggleButton HorizontalAlignment="Left" MaxWidth="640" Content="Sample"  Icon="A"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="IconToggleSplitButton" FontSize="12" FontWeight="SemiBold"/>
+          <u:IconToggleSplitButton HorizontalAlignment="Left" MaxWidth="640" Content="Sample"  Icon="A"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="DescriptionsItem" FontSize="12" FontWeight="SemiBold"/>
+          <u:Descriptions>
+            <u:DescriptionsItem Label="Status" Content="Active"/>
+          </u:Descriptions>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,129 @@
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:u="https://irihi.tech/ursa" xmlns:sys="using:System" x:Class="Ursa.Fluent2.Demo.Pages.DateTimePage">
+  <ScrollViewer>
+    <StackPanel Margin="16" Spacing="12">
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="Calendar" FontSize="12" FontWeight="SemiBold"/>
+          <Calendar HorizontalAlignment="Left"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="Clock" FontSize="12" FontWeight="SemiBold"/>
+          <u:Clock Width="180" Height="180"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="DateOffsetPicker" FontSize="12" FontWeight="SemiBold"/>
+          <u:DateOffsetPicker HorizontalAlignment="Left" MaxWidth="640" Width="280"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="DateOffsetRangePicker" FontSize="12" FontWeight="SemiBold"/>
+          <u:DateOffsetRangePicker HorizontalAlignment="Left" MaxWidth="640" Width="280"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="DatePicker" FontSize="12" FontWeight="SemiBold"/>
+          <DatePicker />
+          <CalendarDatePicker />
+          <u:DatePicker HorizontalAlignment="Left" MaxWidth="640" Width="280"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="DateRangePicker" FontSize="12" FontWeight="SemiBold"/>
+          <u:DateRangePicker HorizontalAlignment="Left" MaxWidth="640" Width="280"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="DateTimePicker" FontSize="12" FontWeight="SemiBold"/>
+          <u:DateTimePicker HorizontalAlignment="Left" MaxWidth="640" Width="280"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="DateTimeOffsetPicker" FontSize="12" FontWeight="SemiBold"/>
+          <u:DateTimeOffsetPicker HorizontalAlignment="Left" MaxWidth="640" Width="280"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="TimeBox" FontSize="12" FontWeight="SemiBold"/>
+          <u:TimeBox HorizontalAlignment="Left" MaxWidth="640" Width="280"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="TimePicker" FontSize="12" FontWeight="SemiBold"/>
+          <TimePicker />
+          <u:TimePicker HorizontalAlignment="Left" MaxWidth="640" Width="280"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="TimeRangePicker" FontSize="12" FontWeight="SemiBold"/>
+          <u:TimeRangePicker HorizontalAlignment="Left" MaxWidth="640" Width="280"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="DatePickerBase" FontSize="12" FontWeight="SemiBold"/>
+          <TextBlock Text="DatePickerBase (abstract base; rendered by DatePicker and DateTimePicker)"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="DatePickerCalendarDayButton" FontSize="12" FontWeight="SemiBold"/>
+          <u:DatePickerCalendarDayButton HorizontalAlignment="Left" MaxWidth="640" Content="Sample"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="DatePickerCalendarView" FontSize="12" FontWeight="SemiBold"/>
+          <u:DatePickerCalendarView HorizontalAlignment="Left" MaxWidth="640"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="DatePickerCalendarYearButton" FontSize="12" FontWeight="SemiBold"/>
+          <u:DatePickerCalendarYearButton HorizontalAlignment="Left" MaxWidth="640" Content="Sample"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="DateRangePickerBase" FontSize="12" FontWeight="SemiBold"/>
+          <TextBlock Text="DateRangePickerBase (abstract base; rendered by DateRangePicker and DateOffsetRangePicker)"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="DateTimePickerBase" FontSize="12" FontWeight="SemiBold"/>
+          <TextBlock Text="DateTimePickerBase (abstract base; rendered by DateTimePicker and DateTimeOffsetPicker)"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="TimePickerBase" FontSize="12" FontWeight="SemiBold"/>
+          <TextBlock Text="TimePickerBase (abstract base; rendered by TimePicker)"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="TimePickerPresenter" FontSize="12" FontWeight="SemiBold"/>
+          <u:TimePickerPresenter HorizontalAlignment="Left" MaxWidth="640"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="12" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="TimeRangePickerBase" FontSize="12" FontWeight="SemiBold"/>
+          <TextBlock Text="TimeRangePickerBase (abstract base; rendered by TimeRangePicker)"/>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

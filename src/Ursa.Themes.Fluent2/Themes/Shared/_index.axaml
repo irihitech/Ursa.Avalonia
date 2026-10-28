@@ -1,0 +1,34 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="Anchor.axaml" />
+        <ResourceInclude Source="Avatar.axaml" />
+        <ResourceInclude Source="Badge.axaml" />
+        <ResourceInclude Source="Banner.axaml" />
+        <ResourceInclude Source="ButtonGroup.axaml" />
+        <ResourceInclude Source="DatePicker.axaml" />
+        <ResourceInclude Source="DateTimePicker.axaml" />
+        <ResourceInclude Source="Descriptions.axaml" />
+        <ResourceInclude Source="Dialog.axaml" />
+        <ResourceInclude Source="DialogShared.axaml" />
+        <ResourceInclude Source="Divider.axaml" />
+        <ResourceInclude Source="Drawer.axaml" />
+        <ResourceInclude Source="DualBadge.axaml" />
+        <ResourceInclude Source="IconButton.axaml" />
+        <ResourceInclude Source="MarkdownLine.axaml" />
+        <ResourceInclude Source="MessageBox.axaml" />
+        <ResourceInclude Source="NavigationMenu.axaml" />
+        <ResourceInclude Source="Notification.axaml" />
+        <ResourceInclude Source="Pagination.axaml" />
+        <ResourceInclude Source="PopConfirm.axaml" />
+        <ResourceInclude Source="Rating.axaml" />
+        <ResourceInclude Source="Resizer.axaml" />
+        <ResourceInclude Source="ScrollToButton.axaml" />
+        <ResourceInclude Source="TagInput.axaml" />
+        <ResourceInclude Source="Skeleton.axaml" />
+        <ResourceInclude Source="ThemeSelector.axaml" />
+        <ResourceInclude Source="Toast.axaml" />
+        <ResourceInclude Source="ToolBar.axaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!-- Ursa's popup templates use this inset around Fluent 2 popup surfaces. -->
+    <Thickness x:Key="ComboBoxPopupBorderMargin">4</Thickness>
+</ResourceDictionary>

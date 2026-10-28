@@ -1,0 +1,207 @@
+<ResourceDictionary x:ClassModifier="internal"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:iri="https://irihi.tech/shared">
+    <ControlTheme x:Key="{x:Type u:TimeRangePickerBase}" TargetType="u:TimeRangePickerBase">
+        <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:TimeRangePickerBase">
+                <DataValidationErrors>
+                    <Panel
+                        x:Name="LayoutRoot"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <Border
+                            x:Name="Background"
+                            HorizontalAlignment="Stretch"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}" />
+                        <Grid ColumnDefinitions="*, Auto, * Auto" Name="PART_Grid">
+                            <TextBox
+                                Name="{x:Static u:TimeRangePickerBase.PART_StartTextBox}"
+                                Grid.Column="0"
+                                MinHeight="{TemplateBinding MinHeight}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                CornerRadius="3 0 0 3"
+                                Foreground="{TemplateBinding Foreground}"
+                                InnerLeftContent="{TemplateBinding InnerLeftContent}"
+                                IsReadOnly="{TemplateBinding IsReadOnly}"
+                                PlaceholderText="{TemplateBinding StartPlaceholderText}"
+                                PlaceholderForeground="{TemplateBinding PlaceholderForeground}"
+                                Theme="{DynamicResource LooklessTextBox}" />
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Margin="8,0"
+                                Foreground="{DynamicResource TextFillColorTertiary}"
+                                Text="–" />
+                            <TextBox
+                                Name="{x:Static u:TimeRangePickerBase.PART_EndTextBox}"
+                                Grid.Column="2"
+                                MinHeight="{TemplateBinding MinHeight}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                CornerRadius="0"
+                                Foreground="{TemplateBinding Foreground}"
+                                InnerRightContent="{TemplateBinding InnerRightContent}"
+                                IsReadOnly="{TemplateBinding IsReadOnly}"
+                                PlaceholderText="{TemplateBinding EndPlaceholderText}"
+                                PlaceholderForeground="{TemplateBinding PlaceholderForeground}"
+                                Theme="{DynamicResource LooklessTextBox}" />
+                            <Button
+                                Name="ClearButton"
+                                Grid.Column="3"
+                                Margin="8,0"
+                                Command="{Binding $parent[iri:IClearControl].Clear}"
+                                Content="{DynamicResource IconButtonClearData}"
+                                Focusable="False"
+                                IsVisible="False"
+                                Theme="{DynamicResource InnerIconButton}" />
+                            <PathIcon
+                                Name="PART_Button"
+                                Foreground="{DynamicResource TextFillColorSecondary}"
+                                Grid.Column="3"
+                                Margin="8,0"
+                                Data="{DynamicResource TimePickerIconGlyph}"
+                                Focusable="False"
+                                IsVisible="{Binding !#ClearButton.IsVisible}"
+                                Theme="{DynamicResource InnerPathIcon}" />
+                        </Grid>
+                        <Popup
+                            Name="{x:Static iri:PartNames.PART_Popup}"
+                            IsLightDismissEnabled="True"
+                            OverlayInputPassThroughElement="{Binding ElementName=PART_Grid}"
+                            IsOpen="{TemplateBinding IsDropdownOpen,
+                                                     Mode=TwoWay}"
+                            Placement="BottomEdgeAlignedLeft"
+                            PlacementTarget="Background">
+                            <Border
+                                Margin="{DynamicResource ComboBoxPopupBorderMargin}"
+                                HorizontalAlignment="Stretch"
+                                Background="{DynamicResource DatePickerPopupBackground}"
+                                BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"
+                                BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
+                                BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
+                                CornerRadius="6">
+                                <DockPanel>
+                                    <StackPanel DockPanel.Dock="Bottom" IsVisible="{TemplateBinding NeedConfirmation}">
+                                        <Button
+                                            Margin="8"
+                                            HorizontalAlignment="Right"
+                                            Command="{Binding $parent[u:TimeRangePickerBase].Confirm}"
+                                            Content="{DynamicResource STRING_DATE_TIME_CONFIRM}" />
+                                    </StackPanel>
+                                    <ContentPresenter
+                                        Name="PART_PopupHeader"
+                                        Margin="8,8,8,0"
+                                        Content="{TemplateBinding PopupInnerTopContent}"
+                                        DockPanel.Dock="Top"
+                                        IsVisible="{TemplateBinding PopupInnerTopContent,
+                                                                    Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                    <ContentPresenter
+                                        Name="PART_PopupFooter"
+                                        Margin="8,0,8,8"
+                                        Content="{TemplateBinding PopupInnerBottomContent}"
+                                        DockPanel.Dock="Bottom"
+                                        IsVisible="{TemplateBinding PopupInnerBottomContent,
+                                                                    Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                    <Grid ColumnDefinitions="*, 16, *" RowDefinitions="Auto, *">
+                                        <TextBlock
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Margin="0,16"
+                                            HorizontalAlignment="Center"
+                                            FontWeight="{DynamicResource TextBlockTitleFontWeight}"
+                                            Text="{DynamicResource STRING_DATE_TIME_START_TIME}" />
+                                        <TextBlock
+                                            Grid.Row="0"
+                                            Grid.Column="2"
+                                            Margin="0,16"
+                                            HorizontalAlignment="Center"
+                                            FontWeight="{DynamicResource TextBlockTitleFontWeight}"
+                                            Text="{DynamicResource STRING_DATE_TIME_END_TIME}" />
+                                        <u:TimePickerPresenter
+                                            Name="{x:Static u:TimeRangePickerBase.PART_StartPresenter}"
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            PanelFormat="{TemplateBinding PanelFormat}" />
+                                        <u:TimePickerPresenter
+                                            Name="{x:Static u:TimeRangePickerBase.PART_EndPresenter}"
+                                            Grid.Row="1"
+                                            Grid.Column="2"
+                                            PanelFormat="{TemplateBinding PanelFormat}" />
+                                    </Grid>
+                                </DockPanel>
+                            </Border>
+                        </Popup>
+                    </Panel>
+                </DataValidationErrors>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^.clearButton, ^.ClearButton">
+            <Style Selector="^:not(:empty):pointerover /template/ Button#ClearButton">
+                <Setter Property="IsVisible" Value="True" />
+            </Style>
+        </Style>
+
+        <!--  Disabled State  -->
+        <Style Selector="^:disabled">
+            <Style Selector="^ /template/ Border#Background">
+                <Setter Property="Background" Value="{DynamicResource CalendarDatePickerDisabledBackground}" />
+            </Style>
+
+            <Style Selector="^ /template/ PathIcon#PART_Button">
+                <Setter Property="Foreground" Value="{DynamicResource CalendarDatePickerDisabledIconForeground}" />
+            </Style>
+            <Style Selector="^ /template/ TextBox#PART_TextBox">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </Style>
+        </Style>
+
+        <!--  Focused State  -->
+        <Style Selector="^ /template/ Border#Background:focus">
+            <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
+        </Style>
+        <Style Selector="^ /template/ Border#Background:focus-within">
+            <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
+        </Style>
+
+        <!--  Error State  -->
+        <Style Selector="^:error">
+            <Style Selector="^ /template/ Border#Background">
+                <Setter Property="Background" Value="{DynamicResource DataValidationErrorsBackground}" />
+            </Style>
+            <Style Selector="^:pointerover /template/ Border#Background">
+                <Setter Property="Background" Value="{DynamicResource DataValidationErrorsPointeroverBackground}" />
+            </Style>
+            <Style Selector="^:focus-within /template/ Border#Background">
+                <Setter Property="BorderBrush" Value="{DynamicResource DataValidationErrorsSelectedBorderBrush}" />
+            </Style>
+        </Style>
+
+        <Style Selector="^.Large">
+            <Setter Property="MinHeight" Value="{DynamicResource TextBoxLargeHeight}" />
+        </Style>
+        <Style Selector="^.Small">
+            <Setter Property="MinHeight" Value="{DynamicResource TextBoxSmallHeight}" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

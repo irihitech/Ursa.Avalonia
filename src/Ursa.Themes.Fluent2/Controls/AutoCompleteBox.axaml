@@ -1,0 +1,66 @@
+<ResourceDictionary x:ClassModifier="internal"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <ControlTheme x:Key="{x:Type u:AutoCompleteBox}" TargetType="u:AutoCompleteBox">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="MinHeight" Value="{DynamicResource AutoCompleteBoxDefaultHeight}" />
+        <Setter Property="MaxDropDownHeight" Value="{DynamicResource AutoCompleteMaxDropdownHeight}" />
+        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="AutoCompleteBox">
+                <Panel>
+                    <TextBox
+                        Name="PART_TextBox"
+                        MinHeight="{TemplateBinding MinHeight}"
+                        VerticalAlignment="Stretch"
+                        DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}"
+                        InnerLeftContent="{TemplateBinding InnerLeftContent}"
+                        InnerRightContent="{TemplateBinding InnerRightContent}"
+                        PlaceholderText="{TemplateBinding PlaceholderText}"
+                        PlaceholderForeground="{TemplateBinding PlaceholderForeground}" />
+                    <Button
+                        Name="PART_ClearButton"
+                        HorizontalAlignment="Right"
+                        Margin="{DynamicResource TextBoxContentPadding}"
+                        Command="{Binding $parent[u:AutoCompleteBox].Clear}"
+                        Content="{DynamicResource IconButtonClearData}"
+                        IsVisible="False"
+                        Theme="{StaticResource InnerIconButton}" />
+                    <Popup
+                        Name="PART_Popup"
+                        MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                        IsLightDismissEnabled="True"
+                        PlacementTarget="{TemplateBinding}">
+                        <Border
+                            MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                            Margin="{DynamicResource AutoCompleteBoxPopupMargin}"
+                            Padding="{DynamicResource AutoCompleteBoxPopupPadding}"
+                            HorizontalAlignment="Stretch"
+                            Background="{DynamicResource AutoCompleteBoxPopupBackground}"
+                            BorderBrush="{DynamicResource AutoCompleteBoxPopupBorderBrush}"
+                            BorderThickness="{DynamicResource AutoCompleteBoxPopupBorderThickness}"
+                            BoxShadow="{DynamicResource AutoCompleteBoxPopupBoxShadow}"
+                            CornerRadius="{DynamicResource AutoCompleteBoxPopupCornerRadius}">
+                            <ListBox
+                                Name="PART_SelectingItemsControl"
+                                Foreground="{TemplateBinding Foreground}"
+                                ItemTemplate="{TemplateBinding ItemTemplate}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                ScrollViewer.IsScrollChainingEnabled="False" />
+                        </Border>
+                    </Popup>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^.clearButton, ^.ClearButton">
+            <Style Selector="^:focus-within:not(:empty) /template/ Button#PART_ClearButton">
+                <Setter Property="IsVisible" Value="True" />
+            </Style>
+            <Style Selector="^:pointerover:not(:empty) /template/ Button#PART_ClearButton">
+                <Setter Property="IsVisible" Value="True" />
+            </Style>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

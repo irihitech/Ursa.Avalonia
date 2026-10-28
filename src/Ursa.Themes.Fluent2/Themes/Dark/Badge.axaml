@@ -1,0 +1,33 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StaticResource x:Key="BadgeBorderBrush" ResourceKey="LayerFillColorDefault" />
+    <StaticResource x:Key="BadgeForeground" ResourceKey="TextOnAccentFillColorPrimary" />
+    <StaticResource x:Key="BadgeContentForeground" ResourceKey="TextFillColorPrimary" />
+    <!-- Solid -->
+    <StaticResource x:Key="BadgePrimaryBadgeBackground" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="BadgeSecondaryBadgeBackground" ResourceKey="TextFillColorSecondary" />
+    <StaticResource x:Key="BadgeTertiaryBadgeBackground" ResourceKey="TextFillColorTertiary" />
+    <StaticResource x:Key="BadgeSuccessBadgeBackground" ResourceKey="SystemFillColorSuccess" />
+    <StaticResource x:Key="BadgeWarningBadgeBackground" ResourceKey="SystemFillColorCaution" />
+    <StaticResource x:Key="BadgeDangerBadgeBackground" ResourceKey="SystemFillColorCritical" />
+    <!-- Light -->
+    <StaticResource x:Key="BadgeLightPrimaryBadgeForeground" ResourceKey="AccentTextFillColorPrimaryBrush" />
+    <StaticResource x:Key="BadgeLightPrimaryBadgeBackground" ResourceKey="SubtleFillColorSecondary" />
+    <StaticResource x:Key="BadgeLightSecondaryBadgeForeground" ResourceKey="TextFillColorSecondary" />
+    <StaticResource x:Key="BadgeLightSecondaryBadgeBackground" ResourceKey="SubtleFillColorSecondary" />
+    <StaticResource x:Key="BadgeLightTertiaryBadgeForeground" ResourceKey="TextFillColorTertiary" />
+    <StaticResource x:Key="BadgeLightTertiaryBadgeBackground" ResourceKey="SubtleFillColorSecondary" />
+    <StaticResource x:Key="BadgeLightSuccessBadgeForeground" ResourceKey="SystemFillColorSuccess" />
+    <StaticResource x:Key="BadgeLightSuccessBadgeBackground" ResourceKey="SystemFillColorSuccessBackground" />
+    <StaticResource x:Key="BadgeLightWarningBadgeForeground" ResourceKey="SystemFillColorCaution" />
+    <StaticResource x:Key="BadgeLightWarningBadgeBackground" ResourceKey="SystemFillColorCautionBackground" />
+    <StaticResource x:Key="BadgeLightDangerBadgeForeground" ResourceKey="SystemFillColorCritical" />
+    <StaticResource x:Key="BadgeLightDangerBadgeBackground" ResourceKey="SystemFillColorCriticalBackground" />
+    <!-- Inverted -->
+    <StaticResource x:Key="BadgeInvertedBadgeBackground" ResourceKey="LayerFillColorDefault" />
+    <StaticResource x:Key="BadgeInvertedPrimaryBadgeForeground" ResourceKey="AccentTextFillColorPrimaryBrush" />
+    <StaticResource x:Key="BadgeInvertedSecondaryBadgeForeground" ResourceKey="TextFillColorSecondary" />
+    <StaticResource x:Key="BadgeInvertedTertiaryBadgeForeground" ResourceKey="TextFillColorTertiary" />
+    <StaticResource x:Key="BadgeInvertedSuccessBadgeForeground" ResourceKey="SystemFillColorSuccess" />
+    <StaticResource x:Key="BadgeInvertedWarningBadgeForeground" ResourceKey="SystemFillColorCaution" />
+    <StaticResource x:Key="BadgeInvertedDangerBadgeForeground" ResourceKey="SystemFillColorCritical" />
+</ResourceDictionary>
