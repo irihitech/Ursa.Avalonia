@@ -70,6 +70,9 @@
   <data name="Menu_Header_EnumSelector" xml:space="preserve">
     <value>Enum Selector</value>
   </data>
+  <data name="Menu_Header_SettingsCard" xml:space="preserve">
+    <value>SettingsCard</value>
+  </data>
   <data name="Menu_Header_Form" xml:space="preserve">
     <value>Form</value>
   </data>
@@ -359,6 +362,9 @@
   <data name="Page_Title_EnumSelector" xml:space="preserve">
     <value>EnumSelector</value>
   </data>
+  <data name="Page_Title_SettingsCard" xml:space="preserve">
+    <value>SettingsCard</value>
+  </data>
   <data name="Page_Title_Form" xml:space="preserve">
     <value>Form</value>
   </data>
@@ -581,6 +587,9 @@
   </data>
   <data name="Page_Description_EnumSelector" xml:space="preserve">
     <value>EnumSelector provides a dropdown for selecting enum values.</value>
+  </data>
+  <data name="Page_Description_SettingsCard" xml:space="preserve">
+    <value>SettingsCard is a Windows-Settings-style row (icon, title, description, value, action area, inline detail) and SettingsCardGroup lays rows out in one rounded card with separators.</value>
   </data>
   <data name="Page_Description_Form" xml:space="preserve">
     <value>Form is a layout container for grouping labeled input controls.</value>
@@ -946,6 +955,30 @@
   </data>
   <data name="Page_EnumSelector_Section_Custom_DisplayNames_Description" xml:space="preserve">
     <value>Provide EnumItemTuple values to show custom display names.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Basic usage</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>SettingsCard rows inside a SettingsCardGroup. Each row combines an icon, a title, a description, the current value (Note) and an action area (RightContent); separator lines are drawn automatically.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Expandable_Header" xml:space="preserve">
+    <value>Expandable rows</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Expandable_Description" xml:space="preserve">
+    <value>Set Detail to make a row expandable: the chevron appears and clicking the row toggles IsExpanded (two-way). The detail area can host another SettingsCardGroup — it renders flat like Windows Settings, rows continue the outer card edge to edge with separators, and interactions inside the detail never collapse the row.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Navigable_Header" xml:space="preserve">
+    <value>Navigable rows</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Navigable_Description" xml:space="preserve">
+    <value>Rows bound to a Command behave like navigation entries and get hover/press feedback and focus; ShowChevron forces the trailing chevron. Plain rows stay quiet.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_ItemsSource_Header" xml:space="preserve">
+    <value>Data binding</value>
+  </data>
+  <data name="Page_SettingsCard_Section_ItemsSource_Description" xml:space="preserve">
+    <value>Bind ItemsSource on the group: without an ItemTemplate, models are auto-wrapped in SettingsCards and shown as titles; with an ItemTemplate, cards bind to model properties.</value>
   </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
     <value>Basic binding</value>

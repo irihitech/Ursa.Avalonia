@@ -1,0 +1,203 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <Design.PreviewWith>
+        <StackPanel Width="420" Margin="20" Spacing="16">
+            <u:SettingsCardGroup Header="Group" Description="Header and description above the card">
+                <u:SettingsCard Content="Plain row" Description="with description" Note="Value" />
+                <u:SettingsCard Content="Navigable row" ShowChevron="True" />
+                <u:SettingsCard Content="Expandable row" Description="click to expand">
+                    <u:SettingsCard.Detail>
+                        <StackPanel Spacing="8">
+                            <CheckBox Content="Option A" IsChecked="True" />
+                            <CheckBox Content="Option B" />
+                        </StackPanel>
+                    </u:SettingsCard.Detail>
+                </u:SettingsCard>
+            </u:SettingsCardGroup>
+        </StackPanel>
+    </Design.PreviewWith>
+
+    <ControlTheme x:Key="{x:Type u:SettingsCardGroup}" TargetType="u:SettingsCardGroup">
+        <Setter Property="CornerRadius" Value="{DynamicResource SemiBorderRadiusMedium}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:SettingsCardGroup">
+                <StackPanel Spacing="6">
+                    <ContentPresenter
+                        Content="{TemplateBinding Header}"
+                        ContentTemplate="{TemplateBinding HeaderTemplate}"
+                        FontSize="13" FontWeight="SemiBold"
+                        Foreground="{DynamicResource SemiColorText2}"
+                        IsVisible="{TemplateBinding Header, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                    <ContentPresenter
+                        Content="{TemplateBinding Description}"
+                        ContentTemplate="{TemplateBinding DescriptionTemplate}"
+                        FontSize="12"
+                        Foreground="{DynamicResource SemiColorText3}"
+                        IsVisible="{TemplateBinding Description, Converter={x:Static ObjectConverters.IsNotNull}}"
+                        TextWrapping="Wrap" />
+
+                    <Border Name="PART_Root" CornerRadius="{TemplateBinding CornerRadius}">
+                        <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                    </Border>
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^ /template/ Border#PART_Root">
+            <Setter Property="Background" Value="{DynamicResource SemiColorFill0}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorBorder}" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type u:SettingsCard}" TargetType="u:SettingsCard">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="CornerRadius" Value="{DynamicResource SemiBorderRadiusMedium}" />
+        <Setter Property="MinHeight" Value="44" />
+        <Setter Property="Padding" Value="16,10" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:SettingsCard">
+                <StackPanel>
+                    <Border
+                        Name="PART_Root"
+                        MinHeight="{TemplateBinding MinHeight}"
+                        Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="Transparent"
+                        BorderThickness="1"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid ColumnDefinitions="Auto,*,Auto">
+
+                            <ContentPresenter
+                                Name="PART_Icon"
+                                Grid.Column="0"
+                                Width="20" Height="20"
+                                Margin="0,0,12,0"
+                                Content="{TemplateBinding Icon}"
+                                ContentTemplate="{TemplateBinding IconTemplate}"
+                                Foreground="{DynamicResource SemiColorText1}">
+                                <ContentPresenter.DataTemplates>
+                                    <DataTemplate DataType="Geometry">
+                                        <PathIcon
+                                            Theme="{DynamicResource InnerPathIcon}"
+                                            Data="{Binding}"
+                                            Foreground="{DynamicResource SemiColorText1}" />
+                                    </DataTemplate>
+                                </ContentPresenter.DataTemplates>
+                            </ContentPresenter>
+
+                            <StackPanel
+                                Grid.Column="1"
+                                Margin="0,0,12,0"
+                                VerticalAlignment="Center"
+                                Spacing="2">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <ContentPresenter
+                                        Name="PART_Content"
+                                        Content="{TemplateBinding Content}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        FontSize="14"
+                                        Foreground="{DynamicResource SemiColorText0}"
+                                        IsVisible="{TemplateBinding Content, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                    <ContentPresenter
+                                        Name="PART_Trailing"
+                                        VerticalAlignment="Center"
+                                        Content="{TemplateBinding Trailing}"
+                                        ContentTemplate="{TemplateBinding TrailingTemplate}"
+                                        IsVisible="{TemplateBinding Trailing, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                </StackPanel>
+                                <ContentPresenter
+                                    Name="PART_Description"
+                                    Content="{TemplateBinding Description}"
+                                    ContentTemplate="{TemplateBinding DescriptionTemplate}"
+                                    FontSize="12"
+                                    Foreground="{DynamicResource SemiColorText2}"
+                                    IsVisible="{TemplateBinding Description, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                    TextWrapping="Wrap" />
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Column="2"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal"
+                                Spacing="12">
+                                <ContentPresenter
+                                    Name="PART_Note"
+                                    Content="{TemplateBinding Note}"
+                                    ContentTemplate="{TemplateBinding NoteTemplate}"
+                                    FontSize="14"
+                                    Foreground="{DynamicResource SemiColorText2}"
+                                    IsVisible="{TemplateBinding Note, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                <ContentPresenter
+                                    Name="PART_Right"
+                                    Content="{TemplateBinding RightContent}"
+                                    ContentTemplate="{TemplateBinding RightContentTemplate}"
+                                    IsVisible="{TemplateBinding RightContent, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                <PathIcon
+                                    Name="PART_Chevron"
+                                    Theme="{DynamicResource InnerPathIcon}"
+                                    Data="{DynamicResource SemiIconChevronRight}"
+                                    Foreground="{DynamicResource SemiColorText3}"
+                                    IsVisible="False"
+                                    RenderTransformOrigin="50%,50%">
+                                    <PathIcon.RenderTransform>
+                                        <RotateTransform Angle="0" />
+                                    </PathIcon.RenderTransform>
+                                </PathIcon>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        Name="PART_DetailHost"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="0,1,0,0"
+                        IsVisible="{TemplateBinding IsExpanded}">
+                        <ContentPresenter
+                            Name="PART_Detail"
+                            Margin="48,12,16,12"
+                            Content="{TemplateBinding Detail}"
+                            ContentTemplate="{TemplateBinding DetailTemplate}" />
+                    </Border>
+
+                    <Border
+                        Name="PART_Separator"
+                        Height="1"
+                        Background="{DynamicResource SemiColorBorder}" />
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:interactive:pointerover:not(:over-detail) /template/ Border#PART_Root">
+            <Setter Property="Background" Value="{DynamicResource SemiColorFill0}" />
+        </Style>
+        <Style Selector="^:interactive:pressed:not(:over-detail) /template/ Border#PART_Root">
+            <Setter Property="Background" Value="{DynamicResource SemiColorFill1}" />
+        </Style>
+        <Style Selector="^:focus-visible /template/ Border#PART_Root">
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorFocusBorder}" />
+        </Style>
+        <Style Selector="^:disabled">
+            <Setter Property="Opacity" Value="0.55" />
+        </Style>
+        <Style Selector="^:expanded /template/ Border#PART_Root">
+            <Setter Property="CornerRadius" Value="0" />
+        </Style>
+        <Style Selector="^ /template/ Border#PART_Separator">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+        <Style Selector="^[ShowChevron=True] /template/ PathIcon#PART_Chevron">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+        <Style Selector="^:has-detail /template/ PathIcon#PART_Chevron">
+            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="Data" Value="{DynamicResource SemiIconChevronDown}" />
+        </Style>
+        <Style Selector="^:has-detail:expanded /template/ PathIcon#PART_Chevron">
+            <Setter Property="RenderTransform">
+                <RotateTransform Angle="180" />
+            </Setter>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>
