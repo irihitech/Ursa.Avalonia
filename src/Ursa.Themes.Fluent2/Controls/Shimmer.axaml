@@ -1,0 +1,16 @@
+<ResourceDictionary x:ClassModifier="internal"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <ControlTheme x:Key="{x:Type u:ShimmerText}" TargetType="u:ShimmerText">
+        <Setter Property="BaseColor" Value="{DynamicResource TextFillColorSecondary}" />
+        <Setter Property="HighlightColor" Value="{DynamicResource TextFillColorPrimary}" />
+    </ControlTheme>
+    <ControlTheme
+        x:Key="{x:Type u:ShimmerSelectableText}"
+        TargetType="u:ShimmerSelectableText"
+        BasedOn="{StaticResource {x:Type SelectableTextBlock}}">
+        <Setter Property="BaseColor" Value="{DynamicResource TextFillColorSecondary}" />
+        <Setter Property="HighlightColor" Value="{DynamicResource TextFillColorPrimary}" />
+    </ControlTheme>
+</ResourceDictionary>

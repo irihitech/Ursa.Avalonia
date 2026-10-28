@@ -1,0 +1,31 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa">
+  <ControlTheme x:Key="{x:Type u:UrsaGroupBox}" TargetType="u:UrsaGroupBox">
+    <Setter Property="Padding" Value="{DynamicResource UrsaFluent2GroupBoxPadding}" />
+    <Setter Property="CornerRadius" Value="{DynamicResource UrsaFluent2GroupBoxCornerRadius}" />
+    <Setter Property="BorderThickness" Value="{DynamicResource UrsaFluent2GroupBoxBorderThickness}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefault}" />
+    <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimary}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <u:GroupBoxBorder Background="{TemplateBinding Background}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          CornerRadius="{TemplateBinding CornerRadius}"
+                          Padding="{TemplateBinding Padding}"
+                          HeaderSpacing="{TemplateBinding HeaderSpacing}">
+          <u:GroupBoxBorder.Header>
+            <ContentPresenter Content="{TemplateBinding Header}"
+                              ContentTemplate="{TemplateBinding HeaderTemplate}" />
+          </u:GroupBoxBorder.Header>
+          <ContentPresenter Name="PART_ContentPresenter"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+        </u:GroupBoxBorder>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

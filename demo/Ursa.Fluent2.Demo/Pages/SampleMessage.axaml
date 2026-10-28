@@ -1,0 +1,5 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Ursa.Fluent2.Demo.Pages.SampleMessage">
+  <TextBlock Margin="24" Text="{ReflectionBinding}" />
+</UserControl>

@@ -1,0 +1,6 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <x:Double x:Key="RatingDefaultSize">24</x:Double>
+    <x:Double x:Key="RatingSmallSize">16</x:Double>
+    <Thickness x:Key="RatingCharacterMargin">3 4</Thickness>
+    <StaticResource x:Key="RatingStarIconGlyph" ResourceKey="UrsaFluent2IconStar" />
+</ResourceDictionary>

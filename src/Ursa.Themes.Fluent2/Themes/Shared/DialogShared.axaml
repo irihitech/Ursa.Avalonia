@@ -1,0 +1,7 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StaticResource x:Key="DialogQuestionIconGlyph" ResourceKey="UrsaFluent2IconHelpCircle" />
+    <StaticResource x:Key="DialogInformationIconGlyph" ResourceKey="UrsaFluent2IconInfoCircle" />
+    <StaticResource x:Key="DialogWarningIconGlyph" ResourceKey="UrsaFluent2IconAlertTriangle" />
+    <StaticResource x:Key="DialogErrorIconGlyph" ResourceKey="UrsaFluent2IconAlertCircle" />
+    <StaticResource x:Key="DialogSuccessIconGlyph" ResourceKey="UrsaFluent2IconTickCircle" />
+</ResourceDictionary>

@@ -1,0 +1,25 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <!-- PathIcon fills geometries; closed shapes are required for strokes to render. -->
+  <StreamGeometry x:Key="UrsaFluent2IconChevronLeft">M10 2.5 L11 3.5 L6.5 8 L11 12.5 L10 13.5 L4.5 8 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconChevronRight">M6 2.5 L5 3.5 L9.5 8 L5 12.5 L6 13.5 L11.5 8 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconChevronUp">M2.5 10 L3.5 11 L8 6.5 L12.5 11 L13.5 10 L8 4.5 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconChevronDown">M2.5 6 L3.5 5 L8 9.5 L12.5 5 L13.5 6 L8 11.5 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconDoubleChevronLeft">M7 2.5 L8 3.5 L3.5 8 L8 12.5 L7 13.5 L1.5 8 Z M13 2.5 L14 3.5 L9.5 8 L14 12.5 L13 13.5 L7.5 8 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconDoubleChevronRight">M3 2.5 L2 3.5 L6.5 8 L2 12.5 L3 13.5 L8.5 8 Z M9 2.5 L8 3.5 L12.5 8 L8 12.5 L9 13.5 L14.5 8 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconClose">M3.5 2.5 L8 7 L12.5 2.5 L13.5 3.5 L9 8 L13.5 12.5 L12.5 13.5 L8 9 L3.5 13.5 L2.5 12.5 L7 8 L2.5 3.5 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconTick">M2 8 L3 7 L6.5 10.5 L13 3.5 L14 4.5 L6.5 12.5 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconTickCircle">F0 M8 1 A7 7 0 1 1 7.99 1 Z M8 2.2 A5.8 5.8 0 1 0 8.01 2.2 Z M4.2 8 L5.2 7 L7 8.8 L10.8 5 L11.8 6 L7 10.8 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconInfoCircle">F0 M8 1 A7 7 0 1 1 7.99 1 Z M8 2.2 A5.8 5.8 0 1 0 8.01 2.2 Z M7.35 6.5 H8.65 V11.5 H7.35 Z M7.35 4 H8.65 V5.3 H7.35 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconAlertCircle">F0 M8 1 A7 7 0 1 1 7.99 1 Z M8 2.2 A5.8 5.8 0 1 0 8.01 2.2 Z M7.35 4 H8.65 V9 H7.35 Z M7.35 10.5 H8.65 V11.8 H7.35 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconAlertTriangle">F0 M8 1 L15.5 14.5 H0.5 Z M8 3.5 L2.7 13.2 H13.3 Z M7.35 6 H8.65 V9.7 H7.35 Z M7.35 11 H8.65 V12.2 H7.35 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconHelpCircle">F0 M8 1 A7 7 0 1 1 7.99 1 Z M8 2.2 A5.8 5.8 0 1 0 8.01 2.2 Z M5.4 6 A2.6 2.6 0 1 1 9 8.4 L8.6 9 V10 H7.3 V8.5 L8.2 7.5 A1.3 1.3 0 1 0 6.7 6 Z M7.35 11 H8.65 V12.3 H7.35 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconCalendarClock">M17.75 3C19.5449 3 21 4.45507 21 6.25V12.0218C20.5368 11.7253 20.0335 11.4858 19.5 11.3135V8.5H4.5V17.75C4.5 18.7165 5.2835 19.5 6.25 19.5H11.3135C11.4858 20.0335 11.7253 20.5368 12.0218 21H6.25C4.45507 21 3 19.5449 3 17.75V6.25C3 4.45507 4.45507 3 6.25 3H17.75ZM17.75 4.5H6.25C5.2835 4.5 4.5 5.2835 4.5 6.25V7H19.5V6.25C19.5 5.2835 18.7165 4.5 17.75 4.5ZM23 17.5C23 14.4624 20.5376 12 17.5 12C14.4624 12 12 14.4624 12 17.5C12 20.5376 14.4624 23 17.5 23C20.5376 23 23 20.5376 23 17.5ZM17.5 14C17.7761 14 18 14.2239 18 14.5V17H20C20.2761 17 20.5 17.2239 20.5 17.5C20.5 17.7761 20.2761 18 20 18H17.5C17.2239 18 17 17.7761 17 17.5V14.5C17 14.2239 17.2239 14 17.5 14Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconDownload">M7.3 1 H8.7 V9 L11.3 6.4 L12.3 7.4 L8 11.7 L3.7 7.4 L4.7 6.4 L7.3 9 Z M2 12 H3.3 V13.7 H12.7 V12 H14 V15 H2 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconLock">F0 M4 7 V5 A4 4 0 0 1 12 5 V7 H13 V15 H3 V7 Z M5.3 7 H10.7 V5 A2.7 2.7 0 0 0 5.3 5 Z M4.3 8.3 V13.7 H11.7 V8.3 Z M7.4 9.5 H8.6 V12.5 H7.4 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconStar">M8 1 L10 6 L15 6.5 L11 10 L12 15 L8 12.5 L4 15 L5 10 L1 6.5 L6 6 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconMore">M3 7 A1 1 0 1 1 2.99 7 Z M8 7 A1 1 0 1 1 7.99 7 Z M13 7 A1 1 0 1 1 12.99 7 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconSun">F0 M8 4 A4 4 0 1 1 7.99 4 Z M8 5.2 A2.8 2.8 0 1 0 8.01 5.2 Z M7.4 0.5 H8.6 V3 H7.4 Z M7.4 13 H8.6 V15.5 H7.4 Z M0.5 7.4 H3 V8.6 H0.5 Z M13 7.4 H15.5 V8.6 H13 Z M2.2 3 L3 2.2 L5 4.2 L4.2 5 Z M11 11.8 L11.8 11 L13.8 13 L13 13.8 Z M11 4.2 L13 2.2 L13.8 3 L11.8 5 Z M2.2 13 L4.2 11 L5 11.8 L3 13.8 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconMoon">M13 10 A6 6 0 0 1 5 2 A6 6 0 1 0 13 10 Z</StreamGeometry>
+  <StreamGeometry x:Key="UrsaFluent2IconContrast">F0 M8 1 A7 7 0 1 1 7.99 1 Z M8 2.2 A5.8 5.8 0 1 0 8 13.8 Z</StreamGeometry>
+</ResourceDictionary>

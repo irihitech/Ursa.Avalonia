@@ -1,0 +1,10 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:fluent2="https://irihi.tech/ursa/themes/fluent2"
+             x:Class="Ursa.Fluent2.Demo.App"
+             RequestedThemeVariant="Default">
+  <Application.Styles>
+    <Fluent2Theme />
+    <fluent2:UrsaFluent2Theme />
+  </Application.Styles>
+</Application>

@@ -1,0 +1,11 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="OverlayDialogMaskBrush" Color="#66000000" />
+    <StaticResource x:Key="DialogBackground" ResourceKey="AcrylicInAppFillColorDefaultBrush" />
+    <StaticResource x:Key="DialogInfoIconForeground" ResourceKey="SystemFillColorAttentionBrush" />
+    <StaticResource x:Key="DialogQuestionIconForeground" ResourceKey="SystemFillColorAttentionBrush" />
+    <StaticResource x:Key="DialogExclamationIconForeground" ResourceKey="SystemFillColorCaution" />
+    <StaticResource x:Key="DialogSuccessIconForeground" ResourceKey="SystemFillColorSuccess" />
+    <StaticResource x:Key="DialogWarningIconForeground" ResourceKey="SystemFillColorCaution" />
+    <StaticResource x:Key="DialogErrorIconForeground" ResourceKey="SystemFillColorCritical" />
+    <StaticResource x:Key="DialogBoxShadow" ResourceKey="UrsaFluent2OverlayBoxShadow" />
+</ResourceDictionary>
