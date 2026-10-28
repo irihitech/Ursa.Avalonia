@@ -674,10 +674,10 @@
     <value>Nastavte AcceptableKeys, abyste omezili, které klávesy lze zachytit. Tato ukázka přijímá pouze A, B a C.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
-    <value>Stylová třída ClearButton</value>
+    <value>Tlačítko vymazání</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>Použijte třídu ClearButton k zobrazení vestavěného tlačítka pro vymazání, jakmile má ovládací prvek gesto. InnerLeftContent a InnerRightContent přidávají doplňkový obsah na obě strany.</value>
+    <value>Tlačítko pro vymazání se ve výchozím nastavení zobrazuje při zaměření nebo najetí kurzorem. Stylová třída ClearButton je viditelná vždy a AllowClear ji zcela odstraňuje. Klávesa Esc gesto také vymaže.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>Stavy a nápovědy</value>

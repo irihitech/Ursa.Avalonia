@@ -50,7 +50,9 @@ public class KeyGestureInputDemoViewModel: ObservableObject, IPageMetadataProvid
             CodeSnippet = """
                           <u:KeyGestureInput Width="300"
                                              Gesture="Ctrl+Shift+A" />
-                          <u:KeyGestureInput Width="300" />
+                          <u:KeyGestureInput Width="300"
+                                             InnerLeftContent="Left"
+                                             InnerRightContent="Right" />
                           """
         });
 
@@ -97,11 +99,9 @@ public class KeyGestureInputDemoViewModel: ObservableObject, IPageMetadataProvid
             CodeSnippetLanguage = CodeLanguage.Axaml,
             TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
             CodeSnippet = """
-                          <u:KeyGestureInput Width="300"
-                                             HorizontalAlignment="Center"
-                                             Classes="ClearButton"
-                                             InnerLeftContent="Left"
-                                             InnerRightContent="Right" />
+                          <u:KeyGestureInput Width="300" Gesture="Ctrl+Shift+A" />
+                          <u:KeyGestureInput Width="300" Classes="ClearButton" Gesture="Ctrl+K" />
+                          <u:KeyGestureInput Width="300" AllowClear="False" Gesture="Ctrl+Shift+A" />
                           """
         });
 

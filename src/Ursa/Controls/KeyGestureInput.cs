@@ -133,6 +133,21 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
         set => SetValue(PlaceholderTextProperty, value);
     }
 
+    public static readonly StyledProperty<bool> AllowClearProperty = AvaloniaProperty.Register<KeyGestureInput, bool>(
+        nameof(AllowClear), true);
+
+    /// <summary>
+    /// Gets or sets whether the built-in clear button is available on focus/hover.
+    /// Unlike text inputs, a gesture cannot be removed by backspace, so clearing is on
+    /// by default. The ClearButton/clearButton style class additionally keeps the
+    /// button always visible while a gesture is set.
+    /// </summary>
+    public bool AllowClear
+    {
+        get => GetValue(AllowClearProperty);
+        set => SetValue(AllowClearProperty, value);
+    }
+
     public static readonly StyledProperty<string?> FocusedPlaceholderTextProperty =
         AvaloniaProperty.Register<KeyGestureInput, string?>(nameof(FocusedPlaceholderText));
 

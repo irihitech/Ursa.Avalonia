@@ -121,16 +121,16 @@
             <Setter Property="Background" Value="{DynamicResource TextBoxPressedBackground}" />
             <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
         </Style>
-        <Style Selector="^[IsReadOnly=False]:not(:empty):focus /template/ Button#PART_ClearButton">
+        <Style Selector="^[AllowClear=True][IsReadOnly=False]:not(:empty):focus /template/ Button#PART_ClearButton">
             <Setter Property="IsVisible" Value="True" />
         </Style>
-        <Style Selector="^[IsReadOnly=False]:not(:empty):focus-within /template/ Button#PART_ClearButton">
+        <Style Selector="^[AllowClear=True][IsReadOnly=False]:not(:empty):focus-within /template/ Button#PART_ClearButton">
             <Setter Property="IsVisible" Value="True" />
         </Style>
-        <Style Selector="^[IsReadOnly=False]:not(:empty):pointerover /template/ Button#PART_ClearButton">
+        <Style Selector="^[AllowClear=True][IsReadOnly=False]:not(:empty):pointerover /template/ Button#PART_ClearButton">
             <Setter Property="IsVisible" Value="True" />
         </Style>
-        <Style Selector="^[IsReadOnly=False].clearButton:not(:empty) /template/ Button#PART_ClearButton, ^[IsReadOnly=False].ClearButton:not(:empty) /template/ Button#PART_ClearButton">
+        <Style Selector="^[AllowClear=True][IsReadOnly=False].clearButton:not(:empty) /template/ Button#PART_ClearButton, ^[AllowClear=True][IsReadOnly=False].ClearButton:not(:empty) /template/ Button#PART_ClearButton">
             <Setter Property="IsVisible" Value="True" />
         </Style>
         <Style Selector="^:disabled">

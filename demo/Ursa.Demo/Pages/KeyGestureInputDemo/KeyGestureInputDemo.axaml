@@ -23,7 +23,10 @@
                             <u:KeyGestureInput
                                 Width="300"
                                 Gesture="Ctrl+Shift+A" />
-                            <u:KeyGestureInput Width="300" />
+                            <u:KeyGestureInput
+                                Width="300"
+                                InnerLeftContent="Left"
+                                InnerRightContent="Right" />
                         </StackPanel>
                     </controls:DemoSectionView>
 
@@ -35,12 +38,19 @@
                     </controls:DemoSectionView>
 
                     <controls:DemoSectionView SectionContext="{Binding ClearButtonStyleSection}">
-                        <u:KeyGestureInput
-                            Width="300"
-                            HorizontalAlignment="Center"
-                            Classes="ClearButton"
-                            InnerLeftContent="Left"
-                            InnerRightContent="Right" />
+                        <StackPanel HorizontalAlignment="Center" Spacing="16">
+                            <u:KeyGestureInput
+                                Width="300"
+                                Gesture="Ctrl+Shift+A" />
+                            <u:KeyGestureInput
+                                Width="300"
+                                Classes="ClearButton"
+                                Gesture="Ctrl+K" />
+                            <u:KeyGestureInput
+                                Width="300"
+                                AllowClear="False"
+                                Gesture="Ctrl+Shift+A" />
+                        </StackPanel>
                     </controls:DemoSectionView>
 
                     <controls:DemoSectionView SectionContext="{Binding StatesSection}">

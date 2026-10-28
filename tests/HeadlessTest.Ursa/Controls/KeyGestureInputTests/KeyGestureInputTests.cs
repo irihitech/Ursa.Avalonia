@@ -495,6 +495,30 @@ public class KeyGestureInputBaseTests
     }
 
     [AvaloniaFact]
+    public void AllowClear_False_Should_Hide_ClearButton()
+    {
+        var window = new Window();
+        var input = new KeyGestureInput
+        {
+            Gesture = new KeyGesture(Key.A, KeyModifiers.Control),
+            AllowClear = false,
+        };
+        window.Content = input;
+        window.Show();
+
+        var button = input.GetVisualDescendants().OfType<Button>()
+            .Single(b => b.Name == "PART_ClearButton");
+        Assert.False(button.IsVisible);
+
+        // The property wins even over the always-visible style class.
+        ((IPseudoClasses)input.Classes).Set(":pointerover", true);
+        Assert.False(button.IsVisible);
+
+        input.Classes.Add("ClearButton");
+        Assert.False(button.IsVisible);
+    }
+
+    [AvaloniaFact]
     public void ClearButton_With_Style_Class_Should_Always_Be_Visible_When_Not_Empty()
     {
         var window = new Window();

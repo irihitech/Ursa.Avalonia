@@ -674,10 +674,10 @@
     <value>Задайте AcceptableKeys, чтобы ограничить набор клавиш, которые можно захватывать. В этой демонстрации принимаются только A, B и C.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
-    <value>Стиль-класс ClearButton</value>
+    <value>Кнопка очистки</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>Примените класс ClearButton, чтобы показать встроенную кнопку очистки, когда у элемента есть жест. InnerLeftContent и InnerRightContent добавляют декоративный контент по обе стороны.</value>
+    <value>Кнопка очистки по умолчанию появляется при фокусе или наведении. Стиль-класс ClearButton делает её постоянно видимой, а AllowClear полностью убирает. Esc также очищает жест.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>Состояния и подсказки</value>

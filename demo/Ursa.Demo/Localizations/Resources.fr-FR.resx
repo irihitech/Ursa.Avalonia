@@ -674,10 +674,10 @@
     <value>Définissez AcceptableKeys pour limiter les touches pouvant être capturées. Cette démonstration n'accepte que A, B et C.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
-    <value>Classe de style ClearButton</value>
+    <value>Bouton d'effacement</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>Appliquez la classe ClearButton pour afficher le bouton d'effacement intégré dès que le contrôle contient un geste. InnerLeftContent et InnerRightContent ajoutent un contenu décoratif de chaque côté.</value>
+    <value>Le bouton d'effacement apparaît par défaut au focus ou au survol. La classe de style ClearButton le garde toujours visible, et AllowClear le supprime complètement. Échap efface également le geste.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>États et indications</value>

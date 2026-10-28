@@ -659,10 +659,10 @@
     <value>设置 AcceptableKeys 以限制可捕获的按键。此示例只接受 A、B 和 C。</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
-    <value>ClearButton 样式类</value>
+    <value>清除按钮</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>应用 ClearButton 类可在控件已有手势时显示内置清除按钮。InnerLeftContent 和 InnerRightContent 会在输入框两侧添加附加内容。</value>
+    <value>清除按钮默认在聚焦或悬停时显示。ClearButton 样式类可使其常显，AllowClear 为 False 时完全移除。聚焦时按 Esc 也可清空手势。</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>状态与提示</value>

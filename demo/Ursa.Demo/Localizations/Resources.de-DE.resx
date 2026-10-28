@@ -673,10 +673,10 @@
     <value>Legen Sie AcceptableKeys fest, um einzuschränken, welche Tasten erfasst werden können. Diese Demo akzeptiert nur A, B und C.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
-    <value>ClearButton-Stilklasse</value>
+    <value>Löschen-Schaltfläche</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>Verwenden Sie die Klasse ClearButton, um die integrierte Löschen-Schaltfläche anzuzeigen, sobald das Steuerelement eine Geste enthält. InnerLeftContent und InnerRightContent fügen dekorativen Inhalt auf beiden Seiten hinzu.</value>
+    <value>Die Löschen-Schaltfläche erscheint standardmäßig bei Fokus oder Hover. Die Stilklasse ClearButton hält sie dauerhaft sichtbar, AllowClear entfernt sie vollständig. Escape löscht die Geste ebenfalls.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>Zustände und Hinweise</value>

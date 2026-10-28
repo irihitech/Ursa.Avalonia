@@ -661,10 +661,10 @@
     <value>Set AcceptableKeys to limit which keys can be captured. This demo accepts only A, B, and C.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
-    <value>ClearButton Style Class</value>
+    <value>Clear Button</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>Apply the ClearButton class to show the built-in clear button when the control has a gesture. InnerLeftContent and InnerRightContent add inline adornments on both sides.</value>
+    <value>The clear button appears on focus or hover by default. The ClearButton style class keeps it always visible, and AllowClear removes it entirely. Pressing Escape while focused also clears the gesture.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>States and Hints</value>
@@ -869,7 +869,7 @@
     <value>AutoCompleteBox can customize option appearance and layout through ItemTemplate.</value>
   </data>
   <data name="Page_AutoCompleteBox_Section_ClearButton_Support_Header" xml:space="preserve">
-    <value>ClearButton Style Class</value>
+    <value>Clear Button</value>
   </data>
   <data name="Page_AutoCompleteBox_Section_ClearButton_Support_Description" xml:space="preserve">
     <value>AutoCompleteBox supports the `ClearButton` style class, allowing users to clear both the selected item and input text with one click.</value>
