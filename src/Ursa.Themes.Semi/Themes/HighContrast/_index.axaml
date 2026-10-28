@@ -11,6 +11,7 @@
         <ResourceInclude Source="Divider.axaml" />
         <ResourceInclude Source="Drawer.axaml" />
         <ResourceInclude Source="Form.axaml" />
+        <ResourceInclude Source="KeyGestureInput.axaml" />
         <ResourceInclude Source="MessageBox.axaml" />
         <ResourceInclude Source="NavigationMenu.axaml" />
         <ResourceInclude Source="Pagination.axaml" />

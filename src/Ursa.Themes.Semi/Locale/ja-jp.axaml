@@ -18,4 +18,6 @@
     <x:String x:Key="STRING_DATE_TIME_CONFIRM">確定</x:String>
     <x:String x:Key="STRING_DATE_TIME_START_TIME">開始時刻</x:String>
     <x:String x:Key="STRING_DATE_TIME_END_TIME">終了時刻</x:String>
+    <x:String x:Key="STRING_KEY_GESTURE_INPUT_PLACEHOLDER">クリックしてショートカットを設定</x:String>
+    <x:String x:Key="STRING_KEY_GESTURE_INPUT_PLACEHOLDER_FOCUSED">ショートカットを入力してください</x:String>
 </ResourceDictionary>

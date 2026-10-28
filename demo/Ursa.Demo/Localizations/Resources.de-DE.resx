@@ -678,6 +678,18 @@
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
     <value>Verwenden Sie die Klasse ClearButton, um die integrierte Löschen-Schaltfläche anzuzeigen, sobald das Steuerelement eine Geste enthält. InnerLeftContent und InnerRightContent fügen dekorativen Inhalt auf beiden Seiten hinzu.</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
+    <value>Zustände und Hinweise</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_States_Description" xml:space="preserve">
+    <value>Das Steuerelement zeigt standardmäßig einen lokalisierten Platzhalter und wechselt im Fokus zu einem Eingabehinweis. IsReadOnly zeigt die Geste nur an, ein deaktiviertes Steuerelement wird abgeblendet. Die Klassen Small und Large passen die Höhe an.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Modifier_Behavior_Header" xml:space="preserve">
+    <value>Modifikatortasten und Bearbeitung</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Modifier_Behavior_Description" xml:space="preserve">
+    <value>RequireModifier lehnt Tasten ohne Modifikator ab, damit normale Eingaben nicht erfasst werden. ClearOnModifierRelease kann deaktiviert werden, um reine Modifikator-Gesten zu behalten. Escape löscht die Geste.</value>
+  </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>Laden zeigt einen Spinner oder Fortschrittsindikator während asynchroner Operationen an.</value>
   </data>

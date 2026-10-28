@@ -18,4 +18,6 @@
     <x:String x:Key="STRING_DATE_TIME_CONFIRM">Подтвердить</x:String>
     <x:String x:Key="STRING_DATE_TIME_START_TIME">Время начала</x:String>
     <x:String x:Key="STRING_DATE_TIME_END_TIME">Время окончания</x:String>
+    <x:String x:Key="STRING_KEY_GESTURE_INPUT_PLACEHOLDER">Щёлкните, чтобы задать сочетание клавиш</x:String>
+    <x:String x:Key="STRING_KEY_GESTURE_INPUT_PLACEHOLDER_FOCUSED">Нажмите сочетание клавиш</x:String>
 </ResourceDictionary>

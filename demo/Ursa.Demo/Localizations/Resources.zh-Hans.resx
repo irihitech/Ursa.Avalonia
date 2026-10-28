@@ -664,6 +664,18 @@
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
     <value>应用 ClearButton 类可在控件已有手势时显示内置清除按钮。InnerLeftContent 和 InnerRightContent 会在输入框两侧添加附加内容。</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
+    <value>状态与提示</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_States_Description" xml:space="preserve">
+    <value>控件默认显示本地化的占位提示，聚焦后切换为输入提示。IsReadOnly 只展示手势不录入，禁用态会降低对比度。Small 和 Large 类可调整控件高度。</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Modifier_Behavior_Header" xml:space="preserve">
+    <value>修饰键与编辑</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Modifier_Behavior_Description" xml:space="preserve">
+    <value>开启 RequireModifier 后不含修饰键的裸键不会被录入，避免吞掉普通打字。关闭 ClearOnModifierRelease 可保留仅修饰键的录入。聚焦时按 Esc 可清空手势。</value>
+  </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>加载在异步操作期间显示旋转器或进度指示器。</value>
   </data>

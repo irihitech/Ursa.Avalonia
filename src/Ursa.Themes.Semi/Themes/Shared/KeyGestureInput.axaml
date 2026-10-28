@@ -1,0 +1,7 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--KeyTag-->
+    <x:Double x:Key="KeyGestureInputKeyFontSize">12</x:Double>
+    <Thickness x:Key="KeyGestureInputKeyTagPadding">6 2</Thickness>
+    <Thickness x:Key="KeyGestureInputKeyTagBorderThickness">1</Thickness>
+    <CornerRadius x:Key="KeyGestureInputKeyTagCornerRadius">4</CornerRadius>
+</ResourceDictionary>

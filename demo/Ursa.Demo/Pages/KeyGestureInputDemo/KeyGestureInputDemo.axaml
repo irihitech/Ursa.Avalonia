@@ -19,9 +19,12 @@
             <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
                 <StackPanel HorizontalAlignment="Stretch" Spacing="20">
                     <controls:DemoSectionView SectionContext="{Binding BasicUsageSection}">
-                        <u:KeyGestureInput
-                            Width="300"
-                            HorizontalAlignment="Center" />
+                        <StackPanel HorizontalAlignment="Center" Spacing="16">
+                            <u:KeyGestureInput
+                                Width="300"
+                                Gesture="Ctrl+Shift+A" />
+                            <u:KeyGestureInput Width="300" />
+                        </StackPanel>
                     </controls:DemoSectionView>
 
                     <controls:DemoSectionView SectionContext="{Binding AcceptableKeysSection}">
@@ -38,6 +41,42 @@
                             Classes="ClearButton"
                             InnerLeftContent="Left"
                             InnerRightContent="Right" />
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding StatesSection}">
+                        <StackPanel HorizontalAlignment="Center" Spacing="16">
+                            <u:KeyGestureInput
+                                Width="300"
+                                Gesture="Ctrl+Shift+A"
+                                IsReadOnly="True" />
+                            <u:KeyGestureInput
+                                Width="300"
+                                Gesture="Ctrl+K"
+                                IsEnabled="False" />
+                            <u:KeyGestureInput Width="300" />
+                            <u:KeyGestureInput
+                                Width="300"
+                                Classes="Small"
+                                Gesture="Ctrl+Shift+A" />
+                            <u:KeyGestureInput
+                                Width="300"
+                                Classes="Large"
+                                Gesture="Ctrl+Shift+A" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding ModifierBehaviorSection}">
+                        <StackPanel HorizontalAlignment="Center" Spacing="16">
+                            <u:KeyGestureInput
+                                Width="300"
+                                RequireModifier="True" />
+                            <u:KeyGestureInput
+                                Width="300"
+                                ClearOnModifierRelease="False" />
+                            <u:KeyGestureInput
+                                Width="300"
+                                Gesture="Ctrl+Shift+A" />
+                        </StackPanel>
                     </controls:DemoSectionView>
 
                 </StackPanel>

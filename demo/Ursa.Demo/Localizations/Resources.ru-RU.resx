@@ -679,6 +679,18 @@
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
     <value>Примените класс ClearButton, чтобы показать встроенную кнопку очистки, когда у элемента есть жест. InnerLeftContent и InnerRightContent добавляют декоративный контент по обе стороны.</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
+    <value>Состояния и подсказки</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_States_Description" xml:space="preserve">
+    <value>Элемент по умолчанию показывает локализованную подсказку и переключается на приглашение к вводу при фокусе. IsReadOnly только отображает жест, отключённый элемент затемняется. Классы Small и Large изменяют высоту элемента.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Modifier_Behavior_Header" xml:space="preserve">
+    <value>Клавиши-модификаторы и редактирование</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Modifier_Behavior_Description" xml:space="preserve">
+    <value>RequireModifier отклоняет клавиши без модификаторов, чтобы обычный ввод не перехватывался. ClearOnModifierRelease можно отключить, чтобы сохранять жесты из одних модификаторов. Esc очищает жест.</value>
+  </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>Загрузка отображает спиннер или индикатор выполнения во время асинхронных операций.</value>
   </data>

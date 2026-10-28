@@ -666,6 +666,18 @@
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
     <value>Apply the ClearButton class to show the built-in clear button when the control has a gesture. InnerLeftContent and InnerRightContent add inline adornments on both sides.</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
+    <value>States and Hints</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_States_Description" xml:space="preserve">
+    <value>The control shows a localized placeholder by default and switches to an input hint while focused. IsReadOnly only displays the gesture, and a disabled control is dimmed. The Small and Large classes adjust the control height.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Modifier_Behavior_Header" xml:space="preserve">
+    <value>Modifier Keys and Editing</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Modifier_Behavior_Description" xml:space="preserve">
+    <value>RequireModifier rejects plain keys without modifiers so typing is not captured. ClearOnModifierRelease can be turned off to keep modifier-only gestures. Press Escape while focused to clear the gesture.</value>
+  </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>Loading displays a spinner or progress indicator during async operations.</value>
   </data>
