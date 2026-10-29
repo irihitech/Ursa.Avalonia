@@ -59,6 +59,24 @@ public partial class SettingsCardGroupTest
     }
 
     [AvaloniaFact]
+    public void SettingsCardGroup_DirectContentPresenterItem_KeepsItsContent()
+    {
+        // A ContentPresenter supplied directly as an item is its own container; it must
+        // keep its original content instead of being assigned to itself.
+        var text = new TextBlock { Text = "Direct presenter content" };
+        var presenter = new ContentPresenter { Content = text };
+        var group = new SettingsCardGroup();
+        var window = new Window { Content = group };
+        window.Show();
+
+        group.Items.Add(presenter);
+        window.UpdateLayout();
+
+        Assert.Same(presenter, group.ContainerFromIndex(0));
+        Assert.Same(text, presenter.Content);
+    }
+
+    [AvaloniaFact]
     public void SettingsCardGroup_HeaderAndDescription_PropertiesWork()
     {
         var group = new SettingsCardGroup

@@ -63,7 +63,9 @@ public class SettingsCardGroup : HeaderedItemsControl
     protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
     {
         base.PrepareContainerForItemOverride(container, item, index);
-        if (container is ContentPresenter presenter)
+        // A directly supplied ContentPresenter is its own container and keeps its content —
+        // assigning the item to it would make the presenter reference itself.
+        if (container is ContentPresenter presenter && !ReferenceEquals(presenter, item))
         {
             presenter.Content = item;
             presenter.ContentTemplate = ItemTemplate;
