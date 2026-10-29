@@ -50,6 +50,7 @@ public class KeyGestureInputDemoViewModel: ObservableObject, IPageMetadataProvid
                           <u:KeyGestureInput Width="300"
                                              Gesture="Ctrl+Shift+A" />
                           <u:KeyGestureInput Width="300"
+                                             Gesture="Ctrl+K"
                                              InnerLeftContent="Left"
                                              InnerRightContent="Right" />
                           """

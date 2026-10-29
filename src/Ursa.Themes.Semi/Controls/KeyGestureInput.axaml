@@ -44,7 +44,7 @@
                                 IsVisible="{Binding Path=InnerLeftContent, RelativeSource={RelativeSource TemplatedParent},
                                     Converter={x:Static ObjectConverters.IsNotNull}}" />
                             <ContentPresenter
-                                Grid.Column="2"
+                                Grid.Column="3"
                                 Content="{TemplateBinding InnerRightContent}"
                                 DockPanel.Dock="Right"
                                 Padding="{TemplateBinding Padding, Converter={iri:ThicknessMixerConverter Left}}"
@@ -88,7 +88,7 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                             <Button
-                                Grid.Column="3"
+                                Grid.Column="2"
                                 Name="PART_ClearButton"
                                 HorizontalAlignment="Right"
                                 Command="{Binding $parent[u:KeyGestureInput].Clear}"
