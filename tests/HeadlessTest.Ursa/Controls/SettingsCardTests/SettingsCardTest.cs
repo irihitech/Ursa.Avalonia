@@ -1,6 +1,10 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Headless;
 using Avalonia.Headless.XUnit;
+using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 using Avalonia.VisualTree;
 using HeadlessTest.Ursa.TestHelpers;
 using Ursa.Controls;
@@ -208,5 +212,134 @@ public class SettingsCardTest
 
         // The outer row stays expanded throughout.
         Assert.True(outer.IsExpanded);
+    }
+
+    [AvaloniaFact]
+    public void SettingsCard_ClickFromEmbeddedHeaderControl_DoesNotToggle()
+    {
+        // Button.ClickEvent bubbles, so a click on a button placed in RightContent of an
+        // expandable row must belong to that button, not toggle the row.
+        var embedded = new Button { Content = "Edit" };
+        var card = new SettingsCard { Content = "Row", Detail = new StackPanel(), RightContent = embedded };
+        var window = new Window { Content = card };
+        window.Show();
+
+        embedded.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+        Assert.False(card.IsExpanded);
+
+        card.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+        Assert.True(card.IsExpanded);
+    }
+
+    [AvaloniaFact]
+    public void SettingsCard_EnterInDetailEditor_DoesNotCollapseRow()
+    {
+        var box = new TextBox();
+        var card = new SettingsCard { Content = "Row", Detail = box, IsExpanded = true };
+        var window = new Window { Content = card };
+        window.Show();
+        window.UpdateLayout();
+
+        box.Focus();
+        box.RaiseEvent(new KeyEventArgs { RoutedEvent = InputElement.KeyDownEvent, Key = Key.Enter });
+        box.RaiseEvent(new KeyEventArgs { RoutedEvent = InputElement.KeyUpEvent, Key = Key.Enter });
+        Assert.True(card.IsExpanded);
+
+        box.RaiseEvent(new KeyEventArgs { RoutedEvent = InputElement.KeyDownEvent, Key = Key.Space });
+        box.RaiseEvent(new KeyEventArgs { RoutedEvent = InputElement.KeyUpEvent, Key = Key.Space });
+        Assert.True(card.IsExpanded);
+    }
+
+    [AvaloniaFact]
+    public void SettingsCard_EnterOnFocusedCard_StillToggles()
+    {
+        var card = new SettingsCard { Content = "Row", Detail = new StackPanel() };
+        var window = new Window { Content = card };
+        window.Show();
+
+        card.Focus();
+        card.RaiseEvent(new KeyEventArgs { RoutedEvent = InputElement.KeyDownEvent, Key = Key.Enter });
+        card.RaiseEvent(new KeyEventArgs { RoutedEvent = InputElement.KeyUpEvent, Key = Key.Enter });
+        Assert.True(card.IsExpanded);
+    }
+
+    [AvaloniaFact]
+    public void SettingsCard_MouseClickOnHeader_TogglesExpansion()
+    {
+        var card = new SettingsCard { Content = "Row", Detail = new StackPanel() };
+        var window = new Window { Content = card };
+        window.Show();
+        window.UpdateLayout();
+
+        // Click the header border (the card itself can stretch far beyond it).
+        var header = card.GetTemplateChildOfType<Border>("PART_Root");
+        Assert.NotNull(header);
+        var pos = header!.TranslatePoint(new Point(header.Bounds.Width / 2, header.Bounds.Height / 2), window);
+        Assert.NotNull(pos);
+        window.MouseDown(pos.Value, MouseButton.Left);
+        window.MouseUp(pos.Value, MouseButton.Left);
+        Assert.True(card.IsExpanded);
+    }
+
+    [AvaloniaFact]
+    public void SettingsCard_DetailEditorPointerPress_GetsFocusAndKeepsExpansion()
+    {
+        // Models an editor that leaves pointer presses unhandled (like KeyGestureInput):
+        // pressing it must focus it, and neither the press nor the release may collapse
+        // the row. A press on plain detail content behaves the same.
+        var editor = new Border
+        {
+            Focusable = true,
+            Background = Brushes.Transparent,
+            Width = 100,
+            Height = 24,
+        };
+        var plain = new TextBlock { Text = "Plain detail content" };
+        var detail = new StackPanel();
+        detail.Children.Add(editor);
+        detail.Children.Add(plain);
+        var card = new SettingsCard { Content = "Row", Detail = detail, IsExpanded = true };
+        var window = new Window { Content = card };
+        window.Show();
+        window.UpdateLayout();
+
+        var editorPos = editor.TranslatePoint(new Point(10, 12), window);
+        Assert.NotNull(editorPos);
+        window.MouseDown(editorPos.Value, MouseButton.Left);
+        window.MouseUp(editorPos.Value, MouseButton.Left);
+        Assert.True(card.IsExpanded);
+        Assert.True(editor.IsFocused);
+
+        var plainPos = plain.TranslatePoint(new Point(4, 4), window);
+        Assert.NotNull(plainPos);
+        window.MouseDown(plainPos.Value, MouseButton.Left);
+        window.MouseUp(plainPos.Value, MouseButton.Left);
+        Assert.True(card.IsExpanded);
+    }
+
+    [AvaloniaFact]
+    public void SettingsCard_HeaderEditorPointerPress_FocusesEditorAndDoesNotToggle()
+    {
+        // The same unhandled-editor rule applies to the header area: pressing an editor
+        // in RightContent focuses it instead of arming the row button.
+        var editor = new Border
+        {
+            Focusable = true,
+            Background = Brushes.Transparent,
+            Width = 60,
+            Height = 20,
+        };
+        var card = new SettingsCard { Content = "Row", Detail = new StackPanel(), RightContent = editor, IsExpanded = true };
+        var window = new Window { Content = card };
+        window.Show();
+        window.UpdateLayout();
+
+        var pos = editor.TranslatePoint(new Point(5, 10), window);
+        Assert.NotNull(pos);
+        window.MouseDown(pos.Value, MouseButton.Left);
+        window.MouseUp(pos.Value, MouseButton.Left);
+
+        Assert.True(editor.IsFocused);
+        Assert.True(card.IsExpanded);
     }
 }

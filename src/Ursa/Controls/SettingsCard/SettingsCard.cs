@@ -20,7 +20,8 @@ namespace Ursa.Controls;
 /// interactive: they get hover/press feedback and focus.
 /// Plain rows and rows whose right side hosts an input control stay quiet, following desktop
 /// conventions. The chevron of a detail row points down when collapsed and rotates 180 degrees
-/// when expanded; interactions inside the detail area never collapse the row or highlight it.
+/// when expanded; interactions on embedded controls (pointer, keyboard or bubbling clicks,
+/// in the header or the detail area) never collapse the row.
 /// </summary>
 [TemplatePart(PART_DetailHost, typeof(Control))]
 [PseudoClasses(PC_Expanded, PC_HasDetail, PC_OverDetail, PC_Interactive)]
@@ -53,9 +54,10 @@ public class SettingsCard : Button
     private void OnCardClick(object? sender, RoutedEventArgs e)
     {
         if (Detail is null) return;
-        // Interactions inside the detail area (check boxes, buttons, blank space) are not
-        // treated as a click on the row itself.
-        if (e.Source is Visual source && _detailHost is { } host && host.IsVisualAncestorOf(source))
+        // Only clicks raised by the row itself toggle expansion. Click bubbles up from
+        // embedded buttons and check boxes (header or detail), but those clicks belong
+        // to the embedded controls.
+        if (!ReferenceEquals(e.Source, this))
         {
             return;
         }
@@ -92,14 +94,61 @@ public class SettingsCard : Button
         // bubbling has been intercepted.
         if (e.Source is Visual source && _detailHost is { } host)
         {
-            source.GetSelfAndVisualAncestors()
-                .OfType<InputElement>()
-                .TakeWhile(i => !ReferenceEquals(i, host))
-                .FirstOrDefault(i => i.Focusable)
-                ?.Focus(NavigationMethod.Pointer);
+            FindFocusableBelow(source, host)?.Focus(NavigationMethod.Pointer);
         }
 
         e.Handled = true;
+    }
+
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    {
+        // The same rule as for the detail area applies to embedded header editors that do
+        // not handle presses themselves (e.g. KeyGestureInput in RightContent): forward
+        // focus instead of letting the inherited button arm and later click the row.
+        if (e.Source is Visual source && !ReferenceEquals(e.Source, this) &&
+            FindFocusableBelow(source, this) is { } editor)
+        {
+            editor.Focus(NavigationMethod.Pointer);
+            e.Handled = true;
+            return;
+        }
+
+        base.OnPointerPressed(e);
+    }
+
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        // Key events from embedded editors (e.g. a TextBox in Detail) route through the
+        // row; without this guard Enter/Space would activate the inherited button and
+        // collapse the row while the user is editing.
+        if (!ReferenceEquals(e.Source, this))
+        {
+            return;
+        }
+
+        base.OnKeyDown(e);
+    }
+
+    protected override void OnKeyUp(KeyEventArgs e)
+    {
+        if (!ReferenceEquals(e.Source, this))
+        {
+            return;
+        }
+
+        base.OnKeyUp(e);
+    }
+
+    /// <summary>
+    /// Finds the nearest focusable <see cref="InputElement"/> at or above <paramref name="source"/>,
+    /// stopping below <paramref name="boundary"/> (exclusive).
+    /// </summary>
+    private static InputElement? FindFocusableBelow(Visual source, Visual boundary)
+    {
+        return source.GetSelfAndVisualAncestors()
+            .OfType<InputElement>()
+            .TakeWhile(i => !ReferenceEquals(i, boundary))
+            .FirstOrDefault(i => i.Focusable);
     }
 
     private void OnDetailPointerEntered(object? sender, PointerEventArgs e)
