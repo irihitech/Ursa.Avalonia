@@ -114,8 +114,6 @@ public static class DemoCatalog
             "Compose application chrome with custom title-bar content.", "使用自定义标题栏内容构建应用程序窗口界面。", () => new TitleBarPage()),
         new("ToolBar", "navigation",
             "Group frequently used commands and separators.", "组织常用命令和分隔符。", () => new ToolBarPage()),
-        new("UrsaView", "navigation",
-            "Host content in an Ursa application view.", "在 Ursa 应用视图中承载内容。", () => new UrsaViewPage()),
         new("UrsaWindow", "navigation",
             "Open a Fluent window with Ursa chrome and overlay support.", "打开具有 Ursa 窗口界面和浮层支持的 Fluent 窗口。", () => new UrsaWindowPage()),
         new("SplashWindow", "navigation",
