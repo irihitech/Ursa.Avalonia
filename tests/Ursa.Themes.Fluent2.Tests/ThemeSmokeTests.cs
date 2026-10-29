@@ -76,25 +76,45 @@ public class ThemeSmokeTests
             window.Show();
             window.UpdateLayout();
 
-            var tabs = window.FindControl<TabControl>("Gallery")!;
-            Assert.Equal(6, tabs.Items.Count);
-            var expectedRows = new[] { 17, 28, 20, 18, 18, 14 };
-            for (var index = 0; index < tabs.Items.Count; index++)
+            var menu = window.FindControl<NavMenu>("NavigationMenu")!;
+            var model = window.ViewModel;
+            Assert.Equal(6, model.Categories.Count);
+            Assert.Equal(73, DemoCatalog.Pages.Count);
+            Assert.Equal(73, DemoCatalog.Pages.Select(page => page.Id).Distinct().Count());
+            var examples = 0;
+            foreach (var item in model.Categories.SelectMany(category => category.Children))
             {
-                tabs.SelectedIndex = index;
+                menu.SelectedItem = item;
                 window.UpdateLayout();
                 Dispatcher.UIThread.RunJobs();
-                Assert.NotNull(tabs.SelectedContent);
-                Assert.NotEmpty(window.GetVisualDescendants().OfType<TextBlock>());
-                Assert.Equal(expectedRows[index], window.GetVisualDescendants().OfType<TextBlock>()
-                    .Count(text => text.Classes.Contains("gallery-label")));
-                if (index == 3)
+                Assert.Same(item.Page, model.CurrentPage);
+                Assert.Equal($"{item.Page!.Id}Page", model.Content!.GetType().Name);
+                Assert.Same(model.Content, window.FindControl<ContentControl>("PageContent")!.Content);
+                Assert.Single(window.GetVisualDescendants().OfType<Ursa.Fluent2.Demo.Pages.DemoPageView>());
+                var sampleLabels = window.GetVisualDescendants().OfType<TextBlock>()
+                    .Where(text => text.Classes.Contains("gallery-label")).ToArray();
+                Assert.NotEmpty(sampleLabels);
+                Assert.All(sampleLabels, label => Assert.Equal(16, label.FontSize));
+                var page = Assert.IsAssignableFrom<Ursa.Fluent2.Demo.Pages.DemoPageView>(model.Content);
+                Assert.Equal(ScrollBarVisibility.Auto,
+                    Assert.IsType<ScrollViewer>(page.Content).HorizontalScrollBarVisibility);
+                examples += sampleLabels.Length;
+                if (item.Page.Id == "ScrollToButton")
                 {
                     var scrollButton = window.GetVisualDescendants().OfType<ScrollToButton>().Single();
                     Assert.IsType<ScrollViewer>(scrollButton.Target);
                 }
+                if (item.Page.Id == "ClassSelector")
+                {
+                    var selector = window.GetVisualDescendants().OfType<ClassSelector>().Single();
+                    var target = window.GetVisualDescendants().OfType<Button>()
+                        .Single(button => button.Name == "ClassSelectorTarget");
+                    Assert.Same(target, selector.Target);
+                }
             }
-            tabs.SelectedIndex = 0;
+            Assert.Equal(115, examples);
+            menu.SelectedItem = model.Categories.SelectMany(category => category.Children)
+                .Single(item => item.Page?.Id == "UrsaGroupBox");
             window.UpdateLayout();
 
             var group = window.GetVisualDescendants().OfType<UrsaGroupBox>().First();
@@ -103,6 +123,9 @@ public class ThemeSmokeTests
             Assert.IsAssignableFrom<IBrush>(group.Foreground);
             Assert.Contains(group.GetVisualDescendants(), child => child is GroupBoxBorder);
 
+            menu.SelectedItem = model.Categories.SelectMany(category => category.Children)
+                .Single(item => item.Page?.Id == "Divider");
+            window.UpdateLayout();
             var dividers = window.GetVisualDescendants().OfType<Divider>().ToArray();
             Assert.NotEmpty(dividers);
             Assert.All(dividers, divider =>
@@ -295,7 +318,9 @@ public class ThemeSmokeTests
         try
         {
             window.Show();
-            window.FindControl<TabControl>("Gallery")!.SelectedIndex = 1;
+            var model = window.ViewModel;
+            model.SelectedItem = model.Categories.SelectMany(category => category.Children)
+                .Single(item => item.Page?.Id == "NumericUpDown");
             window.UpdateLayout();
             var numberInput = window.GetVisualDescendants().OfType<NumericIntUpDown>().First();
             fluentTheme.DensityStyle = Avalonia.Themes.Fluent2.DensityStyle.Normal;

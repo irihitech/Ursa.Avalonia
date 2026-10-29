@@ -87,8 +87,9 @@ Ursa 目前兼容 Avalonia 11.1.x 到 11.3.x，但明确不支持 Avalonia 11.2.
 `xmlns:fluent2="https://irihi.tech/ursa/themes/fluent2"`。
 应用中的所有 Avalonia 包需要使用相同的 Fluent 2 CI 版本。
 
-运行 `dotnet run --project demo\Ursa.Fluent2.Demo` 可查看控件示例，并切换浅色/深色、
-普通/紧凑密度以及中英文。密度需同时设置两个主题的 `DensityStyle`；
+运行 `dotnet run --project demo\Ursa.Fluent2.Demo` 可查看控件示例。示例使用支持搜索和分类的
+`NavMenu` 侧边栏，每个控件具有独立页面，相关选项和面板示例归入所属控件的页面。
+通过外观设置可切换浅色/深色、普通/紧凑密度以及中英文。密度需同时设置两个主题的 `DensityStyle`；
 Ursa 字符串通过 `Locale` 配置，默认简体中文。目前尚不支持高对比度主题。
 
 ### Prism 扩展

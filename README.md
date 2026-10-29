@@ -102,7 +102,10 @@ Avalonia packages in a Fluent 2 application, and restore with this repository's
 dotnet run --project demo\Ursa.Fluent2.Demo
 ```
 
-The gallery includes Light/Dark, Normal/Compact, and English/Chinese switches.
+The gallery uses a searchable, categorized `NavMenu` sidebar with a dedicated
+page for each control. Related item and presenter examples stay on their owning
+control's page. The Appearance menu provides Light/Dark, Normal/Compact, and
+English/Chinese settings.
 When changing density in an application, set `DensityStyle` on both
 `Fluent2Theme` and `UrsaFluent2Theme`. `Locale` configures Ursa's localized
 strings and defaults to Simplified Chinese. High-contrast theme variants are
