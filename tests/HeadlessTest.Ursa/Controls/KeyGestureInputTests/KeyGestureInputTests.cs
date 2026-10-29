@@ -180,7 +180,7 @@ public class KeyGestureInputBaseTests
     }
 
     [AvaloniaFact]
-    public void Modifier_Release_Should_Clear_Only_After_All_Modifiers_Released()
+    public void Modifier_Release_Should_Update_Pending_Gesture_Live()
     {
         var window = new Window();
         var input = new KeyGestureInput();
@@ -194,14 +194,15 @@ public class KeyGestureInputBaseTests
             KeyModifiers = KeyModifiers.Control | KeyModifiers.Shift,
         });
 
-        // Shift is released but Ctrl is still held: keep the pending gesture.
+        // Releasing Shift while Ctrl is still held drops only Shift from the display.
         input.RaiseEvent(new KeyEventArgs
         {
             RoutedEvent = InputElement.KeyUpEvent,
             Key = Key.LeftShift,
             KeyModifiers = KeyModifiers.Control,
         });
-        Assert.Equal(new KeyGesture(Key.None, KeyModifiers.Control | KeyModifiers.Shift), input.Gesture);
+        Assert.Equal(new KeyGesture(Key.None, KeyModifiers.Control), input.Gesture);
+        Assert.Equal(new[] { "Ctrl" }, input.Keys);
 
         input.RaiseEvent(new KeyEventArgs
         {

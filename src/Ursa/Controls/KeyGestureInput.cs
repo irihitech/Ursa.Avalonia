@@ -119,8 +119,9 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
         nameof(ClearOnModifierRelease), true);
 
     /// <summary>
-    /// Gets or sets whether a pending modifier-only recording is cleared when the
-    /// modifiers are released without a regular key completing the gesture.
+    /// Gets or sets whether a pending modifier-only recording follows the modifiers as
+    /// they are released, dropping each one from the display and clearing the gesture
+    /// once none is held anymore. Turn off to keep the recorded modifier-only gesture.
     /// </summary>
     public bool ClearOnModifierRelease
     {
@@ -285,21 +286,34 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
             return;
         }
         var gesture = Gesture;
-        // Only a pending modifier-only recording is cleared; completed gestures persist.
+        // Only a pending modifier-only recording tracks live; completed gestures persist.
         if (gesture is null || gesture.Key is not Key.None || gesture.KeyModifiers == KeyModifiers.None)
         {
             return;
         }
-        // Clear only after the last physically held modifier is released: the flag check
-        // alone cannot distinguish LeftCtrl from RightCtrl, while the physical set alone
-        // misses modifiers that were already held before the control got focus. Some
-        // platforms also still report the released modifier in the keyup event.
-        if (_heldModifierKeys.Count == 0 &&
-            (e.KeyModifiers & ~released & gesture.KeyModifiers) == KeyModifiers.None)
+        // The pending gesture follows the physically held modifiers: releasing one drops
+        // it from the display, unless its other side (e.g. RightCtrl after releasing
+        // LeftCtrl) is still held. Modifier flags alone cannot distinguish the two sides,
+        // and some platforms still report the released modifier in the keyup event.
+        var sameSideHeld = false;
+        foreach (var key in _heldModifierKeys)
+        {
+            if (ModifierKeyMap[key] == released)
+            {
+                sameSideHeld = true;
+                break;
+            }
+        }
+        var remaining = sameSideHeld ? gesture.KeyModifiers : gesture.KeyModifiers & ~released;
+        if (remaining == KeyModifiers.None)
         {
             Clear();
-            e.Handled = true;
         }
+        else
+        {
+            SetCurrentValue(GestureProperty, new KeyGesture(Key.None, remaining));
+        }
+        e.Handled = true;
     }
 
     protected override void OnLostFocus(FocusChangedEventArgs e)
