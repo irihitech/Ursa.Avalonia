@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Templates;
 using Avalonia.Headless.XUnit;
+using HeadlessTest.Ursa.TestHelpers;
 using Ursa.Controls;
 
 namespace HeadlessTest.Ursa.Controls.SettingsCardTests;
@@ -97,6 +98,41 @@ public partial class SettingsCardGroupTest
         Assert.True(card.IsExpanded);
         card.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
         Assert.False(model.IsExpanded);
+    }
+
+    [AvaloniaFact]
+    public void SettingsCardGroup_ItemsSource_SeparatorRules()
+    {
+        var template = new FuncDataTemplate<string>((s, _) => new SettingsCard { Content = s });
+        var group = new SettingsCardGroup
+        {
+            ItemTemplate = template,
+            ItemsSource = new System.Collections.ObjectModel.ObservableCollection<string> { "A", "B" },
+        };
+        var window = new Window { Content = group };
+        window.Show();
+        window.UpdateLayout();
+
+        var firstCard = Assert.IsType<SettingsCard>(Assert.IsType<ContentPresenter>(group.ContainerFromIndex(0)).Child);
+        var lastCard = Assert.IsType<SettingsCard>(Assert.IsType<ContentPresenter>(group.ContainerFromIndex(1)).Child);
+
+        // Separator between generated rows, none after the last one (the group card border
+        // closes the card — a visible separator here would draw a double line at the bottom).
+        Assert.True(firstCard.GetTemplateChildOfType<Border>("PART_Separator")!.IsVisible);
+        Assert.False(lastCard.GetTemplateChildOfType<Border>("PART_Separator")!.IsVisible);
+
+        // Expanding the last generated row: separators between nested detail rows stay intact
+        // (the presenter rules must not reach cards nested inside a row's Detail).
+        var nestedFirst = new SettingsCard { Content = "NF" };
+        var nestedLast = new SettingsCard { Content = "NL" };
+        lastCard.Detail = new StackPanel();
+        ((StackPanel)lastCard.Detail).Children.Add(nestedFirst);
+        ((StackPanel)lastCard.Detail).Children.Add(nestedLast);
+        lastCard.IsExpanded = true;
+        window.UpdateLayout();
+
+        Assert.True(nestedFirst.GetTemplateChildOfType<Border>("PART_Separator")!.IsVisible);
+        Assert.False(nestedLast.GetTemplateChildOfType<Border>("PART_Separator")!.IsVisible);
     }
 
     private partial class RowModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject

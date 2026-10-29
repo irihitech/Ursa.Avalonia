@@ -966,7 +966,7 @@
     <value>Expandable rows</value>
   </data>
   <data name="Page_SettingsCard_Section_Expandable_Description" xml:space="preserve">
-    <value>Set Detail to make a row expandable: the chevron appears and clicking the row toggles IsExpanded (two-way). The detail area can host another SettingsCardGroup — it renders flat like Windows Settings, rows continue the outer card edge to edge with separators, and interactions inside the detail never collapse the row.</value>
+    <value>Set Detail to make a row expandable: the chevron appears and clicking the row toggles IsExpanded (two-way). Detail hosts SettingsCards directly — they render flat like Windows Settings, continuing the outer card edge to edge — or any other content such as a list of links. Interactions inside the detail never collapse the row.</value>
   </data>
   <data name="Page_SettingsCard_Section_Navigable_Header" xml:space="preserve">
     <value>Navigable rows</value>
@@ -978,7 +978,7 @@
     <value>Data binding</value>
   </data>
   <data name="Page_SettingsCard_Section_ItemsSource_Description" xml:space="preserve">
-    <value>Bind ItemsSource on the group: without an ItemTemplate, models are auto-wrapped in SettingsCards and shown as titles; with an ItemTemplate, cards bind to model properties.</value>
+    <value>Bind ItemsSource on the group: without an ItemTemplate, models are auto-wrapped in SettingsCards and shown as titles; with an ItemTemplate, cards bind to model properties. Expandable rows work here too — bind IsExpanded to the model so the state survives container regeneration.</value>
   </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
     <value>Basic binding</value>

@@ -938,6 +938,39 @@
   <data name="Page_EnumSelector_Section_Custom_DisplayNames_Description" xml:space="preserve">
     <value>Poskytněte hodnoty EnumItemTuple pro zobrazení vlastních názvů.</value>
   </data>
+  <data name="Menu_Header_SettingsCard" xml:space="preserve">
+    <value>Karta nastavení (SettingsCard)</value>
+  </data>
+  <data name="Page_Title_SettingsCard" xml:space="preserve">
+    <value>Karta nastavení (SettingsCard)</value>
+  </data>
+  <data name="Page_Description_SettingsCard" xml:space="preserve">
+    <value>SettingsCard je řádek ve stylu Nastavení Windows (ikona, název, popis, hodnota, oblast akcí, vložené podrobnosti) a SettingsCardGroup rozvrhuje řádky do jedné zaoblené karty s oddělovači.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Základní použití</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Řádky SettingsCard uvnitř SettingsCardGroup. Každý řádek kombinuje ikonu, název, popis, aktuální hodnotu (Note) a oblast akcí (RightContent); oddělovací čáry jsou kresleny automaticky.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Expandable_Header" xml:space="preserve">
+    <value>Rozbalitelné řádky</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Expandable_Description" xml:space="preserve">
+    <value>Nastavením Detail se řádek stane rozbalitelným: zobrazí se šipka a kliknutím na řádek se přepíná IsExpanded (obousměrně). Detail může přímo obsahovat SettingsCard — vykreslují se ploše jako v Nastavení Windows a pokračují k okraji vnější karty — nebo jakýkoli jiný obsah, například seznam odkazů. Interakce uvnitř detailu nikdy řádek nesbalí.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Navigable_Header" xml:space="preserve">
+    <value>Navigovatelné řádky</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Navigable_Description" xml:space="preserve">
+    <value>Řádky svázané s Command se chovají jako navigační položky a mají zpětnou vazbu při najetí či stisku a fokus; ShowChevron vynutí koncovou šipku. Prosté řádky zůstávají tiché.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_ItemsSource_Header" xml:space="preserve">
+    <value>Datová vazba</value>
+  </data>
+  <data name="Page_SettingsCard_Section_ItemsSource_Description" xml:space="preserve">
+    <value>Svažte ItemsSource se skupinou: bez ItemTemplate jsou modely automaticky zabaleny do SettingsCard a zobrazeny jako názvy; s ItemTemplate se karty vážou na vlastnosti modelu. Rozbalitelné řádky fungují i zde — svažte IsExpanded s modelem, aby stav přežil regeneraci kontejnerů.</value>
+  </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
     <value>Základní vazba</value>
   </data>

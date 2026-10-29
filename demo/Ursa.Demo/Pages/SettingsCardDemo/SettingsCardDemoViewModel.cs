@@ -83,6 +83,7 @@ public partial class SettingsCardDemoViewModel : ObservableObject, IPageMetadata
                           <u:SettingsCardGroup>
                               <u:SettingsCard Content="Fuzzy sounds"
                                               Description="Click the row to expand inline details"
+                                              Icon="{DynamicResource SemiIconSetting}"
                                               IsExpanded="{Binding DetailExpanded}">
                                   <u:SettingsCard.Detail>
                                       <StackPanel>
@@ -94,6 +95,17 @@ public partial class SettingsCardDemoViewModel : ObservableObject, IPageMetadata
                                           <u:SettingsCard>
                                               <RadioButton GroupName="fuzzy" Content="Nasal finals" />
                                           </u:SettingsCard>
+                                      </StackPanel>
+                                  </u:SettingsCard.Detail>
+                              </u:SettingsCard>
+                              <u:SettingsCard Content="Links"
+                                              Description="Detail can host any content, not only cards"
+                                              Icon="{DynamicResource SemiIconBook}">
+                                  <u:SettingsCard.Detail>
+                                      <StackPanel Margin="48,12" Spacing="4">
+                                          <HyperlinkButton Content="Documentation" NavigateUri="https://docs.irihi.tech/ursa/" />
+                                          <HyperlinkButton Content="GitHub repository" NavigateUri="https://github.com/irihitech/Ursa.Avalonia" />
+                                          <HyperlinkButton Content="Semi Design" NavigateUri="https://semi.design" />
                                       </StackPanel>
                                   </u:SettingsCard.Detail>
                               </u:SettingsCard>
@@ -148,16 +160,18 @@ public partial class SettingsCardDemoViewModel : ObservableObject, IPageMetadata
                               <u:SettingsCardGroup.ItemTemplate>
                                   <DataTemplate>
                                       <u:SettingsCard Content="{Binding Name}"
+                                                      Icon="{DynamicResource SemiIconUser}"
                                                       Note="{Binding Status}"
                                                       IsExpanded="{Binding IsExpanded}">
                                           <u:SettingsCard.Detail>
                                               <StackPanel>
-                                                  <u:SettingsCard Content="Sync across devices">
-                                                      <u:SettingsCard.RightContent>
-                                                          <CheckBox IsChecked="{Binding SyncEnabled}" />
-                                                      </u:SettingsCard.RightContent>
+                                                  <u:SettingsCard>
+                                                      <CheckBox Content="Sync across devices"
+                                                                IsChecked="{Binding SyncEnabled}" />
                                                   </u:SettingsCard>
-                                                  <u:SettingsCard Content="Send usage statistics" />
+                                                  <u:SettingsCard>
+                                                      <CheckBox Content="Send usage statistics" />
+                                                  </u:SettingsCard>
                                               </StackPanel>
                                           </u:SettingsCard.Detail>
                                       </u:SettingsCard>

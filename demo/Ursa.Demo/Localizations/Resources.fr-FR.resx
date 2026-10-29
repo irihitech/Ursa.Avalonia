@@ -938,6 +938,39 @@
   <data name="Page_EnumSelector_Section_Custom_DisplayNames_Description" xml:space="preserve">
     <value>Fournissez des valeurs EnumItemTuple pour afficher des noms d’affichage personnalisés.</value>
   </data>
+  <data name="Menu_Header_SettingsCard" xml:space="preserve">
+    <value>Carte de paramètres (SettingsCard)</value>
+  </data>
+  <data name="Page_Title_SettingsCard" xml:space="preserve">
+    <value>Carte de paramètres (SettingsCard)</value>
+  </data>
+  <data name="Page_Description_SettingsCard" xml:space="preserve">
+    <value>SettingsCard est une ligne dans le style des Paramètres Windows (icône, titre, description, valeur, zone d'action, détails intégrés) et SettingsCardGroup dispose les lignes dans une carte arrondie avec des séparateurs.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Utilisation de base</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Lignes SettingsCard dans une SettingsCardGroup. Chaque ligne combine une icône, un titre, une description, la valeur actuelle (Note) et une zone d'action (RightContent) ; les lignes de séparation sont tracées automatiquement.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Expandable_Header" xml:space="preserve">
+    <value>Lignes dépliables</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Expandable_Description" xml:space="preserve">
+    <value>Définissez Detail pour rendre une ligne dépliable : le chevron apparaît et un clic sur la ligne bascule IsExpanded (bidirectionnel). Detail peut contenir directement des SettingsCard — elles s'affichent à plat comme dans les Paramètres Windows et continuent la carte externe de bord à bord — ou tout autre contenu tel qu'une liste de liens. Les interactions dans la zone de détails ne replient jamais la ligne.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Navigable_Header" xml:space="preserve">
+    <value>Lignes navigables</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Navigable_Description" xml:space="preserve">
+    <value>Les lignes liées à un Command se comportent comme des entrées de navigation et reçoivent un retour visuel au survol et à l'appui ainsi que le focus ; ShowChevron force l'affichage du chevron final. Les lignes simples restent discrètes.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_ItemsSource_Header" xml:space="preserve">
+    <value>Liaison de données</value>
+  </data>
+  <data name="Page_SettingsCard_Section_ItemsSource_Description" xml:space="preserve">
+    <value>Liez ItemsSource au groupe : sans ItemTemplate, les modèles sont automatiquement enveloppés dans des SettingsCard et affichés comme titres ; avec un ItemTemplate, les cartes se lient aux propriétés du modèle. Les lignes dépliables fonctionnent aussi ici — liez IsExpanded au modèle pour que l'état survive à la régénération des conteneurs.</value>
+  </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
     <value>Liaison de base</value>
   </data>

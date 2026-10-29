@@ -70,11 +70,17 @@
                                     </u:SettingsCard.Detail>
                                 </u:SettingsCard>
                                 <u:SettingsCard
-                                    Command="{Binding NavigateCommand}"
-                                    CommandParameter="Fuzzy advanced"
-                                    Content="Advanced"
-                                    Description="Nested rows are full SettingsCards — navigable ones work too"
-                                    ShowChevron="True" />
+                                    Content="Links"
+                                    Description="Detail can host any content, not only cards"
+                                    Icon="{DynamicResource SemiIconBook}">
+                                    <u:SettingsCard.Detail>
+                                        <StackPanel Margin="48,12" Spacing="4">
+                                            <HyperlinkButton Content="Documentation" NavigateUri="https://docs.irihi.tech/ursa/" />
+                                            <HyperlinkButton Content="GitHub repository" NavigateUri="https://github.com/irihitech/Ursa.Avalonia" />
+                                            <HyperlinkButton Content="Semi Design" NavigateUri="https://semi.design" />
+                                        </StackPanel>
+                                    </u:SettingsCard.Detail>
+                                </u:SettingsCard>
                             </u:SettingsCardGroup>
                             <TextBlock
                                 IsVisible="{Binding DetailExpanded}"

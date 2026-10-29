@@ -938,6 +938,39 @@
   <data name="Page_EnumSelector_Section_Custom_DisplayNames_Description" xml:space="preserve">
     <value>Передавайте значения EnumItemTuple для отображения пользовательских имен.</value>
   </data>
+  <data name="Menu_Header_SettingsCard" xml:space="preserve">
+    <value>Карточка настройки (SettingsCard)</value>
+  </data>
+  <data name="Page_Title_SettingsCard" xml:space="preserve">
+    <value>Карточка настройки (SettingsCard)</value>
+  </data>
+  <data name="Page_Description_SettingsCard" xml:space="preserve">
+    <value>SettingsCard — строка в стиле параметров Windows (значок, заголовок, описание, значение, область действий, встроенные подробности), а SettingsCardGroup размещает строки в одной скруглённой карточке с разделителями.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Базовое использование</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Строки SettingsCard внутри SettingsCardGroup. Каждая строка сочетает значок, заголовок, описание, текущее значение (Note) и область действий (RightContent); линии-разделители рисуются автоматически.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Expandable_Header" xml:space="preserve">
+    <value>Разворачиваемые строки</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Expandable_Description" xml:space="preserve">
+    <value>Задайте Detail, чтобы строка могла разворачиваться: появляется шеврон, а щелчок по строке переключает IsExpanded (двусторонняя привязка). Detail может напрямую содержать SettingsCard — они отображаются плоско, как в параметрах Windows, и продолжают внешнюю карточку от края до края — либо любое другое содержимое, например список ссылок. Взаимодействия внутри области подробностей никогда не сворачивают строку.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Navigable_Header" xml:space="preserve">
+    <value>Строки навигации</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Navigable_Description" xml:space="preserve">
+    <value>Строки с привязкой к Command ведут себя как элементы навигации: подсвечиваются при наведении и нажатии, получают фокус; ShowChevron принудительно показывает шеврон. Обычные строки остаются без отклика.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_ItemsSource_Header" xml:space="preserve">
+    <value>Привязка данных</value>
+  </data>
+  <data name="Page_SettingsCard_Section_ItemsSource_Description" xml:space="preserve">
+    <value>Привяжите ItemsSource к группе: без ItemTemplate модели автоматически оборачиваются в SettingsCard и показываются как заголовки; с ItemTemplate карточки привязываются к свойствам модели. Разворачиваемые строки работают и здесь — привяжите IsExpanded к модели, чтобы состояние сохранялось при пересоздании контейнеров.</value>
+  </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
     <value>Базовая привязка</value>
   </data>

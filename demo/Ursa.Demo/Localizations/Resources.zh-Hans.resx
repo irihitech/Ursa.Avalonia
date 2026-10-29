@@ -952,7 +952,7 @@
     <value>可展开行</value>
   </data>
   <data name="Page_SettingsCard_Section_Expandable_Description" xml:space="preserve">
-    <value>设置 Detail 即为可展开行：行尾出现箭头，点击整行切换 IsExpanded（双向绑定）。详情区可以再放一个 SettingsCardGroup——以 Windows 设置的方式平铺渲染，行延续外层卡片通到边缘、行间有分隔线，详情区域内的交互不会触发外层行收起。</value>
+    <value>设置 Detail 即为可展开行：行尾出现箭头，点击整行切换 IsExpanded（双向绑定）。Detail 可直接放 SettingsCard（以 Windows 设置的方式平铺、延续外层卡片通到边缘），也可以放任意内容（如一列链接）；详情区域内的交互不会触发外层行收起。</value>
   </data>
   <data name="Page_SettingsCard_Section_Navigable_Header" xml:space="preserve">
     <value>可跳转行</value>
@@ -964,7 +964,7 @@
     <value>数据绑定</value>
   </data>
   <data name="Page_SettingsCard_Section_ItemsSource_Description" xml:space="preserve">
-    <value>在分组上绑定 ItemsSource：无 ItemTemplate 时模型自动包进设置卡片并作为标题显示；有 ItemTemplate 时卡片绑定模型属性。</value>
+    <value>在分组上绑定 ItemsSource：无 ItemTemplate 时模型自动包进设置卡片并作为标题显示；有 ItemTemplate 时卡片绑定模型属性。此模式下可展开行同样可用——把 IsExpanded 绑到模型，展开状态在容器重建后保留。</value>
   </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
     <value>基础绑定</value>
