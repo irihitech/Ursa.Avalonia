@@ -32,7 +32,7 @@
                     BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <Panel VerticalAlignment="Stretch" Margin="{TemplateBinding Padding}">
-                        <Grid ColumnDefinitions="Auto, *, Auto">
+                        <Grid ColumnDefinitions="Auto, *, Auto, Auto">
                             <ContentPresenter
                                 Grid.Column="0"
                                 Content="{TemplateBinding InnerLeftContent}"
@@ -88,7 +88,7 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                             <Button
-                                Grid.Column="1"
+                                Grid.Column="3"
                                 Name="PART_ClearButton"
                                 HorizontalAlignment="Right"
                                 Command="{Binding $parent[u:KeyGestureInput].Clear}"
@@ -101,7 +101,7 @@
                 </Border>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^:empty:not(:focus) /template/ TextBlock#PART_Placeholder">
+        <Style Selector="^:empty:not(:focus):not(:focus-within) /template/ TextBlock#PART_Placeholder">
             <Setter Property="IsVisible" Value="True" />
         </Style>
         <Style Selector="^:empty:focus /template/ TextBlock#PART_FocusedPlaceholder, ^:empty:focus-within /template/ TextBlock#PART_FocusedPlaceholder">
