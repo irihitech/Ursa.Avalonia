@@ -14,6 +14,62 @@ namespace Ursa.Themes.Fluent2.Tests;
 public class DatePickerChromeTests
 {
     [AvaloniaTheory]
+    [InlineData("DatePicker", false)]
+    [InlineData("DatePicker", true)]
+    [InlineData("DateOnlyPicker", false)]
+    [InlineData("DateOnlyPicker", true)]
+    [InlineData("DateOffsetPicker", false)]
+    [InlineData("DateOffsetPicker", true)]
+    public void Date_editor_reserves_space_for_calendar_and_clear_buttons(string name, bool dark)
+    {
+        TemplatedControl picker = name switch
+        {
+            "DatePicker" => new Ursa.Controls.DatePicker { SelectedDate = new DateTime(2026, 10, 29) },
+            "DateOnlyPicker" => new DateOnlyPicker { SelectedDate = new DateOnly(2026, 10, 29) },
+            _ => new DateOffsetPicker { SelectedDate = new DateTimeOffset(2026, 10, 29, 0, 0, 0, TimeSpan.Zero) }
+        };
+        picker.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Left;
+        var window = new Window
+        {
+            Content = picker,
+            RequestedThemeVariant = dark ? Avalonia.Styling.ThemeVariant.Dark : Avalonia.Styling.ThemeVariant.Light
+        };
+        try
+        {
+            window.Show();
+            Dispatcher.UIThread.RunJobs();
+            window.UpdateLayout();
+            var input = picker.GetVisualDescendants().OfType<TextBox>().Single(control => control.Name == "PART_TextBox");
+            var icon = picker.GetVisualDescendants().OfType<PathIcon>().Single(control => control.Name == "PART_Button");
+            var clear = picker.GetVisualDescendants().OfType<Button>().Single(control => control.Name == "ClearButton");
+            Assert.Equal("2026-10-29", input.Text);
+
+            foreach (var width in new[] { double.NaN, name == "DateOffsetPicker" ? 300d : 140d })
+            {
+                picker.Width = width;
+                window.UpdateLayout();
+                Assert.True(input.Bounds.Right <= icon.Bounds.Left);
+                if (double.IsNaN(width))
+                    Assert.True(input.Bounds.Width >= input.DesiredSize.Width);
+
+                picker.Classes.Add("clearButton");
+                window.MouseMove(input.TranslatePoint(new Point(4, 4), window)!.Value);
+                Dispatcher.UIThread.RunJobs();
+                window.UpdateLayout();
+                Assert.True(clear.IsVisible);
+                Assert.False(icon.IsVisible);
+                Assert.True(input.Bounds.Right <= clear.Bounds.Left);
+                picker.Classes.Remove("clearButton");
+                window.UpdateLayout();
+            }
+        }
+        finally
+        {
+            window.Close();
+        }
+    }
+
+    [AvaloniaTheory]
     [InlineData("DateRangePicker", false)]
     [InlineData("DateRangePicker", true)]
     [InlineData("DateOnlyRangePicker", false)]

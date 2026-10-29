@@ -12,6 +12,8 @@
         <Setter Property="u:OverlayDialogHost.IsModalStatusScope" Value="True" />
         <Setter Property="WindowDecorationsTheme" Value="{DynamicResource KEY_URSAWINDOW_DRAWN_DECORATIONS}" />
         <Setter Property="WindowDecorations" Value="{x:Static WindowDecorations.Full}" />
+        <Setter Property="TitleBarPadding" Value="12,0" />
+        <Setter Property="TitleBarContent" Value="{Binding Title, RelativeSource={RelativeSource Self}}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:UrsaWindow">
                 <Panel>
@@ -37,6 +39,10 @@
                             <u:TitleBar
                                 Name="PART_TitleBar"
                                 VerticalAlignment="Top"
+                                MinHeight="{DynamicResource CaptionButtonHeight}"
+                                Margin="{TemplateBinding TitleBarMargin}"
+                                Padding="{TemplateBinding TitleBarPadding}"
+                                Background="{TemplateBinding TitleBarBackground}"
                                 IsVisible="{TemplateBinding IsTitleBarVisible}"
                                 HorizontalAlignment="Stretch"
                                 LeftContent="{TemplateBinding LeftContent}"
@@ -58,5 +64,9 @@
     <!-- Reuse Avalonia Fluent 2 window chrome, including caption states and glyphs. -->
     <ControlTheme x:Key="{x:Static u:UrsaWindow.KEY_URSAWINDOW_DRAWN_DECORATIONS}"
                   TargetType="WindowDrawnDecorations"
-                  BasedOn="{StaticResource DefaultWindowDrawnDecorationsTheme}" />
+                  BasedOn="{StaticResource DefaultWindowDrawnDecorationsTheme}">
+        <Style Selector="^ /template/ Panel#PART_TitleTextPanel">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+    </ControlTheme>
 </ResourceDictionary>

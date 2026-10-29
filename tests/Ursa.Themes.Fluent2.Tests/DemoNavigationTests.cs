@@ -25,7 +25,7 @@ public class DemoNavigationTests
             var search = window.FindControl<TextBox>("ControlSearch")!;
             var menu = window.FindControl<NavMenu>("NavigationMenu")!;
             var model = window.ViewModel;
-            Assert.Equal("IconButton", model.CurrentPage!.Id);
+            Assert.Equal("Overview", model.CurrentPage!.Id);
 
             search.Text = "  nUmErIcUpDoWn  ";
             Dispatcher.UIThread.RunJobs();

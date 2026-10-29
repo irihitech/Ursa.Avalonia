@@ -107,6 +107,11 @@ page for each control. Related item and presenter examples stay on their owning
 control's page. The Appearance menu provides Light/Dark, Normal/Compact, and
 English/Chinese settings.
 The Fluent 2 demo uses CommunityToolkit.Mvvm observable view models and commands.
+It opens on an Overview page with responsive, interactive control samples grouped
+into six sections; individual control pages remain available in the sidebar.
+The demo embeds the existing Source Han Sans CN Regular and Bold fonts as CJK
+fallbacks, preserving Fluent 2's native Latin typography without requiring a
+system font installation. The font's SIL Open Font License is included in the output.
 AutoCompleteBox, MultiAutoCompleteBox, MultiComboBox, TreeComboBox, SelectionList,
 and TagInput have dedicated page view models demonstrating observable item sources,
 bound selections or tags, and clear commands. TreeComboBox uses hierarchical data.

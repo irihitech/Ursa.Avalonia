@@ -10,6 +10,7 @@ public partial class DemoPageViewModel(string pageId, IDemoInteractionService in
 
     public static DemoPageViewModel Create(string pageId, IDemoInteractionService interactions) => pageId switch
     {
+        "Overview" => new OverviewPageViewModel(interactions),
         "AutoCompleteBox" => new AutoCompleteBoxPageViewModel(interactions),
         "MultiAutoCompleteBox" => new MultiAutoCompleteBoxPageViewModel(interactions),
         "MultiComboBox" => new MultiComboBoxPageViewModel(interactions),

@@ -12,6 +12,7 @@ public sealed class DemoText(bool chinese)
     public string NoResultsHint => chinese ? "请尝试其他名称，或清除搜索内容。" : "Try another name or clear the search.";
     public string ClearSearch => chinese ? "清除搜索" : "Clear search";
     public string CollapseNavigation => chinese ? "折叠或展开导航" : "Collapse or expand navigation";
+    public string PageTitle(string id) => id == "Overview" ? chinese ? "控件总览" : "Overview" : id;
     public string[] ThemeOptions => chinese ? ["跟随系统", "浅色", "深色"] : ["System", "Light", "Dark"];
     public string[] DensityOptions => chinese ? ["普通", "紧凑"] : ["Normal", "Compact"];
     public string Category(string id) => id switch

@@ -91,6 +91,10 @@ Ursa 目前兼容 Avalonia 11.1.x 到 11.3.x，但明确不支持 Avalonia 11.2.
 `NavMenu` 侧边栏，每个控件具有独立页面，相关选项和面板示例归入所属控件的页面。
 通过外观设置可切换浅色/深色、普通/紧凑密度以及中英文。
 Fluent 2 示例使用 CommunityToolkit.Mvvm 的可观察视图模型和命令。
+默认打开控件总览页，以六个分区集中展示可交互的控件，布局随窗口宽度自动换行；
+侧边栏仍可访问各控件的独立示例页面。
+示例嵌入仓库已有的思源黑体（Source Han Sans CN）常规体和粗体作为 CJK 回退字体，
+保留 Fluent 2 原生拉丁文字字体，无需安装系统字体。输出目录附带字体的 SIL Open Font License。
 AutoCompleteBox、MultiAutoCompleteBox、MultiComboBox、TreeComboBox、SelectionList
 和 TagInput 使用独立页面视图模型，演示可观察数据源、选中项或标签绑定及清空命令。
 TreeComboBox 使用分层数据。
