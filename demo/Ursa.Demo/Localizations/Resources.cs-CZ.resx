@@ -667,29 +667,23 @@
   <data name="Page_KeyGestureInput_Section_Basic_Usage_Description" xml:space="preserve">
     <value>Použijte KeyGestureInput k zachycení klávesových zkratek z uživatelského vstupu. Ovládání poslouchá stisky kláves a ukládá aktuální KeyGesture.</value>
   </data>
-  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Header" xml:space="preserve">
-    <value>Povolené klávesy</value>
-  </data>
-  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Description" xml:space="preserve">
-    <value>Nastavte AcceptableKeys, abyste omezili, které klávesy lze zachytit. Tato ukázka přijímá pouze A, B a C.</value>
-  </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
     <value>Tlačítko vymazání</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
     <value>Tlačítko pro vymazání se ve výchozím nastavení zobrazuje při zaměření nebo najetí kurzorem. Nastavte AllowClear na False, aby se odstranilo. Klávesa Esc gesto také vymaže.</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_Recording_Rules_Header" xml:space="preserve">
+    <value>Pravidla zaznamenávání</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Recording_Rules_Description" xml:space="preserve">
+    <value>Nastavte AcceptableKeys, abyste omezili zachytávané klávesy. RequireModifier odmítá klávesy bez modifikátorů, ClearOnModifierRelease lze vypnout, aby zůstaly samotné modifikátory, a Esc gesto vymaže.</value>
+  </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>Stavy a nápovědy</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Description" xml:space="preserve">
     <value>Ovládací prvek ve výchozím stavu zobrazuje lokalizovanou nápovědu a po zaměření přepne na výzvu k zadání. IsReadOnly pouze zobrazuje gesto a zakázaný ovládací prvek je ztlumen. Třídy Small a Large upravují výšku ovládacího prvku.</value>
-  </data>
-  <data name="Page_KeyGestureInput_Section_Modifier_Behavior_Header" xml:space="preserve">
-    <value>Modifikátorové klávesy a úpravy</value>
-  </data>
-  <data name="Page_KeyGestureInput_Section_Modifier_Behavior_Description" xml:space="preserve">
-    <value>RequireModifier odmítá klávesy bez modifikátorů, aby se nezachytávalo běžné psaní. ClearOnModifierRelease lze vypnout, aby zůstaly samotné modifikátory. Esc gesto vymaže.</value>
   </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>Načítání zobrazuje spinner nebo indikátor průběhu během asynchronních operací.</value>

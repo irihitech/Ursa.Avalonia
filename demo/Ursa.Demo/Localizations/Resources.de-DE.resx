@@ -666,29 +666,23 @@
   <data name="Page_KeyGestureInput_Section_Basic_Usage_Description" xml:space="preserve">
     <value>Verwenden Sie KeyGestureInput, um Tastenkombinationsgesten aus Benutzereingaben zu erfassen. Das Steuerelement reagiert auf Tastendrücke und speichert die aktuelle KeyGesture.</value>
   </data>
-  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Header" xml:space="preserve">
-    <value>Zulässige Tasten</value>
-  </data>
-  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Description" xml:space="preserve">
-    <value>Legen Sie AcceptableKeys fest, um einzuschränken, welche Tasten erfasst werden können. Diese Demo akzeptiert nur A, B und C.</value>
-  </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
     <value>Löschen-Schaltfläche</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
     <value>Die Löschen-Schaltfläche erscheint standardmäßig bei Fokus oder Hover. Setzen Sie AllowClear auf False, um sie zu entfernen. Escape löscht die Geste ebenfalls.</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_Recording_Rules_Header" xml:space="preserve">
+    <value>Erfassungsregeln</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Recording_Rules_Description" xml:space="preserve">
+    <value>Legen Sie AcceptableKeys fest, um die erfassbaren Tasten einzuschränken. RequireModifier lehnt Tasten ohne Modifikator ab, ClearOnModifierRelease kann deaktiviert werden, um reine Modifikator-Gesten zu behalten, und Escape löscht die Geste.</value>
+  </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>Zustände und Hinweise</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Description" xml:space="preserve">
     <value>Das Steuerelement zeigt standardmäßig einen lokalisierten Platzhalter und wechselt im Fokus zu einem Eingabehinweis. IsReadOnly zeigt die Geste nur an, ein deaktiviertes Steuerelement wird abgeblendet. Die Klassen Small und Large passen die Höhe an.</value>
-  </data>
-  <data name="Page_KeyGestureInput_Section_Modifier_Behavior_Header" xml:space="preserve">
-    <value>Modifikatortasten und Bearbeitung</value>
-  </data>
-  <data name="Page_KeyGestureInput_Section_Modifier_Behavior_Description" xml:space="preserve">
-    <value>RequireModifier lehnt Tasten ohne Modifikator ab, damit normale Eingaben nicht erfasst werden. ClearOnModifierRelease kann deaktiviert werden, um reine Modifikator-Gesten zu behalten. Escape löscht die Geste.</value>
   </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>Laden zeigt einen Spinner oder Fortschrittsindikator während asynchroner Operationen an.</value>

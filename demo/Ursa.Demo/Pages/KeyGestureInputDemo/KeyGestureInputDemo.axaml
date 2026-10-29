@@ -30,13 +30,6 @@
                         </StackPanel>
                     </controls:DemoSectionView>
 
-                    <controls:DemoSectionView SectionContext="{Binding AcceptableKeysSection}">
-                        <u:KeyGestureInput
-                            Width="300"
-                            HorizontalAlignment="Center"
-                            AcceptableKeys="{Binding AcceptableKeys}" />
-                    </controls:DemoSectionView>
-
                     <controls:DemoSectionView SectionContext="{Binding ClearButtonStyleSection}">
                         <StackPanel HorizontalAlignment="Center" Spacing="16">
                             <u:KeyGestureInput
@@ -71,8 +64,11 @@
                         </StackPanel>
                     </controls:DemoSectionView>
 
-                    <controls:DemoSectionView SectionContext="{Binding ModifierBehaviorSection}">
+                    <controls:DemoSectionView SectionContext="{Binding RecordingRulesSection}">
                         <StackPanel HorizontalAlignment="Center" Spacing="16">
+                            <u:KeyGestureInput
+                                Width="300"
+                                AcceptableKeys="{Binding AcceptableKeys}" />
                             <u:KeyGestureInput
                                 Width="300"
                                 RequireModifier="True" />

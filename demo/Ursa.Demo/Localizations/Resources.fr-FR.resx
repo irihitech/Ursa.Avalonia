@@ -667,29 +667,23 @@
   <data name="Page_KeyGestureInput_Section_Basic_Usage_Description" xml:space="preserve">
     <value>Utilisez KeyGestureInput pour capturer des raccourcis clavier à partir de la saisie utilisateur. Le contrôle écoute les pressions de touches et enregistre le KeyGesture courant.</value>
   </data>
-  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Header" xml:space="preserve">
-    <value>Touches autorisées</value>
-  </data>
-  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Description" xml:space="preserve">
-    <value>Définissez AcceptableKeys pour limiter les touches pouvant être capturées. Cette démonstration n'accepte que A, B et C.</value>
-  </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
     <value>Bouton d'effacement</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
     <value>Le bouton d'effacement apparaît par défaut au focus ou au survol. Définissez AllowClear sur False pour le supprimer. Échap efface également le geste.</value>
   </data>
+  <data name="Page_KeyGestureInput_Section_Recording_Rules_Header" xml:space="preserve">
+    <value>Règles d'enregistrement</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Recording_Rules_Description" xml:space="preserve">
+    <value>Définissez AcceptableKeys pour limiter les touches capturées. RequireModifier rejette les touches simples sans modificateur, ClearOnModifierRelease peut être désactivé pour conserver les gestes de modificateurs seuls, et Échap efface le geste.</value>
+  </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>États et indications</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Description" xml:space="preserve">
     <value>Le contrôle affiche par défaut un indicateur localisé et passe à une invite de saisie lorsqu'il est actif. IsReadOnly affiche uniquement le geste, et un contrôle désactivé est estompé. Les classes Small et Large ajustent la hauteur du contrôle.</value>
-  </data>
-  <data name="Page_KeyGestureInput_Section_Modifier_Behavior_Header" xml:space="preserve">
-    <value>Touches de modification et édition</value>
-  </data>
-  <data name="Page_KeyGestureInput_Section_Modifier_Behavior_Description" xml:space="preserve">
-    <value>RequireModifier rejette les touches simples sans modificateur afin de ne pas capturer la saisie. ClearOnModifierRelease peut être désactivé pour conserver les gestes de modificateurs seuls. Échap efface le geste.</value>
   </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>Le chargement affiche un spinner ou un indicateur de progression pendant les opérations asynchrones.</value>

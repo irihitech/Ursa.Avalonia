@@ -18,10 +18,9 @@ public class KeyGestureInputDemoViewModel: ObservableObject, IPageMetadataProvid
     public const string Category_Key = "KeyGestureInput";
     public const string Menu_Header = "Menu_Header_KeyGestureInput";
     private const string BasicUsageAnchorId = "key-gesture-input-basic-usage";
-    private const string AcceptableKeysAnchorId = "key-gesture-input-acceptable-keys";
     private const string ClearButtonStyleAnchorId = "key-gesture-input-clear-button-style-class";
     private const string StatesAnchorId = "key-gesture-input-states";
-    private const string ModifierBehaviorAnchorId = "key-gesture-input-modifier-behavior";
+    private const string RecordingRulesAnchorId = "key-gesture-input-recording-rules";
 
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
@@ -56,24 +55,25 @@ public class KeyGestureInputDemoViewModel: ObservableObject, IPageMetadataProvid
                           """
         });
 
-        AcceptableKeysSection = new DemoSectionViewModel
+        RecordingRulesSection = new DemoSectionViewModel
         {
-            Header = LanguageManager.Instance.Page_KeyGestureInput_Section_Acceptable_Keys_Header,
+            Header = LanguageManager.Instance.Page_KeyGestureInput_Section_Recording_Rules_Header,
             SectionTag = DemoSectionTag.Function,
-            Descriptions = { LanguageManager.Instance.Page_KeyGestureInput_Section_Acceptable_Keys_Description },
-            AnchorId = AcceptableKeysAnchorId
+            Descriptions = { LanguageManager.Instance.Page_KeyGestureInput_Section_Recording_Rules_Description },
+            AnchorId = RecordingRulesAnchorId
         };
-        AcceptableKeysSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        RecordingRulesSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
         {
             CodeSnippetLanguage = CodeLanguage.Axaml,
             TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
             CodeSnippet = """
-                          <u:KeyGestureInput Width="300"
-                                             HorizontalAlignment="Center"
-                                             AcceptableKeys="{Binding AcceptableKeys}" />
+                          <u:KeyGestureInput Width="300" AcceptableKeys="{Binding AcceptableKeys}" />
+                          <u:KeyGestureInput Width="300" RequireModifier="True" />
+                          <u:KeyGestureInput Width="300" ClearOnModifierRelease="False" />
+                          <u:KeyGestureInput Width="300" Gesture="Ctrl+Shift+A" />
                           """
         });
-        AcceptableKeysSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        RecordingRulesSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
         {
             CodeSnippetLanguage = CodeLanguage.CSharp,
             TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
@@ -127,24 +127,6 @@ public class KeyGestureInputDemoViewModel: ObservableObject, IPageMetadataProvid
                           """
         });
 
-        ModifierBehaviorSection = new DemoSectionViewModel
-        {
-            Header = LanguageManager.Instance.Page_KeyGestureInput_Section_Modifier_Behavior_Header,
-            SectionTag = DemoSectionTag.Function,
-            Descriptions = { LanguageManager.Instance.Page_KeyGestureInput_Section_Modifier_Behavior_Description },
-            AnchorId = ModifierBehaviorAnchorId
-        };
-        ModifierBehaviorSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
-        {
-            CodeSnippetLanguage = CodeLanguage.Axaml,
-            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
-            CodeSnippet = """
-                          <u:KeyGestureInput Width="300" RequireModifier="True" />
-                          <u:KeyGestureInput Width="300" ClearOnModifierRelease="False" />
-                          <u:KeyGestureInput Width="300" Gesture="Ctrl+Shift+A" />
-                          """
-        });
-
     }
 
     public List<Key> AcceptableKeys { get; set; } = new List<Key>()
@@ -153,10 +135,9 @@ public class KeyGestureInputDemoViewModel: ObservableObject, IPageMetadataProvid
     };
 
     public DemoSectionViewModel BasicUsageSection { get; }
-    public DemoSectionViewModel AcceptableKeysSection { get; }
     public DemoSectionViewModel ClearButtonStyleSection { get; }
     public DemoSectionViewModel StatesSection { get; }
-    public DemoSectionViewModel ModifierBehaviorSection { get; }
+    public DemoSectionViewModel RecordingRulesSection { get; }
 
     public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; set; } =
     [
@@ -164,11 +145,6 @@ public class KeyGestureInputDemoViewModel: ObservableObject, IPageMetadataProvid
         {
             Header = LanguageManager.Instance.Page_KeyGestureInput_Section_Basic_Usage_Header,
             AnchorId = BasicUsageAnchorId
-        },
-        new()
-        {
-            Header = LanguageManager.Instance.Page_KeyGestureInput_Section_Acceptable_Keys_Header,
-            AnchorId = AcceptableKeysAnchorId
         },
         new()
         {
@@ -182,8 +158,8 @@ public class KeyGestureInputDemoViewModel: ObservableObject, IPageMetadataProvid
         },
         new()
         {
-            Header = LanguageManager.Instance.Page_KeyGestureInput_Section_Modifier_Behavior_Header,
-            AnchorId = ModifierBehaviorAnchorId
+            Header = LanguageManager.Instance.Page_KeyGestureInput_Section_Recording_Rules_Header,
+            AnchorId = RecordingRulesAnchorId
         },
     ];
 }
