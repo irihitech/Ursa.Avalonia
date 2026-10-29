@@ -143,8 +143,7 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
     /// <summary>
     /// Gets or sets whether the built-in clear button is available on focus/hover.
     /// Unlike text inputs, a gesture cannot be removed by backspace, so clearing is on
-    /// by default. The ClearButton/clearButton style class additionally keeps the
-    /// button always visible while a gesture is set.
+    /// by default.
     /// </summary>
     public bool AllowClear
     {

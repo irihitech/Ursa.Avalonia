@@ -677,7 +677,7 @@
     <value>Bouton d'effacement</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>Le bouton d'effacement apparaît par défaut au focus ou au survol. La classe de style ClearButton le garde toujours visible, et AllowClear le supprime complètement. Échap efface également le geste.</value>
+    <value>Le bouton d'effacement apparaît par défaut au focus ou au survol. Définissez AllowClear sur False pour le supprimer. Échap efface également le geste.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>États et indications</value>

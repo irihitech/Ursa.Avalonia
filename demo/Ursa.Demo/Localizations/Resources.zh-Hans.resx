@@ -662,7 +662,7 @@
     <value>清除按钮</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>清除按钮默认在聚焦或悬停时显示。ClearButton 样式类可使其常显，AllowClear 为 False 时完全移除。聚焦时按 Esc 也可清空手势。</value>
+    <value>清除按钮默认在聚焦或悬停时显示，设置 AllowClear 为 False 可移除。聚焦时按 Esc 也可清空手势。</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>状态与提示</value>

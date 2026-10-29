@@ -677,7 +677,7 @@
     <value>Tlačítko vymazání</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>Tlačítko pro vymazání se ve výchozím nastavení zobrazuje při zaměření nebo najetí kurzorem. Stylová třída ClearButton je viditelná vždy a AllowClear ji zcela odstraňuje. Klávesa Esc gesto také vymaže.</value>
+    <value>Tlačítko pro vymazání se ve výchozím nastavení zobrazuje při zaměření nebo najetí kurzorem. Nastavte AllowClear na False, aby se odstranilo. Klávesa Esc gesto také vymaže.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>Stavy a nápovědy</value>

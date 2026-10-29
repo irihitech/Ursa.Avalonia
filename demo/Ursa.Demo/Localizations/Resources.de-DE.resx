@@ -676,7 +676,7 @@
     <value>Löschen-Schaltfläche</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>Die Löschen-Schaltfläche erscheint standardmäßig bei Fokus oder Hover. Die Stilklasse ClearButton hält sie dauerhaft sichtbar, AllowClear entfernt sie vollständig. Escape löscht die Geste ebenfalls.</value>
+    <value>Die Löschen-Schaltfläche erscheint standardmäßig bei Fokus oder Hover. Setzen Sie AllowClear auf False, um sie zu entfernen. Escape löscht die Geste ebenfalls.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>Zustände und Hinweise</value>

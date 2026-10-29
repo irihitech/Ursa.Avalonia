@@ -6,7 +6,7 @@
     <Design.PreviewWith>
         <StackPanel Width="300" Margin="20">
             <u:KeyGestureInput Gesture="Ctrl+Shift+A" />
-            <u:KeyGestureInput Classes="ClearButton" Gesture="Ctrl+K" Margin="0 16 0 0" />
+            <u:KeyGestureInput Gesture="Ctrl+K" AllowClear="False" Margin="0 16 0 0" />
         </StackPanel>
     </Design.PreviewWith>
 
@@ -128,9 +128,6 @@
             <Setter Property="IsVisible" Value="True" />
         </Style>
         <Style Selector="^[AllowClear=True][IsReadOnly=False]:not(:empty):pointerover /template/ Button#PART_ClearButton">
-            <Setter Property="IsVisible" Value="True" />
-        </Style>
-        <Style Selector="^[AllowClear=True][IsReadOnly=False].clearButton:not(:empty) /template/ Button#PART_ClearButton, ^[AllowClear=True][IsReadOnly=False].ClearButton:not(:empty) /template/ Button#PART_ClearButton">
             <Setter Property="IsVisible" Value="True" />
         </Style>
         <Style Selector="^:disabled">

@@ -664,7 +664,7 @@
     <value>Clear Button</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>The clear button appears on focus or hover by default. The ClearButton style class keeps it always visible, and AllowClear removes it entirely. Pressing Escape while focused also clears the gesture.</value>
+    <value>The clear button appears on focus or hover by default. Set AllowClear to False to remove it. Pressing Escape while focused also clears the gesture.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>States and Hints</value>

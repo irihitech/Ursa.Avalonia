@@ -677,7 +677,7 @@
     <value>Кнопка очистки</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>Кнопка очистки по умолчанию появляется при фокусе или наведении. Стиль-класс ClearButton делает её постоянно видимой, а AllowClear полностью убирает. Esc также очищает жест.</value>
+    <value>Кнопка очистки по умолчанию появляется при фокусе или наведении. Установите AllowClear равным False, чтобы убрать её. Esc также очищает жест.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>Состояния и подсказки</value>

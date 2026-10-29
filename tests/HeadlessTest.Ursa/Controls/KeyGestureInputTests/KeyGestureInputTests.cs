@@ -582,8 +582,5 @@ public class KeyGestureInputBaseTests
 
         ((IPseudoClasses)input.Classes).Set(":pointerover", true);
         Assert.False(button.IsVisible);
-
-        input.Classes.Add("ClearButton");
-        Assert.False(button.IsVisible);
     }
 }

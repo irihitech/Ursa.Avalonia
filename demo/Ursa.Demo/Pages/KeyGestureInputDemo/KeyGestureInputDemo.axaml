@@ -44,10 +44,6 @@
                                 Gesture="Ctrl+Shift+A" />
                             <u:KeyGestureInput
                                 Width="300"
-                                Classes="ClearButton"
-                                Gesture="Ctrl+K" />
-                            <u:KeyGestureInput
-                                Width="300"
                                 AllowClear="False"
                                 Gesture="Ctrl+Shift+A" />
                         </StackPanel>
