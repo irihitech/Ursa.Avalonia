@@ -12,6 +12,9 @@ public static class DemoCatalog
 
     public static IReadOnlyList<DemoPage> Pages { get; } =
     [
+        new("Overview", "presentation",
+            "Explore Fluent 2 controls together in an interactive, at-a-glance gallery.",
+            "在交互式总览中集中体验 Fluent 2 控件。", () => new OverviewPage()),
         new("IconButton", "presentation",
             "Combine labels, icons, and loading states in Fluent actions.", "在 Fluent 操作按钮中组合文字、图标和加载状态。", () => new IconButtonPage()),
         new("Divider", "presentation",

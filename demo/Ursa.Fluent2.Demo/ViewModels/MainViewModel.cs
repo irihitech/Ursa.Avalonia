@@ -26,7 +26,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private readonly UrsaFluent2Theme _ursaTheme;
     private readonly IDemoInteractionService _interactions;
     private string _searchText = string.Empty;
-    private string _lastPageId = "IconButton";
+    private string _lastPageId = "Overview";
     private int _themeIndex;
     private int _densityIndex;
     private int _languageIndex;
@@ -71,7 +71,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     public bool HasPage => CurrentPage is not null;
     public bool NoResults => Categories.Count == 0;
-    public string PageTitle => CurrentPage?.Id ?? Text.NoResults;
+    public string PageTitle => CurrentPage?.Id is { } id ? Text.PageTitle(id) : Text.NoResults;
     public string PageCategory => CurrentPage is null ? Text.Controls : Text.Category(CurrentPage.Category);
     public string PageDescription => CurrentPage is null ? Text.NoResultsHint :
         _languageIndex == 1 ? CurrentPage.ChineseDescription : CurrentPage.Description;
@@ -157,9 +157,11 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             .Select(group => new DemoNavItem(Text.Category(group.Key), null,
                 group.Where(page => query.Length == 0 ||
                                     page.Id.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                                    Text.PageTitle(page.Id).Contains(query, StringComparison.OrdinalIgnoreCase) ||
                                     Text.Category(page.Category).Contains(query, StringComparison.OrdinalIgnoreCase))
-                    .OrderBy(page => page.Id, StringComparer.Ordinal)
-                    .Select(page => new DemoNavItem(page.Id, page.Id, []))
+                    .OrderBy(page => page.Id != "Overview")
+                    .ThenBy(page => page.Id, StringComparer.Ordinal)
+                    .Select(page => new DemoNavItem(Text.PageTitle(page.Id), page.Id, []))
                     .ToArray()))
             .Where(category => category.Children.Count > 0)
             .ToArray();
