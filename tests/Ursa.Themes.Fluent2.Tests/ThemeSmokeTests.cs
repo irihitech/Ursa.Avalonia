@@ -20,6 +20,115 @@ public class ThemeSmokeTests
     [AvaloniaTheory]
     [InlineData(false)]
     [InlineData(true)]
+    public void Nav_menu_chevron_matches_fluent_dropdowns_and_preserves_state_directions(bool dark)
+    {
+        var leaf = new NavMenuItem { Header = "Leaf" };
+        var nested = new NavMenuItem { Header = "Nested", Items = { leaf } };
+        var parent = new NavMenuItem { Header = "Parent", Items = { nested } };
+        var menu = new NavMenu { Items = { parent } };
+        var combo = new MultiComboBox { Width = 200 };
+        var window = new Window
+        {
+            Content = new StackPanel { Children = { menu, combo } },
+            RequestedThemeVariant = dark ? ThemeVariant.Dark : ThemeVariant.Light
+        };
+        try
+        {
+            window.Show();
+            Dispatcher.UIThread.RunJobs();
+            window.UpdateLayout();
+            var icon = parent.GetVisualDescendants().OfType<PathIcon>()
+                .First(element => element.Name == "PART_ExpanderIcon");
+            var dropdown = combo.GetVisualDescendants().OfType<PathIcon>()
+                .Single(element => element.Name == "DropDownGlyph");
+            icon.Transitions = null;
+            Assert.Same(dropdown.Data, icon.Data);
+            Assert.Equal(dropdown.Width, icon.Width);
+            Assert.Equal(dropdown.Height, icon.Height);
+            Assert.Equal(8, icon.Width);
+            Assert.Equal(8, icon.Height);
+
+            parent.IsVerticalCollapsed = false;
+            Assert.Equal(-1, icon.RenderTransform!.Value.M11, 6);
+            parent.IsVerticalCollapsed = true;
+            Assert.Equal(Matrix.Identity, icon.RenderTransform!.Value);
+            parent.IsVerticalCollapsed = false;
+            Assert.Equal(-1, icon.RenderTransform!.Value.M11, 6);
+
+            var nestedIcon = nested.GetVisualDescendants().OfType<PathIcon>()
+                .First(element => element.Name == "PART_ExpanderIcon");
+            nestedIcon.Transitions = null;
+            var leafIcon = leaf.GetVisualDescendants().OfType<PathIcon>()
+                .Single(element => element.Name == "PART_ExpanderIcon");
+            Assert.False(leafIcon.IsVisible);
+            menu.IsHorizontalCollapsed = true;
+            Assert.False(icon.IsVisible);
+            Assert.Equal(-1, nestedIcon.RenderTransform!.Value.M12, 6);
+            menu.IsHorizontalCollapsed = false;
+            Assert.True(icon.IsVisible);
+
+            var replacement = Geometry.Parse("M0 0 L4 4 L8 0");
+            window.Resources["NavigationMenuItemExpandIconGlyph"] = replacement;
+            window.Resources["NavigationMenuItemExpandIconWidth"] = 10d;
+            Assert.Same(replacement, icon.Data);
+            Assert.Equal(10, icon.Width);
+        }
+        finally
+        {
+            window.Close();
+        }
+    }
+
+    [AvaloniaTheory]
+    [InlineData(false, false)]
+    [InlineData(false, true)]
+    [InlineData(true, false)]
+    [InlineData(true, true)]
+    public void Multi_auto_complete_box_renders_its_outer_border(bool dark, bool hasSelection)
+    {
+        var control = new MultiAutoCompleteBox
+        {
+            Width = 280,
+            SelectedItems = new System.Collections.ObjectModel.ObservableCollection<string>(
+                hasSelection ? ["Selected item"] : [])
+        };
+        var window = new Window
+        {
+            Content = control,
+            RequestedThemeVariant = dark ? ThemeVariant.Dark : ThemeVariant.Light
+        };
+        try
+        {
+            window.Show();
+            window.UpdateLayout();
+            Dispatcher.UIThread.RunJobs();
+            var border = control.GetVisualDescendants().OfType<Border>()
+                .Single(element => element.Name == "PART_RootBorder");
+            Assert.True(Application.Current!.TryGetResource("TextBoxBorderThickness", window.ActualThemeVariant, out var thickness));
+            Assert.Equal(new Thickness(1), Assert.IsType<Thickness>(thickness));
+            Assert.Equal(thickness, border.BorderThickness);
+            Assert.IsAssignableFrom<IBrush>(border.BorderBrush);
+            Assert.True(border.BorderBrush!.Opacity > 0);
+            Assert.True(border.Bounds.Width > 0);
+            Assert.True(border.Bounds.Height > 0);
+
+            control.BorderThickness = new Thickness(2);
+            Assert.Equal(new Thickness(2), border.BorderThickness);
+            control.ClearValue(TemplatedControl.BorderThicknessProperty);
+            Assert.Equal(thickness, border.BorderThickness);
+
+            window.Resources["TextBoxBorderThickness"] = new Thickness(3);
+            Assert.Equal(new Thickness(3), border.BorderThickness);
+        }
+        finally
+        {
+            window.Close();
+        }
+    }
+
+    [AvaloniaTheory]
+    [InlineData(false)]
+    [InlineData(true)]
     public void Numeric_input_uses_fluent_spinner_border_without_nested_textbox_border(bool dark)
     {
         var native = new Avalonia.Controls.NumericUpDown { Value = 3, Width = 280 };
@@ -87,24 +196,32 @@ public class ThemeSmokeTests
                 menu.SelectedItem = item;
                 window.UpdateLayout();
                 Dispatcher.UIThread.RunJobs();
-                Assert.Same(item.Page, model.CurrentPage);
-                Assert.Equal($"{item.Page!.Id}Page", model.Content!.GetType().Name);
+                Assert.Equal(item.PageId, model.CurrentPage!.Id);
+                Assert.Equal(item.PageId, model.Content!.PageId);
                 Assert.Same(model.Content, window.FindControl<ContentControl>("PageContent")!.Content);
-                Assert.Single(window.GetVisualDescendants().OfType<Ursa.Fluent2.Demo.Pages.DemoPageView>());
+                var page = Assert.Single(window.GetVisualDescendants().OfType<Ursa.Fluent2.Demo.Pages.DemoPageView>());
+                Assert.Equal($"{item.PageId}Page", page.GetType().Name);
+                Assert.Same(model.Content, page.DataContext);
+                foreach (var launch in page.GetVisualDescendants().OfType<Button>()
+                             .Where(button => button.CommandParameter is string))
+                {
+                    Assert.NotNull(launch.Command);
+                    Assert.Same(model.Content.OpenSampleCommand, launch.Command);
+                    Assert.True(launch.Command.CanExecute(launch.CommandParameter));
+                }
                 var sampleLabels = window.GetVisualDescendants().OfType<TextBlock>()
                     .Where(text => text.Classes.Contains("gallery-label")).ToArray();
                 Assert.NotEmpty(sampleLabels);
                 Assert.All(sampleLabels, label => Assert.Equal(16, label.FontSize));
-                var page = Assert.IsAssignableFrom<Ursa.Fluent2.Demo.Pages.DemoPageView>(model.Content);
                 Assert.Equal(ScrollBarVisibility.Auto,
                     Assert.IsType<ScrollViewer>(page.Content).HorizontalScrollBarVisibility);
                 examples += sampleLabels.Length;
-                if (item.Page.Id == "ScrollToButton")
+                if (item.PageId == "ScrollToButton")
                 {
                     var scrollButton = window.GetVisualDescendants().OfType<ScrollToButton>().Single();
                     Assert.IsType<ScrollViewer>(scrollButton.Target);
                 }
-                if (item.Page.Id == "ClassSelector")
+                if (item.PageId == "ClassSelector")
                 {
                     var selector = window.GetVisualDescendants().OfType<ClassSelector>().Single();
                     var target = window.GetVisualDescendants().OfType<Button>()
@@ -114,7 +231,7 @@ public class ThemeSmokeTests
             }
             Assert.Equal(115, examples);
             menu.SelectedItem = model.Categories.SelectMany(category => category.Children)
-                .Single(item => item.Page?.Id == "UrsaGroupBox");
+                .Single(item => item.PageId == "UrsaGroupBox");
             window.UpdateLayout();
 
             var group = window.GetVisualDescendants().OfType<UrsaGroupBox>().First();
@@ -124,7 +241,7 @@ public class ThemeSmokeTests
             Assert.Contains(group.GetVisualDescendants(), child => child is GroupBoxBorder);
 
             menu.SelectedItem = model.Categories.SelectMany(category => category.Children)
-                .Single(item => item.Page?.Id == "Divider");
+                .Single(item => item.PageId == "Divider");
             window.UpdateLayout();
             var dividers = window.GetVisualDescendants().OfType<Divider>().ToArray();
             Assert.NotEmpty(dividers);
@@ -320,7 +437,7 @@ public class ThemeSmokeTests
             window.Show();
             var model = window.ViewModel;
             model.SelectedItem = model.Categories.SelectMany(category => category.Children)
-                .Single(item => item.Page?.Id == "NumericUpDown");
+                .Single(item => item.PageId == "NumericUpDown");
             window.UpdateLayout();
             var numberInput = window.GetVisualDescendants().OfType<NumericIntUpDown>().First();
             fluentTheme.DensityStyle = Avalonia.Themes.Fluent2.DensityStyle.Normal;

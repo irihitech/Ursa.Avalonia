@@ -4,20 +4,22 @@
     xmlns:u="https://irihi.tech/ursa"
     xmlns:sys="using:System"
     xmlns:pages="using:Ursa.Fluent2.Demo.Pages"
+    xmlns:vm="using:Ursa.Fluent2.Demo.ViewModels"
+    x:DataType="vm:DemoPageViewModel"
     x:Class="Ursa.Fluent2.Demo.Pages.DialogPage">
   <ScrollViewer HorizontalScrollBarVisibility="Auto">
     <StackPanel Margin="24" Spacing="24" MaxWidth="1000" HorizontalAlignment="Stretch">
       <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
         <StackPanel Spacing="6">
           <TextBlock Classes="gallery-label" Text="Dialog" FontWeight="SemiBold"/>
-          <Button Content="Open window dialog sample" Tag="Dialog" Click="OpenSample" HorizontalAlignment="Left"/>
-          <Button Content="Open modal overlay dialog sample" Tag="ModalDialog" Click="OpenSample" HorizontalAlignment="Left"/>
+          <Button Content="Open window dialog sample" Command="{Binding OpenSampleCommand}" CommandParameter="Dialog" HorizontalAlignment="Left"/>
+          <Button Content="Open modal overlay dialog sample" Command="{Binding OpenSampleCommand}" CommandParameter="ModalDialog" HorizontalAlignment="Left"/>
         </StackPanel>
       </Border>
       <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
         <StackPanel Spacing="6">
           <TextBlock Classes="gallery-label" Text="CustomDialogControl" FontWeight="SemiBold"/>
-          <Button Content="Open CustomDialogControl sample" Tag="CustomDialogControl" Click="OpenSample" HorizontalAlignment="Left"/>
+          <Button Content="Open CustomDialogControl sample" Command="{Binding OpenSampleCommand}" CommandParameter="CustomDialogControl" HorizontalAlignment="Left"/>
         </StackPanel>
       </Border>
       <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
@@ -25,19 +27,19 @@
           <TextBlock Classes="gallery-label" Text="CustomDialogWindow" FontWeight="SemiBold"/>
           <TextBlock Text="A content-sized window with a custom header, editable content, and its own actions."
                      Foreground="{DynamicResource TextFillColorSecondary}" TextWrapping="Wrap"/>
-          <Button Content="Open CustomDialogWindow sample" Tag="CustomDialogWindow" Click="OpenSample" HorizontalAlignment="Left"/>
+          <Button Content="Open CustomDialogWindow sample" Command="{Binding OpenSampleCommand}" CommandParameter="CustomDialogWindow" HorizontalAlignment="Left"/>
         </StackPanel>
       </Border>
       <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
         <StackPanel Spacing="6">
           <TextBlock Classes="gallery-label" Text="StandardDialogControl" FontWeight="SemiBold"/>
-          <Button Content="Open StandardDialogControl sample" Tag="StandardDialogControl" Click="OpenSample" HorizontalAlignment="Left"/>
+          <Button Content="Open StandardDialogControl sample" Command="{Binding OpenSampleCommand}" CommandParameter="StandardDialogControl" HorizontalAlignment="Left"/>
         </StackPanel>
       </Border>
       <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
         <StackPanel Spacing="6">
           <TextBlock Classes="gallery-label" Text="StandardDialogWindow" FontWeight="SemiBold"/>
-          <Button Content="Open StandardDialogWindow sample" Tag="StandardDialogWindow" Click="OpenSample" HorizontalAlignment="Left"/>
+          <Button Content="Open StandardDialogWindow sample" Command="{Binding OpenSampleCommand}" CommandParameter="StandardDialogWindow" HorizontalAlignment="Left"/>
         </StackPanel>
       </Border>
     </StackPanel>

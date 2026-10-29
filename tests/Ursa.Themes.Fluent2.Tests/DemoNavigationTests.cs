@@ -41,6 +41,10 @@ public class DemoNavigationTests
             Assert.Null(model.Content);
             Assert.Null(menu.SelectedItem);
 
+            model.ClearSearchCommand.Execute(null);
+            Assert.False(model.NoResults);
+            Assert.Equal("NumericUpDown", model.CurrentPage!.Id);
+            search.Text = "no-such-control";
             search.Text = null;
             Dispatcher.UIThread.RunJobs();
             Assert.False(model.NoResults);
@@ -78,9 +82,10 @@ public class DemoNavigationTests
             window.Show();
             var model = window.ViewModel;
             model.SelectedItem = model.Categories.SelectMany(category => category.Children)
-                .Single(item => item.Page?.Id == "NumericUpDown");
+                .Single(item => item.PageId == "NumericUpDown");
             window.UpdateLayout();
             var page = model.Content;
+            var view = Assert.Single(window.GetVisualDescendants().OfType<Ursa.Fluent2.Demo.Pages.DemoPageView>());
             var input = window.GetVisualDescendants().OfType<NumericIntUpDown>().First();
             var appearance = window.FindControl<Button>("AppearanceButton")!;
             var flyout = Assert.IsType<Flyout>(appearance.Flyout);
@@ -108,6 +113,7 @@ public class DemoNavigationTests
             Assert.Equal(1, model.DensityIndex);
             Assert.Equal(ThemeVariant.Dark, app.RequestedThemeVariant);
             Assert.Same(page, model.Content);
+            Assert.Same(view, Assert.Single(window.GetVisualDescendants().OfType<Ursa.Fluent2.Demo.Pages.DemoPageView>()));
             Assert.Same(model.SelectedItem, window.FindControl<NavMenu>("NavigationMenu")!.SelectedItem);
             Assert.Equal(2, settings["ThemeChoice"].SelectedIndex);
             Assert.Equal(1, settings["DensityChoice"].SelectedIndex);

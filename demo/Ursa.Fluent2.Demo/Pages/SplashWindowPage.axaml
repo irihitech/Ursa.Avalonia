@@ -4,13 +4,15 @@
     xmlns:u="https://irihi.tech/ursa"
     xmlns:sys="using:System"
     xmlns:pages="using:Ursa.Fluent2.Demo.Pages"
+    xmlns:vm="using:Ursa.Fluent2.Demo.ViewModels"
+    x:DataType="vm:DemoPageViewModel"
     x:Class="Ursa.Fluent2.Demo.Pages.SplashWindowPage">
   <ScrollViewer HorizontalScrollBarVisibility="Auto">
     <StackPanel Margin="24" Spacing="24" MaxWidth="1000" HorizontalAlignment="Stretch">
       <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
         <StackPanel Spacing="6">
           <TextBlock Classes="gallery-label" Text="SplashWindow" FontWeight="SemiBold"/>
-          <Button Content="Open SplashWindow sample" Tag="SplashWindow" Click="OpenSample" HorizontalAlignment="Left"/>
+          <Button Content="Open SplashWindow sample" Command="{Binding OpenSampleCommand}" CommandParameter="SplashWindow" HorizontalAlignment="Left"/>
         </StackPanel>
       </Border>
     </StackPanel>

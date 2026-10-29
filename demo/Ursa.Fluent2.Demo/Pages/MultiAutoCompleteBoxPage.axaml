@@ -4,13 +4,25 @@
     xmlns:u="https://irihi.tech/ursa"
     xmlns:sys="using:System"
     xmlns:pages="using:Ursa.Fluent2.Demo.Pages"
+    xmlns:vm="using:Ursa.Fluent2.Demo.ViewModels"
+    x:DataType="vm:MultiAutoCompleteBoxPageViewModel"
     x:Class="Ursa.Fluent2.Demo.Pages.MultiAutoCompleteBoxPage">
   <ScrollViewer HorizontalScrollBarVisibility="Auto">
     <StackPanel Margin="24" Spacing="24" MaxWidth="1000" HorizontalAlignment="Stretch">
       <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
         <StackPanel Spacing="6">
           <TextBlock Classes="gallery-label" Text="MultiAutoCompleteBox" FontWeight="SemiBold"/>
-          <u:MultiAutoCompleteBox HorizontalAlignment="Left" MaxWidth="640" Width="280"/>
+          <TextBlock Text="Type to filter suggestions, then select an item to add a tag." TextWrapping="Wrap"/>
+          <u:MultiAutoCompleteBox Name="MultiAutoCompleteInput" HorizontalAlignment="Left" MaxWidth="640" Width="360"
+                                  ItemsSource="{Binding Items}"
+                                  SelectedItems="{Binding SelectedItems}"
+                                  Text="{Binding SearchText, Mode=TwoWay}"
+                                  FilterMode="Contains"
+                                  PlaceholderText="Add a technology"/>
+          <TextBlock Text="{Binding SearchText, StringFormat='Search: {0}'}"/>
+          <TextBlock Name="SelectionCount" Text="{Binding SelectedItems.Count, StringFormat='Selected items: {0}'}"/>
+          <ItemsControl ItemsSource="{Binding SelectedItems}"/>
+          <Button Content="Clear selection" Command="{Binding ClearSelectionCommand}" HorizontalAlignment="Left"/>
         </StackPanel>
       </Border>
     </StackPanel>
