@@ -20,6 +20,10 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
     public const string PART_Placeholder = "PART_Placeholder";
     public const string PART_FocusedPlaceholder = "PART_FocusedPlaceholder";
 
+    // Modifier flags cannot distinguish LeftCtrl from RightCtrl, so pending-gesture
+    // clearing tracks the physical modifier keys that are still held.
+    private readonly HashSet<Key> _heldModifierKeys = [];
+
     private static readonly IReadOnlyDictionary<Key, KeyModifiers> ModifierKeyMap =
         new Dictionary<Key, KeyModifiers>
         {
@@ -259,6 +263,7 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
         {
             // Modifier key presses accumulate: show every modifier currently held
             // (at least the one just pressed) until a regular key completes the gesture.
+            _heldModifierKeys.Add(e.Key);
             var modifiers = e.KeyModifiers | ModifierKeyMap[e.Key];
             SetCurrentValue(GestureProperty, new KeyGesture(Key.None, modifiers));
             e.Handled = true;
@@ -271,6 +276,11 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
     protected override void OnKeyUp(KeyEventArgs e)
     {
         base.OnKeyUp(e);
+        if (!ModifierKeyMap.TryGetValue(e.Key, out var released))
+        {
+            return;
+        }
+        _heldModifierKeys.Remove(e.Key);
         if (IsReadOnly || !ClearOnModifierRelease)
         {
             return;
@@ -281,15 +291,32 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
         {
             return;
         }
-        if (!ModifierKeyMap.TryGetValue(e.Key, out var released))
-        {
-            return;
-        }
-        // Some platforms still report the released modifier in the keyup event.
-        if ((e.KeyModifiers & ~released & gesture.KeyModifiers) == KeyModifiers.None)
+        // Clear only after the last physically held modifier is released: the flag check
+        // alone cannot distinguish LeftCtrl from RightCtrl, while the physical set alone
+        // misses modifiers that were already held before the control got focus. Some
+        // platforms also still report the released modifier in the keyup event.
+        if (_heldModifierKeys.Count == 0 &&
+            (e.KeyModifiers & ~released & gesture.KeyModifiers) == KeyModifiers.None)
         {
             Clear();
             e.Handled = true;
+        }
+    }
+
+    protected override void OnLostFocus(FocusChangedEventArgs e)
+    {
+        base.OnLostFocus(e);
+        // The control no longer sees keyups once focus moves elsewhere, so a pending
+        // modifier-only recording and the held-key tracking would both go stale.
+        _heldModifierKeys.Clear();
+        if (IsReadOnly || !ClearOnModifierRelease)
+        {
+            return;
+        }
+        var gesture = Gesture;
+        if (gesture is not null && gesture.Key == Key.None && gesture.KeyModifiers != KeyModifiers.None)
+        {
+            Clear();
         }
     }
 

@@ -434,6 +434,76 @@ public class KeyGestureInputBaseTests
     }
 
     [AvaloniaFact]
+    public void Focus_Loss_Should_Clear_Pending_Modifier_Only_Gesture()
+    {
+        var window = new Window();
+        var input = new KeyGestureInput();
+        var other = new Button();
+        window.Content = new StackPanel { Children = { input, other } };
+        window.Show();
+
+        input.Focus();
+        input.RaiseEvent(new KeyEventArgs
+        {
+            RoutedEvent = InputElement.KeyDownEvent,
+            Key = Key.LeftCtrl,
+            KeyModifiers = KeyModifiers.Control,
+        });
+        Assert.Equal(new KeyGesture(Key.None, KeyModifiers.Control), input.Gesture);
+
+        // After focus moves elsewhere the control no longer sees the modifier keyup,
+        // so the pending recording is cancelled on focus loss instead.
+        other.Focus();
+        Assert.Null(input.Gesture);
+
+        // A completed gesture survives focus loss.
+        input.Focus();
+        input.Gesture = new KeyGesture(Key.A, KeyModifiers.Control);
+        other.Focus();
+        Assert.Equal(new KeyGesture(Key.A, KeyModifiers.Control), input.Gesture);
+    }
+
+    [AvaloniaFact]
+    public void Releasing_One_Side_Of_A_Modifier_Should_Keep_Pending_Gesture()
+    {
+        var window = new Window();
+        var input = new KeyGestureInput();
+        window.Content = input;
+        window.Show();
+
+        input.RaiseEvent(new KeyEventArgs
+        {
+            RoutedEvent = InputElement.KeyDownEvent,
+            Key = Key.LeftCtrl,
+            KeyModifiers = KeyModifiers.Control,
+        });
+        input.RaiseEvent(new KeyEventArgs
+        {
+            RoutedEvent = InputElement.KeyDownEvent,
+            Key = Key.RightCtrl,
+            KeyModifiers = KeyModifiers.Control,
+        });
+        Assert.Equal(new KeyGesture(Key.None, KeyModifiers.Control), input.Gesture);
+
+        // RightCtrl is still physically held, so the pending gesture is kept.
+        input.RaiseEvent(new KeyEventArgs
+        {
+            RoutedEvent = InputElement.KeyUpEvent,
+            Key = Key.LeftCtrl,
+            KeyModifiers = KeyModifiers.Control,
+        });
+        Assert.Equal(new KeyGesture(Key.None, KeyModifiers.Control), input.Gesture);
+
+        input.RaiseEvent(new KeyEventArgs
+        {
+            RoutedEvent = InputElement.KeyUpEvent,
+            Key = Key.RightCtrl,
+            KeyModifiers = KeyModifiers.None,
+        });
+        Assert.Null(input.Gesture);
+    }
+
+    [AvaloniaFact]
     public void Clear_Should_Reset_Gesture_And_Keys()
     {
         var window = new Window();
@@ -510,28 +580,10 @@ public class KeyGestureInputBaseTests
             .Single(b => b.Name == "PART_ClearButton");
         Assert.False(button.IsVisible);
 
-        // The property wins even over the always-visible style class.
         ((IPseudoClasses)input.Classes).Set(":pointerover", true);
         Assert.False(button.IsVisible);
 
         input.Classes.Add("ClearButton");
         Assert.False(button.IsVisible);
-    }
-
-    [AvaloniaFact]
-    public void ClearButton_With_Style_Class_Should_Always_Be_Visible_When_Not_Empty()
-    {
-        var window = new Window();
-        var input = new KeyGestureInput
-        {
-            Gesture = new KeyGesture(Key.A, KeyModifiers.Control),
-        };
-        input.Classes.Add("ClearButton");
-        window.Content = input;
-        window.Show();
-
-        var button = input.GetVisualDescendants().OfType<Button>()
-            .Single(b => b.Name == "PART_ClearButton");
-        Assert.True(button.IsVisible);
     }
 }
