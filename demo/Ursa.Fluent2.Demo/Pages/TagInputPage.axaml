@@ -4,13 +4,20 @@
     xmlns:u="https://irihi.tech/ursa"
     xmlns:sys="using:System"
     xmlns:pages="using:Ursa.Fluent2.Demo.Pages"
+    xmlns:vm="using:Ursa.Fluent2.Demo.ViewModels"
+    x:DataType="vm:TagInputPageViewModel"
     x:Class="Ursa.Fluent2.Demo.Pages.TagInputPage">
   <ScrollViewer HorizontalScrollBarVisibility="Auto">
     <StackPanel Margin="24" Spacing="24" MaxWidth="1000" HorizontalAlignment="Stretch">
       <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
         <StackPanel Spacing="6">
           <TextBlock Classes="gallery-label" Text="TagInput" FontWeight="SemiBold"/>
-          <u:TagInput HorizontalAlignment="Left" MaxWidth="640" Width="280"/>
+          <TextBlock Text="Type a tag and press Enter. Add or remove tags to update the view-model collection." TextWrapping="Wrap"/>
+          <u:TagInput Name="TagInput" HorizontalAlignment="Left" MaxWidth="640" Width="360"
+                       Tags="{Binding Tags}" AllowDuplicates="False" PlaceholderText="Add a tag"/>
+          <TextBlock Name="TagCount" Text="{Binding Tags.Count, StringFormat='Tags: {0}'}"/>
+          <ItemsControl ItemsSource="{Binding Tags}"/>
+          <Button Content="Clear tags" Command="{Binding ClearTagsCommand}" HorizontalAlignment="Left"/>
         </StackPanel>
       </Border>
       <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">

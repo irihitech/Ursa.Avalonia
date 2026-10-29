@@ -1,42 +1,46 @@
-using System.ComponentModel;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Styling;
 using Avalonia.Themes.Fluent2;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Ursa.Fluent2.Demo.Services;
 using Ursa.Themes.Fluent2;
 
-namespace Ursa.Fluent2.Demo;
+namespace Ursa.Fluent2.Demo.ViewModels;
 
-public sealed record DemoNavItem(string Title, DemoPage? Page, IReadOnlyList<DemoNavItem> Children)
+public sealed class DemoNavItem(string title, string? pageId, IReadOnlyList<DemoNavItem> children)
 {
+    public string Title { get; } = title;
+    public string? PageId { get; } = pageId;
+    public IReadOnlyList<DemoNavItem> Children { get; } = children;
     public Geometry Icon { get; } = StreamGeometry.Parse(
         "M2,2 H7 V7 H2 Z M10,2 H15 V7 H10 Z M2,10 H7 V15 H2 Z M10,10 H15 V15 H10 Z");
 }
 
-public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
+public sealed partial class MainViewModel : ObservableObject, IDisposable
 {
     private readonly Application _application;
     private readonly Fluent2Theme _fluentTheme;
     private readonly UrsaFluent2Theme _ursaTheme;
+    private readonly IDemoInteractionService _interactions;
     private string _searchText = string.Empty;
-    private DemoNavItem? _selectedItem;
     private string _lastPageId = "IconButton";
     private int _themeIndex;
     private int _densityIndex;
     private int _languageIndex;
     private bool _updatingText;
-    private bool _isCollapsed;
 
-    public MainViewModel(Fluent2Theme fluentTheme, UrsaFluent2Theme ursaTheme)
+    public MainViewModel(Fluent2Theme fluentTheme, UrsaFluent2Theme ursaTheme,
+        IDemoInteractionService interactions)
     {
         _application = Application.Current!;
         _fluentTheme = fluentTheme;
         _ursaTheme = ursaTheme;
-        _themeIndex = Application.Current!.RequestedThemeVariant == ThemeVariant.Dark ? 2 :
-            Application.Current.RequestedThemeVariant == ThemeVariant.Light ? 1 : 0;
+        _interactions = interactions;
+        _themeIndex = _application.RequestedThemeVariant == ThemeVariant.Dark ? 2 :
+            _application.RequestedThemeVariant == ThemeVariant.Light ? 1 : 0;
         _densityIndex = fluentTheme.DensityStyle == DensityStyle.Compact ? 1 : 0;
         _languageIndex = (ursaTheme.Locale?.Name ?? "zh-CN").StartsWith("zh", StringComparison.Ordinal) ? 1 : 0;
         Text = new DemoText(_languageIndex == 1);
@@ -44,11 +48,27 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
         _application.PropertyChanged += OnApplicationPropertyChanged;
     }
 
-    public event PropertyChangedEventHandler? PropertyChanged;
-    public DemoText Text { get; private set; }
-    public IReadOnlyList<DemoNavItem> Categories { get; private set; } = [];
-    public DemoPage? CurrentPage { get; private set; }
-    public Control? Content { get; private set; }
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(PageTitle), nameof(PageCategory), nameof(PageDescription))]
+    public partial DemoText Text { get; private set; } = new(false);
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(NoResults), nameof(ResultCount))]
+    public partial IReadOnlyList<DemoNavItem> Categories { get; private set; } = [];
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasPage), nameof(PageTitle), nameof(PageCategory), nameof(PageDescription))]
+    public partial DemoPage? CurrentPage { get; private set; }
+
+    [ObservableProperty]
+    public partial DemoPageViewModel? Content { get; private set; }
+
+    [ObservableProperty]
+    public partial DemoNavItem? SelectedItem { get; set; }
+
+    [ObservableProperty]
+    public partial bool IsCollapsed { get; set; }
+
     public bool HasPage => CurrentPage is not null;
     public bool NoResults => Categories.Count == 0;
     public string PageTitle => CurrentPage?.Id ?? Text.NoResults;
@@ -63,45 +83,25 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
         set
         {
             value ??= string.Empty;
-            if (_searchText == value) return;
-            _searchText = value;
-            Notify();
-            RebuildNavigation();
+            if (SetProperty(ref _searchText, value)) RebuildNavigation();
         }
     }
 
-    public DemoNavItem? SelectedItem
+    partial void OnSelectedItemChanged(DemoNavItem? value)
     {
-        get => _selectedItem;
-        set
+        if (value?.PageId is { } pageId)
         {
-            if (ReferenceEquals(_selectedItem, value)) return;
-            _selectedItem = value;
-            Notify();
-            if (value?.Page is { } page)
+            _lastPageId = pageId;
+            if (CurrentPage?.Id != pageId)
             {
-                _lastPageId = page.Id;
-                if (CurrentPage != page)
-                {
-                    CurrentPage = page;
-                    Content = page.CreateView();
-                    Notify(nameof(Content));
-                }
-                NotifyPage();
+                CurrentPage = DemoCatalog.GetPage(pageId);
+                Content = DemoPageViewModel.Create(pageId, _interactions);
             }
         }
     }
 
-    public bool IsCollapsed
-    {
-        get => _isCollapsed;
-        set
-        {
-            if (_isCollapsed == value) return;
-            _isCollapsed = value;
-            Notify();
-        }
-    }
+    [RelayCommand]
+    private void ClearSearch() => SearchText = string.Empty;
 
     public int ThemeIndex
     {
@@ -109,14 +109,13 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
         set
         {
             if (_updatingText || value is < 0 or > 2 || _themeIndex == value) return;
-            _themeIndex = value;
-            Application.Current!.RequestedThemeVariant = value switch
+            SetProperty(ref _themeIndex, value);
+            _application.RequestedThemeVariant = value switch
             {
                 1 => ThemeVariant.Light,
                 2 => ThemeVariant.Dark,
                 _ => ThemeVariant.Default
             };
-            Notify();
         }
     }
 
@@ -126,11 +125,10 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
         set
         {
             if (_updatingText || value is < 0 or > 1 || _densityIndex == value) return;
-            _densityIndex = value;
+            SetProperty(ref _densityIndex, value);
             var density = value == 1 ? DensityStyle.Compact : DensityStyle.Normal;
             _fluentTheme.DensityStyle = density;
             _ursaTheme.DensityStyle = density;
-            Notify();
         }
     }
 
@@ -140,15 +138,14 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
         set
         {
             if (_updatingText || value is < 0 or > 1 || _languageIndex == value) return;
-            _languageIndex = value;
+            SetProperty(ref _languageIndex, value);
             _ursaTheme.Locale = CultureInfo.GetCultureInfo(value == 1 ? "zh-CN" : "en-US");
             _updatingText = true;
             Text = new DemoText(value == 1);
-            Notify(nameof(Text));
             _updatingText = false;
-            Notify(nameof(ThemeIndex));
-            Notify(nameof(DensityIndex));
-            Notify();
+            OnPropertyChanged(nameof(ThemeIndex));
+            OnPropertyChanged(nameof(DensityIndex));
+            OnPropertyChanged(nameof(LanguageIndex));
             RebuildNavigation();
         }
     }
@@ -162,31 +159,17 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
                                     page.Id.Contains(query, StringComparison.OrdinalIgnoreCase) ||
                                     Text.Category(page.Category).Contains(query, StringComparison.OrdinalIgnoreCase))
                     .OrderBy(page => page.Id, StringComparer.Ordinal)
-                    .Select(page => new DemoNavItem(page.Id, page, []))
+                    .Select(page => new DemoNavItem(page.Id, page.Id, []))
                     .ToArray()))
             .Where(category => category.Children.Count > 0)
             .ToArray();
-        Notify(nameof(Categories));
-        Notify(nameof(ResultCount));
-        Notify(nameof(NoResults));
         var items = Categories.SelectMany(category => category.Children).ToArray();
-        SelectedItem = items.FirstOrDefault(item => item.Page?.Id == _lastPageId) ?? items.FirstOrDefault();
+        SelectedItem = items.FirstOrDefault(item => item.PageId == _lastPageId) ?? items.FirstOrDefault();
         if (SelectedItem is null)
         {
             CurrentPage = null;
             Content = null;
-            Notify(nameof(Content));
         }
-        NotifyPage();
-    }
-
-    private void NotifyPage()
-    {
-        Notify(nameof(CurrentPage));
-        Notify(nameof(HasPage));
-        Notify(nameof(PageTitle));
-        Notify(nameof(PageCategory));
-        Notify(nameof(PageDescription));
     }
 
     private void OnApplicationPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs change)
@@ -194,11 +177,8 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
         if (change.Property != Application.RequestedThemeVariantProperty) return;
         _themeIndex = _application.RequestedThemeVariant == ThemeVariant.Dark ? 2 :
             _application.RequestedThemeVariant == ThemeVariant.Light ? 1 : 0;
-        Notify(nameof(ThemeIndex));
+        OnPropertyChanged(nameof(ThemeIndex));
     }
 
     public void Dispose() => _application.PropertyChanged -= OnApplicationPropertyChanged;
-
-    private void Notify([CallerMemberName] string? propertyName = null) =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 }

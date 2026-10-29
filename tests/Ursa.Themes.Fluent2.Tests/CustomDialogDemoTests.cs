@@ -8,6 +8,7 @@ using Avalonia.VisualTree;
 using Ursa.Controls;
 using Ursa.Fluent2.Demo;
 using Ursa.Fluent2.Demo.Pages;
+using Ursa.Fluent2.Demo.ViewModels;
 using Xunit;
 
 namespace Ursa.Themes.Fluent2.Tests;
@@ -28,11 +29,12 @@ public class CustomDialogDemoTests
             owner.Show();
             var model = owner.ViewModel;
             model.SelectedItem = model.Categories.SelectMany(category => category.Children)
-                .Single(item => item.Page?.Id == "Dialog");
+                .Single(item => item.PageId == "Dialog");
             owner.UpdateLayout();
             var launch = owner.GetVisualDescendants().OfType<Button>()
-                .Single(button => Equals(button.Tag, "CustomDialogWindow"));
-            launch.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                .Single(button => Equals(button.CommandParameter, "CustomDialogWindow"));
+            Assert.NotNull(launch.Command);
+            launch.Command.Execute(launch.CommandParameter);
             Dispatcher.UIThread.RunJobs();
             dialog = Assert.IsType<CustomDialogWindow>(Assert.Single(owner.OwnedWindows));
             dialog.UpdateLayout();
@@ -53,16 +55,24 @@ public class CustomDialogDemoTests
             Assert.True(dialog.Bounds.Height > 0);
             Assert.True(dialog.Bounds.Height < 320);
 
-            input.Text = "Updated project";
-            Assert.Equal("Updated project", input.Text);
             var context = Assert.IsType<CustomDialogSampleViewModel>(dialog.DataContext);
+            input.Text = "Updated project";
+            Assert.Equal("Updated project", context.ProjectName);
+            context.ProjectName = "ViewModel update";
+            Assert.Equal("ViewModel update", input.Text);
             object? result = null;
             context.RequestClose += (_, value) => result = value;
             var closed = false;
             dialog.Closed += (_, _) => closed = true;
             var action = dialog.GetVisualDescendants().OfType<Button>()
                 .Single(button => button.Name == closeButtonName);
-            action.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            if (closeButtonName == CustomDialogWindow.PART_CloseButton)
+                action.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            else
+            {
+                Assert.NotNull(action.Command);
+                action.Command.Execute(action.CommandParameter);
+            }
             Dispatcher.UIThread.RunJobs();
             Assert.True(closed);
             Assert.Equal(expectedResult, result);

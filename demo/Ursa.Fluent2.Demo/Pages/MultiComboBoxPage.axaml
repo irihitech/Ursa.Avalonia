@@ -4,16 +4,19 @@
     xmlns:u="https://irihi.tech/ursa"
     xmlns:sys="using:System"
     xmlns:pages="using:Ursa.Fluent2.Demo.Pages"
+    xmlns:vm="using:Ursa.Fluent2.Demo.ViewModels"
+    x:DataType="vm:MultiComboBoxPageViewModel"
     x:Class="Ursa.Fluent2.Demo.Pages.MultiComboBoxPage">
   <ScrollViewer HorizontalScrollBarVisibility="Auto">
     <StackPanel Margin="24" Spacing="24" MaxWidth="1000" HorizontalAlignment="Stretch">
       <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
         <StackPanel Spacing="6">
           <TextBlock Classes="gallery-label" Text="MultiComboBox" FontWeight="SemiBold"/>
-          <u:MultiComboBox HorizontalAlignment="Left" MaxWidth="640" Width="280">
-            <x:String>First item</x:String>
-            <x:String>Second item</x:String>
-          </u:MultiComboBox>
+          <TextBlock Text="Choose several roles; the selected collection is shared with the tag list below." TextWrapping="Wrap"/>
+          <u:MultiComboBox Name="MultiComboBoxInput" HorizontalAlignment="Left" MaxWidth="640" Width="360"
+                           ItemsSource="{Binding Items}" SelectedItems="{Binding SelectedItems}" PlaceholderText="Select roles"/>
+          <TextBlock Name="SelectionCount" Text="{Binding SelectedItems.Count, StringFormat='Selected items: {0}'}"/>
+          <Button Content="Clear selection" Command="{Binding ClearSelectionCommand}" HorizontalAlignment="Left"/>
         </StackPanel>
       </Border>
       <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
@@ -25,10 +28,8 @@
       <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
         <StackPanel Spacing="6">
           <TextBlock Classes="gallery-label" Text="MultiComboBoxSelectedItemList" FontWeight="SemiBold"/>
-          <u:MultiComboBoxSelectedItemList HorizontalAlignment="Left" MaxWidth="640">
-            <x:String>First item</x:String>
-            <x:String>Second item</x:String>
-          </u:MultiComboBoxSelectedItemList>
+          <u:MultiComboBoxSelectedItemList Name="SelectedRoles" HorizontalAlignment="Left" MaxWidth="640"
+                                           ItemsSource="{Binding SelectedItems}" RemoveCommand="{Binding #MultiComboBoxInput.Remove}"/>
         </StackPanel>
       </Border>
     </StackPanel>

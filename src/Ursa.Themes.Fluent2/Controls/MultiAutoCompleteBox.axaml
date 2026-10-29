@@ -6,6 +6,7 @@
         <Setter Property="MinHeight" Value="{DynamicResource AutoCompleteBoxDefaultHeight}" />
         <Setter Property="MaxDropDownHeight" Value="{DynamicResource AutoCompleteMaxDropdownHeight}" />
         <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:MultiAutoCompleteBox">
                 <Panel>
@@ -15,6 +16,7 @@
                         VerticalAlignment="Stretch"
                         Background="{DynamicResource TextBoxDefaultBackground}"
                         BorderBrush="{DynamicResource TextBoxDefaultBorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid ColumnDefinitions="Auto, *, Auto">
                             <ContentPresenter

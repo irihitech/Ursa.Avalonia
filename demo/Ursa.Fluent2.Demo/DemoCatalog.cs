@@ -8,6 +8,8 @@ public sealed record DemoPage(string Id, string Category, string Description, st
 
 public static class DemoCatalog
 {
+    public static DemoPage GetPage(string pageId) => Pages.Single(page => page.Id == pageId);
+
     public static IReadOnlyList<DemoPage> Pages { get; } =
     [
         new("IconButton", "presentation",

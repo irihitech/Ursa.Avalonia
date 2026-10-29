@@ -1,8 +1,9 @@
 <UserControl
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Ursa.Fluent2.Demo.ViewModels"
     x:Class="Ursa.Fluent2.Demo.Pages.CustomDialogSample"
+    x:DataType="vm:CustomDialogSampleViewModel"
     Width="480">
     <Grid RowDefinitions="Auto,Auto,Auto">
         <Border Padding="24,24,72,16">
@@ -14,7 +15,7 @@
                        Foreground="{DynamicResource TextFillColorSecondary}" TextWrapping="Wrap" />
             <StackPanel Spacing="8">
                 <Label Target="{Binding #ProjectName}" Content="Project name" Padding="0" />
-                <TextBox Name="ProjectName" Text="Fluent 2 demo" />
+                <TextBox Name="ProjectName" Text="{Binding ProjectName}" />
             </StackPanel>
         </StackPanel>
         <Border Grid.Row="2" Padding="24,16" BorderThickness="0,1,0,0"
@@ -22,9 +23,9 @@
                 Background="{DynamicResource LayerFillColorDefault}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
                 <Button Name="CancelButton" Content="Cancel" MinWidth="96"
-                        Tag="{x:Static u:DialogResult.Cancel}" Click="CloseDialog" />
+                        Command="{Binding CancelCommand}" />
                 <Button Name="DoneButton" Content="Done" MinWidth="96" Theme="{DynamicResource SolidButton}"
-                        Tag="{x:Static u:DialogResult.OK}" Click="CloseDialog" />
+                        Command="{Binding ConfirmCommand}" />
             </StackPanel>
         </Border>
     </Grid>

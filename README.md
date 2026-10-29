@@ -106,6 +106,13 @@ The gallery uses a searchable, categorized `NavMenu` sidebar with a dedicated
 page for each control. Related item and presenter examples stay on their owning
 control's page. The Appearance menu provides Light/Dark, Normal/Compact, and
 English/Chinese settings.
+The Fluent 2 demo uses CommunityToolkit.Mvvm observable view models and commands.
+AutoCompleteBox, MultiAutoCompleteBox, MultiComboBox, TreeComboBox, SelectionList,
+and TagInput have dedicated page view models demonstrating observable item sources,
+bound selections or tags, and clear commands. TreeComboBox uses hierarchical data.
+Navigation items carry route IDs, not pages or factories. Page views are resolved
+through the catalog by `DemoPageViewLocator`; window and overlay interactions
+are kept in `DemoInteractionService` rather than view-model code.
 When changing density in an application, set `DensityStyle` on both
 `Fluent2Theme` and `UrsaFluent2Theme`. `Locale` configures Ursa's localized
 strings and defaults to Simplified Chinese. High-contrast theme variants are
