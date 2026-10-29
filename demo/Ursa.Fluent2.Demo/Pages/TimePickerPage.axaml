@@ -1,0 +1,31 @@
+<pages:DemoPageView
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:sys="using:System"
+    xmlns:pages="using:Ursa.Fluent2.Demo.Pages"
+    x:Class="Ursa.Fluent2.Demo.Pages.TimePickerPage">
+  <ScrollViewer HorizontalScrollBarVisibility="Auto">
+    <StackPanel Margin="24" Spacing="24" MaxWidth="1000" HorizontalAlignment="Stretch">
+      <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="TimePicker" FontWeight="SemiBold"/>
+          <TimePicker />
+          <u:TimePicker HorizontalAlignment="Left" MaxWidth="640" Width="280"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="TimePickerBase" FontWeight="SemiBold"/>
+          <TextBlock Text="TimePickerBase (abstract base; rendered by TimePicker)"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="TimePickerPresenter" FontWeight="SemiBold"/>
+          <u:TimePickerPresenter HorizontalAlignment="Left" MaxWidth="640"/>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</pages:DemoPageView>

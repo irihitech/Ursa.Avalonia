@@ -1,0 +1,31 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    x:Class="Ursa.Fluent2.Demo.Pages.CustomDialogSample"
+    Width="480">
+    <Grid RowDefinitions="Auto,Auto,Auto">
+        <Border Padding="24,24,72,16">
+            <TextBlock Name="DialogHeading" Text="Custom dialog" FontSize="20" FontWeight="SemiBold"
+                       TextWrapping="Wrap" />
+        </Border>
+        <StackPanel Grid.Row="1" Margin="24,0,24,24" Spacing="16">
+            <TextBlock Text="Custom dialogs supply their own header, content, and actions."
+                       Foreground="{DynamicResource TextFillColorSecondary}" TextWrapping="Wrap" />
+            <StackPanel Spacing="8">
+                <Label Target="{Binding #ProjectName}" Content="Project name" Padding="0" />
+                <TextBox Name="ProjectName" Text="Fluent 2 demo" />
+            </StackPanel>
+        </StackPanel>
+        <Border Grid.Row="2" Padding="24,16" BorderThickness="0,1,0,0"
+                BorderBrush="{DynamicResource DividerStrokeColorDefault}"
+                Background="{DynamicResource LayerFillColorDefault}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+                <Button Name="CancelButton" Content="Cancel" MinWidth="96"
+                        Tag="{x:Static u:DialogResult.Cancel}" Click="CloseDialog" />
+                <Button Name="DoneButton" Content="Done" MinWidth="96" Theme="{DynamicResource SolidButton}"
+                        Tag="{x:Static u:DialogResult.OK}" Click="CloseDialog" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
