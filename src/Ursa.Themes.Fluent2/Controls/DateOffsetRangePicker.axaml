@@ -162,7 +162,7 @@
         <Style Selector="^[ShowOffsetSelection=True] /template/ TextBox#PART_StartTextBox">
             <Setter Property="CornerRadius" Value="0" />
         </Style>
-        <Style Selector="^[ShowOffsetSelection=True] /template/ Border#Backgrouned">
+        <Style Selector="^[ShowOffsetSelection=True] /template/ Border#Background">
             <Setter Property="CornerRadius" Value="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter Right}}" />
         </Style>
 
@@ -193,11 +193,12 @@
             <Setter Property="IsEnabled" Value="False" />
         </Style>
 
-<!--  Focused State  -->
-        <Style Selector="^ /template/ Border#Background:focus">
-            <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
+        <Style Selector="^:not(:disabled):pointerover /template/ Border#Background">
+            <Setter Property="Background" Value="{DynamicResource CalendarDatePickerPointeroverBackground}" />
         </Style>
-        <Style Selector="^ /template/ Border#Background:focus-within">
+
+        <!--  Focused State  -->
+        <Style Selector="^:focus-within /template/ Border#Background">
             <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
         </Style>
 

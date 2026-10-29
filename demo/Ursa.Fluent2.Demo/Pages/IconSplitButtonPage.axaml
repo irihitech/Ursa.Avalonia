@@ -10,8 +10,30 @@
       <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
         <StackPanel Spacing="6">
           <TextBlock Classes="gallery-label" Text="IconSplitButton" FontWeight="SemiBold"/>
-          <SplitButton Content="Hello" />
-          <u:IconSplitButton HorizontalAlignment="Left" MaxWidth="640" Content="Sample"  Icon="A"/>
+          <SplitButton Name="NativeSplitButton" Content="Export" HorizontalAlignment="Left">
+            <SplitButton.Flyout>
+              <Flyout>
+                <StackPanel Spacing="8">
+                  <TextBlock Text="Export format" FontWeight="SemiBold"/>
+                  <RadioButton Content="PDF" GroupName="NativeExportFormat" IsChecked="True"/>
+                  <RadioButton Content="PNG" GroupName="NativeExportFormat"/>
+                  <RadioButton Content="SVG" GroupName="NativeExportFormat"/>
+                </StackPanel>
+              </Flyout>
+            </SplitButton.Flyout>
+          </SplitButton>
+          <u:IconSplitButton Name="IconSplitButton" HorizontalAlignment="Left" MaxWidth="640" Content="Export" Icon="A">
+            <u:IconSplitButton.Flyout>
+              <Flyout>
+                <StackPanel Spacing="8">
+                  <TextBlock Text="Export format" FontWeight="SemiBold"/>
+                  <RadioButton Content="PDF" GroupName="IconExportFormat" IsChecked="True"/>
+                  <RadioButton Content="PNG" GroupName="IconExportFormat"/>
+                  <RadioButton Content="SVG" GroupName="IconExportFormat"/>
+                </StackPanel>
+              </Flyout>
+            </u:IconSplitButton.Flyout>
+          </u:IconSplitButton>
         </StackPanel>
       </Border>
     </StackPanel>
