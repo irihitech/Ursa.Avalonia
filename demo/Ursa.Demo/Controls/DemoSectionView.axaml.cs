@@ -29,6 +29,8 @@ public partial class DemoSectionView : UserControl
         set => SetValue(SectionContextProperty, value);
     }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("AvaloniaProperty", "AVP1032",
+        Justification = "The setter is control-internal; only DemoSectionView itself updates the display text.")]
     public IObservable<string?>? SectionTagDisplayText
     {
         get => GetValue(SectionTagDisplayTextProperty);

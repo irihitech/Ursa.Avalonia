@@ -60,7 +60,7 @@ public partial class MainViewViewModel : ViewModelBase
     private void OnNavigation(MainViewViewModel vm, string s)
     {
         var item = UrsaDocSite.Instance.FindPage(s);
-        Content = item.Metadata.ViewModelFactory();
+        Content = item?.Metadata.ViewModelFactory();
         if (Content is IPageMetadataProvider provider)
         {
             PageMetadata = provider.PageMetadata;
