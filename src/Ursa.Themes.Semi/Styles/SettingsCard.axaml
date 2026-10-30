@@ -1,0 +1,13 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:u="https://irihi.tech/ursa">
+    <Style Selector="u|SettingsCardGroup u|SettingsCard /template/ Border#PART_Separator">
+        <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="u|SettingsCardGroup u|SettingsCard:nth-last-child(1) /template/ Border#PART_Separator">
+        <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="u|SettingsCardGroup ContentPresenter:nth-last-child(1) > u|SettingsCard /template/ Border#PART_Separator">
+        <Setter Property="IsVisible" Value="False" />
+    </Style>
+</Styles>

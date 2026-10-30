@@ -943,6 +943,39 @@
   <data name="Page_EnumSelector_Section_Custom_DisplayNames_Description" xml:space="preserve">
     <value>Verwenden Sie EnumItemTuple-Werte, um benutzerdefinierte Anzeigenamen anzuzeigen.</value>
   </data>
+  <data name="Menu_Header_SettingsCard" xml:space="preserve">
+    <value>Einstellungskarte (SettingsCard)</value>
+  </data>
+  <data name="Page_Title_SettingsCard" xml:space="preserve">
+    <value>Einstellungskarte (SettingsCard)</value>
+  </data>
+  <data name="Page_Description_SettingsCard" xml:space="preserve">
+    <value>SettingsCard ist eine Zeile im Stil der Windows-Einstellungen (Symbol, Titel, Beschreibung, Wert, Aktionsbereich, eingebettete Details); SettingsCardGroup ordnet Zeilen in einer abgerundeten Karte mit Trennlinien an.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Grundlegende Verwendung</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>SettingsCard-Zeilen innerhalb einer SettingsCardGroup. Jede Zeile kombiniert ein Symbol, einen Titel, eine Beschreibung, den aktuellen Wert (Note) und einen Aktionsbereich (RightContent); Trennlinien werden automatisch gezeichnet.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Expandable_Header" xml:space="preserve">
+    <value>Ausklappbare Zeilen</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Expandable_Description" xml:space="preserve">
+    <value>Mit Detail wird eine Zeile ausklappbar: Der Chevron erscheint, und ein Klick auf die Zeile schaltet IsExpanded um (bidirektional). Detail kann SettingsCards direkt aufnehmen — sie werden flach wie in den Windows-Einstellungen dargestellt und laufen bündig bis zum Rand der äußeren Karte — oder beliebige andere Inhalte wie eine Liste von Links. Interaktionen im Detailbereich klappen die Zeile niemals ein.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Navigable_Header" xml:space="preserve">
+    <value>Navigierbare Zeilen</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Navigable_Description" xml:space="preserve">
+    <value>Zeilen mit gebundenem Command verhalten sich wie Navigationseinträge und erhalten Hover- bzw. Druck-Feedback sowie Fokus; ShowChevron erzwingt den Chevron am Zeilenende. Einfache Zeilen bleiben still.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_ItemsSource_Header" xml:space="preserve">
+    <value>Datenbindung</value>
+  </data>
+  <data name="Page_SettingsCard_Section_ItemsSource_Description" xml:space="preserve">
+    <value>Binden Sie ItemsSource an die Gruppe: Ohne ItemTemplate werden Modelle automatisch in SettingsCards verpackt und als Titel angezeigt; mit ItemTemplate binden die Karten an Modelleigenschaften. Ausklappbare Zeilen funktionieren auch hier — binden Sie IsExpanded an das Modell, damit der Zustand bei der Neuerstellung von Containern erhalten bleibt.</value>
+  </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
     <value>Grundlegende Bindung</value>
   </data>

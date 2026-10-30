@@ -2,6 +2,7 @@
     <StyleInclude Source="Breadcrumb.axaml" />
     <StyleInclude Source="ButtonGroup.axaml" />
     <StyleInclude Source="PinCode.axaml" />
+    <StyleInclude Source="SettingsCard.axaml" />
     <StyleInclude Source="Skeleton.axaml" />
     <StyleInclude Source="ToolBar.axaml" />
     <StyleInclude Source="TimeBox.axaml" />

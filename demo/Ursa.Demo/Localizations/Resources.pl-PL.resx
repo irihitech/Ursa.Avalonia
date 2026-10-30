@@ -936,6 +936,39 @@
   <data name="Page_EnumSelector_Section_Custom_DisplayNames_Description" xml:space="preserve">
     <value>Użyj wartości EnumItemTuple, aby wyświetlać niestandardowe nazwy.</value>
   </data>
+  <data name="Menu_Header_SettingsCard" xml:space="preserve">
+    <value>Karta ustawień (SettingsCard)</value>
+  </data>
+  <data name="Page_Title_SettingsCard" xml:space="preserve">
+    <value>Karta ustawień (SettingsCard)</value>
+  </data>
+  <data name="Page_Description_SettingsCard" xml:space="preserve">
+    <value>SettingsCard to wiersz w stylu Ustawień Windows (ikona, tytuł, opis, wartość, obszar akcji, wbudowane szczegóły), a SettingsCardGroup układa wiersze w jednej zaokrąglonej karcie z separatorami.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>Podstawowe użycie</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>Wiersze SettingsCard wewnątrz SettingsCardGroup. Każdy wiersz łączy ikonę, tytuł, opis, bieżącą wartość (Note) i obszar akcji (RightContent); linie separatorów są rysowane automatycznie.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Expandable_Header" xml:space="preserve">
+    <value>Wiersze rozwijane</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Expandable_Description" xml:space="preserve">
+    <value>Ustaw Detail, aby wiersz był rozwijalny: pojawia się strzałka, a kliknięcie wiersza przełącza IsExpanded (dwukierunkowo). Detail może bezpośrednio zawierać SettingsCard — renderują się płasko jak w Ustawieniach Windows i biegną od krawędzi do krawędzi zewnętrznej karty — lub dowolną inną zawartość, na przykład listę linków. Interakcje wewnątrz szczegółów nigdy nie zwijają wiersza.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Navigable_Header" xml:space="preserve">
+    <value>Wiersze nawigacyjne</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Navigable_Description" xml:space="preserve">
+    <value>Wiersze powiązane z Command zachowują się jak wpisy nawigacji: mają podświetlenie przy najechaniu i naciśnięciu oraz otrzymują fokus; ShowChevron wymusza końcową strzałkę. Zwykłe wiersze pozostają bez reakcji.</value>
+  </data>
+  <data name="Page_SettingsCard_Section_ItemsSource_Header" xml:space="preserve">
+    <value>Powiązanie danych</value>
+  </data>
+  <data name="Page_SettingsCard_Section_ItemsSource_Description" xml:space="preserve">
+    <value>Powiąż ItemsSource z grupą: bez ItemTemplate modele są automatycznie opakowane w SettingsCard i wyświetlane jako tytuły; z ItemTemplate karty wiążą się z właściwościami modelu. Wiersze rozwijane również tu działają — powiąż IsExpanded z modelem, aby stan przetrwał regenerację kontenerów.</value>
+  </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
     <value>Podstawowe wiązanie</value>
   </data>

@@ -1,0 +1,150 @@
+﻿<UserControl
+    x:Class="Ursa.Demo.Pages.SettingsCardDemo.SettingsCardDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Ursa.Demo.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="clr-namespace:Ursa.Demo.Pages.SettingsCardDemo;assembly=Ursa.Demo"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:SettingsCardDemoViewModel"
+    mc:Ignorable="d">
+    <TabControl>
+        <TabItem
+            Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Tab_Header_Guide}}"
+            Icon="{DynamicResource SemiIconBook}">
+            <controls:AnchorScrollViewer AnchorItems="{Binding AnchorItems}">
+                <StackPanel HorizontalAlignment="Stretch" MaxWidth="640" Spacing="20">
+
+                    <controls:DemoSectionView SectionContext="{Binding BasicSection}">
+                        <u:SettingsCardGroup Header="General" Description="Basic rows in one card">
+                            <u:SettingsCard
+                                Content="Notifications"
+                                Description="Show a badge on the app icon"
+                                Icon="{DynamicResource SemiIconBell}">
+                                <u:SettingsCard.RightContent>
+                                    <ToggleSwitch Theme="{DynamicResource SimpleToggleSwitch}" IsChecked="{Binding NotificationsEnabled}" />
+                                </u:SettingsCard.RightContent>
+                            </u:SettingsCard>
+                            <u:SettingsCard
+                                Content="Language"
+                                Icon="{DynamicResource SemiIconGlobe}"
+                                Note="zh-CN" />
+                            <u:SettingsCard
+                                Content="Theme"
+                                Description="Follow the system"
+                                Icon="{DynamicResource SemiIconDesktop}">
+                                <u:SettingsCard.Trailing>
+                                    <u:Badge Classes="Light" Header="Beta" />
+                                </u:SettingsCard.Trailing>
+                            </u:SettingsCard>
+                        </u:SettingsCardGroup>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding ExpandableSection}">
+                        <StackPanel Spacing="8">
+                            <u:SettingsCardGroup>
+                                <u:SettingsCard
+                                    Content="Fuzzy sounds"
+                                    Description="Click the row to expand inline details"
+                                    Icon="{DynamicResource SemiIconSetting}"
+                                    IsExpanded="{Binding DetailExpanded}">
+                                    <u:SettingsCard.Detail>
+                                        <StackPanel>
+                                            <u:SettingsCard>
+                                                <RadioButton
+                                                    GroupName="fuzzy"
+                                                    Content="Flat vs. retroflex"
+                                                    IsChecked="{Binding FuzzyEnabled}" />
+                                            </u:SettingsCard>
+                                            <u:SettingsCard>
+                                                <RadioButton
+                                                    GroupName="fuzzy"
+                                                    Content="Nasal finals" />
+                                            </u:SettingsCard>
+                                        </StackPanel>
+                                    </u:SettingsCard.Detail>
+                                </u:SettingsCard>
+                                <u:SettingsCard
+                                    Content="Links"
+                                    Description="Detail can host any content, not only cards"
+                                    Icon="{DynamicResource SemiIconBook}">
+                                    <u:SettingsCard.Detail>
+                                        <StackPanel Margin="48,12" Spacing="4">
+                                            <HyperlinkButton Content="Documentation" NavigateUri="https://docs.irihi.tech/ursa/" />
+                                            <HyperlinkButton Content="GitHub repository" NavigateUri="https://github.com/irihitech/Ursa.Avalonia" />
+                                            <HyperlinkButton Content="Semi Design" NavigateUri="https://semi.design" />
+                                        </StackPanel>
+                                    </u:SettingsCard.Detail>
+                                </u:SettingsCard>
+                            </u:SettingsCardGroup>
+                            <TextBlock
+                                IsVisible="{Binding DetailExpanded}"
+                                Text="IsExpanded binds two-way — this line appears when the detail is open." />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding NavigableSection}">
+                        <StackPanel Spacing="8">
+                            <u:SettingsCardGroup>
+                                <u:SettingsCard
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="About"
+                                    Content="About"
+                                    Icon="{DynamicResource SemiIconSetting}" />
+                                <u:SettingsCard
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="Advanced"
+                                    Content="Advanced settings"
+                                    Description="Navigable rows get hover feedback and focus"
+                                    Icon="{DynamicResource SemiIconLock}"
+                                    ShowChevron="True" />
+                            </u:SettingsCardGroup>
+                            <TextBlock
+                                IsVisible="{Binding Status, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                Text="{Binding Status}" />
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                    <controls:DemoSectionView SectionContext="{Binding ItemsSourceSection}">
+                        <StackPanel Spacing="16">
+                            <u:SettingsCardGroup
+                                Header="Quick options"
+                                Description="Models without an ItemTemplate are auto-wrapped in SettingsCards"
+                                ItemsSource="{Binding QuickOptions}" />
+                            <u:SettingsCardGroup Header="Profiles" ItemsSource="{Binding Profiles}">
+                                <u:SettingsCardGroup.ItemTemplate>
+                                    <DataTemplate x:DataType="vm:ProfileViewModel">
+                                        <u:SettingsCard
+                                            Content="{Binding Name}"
+                                            Icon="{DynamicResource SemiIconUser}"
+                                            Note="{Binding Status}"
+                                            IsExpanded="{Binding IsExpanded}">
+                                            <u:SettingsCard.Detail>
+                                                <StackPanel>
+                                                    <u:SettingsCard>
+                                                        <CheckBox
+                                                            Content="Sync across devices"
+                                                            IsChecked="{Binding SyncEnabled}" />
+                                                    </u:SettingsCard>
+                                                    <u:SettingsCard>
+                                                        <CheckBox Content="Send usage statistics" />
+                                                    </u:SettingsCard>
+                                                </StackPanel>
+                                            </u:SettingsCard.Detail>
+                                        </u:SettingsCard>
+                                    </DataTemplate>
+                                </u:SettingsCardGroup.ItemTemplate>
+                            </u:SettingsCardGroup>
+                        </StackPanel>
+                    </controls:DemoSectionView>
+
+                </StackPanel>
+            </controls:AnchorScrollViewer>
+        </TabItem>
+    </TabControl>
+</UserControl>

@@ -61,6 +61,9 @@
   <data name="Menu_Header_EnumSelector" xml:space="preserve">
     <value>枚举选择器 EnumSelector</value>
   </data>
+  <data name="Menu_Header_SettingsCard" xml:space="preserve">
+    <value>设置卡片 SettingsCard</value>
+  </data>
   <data name="Menu_Header_Form" xml:space="preserve">
     <value>表单 Form</value>
   </data>
@@ -369,6 +372,9 @@
   <data name="Page_Title_EnumSelector" xml:space="preserve">
     <value>枚举选择器 EnumSelector</value>
   </data>
+  <data name="Page_Title_SettingsCard" xml:space="preserve">
+    <value>设置卡片 SettingsCard</value>
+  </data>
   <data name="Page_Title_Form" xml:space="preserve">
     <value>表单 Form</value>
   </data>
@@ -579,6 +585,9 @@
   </data>
   <data name="Page_Description_EnumSelector" xml:space="preserve">
     <value>枚举选择器提供用于选择枚举值的下拉菜单。</value>
+  </data>
+  <data name="Page_Description_SettingsCard" xml:space="preserve">
+    <value>设置卡片是 Windows 设置风格的行（图标、标题、说明、当前值、操作区、行内详情），SettingsCardGroup 将多行排进一张圆角卡片并自动画分隔线。</value>
   </data>
   <data name="Page_Description_Form" xml:space="preserve">
     <value>表单是用于分组带标签输入控件的布局容器。</value>
@@ -938,6 +947,30 @@
   </data>
   <data name="Page_EnumSelector_Section_Custom_DisplayNames_Description" xml:space="preserve">
     <value>通过提供 EnumItemTuple 值来显示自定义名称。</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Basic_Usage_Header" xml:space="preserve">
+    <value>基本用法</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Basic_Usage_Description" xml:space="preserve">
+    <value>SettingsCardGroup 内的设置卡片行。每行组合图标、标题、说明、当前值（Note）与操作区（RightContent），行间分隔线自动绘制。</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Expandable_Header" xml:space="preserve">
+    <value>可展开行</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Expandable_Description" xml:space="preserve">
+    <value>设置 Detail 即为可展开行：行尾出现箭头，点击整行切换 IsExpanded（双向绑定）。Detail 可直接放 SettingsCard（以 Windows 设置的方式平铺、延续外层卡片通到边缘），也可以放任意内容（如一列链接）；详情区域内的交互不会触发外层行收起。</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Navigable_Header" xml:space="preserve">
+    <value>可跳转行</value>
+  </data>
+  <data name="Page_SettingsCard_Section_Navigable_Description" xml:space="preserve">
+    <value>绑定 Command 的行表现为导航入口，有悬停/按压反馈且可聚焦；ShowChevron 强制显示行尾箭头。纯展示行保持安静。</value>
+  </data>
+  <data name="Page_SettingsCard_Section_ItemsSource_Header" xml:space="preserve">
+    <value>数据绑定</value>
+  </data>
+  <data name="Page_SettingsCard_Section_ItemsSource_Description" xml:space="preserve">
+    <value>在分组上绑定 ItemsSource：无 ItemTemplate 时模型自动包进设置卡片并作为标题显示；有 ItemTemplate 时卡片绑定模型属性。此模式下可展开行同样可用——把 IsExpanded 绑到模型，展开状态在容器重建后保留。</value>
   </data>
   <data name="Page_MultiComboBox_Section_Basic_Binding_Header" xml:space="preserve">
     <value>基础绑定</value>

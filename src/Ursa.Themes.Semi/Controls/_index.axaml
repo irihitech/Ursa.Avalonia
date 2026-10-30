@@ -57,6 +57,7 @@
         <ResourceInclude Source="Resizer.axaml" />
         <ResourceInclude Source="ScrollToButton.axaml" />
         <ResourceInclude Source="SelectionList.axaml" />
+        <ResourceInclude Source="SettingsCard.axaml" />
         <ResourceInclude Source="Skeleton.axaml" />
         <ResourceInclude Source="Shimmer.axaml" />
         <ResourceInclude Source="SplashWindow.axaml" />
