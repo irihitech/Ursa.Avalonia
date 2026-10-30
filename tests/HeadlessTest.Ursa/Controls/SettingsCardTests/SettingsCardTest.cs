@@ -20,8 +20,9 @@ public class SettingsCardTest
         Assert.False(card.IsExpanded);
         Assert.False(card.ShowChevron);
         Assert.Null(card.Detail);
-        Assert.False(card.Classes.Contains(":interactive"));
-        Assert.False(card.Focusable);
+        Assert.DoesNotContain(":interactive", card.Classes);
+        // Plain rows stay focusable so keyboard navigation does not skip them.
+        Assert.True(card.Focusable);
     }
 
     [AvaloniaFact]
@@ -45,7 +46,20 @@ public class SettingsCardTest
         Assert.False(card.IsExpanded);
         Assert.DoesNotContain(":has-detail", card.Classes);
         Assert.DoesNotContain(":interactive", card.Classes);
-        Assert.False(card.Focusable);
+        Assert.True(card.Focusable);
+    }
+
+    [AvaloniaFact]
+    public void SettingsCard_PlainRow_CanFocus()
+    {
+        // A row without Detail, Command or ShowChevron must still be reachable by
+        // keyboard navigation.
+        var card = new SettingsCard { Content = "Plain" };
+        var window = new Window { Content = card };
+        window.Show();
+
+        card.Focus();
+        Assert.True(card.IsFocused);
     }
 
     [AvaloniaFact]

@@ -15,11 +15,12 @@ namespace Ursa.Controls;
 /// optional content next to the title (<see cref="Trailing"/>), a secondary line
 /// (<see cref="Description"/>), the current value (<see cref="Note"/>) and an action area
 /// (<see cref="RightContent"/>) on the right side, and an optional trailing chevron.
-/// The row derives from <see cref="Button"/>, but only expandable (<see cref="Detail"/>)
-/// or navigable (<see cref="Button.Command"/> or <see cref="ShowChevron"/>) rows are
-/// interactive: they get hover/press feedback and focus.
-/// Plain rows and rows whose right side hosts an input control stay quiet, following desktop
-/// conventions. The chevron of a detail row points down when collapsed and rotates 180 degrees
+/// The row derives from <see cref="Button"/> and is always focusable for keyboard navigation,
+/// but only expandable (<see cref="Detail"/>) or navigable
+/// (<see cref="Button.Command"/> or <see cref="ShowChevron"/>) rows are interactive: they get
+/// hover/press feedback. Plain rows and rows whose right side hosts an input control stay
+/// quiet, following desktop conventions. The chevron of a detail row points down when
+/// collapsed and rotates 180 degrees
 /// when expanded; interactions on embedded controls (pointer, keyboard or bubbling clicks,
 /// in the header or the detail area) never collapse the row.
 /// </summary>
@@ -39,6 +40,7 @@ public class SettingsCard : Button
 
     static SettingsCard()
     {
+        FocusableProperty.OverrideDefaultValue<SettingsCard>(true);
         DetailProperty.Changed.AddClassHandler<SettingsCard>((s, e) => s.OnDetailChanged(e));
         IsExpandedProperty.Changed.AddClassHandler<SettingsCard>((s, e) => s.OnIsExpandedChanged(e));
         CommandProperty.Changed.AddClassHandler<SettingsCard>((s, e) => s.OnCommandChanged(e));
@@ -395,14 +397,13 @@ public class SettingsCard : Button
     private void OnShowChevronChanged(AvaloniaPropertyChangedEventArgs e) => UpdateInteractive();
 
     /// <summary>
-    /// Only interactive rows (expandable or navigable) get hover/press feedback and focus;
-    /// plain rows and rows whose right side hosts an input control stay quiet, avoiding the
-    /// impression that the whole row is clickable.
+    /// Only interactive rows (expandable or navigable) get hover/press feedback; plain rows
+    /// and rows whose right side hosts an input control stay quiet, avoiding the impression
+    /// that the whole row is clickable. Rows stay focusable either way.
     /// </summary>
     private void UpdateInteractive()
     {
         var interactive = Detail is not null || Command is not null || ShowChevron;
         PseudoClasses.Set(PC_Interactive, interactive);
-        Focusable = interactive;
     }
 }
