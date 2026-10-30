@@ -83,7 +83,15 @@ public class ClockTicks: Control
 
     static ClockTicks()
     {
-        AffectsRender<ClockTicks>(ShowHourTicksProperty);
+        AffectsRender<ClockTicks>(
+            ShowHourTicksProperty,
+            ShowMinuteTicksProperty,
+            HourTickForegroundProperty,
+            MinuteTickForegroundProperty,
+            HourTickLengthProperty,
+            MinuteTickLengthProperty,
+            HourTickWidthProperty,
+            MinuteTickWidthProperty);
     }
 
     protected override Size MeasureOverride(Size availableSize)
