@@ -121,6 +121,7 @@ public class ImageViewerPropertyTests
 
     // ── Obsolete property mapping ──────────────────────────────────────────────
 
+#pragma warning disable CS0618 // These tests intentionally exercise the obsolete property aliases.
     [Fact]
     public void Scale_Should_Map_To_Zoom()
     {
@@ -184,6 +185,7 @@ public class ImageViewerPropertyTests
         viewer.Scale = -1.0;
         Assert.Equal(0.1, viewer.Scale);
     }
+#pragma warning restore CS0618
 
     // ── SmallChange / LargeChange ──────────────────────────────────────────────
 

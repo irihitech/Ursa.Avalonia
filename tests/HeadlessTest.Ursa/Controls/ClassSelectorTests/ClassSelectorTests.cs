@@ -62,7 +62,7 @@ public class ClassSelectorTests
         var selectedClasses = new ObservableCollection<string> { "Small", "Large" };
         var (_, selector, small, large, _, _) = CreateSelector(selectedClasses);
 
-        Assert.Equal(["Large"], selector.SelectedClasses.Cast<string>());
+        Assert.Equal(["Large"], selector.SelectedClasses!.Cast<string>());
         Assert.False(small.IsSelected);
         Assert.True(large.IsSelected);
     }

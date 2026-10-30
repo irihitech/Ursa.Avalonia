@@ -560,14 +560,14 @@ public class Tests
         
         Assert.True(children.Count < 100);
         
-        testView.list.Scroll.Offset = new Vector(0, 1000);
-        
+        testView.list.Scroll!.Offset = new Vector(0, 1000);
+
         Dispatcher.UIThread.RunJobs();
-        
+
         testView.list.Scroll.Offset = new Vector(0, 2000);
-        
+
         Dispatcher.UIThread.RunJobs();
-        
+
         testView.list.Scroll.Offset = new Vector(0, 3000);
         
         Dispatcher.UIThread.RunJobs();

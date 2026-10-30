@@ -266,10 +266,9 @@ public class NumericUpDownBaseTests
         Assert.NotNull(parseMethod);
         
         var parameters = new object[] { "123", 0 };
-        var result = (bool)parseMethod.Invoke(numericUpDown, parameters);
+
+        Assert.True(parseMethod.Invoke(numericUpDown, parameters) is true);
         var parsedValue = (int)parameters[1];
-        
-        Assert.True(result);
         Assert.Equal(123, parsedValue);
     }
 
@@ -286,9 +285,8 @@ public class NumericUpDownBaseTests
         Assert.NotNull(parseMethod);
         
         var parameters = new object[] { "invalid", 0 };
-        var result = (bool)parseMethod.Invoke(numericUpDown, parameters);
-        
-        Assert.False(result);
+
+        Assert.False(parseMethod.Invoke(numericUpDown, parameters) is true);
     }
 
     [AvaloniaFact]

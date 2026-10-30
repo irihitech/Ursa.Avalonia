@@ -70,7 +70,7 @@ public class Test
         
         window.Show();
 
-        var menu = view.FindControl<NavMenu>("Menu");
+        var menu = view.FindControl<NavMenu>("Menu") ?? throw new InvalidOperationException("NavMenu 'Menu' not found in TestView2.");
         var items = menu.GetLogicalDescendants().OfType<NavMenuItem>().ToList();
         var item1 = items[0];
         var item2 = items[1];

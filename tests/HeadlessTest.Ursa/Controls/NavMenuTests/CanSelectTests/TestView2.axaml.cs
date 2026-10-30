@@ -17,7 +17,7 @@ public partial class TestView2 : UserControl
     {
         if (e.NewItems is [MenuItemViewModel item])
         {
-            if (item.Text.Contains("2"))
+            if (item.Text?.Contains('2') == true)
             {
                 e.CanSelect = false;
             }

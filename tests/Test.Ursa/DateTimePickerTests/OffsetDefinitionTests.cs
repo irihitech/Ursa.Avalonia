@@ -42,8 +42,12 @@ public class OffsetDefinitionTests
     [Fact]
     public void OffsetValue_EqualityOperator_SameValues_AreEqual()
     {
-        Assert.True(OffsetValue.Utc == OffsetValue.Utc);
-        Assert.True(OffsetValue.Local == OffsetValue.Local);
+        var utc = OffsetValue.Utc;
+        var utc2 = OffsetValue.Utc;
+        var local = OffsetValue.Local;
+        var local2 = OffsetValue.Local;
+        Assert.True(utc == utc2);
+        Assert.True(local == local2);
         Assert.True(OffsetValue.Fixed(TimeSpan.FromHours(8)) == OffsetValue.Fixed(TimeSpan.FromHours(8)));
     }
 
