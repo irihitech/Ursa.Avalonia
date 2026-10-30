@@ -140,9 +140,11 @@
                                     Foreground="{DynamicResource SemiColorText3}"
                                     IsVisible="False"
                                     RenderTransformOrigin="50%,50%">
-                                    <PathIcon.RenderTransform>
-                                        <RotateTransform Angle="0" />
-                                    </PathIcon.RenderTransform>
+                                    <PathIcon.Transitions>
+                                        <Transitions>
+                                            <TransformOperationsTransition Property="RenderTransform" Duration="0.25" />
+                                        </Transitions>
+                                    </PathIcon.Transitions>
                                 </PathIcon>
                             </StackPanel>
                         </Grid>
@@ -192,9 +194,7 @@
             <Setter Property="Data" Value="{DynamicResource SemiIconChevronDown}" />
         </Style>
         <Style Selector="^:has-detail:expanded /template/ PathIcon#PART_Chevron">
-            <Setter Property="RenderTransform">
-                <RotateTransform Angle="180" />
-            </Setter>
+            <Setter Property="RenderTransform" Value="rotate(-180deg)" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
