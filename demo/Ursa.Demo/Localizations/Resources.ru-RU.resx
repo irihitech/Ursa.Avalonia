@@ -667,17 +667,23 @@
   <data name="Page_KeyGestureInput_Section_Basic_Usage_Description" xml:space="preserve">
     <value>Используйте KeyGestureInput для захвата жестов сочетаний клавиш из пользовательского ввода. Элемент реагирует на нажатия клавиш и сохраняет текущее KeyGesture.</value>
   </data>
-  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Header" xml:space="preserve">
-    <value>Допустимые клавиши</value>
-  </data>
-  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Description" xml:space="preserve">
-    <value>Задайте AcceptableKeys, чтобы ограничить набор клавиш, которые можно захватывать. В этой демонстрации принимаются только A, B и C.</value>
-  </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
-    <value>Стиль-класс ClearButton</value>
+    <value>Кнопка очистки</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>Примените класс ClearButton, чтобы показать встроенную кнопку очистки, когда у элемента есть жест. InnerLeftContent и InnerRightContent добавляют декоративный контент по обе стороны.</value>
+    <value>Кнопка очистки по умолчанию появляется при фокусе или наведении. Установите AllowClear равным False, чтобы убрать её. Esc также очищает жест.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Recording_Rules_Header" xml:space="preserve">
+    <value>Правила записи</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Recording_Rules_Description" xml:space="preserve">
+    <value>Задайте AcceptableKeys, чтобы ограничить захватываемые клавиши. RequireModifier отклоняет клавиши без модификаторов, ClearOnModifierRelease можно отключить, чтобы сохранять жесты из одних модификаторов, а Esc очищает жест.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
+    <value>Состояния и подсказки</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_States_Description" xml:space="preserve">
+    <value>Элемент по умолчанию показывает локализованную подсказку и переключается на приглашение к вводу при фокусе. IsReadOnly только отображает жест, отключённый элемент затемняется. Классы Small и Large изменяют высоту элемента.</value>
   </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>Загрузка отображает спиннер или индикатор выполнения во время асинхронных операций.</value>

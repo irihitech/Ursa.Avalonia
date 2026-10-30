@@ -18,8 +18,9 @@ public class KeyGestureInputDemoViewModel: ObservableObject, IPageMetadataProvid
     public const string Category_Key = "KeyGestureInput";
     public const string Menu_Header = "Menu_Header_KeyGestureInput";
     private const string BasicUsageAnchorId = "key-gesture-input-basic-usage";
-    private const string AcceptableKeysAnchorId = "key-gesture-input-acceptable-keys";
     private const string ClearButtonStyleAnchorId = "key-gesture-input-clear-button-style-class";
+    private const string StatesAnchorId = "key-gesture-input-states";
+    private const string RecordingRulesAnchorId = "key-gesture-input-recording-rules";
 
     public PageMetadataViewModel PageMetadata { get; set; } = new PageMetadataViewModel()
     {
@@ -47,28 +48,33 @@ public class KeyGestureInputDemoViewModel: ObservableObject, IPageMetadataProvid
             TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
             CodeSnippet = """
                           <u:KeyGestureInput Width="300"
-                                             HorizontalAlignment="Center" />
+                                             Gesture="Ctrl+Shift+A" />
+                          <u:KeyGestureInput Width="300"
+                                             Gesture="Ctrl+K"
+                                             InnerLeftContent="Left"
+                                             InnerRightContent="Right" />
                           """
         });
 
-        AcceptableKeysSection = new DemoSectionViewModel
+        RecordingRulesSection = new DemoSectionViewModel
         {
-            Header = LanguageManager.Instance.Page_KeyGestureInput_Section_Acceptable_Keys_Header,
+            Header = LanguageManager.Instance.Page_KeyGestureInput_Section_Recording_Rules_Header,
             SectionTag = DemoSectionTag.Function,
-            Descriptions = { LanguageManager.Instance.Page_KeyGestureInput_Section_Acceptable_Keys_Description },
-            AnchorId = AcceptableKeysAnchorId
+            Descriptions = { LanguageManager.Instance.Page_KeyGestureInput_Section_Recording_Rules_Description },
+            AnchorId = RecordingRulesAnchorId
         };
-        AcceptableKeysSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        RecordingRulesSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
         {
             CodeSnippetLanguage = CodeLanguage.Axaml,
             TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
             CodeSnippet = """
-                          <u:KeyGestureInput Width="300"
-                                             HorizontalAlignment="Center"
-                                             AcceptableKeys="{Binding AcceptableKeys}" />
+                          <u:KeyGestureInput Width="300" AcceptableKeys="{Binding AcceptableKeys}" />
+                          <u:KeyGestureInput Width="300" RequireModifier="True" />
+                          <u:KeyGestureInput Width="300" ClearOnModifierRelease="False" />
+                          <u:KeyGestureInput Width="300" Gesture="Ctrl+Shift+A" />
                           """
         });
-        AcceptableKeysSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        RecordingRulesSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
         {
             CodeSnippetLanguage = CodeLanguage.CSharp,
             TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
@@ -94,11 +100,31 @@ public class KeyGestureInputDemoViewModel: ObservableObject, IPageMetadataProvid
             CodeSnippetLanguage = CodeLanguage.Axaml,
             TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
             CodeSnippet = """
+                          <u:KeyGestureInput Width="300" Gesture="Ctrl+Shift+A" />
+                          <u:KeyGestureInput Width="300" AllowClear="False" Gesture="Ctrl+Shift+A" />
+                          """
+        });
+
+        StatesSection = new DemoSectionViewModel
+        {
+            Header = LanguageManager.Instance.Page_KeyGestureInput_Section_States_Header,
+            SectionTag = DemoSectionTag.Style,
+            Descriptions = { LanguageManager.Instance.Page_KeyGestureInput_Section_States_Description },
+            AnchorId = StatesAnchorId
+        };
+        StatesSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.Axaml,
+            TabName = LanguageManager.Instance.DemoSection_Tab_Xaml,
+            CodeSnippet = """
+                          <u:KeyGestureInput Width="300" Gesture="Ctrl+Shift+A" IsReadOnly="True" />
+                          <u:KeyGestureInput Width="300" Gesture="Ctrl+K" IsEnabled="False" />
                           <u:KeyGestureInput Width="300"
-                                             HorizontalAlignment="Center"
-                                             Classes="ClearButton"
-                                             InnerLeftContent="Left"
-                                             InnerRightContent="Right" />
+                                             PlaceholderText="Click to set a shortcut"
+                                             FocusedPlaceholderText="Press a key combination" />
+                          <u:KeyGestureInput Width="300" Gesture="Ctrl+Shift+A" />
+                          <u:KeyGestureInput Width="300" Classes="Small" Gesture="Ctrl+Shift+A" />
+                          <u:KeyGestureInput Width="300" Classes="Large" Gesture="Ctrl+Shift+A" />
                           """
         });
 
@@ -110,8 +136,9 @@ public class KeyGestureInputDemoViewModel: ObservableObject, IPageMetadataProvid
     };
 
     public DemoSectionViewModel BasicUsageSection { get; }
-    public DemoSectionViewModel AcceptableKeysSection { get; }
     public DemoSectionViewModel ClearButtonStyleSection { get; }
+    public DemoSectionViewModel StatesSection { get; }
+    public DemoSectionViewModel RecordingRulesSection { get; }
 
     public ObservableCollection<AnchorScrollViewerItemViewModel> AnchorItems { get; set; } =
     [
@@ -122,13 +149,18 @@ public class KeyGestureInputDemoViewModel: ObservableObject, IPageMetadataProvid
         },
         new()
         {
-            Header = LanguageManager.Instance.Page_KeyGestureInput_Section_Acceptable_Keys_Header,
-            AnchorId = AcceptableKeysAnchorId
+            Header = LanguageManager.Instance.Page_KeyGestureInput_Section_ClearButton_Style_Class_Header,
+            AnchorId = ClearButtonStyleAnchorId
         },
         new()
         {
-            Header = LanguageManager.Instance.Page_KeyGestureInput_Section_ClearButton_Style_Class_Header,
-            AnchorId = ClearButtonStyleAnchorId
+            Header = LanguageManager.Instance.Page_KeyGestureInput_Section_States_Header,
+            AnchorId = StatesAnchorId
+        },
+        new()
+        {
+            Header = LanguageManager.Instance.Page_KeyGestureInput_Section_Recording_Rules_Header,
+            AnchorId = RecordingRulesAnchorId
         },
     ];
 }

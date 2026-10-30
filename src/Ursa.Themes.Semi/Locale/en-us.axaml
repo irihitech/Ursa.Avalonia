@@ -18,4 +18,6 @@
     <x:String x:Key="STRING_DATE_TIME_CONFIRM">Confirm</x:String>
     <x:String x:Key="STRING_DATE_TIME_START_TIME">Start Time</x:String>
     <x:String x:Key="STRING_DATE_TIME_END_TIME">End Time</x:String>
+    <x:String x:Key="STRING_KEY_GESTURE_INPUT_PLACEHOLDER">Click to set a shortcut</x:String>
+    <x:String x:Key="STRING_KEY_GESTURE_INPUT_PLACEHOLDER_FOCUSED">Press a key combination</x:String>
 </ResourceDictionary>

@@ -659,17 +659,23 @@
   <data name="Page_KeyGestureInput_Section_Basic_Usage_Description" xml:space="preserve">
     <value>Użyj KeyGestureInput do przechwytywania gestów skrótów klawiaturowych z wprowadzania użytkownika. Kontrolka nasłuchuje naciśnięć klawiszy i zapisuje bieżący KeyGesture.</value>
   </data>
-  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Header" xml:space="preserve">
-    <value>Dozwolone klawisze</value>
-  </data>
-  <data name="Page_KeyGestureInput_Section_Acceptable_Keys_Description" xml:space="preserve">
-    <value>Ustaw AcceptableKeys, aby ograniczyć, które klawisze mogą zostać przechwycone. Ta prezentacja akceptuje tylko A, B i C.</value>
-  </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Header" xml:space="preserve">
-    <value>Klasa stylu ClearButton</value>
+    <value>Przycisk czyszczenia</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>Zastosuj klasę ClearButton, aby pokazać wbudowany przycisk czyszczenia, gdy kontrolka ma przypisany gest. InnerLeftContent i InnerRightContent dodają dekoracyjną zawartość po obu stronach.</value>
+    <value>Przycisk czyszczenia domyślnie pojawia się po zaznaczeniu lub najechaniu kursorem. Ustaw AllowClear na False, aby go usunąć. Esc również czyści skrót.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Recording_Rules_Header" xml:space="preserve">
+    <value>Zasady rejestrowania</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_Recording_Rules_Description" xml:space="preserve">
+    <value>Ustaw AcceptableKeys, aby ograniczyć przechwytywane klawisze. RequireModifier odrzuca klawisze bez modyfikatorów, ClearOnModifierRelease można wyłączyć, aby zachować same modyfikatory, a Esc czyści skrót.</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
+    <value>Stany i podpowiedzi</value>
+  </data>
+  <data name="Page_KeyGestureInput_Section_States_Description" xml:space="preserve">
+    <value>Kontrolka domyślnie pokazuje zlokalizowaną podpowiedź, a po zaznaczeniu przełącza się na zachętę do wprowadzenia. IsReadOnly tylko wyświetla skrót, a wyłączona kontrolka jest przygaszona. Klasy Small i Large zmieniają wysokość kontrolki.</value>
   </data>
   <data name="Page_Description_Loading" xml:space="preserve">
     <value>Ładowanie wyświetla wskaźnik lub pasek postępu podczas operacji asynchronicznych.</value>

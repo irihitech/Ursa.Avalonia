@@ -2,9 +2,13 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa"
-    xmlns:iri="https://irihi.tech/shared"
-    xmlns:converters="using:Avalonia.Controls.Converters">
-    <converters:PlatformKeyGestureConverter x:Key="KeyGestureConverter" />
+    xmlns:iri="https://irihi.tech/shared">
+    <Design.PreviewWith>
+        <StackPanel Width="300" Margin="20">
+            <u:KeyGestureInput Gesture="Ctrl+Shift+A" />
+            <u:KeyGestureInput Gesture="Ctrl+K" AllowClear="False" Margin="0 16 0 0" />
+        </StackPanel>
+    </Design.PreviewWith>
 
     <ControlTheme x:Key="{x:Type u:KeyGestureInput}" TargetType="u:KeyGestureInput">
         <Setter Property="MinHeight" Value="{DynamicResource TextBoxDefaultHeight}" />
@@ -12,8 +16,11 @@
         <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
         <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="Padding" Value="8 0" />
+        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
+        <Setter Property="PlaceholderText" Value="{DynamicResource STRING_KEY_GESTURE_INPUT_PLACEHOLDER}" />
+        <Setter Property="FocusedPlaceholderText" Value="{DynamicResource STRING_KEY_GESTURE_INPUT_PLACEHOLDER_FOCUSED}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:KeyGestureInput">
                 <Border
@@ -25,7 +32,7 @@
                     BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <Panel VerticalAlignment="Stretch" Margin="{TemplateBinding Padding}">
-                        <Grid ColumnDefinitions="Auto, *, Auto">
+                        <Grid ColumnDefinitions="Auto, *, Auto, Auto">
                             <ContentPresenter
                                 Grid.Column="0"
                                 Content="{TemplateBinding InnerLeftContent}"
@@ -37,7 +44,7 @@
                                 IsVisible="{Binding Path=InnerLeftContent, RelativeSource={RelativeSource TemplatedParent},
                                     Converter={x:Static ObjectConverters.IsNotNull}}" />
                             <ContentPresenter
-                                Grid.Column="2"
+                                Grid.Column="3"
                                 Content="{TemplateBinding InnerRightContent}"
                                 DockPanel.Dock="Right"
                                 Padding="{TemplateBinding Padding, Converter={iri:ThicknessMixerConverter Left}}"
@@ -46,13 +53,42 @@
                                 Foreground="{DynamicResource TextBoxInnerForeground}"
                                 IsVisible="{Binding Path=InnerRightContent, RelativeSource={RelativeSource TemplatedParent},
                                     Converter={x:Static ObjectConverters.IsNotNull}}" />
-                            <SelectableTextBlock
+                            <TextBlock
+                                Name="PART_Placeholder"
                                 Grid.Column="1"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Text="{TemplateBinding Gesture,Converter={StaticResource KeyGestureConverter}}" />
-                            <Button
+                                Foreground="{TemplateBinding PlaceholderForeground}"
+                                IsVisible="False"
+                                Text="{TemplateBinding PlaceholderText}"
+                                TextTrimming="CharacterEllipsis" />
+                            <TextBlock
+                                Name="PART_FocusedPlaceholder"
                                 Grid.Column="1"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Foreground="{TemplateBinding PlaceholderForeground}"
+                                IsVisible="False"
+                                Text="{TemplateBinding FocusedPlaceholderText}"
+                                TextTrimming="CharacterEllipsis" />
+                            <ItemsControl
+                                Grid.Column="1"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                ItemsSource="{TemplateBinding Keys}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" Spacing="4" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Theme="{DynamicResource TagLabel}" Classes="White" Content="{Binding}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <Button
+                                Grid.Column="2"
                                 Name="PART_ClearButton"
                                 HorizontalAlignment="Right"
                                 Command="{Binding $parent[u:KeyGestureInput].Clear}"
@@ -65,6 +101,12 @@
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^:empty:not(:focus):not(:focus-within) /template/ TextBlock#PART_Placeholder">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+        <Style Selector="^:empty:focus /template/ TextBlock#PART_FocusedPlaceholder, ^:empty:focus-within /template/ TextBlock#PART_FocusedPlaceholder">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
         <Style Selector="^:pointerover /template/ Border#Background">
             <Setter Property="Background" Value="{DynamicResource TextBoxPointeroverBackground}" />
             <Setter Property="BorderBrush" Value="{DynamicResource TextBoxPointeroverBorderBrush}" />
@@ -79,13 +121,25 @@
             <Setter Property="Background" Value="{DynamicResource TextBoxPressedBackground}" />
             <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
         </Style>
-        <Style Selector="^:not(:empty).clearButton, ^:not(:empty).ClearButton">
-            <Style Selector="^:focus /template/ Button#PART_ClearButton">
-                <Setter Property="IsVisible" Value="True" />
-            </Style>
-            <Style Selector="^:pointerover /template/ Button#PART_ClearButton">
-                <Setter Property="IsVisible" Value="True" />
-            </Style>
+        <Style Selector="^[AllowClear=True][IsReadOnly=False]:not(:empty):focus /template/ Button#PART_ClearButton">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+        <Style Selector="^[AllowClear=True][IsReadOnly=False]:not(:empty):focus-within /template/ Button#PART_ClearButton">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+        <Style Selector="^[AllowClear=True][IsReadOnly=False]:not(:empty):pointerover /template/ Button#PART_ClearButton">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+        <Style Selector="^:disabled">
+            <Setter Property="Background" Value="{DynamicResource TextBoxDisabledBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBoxDisabledForeground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDisabledBorderBrush}" />
+        </Style>
+        <Style Selector="^.Large">
+            <Setter Property="MinHeight" Value="{DynamicResource TextBoxLargeHeight}" />
+        </Style>
+        <Style Selector="^.Small">
+            <Setter Property="MinHeight" Value="{DynamicResource TextBoxSmallHeight}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
