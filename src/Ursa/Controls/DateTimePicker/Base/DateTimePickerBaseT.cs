@@ -228,6 +228,9 @@ public abstract class DateTimePickerBase<T> : DateTimePickerBase where T : struc
     {
         DataValidationErrors.SetError(this, null);
         SetCurrentValue(SelectedDateProperty, null);
+        // Property changes are not raised when the value is already null (e.g. unparseable
+        // manual input), so the UI must be synced explicitly.
+        SyncDateToText();
     }
 
     public override void Confirm()

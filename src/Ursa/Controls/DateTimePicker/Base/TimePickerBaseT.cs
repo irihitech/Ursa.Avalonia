@@ -214,6 +214,8 @@ public abstract class TimePickerBase<T> : TimePickerBase where T : struct
     {
         DataValidationErrors.SetError(this, null);
         SetCurrentValue(SelectedTimeProperty, null);
-        _presenter?.SyncTime(null);
+        // Property changes are not raised when the value is already null (e.g. unparseable
+        // manual input), so the UI must be synced explicitly.
+        SyncTimeToText();
     }
 }

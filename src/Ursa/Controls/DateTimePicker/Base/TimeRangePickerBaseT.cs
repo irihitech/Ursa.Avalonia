@@ -270,8 +270,9 @@ public abstract class TimeRangePickerBase<T> : TimeRangePickerBase where T : str
         DataValidationErrors.SetError(this, null);
         SetCurrentValue(SelectedStartTimeProperty, null);
         SetCurrentValue(SelectedEndTimeProperty, null);
-        _startPresenter?.SyncTime(null);
-        _endPresenter?.SyncTime(null);
         _status.Reset();
+        // Property changes are not raised when the value is already null (e.g. unparseable
+        // manual input), so the UI must be synced explicitly.
+        SyncToUI();
     }
 }

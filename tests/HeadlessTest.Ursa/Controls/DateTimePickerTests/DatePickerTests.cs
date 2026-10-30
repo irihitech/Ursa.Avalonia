@@ -88,7 +88,48 @@ public class DatePickerTests
         Dispatcher.UIThread.RunJobs();
         Assert.Null(picker.SelectedDate);
     }
-    
+
+    [AvaloniaFact]
+    public void Clear_Removes_Invalid_Manual_Input()
+    {
+        var window = new Window();
+        var picker = new DatePicker()
+        {
+            Width = 300,
+            DisplayFormat = "yyyy-MM-dd",
+            HorizontalAlignment = HorizontalAlignment.Left,
+            VerticalAlignment = VerticalAlignment.Top
+        };
+        var focusTarget = new TextBox();
+        window.Content = new StackPanel()
+        {
+            Children =
+            {
+                picker,
+                focusTarget,
+            }
+        };
+        window.Show();
+        Dispatcher.UIThread.RunJobs();
+        var textBox = picker.GetTemplateChildOfType<TextBox>(DatePicker.PART_TextBox);
+        Assert.NotNull(textBox);
+
+        textBox.Focus();
+        Dispatcher.UIThread.RunJobs();
+        textBox.SetValue(TextBox.TextProperty, "not a date");
+        focusTarget.Focus();
+        Dispatcher.UIThread.RunJobs();
+
+        // The invalid input is rejected but stays in the text box.
+        Assert.Null(picker.SelectedDate);
+
+        picker.Clear();
+        Dispatcher.UIThread.RunJobs();
+
+        Assert.Null(picker.SelectedDate);
+        Assert.True(string.IsNullOrEmpty(textBox.Text));
+    }
+
     [AvaloniaFact]
     public void Press_Escape_Closes_Popup()
     {

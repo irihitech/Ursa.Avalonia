@@ -303,5 +303,10 @@ public abstract class DateRangePickerBase<T> : DateRangePickerBase where T : str
         SetCurrentValue(SelectedStartDateProperty, null);
         SetCurrentValue(SelectedEndDateProperty, null);
         _status.Reset();
+        // Property changes are not raised when the value is already null (e.g. unparseable
+        // manual input), so the UI must be synced explicitly.
+        SyncDateToText();
+        _startCalendar?.MarkDates();
+        _endCalendar?.MarkDates();
     }
 }
