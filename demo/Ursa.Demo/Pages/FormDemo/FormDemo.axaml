@@ -123,7 +123,7 @@
                                             <TextBlock Foreground="{DynamicResource SemiColorText2}" Text="(custom label)" />
                                         </StackPanel>
                                     </u:FormItem.Label>
-                                    <TextBox Width="300" Watermark="name@company.com" />
+                                    <TextBox Width="300" PlaceholderText="name@company.com" />
                                 </u:FormItem>
                             </u:Form>
                         </StackPanel>

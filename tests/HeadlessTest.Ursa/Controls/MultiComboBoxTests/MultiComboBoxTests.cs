@@ -394,8 +394,8 @@ public class MultiComboBoxTests
 
         // Assert
         Assert.Equal(1, comboBox.SelectedItems?.Count);
-        Assert.DoesNotContain(selectedItem, comboBox.SelectedItems?.Cast<string>());
-        Assert.Contains("OtherItem", comboBox.SelectedItems?.Cast<string>());
+        Assert.DoesNotContain(selectedItem, comboBox.SelectedItems!.Cast<string>());
+        Assert.Contains("OtherItem", comboBox.SelectedItems!.Cast<string>());
     }
 
     [AvaloniaFact]
@@ -487,8 +487,8 @@ public class MultiComboBoxTests
         // Assert
         Assert.Equal(4, comboBox.Items.Count);
         Assert.Equal(2, comboBox.SelectedItems?.Count);
-        Assert.Contains("Option1", comboBox.SelectedItems?.Cast<string>());
-        Assert.Contains("Option3", comboBox.SelectedItems?.Cast<string>());
+        Assert.Contains("Option1", comboBox.SelectedItems!.Cast<string>());
+        Assert.Contains("Option3", comboBox.SelectedItems!.Cast<string>());
     }
 
     // Helper class for complex object testing

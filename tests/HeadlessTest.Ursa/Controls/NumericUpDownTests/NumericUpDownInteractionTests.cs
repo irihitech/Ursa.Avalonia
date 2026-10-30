@@ -354,10 +354,10 @@ public class NumericUpDownInteractionTests
         }
         
         public bool CanExecute(object? parameter) => true;
-        
+
         public void Execute(object? parameter) => _execute(parameter);
-        
-        public event EventHandler? CanExecuteChanged;
+
+        public event EventHandler? CanExecuteChanged { add { } remove { } }
     }
 
     private class TestValueConverter : Avalonia.Data.Converters.IValueConverter

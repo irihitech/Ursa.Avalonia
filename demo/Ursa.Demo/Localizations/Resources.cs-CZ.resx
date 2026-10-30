@@ -2229,4 +2229,26 @@
   <data name="Page_OverlayDialog_Section_Modality_Description" xml:space="preserve"><value>Asynchronní API otevře modální překryvný dialog; neasynchronní API zobrazí nemodální překryv.</value></data>
   <data name="Page_OverlayDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Vlastní obsah dialogu</value></data>
   <data name="Page_OverlayDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Použijte API vlastního překryvu a zobrazte v něm vlastní pohled a view model.</value></data>
+  <data name="AboutUs_Company_Name" xml:space="preserve"><value>IRIHI Technology</value></data>
+  <data name="AboutUs_Slogan" xml:space="preserve"><value>Estetická evoluce produktivity</value></data>
+  <data name="AboutUs_Tag_OpenSource" xml:space="preserve"><value>Open Source</value></data>
+  <data name="AboutUs_Tag_Commercial" xml:space="preserve"><value>Komerční</value></data>
+  <data name="AboutUs_Tag_Preview" xml:space="preserve"><value>Náhled</value></data>
+  <data name="AboutUs_Link_Homepage" xml:space="preserve"><value>Domovská stránka</value></data>
+  <data name="AboutUs_Semi_Kicker" xml:space="preserve"><value>Motiv Semi Design</value></data>
+  <data name="AboutUs_Semi_Description" xml:space="preserve"><value>Motiv pro nativní ovládací prvky Avalonia inspirovaný designem Semi, s rozšířeními pro datové mřížky, ukotvení a další.</value></data>
+  <data name="AboutUs_Ursa_Kicker" xml:space="preserve"><value>Podnikové ovládací prvky</value></data>
+  <data name="AboutUs_Ursa_Description" xml:space="preserve"><value>Ovládací prvky pro složité zadávání, výběr a desktopové aplikace s velkým objemem dat.</value></data>
+  <data name="AboutUs_Mantra_Kicker" xml:space="preserve"><value>Komponenty pro vykreslování obsahu</value></data>
+  <data name="AboutUs_Mantra_Description" xml:space="preserve"><value>Vykreslujte dokumenty, texty a specializovaný obsah v aplikacích Avalonia.</value></data>
+  <data name="AboutUs_Mafia_Kicker" xml:space="preserve"><value>Mobilní a dotykové ovládací prvky</value></data>
+  <data name="AboutUs_Mafia_Description" xml:space="preserve"><value>Ovládací prvky Avalonia pro dotykové ovládání a mobilní rozvržení s motivem inspirovaným TDesign.</value></data>
+  <data name="AboutUs_Lingua_Kicker" xml:space="preserve"><value>Zdrojový generátor pro lokalizaci</value></data>
+  <data name="AboutUs_Lingua_Description" xml:space="preserve"><value>Generujte silně typované API z jazykových prostředků a aktualizujte text při změně jazyka aplikace.</value></data>
+  <data name="AboutUs_Iconica_Kicker" xml:space="preserve"><value>Ovládací prvky ikon Avalonia</value></data>
+  <data name="AboutUs_Iconica_Description" xml:space="preserve"><value>Používejte ikony IconPark a TDesign jako silně typované ovládací prvky s barvou a velikostí upravitelnými za běhu.</value></data>
+  <data name="AboutUs_Huska_Kicker" xml:space="preserve"><value>Ručně kreslený motiv</value></data>
+  <data name="AboutUs_Huska_Description" xml:space="preserve"><value>Komerční ručně kreslený motiv pro ovládací prvky, grafy a diagramy Avalonia.</value></data>
+  <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Ovládací prvek Ribbon</value></data>
+  <data name="AboutUs_Asura_Description" xml:space="preserve"><value>Příkazová lišta Ribbon pro desktopové aplikace Avalonia s adaptivním rozvržením při omezeném prostoru.</value></data>
 </root>

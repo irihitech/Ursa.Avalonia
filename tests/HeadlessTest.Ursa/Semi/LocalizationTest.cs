@@ -117,9 +117,11 @@ public class LocalizationTest
         foreach (var key in english.Keys)
             Assert.True(localized.ContainsKey(key), $"Missing {key} in {cultureName}");
 
+#pragma warning disable CS0618 // Testing the legacy theme deliberately.
         var legacyTheme = new global::Ursa.Themes.Semi.Legacy.SemiTheme { Locale = culture };
         Assert.Equal(culture, legacyTheme.Locale);
         Assert.Equal(yes, legacyTheme.Resources["STRING_MENU_DIALOG_YES"]);
+#pragma warning restore CS0618
 
         Assert.NotNull(Application.Current);
         var window = new UrsaWindow();

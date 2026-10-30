@@ -144,6 +144,8 @@ public class NavMenuItem : HeaderedItemsControl
         set => SetValue(SubMenuIndentProperty, value);
     }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("AvaloniaProperty", "AVP1032",
+        Justification = "The AvaloniaProperty is internal plumbing; the public CLR property is the supported surface.")]
     public int Level
     {
         get;

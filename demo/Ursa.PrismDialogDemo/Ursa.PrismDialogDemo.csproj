@@ -6,6 +6,8 @@
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <!-- MainWindow is created via Prism DI and never through the runtime XAML loader. -->
+        <NoWarn>AVLN3001</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>

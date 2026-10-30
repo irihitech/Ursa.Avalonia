@@ -61,10 +61,9 @@ public class NumericUpDownTypesTests
         Assert.NotNull(parseMethod);
         
         var parameters = new object[] { "123", (uint)0 };
-        var result = (bool)parseMethod.Invoke(numericUpDown, parameters);
+
+        Assert.True(parseMethod.Invoke(numericUpDown, parameters) is true);
         var parsedValue = (uint)parameters[1];
-        
-        Assert.True(result);
         Assert.Equal(123u, parsedValue);
     }
     #endregion
@@ -116,10 +115,9 @@ public class NumericUpDownTypesTests
         Assert.NotNull(parseMethod);
         
         var parameters = new object[] { "123.456", 0.0 };
-        var result = (bool)parseMethod.Invoke(numericUpDown, parameters);
+
+        Assert.True(parseMethod.Invoke(numericUpDown, parameters) is true);
         var parsedValue = (double)parameters[1];
-        
-        Assert.True(result);
         Assert.Equal(123.456, parsedValue, precision: 10);
     }
     #endregion
@@ -402,10 +400,9 @@ public class NumericUpDownTypesTests
         Assert.NotNull(parseMethod);
         
         var parameters = new object[] { "123.456", 0m };
-        var result = (bool)parseMethod.Invoke(numericUpDown, parameters);
+
+        Assert.True(parseMethod.Invoke(numericUpDown, parameters) is true);
         var parsedValue = (decimal)parameters[1];
-        
-        Assert.True(result);
         Assert.Equal(123.456m, parsedValue);
     }
     #endregion

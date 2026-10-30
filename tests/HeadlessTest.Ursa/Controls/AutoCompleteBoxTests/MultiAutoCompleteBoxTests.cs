@@ -67,10 +67,10 @@ public class MultiAutoCompleteBoxTests
         Assert.False(GetFilter(AutoCompleteFilterMode.StartsWithOrdinalCaseSensitive)("hello", "name"));
     }
     
-    private static AutoCompleteFilterPredicate<string> GetFilter(AutoCompleteFilterMode mode)
+    private static AutoCompleteFilterPredicate<string?> GetFilter(AutoCompleteFilterMode mode)
     {
         return new MultiAutoCompleteBox { FilterMode = mode }
-            .TextFilter;
+            .TextFilter!;
     }
 
     [AvaloniaFact]
@@ -101,7 +101,7 @@ public class MultiAutoCompleteBoxTests
 
         textBox.Text = String.Empty;
         Dispatcher.UIThread.RunJobs();
-        Assert.True(control.SearchText == String.Empty);
+        Assert.Equal(String.Empty, control.SearchText);
         Assert.False(control.IsDropDownOpen);
         Assert.True(closeEvent);
     }

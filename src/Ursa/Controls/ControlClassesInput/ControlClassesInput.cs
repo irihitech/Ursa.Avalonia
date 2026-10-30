@@ -38,6 +38,8 @@ public class ControlClassesInput: TemplatedControl
             o => o.TargetClasses,
             (o, v) => o.TargetClasses = v);
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("AvaloniaProperty", "AVP1032",
+        Justification = "The direct property is internal by design; the public CLR property is the supported surface.")]
     public ObservableCollection<string>? TargetClasses
     {
         get;

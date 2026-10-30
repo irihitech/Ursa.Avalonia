@@ -2229,4 +2229,26 @@
   <data name="Page_OverlayDialog_Section_Modality_Description" xml:space="preserve"><value>Используйте асинхронный API для модального диалога наложения или обычный API для немодального.</value></data>
   <data name="Page_OverlayDialog_Section_Custom_Content_Header" xml:space="preserve"><value>Пользовательское содержимое диалога</value></data>
   <data name="Page_OverlayDialog_Section_Custom_Content_Description" xml:space="preserve"><value>Используйте API пользовательского наложения, чтобы отобразить в нём собственные представление и модель представления.</value></data>
+  <data name="AboutUs_Company_Name" xml:space="preserve"><value>IRIHI Technology</value></data>
+  <data name="AboutUs_Slogan" xml:space="preserve"><value>Эстетическая эволюция продуктивности</value></data>
+  <data name="AboutUs_Tag_OpenSource" xml:space="preserve"><value>Открытый исходный код</value></data>
+  <data name="AboutUs_Tag_Commercial" xml:space="preserve"><value>Коммерческий</value></data>
+  <data name="AboutUs_Tag_Preview" xml:space="preserve"><value>Предварительная версия</value></data>
+  <data name="AboutUs_Link_Homepage" xml:space="preserve"><value>Домашняя страница</value></data>
+  <data name="AboutUs_Semi_Kicker" xml:space="preserve"><value>Тема Semi Design</value></data>
+  <data name="AboutUs_Semi_Description" xml:space="preserve"><value>Тема для нативных элементов управления Avalonia в духе Semi Design с расширениями для таблиц данных, стыковки панелей и не только.</value></data>
+  <data name="AboutUs_Ursa_Kicker" xml:space="preserve"><value>Элементы управления для бизнеса</value></data>
+  <data name="AboutUs_Ursa_Description" xml:space="preserve"><value>Элементы управления для сложного ввода, выбора и настольных приложений с большими объёмами данных.</value></data>
+  <data name="AboutUs_Mantra_Kicker" xml:space="preserve"><value>Компоненты отображения контента</value></data>
+  <data name="AboutUs_Mantra_Description" xml:space="preserve"><value>Отображайте документы, тексты и специализированный контент в приложениях Avalonia.</value></data>
+  <data name="AboutUs_Mafia_Kicker" xml:space="preserve"><value>Мобильные и сенсорные элементы управления</value></data>
+  <data name="AboutUs_Mafia_Description" xml:space="preserve"><value>Элементы управления Avalonia для сенсорного ввода и мобильных макетов с темой в духе TDesign.</value></data>
+  <data name="AboutUs_Lingua_Kicker" xml:space="preserve"><value>Генератор исходного кода локализации</value></data>
+  <data name="AboutUs_Lingua_Description" xml:space="preserve"><value>Создавайте строго типизированные API из языковых ресурсов и обновляйте тексты при смене языка приложения.</value></data>
+  <data name="AboutUs_Iconica_Kicker" xml:space="preserve"><value>Элементы управления иконками Avalonia</value></data>
+  <data name="AboutUs_Iconica_Description" xml:space="preserve"><value>Используйте иконки IconPark и TDesign как строго типизированные элементы управления с настройкой цвета и размера во время выполнения.</value></data>
+  <data name="AboutUs_Huska_Kicker" xml:space="preserve"><value>Тема, нарисованная от руки</value></data>
+  <data name="AboutUs_Huska_Description" xml:space="preserve"><value>Коммерческая тема, нарисованная от руки, для элементов управления, графиков и диаграмм Avalonia.</value></data>
+  <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Элемент управления Ribbon</value></data>
+  <data name="AboutUs_Asura_Description" xml:space="preserve"><value>Панель команд Ribbon для настольных приложений Avalonia с адаптивной компоновкой при нехватке места.</value></data>
 </root>

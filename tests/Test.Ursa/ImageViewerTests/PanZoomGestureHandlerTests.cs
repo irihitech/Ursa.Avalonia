@@ -24,8 +24,7 @@ public class PanZoomGestureHandlerTests
     public void Pan_Event_Should_Be_Subscribable_And_Unsubscribable()
     {
         var handler = new PanZoomGestureHandler();
-        bool invoked = false;
-        Action<double, double> callback = (dx, dy) => invoked = true;
+        Action<double, double> callback = (_, _) => { };
 
         handler.Pan += callback;
         handler.Pan -= callback;
@@ -36,8 +35,7 @@ public class PanZoomGestureHandlerTests
     public void PinchStarted_Event_Should_Be_Subscribable()
     {
         var handler = new PanZoomGestureHandler();
-        bool invoked = false;
-        Action callback = () => invoked = true;
+        Action callback = () => { };
 
         handler.PinchStarted += callback;
         handler.PinchStarted -= callback;
@@ -47,8 +45,7 @@ public class PanZoomGestureHandlerTests
     public void PinchUpdated_Event_Should_Be_Subscribable()
     {
         var handler = new PanZoomGestureHandler();
-        bool invoked = false;
-        Action<PinchUpdateEventArgs> callback = e => invoked = true;
+        Action<PinchUpdateEventArgs> callback = _ => { };
 
         handler.PinchUpdated += callback;
         handler.PinchUpdated -= callback;
@@ -58,8 +55,7 @@ public class PanZoomGestureHandlerTests
     public void PinchEnded_Event_Should_Be_Subscribable()
     {
         var handler = new PanZoomGestureHandler();
-        bool invoked = false;
-        Action callback = () => invoked = true;
+        Action callback = () => { };
 
         handler.PinchEnded += callback;
         handler.PinchEnded -= callback;

@@ -21,7 +21,7 @@ public class TagInputTests
 
         // Assert
         Assert.NotNull(tagInput.Tags);
-        Assert.Empty(tagInput.Tags);
+        Assert.Empty(tagInput.Tags!);
         Assert.True(tagInput.AllowDuplicates);
         Assert.Equal(int.MaxValue, tagInput.MaxCount);
         Assert.Equal(UrsaControls.LostFocusBehavior.None, tagInput.LostFocusBehavior);
@@ -52,8 +52,8 @@ public class TagInputTests
         });
 
         // Assert
-        Assert.Single(tagInput.Tags);
-        Assert.Equal("test-tag", tagInput.Tags[0]);
+        Assert.Single(tagInput.Tags!);
+        Assert.Equal("test-tag", tagInput.Tags![0]);
         Assert.Empty(textBox.Text);
     }
 
@@ -84,8 +84,8 @@ public class TagInputTests
         });
 
         // Assert
-        Assert.Single(tagInput.Tags);
-        Assert.Equal("single-tag", tagInput.Tags[0]);
+        Assert.Single(tagInput.Tags!);
+        Assert.Equal("single-tag", tagInput.Tags![0]);
         Assert.Empty(textBox.Text);
     }
 
@@ -115,7 +115,7 @@ public class TagInputTests
 
         // Let's see what actually gets added to help debug
         // The test will show us the actual behavior
-        Assert.True(tagInput.Tags.Count > 0);
+        Assert.True(tagInput.Tags!.Count > 0);
     }
 
     [AvaloniaFact]
@@ -128,9 +128,9 @@ public class TagInputTests
         window.Show();
 
         // Add some tags first
-        tagInput.Tags.Add("tag1");
-        tagInput.Tags.Add("tag2");
-        tagInput.Tags.Add("tag3");
+        tagInput.Tags!.Add("tag1");
+        tagInput.Tags!.Add("tag2");
+        tagInput.Tags!.Add("tag3");
         Dispatcher.UIThread.RunJobs();
         var textBox = tagInput.InputTextBox;
         Assert.NotNull(textBox);
@@ -144,9 +144,9 @@ public class TagInputTests
         });
 
         // Assert
-        Assert.Equal(2, tagInput.Tags.Count);
-        Assert.Equal("tag1", tagInput.Tags[0]);
-        Assert.Equal("tag2", tagInput.Tags[1]);
+        Assert.Equal(2, tagInput.Tags!.Count);
+        Assert.Equal("tag1", tagInput.Tags![0]);
+        Assert.Equal("tag2", tagInput.Tags![1]);
     }
 
     [AvaloniaFact]
@@ -159,7 +159,7 @@ public class TagInputTests
         window.Show();
 
         Dispatcher.UIThread.RunJobs();
-        tagInput.Tags.Add("tag1");
+        tagInput.Tags!.Add("tag1");
         var textBox = tagInput.InputTextBox;
         Assert.NotNull(textBox);
         textBox.Text = "some text";
@@ -172,8 +172,8 @@ public class TagInputTests
         });
 
         // Assert
-        Assert.Single(tagInput.Tags);
-        Assert.Equal("tag1", tagInput.Tags[0]);
+        Assert.Single(tagInput.Tags!);
+        Assert.Equal("tag1", tagInput.Tags![0]);
     }
 
     [AvaloniaFact]
@@ -214,9 +214,9 @@ public class TagInputTests
         });
 
         // Assert
-        Assert.Equal(2, tagInput.Tags.Count);
-        Assert.Equal("tag1", tagInput.Tags[0]);
-        Assert.Equal("tag2", tagInput.Tags[1]);
+        Assert.Equal(2, tagInput.Tags!.Count);
+        Assert.Equal("tag1", tagInput.Tags![0]);
+        Assert.Equal("tag2", tagInput.Tags![1]);
     }
 
     [AvaloniaFact]
@@ -250,8 +250,8 @@ public class TagInputTests
         });
 
         // Assert
-        Assert.Single(tagInput.Tags);
-        Assert.Equal("duplicate-tag", tagInput.Tags[0]);
+        Assert.Single(tagInput.Tags!);
+        Assert.Equal("duplicate-tag", tagInput.Tags![0]);
     }
 
     [AvaloniaFact]
@@ -285,8 +285,8 @@ public class TagInputTests
         });
 
         // Assert
-        Assert.Equal(2, tagInput.Tags.Count);
-        Assert.All(tagInput.Tags, tag => Assert.Equal("duplicate-tag", tag));
+        Assert.Equal(2, tagInput.Tags!.Count);
+        Assert.All(tagInput.Tags!, tag => Assert.Equal("duplicate-tag", tag));
     }
 
     [AvaloniaFact]
@@ -313,10 +313,10 @@ public class TagInputTests
         });
 
         // Assert
-        Assert.Equal(3, tagInput.Tags.Count);
-        Assert.Contains("tag1", tagInput.Tags);
-        Assert.Contains("tag2", tagInput.Tags);
-        Assert.Contains("tag3", tagInput.Tags);
+        Assert.Equal(3, tagInput.Tags!.Count);
+        Assert.Contains("tag1", tagInput.Tags!);
+        Assert.Contains("tag2", tagInput.Tags!);
+        Assert.Contains("tag3", tagInput.Tags!);
     }
 
     [AvaloniaFact]
@@ -339,8 +339,8 @@ public class TagInputTests
         textBox.RaiseEvent(new FocusChangedEventArgs(InputElement.LostFocusEvent));
 
         // Assert
-        Assert.Single(tagInput.Tags);
-        Assert.Equal("focus-lost-tag", tagInput.Tags[0]);
+        Assert.Single(tagInput.Tags!);
+        Assert.Equal("focus-lost-tag", tagInput.Tags![0]);
     }
 
     [AvaloniaFact]
@@ -363,7 +363,7 @@ public class TagInputTests
         textBox.RaiseEvent(new FocusChangedEventArgs(InputElement.LostFocusEvent));
 
         // Assert
-        Assert.Empty(tagInput.Tags);
+        Assert.Empty(tagInput.Tags!);
         Assert.Empty(textBox.Text);
     }
 
@@ -377,13 +377,13 @@ public class TagInputTests
         window.Show();
         Dispatcher.UIThread.RunJobs();
         // Act
-        tagInput.Tags.Add("tag1");
-        tagInput.Tags.Add("tag2");
+        tagInput.Tags!.Add("tag1");
+        tagInput.Tags!.Add("tag2");
 
         // Assert
-        Assert.Equal(2, tagInput.Tags.Count); // 2 tags + 1 textbox
-        Assert.Equal("tag1", tagInput.Tags[0]);
-        Assert.Equal("tag2", tagInput.Tags[1]);
+        Assert.Equal(2, tagInput.Tags!.Count); // 2 tags + 1 textbox
+        Assert.Equal("tag1", tagInput.Tags![0]);
+        Assert.Equal("tag2", tagInput.Tags![1]);
     }
 
     [AvaloniaFact]
@@ -404,16 +404,16 @@ public class TagInputTests
         customTags.Add("dynamic-tag2");
 
         // Assert
-        Assert.Equal(2, tagInput.Tags.Count);
-        Assert.Equal("dynamic-tag1", tagInput.Tags[0]);
-        Assert.Equal("dynamic-tag2", tagInput.Tags[1]);
+        Assert.Equal(2, tagInput.Tags!.Count);
+        Assert.Equal("dynamic-tag1", tagInput.Tags![0]);
+        Assert.Equal("dynamic-tag2", tagInput.Tags![1]);
 
         // Act - Remove a tag
         customTags.RemoveAt(0);
 
         // Assert
-        Assert.Single(tagInput.Tags);
-        Assert.Equal("dynamic-tag2", tagInput.Tags[0]);
+        Assert.Single(tagInput.Tags!);
+        Assert.Equal("dynamic-tag2", tagInput.Tags![0]);
     }
 
     [AvaloniaFact]
@@ -425,16 +425,16 @@ public class TagInputTests
         window.Content = tagInput;
         window.Show();
 
-        tagInput.Tags.Add("closable-tag");
+        tagInput.Tags!.Add("closable-tag");
         
         // We can't easily test the Close method without the full template system,
         // but we can test direct removal from Tags collection
         
         // Act
-        tagInput.Tags.RemoveAt(0);
+        tagInput.Tags!.RemoveAt(0);
 
         // Assert
-        Assert.Empty(tagInput.Tags);
+        Assert.Empty(tagInput.Tags!);
     }
 
     [AvaloniaFact]
@@ -458,7 +458,7 @@ public class TagInputTests
         });
 
         // Assert - Empty string should not be added
-        Assert.Empty(tagInput.Tags);
+        Assert.Empty(tagInput.Tags!);
 
         // Act - Try to add whitespace only - this will be added as the implementation doesn't trim
         textBox.Text = "   ";
@@ -469,8 +469,8 @@ public class TagInputTests
         });
 
         // Assert - Whitespace-only strings are added by the current implementation
-        Assert.Single(tagInput.Tags);
-        Assert.Equal("   ", tagInput.Tags[0]);
+        Assert.Single(tagInput.Tags!);
+        Assert.Equal("   ", tagInput.Tags![0]);
     }
 
     [AvaloniaFact]
@@ -486,13 +486,13 @@ public class TagInputTests
         window.Content = tagInput;
         window.Show();
 
-        Assert.Equal(3, tagInput.Tags.Count); // 3 tags + 1 textbox
+        Assert.Equal(3, tagInput.Tags!.Count); // 3 tags + 1 textbox
 
         // Act
         customTags.Clear();
 
         // Assert
-        Assert.Empty(tagInput.Tags); // Only TextBox should remain
+        Assert.Empty(tagInput.Tags!); // Only TextBox should remain
     }
 
     [AvaloniaFact]
@@ -505,14 +505,14 @@ public class TagInputTests
         window.Show();
 
         // Add some tags
-        tagInput.Tags.Add("tag1");
-        tagInput.Tags.Add("tag2");
-        tagInput.Tags.Add("tag3");
+        tagInput.Tags!.Add("tag1");
+        tagInput.Tags!.Add("tag2");
+        tagInput.Tags!.Add("tag3");
 
         // Ensure template is applied
         Dispatcher.UIThread.RunJobs();
 
-        Assert.Equal(3, tagInput.Tags.Count);
+        Assert.Equal(3, tagInput.Tags!.Count);
 
         // Act - Find the first ClosableTag and trigger its Close command
         var closableTag = tagInput.GetVisualDescendants().OfType<UrsaControls.ClosableTag>().FirstOrDefault();
@@ -526,8 +526,8 @@ public class TagInputTests
         command.Execute(closableTag);
 
         // Assert - The first tag should be removed
-        Assert.Equal(2, tagInput.Tags.Count);
-        Assert.Equal("tag2", tagInput.Tags[0]);
-        Assert.Equal("tag3", tagInput.Tags[1]);
+        Assert.Equal(2, tagInput.Tags!.Count);
+        Assert.Equal("tag2", tagInput.Tags![0]);
+        Assert.Equal("tag3", tagInput.Tags![1]);
     }
 }
