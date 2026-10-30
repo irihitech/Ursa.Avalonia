@@ -1,0 +1,154 @@
+<u:UrsaWindow
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:local="using:Ursa.Fluent2.Demo"
+    xmlns:vm="using:Ursa.Fluent2.Demo.ViewModels"
+    x:Class="Ursa.Fluent2.Demo.MainWindow"
+    x:DataType="vm:MainViewModel"
+    Title="Ursa · Fluent 2"
+    Width="1280" Height="850" MinWidth="760" MinHeight="560"
+    WindowStartupLocation="CenterScreen">
+    <u:UrsaWindow.DataTemplates>
+        <local:DemoPageViewLocator />
+    </u:UrsaWindow.DataTemplates>
+    <u:UrsaWindow.TitleBarContent>
+        <TextBlock Text="Ursa · Fluent 2" FontSize="12"
+                   Foreground="{DynamicResource TextFillColorSecondary}" />
+    </u:UrsaWindow.TitleBarContent>
+    <u:UrsaWindow.Styles>
+        <Style Selector="Border.gallery-card">
+            <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefault}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefault}" />
+        </Style>
+        <Style Selector="TextBlock.gallery-label">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimary}" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style Selector="TextBlock.gallery-error">
+            <Setter Property="Foreground" Value="{DynamicResource SystemFillColorCritical}" />
+        </Style>
+    </u:UrsaWindow.Styles>
+    <Grid ColumnDefinitions="Auto,*" Margin="8,36,8,8" ColumnSpacing="8">
+        <Border Background="{DynamicResource LayerFillColorDefault}"
+                BorderBrush="{DynamicResource CardStrokeColorDefault}"
+                BorderThickness="1" CornerRadius="8" Padding="8">
+            <u:NavMenu Name="NavigationMenu"
+                       ExpandWidth="272" CollapseWidth="56"
+                       ItemsSource="{Binding Categories}"
+                       HeaderBinding="{Binding Title}"
+                       SubMenuBinding="{Binding Children}"
+                       IconBinding="{Binding Icon}"
+                       SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                       IsHorizontalCollapsed="{Binding IsCollapsed, Mode=TwoWay}">
+                <u:NavMenu.IconTemplate>
+                    <DataTemplate>
+                        <PathIcon Width="16" Height="16" Data="{ReflectionBinding}" />
+                    </DataTemplate>
+                </u:NavMenu.IconTemplate>
+                <u:NavMenu.Header>
+                    <StackPanel Spacing="16" Margin="8,8,8,20">
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                            <StackPanel Orientation="Horizontal" Spacing="12" IsVisible="{Binding !IsCollapsed}">
+                                <Border Width="32" Height="32" CornerRadius="8"
+                                        Background="{DynamicResource AccentFillColorDefaultBrush}">
+                                    <TextBlock Text="U" FontSize="20" FontWeight="SemiBold"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                                               Foreground="{DynamicResource TextOnAccentFillColorPrimary}" />
+                                </Border>
+                                <StackPanel>
+                                    <TextBlock Text="Ursa" FontSize="20" FontWeight="SemiBold" />
+                                    <TextBlock Text="Fluent 2" FontSize="12"
+                                               Foreground="{DynamicResource TextFillColorSecondary}" />
+                                </StackPanel>
+                            </StackPanel>
+                            <Button Grid.Column="1" Padding="6"
+                                    u:NavMenu.CanToggle="True"
+                                    ToolTip.Tip="{Binding Text.CollapseNavigation}">
+                                <PathIcon Width="16" Height="16"
+                                          Data="M1,3 H15 V5 H1 Z M1,7 H15 V9 H1 Z M1,11 H15 V13 H1 Z" />
+                            </Button>
+                        </Grid>
+                        <TextBox Name="ControlSearch" Text="{Binding SearchText, Mode=TwoWay}"
+                                 PlaceholderText="{Binding Text.Search}"
+                                 IsVisible="{Binding !IsCollapsed}" />
+                        <DockPanel IsVisible="{Binding !IsCollapsed}">
+                            <TextBlock Text="{Binding Text.Controls}" FontSize="12" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource TextFillColorSecondary}" />
+                            <TextBlock Text="{Binding ResultCount}" FontSize="12" HorizontalAlignment="Right"
+                                       Foreground="{DynamicResource TextFillColorSecondary}" />
+                        </DockPanel>
+                    </StackPanel>
+                </u:NavMenu.Header>
+                <u:NavMenu.Footer>
+                    <StackPanel Spacing="12" Margin="8,16,8,8">
+                        <Border Height="1" Background="{DynamicResource DividerStrokeColorDefault}" />
+                        <Button Name="AppearanceButton" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                ToolTip.Tip="{Binding Text.Settings}">
+                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                <PathIcon Width="16" Height="16"
+                                          Data="M1,3 H15 V5 H1 Z M1,7 H15 V9 H1 Z M1,11 H15 V13 H1 Z M4,1 H6 V7 H4 Z M10,5 H12 V11 H10 Z M6,9 H8 V15 H6 Z" />
+                                <TextBlock Text="{Binding Text.Settings}" IsVisible="{Binding !IsCollapsed}" />
+                            </StackPanel>
+                            <Button.Flyout>
+                                <Flyout Placement="RightEdgeAlignedBottom">
+                                    <StackPanel Spacing="12" Width="220">
+                                        <TextBlock Text="{Binding Text.Settings}" FontSize="18" FontWeight="SemiBold" />
+                                        <TextBlock Text="{Binding Text.Theme}" />
+                                        <ComboBox Name="ThemeChoice" HorizontalAlignment="Stretch"
+                                                  ItemsSource="{Binding Text.ThemeOptions}"
+                                                  SelectedIndex="{Binding ThemeIndex, Mode=TwoWay}" />
+                                        <TextBlock Text="{Binding Text.Density}" />
+                                        <ComboBox Name="DensityChoice" HorizontalAlignment="Stretch"
+                                                  ItemsSource="{Binding Text.DensityOptions}"
+                                                  SelectedIndex="{Binding DensityIndex, Mode=TwoWay}" />
+                                        <TextBlock Text="{Binding Text.Language}" />
+                                        <ComboBox Name="LanguageChoice" HorizontalAlignment="Stretch"
+                                                  SelectedIndex="{Binding LanguageIndex, Mode=TwoWay}">
+                                            <x:String>English</x:String>
+                                            <x:String>简体中文</x:String>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
+                    </StackPanel>
+                </u:NavMenu.Footer>
+            </u:NavMenu>
+        </Border>
+        <Border Grid.Column="1" Background="{DynamicResource LayerFillColorDefault}"
+                BorderBrush="{DynamicResource CardStrokeColorDefault}"
+                BorderThickness="1" CornerRadius="8">
+            <Grid RowDefinitions="Auto,*">
+                <Border Padding="32,24" BorderThickness="0,0,0,1"
+                        BorderBrush="{DynamicResource DividerStrokeColorDefault}">
+                    <StackPanel Spacing="10">
+                        <TextBlock Text="{Binding PageCategory}" FontSize="12"
+                                   Foreground="{DynamicResource TextFillColorSecondary}" />
+                        <WrapPanel>
+                            <TextBlock Name="PageTitle" Text="{Binding PageTitle}" FontSize="32" FontWeight="SemiBold"
+                                       TextWrapping="Wrap" />
+                            <Border Margin="16,0,0,0" Padding="8,4" CornerRadius="4" VerticalAlignment="Center"
+                                    Background="{DynamicResource AccentFillColorDefaultBrush}">
+                                <TextBlock Text="Fluent 2" FontSize="12"
+                                           Foreground="{DynamicResource TextOnAccentFillColorPrimary}" />
+                            </Border>
+                        </WrapPanel>
+                        <TextBlock Text="{Binding PageDescription}" TextWrapping="Wrap"
+                                   Foreground="{DynamicResource TextFillColorSecondary}" />
+                    </StackPanel>
+                </Border>
+                <ContentControl Name="PageContent" Grid.Row="1" Content="{Binding Content}"
+                                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                                IsVisible="{Binding HasPage}" />
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Spacing="16" IsVisible="{Binding NoResults}">
+                    <TextBlock Text="{Binding Text.NoResults}" FontSize="20" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding Text.NoResultsHint}" />
+                    <Button Content="{Binding Text.ClearSearch}" Command="{Binding ClearSearchCommand}" HorizontalAlignment="Center" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</u:UrsaWindow>

@@ -1,0 +1,46 @@
+<ResourceDictionary x:ClassModifier="internal"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <ControlTheme x:Key="{x:Type u:TitleBar}" TargetType="u:TitleBar">
+        <Setter Property="MinHeight" Value="{DynamicResource CaptionButtonHeight}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:TitleBar">
+                <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                    <DockPanel Background="Transparent" WindowDecorationProperties.ElementRole="TitleBar">
+                        <ContentPresenter
+                            Name="PART_LeftContentPresenter"
+                            Content="{TemplateBinding LeftContent}"
+                            VerticalContentAlignment="Center"
+                            DockPanel.Dock="Left"
+                            IsVisible="{TemplateBinding LeftContent,
+                                                        Converter={x:Static ObjectConverters.IsNotNull}}"
+                            KeyboardNavigation.TabNavigation="Local"
+                            TabIndex="1"
+                            WindowDecorationProperties.ElementRole="User" />
+                        <ContentPresenter
+                            Name="PART_RightContentPresenter"
+                            Content="{TemplateBinding RightContent}"
+                            VerticalContentAlignment="Center"
+                            DockPanel.Dock="Right"
+                            IsVisible="{TemplateBinding RightContent,
+                                                        Converter={x:Static ObjectConverters.IsNotNull}}"
+                            KeyboardNavigation.TabNavigation="Local"
+                            TabIndex="3"
+                            WindowDecorationProperties.ElementRole="User" />
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            HorizontalAlignment="Stretch"
+                            Content="{TemplateBinding CenterContent}"
+                            VerticalContentAlignment="Center"
+                            IsVisible="{TemplateBinding CenterContent,
+                                                        Converter={x:Static ObjectConverters.IsNotNull}}"
+                            KeyboardNavigation.TabNavigation="Local"
+                            TabIndex="2"
+                            WindowDecorationProperties.ElementRole="User" />
+                    </DockPanel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

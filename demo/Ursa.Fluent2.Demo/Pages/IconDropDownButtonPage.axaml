@@ -1,0 +1,41 @@
+<pages:DemoPageView
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:sys="using:System"
+    xmlns:pages="using:Ursa.Fluent2.Demo.Pages"
+    x:Class="Ursa.Fluent2.Demo.Pages.IconDropDownButtonPage">
+  <ScrollViewer HorizontalScrollBarVisibility="Auto">
+    <StackPanel Margin="24" Spacing="24" MaxWidth="1000" HorizontalAlignment="Stretch">
+      <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="IconDropDownButton" FontWeight="SemiBold"/>
+          <DropDownButton Name="NativeDropDownButton" Content="Sort" HorizontalAlignment="Left">
+            <DropDownButton.Flyout>
+              <Flyout>
+                <StackPanel Spacing="8">
+                  <TextBlock Text="Sort order" FontWeight="SemiBold"/>
+                  <RadioButton Content="Name" GroupName="NativeSortOrder" IsChecked="True"/>
+                  <RadioButton Content="Date modified" GroupName="NativeSortOrder"/>
+                  <RadioButton Content="Size" GroupName="NativeSortOrder"/>
+                </StackPanel>
+              </Flyout>
+            </DropDownButton.Flyout>
+          </DropDownButton>
+          <u:IconDropDownButton Name="IconDropDownButton" HorizontalAlignment="Left" MaxWidth="640" Content="Sort" Icon="A">
+            <u:IconDropDownButton.Flyout>
+              <Flyout>
+                <StackPanel Spacing="8">
+                  <TextBlock Text="Sort order" FontWeight="SemiBold"/>
+                  <RadioButton Content="Name" GroupName="IconSortOrder" IsChecked="True"/>
+                  <RadioButton Content="Date modified" GroupName="IconSortOrder"/>
+                  <RadioButton Content="Size" GroupName="IconSortOrder"/>
+                </StackPanel>
+              </Flyout>
+            </u:IconDropDownButton.Flyout>
+          </u:IconDropDownButton>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</pages:DemoPageView>

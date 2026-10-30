@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <IsTestProject>true</IsTestProject>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+    <UseFluent2>true</UseFluent2>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Headless.XUnit" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit.v3" VersionOverride="$(Fluent2XunitVersion)" />
+    <PackageReference Include="xunit.v3.runner.msbuild" VersionOverride="$(Fluent2XunitVersion)" />
+    <ProjectReference Include="../../src/Ursa.Themes.Fluent2/Ursa.Themes.Fluent2.csproj" />
+    <ProjectReference Include="../../demo/Ursa.Fluent2.Demo/Ursa.Fluent2.Demo.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="../../src/Ursa.Themes.Fluent2/**/*.axaml"
+                      LogicalName="Fluent2/%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="../../src/Ursa.Themes.Semi/Controls/*.axaml"
+                      LogicalName="Semi/%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

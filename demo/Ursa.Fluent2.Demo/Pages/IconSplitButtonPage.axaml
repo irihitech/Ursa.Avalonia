@@ -1,0 +1,41 @@
+<pages:DemoPageView
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:sys="using:System"
+    xmlns:pages="using:Ursa.Fluent2.Demo.Pages"
+    x:Class="Ursa.Fluent2.Demo.Pages.IconSplitButtonPage">
+  <ScrollViewer HorizontalScrollBarVisibility="Auto">
+    <StackPanel Margin="24" Spacing="24" MaxWidth="1000" HorizontalAlignment="Stretch">
+      <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="IconSplitButton" FontWeight="SemiBold"/>
+          <SplitButton Name="NativeSplitButton" Content="Export" HorizontalAlignment="Left">
+            <SplitButton.Flyout>
+              <Flyout>
+                <StackPanel Spacing="8">
+                  <TextBlock Text="Export format" FontWeight="SemiBold"/>
+                  <RadioButton Content="PDF" GroupName="NativeExportFormat" IsChecked="True"/>
+                  <RadioButton Content="PNG" GroupName="NativeExportFormat"/>
+                  <RadioButton Content="SVG" GroupName="NativeExportFormat"/>
+                </StackPanel>
+              </Flyout>
+            </SplitButton.Flyout>
+          </SplitButton>
+          <u:IconSplitButton Name="IconSplitButton" HorizontalAlignment="Left" MaxWidth="640" Content="Export" Icon="A">
+            <u:IconSplitButton.Flyout>
+              <Flyout>
+                <StackPanel Spacing="8">
+                  <TextBlock Text="Export format" FontWeight="SemiBold"/>
+                  <RadioButton Content="PDF" GroupName="IconExportFormat" IsChecked="True"/>
+                  <RadioButton Content="PNG" GroupName="IconExportFormat"/>
+                  <RadioButton Content="SVG" GroupName="IconExportFormat"/>
+                </StackPanel>
+              </Flyout>
+            </u:IconSplitButton.Flyout>
+          </u:IconSplitButton>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</pages:DemoPageView>

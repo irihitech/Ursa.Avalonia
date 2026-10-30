@@ -1,0 +1,5 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StaticResource x:Key="ThemeSelectorButtonDarkGlyph" ResourceKey="UrsaFluent2IconMoon" />
+    <StaticResource x:Key="ThemeSelectorButtonLightGlyph" ResourceKey="UrsaFluent2IconSun" />
+    <StaticResource x:Key="ThemeSelectorButtonDefaultGlyph" ResourceKey="UrsaFluent2IconContrast" />
+</ResourceDictionary>

@@ -1,6 +1,7 @@
 <Project>
   <PropertyGroup>
     <AvaloniaVersion>12.1.1</AvaloniaVersion>
+    <AvaloniaVersion Condition="'$(UseFluent2)' == 'true'">$(Fluent2AvaloniaVersion)</AvaloniaVersion>
   </PropertyGroup>
 
   <ItemGroup>

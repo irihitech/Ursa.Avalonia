@@ -1,0 +1,46 @@
+<ResourceDictionary x:ClassModifier="internal"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <ControlTheme x:Key="{x:Type u:UrsaView}" TargetType="{x:Type u:UrsaView}">
+        <Setter Property="Background" Value="{DynamicResource WindowDefaultBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
+        <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
+        <Setter Property="u:OverlayDialogHost.IsModalStatusScope" Value="True" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:UrsaView">
+                <Panel>
+                    <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
+                    <Panel>
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <Grid
+                            Margin="{Binding $parent[u:UrsaWindow].TitleBarMargin}"
+                            VerticalAlignment="Top"
+                            ColumnDefinitions="Auto, *, Auto">
+                            <ContentPresenter
+                                Grid.Column="0"
+                                IsVisible="{TemplateBinding IsTitleBarVisible}"
+                                Content="{TemplateBinding LeftContent}" />
+                            <ContentPresenter
+                                Grid.Column="1"
+                                IsVisible="{TemplateBinding IsTitleBarVisible}"
+                                Content="{TemplateBinding TitleBarContent}" />
+                            <ContentPresenter
+                                Grid.Column="2"
+                                IsVisible="{TemplateBinding IsTitleBarVisible}"
+                                Content="{TemplateBinding RightContent}" />
+                        </Grid>
+                        <u:OverlayDialogHost Name="{x:Static u:UrsaView.PART_DialogHost}" IsModalStatusReporter="True" />
+                    </Panel>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

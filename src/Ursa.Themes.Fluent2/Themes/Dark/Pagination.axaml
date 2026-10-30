@@ -1,0 +1,9 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StaticResource x:Key="PaginationButtonDefaultForeground" ResourceKey="TextFillColorPrimary" />
+    <StaticResource x:Key="PaginationButtonSelectedForeground" ResourceKey="AccentTextFillColorPrimaryBrush" />
+    <StaticResource x:Key="PaginationButtonIconForeground" ResourceKey="TextFillColorTertiary" />
+    <SolidColorBrush x:Key="PaginationButtonDefaultBackground" Color="Transparent" />
+    <StaticResource x:Key="PaginationButtonPointeroverBackground" ResourceKey="ControlFillColorDefault" />
+    <StaticResource x:Key="PaginationButtonPressedBackground" ResourceKey="ControlFillColorSecondary" />
+    <StaticResource x:Key="PaginationButtonSelectedBackground" ResourceKey="ControlFillColorSecondary" />
+</ResourceDictionary>

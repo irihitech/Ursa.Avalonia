@@ -1,0 +1,98 @@
+<ResourceDictionary x:ClassModifier="internal"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <ControlTheme x:Key="{x:Type u:NumericUpDown}" TargetType="{x:Type u:NumericUpDown}">
+        <Setter Property="Foreground" Value="{DynamicResource TextControlForeground}" />
+        <Setter Property="Background" Value="{DynamicResource TextControlBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource TextControlThemeBorderThickness}" />
+        <Setter Property="Padding" Value="{DynamicResource TextControlThemePadding}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource NumericUpDownCornerRadius}" />
+        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextControlPlaceholderForeground}" />
+        <Setter Property="MinHeight" Value="{DynamicResource NumericUpDownDefaultHeight}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:NumericUpDown">
+                <DataValidationErrors>
+                    <ButtonSpinner
+                        Name="PART_Spinner"
+                        MinWidth="0"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        AllowSpin="{TemplateBinding AllowSpin}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        IsTabStop="False"
+                        Padding="0"
+                        ShowButtonSpinner="{TemplateBinding ShowButtonSpinner}">
+                        <Panel>
+                            <TextBox
+                                Name="PART_TextBox"
+                                MinWidth="0"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                Padding="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="Center"
+                                AcceptsReturn="False"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                DataValidationErrors.Errors="{ReflectionBinding $parent[u:NumericUpDown].(DataValidationErrors.Errors)}"
+                                FontSize="{TemplateBinding FontSize}"
+                                Foreground="{TemplateBinding Foreground}"
+                                InnerLeftContent="{TemplateBinding InnerLeftContent}"
+                                InnerRightContent="{TemplateBinding InnerRightContent}"
+                                TextWrapping="NoWrap"
+                                Theme="{DynamicResource FluentNumericUpDownTextBox}"
+                                PlaceholderText="{TemplateBinding PlaceholderText}"
+                                PlaceholderForeground="{TemplateBinding PlaceholderForeground}" />
+                            <Panel
+                                Name="PART_DragPanel"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="Transparent"
+                                Cursor="SizeAll" />
+                            <Button
+                                Name="PART_ClearButton"
+                                Margin="0,0,8,0"
+                                HorizontalAlignment="Right"
+                                Command="{Binding $parent[u:NumericUpDown].Clear}"
+                                Focusable="False"
+                                IsVisible="False"
+                                Content="{DynamicResource IconButtonClearData}"
+                                Theme="{DynamicResource InnerIconButton}" />
+                        </Panel>
+                    </ButtonSpinner>
+                </DataValidationErrors>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:error /template/ ButtonSpinner#PART_Spinner">
+            <Setter Property="BorderBrush" Value="{DynamicResource SystemFillColorCritical}" />
+        </Style>
+
+        <Style Selector="^.clearButton, ^.ClearButton">
+            <Style Selector="^[IsReadOnly=False]:focus /template/ Button#PART_ClearButton">
+                <Setter Property="IsVisible" Value="True" />
+            </Style>
+            <Style Selector="^[IsReadOnly=False]:pointerover /template/ Button#PART_ClearButton">
+                <Setter Property="IsVisible" Value="True" />
+            </Style>
+        </Style>
+
+        <Style Selector="^.Large">
+            <Setter Property="MinHeight" Value="{DynamicResource NumericUpDownLargeHeight}" />
+        </Style>
+        <Style Selector="^.Small">
+            <Setter Property="MinHeight" Value="{DynamicResource NumericUpDownSmallHeight}" />
+        </Style>
+
+        <Style Selector="^.Split /template/ ButtonSpinner#PART_Spinner">
+            <Setter Property="Theme" Value="{DynamicResource SplitButtonSpinner}" />
+        </Style>
+        <Style Selector="^.Split /template/ TextBox#PART_TextBox">
+            <Setter Property="CornerRadius" Value="0" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

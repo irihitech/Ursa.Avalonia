@@ -1,0 +1,145 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StaticResource x:Key="DualBadgeDefaultIconForeground" ResourceKey="TextOnAccentFillColorPrimary" />
+    <StaticResource x:Key="DualBadgeDefaultHeaderForeground" ResourceKey="TextOnAccentFillColorPrimary" />
+    <StaticResource x:Key="DualBadgeDefaultForeground" ResourceKey="TextOnAccentFillColorPrimary" />
+    <LinearGradientBrush x:Key="DualBadgeDefaultHeaderBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource ControlFillColorSecondary}" Offset="0" />
+        <GradientStop Color="{StaticResource TextFillColorSecondary}" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="DualBadgeFlatRedBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemFillColorCriticalBackground}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemFillColorCritical}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgeFlatPinkBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgeFlatPurpleBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgeFlatVioletBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgeFlatIndigoBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgeFlatBlueBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgeFlatLightBlueBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgeFlatCyanBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgeFlatTealBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgeFlatGreenBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemFillColorSuccessBackground}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemFillColorSuccess}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgeFlatLightGreenBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemFillColorSuccessBackground}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemFillColorSuccess}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgeFlatLimeBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgeFlatYellowBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemFillColorCautionBackground}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemFillColorCaution}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgeFlatAmberBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemFillColorCautionBackground}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemFillColorCaution}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgeFlatOrangeBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemFillColorCautionBackground}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemFillColorCaution}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgeFlatGreyBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource LayerFillColorDefault}" Offset="0" />
+        <GradientStop Color="{StaticResource ControlFillColorTertiary}" Offset="1" />
+    </LinearGradientBrush>
+
+
+    <LinearGradientBrush x:Key="DualBadgePlasticHeaderBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource ControlFillColorTertiary}" Offset="0" />
+        <GradientStop Color="{StaticResource TextFillColorSecondary}" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="DualBadgePlasticRedBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemFillColorCriticalBackground}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemFillColorCritical}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgePlasticPinkBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgePlasticPurpleBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgePlasticVioletBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgePlasticIndigoBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgePlasticBlueBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgePlasticLightBlueBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgePlasticCyanBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgePlasticTealBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgePlasticGreenBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemFillColorSuccessBackground}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemFillColorSuccess}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgePlasticLightGreenBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemFillColorSuccessBackground}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemFillColorSuccess}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgePlasticLimeBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemAccentColorLight2}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgePlasticYellowBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemFillColorCautionBackground}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemFillColorCaution}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgePlasticAmberBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemFillColorCautionBackground}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemFillColorCaution}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgePlasticOrangeBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource SystemFillColorCautionBackground}" Offset="0" />
+        <GradientStop Color="{StaticResource SystemFillColorCaution}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DualBadgePlasticGreyBackground" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource CardBackgroundFillColorSecondary}" Offset="0" />
+        <GradientStop Color="{StaticResource ControlFillColorTertiary}" Offset="1" />
+    </LinearGradientBrush>
+</ResourceDictionary>

@@ -1,0 +1,19 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StaticResource x:Key="AvatarForeground" ResourceKey="TextOnAccentFillColorPrimary" />
+    <StaticResource x:Key="AvatarRedBackground" ResourceKey="SystemFillColorCritical" />
+    <StaticResource x:Key="AvatarPinkBackground" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="AvatarPurpleBackground" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="AvatarVioletBackground" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="AvatarIndigoBackground" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="AvatarBlueBackground" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="AvatarLightBlueBackground" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="AvatarCyanBackground" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="AvatarTealBackground" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="AvatarGreenBackground" ResourceKey="SystemFillColorSuccess" />
+    <StaticResource x:Key="AvatarLightGreenBackground" ResourceKey="SystemFillColorSuccess" />
+    <StaticResource x:Key="AvatarLimeBackground" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="AvatarYellowBackground" ResourceKey="SystemFillColorCaution" />
+    <StaticResource x:Key="AvatarAmberBackground" ResourceKey="SystemFillColorCaution" />
+    <StaticResource x:Key="AvatarOrangeBackground" ResourceKey="SystemFillColorCaution" />
+    <StaticResource x:Key="AvatarGreyBackground" ResourceKey="TextFillColorSecondary" />
+</ResourceDictionary>

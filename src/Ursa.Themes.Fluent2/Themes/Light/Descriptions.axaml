@@ -1,0 +1,4 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StaticResource x:Key="DescriptionsKeyTextForeground" ResourceKey="TextFillColorTertiary" />
+    <StaticResource x:Key="DescriptionsValueTextForeground" ResourceKey="TextFillColorPrimary" />
+</ResourceDictionary>

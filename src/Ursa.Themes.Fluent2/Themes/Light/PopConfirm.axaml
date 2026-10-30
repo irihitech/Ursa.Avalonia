@@ -1,0 +1,6 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StaticResource x:Key="PopConfirmBackground" ResourceKey="AcrylicInAppFillColorDefaultBrush" />
+    <StaticResource x:Key="PopConfirmBorderBrush" ResourceKey="SurfaceStrokeColorFlyout" />
+    <StaticResource x:Key="PopConfirmContentForeground" ResourceKey="TextFillColorPrimary" />
+    <StaticResource x:Key="PopConfirmBorderBoxShadows" ResourceKey="UrsaFluent2OverlayBoxShadow" />
+</ResourceDictionary>

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <UseFluent2>true</UseFluent2>
+  </PropertyGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="..\Ursa.Demo.Browser\Assets\Fonts\SourceHanSansCN-Regular.otf"
+                      Link="Assets\Fonts\SourceHanSansCN-Regular.otf" />
+    <AvaloniaResource Include="..\Ursa.Demo.Browser\Assets\Fonts\SourceHanSansCN-Bold.otf"
+                      Link="Assets\Fonts\SourceHanSansCN-Bold.otf" />
+    <None Update="Assets\Fonts\OFL.txt" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Desktop" />
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Condition="'$(Configuration)' == 'Debug'" />
+    <ProjectReference Include="../../src/Ursa.Themes.Fluent2/Ursa.Themes.Fluent2.csproj" />
+  </ItemGroup>
+</Project>

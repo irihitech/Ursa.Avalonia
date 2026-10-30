@@ -1,0 +1,9 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StaticResource x:Key="TimelineHeaderForeground" ResourceKey="TextFillColorPrimary" />
+    <StaticResource x:Key="TimelineLineBrush" ResourceKey="ControlFillColorTertiary" />
+    <StaticResource x:Key="TimelineDefaultDotFill" ResourceKey="TextFillColorTertiary" />
+    <StaticResource x:Key="TimelineOngoingDotFill" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="TimelineSuccessDotFill" ResourceKey="SystemFillColorSuccess" />
+    <StaticResource x:Key="TimelineWarningDotFill" ResourceKey="SystemFillColorCaution" />
+    <StaticResource x:Key="TimelineErrorDotFill" ResourceKey="SystemFillColorCritical" />
+</ResourceDictionary>
