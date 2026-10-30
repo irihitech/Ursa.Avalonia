@@ -32,6 +32,8 @@ public class AnchorItem : HeaderedItemsControl, ISelectable
         ItemsPanelProperty.OverrideDefaultValue<AnchorItem>(DefaultPanel);
     }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("AvaloniaProperty", "AVP1032",
+        Justification = "The AvaloniaProperty is internal plumbing; the public CLR property is the supported surface.")]
     public int Level
     {
         get;

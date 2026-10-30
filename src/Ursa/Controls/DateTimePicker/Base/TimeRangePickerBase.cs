@@ -158,14 +158,14 @@ public abstract class TimeRangePickerBase : TemplatedControl, IInnerContentContr
     public string? StartWatermark
     {
         get => StartPlaceholderText;
-        set => StartPlaceholderText = value;
+        set => SetCurrentValue(StartPlaceholderTextProperty, value);
     }
 
     [Obsolete("Use EndPlaceholderText instead.")]
     public string? EndWatermark
     {
         get => EndPlaceholderText;
-        set => EndPlaceholderText = value;
+        set => SetCurrentValue(EndPlaceholderTextProperty, value);
     }
 
     public abstract void Confirm();

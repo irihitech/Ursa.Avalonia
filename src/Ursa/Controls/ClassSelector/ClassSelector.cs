@@ -11,6 +11,8 @@ public class ClassSelector : MultiComboBox
 {
     private readonly List<StyledElement> _targets = [];
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("AvaloniaProperty", "AVP1010",
+        Justification = "Intentional alias of MultiComboBox.SelectedItemsProperty so both names set the same property.")]
     public static readonly StyledProperty<IList?> SelectedClassesProperty = SelectedItemsProperty;
 
     public static readonly StyledProperty<Control?> TargetProperty =

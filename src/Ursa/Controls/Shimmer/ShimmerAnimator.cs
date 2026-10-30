@@ -19,7 +19,7 @@ internal sealed class ShimmerAnimator
     /// <summary>
     ///     Minimum interval between brush position updates (≈30 fps).
     /// </summary>
-    private static readonly double FrameIntervalSeconds = 1.0 / 30.0;
+    private const double FrameIntervalSeconds = 1.0 / 30.0;
 
     private readonly AvaloniaProperty<Color?> _baseColorProperty;
     private readonly AvaloniaProperty<IBrush?> _brushProperty;

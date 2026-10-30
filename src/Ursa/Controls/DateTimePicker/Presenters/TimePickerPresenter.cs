@@ -1,4 +1,5 @@
-﻿using Avalonia;
+﻿using System.Globalization;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
@@ -130,7 +131,8 @@ public class TimePickerPresenter : TemplatedControl
                 {
                     panels.Add(_hourScrollPanel);
                     _use12Clock = part.Contains('h');
-                    _hourSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty, part.ToLower());
+                    _hourSelector?.SetValue(DateTimePickerPanel.ItemFormatProperty,
+                    part.ToLower(CultureInfo.InvariantCulture));
                     if (_hourSelector is not null)
                     {
                         _hourSelector.MaximumValue = _use12Clock ? 12 : 23;

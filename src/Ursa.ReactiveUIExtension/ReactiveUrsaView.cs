@@ -41,7 +41,7 @@ public class ReactiveUrsaView<TViewModel> : UrsaView, IViewFor<TViewModel> where
 	object? IViewFor.ViewModel
 	{
 		get => ViewModel;
-		set => ViewModel = (TViewModel?)value;
+		set => SetCurrentValue(ViewModelProperty, (TViewModel?)value);
 	}
 
 	protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)

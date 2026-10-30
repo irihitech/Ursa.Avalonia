@@ -399,7 +399,7 @@ public abstract class NumericUpDownBase<T> : NumericUpDown where T : struct, ICo
     {
         if (text is null) return string.Empty;
         text = text.Trim();
-        if (text.Contains("_")) // support _ like 0x1024_1024(hex), 10_24 (normal)
+        if (text.Contains('_')) // support _ like 0x1024_1024(hex), 10_24 (normal)
         {
             text = text.Replace("_", "");
         }
