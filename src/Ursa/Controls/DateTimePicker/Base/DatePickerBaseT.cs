@@ -224,6 +224,9 @@ public abstract class DatePickerBase<T> : DatePickerBase, IClearControl where T 
     {
         DataValidationErrors.SetError(this, null);
         SetCurrentValue(SelectedDateProperty, null);
+        // Property changes are not raised when the value is already null (e.g. unparseable
+        // manual input), so the UI must be synced explicitly.
+        SyncDateToText();
     }
 
     public override void Confirm()
