@@ -18,6 +18,11 @@
                             Content="{TemplateBinding LeftContent}"
                             IsVisible="{Binding $self.Content,Converter={x:Static ObjectConverters.IsNotNull}}"
                             TabIndex="1" />
+                        <!--  Reserved for the window's caption buttons; declared before
+                              PART_RightContentPresenter so it hugs the right edge  -->
+                        <Control
+                            DockPanel.Dock="Right"
+                            Width="{TemplateBinding RightInset}" />
                         <ContentPresenter
                             Name="PART_RightContentPresenter"
                             DockPanel.Dock="Right"

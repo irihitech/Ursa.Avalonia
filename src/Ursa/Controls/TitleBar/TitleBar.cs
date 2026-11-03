@@ -45,6 +45,23 @@ public class TitleBar : TemplatedControl
         set => SetValue(RightContentProperty, value);
     }
 
+    /// <summary>
+    ///     Defines the space reserved to the right of <see cref="RightContent"/>, e.g.
+    ///     for the window's caption buttons.
+    /// </summary>
+    public static readonly StyledProperty<double> RightInsetProperty = AvaloniaProperty.Register<TitleBar, double>(
+        nameof(RightInset));
+
+    /// <summary>
+    ///     Gets or sets the space reserved to the right of <see cref="RightContent"/>, e.g.
+    ///     for the window's caption buttons.
+    /// </summary>
+    public double RightInset
+    {
+        get => GetValue(RightInsetProperty);
+        set => SetValue(RightInsetProperty, value);
+    }
+
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
         base.OnPointerPressed(e);

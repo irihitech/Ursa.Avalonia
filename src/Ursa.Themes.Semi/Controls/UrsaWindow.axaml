@@ -50,6 +50,7 @@
                                 HorizontalAlignment="Stretch"
                                 LeftContent="{TemplateBinding LeftContent}"
                                 RightContent="{TemplateBinding RightContent}"
+                                RightInset="{TemplateBinding CaptionButtonsWidth}"
                                 CenterContent="{TemplateBinding TitleBarContent}" />
                             <u:OverlayDialogHost
                                 Name="{x:Static u:UrsaWindow.PART_DialogHost}"

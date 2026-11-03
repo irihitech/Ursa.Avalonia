@@ -5,6 +5,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 using Avalonia.Media;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -216,8 +217,29 @@ public class UrsaWindow : Window
         set => SetValue(TitleBarBackgroundProperty, value);
     }
 
+    /// <summary>
+    ///     Gets the current width of the visible caption button area. The title bar
+    ///     reserves this space so its <see cref="RightContent"/> does not overlap the
+    ///     caption buttons. It is 0 when they are hidden, e.g. in fullscreen, or when
+    ///     the platform does not draw decorations.
+    /// </summary>
+    public double CaptionButtonsWidth
+    {
+        get;
+        private set => SetAndRaise(CaptionButtonsWidthProperty, ref field, value);
+    }
+
+    /// <summary>
+    ///     Defines the current width of the visible caption button area.
+    /// </summary>
+    public static readonly DirectProperty<UrsaWindow, double> CaptionButtonsWidthProperty =
+        AvaloniaProperty.RegisterDirect<UrsaWindow, double>(
+            nameof(CaptionButtonsWidth), o => o.CaptionButtonsWidth);
+
     private TitleBar? _titleBar;
     private OverlayDialogHost? _dialogHost;
+    private IDisposable? _windowStateSubscription;
+
     /// <inheritdoc/>
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -232,19 +254,55 @@ public class UrsaWindow : Window
         base.OnLoaded(e);
         var decorations = this.GetLogicalDescendants().OfType<WindowDrawnDecorations>().FirstOrDefault();
         var buttons = decorations?.GetLogicalDescendants().OfType<Button>().ToList();
-        Button? maxX = null;
-        if (buttons is { Count: > 0 })
+        if (buttons is { Count: > 0 } && _titleBar is not null)
         {
-            maxX = buttons.MaxBy(a => a.Bounds.X);
+            _titleBar.MinHeight = decorations?.TitleBarHeight ?? 0;
         }
-        var marginRight = maxX?.Bounds.Right;
-        var height = decorations?.TitleBarHeight;
-        if (marginRight is not null && _titleBar is not null)
+
+        UpdateCaptionButtonsWidth();
+        _windowStateSubscription?.Dispose();
+        _windowStateSubscription = this.GetObservable(WindowStateProperty)
+            .Subscribe(_ => OnWindowStateChanged());
+    }
+
+    protected override void OnUnloaded(RoutedEventArgs e)
+    {
+        base.OnUnloaded(e);
+        _windowStateSubscription?.Dispose();
+        _windowStateSubscription = null;
+    }
+
+    /// <summary>
+    ///     Caption button visibility changes with the window state (e.g. the buttons
+    ///     are hidden in fullscreen), so re-measure on every state change: once
+    ///     immediately, and once after the next layout pass, when the buttons'
+    ///     bounds have settled.
+    /// </summary>
+    private void OnWindowStateChanged()
+    {
+        UpdateCaptionButtonsWidth();
+
+        void OnLayoutUpdated(object? sender, System.EventArgs args)
         {
-            _titleBar.Margin = new Thickness(_titleBar.Margin.Left, _titleBar.Margin.Top, marginRight.Value,
-                _titleBar.Margin.Bottom);
-            _titleBar.MinHeight = height ?? 0;
+            LayoutUpdated -= OnLayoutUpdated;
+            UpdateCaptionButtonsWidth();
         }
+
+        LayoutUpdated += OnLayoutUpdated;
+    }
+
+    /// <summary>
+    ///     Measures the width occupied by the currently visible caption buttons,
+    ///     i.e. the right space a title bar must reserve to not overlap them.
+    /// </summary>
+    private void UpdateCaptionButtonsWidth()
+    {
+        CaptionButtonsWidth = this.GetLogicalDescendants().OfType<WindowDrawnDecorations>().FirstOrDefault()
+            ?.GetLogicalDescendants().OfType<Button>()
+            .Where(b => b.IsEffectivelyVisible)
+            .Select(b => b.Bounds.Right)
+            .DefaultIfEmpty(0)
+            .Max() ?? 0;
     }
 
     /// <summary>
