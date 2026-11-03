@@ -2251,4 +2251,26 @@
   <data name="AboutUs_Huska_Description" xml:space="preserve"><value>Komerční ručně kreslený motiv pro ovládací prvky, grafy a diagramy Avalonia.</value></data>
   <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Ovládací prvek Ribbon</value></data>
   <data name="AboutUs_Asura_Description" xml:space="preserve"><value>Příkazová lišta Ribbon pro desktopové aplikace Avalonia s adaptivním rozvržením při omezeném prostoru.</value></data>
+          <data name="Settings_Card_Theme_Header" xml:space="preserve"><value>Motiv</value></data>
+  <data name="Settings_Card_Theme_Description" xml:space="preserve"><value>Přepínání mezi světlým a tmavým motivem.</value></data>
+  <data name="Settings_Card_Language_Header" xml:space="preserve"><value>Jazyk</value></data>
+  <data name="Settings_Card_Language_Description" xml:space="preserve"><value>Zvolte jazyk zobrazení.</value></data>
+              <data name="Settings_Group_General_Header" xml:space="preserve"><value>Obecné</value></data>
+  <data name="Settings_Group_Window_Header" xml:space="preserve"><value>Okno</value></data>
+      <data name="Settings_Card_WindowState_Header" xml:space="preserve"><value>Stav okna</value></data>
+  <data name="Settings_Card_WindowState_Description" xml:space="preserve"><value>Přepínání mezi normálním, maximalizovaným a celoobrazovkovým režimem.</value></data>
+    <data name="Settings_Card_CanMinimize_Header" xml:space="preserve"><value>Lze minimalizovat</value></data>
+  <data name="Settings_Card_CanMaximize_Header" xml:space="preserve"><value>Lze maximalizovat</value></data>
+  <data name="Settings_Card_CanResize_Header" xml:space="preserve"><value>Lze měnit velikost</value></data>
+  <data name="Settings_Card_Topmost_Header" xml:space="preserve"><value>Vždy nahoře</value></data>
+  <data name="Settings_Card_TitleBar_Header" xml:space="preserve"><value>Záhlaví</value></data>
+  <data name="Settings_Card_MinimizeButton_Header" xml:space="preserve"><value>Tlačítko minimalizace</value></data>
+  <data name="Settings_Card_MaximizeButton_Header" xml:space="preserve"><value>Tlačítko maximalizace</value></data>
+  <data name="Settings_Card_FullScreenButton_Header" xml:space="preserve"><value>Tlačítko celé obrazovky</value></data>
+  <data name="Settings_Card_CloseButton_Header" xml:space="preserve"><value>Tlačítko zavření</value></data>
+  <data name="Settings_Card_ManagedResizer_Header" xml:space="preserve"><value>Spravovaná úchytka velikosti</value></data>
+  <data name="Settings_Card_WindowBehavior_Header" xml:space="preserve"><value>Chování okna</value></data>
+  <data name="Settings_Card_ShowTitleBar_Header" xml:space="preserve"><value>Zobrazit záhlaví</value></data>
+  <data name="Settings_Card_WindowBehavior_Description" xml:space="preserve"><value>Řízení změny velikosti a polohy okna.</value></data>
+  <data name="Settings_Card_TitleBar_Description" xml:space="preserve"><value>Zobrazení nebo skrytí záhlaví a jeho tlačítek.</value></data>
 </root>

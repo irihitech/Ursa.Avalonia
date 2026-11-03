@@ -2251,4 +2251,26 @@
   <data name="AboutUs_Huska_Description" xml:space="preserve"><value>Un thème commercial dessiné à la main pour les contrôles, graphiques et diagrammes Avalonia.</value></data>
   <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Contrôle Ruban</value></data>
   <data name="AboutUs_Asura_Description" xml:space="preserve"><value>Une barre de commandes Ruban pour les applications de bureau Avalonia, avec une mise en page adaptative quand l'espace est limité.</value></data>
+          <data name="Settings_Card_Theme_Header" xml:space="preserve"><value>Thème</value></data>
+  <data name="Settings_Card_Theme_Description" xml:space="preserve"><value>Basculer entre le thème clair et sombre.</value></data>
+  <data name="Settings_Card_Language_Header" xml:space="preserve"><value>Langue</value></data>
+  <data name="Settings_Card_Language_Description" xml:space="preserve"><value>Choisir la langue d'affichage.</value></data>
+              <data name="Settings_Group_General_Header" xml:space="preserve"><value>Général</value></data>
+  <data name="Settings_Group_Window_Header" xml:space="preserve"><value>Fenêtre</value></data>
+      <data name="Settings_Card_WindowState_Header" xml:space="preserve"><value>État de la fenêtre</value></data>
+  <data name="Settings_Card_WindowState_Description" xml:space="preserve"><value>Basculer entre normal, agrandi et plein écran.</value></data>
+    <data name="Settings_Card_CanMinimize_Header" xml:space="preserve"><value>Pouvoir réduire</value></data>
+  <data name="Settings_Card_CanMaximize_Header" xml:space="preserve"><value>Pouvoir agrandir</value></data>
+  <data name="Settings_Card_CanResize_Header" xml:space="preserve"><value>Pouvoir redimensionner</value></data>
+  <data name="Settings_Card_Topmost_Header" xml:space="preserve"><value>Toujours au premier plan</value></data>
+  <data name="Settings_Card_TitleBar_Header" xml:space="preserve"><value>Barre de titre</value></data>
+  <data name="Settings_Card_MinimizeButton_Header" xml:space="preserve"><value>Bouton réduire</value></data>
+  <data name="Settings_Card_MaximizeButton_Header" xml:space="preserve"><value>Bouton agrandir</value></data>
+  <data name="Settings_Card_FullScreenButton_Header" xml:space="preserve"><value>Bouton plein écran</value></data>
+  <data name="Settings_Card_CloseButton_Header" xml:space="preserve"><value>Bouton fermer</value></data>
+  <data name="Settings_Card_ManagedResizer_Header" xml:space="preserve"><value>Poignée de redimensionnement gérée</value></data>
+  <data name="Settings_Card_WindowBehavior_Header" xml:space="preserve"><value>Comportement de la fenêtre</value></data>
+  <data name="Settings_Card_ShowTitleBar_Header" xml:space="preserve"><value>Afficher la barre de titre</value></data>
+  <data name="Settings_Card_WindowBehavior_Description" xml:space="preserve"><value>Contrôler le redimensionnement et le positionnement de la fenêtre.</value></data>
+  <data name="Settings_Card_TitleBar_Description" xml:space="preserve"><value>Afficher ou masquer la barre de titre et ses boutons.</value></data>
 </root>

@@ -1,0 +1,167 @@
+<UserControl
+    x:Class="Ursa.Demo.Pages.Settings.SettingsPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:lingua="https://irihi.tech/lingua"
+    xmlns:localizations="clr-namespace:Ursa.Demo.Localizations"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="clr-namespace:Ursa.Demo.Pages.Settings;assembly=Ursa.Demo"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:SettingsPageViewModel"
+    mc:Ignorable="d">
+    <ScrollViewer>
+        <StackPanel
+            MaxWidth="640"
+            Margin="8"
+            Spacing="16"
+            HorizontalAlignment="Stretch">
+            <u:SettingsCardGroup
+                Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Group_General_Header}}">
+                <u:SettingsCard
+                    Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_Theme_Header}}"
+                    Description="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_Theme_Description}}"
+                    Icon="{DynamicResource SemiIconDesktop}">
+                    <u:SettingsCard.RightContent>
+                        <ComboBox
+                            Width="160"
+                            DisplayMemberBinding="{Binding Name}"
+                            ItemsSource="{Binding Themes}"
+                            SelectedItem="{Binding SelectedTheme}" />
+                    </u:SettingsCard.RightContent>
+                </u:SettingsCard>
+                <u:SettingsCard
+                    Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_Language_Header}}"
+                    Description="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_Language_Description}}"
+                    Icon="{DynamicResource SemiIconGlobe}">
+                    <u:SettingsCard.RightContent>
+                        <lingua:CulturePicker
+                            Width="160"
+                            CultureChanged="CulturePicker_OnCultureChanged">
+                            <lingua:CulturePicker.Managers>
+                                <x:Static Member="localizations:LanguageManager.Instance" />
+                            </lingua:CulturePicker.Managers>
+                            <lingua:CulturePicker.Cultures>
+                                <lingua:LinguaCulture Culture="en-US" DisplayName="English" ShortDisplayName="EN" />
+                                <lingua:LinguaCulture Culture="zh-CN" DisplayName="简体中文" ShortDisplayName="中" />
+                                <lingua:LinguaCulture Culture="cs-CZ" DisplayName="Čeština" ShortDisplayName="CS" />
+                                <lingua:LinguaCulture Culture="de-DE" DisplayName="Deutsch" ShortDisplayName="DE" />
+                                <lingua:LinguaCulture Culture="fr-FR" DisplayName="Français" ShortDisplayName="FR" />
+                                <lingua:LinguaCulture Culture="ja-JP" DisplayName="日本語" ShortDisplayName="日" />
+                                <lingua:LinguaCulture Culture="ko-KR" DisplayName="한국어" ShortDisplayName="한" />
+                                <lingua:LinguaCulture Culture="pl-PL" DisplayName="Polski" ShortDisplayName="PL" />
+                                <lingua:LinguaCulture Culture="ru-RU" DisplayName="Русский" ShortDisplayName="RU" />
+                            </lingua:CulturePicker.Cultures>
+                        </lingua:CulturePicker>
+                    </u:SettingsCard.RightContent>
+                </u:SettingsCard>
+            </u:SettingsCardGroup>
+
+            <u:SettingsCardGroup
+                Header="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Group_Window_Header}}">
+                <u:SettingsCard
+                    Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_WindowState_Header}}"
+                    Description="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_WindowState_Description}}"
+                    Icon="{DynamicResource SemiIconDesktop}">
+                    <u:SettingsCard.RightContent>
+                        <u:EnumSelector
+                            Width="160"
+                            EnumType="WindowState"
+                            Value="{Binding $parent[Window].WindowState, Mode=TwoWay}" />
+                    </u:SettingsCard.RightContent>
+                </u:SettingsCard>
+                <u:SettingsCard
+                    Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_WindowBehavior_Header}}"
+                    Description="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_WindowBehavior_Description}}"
+                    Icon="{DynamicResource SemiIconSetting}">
+                    <u:SettingsCard.Detail>
+                        <StackPanel>
+                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_CanMinimize_Header}}">
+                                <u:SettingsCard.RightContent>
+                                    <ToggleSwitch
+                                        IsChecked="{Binding $parent[Window].CanMinimize, Mode=TwoWay}"
+                                        Theme="{DynamicResource SimpleToggleSwitch}" />
+                                </u:SettingsCard.RightContent>
+                            </u:SettingsCard>
+                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_CanMaximize_Header}}">
+                                <u:SettingsCard.RightContent>
+                                    <ToggleSwitch
+                                        IsChecked="{Binding $parent[u:UrsaWindow].CanMaximize, Mode=TwoWay}"
+                                        Theme="{DynamicResource SimpleToggleSwitch}" />
+                                </u:SettingsCard.RightContent>
+                            </u:SettingsCard>
+                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_CanResize_Header}}">
+                                <u:SettingsCard.RightContent>
+                                    <ToggleSwitch
+                                        IsChecked="{Binding $parent[Window].CanResize, Mode=TwoWay}"
+                                        Theme="{DynamicResource SimpleToggleSwitch}" />
+                                </u:SettingsCard.RightContent>
+                            </u:SettingsCard>
+                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_Topmost_Header}}">
+                                <u:SettingsCard.RightContent>
+                                    <ToggleSwitch
+                                        IsChecked="{Binding $parent[Window].Topmost, Mode=TwoWay}"
+                                        Theme="{DynamicResource SimpleToggleSwitch}" />
+                                </u:SettingsCard.RightContent>
+                            </u:SettingsCard>
+                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_ManagedResizer_Header}}">
+                                <u:SettingsCard.RightContent>
+                                    <ToggleSwitch
+                                        IsChecked="{Binding $parent[u:UrsaWindow].IsManagedResizerVisible, Mode=TwoWay}"
+                                        Theme="{DynamicResource SimpleToggleSwitch}" />
+                                </u:SettingsCard.RightContent>
+                            </u:SettingsCard>
+                        </StackPanel>
+                    </u:SettingsCard.Detail>
+                </u:SettingsCard>
+                <u:SettingsCard
+                    Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_TitleBar_Header}}"
+                    Description="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_TitleBar_Description}}"
+                    Icon="{DynamicResource SemiIconMore}">
+                    <u:SettingsCard.Detail>
+                        <StackPanel>
+                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_ShowTitleBar_Header}}">
+                                <u:SettingsCard.RightContent>
+                                    <ToggleSwitch
+                                        IsChecked="{Binding $parent[u:UrsaWindow].IsTitleBarVisible, Mode=TwoWay}"
+                                        Theme="{DynamicResource SimpleToggleSwitch}" />
+                                </u:SettingsCard.RightContent>
+                            </u:SettingsCard>
+                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_MinimizeButton_Header}}">
+                                <u:SettingsCard.RightContent>
+                                    <ToggleSwitch
+                                        IsChecked="{Binding $parent[u:UrsaWindow].IsMinimizeButtonVisible, Mode=TwoWay}"
+                                        Theme="{DynamicResource SimpleToggleSwitch}" />
+                                </u:SettingsCard.RightContent>
+                            </u:SettingsCard>
+                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_MaximizeButton_Header}}">
+                                <u:SettingsCard.RightContent>
+                                    <ToggleSwitch
+                                        IsChecked="{Binding $parent[u:UrsaWindow].IsRestoreButtonVisible, Mode=TwoWay}"
+                                        Theme="{DynamicResource SimpleToggleSwitch}" />
+                                </u:SettingsCard.RightContent>
+                            </u:SettingsCard>
+                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_FullScreenButton_Header}}">
+                                <u:SettingsCard.RightContent>
+                                    <ToggleSwitch
+                                        IsChecked="{Binding $parent[u:UrsaWindow].IsFullScreenButtonVisible, Mode=TwoWay}"
+                                        Theme="{DynamicResource SimpleToggleSwitch}" />
+                                </u:SettingsCard.RightContent>
+                            </u:SettingsCard>
+                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_CloseButton_Header}}">
+                                <u:SettingsCard.RightContent>
+                                    <ToggleSwitch
+                                        IsChecked="{Binding $parent[u:UrsaWindow].IsCloseButtonVisible, Mode=TwoWay}"
+                                        Theme="{DynamicResource SimpleToggleSwitch}" />
+                                </u:SettingsCard.RightContent>
+                            </u:SettingsCard>
+                        </StackPanel>
+                    </u:SettingsCard.Detail>
+                </u:SettingsCard>
+            </u:SettingsCardGroup>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

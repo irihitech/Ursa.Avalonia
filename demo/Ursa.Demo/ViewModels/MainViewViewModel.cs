@@ -1,37 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Avalonia;
-using Avalonia.Controls.Notifications;
-using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Semi.Avalonia;
 using Ursa.Demo.Common;
-using Ursa.Demo.Localizations;
 using Ursa.Demo.ViewModels.Controls;
-using Notification = Ursa.Controls.Notification;
-using WindowNotificationManager = Ursa.Controls.WindowNotificationManager;
 
 namespace Ursa.Demo.ViewModels;
 
 public partial class MainViewViewModel : ViewModelBase
 {
-    public WindowNotificationManager? NotificationManager { get; set; }
     public MenuViewModel Menus { get; set; } = new MenuViewModel();
     [ObservableProperty] public partial MenuItemViewModel? SelectedMenuItem { get; set; }
-    
     [ObservableProperty] public partial IReadOnlyList<BreadcrumbItemData>? NavigationKeys { get; set; }
     [ObservableProperty] public partial PageMetadataViewModel? PageMetadata { get; set; }
     [ObservableProperty] public partial string? SearchText { get; set; }
-
     [ObservableProperty] public partial object? Content { get; set; }
-
-    partial void OnSearchTextChanged(string? value)
-    {
-        Menus.FilterMenuItems(value);
-    }
+    [ObservableProperty] public partial bool IsSettingsSelected { get; set; }
 
     public MainViewViewModel()
     {
@@ -40,8 +25,14 @@ public partial class MainViewViewModel : ViewModelBase
         SelectedMenuItem = Menus.MenuItems.FirstOrDefault();
     }
 
+    partial void OnSearchTextChanged(string? value)
+    {
+        Menus.FilterMenuItems(value);
+    }
+
     partial void OnSelectedMenuItemChanged(MenuItemViewModel? value)
     {
+        IsSettingsSelected = value == Menus.SettingsMenuItem;
         if (value is null) return;
         var content = value.Node.Page?.Metadata.ViewModelFactory();
         this.Content = content;
@@ -55,6 +46,13 @@ public partial class MainViewViewModel : ViewModelBase
             PageMetadata = null;
             NavigationKeys = null;
         }
+    }
+
+    [RelayCommand]
+    private void NavigateToSettings()
+    {
+        if (Menus.SettingsMenuItem is null) return;
+        SelectedMenuItem = Menus.SettingsMenuItem;
     }
 
     private void OnNavigation(MainViewViewModel vm, string s)
@@ -72,46 +70,4 @@ public partial class MainViewViewModel : ViewModelBase
             NavigationKeys = null;
         }
     }
-
-    public ObservableCollection<ThemeItem> Themes { get; } =
-    [
-        new("Default", ThemeVariant.Default),
-        new("Light", ThemeVariant.Light),
-        new("Dark", ThemeVariant.Dark),
-        new("Aquatic", SemiTheme.Aquatic),
-        new("Desert", SemiTheme.Desert),
-        new("Dusk", SemiTheme.Dusk),
-        new("NightSky", SemiTheme.NightSky)
-    ];
-
-    [ObservableProperty] public partial ThemeItem? SelectedTheme { get; set; }
-
-    partial void OnSelectedThemeChanged(ThemeItem? oldValue, ThemeItem? newValue)
-    {
-        if (newValue is null) return;
-        var app = Application.Current;
-        if (app is not null)
-        {
-            app.RequestedThemeVariant = newValue.Theme;
-            NotificationManager?.Show(
-                new Notification("Theme changed", $"Theme changed to {newValue.Name}"),
-                type: NotificationType.Success,
-                classes: ["Light"]);
-        }
-    }
-
-    [ObservableProperty] public partial IObservable<string?>? FooterText { get; set; } = LanguageManager.Instance.Menu_Header_Settings;
-
-    [ObservableProperty] public partial bool IsCollapsed { get; set; }
-
-    partial void OnIsCollapsedChanged(bool value)
-    {
-        FooterText = value ? null : LanguageManager.Instance.Menu_Header_Settings;
-    }
-}
-
-public class ThemeItem(string name, ThemeVariant theme)
-{
-    public string Name { get; set; } = name;
-    public ThemeVariant Theme { get; set; } = theme;
 }

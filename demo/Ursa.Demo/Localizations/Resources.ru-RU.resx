@@ -2251,4 +2251,26 @@
   <data name="AboutUs_Huska_Description" xml:space="preserve"><value>Коммерческая тема, нарисованная от руки, для элементов управления, графиков и диаграмм Avalonia.</value></data>
   <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Элемент управления Ribbon</value></data>
   <data name="AboutUs_Asura_Description" xml:space="preserve"><value>Панель команд Ribbon для настольных приложений Avalonia с адаптивной компоновкой при нехватке места.</value></data>
+          <data name="Settings_Card_Theme_Header" xml:space="preserve"><value>Тема</value></data>
+  <data name="Settings_Card_Theme_Description" xml:space="preserve"><value>Переключение светлой и тёмной темы.</value></data>
+  <data name="Settings_Card_Language_Header" xml:space="preserve"><value>Язык</value></data>
+  <data name="Settings_Card_Language_Description" xml:space="preserve"><value>Выбор языка интерфейса.</value></data>
+              <data name="Settings_Group_General_Header" xml:space="preserve"><value>Общие</value></data>
+  <data name="Settings_Group_Window_Header" xml:space="preserve"><value>Окно</value></data>
+      <data name="Settings_Card_WindowState_Header" xml:space="preserve"><value>Состояние окна</value></data>
+  <data name="Settings_Card_WindowState_Description" xml:space="preserve"><value>Переключение между обычным, развёрнутым и полноэкранным режимом.</value></data>
+    <data name="Settings_Card_CanMinimize_Header" xml:space="preserve"><value>Разрешить сворачивание</value></data>
+  <data name="Settings_Card_CanMaximize_Header" xml:space="preserve"><value>Разрешить разворачивание</value></data>
+  <data name="Settings_Card_CanResize_Header" xml:space="preserve"><value>Разрешить изменение размера</value></data>
+  <data name="Settings_Card_Topmost_Header" xml:space="preserve"><value>Всегда поверх всех</value></data>
+  <data name="Settings_Card_TitleBar_Header" xml:space="preserve"><value>Строка заголовка</value></data>
+  <data name="Settings_Card_MinimizeButton_Header" xml:space="preserve"><value>Кнопка сворачивания</value></data>
+  <data name="Settings_Card_MaximizeButton_Header" xml:space="preserve"><value>Кнопка разворачивания</value></data>
+  <data name="Settings_Card_FullScreenButton_Header" xml:space="preserve"><value>Кнопка полноэкранного режима</value></data>
+  <data name="Settings_Card_CloseButton_Header" xml:space="preserve"><value>Кнопка закрытия</value></data>
+  <data name="Settings_Card_ManagedResizer_Header" xml:space="preserve"><value>Управляемый маркер размера</value></data>
+  <data name="Settings_Card_WindowBehavior_Header" xml:space="preserve"><value>Поведение окна</value></data>
+  <data name="Settings_Card_ShowTitleBar_Header" xml:space="preserve"><value>Показывать строку заголовка</value></data>
+  <data name="Settings_Card_WindowBehavior_Description" xml:space="preserve"><value>Управление изменением размера и положением окна.</value></data>
+  <data name="Settings_Card_TitleBar_Description" xml:space="preserve"><value>Отображение строки заголовка и её кнопок.</value></data>
 </root>

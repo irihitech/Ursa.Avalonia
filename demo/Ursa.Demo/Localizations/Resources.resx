@@ -2253,4 +2253,26 @@
   <data name="AboutUs_Huska_Description" xml:space="preserve"><value>A commercial hand-drawn theme for Avalonia controls, charts, and diagrams.</value></data>
   <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Ribbon control</value></data>
   <data name="AboutUs_Asura_Description" xml:space="preserve"><value>A Ribbon command bar for Avalonia desktop applications, with adaptive layout when space is limited.</value></data>
+          <data name="Settings_Card_Theme_Header" xml:space="preserve"><value>Theme</value></data>
+  <data name="Settings_Card_Theme_Description" xml:space="preserve"><value>Switch between light and dark themes.</value></data>
+  <data name="Settings_Card_Language_Header" xml:space="preserve"><value>Language</value></data>
+  <data name="Settings_Card_Language_Description" xml:space="preserve"><value>Choose the display language.</value></data>
+              <data name="Settings_Group_General_Header" xml:space="preserve"><value>General</value></data>
+  <data name="Settings_Group_Window_Header" xml:space="preserve"><value>Window</value></data>
+      <data name="Settings_Card_WindowState_Header" xml:space="preserve"><value>Window state</value></data>
+  <data name="Settings_Card_WindowState_Description" xml:space="preserve"><value>Switch between normal, maximized and full screen.</value></data>
+    <data name="Settings_Card_CanMinimize_Header" xml:space="preserve"><value>Can minimize</value></data>
+  <data name="Settings_Card_CanMaximize_Header" xml:space="preserve"><value>Can maximize</value></data>
+  <data name="Settings_Card_CanResize_Header" xml:space="preserve"><value>Can resize</value></data>
+  <data name="Settings_Card_Topmost_Header" xml:space="preserve"><value>Always on top</value></data>
+  <data name="Settings_Card_TitleBar_Header" xml:space="preserve"><value>Title bar</value></data>
+  <data name="Settings_Card_MinimizeButton_Header" xml:space="preserve"><value>Minimize button</value></data>
+  <data name="Settings_Card_MaximizeButton_Header" xml:space="preserve"><value>Maximize button</value></data>
+  <data name="Settings_Card_FullScreenButton_Header" xml:space="preserve"><value>Full screen button</value></data>
+  <data name="Settings_Card_CloseButton_Header" xml:space="preserve"><value>Close button</value></data>
+  <data name="Settings_Card_ManagedResizer_Header" xml:space="preserve"><value>Managed resizer</value></data>
+  <data name="Settings_Card_WindowBehavior_Header" xml:space="preserve"><value>Window behavior</value></data>
+  <data name="Settings_Card_ShowTitleBar_Header" xml:space="preserve"><value>Show title bar</value></data>
+  <data name="Settings_Card_WindowBehavior_Description" xml:space="preserve"><value>Control how the window can be resized and positioned.</value></data>
+  <data name="Settings_Card_TitleBar_Description" xml:space="preserve"><value>Toggle the title bar and its caption buttons.</value></data>
 </root>
