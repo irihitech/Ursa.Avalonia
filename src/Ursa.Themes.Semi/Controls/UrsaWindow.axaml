@@ -4,6 +4,7 @@
     xmlns:u="https://irihi.tech/ursa">
     <ControlTheme x:Key="{x:Type u:UrsaWindow}" TargetType="u:UrsaWindow">
         <Setter Property="Background" Value="{DynamicResource WindowDefaultBackground}" />
+        <Setter Property="TitleBarBackground" Value="Transparent" />
         <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
