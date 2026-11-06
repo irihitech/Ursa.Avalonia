@@ -2249,9 +2249,9 @@
   <data name="AboutUs_Iconica_Description" xml:space="preserve"><value>Используйте иконки IconPark и TDesign как строго типизированные элементы управления с настройкой цвета и размера во время выполнения.</value></data>
   <data name="AboutUs_Huska_Kicker" xml:space="preserve"><value>Тема, нарисованная от руки</value></data>
   <data name="AboutUs_Huska_Description" xml:space="preserve"><value>Коммерческая тема, нарисованная от руки, для элементов управления, графиков и диаграмм Avalonia.</value></data>
-  <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Элемент управления Ribbon</value></data>
-  <data name="AboutUs_Asura_Description" xml:space="preserve"><value>Панель команд Ribbon для настольных приложений Avalonia с адаптивной компоновкой при нехватке места.</value></data>
-          <data name="Settings_Card_Theme_Header" xml:space="preserve"><value>Тема</value></data>
+  <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Флагманская коммерческая библиотека</value></data>
+  <data name="AboutUs_Asura_Description" xml:space="preserve"><value>Для крупных и сложных приложений.</value></data>
+  <data name="Settings_Card_Theme_Header" xml:space="preserve"><value>Тема</value></data>
   <data name="Settings_Card_Theme_Description" xml:space="preserve"><value>Переключение светлой и тёмной темы.</value></data>
   <data name="Settings_Card_Language_Header" xml:space="preserve"><value>Язык</value></data>
   <data name="Settings_Card_Language_Description" xml:space="preserve"><value>Выбор языка интерфейса.</value></data>
@@ -2266,5 +2266,6 @@
       <data name="Settings_WindowState_Normal" xml:space="preserve"><value>Обычный</value></data>
   <data name="Settings_WindowState_Maximized" xml:space="preserve"><value>Развёрнутое</value></data>
   <data name="Settings_WindowState_FullScreen" xml:space="preserve"><value>Полный экран</value></data>
-  <data name="Settings_WindowState_Minimized" xml:space="preserve"><value>Свёрнутое</value></data>
-</root>
+  <data name="Settings_WindowState_Minimized" xml:space="preserve"><value>Свёрнутое</value></data>  <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Флагманская коммерческая библиотека</value></data>
+  <data name="AboutUs_Asura_Description" xml:space="preserve"><value>Для крупных и сложных приложений.</value></data></root>
+
