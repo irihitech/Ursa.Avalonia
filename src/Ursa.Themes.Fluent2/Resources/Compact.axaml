@@ -1,0 +1,20 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <!-- Fluent 2's compact density overrides are mirrored for Ursa controls. -->
+  <x:Double x:Key="TextBoxThemeMinHeight">24</x:Double>
+  <x:Double x:Key="NumericUpDownDefaultHeight">24</x:Double>
+  <x:Double x:Key="AutoCompleteBoxDefaultHeight">24</x:Double>
+  <x:Double x:Key="MultiComboBoxDefaultHeight">24</x:Double>
+  <x:Double x:Key="ButtonDefaultHeight">24</x:Double>
+  <x:Double x:Key="TextBoxDefaultHeight">24</x:Double>
+  <x:Double x:Key="ComboBoxDefaultHeight">24</x:Double>
+  <x:Double x:Key="CalendarDatePickerDefaultHeight">24</x:Double>
+  <Thickness x:Key="ButtonDefaultPadding">9,4</Thickness>
+  <Thickness x:Key="TextBoxContentPadding">10,1,6,3</Thickness>
+  <Thickness x:Key="TextBoxThemePadding">10,1,6,3</Thickness>
+  <Thickness x:Key="ButtonPadding">9,4</Thickness>
+  <Thickness x:Key="UrsaFluent2GroupBoxPadding">12</Thickness>
+  <CornerRadius x:Key="UrsaFluent2GroupBoxCornerRadius">4</CornerRadius>
+  <Thickness x:Key="UrsaFluent2DividerContentMargin">8,0</Thickness>
+  <x:Double x:Key="UrsaFluent2DividerThickness">1</x:Double>
+</ResourceDictionary>

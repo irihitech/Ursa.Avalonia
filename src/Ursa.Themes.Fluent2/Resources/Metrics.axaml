@@ -1,0 +1,10 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <!-- Colors come from Fluent2Theme through DynamicResource in control templates.
+       Keep Ursa-specific dimensions here so applications can override them. -->
+  <Thickness x:Key="UrsaFluent2GroupBoxPadding">16</Thickness>
+  <CornerRadius x:Key="UrsaFluent2GroupBoxCornerRadius">8</CornerRadius>
+  <Thickness x:Key="UrsaFluent2GroupBoxBorderThickness">1</Thickness>
+  <Thickness x:Key="UrsaFluent2DividerContentMargin">12,0</Thickness>
+  <x:Double x:Key="UrsaFluent2DividerThickness">1</x:Double>
+</ResourceDictionary>

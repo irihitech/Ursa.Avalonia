@@ -1,0 +1,8 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StaticResource x:Key="AnchorPipeBackground" ResourceKey="CardStrokeColorDefault" />
+    <StaticResource x:Key="AnchorForeground" ResourceKey="TextFillColorTertiary" />
+    <StaticResource x:Key="AnchorSelectedForeground" ResourceKey="TextFillColorPrimary" />
+    <StaticResource x:Key="AnchorPipeSelectedBackground" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="AnchorPipeSelectedPrimaryBackground" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="AnchorPipeSelectedTertiaryBackground" ResourceKey="TextFillColorTertiary" />
+</ResourceDictionary>

@@ -1,0 +1,7 @@
+<Styles x:ClassModifier="internal" xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:u="https://irihi.tech/ursa">
+    <Style Selector=":is(u|UrsaView)">
+        <Setter Property="Theme" Value="{DynamicResource {x:Type u:UrsaView}}" />
+    </Style>
+</Styles>

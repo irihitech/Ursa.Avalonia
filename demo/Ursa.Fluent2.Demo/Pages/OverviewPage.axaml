@@ -1,0 +1,100 @@
+<pages:DemoPageView
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:pages="using:Ursa.Fluent2.Demo.Pages"
+    xmlns:vm="using:Ursa.Fluent2.Demo.ViewModels"
+    x:Class="Ursa.Fluent2.Demo.Pages.OverviewPage"
+    x:DataType="vm:OverviewPageViewModel">
+  <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+    <StackPanel Margin="16" Spacing="8">
+      <TextBlock Margin="8" Text="Live controls at a glance. Use the sidebar for detailed examples, or Appearance to compare themes and density."
+                 TextWrapping="Wrap" Foreground="{DynamicResource TextFillColorSecondary}"/>
+      <WrapPanel Name="OverviewCards">
+        <Border Classes="gallery-card" Width="320" Margin="8" Padding="20" CornerRadius="8" BorderThickness="1">
+          <StackPanel Spacing="12">
+            <TextBlock Classes="gallery-label" Text="Actions and buttons" FontWeight="SemiBold"/>
+            <TextBlock Text="IconButton · IconToggleButton · IconDropDownButton" TextWrapping="Wrap"
+                       Foreground="{DynamicResource TextFillColorSecondary}"/>
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <u:IconButton Content="Create" Icon="+" />
+              <u:IconToggleButton Content="Favorite" Icon="*" IsChecked="True"/>
+            </StackPanel>
+            <u:IconDropDownButton Content="Options" Icon="A" HorizontalAlignment="Left">
+              <u:IconDropDownButton.Flyout>
+                <Flyout>
+                  <StackPanel Spacing="8">
+                    <TextBlock Text="Sort order" FontWeight="SemiBold"/>
+                    <RadioButton Content="Name" GroupName="OverviewSort" IsChecked="True"/>
+                    <RadioButton Content="Date modified" GroupName="OverviewSort"/>
+                  </StackPanel>
+                </Flyout>
+              </u:IconDropDownButton.Flyout>
+            </u:IconDropDownButton>
+          </StackPanel>
+        </Border>
+        <Border Classes="gallery-card" Width="320" Margin="8" Padding="20" CornerRadius="8" BorderThickness="1">
+          <StackPanel Spacing="12">
+            <TextBlock Classes="gallery-label" Text="Inputs and selection" FontWeight="SemiBold"/>
+            <TextBlock Text="MultiAutoCompleteBox · TagInput · NumericIntUpDown" TextWrapping="Wrap"
+                       Foreground="{DynamicResource TextFillColorSecondary}"/>
+            <u:MultiAutoCompleteBox ItemsSource="{Binding Technologies}"
+                                    SelectedItems="{Binding SelectedTechnologies}"
+                                    FilterMode="Contains" PlaceholderText="Add a technology"/>
+            <u:TagInput Tags="{Binding Tags}" AllowDuplicates="False" PlaceholderText="Add a tag"/>
+            <u:NumericIntUpDown Value="42" Minimum="0" Maximum="100"/>
+          </StackPanel>
+        </Border>
+        <Border Classes="gallery-card" Width="320" Margin="8" Padding="20" CornerRadius="8" BorderThickness="1">
+          <StackPanel Spacing="12">
+            <TextBlock Classes="gallery-label" Text="Date and time" FontWeight="SemiBold"/>
+            <TextBlock Text="DatePicker · DateRangePicker · TimePicker" TextWrapping="Wrap"
+                       Foreground="{DynamicResource TextFillColorSecondary}"/>
+            <u:DatePicker PlaceholderText="Choose a date"/>
+            <u:DateRangePicker StartPlaceholderText="Start" EndPlaceholderText="End"/>
+            <u:TimePicker/>
+          </StackPanel>
+        </Border>
+        <Border Classes="gallery-card" Width="320" Margin="8" Padding="20" CornerRadius="8" BorderThickness="1">
+          <StackPanel Spacing="12">
+            <TextBlock Classes="gallery-label" Text="Navigation" FontWeight="SemiBold"/>
+            <TextBlock Text="SelectionList · ThemeToggleButton" TextWrapping="Wrap"
+                       Foreground="{DynamicResource TextFillColorSecondary}"/>
+            <u:SelectionList SelectedIndex="0">
+              <x:String>Overview</x:String>
+              <x:String>Activity</x:String>
+              <x:String>Settings</x:String>
+            </u:SelectionList>
+            <u:ThemeToggleButton HorizontalAlignment="Left"/>
+          </StackPanel>
+        </Border>
+        <Border Classes="gallery-card" Width="320" Margin="8" Padding="20" CornerRadius="8" BorderThickness="1">
+          <StackPanel Spacing="12">
+            <TextBlock Classes="gallery-label" Text="Feedback and overlays" FontWeight="SemiBold"/>
+            <TextBlock Text="Banner · Rating · Dialog · Toast" TextWrapping="Wrap"
+                       Foreground="{DynamicResource TextFillColorSecondary}"/>
+            <u:Banner Content="Your changes are up to date."/>
+            <u:Rating Value="4" HorizontalAlignment="Left"/>
+            <WrapPanel>
+              <Button Margin="0,0,8,8" Content="Open dialog" Command="{Binding OpenSampleCommand}" CommandParameter="ModalDialog"/>
+              <Button Margin="0,0,0,8" Content="Show toast" Command="{Binding OpenSampleCommand}" CommandParameter="WindowToastManager"/>
+            </WrapPanel>
+          </StackPanel>
+        </Border>
+        <Border Classes="gallery-card" Width="320" Margin="8" Padding="20" CornerRadius="8" BorderThickness="1">
+          <StackPanel Spacing="12">
+            <TextBlock Classes="gallery-label" Text="Values and content" FontWeight="SemiBold"/>
+            <TextBlock Text="RangeSlider · Avatar · ClosableTag" TextWrapping="Wrap"
+                       Foreground="{DynamicResource TextFillColorSecondary}"/>
+            <u:RangeSlider Minimum="0" Maximum="100" LowerValue="25" UpperValue="75"/>
+            <StackPanel Orientation="Horizontal" Spacing="12">
+              <u:Avatar Content="U"/>
+              <u:ClosableTag Content="Fluent 2"/>
+            </StackPanel>
+            <ProgressBar Value="65" Minimum="0" Maximum="100"/>
+          </StackPanel>
+        </Border>
+      </WrapPanel>
+    </StackPanel>
+  </ScrollViewer>
+</pages:DemoPageView>
