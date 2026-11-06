@@ -12,27 +12,34 @@ public class MenuViewModel : ViewModelBase
 {
     public MenuViewModel()
     {
-        MenuItems = BuildTreeItems(UrsaDocSite.Instance.Roots);
+        var settings = default(MenuItemViewModel);
+        var menuItems = new ObservableCollection<MenuItemViewModel>();
+        foreach (var node in UrsaDocSite.Instance.Roots.OrderBy(a => a.Metadata.Order))
+        {
+            var item = BuildTreeItem(node);
+            if (item.Key == MenuKeys.MenuKeySettings)
+            {
+                // The settings page lives in the NavMenu footer as a NavMenuItem, not in the menu list.
+                settings = item;
+                continue;
+            }
+            menuItems.Add(item);
+        }
+        SettingsMenuItem = settings;
+        MenuItems = menuItems;
     }
-    
-    private static ObservableCollection<MenuItemViewModel> BuildTreeItems(IReadOnlyList<DocCategoryNode> node)
-    {
-        var children = node
-            .OrderBy(a => a.Metadata.Order)
-            .Select(BuildTreeItem);
-        return new ObservableCollection<MenuItemViewModel>(children);
-    }
-
 
     private static MenuItemViewModel BuildTreeItem(DocCategoryNode node)
     {
         var item = new MenuItemViewModel(node);
-        var children = BuildTreeItems(node.Children);
-        item.Children = new ObservableCollection<MenuItemViewModel>(children);
+        item.Children = new ObservableCollection<MenuItemViewModel>(
+            node.Children.OrderBy(a => a.Metadata.Order).Select(BuildTreeItem));
         return item;
     }
 
     public ObservableCollection<MenuItemViewModel> MenuItems { get; set; }
+
+    public MenuItemViewModel? SettingsMenuItem { get; }
 
     public void FilterMenuItems(string? searchText)
     {
@@ -131,6 +138,7 @@ public static class MenuKeys
     public const string MenuKeyRating = "Rating";
     public const string MenuKeyScrollToButton = "ScrollToButton";
     public const string MenuKeySelectionList = "SelectionList";
+    public const string MenuKeySettings = "Settings";
     public const string MenuKeySkeleton = "Skeleton";
     public const string MenuKeyShimmer = "Shimmer";
     public const string MenuKeyTagInput = "TagInput";

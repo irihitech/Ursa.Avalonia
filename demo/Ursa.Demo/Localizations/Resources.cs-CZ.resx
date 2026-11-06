@@ -2251,4 +2251,20 @@
   <data name="AboutUs_Huska_Description" xml:space="preserve"><value>Komerční ručně kreslený motiv pro ovládací prvky, grafy a diagramy Avalonia.</value></data>
   <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Ovládací prvek Ribbon</value></data>
   <data name="AboutUs_Asura_Description" xml:space="preserve"><value>Příkazová lišta Ribbon pro desktopové aplikace Avalonia s adaptivním rozvržením při omezeném prostoru.</value></data>
+          <data name="Settings_Card_Theme_Header" xml:space="preserve"><value>Motiv</value></data>
+  <data name="Settings_Card_Theme_Description" xml:space="preserve"><value>Přepínání mezi světlým a tmavým motivem.</value></data>
+  <data name="Settings_Card_Language_Header" xml:space="preserve"><value>Jazyk</value></data>
+  <data name="Settings_Card_Language_Description" xml:space="preserve"><value>Zvolte jazyk zobrazení.</value></data>
+              <data name="Settings_Group_General_Header" xml:space="preserve"><value>Obecné</value></data>
+  <data name="Settings_Group_Window_Header" xml:space="preserve"><value>Okno</value></data>
+      <data name="Settings_Card_WindowState_Header" xml:space="preserve"><value>Stav okna</value></data>
+  <data name="Settings_Card_WindowState_Description" xml:space="preserve"><value>Přepínání mezi normálním, maximalizovaným a celoobrazovkovým režimem.</value></data>
+            <data name="Settings_Card_TitleBar_Header" xml:space="preserve"><value>Záhlaví</value></data>
+            <data name="Settings_Card_WindowBehavior_Header" xml:space="preserve"><value>Chování okna</value></data>
+    <data name="Settings_Card_WindowBehavior_Description" xml:space="preserve"><value>Řízení změny velikosti a polohy okna.</value></data>
+  <data name="Settings_Card_TitleBar_Description" xml:space="preserve"><value>Zobrazení nebo skrytí záhlaví a jeho tlačítek.</value></data>
+      <data name="Settings_WindowState_Normal" xml:space="preserve"><value>Normální</value></data>
+  <data name="Settings_WindowState_Maximized" xml:space="preserve"><value>Maximalizované</value></data>
+  <data name="Settings_WindowState_FullScreen" xml:space="preserve"><value>Celá obrazovka</value></data>
+  <data name="Settings_WindowState_Minimized" xml:space="preserve"><value>Minimalizované</value></data>
 </root>

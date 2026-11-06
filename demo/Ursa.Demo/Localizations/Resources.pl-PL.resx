@@ -2243,4 +2243,20 @@
   <data name="AboutUs_Huska_Description" xml:space="preserve"><value>Komercyjny, rysowany ręcznie motyw dla kontrolek, wykresów i diagramów Avalonia.</value></data>
   <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Kontrolka wstążki</value></data>
   <data name="AboutUs_Asura_Description" xml:space="preserve"><value>Pasek poleceń wstążki dla aplikacji desktopowych Avalonia, z adaptacyjnym układem przy ograniczonym miejscu.</value></data>
+          <data name="Settings_Card_Theme_Header" xml:space="preserve"><value>Motyw</value></data>
+  <data name="Settings_Card_Theme_Description" xml:space="preserve"><value>Przełączanie między jasnym a ciemnym motywem.</value></data>
+  <data name="Settings_Card_Language_Header" xml:space="preserve"><value>Język</value></data>
+  <data name="Settings_Card_Language_Description" xml:space="preserve"><value>Wybierz język wyświetlania.</value></data>
+              <data name="Settings_Group_General_Header" xml:space="preserve"><value>Ogólne</value></data>
+  <data name="Settings_Group_Window_Header" xml:space="preserve"><value>Okno</value></data>
+      <data name="Settings_Card_WindowState_Header" xml:space="preserve"><value>Stan okna</value></data>
+  <data name="Settings_Card_WindowState_Description" xml:space="preserve"><value>Przełączanie między normalnym, zmaksymalizowanym i pełnoekranowym.</value></data>
+            <data name="Settings_Card_TitleBar_Header" xml:space="preserve"><value>Pasek tytułu</value></data>
+            <data name="Settings_Card_WindowBehavior_Header" xml:space="preserve"><value>Zachowanie okna</value></data>
+    <data name="Settings_Card_WindowBehavior_Description" xml:space="preserve"><value>Sterowanie zmianą rozmiaru i położeniem okna.</value></data>
+  <data name="Settings_Card_TitleBar_Description" xml:space="preserve"><value>Pokazywanie lub ukrywanie paska tytułu i jego przycisków.</value></data>
+      <data name="Settings_WindowState_Normal" xml:space="preserve"><value>Zwykły</value></data>
+  <data name="Settings_WindowState_Maximized" xml:space="preserve"><value>Zmaksymalizowane</value></data>
+  <data name="Settings_WindowState_FullScreen" xml:space="preserve"><value>Pełny ekran</value></data>
+  <data name="Settings_WindowState_Minimized" xml:space="preserve"><value>Zminimalizowane</value></data>
 </root>

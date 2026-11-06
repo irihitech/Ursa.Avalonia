@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="using:Ursa.Demo.ViewModels"
+    xmlns:views="clr-namespace:Ursa.Demo.Views"
     xmlns:controls="clr-namespace:Ursa.Demo.Controls"
     xmlns:docs="clr-namespace:Irihi.Dogma.Docs"
     d:DesignHeight="450"
@@ -19,6 +20,47 @@
     <Design.DataContext>
         <vm:MainViewViewModel />
     </Design.DataContext>
+    <UserControl.Resources>
+        <ControlTemplate x:Key="SettingsFooterNavMenuItemTemplate" TargetType="u:NavMenuItem">
+            <Border
+                Name="PART_Border"
+                MinHeight="32"
+                HorizontalAlignment="Stretch"
+                Background="{TemplateBinding Background}"
+                CornerRadius="4"
+                Cursor="Hand">
+                <Grid
+                    Name="PART_RootGrid"
+                    VerticalAlignment="Center"
+                    ColumnDefinitions="Auto, *, Auto">
+                    <ContentPresenter
+                        Name="PART_IconPresenter"
+                        Padding="8"
+                        HorizontalAlignment="Left">
+                        <ContentPresenter.Content>
+                            <PathIcon
+                                Width="16"
+                                Height="16"
+                                Data="{DynamicResource SemiIconSetting}" />
+                        </ContentPresenter.Content>
+                    </ContentPresenter>
+                    <ContentPresenter
+                        Name="PART_HeaderPresenter"
+                        Grid.Column="1"
+                        Padding="0,8,8,8">
+                        <ContentPresenter.Content>
+                            <TextBlock
+                                x:DataType="vm:MenuItemViewModel"
+                                VerticalAlignment="Center"
+                                Text="{Binding MenuHeader^}"
+                                TextTrimming="CharacterEllipsis"
+                                ToolTip.Tip="{Binding MenuHeader^}" />
+                        </ContentPresenter.Content>
+                    </ContentPresenter>
+                </Grid>
+            </Border>
+        </ControlTemplate>
+    </UserControl.Resources>
     <Panel>
         <Panel.Styles>
             <Style Selector="Grid.Blur">
@@ -42,7 +84,6 @@
                     SubMenuBinding="{Binding Children}"
                     HeaderBinding="{Binding}"
                     IconBinding="{Binding MenuHeader^}"
-                    IsHorizontalCollapsed="{Binding IsCollapsed, Mode=TwoWay}"
                     SelectedItem="{Binding SelectedMenuItem, Mode=TwoWay}"
                     ItemsSource="{Binding Menus.MenuItems}">
                     <u:NavMenu.Styles>
@@ -98,8 +139,7 @@
                                     u:NavMenu.CanToggle="True"
                                     Background="Transparent"
                                     DockPanel.Dock="Left">
-                                    <iri:IrihiLogo Width="32"
-                                            Fill="{DynamicResource SemiGrey7}" />
+                                    <iri:IrihiLogo Width="32" Fill="{DynamicResource SemiGrey7}" />
                                 </Panel>
                                 <TextBlock
                                     VerticalAlignment="Center"
@@ -109,38 +149,20 @@
                                     Text="Ursa"
                                     Theme="{DynamicResource TitleTextBlock}" />
                             </DockPanel>
-                            <TextBox 
-                                Text="{Binding SearchText}" 
+                            <TextBox
+                                Text="{Binding SearchText}"
                                 Margin="0 16"
-                                HorizontalAlignment="Stretch" 
-                                IsVisible="{Binding !#menu.IsHorizontalCollapsed}"/>
+                                HorizontalAlignment="Stretch"
+                                IsVisible="{Binding !#menu.IsHorizontalCollapsed}" />
                         </StackPanel>
                     </u:NavMenu.Header>
                     <u:NavMenu.Footer>
-                        <u:IconButton
-                            HorizontalAlignment="Stretch"
-                            Classes="Tertiary"
-                            Icon="{StaticResource SemiIconSetting}"
-                            Content="{Binding FooterText^}"
-                            RenderTransform="{x:Null}"
-                            ToolTip.Tip="Settings"
-                            FontWeight="Normal"
-                            Theme="{DynamicResource BorderlessIconButton}">
-                            <Button.Flyout>
-                                <Flyout
-                                    Placement="RightEdgeAlignedBottom">
-                                    <u:Form
-                                        LabelPosition="Left">
-                                        <ComboBox
-                                            Width="110"
-                                            u:FormItem.Label="Theme"
-                                            DisplayMemberBinding="{Binding Name}"
-                                            ItemsSource="{Binding Themes}"
-                                            SelectedItem="{Binding SelectedTheme}" />
-                                    </u:Form>
-                                </Flyout>
-                            </Button.Flyout>
-                        </u:IconButton>
+                        <u:NavMenuItem
+                            Template="{StaticResource SettingsFooterNavMenuItemTemplate}"
+                            Command="{ReflectionBinding $parent[views:MainView].DataContext.NavigateToSettingsCommand}"
+                            DataContext="{Binding Menus.SettingsMenuItem, Mode=OneWay}"
+                            IsHighlighted="{ReflectionBinding $parent[views:MainView].DataContext.IsSettingsSelected, Mode=TwoWay}"
+                            IsSelected="{ReflectionBinding $parent[views:MainView].DataContext.IsSettingsSelected, Mode=TwoWay}" />
                     </u:NavMenu.Footer>
                 </u:NavMenu>
             </Border>

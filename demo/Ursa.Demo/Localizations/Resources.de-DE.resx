@@ -2250,4 +2250,20 @@
   <data name="AboutUs_Huska_Description" xml:space="preserve"><value>Ein kommerzielles, handgezeichnetes Theme für Avalonia-Steuerelemente, Diagramme und Charts.</value></data>
   <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Ribbon-Steuerelement</value></data>
   <data name="AboutUs_Asura_Description" xml:space="preserve"><value>Eine Ribbon-Befehlsleiste für Avalonia-Desktop-Anwendungen mit adaptivem Layout bei begrenztem Platz.</value></data>
+          <data name="Settings_Card_Theme_Header" xml:space="preserve"><value>Design</value></data>
+  <data name="Settings_Card_Theme_Description" xml:space="preserve"><value>Zwischen hellem und dunklem Design wechseln.</value></data>
+  <data name="Settings_Card_Language_Header" xml:space="preserve"><value>Sprache</value></data>
+  <data name="Settings_Card_Language_Description" xml:space="preserve"><value>Anzeigesprache wählen.</value></data>
+              <data name="Settings_Group_General_Header" xml:space="preserve"><value>Allgemein</value></data>
+  <data name="Settings_Group_Window_Header" xml:space="preserve"><value>Fenster</value></data>
+      <data name="Settings_Card_WindowState_Header" xml:space="preserve"><value>Fensterzustand</value></data>
+  <data name="Settings_Card_WindowState_Description" xml:space="preserve"><value>Zwischen normal, maximiert und Vollbild wechseln.</value></data>
+            <data name="Settings_Card_TitleBar_Header" xml:space="preserve"><value>Titelleiste</value></data>
+            <data name="Settings_Card_WindowBehavior_Header" xml:space="preserve"><value>Fensterverhalten</value></data>
+    <data name="Settings_Card_WindowBehavior_Description" xml:space="preserve"><value>Steuern, wie das Fenster in Größe und Position geändert werden kann.</value></data>
+  <data name="Settings_Card_TitleBar_Description" xml:space="preserve"><value>Titelleiste und ihre Schaltflächen ein- oder ausblenden.</value></data>
+      <data name="Settings_WindowState_Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Settings_WindowState_Maximized" xml:space="preserve"><value>Maximiert</value></data>
+  <data name="Settings_WindowState_FullScreen" xml:space="preserve"><value>Vollbild</value></data>
+  <data name="Settings_WindowState_Minimized" xml:space="preserve"><value>Minimiert</value></data>
 </root>

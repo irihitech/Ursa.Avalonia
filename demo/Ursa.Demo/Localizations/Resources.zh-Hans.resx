@@ -2239,4 +2239,20 @@
   <data name="AboutUs_Huska_Description" xml:space="preserve"><value>用于 Avalonia 控件、图表和示意内容的手绘风格商业主题。</value></data>
   <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Ribbon 功能区控件</value></data>
   <data name="AboutUs_Asura_Description" xml:space="preserve"><value>为 Avalonia 桌面应用提供 Ribbon 命令栏，并在空间不足时自适应调整布局。</value></data>
+          <data name="Settings_Card_Theme_Header" xml:space="preserve"><value>主题</value></data>
+  <data name="Settings_Card_Theme_Description" xml:space="preserve"><value>切换明暗主题。</value></data>
+  <data name="Settings_Card_Language_Header" xml:space="preserve"><value>语言</value></data>
+  <data name="Settings_Card_Language_Description" xml:space="preserve"><value>选择界面显示语言。</value></data>
+              <data name="Settings_Group_General_Header" xml:space="preserve"><value>通用</value></data>
+  <data name="Settings_Group_Window_Header" xml:space="preserve"><value>窗口</value></data>
+      <data name="Settings_Card_WindowState_Header" xml:space="preserve"><value>窗口状态</value></data>
+  <data name="Settings_Card_WindowState_Description" xml:space="preserve"><value>在普通、最大化与全屏之间切换。</value></data>
+            <data name="Settings_Card_TitleBar_Header" xml:space="preserve"><value>标题栏</value></data>
+            <data name="Settings_Card_WindowBehavior_Header" xml:space="preserve"><value>窗口行为</value></data>
+    <data name="Settings_Card_WindowBehavior_Description" xml:space="preserve"><value>配置窗口的大小调整与位置行为。</value></data>
+  <data name="Settings_Card_TitleBar_Description" xml:space="preserve"><value>开关标题栏及其按钮。</value></data>
+      <data name="Settings_WindowState_Normal" xml:space="preserve"><value>普通</value></data>
+  <data name="Settings_WindowState_Maximized" xml:space="preserve"><value>最大化</value></data>
+  <data name="Settings_WindowState_FullScreen" xml:space="preserve"><value>全屏</value></data>
+  <data name="Settings_WindowState_Minimized" xml:space="preserve"><value>最小化</value></data>
 </root>
