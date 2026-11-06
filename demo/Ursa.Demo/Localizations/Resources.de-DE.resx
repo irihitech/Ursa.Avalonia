@@ -2258,18 +2258,12 @@
   <data name="Settings_Group_Window_Header" xml:space="preserve"><value>Fenster</value></data>
       <data name="Settings_Card_WindowState_Header" xml:space="preserve"><value>Fensterzustand</value></data>
   <data name="Settings_Card_WindowState_Description" xml:space="preserve"><value>Zwischen normal, maximiert und Vollbild wechseln.</value></data>
-    <data name="Settings_Card_CanMinimize_Header" xml:space="preserve"><value>Minimieren erlauben</value></data>
-  <data name="Settings_Card_CanMaximize_Header" xml:space="preserve"><value>Maximieren erlauben</value></data>
-  <data name="Settings_Card_CanResize_Header" xml:space="preserve"><value>Größenänderung erlauben</value></data>
-  <data name="Settings_Card_Topmost_Header" xml:space="preserve"><value>Immer im Vordergrund</value></data>
-  <data name="Settings_Card_TitleBar_Header" xml:space="preserve"><value>Titelleiste</value></data>
-  <data name="Settings_Card_MinimizeButton_Header" xml:space="preserve"><value>Minimieren-Schaltfläche</value></data>
-  <data name="Settings_Card_MaximizeButton_Header" xml:space="preserve"><value>Maximieren-Schaltfläche</value></data>
-  <data name="Settings_Card_FullScreenButton_Header" xml:space="preserve"><value>Vollbild-Schaltfläche</value></data>
-  <data name="Settings_Card_CloseButton_Header" xml:space="preserve"><value>Schließen-Schaltfläche</value></data>
-  <data name="Settings_Card_ManagedResizer_Header" xml:space="preserve"><value>Verwalteter Größenziehpunkt</value></data>
-  <data name="Settings_Card_WindowBehavior_Header" xml:space="preserve"><value>Fensterverhalten</value></data>
-  <data name="Settings_Card_ShowTitleBar_Header" xml:space="preserve"><value>Titelleiste anzeigen</value></data>
-  <data name="Settings_Card_WindowBehavior_Description" xml:space="preserve"><value>Steuern, wie das Fenster in Größe und Position geändert werden kann.</value></data>
+            <data name="Settings_Card_TitleBar_Header" xml:space="preserve"><value>Titelleiste</value></data>
+            <data name="Settings_Card_WindowBehavior_Header" xml:space="preserve"><value>Fensterverhalten</value></data>
+    <data name="Settings_Card_WindowBehavior_Description" xml:space="preserve"><value>Steuern, wie das Fenster in Größe und Position geändert werden kann.</value></data>
   <data name="Settings_Card_TitleBar_Description" xml:space="preserve"><value>Titelleiste und ihre Schaltflächen ein- oder ausblenden.</value></data>
+      <data name="Settings_WindowState_Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Settings_WindowState_Maximized" xml:space="preserve"><value>Maximiert</value></data>
+  <data name="Settings_WindowState_FullScreen" xml:space="preserve"><value>Vollbild</value></data>
+  <data name="Settings_WindowState_Minimized" xml:space="preserve"><value>Minimiert</value></data>
 </root>

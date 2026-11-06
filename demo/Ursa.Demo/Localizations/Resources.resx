@@ -2261,18 +2261,12 @@
   <data name="Settings_Group_Window_Header" xml:space="preserve"><value>Window</value></data>
       <data name="Settings_Card_WindowState_Header" xml:space="preserve"><value>Window state</value></data>
   <data name="Settings_Card_WindowState_Description" xml:space="preserve"><value>Switch between normal, maximized and full screen.</value></data>
-    <data name="Settings_Card_CanMinimize_Header" xml:space="preserve"><value>Can minimize</value></data>
-  <data name="Settings_Card_CanMaximize_Header" xml:space="preserve"><value>Can maximize</value></data>
-  <data name="Settings_Card_CanResize_Header" xml:space="preserve"><value>Can resize</value></data>
-  <data name="Settings_Card_Topmost_Header" xml:space="preserve"><value>Always on top</value></data>
-  <data name="Settings_Card_TitleBar_Header" xml:space="preserve"><value>Title bar</value></data>
-  <data name="Settings_Card_MinimizeButton_Header" xml:space="preserve"><value>Minimize button</value></data>
-  <data name="Settings_Card_MaximizeButton_Header" xml:space="preserve"><value>Maximize button</value></data>
-  <data name="Settings_Card_FullScreenButton_Header" xml:space="preserve"><value>Full screen button</value></data>
-  <data name="Settings_Card_CloseButton_Header" xml:space="preserve"><value>Close button</value></data>
-  <data name="Settings_Card_ManagedResizer_Header" xml:space="preserve"><value>Managed resizer</value></data>
-  <data name="Settings_Card_WindowBehavior_Header" xml:space="preserve"><value>Window behavior</value></data>
-  <data name="Settings_Card_ShowTitleBar_Header" xml:space="preserve"><value>Show title bar</value></data>
-  <data name="Settings_Card_WindowBehavior_Description" xml:space="preserve"><value>Control how the window can be resized and positioned.</value></data>
+            <data name="Settings_Card_TitleBar_Header" xml:space="preserve"><value>Title bar</value></data>
+            <data name="Settings_Card_WindowBehavior_Header" xml:space="preserve"><value>Window behavior</value></data>
+    <data name="Settings_Card_WindowBehavior_Description" xml:space="preserve"><value>Control how the window can be resized and positioned.</value></data>
   <data name="Settings_Card_TitleBar_Description" xml:space="preserve"><value>Toggle the title bar and its caption buttons.</value></data>
+      <data name="Settings_WindowState_Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Settings_WindowState_Maximized" xml:space="preserve"><value>Maximized</value></data>
+  <data name="Settings_WindowState_FullScreen" xml:space="preserve"><value>Full screen</value></data>
+  <data name="Settings_WindowState_Minimized" xml:space="preserve"><value>Minimized</value></data>
 </root>

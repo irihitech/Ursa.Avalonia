@@ -2259,18 +2259,12 @@
   <data name="Settings_Group_Window_Header" xml:space="preserve"><value>Okno</value></data>
       <data name="Settings_Card_WindowState_Header" xml:space="preserve"><value>Stav okna</value></data>
   <data name="Settings_Card_WindowState_Description" xml:space="preserve"><value>Přepínání mezi normálním, maximalizovaným a celoobrazovkovým režimem.</value></data>
-    <data name="Settings_Card_CanMinimize_Header" xml:space="preserve"><value>Lze minimalizovat</value></data>
-  <data name="Settings_Card_CanMaximize_Header" xml:space="preserve"><value>Lze maximalizovat</value></data>
-  <data name="Settings_Card_CanResize_Header" xml:space="preserve"><value>Lze měnit velikost</value></data>
-  <data name="Settings_Card_Topmost_Header" xml:space="preserve"><value>Vždy nahoře</value></data>
-  <data name="Settings_Card_TitleBar_Header" xml:space="preserve"><value>Záhlaví</value></data>
-  <data name="Settings_Card_MinimizeButton_Header" xml:space="preserve"><value>Tlačítko minimalizace</value></data>
-  <data name="Settings_Card_MaximizeButton_Header" xml:space="preserve"><value>Tlačítko maximalizace</value></data>
-  <data name="Settings_Card_FullScreenButton_Header" xml:space="preserve"><value>Tlačítko celé obrazovky</value></data>
-  <data name="Settings_Card_CloseButton_Header" xml:space="preserve"><value>Tlačítko zavření</value></data>
-  <data name="Settings_Card_ManagedResizer_Header" xml:space="preserve"><value>Spravovaná úchytka velikosti</value></data>
-  <data name="Settings_Card_WindowBehavior_Header" xml:space="preserve"><value>Chování okna</value></data>
-  <data name="Settings_Card_ShowTitleBar_Header" xml:space="preserve"><value>Zobrazit záhlaví</value></data>
-  <data name="Settings_Card_WindowBehavior_Description" xml:space="preserve"><value>Řízení změny velikosti a polohy okna.</value></data>
+            <data name="Settings_Card_TitleBar_Header" xml:space="preserve"><value>Záhlaví</value></data>
+            <data name="Settings_Card_WindowBehavior_Header" xml:space="preserve"><value>Chování okna</value></data>
+    <data name="Settings_Card_WindowBehavior_Description" xml:space="preserve"><value>Řízení změny velikosti a polohy okna.</value></data>
   <data name="Settings_Card_TitleBar_Description" xml:space="preserve"><value>Zobrazení nebo skrytí záhlaví a jeho tlačítek.</value></data>
+      <data name="Settings_WindowState_Normal" xml:space="preserve"><value>Normální</value></data>
+  <data name="Settings_WindowState_Maximized" xml:space="preserve"><value>Maximalizované</value></data>
+  <data name="Settings_WindowState_FullScreen" xml:space="preserve"><value>Celá obrazovka</value></data>
+  <data name="Settings_WindowState_Minimized" xml:space="preserve"><value>Minimalizované</value></data>
 </root>

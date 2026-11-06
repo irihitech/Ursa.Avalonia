@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="clr-namespace:Ursa.Demo.Pages.Settings;assembly=Ursa.Demo"
+    xmlns:avn="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:CompileBindings="True"
@@ -67,8 +68,12 @@
                     Description="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_WindowState_Description}}"
                     Icon="{DynamicResource SemiIconDesktop}">
                     <u:SettingsCard.RightContent>
+                        <!--  Localized tuples are supplied in code-behind (they also drop Minimized,
+                              which would make the settings page unreachable).  -->
                         <u:EnumSelector
+                            x:Name="WindowStateSelector"
                             Width="160"
+                            DisplayDescription="True"
                             EnumType="WindowState"
                             Value="{Binding $parent[Window].WindowState, Mode=TwoWay}" />
                     </u:SettingsCard.RightContent>
@@ -79,35 +84,35 @@
                     Icon="{DynamicResource SemiIconSetting}">
                     <u:SettingsCard.Detail>
                         <StackPanel>
-                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_CanMinimize_Header}}">
+                            <u:SettingsCard Content="CanMinimize">
                                 <u:SettingsCard.RightContent>
                                     <ToggleSwitch
                                         IsChecked="{Binding $parent[Window].CanMinimize, Mode=TwoWay}"
                                         Theme="{DynamicResource SimpleToggleSwitch}" />
                                 </u:SettingsCard.RightContent>
                             </u:SettingsCard>
-                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_CanMaximize_Header}}">
+                            <u:SettingsCard Content="CanMaximize">
                                 <u:SettingsCard.RightContent>
                                     <ToggleSwitch
                                         IsChecked="{Binding $parent[u:UrsaWindow].CanMaximize, Mode=TwoWay}"
                                         Theme="{DynamicResource SimpleToggleSwitch}" />
                                 </u:SettingsCard.RightContent>
                             </u:SettingsCard>
-                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_CanResize_Header}}">
+                            <u:SettingsCard Content="CanResize">
                                 <u:SettingsCard.RightContent>
                                     <ToggleSwitch
                                         IsChecked="{Binding $parent[Window].CanResize, Mode=TwoWay}"
                                         Theme="{DynamicResource SimpleToggleSwitch}" />
                                 </u:SettingsCard.RightContent>
                             </u:SettingsCard>
-                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_Topmost_Header}}">
+                            <u:SettingsCard Content="Topmost">
                                 <u:SettingsCard.RightContent>
                                     <ToggleSwitch
                                         IsChecked="{Binding $parent[Window].Topmost, Mode=TwoWay}"
                                         Theme="{DynamicResource SimpleToggleSwitch}" />
                                 </u:SettingsCard.RightContent>
                             </u:SettingsCard>
-                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_ManagedResizer_Header}}">
+                            <u:SettingsCard Content="IsManagedResizerVisible">
                                 <u:SettingsCard.RightContent>
                                     <ToggleSwitch
                                         IsChecked="{Binding $parent[u:UrsaWindow].IsManagedResizerVisible, Mode=TwoWay}"
@@ -123,35 +128,51 @@
                     Icon="{DynamicResource SemiIconMore}">
                     <u:SettingsCard.Detail>
                         <StackPanel>
-                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_ShowTitleBar_Header}}">
+                            <u:SettingsCard Content="IsTitleBarVisible">
                                 <u:SettingsCard.RightContent>
                                     <ToggleSwitch
                                         IsChecked="{Binding $parent[u:UrsaWindow].IsTitleBarVisible, Mode=TwoWay}"
                                         Theme="{DynamicResource SimpleToggleSwitch}" />
                                 </u:SettingsCard.RightContent>
                             </u:SettingsCard>
-                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_MinimizeButton_Header}}">
+                            <u:SettingsCard Content="ExtendClientAreaToDecorationsHint">
+                                <u:SettingsCard.RightContent>
+                                    <ToggleSwitch
+                                        IsChecked="{Binding $parent[Window].ExtendClientAreaToDecorationsHint, Mode=TwoWay}"
+                                        Theme="{DynamicResource SimpleToggleSwitch}" />
+                                </u:SettingsCard.RightContent>
+                            </u:SettingsCard>
+                            <u:SettingsCard Content="ExtendClientAreaTitleBarHeightHint">
+                                <u:SettingsCard.RightContent>
+                                    <u:NumericDoubleUpDown
+                                        Width="160"
+                                        Maximum="200"
+                                        Minimum="-1"
+                                        Value="{Binding $parent[Window].ExtendClientAreaTitleBarHeightHint, Mode=TwoWay}" />
+                                </u:SettingsCard.RightContent>
+                            </u:SettingsCard>
+                            <u:SettingsCard Content="IsMinimizeButtonVisible">
                                 <u:SettingsCard.RightContent>
                                     <ToggleSwitch
                                         IsChecked="{Binding $parent[u:UrsaWindow].IsMinimizeButtonVisible, Mode=TwoWay}"
                                         Theme="{DynamicResource SimpleToggleSwitch}" />
                                 </u:SettingsCard.RightContent>
                             </u:SettingsCard>
-                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_MaximizeButton_Header}}">
+                            <u:SettingsCard Content="IsRestoreButtonVisible">
                                 <u:SettingsCard.RightContent>
                                     <ToggleSwitch
                                         IsChecked="{Binding $parent[u:UrsaWindow].IsRestoreButtonVisible, Mode=TwoWay}"
                                         Theme="{DynamicResource SimpleToggleSwitch}" />
                                 </u:SettingsCard.RightContent>
                             </u:SettingsCard>
-                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_FullScreenButton_Header}}">
+                            <u:SettingsCard Content="IsFullScreenButtonVisible">
                                 <u:SettingsCard.RightContent>
                                     <ToggleSwitch
                                         IsChecked="{Binding $parent[u:UrsaWindow].IsFullScreenButtonVisible, Mode=TwoWay}"
                                         Theme="{DynamicResource SimpleToggleSwitch}" />
                                 </u:SettingsCard.RightContent>
                             </u:SettingsCard>
-                            <u:SettingsCard Content="{Translate Key={x:Static localizations:LanguageManager+Keys.Settings_Card_CloseButton_Header}}">
+                            <u:SettingsCard Content="IsCloseButtonVisible">
                                 <u:SettingsCard.RightContent>
                                     <ToggleSwitch
                                         IsChecked="{Binding $parent[u:UrsaWindow].IsCloseButtonVisible, Mode=TwoWay}"
