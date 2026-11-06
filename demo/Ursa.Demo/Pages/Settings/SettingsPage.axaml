@@ -8,7 +8,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:u="https://irihi.tech/ursa"
     xmlns:vm="clr-namespace:Ursa.Demo.Pages.Settings;assembly=Ursa.Demo"
-    xmlns:avn="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:CompileBindings="True"
@@ -128,11 +127,12 @@
                     Icon="{DynamicResource SemiIconMore}">
                     <u:SettingsCard.Detail>
                         <StackPanel>
-                            <u:SettingsCard Content="IsTitleBarVisible">
+                            <u:SettingsCard Content="WindowDecorations">
                                 <u:SettingsCard.RightContent>
-                                    <ToggleSwitch
-                                        IsChecked="{Binding $parent[u:UrsaWindow].IsTitleBarVisible, Mode=TwoWay}"
-                                        Theme="{DynamicResource SimpleToggleSwitch}" />
+                                    <u:EnumSelector
+                                        Width="160"
+                                        EnumType="WindowDecorations"
+                                        Value="{Binding $parent[Window].WindowDecorations, Mode=TwoWay}" />
                                 </u:SettingsCard.RightContent>
                             </u:SettingsCard>
                             <u:SettingsCard Content="ExtendClientAreaToDecorationsHint">
@@ -149,6 +149,13 @@
                                         Maximum="200"
                                         Minimum="-1"
                                         Value="{Binding $parent[Window].ExtendClientAreaTitleBarHeightHint, Mode=TwoWay}" />
+                                </u:SettingsCard.RightContent>
+                            </u:SettingsCard>
+                            <u:SettingsCard Content="IsTitleBarVisible">
+                                <u:SettingsCard.RightContent>
+                                    <ToggleSwitch
+                                        IsChecked="{Binding $parent[u:UrsaWindow].IsTitleBarVisible, Mode=TwoWay}"
+                                        Theme="{DynamicResource SimpleToggleSwitch}" />
                                 </u:SettingsCard.RightContent>
                             </u:SettingsCard>
                             <u:SettingsCard Content="IsMinimizeButtonVisible">
