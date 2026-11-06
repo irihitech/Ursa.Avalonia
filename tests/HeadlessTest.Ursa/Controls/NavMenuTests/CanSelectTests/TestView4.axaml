@@ -1,0 +1,17 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="HeadlessTest.Ursa.Controls.NavMenuTests.CanSelectTests.TestView4">
+    <u:NavMenu Name="Menu" ExpandWidth="400" IsHorizontalCollapsed="False">
+        <u:NavMenuItem Name="MenuItem1" Header="Item 1" />
+        <u:NavMenu.Footer>
+            <StackPanel>
+                <u:NavMenuItem Name="FooterItem1" Header="Footer Item 1" />
+                <u:NavMenuItem Name="FooterItem2" Header="Footer Item 2" />
+            </StackPanel>
+        </u:NavMenu.Footer>
+    </u:NavMenu>
+</UserControl>

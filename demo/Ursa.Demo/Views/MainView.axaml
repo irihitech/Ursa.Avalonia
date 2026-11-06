@@ -117,30 +117,15 @@
                         </StackPanel>
                     </u:NavMenu.Header>
                     <u:NavMenu.Footer>
-                        <u:IconButton
+                        <u:NavMenuItem
                             HorizontalAlignment="Stretch"
                             Classes="Tertiary"
-                            Icon="{StaticResource SemiIconSetting}"
-                            Content="{Binding FooterText^}"
+                            Icon="1"
+                            Header="{Binding FooterText^}"
                             RenderTransform="{x:Null}"
                             ToolTip.Tip="Settings"
-                            FontWeight="Normal"
-                            Theme="{DynamicResource BorderlessIconButton}">
-                            <Button.Flyout>
-                                <Flyout
-                                    Placement="RightEdgeAlignedBottom">
-                                    <u:Form
-                                        LabelPosition="Left">
-                                        <ComboBox
-                                            Width="110"
-                                            u:FormItem.Label="Theme"
-                                            DisplayMemberBinding="{Binding Name}"
-                                            ItemsSource="{Binding Themes}"
-                                            SelectedItem="{Binding SelectedTheme}" />
-                                    </u:Form>
-                                </Flyout>
-                            </Button.Flyout>
-                        </u:IconButton>
+                            FontWeight="Normal">
+                        </u:NavMenuItem>
                     </u:NavMenu.Footer>
                 </u:NavMenu>
             </Border>
