@@ -2251,9 +2251,9 @@
   <data name="AboutUs_Iconica_Description" xml:space="preserve"><value>Use IconPark and TDesign icons as strongly typed controls, with color and size adjustable at runtime.</value></data>
   <data name="AboutUs_Huska_Kicker" xml:space="preserve"><value>Hand-drawn theme</value></data>
   <data name="AboutUs_Huska_Description" xml:space="preserve"><value>A commercial hand-drawn theme for Avalonia controls, charts, and diagrams.</value></data>
-  <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Ribbon control</value></data>
-  <data name="AboutUs_Asura_Description" xml:space="preserve"><value>A Ribbon command bar for Avalonia desktop applications, with adaptive layout when space is limited.</value></data>
-          <data name="Settings_Card_Theme_Header" xml:space="preserve"><value>Theme</value></data>
+  <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Flagship commercial control library</value></data>
+  <data name="AboutUs_Asura_Description" xml:space="preserve"><value>Built for large, complex applications.</value></data>
+  <data name="Settings_Card_Theme_Header" xml:space="preserve"><value>Theme</value></data>
   <data name="Settings_Card_Theme_Description" xml:space="preserve"><value>Switch between light and dark themes.</value></data>
   <data name="Settings_Card_Language_Header" xml:space="preserve"><value>Language</value></data>
   <data name="Settings_Card_Language_Description" xml:space="preserve"><value>Choose the display language.</value></data>
@@ -2270,3 +2270,4 @@
   <data name="Settings_WindowState_FullScreen" xml:space="preserve"><value>Full screen</value></data>
   <data name="Settings_WindowState_Minimized" xml:space="preserve"><value>Minimized</value></data>
 </root>
+

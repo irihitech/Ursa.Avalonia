@@ -2249,9 +2249,9 @@
   <data name="AboutUs_Iconica_Description" xml:space="preserve"><value>Utilisez les icônes IconPark et TDesign comme des contrôles fortement typés, avec couleur et taille ajustables à l'exécution.</value></data>
   <data name="AboutUs_Huska_Kicker" xml:space="preserve"><value>Thème dessiné à la main</value></data>
   <data name="AboutUs_Huska_Description" xml:space="preserve"><value>Un thème commercial dessiné à la main pour les contrôles, graphiques et diagrammes Avalonia.</value></data>
-  <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Contrôle Ruban</value></data>
-  <data name="AboutUs_Asura_Description" xml:space="preserve"><value>Une barre de commandes Ruban pour les applications de bureau Avalonia, avec une mise en page adaptative quand l'espace est limité.</value></data>
-          <data name="Settings_Card_Theme_Header" xml:space="preserve"><value>Thème</value></data>
+  <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Bibliothèque commerciale phare</value></data>
+  <data name="AboutUs_Asura_Description" xml:space="preserve"><value>Conçue pour les applications complexes et à grande échelle.</value></data>
+  <data name="Settings_Card_Theme_Header" xml:space="preserve"><value>Thème</value></data>
   <data name="Settings_Card_Theme_Description" xml:space="preserve"><value>Basculer entre le thème clair et sombre.</value></data>
   <data name="Settings_Card_Language_Header" xml:space="preserve"><value>Langue</value></data>
   <data name="Settings_Card_Language_Description" xml:space="preserve"><value>Choisir la langue d'affichage.</value></data>
@@ -2266,5 +2266,6 @@
       <data name="Settings_WindowState_Normal" xml:space="preserve"><value>Normal</value></data>
   <data name="Settings_WindowState_Maximized" xml:space="preserve"><value>Agrandi</value></data>
   <data name="Settings_WindowState_FullScreen" xml:space="preserve"><value>Plein écran</value></data>
-  <data name="Settings_WindowState_Minimized" xml:space="preserve"><value>Réduit</value></data>
-</root>
+  <data name="Settings_WindowState_Minimized" xml:space="preserve"><value>Réduit</value></data>  <data name="AboutUs_Asura_Kicker" xml:space="preserve"><value>Bibliothèque commerciale phare</value></data>
+  <data name="AboutUs_Asura_Description" xml:space="preserve"><value>Conçue pour les applications complexes et à grande échelle.</value></data></root>
+
