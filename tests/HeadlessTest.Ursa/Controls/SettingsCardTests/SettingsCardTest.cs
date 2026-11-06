@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Presenters;
 using Avalonia.Headless;
 using Avalonia.Headless.XUnit;
 using Avalonia.Input;
@@ -109,7 +110,7 @@ public class SettingsCardTest
         var window = new Window { Content = card };
         window.Show();
 
-        var host = card.GetTemplateChildOfType<Border>("PART_DetailHost");
+        var host = card.GetTemplateChildOfType<ContentPresenter>("PART_DetailHost");
         Assert.NotNull(host);
         Assert.False(host!.IsVisible);
 
@@ -144,7 +145,7 @@ public class SettingsCardTest
         // Realize the now-visible detail subtree (layout is not driven automatically in tests).
         window.UpdateLayout();
 
-        var host = outer.GetTemplateChildOfType<Border>(SettingsCard.PART_DetailHost);
+        var host = outer.GetTemplateChildOfType<ContentPresenter>(SettingsCard.PART_DetailHost);
         Assert.NotNull(host);
         Assert.True(host!.IsVisible);
 
@@ -179,13 +180,14 @@ public class SettingsCardTest
         // The detail presenter has no margin, so nested cards span the card edge to edge.
         Assert.Equal(new Avalonia.Thickness(0), first.Margin);
 
-        // Cards are square-cornered; the group card carries the radius.
+        // Nested cards are flat option rows: transparent (the detail host carries the fill —
+        // two Fill0 layers would double the tint), square-cornered, and separated from the
+        // row above by a top border line except for the first one.
+        Assert.Equal(Brushes.Transparent, first.Background);
+        Assert.Equal(new Avalonia.Thickness(0), first.BorderThickness);
+        Assert.Equal(new Avalonia.Thickness(0, 1, 0, 0), last.BorderThickness);
         Assert.Equal(new Avalonia.CornerRadius(0), first.CornerRadius);
         Assert.Equal(new Avalonia.CornerRadius(0), last.CornerRadius);
-
-        // Separators between nested rows, none after the last one.
-        Assert.True(first.GetTemplateChildOfType<Border>("PART_Separator")!.IsVisible);
-        Assert.False(last.GetTemplateChildOfType<Border>("PART_Separator")!.IsVisible);
     }
 
     [AvaloniaFact]
