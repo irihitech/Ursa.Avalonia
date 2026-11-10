@@ -671,13 +671,13 @@
     <value>Tlačítko vymazání</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>Tlačítko pro vymazání se ve výchozím nastavení zobrazuje při zaměření nebo najetí kurzorem. Nastavte AllowClear na False, aby se odstranilo. Klávesa Esc gesto také vymaže.</value>
+    <value>Tlačítko pro vymazání se ve výchozím nastavení zobrazuje při zaměření nebo najetí kurzorem. Nastavte AllowClear na False, aby se odstranilo. Klávesa Esc gesto také vymaže. Událost Cleared oznámí, odkud vymazání přišlo: tlačítko, Esc, opuštěné nahrávání, ztráta zaměření nebo kód.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_Recording_Rules_Header" xml:space="preserve">
     <value>Pravidla zaznamenávání</value>
   </data>
   <data name="Page_KeyGestureInput_Section_Recording_Rules_Description" xml:space="preserve">
-    <value>Nastavte AcceptableKeys, abyste omezili zachytávané klávesy. RequireModifier odmítá klávesy bez modifikátorů, ClearOnModifierRelease lze vypnout, aby zůstaly samotné modifikátory, a Esc gesto vymaže.</value>
+    <value>Nastavte AcceptableKeys, abyste omezili zachytávané klávesy. RequireModifier odmítá klávesy bez modifikátorů, ClearOnModifierRelease lze vypnout, aby zůstaly samotné modifikátory, a Esc gesto vymaže. Vypnutím ClearOnEscape zaznamenáte samotnou klávesu Esc.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>Stavy a nápovědy</value>

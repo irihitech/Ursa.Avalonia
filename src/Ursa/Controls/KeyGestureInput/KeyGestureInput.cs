@@ -1,10 +1,10 @@
-using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Input.Platform;
+using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Irihi.Avalonia.Shared.Contracts;
@@ -13,16 +13,37 @@ namespace Ursa.Controls;
 
 [TemplatePart(PART_Placeholder, typeof(Visual))]
 [TemplatePart(PART_FocusedPlaceholder, typeof(Visual))]
+[TemplatePart(PART_ClearButton, typeof(Button))]
 [PseudoClasses(PC_Empty)]
 public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentControl
 {
     public const string PC_Empty = ":empty";
     public const string PART_Placeholder = "PART_Placeholder";
     public const string PART_FocusedPlaceholder = "PART_FocusedPlaceholder";
+    public const string PART_ClearButton = "PART_ClearButton";
+
+    public static readonly RoutedEvent<KeyGestureInputClearedEventArgs> ClearedEvent =
+        RoutedEvent.Register<KeyGestureInput, KeyGestureInputClearedEventArgs>(
+            nameof(Cleared), RoutingStrategies.Bubble);
+
+    /// <summary>
+    /// Raised when the gesture is cleared. The event args carry the origin of the clear
+    /// (see <see cref="KeyGestureInputClearReason"/>).
+    /// </summary>
+    public event EventHandler<KeyGestureInputClearedEventArgs>? Cleared
+    {
+        add => AddHandler(ClearedEvent, value);
+        remove => RemoveHandler(ClearedEvent, value);
+    }
 
     // Modifier flags cannot distinguish LeftCtrl from RightCtrl, so pending-gesture
     // clearing tracks the physical modifier keys that are still held.
     private readonly HashSet<Key> _heldModifierKeys = [];
+
+    // A modifier-only recording in progress; display-only, never written to Gesture.
+    private KeyModifiers _pendingModifiers;
+
+    private Button? _clearButton;
 
     private static readonly IReadOnlyDictionary<Key, KeyModifiers> ModifierKeyMap =
         new Dictionary<Key, KeyModifiers>
@@ -42,9 +63,23 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
         FocusableProperty.OverrideDefaultValue<KeyGestureInput>(true);
         GestureProperty.Changed.AddClassHandler<KeyGestureInput, KeyGesture?>((x, e) =>
         {
-            x.PseudoClasses.Set(PC_Empty, e.NewValue.Value is null);
-            x.UpdateKeys();
+            // An external value replaces any pending recording; a completed recording
+            // clears its own pending state before committing.
+            x._pendingModifiers = KeyModifiers.None;
+            x.UpdateDisplay();
         });
+    }
+
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+        // Mode switches must not leave a pending display stuck with no key events to update it.
+        if ((change.Property == IsReadOnlyProperty || change.Property == ClearOnModifierReleaseProperty)
+            && _pendingModifiers != KeyModifiers.None)
+        {
+            _pendingModifiers = KeyModifiers.None;
+            UpdateDisplay();
+        }
     }
 
     public static readonly StyledProperty<KeyGesture?> GestureProperty = AvaloniaProperty.Register<KeyGestureInput, KeyGesture?>(
@@ -65,6 +100,8 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
     /// the same order as <see cref="KeyGesture.ToString(string,System.IFormatProvider)"/> ("p" format).
     /// Modifier keys are always displayed as their platform modifier strings (e.g. ⇧ on macOS,
     /// "Shift" elsewhere) instead of raw key names like "LeftShift".
+    /// While a modifier-only recording is in progress, the pending modifiers are shown
+    /// (see <see cref="ClearOnModifierRelease"/>).
     /// </summary>
     public IReadOnlyList<string> Keys
     {
@@ -121,12 +158,26 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
     /// <summary>
     /// Gets or sets whether a pending modifier-only recording follows the modifiers as
     /// they are released, dropping each one from the display and clearing the gesture
-    /// once none is held anymore. Turn off to keep the recorded modifier-only gesture.
+    /// once none is held anymore. A pending recording is display-only; it is never
+    /// written to <see cref="Gesture"/>. Turn off to record modifier-only gestures.
     /// </summary>
     public bool ClearOnModifierRelease
     {
         get => GetValue(ClearOnModifierReleaseProperty);
         set => SetValue(ClearOnModifierReleaseProperty, value);
+    }
+
+    public static readonly StyledProperty<bool> ClearOnEscapeProperty = AvaloniaProperty.Register<KeyGestureInput, bool>(
+        nameof(ClearOnEscape), true);
+
+    /// <summary>
+    /// Gets or sets whether pressing Escape clears the recorded gesture. When false,
+    /// Escape is recorded like any other key (still subject to AcceptableKeys).
+    /// </summary>
+    public bool ClearOnEscape
+    {
+        get => GetValue(ClearOnEscapeProperty);
+        set => SetValue(ClearOnEscapeProperty, value);
     }
 
     public static readonly StyledProperty<string?> PlaceholderTextProperty =
@@ -216,8 +267,17 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        PseudoClasses.Set(PC_Empty, Gesture is null);
-        UpdateKeys();
+        if (_clearButton is not null)
+        {
+            _clearButton.Click -= OnClearButtonClick;
+            _clearButton = null;
+        }
+        _clearButton = e.NameScope.Find(PART_ClearButton) as Button;
+        if (_clearButton is not null)
+        {
+            _clearButton.Click += OnClearButtonClick;
+        }
+        UpdateDisplay();
     }
 
     protected override void OnKeyDown(KeyEventArgs e)
@@ -229,9 +289,9 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
         }
 
         // Escape clears the gesture unless the user explicitly wants to bind Escape itself.
-        if (e.Key == Key.Escape && (AcceptableKeys is null || !AcceptableKeys.Contains(Key.Escape)))
+        if (e.Key == Key.Escape && ClearOnEscape && (AcceptableKeys is null || !AcceptableKeys.Contains(Key.Escape)))
         {
-            Clear();
+            ClearCore(KeyGestureInputClearReason.Escape);
             e.Handled = true;
             return;
         }
@@ -265,7 +325,15 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
             // (at least the one just pressed) until a regular key completes the gesture.
             _heldModifierKeys.Add(e.Key);
             var modifiers = e.KeyModifiers | ModifierKeyMap[e.Key];
-            SetCurrentValue(GestureProperty, new KeyGesture(Key.None, modifiers));
+            if (ClearOnModifierRelease)
+            {
+                _pendingModifiers = modifiers;
+                UpdateDisplay();
+            }
+            else
+            {
+                SetCurrentValue(GestureProperty, new KeyGesture(Key.None, modifiers));
+            }
             e.Handled = true;
             return;
         }
@@ -285,13 +353,12 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
         {
             return;
         }
-        var gesture = Gesture;
-        // Only a pending modifier-only recording tracks live; completed gestures persist.
-        if (gesture is null || gesture.Key is not Key.None || gesture.KeyModifiers == KeyModifiers.None)
+        if (_pendingModifiers == KeyModifiers.None)
         {
+            // Only a pending modifier-only recording tracks live; completed gestures persist.
             return;
         }
-        // The pending gesture follows the physically held modifiers: releasing one drops
+        // The pending recording follows the physically held modifiers: releasing one drops
         // it from the display, unless its other side (e.g. RightCtrl after releasing
         // LeftCtrl) is still held. Modifier flags alone cannot distinguish the two sides,
         // and some platforms still report the released modifier in the keyup event.
@@ -304,14 +371,16 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
                 break;
             }
         }
-        var remaining = sameSideHeld ? gesture.KeyModifiers : gesture.KeyModifiers & ~released;
+        var remaining = sameSideHeld ? _pendingModifiers : _pendingModifiers & ~released;
         if (remaining == KeyModifiers.None)
         {
-            Clear();
+            _pendingModifiers = KeyModifiers.None;
+            ClearCore(KeyGestureInputClearReason.ModifierRelease);
         }
         else
         {
-            SetCurrentValue(GestureProperty, new KeyGesture(Key.None, remaining));
+            _pendingModifiers = remaining;
+            UpdateDisplay();
         }
         e.Handled = true;
     }
@@ -326,21 +395,47 @@ public class KeyGestureInput: TemplatedControl, IClearControl, IInnerContentCont
         {
             return;
         }
-        var gesture = Gesture;
-        if (gesture is not null && gesture.Key == Key.None && gesture.KeyModifiers != KeyModifiers.None)
+        if (_pendingModifiers != KeyModifiers.None)
         {
-            Clear();
+            _pendingModifiers = KeyModifiers.None;
+            ClearCore(KeyGestureInputClearReason.LostFocus);
         }
     }
 
     public void Clear()
     {
+        ClearCore(KeyGestureInputClearReason.Programmatic);
+    }
+
+    private void ClearCore(KeyGestureInputClearReason reason)
+    {
+        _pendingModifiers = KeyModifiers.None;
+        if (Gesture is null)
+        {
+            // Nothing committed; only the pending display needs updating.
+            UpdateDisplay();
+            return;
+        }
         SetCurrentValue(GestureProperty, null);
+        RaiseEvent(new KeyGestureInputClearedEventArgs(reason) { RoutedEvent = ClearedEvent });
+    }
+
+    private void OnClearButtonClick(object? sender, RoutedEventArgs e)
+    {
+        ClearCore(KeyGestureInputClearReason.ClearButton);
+    }
+
+    private void UpdateDisplay()
+    {
+        PseudoClasses.Set(PC_Empty, Gesture is null && _pendingModifiers == KeyModifiers.None);
+        UpdateKeys();
     }
 
     private void UpdateKeys()
     {
-        var gesture = Gesture;
+        var gesture = _pendingModifiers != KeyModifiers.None
+            ? new KeyGesture(Key.None, _pendingModifiers)
+            : Gesture;
         if (gesture is null)
         {
             if (Keys.Count > 0)

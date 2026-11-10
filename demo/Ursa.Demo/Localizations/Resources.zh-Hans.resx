@@ -665,13 +665,13 @@
     <value>清除按钮</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>清除按钮默认在聚焦或悬停时显示，设置 AllowClear 为 False 可移除。聚焦时按 Esc 也可清空手势。</value>
+    <value>清除按钮默认在聚焦或悬停时显示，设置 AllowClear 为 False 可移除。聚焦时按 Esc 也可清空手势。Cleared 事件会报告清除来源：按钮、Esc、放弃录入、失焦或代码调用。</value>
   </data>
   <data name="Page_KeyGestureInput_Section_Recording_Rules_Header" xml:space="preserve">
     <value>录入规则</value>
   </data>
   <data name="Page_KeyGestureInput_Section_Recording_Rules_Description" xml:space="preserve">
-    <value>设置 AcceptableKeys 限制可录入的按键；RequireModifier 拒绝不含修饰键的裸键，避免吞掉普通打字；ClearOnModifierRelease 关闭后可保留仅修饰键的录入；聚焦时按 Esc 清空手势。</value>
+    <value>设置 AcceptableKeys 限制可录入的按键；RequireModifier 拒绝不含修饰键的裸键，避免吞掉普通打字；ClearOnModifierRelease 关闭后可保留仅修饰键的录入；聚焦时按 Esc 清空手势，关闭 ClearOnEscape 后 Esc 会像普通按键一样被录入。</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>状态与提示</value>
