@@ -218,9 +218,10 @@ public class UrsaWindow : Window
     }
 
     /// <summary>
-    ///     Gets the width of the visible caption button area, reserved by the title
-    ///     bar for its <see cref="RightContent"/>. Reported by the decorations
-    ///     theme's <see cref="CaptionInsetReporter"/>; 0 when the buttons are hidden.
+    ///     Gets the width of the caption button area overlapping the client area,
+    ///     reserved by the title bar for its <see cref="RightContent"/>. Reported by
+    ///     the decorations theme's <see cref="CaptionInsetReporter"/>; 0 when the
+    ///     buttons are hidden or do not overlap the client area.
     /// </summary>
     public double CaptionButtonsWidth
     {
@@ -229,7 +230,7 @@ public class UrsaWindow : Window
     }
 
     /// <summary>
-    ///     Defines the current width of the visible caption button area.
+    ///     Defines the current width of the caption button area overlapping the client area.
     /// </summary>
     public static readonly DirectProperty<UrsaWindow, double> CaptionButtonsWidthProperty =
         AvaloniaProperty.RegisterDirect<UrsaWindow, double>(

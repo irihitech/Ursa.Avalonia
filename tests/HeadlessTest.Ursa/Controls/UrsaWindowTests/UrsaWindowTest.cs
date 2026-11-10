@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Headless.XUnit;
+using Avalonia.Layout;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 using Ursa.Controls;
@@ -78,5 +79,49 @@ public class UrsaWindowTest
         Assert.Equal(7, titleBar.Margin.Right);
 
         window.Close();
+    }
+
+    /// <summary>
+    ///     The caption inset is reserved only while the client area extends under the buttons.
+    /// </summary>
+    [AvaloniaFact]
+    public void CaptionInset_Should_Be_Reserved_Only_When_Client_Area_Is_Extended()
+    {
+        var panel = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            HorizontalAlignment = HorizontalAlignment.Right,
+            Children = { new Border { Width = 120, Height = 32 }, new CaptionInsetReporter() },
+        };
+        var window = new UrsaWindow { Width = 800, Height = 600, Content = panel };
+        window.Show();
+        Dispatcher.UIThread.RunJobs();
+        var titleBar = window.GetVisualDescendants().OfType<TitleBar>().FirstOrDefault();
+        Assert.NotNull(titleBar);
+        Assert.Equal(120, panel.Bounds.Width);
+        Assert.False(window.IsExtendedIntoWindowDecorations);
+        Assert.Equal(0, window.CaptionButtonsWidth);
+        Assert.Equal(0, titleBar.RightInset);
+
+        ReportClientAreaExtension(window, true);
+        Dispatcher.UIThread.RunJobs();
+        Assert.Equal(120, window.CaptionButtonsWidth);
+        Assert.Equal(120, titleBar.RightInset);
+
+        ReportClientAreaExtension(window, false);
+        Dispatcher.UIThread.RunJobs();
+        Assert.Equal(0, window.CaptionButtonsWidth);
+        Assert.Equal(0, titleBar.RightInset);
+
+        window.Close();
+    }
+
+    // Headless never extends the client area, so replay the platform's notification.
+    // The callback is hidden from Avalonia's reference assemblies, hence reflection.
+    private static void ReportClientAreaExtension(Window window, bool isExtended)
+    {
+        var impl = window.PlatformImpl!;
+        var callback = impl.GetType().GetProperty("ExtendClientAreaToDecorationsChanged")?.GetValue(impl);
+        Assert.IsType<Action<bool>>(callback).Invoke(isExtended);
     }
 }

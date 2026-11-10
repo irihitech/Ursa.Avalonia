@@ -9,13 +9,14 @@ namespace Ursa.Controls;
 ///     A zero-size probe inside a decorations theme's caption button panel that
 ///     reports the panel's width to the host window's
 ///     <see cref="UrsaWindow.CaptionButtonsWidth"/>. Reports 0 while the panel is
-///     hidden (fullscreen) or once detached.
+///     hidden (fullscreen), not overlapping the client area, or once detached.
 /// </summary>
 public class CaptionInsetReporter : Control
 {
     private UrsaWindow? _hostWindow;
     private Control? _panel;
     private IDisposable? _panelBoundsSubscription;
+    private IDisposable? _extensionSubscription;
 
     public CaptionInsetReporter()
     {
@@ -37,6 +38,8 @@ public class CaptionInsetReporter : Control
 
         _panelBoundsSubscription = _panel.GetObservable(BoundsProperty)
             .Subscribe(_ => Report());
+        _extensionSubscription = _hostWindow.GetObservable(Window.IsExtendedIntoWindowDecorationsProperty)
+            .Subscribe(_ => Report());
         _hostWindow.LayoutUpdated += OnHostLayoutUpdated;
         Report();
     }
@@ -46,6 +49,8 @@ public class CaptionInsetReporter : Control
         base.OnDetachedFromVisualTree(e);
         _panelBoundsSubscription?.Dispose();
         _panelBoundsSubscription = null;
+        _extensionSubscription?.Dispose();
+        _extensionSubscription = null;
         _panel = null;
         if (_hostWindow is not null)
         {
@@ -68,7 +73,9 @@ public class CaptionInsetReporter : Control
             return;
         }
 
-        // IsEffectivelyVisible is false while fullscreen hides the panel.
-        _hostWindow.CaptionButtonsWidth = IsEffectivelyVisible ? panel.Bounds.Width : 0;
+        // Zero while fullscreen hides the panel or in forced decoration mode,
+        // where the buttons never overlap the client area.
+        _hostWindow.CaptionButtonsWidth =
+            IsEffectivelyVisible && _hostWindow.IsExtendedIntoWindowDecorations ? panel.Bounds.Width : 0;
     }
 }
