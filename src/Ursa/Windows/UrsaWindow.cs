@@ -5,6 +5,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 using Avalonia.Media;
+using Irihi.Avalonia.Shared.Helpers;
 
 namespace Ursa.Controls;
 
@@ -216,8 +217,28 @@ public class UrsaWindow : Window
         set => SetValue(TitleBarBackgroundProperty, value);
     }
 
+    /// <summary>
+    ///     Gets the width of the visible caption button area, reserved by the title
+    ///     bar for its <see cref="RightContent"/>. Reported by the decorations
+    ///     theme's <see cref="CaptionInsetReporter"/>; 0 when the buttons are hidden.
+    /// </summary>
+    public double CaptionButtonsWidth
+    {
+        get;
+        internal set => SetAndRaise(CaptionButtonsWidthProperty, ref field, value);
+    }
+
+    /// <summary>
+    ///     Defines the current width of the visible caption button area.
+    /// </summary>
+    public static readonly DirectProperty<UrsaWindow, double> CaptionButtonsWidthProperty =
+        AvaloniaProperty.RegisterDirect<UrsaWindow, double>(
+            nameof(CaptionButtonsWidth), o => o.CaptionButtonsWidth);
+
     private TitleBar? _titleBar;
     private OverlayDialogHost? _dialogHost;
+    private IDisposable? _titleBarHeightSubscription;
+
     /// <inheritdoc/>
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -231,20 +252,27 @@ public class UrsaWindow : Window
     {
         base.OnLoaded(e);
         var decorations = this.GetLogicalDescendants().OfType<WindowDrawnDecorations>().FirstOrDefault();
-        var buttons = decorations?.GetLogicalDescendants().OfType<Button>().ToList();
-        Button? maxX = null;
-        if (buttons is { Count: > 0 })
+        if (decorations is not null && _titleBar is not null)
         {
-            maxX = buttons.MaxBy(a => a.Bounds.X);
+            _titleBar.MinHeight = decorations.TitleBarHeight;
+            _titleBarHeightSubscription?.Dispose();
+            _titleBarHeightSubscription = decorations
+                .GetObservable(WindowDrawnDecorations.TitleBarHeightProperty)
+                .Subscribe(height =>
+                {
+                    if (_titleBar is not null)
+                    {
+                        _titleBar.MinHeight = height;
+                    }
+                });
         }
-        var marginRight = maxX?.Bounds.Right;
-        var height = decorations?.TitleBarHeight;
-        if (marginRight is not null && _titleBar is not null)
-        {
-            _titleBar.Margin = new Thickness(_titleBar.Margin.Left, _titleBar.Margin.Top, marginRight.Value,
-                _titleBar.Margin.Bottom);
-            _titleBar.MinHeight = height ?? 0;
-        }
+    }
+
+    protected override void OnUnloaded(RoutedEventArgs e)
+    {
+        base.OnUnloaded(e);
+        _titleBarHeightSubscription?.Dispose();
+        _titleBarHeightSubscription = null;
     }
 
     /// <summary>

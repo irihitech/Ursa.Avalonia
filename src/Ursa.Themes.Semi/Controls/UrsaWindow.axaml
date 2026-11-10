@@ -51,6 +51,7 @@
                                 HorizontalAlignment="Stretch"
                                 LeftContent="{TemplateBinding LeftContent}"
                                 RightContent="{TemplateBinding RightContent}"
+                                RightInset="{TemplateBinding CaptionButtonsWidth}"
                                 CenterContent="{TemplateBinding TitleBarContent}"
                                 WindowDecorationProperties.ElementRole="TitleBar" />
                             <u:OverlayDialogHost
@@ -125,6 +126,8 @@
                                     Theme="{StaticResource CaptionButton}"
                                     Content="{StaticResource WindowCloseIconGlyph}"
                                     WindowDecorationProperties.ElementRole="CloseButton" />
+                                <!--  Reports the caption area width to the host window's title bar  -->
+                                <u:CaptionInsetReporter />
                             </StackPanel>
                         </Panel>
                     </WindowDrawnDecorationsContent.Overlay>
