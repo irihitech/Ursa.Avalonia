@@ -87,11 +87,11 @@
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
+                            <!--  The control hooks this part's Click itself so it can report the clear origin.  -->
                             <Button
                                 Grid.Column="2"
                                 Name="PART_ClearButton"
                                 HorizontalAlignment="Right"
-                                Command="{Binding $parent[u:KeyGestureInput].Clear}"
                                 Content="{DynamicResource IconButtonClearData}"
                                 Focusable="False"
                                 IsVisible="False"

@@ -667,13 +667,13 @@
     <value>Clear Button</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>The clear button appears on focus or hover by default. Set AllowClear to False to remove it. Pressing Escape while focused also clears the gesture.</value>
+    <value>The clear button appears on focus or hover by default. Set AllowClear to False to remove it. Pressing Escape while focused also clears the gesture. The Cleared event reports where a clear came from: the button, Escape, an abandoned recording, focus loss, or code.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_Recording_Rules_Header" xml:space="preserve">
     <value>Recording Rules</value>
   </data>
   <data name="Page_KeyGestureInput_Section_Recording_Rules_Description" xml:space="preserve">
-    <value>Set AcceptableKeys to limit which keys can be captured. RequireModifier rejects plain keys without modifiers so typing is not captured, ClearOnModifierRelease can be turned off to keep modifier-only gestures, and pressing Escape while focused clears the gesture.</value>
+    <value>Set AcceptableKeys to limit which keys can be captured. RequireModifier rejects plain keys without modifiers so typing is not captured, ClearOnModifierRelease can be turned off to keep modifier-only gestures, and pressing Escape while focused clears the gesture unless ClearOnEscape is turned off, in which case Escape is recorded like any other key.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>States and Hints</value>

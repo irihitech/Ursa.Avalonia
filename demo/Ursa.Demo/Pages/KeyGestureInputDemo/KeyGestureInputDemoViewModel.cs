@@ -71,6 +71,7 @@ public class KeyGestureInputDemoViewModel: ObservableObject, IPageMetadataProvid
                           <u:KeyGestureInput Width="300" AcceptableKeys="{Binding AcceptableKeys}" />
                           <u:KeyGestureInput Width="300" RequireModifier="True" />
                           <u:KeyGestureInput Width="300" ClearOnModifierRelease="False" />
+                          <u:KeyGestureInput Width="300" ClearOnEscape="False" />
                           <u:KeyGestureInput Width="300" Gesture="Ctrl+Shift+A" />
                           """
         });
@@ -102,6 +103,18 @@ public class KeyGestureInputDemoViewModel: ObservableObject, IPageMetadataProvid
             CodeSnippet = """
                           <u:KeyGestureInput Width="300" Gesture="Ctrl+Shift+A" />
                           <u:KeyGestureInput Width="300" AllowClear="False" Gesture="Ctrl+Shift+A" />
+                          <u:KeyGestureInput Width="300" Gesture="Ctrl+K" Cleared="OnGestureCleared" />
+                          """
+        });
+        ClearButtonStyleSection.CodeSnippets.Add(new DemoSectionCodeSnippetViewModel
+        {
+            CodeSnippetLanguage = CodeLanguage.CSharp,
+            TabName = LanguageManager.Instance.DemoSection_Tab_ViewModel,
+            CodeSnippet = """
+                          private void OnGestureCleared(object? sender, KeyGestureInputClearedEventArgs e)
+                          {
+                              // e.Reason: ClearButton, Escape, ModifierRelease, LostFocus or Programmatic.
+                          }
                           """
         });
 

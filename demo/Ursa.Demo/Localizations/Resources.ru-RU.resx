@@ -671,13 +671,13 @@
     <value>Кнопка очистки</value>
   </data>
   <data name="Page_KeyGestureInput_Section_ClearButton_Style_Class_Description" xml:space="preserve">
-    <value>Кнопка очистки по умолчанию появляется при фокусе или наведении. Установите AllowClear равным False, чтобы убрать её. Esc также очищает жест.</value>
+    <value>Кнопка очистки по умолчанию появляется при фокусе или наведении. Установите AllowClear равным False, чтобы убрать её. Esc также очищает жест. Событие Cleared сообщает, откуда пришла очистка: кнопка, Esc, прерванная запись, потеря фокуса или код.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_Recording_Rules_Header" xml:space="preserve">
     <value>Правила записи</value>
   </data>
   <data name="Page_KeyGestureInput_Section_Recording_Rules_Description" xml:space="preserve">
-    <value>Задайте AcceptableKeys, чтобы ограничить захватываемые клавиши. RequireModifier отклоняет клавиши без модификаторов, ClearOnModifierRelease можно отключить, чтобы сохранять жесты из одних модификаторов, а Esc очищает жест.</value>
+    <value>Задайте AcceptableKeys, чтобы ограничить захватываемые клавиши. RequireModifier отклоняет клавиши без модификаторов, ClearOnModifierRelease можно отключить, чтобы сохранять жесты из одних модификаторов, а Esc очищает жест. Отключите ClearOnEscape, чтобы записать саму клавишу Esc.</value>
   </data>
   <data name="Page_KeyGestureInput_Section_States_Header" xml:space="preserve">
     <value>Состояния и подсказки</value>

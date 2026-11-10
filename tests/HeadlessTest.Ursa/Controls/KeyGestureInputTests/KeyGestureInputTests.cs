@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Headless.XUnit;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.VisualTree;
 using Ursa.Controls;
 
@@ -113,15 +114,17 @@ public class KeyGestureInputBaseTests
         window.Content = input;
         window.Show();
 
-        // Holding modifiers accumulates instead of overwriting with the last one.
+        // Holding modifiers accumulates in the display; the pending recording is
+        // display-only and Gesture stays untouched until a regular key completes it.
         input.RaiseEvent(new KeyEventArgs
         {
             RoutedEvent = InputElement.KeyDownEvent,
             Key = Key.LeftCtrl,
             KeyModifiers = KeyModifiers.Control,
         });
-        Assert.Equal(new KeyGesture(Key.None, KeyModifiers.Control), input.Gesture);
+        Assert.Null(input.Gesture);
         Assert.Equal(new[] { "Ctrl" }, input.Keys);
+        Assert.DoesNotContain(":empty", input.Classes);
 
         input.RaiseEvent(new KeyEventArgs
         {
@@ -129,7 +132,7 @@ public class KeyGestureInputBaseTests
             Key = Key.LeftShift,
             KeyModifiers = KeyModifiers.Control | KeyModifiers.Shift,
         });
-        Assert.Equal(new KeyGesture(Key.None, KeyModifiers.Control | KeyModifiers.Shift), input.Gesture);
+        Assert.Null(input.Gesture);
         Assert.Equal(new[] { "Ctrl", "Shift" }, input.Keys);
 
         // A modifier keydown without flags still shows at least its own modifier.
@@ -139,7 +142,7 @@ public class KeyGestureInputBaseTests
             Key = Key.LWin,
             KeyModifiers = KeyModifiers.None,
         });
-        Assert.Equal(new KeyGesture(Key.None, KeyModifiers.Meta), input.Gesture);
+        Assert.Null(input.Gesture);
         Assert.Equal(new[] { "Cmd" }, input.Keys);
 
         // A regular key freezes the full combination.
@@ -151,6 +154,58 @@ public class KeyGestureInputBaseTests
         });
         Assert.Equal(new KeyGesture(Key.A, KeyModifiers.Control | KeyModifiers.Shift | KeyModifiers.Meta), input.Gesture);
         Assert.Equal(new[] { "Ctrl", "Shift", "Cmd", "A" }, input.Keys);
+    }
+
+    [AvaloniaFact]
+    public void Pending_Modifiers_Should_Not_Touch_The_Committed_Gesture()
+    {
+        var window = new Window();
+        var input = new KeyGestureInput
+        {
+            Gesture = new KeyGesture(Key.F4),
+        };
+        window.Content = input;
+        window.Show();
+
+        var changes = new List<KeyGesture?>();
+        input.PropertyChanged += (_, e) =>
+        {
+            if (e.Property == KeyGestureInput.GestureProperty) changes.Add(input.Gesture);
+        };
+
+        // Ctrl then K commits exactly once.
+        input.RaiseEvent(new KeyEventArgs
+        {
+            RoutedEvent = InputElement.KeyDownEvent,
+            Key = Key.LeftCtrl,
+            KeyModifiers = KeyModifiers.Control,
+        });
+        input.RaiseEvent(new KeyEventArgs
+        {
+            RoutedEvent = InputElement.KeyDownEvent,
+            Key = Key.K,
+            KeyModifiers = KeyModifiers.Control,
+        });
+        Assert.Equal(new KeyGesture(Key.K, KeyModifiers.Control), input.Gesture);
+        Assert.Equal(new KeyGesture?[] { new(Key.K, KeyModifiers.Control) }, changes);
+
+        // Abandoning a recording clears exactly once, at the end.
+        changes.Clear();
+        input.RaiseEvent(new KeyEventArgs
+        {
+            RoutedEvent = InputElement.KeyDownEvent,
+            Key = Key.LeftShift,
+            KeyModifiers = KeyModifiers.Shift,
+        });
+        Assert.Equal(new[] { "Shift" }, input.Keys);
+        input.RaiseEvent(new KeyEventArgs
+        {
+            RoutedEvent = InputElement.KeyUpEvent,
+            Key = Key.LeftShift,
+            KeyModifiers = KeyModifiers.None,
+        });
+        Assert.Null(input.Gesture);
+        Assert.Equal(new KeyGesture?[] { null }, changes);
     }
 
     [AvaloniaFact]
@@ -167,7 +222,8 @@ public class KeyGestureInputBaseTests
             Key = Key.LeftCtrl,
             KeyModifiers = KeyModifiers.Control,
         });
-        Assert.Equal(new KeyGesture(Key.None, KeyModifiers.Control), input.Gesture);
+        Assert.Null(input.Gesture);
+        Assert.Equal(new[] { "Ctrl" }, input.Keys);
 
         input.RaiseEvent(new KeyEventArgs
         {
@@ -201,7 +257,7 @@ public class KeyGestureInputBaseTests
             Key = Key.LeftShift,
             KeyModifiers = KeyModifiers.Control,
         });
-        Assert.Equal(new KeyGesture(Key.None, KeyModifiers.Control), input.Gesture);
+        Assert.Null(input.Gesture);
         Assert.Equal(new[] { "Ctrl" }, input.Keys);
 
         input.RaiseEvent(new KeyEventArgs
@@ -211,6 +267,7 @@ public class KeyGestureInputBaseTests
             KeyModifiers = KeyModifiers.None,
         });
         Assert.Null(input.Gesture);
+        Assert.Empty(input.Keys);
     }
 
     [AvaloniaFact]
@@ -349,7 +406,8 @@ public class KeyGestureInputBaseTests
             Key = Key.LeftCtrl,
             KeyModifiers = KeyModifiers.Control,
         });
-        Assert.Equal(new KeyGesture(Key.None, KeyModifiers.Control), input.Gesture);
+        Assert.Null(input.Gesture);
+        Assert.Equal(new[] { "Ctrl" }, input.Keys);
 
         // A completed gesture with modifiers is accepted.
         input.RaiseEvent(new KeyEventArgs
@@ -450,12 +508,14 @@ public class KeyGestureInputBaseTests
             Key = Key.LeftCtrl,
             KeyModifiers = KeyModifiers.Control,
         });
-        Assert.Equal(new KeyGesture(Key.None, KeyModifiers.Control), input.Gesture);
+        Assert.Null(input.Gesture);
+        Assert.Equal(new[] { "Ctrl" }, input.Keys);
 
         // After focus moves elsewhere the control no longer sees the modifier keyup,
         // so the pending recording is cancelled on focus loss instead.
         other.Focus();
         Assert.Null(input.Gesture);
+        Assert.Empty(input.Keys);
 
         // A completed gesture survives focus loss.
         input.Focus();
@@ -484,7 +544,8 @@ public class KeyGestureInputBaseTests
             Key = Key.RightCtrl,
             KeyModifiers = KeyModifiers.Control,
         });
-        Assert.Equal(new KeyGesture(Key.None, KeyModifiers.Control), input.Gesture);
+        Assert.Null(input.Gesture);
+        Assert.Equal(new[] { "Ctrl" }, input.Keys);
 
         // RightCtrl is still physically held, so the pending gesture is kept.
         input.RaiseEvent(new KeyEventArgs
@@ -493,7 +554,8 @@ public class KeyGestureInputBaseTests
             Key = Key.LeftCtrl,
             KeyModifiers = KeyModifiers.Control,
         });
-        Assert.Equal(new KeyGesture(Key.None, KeyModifiers.Control), input.Gesture);
+        Assert.Null(input.Gesture);
+        Assert.Equal(new[] { "Ctrl" }, input.Keys);
 
         input.RaiseEvent(new KeyEventArgs
         {
@@ -502,6 +564,7 @@ public class KeyGestureInputBaseTests
             KeyModifiers = KeyModifiers.None,
         });
         Assert.Null(input.Gesture);
+        Assert.Empty(input.Keys);
     }
 
     [AvaloniaFact]
@@ -559,7 +622,9 @@ public class KeyGestureInputBaseTests
         ((IPseudoClasses)input.Classes).Set(":pointerover", true);
         Assert.True(button.IsVisible);
 
-        button.Command?.Execute(null);
+        // The control hooks the button's Click itself; the theme no longer binds a Command.
+        Assert.Null(button.Command);
+        button.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
         Assert.Null(input.Gesture);
         Assert.Empty(input.Keys);
         Assert.False(button.IsVisible);
@@ -583,5 +648,141 @@ public class KeyGestureInputBaseTests
 
         ((IPseudoClasses)input.Classes).Set(":pointerover", true);
         Assert.False(button.IsVisible);
+    }
+
+    [AvaloniaFact]
+    public void Cleared_Event_Should_Report_The_Clear_Origin()
+    {
+        var window = new Window();
+        var other = new Button();
+        var input = new KeyGestureInput();
+        window.Content = new StackPanel { Children = { input, other } };
+        window.Show();
+
+        var reasons = new List<KeyGestureInputClearReason>();
+        input.AddHandler(KeyGestureInput.ClearedEvent, (_, e) => reasons.Add(e.Reason));
+
+        // A call to the public Clear() API.
+        input.Gesture = new KeyGesture(Key.A, KeyModifiers.Control);
+        input.Clear();
+        Assert.Equal(new[] { KeyGestureInputClearReason.Programmatic }, reasons);
+
+        // Escape while focused.
+        input.Gesture = new KeyGesture(Key.A, KeyModifiers.Control);
+        input.RaiseEvent(new KeyEventArgs
+        {
+            RoutedEvent = InputElement.KeyDownEvent,
+            Key = Key.Escape,
+        });
+        Assert.Equal(new[] { KeyGestureInputClearReason.Programmatic, KeyGestureInputClearReason.Escape }, reasons);
+
+        // A modifier-only recording abandoned by releasing the last modifier.
+        input.Gesture = new KeyGesture(Key.A, KeyModifiers.Control);
+        input.RaiseEvent(new KeyEventArgs
+        {
+            RoutedEvent = InputElement.KeyDownEvent,
+            Key = Key.LeftCtrl,
+            KeyModifiers = KeyModifiers.Control,
+        });
+        input.RaiseEvent(new KeyEventArgs
+        {
+            RoutedEvent = InputElement.KeyUpEvent,
+            Key = Key.LeftCtrl,
+            KeyModifiers = KeyModifiers.None,
+        });
+        Assert.Equal(
+            new[]
+            {
+                KeyGestureInputClearReason.Programmatic,
+                KeyGestureInputClearReason.Escape,
+                KeyGestureInputClearReason.ModifierRelease,
+            },
+            reasons);
+
+        // Focus loss during a recording.
+        input.Focus();
+        input.Gesture = new KeyGesture(Key.A, KeyModifiers.Control);
+        input.RaiseEvent(new KeyEventArgs
+        {
+            RoutedEvent = InputElement.KeyDownEvent,
+            Key = Key.LeftCtrl,
+            KeyModifiers = KeyModifiers.Control,
+        });
+        other.Focus();
+        Assert.Equal(
+            new[]
+            {
+                KeyGestureInputClearReason.Programmatic,
+                KeyGestureInputClearReason.Escape,
+                KeyGestureInputClearReason.ModifierRelease,
+                KeyGestureInputClearReason.LostFocus,
+            },
+            reasons);
+
+        // The built-in clear button.
+        input.Focus();
+        input.Gesture = new KeyGesture(Key.A, KeyModifiers.Control);
+        input.GetVisualDescendants().OfType<Button>()
+            .Single(b => b.Name == "PART_ClearButton")
+            .RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+        Assert.Equal(
+            new[]
+            {
+                KeyGestureInputClearReason.Programmatic,
+                KeyGestureInputClearReason.Escape,
+                KeyGestureInputClearReason.ModifierRelease,
+                KeyGestureInputClearReason.LostFocus,
+                KeyGestureInputClearReason.ClearButton,
+            },
+            reasons);
+
+        // Clearing when nothing is committed raises nothing.
+        reasons.Clear();
+        input.RaiseEvent(new KeyEventArgs
+        {
+            RoutedEvent = InputElement.KeyDownEvent,
+            Key = Key.Escape,
+        });
+        Assert.Empty(reasons);
+    }
+
+    [AvaloniaFact]
+    public void ClearOnEscape_False_Should_Record_Escape()
+    {
+        var window = new Window();
+        var input = new KeyGestureInput { ClearOnEscape = false };
+        window.Content = input;
+        window.Show();
+
+        input.RaiseEvent(new KeyEventArgs
+        {
+            RoutedEvent = InputElement.KeyDownEvent,
+            Key = Key.Escape,
+        });
+        Assert.Equal(new KeyGesture(Key.Escape), input.Gesture);
+        Assert.Equal(new[] { "Escape" }, input.Keys);
+    }
+
+    [AvaloniaFact]
+    public void Externally_Set_Modifier_Only_Gesture_Should_Not_Be_Cleared_By_KeyUp()
+    {
+        var window = new Window();
+        var input = new KeyGestureInput
+        {
+            Gesture = new KeyGesture(Key.None, KeyModifiers.Control),
+        };
+        window.Content = input;
+        window.Show();
+
+        // A modifier-only value set from outside (binding/assignment) is a value,
+        // not a pending recording; unrelated keyups must not wipe it.
+        input.RaiseEvent(new KeyEventArgs
+        {
+            RoutedEvent = InputElement.KeyUpEvent,
+            Key = Key.LeftCtrl,
+            KeyModifiers = KeyModifiers.None,
+        });
+        Assert.Equal(new KeyGesture(Key.None, KeyModifiers.Control), input.Gesture);
+        Assert.Equal(new[] { "Ctrl" }, input.Keys);
     }
 }
