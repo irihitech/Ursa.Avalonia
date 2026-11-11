@@ -121,6 +121,10 @@ public class AutoCompleteBox : Avalonia.Controls.AutoCompleteBox, IClearControl
         if (newElement is Visual v && _popup is not null &&
             (_popup.IsInsidePopup(v) || (_popup.Child is { } child && child.IsVisualAncestorOf(v))))
         {
+            // On Avalonia < 12.1.6 the base closes the dropdown here; a later GotFocus
+            // (focus falling back to the textbox when the popup goes away) must not
+            // reopen it during the click.
+            _closeBySelectionFlag = true;
             return;
         }
         if (Equals(newElement, _textbox))

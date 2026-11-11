@@ -60,26 +60,27 @@ public class SelectionTests
         // adapter: the press moves focus into the popup and updates the ListBox
         // selection, the release commits the selection (closes the dropdown and
         // refocuses the textbox).
+        // Note: with Avalonia >= 12.1.6 the dropdown stays open while focus is inside
+        // it and the click is committed on release; older versions close it as soon as
+        // focus leaves the textbox and commit the selection at press time. Either way
+        // the final state below must hold.
         var container = list.GetLogicalDescendants().OfType<ListBoxItem>()
             .FirstOrDefault(c => Equals(c.Content, "Charlie"));
         Assert.NotNull(container);
+        // Compute the click position while the popup is still attached: on Avalonia < 12.1.6
+        // the dropdown closes as soon as focus moves into it.
+        var position = container.TranslatePoint(
+            new Point(container.Bounds.Width / 2, container.Bounds.Height / 2), window);
+        Assert.NotNull(position);
+
         container.Focus();
         Dispatcher.UIThread.RunJobs();
-
-        // With Avalonia >= 12.1.6 the dropdown must stay open while focus is inside it,
-        // so that the click can be committed on release. (On older versions the base
-        // AutoCompleteBox closes the dropdown as soon as focus leaves the textbox, and
-        // the selection is committed at press time instead.)
-        Assert.True(box.IsDropDownOpen);
 
         list.SelectedItem = "Charlie";
         Dispatcher.UIThread.RunJobs();
         Assert.Equal("Charlie", box.SelectedItem);
         Assert.Equal("Charlie", box.Text);
 
-        var position = container.TranslatePoint(
-            new Point(container.Bounds.Width / 2, container.Bounds.Height / 2), window);
-        Assert.NotNull(position);
         RaisePointerReleased(container, window, position.Value);
         Dispatcher.UIThread.RunJobs();
 
