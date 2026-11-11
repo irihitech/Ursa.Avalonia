@@ -1,0 +1,25 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Ursa.Themes.Fluent2.UrsaFluent2Theme">
+  <Styles.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.ThemeDictionaries>
+        <ResourceInclude x:Key="Default" Source="Themes/Light/_index.axaml" />
+        <ResourceInclude x:Key="Light" Source="Themes/Light/_index.axaml" />
+        <ResourceInclude x:Key="Dark" Source="Themes/Dark/_index.axaml" />
+      </ResourceDictionary.ThemeDictionaries>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="Resources/Metrics.axaml" />
+        <ResourceInclude Source="Resources/Icons.axaml" />
+        <ResourceInclude Source="Resources/ControlHelpers.axaml" />
+        <ResourceInclude Source="Resources/Fluent2ControlMetrics.axaml" />
+        <ResourceInclude Source="Themes/Shared/_index.axaml" />
+        <ResourceInclude Source="Resources/Fluent2Metrics.axaml" />
+        <ResourceInclude Source="Controls/_index.axaml" />
+        <ResourceInclude Source="Locale/zh-cn.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <ResourceInclude x:Key="CompactStyles" Source="Resources/Compact.axaml" />
+    </ResourceDictionary>
+  </Styles.Resources>
+  <StyleInclude Source="Styles/_index.axaml" />
+</Styles>

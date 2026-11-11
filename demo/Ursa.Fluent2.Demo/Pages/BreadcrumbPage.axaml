@@ -1,0 +1,29 @@
+<pages:DemoPageView
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:sys="using:System"
+    xmlns:pages="using:Ursa.Fluent2.Demo.Pages"
+    x:Class="Ursa.Fluent2.Demo.Pages.BreadcrumbPage">
+  <ScrollViewer HorizontalScrollBarVisibility="Auto">
+    <StackPanel Margin="24" Spacing="24" MaxWidth="1000" HorizontalAlignment="Stretch">
+      <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="Breadcrumb" FontWeight="SemiBold"/>
+          <u:Breadcrumb>
+            <u:BreadcrumbItem Content="First item"/>
+            <u:BreadcrumbItem Content="Second item"/>
+          </u:Breadcrumb>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="BreadcrumbItem" FontWeight="SemiBold"/>
+          <u:Breadcrumb>
+            <u:BreadcrumbItem Content="Breadcrumb item"/>
+          </u:Breadcrumb>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</pages:DemoPageView>

@@ -1,44 +1,47 @@
 <Solution>
     <Folder Name="/Demo/">
-        <Project Path="demo/Sandbox/Sandbox.csproj"/>
+        <Project Path="demo/Sandbox/Sandbox.csproj" />
         <Project Path="demo/Ursa.Demo.Android/Ursa.Demo.Android.csproj">
-            <Deploy Solution="Debug|*"/>
+            <Deploy Solution="Debug|*" />
         </Project>
-        <Project Path="demo/Ursa.Demo.Browser/Ursa.Demo.Browser.csproj"/>
-        <Project Path="demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj"/>
-        <Project Path="demo/Ursa.Demo.iOS/Ursa.Demo.iOS.csproj"/>
-        <Project Path="demo/Ursa.Demo/Ursa.Demo.csproj"/>
-        <Project Path="demo/Ursa.PrismDialogDemo/Ursa.PrismDialogDemo.csproj"/>
+        <Project Path="demo/Ursa.Demo.Browser/Ursa.Demo.Browser.csproj" />
+        <Project Path="demo/Ursa.Demo.Desktop/Ursa.Demo.Desktop.csproj" />
+        <Project Path="demo/Ursa.Demo.iOS/Ursa.Demo.iOS.csproj" />
+        <Project Path="demo/Ursa.Demo/Ursa.Demo.csproj" />
+        <Project Path="demo/Ursa.Fluent2.Demo/Ursa.Fluent2.Demo.csproj" />
+        <Project Path="demo/Ursa.PrismDialogDemo/Ursa.PrismDialogDemo.csproj" />
     </Folder>
     <Folder Name="/GitHub Action/">
-        <File Path=".github/workflows/deploy.yml"/>
-        <File Path=".github/workflows/pack-nightly.yml"/>
-        <File Path=".github/workflows/pack.yml"/>
-        <File Path=".github/workflows/publish.yml"/>
-        <File Path=".github/workflows/release-tag.yml"/>
-        <File Path=".github/workflows/remove-old-artifacts.yml"/>
-        <File Path=".github/workflows/test.yml"/>
+        <File Path=".github/workflows/deploy.yml" />
+        <File Path=".github/workflows/pack-nightly.yml" />
+        <File Path=".github/workflows/pack.yml" />
+        <File Path=".github/workflows/publish.yml" />
+        <File Path=".github/workflows/release-tag.yml" />
+        <File Path=".github/workflows/remove-old-artifacts.yml" />
+        <File Path=".github/workflows/test.yml" />
     </Folder>
     <Folder Name="/Solution Items/">
-        <File Path="Directory.Packages.props"/>
-        <File Path="global.json"/>
-        <File Path="NuGet.Config"/>
+        <File Path="Directory.Packages.props" />
+        <File Path="global.json" />
+        <File Path="NuGet.Config" />
     </Folder>
     <Folder Name="/Solution Items/Demo/">
-        <File Path="demo/Directory.Build.targets"/>
+        <File Path="demo/Directory.Build.targets" />
     </Folder>
     <Folder Name="/Solution Items/Src/">
-        <File Path="src/Directory.Build.props"/>
+        <File Path="src/Directory.Build.props" />
     </Folder>
     <Folder Name="/Solution Items/Tests/">
-        <File Path="tests/Directory.Build.targets"/>
+        <File Path="tests/Directory.Build.targets" />
     </Folder>
     <Folder Name="/Tests/">
-        <Project Path="tests/HeadlessTest.Ursa/HeadlessTest.Ursa.csproj"/>
-        <Project Path="tests/Test.Ursa/Test.Ursa.csproj"/>
+        <Project Path="tests/HeadlessTest.Ursa/HeadlessTest.Ursa.csproj" />
+        <Project Path="tests/Test.Ursa/Test.Ursa.csproj" />
+        <Project Path="tests/Ursa.Themes.Fluent2.Tests/Ursa.Themes.Fluent2.Tests.csproj" />
     </Folder>
-    <Project Path="src/Ursa.PrismExtension/Ursa.PrismExtension.csproj"/>
-    <Project Path="src/Ursa.ReactiveUIExtension/Ursa.ReactiveUIExtension.csproj"/>
-    <Project Path="src/Ursa.Themes.Semi/Ursa.Themes.Semi.csproj"/>
-    <Project Path="src/Ursa/Ursa.csproj"/>
+    <Project Path="src/Ursa.PrismExtension/Ursa.PrismExtension.csproj" />
+    <Project Path="src/Ursa.ReactiveUIExtension/Ursa.ReactiveUIExtension.csproj" />
+    <Project Path="src/Ursa.Themes.Fluent2/Ursa.Themes.Fluent2.csproj" />
+    <Project Path="src/Ursa.Themes.Semi/Ursa.Themes.Semi.csproj" />
+    <Project Path="src/Ursa/Ursa.csproj" />
 </Solution>

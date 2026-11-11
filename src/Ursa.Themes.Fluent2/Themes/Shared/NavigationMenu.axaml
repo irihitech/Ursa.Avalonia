@@ -1,0 +1,36 @@
+<ResourceDictionary x:ClassModifier="internal"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StaticResource x:Key="NavigationMenuItemExpandIconGlyph" ResourceKey="ComboBoxIcon" />
+
+    <x:Double x:Key="NavigationMenuExpandWidth">260</x:Double>
+    <x:Double x:Key="NavigationMenuClosedWidth">80</x:Double>
+    <x:Double x:Key="NavigationMenuExpandIconWidth">16</x:Double>
+    <x:Double x:Key="NavigationMenuExpandIconHeight">16</x:Double>
+
+    <x:Double x:Key="NavigationMenuItemIconMinWidth">24</x:Double>
+    <x:Double x:Key="NavigationMenuItemExpandIconWidth">8</x:Double>
+    <x:Double x:Key="NavigationMenuItemExpandIconHeight">8</x:Double>
+    <Thickness x:Key="NavigationMenuItemIconMargin">0</Thickness>
+    <x:Double x:Key="NavigationMenuItemCollapsedHeight">0</x:Double>
+    <x:Double x:Key="NavigationMenuItemCollapsedOpacity">0</x:Double>
+
+    <x:Double x:Key="NavigationMenuSeparatorHeaderFontSize">12</x:Double>
+    <x:Double x:Key="NavigationMenuSeparatorBorderHeight">1</x:Double>
+    <x:Double x:Key="NavigationMenuSeparatorClosedWidth">32</x:Double>
+
+
+    <Thickness x:Key="NavigationMenuHeaderMargin">12</Thickness>
+    <Thickness x:Key="NavigationMenuIconMargin">0,0,8,0</Thickness>
+
+    <Thickness x:Key="NavigationMenuItemDefaultMargin">0,2</Thickness>
+    <Thickness x:Key="NavigationMenuItemDefaultPadding">8</Thickness>
+    <CornerRadius x:Key="NavigationMenuItemDefaultCornerRadius">6</CornerRadius>
+    <Thickness x:Key="NavigationMenuItemHeaderMargin">12,0</Thickness>
+    <Thickness x:Key="NavigationMenuItemExpandIconMargin">12,0</Thickness>
+    <Thickness x:Key="NavigationMenuItemFlyoutMargin">8</Thickness>
+
+    <Thickness x:Key="NavigationMenuSeparatorMargin">4,0</Thickness>
+    <Thickness x:Key="NavigationMenuSeparatorHeaderMargin">4,0</Thickness>
+    <Thickness x:Key="NavigationMenuSeparatorBorderMargin">0,2</Thickness>
+</ResourceDictionary>

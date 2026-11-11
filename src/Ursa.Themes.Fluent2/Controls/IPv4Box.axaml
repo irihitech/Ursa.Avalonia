@@ -1,0 +1,132 @@
+<ResourceDictionary x:ClassModifier="internal"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <Design.PreviewWith>
+        <StackPanel Margin="20">
+            <TextBlock Text="Hello World" />
+        </StackPanel>
+    </Design.PreviewWith>
+    <MenuFlyout x:Key="IPv4BoxMenuFlyout">
+        <MenuItem
+            x:Name="TextBoxContextFlyoutCutItem"
+            Command="{Binding $parent[u:IPv4Box].Cut}"
+            Header="Cut"
+            InputGesture="{x:Static u:IPv4Box.CutKeyGesture}" />
+        <MenuItem
+            x:Name="TextBoxContextFlyoutCopyItem"
+            Command="{Binding $parent[u:IPv4Box].Copy}"
+            Header="Copy"
+            InputGesture="{x:Static u:IPv4Box.CopyKeyGesture}" />
+        <MenuItem
+            x:Name="TextBoxContextFlyoutPasteItem"
+            Command="{Binding $parent[u:IPv4Box].Paste}"
+            Header="Paste"
+            InputGesture="{x:Static u:IPv4Box.PasteKeyGesture}" />
+        <MenuItem
+            x:Name="TextBoxContextFlyoutClearItem"
+            Command="{Binding $parent[u:IPv4Box].Clear}"
+            Header="Clear" />
+    </MenuFlyout>
+    <ControlTheme x:Key="{x:Type u:IPv4Box}" TargetType="{x:Type u:IPv4Box}">
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="ShowLeadingZero" Value="True" />
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
+        <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
+        <Setter Property="MinHeight" Value="{DynamicResource TextBoxDefaultHeight}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource TextBoxSelectionBackground}" />
+        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource TextBoxSelectionForeground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
+        <Setter Property="CaretBrush" Value="{DynamicResource TextBoxTextCaretBrush}" />
+        <Setter Property="ContextFlyout" Value="{DynamicResource IPv4BoxMenuFlyout}" />
+        <Setter Property="FocusAdorner" Value="{x:Null}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:IPv4Box">
+                <Border
+                    Name="PART_Border"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <Grid Width="{TemplateBinding Width}" ColumnDefinitions="1*, Auto, 1*, Auto, 1*, Auto, 1*">
+                        <TextPresenter
+                            Name="{x:Static u:IPv4Box.PART_FirstTextPresenter}"
+                            Grid.Column="0"
+                            MinWidth="8"
+                            VerticalAlignment="Center"
+                            CaretBrush="{TemplateBinding CaretBrush}"
+                            Cursor="IBeam"
+                            SelectionBrush="{TemplateBinding SelectionBrush}"
+                            SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                            TextAlignment="{TemplateBinding TextAlignment}" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="0,4"
+                            VerticalAlignment="Center"
+                            Focusable="False"
+                            Text="." />
+                        <TextPresenter
+                            Name="{x:Static u:IPv4Box.PART_SecondTextPresenter}"
+                            Grid.Column="2"
+                            MinWidth="8"
+                            VerticalAlignment="Center"
+                            CaretBrush="{TemplateBinding CaretBrush}"
+                            Cursor="IBeam"
+                            SelectionBrush="{TemplateBinding SelectionBrush}"
+                            SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                            TextAlignment="{TemplateBinding TextAlignment}" />
+                        <TextBlock
+                            Grid.Column="3"
+                            Margin="0,4"
+                            VerticalAlignment="Center"
+                            Text="." />
+                        <TextPresenter
+                            Name="{x:Static u:IPv4Box.PART_ThirdTextPresenter}"
+                            Grid.Column="4"
+                            MinWidth="8"
+                            VerticalAlignment="Center"
+                            CaretBrush="{TemplateBinding CaretBrush}"
+                            Cursor="IBeam"
+                            SelectionBrush="{TemplateBinding SelectionBrush}"
+                            SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                            TextAlignment="{TemplateBinding TextAlignment}" />
+                        <TextBlock
+                            Grid.Column="5"
+                            Margin="0,4"
+                            VerticalAlignment="Center"
+                            Text="." />
+                        <TextPresenter
+                            Name="{x:Static u:IPv4Box.PART_FourthTextPresenter}"
+                            Grid.Column="6"
+                            MinWidth="8"
+                            VerticalAlignment="Center"
+                            CaretBrush="{TemplateBinding CaretBrush}"
+                            Cursor="IBeam"
+                            SelectionBrush="{TemplateBinding SelectionBrush}"
+                            SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                            TextAlignment="{TemplateBinding TextAlignment}" />
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:pointerover /template/ Border#PART_Border">
+            <Setter Property="Background" Value="{DynamicResource TextBoxPointeroverBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxPointeroverBorderBrush}" />
+        </Style>
+        <Style Selector="^:pressed /template/ Border#PART_Border">
+            <Setter Property="Background" Value="{DynamicResource IPv4BoxPressedBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource  TextBoxFocusBorderBrush}" />
+        </Style>
+        <Style Selector="^:focus-within /template/ Border#PART_Border">
+            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
+        </Style>
+        <Style Selector="^:disabled">
+            <Setter Property="Background" Value="{DynamicResource TextBoxDisabledBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBoxDisabledForeground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDisabledBorderBrush}" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>
