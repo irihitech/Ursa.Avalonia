@@ -39,6 +39,7 @@
                             HorizontalAlignment="Center"
                             ItemsSource="{Binding Controls}"
                             PlaceholderText="Choose a control with custom template"
+                            ValueMemberBinding="{ReflectionBinding MenuHeader}"
                             >
                             <u:AutoCompleteBox.ItemTemplate>
                                 <DataTemplate

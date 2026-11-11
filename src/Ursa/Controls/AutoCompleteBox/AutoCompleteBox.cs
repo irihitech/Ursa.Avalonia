@@ -41,10 +41,21 @@ public class AutoCompleteBox : Avalonia.Controls.AutoCompleteBox, IClearControl
     {
         base.OnApplyTemplate(e);
         _textbox?.RemoveHandler(PointerPressedEvent, OnBoxPointerPressed);
+        _popup?.Child?.RemoveHandler(PointerReleasedEvent, OnPopupChildPointerReleased);
         _textbox = e.NameScope.Find<TextBox>(PART_TextBox);
         _popup = e.NameScope.Find<Popup>(PartNames.PART_Popup);
         _textbox?.AddHandler(PointerPressedEvent, OnBoxPointerPressed, handledEventsToo: true);
+        // The dropdown is hosted in its own popup, so pointer releases on dropdown items never
+        // reach this control's own handlers. Track them on the popup content so that the
+        // GotFocus raised by the selection commit (which refocuses the textbox) does not
+        // reopen the dropdown.
+        _popup?.Child?.AddHandler(PointerReleasedEvent, OnPopupChildPointerReleased, RoutingStrategies.Tunnel);
         PseudoClasses.Set(PseudoClassName.PC_Empty, string.IsNullOrEmpty(Text));
+    }
+
+    private void OnPopupChildPointerReleased(object? sender, PointerReleasedEventArgs e)
+    {
+        _closeBySelectionFlag = true;
     }
 
     public void Clear()
@@ -67,6 +78,15 @@ public class AutoCompleteBox : Avalonia.Controls.AutoCompleteBox, IClearControl
 
     protected override void OnGotFocus(FocusChangedEventArgs e)
     {
+        // When focus moves into the dropdown (the user pressed an item), leave it there:
+        // the base OnGotFocus would redirect focus back to the textbox, which closes the
+        // dropdown before the click can be committed on release (Avalonia >= 12.1.6 keeps
+        // the dropdown open while focus is inside it).
+        if (e.Source is Visual v && _popup is not null &&
+            (_popup.IsInsidePopup(v) || (_popup.Child is { } child && child.IsVisualAncestorOf(v))))
+        {
+            return;
+        }
         base.OnGotFocus(e);
         // If the focus is set by pointer navigation, it is handled by PointerPressed, do not open the dropdown.
         if (e.NavigationMethod == NavigationMethod.Pointer) return;
@@ -90,7 +110,7 @@ public class AutoCompleteBox : Avalonia.Controls.AutoCompleteBox, IClearControl
 
         if (change.Property == IsDropDownOpenProperty && change.GetNewValue<bool>() == false)
         {
-            
+
         }
     }
 
@@ -98,8 +118,13 @@ public class AutoCompleteBox : Avalonia.Controls.AutoCompleteBox, IClearControl
     {
         base.OnLostFocus(e);
         var newElement = e.NewFocusedElement;
-        if (newElement is Visual v && _popup?.IsInsidePopup(v) == true)
+        if (newElement is Visual v && _popup is not null &&
+            (_popup.IsInsidePopup(v) || (_popup.Child is { } child && child.IsVisualAncestorOf(v))))
         {
+            // On Avalonia < 12.1.6 the base closes the dropdown here; a later GotFocus
+            // (focus falling back to the textbox when the popup goes away) must not
+            // reopen it during the click.
+            _closeBySelectionFlag = true;
             return;
         }
         if (Equals(newElement, _textbox))
