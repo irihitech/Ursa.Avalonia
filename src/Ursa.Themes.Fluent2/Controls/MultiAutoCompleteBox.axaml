@@ -12,7 +12,6 @@
                 <Panel>
                     <Border
                         Name="PART_RootBorder"
-                        MinHeight="30"
                         VerticalAlignment="Stretch"
                         Background="{DynamicResource TextBoxDefaultBackground}"
                         BorderBrush="{DynamicResource TextBoxDefaultBorderBrush}"
@@ -42,6 +41,7 @@
                                             <u:WrapPanelWithTrailingItem.TrailingItem>
                                                 <TextBox
                                                     MinWidth="24"
+                                                    MinHeight="{DynamicResource UrsaFluent2ClosableTagHeight}"
                                                     VerticalAlignment="Center"
                                                     Theme="{DynamicResource TagInputTextBoxTheme}" />
                                             </u:WrapPanelWithTrailingItem.TrailingItem>

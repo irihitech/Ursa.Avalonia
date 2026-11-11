@@ -17,4 +17,9 @@
   <CornerRadius x:Key="UrsaFluent2GroupBoxCornerRadius">4</CornerRadius>
   <Thickness x:Key="UrsaFluent2DividerContentMargin">8,0</Thickness>
   <x:Double x:Key="UrsaFluent2DividerThickness">1</x:Double>
+  <Thickness x:Key="UrsaFluent2MultiComboBoxPadding">10,0</Thickness>
+  <x:Double x:Key="UrsaFluent2ClosableTagHeight">18</x:Double>
+  <Thickness x:Key="UrsaFluent2ClosableTagPadding">6,0,2,0</Thickness>
+  <Thickness x:Key="UrsaFluent2ClosableTagCloseButtonMargin">2,0,0,0</Thickness>
+  <Thickness x:Key="UrsaFluent2TagInputTextBoxMargin">6,1,4,1</Thickness>
 </ResourceDictionary>

@@ -14,7 +14,6 @@
             <ControlTemplate TargetType="u:TagInput">
                 <Border
                     Name="PART_RootBorder"
-                    MinHeight="30"
                     VerticalAlignment="Stretch"
                     Background="{DynamicResource TextBoxDefaultBackground}"
                     BorderBrush="{DynamicResource TextBoxDefaultBorderBrush}"
@@ -31,6 +30,7 @@
                         <u:MultiComboBoxSelectedItemList
                             Name="PART_ItemsControl"
                             HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
                             RemoveCommand="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Close}"
                             ItemTemplate="{TemplateBinding ItemTemplate}"
                             ItemsSource="{TemplateBinding Tags}">
@@ -38,7 +38,7 @@
                                 <ItemsPanelTemplate>
                                     <u:WrapPanelWithTrailingItem TrailingWrapWidth="24" >
                                         <u:WrapPanelWithTrailingItem.TrailingItem>
-                                            <TextBox VerticalAlignment="Center" MinHeight="24" Margin="{DynamicResource TextBoxContentPadding}" Theme="{DynamicResource TagInputTextBoxTheme}" />
+                                            <TextBox VerticalAlignment="Center" MinHeight="{DynamicResource UrsaFluent2ClosableTagHeight}" Margin="{DynamicResource UrsaFluent2TagInputTextBoxMargin}" Theme="{DynamicResource TagInputTextBoxTheme}" />
                                         </u:WrapPanelWithTrailingItem.TrailingItem>
                                     </u:WrapPanelWithTrailingItem>
                                 </ItemsPanelTemplate>
@@ -115,8 +115,9 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="u:ClosableTag">
                 <Border
+                    Height="{DynamicResource UrsaFluent2ClosableTagHeight}"
                     Margin="1"
-                    Padding="8,4,4,4"
+                    Padding="{DynamicResource UrsaFluent2ClosableTagPadding}"
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
@@ -130,7 +131,7 @@
                             Height="12"
                             MinWidth="12"
                             MinHeight="12"
-                            Margin="4,0,0,0"
+                            Margin="{DynamicResource UrsaFluent2ClosableTagCloseButtonMargin}"
                             Foreground="{DynamicResource ClosableTagCloseButtonForeground}"
                             Command="{TemplateBinding Command}"
                             CommandParameter="{TemplateBinding}"

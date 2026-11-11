@@ -21,8 +21,8 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="MaxDropDownHeight" Value="300" />
         <Setter Property="MaxSelectionBoxHeight" Value="270" />
-        <Setter Property="MinHeight" Value="32" />
-        <Setter Property="Padding" Value="12 4" />
+        <Setter Property="MinHeight" Value="{DynamicResource MultiComboBoxDefaultHeight}" />
+        <Setter Property="Padding" Value="{DynamicResource UrsaFluent2MultiComboBoxPadding}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
         <Setter Property="Template">
