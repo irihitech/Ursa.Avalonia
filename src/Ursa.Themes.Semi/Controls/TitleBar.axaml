@@ -10,32 +10,32 @@
                     Padding="{TemplateBinding Padding}"
                     Background="{TemplateBinding Background}"
                     WindowDecorationProperties.ElementRole="TitleBar">
-                    <!--  Column 3 reserves the caption button area (TitleBar.RightInset)  -->
-                    <Grid Name="PART_TitleBarGrid" ColumnDefinitions="Auto,*,Auto,0">
+                    <!--  RightInset is driven onto this grid's right margin; oversized content is clipped  -->
+                    <Grid
+                        Name="PART_TitleBarGrid"
+                        ClipToBounds="True"
+                        ColumnDefinitions="Auto,*,Auto">
                         <ContentPresenter
                             Name="PART_LeftContentPresenter"
                             Grid.Column="0"
                             KeyboardNavigation.TabNavigation="Local"
                             WindowDecorationProperties.ElementRole="User"
                             Content="{TemplateBinding LeftContent}"
-                            IsVisible="{Binding $self.Content,Converter={x:Static ObjectConverters.IsNotNull}}"
-                            TabIndex="1" />
+                            IsVisible="{Binding $self.Content,Converter={x:Static ObjectConverters.IsNotNull}}" />
                         <ContentPresenter
                             Name="PART_ContentPresenter"
                             Grid.Column="1"
                             KeyboardNavigation.TabNavigation="Local"
                             WindowDecorationProperties.ElementRole="User"
                             Content="{TemplateBinding CenterContent}"
-                            IsVisible="{Binding $self.Content,Converter={x:Static ObjectConverters.IsNotNull}}"
-                            TabIndex="2" />
+                            IsVisible="{Binding $self.Content,Converter={x:Static ObjectConverters.IsNotNull}}" />
                         <ContentPresenter
                             Name="PART_RightContentPresenter"
                             Grid.Column="2"
                             KeyboardNavigation.TabNavigation="Local"
                             WindowDecorationProperties.ElementRole="User"
                             Content="{TemplateBinding RightContent}"
-                            IsVisible="{Binding $self.Content,Converter={x:Static ObjectConverters.IsNotNull}}"
-                            TabIndex="3" />
+                            IsVisible="{Binding $self.Content,Converter={x:Static ObjectConverters.IsNotNull}}" />
                     </Grid>
                 </Border>
             </ControlTemplate>

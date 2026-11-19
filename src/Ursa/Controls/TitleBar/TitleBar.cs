@@ -1,14 +1,16 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 
 namespace Ursa.Controls;
 
+[TemplatePart(PART_TitleBarGrid, typeof(Grid))]
 public class TitleBar : TemplatedControl
 {
     public const string PART_TitleBarGrid = "PART_TitleBarGrid";
 
-    private ColumnDefinition? _rightInsetColumn;
+    private Grid? _titleBarGrid;
 
     public static readonly StyledProperty<object?> LeftContentProperty = AvaloniaProperty.Register<TitleBar, object?>(
         nameof(LeftContent));
@@ -58,9 +60,8 @@ public class TitleBar : TemplatedControl
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
-        var grid = e.NameScope.Find<Grid>(PART_TitleBarGrid);
-        _rightInsetColumn = grid?.ColumnDefinitions.Count == 4 ? grid.ColumnDefinitions[3] : null;
-        SyncRightInsetColumn();
+        _titleBarGrid = e.NameScope.Find<Grid>(PART_TitleBarGrid);
+        SyncRightInsetMargin();
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
@@ -68,17 +69,17 @@ public class TitleBar : TemplatedControl
         base.OnPropertyChanged(change);
         if (change.Property == RightInsetProperty)
         {
-            SyncRightInsetColumn();
+            SyncRightInsetMargin();
         }
     }
 
-    private void SyncRightInsetColumn()
+    private void SyncRightInsetMargin()
     {
-        if (_rightInsetColumn is not null)
+        if (_titleBarGrid is not null)
         {
             // Runtime width changes on bound template elements do not reliably
-            // re-run the container layout, so the control drives the column width.
-            _rightInsetColumn.Width = new GridLength(RightInset, GridUnitType.Pixel);
+            // re-run the container layout, so the control drives the margin.
+            _titleBarGrid.Margin = new Thickness(0, 0, RightInset, 0);
         }
     }
 }

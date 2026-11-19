@@ -176,6 +176,38 @@ public class UrsaWindowTest
         window.Close();
     }
 
+    /// <summary>
+    ///     RightContent stays fenced off the caption inset even when wider than the remaining space.
+    /// </summary>
+    [AvaloniaFact]
+    public void TitleBar_RightContent_Should_Be_Constrained_By_CaptionInset()
+    {
+        var rightContent = new Border { Width = 160, Height = 24 };
+        var titleBar = new TitleBar
+        {
+            Height = 32,
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            RightContent = rightContent,
+            RightInset = 120,
+        };
+        var window = new UrsaWindow { Width = 200, Height = 100, Content = titleBar };
+        window.Show();
+        Dispatcher.UIThread.RunJobs();
+
+        var grid = titleBar.GetVisualDescendants().OfType<Grid>()
+            .First(g => g.Name == TitleBar.PART_TitleBarGrid);
+        Assert.True(grid.ClipToBounds);
+        Assert.Equal(titleBar.Bounds.Width - 120, grid.Bounds.Width);
+        // The oversized content overflows the grid instead of pushing into the inset.
+        Assert.Equal(160, rightContent.Bounds.Width);
+
+        titleBar.RightInset = 0;
+        Dispatcher.UIThread.RunJobs();
+        Assert.Equal(titleBar.Bounds.Width, grid.Bounds.Width);
+
+        window.Close();
+    }
+
     // Headless never extends the client area, so replay the platform's notification.
     // The callback is hidden from Avalonia's reference assemblies, hence reflection.
     private static void ReportClientAreaExtension(Window window, bool isExtended)
