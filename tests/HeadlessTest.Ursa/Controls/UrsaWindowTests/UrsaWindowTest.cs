@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Headless.XUnit;
 using Avalonia.Layout;
 using Avalonia.Threading;
@@ -82,16 +83,18 @@ public class UrsaWindowTest
     }
 
     /// <summary>
-    ///     The caption inset is reserved only while the client area extends under the buttons.
+    ///     The caption inset is reserved only while the client area extends under the buttons,
+    ///     tracks the panel width, and clears while the panel is hidden.
     /// </summary>
     [AvaloniaFact]
     public void CaptionInset_Should_Be_Reserved_Only_When_Client_Area_Is_Extended()
     {
+        var buttonArea = new Border { Width = 120, Height = 32 };
         var panel = new StackPanel
         {
             Orientation = Orientation.Horizontal,
             HorizontalAlignment = HorizontalAlignment.Right,
-            Children = { new Border { Width = 120, Height = 32 }, new CaptionInsetReporter() },
+            Children = { buttonArea, new CaptionInsetReporter() },
         };
         var window = new UrsaWindow { Width = 800, Height = 600, Content = panel };
         window.Show();
@@ -108,11 +111,68 @@ public class UrsaWindowTest
         Assert.Equal(120, window.CaptionButtonsWidth);
         Assert.Equal(120, titleBar.RightInset);
 
+        buttonArea.Width = 200;
+        Dispatcher.UIThread.RunJobs();
+        Assert.Equal(200, panel.Bounds.Width);
+        Assert.Equal(200, window.CaptionButtonsWidth);
+        Assert.Equal(200, titleBar.RightInset);
+
+        panel.IsVisible = false;
+        Dispatcher.UIThread.RunJobs();
+        Assert.Equal(0, window.CaptionButtonsWidth);
+        Assert.Equal(0, titleBar.RightInset);
+
+        panel.IsVisible = true;
+        Dispatcher.UIThread.RunJobs();
+        Assert.Equal(200, window.CaptionButtonsWidth);
+
         ReportClientAreaExtension(window, false);
         Dispatcher.UIThread.RunJobs();
         Assert.Equal(0, window.CaptionButtonsWidth);
         Assert.Equal(0, titleBar.RightInset);
 
+        window.Close();
+    }
+
+    /// <summary>
+    ///     A closed popup detaches its child from the visual tree while it stays
+    ///     logically attached: the inset clears and reporting resumes on reopen.
+    /// </summary>
+    [AvaloniaFact]
+    public void CaptionInset_Should_Clear_When_Panel_Is_Detached_From_Visual_Tree()
+    {
+        var panel = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            HorizontalAlignment = HorizontalAlignment.Right,
+            Children = { new Border { Width = 120, Height = 32 }, new CaptionInsetReporter() },
+        };
+        var anchor = new Border();
+        var popup = new Popup { Child = panel, PlacementTarget = anchor };
+        var window = new UrsaWindow
+        {
+            Width = 800,
+            Height = 600,
+            Content = new StackPanel { Children = { anchor, popup } },
+        };
+        window.Show();
+        Dispatcher.UIThread.RunJobs();
+        ReportClientAreaExtension(window, true);
+        Dispatcher.UIThread.RunJobs();
+
+        popup.IsOpen = true;
+        Dispatcher.UIThread.RunJobs();
+        Assert.Equal(120, window.CaptionButtonsWidth);
+
+        popup.IsOpen = false;
+        Dispatcher.UIThread.RunJobs();
+        Assert.Equal(0, window.CaptionButtonsWidth);
+
+        popup.IsOpen = true;
+        Dispatcher.UIThread.RunJobs();
+        Assert.Equal(120, window.CaptionButtonsWidth);
+
+        popup.IsOpen = false;
         window.Close();
     }
 
