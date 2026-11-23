@@ -408,3 +408,9 @@ src/Web/Avalonia.Web.Blazor/Interop/Typescript/*.js
 #################
 .reasonix/
 reasonix.toml
+
+#################
+## OS & local tooling
+#################
+.DS_Store
+.zcode/

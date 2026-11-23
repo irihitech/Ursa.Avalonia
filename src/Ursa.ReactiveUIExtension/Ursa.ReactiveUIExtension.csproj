@@ -28,7 +28,7 @@
         <ProjectReference Include="..\Ursa\Ursa.csproj"/>
     </ItemGroup>
     <ItemGroup>
-        <None Include="..\..\irihi.png" Pack="true" PackagePath="\" Link="Properties\irihi.png"/>
-        <None Include="..\..\LICENSE" Pack="true" PackagePath="\" Link="Properties\LICENSE"/>
+        <None Include="..\..\irihi.png" Pack="true" PackagePath="\" Visible="false"/>
+        <None Include="..\..\LICENSE" Pack="true" PackagePath="\" Visible="false"/>
     </ItemGroup>
 </Project>
