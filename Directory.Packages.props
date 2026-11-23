@@ -3,7 +3,7 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <CentralPackageVersionOverrideEnabled>true</CentralPackageVersionOverrideEnabled>
     <AvaloniaVersion>12.0.2</AvaloniaVersion>
-    <Fluent2AvaloniaVersion>12.2.999-cibuild0100652-alpha</Fluent2AvaloniaVersion>
+    <Fluent2AvaloniaVersion>12.2.0</Fluent2AvaloniaVersion>
     <Fluent2XunitVersion>3.2.2</Fluent2XunitVersion>
   </PropertyGroup>
   <ItemGroup>
