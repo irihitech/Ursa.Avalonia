@@ -1,0 +1,27 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <x:Double x:Key="DescriptionsLineHeight">20</x:Double>
+    <FontWeight x:Key="DescriptionsValueFontWeight">600</FontWeight>
+    <x:Double x:Key="DescriptionsKeySmallFontSize">12</x:Double>
+    <x:Double x:Key="DescriptionsValueSmallFontSize">16</x:Double>
+    <x:Double x:Key="DescriptionsKeyMediumFontSize">14</x:Double>
+    <x:Double x:Key="DescriptionsValueMediumFontSize">20</x:Double>
+    <x:Double x:Key="DescriptionsKeyLargeFontSize">14</x:Double>
+    <x:Double x:Key="DescriptionsValueLargeFontSize">28</x:Double>
+    <!-- <StaticResource x:Key="DescriptionsValueFontWeight" ResourceKey="UrsaFluent2FontWeightBold" /> -->
+    <!-- <StaticResource x:Key="DescriptionsKeySmallFontSize" ResourceKey="UrsaFluent2FontSizeSmall" /> -->
+    <!-- <StaticResource x:Key="DescriptionsValueSmallFontSize" ResourceKey="UrsaFluent2HeaderFontSizeSmall" /> -->
+    <!-- <StaticResource x:Key="DescriptionsKeyMediumFontSize" ResourceKey="ControlContentThemeFontSize" /> -->
+    <!-- <StaticResource x:Key="DescriptionsValueMediumFontSize" ResourceKey="UrsaFluent2HeaderFontSizeMedium" /> -->
+    <!-- <StaticResource x:Key="DescriptionsKeyLargeFontSize" ResourceKey="ControlContentThemeFontSize" /> -->
+    <!-- <StaticResource x:Key="DescriptionsValueLargeFontSize" ResourceKey="UrsaFluent2HeaderFontSizeLarge" /> -->
+
+    <Thickness x:Key="DescriptionsKeyPadding">0 0 24 0</Thickness>
+    <Thickness x:Key="DescriptionsItemMargin">0 0 0 12</Thickness>
+    <Thickness x:Key="DescriptionsValueSmallMargin">0 0 48 0</Thickness>
+    <Thickness x:Key="DescriptionsValueMediumMargin">0 0 60 0</Thickness>
+    <Thickness x:Key="DescriptionsValueLargeMargin">0 0 80 0</Thickness>
+    <Thickness x:Key="DescriptionsKeySmallMargin">0</Thickness>
+    <Thickness x:Key="DescriptionsKeyMediumMargin">0 0 0 4</Thickness>
+    <Thickness x:Key="DescriptionsKeyLargeMargin">0 0 0 4</Thickness>
+    <Thickness x:Key="DescriptionsKeyPlainMargin">0 0 8 0</Thickness>
+</ResourceDictionary>

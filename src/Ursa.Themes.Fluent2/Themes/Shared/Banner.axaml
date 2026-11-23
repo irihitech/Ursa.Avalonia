@@ -1,0 +1,14 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StaticResource x:Key="BannerInformationIconGeometry" ResourceKey="UrsaFluent2IconInfoCircle" />
+    <StaticResource x:Key="BannerSuccessIconGeometry" ResourceKey="UrsaFluent2IconTickCircle" />
+    <StaticResource x:Key="BannerWarningIconGeometry" ResourceKey="UrsaFluent2IconAlertTriangle" />
+    <StaticResource x:Key="BannerErrorIconGeometry" ResourceKey="UrsaFluent2IconAlertCircle" />
+    <StaticResource x:Key="BannerCloseIconGeometry" ResourceKey="UrsaFluent2IconClose" />
+
+    <CornerRadius x:Key="BannerCornerRadius">3</CornerRadius>
+    <Thickness x:Key="BannerBorderPadding">12</Thickness>
+    <Thickness x:Key="BannerBorderThickness">1</Thickness>
+    <Thickness x:Key="BannerIconMargin">0 0 12 0</Thickness>
+    <Thickness x:Key="BannerCloseButtonMargin">12 0 0 0</Thickness>
+    <x:Double x:Key="BannerTitleFontSize">18</x:Double>
+</ResourceDictionary>

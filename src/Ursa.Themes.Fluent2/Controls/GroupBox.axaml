@@ -1,0 +1,31 @@
+<ResourceDictionary x:ClassModifier="internal"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa">
+    <ControlTheme x:Key="{x:Type u:UrsaGroupBox}" TargetType="u:UrsaGroupBox">
+        <Setter Property="Padding" Value="{DynamicResource GroupBoxPadding}" />
+        <Setter Property="Background" Value="{DynamicResource GroupBoxBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource GroupBoxBorderBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimary}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource GroupBoxBorderThickness}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="u:UrsaGroupBox">
+                <u:GroupBoxBorder
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    Padding="{TemplateBinding Padding}"
+                    HeaderSpacing="{TemplateBinding HeaderSpacing}">
+                    <u:GroupBoxBorder.Header>
+                        <ContentPresenter Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                          FontSize="{DynamicResource GroupBoxHeaderFontSize}" FontWeight="SemiBold"
+                                          Foreground="{DynamicResource GroupBoxHeaderForeground}" />
+                    </u:GroupBoxBorder.Header>
+                    <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+                </u:GroupBoxBorder>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

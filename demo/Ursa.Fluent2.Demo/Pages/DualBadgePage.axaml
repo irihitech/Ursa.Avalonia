@@ -1,0 +1,18 @@
+<pages:DemoPageView
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:sys="using:System"
+    xmlns:pages="using:Ursa.Fluent2.Demo.Pages"
+    x:Class="Ursa.Fluent2.Demo.Pages.DualBadgePage">
+  <ScrollViewer HorizontalScrollBarVisibility="Auto">
+    <StackPanel Margin="24" Spacing="24" MaxWidth="1000" HorizontalAlignment="Stretch">
+      <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="DualBadge" FontWeight="SemiBold"/>
+          <u:DualBadge HorizontalAlignment="Left" MaxWidth="640" Content="Sample"/>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</pages:DemoPageView>

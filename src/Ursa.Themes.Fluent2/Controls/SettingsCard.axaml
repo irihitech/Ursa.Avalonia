@@ -1,0 +1,189 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="https://irihi.tech/ursa"
+                    xmlns:iri="https://irihi.tech/shared">
+  <ControlTheme x:Key="{x:Type u:SettingsCardGroup}" TargetType="u:SettingsCardGroup">
+    <Setter Property="ItemsPanel">
+      <ItemsPanelTemplate>
+        <StackPanel Spacing="{DynamicResource UrsaFluent2SettingsCardGroupItemSpacing}" />
+      </ItemsPanelTemplate>
+    </Setter>
+    <Setter Property="Template">
+      <ControlTemplate TargetType="u:SettingsCardGroup">
+        <StackPanel Spacing="{DynamicResource UrsaFluent2SettingsCardGroupSpacing}">
+          <ContentPresenter
+              Content="{TemplateBinding Header}"
+              ContentTemplate="{TemplateBinding HeaderTemplate}"
+              FontWeight="{DynamicResource UrsaFluent2FontWeightBold}"
+              IsVisible="{TemplateBinding Header, Converter={x:Static ObjectConverters.IsNotNull}}" />
+          <ContentPresenter
+              Content="{TemplateBinding Description}"
+              ContentTemplate="{TemplateBinding DescriptionTemplate}"
+              FontSize="{DynamicResource UrsaFluent2FontSizeSmall}"
+              Foreground="{DynamicResource TextFillColorSecondary}"
+              IsVisible="{TemplateBinding Description, Converter={x:Static ObjectConverters.IsNotNull}}"
+              TextWrapping="Wrap" />
+          <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+        </StackPanel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type u:SettingsCard}" TargetType="u:SettingsCard">
+    <Setter Property="MinHeight" Value="{DynamicResource UrsaFluent2SettingsCardMinHeight}" />
+    <Setter Property="Padding" Value="{DynamicResource UrsaFluent2SettingsCardPadding}" />
+    <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefault}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefault}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource UrsaFluent2SettingsCardCornerRadius}" />
+    <Setter Property="Template">
+      <ControlTemplate TargetType="u:SettingsCard">
+        <Border
+            Name="PART_Outer"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}">
+          <StackPanel>
+            <Border
+                Name="PART_Root"
+                MinHeight="{TemplateBinding MinHeight}"
+                Padding="{TemplateBinding Padding}"
+                Background="{TemplateBinding Background}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                ClipToBounds="True">
+              <Grid ColumnDefinitions="Auto,*,Auto">
+
+                <ContentPresenter
+                    Name="PART_Icon"
+                    Grid.Column="0"
+                    Width="20" Height="20"
+                    Margin="0,0,16,0"
+                    Content="{TemplateBinding Icon}"
+                    ContentTemplate="{TemplateBinding IconTemplate}">
+                  <ContentPresenter.DataTemplates>
+                    <DataTemplate DataType="Geometry">
+                      <PathIcon
+                          Theme="{DynamicResource InnerPathIcon}"
+                          Data="{Binding}" />
+                    </DataTemplate>
+                  </ContentPresenter.DataTemplates>
+                </ContentPresenter>
+
+                <StackPanel
+                    Grid.Column="1"
+                    Margin="0,0,12,0"
+                    VerticalAlignment="Center"
+                    Spacing="2">
+                  <StackPanel Orientation="Horizontal" Spacing="8">
+                    <ContentPresenter
+                        Name="PART_Content"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        Foreground="{DynamicResource TextFillColorPrimary}"
+                        IsVisible="{TemplateBinding Content, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                    <ContentPresenter
+                        Name="PART_Trailing"
+                        VerticalAlignment="Center"
+                        Content="{TemplateBinding Trailing}"
+                        ContentTemplate="{TemplateBinding TrailingTemplate}"
+                        IsVisible="{TemplateBinding Trailing, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                  </StackPanel>
+                  <ContentPresenter
+                      Name="PART_Description"
+                      Content="{TemplateBinding Description}"
+                      ContentTemplate="{TemplateBinding DescriptionTemplate}"
+                      FontSize="{DynamicResource UrsaFluent2FontSizeSmall}"
+                      Foreground="{DynamicResource TextFillColorSecondary}"
+                      IsVisible="{TemplateBinding Description, Converter={x:Static ObjectConverters.IsNotNull}}"
+                      TextWrapping="Wrap" />
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Column="2"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal"
+                    Spacing="12">
+                  <ContentPresenter
+                      Name="PART_Note"
+                      Content="{TemplateBinding Note}"
+                      ContentTemplate="{TemplateBinding NoteTemplate}"
+                      Foreground="{DynamicResource TextFillColorSecondary}"
+                      IsVisible="{TemplateBinding Note, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                  <ContentPresenter
+                      Name="PART_Right"
+                      Content="{TemplateBinding RightContent}"
+                      ContentTemplate="{TemplateBinding RightContentTemplate}"
+                      IsVisible="{TemplateBinding RightContent, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                  <PathIcon
+                      Name="PART_Chevron"
+                      Theme="{DynamicResource InnerPathIcon}"
+                      Data="{DynamicResource UrsaFluent2IconChevronRight}"
+                      Foreground="{DynamicResource TextFillColorTertiary}"
+                      IsVisible="False"
+                      RenderTransformOrigin="50%,50%">
+                    <PathIcon.Transitions>
+                      <Transitions>
+                        <TransformOperationsTransition Property="RenderTransform" Duration="0.25" />
+                      </Transitions>
+                    </PathIcon.Transitions>
+                  </PathIcon>
+                </StackPanel>
+              </Grid>
+            </Border>
+
+            <ContentPresenter
+                Name="PART_DetailHost"
+                IsVisible="{TemplateBinding IsExpanded}"
+                Background="{TemplateBinding Background}"
+                BackgroundSizing="OuterBorderEdge"
+                BorderBrush="{DynamicResource DividerStrokeColorDefault}"
+                BorderThickness="0,1,0,0"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Content="{TemplateBinding Detail}"
+                ContentTemplate="{TemplateBinding DetailTemplate}" />
+          </StackPanel>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <!--  Cards nested inside a detail host render as flat rows separated by hairlines.  -->
+    <Style Selector="^ /template/ ContentPresenter#PART_DetailHost u|SettingsCard">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderBrush" Value="{DynamicResource DividerStrokeColorDefault}" />
+      <Setter Property="BorderThickness" Value="0,1,0,0" />
+      <Setter Property="CornerRadius" Value="0" />
+      <Style Selector="^:nth-child(1)">
+        <Setter Property="BorderThickness" Value="0" />
+      </Style>
+    </Style>
+    <Style Selector="^:expanded /template/ Border#PART_Root">
+      <Setter Property="CornerRadius" Value="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter Top}}" />
+    </Style>
+    <Style Selector="^:expanded /template/ ContentPresenter#PART_DetailHost">
+      <Setter Property="CornerRadius" Value="{TemplateBinding CornerRadius, Converter={iri:CornerRadiusMixerConverter Bottom}}" />
+    </Style>
+
+    <Style Selector="^:interactive:pointerover:not(:over-detail) /template/ Border#PART_Root">
+      <Setter Property="Background" Value="{DynamicResource SubtleFillColorSecondary}" />
+    </Style>
+    <Style Selector="^:interactive:pressed:not(:over-detail) /template/ Border#PART_Root">
+      <Setter Property="Background" Value="{DynamicResource SubtleFillColorTertiary}" />
+    </Style>
+    <Style Selector="^:focus-visible /template/ Border#PART_Outer">
+      <Setter Property="BorderBrush" Value="{DynamicResource FocusStrokeColorOuter}" />
+    </Style>
+    <Style Selector="^:disabled">
+      <Setter Property="Opacity" Value="0.55" />
+    </Style>
+    <Style Selector="^[ShowChevron=True] /template/ PathIcon#PART_Chevron">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="^:has-detail /template/ PathIcon#PART_Chevron">
+      <Setter Property="IsVisible" Value="True" />
+      <Setter Property="Data" Value="{DynamicResource UrsaFluent2IconChevronDown}" />
+    </Style>
+    <Style Selector="^:has-detail:expanded /template/ PathIcon#PART_Chevron">
+      <Setter Property="RenderTransform" Value="rotate(-180deg)" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

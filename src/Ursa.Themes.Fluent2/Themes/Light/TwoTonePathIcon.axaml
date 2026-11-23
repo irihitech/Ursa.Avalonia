@@ -1,0 +1,6 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StaticResource x:Key="TwoTonePathIconForeground" ResourceKey="AccentFillColorDisabled" />
+    <StaticResource x:Key="TwoTonePathIconStrokeBrush" ResourceKey="AccentTextFillColorPrimaryBrush" />
+    <StaticResource x:Key="TwoTonePathIconActiveForeground" ResourceKey="AccentTextFillColorPrimaryBrush" />
+    <StaticResource x:Key="TwoTonePathIconActiveStrokeBrush" ResourceKey="AccentTextFillColorPrimaryBrush" />
+</ResourceDictionary>

@@ -1,0 +1,42 @@
+<pages:DemoPageView
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:sys="using:System"
+    xmlns:pages="using:Ursa.Fluent2.Demo.Pages"
+    xmlns:vm="using:Ursa.Fluent2.Demo.ViewModels"
+    x:DataType="vm:TreeComboBoxPageViewModel"
+    x:Class="Ursa.Fluent2.Demo.Pages.TreeComboBoxPage">
+  <ScrollViewer HorizontalScrollBarVisibility="Auto">
+    <StackPanel Margin="24" Spacing="24" MaxWidth="1000" HorizontalAlignment="Stretch">
+      <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="TreeComboBox" FontWeight="SemiBold"/>
+          <TextBlock Text="Select a team from a hierarchy supplied by the view model." TextWrapping="Wrap"/>
+          <u:TreeComboBox Name="TreeComboBoxInput" HorizontalAlignment="Left" MaxWidth="640" Width="280"
+                          ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                          PlaceholderText="Select a team">
+            <u:TreeComboBox.ItemTemplate>
+              <TreeDataTemplate DataType="vm:DemoTreeNode" ItemsSource="{Binding Children}">
+                <TextBlock Text="{Binding Name}"/>
+              </TreeDataTemplate>
+            </u:TreeComboBox.ItemTemplate>
+            <u:TreeComboBox.SelectedItemTemplate>
+              <DataTemplate DataType="vm:DemoTreeNode">
+                <TextBlock Text="{Binding Name}"/>
+              </DataTemplate>
+            </u:TreeComboBox.SelectedItemTemplate>
+          </u:TreeComboBox>
+          <TextBlock Name="SelectionValue" Text="{Binding SelectedItem.Name, StringFormat='Selected: {0}', TargetNullValue='Selected: none'}"/>
+          <Button Content="Clear selection" Command="{Binding ClearSelectionCommand}" HorizontalAlignment="Left"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="TreeComboBoxItem" FontWeight="SemiBold"/>
+          <u:TreeComboBoxItem HorizontalAlignment="Left" MaxWidth="640" Header="Sample team"/>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</pages:DemoPageView>

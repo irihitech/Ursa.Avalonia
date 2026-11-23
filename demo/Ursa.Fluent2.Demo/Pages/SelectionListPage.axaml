@@ -1,0 +1,29 @@
+<pages:DemoPageView
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:sys="using:System"
+    xmlns:pages="using:Ursa.Fluent2.Demo.Pages"
+    xmlns:vm="using:Ursa.Fluent2.Demo.ViewModels"
+    x:DataType="vm:SelectionListPageViewModel"
+    x:Class="Ursa.Fluent2.Demo.Pages.SelectionListPage">
+  <ScrollViewer HorizontalScrollBarVisibility="Auto">
+    <StackPanel Margin="24" Spacing="24" MaxWidth="1000" HorizontalAlignment="Stretch">
+      <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="SelectionList" FontWeight="SemiBold"/>
+          <u:SelectionList Name="SelectionListInput" HorizontalAlignment="Left" MaxWidth="640" Width="280"
+                            ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}"/>
+          <TextBlock Name="SelectionValue" Text="{Binding SelectedItem, StringFormat='Selected: {0}', TargetNullValue='Selected: none'}"/>
+          <Button Content="Clear selection" Command="{Binding ClearSelectionCommand}" HorizontalAlignment="Left"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="SelectionListItem" FontWeight="SemiBold"/>
+          <u:SelectionListItem HorizontalAlignment="Left" MaxWidth="640" Content="Sample"/>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</pages:DemoPageView>

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
+    <IsPackable>true</IsPackable>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <PackageId>Irihi.Ursa.Themes.Fluent2</PackageId>
+    <Version>$(Version)-fluent2-preview</Version>
+    <Authors>IRIHI Technology Co., Ltd.</Authors>
+    <Description>Fluent 2 themes for Irihi.Ursa controls, built on Avalonia.Themes.Fluent2.</Description>
+    <PackageTags>avalonia;ursa;theme;fluent;fluent2</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" VersionOverride="$(Fluent2AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Themes.Fluent2" />
+    <ProjectReference Include="../Ursa/Ursa.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../../THIRD-PARTY-NOTICES.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+</Project>

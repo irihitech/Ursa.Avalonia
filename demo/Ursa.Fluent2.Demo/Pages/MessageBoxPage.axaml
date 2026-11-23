@@ -1,0 +1,26 @@
+<pages:DemoPageView
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:sys="using:System"
+    xmlns:pages="using:Ursa.Fluent2.Demo.Pages"
+    xmlns:vm="using:Ursa.Fluent2.Demo.ViewModels"
+    x:DataType="vm:DemoPageViewModel"
+    x:Class="Ursa.Fluent2.Demo.Pages.MessageBoxPage">
+  <ScrollViewer HorizontalScrollBarVisibility="Auto">
+    <StackPanel Margin="24" Spacing="24" MaxWidth="1000" HorizontalAlignment="Stretch">
+      <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="MessageBox" FontWeight="SemiBold"/>
+          <u:MessageBoxControl HorizontalAlignment="Left" MaxWidth="640"/>
+        </StackPanel>
+      </Border>
+      <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="MessageBoxWindow" FontWeight="SemiBold"/>
+          <Button Content="Open MessageBoxWindow sample" Command="{Binding OpenSampleCommand}" CommandParameter="MessageBoxWindow" HorizontalAlignment="Left"/>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</pages:DemoPageView>

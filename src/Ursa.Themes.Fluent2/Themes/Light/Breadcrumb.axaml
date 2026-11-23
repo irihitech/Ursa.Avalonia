@@ -1,0 +1,7 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StaticResource x:Key="BreadcrumbItemForeground" ResourceKey="TextFillColorTertiary" />
+    <StaticResource x:Key="BreadcrumbItemSeparatorForeground" ResourceKey="TextFillColorDisabled" />
+    <StaticResource x:Key="BreadcrumbItemLastForeground" ResourceKey="TextFillColorPrimary" />
+    <StaticResource x:Key="BreadcrumbItemPointeroverForeground" ResourceKey="AccentTextFillColorPrimaryBrush" />
+    <StaticResource x:Key="BreadcrumbItemPressedForeground" ResourceKey="AccentTextFillColorPrimaryBrush" />
+</ResourceDictionary>

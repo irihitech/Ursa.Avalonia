@@ -1,0 +1,36 @@
+<ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--CalenderDayButton-->
+    <SolidColorBrush x:Key="CalenderDayBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="CalenderDayBorderBrush" Color="Transparent" />
+    <StaticResource x:Key="CalenderDayInRangeBackground" ResourceKey="SubtleFillColorSecondary" />
+    <StaticResource x:Key="CalenderDayTodayBackground" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="CalenderDayTodayForeground" ResourceKey="TextOnAccentFillColorPrimary" />
+    <StaticResource x:Key="CalenderDayNotCurrentMonthForeground" ResourceKey="TextFillColorTertiary" />
+    <StaticResource x:Key="CalenderDayPointeroverBackground" ResourceKey="SubtleFillColorSecondary" />
+    <StaticResource x:Key="CalenderDayPressedBackground" ResourceKey="SubtleFillColorTertiary" />
+    <StaticResource x:Key="CalenderDaySelectedBackground" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="CalenderDaySelectedForeground" ResourceKey="TextOnAccentFillColorPrimary" />
+    <StaticResource x:Key="CalenderDaySelectedPointeroverBackground" ResourceKey="AccentFillColorSecondaryBrush" />
+    <StaticResource x:Key="CalenderDaySelectedPressedBackground" ResourceKey="AccentFillColorTertiaryBrush" />
+    <StaticResource x:Key="CalendarDayInRangeForeground" ResourceKey="TextFillColorPrimary" />
+    <StaticResource x:Key="CalenderDayStartEndDateBackground" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="CalenderDayStartEndDateBorderBrush" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="CalenderDayStartEndDatePointeroverBackground" ResourceKey="AccentFillColorSecondaryBrush" />
+    <StaticResource x:Key="CalenderDayStartEndDatePressedBackground" ResourceKey="AccentFillColorTertiaryBrush" />
+    <StaticResource x:Key="CalenderDayStartEndDateInRangeBackground" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="CalenderDayPreviewStartEndDateBackground" ResourceKey="ControlFillColorSecondary" />
+    <StaticResource x:Key="CalenderDayPreviewStartEndDatePressedBackground" ResourceKey="ControlFillColorSecondary" />
+    <StaticResource x:Key="CalenderDayBlackoutForeground" ResourceKey="TextFillColorDisabled" />
+    <StaticResource x:Key="CalenderDayBlackoutBackground" ResourceKey="ControlFillColorDisabled" />
+    <StaticResource x:Key="CalenderDayBlackoutTodayBackground" ResourceKey="AccentFillColorDisabled" />
+    <!--CalenderYearButton-->
+    <SolidColorBrush x:Key="CalenderYearBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="CalenderYearBorderBrush" Color="Transparent" />
+    <StaticResource x:Key="CalenderYearPointeroverBackground" ResourceKey="SubtleFillColorSecondary" />
+    <StaticResource x:Key="CalenderYearPressedBackground" ResourceKey="SubtleFillColorTertiary" />
+    <StaticResource x:Key="CalenderYearSelectedBackground" ResourceKey="AccentFillColorDefaultBrush" />
+    <StaticResource x:Key="CalenderYearSelectedForeground" ResourceKey="TextOnAccentFillColorPrimary" />
+    <StaticResource x:Key="CalenderYearSelectedPointeroverBackground" ResourceKey="AccentFillColorSecondaryBrush" />
+    <!--CalenderView-->
+    <SolidColorBrush x:Key="CalenderViewBackground" Color="Transparent" />
+</ResourceDictionary>

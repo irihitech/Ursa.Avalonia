@@ -1,4 +1,4 @@
-﻿using Avalonia;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
@@ -47,7 +47,7 @@ public class ThemeToggleButton: ThemeSelectorBase
             {
                 true => false,
                 false => true,
-                null => throw new InvalidOperationException("Invalid state")
+                null => ActualThemeVariant == ThemeVariant.Dark
             };
         } 
         else

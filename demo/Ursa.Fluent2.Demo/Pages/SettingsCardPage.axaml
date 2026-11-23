@@ -1,0 +1,123 @@
+<pages:DemoPageView
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="using:System"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:pages="using:Ursa.Fluent2.Demo.Pages"
+    x:Class="Ursa.Fluent2.Demo.Pages.SettingsCardPage">
+  <ScrollViewer HorizontalScrollBarVisibility="Auto">
+    <StackPanel Margin="24" Spacing="24" MaxWidth="1000" HorizontalAlignment="Stretch">
+
+      <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="SettingsCardGroup" FontWeight="SemiBold"/>
+          <StackPanel Spacing="12">
+            <u:SettingsCardGroup Header="Notifications" Description="Choose what Ursa tells you about.">
+              <u:SettingsCard
+                  Icon="{DynamicResource UrsaFluent2IconInfoCircle}"
+                  Content="Notifications"
+                  Description="Show toasts for background tasks"
+                  Note="On">
+                <u:SettingsCard.RightContent>
+                  <ToggleSwitch />
+                </u:SettingsCard.RightContent>
+              </u:SettingsCard>
+              <u:SettingsCard
+                  Icon="{DynamicResource UrsaFluent2IconDownload}"
+                  Content="Automatic updates"
+                  Description="Download new versions in the background">
+                <u:SettingsCard.RightContent>
+                  <ToggleSwitch IsChecked="True" />
+                </u:SettingsCard.RightContent>
+              </u:SettingsCard>
+              <u:SettingsCard
+                  Icon="{DynamicResource UrsaFluent2IconLock}"
+                  Content="Require authentication"
+                  Description="Ask for confirmation before destructive actions"
+                  IsEnabled="False">
+                <u:SettingsCard.Trailing>
+                  <Border
+                      Background="{DynamicResource AccentFillColorDefaultBrush}"
+                      CornerRadius="4"
+                      Padding="8,2">
+                    <TextBlock
+                        FontSize="{DynamicResource UrsaFluent2FontSizeSmall}"
+                        Foreground="{DynamicResource TextOnAccentFillColorDefault}"
+                        Text="Soon" />
+                  </Border>
+                </u:SettingsCard.Trailing>
+              </u:SettingsCard>
+            </u:SettingsCardGroup>
+
+            <u:SettingsCardGroup Header="Navigation">
+              <u:SettingsCard
+                  Icon="{DynamicResource UrsaFluent2IconStar}"
+                  Content="Documentation"
+                  ShowChevron="True" />
+              <u:SettingsCard
+                  Icon="{DynamicResource UrsaFluent2IconHelpCircle}"
+                  Content="About Ursa"
+                  Description="Version, credits and licenses"
+                  ShowChevron="True" />
+              <u:SettingsCard
+                  Icon="{DynamicResource UrsaFluent2IconMore}"
+                  Content="Disabled row"
+                  ShowChevron="True"
+                  IsEnabled="False" />
+            </u:SettingsCardGroup>
+          </StackPanel>
+        </StackPanel>
+      </Border>
+
+      <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="Expandable rows" FontWeight="SemiBold"/>
+          <StackPanel Spacing="12">
+            <u:SettingsCard Content="Links" Description="Click the row to expand">
+              <u:SettingsCard.Detail>
+                <StackPanel Margin="52,16" Spacing="6">
+                  <HyperlinkButton Content="Documentation" NavigateUri="https://docs.irihi.tech/ursa/" />
+                  <HyperlinkButton Content="GitHub repository" NavigateUri="https://github.com/irihitech/Ursa.Avalonia" />
+                  <HyperlinkButton Content="Avalonia" NavigateUri="https://avaloniaui.net" />
+                </StackPanel>
+              </u:SettingsCard.Detail>
+            </u:SettingsCard>
+            <u:SettingsCard Content="Sync settings" Description="Nested cards render as flat rows with separators">
+              <u:SettingsCard.Detail>
+                <StackPanel>
+                  <u:SettingsCard Content="Sync over Wi-Fi only">
+                    <u:SettingsCard.RightContent>
+                      <CheckBox IsChecked="True" />
+                    </u:SettingsCard.RightContent>
+                  </u:SettingsCard>
+                  <u:SettingsCard Content="Sync while roaming">
+                    <u:SettingsCard.RightContent>
+                      <CheckBox />
+                    </u:SettingsCard.RightContent>
+                  </u:SettingsCard>
+                  <u:SettingsCard Content="Metered connections" Note="Off">
+                    <u:SettingsCard.RightContent>
+                      <RadioButton />
+                    </u:SettingsCard.RightContent>
+                  </u:SettingsCard>
+                </StackPanel>
+              </u:SettingsCard.Detail>
+            </u:SettingsCard>
+          </StackPanel>
+        </StackPanel>
+      </Border>
+
+      <Border Classes="gallery-card" Padding="24" CornerRadius="8" BorderThickness="1">
+        <StackPanel Spacing="6">
+          <TextBlock Classes="gallery-label" Text="Data-driven group" FontWeight="SemiBold"/>
+          <u:SettingsCardGroup Description="Strings without an ItemTemplate are wrapped in plain cards.">
+            <sys:String>Resize the window</sys:String>
+            <sys:String>Drag between panels</sys:String>
+            <sys:String>Press Alt to reveal accelerators</sys:String>
+          </u:SettingsCardGroup>
+        </StackPanel>
+      </Border>
+
+    </StackPanel>
+  </ScrollViewer>
+</pages:DemoPageView>
