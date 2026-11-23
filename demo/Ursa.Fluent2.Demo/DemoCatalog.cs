@@ -21,6 +21,8 @@ public static class DemoCatalog
             "Separate content with horizontal or vertical rules.", "使用水平或垂直分隔线组织内容。", () => new DividerPage()),
         new("UrsaGroupBox", "presentation",
             "Organize related content inside a titled container.", "在带标题的容器中组织相关内容。", () => new UrsaGroupBoxPage()),
+        new("SettingsCard", "presentation",
+            "Group titled setting rows with expandable and navigable cards.", "以可展开、可导航的设置卡片组合带标题的设置项。", () => new SettingsCardPage()),
         new("ButtonGroup", "presentation",
             "Present related actions as a connected group.", "将相关操作显示为一组相连的按钮。", () => new ButtonGroupPage()),
         new("Descriptions", "presentation",

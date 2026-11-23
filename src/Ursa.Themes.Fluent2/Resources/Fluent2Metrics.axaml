@@ -25,5 +25,10 @@
   <x:Double x:Key="UrsaFluent2FontSizeSmall">12</x:Double>
   <FontWeight x:Key="UrsaFluent2FontWeightBold">SemiBold</FontWeight>
   <x:Double x:Key="UrsaFluent2IconButtonInnerSpacing">4</x:Double>
+  <CornerRadius x:Key="UrsaFluent2SettingsCardCornerRadius">4</CornerRadius>
+  <x:Double x:Key="UrsaFluent2SettingsCardMinHeight">44</x:Double>
+  <Thickness x:Key="UrsaFluent2SettingsCardPadding">16,10</Thickness>
+  <x:Double x:Key="UrsaFluent2SettingsCardGroupSpacing">8</x:Double>
+  <x:Double x:Key="UrsaFluent2SettingsCardGroupItemSpacing">4</x:Double>
   <BoxShadows x:Key="UrsaFluent2OverlayBoxShadow">0 4 8 0 #26000000</BoxShadows>
 </ResourceDictionary>

@@ -22,4 +22,6 @@
   <Thickness x:Key="UrsaFluent2ClosableTagPadding">6,0,2,0</Thickness>
   <Thickness x:Key="UrsaFluent2ClosableTagCloseButtonMargin">2,0,0,0</Thickness>
   <Thickness x:Key="UrsaFluent2TagInputTextBoxMargin">6,1,4,1</Thickness>
+  <x:Double x:Key="UrsaFluent2SettingsCardMinHeight">36</x:Double>
+  <Thickness x:Key="UrsaFluent2SettingsCardPadding">12,6</Thickness>
 </ResourceDictionary>

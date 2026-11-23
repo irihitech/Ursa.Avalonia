@@ -188,8 +188,8 @@ public class ThemeSmokeTests
             var menu = window.FindControl<NavMenu>("NavigationMenu")!;
             var model = window.ViewModel;
             Assert.Equal(6, model.Categories.Count);
-            Assert.Equal(73, DemoCatalog.Pages.Count);
-            Assert.Equal(73, DemoCatalog.Pages.Select(page => page.Id).Distinct().Count());
+            Assert.Equal(74, DemoCatalog.Pages.Count);
+            Assert.Equal(74, DemoCatalog.Pages.Select(page => page.Id).Distinct().Count());
             Assert.DoesNotContain(DemoCatalog.Pages, page => page.Id == "UrsaView");
             var examples = 0;
             foreach (var item in model.Categories.SelectMany(category => category.Children))
@@ -230,7 +230,7 @@ public class ThemeSmokeTests
                     Assert.Same(target, selector.Target);
                 }
             }
-            Assert.Equal(120, examples);
+            Assert.Equal(123, examples);
             menu.SelectedItem = model.Categories.SelectMany(category => category.Children)
                 .Single(item => item.PageId == "UrsaGroupBox");
             window.UpdateLayout();
