@@ -76,16 +76,22 @@ Ursa 目前兼容 Avalonia 11.1.x 到 11.3.x，但明确不支持 Avalonia 11.2.
 
 ## 扩展
 
-### Fluent 2 主题（实验性）
+### Fluent 2 主题
 
-`src/Ursa.Themes.Fluent2` 提供独立于 Semi 的 Fluent 2 主题。它依赖 Avalonia
-尚未正式发布的 CI 包，版本固定在 `Directory.Packages.props` 中，并通过仓库的
-`NuGet.Config` 还原。现有 Semi 项目的依赖版本保持不变。
+`Irihi.Ursa.Themes.Fluent2`（`src/Ursa.Themes.Fluent2`）提供独立于 Semi 的 Fluent 2 主题，
+基于官方 `Avalonia.Themes.Fluent2` 包，要求 **Avalonia 12.2.0 及以上**。
+只有 Fluent 2 主题库、示例和测试使用该版本，现有 Semi 项目的依赖版本保持不变。
+
+```powershell
+dotnet add package Irihi.Ursa.Themes.Fluent2
+```
 
 使用时以 `<Fluent2Theme />` 和 `<fluent2:UrsaFluent2Theme />` 替换 Semi 主题，
 先注册 Avalonia 基础主题，再注册 Ursa 主题，其中
 `xmlns:fluent2="https://irihi.tech/ursa/themes/fluent2"`。
-应用中的所有 Avalonia 包需要使用相同的 Fluent 2 CI 版本。
+应用中的所有 Avalonia 包需要使用相同版本（见 `Directory.Packages.props` 中的 `Fluent2AvaloniaVersion`）。
+主题使用官方 Fluent 2 样式类（如 `accent`），不支持 `Primary`、`Danger`、`Small`、`Large`
+等 Semi 专用样式类。
 
 运行 `dotnet run --project demo\Ursa.Fluent2.Demo` 可查看控件示例。示例使用支持搜索和分类的
 `NavMenu` 侧边栏，每个控件具有独立页面，相关选项和面板示例归入所属控件的页面。

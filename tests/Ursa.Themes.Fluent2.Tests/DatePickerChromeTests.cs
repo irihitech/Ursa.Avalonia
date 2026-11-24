@@ -110,12 +110,12 @@ public class DatePickerChromeTests
                 Dispatcher.UIThread.RunJobs();
                 Assert.True(input.IsPointerOver);
                 Assert.False(chrome.IsVisible);
-                AssertResource("CalendarDatePickerPointeroverBackground", surface.Background, window);
+                AssertResource("CalendarDatePickerBackgroundPointerOver", surface.Background, window);
                 input.Focus();
                 Dispatcher.UIThread.RunJobs();
                 Assert.True(input.IsFocused);
                 Assert.False(chrome.IsVisible);
-                AssertResource("CalendarDatePickerFocusBorderBrush", surface.BorderBrush, window);
+                AssertResource("TextControlElevationBorderBrushFocused", surface.BorderBrush, window);
                 input.Text = "2026-10-29";
                 Assert.Equal("2026-10-29", input.Text);
                 picker.SetCurrentValue(DateRangePickerBase.IsDropdownOpenProperty, false);
@@ -126,9 +126,9 @@ public class DatePickerChromeTests
             var icon = picker.GetVisualDescendants().OfType<PathIcon>().Single(control => control.Name == "PART_Button");
             window.MouseMove(icon.TranslatePoint(new Point(4, 4), window)!.Value);
             Dispatcher.UIThread.RunJobs();
-            AssertResource("CalendarDatePickerPointeroverBackground", surface.Background, window);
+            AssertResource("CalendarDatePickerBackgroundPointerOver", surface.Background, window);
             picker.IsEnabled = false;
-            AssertResource("CalendarDatePickerDisabledBackground", surface.Background, window);
+            AssertResource("CalendarDatePickerBackgroundDisabled", surface.Background, window);
 
             if (picker is DateOffsetRangePicker offset)
             {

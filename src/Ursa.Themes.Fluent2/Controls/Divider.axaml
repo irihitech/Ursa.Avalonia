@@ -23,9 +23,9 @@
 
     <ControlTheme x:Key="{x:Type u:Divider}" TargetType="u:Divider">
         <Setter Property="HorizontalContentAlignment" Value="Left" />
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondary}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource DividerStrokeColorDefault}" />
+        <Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource DividerStrokeColorDefaultBrush}" />
 
         <Style Selector="^[Orientation=Horizontal]">
             <Style Selector="^[HorizontalContentAlignment=Left]">

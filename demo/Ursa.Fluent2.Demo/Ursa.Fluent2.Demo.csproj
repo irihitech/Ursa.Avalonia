@@ -18,7 +18,14 @@
   <ItemGroup>
     <PackageReference Include="Avalonia.Desktop" />
     <PackageReference Include="CommunityToolkit.Mvvm" />
-    <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Condition="'$(Configuration)' == 'Debug'" />
+    <!--Restore is not per-configuration, so keep this reference unconditional; Release output strips it below.-->
+    <PackageReference Include="AvaloniaUI.DiagnosticsSupport" />
     <ProjectReference Include="../../src/Ursa.Themes.Fluent2/Ursa.Themes.Fluent2.csproj" />
   </ItemGroup>
+  <Target Name="ExcludeDiagnosticsSupportFromRelease" AfterTargets="ResolvePackageAssets" Condition="'$(Configuration)' != 'Debug'">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.NuGetPackageId)' == 'AvaloniaUI.DiagnosticsSupport'" />
+      <RuntimeCopyLocalItems Remove="@(RuntimeCopyLocalItems)" Condition="'%(RuntimeCopyLocalItems.NuGetPackageId)' == 'AvaloniaUI.DiagnosticsSupport'" />
+    </ItemGroup>
+  </Target>
 </Project>

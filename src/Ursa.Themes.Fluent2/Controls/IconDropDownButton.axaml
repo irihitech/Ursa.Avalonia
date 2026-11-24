@@ -43,7 +43,8 @@
                             </ContentPresenter.DataTemplates>
                         </ContentPresenter>
                         <u:LoadingIcon
-                            Classes="Small"
+                            Width="14"
+                            Height="14"
                             Foreground="{Binding #PART_ContentPresenter.Foreground}"
                             IsLoading="{TemplateBinding (u:IconButton.IsLoading)}"
                             IsVisible="{TemplateBinding (u:IconButton.IsLoading)}" />
@@ -70,7 +71,7 @@
                     Margin="8,0,0,0"
                     HorizontalAlignment="Right"
                     Data="{DynamicResource DropDownButtonIconGlyph}"
-                    Foreground="{DynamicResource TextFillColorSecondary}"
+                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
                     IsHitTestVisible="False"
                     UseLayoutRounding="False" />
             </Grid>
@@ -80,7 +81,7 @@
     <ControlTheme x:Key="{x:Type u:IconDropDownButton}" TargetType="u:IconDropDownButton" BasedOn="{StaticResource BaseIconButton}">
         <Setter Property="Template" Value="{StaticResource IconDropDownButtonTemplate}" />
         <Style Selector="^:pointerover /template/ PathIcon#DropDownGlyph, ^:pressed /template/ PathIcon#DropDownGlyph">
-            <Setter Property="Foreground" Value="{DynamicResource TextFillColorTertiary}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorTertiaryBrush}" />
         </Style>
         <Style Selector="^:disabled /template/ PathIcon#DropDownGlyph">
             <Setter Property="Foreground" Value="{DynamicResource ButtonForegroundDisabled}" />
@@ -90,14 +91,4 @@
             <Setter Property="Padding" Value="{DynamicResource ButtonDefaultPadding}" />
         </Style>
     </ControlTheme>
-    <ControlTheme x:Key="SolidIconDropDownButton" TargetType="u:IconDropDownButton" BasedOn="{StaticResource BaseSolidIconButton}">
-        <Setter Property="Template" Value="{StaticResource IconDropDownButtonTemplate}" />
-    </ControlTheme>
-    <ControlTheme x:Key="OutlineIconDropDownButton" TargetType="u:IconDropDownButton" BasedOn="{StaticResource BaseOutlineIconButton}">
-        <Setter Property="Template" Value="{StaticResource IconDropDownButtonTemplate}" />
-    </ControlTheme>
-    <ControlTheme x:Key="BorderlessIconDropDownButton" TargetType="u:IconDropDownButton" BasedOn="{StaticResource BaseBorderlessIconButton}">
-        <Setter Property="Template" Value="{StaticResource IconDropDownButtonTemplate}" />
-    </ControlTheme>
-
 </ResourceDictionary>

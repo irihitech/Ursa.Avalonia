@@ -127,22 +127,22 @@ public class ResourceContractTests
         {
             RequestedThemeVariant = dark ? ThemeVariant.Dark : ThemeVariant.Light,
             Content = button,
-            Resources = { ["ButtonDefaultBackground"] = Colors.Red }
+            Resources = { ["ControlFillColorDefaultBrush"] = Colors.Red }
         };
         try
         {
             window.Show();
             Assert.Equal(Colors.Red, Assert.IsAssignableFrom<ISolidColorBrush>(button.Background).Color);
 
-            window.Resources["ButtonDefaultBackground"] = Colors.Blue;
+            window.Resources["ControlFillColorDefaultBrush"] = Colors.Blue;
             Assert.Equal(Colors.Blue, Assert.IsAssignableFrom<ISolidColorBrush>(button.Background).Color);
 
-            button.Resources["ButtonDefaultBackground"] = Brushes.Green;
+            button.Resources["ControlFillColorDefaultBrush"] = Brushes.Green;
             Assert.Same(Brushes.Green, button.Background);
             window.RequestedThemeVariant = dark ? ThemeVariant.Light : ThemeVariant.Dark;
             Assert.Same(Brushes.Green, button.Background);
 
-            button.Resources.Remove("ButtonDefaultBackground");
+            button.Resources.Remove("ControlFillColorDefaultBrush");
             Assert.Equal(Colors.Blue, Assert.IsAssignableFrom<ISolidColorBrush>(button.Background).Color);
         }
         finally

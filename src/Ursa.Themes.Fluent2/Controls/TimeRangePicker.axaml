@@ -4,13 +4,13 @@
     xmlns:u="https://irihi.tech/ursa"
     xmlns:iri="https://irihi.tech/shared">
     <ControlTheme x:Key="{x:Type u:TimeRangePickerBase}" TargetType="u:TimeRangePickerBase">
-        <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
+        <Setter Property="Background" Value="{DynamicResource TextControlBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextControlForeground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
         <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
         <Setter Property="MinHeight" Value="32" />
-        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
+        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextControlPlaceholderForeground}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:TimeRangePickerBase">
                 <DataValidationErrors>
@@ -35,7 +35,7 @@
                                 Background="Transparent"
                                 BorderBrush="Transparent"
                                 BorderThickness="0"
-                                CornerRadius="3 0 0 3"
+                                CornerRadius="0"
                                 Foreground="{TemplateBinding Foreground}"
                                 InnerLeftContent="{TemplateBinding InnerLeftContent}"
                                 IsReadOnly="{TemplateBinding IsReadOnly}"
@@ -46,7 +46,7 @@
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
                                 Margin="8,0"
-                                Foreground="{DynamicResource TextFillColorTertiary}"
+                                Foreground="{DynamicResource TextFillColorTertiaryBrush}"
                                 Text="–" />
                             <TextBox
                                 Name="{x:Static u:TimeRangePickerBase.PART_EndTextBox}"
@@ -75,7 +75,7 @@
                                 Theme="{DynamicResource InnerIconButton}" />
                             <PathIcon
                                 Name="PART_Button"
-                                Foreground="{DynamicResource TextFillColorSecondary}"
+                                Foreground="{DynamicResource TextFillColorSecondaryBrush}"
                                 Grid.Column="3"
                                 Margin="8,0"
                                 Data="{DynamicResource TimePickerIconGlyph}"
@@ -94,8 +94,8 @@
                             <Border
                                 Margin="{DynamicResource ComboBoxPopupBorderMargin}"
                                 HorizontalAlignment="Stretch"
-                                Background="{DynamicResource DatePickerPopupBackground}"
-                                BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"
+                                Background="{DynamicResource AcrylicBackgroundFillColorDefaultBrush}"
+                                BorderBrush="{DynamicResource ComboBoxDropDownBorderBrush}"
                                 BorderThickness="{DynamicResource ComboBoxPopupBorderThickness}"
                                 BoxShadow="{DynamicResource ComboBoxPopupBoxShadow}"
                                 CornerRadius="6">
@@ -155,7 +155,7 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^.clearButton, ^.ClearButton">
+        <Style Selector="^.clearButton">
             <Style Selector="^:not(:empty):pointerover /template/ Button#ClearButton">
                 <Setter Property="IsVisible" Value="True" />
             </Style>
@@ -164,11 +164,11 @@
         <!--  Disabled State  -->
         <Style Selector="^:disabled">
             <Style Selector="^ /template/ Border#Background">
-                <Setter Property="Background" Value="{DynamicResource CalendarDatePickerDisabledBackground}" />
+                <Setter Property="Background" Value="{DynamicResource CalendarDatePickerBackgroundDisabled}" />
             </Style>
 
             <Style Selector="^ /template/ PathIcon#PART_Button">
-                <Setter Property="Foreground" Value="{DynamicResource CalendarDatePickerDisabledIconForeground}" />
+                <Setter Property="Foreground" Value="{DynamicResource TextFillColorDisabledBrush}" />
             </Style>
             <Style Selector="^ /template/ TextBox#PART_TextBox">
                 <Setter Property="Background" Value="Transparent" />
@@ -178,30 +178,23 @@
 
         <!--  Focused State  -->
         <Style Selector="^ /template/ Border#Background:focus">
-            <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextControlElevationBorderBrushFocused}" />
         </Style>
         <Style Selector="^ /template/ Border#Background:focus-within">
-            <Setter Property="BorderBrush" Value="{DynamicResource CalendarDatePickerFocusBorderBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextControlElevationBorderBrushFocused}" />
         </Style>
 
         <!--  Error State  -->
         <Style Selector="^:error">
             <Style Selector="^ /template/ Border#Background">
-                <Setter Property="Background" Value="{DynamicResource DataValidationErrorsBackground}" />
+                <Setter Property="Background" Value="{DynamicResource ControlFillColorDefaultBrush}" />
             </Style>
             <Style Selector="^:pointerover /template/ Border#Background">
-                <Setter Property="Background" Value="{DynamicResource DataValidationErrorsPointeroverBackground}" />
+                <Setter Property="Background" Value="{DynamicResource ControlFillColorSecondaryBrush}" />
             </Style>
             <Style Selector="^:focus-within /template/ Border#Background">
-                <Setter Property="BorderBrush" Value="{DynamicResource DataValidationErrorsSelectedBorderBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource SystemFillColorCriticalBrush}" />
             </Style>
-        </Style>
-
-        <Style Selector="^.Large">
-            <Setter Property="MinHeight" Value="{DynamicResource TextBoxLargeHeight}" />
-        </Style>
-        <Style Selector="^.Small">
-            <Setter Property="MinHeight" Value="{DynamicResource TextBoxSmallHeight}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

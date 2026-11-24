@@ -4,7 +4,9 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Shapes;
 using Avalonia.Headless.XUnit;
+using Avalonia.Layout;
 using Avalonia.Media;
+using Avalonia.Media.Transformation;
 using Avalonia.Styling;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
@@ -17,6 +19,73 @@ namespace Ursa.Themes.Fluent2.Tests;
 
 public class ThemeSmokeTests
 {
+    [AvaloniaTheory]
+    [InlineData(DialogMode.None)]
+    [InlineData(DialogMode.Info)]
+    [InlineData(DialogMode.Warning)]
+    [InlineData(DialogMode.Error)]
+    [InlineData(DialogMode.Question)]
+    [InlineData(DialogMode.Success)]
+    public void Dialog_primary_buttons_use_official_accent_button(DialogMode mode)
+    {
+        var dialog = new StandardDialogControl { Mode = mode, Buttons = DialogButton.OKCancel, Content = "Body" };
+        var messageBox = new MessageBoxControl { Buttons = MessageBoxButton.OKCancel, Content = "Body" };
+        var window = new Window { Content = new StackPanel { Children = { dialog, messageBox } } };
+        try
+        {
+            window.Show();
+            Dispatcher.UIThread.RunJobs();
+            Assert.True(Application.Current!.TryGetResource("AccentButtonBackground", window.ActualThemeVariant, out var accent));
+            foreach (var host in new Control[] { dialog, messageBox })
+            {
+                var buttons = host.GetVisualDescendants().OfType<Button>().ToList();
+                var ok = buttons.Single(b => b.Name == "PART_OKButton");
+                var cancel = buttons.Single(b => b.Name == "PART_CancelButton");
+                Assert.Contains("accent", ok.Classes);
+                Assert.DoesNotContain("accent", cancel.Classes);
+                var presenter = ok.GetVisualDescendants().OfType<ContentPresenter>().First(p => p.Name == "PART_ContentPresenter");
+                Assert.Same(accent, presenter.Background);
+            }
+        }
+        finally
+        {
+            window.Close();
+        }
+    }
+
+    [AvaloniaTheory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void Anchor_item_marker_matches_nav_menu_selection_indicator(bool dark)
+    {
+        var item = new AnchorItem { Header = "Section" };
+        var anchor = new Anchor { Items = { item } };
+        var window = new Window { Content = anchor, RequestedThemeVariant = dark ? ThemeVariant.Dark : ThemeVariant.Light };
+        try
+        {
+            window.Show();
+            Dispatcher.UIThread.RunJobs();
+            var indicator = item.GetVisualDescendants().OfType<Rectangle>().Single(r => r.Name == "PART_SelectionIndicator");
+            var variant = window.ActualThemeVariant;
+            Assert.True(Application.Current!.TryGetResource("ListBoxItemSelectionIndicatorWidth", variant, out var width));
+            Assert.True(Application.Current!.TryGetResource("ListBoxItemSelectionIndicatorHeight", variant, out var height));
+            Assert.True(Application.Current!.TryGetResource("ListViewItemSelectionIndicatorFill", variant, out var fill));
+            Assert.Equal((double)width!, indicator.Width);
+            Assert.Equal((double)height!, indicator.Height);
+            Assert.Equal(VerticalAlignment.Center, indicator.VerticalAlignment);
+            Assert.Same(fill, indicator.Fill);
+            Assert.Equal(0, indicator.Opacity);
+
+            item.IsSelected = true;
+            Dispatcher.UIThread.RunJobs();
+            Assert.Equal(1, indicator.Opacity);
+            Assert.Equal(Matrix.Identity, indicator.GetBaseValue(Visual.RenderTransformProperty).Value!.Value);
+        }
+        finally
+        {
+            window.Close();
+        }
+    }
     [AvaloniaTheory]
     [InlineData(false)]
     [InlineData(true)]
@@ -394,7 +463,7 @@ public class ThemeSmokeTests
         var app = Application.Current!;
         Assert.True(app.TryGetResource("AccentFillColorDefaultBrush", variant, out var accent));
         var expected = Assert.IsAssignableFrom<ISolidColorBrush>(accent).Color;
-        foreach (var key in new[] { "BadgePrimaryBadgeBackground", "ButtonGroupSolidPrimaryBackground", "CalenderDaySelectedBackground" })
+        foreach (var key in new[] { "BadgePrimaryBadgeBackground", "ButtonGroupSolidPrimaryBackground", "CalendarDaySelectedBackground" })
         {
             Assert.True(app.TryGetResource(key, variant, out var actual), key);
             Assert.Equal(expected, Assert.IsAssignableFrom<ISolidColorBrush>(actual).Color);

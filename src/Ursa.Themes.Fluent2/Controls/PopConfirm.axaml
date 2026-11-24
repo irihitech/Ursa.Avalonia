@@ -1,8 +1,7 @@
 <ResourceDictionary x:ClassModifier="internal"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:u="https://irihi.tech/ursa"
-    xmlns:iri="https://irihi.tech/shared">
+    xmlns:u="https://irihi.tech/ursa">
     <ControlTheme x:Key="{x:Type u:PopConfirm}"
                   TargetType="u:PopConfirm">
         <Setter Property="Placement" Value="BottomEdgeAlignedLeft" />
@@ -42,7 +41,6 @@
                                     <PathIcon
                                         Name="PART_BuildInIcon"
                                         Theme="{DynamicResource InnerPathIcon}"
-                                        Classes="ExtraLarge"
                                         Data="{DynamicResource BannerWarningIconGeometry}"
                                         Foreground="{DynamicResource BannerWarningBorderBrush}"
                                         IsVisible="{TemplateBinding Icon, Converter={x:Static ObjectConverters.IsNull}}" />
@@ -87,7 +85,7 @@
                                         CommandParameter="{TemplateBinding CancelCommandParameter}" />
                                     <Button
                                         Name="{x:Static u:PopConfirm.PART_ConfirmButton}"
-                                        Theme="{DynamicResource SolidButton}"
+                                        Classes="accent"
                                         Content="{DynamicResource STRING_MENU_DIALOG_OK}"
                                         Command="{TemplateBinding ConfirmCommand}"
                                         CommandParameter="{TemplateBinding ConfirmCommandParameter}" />
@@ -98,38 +96,5 @@
                 </Panel>
             </ControlTemplate>
         </Setter>
-
-        <Style Selector="^ /template/ Button#PART_CancelButton">
-            <Setter Property="iri:ClassHelper.Classes" Value="Tertiary" />
-        </Style>
-
-        <Style Selector="^ /template/ Button#PART_ConfirmButton">
-            <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
-        </Style>
-
-        <Style Selector="^.Information">
-            <Style Selector="^ /template/ PathIcon#PART_BuildInIcon">
-                <Setter Property="Data" Value="{DynamicResource BannerInformationIconGeometry}" />
-                <Setter Property="Foreground" Value="{DynamicResource BannerInformationBorderBrush}" />
-            </Style>
-        </Style>
-        <Style Selector="^.Success">
-            <Style Selector="^ /template/ PathIcon#PART_BuildInIcon">
-                <Setter Property="Data" Value="{DynamicResource BannerSuccessIconGeometry}" />
-                <Setter Property="Foreground" Value="{DynamicResource BannerSuccessBorderBrush}" />
-            </Style>
-        </Style>
-        <Style Selector="^.Warning">
-            <Style Selector="^ /template/ PathIcon#PART_BuildInIcon">
-                <Setter Property="Data" Value="{DynamicResource BannerWarningIconGeometry}" />
-                <Setter Property="Foreground" Value="{DynamicResource BannerWarningBorderBrush}" />
-            </Style>
-        </Style>
-        <Style Selector="^.Error">
-            <Style Selector="^ /template/ PathIcon#PART_BuildInIcon">
-                <Setter Property="Data" Value="{DynamicResource BannerErrorIconGeometry}" />
-                <Setter Property="Foreground" Value="{DynamicResource BannerErrorBorderBrush}" />
-            </Style>
-        </Style>
     </ControlTheme>
 </ResourceDictionary>

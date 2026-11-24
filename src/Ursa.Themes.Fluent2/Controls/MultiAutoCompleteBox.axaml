@@ -13,8 +13,8 @@
                     <Border
                         Name="PART_RootBorder"
                         VerticalAlignment="Stretch"
-                        Background="{DynamicResource TextBoxDefaultBackground}"
-                        BorderBrush="{DynamicResource TextBoxDefaultBorderBrush}"
+                        Background="{DynamicResource TextControlBackground}"
+                        BorderBrush="{DynamicResource TextControlBorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid ColumnDefinitions="Auto, *, Auto">
@@ -23,7 +23,7 @@
                                 Margin="8,0,0,0"
                                 VerticalAlignment="Center"
                                 Content="{TemplateBinding InnerLeftContent}"
-                                Foreground="{DynamicResource TextBoxInnerForeground}"
+                                Foreground="{DynamicResource TextFillColorSecondaryBrush}"
                                 IsHitTestVisible="False"
                                 IsVisible="{TemplateBinding InnerLeftContent,
                                                             Converter={x:Static ObjectConverters.IsNotNull}}" />
@@ -54,7 +54,7 @@
                                 Margin="8,0"
                                 VerticalAlignment="Center"
                                 Content="{TemplateBinding InnerRightContent}"
-                                Foreground="{DynamicResource TextBoxInnerForeground}"
+                                Foreground="{DynamicResource TextFillColorSecondaryBrush}"
                                 IsHitTestVisible="False"
                                 IsVisible="{TemplateBinding InnerRightContent,
                                                             Converter={x:Static ObjectConverters.IsNotNull}}" />
@@ -70,8 +70,8 @@
                             Margin="{DynamicResource AutoCompleteBoxPopupMargin}"
                             Padding="{DynamicResource AutoCompleteBoxPopupPadding}"
                             HorizontalAlignment="Stretch"
-                            Background="{DynamicResource AutoCompleteBoxPopupBackground}"
-                            BorderBrush="{DynamicResource AutoCompleteBoxPopupBorderBrush}"
+                            Background="{DynamicResource ComboBoxDropDownBackground}"
+                            BorderBrush="{DynamicResource ComboBoxDropDownBorderBrush}"
                             BorderThickness="{DynamicResource AutoCompleteBoxPopupBorderThickness}"
                             BoxShadow="{DynamicResource AutoCompleteBoxPopupBoxShadow}"
                             CornerRadius="{DynamicResource AutoCompleteBoxPopupCornerRadius}">

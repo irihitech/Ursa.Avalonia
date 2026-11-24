@@ -6,7 +6,7 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="MinHeight" Value="{DynamicResource AutoCompleteBoxDefaultHeight}" />
         <Setter Property="MaxDropDownHeight" Value="{DynamicResource AutoCompleteMaxDropdownHeight}" />
-        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
+        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextControlPlaceholderForeground}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="AutoCompleteBox">
                 <Panel>
@@ -37,8 +37,8 @@
                             Margin="{DynamicResource AutoCompleteBoxPopupMargin}"
                             Padding="{DynamicResource AutoCompleteBoxPopupPadding}"
                             HorizontalAlignment="Stretch"
-                            Background="{DynamicResource AutoCompleteBoxPopupBackground}"
-                            BorderBrush="{DynamicResource AutoCompleteBoxPopupBorderBrush}"
+                            Background="{DynamicResource ComboBoxDropDownBackground}"
+                            BorderBrush="{DynamicResource ComboBoxDropDownBorderBrush}"
                             BorderThickness="{DynamicResource AutoCompleteBoxPopupBorderThickness}"
                             BoxShadow="{DynamicResource AutoCompleteBoxPopupBoxShadow}"
                             CornerRadius="{DynamicResource AutoCompleteBoxPopupCornerRadius}">
@@ -54,7 +54,7 @@
                 </Panel>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^.clearButton, ^.ClearButton">
+        <Style Selector="^.clearButton">
             <Style Selector="^:focus-within:not(:empty) /template/ Button#PART_ClearButton">
                 <Setter Property="IsVisible" Value="True" />
             </Style>

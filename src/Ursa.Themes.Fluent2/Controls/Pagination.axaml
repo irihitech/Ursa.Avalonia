@@ -118,7 +118,7 @@
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="1"
-                    CornerRadius="3">
+                    CornerRadius="{DynamicResource ControlCornerRadius}">
                     <ContentPresenter
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"

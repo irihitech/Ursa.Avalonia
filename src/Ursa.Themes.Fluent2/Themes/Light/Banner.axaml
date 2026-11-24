@@ -7,6 +7,5 @@
     <StaticResource x:Key="BannerWarningBorderBrush" ResourceKey="SystemFillColorCaution" />
     <StaticResource x:Key="BannerErrorBackground" ResourceKey="SystemFillColorCriticalBackground" />
     <StaticResource x:Key="BannerErrorBorderBrush" ResourceKey="SystemFillColorCritical" />
-    <StaticResource x:Key="BannerCloseButtonForeground" ResourceKey="TextFillColorTertiary" />
     <SolidColorBrush x:Key="BannerBorderBrush" Color="Transparent" />
 </ResourceDictionary>

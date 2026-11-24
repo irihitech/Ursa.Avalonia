@@ -2,15 +2,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:u="https://irihi.tech/ursa">
     <Style Selector="u|TimeBox /template/ Border#PART_HourBorder:pointerover">
-        <Setter Property="Background" Value="{DynamicResource TimeBoxPointeroverBackground}" />
+        <Setter Property="Background" Value="{DynamicResource ControlFillColorSecondaryBrush}" />
     </Style>
     <Style Selector="u|TimeBox /template/ Border#PART_MinuteBorder:pointerover">
-        <Setter Property="Background" Value="{DynamicResource TimeBoxPointeroverBackground}" />
+        <Setter Property="Background" Value="{DynamicResource ControlFillColorSecondaryBrush}" />
     </Style>
     <Style Selector="u|TimeBox /template/ Border#PART_SecondBorder:pointerover">
-        <Setter Property="Background" Value="{DynamicResource TimeBoxPointeroverBackground}" />
+        <Setter Property="Background" Value="{DynamicResource ControlFillColorSecondaryBrush}" />
     </Style>
     <Style Selector="u|TimeBox /template/ Border#PART_MilliSecondBorder:pointerover">
-        <Setter Property="Background" Value="{DynamicResource TimeBoxPointeroverBackground}" />
+        <Setter Property="Background" Value="{DynamicResource ControlFillColorSecondaryBrush}" />
     </Style>
 </Styles>

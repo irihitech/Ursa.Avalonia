@@ -24,7 +24,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
                 <Button Name="CancelButton" Content="Cancel" MinWidth="96"
                         Command="{Binding CancelCommand}" />
-                <Button Name="DoneButton" Content="Done" MinWidth="96" Theme="{DynamicResource SolidButton}"
+                <Button Name="DoneButton" Content="Done" MinWidth="96" Classes="accent"
                         Command="{Binding ConfirmCommand}" />
             </StackPanel>
         </Border>

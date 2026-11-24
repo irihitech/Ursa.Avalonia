@@ -16,7 +16,7 @@
                 <u:NotificationCard NotificationType="Warning">
                     <u:Notification Content="Hello, Ursa!" />
                 </u:NotificationCard>
-                <u:NotificationCard NotificationType="Error" Classes="Light">
+                <u:NotificationCard NotificationType="Error">
                     <u:Notification Title="Welcome">
                         Hello, Ursa!
                     </u:Notification>
@@ -66,7 +66,7 @@
     <ControlTheme x:Key="{x:Type u:NotificationCard}" TargetType="u:NotificationCard">
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="BorderThickness" Value="{DynamicResource NotificationCardBorderThickness}" />
-        <Setter Property="Background" Value="{DynamicResource NotificationCardBackground}" />
+        <Setter Property="Background" Value="{DynamicResource AcrylicInAppFillColorDefaultBrush}" />
         <Setter Property="CornerRadius" Value="{DynamicResource NotificationCardCornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:NotificationCard">
@@ -86,7 +86,6 @@
                                 <PathIcon
                                     x:Name="NotificationIcon"
                                     Theme="{StaticResource InnerPathIcon}"
-                                    Classes="Large"
                                     Margin="{DynamicResource NotificationCardIconMargin}"
                                     VerticalAlignment="Top"
                                     IsVisible="{TemplateBinding ShowIcon}"
@@ -397,40 +396,20 @@
         </Style>
 
         <Style Selector="^:information /template/ PathIcon#NotificationIcon">
-            <Setter Property="Foreground" Value="{DynamicResource NotificationCardInformationIconForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource SystemFillColorAttentionBrush}" />
             <Setter Property="Data" Value="{DynamicResource NotificationCardInformationIconPathData}" />
         </Style>
         <Style Selector="^:success /template/ PathIcon#NotificationIcon">
-            <Setter Property="Foreground" Value="{DynamicResource NotificationCardSuccessIconForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource SystemFillColorSuccessBrush}" />
             <Setter Property="Data" Value="{DynamicResource NotificationCardSuccessIconPathData}" />
         </Style>
         <Style Selector="^:warning /template/ PathIcon#NotificationIcon">
-            <Setter Property="Foreground" Value="{DynamicResource NotificationCardWarningIconForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource SystemFillColorCautionBrush}" />
             <Setter Property="Data" Value="{DynamicResource NotificationCardWarningIconPathData}" />
         </Style>
         <Style Selector="^:error /template/ PathIcon#NotificationIcon">
-            <Setter Property="Foreground" Value="{DynamicResource NotificationCardErrorIconForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource SystemFillColorCriticalBrush}" />
             <Setter Property="Data" Value="{DynamicResource NotificationCardErrorIconPathData}" />
-        </Style>
-
-        <Style Selector="^.Light">
-            <Setter Property="Background" Value="{DynamicResource NotificationCardLightBackground}" />
-            <Style Selector="^:information /template/ Border#PART_RootBorder">
-                <Setter Property="BorderBrush" Value="{DynamicResource NotificationCardLightInformationBorderBrush}" />
-                <Setter Property="Background" Value="{DynamicResource NotificationCardLightInformationBackground}" />
-            </Style>
-            <Style Selector="^:success /template/ Border#PART_RootBorder">
-                <Setter Property="BorderBrush" Value="{DynamicResource NotificationCardLightSuccessBorderBrush}" />
-                <Setter Property="Background" Value="{DynamicResource NotificationCardLightSuccessBackground}" />
-            </Style>
-            <Style Selector="^:warning /template/ Border#PART_RootBorder">
-                <Setter Property="BorderBrush" Value="{DynamicResource NotificationCardLightWarningBorderBrush}" />
-                <Setter Property="Background" Value="{DynamicResource NotificationCardLightWarningBackground}" />
-            </Style>
-            <Style Selector="^:error /template/ Border#PART_RootBorder">
-                <Setter Property="BorderBrush" Value="{DynamicResource NotificationCardLightErrorBorderBrush}" />
-                <Setter Property="Background" Value="{DynamicResource NotificationCardLightErrorBackground}" />
-            </Style>
         </Style>
     </ControlTheme>
 </ResourceDictionary>

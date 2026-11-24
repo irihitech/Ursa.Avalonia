@@ -23,25 +23,38 @@
                 </Panel>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^.Muted /template/ Rectangle#PART_Pipe">
-            <Setter Property="Fill" Value="Transparent" />
-        </Style>
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:AnchorItem}" TargetType="u:AnchorItem">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="iri:ClassHelper.ClassSource" Value="{Binding $parent[u:Anchor]}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:AnchorItem">
                 <StackPanel>
                     <Panel Background="{TemplateBinding Background}">
-                        <Border
-                            Name="PART_Pipe"
-                            Width="{DynamicResource AnchorPipeWidth}"
-                            CornerRadius="{DynamicResource AnchorPipeCornerRadius}"
+                        <Rectangle
+                            Name="PART_SelectionIndicator"
+                            Width="{DynamicResource ListBoxItemSelectionIndicatorWidth}"
+                            Height="{DynamicResource ListBoxItemSelectionIndicatorHeight}"
+                            Margin="{DynamicResource AnchorSelectionIndicatorMargin}"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Stretch" />
+                            VerticalAlignment="Center"
+                            RadiusX="{DynamicResource ListBoxItemSelectionIndicatorRadius}"
+                            RadiusY="{DynamicResource ListBoxItemSelectionIndicatorRadius}"
+                            Fill="{DynamicResource ListViewItemSelectionIndicatorFill}"
+                            IsHitTestVisible="False"
+                            UseLayoutRounding="False"
+                            Opacity="0"
+                            RenderTransform="scaleY(0)">
+                            <Rectangle.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition
+                                        Property="RenderTransform"
+                                        Duration="{DynamicResource ControlFastAnimationDuration}"
+                                        Easing="{DynamicResource ControlFastOutSlowInKeySpline}" />
+                                </Transitions>
+                            </Rectangle.Transitions>
+                        </Rectangle>
                         <Panel>
                             <ContentPresenter
                                 Name="{x:Static iri:PartNames.PART_HeaderPresenter}"
@@ -65,25 +78,19 @@
         <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter">
             <Setter Property="MinHeight" Value="{DynamicResource AnchorDefaultHeight}" />
         </Style>
-        <Style Selector="^.Small /template/ ContentPresenter#PART_HeaderPresenter">
-            <Setter Property="MinHeight" Value="{DynamicResource AnchorSmallHeight}" />
-            <Setter Property="FontSize" Value="{DynamicResource AnchorSmallFontSize}" />
+        <Style Selector="^:pointerover /template/ ContentPresenter#PART_HeaderPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource AnchorPointerOverForeground}" />
         </Style>
         <Style Selector="^:selected">
             <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter">
                 <Setter Property="Foreground" Value="{DynamicResource AnchorSelectedForeground}" />
             </Style>
-            <Style Selector="^ /template/ Border#PART_Pipe">
-                <Setter Property="Background" Value="{DynamicResource AnchorPipeSelectedBackground}" />
+            <Style Selector="^ /template/ Rectangle#PART_SelectionIndicator">
+                <Setter Property="Opacity" Value="1" />
+                <Setter Property="RenderTransform" Value="scaleY(1)" />
             </Style>
-            <Style Selector="^.Primary /template/ Border#PART_Pipe">
-                <Setter Property="Background" Value="{DynamicResource AnchorPipeSelectedPrimaryBackground}" />
-            </Style>
-            <Style Selector="^.Tertiary /template/ Border#PART_Pipe">
-                <Setter Property="Background" Value="{DynamicResource AnchorPipeSelectedTertiaryBackground}" />
-            </Style>
-            <Style Selector="^.Muted /template/ Border#PART_Pipe">
-                <Setter Property="Background" Value="Transparent" />
+            <Style Selector="^:disabled /template/ Rectangle#PART_SelectionIndicator">
+                <Setter Property="Fill" Value="{DynamicResource ListViewItemSelectionIndicatorFillDisabled}" />
             </Style>
         </Style>
     </ControlTheme>

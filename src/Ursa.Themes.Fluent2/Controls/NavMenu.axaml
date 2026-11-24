@@ -30,11 +30,6 @@
             <Setter Property="Width" Value="{Binding $self.CollapseWidth}" />
             <Setter Property="Grid.IsSharedSizeScope" Value="False" />
         </Style>
-        <Style Selector="^.enable_animation">
-            <Setter Property="u:SizeAnimationHelper.TriggerAvaloniaProperty" Value="{x:Static u:NavMenu.IsHorizontalCollapsedProperty}" />
-            <Setter Property="u:SizeAnimationHelper.CreateAnimation" Value="{DynamicResource NavMenuWidthAnimationGenerator}" />
-            <Setter Property="u:SizeAnimationHelper.EnableWHAnimation" Value="True" />
-        </Style>
     </ControlTheme>
 
     <ControlTemplate x:Key="DefaultNavMenuItemTemplate" TargetType="u:NavMenuItem">
@@ -104,8 +99,8 @@
                             Margin="{DynamicResource NavigationMenuItemFlyoutMargin}"
                             Padding="{DynamicResource MenuFlyoutPadding}"
                             HorizontalAlignment="Stretch"
-                            Background="{DynamicResource MenuFlyoutBackground}"
-                            BorderBrush="{DynamicResource MenuFlyoutBorderBrush}"
+                            Background="{DynamicResource AcrylicInAppFillColorDefaultBrush}"
+                            BorderBrush="{DynamicResource SurfaceStrokeColorFlyoutBrush}"
                             BorderThickness="{DynamicResource MenuFlyoutBorderThickness}"
                             BoxShadow="{DynamicResource MenuFlyoutBorderBoxShadow}"
                             CornerRadius="{DynamicResource MenuFlyoutCornerRadius}">
@@ -175,8 +170,8 @@
         </Setter>
         <Setter Property="Template" Value="{StaticResource DefaultNavMenuItemTemplate}" />
         <Style Selector="^:selected">
-            <Setter Property="Foreground" Value="{DynamicResource ListBoxItemSelectedForeground}" />
-            <Setter Property="Background" Value="{DynamicResource ListBoxItemSelectedBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+            <Setter Property="Background" Value="{DynamicResource SubtleFillColorSecondaryBrush}" />
             <Style Selector="^ /template/ Rectangle#PART_SelectionIndicator">
                 <Setter Property="IsVisible" Value="True" />
                 <Setter Property="RenderTransform" Value="scaleY(1)" />
@@ -185,12 +180,12 @@
                 <Setter Property="Fill" Value="{DynamicResource ListViewItemSelectionIndicatorFillDisabled}" />
             </Style>
             <Style Selector="^:pointerover">
-                <Setter Property="Foreground" Value="{DynamicResource ListBoxItemSelectedForeground}" />
-                <Setter Property="Background" Value="{DynamicResource ListBoxItemSelectedPointeroverBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+                <Setter Property="Background" Value="{DynamicResource SubtleFillColorTertiaryBrush}" />
             </Style>
-            <Style Selector="^:focus">
-                <Setter Property="Foreground" Value="{DynamicResource ListBoxItemSelectedForeground}" />
-                <Setter Property="Background" Value="{DynamicResource ListBoxItemSelectedBackground}" />
+            <Style Selector="^:focus-visible">
+                <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+                <Setter Property="Background" Value="{DynamicResource SubtleFillColorSecondaryBrush}" />
             </Style>
         </Style>
         <Style Selector="^:vertical-collapsed /template/ ItemsPresenter#PART_ItemsPresenter">
@@ -208,22 +203,22 @@
             <Setter Property="IsVisible" Value="False" />
         </Style>
         <Style Selector="^ /template/ Border#PART_Border:pointerover">
-            <Setter Property="Background" Value="{DynamicResource ListBoxItemPointeroverBackground}" />
+            <Setter Property="Background" Value="{DynamicResource SubtleFillColorSecondaryBrush}" />
         </Style>
         <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter:pointerover">
-            <Setter Property="Foreground" Value="{DynamicResource ListBoxItemPointeroverForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
         </Style>
-        <Style Selector="^:focus /template/ Border#PART_Border">
-            <Setter Property="Background" Value="{DynamicResource ListBoxItemPointeroverBackground}" />
+        <Style Selector="^:focus-visible /template/ Border#PART_Border">
+            <Setter Property="Background" Value="{DynamicResource SubtleFillColorSecondaryBrush}" />
         </Style>
-        <Style Selector="^:focus /template/ ContentPresenter#PART_HeaderPresenter">
-            <Setter Property="Foreground" Value="{DynamicResource ListBoxItemPointeroverForeground}" />
+        <Style Selector="^:focus-visible /template/ ContentPresenter#PART_HeaderPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
         </Style>
-        <Style Selector="^:selected:focus /template/ Border#PART_Border">
-            <Setter Property="Background" Value="{DynamicResource ListBoxItemSelectedBackground}" />
+        <Style Selector="^:selected:focus-visible /template/ Border#PART_Border">
+            <Setter Property="Background" Value="{DynamicResource SubtleFillColorSecondaryBrush}" />
         </Style>
-        <Style Selector="^:selected:focus /template/ ContentPresenter#PART_HeaderPresenter">
-            <Setter Property="Foreground" Value="{DynamicResource ListBoxItemSelectedForeground}" />
+        <Style Selector="^:selected:focus-visible /template/ ContentPresenter#PART_HeaderPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
         </Style>
         <Style Selector="^:horizontal-collapsed:first-level">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -238,7 +233,7 @@
                 <Setter Property="HorizontalAlignment" Value="Stretch" />
             </Style>
             <Style Selector="^ /template/ Border#PART_Border:pointerover">
-                <Setter Property="Background" Value="{DynamicResource ListBoxItemPointeroverBackground}" />
+                <Setter Property="Background" Value="{DynamicResource SubtleFillColorSecondaryBrush}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_IconPresenter">
                 <Setter Property="Grid.ColumnSpan" Value="3" />
@@ -276,7 +271,7 @@
                             HorizontalAlignment="Left"
                             Content="{TemplateBinding Header}"
                             ContentTemplate="{TemplateBinding HeaderTemplate}"
-                            Foreground="{DynamicResource TextBlockQuaternaryForeground}"
+                            Foreground="{DynamicResource TextFillColorDisabledBrush}"
                             IsVisible="{TemplateBinding Header, Converter={x:Static ObjectConverters.IsNotNull}}">
                             <ContentPresenter.Styles>
                                 <Style Selector="TextBlock">

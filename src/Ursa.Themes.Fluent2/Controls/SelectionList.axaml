@@ -11,7 +11,7 @@
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Background="{DynamicResource SelectionListIndicatorBackground}"
-                    Theme="{DynamicResource CardBorder}" />
+                    Theme="{DynamicResource UrsaFluent2CardBorder}" />
             </Template>
         </Setter>
         <Setter Property="Template">

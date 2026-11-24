@@ -8,7 +8,6 @@
                 <u:IconButton
                     Name="{x:Static u:ThemeToggleButton.PART_ThemeButton}"
                     Theme="{StaticResource BorderlessIconButton}"
-                    Classes="Tertiary"
                     Padding="{TemplateBinding Padding}"
                     Width="{TemplateBinding Width}"
                     Height="{TemplateBinding Height}" />

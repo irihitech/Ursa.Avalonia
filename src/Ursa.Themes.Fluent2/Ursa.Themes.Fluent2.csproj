@@ -4,9 +4,8 @@
     <IsPackable>true</IsPackable>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
     <PackageId>Irihi.Ursa.Themes.Fluent2</PackageId>
-    <Version>$(Version)-fluent2-preview</Version>
     <Authors>IRIHI Technology Co., Ltd.</Authors>
-    <Description>Fluent 2 themes for Irihi.Ursa controls, built on Avalonia.Themes.Fluent2.</Description>
+    <Description>Fluent 2 themes for Irihi.Ursa controls, built on Avalonia.Themes.Fluent2. Requires Avalonia 12.2.0 or later.</Description>
     <PackageTags>avalonia;ursa;theme;fluent;fluent2</PackageTags>
     <RepositoryType>git</RepositoryType>
     <PackageReadmeFile>README.md</PackageReadmeFile>

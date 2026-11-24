@@ -30,7 +30,7 @@
                     <ContentPresenter
                         Margin="0,28,0,0"
                         Content="{TemplateBinding Header}"
-                        FontSize="18"
+                        FontSize="{DynamicResource UrsaFluent2FontSizeLarge}"
                         FontWeight="{DynamicResource TextBlockTitleFontWeight}"
                         IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Header, Converter={x:Static ObjectConverters.IsNotNull}}" />
                     <Rectangle

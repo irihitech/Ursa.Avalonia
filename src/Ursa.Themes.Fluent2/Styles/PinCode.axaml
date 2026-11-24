@@ -7,20 +7,4 @@
             <Setter Property="Margin" Value="0 0 8 0" />
         </Style>
     </Style>
-    <Style Selector="u|PinCode.Small">
-        <Style Selector="^ u|PinCodeItem">
-            <Setter Property="iri:ClassHelper.Classes" Value="Small" />
-            <Style Selector="^:nth-last-child(n+2)">
-                <Setter Property="Margin" Value="0 0 6 0" />
-            </Style>
-        </Style>
-    </Style>
-    <Style Selector="u|PinCode.Large">
-        <Style Selector="^ u|PinCodeItem">
-            <Setter Property="iri:ClassHelper.Classes" Value="Large" />
-            <Style Selector="^:nth-last-child(n+2)">
-                <Setter Property="Margin" Value="0 0 12 0" />
-            </Style>
-        </Style>
-    </Style>
 </Styles>

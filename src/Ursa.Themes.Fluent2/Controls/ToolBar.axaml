@@ -74,7 +74,7 @@
                                 IsOpen="{Binding #button.IsChecked, Mode=TwoWay}"
                                 Placement="{TemplateBinding PopupPlacement}"
                                 PlacementTarget="{Binding #button}">
-                                <Border Padding="2" Theme="{DynamicResource CardBorder}">
+                                <Border Padding="2" Theme="{DynamicResource UrsaFluent2CardBorder}">
                                     <StackPanel Name="{x:Static u:ToolBar.PART_OverflowPanel}" />
                                 </Border>
                             </Popup>

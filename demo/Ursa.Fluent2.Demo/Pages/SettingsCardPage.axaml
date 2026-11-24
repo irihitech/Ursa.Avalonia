@@ -42,7 +42,7 @@
                       Padding="8,2">
                     <TextBlock
                         FontSize="{DynamicResource UrsaFluent2FontSizeSmall}"
-                        Foreground="{DynamicResource TextOnAccentFillColorDefault}"
+                        Foreground="{DynamicResource TextOnAccentFillColorPrimaryBrush}"
                         Text="Soon" />
                   </Border>
                 </u:SettingsCard.Trailing>
